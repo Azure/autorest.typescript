@@ -14,8 +14,7 @@ export interface AzureLoadTestingClientOptions extends ClientOptions {
  * Initialize a new instance of `AzureLoadTestingClient`
  * @param endpointParam - A sequence of textual characters.
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2022-11-01", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

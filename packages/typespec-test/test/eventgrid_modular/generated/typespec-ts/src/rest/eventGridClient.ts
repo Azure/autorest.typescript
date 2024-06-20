@@ -14,8 +14,7 @@ export interface EventGridContextOptions extends ClientOptions {
  * Initialize a new instance of `EventGridContext`
  * @param endpointParam - The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2023-06-01-preview", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

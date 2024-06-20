@@ -12,8 +12,7 @@ export interface WidgetManagerClientOptions extends ClientOptions {
 /**
  * Initialize a new instance of `WidgetManagerClient`
  * @param endpointParam - The parameter endpointParam
- * @param {
- *     apiVersion = "2022-11-01-preview", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

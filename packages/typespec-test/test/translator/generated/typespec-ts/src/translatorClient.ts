@@ -13,8 +13,7 @@ export interface TranslatorClientOptions extends ClientOptions {
  * Initialize a new instance of `TranslatorClient`
  * @param endpointParam - Supported Text Translation endpoints (protocol and hostname, for example:
  *     https://api.cognitive.microsofttranslator.com).
- * @param {
- *     apiVersion = "3.0", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

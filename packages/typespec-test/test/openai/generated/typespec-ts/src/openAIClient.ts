@@ -15,8 +15,7 @@ export interface OpenAIClientOptions extends ClientOptions {
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2023-08-01-preview", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

@@ -15,8 +15,7 @@ export interface ContentSafetyContextOptions extends ClientOptions {
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://<resource-name>.cognitiveservices.azure.com).
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2023-10-01", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

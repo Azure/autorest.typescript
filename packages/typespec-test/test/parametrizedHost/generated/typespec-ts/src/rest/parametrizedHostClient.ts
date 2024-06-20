@@ -16,8 +16,7 @@ export interface ParametrizedHostContextOptions extends ClientOptions {
 /**
  * Initialize a new instance of `ParametrizedHostContext`
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "v1", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   credentials: TokenCredential,

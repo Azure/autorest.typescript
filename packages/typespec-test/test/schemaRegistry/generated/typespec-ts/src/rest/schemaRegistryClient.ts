@@ -14,8 +14,7 @@ export interface SchemaRegistryContextOptions extends ClientOptions {
  * Initialize a new instance of `SchemaRegistryContext`
  * @param fullyQualifiedNamespace - The Schema Registry service endpoint, for example 'my-namespace.servicebus.windows.net'.
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2023-07-01", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   fullyQualifiedNamespace: string,

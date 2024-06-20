@@ -155,6 +155,7 @@ export function buildClient(model: RLCModel): File | undefined {
         apiVersionStatement === ""
           ? "options"
           : `{${apiVersionStatement}, ...options}`,
+      documentName: "options",
       type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
       description: "the parameter for all optional parameters"
     }
@@ -169,7 +170,7 @@ export function buildClient(model: RLCModel): File | undefined {
           `Initialize a new instance of \`${clientInterfaceName}\`\n` +
           allClientParams
             .map((param) => {
-              return `@param ${param.name} - ${
+              return `@param ${param.documentName ?? param.name} - ${
                 param.description ?? "The parameter " + param.name
               }`;
             })

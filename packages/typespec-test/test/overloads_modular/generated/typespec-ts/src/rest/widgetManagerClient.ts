@@ -15,8 +15,7 @@ export interface WidgetManagerContextOptions extends ClientOptions {
  * @param endpointParam - Supported Widget Services endpoints (protocol and hostname, for example:
  * https://westus.api.widget.contoso.com).
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2022-08-30", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

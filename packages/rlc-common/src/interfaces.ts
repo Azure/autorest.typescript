@@ -169,6 +169,7 @@ export type Paths = Record<string, PathMetadata>;
 export type PathParameter = {
   oriName?: string;
   name: string;
+  documentName?: string;
   type: string;
   description?: string;
   value?: string | number | boolean;

@@ -14,8 +14,7 @@ export interface AuthoringClientOptions extends ClientOptions {
  * Initialize a new instance of `AuthoringClient`
  * @param endpointParam - The endpoint to use.
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2022-05-15-preview", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

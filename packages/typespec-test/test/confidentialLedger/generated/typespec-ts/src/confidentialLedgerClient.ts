@@ -14,8 +14,7 @@ export interface ConfidentialLedgerClientOptions extends ClientOptions {
  * Initialize a new instance of `ConfidentialLedgerClient`
  * @param ledgerUri - Represent a URL string as described by https://url.spec.whatwg.org/
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2022-05-13", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   ledgerUri: string,

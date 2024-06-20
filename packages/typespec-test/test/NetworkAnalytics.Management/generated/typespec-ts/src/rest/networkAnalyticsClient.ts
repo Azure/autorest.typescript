@@ -13,8 +13,7 @@ export interface NetworkAnalyticsContextOptions extends ClientOptions {
 /**
  * Initialize a new instance of `NetworkAnalyticsContext`
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2023-11-15", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   credentials: TokenCredential,

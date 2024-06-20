@@ -14,8 +14,7 @@ export interface AzureHealthInsightsClientOptions extends ClientOptions {
  * Initialize a new instance of `AzureHealthInsightsClient`
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2023-09-01-preview", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
