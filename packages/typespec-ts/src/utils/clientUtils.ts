@@ -1,8 +1,8 @@
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import {
-  Namespace,
   getNamespaceFullName,
-  listServices
+  listServices,
+  Namespace
 } from "@typespec/compiler";
 import { SdkContext } from "./interfaces.js";
 

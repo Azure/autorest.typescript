@@ -33,6 +33,13 @@ export interface SystemData {
 /** "User", "Application", "ManagedIdentity", "Key" */
 export type CreatedByType = string;
 
+export enum KnownCreatedByType {
+  User = "User",
+  Application = "Application",
+  ManagedIdentity = "ManagedIdentity",
+  Key = "Key",
+}
+
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
   /** The geo-location where the resource lives */
@@ -96,9 +103,25 @@ export interface DataProductProperties {
 /** The status of the current operation. */
 /** "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", "Accepted" */
 export type ProvisioningState = string;
+
+export enum KnownProvisioningState {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "Canceled",
+  Provisioning = "Provisioning",
+  Updating = "Updating",
+  Deleting = "Deleting",
+  Accepted = "Accepted",
+}
+
 /** The data type state */
 /** "Enabled", "Disabled" */
 export type ControlState = string;
+
+export enum KnownControlState {
+  Enabled = "Enabled",
+  Disabled = "Disabled",
+}
 
 /** Encryption key details. */
 export interface EncryptionKeyDetails {
@@ -144,6 +167,11 @@ export interface IPRules {
 /** "Allow", "Deny" */
 export type DefaultAction = string;
 
+export enum KnownDefaultAction {
+  Allow = "Allow",
+  Deny = "Deny",
+}
+
 /** ManagedResourceGroup related properties */
 export interface ManagedResourceGroupConfiguration {
   /** Name of managed resource group */
@@ -183,6 +211,13 @@ export interface ManagedServiceIdentity {
 /** The kind of managed identity assigned to this resource. */
 /** "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned" */
 export type ManagedServiceIdentityType = string;
+
+export enum KnownManagedServiceIdentityType {
+  None = "None",
+  SystemAssigned = "SystemAssigned",
+  UserAssigned = "UserAssigned",
+  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+}
 
 /** A managed identity assigned by the user. */
 export interface UserAssignedIdentity {
@@ -267,6 +302,12 @@ export interface ArmOperationStatus {
 /** "Succeeded", "Failed", "Canceled" */
 export type ResourceProvisioningState = string;
 
+export enum KnownResourceProvisioningState {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "Canceled",
+}
+
 /** The details for storage account sas creation. */
 export interface AccountSas {
   /** Sas token start timestamp. */
@@ -308,6 +349,11 @@ export interface RoleAssignmentCommonProperties {
 /** The data type state */
 /** "Reader", "SensitiveReader" */
 export type DataProductUserRole = string;
+
+export enum KnownDataProductUserRole {
+  Reader = "Reader",
+  SensitiveReader = "SensitiveReader",
+}
 
 /** The details for role assignment response. */
 export interface RoleAssignmentDetail {
@@ -373,6 +419,11 @@ export interface DataTypeProperties {
 /** The data type state */
 /** "Stopped", "Running" */
 export type DataTypeState = string;
+
+export enum KnownDataTypeState {
+  Stopped = "Stopped",
+  Running = "Running",
+}
 
 /** The type used for update operations of the DataType. */
 export interface DataTypeUpdate {
@@ -498,9 +549,21 @@ export interface OperationDisplay {
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 /** "user", "system", "user,system" */
 export type Origin = string;
+
+export enum KnownOrigin {
+  user = "user",
+  system = "system",
+  "user,system" = "user,system",
+}
+
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 /** "Internal" */
 export type ActionType = string;
+
+export enum KnownActionType {
+  Internal = "Internal",
+}
+
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 /** */
 export type Versions = "2023-11-15";

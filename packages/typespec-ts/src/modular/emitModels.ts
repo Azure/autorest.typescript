@@ -1,15 +1,16 @@
+import { getImportSpecifier } from "@azure-tools/rlc-common";
+import * as path from "path";
 import {
   InterfaceDeclarationStructure,
   OptionalKind,
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
+import { buildOperationOptions } from "./buildOperations.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
 import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
-import * as path from "path";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { buildOperationOptions } from "./buildOperations.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 // ====== UTILITIES ======
 
@@ -102,7 +103,7 @@ function buildEnumModel(
       ...getDocsFromDescription(model.description),
       // If it is a fixed enum we don't need to list the known values in the docs as the
       // output will be a literal union which is self documenting
-      model.isFixed
+      model.isFixed || !model.isNonExhaustive
         ? ""
         : // When we generate an "extensible" enum, the type will be "string" or "number" so we list the known values
           // in the docs for user reference.
@@ -112,7 +113,9 @@ function buildEnumModel(
   };
 
   function buildEnumType() {
-    return model.isFixed ? getEnumValues(" | ") : valueType;
+    return model.isFixed || !model.isNonExhaustive
+      ? getEnumValues(" | ")
+      : valueType;
   }
 
   function getEnumValues(separator: string = ", ") {
@@ -181,9 +184,8 @@ export function buildModels(
   if (models.length === 0 && aliases.length === 0) {
     return;
   }
-  const srcPath = codeModel.modularOptions.sourceRoot;
   const modelsFile = codeModel.project.createSourceFile(
-    path.join(`${srcPath}/`, subClient.subfolder ?? "", `models/models.ts`)
+    getModularModelFilePath(codeModel, subClient)
   );
 
   for (const model of models) {
@@ -194,6 +196,17 @@ export function buildModels(
       }
       const enumAlias = buildEnumModel(model);
       modelsFile.addTypeAlias(enumAlias);
+      if (model.isNonExhaustive && model.name) {
+        modelsFile.addEnum({
+          name: `Known${model.name}`,
+          isExported: true,
+          members:
+            model.values?.map((v) => ({
+              name: v.value,
+              value: v.value
+            })) ?? []
+        });
+      }
     } else {
       const modelInterface = buildModelInterface(model, {
         coreClientTypes,

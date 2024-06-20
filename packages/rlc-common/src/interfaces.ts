@@ -243,6 +243,7 @@ export interface RLCOptions {
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
   compatibilityMode?: boolean;
+  experimentalExtensibleEnums?: boolean;
 }
 
 export interface ServiceInfo {

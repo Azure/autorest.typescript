@@ -395,6 +395,106 @@ export interface KeyVaultInfo {
     keyVaultUrl: string;
 }
 
+// @public (undocumented)
+export enum KnownActionType {
+    // (undocumented)
+    Internal = "Internal"
+}
+
+// @public (undocumented)
+export enum KnownControlState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public (undocumented)
+export enum KnownCreatedByType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Key = "Key",
+    // (undocumented)
+    ManagedIdentity = "ManagedIdentity",
+    // (undocumented)
+    User = "User"
+}
+
+// @public (undocumented)
+export enum KnownDataProductUserRole {
+    // (undocumented)
+    Reader = "Reader",
+    // (undocumented)
+    SensitiveReader = "SensitiveReader"
+}
+
+// @public (undocumented)
+export enum KnownDataTypeState {
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Stopped = "Stopped"
+}
+
+// @public (undocumented)
+export enum KnownDefaultAction {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public (undocumented)
+export enum KnownManagedServiceIdentityType {
+    // (undocumented)
+    "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    SystemAssigned = "SystemAssigned",
+    // (undocumented)
+    UserAssigned = "UserAssigned"
+}
+
+// @public (undocumented)
+export enum KnownOrigin {
+    // (undocumented)
+    "user,system" = "user,system",
+    // (undocumented)
+    system = "system",
+    // (undocumented)
+    user = "user"
+}
+
+// @public (undocumented)
+export enum KnownProvisioningState {
+    // (undocumented)
+    Accepted = "Accepted",
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Provisioning = "Provisioning",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public (undocumented)
+export enum KnownResourceProvisioningState {
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
 // @public
 export interface ListRoleAssignments {
     count: number;
@@ -513,7 +613,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
     abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    processResponseBody?: (result: TResponse) => Promise<TResult>;
     updateIntervalInMs?: number;
 }
 

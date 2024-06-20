@@ -1479,6 +1479,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

@@ -599,7 +599,7 @@ describe("Client Factory generation", () => {
           client.pipeline.addPolicy({
             name: "customKeyCredentialPolicy",
             async sendRequest(request, next) {
-              request.headers.set("Authorization", "bearer " + credentials.key);
+              request.headers.set("Authorization", "Bearer " + credentials.key);
               return next(request);
             },
           });

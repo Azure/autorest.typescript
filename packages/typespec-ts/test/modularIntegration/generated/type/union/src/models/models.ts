@@ -55,3 +55,8 @@ export interface Dog {
 /** Type of StringExtensibleNamedUnion */
 /** "b", "c" */
 export type StringExtensibleNamedUnion = string;
+
+export enum KnownStringExtensibleNamedUnion {
+  b = "b",
+  c = "c",
+}

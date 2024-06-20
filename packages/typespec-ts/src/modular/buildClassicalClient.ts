@@ -1,27 +1,30 @@
 import {
+  getImportSpecifier,
+  Imports as RuntimeImports,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
+import {
   ClassDeclaration,
   MethodDeclarationStructure,
   Scope,
   SourceFile,
   StructureKind
 } from "ts-morph";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
 import {
   getClientParameters,
   importCredential
 } from "./helpers/clientHelpers.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import {
   getClassicalLayerPrefix,
   getClientName
 } from "./helpers/namingHelpers.js";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 export function buildClassicalClient(
   client: Client,
