@@ -309,7 +309,7 @@ export async function $onEmit(context: EmitContext) {
       );
 
       if (option.isModularLibrary) {
-        const project = new Project();
+        const project = useContext("outputProject");
         for (const file of project.getSourceFiles()) {
           await emitContentByBuilder(
             program,

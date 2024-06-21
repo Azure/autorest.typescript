@@ -27,10 +27,44 @@ export function buildModelSerializer(
 
   const rlcMetadata = useContext("rlcMetaTree");
 
-  const serializerName = `${toCamelCase(type.name)}Serializer`;
+  let serializerName = `${toCamelCase(type.name)}Serializer`;
 
   const restModel = rlcMetadata.get(type.__raw!);
   const restModelName = restModel?.rlcType.name;
+
+  const output: string[] = [];
+
+  const tcgcType = type.tcgcType!;
+  if (
+    tcgcType.kind === "model" &&
+    tcgcType.discriminatorProperty &&
+    tcgcType.discriminatedSubtypes
+  ) {
+    const cases: string[] = [];
+    for (const key in tcgcType.discriminatedSubtypes) {
+      const subType = tcgcType.discriminatedSubtypes[key]!;
+      const discriminatedValue = subType.discriminatorValue!;
+      const subtypeSerializerName = `${toCamelCase(subType.name)}Serializer`;
+
+      cases.push(`
+        case "${discriminatedValue}":
+          return ${subtypeSerializerName}(item);
+      `);
+    }
+    output.push(`
+    export function ${toCamelCase(type.name)}Serializer(item: ${toPascalCase(
+      type.name
+    )}) {
+      switch (item.${type.discriminator}) {
+       ${cases.join("\n")}
+        default:
+          return item;
+      }
+    }
+    `);
+
+    serializerName = `${toCamelCase(tcgcType.name)}Serializer`;
+  }
 
   let serializerReturnType = "";
 
@@ -38,7 +72,6 @@ export function buildModelSerializer(
   // this can happen when client.tsp overrides visibility to public on an orphan model
   // In this case we just let TypeScript infer the return type.
   if (restModelName && restModel.rlcType.usage?.includes(SchemaContext.Input)) {
-    console.log(restModel.rlcType.usage);
     const restModelNameAlias = `${restModelName}Rest`;
     addImportToSpecifier(
       "rlcIndex",
@@ -55,7 +88,7 @@ export function buildModelSerializer(
       type: { nullable: type.nullable }
     });
 
-    return `
+    output.push(`
   export function ${serializerName}(item: ${toPascalCase(
     type.name
   )})${serializerReturnType} {
@@ -67,18 +100,18 @@ export function buildModelSerializer(
        ).join(",\n")}
     }
   }
-  `;
+  `);
   }
 
   if (type.type === "enum") {
-    return `
+    output.push(`
     export function ${serializerName}(item: ${toPascalCase(
       type.name
     )})${serializerReturnType} {
       return item;
     }
-    `;
+    `);
   }
 
-  throw new Error(`NYI Serialization of type ${type.type}`);
+  return output.join("\n");
 }

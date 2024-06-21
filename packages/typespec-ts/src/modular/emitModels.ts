@@ -15,7 +15,6 @@ import {
   ModularCodeModel,
   Type as ModularType
 } from "./modularCodeModel.js";
-import { useContext } from "../contextManager.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 
 // ====== UTILITIES ======
@@ -193,10 +192,7 @@ export function buildModels(
   const modelsFile = codeModel.project.createSourceFile(
     getModularModelFilePath(codeModel, subClient)
   );
-  const context = useContext("rlcMetaTree");
   for (const model of models) {
-    const rlcModel = model.__raw && context.get(model.__raw);
-    console.log(`RlcModel is: `, rlcModel?.rlcType.outputTypeName);
     if (model.type === "enum") {
       if (modelsFile.getTypeAlias(model.name!)) {
         // If the enum is already defined, we don't need to do anything

@@ -6,7 +6,11 @@ import {
   NameType,
   OperationResponse
 } from "@azure-tools/rlc-common";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkContext,
+  SdkModelType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 import { NoTarget, Program } from "@typespec/compiler";
 import {
   FunctionDeclarationStructure,
@@ -612,6 +616,10 @@ function buildBodyParameter(
     } else if (bodyParameter && bodyParts.length === 0) {
       return `\nbody: ${bodyParameter.clientName},`;
     }
+  } else if (isDiscriminatedUnion(bodyParameter.type.tcgcType)) {
+    const serializerName = toCamelCase(`${bodyParameter.type.name}Serializer`);
+    addImportToSpecifier("modularModel", runtimeImports, serializerName);
+    return `\nbody: ${serializerName}(${bodyParameter.clientName}),`;
   } else if (
     (bodyParameter.type.type === "model" &&
       (bodyParameter.type.aliasType ||
@@ -622,14 +630,6 @@ function buildBodyParameter(
       bodyParameter.type.elementType?.type === "model"
         ? toCamelCase(`${bodyParameter.type.elementType.name}Serializer`)
         : "";
-
-    // if (elementSerializerName) {
-    //   addImportToSpecifier(
-    //     "modularModel",
-    //     runtimeImports,
-    //     elementSerializerName
-    //   );
-    // }
     return `\nbody: serializeRecord(${bodyParameter.clientName}, ${elementSerializerName}),`;
   }
 
@@ -931,6 +931,7 @@ export function getRequestModelMapping(
   if (properties.length <= 0) {
     return [];
   }
+
   if (isSpecialHandledUnion(modelPropertyType)) {
     const deserializeFunctionName = getDeserializeFunctionName(
       modelPropertyType,
@@ -1022,6 +1023,10 @@ export function getRequestModelMapping(
       } else {
         console.warn("NYI: Dict type without element type name");
       }
+    } else if (modelPropertyType.type === "enum") {
+      props.push(
+        `"${property.restApiName}": ${nullOrUndefinedPrefix}${propertyPath}.${property.clientName}`
+      );
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";
       const clientValue = `${
@@ -1468,4 +1473,16 @@ export function getPropertyFullName(
     fullName = `${propertyPath}.${modularType.clientName}`;
   }
   return fullName;
+}
+
+export function isDiscriminatedUnion(type?: SdkType): type is SdkModelType {
+  if (!type) {
+    return false;
+  }
+
+  return Boolean(
+    type.kind === "model" &&
+      type.discriminatorProperty &&
+      type.discriminatedSubtypes
+  );
 }
