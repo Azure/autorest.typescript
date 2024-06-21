@@ -1,4 +1,5 @@
 import {
+  addImportsToFiles,
   clearImportSets,
   getImportSpecifier,
   NameType,
@@ -194,6 +195,9 @@ export function buildOperationFiles(
         ]
       }
     ]);
+
+    addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
+
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();

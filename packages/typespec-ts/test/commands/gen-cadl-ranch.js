@@ -7,7 +7,7 @@ import {
 import { runTypespec } from "./run.js";
 import os from "os";
 
-async function generateTypeSpecs(tag = "rlc", isDebugging) {
+async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
   let list = rlcTsps;
 
   switch (tag) {
@@ -28,7 +28,11 @@ async function generateTypeSpecs(tag = "rlc", isDebugging) {
       break;
   }
 
-  const maxConcurrentWorkers = os.cpus().length;
+  if (pathFilter) {
+    list = list.filter((tsp) => tsp.outputPath === pathFilter);
+  }
+
+  const maxConcurrentWorkers = 1;
   let generatePromises = [];
   let count = 0;
   for (const tsp of list) {
@@ -51,8 +55,10 @@ async function generateTypeSpecs(tag = "rlc", isDebugging) {
 async function main() {
   const isDebugging = process.argv.indexOf("--debug") !== -1;
   const tagOptions = process.argv.filter((s) => s.startsWith("--tag="));
+  const nameFilter = process.argv.filter((s) => s.startsWith("--filter="));
   const tag = tagOptions[0]?.split("=")[1];
-  await generateTypeSpecs(tag, isDebugging);
+  const filter = nameFilter[0]?.split("=")[1];
+  await generateTypeSpecs(tag, isDebugging, filter);
 }
 
 let exitCode = 0;

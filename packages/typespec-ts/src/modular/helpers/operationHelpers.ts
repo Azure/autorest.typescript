@@ -1018,20 +1018,18 @@ export function getRequestModelMapping(
       props.push(definition);
     } else if (property.type.type === "dict") {
       const modelName = property.type.elementType?.name;
-      if (modelName) {
-        const serializerName = `${toCamelCase(modelName)}Serializer`;
-        // definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
-        const statement = `"${property.restApiName}": ${nullOrUndefinedPrefix} serializeRecord(${propertyFullName}, ${serializerName})`;
-        addImportToSpecifier(
-          "serializerHelpers",
-          runtimeImports,
-          "serializeRecord"
-        );
-        addImportToSpecifier("modularModel", runtimeImports, serializerName);
-        props.push(statement);
-      } else {
-        console.warn("NYI: Dict type without element type name");
-      }
+      const serializerName = modelName
+        ? `${toCamelCase(modelName)}Serializer`
+        : "";
+      // definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
+      const statement = `"${property.restApiName}": ${nullOrUndefinedPrefix} serializeRecord(${propertyFullName}, ${serializerName})`;
+      addImportToSpecifier(
+        "serializerHelpers",
+        runtimeImports,
+        "serializeRecord"
+      );
+      addImportToSpecifier("modularModel", runtimeImports, serializerName);
+      props.push(statement);
     } else if (modelPropertyType.type === "enum") {
       props.push(
         `"${property.restApiName}": ${nullOrUndefinedPrefix}${propertyPath}.${property.clientName}`

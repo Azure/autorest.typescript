@@ -107,7 +107,8 @@ export function buildSerializeUtils(model: ModularCodeModel) {
     });
     addImportsToFiles(model.runtimeImports, utilsFile, {
       rlcIndex: "../rest/index.js",
-      modularModel: "../models/models.js"
+      modularModel: "../models/models.js",
+      coreUtil: "@azure/core-util"
     });
     serializeUtilFiles.push(utilsFile);
   }

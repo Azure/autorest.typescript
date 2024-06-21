@@ -74,14 +74,9 @@ export function buildModelSerializer(
   // There are some situations where the type is not present in the REST API,
   // this can happen when client.tsp overrides visibility to public on an orphan model
   // In this case we just let TypeScript infer the return type.
+  let restModelNameAlias = "";
   if (restModelName && restModel.rlcType.usage?.includes(SchemaContext.Input)) {
-    const restModelNameAlias = `${restModelName}Rest`;
-    addImportToSpecifier(
-      "rlcIndex",
-      runtimeImports,
-      `${restModelName} as ${restModelNameAlias}`
-    );
-
+    restModelNameAlias = `${restModelName}Rest`;
     serializerReturnType = `: ${restModelNameAlias}`;
   }
 
@@ -98,20 +93,33 @@ export function buildModelSerializer(
         ? "...item,"
         : "";
 
-    output.push(`
-  export function ${serializerName}(item: ${toPascalCase(
-    type.name
-  )})${serializerReturnType} {
-    return {
-       ${additionalPropertiesSpread}
-       ${nullabilityPrefix}${getRequestModelMapping(
-         type,
-         "item",
-         runtimeImports
-       ).join(",\n")},
+    const propertiesSerialization = getRequestModelMapping(
+      type,
+      "item",
+      runtimeImports
+    ).filter((p) => p.trim());
+
+    // don't emit a serializer if there is nothing to serialize
+    if (propertiesSerialization.length || additionalPropertiesSpread) {
+      output.push(`
+        export function ${serializerName}(item: ${toPascalCase(
+          type.name
+        )})${serializerReturnType} {
+          return {
+             ${additionalPropertiesSpread}
+             ${nullabilityPrefix}${propertiesSerialization.join(",\n")}
+          }
+        }
+        `);
+
+      if (serializerReturnType) {
+        addImportToSpecifier(
+          "rlcIndex",
+          runtimeImports,
+          `${restModelName} as ${restModelNameAlias}`
+        );
+      }
     }
-  }
-  `);
   }
 
   if (type.type === "enum") {
