@@ -246,7 +246,8 @@ export function buildModels(
   }
 
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-    rlcIndex: "../rest/index.js"
+    rlcIndex: "../rest/index.js",
+    serializerHelpers: "../helpers/serializerHelpers.js"
   });
 
   if (coreClientTypes.size > 0) {

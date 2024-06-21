@@ -1,6 +1,9 @@
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { Type as ModularType } from "../modularCodeModel.js";
-import { getRequestModelMapping } from "../helpers/operationHelpers.js";
+import {
+  getPropertySerializationPrefix,
+  getRequestModelMapping
+} from "../helpers/operationHelpers.js";
 import { useContext } from "../../contextManager.js";
 
 import {
@@ -46,13 +49,22 @@ export function buildModelSerializer(
     serializerReturnType = `: ${restModelNameAlias}`;
   }
 
-  if (type.type === "model") {
+  if (type.type === "model" || type.type === "dict") {
+    const nullabilityPrefix = getPropertySerializationPrefix({
+      clientName: "item",
+      type: { nullable: type.nullable }
+    });
+
     return `
   export function ${serializerName}(item: ${toPascalCase(
     type.name
   )})${serializerReturnType} {
     return {
-        ${getRequestModelMapping(type, "item", runtimeImports).join(",\n")}
+       ${nullabilityPrefix}${getRequestModelMapping(
+         type,
+         "item",
+         runtimeImports
+       ).join(",\n")}
     }
   }
   `;

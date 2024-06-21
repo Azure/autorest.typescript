@@ -66,7 +66,8 @@ import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
-import { provideContext } from "./contextManager.js";
+import { provideContext, useContext } from "./contextManager.js";
+import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 
 export * from "./lib.js";
 
@@ -82,6 +83,8 @@ export async function $onEmit(context: EmitContext) {
   >();
   provideContext("rlcMetaTree", new Map());
   provideContext("modularMetaTree", new Map());
+  provideContext("outputProject", new Project());
+
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
   // 1. Enrich the dpg context with path detail and common options
@@ -176,7 +179,8 @@ export async function $onEmit(context: EmitContext) {
       // TODO: Emit modular parts of the library
       const modularSourcesRoot =
         dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
-      const project = new Project();
+      const project = useContext("outputProject");
+      emitSerializerHelpersFile(project, modularSourcesRoot);
       modularCodeModel = emitCodeModel(
         dpgContext,
         serviceNameToRlcModelsMap,

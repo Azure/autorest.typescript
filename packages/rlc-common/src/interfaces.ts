@@ -46,7 +46,9 @@ export type ImportType =
   | "azureDevTool"
   | "azureAbortController"
   | "azureCoreLro"
-  | "azureCorePaging";
+  | "azureCorePaging"
+  /**Internal helper imports */
+  | "serializerHelpers";
 
 export interface ImportMetadata {
   type: ImportType;

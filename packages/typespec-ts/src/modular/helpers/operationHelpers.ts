@@ -217,7 +217,8 @@ export function getDeserializePrivateFunction(
       allParents.some((p) => p.type === "dict")) ||
     response.isBinaryPayload
   ) {
-    statements.push(`return result.body`);
+    // TODO: Fix this any cast when implementing handling dict.
+    statements.push(`return result.body as any`);
   } else if (
     deserializedType &&
     properties.length > 0 &&
@@ -617,7 +618,19 @@ function buildBodyParameter(
         allParents.some((p) => p.type === "dict"))) ||
     bodyParameter.type.type === "dict"
   ) {
-    return `\nbody: ${bodyParameter.clientName},`;
+    const elementSerializerName =
+      bodyParameter.type.elementType?.type === "model"
+        ? toCamelCase(`${bodyParameter.type.elementType.name}Serializer`)
+        : "";
+
+    // if (elementSerializerName) {
+    //   addImportToSpecifier(
+    //     "modularModel",
+    //     runtimeImports,
+    //     elementSerializerName
+    //   );
+    // }
+    return `\nbody: serializeRecord(${bodyParameter.clientName}, ${elementSerializerName}),`;
   }
 
   if (bodyParameter.type.type === "list") {
@@ -931,7 +944,12 @@ export function getRequestModelMapping(
     if (property.readonly) {
       continue;
     }
-    const propertyFullName = `${propertyPath}.${property.clientName}`;
+    const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+      property,
+      propertyPath
+    );
+
+    const propertyFullName = getPropertyFullName(property, propertyPath);
     if (property.type.type === "model") {
       let definition;
       if (property.type.coreTypeInfo === "ErrorType") {
@@ -951,10 +969,6 @@ export function getRequestModelMapping(
               }`
         }`;
       } else if (isPolymorphicUnion(property.type)) {
-        let nullOrUndefinedPrefix = "";
-        if (property.optional || property.type.nullable) {
-          nullOrUndefinedPrefix = `!${propertyFullName} ? ${propertyFullName} :`;
-        }
         const deserializeFunctionName = getDeserializeFunctionName(
           property.type,
           "serialize"
@@ -963,7 +977,7 @@ export function getRequestModelMapping(
       } else {
         if (property.type.name) {
           const serializerName = `${toCamelCase(property.type.name)}Serializer`;
-          definition = `"${property.restApiName}": ${serializerName}(${propertyPath}.${property.clientName})`;
+          definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
         } else {
           definition = `"${property.restApiName}": ${getNullableCheck(
             propertyFullName,
@@ -992,6 +1006,22 @@ export function getRequestModelMapping(
             }`
       }`;
       props.push(definition);
+    } else if (property.type.type === "dict") {
+      const modelName = property.type.elementType?.name;
+      if (modelName) {
+        const serializerName = `${toCamelCase(modelName)}Serializer`;
+        // definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
+        const statement = `"${property.restApiName}": ${nullOrUndefinedPrefix} serializeRecord(${propertyFullName}, ${serializerName})`;
+        addImportToSpecifier(
+          "serializerHelpers",
+          runtimeImports,
+          "serializeRecord"
+        );
+        addImportToSpecifier("modularModel", runtimeImports, serializerName);
+        props.push(statement);
+      } else {
+        console.warn("NYI: Dict type without element type name");
+      }
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";
       const clientValue = `${
@@ -1051,10 +1081,10 @@ export function getResponseMapping(
               }`
         }`;
       } else if (isSpecialHandledUnion(property.type)) {
-        let nullOrUndefinedPrefix = "";
-        if (property.optional || property.type.nullable) {
-          nullOrUndefinedPrefix = `!${propertyFullName} ? ${propertyFullName} :`;
-        }
+        const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+          property,
+          propertyPath
+        );
         const deserializeFunctionName = getDeserializeFunctionName(
           property.type,
           "deserialize"
@@ -1411,4 +1441,31 @@ export function getAllAncestors(type: Type): Type[] {
     ancestors.push(...getAllAncestors(p));
   });
   return ancestors;
+}
+
+export function getPropertySerializationPrefix(
+  modularType: {
+    optional?: boolean;
+    type: { nullable?: boolean };
+    clientName: string;
+  },
+  propertyPath?: string
+) {
+  const propertyFullName = getPropertyFullName(modularType, propertyPath);
+  if (modularType.optional || modularType.type.nullable) {
+    return `!${propertyFullName} ? ${propertyFullName} :`;
+  }
+
+  return "";
+}
+
+export function getPropertyFullName(
+  modularType: { clientName: string },
+  propertyPath?: string
+) {
+  let fullName = `${modularType.clientName}`;
+  if (propertyPath) {
+    fullName = `${propertyPath}.${modularType.clientName}`;
+  }
+  return fullName;
 }
