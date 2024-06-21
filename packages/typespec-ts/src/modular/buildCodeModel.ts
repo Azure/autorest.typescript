@@ -324,6 +324,7 @@ function getType(
     }
   }
   let newValue: any;
+
   if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
@@ -332,6 +333,12 @@ function getType(
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
+  }
+
+  if (isTypespecType(type)) {
+    newValue.tcgcType = getClientType(context, type);
+    newValue.__raw = type;
+    modularMetatree.set(type, newValue);
   }
 
   if (enableCache) {
@@ -374,14 +381,6 @@ function getType(
       },
       target: type
     });
-  }
-
-  if (isTypespecType(type)) {
-    newValue.tcgcType = getClientType(context, type);
-    newValue.__raw = type;
-  }
-  if (isTypespecType(type)) {
-    modularMetatree.set(type, newValue);
   }
 
   return newValue;

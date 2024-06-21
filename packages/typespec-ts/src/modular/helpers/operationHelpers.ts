@@ -630,7 +630,16 @@ function buildBodyParameter(
       bodyParameter.type.elementType?.type === "model"
         ? toCamelCase(`${bodyParameter.type.elementType.name}Serializer`)
         : "";
-    return `\nbody: serializeRecord(${bodyParameter.clientName}, ${elementSerializerName}),`;
+    const modelSerializerName = toCamelCase(
+      `${bodyParameter.type.name}Serializer`
+    );
+    if (modelSerializerName) {
+      return `\nbody: ${modelSerializerName}(${bodyParameter.clientName}),`;
+    } else {
+      return `\nbody: serializeRecord(${bodyParameter.clientName}, ${
+        elementSerializerName ?? modelSerializerName
+      }),`;
+    }
   }
 
   if (bodyParameter.type.type === "list") {

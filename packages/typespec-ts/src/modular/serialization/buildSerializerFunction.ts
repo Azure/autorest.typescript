@@ -41,14 +41,17 @@ export function buildModelSerializer(
     tcgcType.discriminatedSubtypes
   ) {
     const cases: string[] = [];
+    const baseSerializerName = `${toCamelCase(tcgcType.name)}Serializer`;
     for (const key in tcgcType.discriminatedSubtypes) {
       const subType = tcgcType.discriminatedSubtypes[key]!;
       const discriminatedValue = subType.discriminatorValue!;
-      const subtypeSerializerName = `${toCamelCase(subType.name)}Serializer`;
+      const union = subType.discriminatedSubtypes ? "Union" : "";
+      const subTypeName = `${toPascalCase(subType.name)}${union}`;
+      const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
 
       cases.push(`
         case "${discriminatedValue}":
-          return ${subtypeSerializerName}(item);
+          return ${subtypeSerializerName}(item as ${subTypeName});
       `);
     }
     output.push(`
@@ -58,12 +61,12 @@ export function buildModelSerializer(
       switch (item.${type.discriminator}) {
        ${cases.join("\n")}
         default:
-          return item;
+          return ${baseSerializerName}(item);
       }
     }
     `);
 
-    serializerName = `${toCamelCase(tcgcType.name)}Serializer`;
+    serializerName = baseSerializerName;
   }
 
   let serializerReturnType = "";
@@ -88,16 +91,24 @@ export function buildModelSerializer(
       type: { nullable: type.nullable }
     });
 
+    // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
+    const additionalPropertiesSpread =
+      "additionalProperties" in type.tcgcType! &&
+      type.tcgcType.additionalProperties
+        ? "...item,"
+        : "";
+
     output.push(`
   export function ${serializerName}(item: ${toPascalCase(
     type.name
   )})${serializerReturnType} {
     return {
+       ${additionalPropertiesSpread}
        ${nullabilityPrefix}${getRequestModelMapping(
          type,
          "item",
          runtimeImports
-       ).join(",\n")}
+       ).join(",\n")},
     }
   }
   `);
