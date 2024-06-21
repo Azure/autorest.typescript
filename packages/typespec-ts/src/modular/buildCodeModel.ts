@@ -361,7 +361,8 @@ function getType(
       }
     }
   } else {
-    const key = JSON.stringify(newValue);
+    const { __raw, tcgcType, ...keyableValue } = newValue;
+    const key = JSON.stringify(keyableValue);
     const value = simpleTypesMap.get(key);
     if (value) {
       newValue = value;
