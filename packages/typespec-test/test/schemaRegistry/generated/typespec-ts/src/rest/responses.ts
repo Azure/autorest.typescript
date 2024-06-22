@@ -3,11 +3,7 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import {
-  PagedSchemaGroupOutput,
-  SchemaContentTypeValuesOutput,
-  PagedVersionOutput,
-} from "./outputModels.js";
+import { PagedSchemaGroupOutput, PagedVersionOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface ListSchemaGroups200Response extends HttpResponse {
@@ -39,8 +35,6 @@ export interface GetSchemaById200Headers {
   "schema-name": string;
   /** Version of the returned schema. */
   "schema-version": number;
-  /** The content type for given schema. */
-  "content-type": SchemaContentTypeValuesOutput;
 }
 
 /** The request has succeeded. */
@@ -91,8 +85,6 @@ export interface GetSchemaByVersion200Headers {
   "schema-name": string;
   /** Version of the returned schema. */
   "schema-version": number;
-  /** The content type for given schema. */
-  "content-type": SchemaContentTypeValuesOutput;
 }
 
 /** The request has succeeded. */

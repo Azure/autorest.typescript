@@ -26,6 +26,7 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
 }
 
+/** Type of MultivariateBatchDetectionStatus */
 /** */
 export type MultivariateBatchDetectionStatus =
   | "CREATED"
@@ -198,6 +199,7 @@ export interface MultivariateAlignPolicy {
   paddingValue?: number;
 }
 
+/** Type of AlignMode */
 /** */
 export type AlignMode = "Inner" | "Outer";
 /** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
@@ -208,6 +210,7 @@ export type FillNAMethod =
   | "Linear"
   | "Zero"
   | "Fixed";
+/** Type of ModelStatus */
 /** */
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
@@ -355,6 +358,7 @@ export interface UnivariateTimeSeriesPoint {
   value: number;
 }
 
+/** Type of TimeGranularity */
 /** */
 export type TimeGranularity =
   | "yearly"
@@ -366,6 +370,7 @@ export type TimeGranularity =
   | "secondly"
   | "microsecond"
   | "none";
+/** Type of ImputeMode */
 /** */
 export type ImputeMode =
   | "auto"
@@ -439,6 +444,7 @@ export interface UnivariateAnomalyDetectorError {
   message?: string;
 }
 
+/** Type of AnomalyDetectorErrorCodes */
 /** */
 export type AnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
@@ -553,5 +559,6 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
+/** Type of Versions */
 /** */
 export type Versions = "v1.1";

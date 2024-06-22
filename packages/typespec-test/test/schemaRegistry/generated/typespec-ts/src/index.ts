@@ -7,12 +7,8 @@ export {
 } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
-  SchemaVersion,
+  Version,
   SchemaContentTypeValues,
-  SchemaProperties,
-  SchemaFormat,
-  Schema,
-  ContentTypeEnum,
   ServiceApiVersions,
   PagedSchemaGroup,
   PagedVersion,

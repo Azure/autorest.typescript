@@ -102,5 +102,6 @@ export interface RejectResult {
   succeededLockTokens: string[];
 }
 
+/** Type of ServiceApiVersions */
 /** */
 export type ServiceApiVersions = "2023-06-01-preview";

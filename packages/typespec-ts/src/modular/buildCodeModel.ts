@@ -1341,7 +1341,11 @@ function emitUnion(
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
-  const sdkType = getSdkUnion(context, type);
+  let sdkType = getSdkUnion(context, type);
+  const isNull = sdkType.kind === "nullable";
+  if (sdkType.kind === "nullable") {
+    sdkType = sdkType.type;
+  }
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
@@ -1365,7 +1369,7 @@ function emitUnion(
       ? normalizeName(unionName, NameType.Interface)
       : undefined;
     return {
-      nullable: false,
+      nullable: isNull,
       name: unionTypeName,
       description: `Type of ${unionTypeName}`,
       internal: true,
@@ -1393,7 +1397,7 @@ function emitUnion(
       : undefined;
     return {
       name: typeName,
-      nullable: false,
+      nullable: isNull,
       description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
@@ -1407,12 +1411,12 @@ function emitUnion(
   } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
       ...emitType(context, nonNullOptions[0], usage),
-      nullable: sdkType.kind === "nullable"
+      nullable: isNull
     };
   } else {
     return {
       ...emitType(context, sdkType.__raw!, usage),
-      nullable: sdkType.kind === "nullable"
+      nullable: isNull
     };
   }
 }

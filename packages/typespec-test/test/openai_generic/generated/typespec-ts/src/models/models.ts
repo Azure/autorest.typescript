@@ -410,7 +410,7 @@ export interface Embedding {
   object: "embedding";
   /**
    * The embedding vector, which is a list of floats. The length of vector depends on the model as\
-   * listed in the [embedding guide](/docs/guides/embeddings).
+   *    * listed in the [embedding guide](/docs/guides/embeddings).
    */
   embedding: number[];
 }

@@ -3,7 +3,7 @@
 
 import {
   SchemaGroup,
-  SchemaVersion,
+  Version,
   SchemaContentTypeValues,
   PagedSchemaGroup,
   PagedVersion,
@@ -156,7 +156,7 @@ export function listSchemaVersions(
   options: SchemaOperationsListSchemaVersionsOptionalParams = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<SchemaVersion> {
+): PagedAsyncIterableIterator<Version> {
   return buildPagedAsyncIterator(
     context,
     () => _listSchemaVersionsSend(context, groupName, name, options),

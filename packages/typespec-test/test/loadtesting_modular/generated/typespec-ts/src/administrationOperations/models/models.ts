@@ -77,6 +77,7 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
+/** Type of PFMetrics */
 /** */
 export type PFMetrics =
   | "response_time_ms"
@@ -84,6 +85,7 @@ export type PFMetrics =
   | "error"
   | "requests"
   | "requests_per_sec";
+/** Type of PFAgFunc */
 /** */
 export type PFAgFunc =
   | "count"
@@ -95,8 +97,10 @@ export type PFAgFunc =
   | "p99"
   | "min"
   | "max";
+/** Type of PFAction */
 /** */
 export type PFAction = "continue" | "stop";
+/** Type of PFResult */
 /** */
 export type PFResult = "passed" | "undetermined" | "failed";
 
@@ -108,6 +112,7 @@ export interface Secret {
   type?: SecretType;
 }
 
+/** Type of SecretType */
 /** */
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
@@ -121,6 +126,7 @@ export interface CertificateMetadata {
   name?: string;
 }
 
+/** Type of CertificateType */
 /** */
 export type CertificateType = "AKV_CERT_URI";
 
@@ -192,8 +198,10 @@ export interface FileInfo {
   validationFailureDetails?: string;
 }
 
+/** Type of FileType */
 /** */
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
+/** Type of FileStatus */
 /** */
 export type FileStatus =
   | "NOT_VALIDATED"
@@ -306,6 +314,7 @@ export interface PagedTest {
   nextLink?: string;
 }
 
+/** Type of APIVersions */
 /** */
 export type APIVersions = "2022-11-01";
 
@@ -437,8 +446,10 @@ export interface TestRunOutputArtifacts {
   logsFileInfo?: FileInfo;
 }
 
+/** Type of PFTestResult */
 /** */
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** Type of Status */
 /** */
 export type Status =
   | "ACCEPTED"
@@ -498,6 +509,7 @@ export interface TestRunServerMetricConfig {
   readonly lastModifiedBy?: string;
 }
 
+/** Type of Interval */
 /** */
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
@@ -542,6 +554,7 @@ export interface NameAndDesc {
   name?: string;
 }
 
+/** Type of AggregationType */
 /** */
 export type AggregationType =
   | "Average"
@@ -551,6 +564,7 @@ export type AggregationType =
   | "Percentile90"
   | "Percentile95"
   | "Percentile99";
+/** Type of MetricUnit */
 /** */
 export type MetricUnit =
   | "NotSpecified"
@@ -571,6 +585,7 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
+/** Type of TimeGrain */
 /** */
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
