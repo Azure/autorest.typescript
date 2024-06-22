@@ -630,15 +630,15 @@ function buildBodyParameter(
       bodyParameter.type.elementType?.type === "model"
         ? toCamelCase(`${bodyParameter.type.elementType.name}Serializer`)
         : "";
-    const modelSerializerName = toCamelCase(
-      `${bodyParameter.type.name}Serializer`
-    );
+    let modelSerializerName = "";
+
+    if (bodyParameter.type.type !== "dict") {
+      modelSerializerName = toCamelCase(`${bodyParameter.type.name}Serializer`);
+    }
     if (modelSerializerName) {
       return `\nbody: ${modelSerializerName}(${bodyParameter.clientName}),`;
     } else {
-      return `\nbody: serializeRecord(${bodyParameter.clientName}, ${
-        elementSerializerName ?? modelSerializerName
-      }),`;
+      return `\nbody: serializeRecord(${bodyParameter.clientName}, ${elementSerializerName}),`;
     }
   }
 

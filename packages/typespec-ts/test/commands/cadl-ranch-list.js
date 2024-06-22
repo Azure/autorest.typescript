@@ -327,6 +327,10 @@ export const modularTsps = [
     inputPath: "azure/core/basic"
   },
   {
+    outputPath: "type/dictionary",
+    inputPath: "type/dictionary"
+  },
+  {
     outputPath: "type/model/inheritance/nested-discriminator",
     inputPath: "type/model/inheritance/nested-discriminator"
   },
