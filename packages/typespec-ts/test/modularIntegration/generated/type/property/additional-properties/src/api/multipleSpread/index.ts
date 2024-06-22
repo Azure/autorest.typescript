@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { MultipleSpreadRecord } from "../../models/models.js";
+import {
+  multipleSpreadRecordSerializer,
+  MultipleSpreadRecord,
+} from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   MultipleSpreadGet200Response,
@@ -33,7 +36,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Get call */
@@ -52,7 +55,10 @@ export function _putSend(
 ): StreamableMethod<MultipleSpreadPut204Response> {
   return context
     .path("/type/property/additionalProperties/multipleSpreadRecord")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: multipleSpreadRecordSerializer(body),
+    });
 }
 
 export async function _putDeserialize(

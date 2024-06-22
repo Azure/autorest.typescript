@@ -3,6 +3,9 @@
 
 export { UsageClient, UsageClientOptions } from "./usageClient.js";
 export {
+  inputModelSerializer,
+  outputModelSerializer,
+  orphanModelSerializer,
   InputModel,
   OutputModel,
   OrphanModel,

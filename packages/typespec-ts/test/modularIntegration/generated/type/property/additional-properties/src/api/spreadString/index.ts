@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SpreadStringRecord } from "../../models/models.js";
+import {
+  spreadStringRecordSerializer,
+  SpreadStringRecord,
+} from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadStringGet200Response,
@@ -33,7 +36,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Get call */
@@ -52,7 +55,10 @@ export function _putSend(
 ): StreamableMethod<SpreadStringPut204Response> {
   return context
     .path("/type/property/additionalProperties/spreadRecordString")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: spreadStringRecordSerializer(body),
+    });
 }
 
 export async function _putDeserialize(

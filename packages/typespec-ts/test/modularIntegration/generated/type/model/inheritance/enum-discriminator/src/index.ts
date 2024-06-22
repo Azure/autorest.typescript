@@ -6,6 +6,12 @@ export {
   EnumDiscriminatorClientOptions,
 } from "./enumDiscriminatorClient.js";
 export {
+  dogUnionSerializer,
+  dogSerializer,
+  goldenSerializer,
+  snakeUnionSerializer,
+  snakeSerializer,
+  cobraSerializer,
   Dog,
   Golden,
   DogKind,

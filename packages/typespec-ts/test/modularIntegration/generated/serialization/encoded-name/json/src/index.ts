@@ -3,6 +3,7 @@
 
 export { JsonClient, JsonClientOptions } from "./jsonClient.js";
 export {
+  jsonEncodedNameModelSerializer,
   JsonEncodedNameModel,
   SendOptionalParams,
   GetOptionalParams,

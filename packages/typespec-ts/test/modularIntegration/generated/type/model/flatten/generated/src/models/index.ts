@@ -2,6 +2,10 @@
 // Licensed under the MIT license.
 
 export {
+  flattenModelSerializer,
+  childModelSerializer,
+  nestedFlattenModelSerializer,
+  childFlattenModelSerializer,
   FlattenModel,
   ChildModel,
   NestedFlattenModel,

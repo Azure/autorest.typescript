@@ -2,6 +2,12 @@
 // Licensed under the MIT license.
 
 export {
+  defaultDurationPropertySerializer,
+  iSO8601DurationPropertySerializer,
+  int32SecondsDurationPropertySerializer,
+  floatSecondsDurationPropertySerializer,
+  float64SecondsDurationPropertySerializer,
+  floatSecondsDurationArrayPropertySerializer,
   DefaultDurationProperty,
   ISO8601DurationProperty,
   Int32SecondsDurationProperty,

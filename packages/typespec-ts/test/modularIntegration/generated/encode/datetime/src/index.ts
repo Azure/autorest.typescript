@@ -3,6 +3,11 @@
 
 export { DatetimeClient, DatetimeClientOptions } from "./datetimeClient.js";
 export {
+  defaultDatetimePropertySerializer,
+  rfc3339DatetimePropertySerializer,
+  rfc7231DatetimePropertySerializer,
+  unixTimestampDatetimePropertySerializer,
+  unixTimestampArrayDatetimePropertySerializer,
   DefaultDatetimeProperty,
   Rfc3339DatetimeProperty,
   Rfc7231DatetimeProperty,

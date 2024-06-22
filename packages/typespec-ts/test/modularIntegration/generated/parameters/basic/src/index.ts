@@ -3,6 +3,7 @@
 
 export { BasicClient, BasicClientOptions } from "./basicClient.js";
 export {
+  userSerializer,
   User,
   ExplicitBodySimpleOptionalParams,
   ImplicitBodySimpleOptionalParams,

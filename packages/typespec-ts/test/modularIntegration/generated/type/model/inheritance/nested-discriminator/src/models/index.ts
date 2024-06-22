@@ -2,6 +2,13 @@
 // Licensed under the MIT license.
 
 export {
+  fishUnionSerializer,
+  fishSerializer,
+  sharkUnionSerializer,
+  sharkSerializer,
+  sawSharkSerializer,
+  goblinSharkSerializer,
+  salmonSerializer,
   Fish,
   Shark,
   SawShark,

@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 export {
+  generationOptionsSerializer,
   GenerationOptions,
   GenerationResponse,
   GenerationResult,

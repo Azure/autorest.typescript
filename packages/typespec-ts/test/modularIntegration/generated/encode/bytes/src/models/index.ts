@@ -2,6 +2,10 @@
 // Licensed under the MIT license.
 
 export {
+  defaultBytesPropertySerializer,
+  base64BytesPropertySerializer,
+  base64urlBytesPropertySerializer,
+  base64urlArrayBytesPropertySerializer,
   DefaultBytesProperty,
   Base64BytesProperty,
   Base64urlBytesProperty,

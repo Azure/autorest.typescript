@@ -2,6 +2,12 @@
 // Licensed under the MIT license.
 
 export {
+  dogUnionSerializer,
+  dogSerializer,
+  goldenSerializer,
+  snakeUnionSerializer,
+  snakeSerializer,
+  cobraSerializer,
   Dog,
   Golden,
   DogKind,

@@ -4,6 +4,7 @@
 export { StandardClient, StandardClientOptions } from "./standardClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
+  userSerializer,
   User,
   ExportedUser,
   Versions,

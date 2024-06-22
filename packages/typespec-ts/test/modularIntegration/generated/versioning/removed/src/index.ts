@@ -3,6 +3,7 @@
 
 export { RemovedClient, RemovedClientOptions } from "./removedClient.js";
 export {
+  modelV2Serializer,
   ModelV2,
   EnumV2,
   Versions,

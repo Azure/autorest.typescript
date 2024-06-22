@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SpreadRecordForNonDiscriminatedUnion3 } from "../../models/models.js";
+import {
+  spreadRecordForNonDiscriminatedUnion3Serializer,
+  SpreadRecordForNonDiscriminatedUnion3,
+} from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadRecordNonDiscriminatedUnion3Get200Response,
@@ -37,7 +40,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Get call */
@@ -62,7 +65,10 @@ export function _putSend(
     .path(
       "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3",
     )
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: spreadRecordForNonDiscriminatedUnion3Serializer(body),
+    });
 }
 
 export async function _putDeserialize(

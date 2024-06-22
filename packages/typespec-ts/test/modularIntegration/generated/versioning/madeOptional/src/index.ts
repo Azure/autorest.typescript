@@ -5,4 +5,9 @@ export {
   MadeOptionalClient,
   MadeOptionalClientOptions,
 } from "./madeOptionalClient.js";
-export { TestModel, Versions, TestOptionalParams } from "./models/index.js";
+export {
+  testModelSerializer,
+  TestModel,
+  Versions,
+  TestOptionalParams,
+} from "./models/index.js";

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SpreadRecordForDiscriminatedUnion } from "../../models/models.js";
+import {
+  spreadRecordForDiscriminatedUnionSerializer,
+  SpreadRecordForDiscriminatedUnion,
+} from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadRecordDiscriminatedUnionGet200Response,
@@ -35,7 +38,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Get call */
@@ -58,7 +61,10 @@ export function _putSend(
 ): StreamableMethod<SpreadRecordDiscriminatedUnionPut204Response> {
   return context
     .path("/type/property/additionalProperties/spreadRecordDiscriminatedUnion")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: spreadRecordForDiscriminatedUnionSerializer(body),
+    });
 }
 
 export async function _putDeserialize(

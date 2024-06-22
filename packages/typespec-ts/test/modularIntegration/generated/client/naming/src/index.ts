@@ -3,6 +3,11 @@
 
 export { NamingClient, NamingClientOptions } from "./namingClient.js";
 export {
+  clientNameModelSerializer,
+  languageClientNameModelSerializer,
+  clientNameAndJsonEncodedNameModelSerializer,
+  clientModelSerializer,
+  tSModelSerializer,
   ClientNameModel,
   LanguageClientNameModel,
   ClientNameAndJsonEncodedNameModel,

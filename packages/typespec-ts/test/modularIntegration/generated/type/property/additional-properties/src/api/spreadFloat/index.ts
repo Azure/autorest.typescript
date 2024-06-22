@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SpreadFloatRecord } from "../../models/models.js";
+import {
+  spreadFloatRecordSerializer,
+  SpreadFloatRecord,
+} from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadFloatGet200Response,
@@ -33,7 +36,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Get call */
@@ -52,7 +55,10 @@ export function _putSend(
 ): StreamableMethod<SpreadFloatPut204Response> {
   return context
     .path("/type/property/additionalProperties/spreadRecordFloat")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: spreadFloatRecordSerializer(body),
+    });
 }
 
 export async function _putDeserialize(

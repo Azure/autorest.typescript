@@ -3,6 +3,9 @@
 
 export { BasicClient, BasicClientOptions } from "./basicClient.js";
 export {
+  userSerializer,
+  userOrderSerializer,
+  listItemInputBodySerializer,
   User,
   UserOrder,
   ListItemInputBody,

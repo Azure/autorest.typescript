@@ -3,6 +3,8 @@
 
 export { RecursiveClient, RecursiveClientOptions } from "./recursiveClient.js";
 export {
+  elementSerializer,
+  extensionSerializer,
   Element,
   Extension,
   PutOptionalParams,

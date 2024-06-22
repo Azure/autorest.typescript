@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { InnerModel } from "./models.js";
+export { innerModelSerializer, InnerModel } from "./models.js";
 export {
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,
