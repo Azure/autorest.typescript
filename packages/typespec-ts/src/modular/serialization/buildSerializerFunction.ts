@@ -12,6 +12,7 @@ import {
   addImportToSpecifier
 } from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
+import { SdkType } from "@azure-tools/typespec-client-generator-core";
 
 export function buildModelSerializer(
   type: ModularType,
@@ -87,11 +88,9 @@ export function buildModelSerializer(
     });
 
     // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-    const additionalPropertiesSpread =
-      "additionalProperties" in type.tcgcType! &&
-      type.tcgcType.additionalProperties
-        ? "...item,"
-        : "";
+    const additionalPropertiesSpread = hasAdditionalProperties(type.tcgcType)
+      ? "...item,"
+      : "";
 
     const propertiesSerialization = getRequestModelMapping(
       type,
@@ -133,4 +132,20 @@ export function buildModelSerializer(
   }
 
   return output.join("\n");
+}
+
+function hasAdditionalProperties(type: SdkType | undefined) {
+  if (!type || !("additionalProperties" in type)) {
+    return false;
+  }
+
+  if (type.additionalProperties) {
+    return true;
+  }
+
+  if (type.baseModel) {
+    return hasAdditionalProperties(type.baseModel);
+  }
+
+  return false;
 }
