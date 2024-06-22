@@ -331,6 +331,10 @@ export const modularTsps = [
     inputPath: "type/dictionary"
   },
   {
+    outputPath: "type/property/optionality",
+    inputPath: "type/property/optionality"
+  },
+  {
     outputPath: "type/model/inheritance/nested-discriminator",
     inputPath: "type/model/inheritance/nested-discriminator"
   },

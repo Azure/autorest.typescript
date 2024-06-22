@@ -1329,7 +1329,7 @@ export function serializeRequestValue(
           type.elementType!,
           "p",
           runtimeImports,
-          required,
+          true,
           [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
