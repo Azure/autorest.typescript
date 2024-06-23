@@ -53,7 +53,7 @@ export function _putSend(
     .path("/type/dictionary/nullable-float")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: serializeRecord(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

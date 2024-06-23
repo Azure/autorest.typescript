@@ -7,6 +7,10 @@ export {
 } from "./widgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
+  userSerializer,
+  createWidgetSerializer,
+  updateWidgetSerializer,
+  nonReferencedModelSerializer,
   User,
   Widget,
   WidgetError,

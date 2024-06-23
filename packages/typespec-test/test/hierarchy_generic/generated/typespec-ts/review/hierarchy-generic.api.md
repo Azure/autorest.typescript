@@ -14,11 +14,21 @@ export interface A {
     prop1: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "A_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function aSerializer(item: A): A_2;
+
 // @public (undocumented)
 export interface BA {
     // (undocumented)
     prop2: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "Ba" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function bASerializer(item: BA): Ba;
 
 // @public (undocumented)
 export interface BCOp1OptionalParams extends OperationOptions {
@@ -35,6 +45,11 @@ export interface BEA {
     // (undocumented)
     prop3: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "Bea" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function bEASerializer(item: BEA): Bea;
 
 // @public (undocumented)
 export interface BECOp1OptionalParams extends OperationOptions {

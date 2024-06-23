@@ -53,7 +53,7 @@ export function _putSend(
     .path("/type/dictionary/duration")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: serializeRecord(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

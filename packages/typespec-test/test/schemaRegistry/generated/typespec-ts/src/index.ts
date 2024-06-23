@@ -6,6 +6,8 @@ export {
   SchemaRegistryClientOptions,
 } from "./schemaRegistryClient.js";
 export {
+  schemaPropertiesSerializer,
+  schemaSerializer,
   SchemaGroup,
   SchemaVersion,
   SchemaContentTypeValues,

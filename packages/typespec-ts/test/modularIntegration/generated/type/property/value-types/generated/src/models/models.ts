@@ -220,7 +220,7 @@ export function dictionaryStringPropertySerializer(
   item: DictionaryStringProperty,
 ): DictionaryStringPropertyRest {
   return {
-    property: serializeRecord(item.property),
+    property: serializeRecord(item.property as any) as any,
   };
 }
 

@@ -4,6 +4,9 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  dataProductPropertiesSerializer,
+  managedServiceIdentitySerializer,
+  dataProductUpdatePropertiesSerializer,
   DataProduct,
   DataProductUpdate,
   AccountSas,
@@ -53,6 +56,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   DataProductsCreateOptionalParams,
   DataProductsGetOptionalParams,
@@ -91,75 +95,13 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         location: resource["location"],
-        tags: resource["tags"],
+        tags: !resource.tags ? resource.tags : serializeRecord(resource.tags),
         properties: !resource.properties
-          ? undefined
-          : {
-              publisher: resource.properties?.["publisher"],
-              product: resource.properties?.["product"],
-              majorVersion: resource.properties?.["majorVersion"],
-              owners: resource.properties?.["owners"],
-              redundancy: resource.properties?.["redundancy"],
-              purviewAccount: resource.properties?.["purviewAccount"],
-              purviewCollection: resource.properties?.["purviewCollection"],
-              privateLinksEnabled: resource.properties?.["privateLinksEnabled"],
-              publicNetworkAccess: resource.properties?.["publicNetworkAccess"],
-              customerManagedKeyEncryptionEnabled:
-                resource.properties?.["customerManagedKeyEncryptionEnabled"],
-              customerEncryptionKey: !resource.properties?.customerEncryptionKey
-                ? undefined
-                : {
-                    keyVaultUri:
-                      resource.properties?.customerEncryptionKey?.[
-                        "keyVaultUri"
-                      ],
-                    keyName:
-                      resource.properties?.customerEncryptionKey?.["keyName"],
-                    keyVersion:
-                      resource.properties?.customerEncryptionKey?.[
-                        "keyVersion"
-                      ],
-                  },
-              networkacls: !resource.properties?.networkacls
-                ? undefined
-                : {
-                    virtualNetworkRule: resource.properties?.networkacls?.[
-                      "virtualNetworkRule"
-                    ].map((p) => ({
-                      id: p["id"],
-                      action: p["action"],
-                      state: p["state"],
-                    })),
-                    ipRules: resource.properties?.networkacls?.["ipRules"].map(
-                      (p) => ({ value: p["value"], action: p["action"] }),
-                    ),
-                    allowedQueryIpRangeList:
-                      resource.properties?.networkacls?.[
-                        "allowedQueryIpRangeList"
-                      ],
-                    defaultAction:
-                      resource.properties?.networkacls?.["defaultAction"],
-                  },
-              managedResourceGroupConfiguration: !resource.properties
-                ?.managedResourceGroupConfiguration
-                ? undefined
-                : {
-                    name: resource.properties
-                      ?.managedResourceGroupConfiguration?.["name"],
-                    location:
-                      resource.properties?.managedResourceGroupConfiguration?.[
-                        "location"
-                      ],
-                  },
-              currentMinorVersion: resource.properties?.["currentMinorVersion"],
-            },
+          ? resource.properties
+          : dataProductPropertiesSerializer(resource.properties),
         identity: !resource.identity
-          ? undefined
-          : {
-              type: resource.identity?.["type"],
-              userAssignedIdentities:
-                resource.identity?.["userAssignedIdentities"],
-            },
+          ? resource.identity
+          : managedServiceIdentitySerializer(resource.identity),
       },
     });
 }
@@ -518,24 +460,14 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         identity: !properties.identity
-          ? undefined
-          : {
-              type: properties.identity?.["type"],
-              userAssignedIdentities:
-                properties.identity?.["userAssignedIdentities"],
-            },
-        tags: properties["tags"],
+          ? properties.identity
+          : managedServiceIdentitySerializer(properties.identity),
+        tags: !properties.tags
+          ? properties.tags
+          : serializeRecord(properties.tags),
         properties: !properties.properties
-          ? undefined
-          : {
-              owners: properties.properties?.["owners"],
-              purviewAccount: properties.properties?.["purviewAccount"],
-              purviewCollection: properties.properties?.["purviewCollection"],
-              privateLinksEnabled:
-                properties.properties?.["privateLinksEnabled"],
-              currentMinorVersion:
-                properties.properties?.["currentMinorVersion"],
-            },
+          ? properties.properties
+          : dataProductUpdatePropertiesSerializer(properties.properties),
       },
     });
 }

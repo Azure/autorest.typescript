@@ -1,6 +1,31 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import {
+  Test as TestRest,
+  PassFailCriteria as PassFailCriteriaRest,
+  PassFailMetric as PassFailMetricRest,
+  Secret as SecretRest,
+  CertificateMetadata as CertificateMetadataRest,
+  LoadTestConfiguration as LoadTestConfigurationRest,
+  OptionalLoadTestConfig as OptionalLoadTestConfigRest,
+  TestInputArtifacts as TestInputArtifactsRest,
+  FileInfo as FileInfoRest,
+  TestAppComponents as TestAppComponentsRest,
+  AppComponent as AppComponentRest,
+  TestServerMetricConfig as TestServerMetricConfigRest,
+  ResourceMetric as ResourceMetricRest,
+  TestRun as TestRunRest,
+  TestRunArtifacts as TestRunArtifactsRest,
+  TestRunInputArtifacts as TestRunInputArtifactsRest,
+  TestRunOutputArtifacts as TestRunOutputArtifactsRest,
+  TestRunAppComponents as TestRunAppComponentsRest,
+  TestRunServerMetricConfig as TestRunServerMetricConfigRest,
+  MetricRequestPayload as MetricRequestPayloadRest,
+  DimensionFilter as DimensionFilterRest,
+} from "../rest/index.js";
+
 /** Load test model */
 export interface Test {
   /** Pass fail criteria for a test. */
@@ -43,10 +68,45 @@ export interface Test {
   readonly lastModifiedBy?: string;
 }
 
+export function testSerializer(item: Test): TestRest {
+  return {
+    passFailCriteria: !item.passFailCriteria
+      ? item.passFailCriteria
+      : passFailCriteriaSerializer(item.passFailCriteria),
+    secrets: !item.secrets
+      ? item.secrets
+      : serializeRecord(item.secrets, secretSerializer),
+    certificate: !item.certificate
+      ? item.certificate
+      : certificateMetadataSerializer(item.certificate),
+    environmentVariables: !item.environmentVariables
+      ? item.environmentVariables
+      : serializeRecord(item.environmentVariables),
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? item.loadTestConfiguration
+      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    description: item["description"],
+    displayName: item["displayName"],
+    subnetId: item["subnetId"],
+    keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
+    keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
+  };
+}
+
 /** Pass fail criteria for a test. */
 export interface PassFailCriteria {
   /** Map of id and pass fail metrics { id  : pass fail metrics }. */
   passFailMetrics?: Record<string, PassFailMetric>;
+}
+
+export function passFailCriteriaSerializer(
+  item: PassFailCriteria,
+): PassFailCriteriaRest {
+  return {
+    passFailMetrics: !item.passFailMetrics
+      ? item.passFailMetrics
+      : serializeRecord(item.passFailMetrics, passFailMetricSerializer),
+  };
 }
 
 /** Pass fail metric */
@@ -75,6 +135,19 @@ export interface PassFailMetric {
   readonly actualValue?: number;
   /** Outcome of the test run. */
   readonly result?: PFResult;
+}
+
+export function passFailMetricSerializer(
+  item: PassFailMetric,
+): PassFailMetricRest {
+  return {
+    clientMetric: item["clientMetric"],
+    aggregate: item["aggregate"],
+    condition: item["condition"],
+    requestName: item["requestName"],
+    value: item["value"],
+    action: item["action"],
+  };
 }
 
 /** */
@@ -108,6 +181,13 @@ export interface Secret {
   type?: SecretType;
 }
 
+export function secretSerializer(item: Secret): SecretRest {
+  return {
+    value: item["value"],
+    type: item["type"],
+  };
+}
+
 /** */
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
@@ -119,6 +199,16 @@ export interface CertificateMetadata {
   type?: CertificateType;
   /** Name of the certificate. */
   name?: string;
+}
+
+export function certificateMetadataSerializer(
+  item: CertificateMetadata,
+): CertificateMetadataRest {
+  return {
+    value: item["value"],
+    type: item["type"],
+    name: item["name"],
+  };
 }
 
 /** */
@@ -147,6 +237,19 @@ export interface LoadTestConfiguration {
   optionalLoadTestConfig?: OptionalLoadTestConfig;
 }
 
+export function loadTestConfigurationSerializer(
+  item: LoadTestConfiguration,
+): LoadTestConfigurationRest {
+  return {
+    engineInstances: item["engineInstances"],
+    splitAllCSVs: item["splitAllCSVs"],
+    quickStartTest: item["quickStartTest"],
+    optionalLoadTestConfig: !item.optionalLoadTestConfig
+      ? item.optionalLoadTestConfig
+      : optionalLoadTestConfigSerializer(item.optionalLoadTestConfig),
+  };
+}
+
 /** Optional load test config */
 export interface OptionalLoadTestConfig {
   /**
@@ -160,6 +263,17 @@ export interface OptionalLoadTestConfig {
   rampUpTime?: number;
   /** Test run duration */
   duration?: number;
+}
+
+export function optionalLoadTestConfigSerializer(
+  item: OptionalLoadTestConfig,
+): OptionalLoadTestConfigRest {
+  return {
+    endpointUrl: item["endpointUrl"],
+    virtualUsers: item["virtualUsers"],
+    rampUpTime: item["rampUpTime"],
+    duration: item["duration"],
+  };
 }
 
 /** The input artifacts for the test. */
@@ -176,6 +290,25 @@ export interface TestInputArtifacts {
   readonly additionalFileInfo?: FileInfo[];
 }
 
+export function testInputArtifactsSerializer(
+  item: TestInputArtifacts,
+): TestInputArtifactsRest {
+  return {
+    configFileInfo: !item.configFileInfo
+      ? item.configFileInfo
+      : fileInfoSerializer(item.configFileInfo),
+    testScriptFileInfo: !item.testScriptFileInfo
+      ? item.testScriptFileInfo
+      : fileInfoSerializer(item.testScriptFileInfo),
+    userPropFileInfo: !item.userPropFileInfo
+      ? item.userPropFileInfo
+      : fileInfoSerializer(item.userPropFileInfo),
+    inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
+      ? item.inputArtifactsZipFileInfo
+      : fileInfoSerializer(item.inputArtifactsZipFileInfo),
+  };
+}
+
 /** File info */
 export interface FileInfo {
   /** File URL. */
@@ -190,6 +323,17 @@ export interface FileInfo {
   validationStatus?: FileStatus;
   /** Validation failure error details */
   validationFailureDetails?: string;
+}
+
+export function fileInfoSerializer(item: FileInfo): FileInfoRest {
+  return {
+    url: item["url"],
+    fileName: item["fileName"],
+    fileType: item["fileType"],
+    expireDateTime: item["expireDateTime"],
+    validationStatus: item["validationStatus"],
+    validationFailureDetails: item["validationFailureDetails"],
+  };
 }
 
 /** */
@@ -222,6 +366,14 @@ export interface TestAppComponents {
   readonly lastModifiedBy?: string;
 }
 
+export function testAppComponentsSerializer(
+  item: TestAppComponents,
+): TestAppComponentsRest {
+  return {
+    components: serializeRecord(item.components, appComponentSerializer),
+  };
+}
+
 /**
  * An Azure resource object (Refer azure generic resource model :
  * https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)
@@ -246,6 +398,15 @@ export interface AppComponent {
   kind?: string;
 }
 
+export function appComponentSerializer(item: AppComponent): AppComponentRest {
+  return {
+    resourceName: item["resourceName"],
+    resourceType: item["resourceType"],
+    displayName: item["displayName"],
+    kind: item["kind"],
+  };
+}
+
 /** Test server metrics configuration */
 export interface TestServerMetricConfig {
   /** Test identifier */
@@ -264,6 +425,16 @@ export interface TestServerMetricConfig {
   readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testServerMetricConfigSerializer(
+  item: TestServerMetricConfig,
+): TestServerMetricConfigRest {
+  return {
+    metrics: !item.metrics
+      ? item.metrics
+      : serializeRecord(item.metrics, resourceMetricSerializer),
+  };
 }
 
 /**
@@ -288,6 +459,20 @@ export interface ResourceMetric {
   unit?: string;
   /** Azure resource type. */
   resourceType: string;
+}
+
+export function resourceMetricSerializer(
+  item: ResourceMetric,
+): ResourceMetricRest {
+  return {
+    resourceId: item["resourceId"],
+    metricNamespace: item["metricNamespace"],
+    displayDescription: item["displayDescription"],
+    name: item["name"],
+    aggregation: item["aggregation"],
+    unit: item["unit"],
+    resourceType: item["resourceType"],
+  };
 }
 
 /** Collection of files. */
@@ -369,6 +554,29 @@ export interface TestRun {
   readonly lastModifiedBy?: string;
 }
 
+export function testRunSerializer(item: TestRun): TestRunRest {
+  return {
+    passFailCriteria: !item.passFailCriteria
+      ? item.passFailCriteria
+      : passFailCriteriaSerializer(item.passFailCriteria),
+    secrets: !item.secrets
+      ? item.secrets
+      : serializeRecord(item.secrets, secretSerializer),
+    certificate: !item.certificate
+      ? item.certificate
+      : certificateMetadataSerializer(item.certificate),
+    environmentVariables: !item.environmentVariables
+      ? item.environmentVariables
+      : serializeRecord(item.environmentVariables),
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? item.loadTestConfiguration
+      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    displayName: item["displayName"],
+    testId: item["testId"],
+    description: item["description"],
+  };
+}
+
 /** Error details if there is any failure in load test run */
 export interface ErrorDetails {
   /** Error details in case test run was not successfully run. */
@@ -415,6 +623,16 @@ export interface TestRunArtifacts {
   outputArtifacts?: TestRunOutputArtifacts;
 }
 
+export function testRunArtifactsSerializer(
+  item: TestRunArtifacts,
+): TestRunArtifactsRest {
+  return {
+    outputArtifacts: !item.outputArtifacts
+      ? item.outputArtifacts
+      : testRunOutputArtifactsSerializer(item.outputArtifacts),
+  };
+}
+
 /** The input artifacts for the test run. */
 export interface TestRunInputArtifacts {
   /** File info */
@@ -429,12 +647,44 @@ export interface TestRunInputArtifacts {
   readonly additionalFileInfo?: FileInfo[];
 }
 
+export function testRunInputArtifactsSerializer(
+  item: TestRunInputArtifacts,
+): TestRunInputArtifactsRest {
+  return {
+    configFileInfo: !item.configFileInfo
+      ? item.configFileInfo
+      : fileInfoSerializer(item.configFileInfo),
+    testScriptFileInfo: !item.testScriptFileInfo
+      ? item.testScriptFileInfo
+      : fileInfoSerializer(item.testScriptFileInfo),
+    userPropFileInfo: !item.userPropFileInfo
+      ? item.userPropFileInfo
+      : fileInfoSerializer(item.userPropFileInfo),
+    inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
+      ? item.inputArtifactsZipFileInfo
+      : fileInfoSerializer(item.inputArtifactsZipFileInfo),
+  };
+}
+
 /** The output artifacts for the test run. */
 export interface TestRunOutputArtifacts {
   /** File info */
   resultFileInfo?: FileInfo;
   /** File info */
   logsFileInfo?: FileInfo;
+}
+
+export function testRunOutputArtifactsSerializer(
+  item: TestRunOutputArtifacts,
+): TestRunOutputArtifactsRest {
+  return {
+    resultFileInfo: !item.resultFileInfo
+      ? item.resultFileInfo
+      : fileInfoSerializer(item.resultFileInfo),
+    logsFileInfo: !item.logsFileInfo
+      ? item.logsFileInfo
+      : fileInfoSerializer(item.logsFileInfo),
+  };
 }
 
 /** */
@@ -478,6 +728,14 @@ export interface TestRunAppComponents {
   readonly lastModifiedBy?: string;
 }
 
+export function testRunAppComponentsSerializer(
+  item: TestRunAppComponents,
+): TestRunAppComponentsRest {
+  return {
+    components: serializeRecord(item.components, appComponentSerializer),
+  };
+}
+
 /** Test run server metrics configuration */
 export interface TestRunServerMetricConfig {
   /** Test run identifier */
@@ -496,6 +754,16 @@ export interface TestRunServerMetricConfig {
   readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testRunServerMetricConfigSerializer(
+  item: TestRunServerMetricConfig,
+): TestRunServerMetricConfigRest {
+  return {
+    metrics: !item.metrics
+      ? item.metrics
+      : serializeRecord(item.metrics, resourceMetricSerializer),
+  };
 }
 
 /** */
@@ -599,12 +867,32 @@ export interface MetricRequestPayload {
   filters?: DimensionFilter[];
 }
 
+export function metricRequestPayloadSerializer(
+  item: MetricRequestPayload,
+): MetricRequestPayloadRest {
+  return {
+    filters:
+      item["filters"] === undefined
+        ? item["filters"]
+        : item["filters"].map(dimensionFilterSerializer),
+  };
+}
+
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */
   name?: string;
   /** The dimension values. Maximum values can be 20. */
   values?: string[];
+}
+
+export function dimensionFilterSerializer(
+  item: DimensionFilter,
+): DimensionFilterRest {
+  return {
+    name: item["name"],
+    values: item["values"],
+  };
 }
 
 /** The response to a metrics query. */

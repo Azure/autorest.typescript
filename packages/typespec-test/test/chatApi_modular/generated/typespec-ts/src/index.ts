@@ -6,6 +6,9 @@ export {
   ChatProtocolClientOptions,
 } from "./chatProtocolClient.js";
 export {
+  chatMessageSerializer,
+  streamingChatCompletionOptionsRecordSerializer,
+  chatCompletionOptionsRecordSerializer,
   ChatMessage,
   ChatRole,
   StreamingChatCompletionOptionsRecord,

@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  multipleSpreadRecordSerializer,
-  MultipleSpreadRecord,
-} from "../../models/models.js";
+import { MultipleSpreadRecord } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   MultipleSpreadGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   MultipleSpreadGetOptionalParams,
   MultipleSpreadPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/multipleSpreadRecord")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: multipleSpreadRecordSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

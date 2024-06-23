@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 import {
+  chatCompletionRequestMessageSerializer,
+  chatCompletionFunctionsSerializer,
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
@@ -16,6 +18,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../../helpers/serializerHelpers.js";
 import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
@@ -31,25 +34,11 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         model: body["model"],
-        messages: body["messages"].map((p) => ({
-          role: p["role"],
-          content: p["content"],
-          name: p["name"],
-          function_call: !p.functionCall
-            ? undefined
-            : {
-                name: p.functionCall?.["name"],
-                arguments: p.functionCall?.["arguments"],
-              },
-        })),
+        messages: body["messages"].map(chatCompletionRequestMessageSerializer),
         functions:
           body["functions"] === undefined
             ? body["functions"]
-            : body["functions"].map((p) => ({
-                name: p["name"],
-                description: p["description"],
-                parameters: p["parameters"],
-              })),
+            : body["functions"].map(chatCompletionFunctionsSerializer),
         function_call: body["functionCall"],
         temperature: body["temperature"],
         top_p: body["topP"],
@@ -58,7 +47,9 @@ export function _createSend(
         stop: body["stop"],
         presence_penalty: body["presencePenalty"],
         frequency_penalty: body["frequencyPenalty"],
-        logit_bias: body["logitBias"],
+        logit_bias: !body.logitBias
+          ? body.logitBias
+          : serializeRecord(body.logitBias),
         user: body["user"],
         stream: body["stream"],
       },

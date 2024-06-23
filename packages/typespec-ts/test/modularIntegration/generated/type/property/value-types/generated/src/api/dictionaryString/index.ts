@@ -57,7 +57,7 @@ export function _dictionaryStringPutSend(
     .path("/type/property/value-types/dictionary/string")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { property: serializeRecord(body.property) },
+      body: { property: serializeRecord(body.property as any) as any },
     });
 }
 

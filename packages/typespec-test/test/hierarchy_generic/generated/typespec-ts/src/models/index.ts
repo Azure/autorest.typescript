@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { A, BA, BEA } from "./models.js";
+export {
+  aSerializer,
+  bASerializer,
+  bEASerializer,
+  A,
+  BA,
+  BEA,
+} from "./models.js";
 export {
   Op1OptionalParams,
   BOp1OptionalParams,

@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  spreadRecordForNonDiscriminatedUnion3Serializer,
-  SpreadRecordForNonDiscriminatedUnion3,
-} from "../../models/models.js";
+import { SpreadRecordForNonDiscriminatedUnion3 } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadRecordNonDiscriminatedUnion3Get200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadRecordNonDiscriminatedUnion3GetOptionalParams,
   SpreadRecordNonDiscriminatedUnion3PutOptionalParams,
@@ -67,7 +65,7 @@ export function _putSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: spreadRecordForNonDiscriminatedUnion3Serializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 export {
+  schemaPropertiesSerializer,
+  schemaSerializer,
   SchemaGroup,
   SchemaVersion,
   SchemaContentTypeValues,

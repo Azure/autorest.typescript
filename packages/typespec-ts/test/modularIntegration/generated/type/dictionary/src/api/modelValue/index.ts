@@ -54,7 +54,7 @@ export function _putSend(
     .path("/type/dictionary/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: serializeRecord(body, innerModelSerializer),
+      body: serializeRecord(body as any, innerModelSerializer) as any,
     });
 }
 

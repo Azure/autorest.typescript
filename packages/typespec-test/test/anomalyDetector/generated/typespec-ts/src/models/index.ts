@@ -2,6 +2,15 @@
 // Licensed under the MIT license.
 
 export {
+  multivariateModelInfoSerializer,
+  multivariateAlignPolicySerializer,
+  multivariateDiagnosticsInfoSerializer,
+  multivariateModelStateSerializer,
+  multivariateMultivariateLastDetectionOptionsSerializer,
+  multivariateVariableValuesSerializer,
+  univariateUnivariateDetectionOptionsSerializer,
+  univariateTimeSeriesPointSerializer,
+  univariateUnivariateChangePointDetectionOptionsSerializer,
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
   MultivariateBatchDetectionStatus,

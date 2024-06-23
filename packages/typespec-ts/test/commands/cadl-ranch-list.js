@@ -331,6 +331,10 @@ export const modularTsps = [
     inputPath: "type/dictionary"
   },
   {
+    outputPath: "type/property/nullable",
+    inputPath: "type/property/nullable"
+  },
+  {
     outputPath: "type/property/optionality",
     inputPath: "type/property/optionality"
   },

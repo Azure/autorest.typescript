@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  isFloatAdditionalPropertiesSerializer,
-  IsFloatAdditionalProperties,
-} from "../../models/models.js";
+import { IsFloatAdditionalProperties } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsFloatGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   IsFloatGetOptionalParams,
   IsFloatPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/isRecordFloat")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: isFloatAdditionalPropertiesSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

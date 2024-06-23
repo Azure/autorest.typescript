@@ -106,7 +106,7 @@ export function salmonSerializer(item: Salmon): SalmonRest {
     friends: item["friends"],
     hate: !item.hate
       ? item.hate
-      : serializeRecord(item.hate, fishUnionSerializer),
+      : (serializeRecord(item.hate as any, fishUnionSerializer) as any),
     partner: !item.partner ? item.partner : fishUnionSerializer(item.partner),
   };
 }

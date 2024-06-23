@@ -2,6 +2,10 @@
 // Licensed under the MIT license.
 
 export {
+  userSerializer,
+  createWidgetSerializer,
+  updateWidgetSerializer,
+  nonReferencedModelSerializer,
   User,
   Widget,
   WidgetError,

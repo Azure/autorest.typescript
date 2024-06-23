@@ -53,7 +53,7 @@ export function _putSend(
     .path("/type/dictionary/string")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: serializeRecord(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

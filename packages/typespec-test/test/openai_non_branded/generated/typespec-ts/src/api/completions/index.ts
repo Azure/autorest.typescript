@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  serializeRecord,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import { CompletionsCreateOptionalParams } from "../../models/options.js";
@@ -39,7 +40,9 @@ export function _createSend(
         stop: body["stop"],
         presence_penalty: body["presencePenalty"],
         frequency_penalty: body["frequencyPenalty"],
-        logit_bias: body["logitBias"],
+        logit_bias: !body.logitBias
+          ? body.logitBias
+          : serializeRecord(body.logitBias),
         user: body["user"],
         stream: body["stream"],
         logprobs: body["logprobs"],

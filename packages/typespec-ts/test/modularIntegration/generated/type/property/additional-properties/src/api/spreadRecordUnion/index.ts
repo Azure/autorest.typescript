@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  spreadRecordForUnionSerializer,
-  SpreadRecordForUnion,
-} from "../../models/models.js";
+import { SpreadRecordForUnion } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadRecordUnionGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadRecordUnionGetOptionalParams,
   SpreadRecordUnionPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/spreadRecordUnion")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: spreadRecordForUnionSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

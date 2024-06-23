@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  isStringAdditionalPropertiesSerializer,
-  IsStringAdditionalProperties,
-} from "../../models/models.js";
+import { IsStringAdditionalProperties } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsStringGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   IsStringGetOptionalParams,
   IsStringPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/isRecordstring")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: isStringAdditionalPropertiesSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

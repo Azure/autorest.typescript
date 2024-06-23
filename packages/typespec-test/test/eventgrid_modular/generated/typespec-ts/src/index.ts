@@ -3,6 +3,10 @@
 
 export { EventGridClient, EventGridClientOptions } from "./eventGridClient.js";
 export {
+  cloudEventSerializer,
+  acknowledgeOptionsSerializer,
+  releaseOptionsSerializer,
+  rejectOptionsSerializer,
   CloudEvent,
   PublishResult,
   ReceiveResult,

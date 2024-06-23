@@ -3,6 +3,23 @@
 
 export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
 export {
+  createModerationRequestSerializer,
+  createImageRequestSerializer,
+  createImageEditRequestSerializer,
+  createImageVariationRequestSerializer,
+  createFineTuneRequestSerializer,
+  createFileRequestSerializer,
+  createEmbeddingRequestSerializer,
+  createEditRequestSerializer,
+  createCompletionRequestSerializer,
+  createFineTuningJobRequestSerializer,
+  chatCompletionRequestMessageSerializer,
+  chatCompletionFunctionsSerializer,
+  chatCompletionFunctionParametersSerializer,
+  chatCompletionFunctionCallOptionSerializer,
+  createChatCompletionRequestSerializer,
+  createTranslationRequestSerializer,
+  createTranscriptionRequestSerializer,
   CreateModerationRequest,
   CreateModerationResponse,
   ErrorResponse,

@@ -20,6 +20,11 @@ export interface AccountSas {
     startTimeStamp: Date;
 }
 
+// Warning: (ae-forgotten-export) The symbol "AccountSas_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function accountSasSerializer(item: AccountSas): AccountSas_2;
+
 // @public
 export interface AccountSasToken {
     storageAccountSasToken: string;
@@ -54,6 +59,11 @@ export interface ContainerSaS {
     ipAddress: string;
     startTimeStamp: Date;
 }
+
+// Warning: (ae-forgotten-export) The symbol "ContainerSaS_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function containerSaSSerializer(item: ContainerSaS): ContainerSaS_2;
 
 // @public
 export interface ContainerSasToken {
@@ -98,6 +108,11 @@ export interface DataProductNetworkAcls {
     virtualNetworkRule: VirtualNetworkRule[];
 }
 
+// Warning: (ae-forgotten-export) The symbol "DataProductNetworkAcls_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataProductNetworkAclsSerializer(item: DataProductNetworkAcls): DataProductNetworkAcls_2;
+
 // @public
 export interface DataProductProperties {
     readonly availableMinorVersions?: string[];
@@ -121,6 +136,11 @@ export interface DataProductProperties {
     redundancy?: ControlState;
     readonly resourceGuid?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "DataProductProperties_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataProductPropertiesSerializer(item: DataProductProperties): DataProductProperties_2;
 
 // @public (undocumented)
 export interface DataProductsAddUserRoleOptionalParams extends OperationOptions {
@@ -174,6 +194,11 @@ export interface DataProductsCreateOptionalParams extends OperationOptions {
 export interface DataProductsDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
+
+// Warning: (ae-forgotten-export) The symbol "DataProduct_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataProductSerializer(item: DataProduct): DataProduct_2;
 
 // @public (undocumented)
 export interface DataProductsGenerateStorageAccountSasTokenOptionalParams extends OperationOptions {
@@ -251,6 +276,16 @@ export interface DataProductUpdateProperties {
     purviewCollection?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "DataProductUpdateProperties_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataProductUpdatePropertiesSerializer(item: DataProductUpdateProperties): DataProductUpdateProperties_2;
+
+// Warning: (ae-forgotten-export) The symbol "DataProductUpdate_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataProductUpdateSerializer(item: DataProductUpdate): DataProductUpdate_2;
+
 // @public
 export type DataProductUserRole = string;
 
@@ -281,6 +316,11 @@ export interface DataTypeProperties {
     readonly visualizationUrl?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "DataTypeProperties_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataTypePropertiesSerializer(item: DataTypeProperties): DataTypeProperties_2;
+
 // @public (undocumented)
 export interface DataTypesCreateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
@@ -295,6 +335,11 @@ export interface DataTypesDeleteDataOptionalParams extends OperationOptions {
 export interface DataTypesDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
+
+// Warning: (ae-forgotten-export) The symbol "DataType_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataTypeSerializer(item: DataType): DataType_2;
 
 // @public (undocumented)
 export interface DataTypesGenerateStorageContainerSasTokenOptionalParams extends OperationOptions {
@@ -348,6 +393,16 @@ export interface DataTypeUpdateProperties {
     storageOutputRetention?: number;
 }
 
+// Warning: (ae-forgotten-export) The symbol "DataTypeUpdateProperties_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataTypeUpdatePropertiesSerializer(item: DataTypeUpdateProperties): DataTypeUpdateProperties_2;
+
+// Warning: (ae-forgotten-export) The symbol "DataTypeUpdate_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function dataTypeUpdateSerializer(item: DataTypeUpdate): DataTypeUpdate_2;
+
 // @public
 export type DefaultAction = string;
 
@@ -357,6 +412,11 @@ export interface EncryptionKeyDetails {
     keyVaultUri: string;
     keyVersion: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "EncryptionKeyDetails_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function encryptionKeyDetailsSerializer(item: EncryptionKeyDetails): EncryptionKeyDetails_2;
 
 // @public
 export interface ErrorAdditionalInfo {
@@ -384,10 +444,20 @@ export interface IPRules {
     value?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "IPRules_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function iPRulesSerializer(item: IPRules): IPRules_2;
+
 // @public
 export interface KeyVaultInfo {
     keyVaultUrl: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "KeyVaultInfo_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function keyVaultInfoSerializer(item: KeyVaultInfo): KeyVaultInfo_2;
 
 // @public (undocumented)
 export enum KnownActionType {
@@ -501,6 +571,11 @@ export interface ManagedResourceGroupConfiguration {
     name: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "ManagedResourceGroupConfiguration_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function managedResourceGroupConfigurationSerializer(item: ManagedResourceGroupConfiguration): ManagedResourceGroupConfiguration_2;
+
 // @public
 export interface ManagedServiceIdentity {
     readonly principalId?: string;
@@ -508,6 +583,11 @@ export interface ManagedServiceIdentity {
     type: ManagedServiceIdentityType;
     userAssignedIdentities?: UserAssignedIdentities;
 }
+
+// Warning: (ae-forgotten-export) The symbol "ManagedServiceIdentity_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function managedServiceIdentitySerializer(item: ManagedServiceIdentity): ManagedServiceIdentity_2;
 
 // @public
 export type ManagedServiceIdentityType = string;
@@ -619,6 +699,11 @@ export interface RoleAssignmentCommonProperties {
     userName: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "RoleAssignmentCommonProperties_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function roleAssignmentCommonPropertiesSerializer(item: RoleAssignmentCommonProperties): RoleAssignmentCommonProperties_2;
+
 // @public
 export interface RoleAssignmentDetail {
     dataTypeScope: string[];
@@ -629,6 +714,11 @@ export interface RoleAssignmentDetail {
     roleId: string;
     userName: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "RoleAssignmentDetail_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function roleAssignmentDetailSerializer(item: RoleAssignmentDetail): RoleAssignmentDetail_2;
 
 // @public
 export interface SystemData {
@@ -646,15 +736,30 @@ export interface TrackedResource extends Resource {
     tags?: Record<string, string>;
 }
 
+// Warning: (ae-forgotten-export) The symbol "TrackedResource_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function trackedResourceSerializer(item: TrackedResource): TrackedResource_2;
+
 // @public
 export interface UserAssignedIdentities extends Record<string, UserAssignedIdentity> {
 }
+
+// Warning: (ae-forgotten-export) The symbol "UserAssignedIdentities_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function userAssignedIdentitiesSerializer(item: UserAssignedIdentities): UserAssignedIdentities_2;
 
 // @public
 export interface UserAssignedIdentity {
     clientId?: string;
     principalId?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "UserAssignedIdentity_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function userAssignedIdentitySerializer(item: UserAssignedIdentity): UserAssignedIdentity_2;
 
 // @public (undocumented)
 export type Versions = "2023-11-15";
@@ -665,6 +770,11 @@ export interface VirtualNetworkRule {
     id: string;
     state?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "VirtualNetworkRule_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): VirtualNetworkRule_2;
 
 // (No @packageDocumentation comment for this package)
 

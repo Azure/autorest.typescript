@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import {
-  isModelAdditionalPropertiesSerializer,
+  modelForRecordSerializer,
   IsModelAdditionalProperties,
 } from "../../models/models.js";
 import {
@@ -15,6 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   IsModelGetOptionalParams,
   IsModelPutOptionalParams,
@@ -57,7 +58,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/isRecordModel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: isModelAdditionalPropertiesSerializer(body),
+      body: serializeRecord(body as any, modelForRecordSerializer) as any,
     });
 }
 

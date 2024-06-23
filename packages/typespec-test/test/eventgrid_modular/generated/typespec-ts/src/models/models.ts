@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { uint8ArrayToString } from "@azure/core-util";
+import {
+  CloudEvent as CloudEventRest,
+  AcknowledgeOptions as AcknowledgeOptionsRest,
+  ReleaseOptions as ReleaseOptionsRest,
+  RejectOptions as RejectOptionsRest,
+} from "../rest/index.js";
+
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
   /** An identifier for the event. The combination of id and source must be unique for each distinct event. */
@@ -23,6 +31,24 @@ export interface CloudEvent {
   datacontenttype?: string;
   /** This describes the subject of the event in the context of the event producer (identified by source). */
   subject?: string;
+}
+
+export function cloudEventSerializer(item: CloudEvent): CloudEventRest {
+  return {
+    id: item["id"],
+    source: item["source"],
+    data: item["data"],
+    data_base64:
+      item["dataBase64"] !== undefined
+        ? uint8ArrayToString(item["dataBase64"], "base64")
+        : undefined,
+    type: item["type"],
+    time: item["time"]?.toISOString(),
+    specversion: item["specversion"],
+    dataschema: item["dataschema"],
+    datacontenttype: item["datacontenttype"],
+    subject: item["subject"],
+  };
 }
 
 /** The result of the Publish operation. */
@@ -56,6 +82,14 @@ export interface AcknowledgeOptions {
   lockTokens: string[];
 }
 
+export function acknowledgeOptionsSerializer(
+  item: AcknowledgeOptions,
+): AcknowledgeOptionsRest {
+  return {
+    lockTokens: item["lockTokens"],
+  };
+}
+
 /** The result of the Acknowledge operation. */
 export interface AcknowledgeResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -80,6 +114,14 @@ export interface ReleaseOptions {
   lockTokens: string[];
 }
 
+export function releaseOptionsSerializer(
+  item: ReleaseOptions,
+): ReleaseOptionsRest {
+  return {
+    lockTokens: item["lockTokens"],
+  };
+}
+
 /** The result of the Release operation. */
 export interface ReleaseResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -92,6 +134,14 @@ export interface ReleaseResult {
 export interface RejectOptions {
   /** String array of lock tokens. */
   lockTokens: string[];
+}
+
+export function rejectOptionsSerializer(
+  item: RejectOptions,
+): RejectOptionsRest {
+  return {
+    lockTokens: item["lockTokens"],
+  };
 }
 
 /** The result of the Reject operation. */

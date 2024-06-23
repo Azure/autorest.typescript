@@ -638,7 +638,9 @@ function buildBodyParameter(
     if (modelSerializerName) {
       return `\nbody: ${modelSerializerName}(${bodyParameter.clientName}),`;
     } else {
-      return `\nbody: serializeRecord(${bodyParameter.clientName}, ${elementSerializerName}),`;
+      // Need to do this so that Records are compatible with additional properties of other types
+      // this should check for compatibility mode once we support the additionalProperties property
+      return `\nbody: serializeRecord(${bodyParameter.clientName} as any, ${elementSerializerName}) as any,`;
     }
   }
 
@@ -1022,7 +1024,7 @@ export function getRequestModelMapping(
         ? `${toCamelCase(modelName)}Serializer`
         : "";
       // definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
-      const statement = `"${property.restApiName}": ${nullOrUndefinedPrefix} serializeRecord(${propertyFullName}, ${serializerName})`;
+      const statement = `"${property.restApiName}": ${nullOrUndefinedPrefix} serializeRecord(${propertyFullName} as any, ${serializerName}) as any`;
       addImportToSpecifier(
         "serializerHelpers",
         runtimeImports,
@@ -1289,7 +1291,9 @@ export function serializeRequestValue(
     case "datetime":
       switch (type.format ?? format) {
         case "date":
-          return `${clientValue}${required ? "" : "?"}.toDateString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.toDateString()`;
         case "time":
           return `${clientValue}${required ? "" : "?"}.toTimeString()`;
         case "rfc7231":
@@ -1299,7 +1303,9 @@ export function serializeRequestValue(
           return `${clientValue}${required ? "" : "?"}.getTime()`;
         case "rfc3339":
         default:
-          return `${clientValue}${required ? "" : "?"}.toISOString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.toISOString()`;
       }
     case "list": {
       const prefix =
@@ -1354,7 +1360,10 @@ export function serializeRequestValue(
       if (format !== "binary") {
         addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
         return required
-          ? `uint8ArrayToString(${clientValue}, "${
+          ? `${getNullableCheck(
+              clientValue,
+              type
+            )} uint8ArrayToString(${clientValue}, "${
               getEncodingFormat({ format }) ?? "base64"
             }")`
           : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${

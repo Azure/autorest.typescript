@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  spreadFloatRecordSerializer,
-  SpreadFloatRecord,
-} from "../../models/models.js";
+import { SpreadFloatRecord } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadFloatGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadFloatGetOptionalParams,
   SpreadFloatPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/spreadRecordFloat")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: spreadFloatRecordSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

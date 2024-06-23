@@ -16,6 +16,6 @@ export function innerModelSerializer(item: InnerModel): InnerModelRest {
     property: item["property"],
     children: !item.children
       ? item.children
-      : serializeRecord(item.children, innerModelSerializer),
+      : (serializeRecord(item.children as any, innerModelSerializer) as any),
   };
 }

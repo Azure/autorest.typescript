@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  isModelArrayAdditionalPropertiesSerializer,
-  IsModelArrayAdditionalProperties,
-} from "../../models/models.js";
+import { IsModelArrayAdditionalProperties } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsModelArrayGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   IsModelArrayGetOptionalParams,
   IsModelArrayPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/isRecordModelArray")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: isModelArrayAdditionalPropertiesSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

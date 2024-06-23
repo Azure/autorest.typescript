@@ -1,6 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  ChatMessage as ChatMessageRest,
+  StreamingChatCompletionOptions as StreamingChatCompletionOptionsRest,
+  ChatCompletionOptions as ChatCompletionOptionsRest,
+} from "../rest/index.js";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+
 /** A single, role-attributed message within a chat completion interaction. */
 export interface ChatMessage {
   /** The text associated with the message. */
@@ -14,6 +21,14 @@ export interface ChatMessage {
    * conversations or user preferences.
    */
   sessionState?: any;
+}
+
+export function chatMessageSerializer(item: ChatMessage): ChatMessageRest {
+  return {
+    content: item["content"],
+    role: item["role"],
+    session_state: item["sessionState"],
+  };
 }
 
 /** A representation of the intended purpose of a message. */
@@ -38,6 +53,17 @@ export interface StreamingChatCompletionOptionsRecord {
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
   context?: Record<string, any>;
+}
+
+export function streamingChatCompletionOptionsRecordSerializer(
+  item: StreamingChatCompletionOptionsRecord,
+): StreamingChatCompletionOptionsRest {
+  return {
+    messages: item["messages"].map(chatMessageSerializer),
+    stream: item["stream"],
+    session_state: item["sessionState"],
+    context: !item.context ? item.context : serializeRecord(item.context),
+  };
 }
 
 /** A single response to a streaming completion request. */
@@ -105,6 +131,17 @@ export interface ChatCompletionOptionsRecord {
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
   context?: Record<string, any>;
+}
+
+export function chatCompletionOptionsRecordSerializer(
+  item: ChatCompletionOptionsRecord,
+): ChatCompletionOptionsRest {
+  return {
+    messages: item["messages"].map(chatMessageSerializer),
+    stream: item["stream"],
+    session_state: item["sessionState"],
+    context: !item.context ? item.context : serializeRecord(item.context),
+  };
 }
 
 /** Representation of the response to a chat completion request. */

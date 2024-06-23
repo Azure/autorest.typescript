@@ -4,6 +4,8 @@
 
 ```ts
 
+/// <reference types="node" />
+
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -46,9 +48,19 @@ export interface ChatCompletionFunctionCallOption {
     name: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "ChatCompletionFunctionCallOption_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function chatCompletionFunctionCallOptionSerializer(item: ChatCompletionFunctionCallOption): ChatCompletionFunctionCallOption_2;
+
 // @public (undocumented)
 export interface ChatCompletionFunctionParameters extends Record<string, any> {
 }
+
+// Warning: (ae-forgotten-export) The symbol "ChatCompletionFunctionParameters_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function chatCompletionFunctionParametersSerializer(item: ChatCompletionFunctionParameters): ChatCompletionFunctionParameters_2;
 
 // @public (undocumented)
 export interface ChatCompletionFunctions {
@@ -56,6 +68,11 @@ export interface ChatCompletionFunctions {
     name: string;
     parameters: ChatCompletionFunctionParameters;
 }
+
+// Warning: (ae-forgotten-export) The symbol "ChatCompletionFunctions_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function chatCompletionFunctionsSerializer(item: ChatCompletionFunctions): ChatCompletionFunctions_2;
 
 // @public (undocumented)
 export interface ChatCompletionRequestMessage {
@@ -67,6 +84,11 @@ export interface ChatCompletionRequestMessage {
     name?: string;
     role: "system" | "user" | "assistant" | "function";
 }
+
+// Warning: (ae-forgotten-export) The symbol "ChatCompletionRequestMessage_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function chatCompletionRequestMessageSerializer(item: ChatCompletionRequestMessage): ChatCompletionRequestMessage_2;
 
 // @public (undocumented)
 export interface ChatCompletionResponseMessage {
@@ -129,6 +151,11 @@ export interface CreateChatCompletionRequest {
     user?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateChatCompletionRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createChatCompletionRequestSerializer(item: CreateChatCompletionRequest): CreateChatCompletionRequest_2;
+
 // @public
 export interface CreateChatCompletionResponse {
     choices: {
@@ -164,6 +191,11 @@ export interface CreateCompletionRequest {
     user?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateCompletionRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createCompletionRequestSerializer(item: CreateCompletionRequest): CreateCompletionRequest_2;
+
 // @public
 export interface CreateCompletionResponse {
     choices: {
@@ -195,6 +227,11 @@ export interface CreateEditRequest {
     topP?: number | null;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateEditRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createEditRequestSerializer(item: CreateEditRequest): CreateEditRequest_2;
+
 // @public (undocumented)
 export interface CreateEditResponse {
     choices: {
@@ -216,6 +253,11 @@ export interface CreateEmbeddingRequest {
     user?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateEmbeddingRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createEmbeddingRequestSerializer(item: CreateEmbeddingRequest): CreateEmbeddingRequest_2;
+
 // @public (undocumented)
 export interface CreateEmbeddingResponse {
     data: Embedding[];
@@ -233,6 +275,11 @@ export interface CreateFileRequest {
     purpose: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateFileRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createFileRequestSerializer(item: CreateFileRequest): CreateFileRequest_2;
+
 // @public (undocumented)
 export interface CreateFineTuneRequest {
     batchSize?: number | null;
@@ -249,6 +296,11 @@ export interface CreateFineTuneRequest {
     validationFile?: string | null;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateFineTuneRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createFineTuneRequestSerializer(item: CreateFineTuneRequest): CreateFineTuneRequest_2;
+
 // @public (undocumented)
 export interface CreateFineTuningJobRequest {
     hyperparameters?: {
@@ -259,6 +311,11 @@ export interface CreateFineTuningJobRequest {
     trainingFile: string;
     validationFile?: string | null;
 }
+
+// Warning: (ae-forgotten-export) The symbol "CreateFineTuningJobRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createFineTuningJobRequestSerializer(item: CreateFineTuningJobRequest): CreateFineTuningJobRequest_2;
 
 // @public (undocumented)
 export interface CreateImageEditRequest {
@@ -272,6 +329,11 @@ export interface CreateImageEditRequest {
     user?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateImageEditRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createImageEditRequestSerializer(item: CreateImageEditRequest): CreateImageEditRequest_2;
+
 // @public (undocumented)
 export interface CreateImageRequest {
     n?: number | null;
@@ -281,6 +343,11 @@ export interface CreateImageRequest {
     // (undocumented)
     user?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "CreateImageRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createImageRequestSerializer(item: CreateImageRequest): CreateImageRequest_2;
 
 // @public (undocumented)
 export interface CreateImageVariationRequest {
@@ -292,11 +359,21 @@ export interface CreateImageVariationRequest {
     user?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateImageVariationRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createImageVariationRequestSerializer(item: CreateImageVariationRequest): CreateImageVariationRequest_2;
+
 // @public (undocumented)
 export interface CreateModerationRequest {
     input: string | string[];
     model?: string | "text-moderation-latest" | "text-moderation-stable";
 }
+
+// Warning: (ae-forgotten-export) The symbol "CreateModerationRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createModerationRequestSerializer(item: CreateModerationRequest): CreateModerationRequest_2;
 
 // @public (undocumented)
 export interface CreateModerationResponse {
@@ -343,6 +420,11 @@ export interface CreateTranscriptionRequest {
     temperature?: number;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CreateTranscriptionRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createTranscriptionRequestSerializer(item: CreateTranscriptionRequest): CreateTranscriptionRequest_2;
+
 // @public (undocumented)
 export interface CreateTranscriptionResponse {
     // (undocumented)
@@ -357,6 +439,11 @@ export interface CreateTranslationRequest {
     responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
     temperature?: number;
 }
+
+// Warning: (ae-forgotten-export) The symbol "CreateTranslationRequest_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createTranslationRequestSerializer(item: CreateTranslationRequest): CreateTranslationRequest_2;
 
 // @public (undocumented)
 export interface CreateTranslationResponse {

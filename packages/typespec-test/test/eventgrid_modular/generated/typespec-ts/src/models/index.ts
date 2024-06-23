@@ -2,6 +2,10 @@
 // Licensed under the MIT license.
 
 export {
+  cloudEventSerializer,
+  acknowledgeOptionsSerializer,
+  releaseOptionsSerializer,
+  rejectOptionsSerializer,
   CloudEvent,
   PublishResult,
   ReceiveResult,

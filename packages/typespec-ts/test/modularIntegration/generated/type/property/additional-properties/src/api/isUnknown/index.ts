@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  isUnknownAdditionalPropertiesSerializer,
-  IsUnknownAdditionalProperties,
-} from "../../models/models.js";
+import { IsUnknownAdditionalProperties } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsUnknownGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   IsUnknownGetOptionalParams,
   IsUnknownPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/isRecordUnknown")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: isUnknownAdditionalPropertiesSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

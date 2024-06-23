@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  differentSpreadFloatRecordSerializer,
-  DifferentSpreadFloatRecord,
-} from "../../models/models.js";
+import { DifferentSpreadFloatRecord } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadDifferentFloatGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadDifferentFloatGetOptionalParams,
   SpreadDifferentFloatPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/spreadDifferentRecordFloat")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: differentSpreadFloatRecordSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

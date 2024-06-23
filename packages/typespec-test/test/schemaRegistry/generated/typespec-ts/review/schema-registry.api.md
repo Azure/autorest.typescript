@@ -108,6 +108,15 @@ export interface SchemaProperties {
 }
 
 // @public (undocumented)
+export function schemaPropertiesSerializer(item: SchemaProperties): {
+    id: string;
+    format: SchemaFormat;
+    groupName: string;
+    name: string;
+    version: number;
+};
+
+// @public (undocumented)
 export class SchemaRegistryClient {
     constructor(fullyQualifiedNamespace: string, credential: TokenCredential, options?: SchemaRegistryClientOptions);
     readonly pipeline: Pipeline;
@@ -118,6 +127,18 @@ export class SchemaRegistryClient {
 export interface SchemaRegistryClientOptions extends ClientOptions {
     apiVersion?: string;
 }
+
+// @public (undocumented)
+export function schemaSerializer(item: Schema): {
+    definition: string;
+    properties: {
+        id: string;
+        format: SchemaFormat;
+        groupName: string;
+        name: string;
+        version: number;
+    };
+};
 
 // @public
 export interface SchemaVersion {

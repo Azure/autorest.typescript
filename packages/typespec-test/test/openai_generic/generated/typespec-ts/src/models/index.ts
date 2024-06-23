@@ -2,6 +2,23 @@
 // Licensed under the MIT license.
 
 export {
+  createModerationRequestSerializer,
+  createImageRequestSerializer,
+  createImageEditRequestSerializer,
+  createImageVariationRequestSerializer,
+  createFineTuneRequestSerializer,
+  createFileRequestSerializer,
+  createEmbeddingRequestSerializer,
+  createEditRequestSerializer,
+  createCompletionRequestSerializer,
+  createFineTuningJobRequestSerializer,
+  chatCompletionRequestMessageSerializer,
+  chatCompletionFunctionsSerializer,
+  chatCompletionFunctionParametersSerializer,
+  chatCompletionFunctionCallOptionSerializer,
+  createChatCompletionRequestSerializer,
+  createTranslationRequestSerializer,
+  createTranscriptionRequestSerializer,
   CreateModerationRequest,
   CreateModerationResponse,
   ErrorResponse,

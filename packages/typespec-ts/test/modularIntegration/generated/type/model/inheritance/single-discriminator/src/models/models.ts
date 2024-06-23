@@ -94,7 +94,7 @@ export function eagleSerializer(item: Eagle): EagleRest {
     friends: item["friends"],
     hate: !item.hate
       ? item.hate
-      : serializeRecord(item.hate, birdUnionSerializer),
+      : (serializeRecord(item.hate as any, birdUnionSerializer) as any),
     partner: !item.partner ? item.partner : birdUnionSerializer(item.partner),
   };
 }

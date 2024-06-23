@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  differentSpreadStringRecordSerializer,
-  DifferentSpreadStringRecord,
-} from "../../models/models.js";
+import { DifferentSpreadStringRecord } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadDifferentStringGet200Response,
@@ -15,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadDifferentStringGetOptionalParams,
   SpreadDifferentStringPutOptionalParams,
@@ -57,7 +55,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/spreadDifferentRecordString")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: differentSpreadStringRecordSerializer(body),
+      body: serializeRecord(body as any) as any,
     });
 }
 

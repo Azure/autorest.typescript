@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import {
-  spreadModelRecordSerializer,
+  modelForRecordSerializer,
   SpreadModelRecord,
 } from "../../models/models.js";
 import {
@@ -15,6 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadModelGetOptionalParams,
   SpreadModelPutOptionalParams,
@@ -57,7 +58,7 @@ export function _putSend(
     .path("/type/property/additionalProperties/spreadRecordModel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: spreadModelRecordSerializer(body),
+      body: serializeRecord(body as any, modelForRecordSerializer) as any,
     });
 }
 

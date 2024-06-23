@@ -6,6 +6,13 @@ export {
   ContentSafetyClientOptions,
 } from "./contentSafetyClient.js";
 export {
+  textBlocklistSerializer,
+  textBlockItemInfoSerializer,
+  addOrUpdateBlockItemsOptionsSerializer,
+  removeBlockItemsOptionsSerializer,
+  analyzeImageOptionsSerializer,
+  imageDataSerializer,
+  analyzeTextOptionsSerializer,
   TextBlocklist,
   TextBlockItemInfo,
   AddOrUpdateBlockItemsOptions,

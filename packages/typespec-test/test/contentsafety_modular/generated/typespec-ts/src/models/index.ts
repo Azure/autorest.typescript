@@ -2,6 +2,13 @@
 // Licensed under the MIT license.
 
 export {
+  textBlocklistSerializer,
+  textBlockItemInfoSerializer,
+  addOrUpdateBlockItemsOptionsSerializer,
+  removeBlockItemsOptionsSerializer,
+  analyzeImageOptionsSerializer,
+  imageDataSerializer,
+  analyzeTextOptionsSerializer,
   TextBlocklist,
   TextBlockItemInfo,
   AddOrUpdateBlockItemsOptions,
