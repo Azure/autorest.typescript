@@ -1740,9 +1740,8 @@ export type FaceClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface FaceClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: Versions;
 }
 

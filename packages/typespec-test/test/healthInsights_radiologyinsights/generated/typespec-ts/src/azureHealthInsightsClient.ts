@@ -6,7 +6,9 @@ import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { AzureHealthInsightsClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface AzureHealthInsightsClientOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

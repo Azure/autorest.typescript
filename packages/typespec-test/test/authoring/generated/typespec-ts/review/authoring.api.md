@@ -26,9 +26,8 @@ export type AuthoringClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface AuthoringClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

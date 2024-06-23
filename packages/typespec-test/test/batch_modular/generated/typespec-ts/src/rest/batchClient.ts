@@ -6,6 +6,7 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { BatchContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface BatchContextOptions extends ClientOptions {}
 
 /**

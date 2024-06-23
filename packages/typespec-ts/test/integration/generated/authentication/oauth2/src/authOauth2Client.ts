@@ -6,6 +6,7 @@ import { logger } from "./logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { AuthOauth2Client } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface AuthOauth2ClientOptions extends ClientOptions {}
 
 /**

@@ -6,8 +6,10 @@ import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { HealthInsightsClinicalMatchingClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface HealthInsightsClinicalMatchingClientOptions
   extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

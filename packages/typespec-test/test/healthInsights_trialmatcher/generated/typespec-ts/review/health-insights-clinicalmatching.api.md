@@ -350,9 +350,8 @@ export type HealthInsightsClinicalMatchingClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface HealthInsightsClinicalMatchingClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

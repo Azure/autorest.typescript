@@ -6,7 +6,9 @@ import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { WidgetManagerContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface WidgetManagerContextOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

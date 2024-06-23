@@ -39,7 +39,7 @@ function getClientOptionsInterface(
         name: param.name,
         type: param.type,
         hasQuestionToken: true,
-        description: param.description
+        docs: [param.description ?? "client level optional parameter " + param.name]
       };
     }) ?? [];
 
@@ -52,14 +52,15 @@ function getClientOptionsInterface(
       name: "apiVersion",
       type: "string",
       hasQuestionToken: true,
-      description: "The api version to use for the request"
+      docs: ["The api version option of the client"]
     });
   }
   return {
     name: `${clientName}Options`,
     extends: ["ClientOptions"],
     isExported: true,
-    properties
+    properties,
+    docs: ["The optional parameters for the client"]
   };
 }
 

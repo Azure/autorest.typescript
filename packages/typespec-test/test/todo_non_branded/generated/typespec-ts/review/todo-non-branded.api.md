@@ -52,7 +52,7 @@ export type TodoClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface TodoClientOptions extends ClientOptions {
 }
 

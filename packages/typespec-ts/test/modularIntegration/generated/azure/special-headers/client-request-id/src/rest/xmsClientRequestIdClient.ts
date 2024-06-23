@@ -5,6 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { XmsRequestIdClientContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface XmsRequestIdClientContextOptions extends ClientOptions {}
 
 /**

@@ -528,9 +528,8 @@ export type OpenAIClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface OpenAIClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

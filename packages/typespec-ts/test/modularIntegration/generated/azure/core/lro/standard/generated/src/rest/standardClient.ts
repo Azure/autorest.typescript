@@ -5,7 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { StandardContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface StandardContextOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

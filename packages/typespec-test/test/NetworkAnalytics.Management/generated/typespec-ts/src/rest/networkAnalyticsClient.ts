@@ -6,7 +6,9 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { NetworkAnalyticsContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface NetworkAnalyticsContextOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

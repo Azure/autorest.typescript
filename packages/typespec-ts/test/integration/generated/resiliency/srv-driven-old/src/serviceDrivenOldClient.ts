@@ -5,7 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { ServiceDrivenOldClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface ServiceDrivenOldClientOptions extends ClientOptions {
+  /** Pass in 'v1'. This represents the API version of the service. Will grow up in the next deployment to be both 'v1' and 'v2' */
   apiVersion?: string;
 }
 

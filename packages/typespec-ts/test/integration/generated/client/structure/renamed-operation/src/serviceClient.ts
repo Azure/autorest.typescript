@@ -6,6 +6,7 @@ import { logger } from "./logger.js";
 import { ServiceClient } from "./clientDefinitions.js";
 import { ClientType } from "./models.js";
 
+/** The optional parameters for the client */
 export interface ServiceClientOptions extends ClientOptions {}
 
 /**

@@ -99,16 +99,7 @@ function buildEnumModel(
   return {
     name: model.name!,
     isExported: true,
-    docs: [
-      ...getDocsFromDescription(model.description),
-      // If it is a fixed enum we don't need to list the known values in the docs as the
-      // output will be a literal union which is self documenting
-      model.isFixed || !model.isNonExhaustive
-        ? ""
-        : // When we generate an "extensible" enum, the type will be "string" or "number" so we list the known values
-          // in the docs for user reference.
-          getEnumValues()
-    ],
+    docs: [...getDocsFromDescription(model.description)],
     type: buildEnumType()
   };
 

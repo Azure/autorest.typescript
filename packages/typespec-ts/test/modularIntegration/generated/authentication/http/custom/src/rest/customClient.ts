@@ -6,6 +6,7 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { CustomContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface CustomContextOptions extends ClientOptions {}
 
 /**

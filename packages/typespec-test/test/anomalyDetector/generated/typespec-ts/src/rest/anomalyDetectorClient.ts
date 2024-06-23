@@ -6,7 +6,9 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface AnomalyDetectorContextOptions extends ClientOptions {
+  /** Api Version */
   apiVersion?: string;
 }
 

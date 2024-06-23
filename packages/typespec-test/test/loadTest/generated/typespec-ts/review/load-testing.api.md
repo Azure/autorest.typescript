@@ -49,9 +49,8 @@ export type AzureLoadTestingClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface AzureLoadTestingClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

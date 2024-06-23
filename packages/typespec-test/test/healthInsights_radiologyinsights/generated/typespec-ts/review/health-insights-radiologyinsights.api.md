@@ -48,9 +48,8 @@ export type AzureHealthInsightsClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface AzureHealthInsightsClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

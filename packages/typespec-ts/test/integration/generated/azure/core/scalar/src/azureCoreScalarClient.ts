@@ -5,6 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { AzureCoreScalarClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface AzureCoreScalarClientOptions extends ClientOptions {}
 
 /**

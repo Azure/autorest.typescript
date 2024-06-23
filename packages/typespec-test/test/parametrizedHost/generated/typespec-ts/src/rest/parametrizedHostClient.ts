@@ -6,10 +6,15 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { ParametrizedHostContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface ParametrizedHostContextOptions extends ClientOptions {
+  /** A sequence of textual characters. */
   host?: string;
+  /** A sequence of textual characters. */
   subdomain?: string;
+  /** A sequence of textual characters. */
   sufix?: string;
+  /** A sequence of textual characters. */
   apiVersion?: string;
 }
 

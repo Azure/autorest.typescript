@@ -7,7 +7,9 @@ import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { FaceClient } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
+/** The optional parameters for the client */
 export interface FaceClientOptions extends ClientOptions {
+  /** API Version */
   apiVersion?: Versions;
 }
 

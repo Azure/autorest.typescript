@@ -6,7 +6,9 @@ import { logger } from "../logger.js";
 import { MultipleContext } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
+/** The optional parameters for the client */
 export interface MultipleContextOptions extends ClientOptions {
+  /** Pass in v1.0 for API version. */
   apiVersion?: Versions;
 }
 

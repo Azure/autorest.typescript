@@ -344,9 +344,8 @@ export type WidgetManagerClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface WidgetManagerClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

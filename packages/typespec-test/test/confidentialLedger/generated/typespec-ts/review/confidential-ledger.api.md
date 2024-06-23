@@ -25,9 +25,8 @@ export type ConfidentialLedgerClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface ConfidentialLedgerClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

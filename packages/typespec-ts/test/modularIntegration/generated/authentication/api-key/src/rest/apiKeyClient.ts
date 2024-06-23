@@ -6,6 +6,7 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { ApiKeyContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface ApiKeyContextOptions extends ClientOptions {}
 
 /**

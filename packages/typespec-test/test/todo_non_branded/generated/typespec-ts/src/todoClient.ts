@@ -4,6 +4,7 @@ import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { TodoClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface TodoClientOptions extends ClientOptions {}
 
 /**

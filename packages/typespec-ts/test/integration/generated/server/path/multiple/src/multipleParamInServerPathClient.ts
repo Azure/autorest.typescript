@@ -6,7 +6,9 @@ import { logger } from "./logger.js";
 import { MultipleParamInServerPathClient } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
+/** The optional parameters for the client */
 export interface MultipleParamInServerPathClientOptions extends ClientOptions {
+  /** Pass in v1.0 for API version. */
   apiVersion?: Versions;
 }
 

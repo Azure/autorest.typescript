@@ -6,6 +6,7 @@ import { logger } from "./logger.js";
 import { VersioningRenamedFromClient } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
+/** The optional parameters for the client */
 export interface VersioningRenamedFromClientOptions extends ClientOptions {}
 
 /**

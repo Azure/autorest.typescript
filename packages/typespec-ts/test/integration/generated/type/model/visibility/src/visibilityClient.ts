@@ -5,6 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { VisibilityClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface VisibilityClientOptions extends ClientOptions {}
 
 /**

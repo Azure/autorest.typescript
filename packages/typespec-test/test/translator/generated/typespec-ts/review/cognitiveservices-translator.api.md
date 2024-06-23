@@ -616,9 +616,8 @@ export type TranslatorClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface TranslatorClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

@@ -6,6 +6,7 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { OpenAIContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface OpenAIContextOptions extends ClientOptions {}
 
 /**
