@@ -92,22 +92,27 @@ export function buildModelSerializer(
       ? "...item,"
       : "";
 
-    const propertiesSerialization = getRequestModelMapping(
+    const { propertiesStr, directAssignment } = getRequestModelMapping(
       type,
       "item",
       runtimeImports
-    ).filter((p) => p.trim());
+    );
+    const propertiesSerialization = propertiesStr.filter((p) => p.trim());
 
     // don't emit a serializer if there is nothing to serialize
     if (propertiesSerialization.length || additionalPropertiesSpread) {
+      const spreadSerialized = directAssignment ? "..." : "";
+      const fnBody = `{
+             ${additionalPropertiesSpread}
+             ${nullabilityPrefix} ${spreadSerialized} ${propertiesSerialization.join(
+               ",\n"
+             )}
+          }`;
       output.push(`
         export function ${serializerName}(item: ${toPascalCase(
           type.name
         )})${serializerReturnType} {
-          return {
-             ${additionalPropertiesSpread}
-             ${nullabilityPrefix}${propertiesSerialization.join(",\n")}
-          }
+          return ${fnBody}
         }
         `);
 

@@ -518,11 +518,14 @@ function getTypeSerializeFunction(
       returnType: typeName
     };
     if (type.properties) {
-      statements.push(
-        `return {${getRequestModelMapping(type, "obj", runtimeImports).join(
-          ", "
-        )}};`
+      const { propertiesStr } = getRequestModelMapping(
+        type,
+        "obj",
+        runtimeImports
       );
+      statements.push(`return {
+        ${propertiesStr.join(", ")}
+        };`);
     } else {
       statements.push(`return {};`);
     }
@@ -557,12 +560,16 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: type.elementType.name + "[]" }],
       returnType: `${typeName}[]`
     };
+    const { propertiesStr } = getRequestModelMapping(
+      type.elementType,
+      "item",
+      runtimeImports
+    );
+
     statements.push(
-      `return (obj || []).map(item => { return {${getRequestModelMapping(
-        type.elementType,
-        "item",
-        runtimeImports
-      ).join(", ")}}})`
+      `return (obj || []).map(item => { 
+          return { ${propertiesStr.join(", ")} }
+        })`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {

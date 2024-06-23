@@ -601,7 +601,7 @@ function buildBodyParameter(
     !bodyParameter.type.aliasType &&
     !allParents.some((p) => p.type === "dict")
   ) {
-    const bodyParts: string[] = getRequestModelMapping(
+    const { propertiesStr: bodyParts } = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
       runtimeImports,
@@ -649,15 +649,20 @@ function buildBodyParameter(
       bodyParameter.type.elementType?.type === "model" &&
       !bodyParameter.type.elementType.aliasType
     ) {
-      const bodyParts = getRequestModelMapping(
-        bodyParameter.type.elementType,
-        "p",
-        runtimeImports,
-        [bodyParameter.type.elementType]
-      );
-      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
-        ${bodyParts.join(", ")}
-      };}),`;
+      const { propertiesStr: bodyParts, directAssignment } =
+        getRequestModelMapping(
+          bodyParameter.type.elementType,
+          "p",
+          runtimeImports,
+          [bodyParameter.type.elementType]
+        );
+      const mapBody =
+        directAssignment === true
+          ? bodyParts.join(", ")
+          : `{ ${bodyParts.join(", ")} }`;
+      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { 
+      return ${mapBody};
+      }),`;
     }
     return `\nbody: ${bodyParameter.clientName},`;
   }
@@ -788,12 +793,13 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 
 function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": {${getRequestModelMapping(
+    const { propertiesStr } = getRequestModelMapping(
       param.type,
       param.clientName,
       runtimeImports,
       [param.type]
-    ).join(",")}}`;
+    );
+    return `"${param.restApiName}": { ${propertiesStr.join(",")} }`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
@@ -842,12 +848,13 @@ function isOptional(param: Parameter | Property): param is OptionalType {
 
 function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": {${getRequestModelMapping(
+    const { propertiesStr } = getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
       runtimeImports,
       [param.type]
-    ).join(", ")}}`;
+    );
+    return `"${param.restApiName}": { ${propertiesStr.join(", ")} }`;
   }
   if (
     param.restApiName === "api-version" &&
@@ -929,18 +936,22 @@ function getNullableCheck(name: string, type: Type) {
  * This function helps translating an HLC request to RLC request,
  * extracting properties from body and headers and building the RLC response object
  */
+interface RequestModelMappingResult {
+  propertiesStr: string[];
+  directAssignment?: boolean;
+}
 export function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
   runtimeImports: RuntimeImports,
   typeStack: Type[] = []
-) {
+): RequestModelMappingResult {
   const props: string[] = [];
   const allParents = getAllAncestors(modelPropertyType);
   const properties: Property[] =
     getAllProperties(modelPropertyType, allParents) ?? [];
   if (properties.length <= 0) {
-    return [];
+    return { propertiesStr: [] };
   }
 
   if (isSpecialHandledUnion(modelPropertyType)) {
@@ -950,7 +961,7 @@ export function getRequestModelMapping(
     );
     const definition = `${deserializeFunctionName}(${propertyPath})`;
     props.push(definition);
-    return props;
+    return { propertiesStr: props, directAssignment: true };
   }
   for (const property of properties) {
     if (property.readonly) {
@@ -1054,7 +1065,7 @@ export function getRequestModelMapping(
     }
   }
 
-  return props;
+  return { propertiesStr: props };
 }
 
 /**
