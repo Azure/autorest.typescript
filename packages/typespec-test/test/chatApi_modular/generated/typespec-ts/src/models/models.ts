@@ -62,7 +62,9 @@ export function streamingChatCompletionOptionsRecordSerializer(
     messages: item["messages"].map(chatMessageSerializer),
     stream: item["stream"],
     session_state: item["sessionState"],
-    context: !item.context ? item.context : serializeRecord(item.context),
+    context: !item.context
+      ? item.context
+      : (serializeRecord(item.context as any) as any),
   };
 }
 
@@ -140,7 +142,9 @@ export function chatCompletionOptionsRecordSerializer(
     messages: item["messages"].map(chatMessageSerializer),
     stream: item["stream"],
     session_state: item["sessionState"],
-    context: !item.context ? item.context : serializeRecord(item.context),
+    context: !item.context
+      ? item.context
+      : (serializeRecord(item.context as any) as any),
   };
 }
 

@@ -14,15 +14,15 @@ export function serializeRecord<T, R>(
 ): Record<string, R> {
   return Object.keys(item).reduce(
     (acc, key) => {
-      if (serializer) {
+      if (isSupportedRecordType(item[key])) {
+        acc[key] = item[key] as any;
+      } else if (serializer) {
         const value = item[key];
         if (value !== undefined) {
           acc[key] = serializer(value);
         }
       } else {
-        if (!isSupportedRecordType(item[key])) {
-          console.warn(`Don't know how to serialize ${item[key]}`);
-        }
+        console.warn(`Don't know how to serialize ${item[key]}`);
         acc[key] = item[key] as any;
       }
       return acc;

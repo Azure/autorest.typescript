@@ -37,7 +37,9 @@ export function _createStreamingSend(
         messages: body["messages"].map(chatMessageSerializer),
         stream: body["stream"],
         session_state: body["sessionState"],
-        context: !body.context ? body.context : serializeRecord(body.context),
+        context: !body.context
+          ? body.context
+          : (serializeRecord(body.context as any) as any),
       },
     }) as StreamableMethod<CreateStreaming200Response>;
 }
@@ -87,7 +89,9 @@ export function _createSend(
         messages: body["messages"].map(chatMessageSerializer),
         stream: body["stream"],
         session_state: body["sessionState"],
-        context: !body.context ? body.context : serializeRecord(body.context),
+        context: !body.context
+          ? body.context
+          : (serializeRecord(body.context as any) as any),
       },
     }) as StreamableMethod<Create200Response>;
 }

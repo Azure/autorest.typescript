@@ -70,7 +70,6 @@ export {
   chatCompletionsOptionsSerializer,
   imageGenerationOptionsSerializer,
   imageGenerationsSerializer,
-  imageGenerationDataSerializer,
   audioSpeechOptionsSerializer,
   embeddingsOptionsSerializer,
   AudioTranscriptionFormat,

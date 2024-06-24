@@ -109,13 +109,13 @@ export function _testRunSend(
           : passFailCriteriaSerializer(resource.passFailCriteria),
         secrets: !resource.secrets
           ? resource.secrets
-          : serializeRecord(resource.secrets, secretSerializer),
+          : (serializeRecord(resource.secrets as any, secretSerializer) as any),
         certificate: !resource.certificate
           ? resource.certificate
           : certificateMetadataSerializer(resource.certificate),
         environmentVariables: !resource.environmentVariables
           ? resource.environmentVariables
-          : serializeRecord(resource.environmentVariables),
+          : (serializeRecord(resource.environmentVariables as any) as any),
         loadTestConfiguration: !resource.loadTestConfiguration
           ? resource.loadTestConfiguration
           : loadTestConfigurationSerializer(resource.loadTestConfiguration),
@@ -400,7 +400,10 @@ export function _createOrUpdateAppComponentsSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
-        components: serializeRecord(body.components, appComponentSerializer),
+        components: serializeRecord(
+          body.components as any,
+          appComponentSerializer,
+        ) as any,
       },
     });
 }
@@ -462,7 +465,10 @@ export function _createOrUpdateServerMetricsConfigSend(
       body: {
         metrics: !body.metrics
           ? body.metrics
-          : serializeRecord(body.metrics, resourceMetricSerializer),
+          : (serializeRecord(
+              body.metrics as any,
+              resourceMetricSerializer,
+            ) as any),
       },
     });
 }

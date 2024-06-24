@@ -6,6 +6,9 @@ export {
   AnomalyDetectorClientOptions,
 } from "./anomalyDetectorClient.js";
 export {
+  multivariateErrorResponseSerializer,
+  multivariateVariableStateSerializer,
+  multivariateMultivariateBatchDetectionOptionsSerializer,
   multivariateModelInfoSerializer,
   multivariateAlignPolicySerializer,
   multivariateDiagnosticsInfoSerializer,

@@ -2,6 +2,13 @@
 // Licensed under the MIT license.
 
 import {
+  startTaskSerializer,
+  taskContainerSettingsSerializer,
+  batchNodeIdentityReferenceSerializer,
+  resourceFileSerializer,
+  environmentSettingSerializer,
+  userIdentitySerializer,
+  certificateReferenceSerializer,
   batchTaskCreateOptionsSerializer,
   exitConditionsSerializer,
   outputFileSerializer,

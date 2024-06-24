@@ -2,6 +2,9 @@
 // Licensed under the MIT license.
 
 export {
+  multivariateErrorResponseSerializer,
+  multivariateVariableStateSerializer,
+  multivariateMultivariateBatchDetectionOptionsSerializer,
   multivariateModelInfoSerializer,
   multivariateAlignPolicySerializer,
   multivariateDiagnosticsInfoSerializer,

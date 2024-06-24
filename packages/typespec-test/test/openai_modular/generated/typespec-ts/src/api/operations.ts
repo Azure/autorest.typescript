@@ -369,7 +369,7 @@ export function _getCompletionsSend(
         top_p: body["topP"],
         logit_bias: !body.logitBias
           ? body.logitBias
-          : serializeRecord(body.logitBias),
+          : (serializeRecord(body.logitBias as any) as any),
         user: body["user"],
         n: body["n"],
         logprobs: body["logprobs"],
@@ -593,7 +593,7 @@ export function _getChatCompletionsSend(
         top_p: body["topP"],
         logit_bias: !body.logitBias
           ? body.logitBias
-          : serializeRecord(body.logitBias),
+          : (serializeRecord(body.logitBias as any) as any),
         user: body["user"],
         n: body["n"],
         stop: body["stop"],

@@ -95,7 +95,9 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         location: resource["location"],
-        tags: !resource.tags ? resource.tags : serializeRecord(resource.tags),
+        tags: !resource.tags
+          ? resource.tags
+          : (serializeRecord(resource.tags as any) as any),
         properties: !resource.properties
           ? resource.properties
           : dataProductPropertiesSerializer(resource.properties),
@@ -464,7 +466,7 @@ export function _updateSend(
           : managedServiceIdentitySerializer(properties.identity),
         tags: !properties.tags
           ? properties.tags
-          : serializeRecord(properties.tags),
+          : (serializeRecord(properties.tags as any) as any),
         properties: !properties.properties
           ? properties.properties
           : dataProductUpdatePropertiesSerializer(properties.properties),

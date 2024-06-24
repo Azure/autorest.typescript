@@ -2,6 +2,9 @@
 // Licensed under the MIT license.
 
 import {
+  MultivariateErrorResponse as MultivariateErrorResponseRest,
+  MultivariateVariableState as MultivariateVariableStateRest,
+  MultivariateMultivariateBatchDetectionOptions as MultivariateMultivariateBatchDetectionOptionsRest,
   MultivariateModelInfo as MultivariateModelInfoRest,
   MultivariateAlignPolicy as MultivariateAlignPolicyRest,
   MultivariateDiagnosticsInfo as MultivariateDiagnosticsInfoRest,
@@ -53,6 +56,15 @@ export interface MultivariateErrorResponse {
   message: string;
 }
 
+export function multivariateErrorResponseSerializer(
+  item: MultivariateErrorResponse,
+): MultivariateErrorResponseRest {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
 /** Variable Status. */
 export interface MultivariateVariableState {
   /** Variable name in variable states. */
@@ -65,6 +77,18 @@ export interface MultivariateVariableState {
   firstTimestamp?: Date;
   /** Last valid timestamp with value of input data. */
   lastTimestamp?: Date;
+}
+
+export function multivariateVariableStateSerializer(
+  item: MultivariateVariableState,
+): MultivariateVariableStateRest {
+  return {
+    variable: item["variable"],
+    filledNARatio: item["filledNARatio"],
+    effectiveCount: item["effectiveCount"],
+    firstTimestamp: item["firstTimestamp"]?.toISOString(),
+    lastTimestamp: item["lastTimestamp"]?.toISOString(),
+  };
 }
 
 /**
@@ -95,6 +119,17 @@ export interface MultivariateMultivariateBatchDetectionOptions {
    * be date-time of ISO 8601 format.
    */
   endTime: Date;
+}
+
+export function multivariateMultivariateBatchDetectionOptionsSerializer(
+  item: MultivariateMultivariateBatchDetectionOptions,
+): MultivariateMultivariateBatchDetectionOptionsRest {
+  return {
+    dataSource: item["dataSource"],
+    topContributorCount: item["topContributorCount"],
+    startTime: item["startTime"].toISOString(),
+    endTime: item["endTime"].toISOString(),
+  };
 }
 
 /** Anomaly status and information. */

@@ -5,10 +5,25 @@ import { uint8ArrayToString } from "@azure/core-util";
 import {
   BatchNodeUserCreateOptions as BatchNodeUserCreateOptionsRest,
   BatchNodeUserUpdateOptions as BatchNodeUserUpdateOptionsRest,
+  TaskExecutionInformation as TaskExecutionInformationRest,
+  TaskContainerExecutionInformation as TaskContainerExecutionInformationRest,
+  TaskFailureInformation as TaskFailureInformationRest,
+  NameValuePair as NameValuePairRest,
+  StartTask as StartTaskRest,
+  TaskContainerSettings as TaskContainerSettingsRest,
+  ContainerRegistry as ContainerRegistryRest,
+  BatchNodeIdentityReference as BatchNodeIdentityReferenceRest,
+  ResourceFile as ResourceFileRest,
+  EnvironmentSetting as EnvironmentSettingRest,
+  UserIdentity as UserIdentityRest,
+  AutoUserSpecification as AutoUserSpecificationRest,
+  CertificateReference as CertificateReferenceRest,
+  ImageReference as ImageReferenceRest,
   NodeRebootOptions as NodeRebootOptionsRest,
   NodeReimageOptions as NodeReimageOptionsRest,
   NodeDisableSchedulingOptions as NodeDisableSchedulingOptionsRest,
   UploadBatchServiceLogsOptions as UploadBatchServiceLogsOptionsRest,
+  VMExtension as VMExtensionRest,
   BatchTaskCreateOptions as BatchTaskCreateOptionsRest,
   ExitConditions as ExitConditionsRest,
   ExitCodeMapping as ExitCodeMappingRest,
@@ -26,6 +41,9 @@ import {
   TaskIdRange as TaskIdRangeRest,
   ApplicationPackageReference as ApplicationPackageReferenceRest,
   AuthenticationTokenSettings as AuthenticationTokenSettingsRest,
+  BatchTask as BatchTaskRest,
+  BatchNodeInformation as BatchNodeInformationRest,
+  TaskStatistics as TaskStatisticsRest,
   BatchTaskCollection as BatchTaskCollectionRest,
   BatchJobSchedule as BatchJobScheduleRest,
   Schedule as ScheduleRest,
@@ -85,6 +103,7 @@ import {
   BatchPoolReplaceOptions as BatchPoolReplaceOptionsRest,
   NodeRemoveOptions as NodeRemoveOptionsRest,
 } from "../rest/index.js";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** Options for creating a user account for RDP or SSH access on an Azure Batch Compute Node. */
 export interface BatchNodeUserCreateOptions {
@@ -277,6 +296,27 @@ export interface TaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
+export function taskExecutionInformationSerializer(
+  item: TaskExecutionInformation,
+): TaskExecutionInformationRest {
+  return {
+    startTime: item["startTime"]?.toISOString(),
+    endTime: item["endTime"]?.toISOString(),
+    exitCode: item["exitCode"],
+    containerInfo: !item.containerInfo
+      ? item.containerInfo
+      : taskContainerExecutionInformationSerializer(item.containerInfo),
+    failureInfo: !item.failureInfo
+      ? item.failureInfo
+      : taskFailureInformationSerializer(item.failureInfo),
+    retryCount: item["retryCount"],
+    lastRetryTime: item["lastRetryTime"]?.toISOString(),
+    requeueCount: item["requeueCount"],
+    lastRequeueTime: item["lastRequeueTime"]?.toISOString(),
+    result: item["result"],
+  };
+}
+
 /** Contains information about the container which a Task is executing. */
 export interface TaskContainerExecutionInformation {
   /** The ID of the container. */
@@ -285,6 +325,16 @@ export interface TaskContainerExecutionInformation {
   state?: string;
   /** Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". */
   error?: string;
+}
+
+export function taskContainerExecutionInformationSerializer(
+  item: TaskContainerExecutionInformation,
+): TaskContainerExecutionInformationRest {
+  return {
+    containerId: item["containerId"],
+    state: item["state"],
+    error: item["error"],
+  };
 }
 
 /** Information about a Task failure. */
@@ -299,6 +349,20 @@ export interface TaskFailureInformation {
   details?: NameValuePair[];
 }
 
+export function taskFailureInformationSerializer(
+  item: TaskFailureInformation,
+): TaskFailureInformationRest {
+  return {
+    category: item["category"],
+    code: item["code"],
+    message: item["message"],
+    details:
+      item["details"] === undefined
+        ? item["details"]
+        : item["details"].map(nameValuePairSerializer),
+  };
+}
+
 /** ErrorCategory enums */
 /** */
 export type ErrorCategory = "usererror" | "servererror";
@@ -309,6 +373,15 @@ export interface NameValuePair {
   name?: string;
   /** The value in the name-value pair. */
   value?: string;
+}
+
+export function nameValuePairSerializer(
+  item: NameValuePair,
+): NameValuePairRest {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
 }
 
 /** TaskExecutionResult enums */
@@ -347,6 +420,28 @@ export interface StartTask {
   waitForSuccess?: boolean;
 }
 
+export function startTaskSerializer(item: StartTask): StartTaskRest {
+  return {
+    commandLine: item["commandLine"],
+    containerSettings: !item.containerSettings
+      ? item.containerSettings
+      : taskContainerSettingsSerializer(item.containerSettings),
+    resourceFiles:
+      item["resourceFiles"] === undefined
+        ? item["resourceFiles"]
+        : item["resourceFiles"].map(resourceFileSerializer),
+    environmentSettings:
+      item["environmentSettings"] === undefined
+        ? item["environmentSettings"]
+        : item["environmentSettings"].map(environmentSettingSerializer),
+    userIdentity: !item.userIdentity
+      ? item.userIdentity
+      : userIdentitySerializer(item.userIdentity),
+    maxTaskRetryCount: item["maxTaskRetryCount"],
+    waitForSuccess: item["waitForSuccess"],
+  };
+}
+
 /** The container settings for a Task. */
 export interface TaskContainerSettings {
   /** Additional options to the container create command. These additional options are supplied as arguments to the "docker create" command, in addition to those controlled by the Batch Service. */
@@ -357,6 +452,19 @@ export interface TaskContainerSettings {
   registry?: ContainerRegistry;
   /** The location of the container Task working directory. The default is 'taskWorkingDirectory'. */
   workingDirectory?: ContainerWorkingDirectory;
+}
+
+export function taskContainerSettingsSerializer(
+  item: TaskContainerSettings,
+): TaskContainerSettingsRest {
+  return {
+    containerRunOptions: item["containerRunOptions"],
+    imageName: item["imageName"],
+    registry: !item.registry
+      ? item.registry
+      : containerRegistrySerializer(item.registry),
+    workingDirectory: item["workingDirectory"],
+  };
 }
 
 /** A private container registry. */
@@ -371,6 +479,19 @@ export interface ContainerRegistry {
   identityReference?: BatchNodeIdentityReference;
 }
 
+export function containerRegistrySerializer(
+  item: ContainerRegistry,
+): ContainerRegistryRest {
+  return {
+    username: item["username"],
+    password: item["password"],
+    registryServer: item["registryServer"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+  };
+}
+
 /**
  * The reference to a user assigned identity associated with the Batch pool which
  * a compute node will use.
@@ -378,6 +499,14 @@ export interface ContainerRegistry {
 export interface BatchNodeIdentityReference {
   /** The ARM resource id of the user assigned identity. */
   resourceId?: string;
+}
+
+export function batchNodeIdentityReferenceSerializer(
+  item: BatchNodeIdentityReference,
+): BatchNodeIdentityReferenceRest {
+  return {
+    resourceId: item["resourceId"],
+  };
 }
 
 /** ContainerWorkingDirectory enums */
@@ -404,12 +533,35 @@ export interface ResourceFile {
   identityReference?: BatchNodeIdentityReference;
 }
 
+export function resourceFileSerializer(item: ResourceFile): ResourceFileRest {
+  return {
+    autoStorageContainerName: item["autoStorageContainerName"],
+    storageContainerUrl: item["storageContainerUrl"],
+    httpUrl: item["httpUrl"],
+    blobPrefix: item["blobPrefix"],
+    filePath: item["filePath"],
+    fileMode: item["fileMode"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+  };
+}
+
 /** An environment variable to be set on a Task process. */
 export interface EnvironmentSetting {
   /** The name of the environment variable. */
   name: string;
   /** The value of the environment variable. */
   value?: string;
+}
+
+export function environmentSettingSerializer(
+  item: EnvironmentSetting,
+): EnvironmentSettingRest {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
 }
 
 /** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
@@ -420,12 +572,30 @@ export interface UserIdentity {
   autoUser?: AutoUserSpecification;
 }
 
+export function userIdentitySerializer(item: UserIdentity): UserIdentityRest {
+  return {
+    username: item["username"],
+    autoUser: !item.autoUser
+      ? item.autoUser
+      : autoUserSpecificationSerializer(item.autoUser),
+  };
+}
+
 /** Specifies the options for the auto user that runs an Azure Batch Task. */
 export interface AutoUserSpecification {
   /** The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks. */
   scope?: AutoUserScope;
   /** The elevation level of the auto user. The default value is nonAdmin. */
   elevationLevel?: ElevationLevel;
+}
+
+export function autoUserSpecificationSerializer(
+  item: AutoUserSpecification,
+): AutoUserSpecificationRest {
+  return {
+    scope: item["scope"],
+    elevationLevel: item["elevationLevel"],
+  };
 }
 
 /** AutoUserScope enums */
@@ -473,6 +643,18 @@ export interface CertificateReference {
   storeName?: string;
   /** Which user Accounts on the Compute Node should have access to the private data of the Certificate. You can specify more than one visibility in this collection. The default is all Accounts. */
   visibility?: CertificateVisibility[];
+}
+
+export function certificateReferenceSerializer(
+  item: CertificateReference,
+): CertificateReferenceRest {
+  return {
+    thumbprint: item["thumbprint"],
+    thumbprintAlgorithm: item["thumbprintAlgorithm"],
+    storeLocation: item["storeLocation"],
+    storeName: item["storeName"],
+    visibility: item["visibility"],
+  };
 }
 
 /** CertificateStoreLocation enums */
@@ -553,6 +735,18 @@ export interface ImageReference {
   virtualMachineImageId?: string;
   /** The specific version of the platform image or marketplace image used to create the node. This read-only field differs from 'version' only if the value specified for 'version' when the pool was created was 'latest'. */
   readonly exactVersion?: string;
+}
+
+export function imageReferenceSerializer(
+  item: ImageReference,
+): ImageReferenceRest {
+  return {
+    publisher: item["publisher"],
+    offer: item["offer"],
+    sku: item["sku"],
+    version: item["version"],
+    virtualMachineImageId: item["virtualMachineImageId"],
+  };
 }
 
 /** Options for rebooting an Azure Batch Compute Node. */
@@ -699,6 +893,24 @@ export interface VMExtension {
   protectedSettings?: Record<string, string>;
   /** The collection of extension names. Collection of extension names after which this extension needs to be provisioned. */
   provisionAfterExtensions?: string[];
+}
+
+export function vMExtensionSerializer(item: VMExtension): VMExtensionRest {
+  return {
+    name: item["name"],
+    publisher: item["publisher"],
+    type: item["type"],
+    typeHandlerVersion: item["typeHandlerVersion"],
+    autoUpgradeMinorVersion: item["autoUpgradeMinorVersion"],
+    enableAutomaticUpgrade: item["enableAutomaticUpgrade"],
+    settings: !item.settings
+      ? item.settings
+      : (serializeRecord(item.settings as any) as any),
+    protectedSettings: !item.protectedSettings
+      ? item.protectedSettings
+      : (serializeRecord(item.protectedSettings as any) as any),
+    provisionAfterExtensions: item["provisionAfterExtensions"],
+  };
 }
 
 /** The vm extension instance view. */
@@ -1286,6 +1498,14 @@ export interface BatchTask {
   readonly authenticationTokenSettings?: AuthenticationTokenSettings;
 }
 
+export function batchTaskSerializer(item: BatchTask): BatchTaskRest {
+  return {
+    constraints: !item.constraints
+      ? item.constraints
+      : taskConstraintsSerializer(item.constraints),
+  };
+}
+
 /** Information about the Compute Node on which a Task ran. */
 export interface BatchNodeInformation {
   /** An identifier for the Node on which the Task ran, which can be passed when adding a Task to request that the Task be scheduled on this Compute Node. */
@@ -1300,6 +1520,19 @@ export interface BatchNodeInformation {
   taskRootDirectory?: string;
   /** The URL to the root directory of the Task on the Compute Node. */
   taskRootDirectoryUrl?: string;
+}
+
+export function batchNodeInformationSerializer(
+  item: BatchNodeInformation,
+): BatchNodeInformationRest {
+  return {
+    affinityId: item["affinityId"],
+    nodeUrl: item["nodeUrl"],
+    poolId: item["poolId"],
+    nodeId: item["nodeId"],
+    taskRootDirectory: item["taskRootDirectory"],
+    taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
+  };
 }
 
 /** Resource usage statistics for a Task. */
@@ -1326,6 +1559,24 @@ export interface TaskStatistics {
   writeIOGiB: number;
   /** The total wait time of the Task. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). */
   waitTime: string;
+}
+
+export function taskStatisticsSerializer(
+  item: TaskStatistics,
+): TaskStatisticsRest {
+  return {
+    url: item["url"],
+    startTime: item["startTime"].toISOString(),
+    lastUpdateTime: item["lastUpdateTime"].toISOString(),
+    userCPUTime: item["userCPUTime"],
+    kernelCPUTime: item["kernelCPUTime"],
+    wallClockTime: item["wallClockTime"],
+    readIOps: item["readIOps"],
+    writeIOps: item["writeIOps"],
+    readIOGiB: item["readIOGiB"],
+    writeIOGiB: item["writeIOGiB"],
+    waitTime: item["waitTime"],
+  };
 }
 
 /** A collection of Azure Batch Tasks to add. */

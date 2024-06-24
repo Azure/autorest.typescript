@@ -75,13 +75,13 @@ export function testSerializer(item: Test): TestRest {
       : passFailCriteriaSerializer(item.passFailCriteria),
     secrets: !item.secrets
       ? item.secrets
-      : serializeRecord(item.secrets, secretSerializer),
+      : (serializeRecord(item.secrets as any, secretSerializer) as any),
     certificate: !item.certificate
       ? item.certificate
       : certificateMetadataSerializer(item.certificate),
     environmentVariables: !item.environmentVariables
       ? item.environmentVariables
-      : serializeRecord(item.environmentVariables),
+      : (serializeRecord(item.environmentVariables as any) as any),
     loadTestConfiguration: !item.loadTestConfiguration
       ? item.loadTestConfiguration
       : loadTestConfigurationSerializer(item.loadTestConfiguration),
@@ -105,7 +105,10 @@ export function passFailCriteriaSerializer(
   return {
     passFailMetrics: !item.passFailMetrics
       ? item.passFailMetrics
-      : serializeRecord(item.passFailMetrics, passFailMetricSerializer),
+      : (serializeRecord(
+          item.passFailMetrics as any,
+          passFailMetricSerializer,
+        ) as any),
   };
 }
 
@@ -370,7 +373,10 @@ export function testAppComponentsSerializer(
   item: TestAppComponents,
 ): TestAppComponentsRest {
   return {
-    components: serializeRecord(item.components, appComponentSerializer),
+    components: serializeRecord(
+      item.components as any,
+      appComponentSerializer,
+    ) as any,
   };
 }
 
@@ -433,7 +439,7 @@ export function testServerMetricConfigSerializer(
   return {
     metrics: !item.metrics
       ? item.metrics
-      : serializeRecord(item.metrics, resourceMetricSerializer),
+      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
   };
 }
 
@@ -561,13 +567,13 @@ export function testRunSerializer(item: TestRun): TestRunRest {
       : passFailCriteriaSerializer(item.passFailCriteria),
     secrets: !item.secrets
       ? item.secrets
-      : serializeRecord(item.secrets, secretSerializer),
+      : (serializeRecord(item.secrets as any, secretSerializer) as any),
     certificate: !item.certificate
       ? item.certificate
       : certificateMetadataSerializer(item.certificate),
     environmentVariables: !item.environmentVariables
       ? item.environmentVariables
-      : serializeRecord(item.environmentVariables),
+      : (serializeRecord(item.environmentVariables as any) as any),
     loadTestConfiguration: !item.loadTestConfiguration
       ? item.loadTestConfiguration
       : loadTestConfigurationSerializer(item.loadTestConfiguration),
@@ -732,7 +738,10 @@ export function testRunAppComponentsSerializer(
   item: TestRunAppComponents,
 ): TestRunAppComponentsRest {
   return {
-    components: serializeRecord(item.components, appComponentSerializer),
+    components: serializeRecord(
+      item.components as any,
+      appComponentSerializer,
+    ) as any,
   };
 }
 
@@ -762,7 +771,7 @@ export function testRunServerMetricConfigSerializer(
   return {
     metrics: !item.metrics
       ? item.metrics
-      : serializeRecord(item.metrics, resourceMetricSerializer),
+      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
   };
 }
 

@@ -79,7 +79,7 @@ export function trackedResourceSerializer(
 ): TrackedResourceRest {
   return {
     location: item["location"],
-    tags: !item.tags ? item.tags : serializeRecord(item.tags),
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
   };
 }
 
@@ -94,7 +94,7 @@ export interface DataProduct extends TrackedResource {
 export function dataProductSerializer(item: DataProduct): DataProductRest {
   return {
     location: item["location"],
-    tags: !item.tags ? item.tags : serializeRecord(item.tags),
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     properties: !item.properties
       ? item.properties
       : dataProductPropertiesSerializer(item.properties),
@@ -342,10 +342,10 @@ export function managedServiceIdentitySerializer(
     type: item["type"],
     userAssignedIdentities: !item.userAssignedIdentities
       ? item.userAssignedIdentities
-      : serializeRecord(
-          item.userAssignedIdentities,
+      : (serializeRecord(
+          item.userAssignedIdentities as any,
           userAssignedIdentitySerializer,
-        ),
+        ) as any),
   };
 }
 
@@ -433,7 +433,7 @@ export function dataProductUpdateSerializer(
     identity: !item.identity
       ? item.identity
       : managedServiceIdentitySerializer(item.identity),
-    tags: !item.tags ? item.tags : serializeRecord(item.tags),
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     properties: !item.properties
       ? item.properties
       : dataProductUpdatePropertiesSerializer(item.properties),
