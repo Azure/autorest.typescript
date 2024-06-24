@@ -2,6 +2,12 @@
 // Licensed under the MIT license.
 
 export {
+  mixedTypesCasesSerializer,
+  catSerializer,
+  mixedLiteralsCasesSerializer,
+  stringAndArrayCasesSerializer,
+  enumsOnlyCasesSerializer,
+  dogSerializer,
   MixedTypesCases,
   Cat,
   MixedLiteralsCases,

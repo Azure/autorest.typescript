@@ -12,13 +12,20 @@ import {
   addImportToSpecifier
 } from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
-import { SdkType } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkModelType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 
 export function buildModelSerializer(
   type: ModularType,
   runtimeImports: RuntimeImports
 ): string | undefined {
-  if (type.usage && (type.usage & UsageFlags.Input) !== UsageFlags.Input) {
+  if (
+    (type.tcgcType as SdkModelType).usage !== undefined &&
+    ((type.tcgcType as SdkModelType).usage & UsageFlags.Input) !==
+      UsageFlags.Input
+  ) {
     return undefined;
   }
 
@@ -124,9 +131,7 @@ export function buildModelSerializer(
         );
       }
     }
-  }
-
-  if (type.type === "enum") {
+  } else if (type.type === "enum") {
     output.push(`
     export function ${serializerName}(item: ${toPascalCase(
       type.name

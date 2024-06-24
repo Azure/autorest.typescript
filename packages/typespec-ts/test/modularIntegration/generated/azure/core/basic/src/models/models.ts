@@ -95,14 +95,6 @@ export interface PagedUser {
   nextLink?: string;
 }
 
-/** Paged collection of User items */
-export interface PagedUser {
-  /** The User items on this page */
-  value: User[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
 /** Paged collection of FirstItem items */
 export interface PagedFirstItem {
   /** The FirstItem items on this page */

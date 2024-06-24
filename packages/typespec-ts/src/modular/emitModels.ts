@@ -16,6 +16,7 @@ import {
   Type as ModularType
 } from "./modularCodeModel.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
+import { toCamelCase } from "../utils/casingUtils.js";
 
 // ====== UTILITIES ======
 
@@ -227,7 +228,10 @@ export function buildModels(
           codeModel.modularOptions.compatibilityMode
         );
       }
-      modelsFile.addInterface(modelInterface);
+
+      if (!modelsFile.getInterface(modelInterface.name)) {
+        modelsFile.addInterface(modelInterface);
+      }
 
       // Generate a serializer function next to each model
       const serializerFunction = buildModelSerializer(
@@ -235,7 +239,10 @@ export function buildModels(
         codeModel.runtimeImports
       );
 
-      if (serializerFunction) {
+      if (
+        serializerFunction &&
+        !modelsFile.getFunction(toCamelCase(modelInterface.name + "Serializer"))
+      ) {
         modelsFile.addStatements(serializerFunction);
       }
     }
