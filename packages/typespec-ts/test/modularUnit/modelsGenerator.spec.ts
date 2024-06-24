@@ -2054,7 +2054,7 @@ describe("spread record", () => {
       `
     );
 
-    const serializerBase = modelFile?.getFunction("bSerializer")?.getText();
+    const serializerBase = modelFile?.getFunction("baseSerializer")?.getText();
     await assertEqualContent(
       serializerBase!,
       `
