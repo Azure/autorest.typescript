@@ -24,9 +24,6 @@ class ContextManager {
   }
 
   public setContext<K extends ContextKey>(key: K, value: Contexts[K]): void {
-    if (this.contexts.has(key)) {
-      console.warn("Context already exists, overwriting it");
-    }
     this.contexts.set(key, value);
   }
 

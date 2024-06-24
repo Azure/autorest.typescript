@@ -1002,19 +1002,25 @@ export function getRequestModelMapping(
           const serializerName = `${toCamelCase(property.type.name)}Serializer`;
           definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
         } else {
-          definition = `"${property.restApiName}": ${getNullableCheck(
-            propertyFullName,
-            property.type
-          )} ${
-            !property.optional ? "" : `!${propertyFullName} ? undefined :`
-          } {${getRequestModelMapping(
+          const { propertiesStr, directAssignment } = getRequestModelMapping(
             property.type,
             `${propertyPath}.${property.clientName}${
               property.optional ? "?" : ""
             }`,
             runtimeImports,
             [...typeStack, property.type]
-          )}}`;
+          );
+
+          const serializeContent =
+            directAssignment === true
+              ? propertiesStr.join(",")
+              : `{${propertiesStr.join(",")}}`;
+          definition = `"${property.restApiName}": ${getNullableCheck(
+            propertyFullName,
+            property.type
+          )} ${
+            !property.optional ? "" : `!${propertyFullName} ? undefined :`
+          } ${serializeContent}`;
         }
       }
 
@@ -1326,12 +1332,14 @@ export function serializeRequestValue(
       if (type.elementType?.type === "model" && !type.elementType.aliasType) {
         if (!type.elementType.name) {
           // If it is an anonymous model we need to serialize inline
-          return `${prefix}.map(p => ({${getRequestModelMapping(
+          const { propertiesStr } = getRequestModelMapping(
             type.elementType,
             "p",
             runtimeImports,
             [...typeStack, type.elementType]
-          )}}))`;
+          );
+
+          return `${prefix}.map(p => ({${propertiesStr}}))`;
         } else {
           // When it is not anonymous we can hand it off to the serializer function
           return `${prefix}.map(${toCamelCase(
