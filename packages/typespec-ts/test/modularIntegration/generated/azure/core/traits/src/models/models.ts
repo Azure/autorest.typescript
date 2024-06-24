@@ -22,8 +22,6 @@ export interface UserActionResponse {
 }
 
 /** Service versions */
-/** */
 export type Versions = "2022-12-01-preview";
 /** Repeatability Result header options */
-/** */
 export type RepeatabilityResult = "accepted" | "rejected";

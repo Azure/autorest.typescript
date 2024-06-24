@@ -22,6 +22,7 @@ describe("Client Factory generation", () => {
         import { logger } from "./logger.js";
         import { testClient } from "./clientDefinitions.js";
 
+        /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
 
         /**
@@ -78,6 +79,7 @@ describe("Client Factory generation", () => {
           import { logger } from "./logger.js";
           import { testClient } from "./clientDefinitions.js";
           
+          /** The optional parameters for the client */
           export interface testClientOptions extends ClientOptions {}
 
           /**
@@ -150,7 +152,8 @@ describe("Client Factory generation", () => {
             import { logger } from "./logger.js";
             import { testClient } from "./clientDefinitions.js";
             import { Version } from "./models.js";
-
+            
+            /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {}
             
             /**
@@ -224,6 +227,7 @@ describe("Client Factory generation", () => {
             import { testClient } from "./clientDefinitions.js";
             import { Versions } from "./models.js";
             
+            /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {}
 
             /**
@@ -297,8 +301,10 @@ describe("Client Factory generation", () => {
             import { logger } from "./logger.js";
             import { testClient } from "./clientDefinitions.js";
             import { Versions } from "./models.js";
-
+            
+            /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {
+              /** The endpoint to use. */
               endpointParam?: string;
             }
 
@@ -355,6 +361,7 @@ describe("Client Factory generation", () => {
         import { logger } from "./logger.js";
         import { testClient } from "./clientDefinitions.js";
         
+        /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
 
         /**
@@ -445,7 +452,8 @@ describe("Client Factory generation", () => {
       import { logger } from "./logger.js";
       import { TokenCredential } from "@azure/core-auth";
       import { testClient } from "./clientDefinitions.js";
-
+      
+      /** The optional parameters for the client */
       export interface testClientOptions extends ClientOptions {}
 
       /**
@@ -504,6 +512,7 @@ describe("Client Factory generation", () => {
         import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { testClient } from "./clientDefinitions.js";
         
+        /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
 
         /**

@@ -17,10 +17,8 @@ export interface ClientNameAndJsonEncodedNameModel {
 }
 
 /** Type of ClientExtensibleEnum */
-/** */
 export type ClientExtensibleEnum = "value1";
 /** Type of ExtensibleEnum */
-/** */
 export type ExtensibleEnum = "value1" | "value2";
 
 export interface ClientModel {

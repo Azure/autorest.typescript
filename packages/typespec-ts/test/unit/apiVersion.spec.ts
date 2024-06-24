@@ -140,10 +140,11 @@ const buildDefaultReturn = (
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   
-  
+  /** The optional parameters for the client */
   export interface testClientOptions extends ClientOptions ${
     hasApiVersionInClient && (!apiVersionRequired || hasDefault)
       ? `{
+    /** The api version option of the client */
     apiVersion?: string;
   }`
       : "{}"
@@ -237,8 +238,9 @@ const buildPathReturn_WithDefault = () => {
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   import { Versions } from "./models.js";
-
+  /** The optional parameters for the client */
   export interface testClientOptions extends ClientOptions {
+    /** Api Version */
     apiVersion?: Versions;
   }
   
@@ -280,6 +282,7 @@ const buildPathReturn_WithoutDefault = () => {
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   import { Versions } from "./models.js";
+  /** The optional parameters for the client */
   export interface testClientOptions extends ClientOptions {}
   /**
    * Initialize a new instance of \`testClient\`

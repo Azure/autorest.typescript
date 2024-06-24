@@ -42,6 +42,7 @@ describe("Parameters.ts", () => {
           import { logger } from "./logger.js";
           import { testClient } from "./clientDefinitions.js";
           
+          /** The optional parameters for the client */
           export interface testClientOptions extends ClientOptions {}
 
           /**
