@@ -106,7 +106,7 @@ export interface User {
     role: string;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "1.0.0";
 
 // @public (undocumented)

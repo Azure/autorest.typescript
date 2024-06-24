@@ -664,7 +664,7 @@ export interface UserAssignedIdentity {
     principalId?: string;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "2023-11-15";
 
 // @public

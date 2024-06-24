@@ -5,7 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { PagingClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface PagingClientOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

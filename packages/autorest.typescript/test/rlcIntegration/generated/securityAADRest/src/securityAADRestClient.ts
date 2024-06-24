@@ -6,6 +6,7 @@ import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { SecurityAADRestClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface SecurityAADRestClientOptions extends ClientOptions {}
 
 /**

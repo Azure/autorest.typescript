@@ -5,6 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { LRORestClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface LRORestClientOptions extends ClientOptions {}
 
 /**

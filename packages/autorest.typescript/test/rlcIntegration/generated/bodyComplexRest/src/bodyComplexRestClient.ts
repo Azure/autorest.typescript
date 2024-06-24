@@ -5,7 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { BodyComplexRestClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface BodyComplexRestClientOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 
