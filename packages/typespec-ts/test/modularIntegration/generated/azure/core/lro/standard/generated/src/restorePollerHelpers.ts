@@ -19,7 +19,6 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
-import { StandardContext } from "./rest/clientDefinitions.js";
 
 export interface RestorePollerOptions<
   TResult,
@@ -41,7 +40,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: StandardContext | StandardClient,
+  client: StandardClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]
