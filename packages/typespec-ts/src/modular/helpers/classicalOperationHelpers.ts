@@ -16,6 +16,8 @@ export function getClassicalOperation(
   operationGroup: OperationGroup,
   layer: number = operationGroup.namespaceHierarchies.length - 1
 ) {
+  // TODO: remove hard-code logic once client-level parameters are supported
+  const hasSubIdPromoted = true;
   const modularClientName = `${getClientName(client)}Context`;
   const hasClientContextImport = classicFile
     .getImportDeclarations()
@@ -83,6 +85,7 @@ export function getClassicalOperation(
         name: getClassicalMethodName(d),
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
+          ?.filter((p) => hasSubIdPromoted && p.name !== "subscriptionId")
           .map(
             (p) =>
               p.name +
@@ -108,6 +111,15 @@ export function getClassicalOperation(
   }
 
   if (layer === operationGroup.namespaceHierarchies.length - 1) {
+    const parameters = [
+      {
+        name: "context",
+        type: client.rlcClientName
+      }
+    ];
+    if (hasSubIdPromoted) {
+      parameters.push({ name: "subscriptionId", type: "string" });
+    }
     classicFile.addFunction({
       name: `get${getClassicalLayerPrefix(
         operationGroup,
@@ -116,17 +128,13 @@ export function getClassicalOperation(
         layer
       )}`,
       isExported: true,
-      parameters: [
-        {
-          name: "context",
-          type: client.rlcClientName
-        }
-      ],
+      parameters,
       statements: `return {
         ${operationDeclarations
           .map((d) => {
             return `${getClassicalMethodName(d)}: (${d.parameters
               ?.filter((p) => p.name !== "context")
+              ?.filter((p) => hasSubIdPromoted && p.name !== "subscriptionId")
               .map(
                 (p) =>
                   p.name +
@@ -167,7 +175,7 @@ export function getClassicalOperation(
         NameType.Interface,
         "",
         layer + 1
-      )}Operations(context)}`;
+      )}Operations(context${hasSubIdPromoted ? ", subscriptionId" : ""})}`;
       if (layer !== operationGroup.namespaceHierarchies.length - 1) {
         statement = `,
         ${normalizeName(
@@ -178,21 +186,25 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer + 1
-        )}Operations(context)}`;
+        )}Operations(${hasSubIdPromoted ? ", subscriptionId" : ""})}`;
       }
       const newReturnStatement = returnStatement.replace(/}$/, statement);
       existFunction.setBodyText(newReturnStatement);
     }
   } else {
+    const parameters = [
+      {
+        name: "context",
+        type: client.rlcClientName
+      }
+    ];
+    if (hasSubIdPromoted) {
+      parameters.push({ name: "subscriptionId", type: "string" });
+    }
     classicFile.addFunction({
       name: operationFunctionName,
       isExported: true,
-      parameters: [
-        {
-          name: "context",
-          type: client.rlcClientName
-        }
-      ],
+      parameters,
       returnType: `${getClassicalLayerPrefix(
         operationGroup,
         NameType.Interface,
@@ -218,7 +230,7 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer
-        )}(context)
+        )}(context${hasSubIdPromoted ? ", subscriptionId" : ""})
       }`
     });
   }
