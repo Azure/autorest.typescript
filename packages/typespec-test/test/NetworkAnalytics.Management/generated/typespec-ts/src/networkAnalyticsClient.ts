@@ -39,7 +39,7 @@ export class NetworkAnalyticsClient {
   ) {
     this._client = createNetworkAnalytics(credential, options);
     this.pipeline = this._client.pipeline;
-    this.operations = getOperationsOperations(this._client, subscriptionId);
+    this.operations = getOperationsOperations(this._client);
     this.dataProductsCatalogs = getDataProductsCatalogsOperations(
       this._client,
       subscriptionId,

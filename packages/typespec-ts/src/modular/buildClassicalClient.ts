@@ -36,7 +36,6 @@ export function buildClassicalClient(
   const classicalClientName = `${getClientName(client)}Client`;
   const classicalParams = getClientParameters(client, dpgContext, true);
   const contextParams = getClientParameters(client, dpgContext, false);
-  console.log("contextParams", contextParams, classicalParams);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
 
@@ -99,7 +98,7 @@ export function buildClassicalClient(
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
-  buildClientOperationGroups(clientFile, client, clientClass);
+  buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
@@ -197,6 +196,7 @@ function importPipeline(
 function buildClientOperationGroups(
   clientFile: SourceFile,
   client: Client,
+  dpgContext: SdkContext,
   clientClass: ClassDeclaration
 ) {
   let clientType = "Client";
@@ -210,7 +210,10 @@ function buildClientOperationGroups(
       NameType.Property
     );
     // TODO: remove this logic once client-level parameter design is finalized
-    const hasSubIdPromoted = true;
+    const hasSubId = operationGroup.operations.some((op) =>
+      op.parameters.some((p) => p.clientName === "subscriptionId")
+    );
+    const hasSubIdPromoted = dpgContext?.rlcOptions?.azureArm && hasSubId;
     if (groupName === "") {
       operationGroup.operations.forEach((op) => {
         const declarations = getOperationFunction(op, clientType);

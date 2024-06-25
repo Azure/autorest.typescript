@@ -13,10 +13,7 @@ export interface OperationsOperations {
   ) => PagedAsyncIterableIterator<Operation>;
 }
 
-export function getOperations(
-  context: NetworkAnalyticsContext,
-  subscriptionId: string,
-) {
+export function getOperations(context: NetworkAnalyticsContext) {
   return {
     list: (options?: OperationsListOptionalParams) => list(context, options),
   };
@@ -24,9 +21,8 @@ export function getOperations(
 
 export function getOperationsOperations(
   context: NetworkAnalyticsContext,
-  subscriptionId: string,
 ): OperationsOperations {
   return {
-    ...getOperations(context, subscriptionId),
+    ...getOperations(context),
   };
 }

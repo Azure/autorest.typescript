@@ -9,15 +9,20 @@ import {
 import { Client, OperationGroup } from "../modularCodeModel.js";
 import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export function getClassicalOperation(
   classicFile: SourceFile,
+  dpgContext: SdkContext,
   client: Client,
   operationGroup: OperationGroup,
   layer: number = operationGroup.namespaceHierarchies.length - 1
 ) {
   // TODO: remove hard-code logic once client-level parameters are supported
-  const hasSubIdPromoted = true;
+  const hasSubId = operationGroup.operations.some((op) =>
+    op.parameters.some((p) => p.clientName === "subscriptionId")
+  );
+  const hasSubIdPromoted = dpgContext?.rlcOptions?.azureArm && hasSubId;
   const modularClientName = `${getClientName(client)}Context`;
   const hasClientContextImport = classicFile
     .getImportDeclarations()
@@ -85,7 +90,7 @@ export function getClassicalOperation(
         name: getClassicalMethodName(d),
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
-          ?.filter((p) => hasSubIdPromoted && p.name !== "subscriptionId")
+          ?.filter((p) => !(hasSubIdPromoted && p.name === "subscriptionId"))
           .map(
             (p) =>
               p.name +
@@ -134,7 +139,9 @@ export function getClassicalOperation(
           .map((d) => {
             return `${getClassicalMethodName(d)}: (${d.parameters
               ?.filter((p) => p.name !== "context")
-              ?.filter((p) => hasSubIdPromoted && p.name !== "subscriptionId")
+              ?.filter(
+                (p) => !(hasSubIdPromoted && p.name === "subscriptionId")
+              )
               .map(
                 (p) =>
                   p.name +
