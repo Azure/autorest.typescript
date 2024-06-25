@@ -215,13 +215,11 @@ function importClassicalClient(
   sourceFile: SourceFile
 ): string[] {
   const classicalClientName = `${getClientName(client)}Client`;
-  const clientContextName = client.rlcClientName;
-
   sourceFile.addImportDeclaration({
     namedImports: [`${classicalClientName}`],
     moduleSpecifier: `./${normalizeName(classicalClientName, NameType.File)}.js`
   });
-  return [clientContextName, classicalClientName];
+  return [classicalClientName];
 }
 
 function importGetPollerHelper(sourceFile: SourceFile) {
