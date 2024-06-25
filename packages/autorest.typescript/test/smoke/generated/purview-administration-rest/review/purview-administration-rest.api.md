@@ -1329,9 +1329,8 @@ type PurviewAccountClient = Client & {
     path: Routes_2;
 };
 
-// @public (undocumented)
+// @public
 interface PurviewAccountClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 
@@ -1355,9 +1354,8 @@ type PurviewMetadataPoliciesClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 interface PurviewMetadataPoliciesClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

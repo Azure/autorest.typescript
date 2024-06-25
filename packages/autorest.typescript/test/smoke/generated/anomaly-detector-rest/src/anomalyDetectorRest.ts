@@ -6,6 +6,7 @@ import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorRestClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface AnomalyDetectorRestClientOptions extends ClientOptions {}
 
 /**

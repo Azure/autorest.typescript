@@ -6,8 +6,10 @@ import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions
   extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

@@ -6,7 +6,9 @@ import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { SynapseArtifactsClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface SynapseArtifactsClientOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

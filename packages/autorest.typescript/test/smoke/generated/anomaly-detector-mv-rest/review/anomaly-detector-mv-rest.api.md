@@ -33,9 +33,8 @@ export type AnomalyDetectorMVClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface AnomalyDetectorMVClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: "v1.1";
 }
 

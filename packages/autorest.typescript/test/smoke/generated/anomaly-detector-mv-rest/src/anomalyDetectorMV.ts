@@ -6,7 +6,9 @@ import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorMVClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface AnomalyDetectorMVClientOptions extends ClientOptions {
+  /** Api Version */
   apiVersion?: "v1.1";
 }
 

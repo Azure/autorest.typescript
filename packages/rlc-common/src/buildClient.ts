@@ -39,7 +39,9 @@ function getClientOptionsInterface(
         name: param.name,
         type: param.type,
         hasQuestionToken: true,
-        docs: [param.description ?? "client level optional parameter " + param.name]
+        docs: [
+          param.description ?? "client level optional parameter " + param.name
+        ]
       };
     }) ?? [];
 

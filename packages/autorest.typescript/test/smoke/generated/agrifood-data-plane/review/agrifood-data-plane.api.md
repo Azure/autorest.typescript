@@ -478,9 +478,8 @@ export type AzureAgriFoodPlatformDataPlaneServiceClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: string;
 }
 

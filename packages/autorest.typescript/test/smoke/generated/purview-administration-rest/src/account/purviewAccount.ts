@@ -6,7 +6,9 @@ import { logger } from "../logger";
 import { TokenCredential } from "@azure/core-auth";
 import { PurviewAccountClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface PurviewAccountClientOptions extends ClientOptions {
+  /** The api version option of the client */
   apiVersion?: string;
 }
 

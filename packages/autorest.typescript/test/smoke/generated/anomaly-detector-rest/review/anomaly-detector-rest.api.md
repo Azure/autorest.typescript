@@ -43,7 +43,7 @@ export type AnomalyDetectorRestClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface AnomalyDetectorRestClientOptions extends ClientOptions {
 }
 
