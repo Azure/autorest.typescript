@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   ChatMessage as ChatMessageRest,
   StreamingChatCompletionOptions as StreamingChatCompletionOptionsRest,
   ChatCompletionOptions as ChatCompletionOptionsRest,
 } from "../rest/index.js";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** A single, role-attributed message within a chat completion interaction. */
 export interface ChatMessage {

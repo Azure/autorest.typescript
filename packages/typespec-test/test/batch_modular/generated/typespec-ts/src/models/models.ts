@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
   BatchNodeUserCreateOptions as BatchNodeUserCreateOptionsRest,
@@ -103,7 +104,6 @@ import {
   BatchPoolReplaceOptions as BatchPoolReplaceOptionsRest,
   NodeRemoveOptions as NodeRemoveOptionsRest,
 } from "../rest/index.js";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** Options for creating a user account for RDP or SSH access on an Azure Batch Compute Node. */
 export interface BatchNodeUserCreateOptions {
