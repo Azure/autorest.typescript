@@ -136,8 +136,8 @@ export function getClassicalOperation(
           type: client.rlcClientName
         },
         ...(hasSubIdPromoted
-          ? []
-          : [{ name: "subscriptionId", type: "string" }])
+          ? [{ name: "subscriptionId", type: "string" }]
+          : [])
       ],
       statements: `return {
         ${operationDeclarations
