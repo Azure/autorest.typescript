@@ -47,7 +47,14 @@ export class AnomalyDetectorClient {
     credential: KeyCredential,
     options: AnomalyDetectorClientOptions = {},
   ) {
-    this._client = createAnomalyDetector(endpointParam, credential, options);
+    this._client = createAnomalyDetector(endpointParam, credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-ai-anomaly-detector-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.univariate = getUnivariateOperations(this._client);
     this.multivariate = getMultivariateOperations(this._client);

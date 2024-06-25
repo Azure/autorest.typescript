@@ -49,7 +49,14 @@ export class OpenAIClient {
 
   /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
   constructor(credential: KeyCredential, options: OpenAIClientOptions = {}) {
-    this._client = createOpenAI(credential, options);
+    this._client = createOpenAI(credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "openai-non-branded-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.audio = getAudioOperations(this._client);
     this.chat = getChatOperations(this._client);

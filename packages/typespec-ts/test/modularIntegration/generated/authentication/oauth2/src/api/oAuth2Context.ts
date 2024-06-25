@@ -15,6 +15,13 @@ export function createOAuth2(
   credential: TokenCredential,
   options: OAuth2ClientOptions = {},
 ): OAuth2Context {
-  const clientContext = getClient(credential, options);
+  const clientContext = getClient(credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-azure-oauth2-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

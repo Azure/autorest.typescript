@@ -24,7 +24,14 @@ export class FlattenClient {
 
   /** Illustrates the model flatten cases. */
   constructor(options: FlattenClientOptions = {}) {
-    this._client = createFlatten(options);
+    this._client = createFlatten({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-modular-model-flatten-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

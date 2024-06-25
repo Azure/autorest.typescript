@@ -29,7 +29,14 @@ export class ScalarClient {
   public readonly pipeline: Pipeline;
 
   constructor(options: ScalarClientOptions = {}) {
-    this._client = createScalar(options);
+    this._client = createScalar({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-azure-core-scalar-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -11,6 +11,13 @@ export { EmptyContext } from "../rest/index.js";
 
 /** Illustrates usage of empty model used in operation's parameters and responses. */
 export function createEmpty(options: EmptyClientOptions = {}): EmptyContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-modular-model-empty-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

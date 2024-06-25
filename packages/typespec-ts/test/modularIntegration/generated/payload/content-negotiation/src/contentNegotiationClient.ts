@@ -25,7 +25,14 @@ export class ContentNegotiationClient {
 
   /** Test describing optionality of the request body. */
   constructor(options: ContentNegotiationClientOptions = {}) {
-    this._client = createContentNegotiation(options);
+    this._client = createContentNegotiation({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-payload-content-negotiation-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.sameBody = getSameBodyOperations(this._client);
     this.differentBody = getDifferentBodyOperations(this._client);

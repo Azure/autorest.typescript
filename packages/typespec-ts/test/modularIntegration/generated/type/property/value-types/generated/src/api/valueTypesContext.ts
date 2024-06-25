@@ -13,6 +13,13 @@ export { ValueTypesContext } from "../rest/index.js";
 export function createValueTypes(
   options: ValueTypesClientOptions = {},
 ): ValueTypesContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-modular-model-propertyTypes-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

@@ -11,6 +11,13 @@ export { JsonContext } from "../rest/index.js";
 
 /** Projection */
 export function createJson(options: JsonClientOptions = {}): JsonContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-serialization-encoded-name-json-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

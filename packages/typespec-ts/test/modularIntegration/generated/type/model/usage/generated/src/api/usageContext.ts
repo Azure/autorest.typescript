@@ -11,6 +11,13 @@ export { UsageContext } from "../rest/index.js";
 
 /** Illustrates usage of Record in different places(Operation parameters, return type or both). */
 export function createUsage(options: UsageClientOptions = {}): UsageContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-modular-model-usage-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

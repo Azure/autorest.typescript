@@ -16,6 +16,13 @@ export function createRemoved(
   version: Versions,
   options: RemovedClientOptions = {},
 ): RemovedContext {
-  const clientContext = getClient(endpointParam, version, options);
+  const clientContext = getClient(endpointParam, version, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-versionning-removed-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

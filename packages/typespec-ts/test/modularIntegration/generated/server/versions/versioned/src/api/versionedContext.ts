@@ -14,6 +14,13 @@ export function createVersioned(
   endpointParam: string,
   options: VersionedClientOptions = {},
 ): VersionedContext {
-  const clientContext = getClient(endpointParam, options);
+  const clientContext = getClient(endpointParam, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-versioned-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

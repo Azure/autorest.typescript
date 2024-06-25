@@ -22,7 +22,14 @@ export class CollectionFormatClient {
 
   /** Test for collectionFormat. */
   constructor(options: CollectionFormatClientOptions = {}) {
-    this._client = createCollectionFormat(options);
+    this._client = createCollectionFormat({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-azure-collection-format-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.query = getQueryOperations(this._client);
     this.header = getHeaderOperations(this._client);

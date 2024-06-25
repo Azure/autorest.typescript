@@ -16,7 +16,14 @@ export class FooClient {
   public readonly pipeline: Pipeline;
 
   constructor(endpoint: string, options: FooClientOptions = {}) {
-    this._client = createFoo(endpoint, options);
+    this._client = createFoo(endpoint, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-hierarchy-generic-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.b = getBOperations(this._client);
     this.d = getDOperations(this._client);

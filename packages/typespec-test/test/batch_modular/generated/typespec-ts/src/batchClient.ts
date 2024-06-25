@@ -219,7 +219,14 @@ export class BatchClient {
     credential: TokenCredential,
     options: BatchClientOptions = {},
   ) {
-    this._client = createBatch(endpointParam, credential, options);
+    this._client = createBatch(endpointParam, credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-batch-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

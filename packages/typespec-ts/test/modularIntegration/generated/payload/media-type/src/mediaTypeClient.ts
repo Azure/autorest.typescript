@@ -21,7 +21,14 @@ export class MediaTypeClient {
 
   /** Test the payload with different media types and different types of the payload itself. */
   constructor(options: MediaTypeClientOptions = {}) {
-    this._client = createMediaType(options);
+    this._client = createMediaType({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-payload-mediaType-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.stringBody = getStringBodyOperations(this._client);
   }

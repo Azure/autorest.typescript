@@ -16,6 +16,13 @@ export { StandardContext } from "../rest/index.js";
 export function createStandard(
   options: StandardClientOptions = {},
 ): StandardContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-modular-lro-standard-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

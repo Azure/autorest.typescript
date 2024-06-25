@@ -56,7 +56,14 @@ export class OpenAIClient {
     credential: KeyCredential | TokenCredential,
     options: OpenAIClientOptions = {},
   ) {
-    this._client = createOpenAI(endpointParam, credential, options);
+    this._client = createOpenAI(endpointParam, credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-openai_modular-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

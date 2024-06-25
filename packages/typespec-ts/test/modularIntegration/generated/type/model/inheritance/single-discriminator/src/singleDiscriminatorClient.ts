@@ -34,7 +34,14 @@ export class SingleDiscriminatorClient {
 
   /** Illustrates inheritance with single discriminator. */
   constructor(options: SingleDiscriminatorClientOptions = {}) {
-    this._client = createSingleDiscriminator(options);
+    this._client = createSingleDiscriminator({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-model-inheritance-single-discriminator-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

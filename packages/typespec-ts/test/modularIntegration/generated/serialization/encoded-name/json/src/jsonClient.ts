@@ -21,7 +21,14 @@ export class JsonClient {
 
   /** Projection */
   constructor(options: JsonClientOptions = {}) {
-    this._client = createJson(options);
+    this._client = createJson({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-serialization-encoded-name-json-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

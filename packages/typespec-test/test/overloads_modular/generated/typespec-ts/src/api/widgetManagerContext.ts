@@ -18,6 +18,13 @@ export function createWidgetManager(
   credential: KeyCredential | TokenCredential,
   options: WidgetManagerClientOptions = {},
 ): WidgetManagerContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const clientContext = getClient(endpointParam, credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-overload_modular-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

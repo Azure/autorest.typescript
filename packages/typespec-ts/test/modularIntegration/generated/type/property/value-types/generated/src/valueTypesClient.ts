@@ -115,7 +115,14 @@ export class ValueTypesClient {
 
   /** Illustrates various property types for models */
   constructor(options: ValueTypesClientOptions = {}) {
-    this._client = createValueTypes(options);
+    this._client = createValueTypes({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-modular-model-propertyTypes-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.boolean = getBooleanOperations(this._client);
     this.string = getStringOperations(this._client);

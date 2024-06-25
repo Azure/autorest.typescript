@@ -13,6 +13,13 @@ export { DatetimeContext } from "../rest/index.js";
 export function createDatetime(
   options: DatetimeClientOptions = {},
 ): DatetimeContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-encode-datatime-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

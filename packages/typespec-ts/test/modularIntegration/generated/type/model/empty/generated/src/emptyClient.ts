@@ -26,7 +26,14 @@ export class EmptyClient {
 
   /** Illustrates usage of empty model used in operation's parameters and responses. */
   constructor(options: EmptyClientOptions = {}) {
-    this._client = createEmpty(options);
+    this._client = createEmpty({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-modular-model-empty-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

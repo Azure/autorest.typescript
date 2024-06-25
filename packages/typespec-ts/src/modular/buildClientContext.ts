@@ -9,7 +9,9 @@ import { SdkContext } from "../utils/interfaces.js";
 import { importModels } from "./buildOperations.js";
 import {
   getClientParameters,
-  importCredential
+  getUserAgentPrefix,
+  importCredential,
+  provideClientParameterDefaults
 } from "./helpers/clientHelpers.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
@@ -104,7 +106,16 @@ export function buildClientContext(
   }
 
   const paramNames = params.map((p) => p.name);
-  const getClientStatement = `const clientContext = getClient(${paramNames.join(
+
+  const getClientParams = provideClientParameterDefaults(paramNames, {
+    userAgentPrefix: getUserAgentPrefix(
+      codeModel.options.packageDetails,
+      codeModel.options.flavor,
+      "api"
+    )
+  });
+
+  const getClientStatement = `const clientContext = getClient(${getClientParams.join(
     ","
   )})`;
 

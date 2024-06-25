@@ -54,11 +54,14 @@ export class AdministrationOperationsClient {
     credential: TokenCredential,
     options: AdministrationOperationsClientOptions = {},
   ) {
-    this._client = createAdministrationOperations(
-      endpointParam,
-      credential,
-      options,
-    );
+    this._client = createAdministrationOperations(endpointParam, credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-load-testing-classic/1.0.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

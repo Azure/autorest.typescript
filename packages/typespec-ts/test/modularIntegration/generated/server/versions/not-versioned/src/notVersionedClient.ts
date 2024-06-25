@@ -25,7 +25,14 @@ export class NotVersionedClient {
 
   /** Illustrates not-versioned server. */
   constructor(endpointParam: string, options: NotVersionedClientOptions = {}) {
-    this._client = createNotVersioned(endpointParam, options);
+    this._client = createNotVersioned(endpointParam, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-not-versioned-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

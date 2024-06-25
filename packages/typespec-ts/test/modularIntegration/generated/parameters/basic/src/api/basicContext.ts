@@ -11,6 +11,13 @@ export { BasicContext } from "../rest/index.js";
 
 /** Test for basic parameters cases. */
 export function createBasic(options: BasicClientOptions = {}): BasicContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-parameterBasic-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

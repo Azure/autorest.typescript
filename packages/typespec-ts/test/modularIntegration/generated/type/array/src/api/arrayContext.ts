@@ -11,6 +11,13 @@ export { ArrayContext } from "../rest/index.js";
 
 /** Illustrates various types of arrays. */
 export function createArray(options: ArrayClientOptions = {}): ArrayContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-arrays-item-types-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

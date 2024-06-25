@@ -16,7 +16,9 @@ import { SdkContext } from "../utils/interfaces.js";
 import { importLroCoreDependencies } from "./buildLroFiles.js";
 import {
   getClientParameters,
-  importCredential
+  getUserAgentPrefix,
+  importCredential,
+  provideClientParameterDefaults
 } from "./helpers/clientHelpers.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import {
@@ -87,10 +89,18 @@ export function buildClassicalClient(
     docs: getDocsFromDescription(description),
     parameters: params
   });
+
+  const paramNames = (params ?? []).map((p) => p.name);
+  const createClientParams = provideClientParameterDefaults(paramNames, {
+    userAgentPrefix: getUserAgentPrefix(
+      codeModel.options.packageDetails,
+      codeModel.options.flavor,
+      "classic"
+    )
+  });
+
   constructor.addStatements([
-    `this._client = create${modularClientName}(${(params ?? [])
-      .map((p) => p.name)
-      .join(",")})`
+    `this._client = create${modularClientName}(${createClientParams.join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
   importLroCoreDependencies(clientFile);

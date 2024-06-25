@@ -26,7 +26,14 @@ export class DurationClient {
 
   /** Test for encode decorator on duration. */
   constructor(options: DurationClientOptions = {}) {
-    this._client = createDuration(options);
+    this._client = createDuration({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-encode-duration-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.query = getQueryOperations(this._client);
     this.property = getPropertyOperations(this._client);

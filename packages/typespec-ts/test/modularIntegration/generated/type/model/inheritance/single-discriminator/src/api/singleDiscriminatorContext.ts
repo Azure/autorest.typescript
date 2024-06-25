@@ -13,6 +13,13 @@ export { SingleDiscriminatorContext } from "../rest/index.js";
 export function createSingleDiscriminator(
   options: SingleDiscriminatorClientOptions = {},
 ): SingleDiscriminatorContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-model-inheritance-single-discriminator-api/1.0.0",
+    },
+    ...options,
+  });
   return clientContext;
 }

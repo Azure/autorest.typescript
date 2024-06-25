@@ -24,7 +24,14 @@ export class WidgetServiceClient {
   public readonly pipeline: Pipeline;
 
   constructor(endpoint: string, options: WidgetServiceClientOptions = {}) {
-    this._client = createWidgetService(endpoint, options);
+    this._client = createWidgetService(endpoint, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-widget_dpg-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.widgets = getWidgetsOperations(this._client);
     this.budgets = getBudgetsOperations(this._client);

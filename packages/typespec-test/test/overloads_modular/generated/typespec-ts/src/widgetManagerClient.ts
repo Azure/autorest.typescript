@@ -25,7 +25,14 @@ export class WidgetManagerClient {
     credential: KeyCredential | TokenCredential,
     options: WidgetManagerClientOptions = {},
   ) {
-    this._client = createWidgetManager(endpointParam, credential, options);
+    this._client = createWidgetManager(endpointParam, credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-overload_modular-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.fooOperations = getFooOperationsOperations(this._client);
   }

@@ -24,7 +24,14 @@ export class RemovedClient {
     version: Versions,
     options: RemovedClientOptions = {},
   ) {
-    this._client = createRemoved(endpointParam, version, options);
+    this._client = createRemoved(endpointParam, version, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-versionning-removed-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -13,6 +13,13 @@ export { RecursiveContext } from "../rest/index.js";
 export function createRecursive(
   options: RecursiveClientOptions = {},
 ): RecursiveContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-model-inheritance-recursive-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

@@ -30,7 +30,14 @@ export class BytesClient {
 
   /** Test for encode decorator on bytes. */
   constructor(options: BytesClientOptions = {}) {
-    this._client = createBytes(options);
+    this._client = createBytes({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-encode-bytes-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.query = getQueryOperations(this._client);
     this.property = getPropertyOperations(this._client);

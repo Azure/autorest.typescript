@@ -14,6 +14,13 @@ export function createOpenAI(
   credential: KeyCredential,
   options: OpenAIClientOptions = {},
 ): OpenAIContext {
-  const clientContext = getClient(credential, options);
+  const clientContext = getClient(credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "openai-non-branded-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

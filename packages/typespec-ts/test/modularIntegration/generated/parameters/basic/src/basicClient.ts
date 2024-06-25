@@ -21,7 +21,14 @@ export class BasicClient {
 
   /** Test for basic parameters cases. */
   constructor(options: BasicClientOptions = {}) {
-    this._client = createBasic(options);
+    this._client = createBasic({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-parameterBasic-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.explicitBody = getExplicitBodyOperations(this._client);
     this.implicitBody = getImplicitBodyOperations(this._client);

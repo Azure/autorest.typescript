@@ -19,6 +19,13 @@ export function createContentSafety(
   credential: KeyCredential | TokenCredential,
   options: ContentSafetyClientOptions = {},
 ): ContentSafetyContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const clientContext = getClient(endpointParam, credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-ai-content-safety-api/1.0.0",
+    },
+    ...options,
+  });
   return clientContext;
 }

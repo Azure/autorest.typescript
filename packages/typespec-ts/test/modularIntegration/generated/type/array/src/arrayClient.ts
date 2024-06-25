@@ -53,7 +53,14 @@ export class ArrayClient {
 
   /** Illustrates various types of arrays. */
   constructor(options: ArrayClientOptions = {}) {
-    this._client = createArray(options);
+    this._client = createArray({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-arrays-item-types-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.int32Value = getInt32ValueOperations(this._client);
     this.int64Value = getInt64ValueOperations(this._client);

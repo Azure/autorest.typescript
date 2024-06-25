@@ -12,6 +12,13 @@ export { ExtensibleContext } from "../rest/index.js";
 export function createExtensible(
   options: ExtensibleClientOptions = {},
 ): ExtensibleContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-extensible-enums-api/1.0.0",
+    },
+    ...options,
+  });
   return clientContext;
 }

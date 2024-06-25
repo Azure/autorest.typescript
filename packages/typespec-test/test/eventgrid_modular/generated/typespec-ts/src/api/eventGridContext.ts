@@ -19,6 +19,13 @@ export function createEventGrid(
   credential: KeyCredential,
   options: EventGridClientOptions = {},
 ): EventGridContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const clientContext = getClient(endpointParam, credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-eventgrid-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

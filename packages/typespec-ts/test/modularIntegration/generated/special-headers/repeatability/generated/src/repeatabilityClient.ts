@@ -19,7 +19,14 @@ export class RepeatabilityClient {
 
   /** Illustrates OASIS repeatability headers */
   constructor(options: RepeatabilityClientOptions = {}) {
-    this._client = createRepeatability(options);
+    this._client = createRepeatability({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-headers-repeatability-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

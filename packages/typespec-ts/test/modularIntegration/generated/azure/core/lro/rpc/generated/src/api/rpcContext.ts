@@ -14,6 +14,13 @@ export { RpcContext } from "../rest/index.js";
 
 /** Illustrates bodies templated with Azure Core with long-running RPC operation */
 export function createRpc(options: RpcClientOptions = {}): RpcContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-modular-lro-rpc-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

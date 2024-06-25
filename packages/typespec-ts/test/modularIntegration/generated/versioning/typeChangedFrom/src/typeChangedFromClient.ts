@@ -24,7 +24,14 @@ export class TypeChangedFromClient {
     version: Versions,
     options: TypeChangedFromClientOptions = {},
   ) {
-    this._client = createTypeChangedFrom(endpointParam, version, options);
+    this._client = createTypeChangedFrom(endpointParam, version, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-versionning-typeChangedFrom-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

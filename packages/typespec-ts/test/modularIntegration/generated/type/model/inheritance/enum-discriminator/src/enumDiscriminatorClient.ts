@@ -36,7 +36,14 @@ export class EnumDiscriminatorClient {
 
   /** Illustrates inheritance with enum discriminator. */
   constructor(options: EnumDiscriminatorClientOptions = {}) {
-    this._client = createEnumDiscriminator(options);
+    this._client = createEnumDiscriminator({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-model-inheritance-enum-discriminator-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

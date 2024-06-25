@@ -15,6 +15,13 @@ export function createApiKey(
   credential: KeyCredential,
   options: ApiKeyClientOptions = {},
 ): ApiKeyContext {
-  const clientContext = getClient(credential, options);
+  const clientContext = getClient(credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-azure-api-key-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

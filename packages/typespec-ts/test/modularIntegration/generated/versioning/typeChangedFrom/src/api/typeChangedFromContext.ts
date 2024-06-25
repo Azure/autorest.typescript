@@ -16,6 +16,13 @@ export function createTypeChangedFrom(
   version: Versions,
   options: TypeChangedFromClientOptions = {},
 ): TypeChangedFromContext {
-  const clientContext = getClient(endpointParam, version, options);
+  const clientContext = getClient(endpointParam, version, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-versionning-typeChangedFrom-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

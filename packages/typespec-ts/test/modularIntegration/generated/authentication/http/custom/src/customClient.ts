@@ -24,7 +24,14 @@ export class CustomClient {
 
   /** Illustrates clients generated with generic HTTP auth. */
   constructor(credential: KeyCredential, options: CustomClientOptions = {}) {
-    this._client = createCustom(credential, options);
+    this._client = createCustom(credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-azure-http-custom-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

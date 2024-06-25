@@ -15,6 +15,13 @@ export function createUnion(
   credential: KeyCredential | TokenCredential,
   options: UnionClientOptions = {},
 ): UnionContext {
-  const clientContext = getClient(credential, options);
+  const clientContext = getClient(credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-azure-auth-union-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

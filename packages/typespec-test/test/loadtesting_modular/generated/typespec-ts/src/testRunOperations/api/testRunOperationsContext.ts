@@ -18,6 +18,13 @@ export function createTestRunOperations(
   credential: TokenCredential,
   options: TestRunOperationsClientOptions = {},
 ): AzureLoadTestingContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const clientContext = getClient(endpointParam, credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-load-testing-api/1.0.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

@@ -13,6 +13,13 @@ export { EnumDiscriminatorContext } from "../rest/index.js";
 export function createEnumDiscriminator(
   options: EnumDiscriminatorClientOptions = {},
 ): EnumDiscriminatorContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-model-inheritance-enum-discriminator-api/1.0.0",
+    },
+    ...options,
+  });
   return clientContext;
 }

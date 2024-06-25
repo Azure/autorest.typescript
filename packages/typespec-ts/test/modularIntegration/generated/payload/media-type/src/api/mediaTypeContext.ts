@@ -13,6 +13,13 @@ export { MediaTypeContext } from "../rest/index.js";
 export function createMediaType(
   options: MediaTypeClientOptions = {},
 ): MediaTypeContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-payload-mediaType-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

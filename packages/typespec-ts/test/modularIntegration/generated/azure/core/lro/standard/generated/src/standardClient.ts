@@ -27,7 +27,14 @@ export class StandardClient {
 
   /** Illustrates bodies templated with Azure Core with long-running operation */
   constructor(options: StandardClientOptions = {}) {
-    this._client = createStandard(options);
+    this._client = createStandard({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-modular-lro-standard-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

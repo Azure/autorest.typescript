@@ -16,7 +16,14 @@ export class FixedClient {
   public readonly pipeline: Pipeline;
 
   constructor(options: FixedClientOptions = {}) {
-    this._client = createFixed(options);
+    this._client = createFixed({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-fixed-enums-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
   }

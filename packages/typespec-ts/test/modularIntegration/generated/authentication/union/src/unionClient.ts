@@ -27,7 +27,14 @@ export class UnionClient {
     credential: KeyCredential | TokenCredential,
     options: UnionClientOptions = {},
   ) {
-    this._client = createUnion(credential, options);
+    this._client = createUnion(credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-azure-auth-union-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

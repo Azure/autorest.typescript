@@ -47,7 +47,14 @@ export class EventGridClient {
     credential: KeyCredential,
     options: EventGridClientOptions = {},
   ) {
-    this._client = createEventGrid(endpointParam, credential, options);
+    this._client = createEventGrid(endpointParam, credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-eventgrid-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

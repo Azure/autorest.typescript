@@ -13,6 +13,13 @@ export { PageableContext } from "../rest/index.js";
 export function createPageable(
   options: PageableClientOptions = {},
 ): PageableContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-payload-pageable-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

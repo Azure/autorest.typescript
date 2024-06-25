@@ -37,7 +37,14 @@ export class ServiceClient {
     clientParam: ClientType,
     options: ServiceClientOptions = {},
   ) {
-    this._client = createService(endpointParam, clientParam, options);
+    this._client = createService(endpointParam, clientParam, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-client-structure-default-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.baz = getBazOperations(this._client);
     this.qux = getQuxOperations(this._client);

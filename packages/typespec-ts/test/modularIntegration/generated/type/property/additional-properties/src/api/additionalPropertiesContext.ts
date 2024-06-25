@@ -13,6 +13,13 @@ export { AdditionalPropertiesContext } from "../rest/index.js";
 export function createAdditionalProperties(
   options: AdditionalPropertiesClientOptions = {},
 ): AdditionalPropertiesContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-additional-property-api/1.0.0",
+    },
+    ...options,
+  });
   return clientContext;
 }

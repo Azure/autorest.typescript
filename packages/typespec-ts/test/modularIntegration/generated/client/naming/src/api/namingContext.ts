@@ -11,6 +11,13 @@ export { NamingContext } from "../rest/index.js";
 
 /** Describe changing names of types in a client with `@clientName` */
 export function createNaming(options: NamingClientOptions = {}): NamingContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-client-naming-api/1.0.0",
+    },
+    ...options,
+  });
   return clientContext;
 }

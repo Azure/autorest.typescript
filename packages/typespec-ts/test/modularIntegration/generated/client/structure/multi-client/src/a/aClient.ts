@@ -29,7 +29,14 @@ export class AClient {
     clientParam: ClientType,
     options: AClientOptions = {},
   ) {
-    this._client = createA(endpointParam, clientParam, options);
+    this._client = createA(endpointParam, clientParam, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-client-structure-multiclient-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

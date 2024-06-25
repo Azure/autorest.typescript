@@ -30,7 +30,14 @@ export class DatetimeClient {
 
   /** Test for encode decorator on datetime. */
   constructor(options: DatetimeClientOptions = {}) {
-    this._client = createDatetime(options);
+    this._client = createDatetime({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-encode-datatime-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.query = getQueryOperations(this._client);
     this.property = getPropertyOperations(this._client);

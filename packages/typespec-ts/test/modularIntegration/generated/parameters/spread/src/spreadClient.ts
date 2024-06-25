@@ -19,7 +19,14 @@ export class SpreadClient {
 
   /** Test for the spread operator. */
   constructor(options: SpreadClientOptions = {}) {
-    this._client = createSpread(options);
+    this._client = createSpread({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-parameterSpread-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.model = getModelOperations(this._client);
     this.alias = getAliasOperations(this._client);

@@ -15,6 +15,13 @@ export function createCustom(
   credential: KeyCredential,
   options: CustomClientOptions = {},
 ): CustomContext {
-  const clientContext = getClient(credential, options);
+  const clientContext = getClient(credential, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-azure-http-custom-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

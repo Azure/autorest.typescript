@@ -13,6 +13,13 @@ export { XmsRequestIdClientContext } from "../rest/index.js";
 export function createXmsRequestId(
   options: XmsRequestIdClientOptions = {},
 ): XmsRequestIdClientContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-modular-model-usage-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

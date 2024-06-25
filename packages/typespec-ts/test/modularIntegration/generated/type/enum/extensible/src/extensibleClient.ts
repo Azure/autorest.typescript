@@ -20,7 +20,14 @@ export class ExtensibleClient {
   public readonly pipeline: Pipeline;
 
   constructor(options: ExtensibleClientOptions = {}) {
-    this._client = createExtensible(options);
+    this._client = createExtensible({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-extensible-enums-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
   }

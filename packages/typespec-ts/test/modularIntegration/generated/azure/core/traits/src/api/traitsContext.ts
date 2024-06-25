@@ -14,6 +14,13 @@ export { TraitsContext } from "../rest/index.js";
 
 /** Illustrates Azure Core operation customizations by traits */
 export function createTraits(options: TraitsClientOptions = {}): TraitsContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-azure-core-traits-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

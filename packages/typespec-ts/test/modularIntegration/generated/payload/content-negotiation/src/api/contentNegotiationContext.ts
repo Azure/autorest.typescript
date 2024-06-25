@@ -13,6 +13,13 @@ export { ContentNegotiationContext } from "../rest/index.js";
 export function createContentNegotiation(
   options: ContentNegotiationClientOptions = {},
 ): ContentNegotiationContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-payload-content-negotiation-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

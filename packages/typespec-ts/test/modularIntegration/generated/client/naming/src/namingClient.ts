@@ -46,7 +46,14 @@ export class NamingClient {
 
   /** Describe changing names of types in a client with `@clientName` */
   constructor(options: NamingClientOptions = {}) {
-    this._client = createNaming(options);
+    this._client = createNaming({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-client-naming-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.clientModel = getClientModelOperations(this._client);
     this.unionEnum = getUnionEnumOperations(this._client);

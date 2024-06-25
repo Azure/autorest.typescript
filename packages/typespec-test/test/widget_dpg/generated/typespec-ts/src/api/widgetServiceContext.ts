@@ -13,6 +13,13 @@ export function createWidgetService(
   endpoint: string,
   options: WidgetServiceClientOptions = {},
 ): WidgetServiceContext {
-  const clientContext = getClient(endpoint, options);
+  const clientContext = getClient(endpoint, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-widget_dpg-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

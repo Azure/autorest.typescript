@@ -17,6 +17,13 @@ export function createMultiple(
   endpointParam: string,
   options: MultipleClientOptions = {},
 ): MultipleContext {
-  const clientContext = getClient(endpointParam, options);
+  const clientContext = getClient(endpointParam, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-multipleparam-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

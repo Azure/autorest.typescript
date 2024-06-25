@@ -13,6 +13,13 @@ export function createFoo(
   endpoint: string,
   options: FooClientOptions = {},
 ): FooContext {
-  const clientContext = getClient(endpoint, options);
+  const clientContext = getClient(endpoint, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-hierarchy-generic-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

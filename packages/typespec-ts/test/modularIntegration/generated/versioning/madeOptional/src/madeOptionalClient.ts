@@ -24,7 +24,14 @@ export class MadeOptionalClient {
     version: Versions,
     options: MadeOptionalClientOptions = {},
   ) {
-    this._client = createMadeOptional(endpointParam, version, options);
+    this._client = createMadeOptional(endpointParam, version, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-versionning-madeOptional-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

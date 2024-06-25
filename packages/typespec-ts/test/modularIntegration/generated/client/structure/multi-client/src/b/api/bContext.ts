@@ -15,6 +15,13 @@ export function createB(
   clientParam: ClientType,
   options: BClientOptions = {},
 ): ServiceContext {
-  const clientContext = getClient(endpointParam, clientParam, options);
+  const clientContext = getClient(endpointParam, clientParam, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-client-structure-multiclient-api/1.0.0",
+    },
+    ...options,
+  });
   return clientContext;
 }

@@ -30,7 +30,14 @@ export class AddedClient {
     version: Versions,
     options: AddedClientOptions = {},
   ) {
-    this._client = createAdded(endpointParam, version, options);
+    this._client = createAdded(endpointParam, version, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-versionning-added-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

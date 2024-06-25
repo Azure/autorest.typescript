@@ -29,7 +29,14 @@ export class BClient {
     clientParam: ClientType,
     options: BClientOptions = {},
   ) {
-    this._client = createB(endpointParam, clientParam, options);
+    this._client = createB(endpointParam, clientParam, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-client-structure-multiclient-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

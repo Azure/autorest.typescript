@@ -34,7 +34,14 @@ export class ChatProtocolClient {
     credential: KeyCredential | TokenCredential,
     options: ChatProtocolClientOptions = {},
   ) {
-    this._client = createChatProtocol(endpointParam, credential, options);
+    this._client = createChatProtocol(endpointParam, credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-ai-chat-protocol-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

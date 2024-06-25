@@ -21,7 +21,14 @@ export class PageableClient {
 
   /** Test describing pageable. */
   constructor(options: PageableClientOptions = {}) {
-    this._client = createPageable(options);
+    this._client = createPageable({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-payload-pageable-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

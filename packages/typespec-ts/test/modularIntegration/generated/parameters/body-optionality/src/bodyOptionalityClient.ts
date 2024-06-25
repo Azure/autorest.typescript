@@ -28,7 +28,14 @@ export class BodyOptionalityClient {
 
   /** Test describing optionality of the request body. */
   constructor(options: BodyOptionalityClientOptions = {}) {
-    this._client = createBodyOptionality(options);
+    this._client = createBodyOptionality({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-body-optionality-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.optionalExplicit = getOptionalExplicitOperations(this._client);
   }

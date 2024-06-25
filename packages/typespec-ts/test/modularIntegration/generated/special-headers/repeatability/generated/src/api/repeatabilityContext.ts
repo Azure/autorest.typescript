@@ -13,6 +13,13 @@ export { RepeatabilityContext } from "../rest/index.js";
 export function createRepeatability(
   options: RepeatabilityClientOptions = {},
 ): RepeatabilityContext {
-  const clientContext = getClient(options);
+  const clientContext = getClient({
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-headers-repeatability-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

@@ -16,6 +16,13 @@ export function createRenamedFrom(
   version: Versions,
   options: RenamedFromClientOptions = {},
 ): RenamedFromContext {
-  const clientContext = getClient(endpointParam, version, options);
+  const clientContext = getClient(endpointParam, version, {
+    userAgentOptions: {
+      userAgentPrefix:
+        options?.userAgentOptions?.userAgentPrefix ??
+        "azsdk-js-versionning-renamedFrom-api/1.0.0-beta.1",
+    },
+    ...options,
+  });
   return clientContext;
 }

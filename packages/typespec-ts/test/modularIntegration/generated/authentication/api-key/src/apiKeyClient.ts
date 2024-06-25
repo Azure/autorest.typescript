@@ -24,7 +24,14 @@ export class ApiKeyClient {
 
   /** Illustrates clients generated with ApiKey authentication. */
   constructor(credential: KeyCredential, options: ApiKeyClientOptions = {}) {
-    this._client = createApiKey(credential, options);
+    this._client = createApiKey(credential, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-azure-api-key-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -30,7 +30,14 @@ export class RenamedOperationClient {
     clientParam: ClientType,
     options: RenamedOperationClientOptions = {},
   ) {
-    this._client = createRenamedOperation(endpointParam, clientParam, options);
+    this._client = createRenamedOperation(endpointParam, clientParam, {
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-client-structure-renamed-classic/1.0.0",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
     this.group = getGroupOperations(this._client);
   }

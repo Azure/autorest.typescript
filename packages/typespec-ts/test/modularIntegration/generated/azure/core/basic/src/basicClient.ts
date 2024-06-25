@@ -48,7 +48,14 @@ export class BasicClient {
 
   /** Illustrates bodies templated with Azure Core */
   constructor(options: BasicClientOptions = {}) {
-    this._client = createBasic(options);
+    this._client = createBasic({
+      userAgentOptions: {
+        userAgentPrefix:
+          options?.userAgentOptions?.userAgentPrefix ??
+          "azsdk-js-azure-core-basic-classic/1.0.0-beta.1",
+      },
+      ...options,
+    });
     this.pipeline = this._client.pipeline;
   }
 
