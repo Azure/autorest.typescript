@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { AzureLoadTestingContext } from "./api/testRunOperationsContext.js";
 import { TestRunOperationsClient } from "./testRunOperationsClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _testRunDeserialize } from "./api/operations.js";
@@ -37,7 +36,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: AzureLoadTestingContext | TestRunOperationsClient,
+  client: TestRunOperationsClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]

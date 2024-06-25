@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { StandardContext } from "./api/standardContext.js";
 import { StandardClient } from "./standardClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
@@ -41,7 +40,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: StandardContext | StandardClient,
+  client: StandardClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]
