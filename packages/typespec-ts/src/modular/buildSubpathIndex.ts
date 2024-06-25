@@ -53,6 +53,16 @@ export function buildSubpathIndexFile(
           ) {
             return false;
           }
+
+          // skip exporting serializers for models
+          if (
+            subpath === "models" &&
+            ex.getKindName() === "FunctionDeclaration" &&
+            exDeclaration[0].endsWith("Serializer")
+          ) {
+            return false;
+          }
+
           return true;
         });
       })
