@@ -1,11 +1,11 @@
-import { Project } from "ts-morph";
+import { Project, SourceFile } from "ts-morph";
 import { ModularMetaTree, RlcMetaTree } from "./metaTree.js";
 
 type Contexts = {
   rlcMetaTree: RlcMetaTree;
   modularMetaTree: ModularMetaTree;
   outputProject: Project;
-  symbolMap: Map<string, string>;
+  symbolMap: Map<string, SourceFile>;
 };
 
 type ContextKey = keyof Contexts;

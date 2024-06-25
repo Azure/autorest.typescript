@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
   AudioTranscriptionOptions as AudioTranscriptionOptionsRest,
@@ -64,7 +65,6 @@ import {
   AudioSpeechOptions as AudioSpeechOptionsRest,
   EmbeddingsOptions as EmbeddingsOptionsRest,
 } from "../rest/index.js";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** Defines available options for the underlying response format of output transcription information. */
@@ -647,7 +647,7 @@ export function chatRequestMessageSerializer(
   item: ChatRequestMessageUnion,
 ): ChatRequestMessageRest {
   return {
-    ...serializeChatRequestMessageUnion(item),
+    ...chatRequestMessageUnionSerializer(item),
   };
 }
 
@@ -723,7 +723,7 @@ export function chatMessageContentItemSerializer(
   item: ChatMessageContentItemUnion,
 ): ChatMessageContentItemRest {
   return {
-    ...serializeChatMessageContentItemUnion(item),
+    ...chatMessageContentItemUnionSerializer(item),
   };
 }
 
@@ -1032,7 +1032,7 @@ export function azureChatExtensionConfigurationSerializer(
   item: AzureChatExtensionConfigurationUnion,
 ): AzureChatExtensionConfigurationRest {
   return {
-    ...serializeAzureChatExtensionConfigurationUnion(item),
+    ...azureChatExtensionConfigurationUnionSerializer(item),
   };
 }
 
@@ -1100,7 +1100,7 @@ export function azureSearchChatExtensionParametersSerializer(
   return {
     authentication: !item.authentication
       ? item.authentication
-      : serializeOnYourDataAuthenticationOptionsUnion(item.authentication),
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
@@ -1115,7 +1115,7 @@ export function azureSearchChatExtensionParametersSerializer(
     filter: item["filter"],
     embedding_dependency: !item.embeddingDependency
       ? item.embeddingDependency
-      : serializeOnYourDataVectorizationSourceUnion(item.embeddingDependency),
+      : onYourDataVectorizationSourceUnionSerializer(item.embeddingDependency),
   };
 }
 
@@ -1173,7 +1173,7 @@ export function onYourDataAuthenticationOptionsSerializer(
   item: OnYourDataAuthenticationOptionsUnion,
 ): OnYourDataAuthenticationOptionsRest {
   return {
-    ...serializeOnYourDataAuthenticationOptionsUnion(item),
+    ...onYourDataAuthenticationOptionsUnionSerializer(item),
   };
 }
 
@@ -1389,7 +1389,7 @@ export function onYourDataVectorizationSourceSerializer(
   item: OnYourDataVectorizationSourceUnion,
 ): OnYourDataVectorizationSourceRest {
   return {
-    ...serializeOnYourDataVectorizationSourceUnion(item),
+    ...onYourDataVectorizationSourceUnionSerializer(item),
   };
 }
 
@@ -1413,7 +1413,7 @@ export function onYourDataEndpointVectorizationSourceSerializer(
   return {
     type: item["type"],
     endpoint: item["endpoint"],
-    authentication: serializeOnYourDataAuthenticationOptionsUnion(
+    authentication: onYourDataAuthenticationOptionsUnionSerializer(
       item.authentication,
     ),
   };
@@ -1531,7 +1531,7 @@ export function azureMachineLearningIndexChatExtensionParametersSerializer(
   return {
     authentication: !item.authentication
       ? item.authentication
-      : serializeOnYourDataAuthenticationOptionsUnion(item.authentication),
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
@@ -1606,7 +1606,7 @@ export function azureCosmosDBChatExtensionParametersSerializer(
   return {
     authentication: !item.authentication
       ? item.authentication
-      : serializeOnYourDataAuthenticationOptionsUnion(item.authentication),
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
@@ -1617,7 +1617,7 @@ export function azureCosmosDBChatExtensionParametersSerializer(
     fields_mapping: azureCosmosDBFieldMappingOptionsSerializer(
       item.fieldsMapping,
     ),
-    embedding_dependency: serializeOnYourDataVectorizationSourceUnion(
+    embedding_dependency: onYourDataVectorizationSourceUnionSerializer(
       item.embeddingDependency,
     ),
   };
@@ -1712,7 +1712,7 @@ export function elasticsearchChatExtensionParametersSerializer(
   return {
     authentication: !item.authentication
       ? item.authentication
-      : serializeOnYourDataAuthenticationOptionsUnion(item.authentication),
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
@@ -1725,7 +1725,7 @@ export function elasticsearchChatExtensionParametersSerializer(
     query_type: item["queryType"],
     embedding_dependency: !item.embeddingDependency
       ? item.embeddingDependency
-      : serializeOnYourDataVectorizationSourceUnion(item.embeddingDependency),
+      : onYourDataVectorizationSourceUnionSerializer(item.embeddingDependency),
   };
 }
 
@@ -1820,7 +1820,7 @@ export function pineconeChatExtensionParametersSerializer(
   return {
     authentication: !item.authentication
       ? item.authentication
-      : serializeOnYourDataAuthenticationOptionsUnion(item.authentication),
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
@@ -1828,7 +1828,7 @@ export function pineconeChatExtensionParametersSerializer(
     environment: item["environment"],
     index_name: item["indexName"],
     fields_mapping: pineconeFieldMappingOptionsSerializer(item.fieldsMapping),
-    embedding_dependency: serializeOnYourDataVectorizationSourceUnion(
+    embedding_dependency: onYourDataVectorizationSourceUnionSerializer(
       item.embeddingDependency,
     ),
   };
@@ -2217,7 +2217,7 @@ export function chatCompletionsOptionsSerializer(
   item: ChatCompletionsOptions,
 ): ChatCompletionsOptionsRest {
   return {
-    messages: item["messages"].map((p) => serializeChatRequestMessageUnion(p)),
+    messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
     functions:
       item["functions"] === undefined
         ? item["functions"]
@@ -2240,7 +2240,7 @@ export function chatCompletionsOptionsSerializer(
       item["dataSources"] === undefined
         ? item["dataSources"]
         : item["dataSources"].map((p) =>
-            serializeAzureChatExtensionConfigurationUnion(p),
+            azureChatExtensionConfigurationUnionSerializer(p),
           ),
     enhancements: !item.enhancements
       ? item.enhancements
@@ -2587,6 +2587,14 @@ export interface ImageGenerationData {
    * Only provided with dall-3-models and only when revisions were made to the prompt.
    */
   revisedPrompt?: string;
+}
+
+export function imageGenerationDataSerializer(item: ImageGenerationData) {
+  return {
+    url: item["url"],
+    b64_json: item["base64Data"],
+    revised_prompt: item["revisedPrompt"],
+  };
 }
 
 /** The available voices for text-to-speech. */

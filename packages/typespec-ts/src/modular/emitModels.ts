@@ -6,7 +6,10 @@ import {
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { buildOperationOptions } from "./buildOperations.js";
+import {
+  addSerializeRecordImport,
+  buildOperationOptions
+} from "./buildOperations.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
@@ -245,12 +248,19 @@ export function buildModels(
       ) {
         modelsFile.addStatements(serializerFunction);
       }
+      addSerializeRecordImport("serializeRecord", modelsFile);
+      modelsFile.fixUnusedIdentifiers();
     }
   }
 
+  const projectRootFromModels = codeModel.clients.length > 1 ? "../.." : "../";
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-    rlcIndex: "../rest/index.js",
-    serializerHelpers: "../helpers/serializerHelpers.js"
+    rlcIndex: path.join(projectRootFromModels, "rest", "index.js"),
+    serializerHelpers: path.join(
+      projectRootFromModels,
+      "helpers",
+      "serializerHelpers.js"
+    )
   });
 
   if (coreClientTypes.size > 0) {

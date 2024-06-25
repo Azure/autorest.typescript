@@ -1,5 +1,8 @@
 import { Project } from "ts-morph";
-const serializeRecordFunction = `
+import { useContext } from "../contextManager.js";
+const serializeRecordFunction = {
+  symbol: "serializeRecord",
+  content: `
 export function serializeRecord<
   T extends string | number | boolean | Date | null,
   R
@@ -29,17 +32,22 @@ export function serializeRecord<T, R>(
     },
     {} as Record<string, R>
   );
-}`;
-const isRecordElementSupportedFunction = `
+}`
+};
+const isRecordElementSupportedFunction = {
+  symbol: "isSupportedRecordType",
+  content: `
 function isSupportedRecordType(t: any) {
   return ["number", "string", "boolean", "null"].includes(typeof t) || t instanceof Date;
 }
-`;
+`
+};
 
 export function emitSerializerHelpersFile(
   project: Project,
   srcPath: string = "src"
 ) {
+  const symbolMap = useContext("symbolMap");
   const sourceFile = project.createSourceFile(
     `${srcPath}/helpers/serializerHelpers.ts`,
     "",
@@ -48,8 +56,16 @@ export function emitSerializerHelpersFile(
     }
   );
 
+  if (!symbolMap.has(serializeRecordFunction.symbol)) {
+    symbolMap.set(serializeRecordFunction.symbol, sourceFile);
+  }
+
+  if (!symbolMap.has(isRecordElementSupportedFunction.symbol)) {
+    symbolMap.set(isRecordElementSupportedFunction.symbol, sourceFile);
+  }
+
   sourceFile.addStatements([
-    serializeRecordFunction,
-    isRecordElementSupportedFunction
+    serializeRecordFunction.content,
+    isRecordElementSupportedFunction.content
   ]);
 }

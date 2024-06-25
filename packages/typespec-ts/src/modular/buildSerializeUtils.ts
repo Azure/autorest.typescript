@@ -25,7 +25,7 @@ import { ModularCodeModel, Type } from "./modularCodeModel.js";
  */
 export function buildSerializeUtils(model: ModularCodeModel) {
   const serializeUtilFiles = [];
-  for (const serializeType of ["serialize", "deserialize"]) {
+  for (const serializeType of ["deserialize"]) {
     const usageCondition =
       serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
     const specialUnions = model.types.filter(

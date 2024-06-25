@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   Fish as FishRest,
   Shark as SharkRest,
@@ -8,7 +9,6 @@ import {
   GoblinShark as GoblinSharkRest,
   Salmon as SalmonRest,
 } from "../rest/index.js";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
 export interface Fish {

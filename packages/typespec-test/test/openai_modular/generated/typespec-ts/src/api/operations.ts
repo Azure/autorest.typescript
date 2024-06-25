@@ -2,7 +2,9 @@
 // Licensed under the MIT license.
 
 import {
+  chatRequestMessageUnionSerializer,
   functionDefinitionSerializer,
+  azureChatExtensionConfigurationUnionSerializer,
   azureChatEnhancementConfigurationSerializer,
   chatCompletionsResponseFormatUnionSerializer,
   AudioTranscriptionOptions,
@@ -19,10 +21,6 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "../models/models.js";
-import {
-  serializeChatRequestMessageUnion,
-  serializeAzureChatExtensionConfigurationUnion,
-} from "../utils/serializeUtil.js";
 import {
   GetAudioSpeech200Response,
   GetAudioSpeechDefaultResponse,
@@ -581,7 +579,7 @@ export function _getChatCompletionsSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnion(p),
+          chatRequestMessageUnionSerializer(p),
         ),
         functions:
           body["functions"] === undefined
@@ -605,7 +603,7 @@ export function _getChatCompletionsSend(
           body["dataSources"] === undefined
             ? body["dataSources"]
             : body["dataSources"].map((p) =>
-                serializeAzureChatExtensionConfigurationUnion(p),
+                azureChatExtensionConfigurationUnionSerializer(p),
               ),
         enhancements: !body.enhancements
           ? body.enhancements

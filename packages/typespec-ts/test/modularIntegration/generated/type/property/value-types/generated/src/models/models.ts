@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
   UnionEnumValueProperty as UnionEnumValuePropertyRest,
@@ -33,7 +34,6 @@ import {
   StringProperty as StringPropertyRest,
   BooleanProperty as BooleanPropertyRest,
 } from "../rest/index.js";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** Template type for testing models with specific properties. Pass in the type of the property you are looking for */
 export interface UnionEnumValueProperty {

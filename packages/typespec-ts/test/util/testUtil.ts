@@ -97,6 +97,7 @@ export function createDpgContextTestHelper(
 
   provideContext("rlcMetaTree", new Map());
   provideContext("modularMetaTree", new Map());
+  provideContext("symbolMap", new Map());
   provideContext("outputProject", new Project());
 
   return {

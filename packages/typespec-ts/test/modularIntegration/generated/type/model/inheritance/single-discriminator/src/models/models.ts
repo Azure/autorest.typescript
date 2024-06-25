@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   Bird as BirdRest,
   SeaGull as SeaGullRest,
@@ -8,7 +9,6 @@ import {
   Goose as GooseRest,
   Eagle as EagleRest,
 } from "../rest/index.js";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** This is base model for polymorphic single level inheritance with a discriminator. */
 export interface Bird {

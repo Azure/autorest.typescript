@@ -27,7 +27,8 @@ import {
   getSendPrivateFunction as experimentalGetSendPrivateFunction
 } from "./serialization/operationHelpers.js";
 import { SerializerMap } from "./serialization/util.js";
-
+import { useContext } from "../contextManager.js";
+import { resolve, relative, dirname } from "path";
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single
@@ -197,6 +198,7 @@ export function buildOperationFiles(
     ]);
 
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
+    addSerializeRecordImport("serializeRecord", operationGroupFile);
 
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
@@ -204,6 +206,50 @@ export function buildOperationFiles(
     operationFiles.push(operationGroupFile);
   }
   return operationFiles;
+}
+
+export function addSerializeRecordImport(
+  symbol: string,
+  currentFile: SourceFile
+) {
+  const symbolMap = useContext("symbolMap");
+
+  const modulePath = symbolMap.get(symbol)?.getFilePath();
+  if (!modulePath) {
+    console.warn(`Symbol ${symbol} doesn't exist `);
+    return;
+  }
+
+  const moduleAbsolutePath = resolve(modulePath);
+  const relativeImportPath = getRelativeImportPath(
+    currentFile.getFilePath(),
+    moduleAbsolutePath
+  ).replace(/\.ts$/, ".js");
+
+  const existing = currentFile.getImportDeclaration(
+    (i) => i.getModuleSpecifierValue() === relativeImportPath
+  );
+
+  if (existing) {
+    const sameImport = existing
+      .getNamedImports()
+      .some((i) => i.getName() === symbol);
+
+    if (!sameImport) {
+      existing.addNamedImport(symbol);
+    }
+  } else {
+    currentFile.addImportDeclaration({
+      moduleSpecifier: relativeImportPath,
+      namedImports: [symbol]
+    });
+  }
+}
+
+function getRelativeImportPath(from: string, to: string) {
+  const relativePath = relative(dirname(from), to);
+  // Adjust the path format to TypeScript module syntax
+  return relativePath.startsWith(".") ? relativePath : "./" + relativePath;
 }
 
 export function importModels(

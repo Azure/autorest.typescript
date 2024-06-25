@@ -82,6 +82,7 @@ export async function $onEmit(context: EmitContext) {
     RLCModel
   >();
   provideContext("rlcMetaTree", new Map());
+  provideContext("symbolMap", new Map());
   provideContext("modularMetaTree", new Map());
   provideContext("outputProject", new Project());
 

@@ -954,12 +954,16 @@ export function getRequestModelMapping(
     return { propertiesStr: [] };
   }
 
+  let serializerName =
+    "name" in modelPropertyType && modelPropertyType.name
+      ? `${toCamelCase(modelPropertyType.name)}Serializer`
+      : undefined;
+
   if (isSpecialHandledUnion(modelPropertyType)) {
-    const deserializeFunctionName = getDeserializeFunctionName(
-      modelPropertyType,
-      "serialize"
-    );
-    const definition = `${deserializeFunctionName}(${propertyPath})`;
+    serializerName =
+      serializerName ??
+      getDeserializeFunctionName(modelPropertyType, "serialize");
+    const definition = `${serializerName}(${propertyPath})`;
     props.push(definition);
     return { propertiesStr: props, directAssignment: true };
   }
@@ -992,14 +996,13 @@ export function getRequestModelMapping(
               }`
         }`;
       } else if (isPolymorphicUnion(property.type)) {
-        const deserializeFunctionName = getDeserializeFunctionName(
-          property.type,
-          "serialize"
-        );
+        const deserializeFunctionName = property.type.name
+          ? `${toCamelCase(property.type.name)}Serializer`
+          : getDeserializeFunctionName(property.type, "serialize");
         definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
         if (property.type.name) {
-          const serializerName = `${toCamelCase(property.type.name)}Serializer`;
+          serializerName = `${toCamelCase(property.type.name)}Serializer`;
           definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
         } else {
           const { propertiesStr, directAssignment } = getRequestModelMapping(
@@ -1037,16 +1040,15 @@ export function getRequestModelMapping(
       props.push(definition);
     } else if (property.type.type === "dict") {
       const modelName = property.type.elementType?.name;
-      const serializerName = modelName
-        ? `${toCamelCase(modelName)}Serializer`
-        : "";
+      serializerName = modelName ? `${toCamelCase(modelName)}Serializer` : "";
       // definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
       const statement = `"${property.restApiName}": ${nullOrUndefinedPrefix} serializeRecord(${propertyFullName} as any, ${serializerName}) as any`;
-      addImportToSpecifier(
-        "serializerHelpers",
-        runtimeImports,
-        "serializeRecord"
-      );
+      // addImportToSpecifier(
+      //   "serializerHelpers",
+      //   runtimeImports,
+      //   "serializeRecord"
+      // );
+
       addImportToSpecifier("modularModel", runtimeImports, serializerName);
       props.push(statement);
     } else if (modelPropertyType.type === "enum") {
@@ -1366,10 +1368,9 @@ export function serializeRequestValue(
         if (type.elementType.nullable) {
           nullOrUndefinedPrefix = `!p ? p :`;
         }
-        const serializeFunctionName = getDeserializeFunctionName(
-          type.elementType,
-          "serialize"
-        );
+        const serializeFunctionName = type.elementType?.name
+          ? `${toCamelCase(type.elementType.name)}Serializer`
+          : getDeserializeFunctionName(type.elementType, "serialize");
         return `${prefix}.map(p => ${nullOrUndefinedPrefix}${serializeFunctionName}(p))`;
       } else {
         return clientValue;
@@ -1394,10 +1395,9 @@ export function serializeRequestValue(
       if (isNormalUnion(type)) {
         return `${clientValue}`;
       } else if (isSpecialHandledUnion(type)) {
-        const serializeFunctionName = getDeserializeFunctionName(
-          type,
-          "serialize"
-        );
+        const serializeFunctionName = type.name
+          ? `${toCamelCase(type.name)}Serializer`
+          : getDeserializeFunctionName(type, "serialize");
         return `${serializeFunctionName}(${clientValue})`;
       } else {
         return `${clientValue} as any`;
