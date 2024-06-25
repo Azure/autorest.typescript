@@ -5,7 +5,8 @@ import {
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe("modular special union serialization", () => {
+// Replaced with new serializers
+describe.skip("modular special union serialization", () => {
   it("shouldn't generate serialize util or as any if there's no special union variant without discriminator", async () => {
     const tspContent = `
     model WidgetData0 {
@@ -331,7 +332,7 @@ describe("modular special union serialization", () => {
     );
   });
 
-  it("should not generate serialize util but generate as any if there's a special union variant of model with datatime property without discriminator", async () => {
+  it.skip("should not generate serialize util but generate as any if there's a special union variant of model with datatime property without discriminator", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
