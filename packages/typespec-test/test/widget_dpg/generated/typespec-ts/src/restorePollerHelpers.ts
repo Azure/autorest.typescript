@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { WidgetServiceContext } from "./api/widgetServiceContext.js";
 import { WidgetServiceClient } from "./widgetServiceClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
@@ -20,6 +19,7 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
+import { WidgetServiceContext } from "./rest/clientDefinitions.js";
 
 export interface RestorePollerOptions<
   TResult,

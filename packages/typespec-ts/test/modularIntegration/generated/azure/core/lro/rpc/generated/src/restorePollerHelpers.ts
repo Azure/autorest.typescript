@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { RpcContext } from "./api/rpcContext.js";
 import { RpcClient } from "./rpcClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _longRunningRpcDeserialize } from "./api/operations.js";
@@ -16,6 +15,7 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
+import { RpcContext } from "./rest/clientDefinitions.js";
 
 export interface RestorePollerOptions<
   TResult,

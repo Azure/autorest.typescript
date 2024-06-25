@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { AzureLoadTestingContext } from "./api/testRunOperationsContext.js";
 import { TestRunOperationsClient } from "./testRunOperationsClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _testRunDeserialize } from "./api/operations.js";
@@ -16,6 +15,7 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
+import { AzureLoadTestingContext } from "../rest/clientDefinitions.js";
 
 export interface RestorePollerOptions<
   TResult,
