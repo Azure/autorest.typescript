@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { StandardContext } from "./api/standardContext.js";
 import { StandardClient } from "./standardClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
@@ -20,6 +19,7 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
+import { StandardContext } from "./rest/clientDefinitions.js";
 
 export interface RestorePollerOptions<
   TResult,

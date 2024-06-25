@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { NetworkAnalyticsContext } from "./api/networkAnalyticsContext.js";
 import { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
@@ -26,6 +25,7 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
+import { NetworkAnalyticsContext } from "./rest/clientDefinitions.js";
 
 export interface RestorePollerOptions<
   TResult,
