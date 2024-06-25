@@ -6,7 +6,6 @@ export {
   RenamedFromClientOptions,
 } from "./renamedFromClient.js";
 export {
-  newModelSerializer,
   NewModel,
   NewEnum,
   Versions,

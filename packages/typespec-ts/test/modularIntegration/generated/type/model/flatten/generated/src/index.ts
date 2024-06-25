@@ -3,10 +3,6 @@
 
 export { FlattenClient, FlattenClientOptions } from "./flattenClient.js";
 export {
-  flattenModelSerializer,
-  childModelSerializer,
-  nestedFlattenModelSerializer,
-  childFlattenModelSerializer,
   FlattenModel,
   ChildModel,
   NestedFlattenModel,

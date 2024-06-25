@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  azureLocationModelSerializer,
-  AzureLocationModel,
-  Versions,
-} from "./models.js";
+export { AzureLocationModel, Versions } from "./models.js";
 export {
   GetOptionalParams,
   PutOptionalParams,

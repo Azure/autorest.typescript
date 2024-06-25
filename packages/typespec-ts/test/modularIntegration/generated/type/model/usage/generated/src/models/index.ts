@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  inputRecordSerializer,
-  inputOutputRecordSerializer,
-  InputRecord,
-  OutputRecord,
-  InputOutputRecord,
-} from "./models.js";
+export { InputRecord, OutputRecord, InputOutputRecord } from "./models.js";
 export {
   InputOptionalParams,
   OutputOptionalParams,

@@ -6,13 +6,6 @@ export {
   NestedDiscriminatorClientOptions,
 } from "./nestedDiscriminatorClient.js";
 export {
-  fishUnionSerializer,
-  fishSerializer,
-  sharkUnionSerializer,
-  sharkSerializer,
-  sawSharkSerializer,
-  goblinSharkSerializer,
-  salmonSerializer,
   Fish,
   Shark,
   SawShark,

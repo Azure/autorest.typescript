@@ -3,12 +3,6 @@
 
 export { UnionClient, UnionClientOptions } from "./unionClient.js";
 export {
-  mixedTypesCasesSerializer,
-  catSerializer,
-  mixedLiteralsCasesSerializer,
-  stringAndArrayCasesSerializer,
-  enumsOnlyCasesSerializer,
-  dogSerializer,
   MixedTypesCases,
   Cat,
   MixedLiteralsCases,

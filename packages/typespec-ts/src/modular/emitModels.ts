@@ -6,10 +6,7 @@ import {
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import {
-  addSerializeRecordImport,
-  buildOperationOptions
-} from "./buildOperations.js";
+import { buildOperationOptions } from "./buildOperations.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
@@ -20,6 +17,7 @@ import {
 } from "./modularCodeModel.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { toCamelCase } from "../utils/casingUtils.js";
+import { addImportBySymbol } from "../utils/importHelper.js";
 
 // ====== UTILITIES ======
 
@@ -248,7 +246,7 @@ export function buildModels(
       ) {
         modelsFile.addStatements(serializerFunction);
       }
-      addSerializeRecordImport("serializeRecord", modelsFile);
+      addImportBySymbol("serializeRecord", modelsFile);
       modelsFile.fixUnusedIdentifiers();
     }
   }
@@ -366,7 +364,13 @@ export function buildModelsOptions(
     }
   ]);
 
-  modelOptionsFile.fixMissingImports();
+  modelOptionsFile.fixMissingImports(
+    {},
+    {
+      importModuleSpecifierPreference: "shortest",
+      importModuleSpecifierEnding: "js"
+    }
+  );
   modelOptionsFile
     .getImportDeclarations()
     .filter((id) => {

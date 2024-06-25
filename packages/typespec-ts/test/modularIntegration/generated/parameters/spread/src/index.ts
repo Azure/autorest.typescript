@@ -3,8 +3,6 @@
 
 export { SpreadClient, SpreadClientOptions } from "./spreadClient.js";
 export {
-  bodyParameterSerializer,
-  compositeRequestMixSerializer,
   BodyParameter,
   CompositeRequestMix,
   ModelSpreadAsRequestBodyOptionalParams,

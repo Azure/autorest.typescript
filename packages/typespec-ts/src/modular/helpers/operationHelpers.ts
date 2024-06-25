@@ -1314,12 +1314,18 @@ export function serializeRequestValue(
             required ? "" : "?"
           }.toDateString()`;
         case "time":
-          return `${clientValue}${required ? "" : "?"}.toTimeString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.toTimeString()`;
         case "rfc7231":
         case "headerDefault":
-          return `${clientValue}${required ? "" : "?"}.toUTCString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.toUTCString()`;
         case "unixTimestamp":
-          return `${clientValue}${required ? "" : "?"}.getTime()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.getTime()`;
         case "rfc3339":
         default:
           return `${getNullableCheck(clientValue, type)} ${clientValue}${

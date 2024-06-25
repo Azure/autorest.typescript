@@ -2,11 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  defaultDatetimePropertySerializer,
-  rfc3339DatetimePropertySerializer,
-  rfc7231DatetimePropertySerializer,
-  unixTimestampDatetimePropertySerializer,
-  unixTimestampArrayDatetimePropertySerializer,
   DefaultDatetimeProperty,
   Rfc3339DatetimeProperty,
   Rfc7231DatetimeProperty,

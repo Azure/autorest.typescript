@@ -2,13 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  collectionsModelPropertySerializer,
-  innerModelSerializer,
-  collectionsBytePropertySerializer,
-  durationPropertySerializer,
-  datetimePropertySerializer,
-  bytesPropertySerializer,
-  stringPropertySerializer,
   CollectionsModelProperty,
   InnerModel,
   CollectionsByteProperty,

@@ -6,7 +6,6 @@ export {
   DictionaryClientOptions,
 } from "./dictionaryClient.js";
 export {
-  innerModelSerializer,
   InnerModel,
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,

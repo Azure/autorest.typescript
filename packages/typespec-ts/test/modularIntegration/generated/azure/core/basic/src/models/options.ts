@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { ListItemInputExtensibleEnum } from "../rest.js";
+import { ListItemInputExtensibleEnum } from "./models.js";
 
 export interface CreateOrUpdateOptionalParams extends OperationOptions {
   /** This request has a JSON Merge Patch body. */

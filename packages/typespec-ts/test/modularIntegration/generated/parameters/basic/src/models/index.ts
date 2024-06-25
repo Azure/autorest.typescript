@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { userSerializer, User } from "./models.js";
+export { User } from "./models.js";
 export {
   ExplicitBodySimpleOptionalParams,
   ImplicitBodySimpleOptionalParams,

@@ -3,13 +3,6 @@
 
 export { NullableClient, NullableClientOptions } from "./nullableClient.js";
 export {
-  collectionsModelPropertySerializer,
-  innerModelSerializer,
-  collectionsBytePropertySerializer,
-  durationPropertySerializer,
-  datetimePropertySerializer,
-  bytesPropertySerializer,
-  stringPropertySerializer,
   CollectionsModelProperty,
   InnerModel,
   CollectionsByteProperty,

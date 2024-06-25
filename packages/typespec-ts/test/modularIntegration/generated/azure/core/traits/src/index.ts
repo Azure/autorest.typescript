@@ -3,7 +3,6 @@
 
 export { TraitsClient, TraitsClientOptions } from "./traitsClient.js";
 export {
-  userActionParamSerializer,
   User,
   UserActionParam,
   UserActionResponse,

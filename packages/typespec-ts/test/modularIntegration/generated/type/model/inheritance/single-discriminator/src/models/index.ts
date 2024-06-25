@@ -2,12 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  birdUnionSerializer,
-  birdSerializer,
-  seaGullSerializer,
-  sparrowSerializer,
-  gooseSerializer,
-  eagleSerializer,
   Bird,
   SeaGull,
   Sparrow,

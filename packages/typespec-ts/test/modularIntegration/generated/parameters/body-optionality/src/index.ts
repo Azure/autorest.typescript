@@ -6,7 +6,6 @@ export {
   BodyOptionalityClientOptions,
 } from "./bodyOptionalityClient.js";
 export {
-  bodyModelSerializer,
   BodyModel,
   RequiredExplicitOptionalParams,
   RequiredImplicitOptionalParams,

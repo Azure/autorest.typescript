@@ -6,12 +6,6 @@ export {
   SingleDiscriminatorClientOptions,
 } from "./singleDiscriminatorClient.js";
 export {
-  birdUnionSerializer,
-  birdSerializer,
-  seaGullSerializer,
-  sparrowSerializer,
-  gooseSerializer,
-  eagleSerializer,
   Bird,
   SeaGull,
   Sparrow,

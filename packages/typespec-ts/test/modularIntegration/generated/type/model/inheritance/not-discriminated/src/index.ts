@@ -6,9 +6,6 @@ export {
   NotDiscriminatedClientOptions,
 } from "./notDiscriminatedClient.js";
 export {
-  petSerializer,
-  catSerializer,
-  siameseSerializer,
   Pet,
   Cat,
   Siamese,

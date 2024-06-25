@@ -2,20 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  requiredAndOptionalPropertySerializer,
-  unionFloatLiteralPropertySerializer,
-  unionIntLiteralPropertySerializer,
-  unionStringLiteralPropertySerializer,
-  booleanLiteralPropertySerializer,
-  floatLiteralPropertySerializer,
-  intLiteralPropertySerializer,
-  stringLiteralPropertySerializer,
-  collectionsModelPropertySerializer,
-  stringPropertySerializer,
-  collectionsBytePropertySerializer,
-  durationPropertySerializer,
-  datetimePropertySerializer,
-  bytesPropertySerializer,
   RequiredAndOptionalProperty,
   UnionFloatLiteralProperty,
   UnionIntLiteralProperty,

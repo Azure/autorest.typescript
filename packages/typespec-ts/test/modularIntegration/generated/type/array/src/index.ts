@@ -3,7 +3,6 @@
 
 export { ArrayClient, ArrayClientOptions } from "./arrayClient.js";
 export {
-  innerModelSerializer,
   InnerModel,
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,
