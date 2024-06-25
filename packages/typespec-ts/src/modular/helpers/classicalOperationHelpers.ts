@@ -11,18 +11,24 @@ import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
 import { SdkContext } from "../../utils/interfaces.js";
 
+export function shouldPromoteSubId(
+  dpgContext: SdkContext,
+  operationGroup: OperationGroup
+) {
+  const hasSubId = operationGroup.operations.some((op) =>
+    op.parameters.some((p) => p.clientName === "subscriptionId")
+  );
+  return dpgContext?.rlcOptions?.azureArm && hasSubId;
+}
 export function getClassicalOperation(
-  classicFile: SourceFile,
   dpgContext: SdkContext,
   client: Client,
+  classicFile: SourceFile,
   operationGroup: OperationGroup,
   layer: number = operationGroup.namespaceHierarchies.length - 1
 ) {
   // TODO: remove hard-code logic once client-level parameters are supported
-  const hasSubId = operationGroup.operations.some((op) =>
-    op.parameters.some((p) => p.clientName === "subscriptionId")
-  );
-  const hasSubIdPromoted = dpgContext?.rlcOptions?.azureArm && hasSubId;
+  const hasSubIdPromoted = shouldPromoteSubId(dpgContext, operationGroup);
   const modularClientName = `${getClientName(client)}Context`;
   const hasClientContextImport = classicFile
     .getImportDeclarations()
@@ -116,15 +122,6 @@ export function getClassicalOperation(
   }
 
   if (layer === operationGroup.namespaceHierarchies.length - 1) {
-    const parameters = [
-      {
-        name: "context",
-        type: client.rlcClientName
-      }
-    ];
-    if (hasSubIdPromoted) {
-      parameters.push({ name: "subscriptionId", type: "string" });
-    }
     classicFile.addFunction({
       name: `get${getClassicalLayerPrefix(
         operationGroup,
@@ -133,7 +130,15 @@ export function getClassicalOperation(
         layer
       )}`,
       isExported: true,
-      parameters,
+      parameters: [
+        {
+          name: "context",
+          type: client.rlcClientName
+        },
+        ...(hasSubIdPromoted
+          ? []
+          : [{ name: "subscriptionId", type: "string" }])
+      ],
       statements: `return {
         ${operationDeclarations
           .map((d) => {
@@ -193,25 +198,24 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer + 1
-        )}Operations(${hasSubIdPromoted ? ", subscriptionId" : ""})}`;
+        )}Operations(context${hasSubIdPromoted ? ", subscriptionId" : ""})}`;
       }
       const newReturnStatement = returnStatement.replace(/}$/, statement);
       existFunction.setBodyText(newReturnStatement);
     }
   } else {
-    const parameters = [
-      {
-        name: "context",
-        type: client.rlcClientName
-      }
-    ];
-    if (hasSubIdPromoted) {
-      parameters.push({ name: "subscriptionId", type: "string" });
-    }
     classicFile.addFunction({
       name: operationFunctionName,
       isExported: true,
-      parameters,
+      parameters: [
+        {
+          name: "context",
+          type: client.rlcClientName
+        },
+        ...(hasSubIdPromoted
+          ? [{ name: "subscriptionId", type: "string" }]
+          : [])
+      ],
       returnType: `${getClassicalLayerPrefix(
         operationGroup,
         NameType.Interface,

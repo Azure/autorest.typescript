@@ -43,7 +43,7 @@ export function buildClassicOperationFiles(
             subfolder && subfolder !== "" ? subfolder + "/" : ""
           }classic/${classicOperationFileName}.ts`
         );
-      getClassicalOperation(classicFile, dpgContext, client, operationGroup);
+      getClassicalOperation(dpgContext, client, classicFile, operationGroup);
 
       // Import models used from ./models.ts
       // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
@@ -98,9 +98,9 @@ export function buildClassicOperationFiles(
             }classic/${classicOperationFileName}.ts`
           );
         getClassicalOperation(
-          classicFile,
           dpgContext,
           client,
+          classicFile,
           operationGroup,
           layer
         );

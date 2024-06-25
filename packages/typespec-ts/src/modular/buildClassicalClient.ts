@@ -25,6 +25,7 @@ import {
 } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { shouldPromoteSubId } from "./helpers/classicalOperationHelpers.js";
 
 export function buildClassicalClient(
   client: Client,
@@ -210,10 +211,7 @@ function buildClientOperationGroups(
       NameType.Property
     );
     // TODO: remove this logic once client-level parameter design is finalized
-    const hasSubId = operationGroup.operations.some((op) =>
-      op.parameters.some((p) => p.clientName === "subscriptionId")
-    );
-    const hasSubIdPromoted = dpgContext?.rlcOptions?.azureArm && hasSubId;
+    const hasSubIdPromoted = shouldPromoteSubId(dpgContext, operationGroup);
     if (groupName === "") {
       operationGroup.operations.forEach((op) => {
         const declarations = getOperationFunction(op, clientType);
