@@ -27,13 +27,11 @@ import {
 
 export interface VirtualMachineTemplatesOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualMachineTemplateName: string,
     options?: VirtualMachineTemplatesGetOptionalParams,
   ) => Promise<VirtualMachineTemplate>;
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualMachineTemplateName: string,
     resource: VirtualMachineTemplate,
@@ -43,7 +41,6 @@ export interface VirtualMachineTemplatesOperations {
     VirtualMachineTemplate
   >;
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualMachineTemplateName: string,
     properties: VirtualMachineTemplateTagsUpdate,
@@ -53,26 +50,25 @@ export interface VirtualMachineTemplatesOperations {
     VirtualMachineTemplate
   >;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualMachineTemplateName: string,
     options?: VirtualMachineTemplatesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: VirtualMachineTemplatesListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<VirtualMachineTemplate>;
   listBySubscription: (
-    subscriptionId: string,
     options?: VirtualMachineTemplatesListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<VirtualMachineTemplate>;
 }
 
-export function getVirtualMachineTemplates(context: ScVmmContext) {
+export function getVirtualMachineTemplates(
+  context: ScVmmContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualMachineTemplateName: string,
       options?: VirtualMachineTemplatesGetOptionalParams,
@@ -85,7 +81,6 @@ export function getVirtualMachineTemplates(context: ScVmmContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualMachineTemplateName: string,
       resource: VirtualMachineTemplate,
@@ -100,7 +95,6 @@ export function getVirtualMachineTemplates(context: ScVmmContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualMachineTemplateName: string,
       properties: VirtualMachineTemplateTagsUpdate,
@@ -115,7 +109,6 @@ export function getVirtualMachineTemplates(context: ScVmmContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualMachineTemplateName: string,
       options?: VirtualMachineTemplatesDeleteOptionalParams,
@@ -128,13 +121,11 @@ export function getVirtualMachineTemplates(context: ScVmmContext) {
         options,
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: VirtualMachineTemplatesListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
       options?: VirtualMachineTemplatesListBySubscriptionOptionalParams,
     ) => listBySubscription(context, subscriptionId, options),
   };
@@ -142,8 +133,9 @@ export function getVirtualMachineTemplates(context: ScVmmContext) {
 
 export function getVirtualMachineTemplatesOperations(
   context: ScVmmContext,
+  subscriptionId: string,
 ): VirtualMachineTemplatesOperations {
   return {
-    ...getVirtualMachineTemplates(context),
+    ...getVirtualMachineTemplates(context, subscriptionId),
   };
 }

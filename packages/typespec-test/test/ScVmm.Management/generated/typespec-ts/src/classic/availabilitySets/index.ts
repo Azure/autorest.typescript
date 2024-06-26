@@ -27,46 +27,42 @@ import {
 
 export interface AvailabilitySetsOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     availabilitySetResourceName: string,
     options?: AvailabilitySetsGetOptionalParams,
   ) => Promise<AvailabilitySet>;
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     availabilitySetResourceName: string,
     resource: AvailabilitySet,
     options?: AvailabilitySetsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<AvailabilitySet>, AvailabilitySet>;
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     availabilitySetResourceName: string,
     properties: AvailabilitySetTagsUpdate,
     options?: AvailabilitySetsUpdateOptionalParams,
   ) => PollerLike<OperationState<AvailabilitySet>, AvailabilitySet>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     availabilitySetResourceName: string,
     options?: AvailabilitySetsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: AvailabilitySetsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<AvailabilitySet>;
   listBySubscription: (
-    subscriptionId: string,
     options?: AvailabilitySetsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<AvailabilitySet>;
 }
 
-export function getAvailabilitySets(context: ScVmmContext) {
+export function getAvailabilitySets(
+  context: ScVmmContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       availabilitySetResourceName: string,
       options?: AvailabilitySetsGetOptionalParams,
@@ -79,7 +75,6 @@ export function getAvailabilitySets(context: ScVmmContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       availabilitySetResourceName: string,
       resource: AvailabilitySet,
@@ -94,7 +89,6 @@ export function getAvailabilitySets(context: ScVmmContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       availabilitySetResourceName: string,
       properties: AvailabilitySetTagsUpdate,
@@ -109,7 +103,6 @@ export function getAvailabilitySets(context: ScVmmContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       availabilitySetResourceName: string,
       options?: AvailabilitySetsDeleteOptionalParams,
@@ -122,13 +115,11 @@ export function getAvailabilitySets(context: ScVmmContext) {
         options,
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: AvailabilitySetsListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
       options?: AvailabilitySetsListBySubscriptionOptionalParams,
     ) => listBySubscription(context, subscriptionId, options),
   };
@@ -136,8 +127,9 @@ export function getAvailabilitySets(context: ScVmmContext) {
 
 export function getAvailabilitySetsOperations(
   context: ScVmmContext,
+  subscriptionId: string,
 ): AvailabilitySetsOperations {
   return {
-    ...getAvailabilitySets(context),
+    ...getAvailabilitySets(context, subscriptionId),
   };
 }

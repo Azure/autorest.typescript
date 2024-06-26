@@ -4,7 +4,14 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  CreatedByType,
   VirtualMachineInstance,
+  OsType,
+  LimitCpuForMigration,
+  DynamicMemoryEnabled,
+  IsHighlyAvailable,
+  AllocationMethod,
+  CreateDiffDisk,
   VirtualMachineInstanceUpdate,
   VirtualMachineInstanceListResult,
   StopVirtualMachineOptions,
@@ -104,13 +111,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -133,7 +144,7 @@ export async function _getDeserialize(
                   result.body.properties?.osProfile?.["adminPassword"],
                 computerName:
                   result.body.properties?.osProfile?.["computerName"],
-                osType: result.body.properties?.osProfile?.["osType"],
+                osType: result.body.properties?.osProfile?.["osType"] as OsType,
                 osSku: result.body.properties?.osProfile?.["osSku"],
                 osVersion: result.body.properties?.osProfile?.["osVersion"],
               },
@@ -142,14 +153,12 @@ export async function _getDeserialize(
             : {
                 memoryMB: result.body.properties?.hardwareProfile?.["memoryMB"],
                 cpuCount: result.body.properties?.hardwareProfile?.["cpuCount"],
-                limitCpuForMigration:
-                  result.body.properties?.hardwareProfile?.[
-                    "limitCpuForMigration"
-                  ],
-                dynamicMemoryEnabled:
-                  result.body.properties?.hardwareProfile?.[
-                    "dynamicMemoryEnabled"
-                  ],
+                limitCpuForMigration: result.body.properties?.hardwareProfile?.[
+                  "limitCpuForMigration"
+                ] as LimitCpuForMigration,
+                dynamicMemoryEnabled: result.body.properties?.hardwareProfile?.[
+                  "dynamicMemoryEnabled"
+                ] as DynamicMemoryEnabled,
                 dynamicMemoryMaxMB:
                   result.body.properties?.hardwareProfile?.[
                     "dynamicMemoryMaxMB"
@@ -158,10 +167,9 @@ export async function _getDeserialize(
                   result.body.properties?.hardwareProfile?.[
                     "dynamicMemoryMinMB"
                   ],
-                isHighlyAvailable:
-                  result.body.properties?.hardwareProfile?.[
-                    "isHighlyAvailable"
-                  ],
+                isHighlyAvailable: result.body.properties?.hardwareProfile?.[
+                  "isHighlyAvailable"
+                ] as IsHighlyAvailable,
               },
           networkProfile: !result.body.properties?.networkProfile
             ? undefined
@@ -183,9 +191,13 @@ export async function _getDeserialize(
                         macAddress: p["macAddress"],
                         virtualNetworkId: p["virtualNetworkId"],
                         networkName: p["networkName"],
-                        ipv4AddressType: p["ipv4AddressType"],
-                        ipv6AddressType: p["ipv6AddressType"],
-                        macAddressType: p["macAddressType"],
+                        ipv4AddressType: p[
+                          "ipv4AddressType"
+                        ] as AllocationMethod,
+                        ipv6AddressType: p[
+                          "ipv6AddressType"
+                        ] as AllocationMethod,
+                        macAddressType: p["macAddressType"] as AllocationMethod,
                         nicId: p["nicId"],
                       })),
               },
@@ -216,7 +228,7 @@ export async function _getDeserialize(
                                 name: p.storageQoSPolicy?.["name"],
                                 id: p.storageQoSPolicy?.["id"],
                               },
-                          createDiffDisk: p["createDiffDisk"],
+                          createDiffDisk: p["createDiffDisk"] as CreateDiffDisk,
                         }),
                       ),
               },
@@ -470,13 +482,17 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -499,7 +515,7 @@ export async function _createOrUpdateDeserialize(
                   result.body.properties?.osProfile?.["adminPassword"],
                 computerName:
                   result.body.properties?.osProfile?.["computerName"],
-                osType: result.body.properties?.osProfile?.["osType"],
+                osType: result.body.properties?.osProfile?.["osType"] as OsType,
                 osSku: result.body.properties?.osProfile?.["osSku"],
                 osVersion: result.body.properties?.osProfile?.["osVersion"],
               },
@@ -508,14 +524,12 @@ export async function _createOrUpdateDeserialize(
             : {
                 memoryMB: result.body.properties?.hardwareProfile?.["memoryMB"],
                 cpuCount: result.body.properties?.hardwareProfile?.["cpuCount"],
-                limitCpuForMigration:
-                  result.body.properties?.hardwareProfile?.[
-                    "limitCpuForMigration"
-                  ],
-                dynamicMemoryEnabled:
-                  result.body.properties?.hardwareProfile?.[
-                    "dynamicMemoryEnabled"
-                  ],
+                limitCpuForMigration: result.body.properties?.hardwareProfile?.[
+                  "limitCpuForMigration"
+                ] as LimitCpuForMigration,
+                dynamicMemoryEnabled: result.body.properties?.hardwareProfile?.[
+                  "dynamicMemoryEnabled"
+                ] as DynamicMemoryEnabled,
                 dynamicMemoryMaxMB:
                   result.body.properties?.hardwareProfile?.[
                     "dynamicMemoryMaxMB"
@@ -524,10 +538,9 @@ export async function _createOrUpdateDeserialize(
                   result.body.properties?.hardwareProfile?.[
                     "dynamicMemoryMinMB"
                   ],
-                isHighlyAvailable:
-                  result.body.properties?.hardwareProfile?.[
-                    "isHighlyAvailable"
-                  ],
+                isHighlyAvailable: result.body.properties?.hardwareProfile?.[
+                  "isHighlyAvailable"
+                ] as IsHighlyAvailable,
               },
           networkProfile: !result.body.properties?.networkProfile
             ? undefined
@@ -549,9 +562,13 @@ export async function _createOrUpdateDeserialize(
                         macAddress: p["macAddress"],
                         virtualNetworkId: p["virtualNetworkId"],
                         networkName: p["networkName"],
-                        ipv4AddressType: p["ipv4AddressType"],
-                        ipv6AddressType: p["ipv6AddressType"],
-                        macAddressType: p["macAddressType"],
+                        ipv4AddressType: p[
+                          "ipv4AddressType"
+                        ] as AllocationMethod,
+                        ipv6AddressType: p[
+                          "ipv6AddressType"
+                        ] as AllocationMethod,
+                        macAddressType: p["macAddressType"] as AllocationMethod,
                         nicId: p["nicId"],
                       })),
               },
@@ -582,7 +599,7 @@ export async function _createOrUpdateDeserialize(
                                 name: p.storageQoSPolicy?.["name"],
                                 id: p.storageQoSPolicy?.["id"],
                               },
-                          createDiffDisk: p["createDiffDisk"],
+                          createDiffDisk: p["createDiffDisk"] as CreateDiffDisk,
                         }),
                       ),
               },
@@ -808,13 +825,17 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -837,7 +858,7 @@ export async function _updateDeserialize(
                   result.body.properties?.osProfile?.["adminPassword"],
                 computerName:
                   result.body.properties?.osProfile?.["computerName"],
-                osType: result.body.properties?.osProfile?.["osType"],
+                osType: result.body.properties?.osProfile?.["osType"] as OsType,
                 osSku: result.body.properties?.osProfile?.["osSku"],
                 osVersion: result.body.properties?.osProfile?.["osVersion"],
               },
@@ -846,14 +867,12 @@ export async function _updateDeserialize(
             : {
                 memoryMB: result.body.properties?.hardwareProfile?.["memoryMB"],
                 cpuCount: result.body.properties?.hardwareProfile?.["cpuCount"],
-                limitCpuForMigration:
-                  result.body.properties?.hardwareProfile?.[
-                    "limitCpuForMigration"
-                  ],
-                dynamicMemoryEnabled:
-                  result.body.properties?.hardwareProfile?.[
-                    "dynamicMemoryEnabled"
-                  ],
+                limitCpuForMigration: result.body.properties?.hardwareProfile?.[
+                  "limitCpuForMigration"
+                ] as LimitCpuForMigration,
+                dynamicMemoryEnabled: result.body.properties?.hardwareProfile?.[
+                  "dynamicMemoryEnabled"
+                ] as DynamicMemoryEnabled,
                 dynamicMemoryMaxMB:
                   result.body.properties?.hardwareProfile?.[
                     "dynamicMemoryMaxMB"
@@ -862,10 +881,9 @@ export async function _updateDeserialize(
                   result.body.properties?.hardwareProfile?.[
                     "dynamicMemoryMinMB"
                   ],
-                isHighlyAvailable:
-                  result.body.properties?.hardwareProfile?.[
-                    "isHighlyAvailable"
-                  ],
+                isHighlyAvailable: result.body.properties?.hardwareProfile?.[
+                  "isHighlyAvailable"
+                ] as IsHighlyAvailable,
               },
           networkProfile: !result.body.properties?.networkProfile
             ? undefined
@@ -887,9 +905,13 @@ export async function _updateDeserialize(
                         macAddress: p["macAddress"],
                         virtualNetworkId: p["virtualNetworkId"],
                         networkName: p["networkName"],
-                        ipv4AddressType: p["ipv4AddressType"],
-                        ipv6AddressType: p["ipv6AddressType"],
-                        macAddressType: p["macAddressType"],
+                        ipv4AddressType: p[
+                          "ipv4AddressType"
+                        ] as AllocationMethod,
+                        ipv6AddressType: p[
+                          "ipv6AddressType"
+                        ] as AllocationMethod,
+                        macAddressType: p["macAddressType"] as AllocationMethod,
                         nicId: p["nicId"],
                       })),
               },
@@ -920,7 +942,7 @@ export async function _updateDeserialize(
                                 name: p.storageQoSPolicy?.["name"],
                                 id: p.storageQoSPolicy?.["id"],
                               },
-                          createDiffDisk: p["createDiffDisk"],
+                          createDiffDisk: p["createDiffDisk"] as CreateDiffDisk,
                         }),
                       ),
               },
@@ -1101,13 +1123,15 @@ export async function _listDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -1128,7 +1152,7 @@ export async function _listDeserialize(
               : {
                   adminPassword: p.properties?.osProfile?.["adminPassword"],
                   computerName: p.properties?.osProfile?.["computerName"],
-                  osType: p.properties?.osProfile?.["osType"],
+                  osType: p.properties?.osProfile?.["osType"] as OsType,
                   osSku: p.properties?.osProfile?.["osSku"],
                   osVersion: p.properties?.osProfile?.["osVersion"],
                 },
@@ -1137,16 +1161,19 @@ export async function _listDeserialize(
               : {
                   memoryMB: p.properties?.hardwareProfile?.["memoryMB"],
                   cpuCount: p.properties?.hardwareProfile?.["cpuCount"],
-                  limitCpuForMigration:
-                    p.properties?.hardwareProfile?.["limitCpuForMigration"],
-                  dynamicMemoryEnabled:
-                    p.properties?.hardwareProfile?.["dynamicMemoryEnabled"],
+                  limitCpuForMigration: p.properties?.hardwareProfile?.[
+                    "limitCpuForMigration"
+                  ] as LimitCpuForMigration,
+                  dynamicMemoryEnabled: p.properties?.hardwareProfile?.[
+                    "dynamicMemoryEnabled"
+                  ] as DynamicMemoryEnabled,
                   dynamicMemoryMaxMB:
                     p.properties?.hardwareProfile?.["dynamicMemoryMaxMB"],
                   dynamicMemoryMinMB:
                     p.properties?.hardwareProfile?.["dynamicMemoryMinMB"],
-                  isHighlyAvailable:
-                    p.properties?.hardwareProfile?.["isHighlyAvailable"],
+                  isHighlyAvailable: p.properties?.hardwareProfile?.[
+                    "isHighlyAvailable"
+                  ] as IsHighlyAvailable,
                 },
             networkProfile: !p.properties?.networkProfile
               ? undefined
@@ -1164,9 +1191,15 @@ export async function _listDeserialize(
                             macAddress: p["macAddress"],
                             virtualNetworkId: p["virtualNetworkId"],
                             networkName: p["networkName"],
-                            ipv4AddressType: p["ipv4AddressType"],
-                            ipv6AddressType: p["ipv6AddressType"],
-                            macAddressType: p["macAddressType"],
+                            ipv4AddressType: p[
+                              "ipv4AddressType"
+                            ] as AllocationMethod,
+                            ipv6AddressType: p[
+                              "ipv6AddressType"
+                            ] as AllocationMethod,
+                            macAddressType: p[
+                              "macAddressType"
+                            ] as AllocationMethod,
                             nicId: p["nicId"],
                           }),
                         ),
@@ -1196,7 +1229,7 @@ export async function _listDeserialize(
                                 name: p.storageQoSPolicy?.["name"],
                                 id: p.storageQoSPolicy?.["id"],
                               },
-                          createDiffDisk: p["createDiffDisk"],
+                          createDiffDisk: p["createDiffDisk"] as CreateDiffDisk,
                         })),
                 },
             infrastructureProfile: !p.properties?.infrastructureProfile

@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { InventoryItem, InventoryItemListResult } from "../../models/models.js";
+import {
+  CreatedByType,
+  InventoryItem,
+  InventoryType,
+  InventoryItemListResult,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -66,13 +71,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -81,7 +90,9 @@ export async function _getDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          inventoryType: result.body.properties?.["inventoryType"],
+          inventoryType: result.body.properties?.[
+            "inventoryType"
+          ] as InventoryType,
           managedResourceId: result.body.properties?.["managedResourceId"],
           uuid: result.body.properties?.["uuid"],
           inventoryItemName: result.body.properties?.["inventoryItemName"],
@@ -161,13 +172,17 @@ export async function _createDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -176,7 +191,9 @@ export async function _createDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          inventoryType: result.body.properties?.["inventoryType"],
+          inventoryType: result.body.properties?.[
+            "inventoryType"
+          ] as InventoryType,
           managedResourceId: result.body.properties?.["managedResourceId"],
           uuid: result.body.properties?.["uuid"],
           inventoryItemName: result.body.properties?.["inventoryItemName"],
@@ -307,13 +324,15 @@ export async function _listByVmmServerDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -322,7 +341,7 @@ export async function _listByVmmServerDeserialize(
       properties: !p.properties
         ? undefined
         : {
-            inventoryType: p.properties?.["inventoryType"],
+            inventoryType: p.properties?.["inventoryType"] as InventoryType,
             managedResourceId: p.properties?.["managedResourceId"],
             uuid: p.properties?.["uuid"],
             inventoryItemName: p.properties?.["inventoryItemName"],

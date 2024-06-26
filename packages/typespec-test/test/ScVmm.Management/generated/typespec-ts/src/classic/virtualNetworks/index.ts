@@ -27,46 +27,42 @@ import {
 
 export interface VirtualNetworksOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: VirtualNetworksGetOptionalParams,
   ) => Promise<VirtualNetwork>;
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualNetworkName: string,
     resource: VirtualNetwork,
     options?: VirtualNetworksCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<VirtualNetwork>, VirtualNetwork>;
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualNetworkName: string,
     properties: VirtualNetworkTagsUpdate,
     options?: VirtualNetworksUpdateOptionalParams,
   ) => PollerLike<OperationState<VirtualNetwork>, VirtualNetwork>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     virtualNetworkName: string,
     options?: VirtualNetworksDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: VirtualNetworksListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<VirtualNetwork>;
   listBySubscription: (
-    subscriptionId: string,
     options?: VirtualNetworksListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<VirtualNetwork>;
 }
 
-export function getVirtualNetworks(context: ScVmmContext) {
+export function getVirtualNetworks(
+  context: ScVmmContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualNetworkName: string,
       options?: VirtualNetworksGetOptionalParams,
@@ -79,7 +75,6 @@ export function getVirtualNetworks(context: ScVmmContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualNetworkName: string,
       resource: VirtualNetwork,
@@ -94,7 +89,6 @@ export function getVirtualNetworks(context: ScVmmContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualNetworkName: string,
       properties: VirtualNetworkTagsUpdate,
@@ -109,7 +103,6 @@ export function getVirtualNetworks(context: ScVmmContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       virtualNetworkName: string,
       options?: VirtualNetworksDeleteOptionalParams,
@@ -122,13 +115,11 @@ export function getVirtualNetworks(context: ScVmmContext) {
         options,
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: VirtualNetworksListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
       options?: VirtualNetworksListBySubscriptionOptionalParams,
     ) => listBySubscription(context, subscriptionId, options),
   };
@@ -136,8 +127,9 @@ export function getVirtualNetworks(context: ScVmmContext) {
 
 export function getVirtualNetworksOperations(
   context: ScVmmContext,
+  subscriptionId: string,
 ): VirtualNetworksOperations {
   return {
-    ...getVirtualNetworks(context),
+    ...getVirtualNetworks(context, subscriptionId),
   };
 }

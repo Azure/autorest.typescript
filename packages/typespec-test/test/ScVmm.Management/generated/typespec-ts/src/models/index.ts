@@ -49,7 +49,6 @@ export {
   InfrastructureProfileUpdate,
   ForceDelete,
   DeleteFromHost,
-  ArmOperationStatus,
   VirtualMachineInstanceListResult,
   StopVirtualMachineOptions,
   SkipShutdown,
@@ -90,12 +89,13 @@ export {
   VmmCredential,
   VmmServerTagsUpdate,
   VmmServerListResult,
-  PagedOperation,
+  OperationListResult,
   Operation,
   OperationDisplay,
   Origin,
   ActionType,
   Versions,
+  ProvisioningState,
   InventoryItemPropertiesUnion,
 } from "./models.js";
 export {

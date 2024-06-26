@@ -3,7 +3,12 @@
 
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { GuestAgent, GuestAgentListResult } from "../../models/models.js";
+import {
+  CreatedByType,
+  GuestAgent,
+  ProvisioningAction,
+  GuestAgentListResult,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -61,13 +66,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -89,7 +98,9 @@ export async function _getDeserialize(
                 httpsProxy:
                   result.body.properties?.httpProxyConfig?.["httpsProxy"],
               },
-          provisioningAction: result.body.properties?.["provisioningAction"],
+          provisioningAction: result.body.properties?.[
+            "provisioningAction"
+          ] as ProvisioningAction,
           status: result.body.properties?.["status"],
           customResourceName: result.body.properties?.["customResourceName"],
           provisioningState: result.body.properties?.["provisioningState"],
@@ -167,13 +178,17 @@ export async function _createDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -195,7 +210,9 @@ export async function _createDeserialize(
                 httpsProxy:
                   result.body.properties?.httpProxyConfig?.["httpsProxy"],
               },
-          provisioningAction: result.body.properties?.["provisioningAction"],
+          provisioningAction: result.body.properties?.[
+            "provisioningAction"
+          ] as ProvisioningAction,
           status: result.body.properties?.["status"],
           customResourceName: result.body.properties?.["customResourceName"],
           provisioningState: result.body.properties?.["provisioningState"],
@@ -299,13 +316,15 @@ export async function _listByVirtualMachineInstanceDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -324,7 +343,9 @@ export async function _listByVirtualMachineInstanceDeserialize(
             httpProxyConfig: !p.properties?.httpProxyConfig
               ? undefined
               : { httpsProxy: p.properties?.httpProxyConfig?.["httpsProxy"] },
-            provisioningAction: p.properties?.["provisioningAction"],
+            provisioningAction: p.properties?.[
+              "provisioningAction"
+            ] as ProvisioningAction,
             status: p.properties?.["status"],
             customResourceName: p.properties?.["customResourceName"],
             provisioningState: p.properties?.["provisioningState"],

@@ -24,53 +24,45 @@ import {
 
 export interface VmmServersOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     options?: VmmServersGetOptionalParams,
   ) => Promise<VmmServer>;
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     resource: VmmServer,
     options?: VmmServersCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<VmmServer>, VmmServer>;
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     properties: VmmServerTagsUpdate,
     options?: VmmServersUpdateOptionalParams,
   ) => PollerLike<OperationState<VmmServer>, VmmServer>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     options?: VmmServersDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: VmmServersListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<VmmServer>;
   listBySubscription: (
-    subscriptionId: string,
     options?: VmmServersListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<VmmServer>;
 }
 
-export function getVmmServers(context: ScVmmContext) {
+export function getVmmServers(context: ScVmmContext, subscriptionId: string) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       options?: VmmServersGetOptionalParams,
     ) =>
       get(context, subscriptionId, resourceGroupName, vmmServerName, options),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       resource: VmmServer,
@@ -85,7 +77,6 @@ export function getVmmServers(context: ScVmmContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       properties: VmmServerTagsUpdate,
@@ -100,7 +91,6 @@ export function getVmmServers(context: ScVmmContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       options?: VmmServersDeleteOptionalParams,
@@ -113,13 +103,11 @@ export function getVmmServers(context: ScVmmContext) {
         options,
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: VmmServersListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
       options?: VmmServersListBySubscriptionOptionalParams,
     ) => listBySubscription(context, subscriptionId, options),
   };
@@ -127,8 +115,9 @@ export function getVmmServers(context: ScVmmContext) {
 
 export function getVmmServersOperations(
   context: ScVmmContext,
+  subscriptionId: string,
 ): VmmServersOperations {
   return {
-    ...getVmmServers(context),
+    ...getVmmServers(context, subscriptionId),
   };
 }

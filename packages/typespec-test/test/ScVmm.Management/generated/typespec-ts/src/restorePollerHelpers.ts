@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { ScVmmContext } from "./api/scVmmContext.js";
 import { ScVmmClient } from "./scVmmClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
@@ -73,7 +72,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: ScVmmContext | ScVmmClient,
+  client: ScVmmClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]

@@ -24,46 +24,39 @@ import {
 
 export interface CloudsOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     cloudResourceName: string,
     options?: CloudsGetOptionalParams,
   ) => Promise<Cloud>;
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     cloudResourceName: string,
     resource: Cloud,
     options?: CloudsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<Cloud>, Cloud>;
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     cloudResourceName: string,
     properties: CloudTagsUpdate,
     options?: CloudsUpdateOptionalParams,
   ) => PollerLike<OperationState<Cloud>, Cloud>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     cloudResourceName: string,
     options?: CloudsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: CloudsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<Cloud>;
   listBySubscription: (
-    subscriptionId: string,
     options?: CloudsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<Cloud>;
 }
 
-export function getClouds(context: ScVmmContext) {
+export function getClouds(context: ScVmmContext, subscriptionId: string) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       cloudResourceName: string,
       options?: CloudsGetOptionalParams,
@@ -76,7 +69,6 @@ export function getClouds(context: ScVmmContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       cloudResourceName: string,
       resource: Cloud,
@@ -91,7 +83,6 @@ export function getClouds(context: ScVmmContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       cloudResourceName: string,
       properties: CloudTagsUpdate,
@@ -106,7 +97,6 @@ export function getClouds(context: ScVmmContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       cloudResourceName: string,
       options?: CloudsDeleteOptionalParams,
@@ -119,20 +109,20 @@ export function getClouds(context: ScVmmContext) {
         options,
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: CloudsListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
-    listBySubscription: (
-      subscriptionId: string,
-      options?: CloudsListBySubscriptionOptionalParams,
-    ) => listBySubscription(context, subscriptionId, options),
+    listBySubscription: (options?: CloudsListBySubscriptionOptionalParams) =>
+      listBySubscription(context, subscriptionId, options),
   };
 }
 
-export function getCloudsOperations(context: ScVmmContext): CloudsOperations {
+export function getCloudsOperations(
+  context: ScVmmContext,
+  subscriptionId: string,
+): CloudsOperations {
   return {
-    ...getClouds(context),
+    ...getClouds(context, subscriptionId),
   };
 }

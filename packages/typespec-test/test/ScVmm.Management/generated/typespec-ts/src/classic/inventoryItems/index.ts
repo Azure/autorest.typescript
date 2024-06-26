@@ -19,14 +19,12 @@ import {
 
 export interface InventoryItemsOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     inventoryItemResourceName: string,
     options?: InventoryItemsGetOptionalParams,
   ) => Promise<InventoryItem>;
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     inventoryItemResourceName: string,
@@ -34,24 +32,24 @@ export interface InventoryItemsOperations {
     options?: InventoryItemsCreateOptionalParams,
   ) => Promise<InventoryItem>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     inventoryItemResourceName: string,
     options?: InventoryItemsDeleteOptionalParams,
   ) => Promise<void>;
   listByVmmServer: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmmServerName: string,
     options?: InventoryItemsListByVmmServerOptionalParams,
   ) => PagedAsyncIterableIterator<InventoryItem>;
 }
 
-export function getInventoryItems(context: ScVmmContext) {
+export function getInventoryItems(
+  context: ScVmmContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       inventoryItemResourceName: string,
@@ -66,7 +64,6 @@ export function getInventoryItems(context: ScVmmContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       inventoryItemResourceName: string,
@@ -83,7 +80,6 @@ export function getInventoryItems(context: ScVmmContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       inventoryItemResourceName: string,
@@ -98,7 +94,6 @@ export function getInventoryItems(context: ScVmmContext) {
         options,
       ),
     listByVmmServer: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmmServerName: string,
       options?: InventoryItemsListByVmmServerOptionalParams,
@@ -115,8 +110,9 @@ export function getInventoryItems(context: ScVmmContext) {
 
 export function getInventoryItemsOperations(
   context: ScVmmContext,
+  subscriptionId: string,
 ): InventoryItemsOperations {
   return {
-    ...getInventoryItems(context),
+    ...getInventoryItems(context, subscriptionId),
   };
 }

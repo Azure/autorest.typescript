@@ -53,18 +53,32 @@ export class ScVmmClient {
   public readonly pipeline: Pipeline;
 
   /** The Microsoft.ScVmm Rest API spec. */
-  constructor(credential: TokenCredential, options: ScVmmClientOptions = {}) {
+  constructor(
+    credential: TokenCredential,
+    subscriptionId: string,
+    options: ScVmmClientOptions = {},
+  ) {
     this._client = createScVmm(credential, options);
     this.pipeline = this._client.pipeline;
     this.operations = getOperationsOperations(this._client);
-    this.vmmServers = getVmmServersOperations(this._client);
-    this.clouds = getCloudsOperations(this._client);
-    this.virtualNetworks = getVirtualNetworksOperations(this._client);
+    this.vmmServers = getVmmServersOperations(this._client, subscriptionId);
+    this.clouds = getCloudsOperations(this._client, subscriptionId);
+    this.virtualNetworks = getVirtualNetworksOperations(
+      this._client,
+      subscriptionId,
+    );
     this.virtualMachineTemplates = getVirtualMachineTemplatesOperations(
       this._client,
+      subscriptionId,
     );
-    this.availabilitySets = getAvailabilitySetsOperations(this._client);
-    this.inventoryItems = getInventoryItemsOperations(this._client);
+    this.availabilitySets = getAvailabilitySetsOperations(
+      this._client,
+      subscriptionId,
+    );
+    this.inventoryItems = getInventoryItemsOperations(
+      this._client,
+      subscriptionId,
+    );
     this.virtualMachineInstances = getVirtualMachineInstancesOperations(
       this._client,
     );

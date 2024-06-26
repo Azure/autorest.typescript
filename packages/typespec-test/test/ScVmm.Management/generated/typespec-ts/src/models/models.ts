@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Common properties for all Azure Resource Manager resources. */
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   readonly id?: string;
@@ -16,24 +16,23 @@ export interface Resource {
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByType;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: Date;
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByType;
+  lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: Date;
+  lastModifiedAt?: Date;
 }
 
 /** The kind of entity that created the resource. */
-/** "User", "Application", "ManagedIdentity", "Key" */
-export type CreatedByType = string;
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
-/** The base proxy resource. */
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
 /** Defines the GuestAgent. */
@@ -57,7 +56,7 @@ export interface GuestAgentProperties {
   /** Gets the name of the corresponding resource in Kubernetes. */
   readonly customResourceName?: string;
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** Username / Password Credentials to connect to guest. */
@@ -75,11 +74,9 @@ export interface HttpProxyConfiguration {
 }
 
 /** Guest agent provisioning action. */
-/** "install", "uninstall", "repair" */
-export type ProvisioningAction = string;
+export type ProvisioningAction = "install" | "uninstall" | "repair";
 /** The provisioning state of a resource type. */
-/** "Succeeded", "Failed", "Canceled" */
-export type ResourceProvisioningState = string;
+export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
@@ -130,7 +127,7 @@ export interface VmInstanceHybridIdentityMetadataProperties {
   /** Gets or sets the Public Key. */
   publicKey?: string;
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** The response of a VmInstanceHybridIdentityMetadata list operation. */
@@ -169,7 +166,7 @@ export interface VirtualMachineInstanceProperties {
   /** Gets the power state of the virtual machine. */
   readonly powerState?: string;
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** Availability Set model */
@@ -195,8 +192,7 @@ export interface OsProfileForVmInstance {
 }
 
 /** Virtual machine operating system type. */
-/** "Windows", "Linux", "Other" */
-export type OsType = string;
+export type OsType = "Windows" | "Linux" | "Other";
 
 /** Defines the resource properties. */
 export interface HardwareProfile {
@@ -217,14 +213,11 @@ export interface HardwareProfile {
 }
 
 /** Limit CPU for migration. */
-/** "true", "false" */
-export type LimitCpuForMigration = string;
+export type LimitCpuForMigration = "true" | "false";
 /** Dynamic memory enabled. */
-/** "true", "false" */
-export type DynamicMemoryEnabled = string;
+export type DynamicMemoryEnabled = "true" | "false";
 /** Highly available. */
-/** "true", "false" */
-export type IsHighlyAvailable = string;
+export type IsHighlyAvailable = "true" | "false";
 
 /** Defines the resource properties. */
 export interface NetworkProfile {
@@ -259,8 +252,7 @@ export interface NetworkInterface {
 }
 
 /** Network address allocation method. */
-/** "Dynamic", "Static" */
-export type AllocationMethod = string;
+export type AllocationMethod = "Dynamic" | "Static";
 
 /** Defines the resource properties. */
 export interface StorageProfile {
@@ -309,8 +301,7 @@ export interface StorageQosPolicyDetails {
 }
 
 /** Create diff disk. */
-/** "true", "false" */
-export type CreateDiffDisk = string;
+export type CreateDiffDisk = "true" | "false";
 
 /** Specifies the vmmServer infrastructure specific settings for the virtual machine instance. */
 export interface InfrastructureProfile {
@@ -451,27 +442,9 @@ export interface InfrastructureProfileUpdate {
 }
 
 /** Force Delete */
-/** "true", "false" */
-export type ForceDelete = string;
+export type ForceDelete = "true" | "false";
 /** Delete From Host */
-/** "true", "false" */
-export type DeleteFromHost = string;
-
-/** Standard Azure Resource Manager operation status response */
-export interface ArmOperationStatus {
-  /** The operation status */
-  status: ResourceProvisioningState;
-  /** The name of the  operationStatus resource */
-  readonly name?: string;
-  /** Operation start time */
-  readonly startTime?: Date;
-  /** Operation complete time */
-  readonly endTime?: Date;
-  /** The progress made toward completing the operation */
-  readonly percentComplete?: number;
-  /** Errors that occurred if the operation ended with Canceled or Failed status */
-  readonly error?: ErrorDetail;
-}
+export type DeleteFromHost = "true" | "false";
 
 /** The response of a VirtualMachineInstance list operation. */
 export interface VirtualMachineInstanceListResult {
@@ -488,8 +461,7 @@ export interface StopVirtualMachineOptions {
 }
 
 /** Skip shutdown. */
-/** "true", "false" */
-export type SkipShutdown = string;
+export type SkipShutdown = "true" | "false";
 
 /** Defines the create checkpoint action properties. */
 export interface VirtualMachineCreateCheckpoint {
@@ -530,7 +502,7 @@ export interface InventoryItemProperties {
   /** Gets the Managed Object name in Vmm for the inventory item. */
   readonly inventoryItemName?: string;
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** The Cloud inventory item. */
@@ -591,8 +563,11 @@ export interface InventoryItemDetails {
 }
 
 /** The inventory type */
-/** "Cloud", "VirtualNetwork", "VirtualMachine", "VirtualMachineTemplate" */
-export type InventoryType = string;
+export type InventoryType =
+  | "Cloud"
+  | "VirtualNetwork"
+  | "VirtualMachine"
+  | "VirtualMachineTemplate";
 
 /** The response of a InventoryItem list operation. */
 export interface InventoryItemListResult {
@@ -604,10 +579,10 @@ export interface InventoryItemListResult {
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
-  /** The geo-location where the resource lives */
-  location: string;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
 }
 
 /** The AvailabilitySets resource definition. */
@@ -625,7 +600,7 @@ export interface AvailabilitySetProperties {
   /** ARM Id of the vmmServer resource in which this resource resides. */
   vmmServerId?: string;
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** The type used for updating tags in AvailabilitySet resources. */
@@ -687,12 +662,11 @@ export interface VirtualMachineTemplateProperties {
   /** Gets the disks of the template. */
   readonly disks?: VirtualDisk[];
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** Customizable. */
-/** "true", "false" */
-export type IsCustomizable = string;
+export type IsCustomizable = "true" | "false";
 
 /** The type used for updating tags in VirtualMachineTemplate resources. */
 export interface VirtualMachineTemplateTagsUpdate {
@@ -727,7 +701,7 @@ export interface VirtualNetworkProperties {
   /** Name of the virtual network in vmmServer. */
   readonly networkName?: string;
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** The type used for updating tags in VirtualNetwork resources. */
@@ -767,7 +741,7 @@ export interface CloudProperties {
   /** List of QoS policies available for the cloud. */
   readonly storageQosPolicies?: StorageQosPolicy[];
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** Cloud Capacity model */
@@ -835,7 +809,7 @@ export interface VmmServerProperties {
   /** Version is the version of the vmmSever. */
   readonly version?: string;
   /** Provisioning state of the resource. */
-  readonly provisioningState?: ResourceProvisioningState;
+  readonly provisioningState?: ProvisioningState;
 }
 
 /** Credentials to connect to VmmServer. */
@@ -861,7 +835,7 @@ export interface VmmServerListResult {
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface PagedOperation {
+export interface OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
@@ -895,16 +869,13 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** "user", "system", "user,system" */
-export type Origin = string;
+export type Origin = "user" | "system" | "user,system";
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** "Internal" */
-export type ActionType = string;
+export type ActionType = "Internal";
 /** The available API versions. */
-/** */
 export type Versions = "2023-10-07";
-/** Alias for ResourceProvisioningState */
-export type ResourceProvisioningState =
+/** Alias for ProvisioningState */
+export type ProvisioningState =
   | string
   | ResourceProvisioningState
   | "Provisioning"
