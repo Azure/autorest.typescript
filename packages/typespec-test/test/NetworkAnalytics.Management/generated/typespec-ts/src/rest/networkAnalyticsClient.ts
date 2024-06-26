@@ -18,7 +18,7 @@ export default function createClient(
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
   options.apiVersion = options.apiVersion ?? "2023-11-15";
-  const userAgentInfo = `azsdk-js-arm-networkanalytics-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-arm-networkanalytics-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

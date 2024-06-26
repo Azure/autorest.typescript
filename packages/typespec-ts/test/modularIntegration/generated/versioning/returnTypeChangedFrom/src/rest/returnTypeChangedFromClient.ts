@@ -22,7 +22,7 @@ export default function createClient(
     options.baseUrl ??
     `${endpointParam}/versioning/return-type-changed-from/api-version:${version}`;
 
-  const userAgentInfo = `azsdk-js-versionning-returnTypeChangedFrom-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-versionning-returnTypeChangedFrom-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

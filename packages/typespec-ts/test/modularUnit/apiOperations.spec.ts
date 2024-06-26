@@ -523,7 +523,15 @@ describe("api operations in Modular", () => {
           apiVersion: string,
           options: TestingClientOptions  = {},
         ): TestingContext {
-          const clientContext = getClient(endpoint, apiVersion, options);
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\${prefixFromOptions} azsdk-js-modular-api\`
+            : "azsdk-js-modular-api";
+        
+          const clientContext = getClient(endpoint, apiVersion, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }
         `
@@ -547,7 +555,15 @@ describe("api operations in Modular", () => {
             apiVersion: string,
             options: TestingClientOptions  = {},
           ) {
-            this._client = createTesting(endpoint, apiVersion, options);
+            const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+            const userAgentPrefix = prefixFromOptions
+              ? \`\${prefixFromOptions} azsdk-js-modular-classic\`
+              : "azsdk-js-modular-classic";
+        
+            this._client = createTesting(endpoint, apiVersion, {
+              ...options,
+              userAgentOptions: { userAgentPrefix },
+            });
             this.pipeline = this._client.pipeline;
           }
         
@@ -638,7 +654,15 @@ describe("api operations in Modular", () => {
           endpoint: string,
           options: TestingClientOptions  = {},
         ): TestingContext {
-          const clientContext = getClient(endpoint, options);
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\${prefixFromOptions} azsdk-js-modular-api\`
+            : "azsdk-js-modular-api";
+        
+          const clientContext = getClient(endpoint, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }
         `
@@ -665,7 +689,15 @@ describe("api operations in Modular", () => {
             endpoint: string,
             options: TestingClientOptions  = {},
           ) {
-            this._client = createTesting(endpoint, options);
+            const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+            const userAgentPrefix = prefixFromOptions
+              ? \`\${prefixFromOptions} azsdk-js-modular-classic\`
+              : "azsdk-js-modular-classic";
+        
+            this._client = createTesting(endpoint, {
+              ...options,
+              userAgentOptions: { userAgentPrefix },
+            });
             this.pipeline = this._client.pipeline;
           }
         
@@ -783,8 +815,16 @@ describe("api operations in Modular", () => {
         export function createTesting(
           endpoint: string,
           options: TestingClientOptions  = {},
-        ): TestingContext {
-          const clientContext = getClient(endpoint, options);
+          ): TestingContext {
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\${prefixFromOptions} azsdk-js-modular-api\`
+            : "azsdk-js-modular-api";
+        
+          const clientContext = getClient(endpoint, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }
         `
@@ -807,7 +847,15 @@ describe("api operations in Modular", () => {
             endpoint: string,
             options: TestingClientOptions  = {},
           ) {
-            this._client = createTesting(endpoint, options);
+            const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+            const userAgentPrefix = prefixFromOptions
+              ? \`\${prefixFromOptions} azsdk-js-modular-classic\`
+              : "azsdk-js-modular-classic";
+        
+            this._client = createTesting(endpoint, {
+              ...options,
+              userAgentOptions: { userAgentPrefix },
+            });
             this.pipeline = this._client.pipeline;
           }
         

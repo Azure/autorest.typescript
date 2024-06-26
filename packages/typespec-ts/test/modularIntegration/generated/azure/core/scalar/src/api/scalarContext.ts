@@ -10,13 +10,14 @@ export interface ScalarClientOptions extends ClientOptions {}
 export { ScalarContext } from "../rest/index.js";
 
 export function createScalar(options: ScalarClientOptions = {}): ScalarContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient({
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-azure-core-scalar-api/1.0.0-beta.1",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

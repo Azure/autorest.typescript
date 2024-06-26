@@ -21,7 +21,7 @@ export default function createClient(
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/widget`;
   options.apiVersion = options.apiVersion ?? "2022-08-30";
-  const userAgentInfo = `azsdk-js-overload_modular-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-overload_modular-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

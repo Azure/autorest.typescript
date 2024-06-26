@@ -14,13 +14,14 @@ export function createSingle(
   endpointParam: string,
   options: SingleClientOptions = {},
 ): SingleContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient(endpointParam, {
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-singleparam-api/1.0.0-beta.1",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

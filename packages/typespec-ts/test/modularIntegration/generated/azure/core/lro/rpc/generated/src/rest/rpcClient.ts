@@ -13,7 +13,7 @@ export default function createClient(options: ClientOptions = {}): RpcContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
-  const userAgentInfo = `azsdk-js-modular-lro-rpc-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-modular-lro-rpc-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

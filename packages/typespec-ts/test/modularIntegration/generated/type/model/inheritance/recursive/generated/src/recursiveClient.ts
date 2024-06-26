@@ -21,13 +21,14 @@ export class RecursiveClient {
 
   /** Illustrates inheritance recursion */
   constructor(options: RecursiveClientOptions = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
     this._client = createRecursive({
-      userAgentOptions: {
-        userAgentPrefix:
-          options?.userAgentOptions?.userAgentPrefix ??
-          "azsdk-js-model-inheritance-recursive-classic/1.0.0-beta.1",
-      },
       ...options,
+      userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
   }

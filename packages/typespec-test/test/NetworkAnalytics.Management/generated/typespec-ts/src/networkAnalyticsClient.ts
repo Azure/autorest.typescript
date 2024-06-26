@@ -36,13 +36,14 @@ export class NetworkAnalyticsClient {
     credential: TokenCredential,
     options: NetworkAnalyticsClientOptions = {},
   ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
     this._client = createNetworkAnalytics(credential, {
-      userAgentOptions: {
-        userAgentPrefix:
-          options?.userAgentOptions?.userAgentPrefix ??
-          "azsdk-js-arm-networkanalytics-classic/1.0.0-beta.1",
-      },
       ...options,
+      userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
     this.operations = getOperationsOperations(this._client);

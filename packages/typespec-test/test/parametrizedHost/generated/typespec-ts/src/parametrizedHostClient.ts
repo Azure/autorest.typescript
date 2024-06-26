@@ -24,13 +24,14 @@ export class ParametrizedHostClient {
     credential: TokenCredential,
     options: ParametrizedHostClientOptions = {},
   ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
     this._client = createParametrizedHost(credential, {
-      userAgentOptions: {
-        userAgentPrefix:
-          options?.userAgentOptions?.userAgentPrefix ??
-          "azsdk-js-parametrized-host-classic/1.0.0-beta.1",
-      },
       ...options,
+      userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
     this.confidentialLedger = getConfidentialLedgerOperations(this._client);

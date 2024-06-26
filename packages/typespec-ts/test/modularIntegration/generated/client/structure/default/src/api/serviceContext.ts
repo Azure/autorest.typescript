@@ -24,13 +24,14 @@ export function createService(
   clientParam: ClientType,
   options: ServiceClientOptions = {},
 ): ServiceContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient(endpointParam, clientParam, {
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-client-structure-default-api/1.0.0",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

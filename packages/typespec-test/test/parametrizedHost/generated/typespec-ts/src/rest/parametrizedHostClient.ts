@@ -31,7 +31,7 @@ export default function createClient(
     options.baseUrl ??
     `${host}.${subdomain}.${sufix}.com/${apiVersion}`;
 
-  const userAgentInfo = `azsdk-js-parametrized-host-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-parametrized-host-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

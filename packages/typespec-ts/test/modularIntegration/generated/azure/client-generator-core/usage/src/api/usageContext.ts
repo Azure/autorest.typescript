@@ -11,13 +11,14 @@ export { UsageContext } from "../rest/index.js";
 
 /** Test for internal decorator. */
 export function createUsage(options: UsageClientOptions = {}): UsageContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient({
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-clientGeneratorCore-usage-api/1.0.0-beta.1",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

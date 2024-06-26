@@ -21,7 +21,7 @@ export default function createClient(
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/openai`;
   options.apiVersion = options.apiVersion ?? "2024-02-15-preview";
-  const userAgentInfo = `azsdk-js-openai_modular-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-openai_modular-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

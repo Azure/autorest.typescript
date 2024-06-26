@@ -11,13 +11,14 @@ export { BytesContext } from "../rest/index.js";
 
 /** Test for encode decorator on bytes. */
 export function createBytes(options: BytesClientOptions = {}): BytesContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient({
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-encode-bytes-api/1.0.0-beta.1",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

@@ -54,13 +54,14 @@ export class AdministrationOperationsClient {
     credential: TokenCredential,
     options: AdministrationOperationsClientOptions = {},
   ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
     this._client = createAdministrationOperations(endpointParam, credential, {
-      userAgentOptions: {
-        userAgentPrefix:
-          options?.userAgentOptions?.userAgentPrefix ??
-          "azsdk-js-load-testing-classic/1.0.1",
-      },
       ...options,
+      userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
   }

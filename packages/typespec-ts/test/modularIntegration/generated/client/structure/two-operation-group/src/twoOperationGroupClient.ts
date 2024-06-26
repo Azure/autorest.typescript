@@ -29,13 +29,14 @@ export class TwoOperationGroupClient {
     clientParam: ClientType,
     options: TwoOperationGroupClientOptions = {},
   ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
     this._client = createTwoOperationGroup(endpointParam, clientParam, {
-      userAgentOptions: {
-        userAgentPrefix:
-          options?.userAgentOptions?.userAgentPrefix ??
-          "azsdk-js-client-structure-twoopgroup-classic/1.0.0",
-      },
       ...options,
+      userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
     this.group1 = getGroup1Operations(this._client);

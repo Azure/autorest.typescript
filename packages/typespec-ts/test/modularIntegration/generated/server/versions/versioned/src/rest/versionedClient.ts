@@ -16,7 +16,7 @@ export default function createClient(
 ): VersionedContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 
-  const userAgentInfo = `azsdk-js-versioned-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-versioned-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

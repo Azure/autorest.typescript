@@ -32,13 +32,14 @@ export class NestedDiscriminatorClient {
 
   /** Illustrates multiple level inheritance with multiple discriminators. */
   constructor(options: NestedDiscriminatorClientOptions = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
     this._client = createNestedDiscriminator({
-      userAgentOptions: {
-        userAgentPrefix:
-          options?.userAgentOptions?.userAgentPrefix ??
-          "azsdk-js-model-inheritance-nested-discriminator-classic/1.0.0",
-      },
       ...options,
+      userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
   }

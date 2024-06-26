@@ -16,9 +16,8 @@ import { SdkContext } from "../utils/interfaces.js";
 import { importLroCoreDependencies } from "./buildLroFiles.js";
 import {
   getClientParameters,
-  getUserAgentPrefix,
-  importCredential,
-  provideClientParameterDefaults
+  getUserAgentStatements,
+  importCredential
 } from "./helpers/clientHelpers.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import {
@@ -91,16 +90,14 @@ export function buildClassicalClient(
   });
 
   const paramNames = (params ?? []).map((p) => p.name);
-  const createClientParams = provideClientParameterDefaults(paramNames, {
-    userAgentPrefix: getUserAgentPrefix(
-      codeModel.options.packageDetails,
-      codeModel.options.flavor,
-      "classic"
-    )
-  });
+  const { updatedParamNames, userAgentStatements } = getUserAgentStatements(
+    "azsdk-js-modular-classic",
+    paramNames
+  );
 
   constructor.addStatements([
-    `this._client = create${modularClientName}(${createClientParams.join(",")})`
+    userAgentStatements,
+    `this._client = create${modularClientName}(${updatedParamNames.join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
   importLroCoreDependencies(clientFile);

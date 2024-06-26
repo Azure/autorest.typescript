@@ -14,7 +14,7 @@ export default function createClient(
 ): RepeatabilityContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-headers-repeatability-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-headers-repeatability-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

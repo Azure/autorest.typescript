@@ -14,13 +14,14 @@ export { RpcContext } from "../rest/index.js";
 
 /** Illustrates bodies templated with Azure Core with long-running RPC operation */
 export function createRpc(options: RpcClientOptions = {}): RpcContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient({
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-modular-lro-rpc-api/1.0.0-beta.1",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

@@ -14,7 +14,7 @@ export default function createClient(
 ): BasicContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-parameterBasic-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-parameterBasic-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

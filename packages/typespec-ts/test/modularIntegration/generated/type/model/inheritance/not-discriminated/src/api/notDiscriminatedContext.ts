@@ -13,13 +13,14 @@ export { NotDiscriminatedContext } from "../rest/index.js";
 export function createNotDiscriminated(
   options: NotDiscriminatedClientOptions = {},
 ): NotDiscriminatedContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient({
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-model-inheritance-not-discriminated-api/1.0.0",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

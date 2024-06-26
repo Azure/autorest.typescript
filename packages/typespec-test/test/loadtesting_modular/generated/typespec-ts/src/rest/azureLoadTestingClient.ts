@@ -20,7 +20,7 @@ export default function createClient(
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
   options.apiVersion = options.apiVersion ?? "2022-11-01";
-  const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
+  const userAgentInfo = `azsdk-js-load-testing-modular/1.0.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

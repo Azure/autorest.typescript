@@ -311,9 +311,15 @@ export function getClientFactoryBody(
   } else if (model.apiVersionInfo?.definedPosition === "query") {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? apiVersion`;
   }
-  if (!clientPackageName.endsWith("-rest")) {
-    clientPackageName = clientPackageName + "-rest";
+
+  if (model.options.isModularLibrary) {
+    if (!clientPackageName.endsWith("-modular")) {
+      clientPackageName += "-modular";
+    }
+  } else if (!clientPackageName.endsWith("-rest")) {
+    clientPackageName += "-rest";
   }
+
   const userAgentInfoStatement =
     "const userAgentInfo = `azsdk-js-" +
     clientPackageName +

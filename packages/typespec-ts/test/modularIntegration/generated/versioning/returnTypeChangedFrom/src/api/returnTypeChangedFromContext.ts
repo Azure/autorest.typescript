@@ -16,13 +16,14 @@ export function createReturnTypeChangedFrom(
   version: Versions,
   options: ReturnTypeChangedFromClientOptions = {},
 ): ReturnTypeChangedFromContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
   const clientContext = getClient(endpointParam, version, {
-    userAgentOptions: {
-      userAgentPrefix:
-        options?.userAgentOptions?.userAgentPrefix ??
-        "azsdk-js-versionning-returnTypeChangedFrom-api/1.0.0-beta.1",
-    },
     ...options,
+    userAgentOptions: { userAgentPrefix },
   });
   return clientContext;
 }

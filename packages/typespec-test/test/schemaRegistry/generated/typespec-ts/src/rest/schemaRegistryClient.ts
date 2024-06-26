@@ -20,7 +20,7 @@ export default function createClient(
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;
   options.apiVersion = options.apiVersion ?? "2023-07-01";
-  const userAgentInfo = `azsdk-js-schema-registry-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-schema-registry-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
