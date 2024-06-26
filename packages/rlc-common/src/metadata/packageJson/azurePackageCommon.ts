@@ -45,7 +45,7 @@ export function getAzurePackageDependencies({
     dependencies = {
       ...dependencies,
       "@azure/core-lro": "3.0.0-beta.2",
-      "@azure/abort-controller": "^2.0.0"
+      "@azure/abort-controller": "^2.1.2"
     };
   }
 
