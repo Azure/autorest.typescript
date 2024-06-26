@@ -13,10 +13,11 @@ export function modelV2Serializer(item: ModelV2): ModelV2Rest {
   return {
     prop: item["prop"],
     enumProp: item["enumProp"],
-    unionProp: item["unionProp"]
+    unionProp: item["unionProp"],
   };
 }
 
+/** Type of EnumV2 */
 export type EnumV2 = "enumMemberV2";
 /** The version of the API. */
 export type Versions = "v1" | "v2";
