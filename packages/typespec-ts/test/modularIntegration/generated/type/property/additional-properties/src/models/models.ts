@@ -676,6 +676,20 @@ export function extendsUnknownAdditionalPropertiesDerivedSerializer(
 
 /** Alias for WidgetData */
 export type WidgetData = WidgetData0 | WidgetData1;
+
+export function widgetDataSerializer(item: WidgetData) {
+  switch (item.kind) {
+    case "kind0":
+      return widgetData0Serializer(item as WidgetData0);
+
+    case "kind1":
+      return widgetData1Serializer(item as WidgetData1);
+
+    default:
+      return item;
+  }
+}
+
 /** Alias for IsUnknownAdditionalPropertiesDiscriminatedUnion */
 export type IsUnknownAdditionalPropertiesDiscriminatedUnion =
   | IsUnknownAdditionalPropertiesDiscriminatedDerived

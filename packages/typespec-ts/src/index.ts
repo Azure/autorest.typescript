@@ -85,6 +85,10 @@ export async function $onEmit(context: EmitContext) {
   provideContext("symbolMap", new Map());
   provideContext("modularMetaTree", new Map());
   provideContext("outputProject", new Project());
+  provideContext("emitContext", {
+    compilerContext: context,
+    tcgcContext: dpgContext
+  });
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;

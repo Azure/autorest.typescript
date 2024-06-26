@@ -94,6 +94,10 @@ export function createDpgContextTestHelper(
   const context = createContextWithDefaultOptions({
     program
   } as EmitContext);
+  provideContext("emitContext", {
+    compilerContext: context as any,
+    tcgcContext: context
+  });
 
   provideContext("rlcMetaTree", new Map());
   provideContext("modularMetaTree", new Map());

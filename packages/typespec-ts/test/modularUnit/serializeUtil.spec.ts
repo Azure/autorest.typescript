@@ -1,12 +1,13 @@
 import { assert } from "chai";
 import {
   emitModularSerializeUtilsFromTypeSpec,
-  emitModularOperationsFromTypeSpec
+  emitModularOperationsFromTypeSpec,
+  emitModularModelsFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 // Replaced with new serializers
-describe.skip("modular special union serialization", () => {
+describe("modular special union serialization", () => {
   it("shouldn't generate serialize util or as any if there's no special union variant without discriminator", async () => {
     const tspContent = `
     model WidgetData0 {
@@ -332,7 +333,7 @@ describe.skip("modular special union serialization", () => {
     );
   });
 
-  it.skip("should not generate serialize util but generate as any if there's a special union variant of model with datatime property without discriminator", async () => {
+  it("should not generate serialize util but generate as any if there's a special union variant of model with datatime property without discriminator", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -536,37 +537,55 @@ describe.skip("modular special union serialization", () => {
     `;
 
     // to test the generated deserialized utils for union variant of model with datetime properties.
-    const serializeUtil =
-      await emitModularSerializeUtilsFromTypeSpec(tspContent);
-    assert.equal(serializeUtil?.length, 1);
+    const models = await emitModularModelsFromTypeSpec(tspContent)!;
+    const serializeWidgetData1 = models?.getFunction("widgetData1Serializer");
+    assert.isDefined(serializeWidgetData1);
+
+    // assert.equal(serializeUtil?.length, 1);
     await assertEqualContent(
-      serializeUtil?.[0]?.getFullText()!,
+      serializeWidgetData1?.getFullText()!,
       `
-      import {
-        WidgetData1 as WidgetData1Rest,
-        WidgetData as WidgetDataRest,
-      } from "../rest/index.js";
-      import { WidgetData1, WidgetData } from "../models/models.js";
-      
-      /** serialize function for WidgetData1 */
-      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
         return {
-          kind: obj["kind"],
-          start: obj["start"].toISOString(),
-          end: obj["end"]?.toISOString(),
+          kind: item["kind"],
+          start: item["start"].toISOString(),
+          end: item["end"]?.toISOString(),
         };
       }
-      
-      /** serialize function for WidgetData */
-      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
-        switch (obj.kind) {
-          case "kind1":
-            return serializeWidgetData1(obj);
-          default:
-            return obj;
-        }
+      `
+    );
+
+    const serializeWidgetData0 = models?.getFunction("widgetData0Serializer");
+    assert.isDefined(serializeWidgetData1);
+
+    await assertEqualContent(
+      serializeWidgetData0?.getFullText()!,
+      `
+      export function widgetData0Serializer(item: WidgetData0): WidgetData0Rest {
+        return {
+          kind: item["kind"],
+          fooProp: item["fooProp"],
+        };
       }
       `
+    );
+
+    const serializeWidgetData = models?.getFunction("widgetDataSerializer");
+    assert.isDefined(serializeWidgetData);
+    await assertEqualContent(
+      serializeWidgetData?.getFullText()!,
+      ` export function widgetDataSerializer(item: WidgetData) {
+        switch (item.kind) {
+          case "kind0":
+           return widgetData0Serializer(item as WidgetData0);
+
+          case "kind1":
+           return widgetData1Serializer(item as WidgetData1);
+
+          default:
+            return item;
+        }
+      }`
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -594,7 +613,7 @@ describe.skip("modular special union serialization", () => {
               id: body["id"],
               weight: body["weight"],
               color: body["color"],
-              data: serializeWidgetData(body["data"]),
+              data: widgetDataSerializer(body["data"]),
             },
           });
       }
@@ -653,34 +672,33 @@ describe.skip("modular special union serialization", () => {
     `;
 
     // to test the generated deserialized utils for union variant of model with datetime properties.
-    const serializeUtil =
-      await emitModularSerializeUtilsFromTypeSpec(tspContent);
-    assert.ok(serializeUtil);
+    const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelsFile);
     await assertEqualContent(
-      serializeUtil?.[0]?.getFullText()!,
+      modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
       `
-      import { uint8ArrayToString } from "@azure/core-util";
-      import {
-        WidgetData1 as WidgetData1Rest,
-        WidgetData as WidgetDataRest,
-      } from "../rest/index.js";
-      import { WidgetData1, WidgetData } from "../models/models.js";
-      
-      /** serialize function for WidgetData1 */
-      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
         return { 
-          kind: obj["kind"],
-          data: uint8ArrayToString(obj["data"], "base64") 
+          kind: item["kind"],
+          data: uint8ArrayToString(item["data"], "base64") 
         };
       }
-      
-      /** serialize function for WidgetData */
-      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
-        switch (obj.kind) {
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("widgetDataSerializer")?.getFullText()!,
+      `
+      export function widgetDataSerializer(item: WidgetData) {
+        switch (item.kind) {
+          case "kind0":
+            return widgetData0Serializer(item as WidgetData0);
+
           case "kind1":
-            return serializeWidgetData1(obj);
+            return widgetData1Serializer(item as WidgetData1);
+          
           default:
-            return obj;
+            return item;
         }
       }
       `
@@ -712,7 +730,7 @@ describe.skip("modular special union serialization", () => {
               id: body["id"],
               weight: body["weight"],
               color: body["color"],
-              data: serializeWidgetData(body["data"]),
+              data: widgetDataSerializer(body["data"]),
             },
           });
       }
@@ -774,45 +792,46 @@ describe.skip("modular special union serialization", () => {
     `;
 
     // to test the generated deserialized utils for union variant of model with datetime properties.
-    const serializeUtil =
-      await emitModularSerializeUtilsFromTypeSpec(tspContent);
-    assert.ok(serializeUtil);
+    const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelsFile);
+
     await assertEqualContent(
-      serializeUtil?.[0]?.getFullText()!,
+      modelsFile?.getFunction("widgetData0Serializer")?.getFullText()!,
       `
-      import { uint8ArrayToString } from "@azure/core-util";
-      import {
-        WidgetData0 as WidgetData0Rest,
-        WidgetData1 as WidgetData1Rest,
-        WidgetData as WidgetDataRest,
-      } from "../rest/index.js";
-      import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
-      
-      /** serialize function for WidgetData0 */
-      function serializeWidgetData0(obj: WidgetData0): WidgetData0Rest {
+      export function widgetData0Serializer(item: WidgetData0): WidgetData0Rest {
         return {
-          kind: obj["kind"],
-          fooProp: uint8ArrayToString(obj["fooProp"], "base64"),
+          kind: item["kind"],
+          fooProp: uint8ArrayToString(item["fooProp"], "base64"),
         };
       }
-      
-      /** serialize function for WidgetData1 */
-      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
+      `
+      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
         return { 
-          kind: obj["kind"],
-          data: obj["data"].toISOString()
+          kind: item["kind"],
+          data: item["data"].toISOString()
         };
       }
-      
-      /** serialize function for WidgetData */
-      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
-        switch (obj.kind) {
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("widgetDataSerializer")?.getFullText()!,
+      `
+      export function widgetDataSerializer(item: WidgetData) {
+        switch (item.kind) {
           case "kind0":
-            return serializeWidgetData0(obj);
+            return widgetData0Serializer(item as WidgetData0);
+
           case "kind1":
-            return serializeWidgetData1(obj);
+            return widgetData1Serializer(item as WidgetData1);
+            
           default:
-            return obj;
+            return item;
         }
       }
       `
@@ -843,7 +862,7 @@ describe.skip("modular special union serialization", () => {
               id: body["id"],
               weight: body["weight"],
               color: body["color"],
-              data: serializeWidgetData(body["data"]),
+              data: widgetDataSerializer(body["data"]),
             },
           });
       }
@@ -902,45 +921,45 @@ describe.skip("modular special union serialization", () => {
     `;
 
     // to test the generated deserialized utils for union variant of model with datetime properties.
-    const serializeUtil =
-      await emitModularSerializeUtilsFromTypeSpec(tspContent);
-    assert.ok(serializeUtil);
+    const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelsFile);
     await assertEqualContent(
-      serializeUtil?.[0]?.getFullText()!,
+      modelsFile?.getFunction("widgetData0Serializer")?.getFullText()!,
       `
-      import { uint8ArrayToString } from "@azure/core-util";
-      import {
-        WidgetData0 as WidgetData0Rest,
-        WidgetData1 as WidgetData1Rest,
-        WidgetData as WidgetDataRest,
-      } from "../rest/index.js";
-      import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
-      
-      /** serialize function for WidgetData0 */
-      function serializeWidgetData0(obj: WidgetData0): WidgetData0Rest {
+      export function widgetData0Serializer(item: WidgetData0): WidgetData0Rest {
         return {
-          kind: obj["kind"],
-          fooProp: uint8ArrayToString(obj["fooProp"], "base64"),
+          kind: item["kind"],
+          fooProp: uint8ArrayToString(item["fooProp"], "base64"),
         };
       }
-      
-      /** serialize function for WidgetData1 */
-      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
+      `      
+      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
         return { 
-        kind: obj["kind"],
-        data: uint8ArrayToString(obj["data"], "base64")
+        kind: item["kind"],
+        data: uint8ArrayToString(item["data"], "base64")
         };
       }
-      
-      /** serialize function for WidgetData */
-      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
-        switch (obj.kind) {
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("widgetDataSerializer")?.getFullText()!,
+      `
+      export function widgetDataSerializer(item: WidgetData) {
+        switch (item.kind) {
           case "kind0":
-            return serializeWidgetData0(obj);
+            return widgetData0Serializer(item as WidgetData0);
+
           case "kind1":
-            return serializeWidgetData1(obj);
+            return widgetData1Serializer(item as WidgetData1);
+
           default:
-            return obj;
+            return item;
         }
       }
       `
@@ -971,7 +990,7 @@ describe.skip("modular special union serialization", () => {
               id: body["id"],
               weight: body["weight"],
               color: body["color"],
-              data: serializeWidgetData(body["data"]),
+              data: widgetDataSerializer(body["data"]),
             },
           });
       }

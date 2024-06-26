@@ -291,6 +291,16 @@ export function buildModels(
 
   aliases.forEach((alias) => {
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
+    if (!models.includes(alias)) {
+      // Generate a serializer function next to each model
+      const serializerFunction = buildModelSerializer(
+        alias,
+        codeModel.runtimeImports
+      );
+      if (serializerFunction) {
+        modelsFile.addStatements(serializerFunction);
+      }
+    }
   });
   return modelsFile;
 }

@@ -16,7 +16,6 @@ export function addImportBySymbol(symbol: string, currentFile: SourceFile) {
   // Attempt to resolve the file path for the given symbol.
   const modulePath = symbolMap.get(symbol)?.getFilePath();
   if (!modulePath) {
-    console.warn(`Symbol ${symbol} doesn't exist`);
     return;
   }
 

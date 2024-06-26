@@ -1,5 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { ModularMetaTree, RlcMetaTree } from "./metaTree.js";
+import { EmitContext } from "@typespec/compiler";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
 /**
  * Contexts Object Guidelines
@@ -19,6 +21,10 @@ type Contexts = {
   modularMetaTree: ModularMetaTree; // Context for modular types metadata.
   outputProject: Project; // The TS-Morph root project context for code generation.
   symbolMap: Map<string, SourceFile>; // Mapping of symbols to their corresponding source files.
+  emitContext: {
+    compilerContext: EmitContext;
+    tcgcContext: SdkContext;
+  };
 };
 
 type ContextKey = keyof Contexts;

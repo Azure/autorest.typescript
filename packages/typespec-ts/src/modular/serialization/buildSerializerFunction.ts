@@ -42,12 +42,17 @@ export function buildModelSerializer(
 
   const output: string[] = [];
 
-  const tcgcType = type.tcgcType!;
   if (
-    tcgcType.kind === "model" &&
-    tcgcType.discriminatorProperty &&
-    tcgcType.discriminatedSubtypes
+    !isDiscriminatedUnion(type) &&
+    type.type === "combined" &&
+    type.discriminator
   ) {
+    return buildPolymorphicSerializer(type);
+  }
+
+  if (isDiscriminatedUnion(type)) {
+    const tcgcType = type.tcgcType!;
+
     const cases: string[] = [];
     const baseSerializerName = `${toCamelCase(tcgcType.name)}Serializer`;
     for (const key in tcgcType.discriminatedSubtypes) {
@@ -144,6 +149,18 @@ export function buildModelSerializer(
   return output.join("\n");
 }
 
+function isDiscriminatedUnion(
+  type: ModularType
+): type is ModularType & { tcgcType: SdkModelType } {
+  const { tcgcType } = type;
+
+  return Boolean(
+    tcgcType?.kind === "model" &&
+      tcgcType.discriminatorProperty &&
+      tcgcType.discriminatedSubtypes
+  );
+}
+
 function hasAdditionalProperties(type: SdkType | undefined) {
   if (!type || !("additionalProperties" in type)) {
     return false;
@@ -158,4 +175,40 @@ function hasAdditionalProperties(type: SdkType | undefined) {
   }
 
   return false;
+}
+
+function buildPolymorphicSerializer(type: ModularType) {
+  if (!type.discriminator) {
+    return;
+  }
+  const output: string[] = [];
+
+  const subTypes = type.types ?? [];
+
+  const cases: string[] = [];
+  for (const subType of subTypes) {
+    const discriminatedValue = subType.discriminatorValue!;
+    const union = subType.types ? "Union" : "";
+    const subTypeName = `${toPascalCase(subType.name!)}${union}`;
+    const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+
+    cases.push(`
+        case "${discriminatedValue}":
+          return ${subtypeSerializerName}(item as ${subTypeName});
+      `);
+  }
+
+  output.push(`
+    export function ${toCamelCase(type.name!)}Serializer(item: ${toPascalCase(
+      type.name!
+    )}) {
+      switch (item.${type.discriminator}) {
+       ${cases.join("\n")}
+        default:
+          return item;
+      }
+    }
+    `);
+
+  return output.join("\n");
 }
