@@ -12,8 +12,7 @@ describe("typeHelpers", () => {
     describe("integer type", () => {
       it("should handle basic any", () => {
         const type: Type = {
-          type: "any",
-          nullable: false
+          type: "any"
         };
         const result = getType(type);
         expect(result.name).to.equal("Record<string, any>");
@@ -21,8 +20,7 @@ describe("typeHelpers", () => {
       });
       it("should handle basic integer", () => {
         const type: Type = {
-          type: "integer",
-          nullable: false
+          type: "integer"
         };
         const result = getType(type);
         expect(result.name).to.equal("number");
@@ -32,7 +30,7 @@ describe("typeHelpers", () => {
       it("should handle nullable integer", () => {
         const type: Type = {
           type: "integer",
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = getType(type);
         expect(result.name).to.equal("(number | null)");
@@ -42,8 +40,7 @@ describe("typeHelpers", () => {
     describe("byte-array type", () => {
       it("should handle basic byte-array", () => {
         const type: Type = {
-          type: "byte-array",
-          nullable: false
+          type: "byte-array"
         };
         const result = getType(type);
         expect(result.name).to.equal("Uint8Array");
@@ -57,8 +54,7 @@ describe("typeHelpers", () => {
           type: "list",
           elementType: {
             type: "integer"
-          },
-          nullable: false
+          }
         };
         const result = getType(type);
         expect(result.name).to.equal("number[]");
@@ -70,8 +66,7 @@ describe("typeHelpers", () => {
       it("should handle model with name", () => {
         const type: Type = {
           type: "model",
-          name: "SomeModel",
-          nullable: false
+          name: "SomeModel"
         };
         const result = getType(type);
         expect(result.name).to.equal("SomeModel");
@@ -83,8 +78,7 @@ describe("typeHelpers", () => {
         it("should handle empty anonymous model", () => {
           const type: Type = {
             type: "model",
-            name: "",
-            nullable: false
+            name: ""
           };
           const result = getType(type);
           expect(result.name).to.equal("{}");
@@ -94,7 +88,7 @@ describe("typeHelpers", () => {
           const type: Type = {
             type: "model",
             name: "",
-            nullable: false,
+
             properties: [
               {
                 clientName: `foo/bar`,
@@ -119,8 +113,7 @@ describe("typeHelpers", () => {
     describe("datetime types", () => {
       it("should handle basic datetime", () => {
         const type: Type = {
-          type: "datetime",
-          nullable: false
+          type: "datetime"
         };
         const result = getType(type);
         expect(result.name).to.equal("Date");
@@ -130,7 +123,7 @@ describe("typeHelpers", () => {
       it("should handle nullable datetime", () => {
         const type: Type = {
           type: "datetime",
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = getType(type);
         expect(result.name).to.equal("(Date | null)");
@@ -138,8 +131,7 @@ describe("typeHelpers", () => {
 
       it("should handle string type with default format", () => {
         const type: Type = {
-          type: "string",
-          nullable: false
+          type: "string"
         };
         const result = getType(type);
         expect(result.name).to.equal("string");
@@ -148,8 +140,7 @@ describe("typeHelpers", () => {
 
       it("should handle duration type with default format", () => {
         const type: Type = {
-          type: "duration",
-          nullable: false
+          type: "duration"
         };
         const result = getType(type);
         expect(result.name).to.equal("string");
@@ -158,8 +149,7 @@ describe("typeHelpers", () => {
 
       it("should handle duration type formatted as seconds", () => {
         const type: Type = {
-          type: "duration",
-          nullable: false
+          type: "duration"
         };
         const result = getType(type, "seconds");
         expect(result.name).to.equal("number");
@@ -169,8 +159,7 @@ describe("typeHelpers", () => {
       // Let's consider an edge case where the format doesn't match any predefined formats.
       it("should handle unknown format for string type", () => {
         const type: Type = {
-          type: "string",
-          nullable: false
+          type: "string"
         };
         const result = getType(type, "unknownFormat");
         expect(result.name).to.equal("string"); // It defaults to string if the format is not recognized.
@@ -182,7 +171,7 @@ describe("typeHelpers", () => {
       it("should handle a nested list", () => {
         const type: Type = {
           type: "list",
-          nullable: false,
+
           elementType: {
             type: "list",
             elementType: {
@@ -197,12 +186,12 @@ describe("typeHelpers", () => {
       it("should handle a nested list of nullable elements", () => {
         const type: Type = {
           type: "list",
-          nullable: false,
+
           elementType: {
             type: "list",
             elementType: {
               type: "integer",
-              nullable: true
+              tcgcType: { kind: "nullable" } as any
             }
           }
         };
@@ -213,10 +202,10 @@ describe("typeHelpers", () => {
       it("should handle a nested list of nullable list of elements", () => {
         const type: Type = {
           type: "list",
-          nullable: false,
+
           elementType: {
             type: "list",
-            nullable: true,
+            tcgcType: { kind: "nullable" } as any,
             elementType: {
               type: "integer"
             }
@@ -229,10 +218,10 @@ describe("typeHelpers", () => {
       it("should handle a nested nullable list of nullable list of non-nullable elements", () => {
         const type: Type = {
           type: "list",
-          nullable: true,
+          tcgcType: { kind: "nullable" } as any,
           elementType: {
             type: "list",
-            nullable: true,
+            tcgcType: { kind: "nullable" } as any,
             elementType: {
               type: "integer"
             }
@@ -245,10 +234,9 @@ describe("typeHelpers", () => {
       it("should handle a nullable list of floats", () => {
         const type: Type = {
           type: "list",
-          nullable: true,
+          tcgcType: { kind: "nullable" } as any,
           elementType: {
-            type: "float",
-            nullable: false
+            type: "float"
           }
         };
         const result = buildType("foo", type);
@@ -258,13 +246,13 @@ describe("typeHelpers", () => {
       it("should handle a nested nullable list of nullable list of nullable elements", () => {
         const type: Type = {
           type: "list",
-          nullable: true,
+          tcgcType: { kind: "nullable" } as any,
           elementType: {
             type: "list",
-            nullable: true,
+            tcgcType: { kind: "nullable" } as any,
             elementType: {
               type: "integer",
-              nullable: true
+              tcgcType: { kind: "nullable" } as any
             }
           }
         };
@@ -295,7 +283,7 @@ describe("typeHelpers", () => {
             type: "list",
             elementType: {
               type: "integer",
-              nullable: true
+              tcgcType: { kind: "nullable" } as any
             }
           }
         };
@@ -308,7 +296,7 @@ describe("typeHelpers", () => {
       it("should handle a list of dictionaries", () => {
         const type: Type = {
           type: "list",
-          nullable: false,
+
           elementType: {
             type: "dict",
             elementType: {
@@ -324,8 +312,7 @@ describe("typeHelpers", () => {
     describe("string type", () => {
       it("should handle basic string", () => {
         const type: Type = {
-          type: "string",
-          nullable: false
+          type: "string"
         };
         const result = getType(type);
         expect(result.name).to.equal("string");
@@ -335,7 +322,7 @@ describe("typeHelpers", () => {
       it("should handle nullable string", () => {
         const type: Type = {
           type: "string",
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = getType(type);
         expect(result.name).to.equal("(string | null)");
@@ -353,8 +340,7 @@ describe("typeHelpers", () => {
             {
               type: "integer"
             }
-          ],
-          nullable: false
+          ]
         };
         const result = getType(type);
         expect(result.name).to.equal("(string | number)");
@@ -401,7 +387,10 @@ describe("typeHelpers", () => {
     });
 
     it("should handle  nullable boolean type", () => {
-      const type: Type = { type: "boolean", nullable: true };
+      const type: Type = {
+        type: "boolean",
+        tcgcType: { kind: "nullable" } as any
+      };
       const result = getType(type);
       expect(result.name).to.equal("(boolean | null)");
     });
@@ -421,7 +410,7 @@ describe("typeHelpers", () => {
         type: "constant",
         value: "TEST",
         valueType: { type: "string" },
-        nullable: true
+        tcgcType: { kind: "nullable" } as any
       };
       const result = getType(type);
       expect(result.name).to.equal('("TEST" | null)');
@@ -438,7 +427,10 @@ describe("typeHelpers", () => {
     });
 
     it("should handle datetime type", () => {
-      const type: Type = { type: "datetime", nullable: true };
+      const type: Type = {
+        type: "datetime",
+        tcgcType: { kind: "nullable" } as any
+      };
       const result = getType(type);
       expect(result.name).to.equal("(Date | null)");
     });
@@ -508,8 +500,7 @@ describe("typeHelpers", () => {
         type: "model",
         name: "Fish",
         alias: "FishParent",
-        aliasType: "Fish | Shark | Tuna",
-        nullable: false
+        aliasType: "Fish | Shark | Tuna"
       };
       const result = getType(type);
       expect(result.name).to.equal("Fish");
@@ -527,8 +518,7 @@ describe("typeHelpers", () => {
         type: "model",
         name: "Fish",
         alias: "FishParent",
-        aliasType: "FishParent | Shark | Tuna",
-        nullable: false
+        aliasType: "FishParent | Shark | Tuna"
       };
       const result = extractAliases({ types: [type] } as any);
       expect(result.length).to.equal(1);
@@ -543,8 +533,7 @@ describe("typeHelpers", () => {
     describe("integer type", () => {
       it("should build type for integer", () => {
         const type: Type = {
-          type: "integer",
-          nullable: false
+          type: "integer"
         };
         const result = buildType("SomeClient", type);
         expect(result.type).to.equal("number");
@@ -553,7 +542,7 @@ describe("typeHelpers", () => {
       it("should build type for nullable integer", () => {
         const type: Type = {
           type: "integer",
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = buildType("SomeClient", type);
         expect(result.type).to.equal("(number | null)");
@@ -563,8 +552,7 @@ describe("typeHelpers", () => {
     describe("byte-array type", () => {
       it("should build type for byte-array", () => {
         const type: Type = {
-          type: "byte-array",
-          nullable: false
+          type: "byte-array"
         };
         const result = buildType("ClientByteArray", type);
         expect(result.type).to.equal("Uint8Array");
@@ -573,7 +561,7 @@ describe("typeHelpers", () => {
       it("should build type for nullable byte-array", () => {
         const type: Type = {
           type: "byte-array",
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = buildType("ClientByteArray", type);
         expect(result.type).to.equal("(Uint8Array | null)");
@@ -586,8 +574,7 @@ describe("typeHelpers", () => {
           type: "list",
           elementType: {
             type: "integer"
-          },
-          nullable: false
+          }
         };
         const result = buildType("ClientList", type);
         expect(result.type).to.equal("number[]");
@@ -599,7 +586,7 @@ describe("typeHelpers", () => {
           elementType: {
             type: "integer"
           },
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = buildType("ClientList", type);
         expect(result.type).to.equal("(number[] | null)");
@@ -610,9 +597,8 @@ describe("typeHelpers", () => {
           type: "list",
           elementType: {
             type: "integer",
-            nullable: true
-          },
-          nullable: false
+            tcgcType: { kind: "nullable" } as any
+          }
         };
         const result = buildType("ClientList", type);
         expect(result.type).to.equal("(number | null)[]");
@@ -623,9 +609,9 @@ describe("typeHelpers", () => {
           type: "list",
           elementType: {
             type: "integer",
-            nullable: true
+            tcgcType: { kind: "nullable" } as any
           },
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = buildType("ClientList", type);
         expect(result.type).to.equal("((number | null)[] | null)");
@@ -636,8 +622,7 @@ describe("typeHelpers", () => {
       it("should build type for model with name", () => {
         const type: Type = {
           type: "model",
-          name: "SomeModel",
-          nullable: false
+          name: "SomeModel"
         };
         const result = buildType("ClientModel", type);
         expect(result.type).to.equal("SomeModel");
@@ -647,7 +632,7 @@ describe("typeHelpers", () => {
         const type: Type = {
           type: "model",
           name: "SomeModel",
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = buildType("ClientModel", type);
         expect(result.type).to.equal("(SomeModel | null)");
@@ -657,8 +642,7 @@ describe("typeHelpers", () => {
     describe("string type", () => {
       it("should build type for string", () => {
         const type: Type = {
-          type: "string",
-          nullable: false
+          type: "string"
         };
         const result = buildType("ClientString", type);
         expect(result.type).to.equal("string");
@@ -667,7 +651,7 @@ describe("typeHelpers", () => {
       it("should build type for nullable string", () => {
         const type: Type = {
           type: "string",
-          nullable: true
+          tcgcType: { kind: "nullable" } as any
         };
         const result = buildType("ClientString", type);
         expect(result.type).to.equal("(string | null)");
@@ -685,8 +669,7 @@ describe("typeHelpers", () => {
             {
               type: "integer"
             }
-          ],
-          nullable: false
+          ]
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
@@ -715,8 +698,7 @@ describe("typeHelpers", () => {
                 valueType: { type: "string" }
               }
             ]
-          },
-          nullable: false
+          }
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
@@ -735,8 +717,7 @@ describe("typeHelpers", () => {
               type: "constant",
               value: `"str2"`
             }
-          ],
-          nullable: false
+          ]
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
@@ -749,13 +730,12 @@ describe("typeHelpers", () => {
           types: [
             {
               type: "string",
-              nullable: true
+              tcgcType: { kind: "nullable" } as any
             },
             {
               type: "integer"
             }
-          ],
-          nullable: false
+          ]
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
@@ -768,14 +748,13 @@ describe("typeHelpers", () => {
           types: [
             {
               type: "string",
-              nullable: true
+              tcgcType: { kind: "nullable" } as any
             },
             {
               type: "integer",
-              nullable: true
+              tcgcType: { kind: "nullable" } as any
             }
-          ],
-          nullable: false
+          ]
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
@@ -800,7 +779,7 @@ describe("typeHelpers", () => {
           type: "dict",
           elementType: {
             type: "integer",
-            nullable: true
+            tcgcType: { kind: "nullable" } as any
           }
         };
         const result = buildType("ClientDictInt", type);

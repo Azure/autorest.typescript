@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { InnerModel } from "../../models/models.js";
+import { innerModelSerializer, InnerModel } from "../../models/models.js";
 import {
   ArrayContext as Client,
   ModelValueGet200Response,
@@ -62,10 +62,7 @@ export function _modelValuePutSend(
         children:
           p["children"] === undefined
             ? p["children"]
-            : p["children"].map((p) => ({
-                property: p["property"],
-                children: !p.children ? undefined : p.children,
-              })),
+            : p["children"].map(innerModelSerializer),
       };
     }),
   });

@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  User as UserRest,
+  UserOrder as UserOrderRest,
+  ListItemInputBody as ListItemInputBodyRest,
+} from "../rest/index.js";
+
 /** Details about a user. */
 export interface User {
   /** The user's id. */
@@ -13,6 +19,16 @@ export interface User {
   readonly etag: string;
 }
 
+export function userSerializer(item: User): UserRest {
+  return {
+    name: item["name"],
+    orders:
+      item["orders"] === undefined
+        ? item["orders"]
+        : item["orders"].map(userOrderSerializer),
+  };
+}
+
 /** UserOrder for testing list with expand. */
 export interface UserOrder {
   /** The user's id. */
@@ -23,10 +39,25 @@ export interface UserOrder {
   detail: string;
 }
 
+export function userOrderSerializer(item: UserOrder): UserOrderRest {
+  return {
+    userId: item["userId"],
+    detail: item["detail"],
+  };
+}
+
 /** The body of the input. */
 export interface ListItemInputBody {
   /** The name of the input. */
   inputName: string;
+}
+
+export function listItemInputBodySerializer(
+  item: ListItemInputBody,
+): ListItemInputBodyRest {
+  return {
+    inputName: item["inputName"],
+  };
 }
 
 /** An extensible enum input parameter. */
@@ -53,14 +84,6 @@ export interface SecondItem {
 
 /** The version of the API. */
 export type Versions = "2022-12-01-preview";
-
-/** Paged collection of User items */
-export interface PagedUser {
-  /** The User items on this page */
-  value: User[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
 
 /** Paged collection of User items */
 export interface PagedUser {

@@ -1,6 +1,97 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import { uint8ArrayToString } from "@azure/core-util";
+import {
+  BatchNodeUserCreateOptions as BatchNodeUserCreateOptionsRest,
+  BatchNodeUserUpdateOptions as BatchNodeUserUpdateOptionsRest,
+  StartTask as StartTaskRest,
+  TaskContainerSettings as TaskContainerSettingsRest,
+  ContainerRegistry as ContainerRegistryRest,
+  BatchNodeIdentityReference as BatchNodeIdentityReferenceRest,
+  ResourceFile as ResourceFileRest,
+  EnvironmentSetting as EnvironmentSettingRest,
+  UserIdentity as UserIdentityRest,
+  AutoUserSpecification as AutoUserSpecificationRest,
+  CertificateReference as CertificateReferenceRest,
+  ImageReference as ImageReferenceRest,
+  NodeRebootOptions as NodeRebootOptionsRest,
+  NodeReimageOptions as NodeReimageOptionsRest,
+  NodeDisableSchedulingOptions as NodeDisableSchedulingOptionsRest,
+  UploadBatchServiceLogsOptions as UploadBatchServiceLogsOptionsRest,
+  VMExtension as VMExtensionRest,
+  BatchTaskCreateOptions as BatchTaskCreateOptionsRest,
+  ExitConditions as ExitConditionsRest,
+  ExitCodeMapping as ExitCodeMappingRest,
+  ExitOptions as ExitOptionsRest,
+  ExitCodeRangeMapping as ExitCodeRangeMappingRest,
+  OutputFile as OutputFileRest,
+  OutputFileDestination as OutputFileDestinationRest,
+  OutputFileBlobContainerDestination as OutputFileBlobContainerDestinationRest,
+  HttpHeader as HttpHeaderRest,
+  OutputFileUploadOptions as OutputFileUploadOptionsRest,
+  AffinityInformation as AffinityInformationRest,
+  TaskConstraints as TaskConstraintsRest,
+  MultiInstanceSettings as MultiInstanceSettingsRest,
+  TaskDependencies as TaskDependenciesRest,
+  TaskIdRange as TaskIdRangeRest,
+  ApplicationPackageReference as ApplicationPackageReferenceRest,
+  AuthenticationTokenSettings as AuthenticationTokenSettingsRest,
+  BatchTask as BatchTaskRest,
+  BatchTaskCollection as BatchTaskCollectionRest,
+  BatchJobSchedule as BatchJobScheduleRest,
+  Schedule as ScheduleRest,
+  JobSpecification as JobSpecificationRest,
+  JobNetworkConfiguration as JobNetworkConfigurationRest,
+  JobConstraints as JobConstraintsRest,
+  JobManagerTask as JobManagerTaskRest,
+  JobPreparationTask as JobPreparationTaskRest,
+  JobReleaseTask as JobReleaseTaskRest,
+  PoolInformation as PoolInformationRest,
+  AutoPoolSpecification as AutoPoolSpecificationRest,
+  PoolSpecification as PoolSpecificationRest,
+  CloudServiceConfiguration as CloudServiceConfigurationRest,
+  VirtualMachineConfiguration as VirtualMachineConfigurationRest,
+  WindowsConfiguration as WindowsConfigurationRest,
+  DataDisk as DataDiskRest,
+  ContainerConfiguration as ContainerConfigurationRest,
+  DiskEncryptionConfiguration as DiskEncryptionConfigurationRest,
+  NodePlacementConfiguration as NodePlacementConfigurationRest,
+  OSDisk as OSDiskRest,
+  DiffDiskSettings as DiffDiskSettingsRest,
+  TaskSchedulingPolicy as TaskSchedulingPolicyRest,
+  NetworkConfiguration as NetworkConfigurationRest,
+  PoolEndpointConfiguration as PoolEndpointConfigurationRest,
+  InboundNATPool as InboundNATPoolRest,
+  NetworkSecurityGroupRule as NetworkSecurityGroupRuleRest,
+  PublicIPAddressConfiguration as PublicIPAddressConfigurationRest,
+  UserAccount as UserAccountRest,
+  LinuxUserConfiguration as LinuxUserConfigurationRest,
+  WindowsUserConfiguration as WindowsUserConfigurationRest,
+  MetadataItem as MetadataItemRest,
+  MountConfiguration as MountConfigurationRest,
+  AzureBlobFileSystemConfiguration as AzureBlobFileSystemConfigurationRest,
+  NFSMountConfiguration as NFSMountConfigurationRest,
+  CifsMountConfiguration as CifsMountConfigurationRest,
+  AzureFileShareConfiguration as AzureFileShareConfigurationRest,
+  BatchJobScheduleUpdateOptions as BatchJobScheduleUpdateOptionsRest,
+  BatchJobScheduleCreateOptions as BatchJobScheduleCreateOptionsRest,
+  BatchCertificate as BatchCertificateRest,
+  BatchJob as BatchJobRest,
+  BatchJobUpdateOptions as BatchJobUpdateOptionsRest,
+  BatchJobDisableOptions as BatchJobDisableOptionsRest,
+  BatchJobTerminateOptions as BatchJobTerminateOptionsRest,
+  BatchJobCreateOptions as BatchJobCreateOptionsRest,
+  BatchPoolCreateOptions as BatchPoolCreateOptionsRest,
+  BatchPoolUpdateOptions as BatchPoolUpdateOptionsRest,
+  BatchPoolEnableAutoScaleOptions as BatchPoolEnableAutoScaleOptionsRest,
+  BatchPoolEvaluateAutoScaleOptions as BatchPoolEvaluateAutoScaleOptionsRest,
+  BatchPoolResizeOptions as BatchPoolResizeOptionsRest,
+  BatchPoolReplaceOptions as BatchPoolReplaceOptionsRest,
+  NodeRemoveOptions as NodeRemoveOptionsRest,
+} from "../rest/index.js";
+
 /** Options for creating a user account for RDP or SSH access on an Azure Batch Compute Node. */
 export interface BatchNodeUserCreateOptions {
   /** The user name of the Account. */
@@ -13,6 +104,18 @@ export interface BatchNodeUserCreateOptions {
   password?: string;
   /** The SSH public key that can be used for remote login to the Compute Node. The public key should be compatible with OpenSSH encoding and should be base 64 encoded. This property can be specified only for Linux Compute Nodes. If this is specified for a Windows Compute Node, then the Batch service rejects the request; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
   sshPublicKey?: string;
+}
+
+export function batchNodeUserCreateOptionsSerializer(
+  item: BatchNodeUserCreateOptions,
+): BatchNodeUserCreateOptionsRest {
+  return {
+    name: item["name"],
+    isAdmin: item["isAdmin"],
+    expiryTime: item["expiryTime"]?.toISOString(),
+    password: item["password"],
+    sshPublicKey: item["sshPublicKey"],
+  };
 }
 
 /** An error response received from the Azure Batch service. */
@@ -49,6 +152,16 @@ export interface BatchNodeUserUpdateOptions {
   expiryTime?: Date;
   /** The SSH public key that can be used for remote login to the Compute Node. The public key should be compatible with OpenSSH encoding and should be base 64 encoded. This property can be specified only for Linux Compute Nodes. If this is specified for a Windows Compute Node, then the Batch service rejects the request; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). If omitted, any existing SSH public key is removed. */
   sshPublicKey?: string;
+}
+
+export function batchNodeUserUpdateOptionsSerializer(
+  item: BatchNodeUserUpdateOptions,
+): BatchNodeUserUpdateOptionsRest {
+  return {
+    password: item["password"],
+    expiryTime: item["expiryTime"]?.toISOString(),
+    sshPublicKey: item["sshPublicKey"],
+  };
 }
 
 /** A Compute Node in the Batch service. */
@@ -235,6 +348,28 @@ export interface StartTask {
   waitForSuccess?: boolean;
 }
 
+export function startTaskSerializer(item: StartTask): StartTaskRest {
+  return {
+    commandLine: item["commandLine"],
+    containerSettings: !item.containerSettings
+      ? item.containerSettings
+      : taskContainerSettingsSerializer(item.containerSettings),
+    resourceFiles:
+      item["resourceFiles"] === undefined
+        ? item["resourceFiles"]
+        : item["resourceFiles"].map(resourceFileSerializer),
+    environmentSettings:
+      item["environmentSettings"] === undefined
+        ? item["environmentSettings"]
+        : item["environmentSettings"].map(environmentSettingSerializer),
+    userIdentity: !item.userIdentity
+      ? item.userIdentity
+      : userIdentitySerializer(item.userIdentity),
+    maxTaskRetryCount: item["maxTaskRetryCount"],
+    waitForSuccess: item["waitForSuccess"],
+  };
+}
+
 /** The container settings for a Task. */
 export interface TaskContainerSettings {
   /** Additional options to the container create command. These additional options are supplied as arguments to the "docker create" command, in addition to those controlled by the Batch Service. */
@@ -245,6 +380,19 @@ export interface TaskContainerSettings {
   registry?: ContainerRegistry;
   /** The location of the container Task working directory. The default is 'taskWorkingDirectory'. */
   workingDirectory?: ContainerWorkingDirectory;
+}
+
+export function taskContainerSettingsSerializer(
+  item: TaskContainerSettings,
+): TaskContainerSettingsRest {
+  return {
+    containerRunOptions: item["containerRunOptions"],
+    imageName: item["imageName"],
+    registry: !item.registry
+      ? item.registry
+      : containerRegistrySerializer(item.registry),
+    workingDirectory: item["workingDirectory"],
+  };
 }
 
 /** A private container registry. */
@@ -259,6 +407,19 @@ export interface ContainerRegistry {
   identityReference?: BatchNodeIdentityReference;
 }
 
+export function containerRegistrySerializer(
+  item: ContainerRegistry,
+): ContainerRegistryRest {
+  return {
+    username: item["username"],
+    password: item["password"],
+    registryServer: item["registryServer"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+  };
+}
+
 /**
  * The reference to a user assigned identity associated with the Batch pool which
  * a compute node will use.
@@ -266,6 +427,14 @@ export interface ContainerRegistry {
 export interface BatchNodeIdentityReference {
   /** The ARM resource id of the user assigned identity. */
   resourceId?: string;
+}
+
+export function batchNodeIdentityReferenceSerializer(
+  item: BatchNodeIdentityReference,
+): BatchNodeIdentityReferenceRest {
+  return {
+    resourceId: item["resourceId"],
+  };
 }
 
 /** ContainerWorkingDirectory enums */
@@ -291,12 +460,35 @@ export interface ResourceFile {
   identityReference?: BatchNodeIdentityReference;
 }
 
+export function resourceFileSerializer(item: ResourceFile): ResourceFileRest {
+  return {
+    autoStorageContainerName: item["autoStorageContainerName"],
+    storageContainerUrl: item["storageContainerUrl"],
+    httpUrl: item["httpUrl"],
+    blobPrefix: item["blobPrefix"],
+    filePath: item["filePath"],
+    fileMode: item["fileMode"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+  };
+}
+
 /** An environment variable to be set on a Task process. */
 export interface EnvironmentSetting {
   /** The name of the environment variable. */
   name: string;
   /** The value of the environment variable. */
   value?: string;
+}
+
+export function environmentSettingSerializer(
+  item: EnvironmentSetting,
+): EnvironmentSettingRest {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
 }
 
 /** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
@@ -307,12 +499,30 @@ export interface UserIdentity {
   autoUser?: AutoUserSpecification;
 }
 
+export function userIdentitySerializer(item: UserIdentity): UserIdentityRest {
+  return {
+    username: item["username"],
+    autoUser: !item.autoUser
+      ? item.autoUser
+      : autoUserSpecificationSerializer(item.autoUser),
+  };
+}
+
 /** Specifies the options for the auto user that runs an Azure Batch Task. */
 export interface AutoUserSpecification {
   /** The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks. */
   scope?: AutoUserScope;
   /** The elevation level of the auto user. The default value is nonAdmin. */
   elevationLevel?: ElevationLevel;
+}
+
+export function autoUserSpecificationSerializer(
+  item: AutoUserSpecification,
+): AutoUserSpecificationRest {
+  return {
+    scope: item["scope"],
+    elevationLevel: item["elevationLevel"],
+  };
 }
 
 /** AutoUserScope enums */
@@ -357,6 +567,18 @@ export interface CertificateReference {
   storeName?: string;
   /** Which user Accounts on the Compute Node should have access to the private data of the Certificate. You can specify more than one visibility in this collection. The default is all Accounts. */
   visibility?: CertificateVisibility[];
+}
+
+export function certificateReferenceSerializer(
+  item: CertificateReference,
+): CertificateReferenceRest {
+  return {
+    thumbprint: item["thumbprint"],
+    thumbprintAlgorithm: item["thumbprintAlgorithm"],
+    storeLocation: item["storeLocation"],
+    storeName: item["storeName"],
+    visibility: item["visibility"],
+  };
 }
 
 /** CertificateStoreLocation enums */
@@ -436,10 +658,30 @@ export interface ImageReference {
   readonly exactVersion?: string;
 }
 
+export function imageReferenceSerializer(
+  item: ImageReference,
+): ImageReferenceRest {
+  return {
+    publisher: item["publisher"],
+    offer: item["offer"],
+    sku: item["sku"],
+    version: item["version"],
+    virtualMachineImageId: item["virtualMachineImageId"],
+  };
+}
+
 /** Options for rebooting an Azure Batch Compute Node. */
 export interface NodeRebootOptions {
   /** When to reboot the Compute Node and what to do with currently running Tasks. The default value is requeue. */
   nodeRebootOption?: BatchNodeRebootOption;
+}
+
+export function nodeRebootOptionsSerializer(
+  item: NodeRebootOptions,
+): NodeRebootOptionsRest {
+  return {
+    nodeRebootOption: item["nodeRebootOption"],
+  };
 }
 
 /** BatchNodeRebootOption enums */
@@ -455,6 +697,14 @@ export interface NodeReimageOptions {
   nodeReimageOption?: BatchNodeReimageOption;
 }
 
+export function nodeReimageOptionsSerializer(
+  item: NodeReimageOptions,
+): NodeReimageOptionsRest {
+  return {
+    nodeReimageOption: item["nodeReimageOption"],
+  };
+}
+
 /** BatchNodeReimageOption enums */
 export type BatchNodeReimageOption =
   | "requeue"
@@ -466,6 +716,14 @@ export type BatchNodeReimageOption =
 export interface NodeDisableSchedulingOptions {
   /** What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue. */
   nodeDisableSchedulingOption?: DisableBatchNodeSchedulingOption;
+}
+
+export function nodeDisableSchedulingOptionsSerializer(
+  item: NodeDisableSchedulingOptions,
+): NodeDisableSchedulingOptionsRest {
+  return {
+    nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"],
+  };
 }
 
 /** DisableBatchNodeSchedulingOption enums */
@@ -492,6 +750,19 @@ export interface UploadBatchServiceLogsOptions {
   endTime?: Date;
   /** The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. */
   identityReference?: BatchNodeIdentityReference;
+}
+
+export function uploadBatchServiceLogsOptionsSerializer(
+  item: UploadBatchServiceLogsOptions,
+): UploadBatchServiceLogsOptionsRest {
+  return {
+    containerUrl: item["containerUrl"],
+    startTime: item["startTime"].toISOString(),
+    endTime: item["endTime"]?.toISOString(),
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+  };
 }
 
 /** The result of uploading Batch service log files from a specific Compute Node. */
@@ -540,6 +811,24 @@ export interface VMExtension {
   protectedSettings?: Record<string, string>;
   /** The collection of extension names. Collection of extension names after which this extension needs to be provisioned. */
   provisionAfterExtensions?: string[];
+}
+
+export function vMExtensionSerializer(item: VMExtension): VMExtensionRest {
+  return {
+    name: item["name"],
+    publisher: item["publisher"],
+    type: item["type"],
+    typeHandlerVersion: item["typeHandlerVersion"],
+    autoUpgradeMinorVersion: item["autoUpgradeMinorVersion"],
+    enableAutomaticUpgrade: item["enableAutomaticUpgrade"],
+    settings: !item.settings
+      ? item.settings
+      : (serializeRecord(item.settings as any) as any),
+    protectedSettings: !item.protectedSettings
+      ? item.protectedSettings
+      : (serializeRecord(item.protectedSettings as any) as any),
+    provisionAfterExtensions: item["provisionAfterExtensions"],
+  };
 }
 
 /** The vm extension instance view. */
@@ -650,6 +939,59 @@ export interface BatchTaskCreateOptions {
   authenticationTokenSettings?: AuthenticationTokenSettings;
 }
 
+export function batchTaskCreateOptionsSerializer(
+  item: BatchTaskCreateOptions,
+): BatchTaskCreateOptionsRest {
+  return {
+    id: item["id"],
+    displayName: item["displayName"],
+    exitConditions: !item.exitConditions
+      ? item.exitConditions
+      : exitConditionsSerializer(item.exitConditions),
+    commandLine: item["commandLine"],
+    containerSettings: !item.containerSettings
+      ? item.containerSettings
+      : taskContainerSettingsSerializer(item.containerSettings),
+    resourceFiles:
+      item["resourceFiles"] === undefined
+        ? item["resourceFiles"]
+        : item["resourceFiles"].map(resourceFileSerializer),
+    outputFiles:
+      item["outputFiles"] === undefined
+        ? item["outputFiles"]
+        : item["outputFiles"].map(outputFileSerializer),
+    environmentSettings:
+      item["environmentSettings"] === undefined
+        ? item["environmentSettings"]
+        : item["environmentSettings"].map(environmentSettingSerializer),
+    affinityInfo: !item.affinityInfo
+      ? item.affinityInfo
+      : affinityInformationSerializer(item.affinityInfo),
+    constraints: !item.constraints
+      ? item.constraints
+      : taskConstraintsSerializer(item.constraints),
+    requiredSlots: item["requiredSlots"],
+    userIdentity: !item.userIdentity
+      ? item.userIdentity
+      : userIdentitySerializer(item.userIdentity),
+    multiInstanceSettings: !item.multiInstanceSettings
+      ? item.multiInstanceSettings
+      : multiInstanceSettingsSerializer(item.multiInstanceSettings),
+    dependsOn: !item.dependsOn
+      ? item.dependsOn
+      : taskDependenciesSerializer(item.dependsOn),
+    applicationPackageReferences:
+      item["applicationPackageReferences"] === undefined
+        ? item["applicationPackageReferences"]
+        : item["applicationPackageReferences"].map(
+            applicationPackageReferenceSerializer,
+          ),
+    authenticationTokenSettings: !item.authenticationTokenSettings
+      ? item.authenticationTokenSettings
+      : authenticationTokenSettingsSerializer(item.authenticationTokenSettings),
+  };
+}
+
 /** Specifies how the Batch service should respond when the Task completes. */
 export interface ExitConditions {
   /** A list of individual Task exit codes and how the Batch service should respond to them. */
@@ -664,6 +1006,28 @@ export interface ExitConditions {
   default?: ExitOptions;
 }
 
+export function exitConditionsSerializer(
+  item: ExitConditions,
+): ExitConditionsRest {
+  return {
+    exitCodes:
+      item["exitCodes"] === undefined
+        ? item["exitCodes"]
+        : item["exitCodes"].map(exitCodeMappingSerializer),
+    exitCodeRanges:
+      item["exitCodeRanges"] === undefined
+        ? item["exitCodeRanges"]
+        : item["exitCodeRanges"].map(exitCodeRangeMappingSerializer),
+    preProcessingError: !item.preProcessingError
+      ? item.preProcessingError
+      : exitOptionsSerializer(item.preProcessingError),
+    fileUploadError: !item.fileUploadError
+      ? item.fileUploadError
+      : exitOptionsSerializer(item.fileUploadError),
+    default: !item.default ? item.default : exitOptionsSerializer(item.default),
+  };
+}
+
 /**
  * How the Batch service should respond if a Task exits with a particular exit
  * code.
@@ -675,12 +1039,28 @@ export interface ExitCodeMapping {
   exitOptions: ExitOptions;
 }
 
+export function exitCodeMappingSerializer(
+  item: ExitCodeMapping,
+): ExitCodeMappingRest {
+  return {
+    code: item["code"],
+    exitOptions: exitOptionsSerializer(item.exitOptions),
+  };
+}
+
 /** Specifies how the Batch service responds to a particular exit condition. */
 export interface ExitOptions {
   /** An action to take on the Job containing the Task, if the Task completes with the given exit condition and the Job's onTaskFailed property is 'performExitOptionsJobAction'. The default is none for exit code 0 and terminate for all other exit conditions. If the Job's onTaskFailed property is noaction, then specifying this property returns an error and the add Task request fails with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
   jobAction?: JobAction;
   /** An action that the Batch service performs on Tasks that depend on this Task. Possible values are 'satisfy' (allowing dependent tasks to progress) and 'block' (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks. */
   dependencyAction?: DependencyAction;
+}
+
+export function exitOptionsSerializer(item: ExitOptions): ExitOptionsRest {
+  return {
+    jobAction: item["jobAction"],
+    dependencyAction: item["dependencyAction"],
+  };
 }
 
 /** JobAction enums */
@@ -701,6 +1081,16 @@ export interface ExitCodeRangeMapping {
   exitOptions: ExitOptions;
 }
 
+export function exitCodeRangeMappingSerializer(
+  item: ExitCodeRangeMapping,
+): ExitCodeRangeMappingRest {
+  return {
+    start: item["start"],
+    end: item["end"],
+    exitOptions: exitOptionsSerializer(item.exitOptions),
+  };
+}
+
 /** On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. */
 export interface OutputFile {
   /** A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. */
@@ -711,10 +1101,28 @@ export interface OutputFile {
   uploadOptions: OutputFileUploadOptions;
 }
 
+export function outputFileSerializer(item: OutputFile): OutputFileRest {
+  return {
+    filePattern: item["filePattern"],
+    destination: outputFileDestinationSerializer(item.destination),
+    uploadOptions: outputFileUploadOptionsSerializer(item.uploadOptions),
+  };
+}
+
 /** The destination to which a file should be uploaded. */
 export interface OutputFileDestination {
   /** A location in Azure blob storage to which files are uploaded. */
   container?: OutputFileBlobContainerDestination;
+}
+
+export function outputFileDestinationSerializer(
+  item: OutputFileDestination,
+): OutputFileDestinationRest {
+  return {
+    container: !item.container
+      ? item.container
+      : outputFileBlobContainerDestinationSerializer(item.container),
+  };
 }
 
 /** Specifies a file upload destination within an Azure blob storage container. */
@@ -729,12 +1137,35 @@ export interface OutputFileBlobContainerDestination {
   uploadHeaders?: HttpHeader[];
 }
 
+export function outputFileBlobContainerDestinationSerializer(
+  item: OutputFileBlobContainerDestination,
+): OutputFileBlobContainerDestinationRest {
+  return {
+    path: item["path"],
+    containerUrl: item["containerUrl"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+    uploadHeaders:
+      item["uploadHeaders"] === undefined
+        ? item["uploadHeaders"]
+        : item["uploadHeaders"].map(httpHeaderSerializer),
+  };
+}
+
 /** An HTTP header name-value pair */
 export interface HttpHeader {
   /** The case-insensitive name of the header to be used while uploading output files. */
   name: string;
   /** The value of the header to be used while uploading output files. */
   value?: string;
+}
+
+export function httpHeaderSerializer(item: HttpHeader): HttpHeaderRest {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
 }
 
 /**
@@ -744,6 +1175,14 @@ export interface HttpHeader {
 export interface OutputFileUploadOptions {
   /** The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. */
   uploadCondition: OutputFileUploadCondition;
+}
+
+export function outputFileUploadOptionsSerializer(
+  item: OutputFileUploadOptions,
+): OutputFileUploadOptionsRest {
+  return {
+    uploadCondition: item["uploadCondition"],
+  };
 }
 
 /** OutputFileUploadCondition enums */
@@ -761,6 +1200,14 @@ export interface AffinityInformation {
   affinityId: string;
 }
 
+export function affinityInformationSerializer(
+  item: AffinityInformation,
+): AffinityInformationRest {
+  return {
+    affinityId: item["affinityId"],
+  };
+}
+
 /** Execution constraints to apply to a Task. */
 export interface TaskConstraints {
   /** The maximum elapsed time that the Task may run, measured from the time the Task starts. If the Task does not complete within the time limit, the Batch service terminates it. If this is not specified, there is no time limit on how long the Task may run. */
@@ -769,6 +1216,16 @@ export interface TaskConstraints {
   retentionTime?: string;
   /** The maximum number of times the Task may be retried. The Batch service retries a Task if its exit code is nonzero. Note that this value specifically controls the number of retries for the Task executable due to a nonzero exit code. The Batch service will try the Task once, and may then retry up to this limit. For example, if the maximum retry count is 3, Batch tries the Task up to 4 times (one initial try and 3 retries). If the maximum retry count is 0, the Batch service does not retry the Task after the first attempt. If the maximum retry count is -1, the Batch service retries the Task without limit, however this is not recommended for a start task or any task. The default value is 0 (no retries). */
   maxTaskRetryCount?: number;
+}
+
+export function taskConstraintsSerializer(
+  item: TaskConstraints,
+): TaskConstraintsRest {
+  return {
+    maxWallClockTime: item["maxWallClockTime"],
+    retentionTime: item["retentionTime"],
+    maxTaskRetryCount: item["maxTaskRetryCount"],
+  };
 }
 
 /**
@@ -786,6 +1243,19 @@ export interface MultiInstanceSettings {
   commonResourceFiles?: ResourceFile[];
 }
 
+export function multiInstanceSettingsSerializer(
+  item: MultiInstanceSettings,
+): MultiInstanceSettingsRest {
+  return {
+    numberOfInstances: item["numberOfInstances"],
+    coordinationCommandLine: item["coordinationCommandLine"],
+    commonResourceFiles:
+      item["commonResourceFiles"] === undefined
+        ? item["commonResourceFiles"]
+        : item["commonResourceFiles"].map(resourceFileSerializer),
+  };
+}
+
 /**
  * Specifies any dependencies of a Task. Any Task that is explicitly specified or
  * within a dependency range must complete before the dependant Task will be
@@ -796,6 +1266,18 @@ export interface TaskDependencies {
   taskIds?: string[];
   /** The list of Task ID ranges that this Task depends on. All Tasks in all ranges must complete successfully before the dependent Task can be scheduled. */
   taskIdRanges?: TaskIdRange[];
+}
+
+export function taskDependenciesSerializer(
+  item: TaskDependencies,
+): TaskDependenciesRest {
+  return {
+    taskIds: item["taskIds"],
+    taskIdRanges:
+      item["taskIdRanges"] === undefined
+        ? item["taskIdRanges"]
+        : item["taskIdRanges"].map(taskIdRangeSerializer),
+  };
 }
 
 /**
@@ -809,12 +1291,28 @@ export interface TaskIdRange {
   end: number;
 }
 
+export function taskIdRangeSerializer(item: TaskIdRange): TaskIdRangeRest {
+  return {
+    start: item["start"],
+    end: item["end"],
+  };
+}
+
 /** A reference to an Package to be deployed to Compute Nodes. */
 export interface ApplicationPackageReference {
   /** The ID of the application to deploy. When creating a pool, the package's application ID must be fully qualified (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}). */
   applicationId: string;
   /** The version of the application to deploy. If omitted, the default version is deployed. If this is omitted on a Pool, and no default version is specified for this application, the request fails with the error code InvalidApplicationPackageReferences and HTTP status code 409. If this is omitted on a Task, and no default version is specified for this application, the Task fails with a pre-processing error. */
   version?: string;
+}
+
+export function applicationPackageReferenceSerializer(
+  item: ApplicationPackageReference,
+): ApplicationPackageReferenceRest {
+  return {
+    applicationId: item["applicationId"],
+    version: item["version"],
+  };
 }
 
 /**
@@ -824,6 +1322,14 @@ export interface ApplicationPackageReference {
 export interface AuthenticationTokenSettings {
   /** The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. */
   access?: AccessScope[];
+}
+
+export function authenticationTokenSettingsSerializer(
+  item: AuthenticationTokenSettings,
+): AuthenticationTokenSettingsRest {
+  return {
+    access: item["access"],
+  };
 }
 
 /** AccessScope enums */
@@ -905,6 +1411,14 @@ export interface BatchTask {
   readonly authenticationTokenSettings?: AuthenticationTokenSettings;
 }
 
+export function batchTaskSerializer(item: BatchTask): BatchTaskRest {
+  return {
+    constraints: !item.constraints
+      ? item.constraints
+      : taskConstraintsSerializer(item.constraints),
+  };
+}
+
 /** Information about the Compute Node on which a Task ran. */
 export interface BatchNodeInformation {
   /** An identifier for the Node on which the Task ran, which can be passed when adding a Task to request that the Task be scheduled on this Compute Node. */
@@ -951,6 +1465,14 @@ export interface TaskStatistics {
 export interface BatchTaskCollection {
   /** The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. */
   value: BatchTaskCreateOptions[];
+}
+
+export function batchTaskCollectionSerializer(
+  item: BatchTaskCollection,
+): BatchTaskCollectionRest {
+  return {
+    value: item["value"].map(batchTaskCreateOptionsSerializer),
+  };
 }
 
 /** The result of adding a collection of Tasks to a Job. */
@@ -1052,6 +1574,19 @@ export interface BatchJobSchedule {
   readonly stats?: JobScheduleStatistics;
 }
 
+export function batchJobScheduleSerializer(
+  item: BatchJobSchedule,
+): BatchJobScheduleRest {
+  return {
+    schedule: scheduleSerializer(item.schedule),
+    jobSpecification: jobSpecificationSerializer(item.jobSpecification),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+  };
+}
+
 /** JobScheduleState enums */
 export type JobScheduleState =
   | "active"
@@ -1073,6 +1608,15 @@ export interface Schedule {
   startWindow?: string;
   /** The time interval between the start times of two successive Jobs under the Job Schedule. A Job Schedule can have at most one active Job under it at any given time. Because a Job Schedule can have at most one active Job under it at any given time, if it is time to create a new Job under a Job Schedule, but the previous Job is still running, the Batch service will not create the new Job until the previous Job finishes. If the previous Job does not finish within the startWindow period of the new recurrenceInterval, then no new Job will be scheduled for that interval. For recurring Jobs, you should normally specify a jobManagerTask in the jobSpecification. If you do not use jobManagerTask, you will need an external process to monitor when Jobs are created, add Tasks to the Jobs and terminate the Jobs ready for the next recurrence. The default is that the schedule does not recur: one Job is created, within the startWindow after the doNotRunUntil time, and the schedule is complete as soon as that Job finishes. The minimum value is 1 minute. If you specify a lower value, the Batch service rejects the schedule with an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
   recurrenceInterval?: string;
+}
+
+export function scheduleSerializer(item: Schedule): ScheduleRest {
+  return {
+    doNotRunUntil: item["doNotRunUntil"]?.toISOString(),
+    doNotRunAfter: item["doNotRunAfter"]?.toISOString(),
+    startWindow: item["startWindow"],
+    recurrenceInterval: item["recurrenceInterval"],
+  };
 }
 
 /** Specifies details of the Jobs to be created on a schedule. */
@@ -1109,6 +1653,44 @@ export interface JobSpecification {
   metadata?: MetadataItem[];
 }
 
+export function jobSpecificationSerializer(
+  item: JobSpecification,
+): JobSpecificationRest {
+  return {
+    priority: item["priority"],
+    allowTaskPreemption: item["allowTaskPreemption"],
+    maxParallelTasks: item["maxParallelTasks"],
+    displayName: item["displayName"],
+    usesTaskDependencies: item["usesTaskDependencies"],
+    onAllTasksComplete: item["onAllTasksComplete"],
+    onTaskFailure: item["onTaskFailure"],
+    networkConfiguration: !item.networkConfiguration
+      ? item.networkConfiguration
+      : jobNetworkConfigurationSerializer(item.networkConfiguration),
+    constraints: !item.constraints
+      ? item.constraints
+      : jobConstraintsSerializer(item.constraints),
+    jobManagerTask: !item.jobManagerTask
+      ? item.jobManagerTask
+      : jobManagerTaskSerializer(item.jobManagerTask),
+    jobPreparationTask: !item.jobPreparationTask
+      ? item.jobPreparationTask
+      : jobPreparationTaskSerializer(item.jobPreparationTask),
+    jobReleaseTask: !item.jobReleaseTask
+      ? item.jobReleaseTask
+      : jobReleaseTaskSerializer(item.jobReleaseTask),
+    commonEnvironmentSettings:
+      item["commonEnvironmentSettings"] === undefined
+        ? item["commonEnvironmentSettings"]
+        : item["commonEnvironmentSettings"].map(environmentSettingSerializer),
+    poolInfo: poolInformationSerializer(item.poolInfo),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+  };
+}
+
 /** The action the Batch service should take when all Tasks in the Job are in the completed state. */
 export type OnAllTasksComplete = "noaction" | "terminatejob";
 /** OnTaskFailure enums */
@@ -1120,12 +1702,29 @@ export interface JobNetworkConfiguration {
   subnetId: string;
 }
 
+export function jobNetworkConfigurationSerializer(
+  item: JobNetworkConfiguration,
+): JobNetworkConfigurationRest {
+  return {
+    subnetId: item["subnetId"],
+  };
+}
+
 /** The execution constraints for a Job. */
 export interface JobConstraints {
   /** The maximum elapsed time that the Job may run, measured from the time the Job is created. If the Job does not complete within the time limit, the Batch service terminates it and any Tasks that are still running. In this case, the termination reason will be MaxWallClockTimeExpiry. If this property is not specified, there is no time limit on how long the Job may run. */
   maxWallClockTime?: string;
   /** The maximum number of times each Task may be retried. The Batch service retries a Task if its exit code is nonzero. Note that this value specifically controls the number of retries. The Batch service will try each Task once, and may then retry up to this limit. For example, if the maximum retry count is 3, Batch tries a Task up to 4 times (one initial try and 3 retries). If the maximum retry count is 0, the Batch service does not retry Tasks. If the maximum retry count is -1, the Batch service retries Tasks without limit. The default value is 0 (no retries). */
   maxTaskRetryCount?: number;
+}
+
+export function jobConstraintsSerializer(
+  item: JobConstraints,
+): JobConstraintsRest {
+  return {
+    maxWallClockTime: item["maxWallClockTime"],
+    maxTaskRetryCount: item["maxTaskRetryCount"],
+  };
 }
 
 /**
@@ -1195,6 +1794,50 @@ export interface JobManagerTask {
   allowLowPriorityNode?: boolean;
 }
 
+export function jobManagerTaskSerializer(
+  item: JobManagerTask,
+): JobManagerTaskRest {
+  return {
+    id: item["id"],
+    displayName: item["displayName"],
+    commandLine: item["commandLine"],
+    containerSettings: !item.containerSettings
+      ? item.containerSettings
+      : taskContainerSettingsSerializer(item.containerSettings),
+    resourceFiles:
+      item["resourceFiles"] === undefined
+        ? item["resourceFiles"]
+        : item["resourceFiles"].map(resourceFileSerializer),
+    outputFiles:
+      item["outputFiles"] === undefined
+        ? item["outputFiles"]
+        : item["outputFiles"].map(outputFileSerializer),
+    environmentSettings:
+      item["environmentSettings"] === undefined
+        ? item["environmentSettings"]
+        : item["environmentSettings"].map(environmentSettingSerializer),
+    constraints: !item.constraints
+      ? item.constraints
+      : taskConstraintsSerializer(item.constraints),
+    requiredSlots: item["requiredSlots"],
+    killJobOnCompletion: item["killJobOnCompletion"],
+    userIdentity: !item.userIdentity
+      ? item.userIdentity
+      : userIdentitySerializer(item.userIdentity),
+    runExclusive: item["runExclusive"],
+    applicationPackageReferences:
+      item["applicationPackageReferences"] === undefined
+        ? item["applicationPackageReferences"]
+        : item["applicationPackageReferences"].map(
+            applicationPackageReferenceSerializer,
+          ),
+    authenticationTokenSettings: !item.authenticationTokenSettings
+      ? item.authenticationTokenSettings
+      : authenticationTokenSettingsSerializer(item.authenticationTokenSettings),
+    allowLowPriorityNode: item["allowLowPriorityNode"],
+  };
+}
+
 /**
  * A Job Preparation Task to run before any Tasks of the Job on any given Compute Node.
  * You can use Job Preparation to prepare a Node to run Tasks for the Job.
@@ -1244,6 +1887,34 @@ export interface JobPreparationTask {
   rerunOnNodeRebootAfterSuccess?: boolean;
 }
 
+export function jobPreparationTaskSerializer(
+  item: JobPreparationTask,
+): JobPreparationTaskRest {
+  return {
+    id: item["id"],
+    commandLine: item["commandLine"],
+    containerSettings: !item.containerSettings
+      ? item.containerSettings
+      : taskContainerSettingsSerializer(item.containerSettings),
+    resourceFiles:
+      item["resourceFiles"] === undefined
+        ? item["resourceFiles"]
+        : item["resourceFiles"].map(resourceFileSerializer),
+    environmentSettings:
+      item["environmentSettings"] === undefined
+        ? item["environmentSettings"]
+        : item["environmentSettings"].map(environmentSettingSerializer),
+    constraints: !item.constraints
+      ? item.constraints
+      : taskConstraintsSerializer(item.constraints),
+    waitForSuccess: item["waitForSuccess"],
+    userIdentity: !item.userIdentity
+      ? item.userIdentity
+      : userIdentitySerializer(item.userIdentity),
+    rerunOnNodeRebootAfterSuccess: item["rerunOnNodeRebootAfterSuccess"],
+  };
+}
+
 /**
  * A Job Release Task to run on Job completion on any Compute Node where the Job has run.
  * The Job Release Task runs when the Job ends, because of one of the following:
@@ -1281,12 +1952,48 @@ export interface JobReleaseTask {
   userIdentity?: UserIdentity;
 }
 
+export function jobReleaseTaskSerializer(
+  item: JobReleaseTask,
+): JobReleaseTaskRest {
+  return {
+    id: item["id"],
+    commandLine: item["commandLine"],
+    containerSettings: !item.containerSettings
+      ? item.containerSettings
+      : taskContainerSettingsSerializer(item.containerSettings),
+    resourceFiles:
+      item["resourceFiles"] === undefined
+        ? item["resourceFiles"]
+        : item["resourceFiles"].map(resourceFileSerializer),
+    environmentSettings:
+      item["environmentSettings"] === undefined
+        ? item["environmentSettings"]
+        : item["environmentSettings"].map(environmentSettingSerializer),
+    maxWallClockTime: item["maxWallClockTime"],
+    retentionTime: item["retentionTime"],
+    userIdentity: !item.userIdentity
+      ? item.userIdentity
+      : userIdentitySerializer(item.userIdentity),
+  };
+}
+
 /** Specifies how a Job should be assigned to a Pool. */
 export interface PoolInformation {
   /** The ID of an existing Pool. All the Tasks of the Job will run on the specified Pool. You must ensure that the Pool referenced by this property exists. If the Pool does not exist at the time the Batch service tries to schedule a Job, no Tasks for the Job will run until you create a Pool with that id. Note that the Batch service will not reject the Job request; it will simply not run Tasks until the Pool exists. You must specify either the Pool ID or the auto Pool specification, but not both. */
   poolId?: string;
   /** Characteristics for a temporary 'auto pool'. The Batch service will create this auto Pool when the Job is submitted. If auto Pool creation fails, the Batch service moves the Job to a completed state, and the Pool creation error is set in the Job's scheduling error property. The Batch service manages the lifetime (both creation and, unless keepAlive is specified, deletion) of the auto Pool. Any user actions that affect the lifetime of the auto Pool while the Job is active will result in unexpected behavior. You must specify either the Pool ID or the auto Pool specification, but not both. */
   autoPoolSpecification?: AutoPoolSpecification;
+}
+
+export function poolInformationSerializer(
+  item: PoolInformation,
+): PoolInformationRest {
+  return {
+    poolId: item["poolId"],
+    autoPoolSpecification: !item.autoPoolSpecification
+      ? item.autoPoolSpecification
+      : autoPoolSpecificationSerializer(item.autoPoolSpecification),
+  };
 }
 
 /**
@@ -1302,6 +2009,17 @@ export interface AutoPoolSpecification {
   keepAlive?: boolean;
   /** The Pool specification for the auto Pool. */
   pool?: PoolSpecification;
+}
+
+export function autoPoolSpecificationSerializer(
+  item: AutoPoolSpecification,
+): AutoPoolSpecificationRest {
+  return {
+    autoPoolIdPrefix: item["autoPoolIdPrefix"],
+    poolLifetimeOption: item["poolLifetimeOption"],
+    keepAlive: item["keepAlive"],
+    pool: !item.pool ? item.pool : poolSpecificationSerializer(item.pool),
+  };
 }
 
 /** PoolLifetimeOption enums */
@@ -1359,6 +2077,62 @@ export interface PoolSpecification {
   targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+export function poolSpecificationSerializer(
+  item: PoolSpecification,
+): PoolSpecificationRest {
+  return {
+    displayName: item["displayName"],
+    vmSize: item["vmSize"],
+    cloudServiceConfiguration: !item.cloudServiceConfiguration
+      ? item.cloudServiceConfiguration
+      : cloudServiceConfigurationSerializer(item.cloudServiceConfiguration),
+    virtualMachineConfiguration: !item.virtualMachineConfiguration
+      ? item.virtualMachineConfiguration
+      : virtualMachineConfigurationSerializer(item.virtualMachineConfiguration),
+    taskSlotsPerNode: item["taskSlotsPerNode"],
+    taskSchedulingPolicy: !item.taskSchedulingPolicy
+      ? item.taskSchedulingPolicy
+      : taskSchedulingPolicySerializer(item.taskSchedulingPolicy),
+    resizeTimeout: item["resizeTimeout"],
+    targetDedicatedNodes: item["targetDedicatedNodes"],
+    targetLowPriorityNodes: item["targetLowPriorityNodes"],
+    enableAutoScale: item["enableAutoScale"],
+    autoScaleFormula: item["autoScaleFormula"],
+    autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
+    enableInterNodeCommunication: item["enableInterNodeCommunication"],
+    networkConfiguration: !item.networkConfiguration
+      ? item.networkConfiguration
+      : networkConfigurationSerializer(item.networkConfiguration),
+    startTask: !item.startTask
+      ? item.startTask
+      : startTaskSerializer(item.startTask),
+    certificateReferences:
+      item["certificateReferences"] === undefined
+        ? item["certificateReferences"]
+        : item["certificateReferences"].map(certificateReferenceSerializer),
+    applicationPackageReferences:
+      item["applicationPackageReferences"] === undefined
+        ? item["applicationPackageReferences"]
+        : item["applicationPackageReferences"].map(
+            applicationPackageReferenceSerializer,
+          ),
+    applicationLicenses: item["applicationLicenses"],
+    userAccounts:
+      item["userAccounts"] === undefined
+        ? item["userAccounts"]
+        : item["userAccounts"].map(userAccountSerializer),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+    mountConfiguration:
+      item["mountConfiguration"] === undefined
+        ? item["mountConfiguration"]
+        : item["mountConfiguration"].map(mountConfigurationSerializer),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
+  };
+}
+
 /**
  * The configuration for Compute Nodes in a Pool based on the Azure Cloud Services
  * platform.
@@ -1380,6 +2154,15 @@ export interface CloudServiceConfiguration {
   osFamily: string;
   /** The Azure Guest OS version to be installed on the virtual machines in the Pool. The default value is * which specifies the latest operating system version for the specified OS family. */
   osVersion?: string;
+}
+
+export function cloudServiceConfigurationSerializer(
+  item: CloudServiceConfiguration,
+): CloudServiceConfigurationRest {
+  return {
+    osFamily: item["osFamily"],
+    osVersion: item["osVersion"],
+  };
 }
 
 /**
@@ -1419,10 +2202,49 @@ export interface VirtualMachineConfiguration {
   osDisk?: OSDisk;
 }
 
+export function virtualMachineConfigurationSerializer(
+  item: VirtualMachineConfiguration,
+): VirtualMachineConfigurationRest {
+  return {
+    imageReference: imageReferenceSerializer(item.imageReference),
+    nodeAgentSKUId: item["nodeAgentSkuId"],
+    windowsConfiguration: !item.windowsConfiguration
+      ? item.windowsConfiguration
+      : windowsConfigurationSerializer(item.windowsConfiguration),
+    dataDisks:
+      item["dataDisks"] === undefined
+        ? item["dataDisks"]
+        : item["dataDisks"].map(dataDiskSerializer),
+    licenseType: item["licenseType"],
+    containerConfiguration: !item.containerConfiguration
+      ? item.containerConfiguration
+      : containerConfigurationSerializer(item.containerConfiguration),
+    diskEncryptionConfiguration: !item.diskEncryptionConfiguration
+      ? item.diskEncryptionConfiguration
+      : diskEncryptionConfigurationSerializer(item.diskEncryptionConfiguration),
+    nodePlacementConfiguration: !item.nodePlacementConfiguration
+      ? item.nodePlacementConfiguration
+      : nodePlacementConfigurationSerializer(item.nodePlacementConfiguration),
+    extensions:
+      item["extensions"] === undefined
+        ? item["extensions"]
+        : item["extensions"].map(vMExtensionSerializer),
+    osDisk: !item.osDisk ? item.osDisk : oSDiskSerializer(item.osDisk),
+  };
+}
+
 /** Windows operating system settings to apply to the virtual machine. */
 export interface WindowsConfiguration {
   /** Whether automatic updates are enabled on the virtual machine. If omitted, the default value is true. */
   enableAutomaticUpdates?: boolean;
+}
+
+export function windowsConfigurationSerializer(
+  item: WindowsConfiguration,
+): WindowsConfigurationRest {
+  return {
+    enableAutomaticUpdates: item["enableAutomaticUpdates"],
+  };
 }
 
 /**
@@ -1441,6 +2263,15 @@ export interface DataDisk {
   storageAccountType?: StorageAccountType;
 }
 
+export function dataDiskSerializer(item: DataDisk): DataDiskRest {
+  return {
+    lun: item["lun"],
+    caching: item["caching"],
+    diskSizeGB: item["diskSizeGb"],
+    storageAccountType: item["storageAccountType"],
+  };
+}
+
 /** CachingType enums */
 export type CachingType = "none" | "readonly" | "readwrite";
 /** StorageAccountType enums */
@@ -1456,6 +2287,19 @@ export interface ContainerConfiguration {
   containerRegistries?: ContainerRegistry[];
 }
 
+export function containerConfigurationSerializer(
+  item: ContainerConfiguration,
+): ContainerConfigurationRest {
+  return {
+    type: item["type"],
+    containerImageNames: item["containerImageNames"],
+    containerRegistries:
+      item["containerRegistries"] === undefined
+        ? item["containerRegistries"]
+        : item["containerRegistries"].map(containerRegistrySerializer),
+  };
+}
+
 /** ContainerType enums */
 export type ContainerType = "dockerCompatible" | "criCompatible";
 
@@ -1467,6 +2311,14 @@ export type ContainerType = "dockerCompatible" | "criCompatible";
 export interface DiskEncryptionConfiguration {
   /** The list of disk targets Batch Service will encrypt on the compute node. If omitted, no disks on the compute nodes in the pool will be encrypted. On Linux pool, only "TemporaryDisk" is supported; on Windows pool, "OsDisk" and "TemporaryDisk" must be specified. */
   targets?: DiskEncryptionTarget[];
+}
+
+export function diskEncryptionConfigurationSerializer(
+  item: DiskEncryptionConfiguration,
+): DiskEncryptionConfigurationRest {
+  return {
+    targets: item["targets"],
+  };
 }
 
 /** DiskEncryptionTarget enums */
@@ -1482,6 +2334,14 @@ export interface NodePlacementConfiguration {
   policy?: NodePlacementPolicyType;
 }
 
+export function nodePlacementConfigurationSerializer(
+  item: NodePlacementConfiguration,
+): NodePlacementConfigurationRest {
+  return {
+    policy: item["policy"],
+  };
+}
+
 /** NodePlacementPolicyType enums */
 export type NodePlacementPolicyType = "regional" | "zonal";
 
@@ -1489,6 +2349,14 @@ export type NodePlacementPolicyType = "regional" | "zonal";
 export interface OSDisk {
   /** Specifies the ephemeral Disk Settings for the operating system disk used by the compute node (VM). */
   ephemeralOSDiskSettings?: DiffDiskSettings;
+}
+
+export function oSDiskSerializer(item: OSDisk): OSDiskRest {
+  return {
+    ephemeralOSDiskSettings: !item.ephemeralOSDiskSettings
+      ? item.ephemeralOSDiskSettings
+      : diffDiskSettingsSerializer(item.ephemeralOSDiskSettings),
+  };
 }
 
 /**
@@ -1500,6 +2368,14 @@ export interface DiffDiskSettings {
   placement?: DiffDiskPlacement;
 }
 
+export function diffDiskSettingsSerializer(
+  item: DiffDiskSettings,
+): DiffDiskSettingsRest {
+  return {
+    placement: item["placement"],
+  };
+}
+
 /** AccessDiffDiskPlacementScope enums */
 export type DiffDiskPlacement = "cachedisk";
 
@@ -1507,6 +2383,14 @@ export type DiffDiskPlacement = "cachedisk";
 export interface TaskSchedulingPolicy {
   /** How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. */
   nodeFillType: BatchNodeFillType;
+}
+
+export function taskSchedulingPolicySerializer(
+  item: TaskSchedulingPolicy,
+): TaskSchedulingPolicyRest {
+  return {
+    nodeFillType: item["nodeFillType"],
+  };
 }
 
 /** BatchNodeFillType enums */
@@ -1526,6 +2410,24 @@ export interface NetworkConfiguration {
   enableAcceleratedNetworking?: boolean;
 }
 
+export function networkConfigurationSerializer(
+  item: NetworkConfiguration,
+): NetworkConfigurationRest {
+  return {
+    subnetId: item["subnetId"],
+    dynamicVNetAssignmentScope: item["dynamicVNetAssignmentScope"],
+    endpointConfiguration: !item.endpointConfiguration
+      ? item.endpointConfiguration
+      : poolEndpointConfigurationSerializer(item.endpointConfiguration),
+    publicIPAddressConfiguration: !item.publicIpAddressConfiguration
+      ? item.publicIpAddressConfiguration
+      : publicIpAddressConfigurationSerializer(
+          item.publicIpAddressConfiguration,
+        ),
+    enableAcceleratedNetworking: item["enableAcceleratedNetworking"],
+  };
+}
+
 /** DynamicVNetAssignmentScope enums */
 export type DynamicVNetAssignmentScope = "none" | "job";
 
@@ -1533,6 +2435,14 @@ export type DynamicVNetAssignmentScope = "none" | "job";
 export interface PoolEndpointConfiguration {
   /** A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses. */
   inboundNatPools: InboundNATPool[];
+}
+
+export function poolEndpointConfigurationSerializer(
+  item: PoolEndpointConfiguration,
+): PoolEndpointConfigurationRest {
+  return {
+    inboundNATPools: item["inboundNatPools"].map(inboundNATPoolSerializer),
+  };
 }
 
 /**
@@ -1554,6 +2464,24 @@ export interface InboundNATPool {
   networkSecurityGroupRules?: NetworkSecurityGroupRule[];
 }
 
+export function inboundNATPoolSerializer(
+  item: InboundNATPool,
+): InboundNATPoolRest {
+  return {
+    name: item["name"],
+    protocol: item["protocol"],
+    backendPort: item["backendPort"],
+    frontendPortRangeStart: item["frontendPortRangeStart"],
+    frontendPortRangeEnd: item["frontendPortRangeEnd"],
+    networkSecurityGroupRules:
+      item["networkSecurityGroupRules"] === undefined
+        ? item["networkSecurityGroupRules"]
+        : item["networkSecurityGroupRules"].map(
+            networkSecurityGroupRuleSerializer,
+          ),
+  };
+}
+
 /** A network security group rule to apply to an inbound endpoint. */
 export interface NetworkSecurityGroupRule {
   /** The priority for this rule. Priorities within a Pool must be unique and are evaluated in order of priority. The lower the number the higher the priority. For example, rules could be specified with order numbers of 150, 250, and 350. The rule with the order number of 150 takes precedence over the rule that has an order of 250. Allowed priorities are 150 to 4096. If any reserved or duplicate values are provided the request fails with HTTP status code 400. */
@@ -1566,6 +2494,17 @@ export interface NetworkSecurityGroupRule {
   sourcePortRanges?: string[];
 }
 
+export function networkSecurityGroupRuleSerializer(
+  item: NetworkSecurityGroupRule,
+): NetworkSecurityGroupRuleRest {
+  return {
+    priority: item["priority"],
+    access: item["access"],
+    sourceAddressPrefix: item["sourceAddressPrefix"],
+    sourcePortRanges: item["sourcePortRanges"],
+  };
+}
+
 /** NetworkSecurityGroupRuleAccess enums */
 export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
 
@@ -1575,6 +2514,15 @@ export interface PublicIpAddressConfiguration {
   ipAddressProvisioningType?: IpAddressProvisioningType;
   /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
   ipAddressIds?: string[];
+}
+
+export function publicIpAddressConfigurationSerializer(
+  item: PublicIpAddressConfiguration,
+): PublicIPAddressConfigurationRest {
+  return {
+    provision: item["ipAddressProvisioningType"],
+    ipAddressIds: item["ipAddressIds"],
+  };
 }
 
 /** IPAddressProvisioningType enums */
@@ -1600,6 +2548,20 @@ export interface UserAccount {
   windowsUserConfiguration?: WindowsUserConfiguration;
 }
 
+export function userAccountSerializer(item: UserAccount): UserAccountRest {
+  return {
+    name: item["name"],
+    password: item["password"],
+    elevationLevel: item["elevationLevel"],
+    linuxUserConfiguration: !item.linuxUserConfiguration
+      ? item.linuxUserConfiguration
+      : linuxUserConfigurationSerializer(item.linuxUserConfiguration),
+    windowsUserConfiguration: !item.windowsUserConfiguration
+      ? item.windowsUserConfiguration
+      : windowsUserConfigurationSerializer(item.windowsUserConfiguration),
+  };
+}
+
 /** Properties used to create a user Account on a Linux Compute Node. */
 export interface LinuxUserConfiguration {
   /** The user ID of the user Account. The uid and gid properties must be specified together or not at all. If not specified the underlying operating system picks the uid. */
@@ -1610,10 +2572,28 @@ export interface LinuxUserConfiguration {
   sshPrivateKey?: string;
 }
 
+export function linuxUserConfigurationSerializer(
+  item: LinuxUserConfiguration,
+): LinuxUserConfigurationRest {
+  return {
+    uid: item["uid"],
+    gid: item["gid"],
+    sshPrivateKey: item["sshPrivateKey"],
+  };
+}
+
 /** Properties used to create a user Account on a Windows Compute Node. */
 export interface WindowsUserConfiguration {
   /** The login mode for the user. The default value for VirtualMachineConfiguration Pools is 'batch' and for CloudServiceConfiguration Pools is 'interactive'. */
   loginMode?: LoginMode;
+}
+
+export function windowsUserConfigurationSerializer(
+  item: WindowsUserConfiguration,
+): WindowsUserConfigurationRest {
+  return {
+    loginMode: item["loginMode"],
+  };
 }
 
 /** LoginMode enums */
@@ -1630,6 +2610,13 @@ export interface MetadataItem {
   value: string;
 }
 
+export function metadataItemSerializer(item: MetadataItem): MetadataItemRest {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
+}
+
 /** The file system to mount on each node. */
 export interface MountConfiguration {
   /** The Azure Storage Container to mount using blob FUSE on each node. This property is mutually exclusive with all other properties. */
@@ -1640,6 +2627,27 @@ export interface MountConfiguration {
   cifsMountConfiguration?: CifsMountConfiguration;
   /** The Azure File Share to mount on each node. This property is mutually exclusive with all other properties. */
   azureFileShareConfiguration?: AzureFileShareConfiguration;
+}
+
+export function mountConfigurationSerializer(
+  item: MountConfiguration,
+): MountConfigurationRest {
+  return {
+    azureBlobFileSystemConfiguration: !item.azureBlobFileSystemConfiguration
+      ? item.azureBlobFileSystemConfiguration
+      : azureBlobFileSystemConfigurationSerializer(
+          item.azureBlobFileSystemConfiguration,
+        ),
+    nfsMountConfiguration: !item.nfsMountConfiguration
+      ? item.nfsMountConfiguration
+      : nfsMountConfigurationSerializer(item.nfsMountConfiguration),
+    cifsMountConfiguration: !item.cifsMountConfiguration
+      ? item.cifsMountConfiguration
+      : cifsMountConfigurationSerializer(item.cifsMountConfiguration),
+    azureFileShareConfiguration: !item.azureFileShareConfiguration
+      ? item.azureFileShareConfiguration
+      : azureFileShareConfigurationSerializer(item.azureFileShareConfiguration),
+  };
 }
 
 /** Information used to connect to an Azure Storage Container using Blobfuse. */
@@ -1660,6 +2668,22 @@ export interface AzureBlobFileSystemConfiguration {
   identityReference?: BatchNodeIdentityReference;
 }
 
+export function azureBlobFileSystemConfigurationSerializer(
+  item: AzureBlobFileSystemConfiguration,
+): AzureBlobFileSystemConfigurationRest {
+  return {
+    accountName: item["accountName"],
+    containerName: item["containerName"],
+    accountKey: item["accountKey"],
+    sasKey: item["sasKey"],
+    blobfuseOptions: item["blobfuseOptions"],
+    relativeMountPath: item["relativeMountPath"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+  };
+}
+
 /** Information used to connect to an NFS file system. */
 export interface NfsMountConfiguration {
   /** The URI of the file system to mount. */
@@ -1668,6 +2692,16 @@ export interface NfsMountConfiguration {
   relativeMountPath: string;
   /** Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. */
   mountOptions?: string;
+}
+
+export function nfsMountConfigurationSerializer(
+  item: NfsMountConfiguration,
+): NFSMountConfigurationRest {
+  return {
+    source: item["source"],
+    relativeMountPath: item["relativeMountPath"],
+    mountOptions: item["mountOptions"],
+  };
 }
 
 /** Information used to connect to a CIFS file system. */
@@ -1684,6 +2718,18 @@ export interface CifsMountConfiguration {
   password: string;
 }
 
+export function cifsMountConfigurationSerializer(
+  item: CifsMountConfiguration,
+): CifsMountConfigurationRest {
+  return {
+    username: item["username"],
+    source: item["source"],
+    relativeMountPath: item["relativeMountPath"],
+    mountOptions: item["mountOptions"],
+    password: item["password"],
+  };
+}
+
 /** Information used to connect to an Azure Fileshare. */
 export interface AzureFileShareConfiguration {
   /** The Azure Storage account name. */
@@ -1696,6 +2742,18 @@ export interface AzureFileShareConfiguration {
   relativeMountPath: string;
   /** Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. */
   mountOptions?: string;
+}
+
+export function azureFileShareConfigurationSerializer(
+  item: AzureFileShareConfiguration,
+): AzureFileShareConfigurationRest {
+  return {
+    accountName: item["accountName"],
+    azureFileUrl: item["azureFileUrl"],
+    accountKey: item["accountKey"],
+    relativeMountPath: item["relativeMountPath"],
+    mountOptions: item["mountOptions"],
+  };
 }
 
 /** NodeCommunicationMode enums */
@@ -1764,6 +2822,23 @@ export interface BatchJobScheduleUpdateOptions {
   metadata?: MetadataItem[];
 }
 
+export function batchJobScheduleUpdateOptionsSerializer(
+  item: BatchJobScheduleUpdateOptions,
+): BatchJobScheduleUpdateOptionsRest {
+  return {
+    schedule: !item.schedule
+      ? item.schedule
+      : scheduleSerializer(item.schedule),
+    jobSpecification: !item.jobSpecification
+      ? item.jobSpecification
+      : jobSpecificationSerializer(item.jobSpecification),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+  };
+}
+
 /** Options for creating an Azure Batch Job Schedule */
 export interface BatchJobScheduleCreateOptions {
   /** A string that uniquely identifies the schedule within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). */
@@ -1776,6 +2851,21 @@ export interface BatchJobScheduleCreateOptions {
   jobSpecification: JobSpecification;
   /** A list of name-value pairs associated with the schedule as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. */
   metadata?: MetadataItem[];
+}
+
+export function batchJobScheduleCreateOptionsSerializer(
+  item: BatchJobScheduleCreateOptions,
+): BatchJobScheduleCreateOptionsRest {
+  return {
+    id: item["id"],
+    displayName: item["displayName"],
+    schedule: scheduleSerializer(item.schedule),
+    jobSpecification: jobSpecificationSerializer(item.jobSpecification),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+  };
 }
 
 /** The result of listing the Job Schedules in an Account. */
@@ -1815,6 +2905,18 @@ export interface BatchCertificate {
   certificateFormat?: CertificateFormat;
   /** The password to access the Certificate's private key. This must be omitted if the Certificate format is cer. */
   password?: string;
+}
+
+export function batchCertificateSerializer(
+  item: BatchCertificate,
+): BatchCertificateRest {
+  return {
+    thumbprint: item["thumbprint"],
+    thumbprintAlgorithm: item["thumbprintAlgorithm"],
+    data: uint8ArrayToString(item["data"], "base64"),
+    certificateFormat: item["certificateFormat"],
+    password: item["password"],
+  };
 }
 
 /** CertificateState enums */
@@ -1895,6 +2997,23 @@ export interface BatchJob {
   readonly executionInfo?: JobExecutionInformation;
   /** Resource usage statistics for the entire lifetime of the Job. This property is populated only if the CloudJob was retrieved with an expand clause including the 'stats' attribute; otherwise it is null. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes. */
   readonly stats?: JobStatistics;
+}
+
+export function batchJobSerializer(item: BatchJob): BatchJobRest {
+  return {
+    priority: item["priority"],
+    allowTaskPreemption: item["allowTaskPreemption"],
+    maxParallelTasks: item["maxParallelTasks"],
+    constraints: !item.constraints
+      ? item.constraints
+      : jobConstraintsSerializer(item.constraints),
+    poolInfo: poolInformationSerializer(item.poolInfo),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+  };
 }
 
 /** JobState enums */
@@ -1983,10 +3102,39 @@ export interface BatchJobUpdateOptions {
   metadata?: MetadataItem[];
 }
 
+export function batchJobUpdateOptionsSerializer(
+  item: BatchJobUpdateOptions,
+): BatchJobUpdateOptionsRest {
+  return {
+    priority: item["priority"],
+    allowTaskPreemption: item["allowTaskPreemption"],
+    maxParallelTasks: item["maxParallelTasks"],
+    constraints: !item.constraints
+      ? item.constraints
+      : jobConstraintsSerializer(item.constraints),
+    poolInfo: !item.poolInfo
+      ? item.poolInfo
+      : poolInformationSerializer(item.poolInfo),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+  };
+}
+
 /** Options for disabling an Azure Batch Job. */
 export interface BatchJobDisableOptions {
   /** What to do with active Tasks associated with the Job. */
   disableTasks: DisableJobOption;
+}
+
+export function batchJobDisableOptionsSerializer(
+  item: BatchJobDisableOptions,
+): BatchJobDisableOptionsRest {
+  return {
+    disableTasks: item["disableTasks"],
+  };
 }
 
 /** DisableJobOption enums */
@@ -1996,6 +3144,14 @@ export type DisableJobOption = "requeue" | "terminate" | "wait";
 export interface BatchJobTerminateOptions {
   /** The text you want to appear as the Job's TerminateReason. The default is 'UserTerminate'. */
   terminateReason?: string;
+}
+
+export function batchJobTerminateOptionsSerializer(
+  item: BatchJobTerminateOptions,
+): BatchJobTerminateOptionsRest {
+  return {
+    terminateReason: item["terminateReason"],
+  };
 }
 
 /** Options for creating an Azure Batch Job. */
@@ -2032,6 +3188,45 @@ export interface BatchJobCreateOptions {
   networkConfiguration?: JobNetworkConfiguration;
   /** A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. */
   metadata?: MetadataItem[];
+}
+
+export function batchJobCreateOptionsSerializer(
+  item: BatchJobCreateOptions,
+): BatchJobCreateOptionsRest {
+  return {
+    id: item["id"],
+    displayName: item["displayName"],
+    usesTaskDependencies: item["usesTaskDependencies"],
+    priority: item["priority"],
+    allowTaskPreemption: item["allowTaskPreemption"],
+    maxParallelTasks: item["maxParallelTasks"],
+    constraints: !item.constraints
+      ? item.constraints
+      : jobConstraintsSerializer(item.constraints),
+    jobManagerTask: !item.jobManagerTask
+      ? item.jobManagerTask
+      : jobManagerTaskSerializer(item.jobManagerTask),
+    jobPreparationTask: !item.jobPreparationTask
+      ? item.jobPreparationTask
+      : jobPreparationTaskSerializer(item.jobPreparationTask),
+    jobReleaseTask: !item.jobReleaseTask
+      ? item.jobReleaseTask
+      : jobReleaseTaskSerializer(item.jobReleaseTask),
+    commonEnvironmentSettings:
+      item["commonEnvironmentSettings"] === undefined
+        ? item["commonEnvironmentSettings"]
+        : item["commonEnvironmentSettings"].map(environmentSettingSerializer),
+    poolInfo: poolInformationSerializer(item.poolInfo),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    onTaskFailure: item["onTaskFailure"],
+    networkConfiguration: !item.networkConfiguration
+      ? item.networkConfiguration
+      : jobNetworkConfigurationSerializer(item.networkConfiguration),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+  };
 }
 
 /** The result of listing the Jobs in an Account. */
@@ -2322,6 +3517,63 @@ export interface BatchPoolCreateOptions {
   targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+export function batchPoolCreateOptionsSerializer(
+  item: BatchPoolCreateOptions,
+): BatchPoolCreateOptionsRest {
+  return {
+    id: item["id"],
+    displayName: item["displayName"],
+    vmSize: item["vmSize"],
+    cloudServiceConfiguration: !item.cloudServiceConfiguration
+      ? item.cloudServiceConfiguration
+      : cloudServiceConfigurationSerializer(item.cloudServiceConfiguration),
+    virtualMachineConfiguration: !item.virtualMachineConfiguration
+      ? item.virtualMachineConfiguration
+      : virtualMachineConfigurationSerializer(item.virtualMachineConfiguration),
+    resizeTimeout: item["resizeTimeout"],
+    targetDedicatedNodes: item["targetDedicatedNodes"],
+    targetLowPriorityNodes: item["targetLowPriorityNodes"],
+    enableAutoScale: item["enableAutoScale"],
+    autoScaleFormula: item["autoScaleFormula"],
+    autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
+    enableInterNodeCommunication: item["enableInterNodeCommunication"],
+    networkConfiguration: !item.networkConfiguration
+      ? item.networkConfiguration
+      : networkConfigurationSerializer(item.networkConfiguration),
+    startTask: !item.startTask
+      ? item.startTask
+      : startTaskSerializer(item.startTask),
+    certificateReferences:
+      item["certificateReferences"] === undefined
+        ? item["certificateReferences"]
+        : item["certificateReferences"].map(certificateReferenceSerializer),
+    applicationPackageReferences:
+      item["applicationPackageReferences"] === undefined
+        ? item["applicationPackageReferences"]
+        : item["applicationPackageReferences"].map(
+            applicationPackageReferenceSerializer,
+          ),
+    applicationLicenses: item["applicationLicenses"],
+    taskSlotsPerNode: item["taskSlotsPerNode"],
+    taskSchedulingPolicy: !item.taskSchedulingPolicy
+      ? item.taskSchedulingPolicy
+      : taskSchedulingPolicySerializer(item.taskSchedulingPolicy),
+    userAccounts:
+      item["userAccounts"] === undefined
+        ? item["userAccounts"]
+        : item["userAccounts"].map(userAccountSerializer),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+    mountConfiguration:
+      item["mountConfiguration"] === undefined
+        ? item["mountConfiguration"]
+        : item["mountConfiguration"].map(mountConfigurationSerializer),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
+  };
+}
+
 /** The result of listing the Pools in an Account. */
 export interface BatchPoolListResult {
   /** The list of Pools. */
@@ -2546,6 +3798,31 @@ export interface BatchPoolUpdateOptions {
   targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+export function batchPoolUpdateOptionsSerializer(
+  item: BatchPoolUpdateOptions,
+): BatchPoolUpdateOptionsRest {
+  return {
+    startTask: !item.startTask
+      ? item.startTask
+      : startTaskSerializer(item.startTask),
+    certificateReferences:
+      item["certificateReferences"] === undefined
+        ? item["certificateReferences"]
+        : item["certificateReferences"].map(certificateReferenceSerializer),
+    applicationPackageReferences:
+      item["applicationPackageReferences"] === undefined
+        ? item["applicationPackageReferences"]
+        : item["applicationPackageReferences"].map(
+            applicationPackageReferenceSerializer,
+          ),
+    metadata:
+      item["metadata"] === undefined
+        ? item["metadata"]
+        : item["metadata"].map(metadataItemSerializer),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
+  };
+}
+
 /** Options for enabling automatic scaling on an Azure Batch Pool. */
 export interface BatchPoolEnableAutoScaleOptions {
   /** The formula for the desired number of Compute Nodes in the Pool. The formula is checked for validity before it is applied to the Pool. If the formula is not valid, the Batch service rejects the request with detailed error information. For more information about specifying this formula, see Automatically scale Compute Nodes in an Azure Batch Pool (https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling). */
@@ -2554,10 +3831,27 @@ export interface BatchPoolEnableAutoScaleOptions {
   autoScaleEvaluationInterval?: string;
 }
 
+export function batchPoolEnableAutoScaleOptionsSerializer(
+  item: BatchPoolEnableAutoScaleOptions,
+): BatchPoolEnableAutoScaleOptionsRest {
+  return {
+    autoScaleFormula: item["autoScaleFormula"],
+    autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
+  };
+}
+
 /** Options for evaluating an automatic scaling formula on an Azure Batch Pool. */
 export interface BatchPoolEvaluateAutoScaleOptions {
   /** The formula for the desired number of Compute Nodes in the Pool. The formula is validated and its results calculated, but it is not applied to the Pool. To apply the formula to the Pool, 'Enable automatic scaling on a Pool'. For more information about specifying this formula, see Automatically scale Compute Nodes in an Azure Batch Pool (https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling). */
   autoScaleFormula: string;
+}
+
+export function batchPoolEvaluateAutoScaleOptionsSerializer(
+  item: BatchPoolEvaluateAutoScaleOptions,
+): BatchPoolEvaluateAutoScaleOptionsRest {
+  return {
+    autoScaleFormula: item["autoScaleFormula"],
+  };
 }
 
 /** Options for changing the size of an Azure Batch Pool. */
@@ -2570,6 +3864,17 @@ export interface BatchPoolResizeOptions {
   resizeTimeout?: string;
   /** Determines what to do with a Compute Node and its running task(s) if the Pool size is decreasing. The default value is requeue. */
   nodeDeallocationOption?: BatchNodeDeallocationOption;
+}
+
+export function batchPoolResizeOptionsSerializer(
+  item: BatchPoolResizeOptions,
+): BatchPoolResizeOptionsRest {
+  return {
+    targetDedicatedNodes: item["targetDedicatedNodes"],
+    targetLowPriorityNodes: item["targetLowPriorityNodes"],
+    resizeTimeout: item["resizeTimeout"],
+    nodeDeallocationOption: item["nodeDeallocationOption"],
+  };
 }
 
 /** BatchNodeDeallocationOption enums */
@@ -2600,6 +3905,24 @@ export interface BatchPoolReplaceOptions {
   targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+export function batchPoolReplaceOptionsSerializer(
+  item: BatchPoolReplaceOptions,
+): BatchPoolReplaceOptionsRest {
+  return {
+    startTask: !item.startTask
+      ? item.startTask
+      : startTaskSerializer(item.startTask),
+    certificateReferences: item["certificateReferences"].map(
+      certificateReferenceSerializer,
+    ),
+    applicationPackageReferences: item["applicationPackageReferences"].map(
+      applicationPackageReferenceSerializer,
+    ),
+    metadata: item["metadata"].map(metadataItemSerializer),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
+  };
+}
+
 /** Options for removing nodes from an Azure Batch Pool. */
 export interface NodeRemoveOptions {
   /** A list containing the IDs of the Compute Nodes to be removed from the specified Pool. A maximum of 100 nodes may be removed per request. */
@@ -2608,6 +3931,16 @@ export interface NodeRemoveOptions {
   resizeTimeout?: string;
   /** Determines what to do with a Compute Node and its running task(s) after it has been selected for deallocation. The default value is requeue. */
   nodeDeallocationOption?: BatchNodeDeallocationOption;
+}
+
+export function nodeRemoveOptionsSerializer(
+  item: NodeRemoveOptions,
+): NodeRemoveOptionsRest {
+  return {
+    nodeList: item["nodeList"],
+    resizeTimeout: item["resizeTimeout"],
+    nodeDeallocationOption: item["nodeDeallocationOption"],
+  };
 }
 
 /** The result of listing the applications available in an Account. */

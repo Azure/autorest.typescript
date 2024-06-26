@@ -42,10 +42,17 @@ async function verifyModularPropertyType(
   await assertEqualContent(
     modelsFile?.getFullText()!,
     `
+    import { InputOutputModel as InputOutputModelRest } from "../rest/index.js"
   ${additionalImports}
 
   export interface InputOutputModel {
       prop: ${inputType};
+  }
+    
+  export function inputOutputModelSerializer(item: InputOutputModel): InputOutputModelRest {
+    return {
+      prop: item["prop"]
+    }
   }
   ${additionalInputContent}`
   );
@@ -116,7 +123,7 @@ describe("modular encode test for property type datetime", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: Date;
@@ -125,6 +132,21 @@ describe("modular encode test for property type datetime", () => {
         prop4: string;
       }`
     );
+
+    const serializer = modelFile?.getFunction("fooSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function fooSerializer(item: Foo): FooRest {
+        return {
+          prop1: item["prop1"].toDateString(),
+          prop2: item["prop2"].toTimeString(),
+          prop3: item["prop3"].toISOString(),
+          prop4: item["prop4"],
+        };
+      }`
+    );
+
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
@@ -246,13 +268,26 @@ describe("modular encode test for property type datetime", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: Date;
         prop2: string;
       }`
     );
+
+    const serializer = modelFile?.getFunction("fooSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function fooSerializer(item: Foo): FooRest {
+        return {
+          prop1: item["prop1"].toISOString(),
+          prop2: item["prop2"],
+        };
+      }`
+    );
+
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
@@ -318,13 +353,26 @@ describe("modular encode test for property type datetime", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: Date;
         prop2: string;
       }`
     );
+
+    const serializer = modelFile?.getFunction("fooSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function fooSerializer(item: Foo): FooRest {
+        return {
+          prop1: item["prop1"].toUTCString(),
+          prop2: item["prop2"],
+        };
+      }`
+    );
+
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
@@ -388,12 +436,24 @@ describe("modular encode test for property type datetime", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: Date;
       }`
     );
+
+    const serializer = modelFile?.getFunction("fooSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function fooSerializer(item: Foo): FooRest {
+        return {
+          prop1: item["prop1"].getTime(),
+        };
+      }`
+    );
+
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
@@ -456,7 +516,7 @@ describe("modular encode test for property type duration", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: string;
@@ -523,7 +583,7 @@ describe("modular encode test for property type duration", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: string;
@@ -592,7 +652,7 @@ describe("modular encode test for property type duration", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: number;
@@ -663,12 +723,24 @@ describe("modular encode test for property type bytes", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: Uint8Array;
       }`
     );
+
+    const serializer = modelFile?.getFunction("fooSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function fooSerializer(item: Foo): FooRest {
+        return {
+          prop1: uint8ArrayToString(item["prop1"], "base64"),
+        }
+      };`
+    );
+
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
@@ -734,7 +806,7 @@ describe("modular encode test for property type bytes", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: Uint8Array;
@@ -805,7 +877,7 @@ describe("modular encode test for property type bytes", () => {
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile?.getFullText()!,
+      modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
         prop1: Uint8Array;
@@ -1733,11 +1805,23 @@ describe("`is`", () => {
       `);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile!.getFullText()!,
+      modelFile!.getInterface("A")?.getFullText()!,
       `
       export interface A {
         prop1: string;
         prop2: string;
+      }`
+    );
+
+    const serializer = modelFile?.getFunction("aSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function aSerializer(item: A): ARest {
+        return {
+          prop1: item["prop1"],
+          prop2: item["prop2"],
+        };
       }`
     );
   });
@@ -1758,14 +1842,43 @@ describe("`extends`", () => {
       `);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile!.getFullText()!,
+      modelFile!.getInterface("B")?.getFullText()!,
       `
       export interface B {
         prop1: string;
         prop2: string;
       }
-      
+      `
+    );
+
+    const serializerB = modelFile?.getFunction("bSerializer")?.getText();
+    await assertEqualContent(
+      serializerB!,
+      `
+      export function bSerializer(item: B): BRest {
+        return {
+          prop1: item["prop1"],
+          prop2: item["prop2"],
+        };
+      }`
+    );
+
+    await assertEqualContent(
+      modelFile!.getInterface("A")?.getFullText()!,
+      `
       export interface A extends B {}`
+    );
+
+    const serializerA = modelFile?.getFunction("aSerializer")?.getText();
+    await assertEqualContent(
+      serializerA!,
+      `
+      export function aSerializer(item: A): ARest {
+        return {
+          prop1: item["prop1"],
+          prop2: item["prop2"],
+        };
+      }`
     );
   });
 });
@@ -1785,7 +1898,12 @@ describe("visibility", () => {
       `
       export interface A {
         readonly exactVersion?: string;
-      }`
+      }
+      
+      export function aSerializer(item: A) {
+        return item as any;
+      }
+      `
     );
   });
 
@@ -1799,10 +1917,21 @@ describe("visibility", () => {
       `);
     assert.ok(modelFile);
     await assertEqualContent(
-      modelFile!.getFullText()!,
+      modelFile!.getInterface("A")?.getFullText()!,
       `
       export interface A {
         exactVersion?: string;
+      }`
+    );
+
+    const serializer = modelFile?.getFunction("aSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function aSerializer(item: A): ARest {
+        return {
+          exactVersion: item["exactVersion"],
+        };
       }`
     );
   });
@@ -1828,13 +1957,28 @@ describe("spread record", () => {
     assert.ok(modelFile);
     assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
     await assertEqualContent(
-      modelFile!.getFullText()!,
+      modelFile!.getInterface("Vegetables")?.getFullText()!,
       `
       export interface Vegetables extends Record<string, number | string>{
         carrots: number;
         beans: number;
       }
       `
+    );
+
+    const serializer = modelFile
+      ?.getFunction("vegetablesSerializer")
+      ?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function vegetablesSerializer(item: Vegetables): VegetablesRest {
+        return {
+          ...item,
+          carrots: item["carrots"],
+          beans: item["beans"],
+        };
+      }`
     );
   });
 
@@ -1882,14 +2026,44 @@ describe("spread record", () => {
     assert.ok(modelFile);
     assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
     await assertEqualContent(
-      modelFile!.getFullText()!,
+      modelFile!.getInterface("A")?.getFullText()!,
       `
       export interface A extends Base, Record<string, number> {
         prop: number;
       }
+      `
+    );
 
+    const serializerA = modelFile?.getFunction("aSerializer")?.getText();
+    await assertEqualContent(
+      serializerA!,
+      `
+      export function aSerializer(item: A): ARest {
+        return {
+          ...item,
+          foo: item["foo"],
+          prop: item["prop"],
+        };
+      }`
+    );
+
+    await assertEqualContent(
+      modelFile!.getInterface("Base")?.getFullText()!,
+      `
       export interface Base {
         foo: number;
+      }
+      `
+    );
+
+    const serializerBase = modelFile?.getFunction("baseSerializer")?.getText();
+    await assertEqualContent(
+      serializerBase!,
+      `
+      export function baseSerializer(item: Base): BaseRest {
+        return {
+          foo: item["foo"],
+        };
       }
       `
     );

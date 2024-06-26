@@ -34,6 +34,16 @@ export interface SchemaProperties {
   version: number;
 }
 
+export function schemaPropertiesSerializer(item: SchemaProperties) {
+  return {
+    id: item["id"],
+    format: item["format"],
+    groupName: item["groupName"],
+    name: item["name"],
+    version: item["version"],
+  };
+}
+
 /** Represents the format of the schema to be stored by the Schema Registry service. */
 export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 
@@ -43,6 +53,13 @@ export interface Schema {
   definition: string;
   /** The properties of the schema. */
   properties: SchemaProperties;
+}
+
+export function schemaSerializer(item: Schema) {
+  return {
+    definition: item["definition"],
+    properties: schemaPropertiesSerializer(item.properties),
+  };
 }
 
 /** The content type for the schema. */

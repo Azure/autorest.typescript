@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { FlattenModel, NestedFlattenModel } from "../models/models.js";
+import {
+  childModelSerializer,
+  childFlattenModelSerializer,
+  FlattenModel,
+  NestedFlattenModel,
+} from "../models/models.js";
 import {
   FlattenContext as Client,
   PutFlattenModel200Response,
@@ -28,10 +33,7 @@ export function _putFlattenModelSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         name: input["name"],
-        properties: {
-          description: input.properties["description"],
-          age: input.properties["age"],
-        },
+        properties: childModelSerializer(input.properties),
       },
     });
 }
@@ -72,13 +74,7 @@ export function _putNestedFlattenModelSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         name: input["name"],
-        properties: {
-          summary: input.properties["summary"],
-          properties: {
-            description: input.properties.properties["description"],
-            age: input.properties.properties["age"],
-          },
-        },
+        properties: childFlattenModelSerializer(input.properties),
       },
     });
 }
