@@ -33,10 +33,10 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export type DataSchema = "OneTable" | "MultiTable";
 
-// @public (undocumented)
+// @public
 export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
 // @public (undocumented)

@@ -37,8 +37,81 @@ export function getEncodingFormat(
   return supportedFormats.find((format) => format === type.encode) ?? "base64";
 }
 
-export function getModularTypeId(type: SdkType & { name?: string }) {
-  return type.name;
+const dispatch: {
+  [Kind in SdkType["kind"]]: (
+    type: SdkType & { kind: Kind }
+  ) => string | undefined;
+} = {
+  string: (_) => "string",
+  boolean: (_) => "boolean",
+  bytes: (_) => "Uint8Array",
+  model: (type) => type.name,
+  union: (type) => type.name,
+  enum: (type) => type.name,
+  plainDate: (_) => "Date",
+  plainTime: (_) => "Date",
+  any: (_) => "any",
+  numeric: (_) => "number",
+  integer: (_) => "number",
+  safeint: (_) => "number",
+  int8: (_) => "number",
+  int16: (_) => "number",
+  int32: (_) => "number",
+  int64: (_) => "number",
+  uint8: (_) => "number",
+  uint16: (_) => "number",
+  uint32: (_) => "number",
+  uint64: (_) => "number",
+  float: (_) => "number",
+  float32: (_) => "number",
+  float64: (_) => "number",
+  decimal: (_) => "number",
+  decimal128: (_) => "number",
+  password: (_) => "string",
+  guid: (_) => "string",
+  url: (_) => "string",
+  uri: (_) => "string",
+  ipAddress: (_) => "string",
+  uuid: (_) => "string",
+  ipV4Address: (_) => "string",
+  ipV6Address: (_) => "string",
+  eTag: (_) => "string",
+  armId: (_) => "string",
+  azureLocation: (_) => "string",
+  utcDateTime: (_) => "Date",
+  offsetDateTime: (_) => "Date",
+  duration: (_) => "FIXME",
+  array: (type) => {
+    const valueTypeId = getModularTypeId(type.valueType);
+    return valueTypeId ? `Array<${valueTypeId}>` : undefined;
+  },
+  tuple: (type) => {
+    const elementIds = type.values.map(getModularTypeId);
+    if (!type.values.length || elementIds.some((id) => !id)) {
+      return;
+    }
+    return `[${elementIds.join(", ")}]`;
+  },
+  dict: (type) => {
+    const keyId = getModularTypeId(type.keyType);
+    const valueId = getModularTypeId(type.valueType);
+    if (!keyId || !valueId) {
+      return;
+    }
+    const valueType = type.nullableValues ? `${valueId} | null` : valueId;
+    return `Record<${keyId}, ${valueType}>`;
+  },
+  enumvalue: (_) => "FIXME",
+  constant: (_) => "FIXME",
+  credential: (_) => "FIXME",
+  endpoint: (_) => "string"
+};
+
+export function getModularTypeId<T extends SdkType>(
+  type: T
+): string | undefined {
+  const callback = dispatch[type.kind] as (type: T) => string | undefined;
+  return callback(type);
 }
 
 export function getParameterTypePropertyName(

@@ -397,62 +397,33 @@ export interface ListRoleAssignmentsOutput {
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export type PagedOperationOutput = Paged<OperationOutput>;
 /** Alias for OriginOutput */
-export type OriginOutput = "user" | "system" | "user,system" | string;
+export type OriginOutput = string;
 /** Alias for ActionTypeOutput */
-export type ActionTypeOutput = "Internal" | string;
+export type ActionTypeOutput = string;
 /** Alias for ProvisioningStateOutput */
-export type ProvisioningStateOutput =
-  | string
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Provisioning"
-  | "Updating"
-  | "Deleting"
-  | "Accepted";
+export type ProvisioningStateOutput = string;
 /** Alias for CreatedByTypeOutput */
-export type CreatedByTypeOutput =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key"
-  | string;
+export type CreatedByTypeOutput = string;
 /** Alias for ControlStateOutput */
-export type ControlStateOutput = string | "Enabled" | "Disabled";
+export type ControlStateOutput = string;
 /** Alias for DefaultActionOutput */
-export type DefaultActionOutput = string | "Allow" | "Deny";
+export type DefaultActionOutput = string;
 /** Alias for ManagedServiceIdentityTypeOutput */
-export type ManagedServiceIdentityTypeOutput =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned, UserAssigned"
-  | string;
+export type ManagedServiceIdentityTypeOutput = string;
 /** Alias for PrivateEndpointServiceConnectionStatusOutput */
-export type PrivateEndpointServiceConnectionStatusOutput =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | string;
+export type PrivateEndpointServiceConnectionStatusOutput = string;
 /** Alias for ResourceProvisioningStateOutput */
-export type ResourceProvisioningStateOutput =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | string;
+export type ResourceProvisioningStateOutput = string;
 /** Alias for PrivateEndpointConnectionProvisioningStateOutput */
-export type PrivateEndpointConnectionProvisioningStateOutput =
-  | ResourceProvisioningStateOutput
-  | "Creating"
-  | "Deleting";
+export type PrivateEndpointConnectionProvisioningStateOutput = string;
 /** Alias for DataTypeStateOutput */
-export type DataTypeStateOutput = string | "Stopped" | "Running";
+export type DataTypeStateOutput = string;
 /** The response of a DataProductsCatalog list operation. */
 export type DataProductsCatalogListResultOutput =
   Paged<DataProductsCatalogOutput>;
 /** The response of a DataType list operation. */
 export type DataTypeListResultOutput = Paged<DataTypeOutput>;
 /** Alias for DataProductUserRoleOutput */
-export type DataProductUserRoleOutput = string | "Reader" | "SensitiveReader";
+export type DataProductUserRoleOutput = string;
 /** The response of a DataProduct list operation. */
 export type DataProductListResultOutput = Paged<DataProductOutput>;

@@ -99,21 +99,14 @@ function buildEnumModel(
   return {
     name: model.name!,
     isExported: true,
-    docs: [
-      ...getDocsFromDescription(model.description),
-      // If it is a fixed enum we don't need to list the known values in the docs as the
-      // output will be a literal union which is self documenting
-      model.isFixed
-        ? ""
-        : // When we generate an "extensible" enum, the type will be "string" or "number" so we list the known values
-          // in the docs for user reference.
-          getEnumValues()
-    ],
+    docs: [...getDocsFromDescription(model.description)],
     type: buildEnumType()
   };
 
   function buildEnumType() {
-    return model.isFixed ? getEnumValues(" | ") : valueType;
+    return model.isFixed || !model.isNonExhaustive
+      ? getEnumValues(" | ")
+      : valueType;
   }
 
   function getEnumValues(separator: string = ", ") {
@@ -194,6 +187,17 @@ export function buildModels(
       }
       const enumAlias = buildEnumModel(model);
       modelsFile.addTypeAlias(enumAlias);
+      if (model.isNonExhaustive && model.name) {
+        modelsFile.addEnum({
+          name: `Known${model.name}`,
+          isExported: true,
+          members:
+            model.values?.map((v) => ({
+              name: v.value,
+              value: v.value
+            })) ?? []
+        });
+      }
     } else {
       const modelInterface = buildModelInterface(model, {
         coreClientTypes,

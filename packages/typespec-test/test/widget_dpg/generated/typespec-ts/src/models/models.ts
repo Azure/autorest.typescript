@@ -60,5 +60,4 @@ export interface NonReferencedModel {
 }
 
 /** The Contoso Widget Manager service version. */
-/** */
 export type Versions = "1.0.0";

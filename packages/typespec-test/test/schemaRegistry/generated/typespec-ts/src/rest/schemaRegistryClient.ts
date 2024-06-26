@@ -6,6 +6,12 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { SchemaRegistryContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface SchemaRegistryContextOptions extends ClientOptions {
+  /** The api version option of the client */
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `SchemaRegistryContext`
  * @param fullyQualifiedNamespace - The Schema Registry service endpoint, for example 'my-namespace.servicebus.windows.net'.
@@ -15,11 +21,10 @@ import { SchemaRegistryContext } from "./clientDefinitions.js";
 export default function createClient(
   fullyQualifiedNamespace: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  { apiVersion = "2023-07-01", ...options }: SchemaRegistryContextOptions = {},
 ): SchemaRegistryContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;
-  options.apiVersion = options.apiVersion ?? "2023-07-01";
   const userAgentInfo = `azsdk-js-schema-registry-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -39,12 +44,28 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as SchemaRegistryContext;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVersion defined in request url directly
+      // Append one if there is no apiVersion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return client;
 }

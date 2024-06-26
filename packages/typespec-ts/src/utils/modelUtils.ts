@@ -11,7 +11,10 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { getPagedResult } from "@azure-tools/typespec-azure-core";
+import {
+  getPagedResult,
+  getUnionAsEnum
+} from "@azure-tools/typespec-azure-core";
 import {
   getDefaultApiVersion,
   getWireName,
@@ -379,8 +382,10 @@ function getSchemaForUnion(
   union: Union,
   options?: GetSchemaOptions
 ) {
+  const [asEnum, _] = getUnionAsEnum(union);
   const variants = Array.from(union.variants.values());
-  const values = [];
+
+  let values = [];
 
   for (const variant of variants) {
     // We already know it's not a model type
@@ -388,16 +393,36 @@ function getSchemaForUnion(
       getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
     );
   }
-
+  if (asEnum?.open) {
+    values = [];
+    for (const [_, member] of asEnum.members.entries()) {
+      values.push(
+        getSchemaForType(dpgContext, member.type, {
+          ...options,
+          needRef: false
+        })
+      );
+    }
+  }
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
-    const unionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
-      .join(" | ");
-    const outputUnionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
-      .join(" | ");
+    const unionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+            )
+            .join(" | ");
+    const outputUnionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+            )
+            .join(" | ");
     if (!union.expression) {
       const unionName = union.name
         ? normalizeName(union.name, NameType.Interface)

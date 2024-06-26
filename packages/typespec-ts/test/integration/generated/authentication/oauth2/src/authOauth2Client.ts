@@ -6,6 +6,9 @@ import { logger } from "./logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { AuthOauth2Client } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface AuthOauth2ClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AuthOauth2Client`
  * @param credentials - uniquely identify client credential
@@ -13,7 +16,7 @@ import { AuthOauth2Client } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: AuthOauth2ClientOptions = {},
 ): AuthOauth2Client {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -36,7 +39,6 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

@@ -43,9 +43,7 @@ export interface EnumsOnlyCases {
   ud: Ud | Ud;
 }
 
-/** */
 export type Lr = "left" | "right";
-/** */
 export type Ud = "up" | "down";
 
 export interface Dog {
@@ -53,5 +51,9 @@ export interface Dog {
 }
 
 /** Type of StringExtensibleNamedUnion */
-/** "b", "c" */
 export type StringExtensibleNamedUnion = string;
+
+export enum KnownStringExtensibleNamedUnion {
+  b = "b",
+  c = "c",
+}

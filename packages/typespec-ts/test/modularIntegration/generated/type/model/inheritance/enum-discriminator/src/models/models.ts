@@ -16,8 +16,7 @@ export interface Golden extends Dog {
 }
 
 /** extensible enum type for discriminator */
-/** "golden" */
-export type DogKind = string;
+export type DogKind = "golden";
 
 /** Test fixed enum type for discriminator */
 export interface Snake {
@@ -34,7 +33,6 @@ export interface Cobra extends Snake {
 }
 
 /** fixed enum type for discriminator */
-/** */
 export type SnakeKind = "cobra";
 /** Alias for DogUnion */
 export type DogUnion = Golden | Dog;

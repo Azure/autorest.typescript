@@ -262,6 +262,10 @@ export const rlcTsps = [
   {
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
   }
 ];
 
@@ -486,6 +490,10 @@ export const modularTsps = [
   {
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
   }
 ];
 

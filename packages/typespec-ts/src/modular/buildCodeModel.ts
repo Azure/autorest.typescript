@@ -1388,6 +1388,7 @@ function emitUnion(
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
+      isNonExhaustive: context.rlcOptions?.experimentalExtensibleEnums ?? false,
       xmlMetadata: {},
       usage
     };
@@ -1822,7 +1823,9 @@ export function emitCodeModel(
     options: dpgContext.rlcOptions ?? {},
     modularOptions: {
       sourceRoot: modularSourcesRoot,
-      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode
+      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode,
+      experimentalExtensibleEnums:
+        !!dpgContext.rlcOptions?.experimentalExtensibleEnums
     },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},

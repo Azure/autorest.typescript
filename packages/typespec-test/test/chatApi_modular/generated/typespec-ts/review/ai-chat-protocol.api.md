@@ -66,7 +66,7 @@ export class ChatProtocolClient {
 export interface ChatProtocolClientOptions extends ClientOptions {
 }
 
-// @public (undocumented)
+// @public
 export type ChatRole = "user" | "system" | "assistant";
 
 // @public
@@ -86,7 +86,7 @@ export interface CreateOptionalParams extends OperationOptions {
 export interface CreateStreamingOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type FinishReason = "stop" | "length";
 
 // @public

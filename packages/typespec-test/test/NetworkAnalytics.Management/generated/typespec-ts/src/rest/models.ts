@@ -333,51 +333,22 @@ export interface RoleAssignmentDetail {
 }
 
 /** Alias for ProvisioningState */
-export type ProvisioningState =
-  | string
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Provisioning"
-  | "Updating"
-  | "Deleting"
-  | "Accepted";
+export type ProvisioningState = string;
 /** Alias for CreatedByType */
-export type CreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key"
-  | string;
+export type CreatedByType = string;
 /** Alias for ControlState */
-export type ControlState = string | "Enabled" | "Disabled";
+export type ControlState = string;
 /** Alias for DefaultAction */
-export type DefaultAction = string | "Allow" | "Deny";
+export type DefaultAction = string;
 /** Alias for ManagedServiceIdentityType */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned, UserAssigned"
-  | string;
+export type ManagedServiceIdentityType = string;
 /** Alias for PrivateEndpointServiceConnectionStatus */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | string;
+export type PrivateEndpointServiceConnectionStatus = string;
 /** Alias for ResourceProvisioningState */
-export type ResourceProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | string;
+export type ResourceProvisioningState = string;
 /** Alias for PrivateEndpointConnectionProvisioningState */
-export type PrivateEndpointConnectionProvisioningState =
-  | ResourceProvisioningState
-  | "Creating"
-  | "Deleting";
+export type PrivateEndpointConnectionProvisioningState = string;
 /** Alias for DataTypeState */
-export type DataTypeState = string | "Stopped" | "Running";
+export type DataTypeState = string;
 /** Alias for DataProductUserRole */
-export type DataProductUserRole = string | "Reader" | "SensitiveReader";
+export type DataProductUserRole = string;
