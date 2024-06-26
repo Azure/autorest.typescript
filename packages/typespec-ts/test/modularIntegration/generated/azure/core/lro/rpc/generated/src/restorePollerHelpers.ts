@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { RpcContext } from "./api/rpcContext.js";
 import { RpcClient } from "./rpcClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _longRunningRpcDeserialize } from "./api/operations.js";
@@ -37,7 +36,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: RpcContext | RpcClient,
+  client: RpcClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]

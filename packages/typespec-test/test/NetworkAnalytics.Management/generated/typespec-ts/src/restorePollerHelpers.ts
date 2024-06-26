@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { NetworkAnalyticsContext } from "./api/networkAnalyticsContext.js";
 import { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
@@ -47,7 +46,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: NetworkAnalyticsContext | NetworkAnalyticsClient,
+  client: NetworkAnalyticsClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]

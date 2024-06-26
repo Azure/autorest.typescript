@@ -5,11 +5,16 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { DPGClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
+export interface DPGClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `DPGClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): DPGClient {
+export default function createClient(
+  options: DPGClientOptions = {},
+): DPGClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-rlcClient-rest/1.0.0-beta.1`;
@@ -26,7 +31,6 @@ export default function createClient(options: ClientOptions = {}): DPGClient {
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as DPGClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

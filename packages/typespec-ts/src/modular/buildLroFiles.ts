@@ -57,7 +57,7 @@ export function buildRestorePollerHelper(
   );
 
   importLroCoreDependencies(restorePollerFile);
-  const clientNames = importClientContext(client, restorePollerFile);
+  const clientNames = importClassicalClient(client, restorePollerFile);
   importGetPollerHelper(restorePollerFile);
   const deserializeMap = importDeserializeHelpers(client, restorePollerFile);
   const restorePollerHelperContent = `import {
@@ -210,20 +210,16 @@ export function buildRestorePollerHelper(
   restorePollerFile.fixUnusedIdentifiers();
 }
 
-function importClientContext(client: Client, sourceFile: SourceFile): string[] {
-  const name = getClientName(client);
-  const classicalClientname = `${getClientName(client)}Client`;
-  const clientContextName = client.rlcClientName;
+function importClassicalClient(
+  client: Client,
+  sourceFile: SourceFile
+): string[] {
+  const classicalClientName = `${getClientName(client)}Client`;
   sourceFile.addImportDeclaration({
-    namedImports: [`${clientContextName}`],
-    moduleSpecifier: `./api/${normalizeName(name, NameType.File)}Context.js`
+    namedImports: [`${classicalClientName}`],
+    moduleSpecifier: `./${normalizeName(classicalClientName, NameType.File)}.js`
   });
-
-  sourceFile.addImportDeclaration({
-    namedImports: [`${classicalClientname}`],
-    moduleSpecifier: `./${normalizeName(classicalClientname, NameType.File)}.js`
-  });
-  return [clientContextName, classicalClientname];
+  return [classicalClientName];
 }
 
 function importGetPollerHelper(sourceFile: SourceFile) {

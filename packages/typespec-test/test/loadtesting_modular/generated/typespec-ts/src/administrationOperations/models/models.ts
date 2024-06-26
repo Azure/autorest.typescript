@@ -77,14 +77,12 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
-/** */
 export type PFMetrics =
   | "response_time_ms"
   | "latency"
   | "error"
   | "requests"
   | "requests_per_sec";
-/** */
 export type PFAgFunc =
   | "count"
   | "percentage"
@@ -95,9 +93,7 @@ export type PFAgFunc =
   | "p99"
   | "min"
   | "max";
-/** */
 export type PFAction = "continue" | "stop";
-/** */
 export type PFResult = "passed" | "undetermined" | "failed";
 
 /** Secret */
@@ -108,7 +104,6 @@ export interface Secret {
   type?: SecretType;
 }
 
-/** */
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
@@ -121,7 +116,6 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** */
 export type CertificateType = "AKV_CERT_URI";
 
 /** The load test configuration. */
@@ -192,9 +186,7 @@ export interface FileInfo {
   validationFailureDetails?: string;
 }
 
-/** */
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
-/** */
 export type FileStatus =
   | "NOT_VALIDATED"
   | "VALIDATION_SUCCESS"
@@ -306,7 +298,6 @@ export interface PagedTest {
   nextLink?: string;
 }
 
-/** */
 export type APIVersions = "2022-11-01";
 
 /** Load test run model */
@@ -437,9 +428,7 @@ export interface TestRunOutputArtifacts {
   logsFileInfo?: FileInfo;
 }
 
-/** */
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
-/** */
 export type Status =
   | "ACCEPTED"
   | "NOTSTARTED"
@@ -498,7 +487,6 @@ export interface TestRunServerMetricConfig {
   readonly lastModifiedBy?: string;
 }
 
-/** */
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 export interface DimensionValueList {
@@ -542,7 +530,6 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** */
 export type AggregationType =
   | "Average"
   | "Count"
@@ -551,7 +538,6 @@ export type AggregationType =
   | "Percentile90"
   | "Percentile95"
   | "Percentile99";
-/** */
 export type MetricUnit =
   | "NotSpecified"
   | "Percent"
@@ -571,7 +557,6 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/** */
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */

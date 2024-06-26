@@ -9,7 +9,7 @@ import * as OutputModels from "./outputModels";
 import * as PaginateHelper from "./paginateHelper";
 import * as UnexpectedHelper from "./isUnexpected";
 
-export { createClient } from "./purviewAccount";
+export { createClient, PurviewAccountClientOptions } from "./purviewAccount";
 export {
   Parameters,
   Responses,

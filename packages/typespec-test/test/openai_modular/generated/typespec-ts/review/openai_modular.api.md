@@ -19,13 +19,13 @@ export interface AudioSpeechOptions {
     voice: AudioSpeechVoice;
 }
 
-// @public (undocumented)
+// @public
 export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
 
-// @public (undocumented)
+// @public
 export type AudioSpeechVoice = "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
 
-// @public (undocumented)
+// @public
 export type AudioTaskLabel = "transcribe" | "translate";
 
 // @public
@@ -37,7 +37,7 @@ export interface AudioTranscription {
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
 // @public
@@ -74,7 +74,7 @@ export interface AudioTranslation {
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
 // @public
@@ -135,7 +135,7 @@ export interface AzureChatExtensionsMessageContext {
     intent?: string;
 }
 
-// @public (undocumented)
+// @public
 export type AzureChatExtensionType = "azure_search" | "azure_ml_index" | "azure_cosmos_db" | "elasticsearch" | "Pinecone";
 
 // @public
@@ -255,7 +255,7 @@ export interface AzureSearchIndexFieldMappingOptions {
     vectorFields?: string[];
 }
 
-// @public (undocumented)
+// @public
 export type AzureSearchQueryType = "simple" | "semantic" | "vector" | "vector_simple_hybrid" | "vector_semantic_hybrid";
 
 // @public
@@ -382,7 +382,7 @@ export interface ChatCompletionsToolDefinition {
 // @public
 export type ChatCompletionsToolDefinitionUnion = ChatCompletionsFunctionToolDefinition | ChatCompletionsToolDefinition;
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsToolSelectionPreset = "auto" | "none";
 
 // @public
@@ -407,7 +407,7 @@ export interface ChatMessageImageContentItem extends ChatMessageContentItem {
     type: "image_url";
 }
 
-// @public (undocumented)
+// @public
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
 
 // @public
@@ -476,7 +476,7 @@ export interface ChatResponseMessage {
     toolCalls?: ChatCompletionsToolCallUnion[];
 }
 
-// @public (undocumented)
+// @public
 export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
 
 // @public
@@ -512,7 +512,7 @@ export interface Completions {
     usage: CompletionsUsage;
 }
 
-// @public (undocumented)
+// @public
 export type CompletionsFinishReason = "stop" | "length" | "content_filter" | "function_call" | "tool_calls";
 
 // @public
@@ -614,7 +614,7 @@ export interface ContentFilterResultsForPrompt {
     promptIndex: number;
 }
 
-// @public (undocumented)
+// @public
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
 // @public
@@ -647,7 +647,7 @@ export interface ElasticsearchIndexFieldMappingOptions {
     vectorFields?: string[];
 }
 
-// @public (undocumented)
+// @public
 export type ElasticsearchQueryType = "simple" | "vector";
 
 // @public
@@ -682,7 +682,7 @@ export interface FunctionCall {
     name: string;
 }
 
-// @public (undocumented)
+// @public
 export type FunctionCallPreset = "auto" | "none";
 
 // @public
@@ -756,10 +756,10 @@ export interface ImageGenerationOptions {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export type ImageGenerationQuality = "standard" | "hd";
 
-// @public (undocumented)
+// @public
 export type ImageGenerationResponseFormat = "url" | "b64_json";
 
 // @public
@@ -768,10 +768,10 @@ export interface ImageGenerations {
     data: ImageGenerationData[];
 }
 
-// @public (undocumented)
+// @public
 export type ImageGenerationStyle = "natural" | "vivid";
 
-// @public (undocumented)
+// @public
 export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792";
 
 // @public
@@ -799,7 +799,7 @@ export interface OnYourDataAuthenticationOptions {
 // @public
 export type OnYourDataAuthenticationOptionsUnion = OnYourDataApiKeyAuthenticationOptions | OnYourDataConnectionStringAuthenticationOptions | OnYourDataKeyAndKeyIdAuthenticationOptions | OnYourDataEncodedApiKeyAuthenticationOptions | OnYourDataAccessTokenAuthenticationOptions | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions | OnYourDataUserAssignedManagedIdentityAuthenticationOptions | OnYourDataAuthenticationOptions;
 
-// @public (undocumented)
+// @public
 export type OnYourDataAuthenticationType = "api_key" | "connection_string" | "key_and_key_id" | "encoded_api_key" | "access_token" | "system_assigned_managed_identity" | "user_assigned_managed_identity";
 
 // @public
@@ -856,7 +856,7 @@ export interface OnYourDataVectorizationSource {
     type: OnYourDataVectorizationSourceType;
 }
 
-// @public (undocumented)
+// @public
 export type OnYourDataVectorizationSourceType = "endpoint" | "deployment_name" | "model_id";
 
 // @public
