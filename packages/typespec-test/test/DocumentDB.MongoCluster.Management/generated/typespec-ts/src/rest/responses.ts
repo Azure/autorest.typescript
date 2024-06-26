@@ -4,7 +4,7 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
-  PagedOperationOutput,
+  OperationListResultOutput,
   ErrorResponseOutput,
   MongoClusterOutput,
   MongoClusterListResultOutput,
@@ -20,7 +20,7 @@ import {
 /** Azure operation completed successfully. */
 export interface OperationsList200Response extends HttpResponse {
   status: "200";
-  body: PagedOperationOutput;
+  body: OperationListResultOutput;
 }
 
 export interface OperationsListDefaultResponse extends HttpResponse {
@@ -46,6 +46,8 @@ export interface MongoClustersCreateOrUpdate200Response extends HttpResponse {
 }
 
 export interface MongoClustersCreateOrUpdate201Headers {
+  /** A link to the status monitor */
+  "azure-asyncoperation"?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
 }

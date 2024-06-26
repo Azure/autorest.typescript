@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { DocumentDBContext } from "./api/documentDBContext.js";
 import { DocumentDBClient } from "./documentDBClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
@@ -49,7 +48,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: DocumentDBContext | DocumentDBClient,
+  client: DocumentDBClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]

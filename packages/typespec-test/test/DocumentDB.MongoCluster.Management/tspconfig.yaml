@@ -6,6 +6,7 @@ options:
     isModularLibrary: true
     hierarchyClient: false
     generateOrphanModels: true
+    experimentalExtensibleEnums: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@azure/arm-mongo-cluster"

@@ -5,32 +5,16 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export type ActionType = string;
-
-// @public
-export interface ArmOperationStatus {
-    readonly endTime?: Date;
-    readonly error?: ErrorDetail;
-    readonly name?: string;
-    readonly percentComplete?: number;
-    readonly startTime?: Date;
-    status: ResourceProvisioningState;
-}
 
 // @public
 export type CheckNameAvailabilityReason = string;
@@ -147,6 +131,114 @@ export interface FirewallRulesOperations {
     get: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, options?: FirewallRulesGetOptionalParams) => Promise<FirewallRule>;
     // (undocumented)
     listByMongoCluster: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, options?: FirewallRulesListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<FirewallRule>;
+}
+
+// @public (undocumented)
+export enum KnownActionType {
+    // (undocumented)
+    Internal = "Internal"
+}
+
+// @public (undocumented)
+export enum KnownCheckNameAvailabilityReason {
+    // (undocumented)
+    AlreadyExists = "AlreadyExists",
+    // (undocumented)
+    Invalid = "Invalid"
+}
+
+// @public (undocumented)
+export enum KnownCreatedByType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Key = "Key",
+    // (undocumented)
+    ManagedIdentity = "ManagedIdentity",
+    // (undocumented)
+    User = "User"
+}
+
+// @public (undocumented)
+export enum KnownCreateMode {
+    // (undocumented)
+    Default = "Default",
+    // (undocumented)
+    PointInTimeRestore = "PointInTimeRestore"
+}
+
+// @public (undocumented)
+export enum KnownMongoClusterStatus {
+    // (undocumented)
+    Dropping = "Dropping",
+    // (undocumented)
+    Provisioning = "Provisioning",
+    // (undocumented)
+    Ready = "Ready",
+    // (undocumented)
+    Starting = "Starting",
+    // (undocumented)
+    Stopped = "Stopped",
+    // (undocumented)
+    Stopping = "Stopping",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public (undocumented)
+export enum KnownNodeKind {
+    // (undocumented)
+    Shard = "Shard"
+}
+
+// @public (undocumented)
+export enum KnownOrigin {
+    // (undocumented)
+    "user,system" = "user,system",
+    // (undocumented)
+    system = "system",
+    // (undocumented)
+    user = "user"
+}
+
+// @public (undocumented)
+export enum KnownPrivateEndpointConnectionProvisioningState {
+    // (undocumented)
+    Creating = "Creating",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
+// @public (undocumented)
+export enum KnownPrivateEndpointServiceConnectionStatus {
+    // (undocumented)
+    Approved = "Approved",
+    // (undocumented)
+    Pending = "Pending",
+    // (undocumented)
+    Rejected = "Rejected"
+}
+
+// @public (undocumented)
+export enum KnownPublicNetworkAccess {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public (undocumented)
+export enum KnownResourceProvisioningState {
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded"
 }
 
 // @public
@@ -290,6 +382,12 @@ export interface OperationDisplay {
     resource?: string;
 }
 
+// @public
+export interface OperationListResult {
+    nextLink?: string;
+    value: Operation[];
+}
+
 // @public (undocumented)
 export interface OperationsListOptionalParams extends OperationOptions {
 }
@@ -311,23 +409,17 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export interface PagedOperation {
-    nextLink?: string;
-    value: Operation[];
-}
-
-// @public
 export interface PageSettings {
     continuationToken?: string;
 }
 
 // @public
 export interface PrivateEndpoint {
-    id?: string;
+    readonly id?: string;
 }
 
 // @public
-export interface PrivateEndpointConnection extends ProxyResource {
+export interface PrivateEndpointConnection extends Resource {
     properties?: PrivateEndpointConnectionProperties;
 }
 
@@ -336,11 +428,11 @@ export interface PrivateEndpointConnectionProperties {
     readonly groupIds?: string[];
     privateEndpoint?: PrivateEndpoint;
     privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-    provisioningState?: PrivateEndpointConnectionProvisioningState;
+    readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
 
 // @public
-export type PrivateEndpointConnectionProvisioningState = ResourceProvisioningState | "Creating" | "Deleting";
+export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
 export interface PrivateEndpointConnectionResource extends ProxyResource {
@@ -442,10 +534,8 @@ export interface Resource {
 // @public
 export type ResourceProvisioningState = string;
 
-// Warning: (ae-forgotten-export) The symbol "DocumentDBContext" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: DocumentDBContext | DocumentDBClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: DocumentDBClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
@@ -456,12 +546,12 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
 
 // @public
 export interface SystemData {
-    readonly createdAt?: Date;
-    readonly createdBy?: string;
-    readonly createdByType?: CreatedByType;
-    readonly lastModifiedAt?: Date;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedByType?: CreatedByType;
+    createdAt?: Date;
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    lastModifiedAt?: Date;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
 }
 
 // @public
@@ -470,7 +560,7 @@ export interface TrackedResource extends Resource {
     tags?: Record<string, string>;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "2024-03-01-preview";
 
 // (No @packageDocumentation comment for this package)

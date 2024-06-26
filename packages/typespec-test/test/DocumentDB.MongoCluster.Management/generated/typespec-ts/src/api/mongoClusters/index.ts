@@ -82,8 +82,8 @@ export async function _mongoClustersGetDeserialize(
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -240,8 +240,8 @@ export function _mongoClustersCreateOrUpdateSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        location: resource["location"],
         tags: resource["tags"],
+        location: resource["location"],
         properties: !resource.properties
           ? undefined
           : {
@@ -291,8 +291,8 @@ export async function _mongoClustersCreateOrUpdateDeserialize(
 
   result = result as MongoClustersCreateOrUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -497,8 +497,8 @@ export async function _mongoClustersUpdateDeserialize(
 
   result = result as MongoClustersUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -728,8 +728,8 @@ export async function _mongoClustersListByResourceGroupDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],
@@ -887,8 +887,8 @@ export async function _mongoClustersListDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],

@@ -268,7 +268,7 @@ export function _privateEndpointConnectionsCreateSend(
           : {
               privateEndpoint: !resource.properties?.privateEndpoint
                 ? undefined
-                : { id: resource.properties?.privateEndpoint?.["id"] },
+                : {},
               privateLinkServiceConnectionState: {
                 status:
                   resource.properties?.privateLinkServiceConnectionState[
@@ -283,7 +283,6 @@ export function _privateEndpointConnectionsCreateSend(
                     "actionsRequired"
                   ],
               },
-              provisioningState: resource.properties?.["provisioningState"],
             },
       },
     });

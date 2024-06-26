@@ -9,7 +9,7 @@ export interface PrivateLinkResourceListResult {
   nextLink?: string;
 }
 
-/** Common properties for all Azure Resource Manager resources. */
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   readonly id?: string;
@@ -24,24 +24,30 @@ export interface Resource {
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByType;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: Date;
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByType;
+  lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: Date;
+  lastModifiedAt?: Date;
 }
 
 /** The kind of entity that created the resource. */
-/** "User", "Application", "ManagedIdentity", "Key" */
 export type CreatedByType = string;
 
-/** The base proxy resource. */
+export enum KnownCreatedByType {
+  User = "User",
+  Application = "Application",
+  ManagedIdentity = "ManagedIdentity",
+  Key = "Key",
+}
+
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
 /** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
@@ -102,22 +108,22 @@ export interface PrivateEndpointConnectionResource extends ProxyResource {
   properties?: PrivateEndpointConnectionProperties;
 }
 
-/** Properties of he private endpoint connection resource */
+/** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
-  /** The group identifiers for the private endpoint resource */
+  /** The group ids for the private endpoint resource. */
   readonly groupIds?: string[];
-  /** The private endpoint resource */
+  /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
   /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
+  readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
 
-/** The private endpoint resource */
+/** The Private Endpoint resource. */
 export interface PrivateEndpoint {
   /** The resource identifier for private endpoint */
-  id?: string;
+  readonly id?: string;
 }
 
 /** A collection of information about the state of the connection between service consumer and provider. */
@@ -130,27 +136,23 @@ export interface PrivateLinkServiceConnectionState {
   actionsRequired?: string;
 }
 
-/** The private endpoint connection status */
-/** "Pending", "Approved", "Rejected" */
+/** The private endpoint connection status. */
 export type PrivateEndpointServiceConnectionStatus = string;
-/** The provisioning state of a resource type. */
-/** "Succeeded", "Failed", "Canceled" */
-export type ResourceProvisioningState = string;
 
-/** Standard Azure Resource Manager operation status response */
-export interface ArmOperationStatus {
-  /** The operation status */
-  status: ResourceProvisioningState;
-  /** The name of the  operationStatus resource */
-  readonly name?: string;
-  /** Operation start time */
-  readonly startTime?: Date;
-  /** Operation complete time */
-  readonly endTime?: Date;
-  /** The progress made toward completing the operation */
-  readonly percentComplete?: number;
-  /** Errors that occurred if the operation ended with Canceled or Failed status */
-  readonly error?: ErrorDetail;
+export enum KnownPrivateEndpointServiceConnectionStatus {
+  Pending = "Pending",
+  Approved = "Approved",
+  Rejected = "Rejected",
+}
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState = string;
+
+export enum KnownPrivateEndpointConnectionProvisioningState {
+  Succeeded = "Succeeded",
+  Creating = "Creating",
+  Deleting = "Deleting",
+  Failed = "Failed",
 }
 
 /** Represents a mongo cluster firewall rule. */
@@ -169,6 +171,15 @@ export interface FirewallRuleProperties {
   endIpAddress: string;
 }
 
+/** The provisioning state of a resource type. */
+export type ResourceProvisioningState = string;
+
+export enum KnownResourceProvisioningState {
+  Succeeded = "Succeeded",
+  Failed = "Failed",
+  Canceled = "Canceled",
+}
+
 /** The response of a FirewallRule list operation. */
 export interface FirewallRuleListResult {
   /** The FirewallRule items on this page */
@@ -179,10 +190,10 @@ export interface FirewallRuleListResult {
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
-  /** The geo-location where the resource lives */
-  location: string;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
 }
 
 /** Represents a mongo cluster resource. */
@@ -220,8 +231,12 @@ export interface MongoClusterProperties {
 }
 
 /** The mode that the Mongo Cluster is created with. */
-/** "Default", "PointInTimeRestore" */
 export type CreateMode = string;
+
+export enum KnownCreateMode {
+  Default = "Default",
+  PointInTimeRestore = "PointInTimeRestore",
+}
 
 /** Parameters used for restore operations */
 export interface MongoClusterRestoreParameters {
@@ -232,11 +247,25 @@ export interface MongoClusterRestoreParameters {
 }
 
 /** The status of the Mongo cluster resource. */
-/** "Ready", "Provisioning", "Updating", "Starting", "Stopping", "Stopped", "Dropping" */
 export type MongoClusterStatus = string;
+
+export enum KnownMongoClusterStatus {
+  Ready = "Ready",
+  Provisioning = "Provisioning",
+  Updating = "Updating",
+  Starting = "Starting",
+  Stopping = "Stopping",
+  Stopped = "Stopped",
+  Dropping = "Dropping",
+}
+
 /** Whether or not public endpoint access is allowed for this Mongo cluster.  Value is optional and default value is 'Enabled' */
-/** "Enabled", "Disabled" */
 export type PublicNetworkAccess = string;
+
+export enum KnownPublicNetworkAccess {
+  Enabled = "Enabled",
+  Disabled = "Disabled",
+}
 
 /** Specification for a node group. */
 export interface NodeGroupSpec {
@@ -253,11 +282,14 @@ export interface NodeGroupSpec {
 }
 
 /** The kind of the node on the cluster. */
-/** "Shard" */
 export type NodeKind = string;
 
+export enum KnownNodeKind {
+  Shard = "Shard",
+}
+
 /** The private endpoint connection resource */
-export interface PrivateEndpointConnection extends ProxyResource {
+export interface PrivateEndpointConnection extends Resource {
   /** The private endpoint connection properties */
   properties?: PrivateEndpointConnectionProperties;
 }
@@ -324,11 +356,15 @@ export interface CheckNameAvailabilityResponse {
 }
 
 /** Possible reasons for a name not being available. */
-/** "Invalid", "AlreadyExists" */
 export type CheckNameAvailabilityReason = string;
 
+export enum KnownCheckNameAvailabilityReason {
+  Invalid = "Invalid",
+  AlreadyExists = "AlreadyExists",
+}
+
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface PagedOperation {
+export interface OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
@@ -362,19 +398,23 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** "user", "system", "user,system" */
 export type Origin = string;
+
+export enum KnownOrigin {
+  user = "user",
+  system = "system",
+  "user,system" = "user,system",
+}
+
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** "Internal" */
 export type ActionType = string;
+
+export enum KnownActionType {
+  Internal = "Internal",
+}
+
 /** The available API versions. */
-/** */
 export type Versions = "2024-03-01-preview";
-/** Alias for PrivateEndpointConnectionProvisioningState */
-export type PrivateEndpointConnectionProvisioningState =
-  | ResourceProvisioningState
-  | "Creating"
-  | "Deleting";
 /** Alias for ProvisioningState */
 export type ProvisioningState =
   | string
