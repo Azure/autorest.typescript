@@ -43,7 +43,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** */
           export type SchemaContentTypeValues =
             | "application/json; serialization=Avro"
             | "application/json; serialization=json"
@@ -142,7 +141,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** */
           export type SchemaContentTypeValues =
             | "application/json; serialization=Avro"
             | "application/json; serialization=json"
@@ -153,7 +151,7 @@ describe("header parameters", () => {
       });
     });
     describe("extensible", async () => {
-      it("union with string as extensible enum", async () => {
+      it("union with string as extensible enum is exhaustive", async () => {
         const tspDefinition = `
         import "@typespec/http";
         import "@typespec/rest";
@@ -187,8 +185,9 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** "text/plain; charset=utf-8", "text/vnd.ms.protobuf" */
-          export type SchemaContentTypeValues = string;
+          export type SchemaContentTypeValues = 
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
           `
         );
       });
@@ -232,7 +231,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of JsonContentType */
-          /** */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -279,7 +277,143 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** */
+          /** Type of JsonContentType */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
+          /** Alias for SchemaContentTypeValues */
+          export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          `
+        );
+      });
+    });
+
+    describe("extensible", async () => {
+      it("union with string as extensible enum", async () => {
+        const tspDefinition = `
+        import "@typespec/http";
+        import "@typespec/rest";
+    
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+        
+        union SchemaContentTypeValues {
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+          others: string,
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        const schemaOutput = await emitModularModelsFromTypeSpec(
+          tspDefinition,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of SchemaContentTypeValues */
+          export type SchemaContentTypeValues = 
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
+          `
+        );
+      });
+      it("union contains union with string element", async () => {
+        const tspDefinition = `
+        import "@typespec/http";
+        import "@typespec/rest";
+    
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+
+        union JsonContentType {
+          avro: "application/json; serialization=Avro",
+          json: "application/json; serialization=json",
+        }
+        
+        union SchemaContentTypeValues {
+          JsonContentType,
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+          others: string,
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        const schemaOutput = await emitModularModelsFromTypeSpec(
+          tspDefinition,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of JsonContentType */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
+          /** Alias for SchemaContentTypeValues */
+          export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          `
+        );
+      });
+      it("union contains enum with string element", async () => {
+        const tspDefinition = `
+        import "@typespec/http";
+        import "@typespec/rest";
+    
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+
+        enum JsonContentType {
+          avro: "application/json; serialization=Avro",
+          json: "application/json; serialization=json",
+        }
+        
+        union SchemaContentTypeValues {
+          JsonContentType,
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+          others: string,
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        const schemaOutput = await emitModularModelsFromTypeSpec(
+          tspDefinition,
+          false,
+          true
+        );
+
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of JsonContentType */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -489,7 +623,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** */
+          /** Type of SchemaContentTypeValues */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
       });
@@ -531,7 +665,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** */
+          /** Type of SchemaContentTypeValues */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
       });
@@ -577,8 +711,7 @@ describe("header parameters", () => {
         schemaOutput?.getFullText()!,
         `
         /** Type of EnumTest */
-        /** 1, 2, 3, 4 */
-        export type EnumTest = number;
+        export type EnumTest = 1 | 2 | 3 | 4;
 `
       );
     });
@@ -630,7 +763,7 @@ describe("header parameters", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** */
+        /** Type of EnumTest */
         export type EnumTest = 1 | 2 | 3 | 4;
         
         export interface Foo {
@@ -682,7 +815,7 @@ describe("model type", () => {
           color: "red";
         }
 
-        /** */
+        /** Type of Color */
         export type Color = "red" | "blue";  
         `
       );
@@ -760,7 +893,7 @@ describe("model type", () => {
           color: 1;
         }
 
-        /** */
+        /** Type of Color */
         export type Color = 1 | 2;
         `
       );
@@ -786,7 +919,6 @@ describe("model type", () => {
         }
 
         /** Type of Color */
-        /** */
         export type Color = 1 | 2;
         `
       );
@@ -818,7 +950,6 @@ describe("model type", () => {
         }
 
         /** Type of Color */
-        /** */
         export type Color = 1 | 2;
         `
       );
@@ -848,9 +979,9 @@ describe("model type", () => {
           color: Lr | Ud;
         }
 
-        /** */
+        /** Type of Lr */
         export type Lr = "left" | "right";
-        /** */
+        /** Type of Ud */
         export type Ud = "up" | "down";
         `
       );
@@ -880,9 +1011,8 @@ describe("model type", () => {
         }
 
         /** Type of LeftAndRight */
-        /** */
         export type LeftAndRight = "left" | "right";
-        /** */
+        /** Type of UpAndDown */
         export type UpAndDown = "up" | "down";
         `
       );

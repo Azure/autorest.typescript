@@ -12,6 +12,7 @@ import { Options } from "prettier";
 export interface EmitterOptions extends RLCOptions {
   branded?: boolean;
   compatibilityMode?: boolean;
+  experimentalExtensibleEnums?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -90,7 +91,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       enum: ["esm", "cjs"],
       default: "esm"
     },
-    compatibilityMode: { type: "boolean", nullable: true }
+    compatibilityMode: { type: "boolean", nullable: true },
+    experimentalExtensibleEnums: { type: "boolean", nullable: true }
   },
   required: []
 };

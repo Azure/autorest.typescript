@@ -8,8 +8,7 @@ export interface UnionEnumValueProperty {
 }
 
 /** Type of ExtendedEnum */
-/** "value2" */
-export type ExtendedEnum = string;
+export type ExtendedEnum = "value2";
 
 /** Model with a union of float literal as property. */
 export interface UnionFloatLiteralProperty {
@@ -123,8 +122,7 @@ export interface ExtensibleEnumProperty {
 }
 
 /** Enum that will be used as a property for model EnumProperty. Extensible. */
-/** "ValueOne", "ValueTwo" */
-export type InnerEnum = string;
+export type InnerEnum = "ValueOne" | "ValueTwo";
 
 /** Model with enum properties */
 export interface EnumProperty {
@@ -133,7 +131,6 @@ export interface EnumProperty {
 }
 
 /** Enum that will be used as a property for model EnumProperty. Non-extensible. */
-/** */
 export type FixedInnerEnum = "ValueOne" | "ValueTwo";
 
 /** Model with a duration property */

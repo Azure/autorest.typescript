@@ -30,8 +30,7 @@ export interface ListItemInputBody {
 }
 
 /** An extensible enum input parameter. */
-/** "First", "Second" */
-export type ListItemInputExtensibleEnum = string;
+export type ListItemInputExtensibleEnum = "First" | "Second";
 
 export interface UserListResults {
   /** List of items. */
@@ -53,7 +52,6 @@ export interface SecondItem {
 }
 
 /** The version of the API. */
-/** */
 export type Versions = "2022-12-01-preview";
 
 /** Paged collection of User items */

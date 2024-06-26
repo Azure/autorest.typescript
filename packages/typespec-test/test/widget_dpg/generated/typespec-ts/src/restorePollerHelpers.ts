@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { WidgetServiceContext } from "./api/widgetServiceContext.js";
 import { WidgetServiceClient } from "./widgetServiceClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
@@ -41,7 +40,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: WidgetServiceContext | WidgetServiceClient,
+  client: WidgetServiceClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]

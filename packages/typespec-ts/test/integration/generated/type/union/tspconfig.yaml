@@ -9,6 +9,7 @@ options:
     isTypeSpecTest: true
     generateSample: true
     title: UnionsClient
+    experimentalExtensibleEnums: true
     packageDetails:
       name: "@msinternal/unions"
       description: "Unions Test Service"

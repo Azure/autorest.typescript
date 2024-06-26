@@ -7,10 +7,9 @@ export interface ModelV2 {
   unionProp: UnionV2;
 }
 
-/** */
+/** Type of EnumV2 */
 export type EnumV2 = "enumMemberV2";
 /** The version of the API. */
-/** */
 export type Versions = "v1" | "v2";
 /** Alias for UnionV2 */
 export type UnionV2 = string | number;

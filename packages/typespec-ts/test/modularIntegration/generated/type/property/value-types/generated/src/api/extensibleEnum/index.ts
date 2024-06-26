@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ExtensibleEnumProperty } from "../../models/models.js";
+import { ExtensibleEnumProperty, InnerEnum } from "../../models/models.js";
 import {
   ExtensibleEnumGet200Response,
   ExtensibleEnumPut204Response,
@@ -34,7 +34,7 @@ export async function _extensibleEnumGetDeserialize(
   }
 
   return {
-    property: result.body["property"],
+    property: result.body["property"] as InnerEnum,
   };
 }
 

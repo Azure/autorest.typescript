@@ -17,7 +17,6 @@ export interface ChatMessage {
 }
 
 /** A representation of the intended purpose of a message. */
-/** */
 export type ChatRole = "user" | "system" | "assistant";
 
 /** The configuration for a streaming chat completion request. */
@@ -84,7 +83,6 @@ export interface ChatMessageDelta {
 }
 
 /** Representation of the reason why a chat session has finished processing. */
-/** */
 export type FinishReason = "stop" | "length";
 
 /** The configuration for a chat completion request. */
@@ -135,5 +133,5 @@ export interface ChatChoiceRecord {
   finishReason: FinishReason;
 }
 
-/** */
+/** Type of APIVersion */
 export type APIVersion = "2023-10-01-preview";

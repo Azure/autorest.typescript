@@ -5,18 +5,12 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -33,16 +27,6 @@ export interface AccountSasToken {
 
 // @public
 export type ActionType = string;
-
-// @public
-export interface ArmOperationStatus {
-    readonly endTime?: Date;
-    readonly error?: ErrorDetail;
-    readonly name?: string;
-    readonly percentComplete?: number;
-    readonly startTime?: Date;
-    status: ResourceProvisioningState;
-}
 
 // @public
 export interface ConsumptionEndpointsProperties {
@@ -164,11 +148,11 @@ export interface DataProductsCatalogsListBySubscriptionOptionalParams extends Op
 // @public (undocumented)
 export interface DataProductsCatalogsOperations {
     // (undocumented)
-    get: (subscriptionId: string, resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
+    get: (resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
     // (undocumented)
-    listByResourceGroup: (subscriptionId: string, resourceGroupName: string, options?: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
+    listByResourceGroup: (resourceGroupName: string, options?: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
     // (undocumented)
-    listBySubscription: (subscriptionId: string, options?: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
+    listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }
 
 // @public (undocumented)
@@ -204,27 +188,27 @@ export interface DataProductsListRolesAssignmentsOptionalParams extends Operatio
 // @public (undocumented)
 export interface DataProductsOperations {
     // (undocumented)
-    addUserRole: (subscriptionId: string, resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options?: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
+    addUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options?: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
     // (undocumented)
-    create: (subscriptionId: string, resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    create: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
     // (undocumented)
-    delete: (subscriptionId: string, resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    delete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    generateStorageAccountSasToken: (subscriptionId: string, resourceGroupName: string, dataProductName: string, body: AccountSas, options?: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
+    generateStorageAccountSasToken: (resourceGroupName: string, dataProductName: string, body: AccountSas, options?: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
     // (undocumented)
-    get: (subscriptionId: string, resourceGroupName: string, dataProductName: string, options?: DataProductsGetOptionalParams) => Promise<DataProduct>;
+    get: (resourceGroupName: string, dataProductName: string, options?: DataProductsGetOptionalParams) => Promise<DataProduct>;
     // (undocumented)
-    listByResourceGroup: (subscriptionId: string, resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
+    listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
     // (undocumented)
-    listBySubscription: (subscriptionId: string, options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
+    listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
     // (undocumented)
-    listRolesAssignments: (subscriptionId: string, resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
+    listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
     // (undocumented)
-    removeUserRole: (subscriptionId: string, resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
+    removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
     // (undocumented)
-    rotateKey: (subscriptionId: string, resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
+    rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
     // (undocumented)
-    update: (subscriptionId: string, resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
 // @public (undocumented)
@@ -317,19 +301,19 @@ export interface DataTypesListByDataProductOptionalParams extends OperationOptio
 // @public (undocumented)
 export interface DataTypesOperations {
     // (undocumented)
-    create: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options?: DataTypesCreateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
+    create: (resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options?: DataTypesCreateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
     // (undocumented)
-    delete: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    delete: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    deleteData: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
+    deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    generateStorageContainerSasToken: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
+    generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
     // (undocumented)
-    get: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
+    get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
     // (undocumented)
-    listByDataProduct: (subscriptionId: string, resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
+    listByDataProduct: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
     // (undocumented)
-    update: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
+    update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
 // @public
@@ -395,6 +379,96 @@ export interface KeyVaultInfo {
     keyVaultUrl: string;
 }
 
+// @public (undocumented)
+export enum KnownActionType {
+    // (undocumented)
+    Internal = "Internal"
+}
+
+// @public (undocumented)
+export enum KnownControlState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public (undocumented)
+export enum KnownCreatedByType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Key = "Key",
+    // (undocumented)
+    ManagedIdentity = "ManagedIdentity",
+    // (undocumented)
+    User = "User"
+}
+
+// @public (undocumented)
+export enum KnownDataProductUserRole {
+    // (undocumented)
+    Reader = "Reader",
+    // (undocumented)
+    SensitiveReader = "SensitiveReader"
+}
+
+// @public (undocumented)
+export enum KnownDataTypeState {
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Stopped = "Stopped"
+}
+
+// @public (undocumented)
+export enum KnownDefaultAction {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public (undocumented)
+export enum KnownManagedServiceIdentityType {
+    // (undocumented)
+    "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    SystemAssigned = "SystemAssigned",
+    // (undocumented)
+    UserAssigned = "UserAssigned"
+}
+
+// @public (undocumented)
+export enum KnownOrigin {
+    // (undocumented)
+    "user,system" = "user,system",
+    // (undocumented)
+    system = "system",
+    // (undocumented)
+    user = "user"
+}
+
+// @public (undocumented)
+export enum KnownProvisioningState {
+    // (undocumented)
+    Accepted = "Accepted",
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Provisioning = "Provisioning",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    Updating = "Updating"
+}
+
 // @public
 export interface ListRoleAssignments {
     count: number;
@@ -412,7 +486,7 @@ export interface ManagedServiceIdentity {
     readonly principalId?: string;
     readonly tenantId?: string;
     type: ManagedServiceIdentityType;
-    userAssignedIdentities?: UserAssignedIdentities;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
 // @public
@@ -420,7 +494,7 @@ export type ManagedServiceIdentityType = string;
 
 // @public (undocumented)
 export class NetworkAnalyticsClient {
-    constructor(credential: TokenCredential, options?: NetworkAnalyticsClientOptions);
+    constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsClientOptions);
     readonly dataProducts: DataProductsOperations;
     readonly dataProductsCatalogs: DataProductsCatalogsOperations;
     readonly dataTypes: DataTypesOperations;
@@ -450,6 +524,12 @@ export interface OperationDisplay {
     resource?: string;
 }
 
+// @public
+export interface OperationListResult {
+    nextLink?: string;
+    value: Operation[];
+}
+
 // @public (undocumented)
 export interface OperationsListOptionalParams extends OperationOptions {
 }
@@ -468,12 +548,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PagedOperation {
-    nextLink?: string;
-    value: Operation[];
 }
 
 // @public
@@ -503,12 +577,7 @@ export interface Resource {
 }
 
 // @public
-export type ResourceProvisioningState = string;
-
-// Warning: (ae-forgotten-export) The symbol "NetworkAnalyticsContext" needs to be exported by the entry point index.d.ts
-//
-// @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsContext | NetworkAnalyticsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
@@ -540,12 +609,12 @@ export interface RoleAssignmentDetail {
 
 // @public
 export interface SystemData {
-    readonly createdAt?: Date;
-    readonly createdBy?: string;
-    readonly createdByType?: CreatedByType;
-    readonly lastModifiedAt?: Date;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedByType?: CreatedByType;
+    createdAt?: Date;
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    lastModifiedAt?: Date;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
 }
 
 // @public
@@ -555,16 +624,12 @@ export interface TrackedResource extends Resource {
 }
 
 // @public
-export interface UserAssignedIdentities extends Record<string, UserAssignedIdentity> {
+export interface UserAssignedIdentity {
+    readonly clientId?: string;
+    readonly principalId?: string;
 }
 
 // @public
-export interface UserAssignedIdentity {
-    clientId?: string;
-    principalId?: string;
-}
-
-// @public (undocumented)
 export type Versions = "2023-11-15";
 
 // @public

@@ -1320,6 +1320,8 @@ export interface GetTaskFile200Headers {
   "ocp-batch-file-mode": string;
   /** The length of the file. */
   "content-length": number;
+  /** Type of content */
+  "content-type": "application/octet-stream";
 }
 
 /** The request has succeeded. */

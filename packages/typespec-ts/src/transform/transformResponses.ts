@@ -129,7 +129,10 @@ function transformHeaders(
   // It may be possible in principle to not error for identically declared
   // headers.
   for (const data of response.responses) {
-    const headers = data?.headers;
+    const headers = data?.headers ?? {};
+    if (data.body?.contentTypeProperty) {
+      headers["content-type"] = data.body?.contentTypeProperty;
+    }
     if (!headers || !Object.keys(headers).length) {
       continue;
     }

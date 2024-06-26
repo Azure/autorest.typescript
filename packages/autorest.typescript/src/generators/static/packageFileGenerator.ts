@@ -87,7 +87,7 @@ function regularAutorestPackage(
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
-      ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
+      ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^3.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
@@ -197,7 +197,7 @@ function regularAutorestPackage(
 
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
+    packageInfo.devDependencies["@azure/identity"] = "^4.2.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.1.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";

@@ -256,3 +256,33 @@ export function buildType(clientName?: string, type?: Type, format?: string) {
 
   return { name: clientName ?? "", type: typeMetadata.name };
 }
+
+const NumericTypeKinds = [
+  "numeric",
+  "integer",
+  "safeint",
+  "int8",
+  "int16",
+  "int32",
+  "int64",
+  "uint8",
+  "uint16",
+  "uint32",
+  "uint64",
+  "float",
+  "float32",
+  "float64",
+  "decimal",
+  "decimal128"
+];
+
+const DateTimeTypeKinds = ["plainDate", "plainTime"];
+
+// This may be a good candidate to move to TCGC
+export function isNumericTypeKind(kind: string): boolean {
+  return NumericTypeKinds.includes(kind);
+}
+
+export function isDateTimeTypeKind(kind: string): boolean {
+  return DateTimeTypeKinds.includes(kind);
+}
