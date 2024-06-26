@@ -25,7 +25,7 @@ import {
 } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
-import { shouldPromoteSubId } from "./helpers/classicalOperationHelpers.js";
+import { shouldPromoteSubscriptionId } from "./helpers/classicalOperationHelpers.js";
 
 export function buildClassicalClient(
   client: Client,
@@ -211,7 +211,11 @@ function buildClientOperationGroups(
       NameType.Property
     );
     // TODO: remove this logic once client-level parameter design is finalized
-    const hasSubIdPromoted = shouldPromoteSubId(dpgContext, operationGroup);
+    // https://github.com/Azure/autorest.typescript/issues/2618
+    const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
+      dpgContext,
+      operationGroup
+    );
     if (groupName === "") {
       operationGroup.operations.forEach((op) => {
         const declarations = getOperationFunction(op, clientType);
@@ -277,7 +281,7 @@ function buildClientOperationGroups(
             "",
             0
           )}Operations(this._client${
-            hasSubIdPromoted ? ", subscriptionId" : ""
+            hasSubscriptionIdPromoted ? ", subscriptionId" : ""
           })`
         );
     }

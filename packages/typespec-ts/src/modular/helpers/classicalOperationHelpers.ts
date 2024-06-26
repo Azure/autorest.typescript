@@ -11,14 +11,14 @@ import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
 import { SdkContext } from "../../utils/interfaces.js";
 
-export function shouldPromoteSubId(
+export function shouldPromoteSubscriptionId(
   dpgContext: SdkContext,
   operationGroup: OperationGroup
 ) {
-  const hasSubId = operationGroup.operations.some((op) =>
+  const hasSubscriptionIdParameter = operationGroup.operations.some((op) =>
     op.parameters.some((p) => p.clientName === "subscriptionId")
   );
-  return dpgContext?.rlcOptions?.azureArm && hasSubId;
+  return dpgContext?.rlcOptions?.azureArm && hasSubscriptionIdParameter;
 }
 export function getClassicalOperation(
   dpgContext: SdkContext,
@@ -27,8 +27,12 @@ export function getClassicalOperation(
   operationGroup: OperationGroup,
   layer: number = operationGroup.namespaceHierarchies.length - 1
 ) {
-  // TODO: remove hard-code logic once client-level parameters are supported
-  const hasSubIdPromoted = shouldPromoteSubId(dpgContext, operationGroup);
+  // TODO: remove this logic once client-level parameter design is finalized
+  // https://github.com/Azure/autorest.typescript/issues/2618
+  const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
+    dpgContext,
+    operationGroup
+  );
   const modularClientName = `${getClientName(client)}Context`;
   const hasClientContextImport = classicFile
     .getImportDeclarations()
@@ -96,7 +100,9 @@ export function getClassicalOperation(
         name: getClassicalMethodName(d),
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
-          ?.filter((p) => !(hasSubIdPromoted && p.name === "subscriptionId"))
+          ?.filter(
+            (p) => !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
+          )
           .map(
             (p) =>
               p.name +
@@ -135,7 +141,7 @@ export function getClassicalOperation(
           name: "context",
           type: client.rlcClientName
         },
-        ...(hasSubIdPromoted
+        ...(hasSubscriptionIdPromoted
           ? [{ name: "subscriptionId", type: "string" }]
           : [])
       ],
@@ -145,7 +151,8 @@ export function getClassicalOperation(
             return `${getClassicalMethodName(d)}: (${d.parameters
               ?.filter((p) => p.name !== "context")
               ?.filter(
-                (p) => !(hasSubIdPromoted && p.name === "subscriptionId")
+                (p) =>
+                  !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
               )
               .map(
                 (p) =>
@@ -187,7 +194,9 @@ export function getClassicalOperation(
         NameType.Interface,
         "",
         layer + 1
-      )}Operations(context${hasSubIdPromoted ? ", subscriptionId" : ""})}`;
+      )}Operations(context${
+        hasSubscriptionIdPromoted ? ", subscriptionId" : ""
+      })}`;
       if (layer !== operationGroup.namespaceHierarchies.length - 1) {
         statement = `,
         ${normalizeName(
@@ -198,7 +207,9 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer + 1
-        )}Operations(context${hasSubIdPromoted ? ", subscriptionId" : ""})}`;
+        )}Operations(context${
+          hasSubscriptionIdPromoted ? ", subscriptionId" : ""
+        })}`;
       }
       const newReturnStatement = returnStatement.replace(/}$/, statement);
       existFunction.setBodyText(newReturnStatement);
@@ -212,7 +223,7 @@ export function getClassicalOperation(
           name: "context",
           type: client.rlcClientName
         },
-        ...(hasSubIdPromoted
+        ...(hasSubscriptionIdPromoted
           ? [{ name: "subscriptionId", type: "string" }]
           : [])
       ],
@@ -241,7 +252,7 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer
-        )}(context${hasSubIdPromoted ? ", subscriptionId" : ""})
+        )}(context${hasSubscriptionIdPromoted ? ", subscriptionId" : ""})
       }`
     });
   }
