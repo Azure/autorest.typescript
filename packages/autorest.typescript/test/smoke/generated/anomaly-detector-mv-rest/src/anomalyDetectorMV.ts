@@ -6,7 +6,9 @@ import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorMVClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface AnomalyDetectorMVClientOptions extends ClientOptions {
+  /** Api Version */
   apiVersion?: "v1.1";
 }
 
@@ -19,14 +21,12 @@ export interface AnomalyDetectorMVClientOptions extends ClientOptions {
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: AnomalyDetectorMVClientOptions = {},
+  { apiVersion = "v1.1", ...options }: AnomalyDetectorMVClientOptions = {},
 ): AnomalyDetectorMVClient {
-  const apiVersion = options.apiVersion ?? "v1.1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpoint}/anomalydetector/${apiVersion}`;
-
   const userAgentInfo = `azsdk-js-anomaly-detector-mv-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -45,7 +45,6 @@ export default function createClient(
         options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
@@ -53,11 +52,6 @@ export default function createClient(
   ) as AnomalyDetectorMVClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   return client;
 }

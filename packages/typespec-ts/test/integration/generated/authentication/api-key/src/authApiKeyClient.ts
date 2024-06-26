@@ -6,6 +6,9 @@ import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { AuthApiKeyClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface AuthApiKeyClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AuthApiKeyClient`
  * @param credentials - uniquely identify client credential
@@ -13,7 +16,7 @@ import { AuthApiKeyClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: AuthApiKeyClientOptions = {},
 ): AuthApiKeyClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -34,7 +37,6 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

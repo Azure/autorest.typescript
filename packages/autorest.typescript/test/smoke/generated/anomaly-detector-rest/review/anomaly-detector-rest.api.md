@@ -43,6 +43,10 @@ export type AnomalyDetectorRestClient = Client & {
     path: Routes;
 };
 
+// @public
+export interface AnomalyDetectorRestClientOptions extends ClientOptions {
+}
+
 // @public (undocumented)
 export interface AnomalyInterpretationOutput {
     contributionScore?: number;
@@ -144,7 +148,7 @@ export interface CorrelationChangesOutput {
 }
 
 // @public
-function createClient(endpoint: string, apiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorRestClient;
+function createClient(endpoint: string, apiVersion: string, credentials: KeyCredential, options?: AnomalyDetectorRestClientOptions): AnomalyDetectorRestClient;
 export default createClient;
 
 // @public (undocumented)

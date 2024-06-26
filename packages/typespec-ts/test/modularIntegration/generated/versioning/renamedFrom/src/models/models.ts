@@ -7,10 +7,8 @@ export interface NewModel {
   unionProp: NewUnion;
 }
 
-/** */
 export type NewEnum = "newEnumMember";
 /** The version of the API. */
-/** */
 export type Versions = "v1" | "v2";
 /** Alias for NewUnion */
 export type NewUnion = string | number;
