@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  MultivariateErrorResponse as MultivariateErrorResponseRest,
   MultivariateVariableState as MultivariateVariableStateRest,
   MultivariateMultivariateBatchDetectionOptions as MultivariateMultivariateBatchDetectionOptionsRest,
   MultivariateModelInfo as MultivariateModelInfoRest,
@@ -56,15 +55,6 @@ export interface MultivariateErrorResponse {
   message: string;
 }
 
-export function multivariateErrorResponseSerializer(
-  item: MultivariateErrorResponse
-): MultivariateErrorResponseRest {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
 /** Variable Status. */
 export interface MultivariateVariableState {
   /** Variable name in variable states. */
@@ -80,7 +70,7 @@ export interface MultivariateVariableState {
 }
 
 export function multivariateVariableStateSerializer(
-  item: MultivariateVariableState
+  item: MultivariateVariableState,
 ): MultivariateVariableStateRest {
   return {
     variable: item["variable"],
@@ -122,7 +112,7 @@ export interface MultivariateMultivariateBatchDetectionOptions {
 }
 
 export function multivariateMultivariateBatchDetectionOptionsSerializer(
-  item: MultivariateMultivariateBatchDetectionOptions
+  item: MultivariateMultivariateBatchDetectionOptions,
 ): MultivariateMultivariateBatchDetectionOptionsRest {
   return {
     dataSource: item["dataSource"],
@@ -226,7 +216,7 @@ export interface MultivariateModelInfo {
 }
 
 export function multivariateModelInfoSerializer(
-  item: MultivariateModelInfo
+  item: MultivariateModelInfo,
 ): MultivariateModelInfoRest {
   return {
     dataSource: item["dataSource"],
@@ -265,7 +255,7 @@ export interface MultivariateAlignPolicy {
 }
 
 export function multivariateAlignPolicySerializer(
-  item: MultivariateAlignPolicy
+  item: MultivariateAlignPolicy,
 ): MultivariateAlignPolicyRest {
   return {
     alignMode: item["alignMode"],
@@ -274,6 +264,7 @@ export function multivariateAlignPolicySerializer(
   };
 }
 
+/** Type of AlignMode */
 export type AlignMode = "Inner" | "Outer";
 /** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
 export type FillNAMethod =
@@ -294,7 +285,7 @@ export interface MultivariateDiagnosticsInfo {
 }
 
 export function multivariateDiagnosticsInfoSerializer(
-  item: MultivariateDiagnosticsInfo
+  item: MultivariateDiagnosticsInfo,
 ): MultivariateDiagnosticsInfoRest {
   return {
     modelState: !item.modelState
@@ -329,7 +320,7 @@ export interface MultivariateModelState {
 }
 
 export function multivariateModelStateSerializer(
-  item: MultivariateModelState
+  item: MultivariateModelState,
 ): MultivariateModelStateRest {
   return {
     epochIds: item["epochIds"],
@@ -382,7 +373,7 @@ export interface MultivariateMultivariateLastDetectionOptions {
 }
 
 export function multivariateMultivariateLastDetectionOptionsSerializer(
-  item: MultivariateMultivariateLastDetectionOptions
+  item: MultivariateMultivariateLastDetectionOptions,
 ): MultivariateMultivariateLastDetectionOptionsRest {
   return {
     variables: item["variables"].map(multivariateVariableValuesSerializer),
@@ -401,7 +392,7 @@ export interface MultivariateVariableValues {
 }
 
 export function multivariateVariableValuesSerializer(
-  item: MultivariateVariableValues
+  item: MultivariateVariableValues,
 ): MultivariateVariableValuesRest {
   return {
     variable: item["variable"],
@@ -466,7 +457,7 @@ export interface UnivariateUnivariateDetectionOptions {
 }
 
 export function univariateUnivariateDetectionOptionsSerializer(
-  item: UnivariateUnivariateDetectionOptions
+  item: UnivariateUnivariateDetectionOptions,
 ): UnivariateUnivariateDetectionOptionsRest {
   return {
     series: item["series"].map(univariateTimeSeriesPointSerializer),
@@ -489,7 +480,7 @@ export interface UnivariateTimeSeriesPoint {
 }
 
 export function univariateTimeSeriesPointSerializer(
-  item: UnivariateTimeSeriesPoint
+  item: UnivariateTimeSeriesPoint,
 ): UnivariateTimeSeriesPointRest {
   return {
     timestamp: item["timestamp"]?.toISOString(),
@@ -497,6 +488,7 @@ export function univariateTimeSeriesPointSerializer(
   };
 }
 
+/** Type of TimeGranularity */
 export type TimeGranularity =
   | "yearly"
   | "monthly"
@@ -678,7 +670,7 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
 }
 
 export function univariateUnivariateChangePointDetectionOptionsSerializer(
-  item: UnivariateUnivariateChangePointDetectionOptions
+  item: UnivariateUnivariateChangePointDetectionOptions,
 ): UnivariateUnivariateChangePointDetectionOptionsRest {
   return {
     series: item["series"].map(univariateTimeSeriesPointSerializer),

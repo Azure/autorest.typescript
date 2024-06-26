@@ -72,7 +72,7 @@ function extractModels(codeModel: ModularCodeModel): ModularType[] {
   );
 
   for (const model of codeModel.types) {
-    if (model.type === "combined" && model.nullable) {
+    if (model.type === "combined") {
       for (const unionModel of model.types ?? []) {
         if (unionModel.type === "model") {
           models.push(unionModel);

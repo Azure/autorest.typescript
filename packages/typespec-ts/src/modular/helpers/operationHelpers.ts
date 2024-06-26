@@ -44,7 +44,7 @@ import {
   getFixmeForMultilineDocs
 } from "./docsHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
-import { buildType } from "./typeHelpers.js";
+import { buildType, isTypeNullable } from "./typeHelpers.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -245,9 +245,7 @@ export function getDeserializePrivateFunction(
         deserializedType,
         deserializedRoot,
         runtimeImports,
-        deserializedType.nullable !== undefined
-          ? !deserializedType.nullable
-          : false,
+        false, // TODO: Calculate if required
         [deserializedType],
         deserializedType.format
       )}`
@@ -568,7 +566,7 @@ function buildHeaderParameter(
   paramMap: string,
   param: Parameter
 ): string {
-  if (!param.optional && param.type.nullable === true) {
+  if (!param.optional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
       code: "nullable-required-header",
       target: NoTarget
@@ -579,7 +577,7 @@ function buildHeaderParameter(
   if (param.optional) {
     conditions.push(`options?.${param.clientName} !== undefined`);
   }
-  if (param.type.nullable === true) {
+  if (isTypeNullable(param.type) === true) {
     conditions.push(`options?.${param.clientName} !== null`);
   }
   return conditions.length > 0
@@ -924,7 +922,7 @@ function getPathParameters(operation: Operation) {
 }
 
 function getNullableCheck(name: string, type: Type) {
-  if (!type.nullable) {
+  if (!isTypeNullable(type)) {
     return "";
   }
 
@@ -1189,7 +1187,7 @@ export function deserializeResponseValue(
   format?: string
 ): string {
   const requiredPrefix = required === false ? `${restValue} === undefined` : "";
-  const nullablePrefix = type.nullable ? `${restValue} === null` : "";
+  const nullablePrefix = isTypeNullable(type) ? `${restValue} === null` : "";
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""
       ? `(${requiredPrefix} || ${nullablePrefix})`
@@ -1197,13 +1195,13 @@ export function deserializeResponseValue(
   switch (type.type) {
     case "datetime":
       return required
-        ? type.nullable
+        ? isTypeNullable(type)
           ? `${restValue} === null ? null : new Date(${restValue})`
           : `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "list": {
       const prefix =
-        required && !type.nullable
+        required && !isTypeNullable(type)
           ? `${restValue}`
           : `${requiredOrNullablePrefix} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
@@ -1216,7 +1214,7 @@ export function deserializeResponseValue(
           )}}))`;
         } else if (isPolymorphicUnion(type.elementType)) {
           let nullOrUndefinedPrefix = "";
-          if (type.elementType.nullable) {
+          if (isTypeNullable(type.elementType)) {
             nullOrUndefinedPrefix = `!p ? p :`;
           }
           const deserializeFunctionName = getDeserializeFunctionName(
@@ -1301,7 +1299,7 @@ export function serializeRequestValue(
 ): string {
   const requiredPrefix =
     required === false ? `${clientValue} === undefined` : "";
-  const nullablePrefix = type.nullable ? `${clientValue} === null` : "";
+  const nullablePrefix = isTypeNullable(type) ? `${clientValue} === null` : "";
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""
       ? `(${requiredPrefix} || ${nullablePrefix})`
@@ -1326,7 +1324,7 @@ export function serializeRequestValue(
       }
     case "list": {
       const prefix =
-        required && !type.nullable
+        required && !isTypeNullable(type)
           ? `${clientValue}`
           : `${requiredOrNullablePrefix}? ${clientValue}: ${clientValue}`;
       if (type.elementType?.type === "model" && !type.elementType.aliasType) {
@@ -1363,7 +1361,7 @@ export function serializeRequestValue(
         isPolymorphicUnion(type.elementType)
       ) {
         let nullOrUndefinedPrefix = "";
-        if (type.elementType.nullable) {
+        if (isTypeNullable(type.elementType)) {
           nullOrUndefinedPrefix = `!p ? p :`;
         }
         const serializeFunctionName = type.elementType?.name
@@ -1482,15 +1480,11 @@ export function getAllAncestors(type: Type): Type[] {
 }
 
 export function getPropertySerializationPrefix(
-  modularType: {
-    optional?: boolean;
-    type: { nullable?: boolean };
-    clientName: string;
-  },
+  modularType: Property | Parameter,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(modularType, propertyPath);
-  if (modularType.optional || modularType.type.nullable) {
+  if (modularType.optional || isTypeNullable(modularType.type)) {
     return `!${propertyFullName} ? ${propertyFullName} :`;
   }
 
@@ -1498,7 +1492,7 @@ export function getPropertySerializationPrefix(
 }
 
 export function getPropertyFullName(
-  modularType: { clientName: string },
+  modularType: Property | Parameter,
   propertyPath?: string
 ) {
   let fullName = `${modularType.clientName}`;

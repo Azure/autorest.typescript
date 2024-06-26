@@ -10,16 +10,11 @@ import {
   CertificateMetadata as CertificateMetadataRest,
   LoadTestConfiguration as LoadTestConfigurationRest,
   OptionalLoadTestConfig as OptionalLoadTestConfigRest,
-  TestInputArtifacts as TestInputArtifactsRest,
-  FileInfo as FileInfoRest,
   TestAppComponents as TestAppComponentsRest,
   AppComponent as AppComponentRest,
   TestServerMetricConfig as TestServerMetricConfigRest,
   ResourceMetric as ResourceMetricRest,
   TestRun as TestRunRest,
-  TestRunArtifacts as TestRunArtifactsRest,
-  TestRunInputArtifacts as TestRunInputArtifactsRest,
-  TestRunOutputArtifacts as TestRunOutputArtifactsRest,
   TestRunAppComponents as TestRunAppComponentsRest,
   TestRunServerMetricConfig as TestRunServerMetricConfigRest,
   MetricRequestPayload as MetricRequestPayloadRest,
@@ -100,14 +95,14 @@ export interface PassFailCriteria {
 }
 
 export function passFailCriteriaSerializer(
-  item: PassFailCriteria
+  item: PassFailCriteria,
 ): PassFailCriteriaRest {
   return {
     passFailMetrics: !item.passFailMetrics
       ? item.passFailMetrics
       : (serializeRecord(
           item.passFailMetrics as any,
-          passFailMetricSerializer
+          passFailMetricSerializer,
         ) as any),
   };
 }
@@ -141,7 +136,7 @@ export interface PassFailMetric {
 }
 
 export function passFailMetricSerializer(
-  item: PassFailMetric
+  item: PassFailMetric,
 ): PassFailMetricRest {
   return {
     clientMetric: item["clientMetric"],
@@ -153,6 +148,7 @@ export function passFailMetricSerializer(
   };
 }
 
+/** Type of PFMetrics */
 export type PFMetrics =
   | "response_time_ms"
   | "latency"
@@ -190,6 +186,7 @@ export function secretSerializer(item: Secret): SecretRest {
   };
 }
 
+/** Type of SecretType */
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
@@ -203,7 +200,7 @@ export interface CertificateMetadata {
 }
 
 export function certificateMetadataSerializer(
-  item: CertificateMetadata
+  item: CertificateMetadata,
 ): CertificateMetadataRest {
   return {
     value: item["value"],
@@ -212,6 +209,7 @@ export function certificateMetadataSerializer(
   };
 }
 
+/** Type of CertificateType */
 export type CertificateType = "AKV_CERT_URI";
 
 /** The load test configuration. */
@@ -238,7 +236,7 @@ export interface LoadTestConfiguration {
 }
 
 export function loadTestConfigurationSerializer(
-  item: LoadTestConfiguration
+  item: LoadTestConfiguration,
 ): LoadTestConfigurationRest {
   return {
     engineInstances: item["engineInstances"],
@@ -266,7 +264,7 @@ export interface OptionalLoadTestConfig {
 }
 
 export function optionalLoadTestConfigSerializer(
-  item: OptionalLoadTestConfig
+  item: OptionalLoadTestConfig,
 ): OptionalLoadTestConfigRest {
   return {
     endpointUrl: item["endpointUrl"],
@@ -290,25 +288,6 @@ export interface TestInputArtifacts {
   readonly additionalFileInfo?: FileInfo[];
 }
 
-export function testInputArtifactsSerializer(
-  item: TestInputArtifacts
-): TestInputArtifactsRest {
-  return {
-    configFileInfo: !item.configFileInfo
-      ? item.configFileInfo
-      : fileInfoSerializer(item.configFileInfo),
-    testScriptFileInfo: !item.testScriptFileInfo
-      ? item.testScriptFileInfo
-      : fileInfoSerializer(item.testScriptFileInfo),
-    userPropFileInfo: !item.userPropFileInfo
-      ? item.userPropFileInfo
-      : fileInfoSerializer(item.userPropFileInfo),
-    inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
-      ? item.inputArtifactsZipFileInfo
-      : fileInfoSerializer(item.inputArtifactsZipFileInfo),
-  };
-}
-
 /** File info */
 export interface FileInfo {
   /** File URL. */
@@ -325,17 +304,7 @@ export interface FileInfo {
   validationFailureDetails?: string;
 }
 
-export function fileInfoSerializer(item: FileInfo): FileInfoRest {
-  return {
-    url: item["url"],
-    fileName: item["fileName"],
-    fileType: item["fileType"],
-    expireDateTime: item["expireDateTime"],
-    validationStatus: item["validationStatus"],
-    validationFailureDetails: item["validationFailureDetails"],
-  };
-}
-
+/** Type of FileType */
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 /** Type of FileStatus */
 export type FileStatus =
@@ -366,12 +335,12 @@ export interface TestAppComponents {
 }
 
 export function testAppComponentsSerializer(
-  item: TestAppComponents
+  item: TestAppComponents,
 ): TestAppComponentsRest {
   return {
     components: serializeRecord(
       item.components as any,
-      appComponentSerializer
+      appComponentSerializer,
     ) as any,
   };
 }
@@ -430,7 +399,7 @@ export interface TestServerMetricConfig {
 }
 
 export function testServerMetricConfigSerializer(
-  item: TestServerMetricConfig
+  item: TestServerMetricConfig,
 ): TestServerMetricConfigRest {
   return {
     metrics: !item.metrics
@@ -464,7 +433,7 @@ export interface ResourceMetric {
 }
 
 export function resourceMetricSerializer(
-  item: ResourceMetric
+  item: ResourceMetric,
 ): ResourceMetricRest {
   return {
     resourceId: item["resourceId"],
@@ -625,16 +594,6 @@ export interface TestRunArtifacts {
   outputArtifacts?: TestRunOutputArtifacts;
 }
 
-export function testRunArtifactsSerializer(
-  item: TestRunArtifacts
-): TestRunArtifactsRest {
-  return {
-    outputArtifacts: !item.outputArtifacts
-      ? item.outputArtifacts
-      : testRunOutputArtifactsSerializer(item.outputArtifacts),
-  };
-}
-
 /** The input artifacts for the test run. */
 export interface TestRunInputArtifacts {
   /** File info */
@@ -649,25 +608,6 @@ export interface TestRunInputArtifacts {
   readonly additionalFileInfo?: FileInfo[];
 }
 
-export function testRunInputArtifactsSerializer(
-  item: TestRunInputArtifacts
-): TestRunInputArtifactsRest {
-  return {
-    configFileInfo: !item.configFileInfo
-      ? item.configFileInfo
-      : fileInfoSerializer(item.configFileInfo),
-    testScriptFileInfo: !item.testScriptFileInfo
-      ? item.testScriptFileInfo
-      : fileInfoSerializer(item.testScriptFileInfo),
-    userPropFileInfo: !item.userPropFileInfo
-      ? item.userPropFileInfo
-      : fileInfoSerializer(item.userPropFileInfo),
-    inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
-      ? item.inputArtifactsZipFileInfo
-      : fileInfoSerializer(item.inputArtifactsZipFileInfo),
-  };
-}
-
 /** The output artifacts for the test run. */
 export interface TestRunOutputArtifacts {
   /** File info */
@@ -676,19 +616,7 @@ export interface TestRunOutputArtifacts {
   logsFileInfo?: FileInfo;
 }
 
-export function testRunOutputArtifactsSerializer(
-  item: TestRunOutputArtifacts
-): TestRunOutputArtifactsRest {
-  return {
-    resultFileInfo: !item.resultFileInfo
-      ? item.resultFileInfo
-      : fileInfoSerializer(item.resultFileInfo),
-    logsFileInfo: !item.logsFileInfo
-      ? item.logsFileInfo
-      : fileInfoSerializer(item.logsFileInfo),
-  };
-}
-
+/** Type of PFTestResult */
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 /** Type of Status */
 export type Status =
@@ -730,12 +658,12 @@ export interface TestRunAppComponents {
 }
 
 export function testRunAppComponentsSerializer(
-  item: TestRunAppComponents
+  item: TestRunAppComponents,
 ): TestRunAppComponentsRest {
   return {
     components: serializeRecord(
       item.components as any,
-      appComponentSerializer
+      appComponentSerializer,
     ) as any,
   };
 }
@@ -761,7 +689,7 @@ export interface TestRunServerMetricConfig {
 }
 
 export function testRunServerMetricConfigSerializer(
-  item: TestRunServerMetricConfig
+  item: TestRunServerMetricConfig,
 ): TestRunServerMetricConfigRest {
   return {
     metrics: !item.metrics
@@ -770,6 +698,7 @@ export function testRunServerMetricConfigSerializer(
   };
 }
 
+/** Type of Interval */
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 export interface DimensionValueList {
@@ -871,7 +800,7 @@ export interface MetricRequestPayload {
 }
 
 export function metricRequestPayloadSerializer(
-  item: MetricRequestPayload
+  item: MetricRequestPayload,
 ): MetricRequestPayloadRest {
   return {
     filters:
@@ -890,7 +819,7 @@ export interface DimensionFilter {
 }
 
 export function dimensionFilterSerializer(
-  item: DimensionFilter
+  item: DimensionFilter,
 ): DimensionFilterRest {
   return {
     name: item["name"],

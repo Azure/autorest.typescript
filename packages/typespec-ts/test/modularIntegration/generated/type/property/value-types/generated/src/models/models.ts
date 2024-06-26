@@ -209,6 +209,10 @@ export function unknownStringPropertySerializer(
 /** Model with a property never. (This property should not be included). */
 export interface NeverProperty {}
 
+export function neverPropertySerializer(item: NeverProperty) {
+  return item as any;
+}
+
 /** Model with dictionary string properties */
 export interface DictionaryStringProperty {
   /** Property */

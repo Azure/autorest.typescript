@@ -1355,7 +1355,7 @@ function emitUnion(
   usage: UsageFlags
 ): Record<string, any> {
   let sdkType = getSdkUnion(context, type);
-  const isNull = sdkType.kind === "nullable";
+  const isNull = false;
   if (sdkType.kind === "nullable") {
     sdkType = sdkType.type;
   }

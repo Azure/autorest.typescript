@@ -1,9 +1,6 @@
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { Type as ModularType } from "../modularCodeModel.js";
-import {
-  getPropertySerializationPrefix,
-  getRequestModelMapping
-} from "../helpers/operationHelpers.js";
+import { getRequestModelMapping } from "../helpers/operationHelpers.js";
 import { useContext } from "../../contextManager.js";
 
 import {
@@ -17,14 +14,21 @@ import {
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 
+function getTcgcType(type: ModularType): SdkType {
+  if (type.tcgcType?.kind === "nullable") {
+    return type.tcgcType.type!;
+  }
+  return type.tcgcType!;
+}
 export function buildModelSerializer(
   type: ModularType,
   runtimeImports: RuntimeImports
 ): string | undefined {
+  const rlcMetadata = useContext("rlcMetaTree");
+  const modelTcgcType = getTcgcType(type) as SdkModelType;
   if (
-    (type.tcgcType as SdkModelType).usage !== undefined &&
-    ((type.tcgcType as SdkModelType).usage & UsageFlags.Input) !==
-      UsageFlags.Input
+    modelTcgcType.usage !== undefined &&
+    (modelTcgcType.usage & UsageFlags.Input) !== UsageFlags.Input
   ) {
     return undefined;
   }
@@ -32,8 +36,6 @@ export function buildModelSerializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-
-  const rlcMetadata = useContext("rlcMetaTree");
 
   let serializerName = `${toCamelCase(type.name)}Serializer`;
 
@@ -51,12 +53,13 @@ export function buildModelSerializer(
   }
 
   if (isDiscriminatedUnion(type)) {
-    const tcgcType = type.tcgcType!;
-
+    const discriminatedTgcType = getTcgcType(type) as SdkModelType;
     const cases: string[] = [];
-    const baseSerializerName = `${toCamelCase(tcgcType.name)}Serializer`;
-    for (const key in tcgcType.discriminatedSubtypes) {
-      const subType = tcgcType.discriminatedSubtypes[key]!;
+    const baseSerializerName = `${toCamelCase(
+      discriminatedTgcType.name
+    )}Serializer`;
+    for (const key in discriminatedTgcType.discriminatedSubtypes) {
+      const subType = discriminatedTgcType.discriminatedSubtypes[key]!;
       const discriminatedValue = subType.discriminatorValue!;
       const union = subType.discriminatedSubtypes ? "Union" : "";
       const subTypeName = `${toPascalCase(subType.name)}${union}`;
@@ -94,10 +97,11 @@ export function buildModelSerializer(
   }
 
   if (type.type === "model" || type.type === "dict") {
-    const nullabilityPrefix = getPropertySerializationPrefix({
-      clientName: "item",
-      type: { nullable: type.nullable }
-    });
+    const nullabilityPrefix = "";
+    // getPropertySerializationPrefix({
+    //   clientName: "item",
+    //   type
+    // });
 
     // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
     const additionalPropertiesSpread = hasAdditionalProperties(type.tcgcType)
@@ -135,6 +139,12 @@ export function buildModelSerializer(
           `${restModelName} as ${restModelNameAlias}`
         );
       }
+    } else {
+      output.push(`
+        export function ${serializerName}(item: ${toPascalCase(type.name)}) {
+          return item as any;
+        }
+        `);
     }
   } else if (type.type === "enum") {
     output.push(`

@@ -75,7 +75,6 @@ export interface EnumValue {
   description: string;
 }
 export interface Type {
-  nullable?: boolean;
   name?: string;
   description?: string;
   type:

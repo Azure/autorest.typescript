@@ -1898,7 +1898,12 @@ describe("visibility", () => {
       `
       export interface A {
         readonly exactVersion?: string;
-      }`
+      }
+      
+      export function aSerializer(item: A) {
+        return item as any;
+      }
+      `
     );
   });
 

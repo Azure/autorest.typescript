@@ -768,6 +768,10 @@ describe("header parameters", () => {
         
         export interface Foo {
         }
+
+        export function fooSerializer(item: Foo) {
+          return item as any;
+        }
         
         /** Alias for MixedTypes */
         export type MixedTypes = EnumTest | string | Foo;
@@ -831,6 +835,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("Color")?.getFullText()!,
         `
+        /** Type of Color */
         export type Color = "red" | "blue";  
         `
       );
@@ -946,6 +951,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("Color")?.getFullText()!,
         `
+        /** Type of Color */
         export type Color = 1 | 2;
         `
       );
@@ -1037,12 +1043,14 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("Lr")?.getFullText()!,
         `
+        /** Type of Lr */
         export type Lr = "left" | "right";
         `
       );
       await assertEqualContent(
         modelFile!.getTypeAlias("Ud")?.getFullText()!,
         `
+        /** Type of Ud */
         export type Ud = "up" | "down";
         `
       );
@@ -1082,6 +1090,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("UpAndDown")?.getFullText()!,
         `
+        /** Type of UpAndDown */
         export type UpAndDown = "up" | "down";
         `
       );

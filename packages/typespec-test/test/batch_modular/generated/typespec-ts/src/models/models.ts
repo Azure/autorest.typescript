@@ -6,10 +6,6 @@ import { uint8ArrayToString } from "@azure/core-util";
 import {
   BatchNodeUserCreateOptions as BatchNodeUserCreateOptionsRest,
   BatchNodeUserUpdateOptions as BatchNodeUserUpdateOptionsRest,
-  TaskExecutionInformation as TaskExecutionInformationRest,
-  TaskContainerExecutionInformation as TaskContainerExecutionInformationRest,
-  TaskFailureInformation as TaskFailureInformationRest,
-  NameValuePair as NameValuePairRest,
   StartTask as StartTaskRest,
   TaskContainerSettings as TaskContainerSettingsRest,
   ContainerRegistry as ContainerRegistryRest,
@@ -43,8 +39,6 @@ import {
   ApplicationPackageReference as ApplicationPackageReferenceRest,
   AuthenticationTokenSettings as AuthenticationTokenSettingsRest,
   BatchTask as BatchTaskRest,
-  BatchNodeInformation as BatchNodeInformationRest,
-  TaskStatistics as TaskStatisticsRest,
   BatchTaskCollection as BatchTaskCollectionRest,
   BatchJobSchedule as BatchJobScheduleRest,
   Schedule as ScheduleRest,
@@ -81,17 +75,10 @@ import {
   NFSMountConfiguration as NFSMountConfigurationRest,
   CifsMountConfiguration as CifsMountConfigurationRest,
   AzureFileShareConfiguration as AzureFileShareConfigurationRest,
-  JobScheduleExecutionInformation as JobScheduleExecutionInformationRest,
-  RecentJob as RecentJobRest,
-  JobScheduleStatistics as JobScheduleStatisticsRest,
   BatchJobScheduleUpdateOptions as BatchJobScheduleUpdateOptionsRest,
   BatchJobScheduleCreateOptions as BatchJobScheduleCreateOptionsRest,
   BatchCertificate as BatchCertificateRest,
-  DeleteCertificateError as DeleteCertificateErrorRest,
   BatchJob as BatchJobRest,
-  JobExecutionInformation as JobExecutionInformationRest,
-  JobSchedulingError as JobSchedulingErrorRest,
-  JobStatistics as JobStatisticsRest,
   BatchJobUpdateOptions as BatchJobUpdateOptionsRest,
   BatchJobDisableOptions as BatchJobDisableOptionsRest,
   BatchJobTerminateOptions as BatchJobTerminateOptionsRest,
@@ -293,27 +280,6 @@ export interface TaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
-export function taskExecutionInformationSerializer(
-  item: TaskExecutionInformation,
-): TaskExecutionInformationRest {
-  return {
-    startTime: item["startTime"]?.toISOString(),
-    endTime: item["endTime"]?.toISOString(),
-    exitCode: item["exitCode"],
-    containerInfo: !item.containerInfo
-      ? item.containerInfo
-      : taskContainerExecutionInformationSerializer(item.containerInfo),
-    failureInfo: !item.failureInfo
-      ? item.failureInfo
-      : taskFailureInformationSerializer(item.failureInfo),
-    retryCount: item["retryCount"],
-    lastRetryTime: item["lastRetryTime"]?.toISOString(),
-    requeueCount: item["requeueCount"],
-    lastRequeueTime: item["lastRequeueTime"]?.toISOString(),
-    result: item["result"],
-  };
-}
-
 /** Contains information about the container which a Task is executing. */
 export interface TaskContainerExecutionInformation {
   /** The ID of the container. */
@@ -322,16 +288,6 @@ export interface TaskContainerExecutionInformation {
   state?: string;
   /** Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". */
   error?: string;
-}
-
-export function taskContainerExecutionInformationSerializer(
-  item: TaskContainerExecutionInformation,
-): TaskContainerExecutionInformationRest {
-  return {
-    containerId: item["containerId"],
-    state: item["state"],
-    error: item["error"],
-  };
 }
 
 /** Information about a Task failure. */
@@ -346,20 +302,6 @@ export interface TaskFailureInformation {
   details?: NameValuePair[];
 }
 
-export function taskFailureInformationSerializer(
-  item: TaskFailureInformation,
-): TaskFailureInformationRest {
-  return {
-    category: item["category"],
-    code: item["code"],
-    message: item["message"],
-    details:
-      item["details"] === undefined
-        ? item["details"]
-        : item["details"].map(nameValuePairSerializer),
-  };
-}
-
 /** ErrorCategory enums */
 export type ErrorCategory = "usererror" | "servererror";
 
@@ -369,15 +311,6 @@ export interface NameValuePair {
   name?: string;
   /** The value in the name-value pair. */
   value?: string;
-}
-
-export function nameValuePairSerializer(
-  item: NameValuePair,
-): NameValuePairRest {
-  return {
-    name: item["name"],
-    value: item["value"],
-  };
 }
 
 /** TaskExecutionResult enums */
@@ -1502,19 +1435,6 @@ export interface BatchNodeInformation {
   taskRootDirectoryUrl?: string;
 }
 
-export function batchNodeInformationSerializer(
-  item: BatchNodeInformation,
-): BatchNodeInformationRest {
-  return {
-    affinityId: item["affinityId"],
-    nodeUrl: item["nodeUrl"],
-    poolId: item["poolId"],
-    nodeId: item["nodeId"],
-    taskRootDirectory: item["taskRootDirectory"],
-    taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
-  };
-}
-
 /** Resource usage statistics for a Task. */
 export interface TaskStatistics {
   /** The URL of the statistics. */
@@ -1539,24 +1459,6 @@ export interface TaskStatistics {
   writeIOGiB: number;
   /** The total wait time of the Task. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). */
   waitTime: string;
-}
-
-export function taskStatisticsSerializer(
-  item: TaskStatistics,
-): TaskStatisticsRest {
-  return {
-    url: item["url"],
-    startTime: item["startTime"].toISOString(),
-    lastUpdateTime: item["lastUpdateTime"].toISOString(),
-    userCPUTime: item["userCPUTime"],
-    kernelCPUTime: item["kernelCPUTime"],
-    wallClockTime: item["wallClockTime"],
-    readIOps: item["readIOps"],
-    writeIOps: item["writeIOps"],
-    readIOGiB: item["readIOGiB"],
-    writeIOGiB: item["writeIOGiB"],
-    waitTime: item["waitTime"],
-  };
 }
 
 /** A collection of Azure Batch Tasks to add. */
@@ -2870,31 +2772,12 @@ export interface JobScheduleExecutionInformation {
   endTime?: Date;
 }
 
-export function jobScheduleExecutionInformationSerializer(
-  item: JobScheduleExecutionInformation,
-): JobScheduleExecutionInformationRest {
-  return {
-    nextRunTime: item["nextRunTime"]?.toISOString(),
-    recentJob: !item.recentJob
-      ? item.recentJob
-      : recentJobSerializer(item.recentJob),
-    endTime: item["endTime"]?.toISOString(),
-  };
-}
-
 /** Information about the most recent Job to run under the Job Schedule. */
 export interface RecentJob {
   /** The ID of the Job. */
   id?: string;
   /** The URL of the Job. */
   url?: string;
-}
-
-export function recentJobSerializer(item: RecentJob): RecentJobRest {
-  return {
-    id: item["id"],
-    url: item["url"],
-  };
 }
 
 /** Resource usage statistics for a Job Schedule. */
@@ -2927,27 +2810,6 @@ export interface JobScheduleStatistics {
   numTaskRetries: number;
   /** The total wait time of all Tasks in all Jobs created under the schedule. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). This value is only reported in the Account lifetime statistics; it is not included in the Job statistics. */
   waitTime: string;
-}
-
-export function jobScheduleStatisticsSerializer(
-  item: JobScheduleStatistics,
-): JobScheduleStatisticsRest {
-  return {
-    url: item["url"],
-    startTime: item["startTime"].toISOString(),
-    lastUpdateTime: item["lastUpdateTime"].toISOString(),
-    userCPUTime: item["userCPUTime"],
-    kernelCPUTime: item["kernelCPUTime"],
-    wallClockTime: item["wallClockTime"],
-    readIOps: item["readIOps"],
-    writeIOps: item["writeIOps"],
-    readIOGiB: item["readIOGiB"],
-    writeIOGiB: item["writeIOGiB"],
-    numSucceededTasks: item["numSucceededTasks"],
-    numFailedTasks: item["numFailedTasks"],
-    numTaskRetries: item["numTaskRetries"],
-    waitTime: item["waitTime"],
-  };
 }
 
 /** Options for updating an Azure Batch Job Schedule. */
@@ -3070,19 +2932,6 @@ export interface DeleteCertificateError {
   values?: NameValuePair[];
 }
 
-export function deleteCertificateErrorSerializer(
-  item: DeleteCertificateError,
-): DeleteCertificateErrorRest {
-  return {
-    code: item["code"],
-    message: item["message"],
-    values:
-      item["values"] === undefined
-        ? item["values"]
-        : item["values"].map(nameValuePairSerializer),
-  };
-}
-
 /** CertificateFormat enums */
 export type CertificateFormat = "pfx" | "cer";
 
@@ -3191,20 +3040,6 @@ export interface JobExecutionInformation {
   terminateReason?: string;
 }
 
-export function jobExecutionInformationSerializer(
-  item: JobExecutionInformation,
-): JobExecutionInformationRest {
-  return {
-    startTime: item["startTime"].toISOString(),
-    endTime: item["endTime"]?.toISOString(),
-    poolId: item["poolId"],
-    schedulingError: !item.schedulingError
-      ? item.schedulingError
-      : jobSchedulingErrorSerializer(item.schedulingError),
-    terminateReason: item["terminateReason"],
-  };
-}
-
 /** An error encountered by the Batch service when scheduling a Job. */
 export interface JobSchedulingError {
   /** The category of the Job scheduling error. */
@@ -3215,20 +3050,6 @@ export interface JobSchedulingError {
   message?: string;
   /** A list of additional error details related to the scheduling error. */
   details?: NameValuePair[];
-}
-
-export function jobSchedulingErrorSerializer(
-  item: JobSchedulingError,
-): JobSchedulingErrorRest {
-  return {
-    category: item["category"],
-    code: item["code"],
-    message: item["message"],
-    details:
-      item["details"] === undefined
-        ? item["details"]
-        : item["details"].map(nameValuePairSerializer),
-  };
 }
 
 /** Resource usage statistics for a Job. */
@@ -3261,27 +3082,6 @@ export interface JobStatistics {
   numTaskRetries: number;
   /** The total wait time of all Tasks in the Job. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.) This value is only reported in the Account lifetime statistics; it is not included in the Job statistics. */
   waitTime: string;
-}
-
-export function jobStatisticsSerializer(
-  item: JobStatistics,
-): JobStatisticsRest {
-  return {
-    url: item["url"],
-    startTime: item["startTime"].toISOString(),
-    lastUpdateTime: item["lastUpdateTime"].toISOString(),
-    userCPUTime: item["userCPUTime"],
-    kernelCPUTime: item["kernelCPUTime"],
-    wallClockTime: item["wallClockTime"],
-    readIOps: item["readIOps"],
-    writeIOps: item["writeIOps"],
-    readIOGiB: item["readIOGiB"],
-    writeIOGiB: item["writeIOGiB"],
-    numSucceededTasks: item["numSucceededTasks"],
-    numFailedTasks: item["numFailedTasks"],
-    numTaskRetries: item["numTaskRetries"],
-    waitTime: item["waitTime"],
-  };
 }
 
 /** Options for updating an Azure Batch Job. */
