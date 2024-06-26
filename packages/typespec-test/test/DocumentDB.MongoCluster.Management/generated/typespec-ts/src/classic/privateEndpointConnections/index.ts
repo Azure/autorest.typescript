@@ -20,20 +20,17 @@ import {
 
 export interface PrivateEndpointConnectionsOperations {
   listByMongoCluster: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     options?: PrivateEndpointConnectionsListByMongoClusterOptionalParams,
   ) => PagedAsyncIterableIterator<PrivateEndpointConnectionResource>;
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     privateEndpointConnectionName: string,
     options?: PrivateEndpointConnectionsGetOptionalParams,
   ) => Promise<PrivateEndpointConnectionResource>;
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     privateEndpointConnectionName: string,
@@ -41,7 +38,6 @@ export interface PrivateEndpointConnectionsOperations {
     options?: PrivateEndpointConnectionsCreateOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     privateEndpointConnectionName: string,
@@ -49,10 +45,12 @@ export interface PrivateEndpointConnectionsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getPrivateEndpointConnections(context: DocumentDBContext) {
+export function getPrivateEndpointConnections(
+  context: DocumentDBContext,
+  subscriptionId: string,
+) {
   return {
     listByMongoCluster: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       options?: PrivateEndpointConnectionsListByMongoClusterOptionalParams,
@@ -65,7 +63,6 @@ export function getPrivateEndpointConnections(context: DocumentDBContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       privateEndpointConnectionName: string,
@@ -80,7 +77,6 @@ export function getPrivateEndpointConnections(context: DocumentDBContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       privateEndpointConnectionName: string,
@@ -97,7 +93,6 @@ export function getPrivateEndpointConnections(context: DocumentDBContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       privateEndpointConnectionName: string,
@@ -116,8 +111,9 @@ export function getPrivateEndpointConnections(context: DocumentDBContext) {
 
 export function getPrivateEndpointConnectionsOperations(
   context: DocumentDBContext,
+  subscriptionId: string,
 ): PrivateEndpointConnectionsOperations {
   return {
-    ...getPrivateEndpointConnections(context),
+    ...getPrivateEndpointConnections(context, subscriptionId),
   };
 }

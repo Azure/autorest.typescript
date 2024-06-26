@@ -34,58 +34,52 @@ import {
 
 export interface MongoClustersOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     options?: MongoClustersGetOptionalParams,
   ) => Promise<MongoCluster>;
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     resource: MongoCluster,
     options?: MongoClustersCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     properties: MongoClusterUpdate,
     options?: MongoClustersUpdateOptionalParams,
   ) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     options?: MongoClustersDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: MongoClustersListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<MongoCluster>;
   list: (
-    subscriptionId: string,
     options?: MongoClustersListOptionalParams,
   ) => PagedAsyncIterableIterator<MongoCluster>;
   listConnectionStrings: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     options?: MongoClustersListConnectionStringsOptionalParams,
   ) => Promise<ListConnectionStringsResult>;
   checkNameAvailability: (
-    subscriptionId: string,
     location: string,
     body: CheckNameAvailabilityRequest,
     options?: MongoClustersCheckNameAvailabilityOptionalParams,
   ) => Promise<CheckNameAvailabilityResponse>;
 }
 
-export function getMongoClusters(context: DocumentDBContext) {
+export function getMongoClusters(
+  context: DocumentDBContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       options?: MongoClustersGetOptionalParams,
@@ -98,7 +92,6 @@ export function getMongoClusters(context: DocumentDBContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       resource: MongoCluster,
@@ -113,7 +106,6 @@ export function getMongoClusters(context: DocumentDBContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       properties: MongoClusterUpdate,
@@ -128,7 +120,6 @@ export function getMongoClusters(context: DocumentDBContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       options?: MongoClustersDeleteOptionalParams,
@@ -141,7 +132,6 @@ export function getMongoClusters(context: DocumentDBContext) {
         options,
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: MongoClustersListByResourceGroupOptionalParams,
     ) =>
@@ -151,10 +141,9 @@ export function getMongoClusters(context: DocumentDBContext) {
         resourceGroupName,
         options,
       ),
-    list: (subscriptionId: string, options?: MongoClustersListOptionalParams) =>
+    list: (options?: MongoClustersListOptionalParams) =>
       mongoClustersList(context, subscriptionId, options),
     listConnectionStrings: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       options?: MongoClustersListConnectionStringsOptionalParams,
@@ -167,7 +156,6 @@ export function getMongoClusters(context: DocumentDBContext) {
         options,
       ),
     checkNameAvailability: (
-      subscriptionId: string,
       location: string,
       body: CheckNameAvailabilityRequest,
       options?: MongoClustersCheckNameAvailabilityOptionalParams,
@@ -184,8 +172,9 @@ export function getMongoClusters(context: DocumentDBContext) {
 
 export function getMongoClustersOperations(
   context: DocumentDBContext,
+  subscriptionId: string,
 ): MongoClustersOperations {
   return {
-    ...getMongoClusters(context),
+    ...getMongoClusters(context, subscriptionId),
   };
 }

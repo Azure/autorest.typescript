@@ -20,14 +20,12 @@ import {
 
 export interface FirewallRulesOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     firewallRuleName: string,
     options?: FirewallRulesGetOptionalParams,
   ) => Promise<FirewallRule>;
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     firewallRuleName: string,
@@ -35,24 +33,24 @@ export interface FirewallRulesOperations {
     options?: FirewallRulesCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     firewallRuleName: string,
     options?: FirewallRulesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   listByMongoCluster: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     options?: FirewallRulesListByMongoClusterOptionalParams,
   ) => PagedAsyncIterableIterator<FirewallRule>;
 }
 
-export function getFirewallRules(context: DocumentDBContext) {
+export function getFirewallRules(
+  context: DocumentDBContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       firewallRuleName: string,
@@ -67,7 +65,6 @@ export function getFirewallRules(context: DocumentDBContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       firewallRuleName: string,
@@ -84,7 +81,6 @@ export function getFirewallRules(context: DocumentDBContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       firewallRuleName: string,
@@ -99,7 +95,6 @@ export function getFirewallRules(context: DocumentDBContext) {
         options,
       ),
     listByMongoCluster: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       options?: FirewallRulesListByMongoClusterOptionalParams,
@@ -116,8 +111,9 @@ export function getFirewallRules(context: DocumentDBContext) {
 
 export function getFirewallRulesOperations(
   context: DocumentDBContext,
+  subscriptionId: string,
 ): FirewallRulesOperations {
   return {
-    ...getFirewallRules(context),
+    ...getFirewallRules(context, subscriptionId),
   };
 }

@@ -9,17 +9,18 @@ import { PrivateLinksListByMongoClusterOptionalParams } from "../../models/optio
 
 export interface PrivateLinksOperations {
   listByMongoCluster: (
-    subscriptionId: string,
     resourceGroupName: string,
     mongoClusterName: string,
     options?: PrivateLinksListByMongoClusterOptionalParams,
   ) => PagedAsyncIterableIterator<PrivateLinkResource>;
 }
 
-export function getPrivateLinks(context: DocumentDBContext) {
+export function getPrivateLinks(
+  context: DocumentDBContext,
+  subscriptionId: string,
+) {
   return {
     listByMongoCluster: (
-      subscriptionId: string,
       resourceGroupName: string,
       mongoClusterName: string,
       options?: PrivateLinksListByMongoClusterOptionalParams,
@@ -36,8 +37,9 @@ export function getPrivateLinks(context: DocumentDBContext) {
 
 export function getPrivateLinksOperations(
   context: DocumentDBContext,
+  subscriptionId: string,
 ): PrivateLinksOperations {
   return {
-    ...getPrivateLinks(context),
+    ...getPrivateLinks(context, subscriptionId),
   };
 }
