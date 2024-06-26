@@ -56,7 +56,6 @@ export interface SystemData {
 }
 
 /** The kind of entity that created the resource. */
-/** "User", "Application", "ManagedIdentity", "Key" */
 export type CreatedByType = string;
 
 export enum KnownCreatedByType {
@@ -179,7 +178,6 @@ export function dataProductPropertiesSerializer(
 }
 
 /** The status of the current operation. */
-/** "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", "Accepted" */
 export type ProvisioningState = string;
 
 export enum KnownProvisioningState {
@@ -193,7 +191,6 @@ export enum KnownProvisioningState {
 }
 
 /** The data type state */
-/** "Enabled", "Disabled" */
 export type ControlState = string;
 
 export enum KnownControlState {
@@ -282,7 +279,6 @@ export function iPRulesSerializer(item: IPRules): IPRulesRest {
 }
 
 /** Specifies the default action of allow or deny when no other rules match. */
-/** "Allow", "Deny" */
 export type DefaultAction = string;
 
 export enum KnownDefaultAction {
@@ -350,7 +346,6 @@ export function managedServiceIdentitySerializer(
 }
 
 /** The kind of managed identity assigned to this resource. */
-/** "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned" */
 export type ManagedServiceIdentityType = string;
 
 export enum KnownManagedServiceIdentityType {
@@ -483,7 +478,6 @@ export interface ArmOperationStatus {
 }
 
 /** The provisioning state of a resource type. */
-/** "Succeeded", "Failed", "Canceled" */
 export type ResourceProvisioningState = string;
 
 export enum KnownResourceProvisioningState {
@@ -558,7 +552,6 @@ export function roleAssignmentCommonPropertiesSerializer(
 }
 
 /** The data type state */
-/** "Reader", "SensitiveReader" */
 export type DataProductUserRole = string;
 
 export enum KnownDataProductUserRole {
@@ -661,7 +654,6 @@ export function dataTypePropertiesSerializer(
 }
 
 /** The data type state */
-/** "Stopped", "Running" */
 export type DataTypeState = string;
 
 export enum KnownDataTypeState {
@@ -820,7 +812,6 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** "user", "system", "user,system" */
 export type Origin = string;
 
 export enum KnownOrigin {
@@ -830,7 +821,6 @@ export enum KnownOrigin {
 }
 
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** "Internal" */
 export type ActionType = string;
 
 export enum KnownActionType {
@@ -838,5 +828,4 @@ export enum KnownActionType {
 }
 
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
-/** */
 export type Versions = "2023-11-15";

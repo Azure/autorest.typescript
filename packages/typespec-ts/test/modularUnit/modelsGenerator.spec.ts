@@ -103,7 +103,6 @@ describe("model property type", () => {
       additionalTypeSpecDefinition: tspTypeDefinition,
       additionalInputContent: `
       /** Translation Language Values */
-      /** */
       export type TranslationLanguageValues = "English" | "Chinese";
       `
     });
@@ -1604,7 +1603,6 @@ describe("inheritance & polymorphism", () => {
         schemaOutput?.getFullText()!,
         `
         /** Type of SchemaContentTypeValues */
-        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1703,7 +1701,6 @@ describe("inheritance & polymorphism", () => {
         schemaOutput?.getFullText()!,
         `
         /** Type of SchemaContentTypeValues */
-        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"

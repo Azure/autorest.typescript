@@ -100,14 +100,14 @@ export interface PassFailCriteria {
 }
 
 export function passFailCriteriaSerializer(
-  item: PassFailCriteria,
+  item: PassFailCriteria
 ): PassFailCriteriaRest {
   return {
     passFailMetrics: !item.passFailMetrics
       ? item.passFailMetrics
       : (serializeRecord(
           item.passFailMetrics as any,
-          passFailMetricSerializer,
+          passFailMetricSerializer
         ) as any),
   };
 }
@@ -141,7 +141,7 @@ export interface PassFailMetric {
 }
 
 export function passFailMetricSerializer(
-  item: PassFailMetric,
+  item: PassFailMetric
 ): PassFailMetricRest {
   return {
     clientMetric: item["clientMetric"],
@@ -160,7 +160,6 @@ export type PFMetrics =
   | "error"
   | "requests"
   | "requests_per_sec";
-/** */
 export type PFAgFunc =
   | "count"
   | "percentage"
@@ -171,9 +170,7 @@ export type PFAgFunc =
   | "p99"
   | "min"
   | "max";
-/** */
 export type PFAction = "continue" | "stop";
-/** */
 export type PFResult = "passed" | "undetermined" | "failed";
 
 /** Secret */
@@ -205,7 +202,7 @@ export interface CertificateMetadata {
 }
 
 export function certificateMetadataSerializer(
-  item: CertificateMetadata,
+  item: CertificateMetadata
 ): CertificateMetadataRest {
   return {
     value: item["value"],
@@ -241,7 +238,7 @@ export interface LoadTestConfiguration {
 }
 
 export function loadTestConfigurationSerializer(
-  item: LoadTestConfiguration,
+  item: LoadTestConfiguration
 ): LoadTestConfigurationRest {
   return {
     engineInstances: item["engineInstances"],
@@ -269,7 +266,7 @@ export interface OptionalLoadTestConfig {
 }
 
 export function optionalLoadTestConfigSerializer(
-  item: OptionalLoadTestConfig,
+  item: OptionalLoadTestConfig
 ): OptionalLoadTestConfigRest {
   return {
     endpointUrl: item["endpointUrl"],
@@ -294,7 +291,7 @@ export interface TestInputArtifacts {
 }
 
 export function testInputArtifactsSerializer(
-  item: TestInputArtifacts,
+  item: TestInputArtifacts
 ): TestInputArtifactsRest {
   return {
     configFileInfo: !item.configFileInfo
@@ -341,7 +338,6 @@ export function fileInfoSerializer(item: FileInfo): FileInfoRest {
 
 /** */
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
-/** */
 export type FileStatus =
   | "NOT_VALIDATED"
   | "VALIDATION_SUCCESS"
@@ -370,12 +366,12 @@ export interface TestAppComponents {
 }
 
 export function testAppComponentsSerializer(
-  item: TestAppComponents,
+  item: TestAppComponents
 ): TestAppComponentsRest {
   return {
     components: serializeRecord(
       item.components as any,
-      appComponentSerializer,
+      appComponentSerializer
     ) as any,
   };
 }
@@ -434,7 +430,7 @@ export interface TestServerMetricConfig {
 }
 
 export function testServerMetricConfigSerializer(
-  item: TestServerMetricConfig,
+  item: TestServerMetricConfig
 ): TestServerMetricConfigRest {
   return {
     metrics: !item.metrics
@@ -468,7 +464,7 @@ export interface ResourceMetric {
 }
 
 export function resourceMetricSerializer(
-  item: ResourceMetric,
+  item: ResourceMetric
 ): ResourceMetricRest {
   return {
     resourceId: item["resourceId"],
@@ -497,7 +493,6 @@ export interface PagedTest {
   nextLink?: string;
 }
 
-/** */
 export type APIVersions = "2022-11-01";
 
 /** Load test run model */
@@ -630,7 +625,7 @@ export interface TestRunArtifacts {
 }
 
 export function testRunArtifactsSerializer(
-  item: TestRunArtifacts,
+  item: TestRunArtifacts
 ): TestRunArtifactsRest {
   return {
     outputArtifacts: !item.outputArtifacts
@@ -654,7 +649,7 @@ export interface TestRunInputArtifacts {
 }
 
 export function testRunInputArtifactsSerializer(
-  item: TestRunInputArtifacts,
+  item: TestRunInputArtifacts
 ): TestRunInputArtifactsRest {
   return {
     configFileInfo: !item.configFileInfo
@@ -681,7 +676,7 @@ export interface TestRunOutputArtifacts {
 }
 
 export function testRunOutputArtifactsSerializer(
-  item: TestRunOutputArtifacts,
+  item: TestRunOutputArtifacts
 ): TestRunOutputArtifactsRest {
   return {
     resultFileInfo: !item.resultFileInfo
@@ -695,7 +690,6 @@ export function testRunOutputArtifactsSerializer(
 
 /** */
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
-/** */
 export type Status =
   | "ACCEPTED"
   | "NOTSTARTED"
@@ -735,12 +729,12 @@ export interface TestRunAppComponents {
 }
 
 export function testRunAppComponentsSerializer(
-  item: TestRunAppComponents,
+  item: TestRunAppComponents
 ): TestRunAppComponentsRest {
   return {
     components: serializeRecord(
       item.components as any,
-      appComponentSerializer,
+      appComponentSerializer
     ) as any,
   };
 }
@@ -766,7 +760,7 @@ export interface TestRunServerMetricConfig {
 }
 
 export function testRunServerMetricConfigSerializer(
-  item: TestRunServerMetricConfig,
+  item: TestRunServerMetricConfig
 ): TestRunServerMetricConfigRest {
   return {
     metrics: !item.metrics
@@ -819,7 +813,6 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** */
 export type AggregationType =
   | "Average"
   | "Count"
@@ -828,7 +821,6 @@ export type AggregationType =
   | "Percentile90"
   | "Percentile95"
   | "Percentile99";
-/** */
 export type MetricUnit =
   | "NotSpecified"
   | "Percent"
@@ -848,7 +840,6 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/** */
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */
@@ -877,7 +868,7 @@ export interface MetricRequestPayload {
 }
 
 export function metricRequestPayloadSerializer(
-  item: MetricRequestPayload,
+  item: MetricRequestPayload
 ): MetricRequestPayloadRest {
   return {
     filters:
@@ -896,7 +887,7 @@ export interface DimensionFilter {
 }
 
 export function dimensionFilterSerializer(
-  item: DimensionFilter,
+  item: DimensionFilter
 ): DimensionFilterRest {
   return {
     name: item["name"],

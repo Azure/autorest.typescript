@@ -47,7 +47,6 @@ export function goldenSerializer(item: Golden): GoldenRest {
 }
 
 /** extensible enum type for discriminator */
-/** */
 export type DogKind = "golden";
 
 /** Test fixed enum type for discriminator */
@@ -89,7 +88,6 @@ export function cobraSerializer(item: Cobra): CobraRest {
 }
 
 /** fixed enum type for discriminator */
-/** */
 export type SnakeKind = "cobra";
 /** Alias for DogUnion */
 export type DogUnion = Golden | Dog;

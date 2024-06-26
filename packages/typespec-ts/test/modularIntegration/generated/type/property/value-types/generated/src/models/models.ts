@@ -50,7 +50,6 @@ export function unionEnumValuePropertySerializer(
 }
 
 /** Type of ExtendedEnum */
-/** */
 export type ExtendedEnum = "value2";
 
 /** Model with a union of float literal as property. */
@@ -307,7 +306,6 @@ export function extensibleEnumPropertySerializer(
 }
 
 /** Enum that will be used as a property for model EnumProperty. Extensible. */
-/** */
 export type InnerEnum = "ValueOne" | "ValueTwo";
 
 /** Model with enum properties */
@@ -323,7 +321,6 @@ export function enumPropertySerializer(item: EnumProperty): EnumPropertyRest {
 }
 
 /** Enum that will be used as a property for model EnumProperty. Non-extensible. */
-/** */
 export type FixedInnerEnum = "ValueOne" | "ValueTwo";
 
 /** Model with a duration property */

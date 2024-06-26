@@ -121,11 +121,11 @@ export async function assertEqualContent(
 ) {
   assert.strictEqual(
     await format(
-      ignoreWeirdLine ? actual.replace(/\n/g, "") : actual,
+      ignoreWeirdLine ? actual.replace(/$\n^/g, "").replace(/\s+/g, " ") : actual,
       prettierTypeScriptOptions
     ),
     await format(
-      ignoreWeirdLine ? expected.replace(/\n/g, "") : expected,
+      ignoreWeirdLine ? expected.replace(/$\n^/g, "").replace(/\s+/g, " ") : expected,
       prettierTypeScriptOptions
     )
   );

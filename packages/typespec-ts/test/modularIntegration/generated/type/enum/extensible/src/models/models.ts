@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 /** Days of the week */
-/** */
 export type DaysOfWeekExtensibleEnum =
   | "Monday"
   | "Tuesday"

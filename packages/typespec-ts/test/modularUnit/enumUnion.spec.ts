@@ -43,7 +43,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** */
           export type SchemaContentTypeValues =
             | "application/json; serialization=Avro"
             | "application/json; serialization=json"
@@ -142,7 +141,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** */
           export type SchemaContentTypeValues =
             | "application/json; serialization=Avro"
             | "application/json; serialization=json"
@@ -187,7 +185,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** */
           export type SchemaContentTypeValues = 
             | "text/plain; charset=utf-8"
             | "text/vnd.ms.protobuf";
@@ -234,7 +231,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of JsonContentType */
-          /** */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -281,7 +277,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -325,7 +320,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** */
           export type SchemaContentTypeValues = 
             | "text/plain; charset=utf-8"
             | "text/vnd.ms.protobuf";
@@ -372,7 +366,6 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of JsonContentType */
-          /** */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -419,7 +412,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -629,7 +621,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
       });
@@ -671,7 +662,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
       });
@@ -717,7 +707,6 @@ describe("header parameters", () => {
         schemaOutput?.getFullText()!,
         `
         /** Type of EnumTest */
-        /** */
         export type EnumTest = 1 | 2 | 3 | 4;
 `
       );
@@ -770,7 +759,6 @@ describe("header parameters", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** */
         export type EnumTest = 1 | 2 | 3 | 4;
         
         export interface Foo {
@@ -1013,7 +1001,6 @@ describe("model type", () => {
         modelFile!.getTypeAlias("Color")?.getFullText()!,
         `
         /** Type of Color */
-        /** */
         export type Color = 1 | 2;
         `
       );
@@ -1088,7 +1075,6 @@ describe("model type", () => {
         modelFile!.getTypeAlias("LeftAndRight")?.getFullText()!,
         `
         /** Type of LeftAndRight */
-        /** */
         export type LeftAndRight = "left" | "right";
         `
       );

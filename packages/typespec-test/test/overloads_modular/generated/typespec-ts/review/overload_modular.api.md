@@ -30,7 +30,7 @@ export interface FooOperationsOperations {
     getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "2022-08-30";
 
 // @public (undocumented)

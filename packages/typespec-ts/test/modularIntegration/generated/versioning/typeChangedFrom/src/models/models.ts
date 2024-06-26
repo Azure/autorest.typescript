@@ -16,5 +16,4 @@ export function testModelSerializer(item: TestModel): TestModelRest {
 }
 
 /** The version of the API. */
-/** */
 export type Versions = "v1" | "v2";
