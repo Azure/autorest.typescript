@@ -13,11 +13,10 @@ export function newModelSerializer(item: NewModel): NewModelRest {
   return {
     newProp: item["newProp"],
     enumProp: item["enumProp"],
-    unionProp: item["unionProp"]
+    unionProp: item["unionProp"],
   };
 }
 
-/** */
 export type NewEnum = "newEnumMember";
 /** The version of the API. */
 export type Versions = "v1" | "v2";

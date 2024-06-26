@@ -7,7 +7,7 @@ import {
   MixedLiteralsCases as MixedLiteralsCasesRest,
   StringAndArrayCases as StringAndArrayCasesRest,
   EnumsOnlyCases as EnumsOnlyCasesRest,
-  Dog as DogRest
+  Dog as DogRest,
 } from "../rest/index.js";
 
 export interface MixedTypesCases {
@@ -24,14 +24,14 @@ export interface MixedTypesCases {
 }
 
 export function mixedTypesCasesSerializer(
-  item: MixedTypesCases
+  item: MixedTypesCases,
 ): MixedTypesCasesRest {
   return {
     model: item["model"],
     literal: item["literal"],
     int: item["int"],
     boolean: item["boolean"],
-    array: item["array"]
+    array: item["array"],
   };
 }
 
@@ -41,7 +41,7 @@ export interface Cat {
 
 export function catSerializer(item: Cat): CatRest {
   return {
-    name: item["name"]
+    name: item["name"],
   };
 }
 
@@ -57,13 +57,13 @@ export interface MixedLiteralsCases {
 }
 
 export function mixedLiteralsCasesSerializer(
-  item: MixedLiteralsCases
+  item: MixedLiteralsCases,
 ): MixedLiteralsCasesRest {
   return {
     stringLiteral: item["stringLiteral"],
     intLiteral: item["intLiteral"],
     floatLiteral: item["floatLiteral"],
-    booleanLiteral: item["booleanLiteral"]
+    booleanLiteral: item["booleanLiteral"],
   };
 }
 
@@ -75,11 +75,11 @@ export interface StringAndArrayCases {
 }
 
 export function stringAndArrayCasesSerializer(
-  item: StringAndArrayCases
+  item: StringAndArrayCases,
 ): StringAndArrayCasesRest {
   return {
     string: item["string"],
-    array: item["array"]
+    array: item["array"],
   };
 }
 
@@ -91,15 +91,14 @@ export interface EnumsOnlyCases {
 }
 
 export function enumsOnlyCasesSerializer(
-  item: EnumsOnlyCases
+  item: EnumsOnlyCases,
 ): EnumsOnlyCasesRest {
   return {
     lr: item["lr"],
-    ud: item["ud"]
+    ud: item["ud"],
   };
 }
 
-/** */
 export type Lr = "left" | "right";
 export type Ud = "up" | "down";
 
@@ -109,7 +108,7 @@ export interface Dog {
 
 export function dogSerializer(item: Dog): DogRest {
   return {
-    bark: item["bark"]
+    bark: item["bark"],
   };
 }
 
@@ -118,5 +117,5 @@ export type StringExtensibleNamedUnion = string;
 
 export enum KnownStringExtensibleNamedUnion {
   b = "b",
-  c = "c"
+  c = "c",
 }

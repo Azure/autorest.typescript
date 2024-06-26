@@ -5,12 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { DictionaryContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface DictionaryContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `DictionaryContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: DictionaryContextOptions = {},
 ): DictionaryContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -28,7 +31,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as DictionaryContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
