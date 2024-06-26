@@ -826,7 +826,6 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("Color")?.getFullText()!,
         `
-        /** */
         export type Color = "red" | "blue";  
         `
       );
@@ -942,7 +941,6 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("Color")?.getFullText()!,
         `
-        /** */
         export type Color = 1 | 2;
         `
       );
@@ -1034,14 +1032,12 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("Lr")?.getFullText()!,
         `
-        /** */
         export type Lr = "left" | "right";
         `
       );
       await assertEqualContent(
         modelFile!.getTypeAlias("Ud")?.getFullText()!,
         `
-        /** */
         export type Ud = "up" | "down";
         `
       );
@@ -1081,7 +1077,6 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getTypeAlias("UpAndDown")?.getFullText()!,
         `
-        /** */
         export type UpAndDown = "up" | "down";
         `
       );
