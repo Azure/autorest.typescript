@@ -4,22 +4,13 @@
 
 ```ts
 
-/// <reference types="node" />
-
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
@@ -45,10 +36,10 @@ export interface AdministrationOperationsClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export type AggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
 
-// @public (undocumented)
+// @public
 export type APIVersions = "2022-11-01";
 
 // @public
@@ -69,7 +60,7 @@ export interface CertificateMetadata {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type CertificateType = "AKV_CERT_URI";
 
 // @public
@@ -140,10 +131,10 @@ export interface FileInfo {
     validationStatus?: FileStatus;
 }
 
-// @public (undocumented)
+// @public
 export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
-// @public (undocumented)
+// @public
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
 // @public (undocumented)
@@ -170,7 +161,7 @@ export interface GetTestRunFileOptionalParams extends OperationOptions {
 export interface GetTestRunOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public (undocumented)
@@ -268,7 +259,7 @@ export interface MetricRequestPayload {
     filters?: DimensionFilter[];
 }
 
-// @public (undocumented)
+// @public
 export type MetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
@@ -350,19 +341,19 @@ export interface PassFailMetric {
     value?: number;
 }
 
-// @public (undocumented)
+// @public
 export type PFAction = "continue" | "stop";
 
-// @public (undocumented)
+// @public
 export type PFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public (undocumented)
+// @public
 export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public (undocumented)
+// @public
 export type PFResult = "passed" | "undetermined" | "failed";
 
-// @public (undocumented)
+// @public
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
@@ -377,10 +368,8 @@ export interface ResourceMetric {
     unit?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
@@ -395,10 +384,10 @@ export interface Secret {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
-// @public (undocumented)
+// @public
 export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
 // @public (undocumented)
@@ -518,10 +507,10 @@ export class TestRunOperationsClient {
     testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptionalParams): PollerLike<OperationState<TestRunOperationsClientTestRun>, TestRunOperationsClientTestRun>;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientAggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientAPIVersions = "2022-11-01";
 
 // @public
@@ -542,7 +531,7 @@ export interface TestRunOperationsClientCertificateMetadata {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientCertificateType = "AKV_CERT_URI";
 
 // @public
@@ -595,10 +584,10 @@ export interface TestRunOperationsClientFileInfo {
     validationStatus?: TestRunOperationsClientFileStatus;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
 // @public (undocumented)
@@ -609,7 +598,7 @@ export interface TestRunOperationsClientGetAppComponentsOptionalParams extends O
 export interface TestRunOperationsClientGetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientInterval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
@@ -658,7 +647,7 @@ export interface TestRunOperationsClientMetricRequestPayload {
     filters?: TestRunOperationsClientDimensionFilter[];
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
@@ -745,19 +734,19 @@ export interface TestRunOperationsClientPassFailMetric {
     value?: number;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFAction = "continue" | "stop";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFResult = "passed" | "undetermined" | "failed";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
@@ -778,10 +767,10 @@ export interface TestRunOperationsClientSecret {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
 // @public
@@ -921,7 +910,7 @@ export interface TestRunOperationsClientTestServerMetricConfig {
     readonly testId?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
@@ -981,7 +970,7 @@ export interface TestServerMetricConfig {
     readonly testId?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public

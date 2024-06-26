@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   DefaultBytesPropertyOutput,
@@ -104,11 +105,20 @@ export interface ResponseBodyDefault200Response extends HttpResponse {
   body: string;
 }
 
+export interface ResponseBodyOctetStream200Headers {
+  "content-type": "application/octet-stream";
+}
+
 /** The request has succeeded. */
 export interface ResponseBodyOctetStream200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
+  headers: RawHttpHeaders & ResponseBodyOctetStream200Headers;
+}
+
+export interface ResponseBodyCustomContentType200Headers {
+  "content-type": "image/png";
 }
 
 /** The request has succeeded. */
@@ -116,6 +126,7 @@ export interface ResponseBodyCustomContentType200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
+  headers: RawHttpHeaders & ResponseBodyCustomContentType200Headers;
 }
 
 /** The request has succeeded. */

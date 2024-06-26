@@ -5,18 +5,12 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -582,10 +576,8 @@ export interface Resource {
     readonly type?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "NetworkAnalyticsContext" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsContext | NetworkAnalyticsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
@@ -637,7 +629,7 @@ export interface UserAssignedIdentity {
     readonly principalId?: string;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "2023-11-15";
 
 // @public

@@ -103,5 +103,4 @@ export interface RejectResult {
 }
 
 /** Type of ServiceApiVersions */
-/** */
 export type ServiceApiVersions = "2023-06-01-preview";

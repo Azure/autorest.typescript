@@ -8,7 +8,6 @@ export interface ModelV1 {
 }
 
 /** Type of EnumV1 */
-/** */
 export type EnumV1 = "enumMemberV1" | "enumMemberV2";
 
 export interface ModelV2 {
@@ -18,10 +17,8 @@ export interface ModelV2 {
 }
 
 /** Type of EnumV2 */
-/** */
 export type EnumV2 = "enumMember";
 /** The version of the API. */
-/** */
 export type Versions = "v1" | "v2";
 /** Alias for UnionV1 */
 export type UnionV1 = string | number;

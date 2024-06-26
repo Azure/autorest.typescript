@@ -591,7 +591,7 @@ export interface BlurPropertiesOutput {
 }
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options?: FaceClientOptions): FaceClient;
+function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: FaceClientOptions): FaceClient;
 export default createClient;
 
 // @public
@@ -1740,9 +1740,8 @@ export type FaceClient = Client & {
     path: Routes;
 };
 
-// @public (undocumented)
+// @public
 export interface FaceClientOptions extends ClientOptions {
-    // (undocumented)
     apiVersion?: Versions;
 }
 
