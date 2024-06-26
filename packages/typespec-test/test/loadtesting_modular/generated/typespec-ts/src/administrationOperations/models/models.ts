@@ -100,14 +100,14 @@ export interface PassFailCriteria {
 }
 
 export function passFailCriteriaSerializer(
-  item: PassFailCriteria
+  item: PassFailCriteria,
 ): PassFailCriteriaRest {
   return {
     passFailMetrics: !item.passFailMetrics
       ? item.passFailMetrics
       : (serializeRecord(
           item.passFailMetrics as any,
-          passFailMetricSerializer
+          passFailMetricSerializer,
         ) as any),
   };
 }
@@ -141,7 +141,7 @@ export interface PassFailMetric {
 }
 
 export function passFailMetricSerializer(
-  item: PassFailMetric
+  item: PassFailMetric,
 ): PassFailMetricRest {
   return {
     clientMetric: item["clientMetric"],
@@ -153,7 +153,6 @@ export function passFailMetricSerializer(
   };
 }
 
-/** */
 export type PFMetrics =
   | "response_time_ms"
   | "latency"
@@ -188,7 +187,6 @@ export function secretSerializer(item: Secret): SecretRest {
   };
 }
 
-/** */
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
@@ -202,7 +200,7 @@ export interface CertificateMetadata {
 }
 
 export function certificateMetadataSerializer(
-  item: CertificateMetadata
+  item: CertificateMetadata,
 ): CertificateMetadataRest {
   return {
     value: item["value"],
@@ -211,7 +209,6 @@ export function certificateMetadataSerializer(
   };
 }
 
-/** */
 export type CertificateType = "AKV_CERT_URI";
 
 /** The load test configuration. */
@@ -238,7 +235,7 @@ export interface LoadTestConfiguration {
 }
 
 export function loadTestConfigurationSerializer(
-  item: LoadTestConfiguration
+  item: LoadTestConfiguration,
 ): LoadTestConfigurationRest {
   return {
     engineInstances: item["engineInstances"],
@@ -266,7 +263,7 @@ export interface OptionalLoadTestConfig {
 }
 
 export function optionalLoadTestConfigSerializer(
-  item: OptionalLoadTestConfig
+  item: OptionalLoadTestConfig,
 ): OptionalLoadTestConfigRest {
   return {
     endpointUrl: item["endpointUrl"],
@@ -291,7 +288,7 @@ export interface TestInputArtifacts {
 }
 
 export function testInputArtifactsSerializer(
-  item: TestInputArtifacts
+  item: TestInputArtifacts,
 ): TestInputArtifactsRest {
   return {
     configFileInfo: !item.configFileInfo
@@ -336,7 +333,6 @@ export function fileInfoSerializer(item: FileInfo): FileInfoRest {
   };
 }
 
-/** */
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 export type FileStatus =
   | "NOT_VALIDATED"
@@ -366,12 +362,12 @@ export interface TestAppComponents {
 }
 
 export function testAppComponentsSerializer(
-  item: TestAppComponents
+  item: TestAppComponents,
 ): TestAppComponentsRest {
   return {
     components: serializeRecord(
       item.components as any,
-      appComponentSerializer
+      appComponentSerializer,
     ) as any,
   };
 }
@@ -430,7 +426,7 @@ export interface TestServerMetricConfig {
 }
 
 export function testServerMetricConfigSerializer(
-  item: TestServerMetricConfig
+  item: TestServerMetricConfig,
 ): TestServerMetricConfigRest {
   return {
     metrics: !item.metrics
@@ -464,7 +460,7 @@ export interface ResourceMetric {
 }
 
 export function resourceMetricSerializer(
-  item: ResourceMetric
+  item: ResourceMetric,
 ): ResourceMetricRest {
   return {
     resourceId: item["resourceId"],
@@ -625,7 +621,7 @@ export interface TestRunArtifacts {
 }
 
 export function testRunArtifactsSerializer(
-  item: TestRunArtifacts
+  item: TestRunArtifacts,
 ): TestRunArtifactsRest {
   return {
     outputArtifacts: !item.outputArtifacts
@@ -649,7 +645,7 @@ export interface TestRunInputArtifacts {
 }
 
 export function testRunInputArtifactsSerializer(
-  item: TestRunInputArtifacts
+  item: TestRunInputArtifacts,
 ): TestRunInputArtifactsRest {
   return {
     configFileInfo: !item.configFileInfo
@@ -676,7 +672,7 @@ export interface TestRunOutputArtifacts {
 }
 
 export function testRunOutputArtifactsSerializer(
-  item: TestRunOutputArtifacts
+  item: TestRunOutputArtifacts,
 ): TestRunOutputArtifactsRest {
   return {
     resultFileInfo: !item.resultFileInfo
@@ -688,7 +684,6 @@ export function testRunOutputArtifactsSerializer(
   };
 }
 
-/** */
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 export type Status =
   | "ACCEPTED"
@@ -729,12 +724,12 @@ export interface TestRunAppComponents {
 }
 
 export function testRunAppComponentsSerializer(
-  item: TestRunAppComponents
+  item: TestRunAppComponents,
 ): TestRunAppComponentsRest {
   return {
     components: serializeRecord(
       item.components as any,
-      appComponentSerializer
+      appComponentSerializer,
     ) as any,
   };
 }
@@ -760,7 +755,7 @@ export interface TestRunServerMetricConfig {
 }
 
 export function testRunServerMetricConfigSerializer(
-  item: TestRunServerMetricConfig
+  item: TestRunServerMetricConfig,
 ): TestRunServerMetricConfigRest {
   return {
     metrics: !item.metrics
@@ -769,7 +764,6 @@ export function testRunServerMetricConfigSerializer(
   };
 }
 
-/** */
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 export interface DimensionValueList {
@@ -868,7 +862,7 @@ export interface MetricRequestPayload {
 }
 
 export function metricRequestPayloadSerializer(
-  item: MetricRequestPayload
+  item: MetricRequestPayload,
 ): MetricRequestPayloadRest {
   return {
     filters:
@@ -887,7 +881,7 @@ export interface DimensionFilter {
 }
 
 export function dimensionFilterSerializer(
-  item: DimensionFilter
+  item: DimensionFilter,
 ): DimensionFilterRest {
   return {
     name: item["name"],
