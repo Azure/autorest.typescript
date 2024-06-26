@@ -98,7 +98,8 @@ function getSerializeHandler<TCGCType extends SdkType | SdkModelPropertyType>(
     | "uint8"
     | "uri"
     | "url"
-    | "uuid";
+    | "uuid"
+    | "nullable";
 
   type SerializeHandler<
     TCGCTypeKind extends (SdkType | SdkModelPropertyType)["kind"]
@@ -292,14 +293,12 @@ function getPropertyDeclaration(
 function getPropertyInitializer(
   options: SerializeTypeOptions<SdkModelPropertyType>
 ): string {
-  const { type, valueExpr } = options;
+  const { type } = options;
 
   const propSerializer = serializeType({
     ...options,
     type: { ...type.type, nullable: false, optional: false }
   });
 
-  return type.nullable
-    ? `((${valueExpr}) === null) ? (${valueExpr}) : (${propSerializer})`
-    : propSerializer;
+  return propSerializer;
 }

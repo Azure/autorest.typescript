@@ -9,7 +9,7 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export type AlignMode = "Inner" | "Outer";
 
 // @public (undocumented)
@@ -25,7 +25,7 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export type AnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
@@ -39,10 +39,10 @@ export type DataSchema = "OneTable" | "MultiTable";
 // @public
 export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
-// @public (undocumented)
+// @public
 export type ImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
-// @public (undocumented)
+// @public
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 // @public
@@ -82,7 +82,7 @@ export interface MultivariateAnomalyValue {
     severity: number;
 }
 
-// @public (undocumented)
+// @public
 export type MultivariateBatchDetectionStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 // @public
@@ -243,7 +243,7 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
 
 // @public
@@ -334,7 +334,7 @@ export interface UnivariateUnivariateLastDetectionResult {
     upperMargin: number;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "v1.1";
 
 // (No @packageDocumentation comment for this package)

@@ -196,13 +196,19 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
+      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
       
+      export interface Read200Headers {
+        "content-type": "image/png";
+      }
+
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
         status: "200";
         /** Value may contain any sequence of octets */
         body: Uint8Array;
+        headers: RawHttpHeaders & Read200Headers;
       }
       `
       );
@@ -215,13 +221,19 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
+      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
-      
-      /** The request has succeeded. */
-      export interface Read200Response extends HttpResponse {
-        status: "200";
-        body: string;
+       
+      export interface Read200Headers {
+        "content-type": "text/plain";
       }
+      
+       /** The request has succeeded. */
+       export interface Read200Response extends HttpResponse {
+         status: "200";
+         body: string;
+         headers: RawHttpHeaders & Read200Headers;
+       }
       `
       );
     });
@@ -329,6 +341,7 @@ describe("Responses.ts", () => {
       export interface Read200Headers {
         foo: string;
         bar: string;
+        "content-type": "image/png";
       }
       
       /** The request has succeeded. */

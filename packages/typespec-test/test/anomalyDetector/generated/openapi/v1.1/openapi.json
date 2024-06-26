@@ -658,7 +658,7 @@
       ],
       "x-ms-enum": {
         "name": "DataSchema",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "OneTable",
@@ -721,7 +721,7 @@
       ],
       "x-ms-enum": {
         "name": "FillNAMethod",
-        "modelAsString": true
+        "modelAsString": false
       }
     },
     "Multivariate.ModelInfo": {
@@ -1167,7 +1167,7 @@
       ],
       "x-ms-enum": {
         "name": "AnomalyDetectorErrorCodes",
-        "modelAsString": true
+        "modelAsString": false
       }
     },
     "Univariate.ImputeMode": {
@@ -1182,7 +1182,7 @@
       ],
       "x-ms-enum": {
         "name": "ImputeMode",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "Auto",

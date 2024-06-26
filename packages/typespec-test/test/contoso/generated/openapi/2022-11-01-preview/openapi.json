@@ -158,6 +158,9 @@
             }
           }
         },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
+        },
         "x-ms-long-running-operation": true
       },
       "delete": {
@@ -220,6 +223,9 @@
               }
             }
           }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
         },
         "x-ms-long-running-operation": true
       }

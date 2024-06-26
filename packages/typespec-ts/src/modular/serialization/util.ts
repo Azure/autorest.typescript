@@ -98,13 +98,14 @@ const dispatch: {
     if (!keyId || !valueId) {
       return;
     }
-    const valueType = type.nullableValues ? `${valueId} | null` : valueId;
+    const valueType = valueId;
     return `Record<${keyId}, ${valueType}>`;
   },
   enumvalue: (_) => "FIXME",
   constant: (_) => "FIXME",
   credential: (_) => "FIXME",
-  endpoint: (_) => "string"
+  endpoint: (_) => "string",
+  nullable: (_) => "null"
 };
 
 export function getModularTypeId<T extends SdkType>(
