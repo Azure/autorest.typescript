@@ -24,40 +24,42 @@ import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js"
 export function _createSend(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptionalParams = { requestOptions: {} }
+  options: ChatCompletionsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
 > {
-  return context.path("/chat/completions").post({
-    ...operationOptionsToRequestParameters(options),
-    body: {
-      model: body["model"],
-      messages: body["messages"].map(chatCompletionRequestMessageSerializer),
-      functions:
-        body["functions"] === undefined
-          ? body["functions"]
-          : body["functions"].map(chatCompletionFunctionsSerializer),
-      function_call: body["functionCall"],
-      temperature: body["temperature"],
-      top_p: body["topP"],
-      n: body["n"],
-      max_tokens: body["maxTokens"],
-      stop: body["stop"],
-      presence_penalty: body["presencePenalty"],
-      frequency_penalty: body["frequencyPenalty"],
-      logit_bias: !body.logitBias
-        ? body.logitBias
-        : (serializeRecord(body.logitBias as any) as any),
-      user: body["user"],
-      stream: body["stream"],
-    },
-  });
+  return context
+    .path("/chat/completions")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        model: body["model"],
+        messages: body["messages"].map(chatCompletionRequestMessageSerializer),
+        functions:
+          body["functions"] === undefined
+            ? body["functions"]
+            : body["functions"].map(chatCompletionFunctionsSerializer),
+        function_call: body["functionCall"],
+        temperature: body["temperature"],
+        top_p: body["topP"],
+        n: body["n"],
+        max_tokens: body["maxTokens"],
+        stop: body["stop"],
+        presence_penalty: body["presencePenalty"],
+        frequency_penalty: body["frequencyPenalty"],
+        logit_bias: !body.logitBias
+          ? body.logitBias
+          : (serializeRecord(body.logitBias as any) as any),
+        user: body["user"],
+        stream: body["stream"],
+      },
+    });
 }
 
 export async function _createDeserialize(
   result:
     | ChatCompletionsCreate200Response
-    | ChatCompletionsCreateDefaultResponse
+    | ChatCompletionsCreateDefaultResponse,
 ): Promise<CreateChatCompletionResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -95,7 +97,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptionalParams = { requestOptions: {} }
+  options: ChatCompletionsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateChatCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

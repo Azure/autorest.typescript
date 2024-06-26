@@ -19,11 +19,6 @@ export interface AddOrUpdateBlockItemsOptions {
     blockItems: TextBlockItemInfo[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "AddOrUpdateBlockItemsOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function addOrUpdateBlockItemsOptionsSerializer(item: AddOrUpdateBlockItemsOptions): AddOrUpdateBlockItemsOptions_2;
-
 // @public
 export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
@@ -39,11 +34,6 @@ export interface AnalyzeImageOptions {
     image: ImageData;
     outputType?: AnalyzeImageOutputType;
 }
-
-// Warning: (ae-forgotten-export) The symbol "AnalyzeImageOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): AnalyzeImageOptions_2;
 
 // @public (undocumented)
 export type AnalyzeImageOutputType = "FourLevels";
@@ -65,11 +55,6 @@ export interface AnalyzeTextOptions {
     outputType?: AnalyzeTextOutputType;
     text: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "AnalyzeTextOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): AnalyzeTextOptions_2;
 
 // @public (undocumented)
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
@@ -138,11 +123,6 @@ export interface ImageData {
     content?: Uint8Array;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ImageData_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function imageDataSerializer(item: ImageData): ImageData_2;
-
 // @public (undocumented)
 export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
     maxpagesize?: number;
@@ -187,11 +167,6 @@ export interface RemoveBlockItemsOptions {
     blockItemIds: string[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "RemoveBlockItemsOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function removeBlockItemsOptionsSerializer(item: RemoveBlockItemsOptions): RemoveBlockItemsOptions_2;
-
 // @public
 export interface TextAnalyzeSeverityResult {
     category: TextCategory;
@@ -211,11 +186,6 @@ export interface TextBlockItemInfo {
     text: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "TextBlockItemInfo_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function textBlockItemInfoSerializer(item: TextBlockItemInfo): TextBlockItemInfo_2;
-
 // @public
 export interface TextBlocklist {
     blocklistName: string;
@@ -228,11 +198,6 @@ export interface TextBlocklistMatchResult {
     blockItemText: string;
     blocklistName: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TextBlocklist_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function textBlocklistSerializer(item: TextBlocklist): TextBlocklist_2;
 
 // @public (undocumented)
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";

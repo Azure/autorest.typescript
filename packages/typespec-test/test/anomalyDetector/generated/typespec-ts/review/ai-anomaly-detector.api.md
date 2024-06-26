@@ -52,11 +52,6 @@ export interface MultivariateAlignPolicy {
     paddingValue?: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "MultivariateAlignPolicy_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateAlignPolicySerializer(item: MultivariateAlignPolicy): MultivariateAlignPolicy_2;
-
 // @public
 export interface MultivariateAnomalyDetectionModel {
     createdTime: Date;
@@ -113,21 +108,11 @@ export interface MultivariateDiagnosticsInfo {
     variableStates?: MultivariateVariableState[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "MultivariateDiagnosticsInfo_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateDiagnosticsInfoSerializer(item: MultivariateDiagnosticsInfo): MultivariateDiagnosticsInfo_2;
-
 // @public
 export interface MultivariateErrorResponse {
     code: string;
     message: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "MultivariateErrorResponse_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateErrorResponseSerializer(item: MultivariateErrorResponse): MultivariateErrorResponse_2;
 
 // @public (undocumented)
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
@@ -157,11 +142,6 @@ export interface MultivariateModelInfo {
     status?: ModelStatus;
 }
 
-// Warning: (ae-forgotten-export) The symbol "MultivariateModelInfo_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateModelInfoSerializer(item: MultivariateModelInfo): MultivariateModelInfo_2;
-
 // @public
 export interface MultivariateModelList {
     currentCount: number;
@@ -178,11 +158,6 @@ export interface MultivariateModelState {
     validationLosses?: number[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "MultivariateModelState_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateModelStateSerializer(item: MultivariateModelState): MultivariateModelState_2;
-
 // @public
 export interface MultivariateMultivariateBatchDetectionOptions {
     dataSource: string;
@@ -190,11 +165,6 @@ export interface MultivariateMultivariateBatchDetectionOptions {
     startTime: Date;
     topContributorCount: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "MultivariateMultivariateBatchDetectionOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateMultivariateBatchDetectionOptionsSerializer(item: MultivariateMultivariateBatchDetectionOptions): MultivariateMultivariateBatchDetectionOptions_2;
 
 // @public
 export interface MultivariateMultivariateBatchDetectionResultSummary {
@@ -216,11 +186,6 @@ export interface MultivariateMultivariateLastDetectionOptions {
     topContributorCount: number;
     variables: MultivariateVariableValues[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "MultivariateMultivariateLastDetectionOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateMultivariateLastDetectionOptionsSerializer(item: MultivariateMultivariateLastDetectionOptions): MultivariateMultivariateLastDetectionOptions_2;
 
 // @public
 export interface MultivariateMultivariateLastDetectionResult {
@@ -259,22 +224,12 @@ export interface MultivariateVariableState {
     variable?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "MultivariateVariableState_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateVariableStateSerializer(item: MultivariateVariableState): MultivariateVariableState_2;
-
 // @public
 export interface MultivariateVariableValues {
     timestamps: string[];
     values: number[];
     variable: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "MultivariateVariableValues_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multivariateVariableValuesSerializer(item: MultivariateVariableValues): MultivariateVariableValues_2;
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -325,11 +280,6 @@ export interface UnivariateTimeSeriesPoint {
     value: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "UnivariateTimeSeriesPoint_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function univariateTimeSeriesPointSerializer(item: UnivariateTimeSeriesPoint): UnivariateTimeSeriesPoint_2;
-
 // @public
 export interface UnivariateUnivariateChangePointDetectionOptions {
     customInterval?: number;
@@ -339,11 +289,6 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
     stableTrendWindow?: number;
     threshold?: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "UnivariateUnivariateChangePointDetectionOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function univariateUnivariateChangePointDetectionOptionsSerializer(item: UnivariateUnivariateChangePointDetectionOptions): UnivariateUnivariateChangePointDetectionOptions_2;
 
 // @public
 export interface UnivariateUnivariateChangePointDetectionResult {
@@ -363,11 +308,6 @@ export interface UnivariateUnivariateDetectionOptions {
     sensitivity?: number;
     series: UnivariateTimeSeriesPoint[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "UnivariateUnivariateDetectionOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function univariateUnivariateDetectionOptionsSerializer(item: UnivariateUnivariateDetectionOptions): UnivariateUnivariateDetectionOptions_2;
 
 // @public
 export interface UnivariateUnivariateEntireDetectionResult {

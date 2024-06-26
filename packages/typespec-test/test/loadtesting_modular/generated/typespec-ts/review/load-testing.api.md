@@ -53,22 +53,12 @@ export interface AppComponent {
     readonly subscriptionId?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AppComponent_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function appComponentSerializer(item: AppComponent): AppComponent_2;
-
 // @public
 export interface CertificateMetadata {
     name?: string;
     type?: CertificateType;
     value?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "CertificateMetadata_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function certificateMetadataSerializer(item: CertificateMetadata): CertificateMetadata_2;
 
 // @public (undocumented)
 export type CertificateType = "AKV_CERT_URI";
@@ -114,11 +104,6 @@ export interface DimensionFilter {
     values?: string[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "DimensionFilter_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function dimensionFilterSerializer(item: DimensionFilter): DimensionFilter_2;
-
 // @public
 export interface DimensionValue {
     name?: string;
@@ -145,11 +130,6 @@ export interface FileInfo {
     validationFailureDetails?: string;
     validationStatus?: FileStatus;
 }
-
-// Warning: (ae-forgotten-export) The symbol "FileInfo_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function fileInfoSerializer(item: FileInfo): FileInfo_2;
 
 // @public (undocumented)
 export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
@@ -241,11 +221,6 @@ export interface LoadTestConfiguration {
     splitAllCSVs?: boolean;
 }
 
-// Warning: (ae-forgotten-export) The symbol "LoadTestConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function loadTestConfigurationSerializer(item: LoadTestConfiguration): LoadTestConfiguration_2;
-
 // @public
 export interface MetricAvailability {
     timeGrain?: TimeGrain;
@@ -284,11 +259,6 @@ export interface MetricRequestPayload {
     filters?: DimensionFilter[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "MetricRequestPayload_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function metricRequestPayloadSerializer(item: MetricRequestPayload): MetricRequestPayload_2;
-
 // @public (undocumented)
 export type MetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
@@ -311,11 +281,6 @@ export interface OptionalLoadTestConfig {
     rampUpTime?: number;
     virtualUsers?: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "OptionalLoadTestConfig_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function optionalLoadTestConfigSerializer(item: OptionalLoadTestConfig): OptionalLoadTestConfig_2;
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -364,11 +329,6 @@ export interface PassFailCriteria {
     passFailMetrics?: Record<string, PassFailMetric>;
 }
 
-// Warning: (ae-forgotten-export) The symbol "PassFailCriteria_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function passFailCriteriaSerializer(item: PassFailCriteria): PassFailCriteria_2;
-
 // @public
 export interface PassFailMetric {
     action?: PFAction;
@@ -380,11 +340,6 @@ export interface PassFailMetric {
     readonly result?: PFResult;
     value?: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "PassFailMetric_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function passFailMetricSerializer(item: PassFailMetric): PassFailMetric_2;
 
 // @public (undocumented)
 export type PFAction = "continue" | "stop";
@@ -413,11 +368,6 @@ export interface ResourceMetric {
     unit?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ResourceMetric_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function resourceMetricSerializer(item: ResourceMetric): ResourceMetric_2;
-
 // @public
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
@@ -433,11 +383,6 @@ export interface Secret {
     type?: SecretType;
     value?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "Secret_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function secretSerializer(item: Secret): Secret_2;
 
 // @public (undocumented)
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
@@ -479,11 +424,6 @@ export interface TestAppComponents {
     readonly testId?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "TestAppComponents_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function testAppComponentsSerializer(item: TestAppComponents): TestAppComponents_2;
-
 // @public
 export interface TestInputArtifacts {
     readonly additionalFileInfo?: FileInfo[];
@@ -492,11 +432,6 @@ export interface TestInputArtifacts {
     testScriptFileInfo?: FileInfo;
     userPropFileInfo?: FileInfo;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TestInputArtifacts_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function testInputArtifactsSerializer(item: TestInputArtifacts): TestInputArtifacts_2;
 
 // @public
 export interface TestRun {
@@ -537,21 +472,11 @@ export interface TestRunAppComponents {
     readonly testRunId?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "TestRunAppComponents_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function testRunAppComponentsSerializer(item: TestRunAppComponents): TestRunAppComponents_2;
-
 // @public
 export interface TestRunArtifacts {
     readonly inputArtifacts?: TestRunInputArtifacts;
     outputArtifacts?: TestRunOutputArtifacts;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TestRunArtifacts_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function testRunArtifactsSerializer(item: TestRunArtifacts): TestRunArtifacts_2;
 
 // @public
 export interface TestRunInputArtifacts {
@@ -561,11 +486,6 @@ export interface TestRunInputArtifacts {
     testScriptFileInfo?: FileInfo;
     userPropFileInfo?: FileInfo;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TestRunInputArtifacts_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function testRunInputArtifactsSerializer(item: TestRunInputArtifacts): TestRunInputArtifacts_2;
 
 // @public (undocumented)
 export class TestRunOperationsClient {
@@ -604,18 +524,12 @@ export interface TestRunOperationsClientAppComponent {
     readonly subscriptionId?: string;
 }
 
-// @public (undocumented)
-export function TestRunOperationsClientappComponentSerializer(item: TestRunOperationsClientAppComponent): AppComponent_2;
-
 // @public
 export interface TestRunOperationsClientCertificateMetadata {
     name?: string;
     type?: TestRunOperationsClientCertificateType;
     value?: string;
 }
-
-// @public (undocumented)
-export function TestRunOperationsClientcertificateMetadataSerializer(item: TestRunOperationsClientCertificateMetadata): CertificateMetadata_2;
 
 // @public (undocumented)
 export type TestRunOperationsClientCertificateType = "AKV_CERT_URI";
@@ -642,9 +556,6 @@ export interface TestRunOperationsClientDimensionFilter {
     name?: string;
     values?: string[];
 }
-
-// @public (undocumented)
-export function TestRunOperationsClientdimensionFilterSerializer(item: TestRunOperationsClientDimensionFilter): DimensionFilter_2;
 
 // @public
 export interface TestRunOperationsClientDimensionValue {
@@ -674,9 +585,6 @@ export interface TestRunOperationsClientFileInfo {
 }
 
 // @public (undocumented)
-export function TestRunOperationsClientfileInfoSerializer(item: TestRunOperationsClientFileInfo): FileInfo_2;
-
-// @public (undocumented)
 export type TestRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
 // @public (undocumented)
@@ -700,9 +608,6 @@ export interface TestRunOperationsClientLoadTestConfiguration {
     quickStartTest?: boolean;
     splitAllCSVs?: boolean;
 }
-
-// @public (undocumented)
-export function TestRunOperationsClientloadTestConfigurationSerializer(item: TestRunOperationsClientLoadTestConfiguration): LoadTestConfiguration_2;
 
 // @public
 export interface TestRunOperationsClientMetricAvailability {
@@ -743,9 +648,6 @@ export interface TestRunOperationsClientMetricRequestPayload {
 }
 
 // @public (undocumented)
-export function TestRunOperationsClientmetricRequestPayloadSerializer(item: TestRunOperationsClientMetricRequestPayload): MetricRequestPayload_2;
-
-// @public (undocumented)
 export type TestRunOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
@@ -767,9 +669,6 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
     rampUpTime?: number;
     virtualUsers?: number;
 }
-
-// @public (undocumented)
-export function TestRunOperationsClientoptionalLoadTestConfigSerializer(item: TestRunOperationsClientOptionalLoadTestConfig): OptionalLoadTestConfig_2;
 
 // @public (undocumented)
 export interface TestRunOperationsClientOptions extends ClientOptions {
@@ -823,9 +722,6 @@ export interface TestRunOperationsClientPassFailCriteria {
     passFailMetrics?: Record<string, TestRunOperationsClientPassFailMetric>;
 }
 
-// @public (undocumented)
-export function TestRunOperationsClientpassFailCriteriaSerializer(item: TestRunOperationsClientPassFailCriteria): PassFailCriteria_2;
-
 // @public
 export interface TestRunOperationsClientPassFailMetric {
     action?: TestRunOperationsClientPFAction;
@@ -837,9 +733,6 @@ export interface TestRunOperationsClientPassFailMetric {
     readonly result?: TestRunOperationsClientPFResult;
     value?: number;
 }
-
-// @public (undocumented)
-export function TestRunOperationsClientpassFailMetricSerializer(item: TestRunOperationsClientPassFailMetric): PassFailMetric_2;
 
 // @public (undocumented)
 export type TestRunOperationsClientPFAction = "continue" | "stop";
@@ -868,17 +761,11 @@ export interface TestRunOperationsClientResourceMetric {
     unit?: string;
 }
 
-// @public (undocumented)
-export function TestRunOperationsClientresourceMetricSerializer(item: TestRunOperationsClientResourceMetric): ResourceMetric_2;
-
 // @public
 export interface TestRunOperationsClientSecret {
     type?: TestRunOperationsClientSecretType;
     value?: string;
 }
-
-// @public (undocumented)
-export function TestRunOperationsClientsecretSerializer(item: TestRunOperationsClientSecret): Secret_2;
 
 // @public (undocumented)
 export type TestRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
@@ -916,9 +803,6 @@ export interface TestRunOperationsClientTestAppComponents {
     readonly testId?: string;
 }
 
-// @public (undocumented)
-export function TestRunOperationsClienttestAppComponentsSerializer(item: TestRunOperationsClientTestAppComponents): TestAppComponents_2;
-
 // @public
 export interface TestRunOperationsClientTestInputArtifacts {
     readonly additionalFileInfo?: TestRunOperationsClientFileInfo[];
@@ -927,9 +811,6 @@ export interface TestRunOperationsClientTestInputArtifacts {
     testScriptFileInfo?: TestRunOperationsClientFileInfo;
     userPropFileInfo?: TestRunOperationsClientFileInfo;
 }
-
-// @public (undocumented)
-export function TestRunOperationsClienttestInputArtifactsSerializer(item: TestRunOperationsClientTestInputArtifacts): TestInputArtifacts_2;
 
 // @public
 export interface TestRunOperationsClientTestRun {
@@ -970,17 +851,11 @@ export interface TestRunOperationsClientTestRunAppComponents {
     readonly testRunId?: string;
 }
 
-// @public (undocumented)
-export function TestRunOperationsClienttestRunAppComponentsSerializer(item: TestRunOperationsClientTestRunAppComponents): TestRunAppComponents_2;
-
 // @public
 export interface TestRunOperationsClientTestRunArtifacts {
     readonly inputArtifacts?: TestRunOperationsClientTestRunInputArtifacts;
     outputArtifacts?: TestRunOperationsClientTestRunOutputArtifacts;
 }
-
-// @public (undocumented)
-export function TestRunOperationsClienttestRunArtifactsSerializer(item: TestRunOperationsClientTestRunArtifacts): TestRunArtifacts_2;
 
 // @public
 export interface TestRunOperationsClientTestRunInputArtifacts {
@@ -991,24 +866,11 @@ export interface TestRunOperationsClientTestRunInputArtifacts {
     userPropFileInfo?: TestRunOperationsClientFileInfo;
 }
 
-// @public (undocumented)
-export function TestRunOperationsClienttestRunInputArtifactsSerializer(item: TestRunOperationsClientTestRunInputArtifacts): TestRunInputArtifacts_2;
-
 // @public
 export interface TestRunOperationsClientTestRunOutputArtifacts {
     logsFileInfo?: TestRunOperationsClientFileInfo;
     resultFileInfo?: TestRunOperationsClientFileInfo;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TestRunOutputArtifacts_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function TestRunOperationsClienttestRunOutputArtifactsSerializer(item: TestRunOperationsClientTestRunOutputArtifacts): TestRunOutputArtifacts_2;
-
-// Warning: (ae-forgotten-export) The symbol "TestRun_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function TestRunOperationsClienttestRunSerializer(item: TestRunOperationsClientTestRun): TestRun_2;
 
 // @public
 export interface TestRunOperationsClientTestRunServerMetricConfig {
@@ -1019,11 +881,6 @@ export interface TestRunOperationsClientTestRunServerMetricConfig {
     metrics?: Record<string, TestRunOperationsClientResourceMetric>;
     readonly testRunId?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TestRunServerMetricConfig_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function TestRunOperationsClienttestRunServerMetricConfigSerializer(item: TestRunOperationsClientTestRunServerMetricConfig): TestRunServerMetricConfig_2;
 
 // @public
 export interface TestRunOperationsClientTestRunStatistics {
@@ -1043,11 +900,6 @@ export interface TestRunOperationsClientTestRunStatistics {
     readonly transaction?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "Test_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function TestRunOperationsClienttestSerializer(item: TestRunOperationsClientTest): Test_2;
-
 // @public
 export interface TestRunOperationsClientTestServerMetricConfig {
     readonly createdBy?: string;
@@ -1057,11 +909,6 @@ export interface TestRunOperationsClientTestServerMetricConfig {
     metrics?: Record<string, TestRunOperationsClientResourceMetric>;
     readonly testId?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TestServerMetricConfig_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function TestRunOperationsClienttestServerMetricConfigSerializer(item: TestRunOperationsClientTestServerMetricConfig): TestServerMetricConfig_2;
 
 // @public (undocumented)
 export type TestRunOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
@@ -1085,12 +932,6 @@ export interface TestRunOutputArtifacts {
     resultFileInfo?: FileInfo;
 }
 
-// @public (undocumented)
-export function testRunOutputArtifactsSerializer(item: TestRunOutputArtifacts): TestRunOutputArtifacts_2;
-
-// @public (undocumented)
-export function testRunSerializer(item: TestRun): TestRun_2;
-
 // @public
 export interface TestRunServerMetricConfig {
     readonly createdBy?: string;
@@ -1100,9 +941,6 @@ export interface TestRunServerMetricConfig {
     metrics?: Record<string, ResourceMetric>;
     readonly testRunId?: string;
 }
-
-// @public (undocumented)
-export function testRunServerMetricConfigSerializer(item: TestRunServerMetricConfig): TestRunServerMetricConfig_2;
 
 // @public
 export interface TestRunStatistics {
@@ -1122,9 +960,6 @@ export interface TestRunStatistics {
     readonly transaction?: string;
 }
 
-// @public (undocumented)
-export function testSerializer(item: Test): Test_2;
-
 // @public
 export interface TestServerMetricConfig {
     readonly createdBy?: string;
@@ -1134,9 +969,6 @@ export interface TestServerMetricConfig {
     metrics?: Record<string, ResourceMetric>;
     readonly testId?: string;
 }
-
-// @public (undocumented)
-export function testServerMetricConfigSerializer(item: TestServerMetricConfig): TestServerMetricConfig_2;
 
 // @public (undocumented)
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";

@@ -6,18 +6,6 @@ export {
   AnomalyDetectorClientOptions,
 } from "./anomalyDetectorClient.js";
 export {
-  multivariateErrorResponseSerializer,
-  multivariateVariableStateSerializer,
-  multivariateMultivariateBatchDetectionOptionsSerializer,
-  multivariateModelInfoSerializer,
-  multivariateAlignPolicySerializer,
-  multivariateDiagnosticsInfoSerializer,
-  multivariateModelStateSerializer,
-  multivariateMultivariateLastDetectionOptionsSerializer,
-  multivariateVariableValuesSerializer,
-  univariateUnivariateDetectionOptionsSerializer,
-  univariateTimeSeriesPointSerializer,
-  univariateUnivariateChangePointDetectionOptionsSerializer,
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
   MultivariateBatchDetectionStatus,

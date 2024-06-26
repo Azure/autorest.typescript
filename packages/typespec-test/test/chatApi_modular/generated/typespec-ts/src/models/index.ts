@@ -2,9 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  chatMessageSerializer,
-  streamingChatCompletionOptionsRecordSerializer,
-  chatCompletionOptionsRecordSerializer,
   ChatMessage,
   ChatRole,
   StreamingChatCompletionOptionsRecord,

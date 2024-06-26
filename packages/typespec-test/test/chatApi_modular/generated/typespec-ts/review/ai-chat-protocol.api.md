@@ -35,11 +35,6 @@ export interface ChatCompletionOptionsRecord {
     stream: false;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionOptions" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionOptionsRecordSerializer(item: ChatCompletionOptionsRecord): ChatCompletionOptions;
-
 // @public
 export interface ChatCompletionRecord {
     choices: ChatChoiceRecord[];
@@ -58,11 +53,6 @@ export interface ChatMessageDelta {
     role?: ChatRole;
     sessionState?: any;
 }
-
-// Warning: (ae-forgotten-export) The symbol "ChatMessage_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatMessageSerializer(item: ChatMessage): ChatMessage_2;
 
 // @public (undocumented)
 export class ChatProtocolClient {
@@ -106,11 +96,6 @@ export interface StreamingChatCompletionOptionsRecord {
     sessionState?: any;
     stream: true;
 }
-
-// Warning: (ae-forgotten-export) The symbol "StreamingChatCompletionOptions" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function streamingChatCompletionOptionsRecordSerializer(item: StreamingChatCompletionOptionsRecord): StreamingChatCompletionOptions;
 
 // (No @packageDocumentation comment for this package)
 

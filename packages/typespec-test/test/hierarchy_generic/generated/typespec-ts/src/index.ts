@@ -3,9 +3,6 @@
 
 export { FooClient, FooClientOptions } from "./fooClient.js";
 export {
-  aSerializer,
-  bASerializer,
-  bEASerializer,
   A,
   BA,
   BEA,

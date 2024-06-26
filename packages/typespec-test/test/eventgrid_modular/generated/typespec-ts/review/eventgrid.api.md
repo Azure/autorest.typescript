@@ -19,11 +19,6 @@ export interface AcknowledgeOptions {
     lockTokens: string[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "AcknowledgeOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function acknowledgeOptionsSerializer(item: AcknowledgeOptions): AcknowledgeOptions_2;
-
 // @public
 export interface AcknowledgeResult {
     failedLockTokens: FailedLockToken[];
@@ -49,11 +44,6 @@ export interface CloudEvent {
     time?: Date;
     type: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "CloudEvent_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function cloudEventSerializer(item: CloudEvent): CloudEvent_2;
 
 // @public (undocumented)
 export class EventGridClient {
@@ -120,11 +110,6 @@ export interface RejectOptions {
     lockTokens: string[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "RejectOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function rejectOptionsSerializer(item: RejectOptions): RejectOptions_2;
-
 // @public
 export interface RejectResult {
     failedLockTokens: FailedLockToken[];
@@ -140,11 +125,6 @@ export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
 export interface ReleaseOptions {
     lockTokens: string[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "ReleaseOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function releaseOptionsSerializer(item: ReleaseOptions): ReleaseOptions_2;
 
 // @public
 export interface ReleaseResult {

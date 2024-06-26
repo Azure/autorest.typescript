@@ -50,11 +50,6 @@ export interface CreateWidget {
     weight: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "CreateWidget_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function createWidgetSerializer(item: CreateWidget): CreateWidget_2;
-
 // @public (undocumented)
 export interface ListWidgetsPagesResults {
     "odata.nextLink"?: string;
@@ -66,12 +61,6 @@ export interface NonReferencedModel {
     prop1: number;
     prop2: string;
 }
-
-// @public (undocumented)
-export function nonReferencedModelSerializer(item: NonReferencedModel): {
-    prop1: number;
-    prop2: string;
-};
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -101,23 +90,12 @@ export interface UpdateWidget {
     weight?: number;
 }
 
-// @public (undocumented)
-export function updateWidgetSerializer(item: UpdateWidget): {
-    weight: number | undefined;
-    color: "red" | "blue" | undefined;
-};
-
 // @public
 export interface User {
     id: string;
     readonly name: string;
     role: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "User_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function userSerializer(item: User): User_2;
 
 // @public (undocumented)
 export type Versions = "1.0.0";

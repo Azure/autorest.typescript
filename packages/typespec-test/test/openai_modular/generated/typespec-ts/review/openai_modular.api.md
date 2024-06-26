@@ -4,8 +4,6 @@
 
 ```ts
 
-/// <reference types="node" />
-
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
@@ -20,11 +18,6 @@ export interface AudioSpeechOptions {
     speed?: number;
     voice: AudioSpeechVoice;
 }
-
-// Warning: (ae-forgotten-export) The symbol "AudioSpeechOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function audioSpeechOptionsSerializer(item: AudioSpeechOptions): AudioSpeechOptions_2;
 
 // @public (undocumented)
 export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
@@ -57,11 +50,6 @@ export interface AudioTranscriptionOptions {
     responseFormat?: AudioTranscriptionFormat;
     temperature?: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "AudioTranscriptionOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function audioTranscriptionOptionsSerializer(item: AudioTranscriptionOptions): AudioTranscriptionOptions_2;
 
 // @public
 export interface AudioTranscriptionSegment {
@@ -99,11 +87,6 @@ export interface AudioTranslationOptions {
     temperature?: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AudioTranslationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function audioTranslationOptionsSerializer(item: AudioTranslationOptions): AudioTranslationOptions_2;
-
 // @public
 export interface AudioTranslationSegment {
     avgLogprob: number;
@@ -124,11 +107,6 @@ export interface AzureChatEnhancementConfiguration {
     ocr?: AzureChatOCREnhancementConfiguration;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureChatEnhancementConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureChatEnhancementConfigurationSerializer(item: AzureChatEnhancementConfiguration): AzureChatEnhancementConfiguration_2;
-
 // @public
 export interface AzureChatEnhancements {
     grounding?: AzureGroundingEnhancement;
@@ -139,16 +117,8 @@ export interface AzureChatExtensionConfiguration {
     type: AzureChatExtensionType;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureChatExtensionConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureChatExtensionConfigurationSerializer(item: AzureChatExtensionConfigurationUnion): AzureChatExtensionConfiguration_2;
-
 // @public
 export type AzureChatExtensionConfigurationUnion = AzureSearchChatExtensionConfiguration | AzureMachineLearningIndexChatExtensionConfiguration | AzureCosmosDBChatExtensionConfiguration | ElasticsearchChatExtensionConfiguration | PineconeChatExtensionConfiguration | AzureChatExtensionConfiguration;
-
-// @public (undocumented)
-export function azureChatExtensionConfigurationUnionSerializer(item: AzureChatExtensionConfigurationUnion): AzureChatExtensionConfiguration_2;
 
 // @public
 export interface AzureChatExtensionDataSourceResponseCitation {
@@ -173,31 +143,16 @@ export interface AzureChatGroundingEnhancementConfiguration {
     enabled: boolean;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureChatGroundingEnhancementConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureChatGroundingEnhancementConfigurationSerializer(item: AzureChatGroundingEnhancementConfiguration): AzureChatGroundingEnhancementConfiguration_2;
-
 // @public
 export interface AzureChatOCREnhancementConfiguration {
     enabled: boolean;
 }
-
-// Warning: (ae-forgotten-export) The symbol "AzureChatOCREnhancementConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureChatOCREnhancementConfigurationSerializer(item: AzureChatOCREnhancementConfiguration): AzureChatOCREnhancementConfiguration_2;
 
 // @public
 export interface AzureCosmosDBChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: AzureCosmosDBChatExtensionParameters;
     type: "azure_cosmos_db";
 }
-
-// Warning: (ae-forgotten-export) The symbol "AzureCosmosDBChatExtensionConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureCosmosDBChatExtensionConfigurationSerializer(item: AzureCosmosDBChatExtensionConfiguration): AzureCosmosDBChatExtensionConfiguration_2;
 
 // @public
 export interface AzureCosmosDBChatExtensionParameters {
@@ -213,11 +168,6 @@ export interface AzureCosmosDBChatExtensionParameters {
     topNDocuments?: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureCosmosDBChatExtensionParameters_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureCosmosDBChatExtensionParametersSerializer(item: AzureCosmosDBChatExtensionParameters): AzureCosmosDBChatExtensionParameters_2;
-
 // @public
 export interface AzureCosmosDBFieldMappingOptions {
     contentFields: string[];
@@ -227,11 +177,6 @@ export interface AzureCosmosDBFieldMappingOptions {
     urlField?: string;
     vectorFields: string[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "AzureCosmosDBFieldMappingOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureCosmosDBFieldMappingOptionsSerializer(item: AzureCosmosDBFieldMappingOptions): AzureCosmosDBFieldMappingOptions_2;
 
 // @public
 export interface AzureGroundingEnhancement {
@@ -264,11 +209,6 @@ export interface AzureMachineLearningIndexChatExtensionConfiguration extends Azu
     type: "azure_ml_index";
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureMachineLearningIndexChatExtensionConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureMachineLearningIndexChatExtensionConfigurationSerializer(item: AzureMachineLearningIndexChatExtensionConfiguration): AzureMachineLearningIndexChatExtensionConfiguration_2;
-
 // @public
 export interface AzureMachineLearningIndexChatExtensionParameters {
     authentication?: OnYourDataAuthenticationOptionsUnion;
@@ -282,21 +222,11 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
     version: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureMachineLearningIndexChatExtensionParameters_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureMachineLearningIndexChatExtensionParametersSerializer(item: AzureMachineLearningIndexChatExtensionParameters): AzureMachineLearningIndexChatExtensionParameters_2;
-
 // @public
 export interface AzureSearchChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: AzureSearchChatExtensionParameters;
     type: "azure_search";
 }
-
-// Warning: (ae-forgotten-export) The symbol "AzureSearchChatExtensionConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureSearchChatExtensionConfigurationSerializer(item: AzureSearchChatExtensionConfiguration): AzureSearchChatExtensionConfiguration_2;
 
 // @public
 export interface AzureSearchChatExtensionParameters {
@@ -314,11 +244,6 @@ export interface AzureSearchChatExtensionParameters {
     topNDocuments?: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureSearchChatExtensionParameters_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureSearchChatExtensionParametersSerializer(item: AzureSearchChatExtensionParameters): AzureSearchChatExtensionParameters_2;
-
 // @public
 export interface AzureSearchIndexFieldMappingOptions {
     contentFields?: string[];
@@ -329,11 +254,6 @@ export interface AzureSearchIndexFieldMappingOptions {
     urlField?: string;
     vectorFields?: string[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "AzureSearchIndexFieldMappingOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureSearchIndexFieldMappingOptionsSerializer(item: AzureSearchIndexFieldMappingOptions): AzureSearchIndexFieldMappingOptions_2;
 
 // @public (undocumented)
 export type AzureSearchQueryType = "simple" | "semantic" | "vector" | "vector_simple_hybrid" | "vector_semantic_hybrid";
@@ -371,41 +291,21 @@ export interface ChatCompletionsFunctionToolCall extends ChatCompletionsToolCall
     type: "function";
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsFunctionToolCall_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsFunctionToolCallSerializer(item: ChatCompletionsFunctionToolCall): ChatCompletionsFunctionToolCall_2;
-
 // @public
 export interface ChatCompletionsFunctionToolDefinition extends ChatCompletionsToolDefinition {
     function: FunctionDefinition;
     type: "function";
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsFunctionToolDefinition_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsFunctionToolDefinitionSerializer(item: ChatCompletionsFunctionToolDefinition): ChatCompletionsFunctionToolDefinition_2;
-
 // @public
 export interface ChatCompletionsFunctionToolSelection {
     name: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsFunctionToolSelection_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsFunctionToolSelectionSerializer(item: ChatCompletionsFunctionToolSelection): ChatCompletionsFunctionToolSelection_2;
-
 // @public
 export interface ChatCompletionsJsonResponseFormat extends ChatCompletionsResponseFormat {
     type: "json_object";
 }
-
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsJsonResponseFormat_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsJsonResponseFormatSerializer(item: ChatCompletionsJsonResponseFormat): ChatCompletionsJsonResponseFormat_2;
 
 // @public
 export interface ChatCompletionsNamedFunctionToolSelection extends ChatCompletionsNamedToolSelection {
@@ -413,26 +313,13 @@ export interface ChatCompletionsNamedFunctionToolSelection extends ChatCompletio
     type: "function";
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsNamedFunctionToolSelection_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsNamedFunctionToolSelectionSerializer(item: ChatCompletionsNamedFunctionToolSelection): ChatCompletionsNamedFunctionToolSelection_2;
-
 // @public
 export interface ChatCompletionsNamedToolSelection {
     type: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsNamedToolSelection_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsNamedToolSelectionSerializer(item: ChatCompletionsNamedToolSelectionUnion): ChatCompletionsNamedToolSelection_2;
-
 // @public
 export type ChatCompletionsNamedToolSelectionUnion = ChatCompletionsNamedFunctionToolSelection | ChatCompletionsNamedToolSelection;
-
-// @public (undocumented)
-export function chatCompletionsNamedToolSelectionUnionSerializer(item: ChatCompletionsNamedToolSelectionUnion): ChatCompletionsNamedToolSelection_2;
 
 // @public
 export interface ChatCompletionsOptions {
@@ -460,36 +347,18 @@ export interface ChatCompletionsOptions {
     user?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsOptionsSerializer(item: ChatCompletionsOptions): ChatCompletionsOptions_2;
-
 // @public
 export interface ChatCompletionsResponseFormat {
     type: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsResponseFormat_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsResponseFormatSerializer(item: ChatCompletionsResponseFormatUnion): ChatCompletionsResponseFormat_2;
-
 // @public
 export type ChatCompletionsResponseFormatUnion = ChatCompletionsTextResponseFormat | ChatCompletionsJsonResponseFormat | ChatCompletionsResponseFormat;
-
-// @public (undocumented)
-export function chatCompletionsResponseFormatUnionSerializer(item: ChatCompletionsResponseFormatUnion): ChatCompletionsResponseFormat_2;
 
 // @public
 export interface ChatCompletionsTextResponseFormat extends ChatCompletionsResponseFormat {
     type: "text";
 }
-
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsTextResponseFormat_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsTextResponseFormatSerializer(item: ChatCompletionsTextResponseFormat): ChatCompletionsTextResponseFormat_2;
 
 // @public
 export interface ChatCompletionsToolCall {
@@ -497,32 +366,16 @@ export interface ChatCompletionsToolCall {
     type: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsToolCall_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsToolCallSerializer(item: ChatCompletionsToolCallUnion): ChatCompletionsToolCall_2;
-
 // @public
 export type ChatCompletionsToolCallUnion = ChatCompletionsFunctionToolCall | ChatCompletionsToolCall;
-
-// @public (undocumented)
-export function chatCompletionsToolCallUnionSerializer(item: ChatCompletionsToolCallUnion): ChatCompletionsToolCall_2;
 
 // @public
 export interface ChatCompletionsToolDefinition {
     type: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatCompletionsToolDefinition_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatCompletionsToolDefinitionSerializer(item: ChatCompletionsToolDefinitionUnion): ChatCompletionsToolDefinition_2;
-
 // @public
 export type ChatCompletionsToolDefinitionUnion = ChatCompletionsFunctionToolDefinition | ChatCompletionsToolDefinition;
-
-// @public (undocumented)
-export function chatCompletionsToolDefinitionUnionSerializer(item: ChatCompletionsToolDefinitionUnion): ChatCompletionsToolDefinition_2;
 
 // @public (undocumented)
 export type ChatCompletionsToolSelectionPreset = "auto" | "none";
@@ -540,27 +393,14 @@ export interface ChatMessageContentItem {
     type: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatMessageContentItem_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatMessageContentItemSerializer(item: ChatMessageContentItemUnion): ChatMessageContentItem_2;
-
 // @public
 export type ChatMessageContentItemUnion = ChatMessageTextContentItem | ChatMessageImageContentItem | ChatMessageContentItem;
-
-// @public (undocumented)
-export function chatMessageContentItemUnionSerializer(item: ChatMessageContentItemUnion): ChatMessageContentItem_2;
 
 // @public
 export interface ChatMessageImageContentItem extends ChatMessageContentItem {
     imageUrl: ChatMessageImageUrl;
     type: "image_url";
 }
-
-// Warning: (ae-forgotten-export) The symbol "ChatMessageImageContentItem_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatMessageImageContentItemSerializer(item: ChatMessageImageContentItem): ChatMessageImageContentItem_2;
 
 // @public (undocumented)
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
@@ -571,21 +411,11 @@ export interface ChatMessageImageUrl {
     url: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatMessageImageUrl_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatMessageImageUrlSerializer(item: ChatMessageImageUrl): ChatMessageImageUrl_2;
-
 // @public
 export interface ChatMessageTextContentItem extends ChatMessageContentItem {
     text: string;
     type: "text";
 }
-
-// Warning: (ae-forgotten-export) The symbol "ChatMessageTextContentItem_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatMessageTextContentItemSerializer(item: ChatMessageTextContentItem): ChatMessageTextContentItem_2;
 
 // @public
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
@@ -596,11 +426,6 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessage {
     toolCalls?: ChatCompletionsToolCallUnion[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatRequestAssistantMessage_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatRequestAssistantMessageSerializer(item: ChatRequestAssistantMessage): ChatRequestAssistantMessage_2;
-
 // @public
 export interface ChatRequestFunctionMessage extends ChatRequestMessage {
     content: string | null;
@@ -608,26 +433,13 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
     role: "function";
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatRequestFunctionMessage_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatRequestFunctionMessageSerializer(item: ChatRequestFunctionMessage): ChatRequestFunctionMessage_2;
-
 // @public
 export interface ChatRequestMessage {
     role: ChatRole;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatRequestMessage_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatRequestMessageSerializer(item: ChatRequestMessageUnion): ChatRequestMessage_2;
-
 // @public
 export type ChatRequestMessageUnion = ChatRequestSystemMessage | ChatRequestUserMessage | ChatRequestAssistantMessage | ChatRequestToolMessage | ChatRequestFunctionMessage | ChatRequestMessage;
-
-// @public (undocumented)
-export function chatRequestMessageUnionSerializer(item: ChatRequestMessageUnion): ChatRequestMessage_2;
 
 // @public
 export interface ChatRequestSystemMessage extends ChatRequestMessage {
@@ -636,11 +448,6 @@ export interface ChatRequestSystemMessage extends ChatRequestMessage {
     role: "system";
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatRequestSystemMessage_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatRequestSystemMessageSerializer(item: ChatRequestSystemMessage): ChatRequestSystemMessage_2;
-
 // @public
 export interface ChatRequestToolMessage extends ChatRequestMessage {
     content: string | null;
@@ -648,22 +455,12 @@ export interface ChatRequestToolMessage extends ChatRequestMessage {
     toolCallId: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ChatRequestToolMessage_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatRequestToolMessageSerializer(item: ChatRequestToolMessage): ChatRequestToolMessage_2;
-
 // @public
 export interface ChatRequestUserMessage extends ChatRequestMessage {
     content: string | ChatMessageContentItemUnion[];
     name?: string;
     role: "user";
 }
-
-// Warning: (ae-forgotten-export) The symbol "ChatRequestUserMessage_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function chatRequestUserMessageSerializer(item: ChatRequestUserMessage): ChatRequestUserMessage_2;
 
 // @public
 export interface ChatResponseMessage {
@@ -740,11 +537,6 @@ export interface CompletionsOptions {
     user?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "CompletionsOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function completionsOptionsSerializer(item: CompletionsOptions): CompletionsOptions_2;
-
 // @public
 export interface CompletionsUsage {
     completionTokens: number;
@@ -818,11 +610,6 @@ export interface ElasticsearchChatExtensionConfiguration extends AzureChatExtens
     type: "elasticsearch";
 }
 
-// Warning: (ae-forgotten-export) The symbol "ElasticsearchChatExtensionConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function elasticsearchChatExtensionConfigurationSerializer(item: ElasticsearchChatExtensionConfiguration): ElasticsearchChatExtensionConfiguration_2;
-
 // @public
 export interface ElasticsearchChatExtensionParameters {
     authentication?: OnYourDataAuthenticationOptionsUnion;
@@ -837,11 +624,6 @@ export interface ElasticsearchChatExtensionParameters {
     topNDocuments?: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ElasticsearchChatExtensionParameters_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function elasticsearchChatExtensionParametersSerializer(item: ElasticsearchChatExtensionParameters): ElasticsearchChatExtensionParameters_2;
-
 // @public
 export interface ElasticsearchIndexFieldMappingOptions {
     contentFields?: string[];
@@ -851,11 +633,6 @@ export interface ElasticsearchIndexFieldMappingOptions {
     urlField?: string;
     vectorFields?: string[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "ElasticsearchIndexFieldMappingOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function elasticsearchIndexFieldMappingOptionsSerializer(item: ElasticsearchIndexFieldMappingOptions): ElasticsearchIndexFieldMappingOptions_2;
 
 // @public (undocumented)
 export type ElasticsearchQueryType = "simple" | "vector";
@@ -880,11 +657,6 @@ export interface EmbeddingsOptions {
     user?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "EmbeddingsOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function embeddingsOptionsSerializer(item: EmbeddingsOptions): EmbeddingsOptions_2;
-
 // @public
 export interface EmbeddingsUsage {
     promptTokens: number;
@@ -900,11 +672,6 @@ export interface FunctionCall {
 // @public (undocumented)
 export type FunctionCallPreset = "auto" | "none";
 
-// Warning: (ae-forgotten-export) The symbol "FunctionCall_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function functionCallSerializer(item: FunctionCall): FunctionCall_2;
-
 // @public
 export interface FunctionDefinition {
     description?: string;
@@ -912,20 +679,10 @@ export interface FunctionDefinition {
     parameters?: any;
 }
 
-// Warning: (ae-forgotten-export) The symbol "FunctionDefinition_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function functionDefinitionSerializer(item: FunctionDefinition): FunctionDefinition_2;
-
 // @public
 export interface FunctionName {
     name: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "FunctionName_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function functionNameSerializer(item: FunctionName): FunctionName_2;
 
 // @public (undocumented)
 export interface GetAudioSpeechOptionalParams extends OperationOptions {
@@ -974,13 +731,6 @@ export interface ImageGenerationData {
     url?: string;
 }
 
-// @public (undocumented)
-export function imageGenerationDataSerializer(item: ImageGenerationData): {
-    url: string | undefined;
-    b64_json: string | undefined;
-    revised_prompt: string | undefined;
-};
-
 // @public
 export interface ImageGenerationOptions {
     model?: string;
@@ -993,11 +743,6 @@ export interface ImageGenerationOptions {
     user?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ImageGenerationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function imageGenerationOptionsSerializer(item: ImageGenerationOptions): ImageGenerationOptions_2;
-
 // @public (undocumented)
 export type ImageGenerationQuality = "standard" | "hd";
 
@@ -1009,16 +754,6 @@ export interface ImageGenerations {
     created: Date;
     data: ImageGenerationData[];
 }
-
-// @public (undocumented)
-export function imageGenerationsSerializer(item: ImageGenerations): {
-    created: number;
-    data: {
-        url: string | undefined;
-        b64_json: string | undefined;
-        revised_prompt: string | undefined;
-    }[];
-};
 
 // @public (undocumented)
 export type ImageGenerationStyle = "natural" | "vivid";
@@ -1037,37 +772,19 @@ export interface OnYourDataAccessTokenAuthenticationOptions extends OnYourDataAu
     type: "access_token";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataAccessTokenAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataAccessTokenAuthenticationOptionsSerializer(item: OnYourDataAccessTokenAuthenticationOptions): OnYourDataAccessTokenAuthenticationOptions_2;
-
 // @public
 export interface OnYourDataApiKeyAuthenticationOptions extends OnYourDataAuthenticationOptions {
     key: string;
     type: "api_key";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataApiKeyAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataApiKeyAuthenticationOptionsSerializer(item: OnYourDataApiKeyAuthenticationOptions): OnYourDataApiKeyAuthenticationOptions_2;
-
 // @public
 export interface OnYourDataAuthenticationOptions {
     type: OnYourDataAuthenticationType;
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataAuthenticationOptionsSerializer(item: OnYourDataAuthenticationOptionsUnion): OnYourDataAuthenticationOptions_2;
-
 // @public
 export type OnYourDataAuthenticationOptionsUnion = OnYourDataApiKeyAuthenticationOptions | OnYourDataConnectionStringAuthenticationOptions | OnYourDataKeyAndKeyIdAuthenticationOptions | OnYourDataEncodedApiKeyAuthenticationOptions | OnYourDataAccessTokenAuthenticationOptions | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions | OnYourDataUserAssignedManagedIdentityAuthenticationOptions | OnYourDataAuthenticationOptions;
-
-// @public (undocumented)
-export function onYourDataAuthenticationOptionsUnionSerializer(item: OnYourDataAuthenticationOptionsUnion): OnYourDataAuthenticationOptions_2;
 
 // @public (undocumented)
 export type OnYourDataAuthenticationType = "api_key" | "connection_string" | "key_and_key_id" | "encoded_api_key" | "access_token" | "system_assigned_managed_identity" | "user_assigned_managed_identity";
@@ -1078,32 +795,17 @@ export interface OnYourDataConnectionStringAuthenticationOptions extends OnYourD
     type: "connection_string";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataConnectionStringAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataConnectionStringAuthenticationOptionsSerializer(item: OnYourDataConnectionStringAuthenticationOptions): OnYourDataConnectionStringAuthenticationOptions_2;
-
 // @public
 export interface OnYourDataDeploymentNameVectorizationSource extends OnYourDataVectorizationSource {
     deploymentName: string;
     type: "deployment_name";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataDeploymentNameVectorizationSource_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataDeploymentNameVectorizationSourceSerializer(item: OnYourDataDeploymentNameVectorizationSource): OnYourDataDeploymentNameVectorizationSource_2;
-
 // @public
 export interface OnYourDataEncodedApiKeyAuthenticationOptions extends OnYourDataAuthenticationOptions {
     encodedApiKey: string;
     type: "encoded_api_key";
 }
-
-// Warning: (ae-forgotten-export) The symbol "OnYourDataEncodedApiKeyAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataEncodedApiKeyAuthenticationOptionsSerializer(item: OnYourDataEncodedApiKeyAuthenticationOptions): OnYourDataEncodedApiKeyAuthenticationOptions_2;
 
 // @public
 export interface OnYourDataEndpointVectorizationSource extends OnYourDataVectorizationSource {
@@ -1112,11 +814,6 @@ export interface OnYourDataEndpointVectorizationSource extends OnYourDataVectori
     type: "endpoint";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataEndpointVectorizationSource_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataEndpointVectorizationSourceSerializer(item: OnYourDataEndpointVectorizationSource): OnYourDataEndpointVectorizationSource_2;
-
 // @public
 export interface OnYourDataKeyAndKeyIdAuthenticationOptions extends OnYourDataAuthenticationOptions {
     key: string;
@@ -1124,31 +821,16 @@ export interface OnYourDataKeyAndKeyIdAuthenticationOptions extends OnYourDataAu
     type: "key_and_key_id";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataKeyAndKeyIdAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(item: OnYourDataKeyAndKeyIdAuthenticationOptions): OnYourDataKeyAndKeyIdAuthenticationOptions_2;
-
 // @public
 export interface OnYourDataModelIdVectorizationSource extends OnYourDataVectorizationSource {
     modelId: string;
     type: "model_id";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataModelIdVectorizationSource_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataModelIdVectorizationSourceSerializer(item: OnYourDataModelIdVectorizationSource): OnYourDataModelIdVectorizationSource_2;
-
 // @public
 export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions extends OnYourDataAuthenticationOptions {
     type: "system_assigned_managed_identity";
 }
-
-// Warning: (ae-forgotten-export) The symbol "OnYourDataSystemAssignedManagedIdentityAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(item: OnYourDataSystemAssignedManagedIdentityAuthenticationOptions): OnYourDataSystemAssignedManagedIdentityAuthenticationOptions_2;
 
 // @public
 export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions extends OnYourDataAuthenticationOptions {
@@ -1156,29 +838,16 @@ export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions exte
     type: "user_assigned_managed_identity";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OnYourDataUserAssignedManagedIdentityAuthenticationOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerializer(item: OnYourDataUserAssignedManagedIdentityAuthenticationOptions): OnYourDataUserAssignedManagedIdentityAuthenticationOptions_2;
-
 // @public
 export interface OnYourDataVectorizationSource {
     type: OnYourDataVectorizationSourceType;
 }
-
-// Warning: (ae-forgotten-export) The symbol "OnYourDataVectorizationSource_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function onYourDataVectorizationSourceSerializer(item: OnYourDataVectorizationSourceUnion): OnYourDataVectorizationSource_2;
 
 // @public (undocumented)
 export type OnYourDataVectorizationSourceType = "endpoint" | "deployment_name" | "model_id";
 
 // @public
 export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorizationSource | OnYourDataDeploymentNameVectorizationSource | OnYourDataModelIdVectorizationSource | OnYourDataVectorizationSource;
-
-// @public (undocumented)
-export function onYourDataVectorizationSourceUnionSerializer(item: OnYourDataVectorizationSourceUnion): OnYourDataVectorizationSource_2;
 
 // @public (undocumented)
 export class OpenAIClient {
@@ -1206,11 +875,6 @@ export interface PineconeChatExtensionConfiguration extends AzureChatExtensionCo
     type: "Pinecone";
 }
 
-// Warning: (ae-forgotten-export) The symbol "PineconeChatExtensionConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function pineconeChatExtensionConfigurationSerializer(item: PineconeChatExtensionConfiguration): PineconeChatExtensionConfiguration_2;
-
 // @public
 export interface PineconeChatExtensionParameters {
     authentication?: OnYourDataAuthenticationOptionsUnion;
@@ -1224,11 +888,6 @@ export interface PineconeChatExtensionParameters {
     topNDocuments?: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "PineconeChatExtensionParameters_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function pineconeChatExtensionParametersSerializer(item: PineconeChatExtensionParameters): PineconeChatExtensionParameters_2;
-
 // @public
 export interface PineconeFieldMappingOptions {
     contentFields: string[];
@@ -1237,11 +896,6 @@ export interface PineconeFieldMappingOptions {
     titleField?: string;
     urlField?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "PineconeFieldMappingOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function pineconeFieldMappingOptionsSerializer(item: PineconeFieldMappingOptions): PineconeFieldMappingOptions_2;
 
 // @public (undocumented)
 export type ServiceApiVersions = "2022-12-01" | "2023-05-15" | "2023-06-01-preview" | "2023-07-01-preview" | "2024-02-15-preview";

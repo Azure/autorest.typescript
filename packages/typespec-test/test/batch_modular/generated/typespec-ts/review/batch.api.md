@@ -23,11 +23,6 @@ export interface AffinityInformation {
     affinityId: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AffinityInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function affinityInformationSerializer(item: AffinityInformation): AffinityInformation_2;
-
 // @public (undocumented)
 export type AllocationState = "steady" | "resizing" | "stopping";
 
@@ -43,20 +38,10 @@ export interface ApplicationPackageReference {
     version?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ApplicationPackageReference_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function applicationPackageReferenceSerializer(item: ApplicationPackageReference): ApplicationPackageReference_2;
-
 // @public
 export interface AuthenticationTokenSettings {
     access?: AccessScope[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "AuthenticationTokenSettings_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function authenticationTokenSettingsSerializer(item: AuthenticationTokenSettings): AuthenticationTokenSettings_2;
 
 // @public
 export interface AutoPoolSpecification {
@@ -65,11 +50,6 @@ export interface AutoPoolSpecification {
     pool?: PoolSpecification;
     poolLifetimeOption: PoolLifetimeOption;
 }
-
-// Warning: (ae-forgotten-export) The symbol "AutoPoolSpecification_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function autoPoolSpecificationSerializer(item: AutoPoolSpecification): AutoPoolSpecification_2;
 
 // @public
 export interface AutoScaleRun {
@@ -94,11 +74,6 @@ export interface AutoUserSpecification {
     scope?: AutoUserScope;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AutoUserSpecification_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function autoUserSpecificationSerializer(item: AutoUserSpecification): AutoUserSpecification_2;
-
 // @public
 export interface AzureBlobFileSystemConfiguration {
     accountKey?: string;
@@ -110,11 +85,6 @@ export interface AzureBlobFileSystemConfiguration {
     sasKey?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureBlobFileSystemConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureBlobFileSystemConfigurationSerializer(item: AzureBlobFileSystemConfiguration): AzureBlobFileSystemConfiguration_2;
-
 // @public
 export interface AzureFileShareConfiguration {
     accountKey: string;
@@ -123,11 +93,6 @@ export interface AzureFileShareConfiguration {
     mountOptions?: string;
     relativeMountPath: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "AzureFileShareConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function azureFileShareConfigurationSerializer(item: AzureFileShareConfiguration): AzureFileShareConfiguration_2;
 
 // @public
 export interface BatchApplication {
@@ -151,11 +116,6 @@ export interface BatchCertificate {
     thumbprintAlgorithm: string;
     readonly url?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchCertificate_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchCertificateSerializer(item: BatchCertificate): BatchCertificate_2;
 
 // @public (undocumented)
 export class BatchClient {
@@ -306,20 +266,10 @@ export interface BatchJobCreateOptions {
     usesTaskDependencies?: boolean;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchJobCreateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobCreateOptionsSerializer(item: BatchJobCreateOptions): BatchJobCreateOptions_2;
-
 // @public
 export interface BatchJobDisableOptions {
     disableTasks: DisableJobOption;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchJobDisableOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobDisableOptionsSerializer(item: BatchJobDisableOptions): BatchJobDisableOptions_2;
 
 // @public
 export interface BatchJobListPreparationAndReleaseTaskStatusResult {
@@ -361,21 +311,11 @@ export interface BatchJobScheduleCreateOptions {
     schedule: Schedule;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchJobScheduleCreateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobScheduleCreateOptionsSerializer(item: BatchJobScheduleCreateOptions): BatchJobScheduleCreateOptions_2;
-
 // @public
 export interface BatchJobScheduleListResult {
     "odata.nextLink"?: string;
     value?: BatchJobSchedule[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchJobSchedule_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobScheduleSerializer(item: BatchJobSchedule): BatchJobSchedule_2;
 
 // @public
 export interface BatchJobScheduleUpdateOptions {
@@ -384,25 +324,10 @@ export interface BatchJobScheduleUpdateOptions {
     schedule?: Schedule;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchJobScheduleUpdateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobScheduleUpdateOptionsSerializer(item: BatchJobScheduleUpdateOptions): BatchJobScheduleUpdateOptions_2;
-
-// Warning: (ae-forgotten-export) The symbol "BatchJob_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobSerializer(item: BatchJob): BatchJob_2;
-
 // @public
 export interface BatchJobTerminateOptions {
     terminateReason?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchJobTerminateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobTerminateOptionsSerializer(item: BatchJobTerminateOptions): BatchJobTerminateOptions_2;
 
 // @public
 export interface BatchJobUpdateOptions {
@@ -414,11 +339,6 @@ export interface BatchJobUpdateOptions {
     poolInfo?: PoolInformation;
     priority?: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchJobUpdateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchJobUpdateOptionsSerializer(item: BatchJobUpdateOptions): BatchJobUpdateOptions_2;
 
 // @public
 export interface BatchNode {
@@ -470,11 +390,6 @@ export interface BatchNodeIdentityReference {
     resourceId?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchNodeIdentityReference_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchNodeIdentityReferenceSerializer(item: BatchNodeIdentityReference): BatchNodeIdentityReference_2;
-
 // @public
 export interface BatchNodeInformation {
     affinityId?: string;
@@ -484,11 +399,6 @@ export interface BatchNodeInformation {
     taskRootDirectory?: string;
     taskRootDirectoryUrl?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchNodeInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchNodeInformationSerializer(item: BatchNodeInformation): BatchNodeInformation_2;
 
 // @public
 export interface BatchNodeListResult {
@@ -520,22 +430,12 @@ export interface BatchNodeUserCreateOptions {
     sshPublicKey?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchNodeUserCreateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchNodeUserCreateOptionsSerializer(item: BatchNodeUserCreateOptions): BatchNodeUserCreateOptions_2;
-
 // @public
 export interface BatchNodeUserUpdateOptions {
     expiryTime?: Date;
     password?: string;
     sshPublicKey?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchNodeUserUpdateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchNodeUserUpdateOptionsSerializer(item: BatchNodeUserUpdateOptions): BatchNodeUserUpdateOptions_2;
 
 // @public
 export interface BatchPool {
@@ -606,31 +506,16 @@ export interface BatchPoolCreateOptions {
     vmSize: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchPoolCreateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchPoolCreateOptionsSerializer(item: BatchPoolCreateOptions): BatchPoolCreateOptions_2;
-
 // @public
 export interface BatchPoolEnableAutoScaleOptions {
     autoScaleEvaluationInterval?: string;
     autoScaleFormula?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchPoolEnableAutoScaleOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchPoolEnableAutoScaleOptionsSerializer(item: BatchPoolEnableAutoScaleOptions): BatchPoolEnableAutoScaleOptions_2;
-
 // @public
 export interface BatchPoolEvaluateAutoScaleOptions {
     autoScaleFormula: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchPoolEvaluateAutoScaleOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchPoolEvaluateAutoScaleOptionsSerializer(item: BatchPoolEvaluateAutoScaleOptions): BatchPoolEvaluateAutoScaleOptions_2;
 
 // @public
 export interface BatchPoolIdentity {
@@ -653,11 +538,6 @@ export interface BatchPoolReplaceOptions {
     targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchPoolReplaceOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchPoolReplaceOptionsSerializer(item: BatchPoolReplaceOptions): BatchPoolReplaceOptions_2;
-
 // @public
 export interface BatchPoolResizeOptions {
     nodeDeallocationOption?: BatchNodeDeallocationOption;
@@ -665,11 +545,6 @@ export interface BatchPoolResizeOptions {
     targetDedicatedNodes?: number;
     targetLowPriorityNodes?: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchPoolResizeOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchPoolResizeOptionsSerializer(item: BatchPoolResizeOptions): BatchPoolResizeOptions_2;
 
 // @public
 export interface BatchPoolUpdateOptions {
@@ -679,11 +554,6 @@ export interface BatchPoolUpdateOptions {
     startTask?: StartTask;
     targetNodeCommunicationMode?: NodeCommunicationMode;
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchPoolUpdateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchPoolUpdateOptionsSerializer(item: BatchPoolUpdateOptions): BatchPoolUpdateOptions_2;
 
 // @public
 export interface BatchTask {
@@ -721,11 +591,6 @@ export interface BatchTaskCollection {
     value: BatchTaskCreateOptions[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchTaskCollection_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchTaskCollectionSerializer(item: BatchTaskCollection): BatchTaskCollection_2;
-
 // @public
 export interface BatchTaskCreateOptions {
     affinityInfo?: AffinityInformation;
@@ -746,11 +611,6 @@ export interface BatchTaskCreateOptions {
     userIdentity?: UserIdentity;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BatchTaskCreateOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchTaskCreateOptionsSerializer(item: BatchTaskCreateOptions): BatchTaskCreateOptions_2;
-
 // @public
 export interface BatchTaskListResult {
     "odata.nextLink"?: string;
@@ -761,11 +621,6 @@ export interface BatchTaskListResult {
 export interface BatchTaskListSubtasksResult {
     value?: SubtaskInformation[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "BatchTask_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function batchTaskSerializer(item: BatchTask): BatchTask_2;
 
 // @public (undocumented)
 export type CachingType = "none" | "readonly" | "readwrite";
@@ -794,11 +649,6 @@ export interface CertificateReference {
     visibility?: CertificateVisibility[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "CertificateReference_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function certificateReferenceSerializer(item: CertificateReference): CertificateReference_2;
-
 // @public (undocumented)
 export type CertificateState = "active" | "deleting" | "deletefailed";
 
@@ -817,21 +667,11 @@ export interface CifsMountConfiguration {
     username: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "CifsMountConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function cifsMountConfigurationSerializer(item: CifsMountConfiguration): CifsMountConfiguration_2;
-
 // @public
 export interface CloudServiceConfiguration {
     osFamily: string;
     osVersion?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "CloudServiceConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function cloudServiceConfigurationSerializer(item: CloudServiceConfiguration): CloudServiceConfiguration_2;
 
 // @public
 export interface ContainerConfiguration {
@@ -840,11 +680,6 @@ export interface ContainerConfiguration {
     type: ContainerType;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ContainerConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function containerConfigurationSerializer(item: ContainerConfiguration): ContainerConfiguration_2;
-
 // @public
 export interface ContainerRegistry {
     identityReference?: BatchNodeIdentityReference;
@@ -852,11 +687,6 @@ export interface ContainerRegistry {
     registryServer?: string;
     username?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "ContainerRegistry_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function containerRegistrySerializer(item: ContainerRegistry): ContainerRegistry_2;
 
 // @public (undocumented)
 export type ContainerType = "dockerCompatible" | "criCompatible";
@@ -926,22 +756,12 @@ export interface DataDisk {
     storageAccountType?: StorageAccountType;
 }
 
-// Warning: (ae-forgotten-export) The symbol "DataDisk_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function dataDiskSerializer(item: DataDisk): DataDisk_2;
-
 // @public
 export interface DeleteCertificateError {
     code?: string;
     message?: string;
     values?: NameValuePair[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "DeleteCertificateError_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function deleteCertificateErrorSerializer(item: DeleteCertificateError): DeleteCertificateError_2;
 
 // @public (undocumented)
 export interface DeleteCertificateOptionalParams extends OperationOptions {
@@ -1020,11 +840,6 @@ export interface DiffDiskSettings {
     placement?: DiffDiskPlacement;
 }
 
-// Warning: (ae-forgotten-export) The symbol "DiffDiskSettings_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function diffDiskSettingsSerializer(item: DiffDiskSettings): DiffDiskSettings_2;
-
 // @public (undocumented)
 export type DisableBatchNodeSchedulingOption = "requeue" | "terminate" | "taskcompletion";
 
@@ -1069,11 +884,6 @@ export interface DisablePoolAutoScaleOptionalParams extends OperationOptions {
 export interface DiskEncryptionConfiguration {
     targets?: DiskEncryptionTarget[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "DiskEncryptionConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function diskEncryptionConfigurationSerializer(item: DiskEncryptionConfiguration): DiskEncryptionConfiguration_2;
 
 // @public (undocumented)
 export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
@@ -1127,11 +937,6 @@ export interface EnvironmentSetting {
     value?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "EnvironmentSetting_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function environmentSettingSerializer(item: EnvironmentSetting): EnvironmentSetting_2;
-
 // @public (undocumented)
 export type ErrorCategory = "usererror" | "servererror";
 
@@ -1154,22 +959,12 @@ export interface ExitCodeMapping {
     exitOptions: ExitOptions;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ExitCodeMapping_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function exitCodeMappingSerializer(item: ExitCodeMapping): ExitCodeMapping_2;
-
 // @public
 export interface ExitCodeRangeMapping {
     end: number;
     exitOptions: ExitOptions;
     start: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "ExitCodeRangeMapping_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function exitCodeRangeMappingSerializer(item: ExitCodeRangeMapping): ExitCodeRangeMapping_2;
 
 // @public
 export interface ExitConditions {
@@ -1180,21 +975,11 @@ export interface ExitConditions {
     preProcessingError?: ExitOptions;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ExitConditions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function exitConditionsSerializer(item: ExitConditions): ExitConditions_2;
-
 // @public
 export interface ExitOptions {
     dependencyAction?: DependencyAction;
     jobAction?: JobAction;
 }
-
-// Warning: (ae-forgotten-export) The symbol "ExitOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function exitOptionsSerializer(item: ExitOptions): ExitOptions_2;
 
 // @public
 export interface FileProperties {
@@ -1338,11 +1123,6 @@ export interface HttpHeader {
     value?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "HttpHeader_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function httpHeaderSerializer(item: HttpHeader): HttpHeader_2;
-
 // @public
 export interface ImageInformation {
     batchSupportEndOfLife?: Date;
@@ -1362,11 +1142,6 @@ export interface ImageReference {
     version?: string;
     virtualMachineImageId?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "ImageReference_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function imageReferenceSerializer(item: ImageReference): ImageReference_2;
 
 // @public
 export interface InboundEndpoint {
@@ -1391,11 +1166,6 @@ export interface InboundNATPool {
     protocol: InboundEndpointProtocol;
 }
 
-// Warning: (ae-forgotten-export) The symbol "InboundNATPool_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function inboundNATPoolSerializer(item: InboundNATPool): InboundNATPool_2;
-
 // @public
 export interface InstanceViewStatus {
     code?: string;
@@ -1417,11 +1187,6 @@ export interface JobConstraints {
     maxWallClockTime?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "JobConstraints_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobConstraintsSerializer(item: JobConstraints): JobConstraints_2;
-
 // @public
 export interface JobExecutionInformation {
     endTime?: Date;
@@ -1430,11 +1195,6 @@ export interface JobExecutionInformation {
     startTime: Date;
     terminateReason?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "JobExecutionInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobExecutionInformationSerializer(item: JobExecutionInformation): JobExecutionInformation_2;
 
 // @public
 export interface JobManagerTask {
@@ -1455,20 +1215,10 @@ export interface JobManagerTask {
     userIdentity?: UserIdentity;
 }
 
-// Warning: (ae-forgotten-export) The symbol "JobManagerTask_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobManagerTaskSerializer(item: JobManagerTask): JobManagerTask_2;
-
 // @public
 export interface JobNetworkConfiguration {
     subnetId: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "JobNetworkConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobNetworkConfigurationSerializer(item: JobNetworkConfiguration): JobNetworkConfiguration_2;
 
 // @public
 export interface JobPreparationAndReleaseTaskExecutionInformation {
@@ -1507,11 +1257,6 @@ export interface JobPreparationTaskExecutionInformation {
     taskRootDirectoryUrl?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "JobPreparationTask_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobPreparationTaskSerializer(item: JobPreparationTask): JobPreparationTask_2;
-
 // @public (undocumented)
 export type JobPreparationTaskState = "running" | "completed";
 
@@ -1540,11 +1285,6 @@ export interface JobReleaseTaskExecutionInformation {
     taskRootDirectoryUrl?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "JobReleaseTask_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobReleaseTaskSerializer(item: JobReleaseTask): JobReleaseTask_2;
-
 // @public (undocumented)
 export type JobReleaseTaskState = "running" | "completed";
 
@@ -1554,11 +1294,6 @@ export interface JobScheduleExecutionInformation {
     nextRunTime?: Date;
     recentJob?: RecentJob;
 }
-
-// Warning: (ae-forgotten-export) The symbol "JobScheduleExecutionInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobScheduleExecutionInformationSerializer(item: JobScheduleExecutionInformation): JobScheduleExecutionInformation_2;
 
 // @public (undocumented)
 export interface JobScheduleExistsOptionalParams extends OperationOptions {
@@ -1591,11 +1326,6 @@ export interface JobScheduleStatistics {
     writeIOps: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "JobScheduleStatistics_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobScheduleStatisticsSerializer(item: JobScheduleStatistics): JobScheduleStatistics_2;
-
 // @public
 export interface JobSchedulingError {
     category: ErrorCategory;
@@ -1603,11 +1333,6 @@ export interface JobSchedulingError {
     details?: NameValuePair[];
     message?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "JobSchedulingError_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobSchedulingErrorSerializer(item: JobSchedulingError): JobSchedulingError_2;
 
 // @public
 export interface JobSpecification {
@@ -1627,11 +1352,6 @@ export interface JobSpecification {
     priority?: number;
     usesTaskDependencies?: boolean;
 }
-
-// Warning: (ae-forgotten-export) The symbol "JobSpecification_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobSpecificationSerializer(item: JobSpecification): JobSpecification_2;
 
 // @public (undocumented)
 export type JobState = "active" | "disabling" | "disabled" | "enabling" | "terminating" | "completed" | "deleting";
@@ -1654,22 +1374,12 @@ export interface JobStatistics {
     writeIOps: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "JobStatistics_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function jobStatisticsSerializer(item: JobStatistics): JobStatistics_2;
-
 // @public
 export interface LinuxUserConfiguration {
     gid?: number;
     sshPrivateKey?: string;
     uid?: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "LinuxUserConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function linuxUserConfigurationSerializer(item: LinuxUserConfiguration): LinuxUserConfiguration_2;
 
 // @public (undocumented)
 export interface ListApplicationsOptionalParams extends OperationOptions {
@@ -1820,11 +1530,6 @@ export interface MetadataItem {
     value: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "MetadataItem_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function metadataItemSerializer(item: MetadataItem): MetadataItem_2;
-
 // @public
 export interface MountConfiguration {
     azureBlobFileSystemConfiguration?: AzureBlobFileSystemConfiguration;
@@ -1833,11 +1538,6 @@ export interface MountConfiguration {
     nfsMountConfiguration?: NfsMountConfiguration;
 }
 
-// Warning: (ae-forgotten-export) The symbol "MountConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function mountConfigurationSerializer(item: MountConfiguration): MountConfiguration_2;
-
 // @public
 export interface MultiInstanceSettings {
     commonResourceFiles?: ResourceFile[];
@@ -1845,21 +1545,11 @@ export interface MultiInstanceSettings {
     numberOfInstances?: number;
 }
 
-// Warning: (ae-forgotten-export) The symbol "MultiInstanceSettings_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function multiInstanceSettingsSerializer(item: MultiInstanceSettings): MultiInstanceSettings_2;
-
 // @public
 export interface NameValuePair {
     name?: string;
     value?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "NameValuePair_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function nameValuePairSerializer(item: NameValuePair): NameValuePair_2;
 
 // @public
 export interface NetworkConfiguration {
@@ -1869,11 +1559,6 @@ export interface NetworkConfiguration {
     publicIpAddressConfiguration?: PublicIpAddressConfiguration;
     subnetId?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "NetworkConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function networkConfigurationSerializer(item: NetworkConfiguration): NetworkConfiguration_2;
 
 // @public
 export interface NetworkSecurityGroupRule {
@@ -1886,22 +1571,12 @@ export interface NetworkSecurityGroupRule {
 // @public (undocumented)
 export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
 
-// Warning: (ae-forgotten-export) The symbol "NetworkSecurityGroupRule_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function networkSecurityGroupRuleSerializer(item: NetworkSecurityGroupRule): NetworkSecurityGroupRule_2;
-
 // @public
 export interface NfsMountConfiguration {
     mountOptions?: string;
     relativeMountPath: string;
     source: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "NFSMountConfiguration" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function nfsMountConfigurationSerializer(item: NfsMountConfiguration): NFSMountConfiguration;
 
 // @public
 export interface NodeAgentInformation {
@@ -1935,11 +1610,6 @@ export interface NodeDisableSchedulingOptions {
     nodeDisableSchedulingOption?: DisableBatchNodeSchedulingOption;
 }
 
-// Warning: (ae-forgotten-export) The symbol "NodeDisableSchedulingOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function nodeDisableSchedulingOptionsSerializer(item: NodeDisableSchedulingOptions): NodeDisableSchedulingOptions_2;
-
 // @public
 export interface NodeFile {
     isDirectory?: boolean;
@@ -1959,11 +1629,6 @@ export interface NodePlacementConfiguration {
     policy?: NodePlacementPolicyType;
 }
 
-// Warning: (ae-forgotten-export) The symbol "NodePlacementConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function nodePlacementConfigurationSerializer(item: NodePlacementConfiguration): NodePlacementConfiguration_2;
-
 // @public (undocumented)
 export type NodePlacementPolicyType = "regional" | "zonal";
 
@@ -1972,20 +1637,10 @@ export interface NodeRebootOptions {
     nodeRebootOption?: BatchNodeRebootOption;
 }
 
-// Warning: (ae-forgotten-export) The symbol "NodeRebootOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function nodeRebootOptionsSerializer(item: NodeRebootOptions): NodeRebootOptions_2;
-
 // @public
 export interface NodeReimageOptions {
     nodeReimageOption?: BatchNodeReimageOption;
 }
-
-// Warning: (ae-forgotten-export) The symbol "NodeReimageOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function nodeReimageOptionsSerializer(item: NodeReimageOptions): NodeReimageOptions_2;
 
 // @public
 export interface NodeRemoveOptions {
@@ -1993,11 +1648,6 @@ export interface NodeRemoveOptions {
     nodeList: string[];
     resizeTimeout?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "NodeRemoveOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function nodeRemoveOptionsSerializer(item: NodeRemoveOptions): NodeRemoveOptions_2;
 
 // @public
 export interface NodeVMExtension {
@@ -2023,11 +1673,6 @@ export interface OSDisk {
     ephemeralOSDiskSettings?: DiffDiskSettings;
 }
 
-// Warning: (ae-forgotten-export) The symbol "OSDisk_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function oSDiskSerializer(item: OSDisk): OSDisk_2;
-
 // @public (undocumented)
 export type OSType = "linux" | "windows";
 
@@ -2046,25 +1691,10 @@ export interface OutputFileBlobContainerDestination {
     uploadHeaders?: HttpHeader[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "OutputFileBlobContainerDestination_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function outputFileBlobContainerDestinationSerializer(item: OutputFileBlobContainerDestination): OutputFileBlobContainerDestination_2;
-
 // @public
 export interface OutputFileDestination {
     container?: OutputFileBlobContainerDestination;
 }
-
-// Warning: (ae-forgotten-export) The symbol "OutputFileDestination_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function outputFileDestinationSerializer(item: OutputFileDestination): OutputFileDestination_2;
-
-// Warning: (ae-forgotten-export) The symbol "OutputFile_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function outputFileSerializer(item: OutputFile): OutputFile_2;
 
 // @public (undocumented)
 export type OutputFileUploadCondition = "tasksuccess" | "taskfailure" | "taskcompletion";
@@ -2073,11 +1703,6 @@ export type OutputFileUploadCondition = "tasksuccess" | "taskfailure" | "taskcom
 export interface OutputFileUploadOptions {
     uploadCondition: OutputFileUploadCondition;
 }
-
-// Warning: (ae-forgotten-export) The symbol "OutputFileUploadOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function outputFileUploadOptionsSerializer(item: OutputFileUploadOptions): OutputFileUploadOptions_2;
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -2095,11 +1720,6 @@ export interface PageSettings {
 export interface PoolEndpointConfiguration {
     inboundNatPools: InboundNATPool[];
 }
-
-// Warning: (ae-forgotten-export) The symbol "PoolEndpointConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function poolEndpointConfigurationSerializer(item: PoolEndpointConfiguration): PoolEndpointConfiguration_2;
 
 // @public (undocumented)
 export interface PoolExistsOptionalParams extends OperationOptions {
@@ -2119,11 +1739,6 @@ export interface PoolInformation {
     autoPoolSpecification?: AutoPoolSpecification;
     poolId?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "PoolInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function poolInformationSerializer(item: PoolInformation): PoolInformation_2;
 
 // @public (undocumented)
 export type PoolLifetimeOption = "jobschedule" | "job";
@@ -2173,11 +1788,6 @@ export interface PoolSpecification {
     vmSize: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "PoolSpecification_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function poolSpecificationSerializer(item: PoolSpecification): PoolSpecification_2;
-
 // @public (undocumented)
 export type PoolState = "active" | "deleting";
 
@@ -2205,11 +1815,6 @@ export interface PublicIpAddressConfiguration {
     ipAddressProvisioningType?: IpAddressProvisioningType;
 }
 
-// Warning: (ae-forgotten-export) The symbol "PublicIPAddressConfiguration" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function publicIpAddressConfigurationSerializer(item: PublicIpAddressConfiguration): PublicIPAddressConfiguration;
-
 // @public (undocumented)
 export interface ReactivateTaskOptionalParams extends OperationOptions {
     apiVersion?: string;
@@ -2232,11 +1837,6 @@ export interface RecentJob {
     id?: string;
     url?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "RecentJob_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function recentJobSerializer(item: RecentJob): RecentJob_2;
 
 // @public (undocumented)
 export interface ReimageNodeOptionalParams extends OperationOptions {
@@ -2332,11 +1932,6 @@ export interface ResourceFile {
     storageContainerUrl?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "ResourceFile_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function resourceFileSerializer(item: ResourceFile): ResourceFile_2;
-
 // @public
 export interface ResourceStatistics {
     avgCpuPercentage: number;
@@ -2361,11 +1956,6 @@ export interface Schedule {
     recurrenceInterval?: string;
     startWindow?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "Schedule_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function scheduleSerializer(item: Schedule): Schedule_2;
 
 // @public (undocumented)
 export type SchedulingState = "enabled" | "disabled";
@@ -2393,11 +1983,6 @@ export interface StartTaskInformation {
     startTime: Date;
     state: StartTaskState;
 }
-
-// Warning: (ae-forgotten-export) The symbol "StartTask_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function startTaskSerializer(item: StartTask): StartTask_2;
 
 // @public (undocumented)
 export type StartTaskState = "running" | "completed";
@@ -2462,22 +2047,12 @@ export interface TaskConstraints {
     retentionTime?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "TaskConstraints_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskConstraintsSerializer(item: TaskConstraints): TaskConstraints_2;
-
 // @public
 export interface TaskContainerExecutionInformation {
     containerId?: string;
     error?: string;
     state?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TaskContainerExecutionInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskContainerExecutionInformationSerializer(item: TaskContainerExecutionInformation): TaskContainerExecutionInformation_2;
 
 // @public
 export interface TaskContainerSettings {
@@ -2486,11 +2061,6 @@ export interface TaskContainerSettings {
     registry?: ContainerRegistry;
     workingDirectory?: ContainerWorkingDirectory;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TaskContainerSettings_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskContainerSettingsSerializer(item: TaskContainerSettings): TaskContainerSettings_2;
 
 // @public
 export interface TaskCounts {
@@ -2513,11 +2083,6 @@ export interface TaskDependencies {
     taskIds?: string[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "TaskDependencies_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskDependenciesSerializer(item: TaskDependencies): TaskDependencies_2;
-
 // @public
 export interface TaskExecutionInformation {
     containerInfo?: TaskContainerExecutionInformation;
@@ -2532,11 +2097,6 @@ export interface TaskExecutionInformation {
     startTime?: Date;
 }
 
-// Warning: (ae-forgotten-export) The symbol "TaskExecutionInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskExecutionInformationSerializer(item: TaskExecutionInformation): TaskExecutionInformation_2;
-
 // @public (undocumented)
 export type TaskExecutionResult = "success" | "failure";
 
@@ -2548,21 +2108,11 @@ export interface TaskFailureInformation {
     message?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "TaskFailureInformation_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskFailureInformationSerializer(item: TaskFailureInformation): TaskFailureInformation_2;
-
 // @public
 export interface TaskIdRange {
     end: number;
     start: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TaskIdRange_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskIdRangeSerializer(item: TaskIdRange): TaskIdRange_2;
 
 // @public
 export interface TaskInformation {
@@ -2578,11 +2128,6 @@ export interface TaskInformation {
 export interface TaskSchedulingPolicy {
     nodeFillType: BatchNodeFillType;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TaskSchedulingPolicy_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskSchedulingPolicySerializer(item: TaskSchedulingPolicy): TaskSchedulingPolicy_2;
 
 // @public
 export interface TaskSlotCounts {
@@ -2610,11 +2155,6 @@ export interface TaskStatistics {
     writeIOGiB: number;
     writeIOps: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "TaskStatistics_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function taskStatisticsSerializer(item: TaskStatistics): TaskStatistics_2;
 
 // @public (undocumented)
 export interface TerminateJobOptionalParams extends OperationOptions {
@@ -2688,11 +2228,6 @@ export interface UploadBatchServiceLogsOptions {
     startTime: Date;
 }
 
-// Warning: (ae-forgotten-export) The symbol "UploadBatchServiceLogsOptions_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function uploadBatchServiceLogsOptionsSerializer(item: UploadBatchServiceLogsOptions): UploadBatchServiceLogsOptions_2;
-
 // @public
 export interface UploadBatchServiceLogsResult {
     numberOfFilesUploaded: number;
@@ -2722,11 +2257,6 @@ export interface UserAccount {
     windowsUserConfiguration?: WindowsUserConfiguration;
 }
 
-// Warning: (ae-forgotten-export) The symbol "UserAccount_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function userAccountSerializer(item: UserAccount): UserAccount_2;
-
 // @public
 export interface UserAssignedIdentity {
     readonly clientId?: string;
@@ -2739,11 +2269,6 @@ export interface UserIdentity {
     autoUser?: AutoUserSpecification;
     username?: string;
 }
-
-// Warning: (ae-forgotten-export) The symbol "UserIdentity_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function userIdentitySerializer(item: UserIdentity): UserIdentity_2;
 
 // @public (undocumented)
 export type VerificationType = "verified" | "unverified";
@@ -2764,11 +2289,6 @@ export interface VirtualMachineConfiguration {
     osDisk?: OSDisk;
     windowsConfiguration?: WindowsConfiguration;
 }
-
-// Warning: (ae-forgotten-export) The symbol "VirtualMachineConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function virtualMachineConfigurationSerializer(item: VirtualMachineConfiguration): VirtualMachineConfiguration_2;
 
 // @public
 export interface VirtualMachineInfo {
@@ -2795,30 +2315,15 @@ export interface VMExtensionInstanceView {
     subStatuses?: InstanceViewStatus[];
 }
 
-// Warning: (ae-forgotten-export) The symbol "VMExtension_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function vMExtensionSerializer(item: VMExtension): VMExtension_2;
-
 // @public
 export interface WindowsConfiguration {
     enableAutomaticUpdates?: boolean;
 }
 
-// Warning: (ae-forgotten-export) The symbol "WindowsConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function windowsConfigurationSerializer(item: WindowsConfiguration): WindowsConfiguration_2;
-
 // @public
 export interface WindowsUserConfiguration {
     loginMode?: LoginMode;
 }
-
-// Warning: (ae-forgotten-export) The symbol "WindowsUserConfiguration_2" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function windowsUserConfigurationSerializer(item: WindowsUserConfiguration): WindowsUserConfiguration_2;
 
 // (No @packageDocumentation comment for this package)
 

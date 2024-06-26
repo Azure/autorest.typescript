@@ -1310,22 +1310,14 @@ export function serializeRequestValue(
     case "datetime":
       switch (type.format ?? format) {
         case "date":
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${
-            required ? "" : "?"
-          }.toDateString()`;
+          return `${clientValue}${required ? "" : "?"}.toDateString()`;
         case "time":
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${
-            required ? "" : "?"
-          }.toTimeString()`;
+          return `${clientValue}${required ? "" : "?"}.toTimeString()`;
         case "rfc7231":
         case "headerDefault":
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${
-            required ? "" : "?"
-          }.toUTCString()`;
+          return `${clientValue}${required ? "" : "?"}.toUTCString()`;
         case "unixTimestamp":
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${
-            required ? "" : "?"
-          }.getTime()`;
+          return `${clientValue}${required ? "" : "?"}.getTime()`;
         case "rfc3339":
         default:
           return `${getNullableCheck(clientValue, type)} ${clientValue}${
