@@ -222,6 +222,9 @@ export function importModels(
   const models: string[] = [];
 
   for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {
+    if (name.startsWith("_")) {
+      continue;
+    }
     models.push(name);
   }
 

@@ -92,6 +92,7 @@ import {
 } from "../utils/modelUtils.js";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import {
+  extractPagedMetadataNested,
   getOperationGroupName,
   getOperationName,
   isBinaryPayload,
@@ -1024,7 +1025,9 @@ function emitModel(
 
   return {
     type: "model",
-    name: modelName,
+    name: `${
+      extractPagedMetadataNested(context.program, type) ? "_" : ""
+    }${modelName}`,
     description: getDocStr(context.program, type),
     parents: baseModel ? [baseModel] : [],
     discriminatedSubtypes: [],

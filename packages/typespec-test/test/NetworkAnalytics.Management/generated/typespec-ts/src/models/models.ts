@@ -346,7 +346,7 @@ export interface ListRoleAssignments {
 }
 
 /** The response of a DataProduct list operation. */
-export interface DataProductListResult {
+export interface _DataProductListResult {
   /** The DataProduct items on this page */
   value: DataProduct[];
   /** The link to the next page of items */
@@ -422,7 +422,7 @@ export interface ContainerSasToken {
 }
 
 /** The response of a DataType list operation. */
-export interface DataTypeListResult {
+export interface _DataTypeListResult {
   /** The DataType items on this page */
   value: DataType[];
   /** The link to the next page of items */
@@ -468,7 +468,7 @@ export interface DataProductVersion {
 }
 
 /** The response of a DataProductsCatalog list operation. */
-export interface DataProductsCatalogListResult {
+export interface _DataProductsCatalogListResult {
   /** The DataProductsCatalog items on this page */
   value: DataProductsCatalog[];
   /** The link to the next page of items */
@@ -476,7 +476,7 @@ export interface DataProductsCatalogListResult {
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface OperationListResult {
+export interface _OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
