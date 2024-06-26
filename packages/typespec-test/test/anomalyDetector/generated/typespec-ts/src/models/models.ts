@@ -41,6 +41,7 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
 }
 
+/** Type of MultivariateBatchDetectionStatus */
 export type MultivariateBatchDetectionStatus =
   | "CREATED"
   | "RUNNING"
@@ -56,7 +57,7 @@ export interface MultivariateErrorResponse {
 }
 
 export function multivariateErrorResponseSerializer(
-  item: MultivariateErrorResponse,
+  item: MultivariateErrorResponse
 ): MultivariateErrorResponseRest {
   return {
     code: item["code"],
@@ -79,7 +80,7 @@ export interface MultivariateVariableState {
 }
 
 export function multivariateVariableStateSerializer(
-  item: MultivariateVariableState,
+  item: MultivariateVariableState
 ): MultivariateVariableStateRest {
   return {
     variable: item["variable"],
@@ -121,7 +122,7 @@ export interface MultivariateMultivariateBatchDetectionOptions {
 }
 
 export function multivariateMultivariateBatchDetectionOptionsSerializer(
-  item: MultivariateMultivariateBatchDetectionOptions,
+  item: MultivariateMultivariateBatchDetectionOptions
 ): MultivariateMultivariateBatchDetectionOptionsRest {
   return {
     dataSource: item["dataSource"],
@@ -225,7 +226,7 @@ export interface MultivariateModelInfo {
 }
 
 export function multivariateModelInfoSerializer(
-  item: MultivariateModelInfo,
+  item: MultivariateModelInfo
 ): MultivariateModelInfoRest {
   return {
     dataSource: item["dataSource"],
@@ -264,7 +265,7 @@ export interface MultivariateAlignPolicy {
 }
 
 export function multivariateAlignPolicySerializer(
-  item: MultivariateAlignPolicy,
+  item: MultivariateAlignPolicy
 ): MultivariateAlignPolicyRest {
   return {
     alignMode: item["alignMode"],
@@ -281,6 +282,7 @@ export type FillNAMethod =
   | "Linear"
   | "Zero"
   | "Fixed";
+/** Type of ModelStatus */
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 /** Diagnostics information to help inspect the states of model or variable. */
@@ -292,7 +294,7 @@ export interface MultivariateDiagnosticsInfo {
 }
 
 export function multivariateDiagnosticsInfoSerializer(
-  item: MultivariateDiagnosticsInfo,
+  item: MultivariateDiagnosticsInfo
 ): MultivariateDiagnosticsInfoRest {
   return {
     modelState: !item.modelState
@@ -327,7 +329,7 @@ export interface MultivariateModelState {
 }
 
 export function multivariateModelStateSerializer(
-  item: MultivariateModelState,
+  item: MultivariateModelState
 ): MultivariateModelStateRest {
   return {
     epochIds: item["epochIds"],
@@ -380,7 +382,7 @@ export interface MultivariateMultivariateLastDetectionOptions {
 }
 
 export function multivariateMultivariateLastDetectionOptionsSerializer(
-  item: MultivariateMultivariateLastDetectionOptions,
+  item: MultivariateMultivariateLastDetectionOptions
 ): MultivariateMultivariateLastDetectionOptionsRest {
   return {
     variables: item["variables"].map(multivariateVariableValuesSerializer),
@@ -399,7 +401,7 @@ export interface MultivariateVariableValues {
 }
 
 export function multivariateVariableValuesSerializer(
-  item: MultivariateVariableValues,
+  item: MultivariateVariableValues
 ): MultivariateVariableValuesRest {
   return {
     variable: item["variable"],
@@ -464,7 +466,7 @@ export interface UnivariateUnivariateDetectionOptions {
 }
 
 export function univariateUnivariateDetectionOptionsSerializer(
-  item: UnivariateUnivariateDetectionOptions,
+  item: UnivariateUnivariateDetectionOptions
 ): UnivariateUnivariateDetectionOptionsRest {
   return {
     series: item["series"].map(univariateTimeSeriesPointSerializer),
@@ -487,7 +489,7 @@ export interface UnivariateTimeSeriesPoint {
 }
 
 export function univariateTimeSeriesPointSerializer(
-  item: UnivariateTimeSeriesPoint,
+  item: UnivariateTimeSeriesPoint
 ): UnivariateTimeSeriesPointRest {
   return {
     timestamp: item["timestamp"]?.toISOString(),
@@ -505,6 +507,7 @@ export type TimeGranularity =
   | "secondly"
   | "microsecond"
   | "none";
+/** Type of ImputeMode */
 export type ImputeMode =
   | "auto"
   | "previous"
@@ -577,6 +580,7 @@ export interface UnivariateAnomalyDetectorError {
   message?: string;
 }
 
+/** Type of AnomalyDetectorErrorCodes */
 export type AnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
   | "BadArgument"
@@ -674,7 +678,7 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
 }
 
 export function univariateUnivariateChangePointDetectionOptionsSerializer(
-  item: UnivariateUnivariateChangePointDetectionOptions,
+  item: UnivariateUnivariateChangePointDetectionOptions
 ): UnivariateUnivariateChangePointDetectionOptionsRest {
   return {
     series: item["series"].map(univariateTimeSeriesPointSerializer),
@@ -703,4 +707,5 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
+/** Type of Versions */
 export type Versions = "v1.1";

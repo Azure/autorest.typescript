@@ -277,6 +277,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of JsonContentType */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -412,6 +413,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of JsonContentType */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -621,6 +623,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of SchemaContentTypeValues */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
       });
@@ -662,6 +665,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of SchemaContentTypeValues */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
       });
@@ -759,6 +763,7 @@ describe("header parameters", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
+        /** Type of EnumTest */
         export type EnumTest = 1 | 2 | 3 | 4;
         
         export interface Foo {

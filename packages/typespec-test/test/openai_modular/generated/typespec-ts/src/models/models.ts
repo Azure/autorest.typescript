@@ -2684,6 +2684,7 @@ export interface EmbeddingsUsage {
   totalTokens: number;
 }
 
+/** Type of ServiceApiVersions */
 export type ServiceApiVersions =
   | "2022-12-01"
   | "2023-05-15"

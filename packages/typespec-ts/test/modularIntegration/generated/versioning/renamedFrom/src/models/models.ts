@@ -13,7 +13,7 @@ export function newModelSerializer(item: NewModel): NewModelRest {
   return {
     newProp: item["newProp"],
     enumProp: item["enumProp"],
-    unionProp: item["unionProp"],
+    unionProp: item["unionProp"]
   };
 }
 

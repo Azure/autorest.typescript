@@ -12,10 +12,10 @@ export interface GenerationOptions {
 }
 
 export function generationOptionsSerializer(
-  item: GenerationOptions,
+  item: GenerationOptions
 ): GenerationOptionsRest {
   return {
-    prompt: item["prompt"],
+    prompt: item["prompt"]
   };
 }
 

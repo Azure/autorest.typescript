@@ -42,17 +42,17 @@ export interface Resource {
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByType;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: Date;
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByType;
+  lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: Date;
+  lastModifiedAt?: Date;
 }
 
 /** The kind of entity that created the resource. */
@@ -67,14 +67,14 @@ export enum KnownCreatedByType {
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
-  /** The geo-location where the resource lives */
-  location: string;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
 }
 
 export function trackedResourceSerializer(
-  item: TrackedResource,
+  item: TrackedResource
 ): TrackedResourceRest {
   return {
     location: item["location"],
@@ -148,7 +148,7 @@ export interface DataProductProperties {
 }
 
 export function dataProductPropertiesSerializer(
-  item: DataProductProperties,
+  item: DataProductProperties
 ): DataProductPropertiesRest {
   return {
     publisher: item["publisher"],
@@ -171,7 +171,7 @@ export function dataProductPropertiesSerializer(
     managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
       ? item.managedResourceGroupConfiguration
       : managedResourceGroupConfigurationSerializer(
-          item.managedResourceGroupConfiguration,
+          item.managedResourceGroupConfiguration
         ),
     currentMinorVersion: item["currentMinorVersion"],
   };
@@ -209,7 +209,7 @@ export interface EncryptionKeyDetails {
 }
 
 export function encryptionKeyDetailsSerializer(
-  item: EncryptionKeyDetails,
+  item: EncryptionKeyDetails
 ): EncryptionKeyDetailsRest {
   return {
     keyVaultUri: item["keyVaultUri"],
@@ -231,11 +231,11 @@ export interface DataProductNetworkAcls {
 }
 
 export function dataProductNetworkAclsSerializer(
-  item: DataProductNetworkAcls,
+  item: DataProductNetworkAcls
 ): DataProductNetworkAclsRest {
   return {
     virtualNetworkRule: item["virtualNetworkRule"].map(
-      virtualNetworkRuleSerializer,
+      virtualNetworkRuleSerializer
     ),
     ipRules: item["ipRules"].map(iPRulesSerializer),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
@@ -254,7 +254,7 @@ export interface VirtualNetworkRule {
 }
 
 export function virtualNetworkRuleSerializer(
-  item: VirtualNetworkRule,
+  item: VirtualNetworkRule
 ): VirtualNetworkRuleRest {
   return {
     id: item["id"],
@@ -295,7 +295,7 @@ export interface ManagedResourceGroupConfiguration {
 }
 
 export function managedResourceGroupConfigurationSerializer(
-  item: ManagedResourceGroupConfiguration,
+  item: ManagedResourceGroupConfiguration
 ): ManagedResourceGroupConfigurationRest {
   return {
     name: item["name"],
@@ -319,20 +319,20 @@ export interface ConsumptionEndpointsProperties {
   readonly queryResourceId?: string;
 }
 
-/** The properties of the managed service identities assigned to this resource. */
+/** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentity {
-  /** The Active Directory tenant id of the principal. */
-  readonly tenantId?: string;
-  /** The active directory identifier of this principal. */
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  readonly tenantId?: string;
   /** The type of managed identity assigned to this resource. */
   type: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
-  userAssignedIdentities?: UserAssignedIdentities;
+  userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
 export function managedServiceIdentitySerializer(
-  item: ManagedServiceIdentity,
+  item: ManagedServiceIdentity
 ): ManagedServiceIdentityRest {
   return {
     type: item["type"],
@@ -340,7 +340,7 @@ export function managedServiceIdentitySerializer(
       ? item.userAssignedIdentities
       : (serializeRecord(
           item.userAssignedIdentities as any,
-          userAssignedIdentitySerializer,
+          userAssignedIdentitySerializer
         ) as any),
   };
 }
@@ -352,19 +352,19 @@ export enum KnownManagedServiceIdentityType {
   None = "None",
   SystemAssigned = "SystemAssigned",
   UserAssigned = "UserAssigned",
-  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+  "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
 }
 
-/** A managed identity assigned by the user. */
+/** User assigned identity properties */
 export interface UserAssignedIdentity {
-  /** The active directory client identifier for this principal. */
-  clientId?: string;
-  /** The active directory identifier for this principal. */
-  principalId?: string;
+  /** The principal ID of the assigned identity. */
+  readonly principalId?: string;
+  /** The client ID of the assigned identity. */
+  readonly clientId?: string;
 }
 
 export function userAssignedIdentitySerializer(
-  item: UserAssignedIdentity,
+  item: UserAssignedIdentity
 ): UserAssignedIdentityRest {
   return {
     clientId: item["clientId"],
@@ -377,7 +377,7 @@ export interface UserAssignedIdentities
   extends Record<string, UserAssignedIdentity> {}
 
 export function userAssignedIdentitiesSerializer(
-  item: UserAssignedIdentities,
+  item: UserAssignedIdentities
 ): UserAssignedIdentitiesRest {
   return {
     ...item,
@@ -422,7 +422,7 @@ export interface DataProductUpdate {
 }
 
 export function dataProductUpdateSerializer(
-  item: DataProductUpdate,
+  item: DataProductUpdate
 ): DataProductUpdateRest {
   return {
     identity: !item.identity
@@ -450,7 +450,7 @@ export interface DataProductUpdateProperties {
 }
 
 export function dataProductUpdatePropertiesSerializer(
-  item: DataProductUpdateProperties,
+  item: DataProductUpdateProperties
 ): DataProductUpdatePropertiesRest {
   return {
     owners: item["owners"],
@@ -539,7 +539,7 @@ export interface RoleAssignmentCommonProperties {
 }
 
 export function roleAssignmentCommonPropertiesSerializer(
-  item: RoleAssignmentCommonProperties,
+  item: RoleAssignmentCommonProperties
 ): RoleAssignmentCommonPropertiesRest {
   return {
     roleId: item["roleId"],
@@ -578,7 +578,7 @@ export interface RoleAssignmentDetail {
 }
 
 export function roleAssignmentDetailSerializer(
-  item: RoleAssignmentDetail,
+  item: RoleAssignmentDetail
 ): RoleAssignmentDetailRest {
   return {
     roleId: item["roleId"],
@@ -607,7 +607,7 @@ export interface DataProductListResult {
   nextLink?: string;
 }
 
-/** The base proxy resource. */
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
 /** The data type resource. */
@@ -643,7 +643,7 @@ export interface DataTypeProperties {
 }
 
 export function dataTypePropertiesSerializer(
-  item: DataTypeProperties,
+  item: DataTypeProperties
 ): DataTypePropertiesRest {
   return {
     state: item["state"],
@@ -667,7 +667,7 @@ export interface DataTypeUpdate {
 }
 
 export function dataTypeUpdateSerializer(
-  item: DataTypeUpdate,
+  item: DataTypeUpdate
 ): DataTypeUpdateRest {
   return {
     properties: !item.properties
@@ -689,7 +689,7 @@ export interface DataTypeUpdateProperties {
 }
 
 export function dataTypeUpdatePropertiesSerializer(
-  item: DataTypeUpdateProperties,
+  item: DataTypeUpdateProperties
 ): DataTypeUpdatePropertiesRest {
   return {
     state: item["state"],
@@ -778,7 +778,7 @@ export interface DataProductsCatalogListResult {
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface PagedOperation {
+export interface OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */

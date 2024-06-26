@@ -174,4 +174,5 @@ export interface ChatChoiceRecord {
   finishReason: FinishReason;
 }
 
+/** Type of APIVersion */
 export type APIVersion = "2023-10-01-preview";

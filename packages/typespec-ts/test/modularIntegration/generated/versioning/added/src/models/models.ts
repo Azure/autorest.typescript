@@ -3,7 +3,7 @@
 
 import {
   ModelV1 as ModelV1Rest,
-  ModelV2 as ModelV2Rest,
+  ModelV2 as ModelV2Rest
 } from "../rest/index.js";
 
 export interface ModelV1 {
@@ -16,7 +16,7 @@ export function modelV1Serializer(item: ModelV1): ModelV1Rest {
   return {
     prop: item["prop"],
     enumProp: item["enumProp"],
-    unionProp: item["unionProp"],
+    unionProp: item["unionProp"]
   };
 }
 
@@ -32,7 +32,7 @@ export function modelV2Serializer(item: ModelV2): ModelV2Rest {
   return {
     prop: item["prop"],
     enumProp: item["enumProp"],
-    unionProp: item["unionProp"],
+    unionProp: item["unionProp"]
   };
 }
 

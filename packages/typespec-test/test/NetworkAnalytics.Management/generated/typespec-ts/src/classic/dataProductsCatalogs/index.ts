@@ -17,36 +17,33 @@ import {
 
 export interface DataProductsCatalogsOperations {
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: DataProductsCatalogsGetOptionalParams,
   ) => Promise<DataProductsCatalog>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: DataProductsCatalogsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
   listBySubscription: (
-    subscriptionId: string,
     options?: DataProductsCatalogsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }
 
-export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
+export function getDataProductsCatalogs(
+  context: NetworkAnalyticsContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: DataProductsCatalogsGetOptionalParams,
     ) => get(context, subscriptionId, resourceGroupName, options),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: DataProductsCatalogsListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
       options?: DataProductsCatalogsListBySubscriptionOptionalParams,
     ) => listBySubscription(context, subscriptionId, options),
   };
@@ -54,8 +51,9 @@ export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
 
 export function getDataProductsCatalogsOperations(
   context: NetworkAnalyticsContext,
+  subscriptionId: string,
 ): DataProductsCatalogsOperations {
   return {
-    ...getDataProductsCatalogs(context),
+    ...getDataProductsCatalogs(context, subscriptionId),
   };
 }

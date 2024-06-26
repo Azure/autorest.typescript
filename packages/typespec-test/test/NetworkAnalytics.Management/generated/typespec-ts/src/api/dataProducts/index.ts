@@ -77,7 +77,7 @@ export function _createSend(
   resourceGroupName: string,
   dataProductName: string,
   resource: DataProduct,
-  options: DataProductsCreateOptionalParams = { requestOptions: {} },
+  options: DataProductsCreateOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   | DataProductsCreate200Response
   | DataProductsCreate201Response
@@ -89,7 +89,7 @@ export function _createSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .put({
       ...operationOptionsToRequestParameters(options),
@@ -113,7 +113,7 @@ export async function _createDeserialize(
     | DataProductsCreate200Response
     | DataProductsCreate201Response
     | DataProductsCreateDefaultResponse
-    | DataProductsCreateLogicalResponse,
+    | DataProductsCreateLogicalResponse
 ): Promise<DataProduct> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -121,8 +121,8 @@ export async function _createDeserialize(
 
   result = result as DataProductsCreateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -181,7 +181,7 @@ export async function _createDeserialize(
                   state: p["state"],
                 })),
                 ipRules: result.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => ({ value: p["value"], action: p["action"] }),
+                  (p) => ({ value: p["value"], action: p["action"] })
                 ),
                 allowedQueryIpRangeList:
                   result.body.properties?.networkacls?.[
@@ -236,8 +236,8 @@ export async function _createDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -252,7 +252,7 @@ export function create(
   resourceGroupName: string,
   dataProductName: string,
   resource: DataProduct,
-  options: DataProductsCreateOptionalParams = { requestOptions: {} },
+  options: DataProductsCreateOptionalParams = { requestOptions: {} }
 ): PollerLike<OperationState<DataProduct>, DataProduct> {
   return getLongRunningPoller(context, _createDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -264,7 +264,7 @@ export function create(
         resourceGroupName,
         dataProductName,
         resource,
-        options,
+        options
       ),
   }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
@@ -274,7 +274,7 @@ export function _getSend(
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataProductsGetOptionalParams = { requestOptions: {} },
+  options: DataProductsGetOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   DataProductsGet200Response | DataProductsGetDefaultResponse
 > {
@@ -283,21 +283,21 @@ export function _getSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: DataProductsGet200Response | DataProductsGetDefaultResponse,
+  result: DataProductsGet200Response | DataProductsGetDefaultResponse
 ): Promise<DataProduct> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -356,7 +356,7 @@ export async function _getDeserialize(
                   state: p["state"],
                 })),
                 ipRules: result.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => ({ value: p["value"], action: p["action"] }),
+                  (p) => ({ value: p["value"], action: p["action"] })
                 ),
                 allowedQueryIpRangeList:
                   result.body.properties?.networkacls?.[
@@ -411,8 +411,8 @@ export async function _getDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -426,14 +426,14 @@ export async function get(
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataProductsGetOptionalParams = { requestOptions: {} },
+  options: DataProductsGetOptionalParams = { requestOptions: {} }
 ): Promise<DataProduct> {
   const result = await _getSend(
     context,
     subscriptionId,
     resourceGroupName,
     dataProductName,
-    options,
+    options
   );
   return _getDeserialize(result);
 }
@@ -444,7 +444,7 @@ export function _updateSend(
   resourceGroupName: string,
   dataProductName: string,
   properties: DataProductUpdate,
-  options: DataProductsUpdateOptionalParams = { requestOptions: {} },
+  options: DataProductsUpdateOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   | DataProductsUpdate200Response
   | DataProductsUpdate202Response
@@ -456,7 +456,7 @@ export function _updateSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
@@ -479,7 +479,7 @@ export async function _updateDeserialize(
     | DataProductsUpdate200Response
     | DataProductsUpdate202Response
     | DataProductsUpdateDefaultResponse
-    | DataProductsUpdateLogicalResponse,
+    | DataProductsUpdateLogicalResponse
 ): Promise<DataProduct> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -487,8 +487,8 @@ export async function _updateDeserialize(
 
   result = result as DataProductsUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -547,7 +547,7 @@ export async function _updateDeserialize(
                   state: p["state"],
                 })),
                 ipRules: result.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => ({ value: p["value"], action: p["action"] }),
+                  (p) => ({ value: p["value"], action: p["action"] })
                 ),
                 allowedQueryIpRangeList:
                   result.body.properties?.networkacls?.[
@@ -602,8 +602,8 @@ export async function _updateDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -618,7 +618,7 @@ export function update(
   resourceGroupName: string,
   dataProductName: string,
   properties: DataProductUpdate,
-  options: DataProductsUpdateOptionalParams = { requestOptions: {} },
+  options: DataProductsUpdateOptionalParams = { requestOptions: {} }
 ): PollerLike<OperationState<DataProduct>, DataProduct> {
   return getLongRunningPoller(context, _updateDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -630,7 +630,7 @@ export function update(
         resourceGroupName,
         dataProductName,
         properties,
-        options,
+        options
       ),
   }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
@@ -640,7 +640,7 @@ export function _$deleteSend(
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataProductsDeleteOptionalParams = { requestOptions: {} },
+  options: DataProductsDeleteOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   | DataProductsDelete202Response
   | DataProductsDelete204Response
@@ -652,7 +652,7 @@ export function _$deleteSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
@@ -662,7 +662,7 @@ export async function _$deleteDeserialize(
     | DataProductsDelete202Response
     | DataProductsDelete204Response
     | DataProductsDeleteDefaultResponse
-    | DataProductsDeleteLogicalResponse,
+    | DataProductsDeleteLogicalResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -683,7 +683,7 @@ export function $delete(
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataProductsDeleteOptionalParams = { requestOptions: {} },
+  options: DataProductsDeleteOptionalParams = { requestOptions: {} }
 ): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(context, _$deleteDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -694,7 +694,7 @@ export function $delete(
         subscriptionId,
         resourceGroupName,
         dataProductName,
-        options,
+        options
       ),
   }) as PollerLike<OperationState<void>, void>;
 }
@@ -707,7 +707,7 @@ export function _generateStorageAccountSasTokenSend(
   body: AccountSas,
   options: DataProductsGenerateStorageAccountSasTokenOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): StreamableMethod<
   | DataProductsGenerateStorageAccountSasToken200Response
   | DataProductsGenerateStorageAccountSasTokenDefaultResponse
@@ -717,7 +717,7 @@ export function _generateStorageAccountSasTokenSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .post({
       ...operationOptionsToRequestParameters(options),
@@ -732,7 +732,7 @@ export function _generateStorageAccountSasTokenSend(
 export async function _generateStorageAccountSasTokenDeserialize(
   result:
     | DataProductsGenerateStorageAccountSasToken200Response
-    | DataProductsGenerateStorageAccountSasTokenDefaultResponse,
+    | DataProductsGenerateStorageAccountSasTokenDefaultResponse
 ): Promise<AccountSasToken> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -752,7 +752,7 @@ export async function generateStorageAccountSasToken(
   body: AccountSas,
   options: DataProductsGenerateStorageAccountSasTokenOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): Promise<AccountSasToken> {
   const result = await _generateStorageAccountSasTokenSend(
     context,
@@ -760,7 +760,7 @@ export async function generateStorageAccountSasToken(
     resourceGroupName,
     dataProductName,
     body,
-    options,
+    options
   );
   return _generateStorageAccountSasTokenDeserialize(result);
 }
@@ -771,7 +771,7 @@ export function _rotateKeySend(
   resourceGroupName: string,
   dataProductName: string,
   body: KeyVaultInfo,
-  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
+  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   DataProductsRotateKey204Response | DataProductsRotateKeyDefaultResponse
 > {
@@ -780,7 +780,7 @@ export function _rotateKeySend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .post({
       ...operationOptionsToRequestParameters(options),
@@ -791,7 +791,7 @@ export function _rotateKeySend(
 export async function _rotateKeyDeserialize(
   result:
     | DataProductsRotateKey204Response
-    | DataProductsRotateKeyDefaultResponse,
+    | DataProductsRotateKeyDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -807,7 +807,7 @@ export async function rotateKey(
   resourceGroupName: string,
   dataProductName: string,
   body: KeyVaultInfo,
-  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
+  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _rotateKeySend(
     context,
@@ -815,7 +815,7 @@ export async function rotateKey(
     resourceGroupName,
     dataProductName,
     body,
-    options,
+    options
   );
   return _rotateKeyDeserialize(result);
 }
@@ -826,7 +826,7 @@ export function _addUserRoleSend(
   resourceGroupName: string,
   dataProductName: string,
   body: RoleAssignmentCommonProperties,
-  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
+  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   DataProductsAddUserRole200Response | DataProductsAddUserRoleDefaultResponse
 > {
@@ -835,7 +835,7 @@ export function _addUserRoleSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .post({
       ...operationOptionsToRequestParameters(options),
@@ -853,7 +853,7 @@ export function _addUserRoleSend(
 export async function _addUserRoleDeserialize(
   result:
     | DataProductsAddUserRole200Response
-    | DataProductsAddUserRoleDefaultResponse,
+    | DataProductsAddUserRoleDefaultResponse
 ): Promise<RoleAssignmentDetail> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -877,7 +877,7 @@ export async function addUserRole(
   resourceGroupName: string,
   dataProductName: string,
   body: RoleAssignmentCommonProperties,
-  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
+  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} }
 ): Promise<RoleAssignmentDetail> {
   const result = await _addUserRoleSend(
     context,
@@ -885,7 +885,7 @@ export async function addUserRole(
     resourceGroupName,
     dataProductName,
     body,
-    options,
+    options
   );
   return _addUserRoleDeserialize(result);
 }
@@ -896,7 +896,7 @@ export function _removeUserRoleSend(
   resourceGroupName: string,
   dataProductName: string,
   body: RoleAssignmentDetail,
-  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
+  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   | DataProductsRemoveUserRole204Response
   | DataProductsRemoveUserRoleDefaultResponse
@@ -906,7 +906,7 @@ export function _removeUserRoleSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .post({
       ...operationOptionsToRequestParameters(options),
@@ -925,7 +925,7 @@ export function _removeUserRoleSend(
 export async function _removeUserRoleDeserialize(
   result:
     | DataProductsRemoveUserRole204Response
-    | DataProductsRemoveUserRoleDefaultResponse,
+    | DataProductsRemoveUserRoleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -941,7 +941,7 @@ export async function removeUserRole(
   resourceGroupName: string,
   dataProductName: string,
   body: RoleAssignmentDetail,
-  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
+  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _removeUserRoleSend(
     context,
@@ -949,7 +949,7 @@ export async function removeUserRole(
     resourceGroupName,
     dataProductName,
     body,
-    options,
+    options
   );
   return _removeUserRoleDeserialize(result);
 }
@@ -962,7 +962,7 @@ export function _listRolesAssignmentsSend(
   body: Record<string, any>,
   options: DataProductsListRolesAssignmentsOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): StreamableMethod<
   | DataProductsListRolesAssignments200Response
   | DataProductsListRolesAssignmentsDefaultResponse
@@ -972,7 +972,7 @@ export function _listRolesAssignmentsSend(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments",
       subscriptionId,
       resourceGroupName,
-      dataProductName,
+      dataProductName
     )
     .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
@@ -980,7 +980,7 @@ export function _listRolesAssignmentsSend(
 export async function _listRolesAssignmentsDeserialize(
   result:
     | DataProductsListRolesAssignments200Response
-    | DataProductsListRolesAssignmentsDefaultResponse,
+    | DataProductsListRolesAssignmentsDefaultResponse
 ): Promise<ListRoleAssignments> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1009,7 +1009,7 @@ export async function listRolesAssignments(
   body: Record<string, any>,
   options: DataProductsListRolesAssignmentsOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): Promise<ListRoleAssignments> {
   const result = await _listRolesAssignmentsSend(
     context,
@@ -1017,7 +1017,7 @@ export async function listRolesAssignments(
     resourceGroupName,
     dataProductName,
     body,
-    options,
+    options
   );
   return _listRolesAssignmentsDeserialize(result);
 }
@@ -1028,7 +1028,7 @@ export function _listByResourceGroupSend(
   resourceGroupName: string,
   options: DataProductsListByResourceGroupOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): StreamableMethod<
   | DataProductsListByResourceGroup200Response
   | DataProductsListByResourceGroupDefaultResponse
@@ -1037,7 +1037,7 @@ export function _listByResourceGroupSend(
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts",
       subscriptionId,
-      resourceGroupName,
+      resourceGroupName
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
@@ -1045,7 +1045,7 @@ export function _listByResourceGroupSend(
 export async function _listByResourceGroupDeserialize(
   result:
     | DataProductsListByResourceGroup200Response
-    | DataProductsListByResourceGroupDefaultResponse,
+    | DataProductsListByResourceGroupDefaultResponse
 ): Promise<DataProductListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1053,8 +1053,8 @@ export async function _listByResourceGroupDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],
@@ -1154,8 +1154,8 @@ export async function _listByResourceGroupDeserialize(
       identity: !p.identity
         ? undefined
         : {
-            tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
+            tenantId: p.identity?.["tenantId"],
             type: p.identity?.["type"],
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
@@ -1171,7 +1171,7 @@ export function listByResourceGroup(
   resourceGroupName: string,
   options: DataProductsListByResourceGroupOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): PagedAsyncIterableIterator<DataProduct> {
   return buildPagedAsyncIterator(
     context,
@@ -1180,10 +1180,10 @@ export function listByResourceGroup(
         context,
         subscriptionId,
         resourceGroupName,
-        options,
+        options
       ),
     _listByResourceGroupDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -1192,7 +1192,7 @@ export function _listBySubscriptionSend(
   subscriptionId: string,
   options: DataProductsListBySubscriptionOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): StreamableMethod<
   | DataProductsListBySubscription200Response
   | DataProductsListBySubscriptionDefaultResponse
@@ -1200,7 +1200,7 @@ export function _listBySubscriptionSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts",
-      subscriptionId,
+      subscriptionId
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
@@ -1208,7 +1208,7 @@ export function _listBySubscriptionSend(
 export async function _listBySubscriptionDeserialize(
   result:
     | DataProductsListBySubscription200Response
-    | DataProductsListBySubscriptionDefaultResponse,
+    | DataProductsListBySubscriptionDefaultResponse
 ): Promise<DataProductListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1216,8 +1216,8 @@ export async function _listBySubscriptionDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],
@@ -1317,8 +1317,8 @@ export async function _listBySubscriptionDeserialize(
       identity: !p.identity
         ? undefined
         : {
-            tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
+            tenantId: p.identity?.["tenantId"],
             type: p.identity?.["type"],
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
@@ -1333,12 +1333,12 @@ export function listBySubscription(
   subscriptionId: string,
   options: DataProductsListBySubscriptionOptionalParams = {
     requestOptions: {},
-  },
+  }
 ): PagedAsyncIterableIterator<DataProduct> {
   return buildPagedAsyncIterator(
     context,
     () => _listBySubscriptionSend(context, subscriptionId, options),
     _listBySubscriptionDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }

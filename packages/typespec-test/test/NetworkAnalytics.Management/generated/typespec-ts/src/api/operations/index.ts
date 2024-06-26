@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { PagedOperation, Operation } from "../../models/models.js";
+import { OperationListResult, Operation } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -28,7 +28,7 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: OperationsList200Response | OperationsListDefaultResponse,
-): Promise<PagedOperation> {
+): Promise<OperationListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

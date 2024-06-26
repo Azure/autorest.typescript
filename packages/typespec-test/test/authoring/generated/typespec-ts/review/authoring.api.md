@@ -729,7 +729,7 @@ export interface ListTrainingConfigVersionsQueryParamProperties {
 }
 
 // @public
-export type OperationStateOutput = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
+export type OperationStateOutput = string;
 
 // @public
 export interface OperationStatusOutput {

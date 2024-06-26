@@ -249,7 +249,7 @@ export async function $onEmit(context: EmitContext) {
         }
 
         buildClassicalClient(subClient, dpgContext, modularCodeModel);
-        buildClassicOperationFiles(modularCodeModel, subClient);
+        buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
         buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
           exportIndex: true,
           interfaceOnly: true
