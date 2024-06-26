@@ -9,8 +9,10 @@ import {
   ModularCodeModel,
   OperationGroup
 } from "./modularCodeModel.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildClassicOperationFiles(
+  dpgContext: SdkContext,
   codeModel: ModularCodeModel,
   client: Client
 ) {
@@ -41,7 +43,7 @@ export function buildClassicOperationFiles(
             subfolder && subfolder !== "" ? subfolder + "/" : ""
           }classic/${classicOperationFileName}.ts`
         );
-      getClassicalOperation(classicFile, client, operationGroup);
+      getClassicalOperation(dpgContext, client, classicFile, operationGroup);
 
       // Import models used from ./models.ts
       // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
@@ -95,7 +97,13 @@ export function buildClassicOperationFiles(
               subfolder && subfolder !== "" ? subfolder + "/" : ""
             }classic/${classicOperationFileName}.ts`
           );
-        getClassicalOperation(classicFile, client, operationGroup, layer);
+        getClassicalOperation(
+          dpgContext,
+          client,
+          classicFile,
+          operationGroup,
+          layer
+        );
 
         // Import models used from ./models.ts
         // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().

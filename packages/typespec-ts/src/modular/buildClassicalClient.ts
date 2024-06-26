@@ -25,6 +25,7 @@ import {
 } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { shouldPromoteSubscriptionId } from "./helpers/classicalOperationHelpers.js";
 
 export function buildClassicalClient(
   client: Client,
@@ -33,20 +34,21 @@ export function buildClassicalClient(
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);
-  const classicalClientname = `${getClientName(client)}Client`;
-  const params = getClientParameters(client);
+  const classicalClientName = `${getClientName(client)}Client`;
+  const classicalParams = getClientParameters(client, dpgContext, true);
+  const contextParams = getClientParameters(client, dpgContext, false);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
 
   const clientFile = codeModel.project.createSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
-      classicalClientname,
+      classicalClientName,
       NameType.File
     )}.ts`
   );
 
   clientFile.addExportDeclaration({
-    namedExports: [`${classicalClientname}Options`],
+    namedExports: [`${classicalClientName}Options`],
     moduleSpecifier: `./api/${normalizeName(
       modularClientName,
       NameType.File
@@ -55,7 +57,7 @@ export function buildClassicalClient(
 
   const clientClass = clientFile.addClass({
     isExported: true,
-    name: `${classicalClientname}`
+    name: `${classicalClientName}`
   });
 
   // Add the private client member. This will be the client context from /api
@@ -85,10 +87,10 @@ export function buildClassicalClient(
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
     docs: getDocsFromDescription(description),
-    parameters: params
+    parameters: classicalParams
   });
   constructor.addStatements([
-    `this._client = create${modularClientName}(${(params ?? [])
+    `this._client = create${modularClientName}(${(contextParams ?? [])
       .map((p) => p.name)
       .join(",")})`
   ]);
@@ -97,7 +99,7 @@ export function buildClassicalClient(
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
-  buildClientOperationGroups(clientFile, client, clientClass);
+  buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
@@ -195,6 +197,7 @@ function importPipeline(
 function buildClientOperationGroups(
   clientFile: SourceFile,
   client: Client,
+  dpgContext: SdkContext,
   clientClass: ClassDeclaration
 ) {
   let clientType = "Client";
@@ -206,6 +209,12 @@ function buildClientOperationGroups(
     const groupName = normalizeName(
       operationGroup.namespaceHierarchies[0] ?? operationGroup.propertyName,
       NameType.Property
+    );
+    // TODO: remove this logic once client-level parameter design is finalized
+    // https://github.com/Azure/autorest.typescript/issues/2618
+    const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
+      dpgContext,
+      operationGroup
     );
     if (groupName === "") {
       operationGroup.operations.forEach((op) => {
@@ -271,7 +280,9 @@ function buildClientOperationGroups(
             NameType.Interface,
             "",
             0
-          )}Operations(this._client)`
+          )}Operations(this._client${
+            hasSubscriptionIdPromoted ? ", subscriptionId" : ""
+          })`
         );
     }
   }
