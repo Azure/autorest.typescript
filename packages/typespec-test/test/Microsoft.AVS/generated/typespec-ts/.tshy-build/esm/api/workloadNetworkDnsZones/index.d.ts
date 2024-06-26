@@ -1,0 +1,32 @@
+import { PollerLike, OperationState } from "@azure/core-lro";
+import { WorkloadNetworkDnsZoneListResult, WorkloadNetworkDnsZone, WorkloadNetworkDnsZoneUpdate } from "../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { AVSContext as Client, WorkloadNetworkDnsZonesCreate200Response, WorkloadNetworkDnsZonesCreate201Response, WorkloadNetworkDnsZonesCreateDefaultResponse, WorkloadNetworkDnsZonesCreateLogicalResponse, WorkloadNetworkDnsZonesDelete200Response, WorkloadNetworkDnsZonesDelete202Response, WorkloadNetworkDnsZonesDelete204Response, WorkloadNetworkDnsZonesDeleteDefaultResponse, WorkloadNetworkDnsZonesDeleteLogicalResponse, WorkloadNetworkDnsZonesGet200Response, WorkloadNetworkDnsZonesGetDefaultResponse, WorkloadNetworkDnsZonesListByWorkloadNetwork200Response, WorkloadNetworkDnsZonesListByWorkloadNetworkDefaultResponse, WorkloadNetworkDnsZonesUpdate200Response, WorkloadNetworkDnsZonesUpdate202Response, WorkloadNetworkDnsZonesUpdateDefaultResponse, WorkloadNetworkDnsZonesUpdateLogicalResponse } from "../../rest/index.js";
+import { StreamableMethod } from "@azure-rest/core-client";
+import { WorkloadNetworkDnsZonesListByWorkloadNetworkOptionalParams, WorkloadNetworkDnsZonesGetOptionalParams, WorkloadNetworkDnsZonesCreateOptionalParams, WorkloadNetworkDnsZonesUpdateOptionalParams, WorkloadNetworkDnsZonesDeleteOptionalParams } from "../../models/options.js";
+export declare function _listByWorkloadNetworkSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: WorkloadNetworkDnsZonesListByWorkloadNetworkOptionalParams): StreamableMethod<WorkloadNetworkDnsZonesListByWorkloadNetwork200Response | WorkloadNetworkDnsZonesListByWorkloadNetworkDefaultResponse>;
+export declare function _listByWorkloadNetworkDeserialize(result: WorkloadNetworkDnsZonesListByWorkloadNetwork200Response | WorkloadNetworkDnsZonesListByWorkloadNetworkDefaultResponse): Promise<WorkloadNetworkDnsZoneListResult>;
+/** List WorkloadNetworkDnsZone resources by WorkloadNetwork */
+export declare function listByWorkloadNetwork(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: WorkloadNetworkDnsZonesListByWorkloadNetworkOptionalParams): PagedAsyncIterableIterator<WorkloadNetworkDnsZone>;
+export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, dnsZoneId: string, options?: WorkloadNetworkDnsZonesGetOptionalParams): StreamableMethod<WorkloadNetworkDnsZonesGet200Response | WorkloadNetworkDnsZonesGetDefaultResponse>;
+export declare function _getDeserialize(result: WorkloadNetworkDnsZonesGet200Response | WorkloadNetworkDnsZonesGetDefaultResponse): Promise<WorkloadNetworkDnsZone>;
+/** Get a WorkloadNetworkDnsZone */
+export declare function get(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, dnsZoneId: string, options?: WorkloadNetworkDnsZonesGetOptionalParams): Promise<WorkloadNetworkDnsZone>;
+export declare function _createSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, dnsZoneId: string, workloadNetworkDnsZone: WorkloadNetworkDnsZone, options?: WorkloadNetworkDnsZonesCreateOptionalParams): StreamableMethod<WorkloadNetworkDnsZonesCreate200Response | WorkloadNetworkDnsZonesCreate201Response | WorkloadNetworkDnsZonesCreateDefaultResponse | WorkloadNetworkDnsZonesCreateLogicalResponse>;
+export declare function _createDeserialize(result: WorkloadNetworkDnsZonesCreate200Response | WorkloadNetworkDnsZonesCreate201Response | WorkloadNetworkDnsZonesCreateDefaultResponse | WorkloadNetworkDnsZonesCreateLogicalResponse): Promise<WorkloadNetworkDnsZone>;
+/** Create a WorkloadNetworkDnsZone */
+export declare function create(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, dnsZoneId: string, workloadNetworkDnsZone: WorkloadNetworkDnsZone, options?: WorkloadNetworkDnsZonesCreateOptionalParams): PollerLike<OperationState<WorkloadNetworkDnsZone>, WorkloadNetworkDnsZone>;
+export declare function _updateSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, dnsZoneId: string, workloadNetworkDnsZone: WorkloadNetworkDnsZoneUpdate, options?: WorkloadNetworkDnsZonesUpdateOptionalParams): StreamableMethod<WorkloadNetworkDnsZonesUpdate200Response | WorkloadNetworkDnsZonesUpdate202Response | WorkloadNetworkDnsZonesUpdateDefaultResponse | WorkloadNetworkDnsZonesUpdateLogicalResponse>;
+export declare function _updateDeserialize(result: WorkloadNetworkDnsZonesUpdate200Response | WorkloadNetworkDnsZonesUpdate202Response | WorkloadNetworkDnsZonesUpdateDefaultResponse | WorkloadNetworkDnsZonesUpdateLogicalResponse): Promise<WorkloadNetworkDnsZone>;
+/** Update a WorkloadNetworkDnsZone */
+export declare function update(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, dnsZoneId: string, workloadNetworkDnsZone: WorkloadNetworkDnsZoneUpdate, options?: WorkloadNetworkDnsZonesUpdateOptionalParams): PollerLike<OperationState<WorkloadNetworkDnsZone>, WorkloadNetworkDnsZone>;
+export declare function _$deleteSend(context: Client, subscriptionId: string, resourceGroupName: string, dnsZoneId: string, privateCloudName: string, options?: WorkloadNetworkDnsZonesDeleteOptionalParams): StreamableMethod<WorkloadNetworkDnsZonesDelete200Response | WorkloadNetworkDnsZonesDelete202Response | WorkloadNetworkDnsZonesDelete204Response | WorkloadNetworkDnsZonesDeleteDefaultResponse | WorkloadNetworkDnsZonesDeleteLogicalResponse>;
+export declare function _$deleteDeserialize(result: WorkloadNetworkDnsZonesDelete200Response | WorkloadNetworkDnsZonesDelete202Response | WorkloadNetworkDnsZonesDelete204Response | WorkloadNetworkDnsZonesDeleteDefaultResponse | WorkloadNetworkDnsZonesDeleteLogicalResponse): Promise<void>;
+/** Delete a WorkloadNetworkDnsZone */
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export declare function $delete(context: Client, subscriptionId: string, resourceGroupName: string, dnsZoneId: string, privateCloudName: string, options?: WorkloadNetworkDnsZonesDeleteOptionalParams): PollerLike<OperationState<void>, void>;
+//# sourceMappingURL=index.d.ts.map
