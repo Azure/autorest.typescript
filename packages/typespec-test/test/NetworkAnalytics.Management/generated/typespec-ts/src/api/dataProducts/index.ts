@@ -90,8 +90,8 @@ export function _createSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        location: resource["location"],
         tags: resource["tags"],
+        location: resource["location"],
         properties: !resource.properties
           ? undefined
           : {
@@ -177,8 +177,8 @@ export async function _createDeserialize(
 
   result = result as DataProductsCreateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -292,8 +292,8 @@ export async function _createDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -352,8 +352,8 @@ export async function _getDeserialize(
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -467,8 +467,8 @@ export async function _getDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -553,8 +553,8 @@ export async function _updateDeserialize(
 
   result = result as DataProductsUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -668,8 +668,8 @@ export async function _updateDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -1119,8 +1119,8 @@ export async function _listByResourceGroupDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],
@@ -1220,8 +1220,8 @@ export async function _listByResourceGroupDeserialize(
       identity: !p.identity
         ? undefined
         : {
-            tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
+            tenantId: p.identity?.["tenantId"],
             type: p.identity?.["type"],
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
@@ -1282,8 +1282,8 @@ export async function _listBySubscriptionDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],
@@ -1383,8 +1383,8 @@ export async function _listBySubscriptionDeserialize(
       identity: !p.identity
         ? undefined
         : {
-            tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
+            tenantId: p.identity?.["tenantId"],
             type: p.identity?.["type"],
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },

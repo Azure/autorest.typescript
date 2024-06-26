@@ -29,7 +29,12 @@ export function transformApiVersionInfo(
   const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
-    pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
+    queryVersionDetail || pathVersionDetail
+      ? Boolean(
+          pathVersionDetail?.isCrossedVersion ||
+            queryVersionDetail?.isCrossedVersion
+        )
+      : undefined;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
       ? getDefaultApiVersionString(dpgContext) ??
@@ -49,7 +54,8 @@ export function transformApiVersionInfo(
       pathVersionDetail
     ),
     isCrossedVersion,
-    defaultValue
+    defaultValue,
+    required: pathVersionDetail?.required ?? queryVersionDetail?.required
   };
 }
 
@@ -59,6 +65,7 @@ export function getOperationApiVersion(
 ): ApiVersionInfo | undefined {
   const apiVersionTypes = new Set<string>();
   const locations = new Set<ApiVersionPosition>();
+  const required = new Set<boolean>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   dpgContext.hasApiVersionInClient = true;
   let hasApiVersionInOperation = true;
@@ -81,6 +88,7 @@ export function getOperationApiVersion(
         needRef: false,
         relevantProperty: p.param
       });
+      required.add(!p.param.optional);
       if (p.type !== "header") {
         locations.add(p.type);
       }
@@ -121,14 +129,18 @@ export function getOperationApiVersion(
           needRef: false,
           relevantProperty: p.param
         });
+        required.add(!p.param.optional);
         if (p.type !== "header") {
           locations.add(p.type);
         }
-
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
-      if (apiVersionTypes.size > 1 || !dpgContext.hasApiVersionInClient) {
+      if (
+        apiVersionTypes.size > 1 ||
+        !dpgContext.hasApiVersionInClient ||
+        required.size > 1
+      ) {
         break;
       }
       if (params.length === 1) {
@@ -147,7 +159,8 @@ export function getOperationApiVersion(
     definedPosition:
       locations.size > 1 ? "duplicate" : locations.values().next().value,
     isCrossedVersion: apiVersionTypes.size > 1,
-    defaultValue: undefined // We won't prompt the query versions into client one
+    defaultValue: undefined, // We won't prompt the query versions into client one
+    required: required.values().next().value
   };
   return detail;
 }

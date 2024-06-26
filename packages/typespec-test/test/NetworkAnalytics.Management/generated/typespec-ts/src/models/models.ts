@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Common properties for all Azure Resource Manager resources. */
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   readonly id?: string;
@@ -16,21 +16,20 @@ export interface Resource {
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByType;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: Date;
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByType;
+  lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: Date;
+  lastModifiedAt?: Date;
 }
 
 /** The kind of entity that created the resource. */
-/** "User", "Application", "ManagedIdentity", "Key" */
 export type CreatedByType = string;
 
 export enum KnownCreatedByType {
@@ -42,10 +41,10 @@ export enum KnownCreatedByType {
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
-  /** The geo-location where the resource lives */
-  location: string;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
 }
 
 /** The data product resource. */
@@ -101,7 +100,6 @@ export interface DataProductProperties {
 }
 
 /** The status of the current operation. */
-/** "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", "Accepted" */
 export type ProvisioningState = string;
 
 export enum KnownProvisioningState {
@@ -115,7 +113,6 @@ export enum KnownProvisioningState {
 }
 
 /** The data type state */
-/** "Enabled", "Disabled" */
 export type ControlState = string;
 
 export enum KnownControlState {
@@ -164,7 +161,6 @@ export interface IPRules {
 }
 
 /** Specifies the default action of allow or deny when no other rules match. */
-/** "Allow", "Deny" */
 export type DefaultAction = string;
 
 export enum KnownDefaultAction {
@@ -196,40 +192,35 @@ export interface ConsumptionEndpointsProperties {
   readonly queryResourceId?: string;
 }
 
-/** The properties of the managed service identities assigned to this resource. */
+/** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentity {
-  /** The Active Directory tenant id of the principal. */
-  readonly tenantId?: string;
-  /** The active directory identifier of this principal. */
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  readonly tenantId?: string;
   /** The type of managed identity assigned to this resource. */
   type: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
-  userAssignedIdentities?: UserAssignedIdentities;
+  userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
-/** The kind of managed identity assigned to this resource. */
-/** "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned" */
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType = string;
 
 export enum KnownManagedServiceIdentityType {
   None = "None",
   SystemAssigned = "SystemAssigned",
   UserAssigned = "UserAssigned",
-  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+  "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
 }
 
-/** A managed identity assigned by the user. */
+/** User assigned identity properties */
 export interface UserAssignedIdentity {
-  /** The active directory client identifier for this principal. */
-  clientId?: string;
-  /** The active directory identifier for this principal. */
-  principalId?: string;
+  /** The principal ID of the assigned identity. */
+  readonly principalId?: string;
+  /** The client ID of the assigned identity. */
+  readonly clientId?: string;
 }
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.", */
-export interface UserAssignedIdentities
-  extends Record<string, UserAssignedIdentity> {}
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
@@ -282,32 +273,6 @@ export interface DataProductUpdateProperties {
   currentMinorVersion?: string;
 }
 
-/** Standard Azure Resource Manager operation status response */
-export interface ArmOperationStatus {
-  /** The operation status */
-  status: ResourceProvisioningState;
-  /** The name of the  operationStatus resource */
-  readonly name?: string;
-  /** Operation start time */
-  readonly startTime?: Date;
-  /** Operation complete time */
-  readonly endTime?: Date;
-  /** The progress made toward completing the operation */
-  readonly percentComplete?: number;
-  /** Errors that occurred if the operation ended with Canceled or Failed status */
-  readonly error?: ErrorDetail;
-}
-
-/** The provisioning state of a resource type. */
-/** "Succeeded", "Failed", "Canceled" */
-export type ResourceProvisioningState = string;
-
-export enum KnownResourceProvisioningState {
-  Succeeded = "Succeeded",
-  Failed = "Failed",
-  Canceled = "Canceled",
-}
-
 /** The details for storage account sas creation. */
 export interface AccountSas {
   /** Sas token start timestamp. */
@@ -347,7 +312,6 @@ export interface RoleAssignmentCommonProperties {
 }
 
 /** The data type state */
-/** "Reader", "SensitiveReader" */
 export type DataProductUserRole = string;
 
 export enum KnownDataProductUserRole {
@@ -389,7 +353,7 @@ export interface DataProductListResult {
   nextLink?: string;
 }
 
-/** The base proxy resource. */
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
 /** The data type resource. */
@@ -417,7 +381,6 @@ export interface DataTypeProperties {
 }
 
 /** The data type state */
-/** "Stopped", "Running" */
 export type DataTypeState = string;
 
 export enum KnownDataTypeState {
@@ -513,7 +476,7 @@ export interface DataProductsCatalogListResult {
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface PagedOperation {
+export interface OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
@@ -547,7 +510,6 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** "user", "system", "user,system" */
 export type Origin = string;
 
 export enum KnownOrigin {
@@ -557,7 +519,6 @@ export enum KnownOrigin {
 }
 
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** "Internal" */
 export type ActionType = string;
 
 export enum KnownActionType {
@@ -565,5 +526,4 @@ export enum KnownActionType {
 }
 
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
-/** */
 export type Versions = "2023-11-15";

@@ -5,12 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { FixedContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface FixedContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `FixedContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: FixedContextOptions = {},
 ): FixedContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -28,7 +31,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as FixedContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

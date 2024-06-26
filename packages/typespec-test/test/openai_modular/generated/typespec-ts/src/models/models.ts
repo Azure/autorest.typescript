@@ -4,7 +4,6 @@
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** Defines available options for the underlying response format of output transcription information. */
-/** */
 export type AudioTranscriptionFormat =
   | "json"
   | "verbose_json"
@@ -62,7 +61,6 @@ export interface AudioTranscription {
 }
 
 /** Defines the possible descriptors for available audio operation responses. */
-/** */
 export type AudioTaskLabel = "transcribe" | "translate";
 
 /**
@@ -100,7 +98,6 @@ export interface AudioTranscriptionSegment {
 }
 
 /** Defines available options for the underlying response format of output translation information. */
-/** */
 export type AudioTranslationFormat =
   | "json"
   | "verbose_json"
@@ -362,7 +359,6 @@ export interface ContentFilterResult {
 }
 
 /** Ratings for the intensity and risk level of harmful content. */
-/** */
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
 /** Represents the outcome of a detection operation performed by content filtering. */
@@ -482,7 +478,6 @@ export interface CompletionsLogProbabilityModel {
 }
 
 /** Representation of the manner in which a completions response concluded. */
-/** */
 export type CompletionsFinishReason =
   | "stop"
   | "length"
@@ -567,7 +562,6 @@ export interface ChatMessageImageUrl {
 }
 
 /** A representation of the possible image detail levels for image-based chat completions message content. */
-/** */
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
 
 /** A request chat message representing response or action from the assistant. */
@@ -647,7 +641,6 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
 }
 
 /** A description of the intended purpose of a message within a chat completions interaction. */
-/** */
 export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
 
 /** The definition of a caller-specified function that chat completions may invoke in response to matching user input. */
@@ -667,7 +660,6 @@ export interface FunctionDefinition {
  * The collection of predefined behaviors for handling request-provided function information in a chat completions
  * operation.
  */
-/** */
 export type FunctionCallPreset = "auto" | "none";
 
 /**
@@ -808,7 +800,6 @@ export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions
 }
 
 /** The authentication types supported with Azure OpenAI On Your Data. */
-/** */
 export type OnYourDataAuthenticationType =
   | "api_key"
   | "connection_string"
@@ -837,7 +828,6 @@ export interface AzureSearchIndexFieldMappingOptions {
 }
 
 /** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-/** */
 export type AzureSearchQueryType =
   | "simple"
   | "semantic"
@@ -893,7 +883,6 @@ export interface OnYourDataModelIdVectorizationSource
  * Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with
  * vector search.
  */
-/** */
 export type OnYourDataVectorizationSourceType =
   | "endpoint"
   | "deployment_name"
@@ -1068,7 +1057,6 @@ export interface ElasticsearchIndexFieldMappingOptions {
 }
 
 /** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-/** */
 export type ElasticsearchQueryType = "simple" | "vector";
 
 /**
@@ -1133,7 +1121,6 @@ export interface PineconeFieldMappingOptions {
  *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
  *   The use of this configuration is compatible only with Azure OpenAI.
  */
-/** */
 export type AzureChatExtensionType =
   | "azure_search"
   | "azure_ml_index"
@@ -1203,7 +1190,6 @@ export interface ChatCompletionsFunctionToolDefinition
 }
 
 /** Represents a generic policy for how a chat completions tool may be selected. */
-/** */
 export type ChatCompletionsToolSelectionPreset = "auto" | "none";
 
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
@@ -1569,7 +1555,6 @@ export interface AzureGroundingEnhancementCoordinatePoint {
 }
 
 /** The desired size of generated images. */
-/** */
 export type ImageSize =
   | "256x256"
   | "512x512"
@@ -1577,19 +1562,16 @@ export type ImageSize =
   | "1792x1024"
   | "1024x1792";
 /** The format in which the generated images are returned. */
-/** */
 export type ImageGenerationResponseFormat = "url" | "b64_json";
 /**
  * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
  * Only configurable with dall-e-3 models.
  */
-/** */
 export type ImageGenerationQuality = "standard" | "hd";
 /**
  * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
  * Only configurable with dall-e-3 models.
  */
-/** */
 export type ImageGenerationStyle = "natural" | "vivid";
 
 /** Represents the request data used to generate images. */
@@ -1657,7 +1639,6 @@ export interface ImageGenerationData {
 }
 
 /** The available voices for text-to-speech. */
-/** */
 export type AudioSpeechVoice =
   | "alloy"
   | "echo"
@@ -1666,7 +1647,6 @@ export type AudioSpeechVoice =
   | "nova"
   | "shimmer";
 /** The supported audio output formats for text-to-speech. */
-/** */
 export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
 
 /** A representation of the request options that control the behavior of a text-to-speech operation. */
@@ -1741,7 +1721,7 @@ export interface EmbeddingsUsage {
   totalTokens: number;
 }
 
-/** */
+/** Type of ServiceApiVersions */
 export type ServiceApiVersions =
   | "2022-12-01"
   | "2023-05-15"

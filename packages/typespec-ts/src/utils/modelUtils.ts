@@ -61,7 +61,8 @@ import {
   StringLiteral,
   Type,
   Union,
-  UnionVariant
+  UnionVariant,
+  isType
 } from "@typespec/compiler";
 import {
   createMetadataInfo,
@@ -610,9 +611,12 @@ function getSchemaForModel(
     model.templateMapper.args.length > 0 &&
     getPagedResult(program, model)
   ) {
+    const templateTypes = model.templateMapper.args.filter((it) =>
+      isType(it)
+    ) as Type[];
     name =
-      model.templateMapper.args
-        .map((it) => {
+      templateTypes
+        .map((it: Type) => {
           switch (it.kind) {
             case "Model":
               return it.name;
@@ -661,7 +665,10 @@ function getSchemaForModel(
     if (paged && paged.itemsProperty) {
       const items = paged.itemsProperty as unknown as Model;
       if (items && items.templateMapper && items.templateMapper.args) {
-        const templateName = items.templateMapper.args
+        const templateTypes = items.templateMapper.args.filter((it) =>
+          isType(it)
+        ) as Type[];
+        const templateName = templateTypes
           ?.map((it) => {
             switch (it.kind) {
               case "Model":

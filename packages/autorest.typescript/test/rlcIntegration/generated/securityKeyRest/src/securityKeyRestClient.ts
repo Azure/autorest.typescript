@@ -6,6 +6,9 @@ import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { SecurityKeyRestClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
+export interface SecurityKeyRestClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SecurityKeyRestClient`
  * @param credentials - uniquely identify client credential
@@ -13,7 +16,7 @@ import { SecurityKeyRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: SecurityKeyRestClientOptions = {},
 ): SecurityKeyRestClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -34,7 +37,6 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

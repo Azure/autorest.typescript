@@ -5,6 +5,10 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { NotDefinedParamInServerEndpointClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface NotDefinedParamInServerEndpointClientOptions
+  extends ClientOptions {}
+
 /**
  * Initialize a new instance of `NotDefinedParamInServerEndpointClient`
  * @param endpointParam - The parameter endpointParam
@@ -12,10 +16,9 @@ import { NotDefinedParamInServerEndpointClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: NotDefinedParamInServerEndpointClientOptions = {},
 ): NotDefinedParamInServerEndpointClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-notdefinedparam-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -30,7 +33,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(
     endpointUrl,
     options,

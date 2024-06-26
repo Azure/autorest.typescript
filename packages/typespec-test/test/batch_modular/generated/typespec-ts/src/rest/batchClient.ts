@@ -6,6 +6,9 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { BatchContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface BatchContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `BatchContext`
  * @param endpointParam - Batch account endpoint (for example: https://batchaccount.eastus2.batch.azure.com).
@@ -15,10 +18,9 @@ import { BatchContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: BatchContextOptions = {},
 ): BatchContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-batch-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -43,7 +45,6 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(endpointUrl, credentials, options) as BatchContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

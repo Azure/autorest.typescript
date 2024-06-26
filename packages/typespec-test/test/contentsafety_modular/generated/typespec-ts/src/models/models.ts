@@ -64,10 +64,8 @@ export interface ImageData {
 }
 
 /** Image analyze category */
-/** */
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of image analysis output. */
-/** */
 export type AnalyzeImageOutputType = "FourLevels";
 
 /** The analysis response of the image. */
@@ -99,10 +97,8 @@ export interface AnalyzeTextOptions {
 }
 
 /** Text analyze category */
-/** */
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of text analysis output. */
-/** */
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 /** The analysis response of the text */
@@ -131,7 +127,7 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
-/** */
+/** Type of Versions */
 export type Versions = "2023-10-01";
 
 /** Paged collection of TextBlocklist items */

@@ -7,5 +7,4 @@ export interface TestModel {
 }
 
 /** The version of the API. */
-/** */
 export type Versions = "v1" | "v2";

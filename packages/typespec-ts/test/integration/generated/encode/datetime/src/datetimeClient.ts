@@ -5,12 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { DatetimeClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface DatetimeClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `DatetimeClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: DatetimeClientOptions = {},
 ): DatetimeClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -28,7 +31,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as DatetimeClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

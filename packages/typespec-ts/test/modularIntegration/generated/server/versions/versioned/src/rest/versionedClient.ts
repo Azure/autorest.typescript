@@ -5,6 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { VersionedContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface VersionedContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `VersionedContext`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
@@ -12,10 +15,9 @@ import { VersionedContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: VersionedContextOptions = {},
 ): VersionedContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-versioned-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -30,7 +32,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as VersionedContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

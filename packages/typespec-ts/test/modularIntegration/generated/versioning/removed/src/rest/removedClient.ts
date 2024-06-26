@@ -6,6 +6,9 @@ import { logger } from "../logger.js";
 import { RemovedContext } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
+/** The optional parameters for the client */
+export interface RemovedContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `RemovedContext`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
@@ -15,13 +18,12 @@ import { Versions } from "./models.js";
 export default function createClient(
   endpointParam: string,
   version: Versions,
-  options: ClientOptions = {},
+  options: RemovedContextOptions = {},
 ): RemovedContext {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/versioning/removed/api-version:${version}`;
-
   const userAgentInfo = `azsdk-js-versionning-removed-modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -36,7 +38,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as RemovedContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

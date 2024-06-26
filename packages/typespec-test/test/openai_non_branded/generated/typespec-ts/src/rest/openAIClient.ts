@@ -4,6 +4,9 @@ import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { OpenAIContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface OpenAIContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `OpenAIContext`
  * @param credentials - uniquely identify client credential
@@ -11,7 +14,7 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: OpenAIContextOptions = {},
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;
@@ -26,7 +29,6 @@ export default function createClient(
       userAgentPrefix,
     },
   };
-
   const client = getClient(endpointUrl, options) as OpenAIContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

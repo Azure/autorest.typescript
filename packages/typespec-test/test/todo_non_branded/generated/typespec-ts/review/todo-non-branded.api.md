@@ -14,7 +14,7 @@ import { RequestParameters } from '@typespec/ts-http-runtime';
 import { StreamableMethod } from '@typespec/ts-http-runtime';
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): TodoClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: TodoClientOptions): TodoClient;
 export default createClient;
 
 // @public (undocumented)
@@ -51,6 +51,10 @@ export type TodoAttachmentOutput = TodoFileAttachmentOutput | TodoUrlAttachmentO
 export type TodoClient = Client & {
     path: Routes;
 };
+
+// @public
+export interface TodoClientOptions extends ClientOptions {
+}
 
 // @public (undocumented)
 export interface TodoFileAttachmentOutput {

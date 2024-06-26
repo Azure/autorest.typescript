@@ -87,6 +87,12 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
             getGeneratedModels(value, SchemaContext.Output);
           }
         }
+        if (resps.body?.contentTypeProperty) {
+          getGeneratedModels(
+            resps.body.contentTypeProperty,
+            SchemaContext.Output
+          );
+        }
         const respModel = resps?.body?.type;
         if (!respModel) {
           continue;

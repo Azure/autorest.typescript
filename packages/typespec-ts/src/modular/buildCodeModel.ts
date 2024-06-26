@@ -52,6 +52,7 @@ import {
   isNumericType,
   isStringType,
   isTemplateDeclarationOrInstance,
+  isType,
   isVoidType,
   listServices,
   Model,
@@ -447,26 +448,33 @@ type BodyParameter = ParamBase & {
 function emitBodyParameter(
   context: SdkContext,
   httpOperation: HttpOperation
-): BodyParameter {
+): BodyParameter | undefined {
   const params = httpOperation.parameters;
   const body = params.body!;
-  const base = emitParamBase(context, body.parameter ?? body.type);
-  let contentTypes = body.contentTypes;
-  if (contentTypes.length === 0) {
-    contentTypes = ["application/json"];
-  }
-  const type = getType(context, getBodyType(context.program, httpOperation)!, {
-    disableEffectiveModel: true,
-    usage: UsageFlags.Input
-  });
+  if (body.bodyKind === "single") {
+    const base = emitParamBase(context, body.parameter ?? body.type);
+    let contentTypes = body.contentTypes;
+    if (contentTypes.length === 0) {
+      contentTypes = ["application/json"];
+    }
+    const type = getType(
+      context,
+      getBodyType(context.program, httpOperation)!,
+      {
+        disableEffectiveModel: true,
+        usage: UsageFlags.Input
+      }
+    );
 
-  return {
-    contentTypes,
-    type,
-    location: "body",
-    ...base,
-    isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
-  };
+    return {
+      contentTypes,
+      type,
+      location: "body",
+      ...base,
+      isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
+    };
+  }
+  return undefined;
 }
 
 function emitParameter(
@@ -950,7 +958,7 @@ function getName(program: Program, type: Model): string {
     ) {
       return (
         type.name +
-        type.templateMapper.args
+        (type.templateMapper.args.filter((it) => isType(it)) as Type[])
           .map((it) => (it.kind === "Model" ? it.name : ""))
           .join("")
       );
@@ -1000,7 +1008,7 @@ function emitModel(
     getPagedResult(context.program, type)
   ) {
     modelName =
-      type.templateMapper.args
+      (type.templateMapper.args.filter((it) => isType(it)) as Type[])
         .map((it) => {
           switch (it.kind) {
             case "Model":
@@ -1053,13 +1061,17 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     });
   }
 
+  const name = normalizeName(
+    getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
+    NameType.Interface
+  );
   return {
     type: "enum",
-    name: normalizeName(
-      getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
-      NameType.Interface
-    ),
-    description: getDocStr(program, type),
+    name,
+    description:
+      getDocStr(program, type) === ""
+        ? `Type of ${name}`
+        : getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
     isFixed: true,
@@ -1329,7 +1341,11 @@ function emitUnion(
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
-  const sdkType = getSdkUnion(context, type);
+  let sdkType = getSdkUnion(context, type);
+  const isNull = sdkType.kind === "nullable";
+  if (sdkType.kind === "nullable") {
+    sdkType = sdkType.type;
+  }
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
@@ -1353,7 +1369,7 @@ function emitUnion(
       ? normalizeName(unionName, NameType.Interface)
       : undefined;
     return {
-      nullable: sdkType.nullable,
+      nullable: isNull,
       name: unionTypeName,
       description: `Type of ${unionTypeName}`,
       internal: true,
@@ -1381,7 +1397,7 @@ function emitUnion(
       : undefined;
     return {
       name: typeName,
-      nullable: sdkType.nullable,
+      nullable: isNull,
       description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
@@ -1395,12 +1411,12 @@ function emitUnion(
   } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
       ...emitType(context, nonNullOptions[0], usage),
-      nullable: sdkType.nullable
+      nullable: isNull
     };
   } else {
     return {
       ...emitType(context, sdkType.__raw!, usage),
-      nullable: sdkType.nullable
+      nullable: isNull
     };
   }
 }
@@ -1437,7 +1453,7 @@ function emitSimpleType(
   }
 
   return {
-    nullable: sdkType.nullable,
+    nullable: isNullType(sdkType.__raw!),
     type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
