@@ -4,7 +4,7 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
-  PagedOperationOutput,
+  OperationListResultOutput,
   ErrorResponseOutput,
   DataProductsCatalogOutput,
   DataProductsCatalogListResultOutput,
@@ -21,7 +21,7 @@ import {
 /** Azure operation completed successfully. */
 export interface OperationsList200Response extends HttpResponse {
   status: "200";
-  body: PagedOperationOutput;
+  body: OperationListResultOutput;
 }
 
 export interface OperationsListDefaultResponse extends HttpResponse {
@@ -73,6 +73,8 @@ export interface DataTypesCreate200Response extends HttpResponse {
 }
 
 export interface DataTypesCreate201Headers {
+  /** A link to the status monitor */
+  "azure-asyncoperation"?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
 }
@@ -224,6 +226,8 @@ export interface DataProductsCreate200Response extends HttpResponse {
 }
 
 export interface DataProductsCreate201Headers {
+  /** A link to the status monitor */
+  "azure-asyncoperation"?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
 }

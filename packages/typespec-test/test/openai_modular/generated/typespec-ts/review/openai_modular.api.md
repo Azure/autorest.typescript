@@ -910,7 +910,7 @@ export interface PineconeFieldMappingOptions {
     urlField?: string;
 }
 
-// @public (undocumented)
+// @public
 export type ServiceApiVersions = "2022-12-01" | "2023-05-15" | "2023-06-01-preview" | "2023-07-01-preview" | "2024-02-15-preview";
 
 // @public

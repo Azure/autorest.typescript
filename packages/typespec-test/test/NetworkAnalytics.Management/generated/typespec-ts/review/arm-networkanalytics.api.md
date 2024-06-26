@@ -29,16 +29,6 @@ export interface AccountSasToken {
 export type ActionType = string;
 
 // @public
-export interface ArmOperationStatus {
-    readonly endTime?: Date;
-    readonly error?: ErrorDetail;
-    readonly name?: string;
-    readonly percentComplete?: number;
-    readonly startTime?: Date;
-    status: ResourceProvisioningState;
-}
-
-// @public
 export interface ConsumptionEndpointsProperties {
     readonly fileAccessResourceId?: string;
     readonly fileAccessUrl?: string;
@@ -442,7 +432,7 @@ export enum KnownDefaultAction {
 // @public (undocumented)
 export enum KnownManagedServiceIdentityType {
     // (undocumented)
-    "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+    "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
     // (undocumented)
     None = "None",
     // (undocumented)
@@ -479,16 +469,6 @@ export enum KnownProvisioningState {
     Updating = "Updating"
 }
 
-// @public (undocumented)
-export enum KnownResourceProvisioningState {
-    // (undocumented)
-    Canceled = "Canceled",
-    // (undocumented)
-    Failed = "Failed",
-    // (undocumented)
-    Succeeded = "Succeeded"
-}
-
 // @public
 export interface ListRoleAssignments {
     count: number;
@@ -506,7 +486,7 @@ export interface ManagedServiceIdentity {
     readonly principalId?: string;
     readonly tenantId?: string;
     type: ManagedServiceIdentityType;
-    userAssignedIdentities?: UserAssignedIdentities;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
 // @public
@@ -544,6 +524,12 @@ export interface OperationDisplay {
     resource?: string;
 }
 
+// @public
+export interface OperationListResult {
+    nextLink?: string;
+    value: Operation[];
+}
+
 // @public (undocumented)
 export interface OperationsListOptionalParams extends OperationOptions {
 }
@@ -562,12 +548,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PagedOperation {
-    nextLink?: string;
-    value: Operation[];
 }
 
 // @public
@@ -595,9 +575,6 @@ export interface Resource {
     readonly systemData?: SystemData;
     readonly type?: string;
 }
-
-// @public
-export type ResourceProvisioningState = string;
 
 // @public
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
@@ -632,12 +609,12 @@ export interface RoleAssignmentDetail {
 
 // @public
 export interface SystemData {
-    readonly createdAt?: Date;
-    readonly createdBy?: string;
-    readonly createdByType?: CreatedByType;
-    readonly lastModifiedAt?: Date;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedByType?: CreatedByType;
+    createdAt?: Date;
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    lastModifiedAt?: Date;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
 }
 
 // @public
@@ -647,13 +624,9 @@ export interface TrackedResource extends Resource {
 }
 
 // @public
-export interface UserAssignedIdentities extends Record<string, UserAssignedIdentity> {
-}
-
-// @public
 export interface UserAssignedIdentity {
-    clientId?: string;
-    principalId?: string;
+    readonly clientId?: string;
+    readonly principalId?: string;
 }
 
 // @public

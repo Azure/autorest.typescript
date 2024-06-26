@@ -127,6 +127,7 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
+/** Type of Versions */
 export type Versions = "2023-10-01";
 
 /** Paged collection of TextBlocklist items */

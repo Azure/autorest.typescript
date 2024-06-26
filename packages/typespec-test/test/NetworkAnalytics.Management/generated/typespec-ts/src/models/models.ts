@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Common properties for all Azure Resource Manager resources. */
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   readonly id?: string;
@@ -16,17 +16,17 @@ export interface Resource {
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByType;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: Date;
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByType;
+  lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: Date;
+  lastModifiedAt?: Date;
 }
 
 /** The kind of entity that created the resource. */
@@ -41,10 +41,10 @@ export enum KnownCreatedByType {
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
-  /** The geo-location where the resource lives */
-  location: string;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
 }
 
 /** The data product resource. */
@@ -192,39 +192,35 @@ export interface ConsumptionEndpointsProperties {
   readonly queryResourceId?: string;
 }
 
-/** The properties of the managed service identities assigned to this resource. */
+/** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentity {
-  /** The Active Directory tenant id of the principal. */
-  readonly tenantId?: string;
-  /** The active directory identifier of this principal. */
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  readonly tenantId?: string;
   /** The type of managed identity assigned to this resource. */
   type: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
-  userAssignedIdentities?: UserAssignedIdentities;
+  userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
-/** The kind of managed identity assigned to this resource. */
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType = string;
 
 export enum KnownManagedServiceIdentityType {
   None = "None",
   SystemAssigned = "SystemAssigned",
   UserAssigned = "UserAssigned",
-  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+  "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
 }
 
-/** A managed identity assigned by the user. */
+/** User assigned identity properties */
 export interface UserAssignedIdentity {
-  /** The active directory client identifier for this principal. */
-  clientId?: string;
-  /** The active directory identifier for this principal. */
-  principalId?: string;
+  /** The principal ID of the assigned identity. */
+  readonly principalId?: string;
+  /** The client ID of the assigned identity. */
+  readonly clientId?: string;
 }
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.", */
-export interface UserAssignedIdentities
-  extends Record<string, UserAssignedIdentity> {}
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
@@ -275,31 +271,6 @@ export interface DataProductUpdateProperties {
   privateLinksEnabled?: ControlState;
   /** Current configured minor version of the data product resource. */
   currentMinorVersion?: string;
-}
-
-/** Standard Azure Resource Manager operation status response */
-export interface ArmOperationStatus {
-  /** The operation status */
-  status: ResourceProvisioningState;
-  /** The name of the  operationStatus resource */
-  readonly name?: string;
-  /** Operation start time */
-  readonly startTime?: Date;
-  /** Operation complete time */
-  readonly endTime?: Date;
-  /** The progress made toward completing the operation */
-  readonly percentComplete?: number;
-  /** Errors that occurred if the operation ended with Canceled or Failed status */
-  readonly error?: ErrorDetail;
-}
-
-/** The provisioning state of a resource type. */
-export type ResourceProvisioningState = string;
-
-export enum KnownResourceProvisioningState {
-  Succeeded = "Succeeded",
-  Failed = "Failed",
-  Canceled = "Canceled",
 }
 
 /** The details for storage account sas creation. */
@@ -382,7 +353,7 @@ export interface DataProductListResult {
   nextLink?: string;
 }
 
-/** The base proxy resource. */
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
 /** The data type resource. */
@@ -505,7 +476,7 @@ export interface DataProductsCatalogListResult {
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface PagedOperation {
+export interface OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
