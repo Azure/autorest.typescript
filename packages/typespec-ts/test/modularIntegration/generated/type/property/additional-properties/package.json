@@ -46,17 +46,35 @@
       "./api/spreadRecordNonDiscriminatedUnion2": "src/api/spreadRecordNonDiscriminatedUnion2/index.ts",
       "./api/spreadRecordNonDiscriminatedUnion3": "src/api/spreadRecordNonDiscriminatedUnion3/index.ts"
     },
-    "dialects": ["esm", "commonjs"],
-    "esmDialects": ["browser", "react-native"],
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
     "selfLink": false
   },
   "type": "module",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
-  "files": ["dist", "README.md", "LICENSE", "review/*"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "review/*"
+  ],
   "dependencies": {
-    "@azure-rest/core-client": "^2.0.0",
+    "@azure-rest/core-client": "^2.1.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
