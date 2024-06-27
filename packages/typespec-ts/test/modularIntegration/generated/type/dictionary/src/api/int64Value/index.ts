@@ -11,6 +11,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   Int64ValueGetOptionalParams,
   Int64ValuePutOptionalParams,
@@ -32,7 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 export async function get(
@@ -50,7 +51,10 @@ export function _putSend(
 ): StreamableMethod<Int64ValuePut204Response> {
   return context
     .path("/type/dictionary/int64")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: serializeRecord(body as any) as any,
+    });
 }
 
 export async function _putDeserialize(

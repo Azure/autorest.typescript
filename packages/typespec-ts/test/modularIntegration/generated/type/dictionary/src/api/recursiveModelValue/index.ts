@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { InnerModel } from "../../models/models.js";
+import { innerModelSerializer, InnerModel } from "../../models/models.js";
 import {
   DictionaryContext as Client,
   RecursiveModelValueGet200Response,
@@ -12,6 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   RecursiveModelValueGetOptionalParams,
   RecursiveModelValuePutOptionalParams,
@@ -33,7 +34,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 export async function get(
@@ -51,7 +52,10 @@ export function _putSend(
 ): StreamableMethod<RecursiveModelValuePut204Response> {
   return context
     .path("/type/dictionary/model/recursive")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: serializeRecord(body as any, innerModelSerializer) as any,
+    });
 }
 
 export async function _putDeserialize(

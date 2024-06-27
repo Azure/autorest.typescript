@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { CollectionsModelProperty } from "../../models/models.js";
+import {
+  innerModelSerializer,
+  CollectionsModelProperty,
+} from "../../models/models.js";
 import {
   CollectionsModelGet200Response,
   CollectionsModelPut204Response,
@@ -56,9 +59,7 @@ export function _collectionsModelPutSend(
     .path("/type/property/value-types/collections/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        property: body["property"].map((p) => ({ property: p["property"] })),
-      },
+      body: { property: body["property"].map(innerModelSerializer) },
     });
 }
 

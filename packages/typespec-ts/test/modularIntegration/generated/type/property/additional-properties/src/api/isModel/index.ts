@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { IsModelAdditionalProperties } from "../../models/models.js";
+import {
+  modelForRecordSerializer,
+  IsModelAdditionalProperties,
+} from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsModelGet200Response,
@@ -12,6 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   IsModelGetOptionalParams,
   IsModelPutOptionalParams,
@@ -33,7 +37,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Get call */
@@ -52,7 +56,10 @@ export function _putSend(
 ): StreamableMethod<IsModelPut204Response> {
   return context
     .path("/type/property/additionalProperties/isRecordModel")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: serializeRecord(body as any, modelForRecordSerializer) as any,
+    });
 }
 
 export async function _putDeserialize(

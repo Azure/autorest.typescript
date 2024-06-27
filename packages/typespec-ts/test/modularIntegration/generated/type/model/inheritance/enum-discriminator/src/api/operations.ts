@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { DogUnion, SnakeUnion } from "../models/models.js";
+import {
+  dogUnionSerializer,
+  snakeUnionSerializer,
+  DogUnion,
+  SnakeUnion,
+} from "../models/models.js";
 import {
   EnumDiscriminatorContext as Client,
   GetExtensibleModel200Response,
@@ -64,7 +69,10 @@ export function _putExtensibleModelSend(
 ): StreamableMethod<PutExtensibleModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/extensible-enum")
-    .put({ ...operationOptionsToRequestParameters(options), body: input });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: dogUnionSerializer(input),
+    });
 }
 
 export async function _putExtensibleModelDeserialize(
@@ -196,7 +204,10 @@ export function _putFixedModelSend(
 ): StreamableMethod<PutFixedModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/fixed-enum")
-    .put({ ...operationOptionsToRequestParameters(options), body: input });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: snakeUnionSerializer(input),
+    });
 }
 
 export async function _putFixedModelDeserialize(
