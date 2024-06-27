@@ -27,7 +27,7 @@ import {
   getSendPrivateFunction as experimentalGetSendPrivateFunction
 } from "./serialization/operationHelpers.js";
 import { SerializerMap } from "./serialization/util.js";
-
+import { addImportBySymbol } from "../utils/importHelper.js";
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single
@@ -195,7 +195,10 @@ export function buildOperationFiles(
         ]
       }
     ]);
+
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
+    addImportBySymbol("serializeRecord", operationGroupFile);
+
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();

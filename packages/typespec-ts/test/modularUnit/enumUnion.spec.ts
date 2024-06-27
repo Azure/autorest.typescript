@@ -768,6 +768,10 @@ describe("header parameters", () => {
         
         export interface Foo {
         }
+
+        export function fooSerializer(item: Foo) {
+          return item as any;
+        }
         
         /** Alias for MixedTypes */
         export type MixedTypes = EnumTest | string | Foo;
@@ -788,11 +792,22 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: "red" | "blue";
         }`
+      );
+
+      const serializer = modelFile?.getFunction("testSerializer")?.getText();
+      await assertEqualContent(
+        serializer!,
+        `
+        export function testSerializer(item: Test): TestRest {
+          return {
+            color: item["color"],
+          }
+        };`
       );
     });
 
@@ -809,12 +824,17 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: "red";
         }
+        `
+      );
 
+      await assertEqualContent(
+        modelFile!.getTypeAlias("Color")?.getFullText()!,
+        `
         /** Type of Color */
         export type Color = "red" | "blue";  
         `
@@ -830,11 +850,22 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           content: "red" | null;
         }`
+      );
+
+      const serializer = modelFile?.getFunction("testSerializer")?.getText();
+      await assertEqualContent(
+        serializer!,
+        `
+        export function testSerializer(item: Test): TestRest {
+          return {
+            content: item["content"],
+          }
+        };`
       );
     });
 
@@ -847,11 +878,22 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           content: string | null;
         }`
+      );
+
+      const serializer = modelFile?.getFunction("testSerializer")?.getText();
+      await assertEqualContent(
+        serializer!,
+        `
+        export function testSerializer(item: Test): TestRest {
+          return {
+            content: item["content"],
+          }
+        };`
       );
     });
   });
@@ -866,11 +908,22 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: 1 | 2;
         }`
+      );
+
+      const serializer = modelFile?.getFunction("testSerializer")?.getText();
+      await assertEqualContent(
+        serializer!,
+        `
+        export function testSerializer(item: Test): TestRest {
+          return {
+            color: item["color"],
+          }
+        };`
       );
     });
 
@@ -887,12 +940,17 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: 1;
         }
+        `
+      );
 
+      await assertEqualContent(
+        modelFile!.getTypeAlias("Color")?.getFullText()!,
+        `
         /** Type of Color */
         export type Color = 1 | 2;
         `
@@ -912,14 +970,11 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: Color | null;
         }
-
-        /** Type of Color */
-        export type Color = 1 | 2;
         `
       );
     });
@@ -943,12 +998,17 @@ describe("model type", () => {
       );
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: Color | null;
         }
+        `
+      );
 
+      await assertEqualContent(
+        modelFile!.getTypeAlias("Color")?.getFullText()!,
+        `
         /** Type of Color */
         export type Color = 1 | 2;
         `
@@ -973,14 +1033,23 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: Lr | Ud;
         }
-
+        `
+      );
+      await assertEqualContent(
+        modelFile!.getTypeAlias("Lr")?.getFullText()!,
+        `
         /** Type of Lr */
         export type Lr = "left" | "right";
+        `
+      );
+      await assertEqualContent(
+        modelFile!.getTypeAlias("Ud")?.getFullText()!,
+        `
         /** Type of Ud */
         export type Ud = "up" | "down";
         `
@@ -1004,14 +1073,23 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           color: LeftAndRight | UpAndDown;
         }
-
+        `
+      );
+      await assertEqualContent(
+        modelFile!.getTypeAlias("LeftAndRight")?.getFullText()!,
+        `
         /** Type of LeftAndRight */
         export type LeftAndRight = "left" | "right";
+        `
+      );
+      await assertEqualContent(
+        modelFile!.getTypeAlias("UpAndDown")?.getFullText()!,
+        `
         /** Type of UpAndDown */
         export type UpAndDown = "up" | "down";
         `
@@ -1026,11 +1104,22 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           content: 1 | null;
         }`
+      );
+
+      const serializer = modelFile?.getFunction("testSerializer")?.getText();
+      await assertEqualContent(
+        serializer!,
+        `
+        export function testSerializer(item: Test): TestRest {
+          return {
+            content: item["content"],
+          }
+        };`
       );
     });
 
@@ -1043,11 +1132,22 @@ describe("model type", () => {
         `);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile!.getFullText()!,
+        modelFile!.getInterface("Test")?.getFullText()!,
         `
         export interface Test {
           content: number | null;
         }`
+      );
+
+      const serializer = modelFile?.getFunction("testSerializer")?.getText();
+      await assertEqualContent(
+        serializer!,
+        `
+        export function testSerializer(item: Test): TestRest {
+          return {
+            content: item["content"],
+          }
+        };`
       );
     });
   });

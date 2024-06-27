@@ -2,6 +2,12 @@
 // Licensed under the MIT license.
 
 import {
+  passFailCriteriaSerializer,
+  secretSerializer,
+  certificateMetadataSerializer,
+  loadTestConfigurationSerializer,
+  appComponentSerializer,
+  resourceMetricSerializer,
   Test,
   FileInfo,
   TestAppComponents,
@@ -47,6 +53,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -80,45 +87,20 @@ export function _createOrUpdateTestSend(
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
         passFailCriteria: !body.passFailCriteria
-          ? undefined
-          : { passFailMetrics: body.passFailCriteria?.["passFailMetrics"] },
-        secrets: body["secrets"],
+          ? body.passFailCriteria
+          : passFailCriteriaSerializer(body.passFailCriteria),
+        secrets: !body.secrets
+          ? body.secrets
+          : (serializeRecord(body.secrets as any, secretSerializer) as any),
         certificate: !body.certificate
-          ? undefined
-          : {
-              value: body.certificate?.["value"],
-              type: body.certificate?.["type"],
-              name: body.certificate?.["name"],
-            },
-        environmentVariables: body["environmentVariables"],
+          ? body.certificate
+          : certificateMetadataSerializer(body.certificate),
+        environmentVariables: !body.environmentVariables
+          ? body.environmentVariables
+          : (serializeRecord(body.environmentVariables as any) as any),
         loadTestConfiguration: !body.loadTestConfiguration
-          ? undefined
-          : {
-              engineInstances: body.loadTestConfiguration?.["engineInstances"],
-              splitAllCSVs: body.loadTestConfiguration?.["splitAllCSVs"],
-              quickStartTest: body.loadTestConfiguration?.["quickStartTest"],
-              optionalLoadTestConfig: !body.loadTestConfiguration
-                ?.optionalLoadTestConfig
-                ? undefined
-                : {
-                    endpointUrl:
-                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "endpointUrl"
-                      ],
-                    virtualUsers:
-                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "virtualUsers"
-                      ],
-                    rampUpTime:
-                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "rampUpTime"
-                      ],
-                    duration:
-                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "duration"
-                      ],
-                  },
-            },
+          ? body.loadTestConfiguration
+          : loadTestConfigurationSerializer(body.loadTestConfiguration),
         description: body["description"],
         displayName: body["displayName"],
         subnetId: body["subnetId"],
@@ -326,7 +308,12 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { components: body["components"] },
+      body: {
+        components: serializeRecord(
+          body.components as any,
+          appComponentSerializer,
+        ) as any,
+      },
     });
 }
 
@@ -384,7 +371,14 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { metrics: body["metrics"] },
+      body: {
+        metrics: !body.metrics
+          ? body.metrics
+          : (serializeRecord(
+              body.metrics as any,
+              resourceMetricSerializer,
+            ) as any),
+      },
     });
 }
 

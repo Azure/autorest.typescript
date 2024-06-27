@@ -276,11 +276,6 @@ export interface ChatChoiceLogProbabilityInfo {
 }
 
 // @public
-export interface ChatChoiceLogProbabilityInfo {
-    content: ChatTokenLogProbabilityResult[] | null;
-}
-
-// @public
 export interface ChatCompletions {
     choices: ChatChoice[];
     created: Date;
@@ -514,14 +509,6 @@ export interface Completions {
 
 // @public
 export type CompletionsFinishReason = "stop" | "length" | "content_filter" | "function_call" | "tool_calls";
-
-// @public
-export interface CompletionsLogProbabilityModel {
-    textOffset: number[];
-    tokenLogprobs: (number | null)[];
-    tokens: string[];
-    topLogprobs: Record<string, number | null>[];
-}
 
 // @public
 export interface CompletionsLogProbabilityModel {

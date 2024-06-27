@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { UserActionParam as UserActionParamRest } from "../rest/index.js";
+
 /** Sample Model */
 export interface User {
   /** The user's id. */
@@ -13,6 +15,14 @@ export interface User {
 export interface UserActionParam {
   /** User action value. */
   userActionValue: string;
+}
+
+export function userActionParamSerializer(
+  item: UserActionParam,
+): UserActionParamRest {
+  return {
+    userActionValue: item["userActionValue"],
+  };
 }
 
 /** User action response */
