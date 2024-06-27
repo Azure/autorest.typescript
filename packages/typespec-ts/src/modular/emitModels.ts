@@ -242,10 +242,14 @@ export function buildModels(
     }
   }
 
-  const projectRootFromModels = codeModel.clients.length > 1 ? "../../" : "../";
+  const projectRootFromModels = codeModel.clients.length > 1 ? "../.." : "../";
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-    rlcIndex: `${projectRootFromModels}rest/index.js`,
-    serializerHelpers: `${projectRootFromModels}helpers/serializerHelpers.js`
+    rlcIndex: path.posix.join(projectRootFromModels, "rest", "index.js"),
+    serializerHelpers: path.posix.join(
+      projectRootFromModels,
+      "helpers",
+      "serializerHelpers.js"
+    )
   });
 
   if (coreClientTypes.size > 0) {
