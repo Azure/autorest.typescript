@@ -24,7 +24,9 @@ export function addImportBySymbol(symbol: string, currentFile: SourceFile) {
   const relativeImportPath = getRelativeImportPath(
     currentFile.getFilePath(),
     moduleAbsolutePath
-  ).replace(/\.ts$/, ".js");
+  )
+    .replace(/\\/g, "/")
+    .replace(/\.ts$/, ".js");
 
   // Check if the import declaration already exists and if it includes the symbol.
   const existing = currentFile.getImportDeclaration(
