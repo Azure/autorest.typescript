@@ -32,7 +32,7 @@ export interface ListItemInputBody {
 /** An extensible enum input parameter. */
 export type ListItemInputExtensibleEnum = "First" | "Second";
 
-export interface UserListResults {
+export interface _UserListResults {
   /** List of items. */
   items: User[];
   /** Link to fetch more items. */
@@ -55,7 +55,7 @@ export interface SecondItem {
 export type Versions = "2022-12-01-preview";
 
 /** Paged collection of User items */
-export interface PagedUser {
+export interface _PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
@@ -63,7 +63,7 @@ export interface PagedUser {
 }
 
 /** Paged collection of User items */
-export interface PagedUser {
+export interface _PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
@@ -71,7 +71,7 @@ export interface PagedUser {
 }
 
 /** Paged collection of FirstItem items */
-export interface PagedFirstItem {
+export interface _PagedFirstItem {
   /** The FirstItem items on this page */
   value: FirstItem[];
   /** The link to the next page of items */
@@ -79,7 +79,7 @@ export interface PagedFirstItem {
 }
 
 /** Paged collection of SecondItem items */
-export interface PagedSecondItem {
+export interface _PagedSecondItem {
   /** The SecondItem items on this page */
   value: SecondItem[];
   /** The link to the next page of items */

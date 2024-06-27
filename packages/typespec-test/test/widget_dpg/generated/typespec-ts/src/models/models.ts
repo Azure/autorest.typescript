@@ -27,7 +27,7 @@ export interface WidgetError {
   message: string;
 }
 
-export interface ListWidgetsPagesResults {
+export interface _ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
   /** The URL to get the next set of results. */

@@ -12,10 +12,10 @@ import {
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
-  PagedTimeSeriesElement,
   TimeSeriesElement,
-  PagedTestRun,
-  PagedDimensionValueList,
+  _PagedDimensionValueList,
+  _PagedTestRun,
+  _PagedTimeSeriesElement,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -980,7 +980,7 @@ export async function _listMetricDimensionValuesDeserialize(
   result:
     | LoadTestRunListMetricDimensionValues200Response
     | LoadTestRunListMetricDimensionValuesDefaultResponse,
-): Promise<PagedDimensionValueList> {
+): Promise<_PagedDimensionValueList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -1149,7 +1149,7 @@ export async function _listMetricsDeserialize(
   result:
     | LoadTestRunListMetrics200Response
     | LoadTestRunListMetricsDefaultResponse,
-): Promise<PagedTimeSeriesElement> {
+): Promise<_PagedTimeSeriesElement> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -1216,7 +1216,7 @@ export async function _listTestRunsDeserialize(
   result:
     | LoadTestRunListTestRuns200Response
     | LoadTestRunListTestRunsDefaultResponse,
-): Promise<PagedTestRun> {
+): Promise<_PagedTestRun> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

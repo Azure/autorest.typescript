@@ -25,7 +25,6 @@ export {
   MultivariateDiagnosticsInfo,
   MultivariateModelState,
   MultivariateAnomalyDetectionModel,
-  MultivariateModelList,
   MultivariateMultivariateLastDetectionOptions,
   MultivariateVariableValues,
   MultivariateMultivariateLastDetectionResult,

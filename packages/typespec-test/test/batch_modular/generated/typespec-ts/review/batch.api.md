@@ -13,24 +13,12 @@ import { TokenCredential } from '@azure/core-auth';
 export type AccessScope = "job";
 
 // @public
-export interface AccountListSupportedImagesResult {
-    "odata.nextLink"?: string;
-    value?: ImageInformation[];
-}
-
-// @public
 export interface AffinityInformation {
     affinityId: string;
 }
 
 // @public
 export type AllocationState = "steady" | "resizing" | "stopping";
-
-// @public
-export interface ApplicationListResult {
-    "odata.nextLink"?: string;
-    value?: BatchApplication[];
-}
 
 // @public
 export interface ApplicationPackageReference {
@@ -272,18 +260,6 @@ export interface BatchJobDisableOptions {
 }
 
 // @public
-export interface BatchJobListPreparationAndReleaseTaskStatusResult {
-    "odata.nextLink"?: string;
-    value?: JobPreparationAndReleaseTaskExecutionInformation[];
-}
-
-// @public
-export interface BatchJobListResult {
-    "odata.nextLink"?: string;
-    value?: BatchJob[];
-}
-
-// @public
 export interface BatchJobSchedule {
     readonly creationTime?: Date;
     readonly displayName?: string;
@@ -309,12 +285,6 @@ export interface BatchJobScheduleCreateOptions {
     jobSpecification: JobSpecification;
     metadata?: MetadataItem[];
     schedule: Schedule;
-}
-
-// @public
-export interface BatchJobScheduleListResult {
-    "odata.nextLink"?: string;
-    value?: BatchJobSchedule[];
 }
 
 // @public
@@ -398,12 +368,6 @@ export interface BatchNodeInformation {
     poolId?: string;
     taskRootDirectory?: string;
     taskRootDirectoryUrl?: string;
-}
-
-// @public
-export interface BatchNodeListResult {
-    "odata.nextLink"?: string;
-    value?: BatchNode[];
 }
 
 // @public
@@ -524,12 +488,6 @@ export interface BatchPoolIdentity {
 }
 
 // @public
-export interface BatchPoolListResult {
-    "odata.nextLink"?: string;
-    value?: BatchPool[];
-}
-
-// @public
 export interface BatchPoolReplaceOptions {
     applicationPackageReferences: ApplicationPackageReference[];
     certificateReferences: CertificateReference[];
@@ -612,12 +570,6 @@ export interface BatchTaskCreateOptions {
 }
 
 // @public
-export interface BatchTaskListResult {
-    "odata.nextLink"?: string;
-    value?: BatchTask[];
-}
-
-// @public
 export interface BatchTaskListSubtasksResult {
     value?: SubtaskInformation[];
 }
@@ -633,12 +585,6 @@ export interface CancelCertificateDeletionOptionalParams extends OperationOption
 
 // @public
 export type CertificateFormat = "pfx" | "cer";
-
-// @public
-export interface CertificateListResult {
-    "odata.nextLink"?: string;
-    value?: BatchCertificate[];
-}
 
 // @public
 export interface CertificateReference {
@@ -1619,12 +1565,6 @@ export interface NodeFile {
 }
 
 // @public
-export interface NodeFileListResult {
-    "odata.nextLink"?: string;
-    value?: NodeFile[];
-}
-
-// @public
 export interface NodePlacementConfiguration {
     policy?: NodePlacementPolicyType;
 }
@@ -1654,12 +1594,6 @@ export interface NodeVMExtension {
     instanceView?: VMExtensionInstanceView;
     provisioningState?: string;
     vmExtension?: VMExtension;
-}
-
-// @public
-export interface NodeVMExtensionList {
-    "odata.nextLink"?: string;
-    value?: NodeVMExtension[];
 }
 
 // @public
@@ -1744,22 +1678,10 @@ export interface PoolInformation {
 export type PoolLifetimeOption = "jobschedule" | "job";
 
 // @public
-export interface PoolListUsageMetricsResult {
-    "odata.nextLink"?: string;
-    value?: PoolUsageMetrics[];
-}
-
-// @public
 export interface PoolNodeCounts {
     dedicated?: NodeCounts;
     lowPriority?: NodeCounts;
     poolId: string;
-}
-
-// @public
-export interface PoolNodeCountsListResult {
-    "odata.nextLink"?: string;
-    value?: PoolNodeCounts[];
 }
 
 // @public

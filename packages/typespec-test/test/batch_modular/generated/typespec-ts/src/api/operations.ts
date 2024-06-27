@@ -11,13 +11,9 @@ import {
   BatchNodeRemoteLoginSettingsResult,
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
-  BatchNodeListResult,
   NodeVMExtension,
-  NodeVMExtensionList,
-  NodeFileListResult,
   NodeFile,
   BatchTaskCreateOptions,
-  BatchTaskListResult,
   BatchTask,
   BatchTaskCollection,
   TaskAddCollectionResult,
@@ -25,26 +21,18 @@ import {
   BatchJobSchedule,
   BatchJobScheduleUpdateOptions,
   BatchJobScheduleCreateOptions,
-  BatchJobScheduleListResult,
   BatchCertificate,
-  CertificateListResult,
   BatchJob,
   BatchJobUpdateOptions,
   BatchJobDisableOptions,
   BatchJobTerminateOptions,
   BatchJobCreateOptions,
-  BatchJobListResult,
-  BatchJobListPreparationAndReleaseTaskStatusResult,
   JobPreparationAndReleaseTaskExecutionInformation,
   TaskCountsResult,
-  AccountListSupportedImagesResult,
   ImageInformation,
-  PoolNodeCountsListResult,
   PoolNodeCounts,
-  PoolListUsageMetricsResult,
   PoolUsageMetrics,
   BatchPoolCreateOptions,
-  BatchPoolListResult,
   BatchPool,
   AutoScaleRun,
   BatchPoolUpdateOptions,
@@ -53,8 +41,20 @@ import {
   BatchPoolResizeOptions,
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
-  ApplicationListResult,
   BatchApplication,
+  _AccountListSupportedImagesResult,
+  _ApplicationListResult,
+  _BatchJobListPreparationAndReleaseTaskStatusResult,
+  _BatchJobListResult,
+  _BatchJobScheduleListResult,
+  _BatchNodeListResult,
+  _BatchPoolListResult,
+  _BatchTaskListResult,
+  _CertificateListResult,
+  _NodeFileListResult,
+  _NodeVMExtensionList,
+  _PoolListUsageMetricsResult,
+  _PoolNodeCountsListResult,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -321,7 +321,7 @@ export function _listApplicationsSend(
 
 export async function _listApplicationsDeserialize(
   result: ListApplications200Response | ListApplicationsDefaultResponse,
-): Promise<ApplicationListResult> {
+): Promise<_ApplicationListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -427,7 +427,7 @@ export function _listPoolUsageMetricsSend(
 
 export async function _listPoolUsageMetricsDeserialize(
   result: ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse,
-): Promise<PoolListUsageMetricsResult> {
+): Promise<_PoolListUsageMetricsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -899,7 +899,7 @@ export function _listPoolsSend(
 
 export async function _listPoolsDeserialize(
   result: ListPools200Response | ListPoolsDefaultResponse,
-): Promise<BatchPoolListResult> {
+): Promise<_BatchPoolListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -2789,7 +2789,7 @@ export function _listSupportedImagesSend(
 
 export async function _listSupportedImagesDeserialize(
   result: ListSupportedImages200Response | ListSupportedImagesDefaultResponse,
-): Promise<AccountListSupportedImagesResult> {
+): Promise<_AccountListSupportedImagesResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -2854,7 +2854,7 @@ export function _listPoolNodeCountsSend(
 
 export async function _listPoolNodeCountsDeserialize(
   result: ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse,
-): Promise<PoolNodeCountsListResult> {
+): Promise<_PoolNodeCountsListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -6811,7 +6811,7 @@ export function _listJobsSend(
 
 export async function _listJobsDeserialize(
   result: ListJobs200Response | ListJobsDefaultResponse,
-): Promise<BatchJobListResult> {
+): Promise<_BatchJobListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -7993,7 +7993,7 @@ export function _listJobsFromScheduleSend(
 
 export async function _listJobsFromScheduleDeserialize(
   result: ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse,
-): Promise<BatchJobListResult> {
+): Promise<_BatchJobListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -9179,7 +9179,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
   result:
     | ListJobPreparationAndReleaseTaskStatus200Response
     | ListJobPreparationAndReleaseTaskStatusDefaultResponse,
-): Promise<BatchJobListPreparationAndReleaseTaskStatusResult> {
+): Promise<_BatchJobListPreparationAndReleaseTaskStatusResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -9481,7 +9481,7 @@ export function _listCertificatesSend(
 
 export async function _listCertificatesDeserialize(
   result: ListCertificates200Response | ListCertificatesDefaultResponse,
-): Promise<CertificateListResult> {
+): Promise<_CertificateListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -15035,7 +15035,7 @@ export function _listJobSchedulesSend(
 
 export async function _listJobSchedulesDeserialize(
   result: ListJobSchedules200Response | ListJobSchedulesDefaultResponse,
-): Promise<BatchJobScheduleListResult> {
+): Promise<_BatchJobScheduleListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -16619,7 +16619,7 @@ export function _listTasksSend(
 
 export async function _listTasksDeserialize(
   result: ListTasks200Response | ListTasksDefaultResponse,
-): Promise<BatchTaskListResult> {
+): Promise<_BatchTaskListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -18145,7 +18145,7 @@ export function _listTaskFilesSend(
 
 export async function _listTaskFilesDeserialize(
   result: ListTaskFiles200Response | ListTaskFilesDefaultResponse,
-): Promise<NodeFileListResult> {
+): Promise<_NodeFileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -19092,7 +19092,7 @@ export function _listNodesSend(
 
 export async function _listNodesDeserialize(
   result: ListNodes200Response | ListNodesDefaultResponse,
-): Promise<BatchNodeListResult> {
+): Promise<_BatchNodeListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -19516,7 +19516,7 @@ export function _listNodeExtensionsSend(
 
 export async function _listNodeExtensionsDeserialize(
   result: ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse,
-): Promise<NodeVMExtensionList> {
+): Promise<_NodeVMExtensionList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -19789,7 +19789,7 @@ export function _listNodeFilesSend(
 
 export async function _listNodeFilesDeserialize(
   result: ListNodeFiles200Response | ListNodeFilesDefaultResponse,
-): Promise<NodeFileListResult> {
+): Promise<_NodeFileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

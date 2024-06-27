@@ -11,8 +11,8 @@ import {
   AnalyzeImageResult,
   AnalyzeTextOptions,
   AnalyzeTextResult,
-  PagedTextBlocklist,
-  PagedTextBlockItem,
+  _PagedTextBlockItem,
+  _PagedTextBlocklist,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -299,7 +299,7 @@ export function _listTextBlocklistsSend(
 
 export async function _listTextBlocklistsDeserialize(
   result: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse,
-): Promise<PagedTextBlocklist> {
+): Promise<_PagedTextBlocklist> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -499,7 +499,7 @@ export async function _listTextBlocklistItemsDeserialize(
   result:
     | ListTextBlocklistItems200Response
     | ListTextBlocklistItemsDefaultResponse,
-): Promise<PagedTextBlockItem> {
+): Promise<_PagedTextBlockItem> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

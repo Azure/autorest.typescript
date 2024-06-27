@@ -254,7 +254,7 @@ export interface MultivariateAnomalyDetectionModel {
 }
 
 /** Response of listing models. */
-export interface MultivariateModelList {
+export interface _MultivariateModelList {
   /** List of models. */
   models: MultivariateAnomalyDetectionModel[];
   /** Number of trained multivariate models. */
