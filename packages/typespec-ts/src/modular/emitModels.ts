@@ -244,8 +244,8 @@ export function buildModels(
 
   const projectRootFromModels = codeModel.clients.length > 1 ? "../.." : "../";
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-    rlcIndex: path.join(projectRootFromModels, "rest", "index.js"),
-    serializerHelpers: path.join(
+    rlcIndex: path.posix.join(projectRootFromModels, "rest", "index.js"),
+    serializerHelpers: path.posix.join(
       projectRootFromModels,
       "helpers",
       "serializerHelpers.js"
