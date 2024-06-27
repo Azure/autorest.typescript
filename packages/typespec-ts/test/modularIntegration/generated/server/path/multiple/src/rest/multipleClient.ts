@@ -25,7 +25,7 @@ export default function createClient(
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/server/path/multiple/${apiVersion}`;
-  const userAgentInfo = `azsdk-js-multipleparam-modular/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-multipleparam-modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

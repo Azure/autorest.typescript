@@ -27,7 +27,7 @@ export default function createClient(
   }: EventGridContextOptions = {},
 ): EventGridContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  const userAgentInfo = `azsdk-js-eventgrid-modular/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-eventgrid-modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

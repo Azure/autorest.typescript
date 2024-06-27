@@ -17,7 +17,7 @@ export default function createClient(
 ): PageableContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-payload-pageable-modular/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-payload-pageable-modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

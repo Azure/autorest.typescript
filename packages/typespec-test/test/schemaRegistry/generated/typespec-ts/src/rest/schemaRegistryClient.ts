@@ -25,7 +25,7 @@ export default function createClient(
 ): SchemaRegistryContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;
-  const userAgentInfo = `azsdk-js-schema-registry-modular/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-schema-registry-modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

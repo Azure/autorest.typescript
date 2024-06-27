@@ -24,7 +24,7 @@ export default function createClient(
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/client/structure/${clientParam}`;
-  const userAgentInfo = `azsdk-js-client-structure-renamed-modular/1.0.0`;
+  const userAgentInfo = `azsdk-js-client-structure-renamed-modular-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

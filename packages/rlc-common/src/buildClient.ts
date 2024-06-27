@@ -347,9 +347,7 @@ export function getClientFactoryBody(
   }
 
   if (model.options.isModularLibrary) {
-    if (!clientPackageName.endsWith("-modular")) {
-      clientPackageName += "-modular";
-    }
+    clientPackageName += "-modular-rest";
   } else if (!clientPackageName.endsWith("-rest")) {
     clientPackageName += "-rest";
   }

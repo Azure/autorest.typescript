@@ -17,7 +17,7 @@ export default function createClient(
 ): NotDiscriminatedContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-model-inheritance-not-discriminated-modular/1.0.0`;
+  const userAgentInfo = `azsdk-js-model-inheritance-not-discriminated-modular-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
