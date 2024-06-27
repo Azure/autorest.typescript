@@ -696,7 +696,7 @@ describe("operations", () => {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 
         }
 
-        export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<_Bar> {
+        export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
             if(result.status !== "200"){
             throw createRestError(result);
             }
@@ -706,7 +706,7 @@ describe("operations", () => {
             }
         }
 
-        export async function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): Promise<_Bar> {
+        export async function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): Promise<Bar> {
             const result = await _testSend(context, options);
             return _testDeserialize(result);
         }`,
