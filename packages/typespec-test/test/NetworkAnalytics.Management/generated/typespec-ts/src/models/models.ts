@@ -1,6 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import {
+  TrackedResource as TrackedResourceRest,
+  DataProduct as DataProductRest,
+  DataProductProperties as DataProductPropertiesRest,
+  EncryptionKeyDetails as EncryptionKeyDetailsRest,
+  DataProductNetworkAcls as DataProductNetworkAclsRest,
+  VirtualNetworkRule as VirtualNetworkRuleRest,
+  IPRules as IPRulesRest,
+  ManagedResourceGroupConfiguration as ManagedResourceGroupConfigurationRest,
+  ManagedServiceIdentity as ManagedServiceIdentityRest,
+  DataProductUpdate as DataProductUpdateRest,
+  DataProductUpdateProperties as DataProductUpdatePropertiesRest,
+  AccountSas as AccountSasRest,
+  KeyVaultInfo as KeyVaultInfoRest,
+  RoleAssignmentCommonProperties as RoleAssignmentCommonPropertiesRest,
+  RoleAssignmentDetail as RoleAssignmentDetailRest,
+  DataType as DataTypeRest,
+  DataTypeProperties as DataTypePropertiesRest,
+  DataTypeUpdate as DataTypeUpdateRest,
+  DataTypeUpdateProperties as DataTypeUpdatePropertiesRest,
+  ContainerSaS as ContainerSaSRest,
+} from "../rest/index.js";
+
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -11,6 +35,10 @@ export interface Resource {
   readonly type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   readonly systemData?: SystemData;
+}
+
+export function resourceSerializer(item: Resource) {
+  return item as any;
 }
 
 /** Metadata pertaining to creation and last modification of the resource. */
@@ -47,12 +75,34 @@ export interface TrackedResource extends Resource {
   location: string;
 }
 
+export function trackedResourceSerializer(
+  item: TrackedResource,
+): TrackedResourceRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+  };
+}
+
 /** The data product resource. */
 export interface DataProduct extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductProperties;
   /** The managed service identities assigned to this resource. */
   identity?: ManagedServiceIdentity;
+}
+
+export function dataProductSerializer(item: DataProduct): DataProductRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+    properties: !item.properties
+      ? item.properties
+      : dataProductPropertiesSerializer(item.properties),
+    identity: !item.identity
+      ? item.identity
+      : managedServiceIdentitySerializer(item.identity),
+  };
 }
 
 /** The data product properties. */
@@ -99,6 +149,36 @@ export interface DataProductProperties {
   readonly keyVaultUrl?: string;
 }
 
+export function dataProductPropertiesSerializer(
+  item: DataProductProperties,
+): DataProductPropertiesRest {
+  return {
+    publisher: item["publisher"],
+    product: item["product"],
+    majorVersion: item["majorVersion"],
+    owners: item["owners"],
+    redundancy: item["redundancy"],
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: item["privateLinksEnabled"],
+    publicNetworkAccess: item["publicNetworkAccess"],
+    customerManagedKeyEncryptionEnabled:
+      item["customerManagedKeyEncryptionEnabled"],
+    customerEncryptionKey: !item.customerEncryptionKey
+      ? item.customerEncryptionKey
+      : encryptionKeyDetailsSerializer(item.customerEncryptionKey),
+    networkacls: !item.networkacls
+      ? item.networkacls
+      : dataProductNetworkAclsSerializer(item.networkacls),
+    managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
+      ? item.managedResourceGroupConfiguration
+      : managedResourceGroupConfigurationSerializer(
+          item.managedResourceGroupConfiguration,
+        ),
+    currentMinorVersion: item["currentMinorVersion"],
+  };
+}
+
 /** The status of the current operation. */
 export type ProvisioningState = string;
 
@@ -130,6 +210,16 @@ export interface EncryptionKeyDetails {
   keyVersion: string;
 }
 
+export function encryptionKeyDetailsSerializer(
+  item: EncryptionKeyDetails,
+): EncryptionKeyDetailsRest {
+  return {
+    keyVaultUri: item["keyVaultUri"],
+    keyName: item["keyName"],
+    keyVersion: item["keyVersion"],
+  };
+}
+
 /** Data Product Network rule set */
 export interface DataProductNetworkAcls {
   /** Virtual Network Rule */
@@ -142,6 +232,19 @@ export interface DataProductNetworkAcls {
   defaultAction: DefaultAction;
 }
 
+export function dataProductNetworkAclsSerializer(
+  item: DataProductNetworkAcls,
+): DataProductNetworkAclsRest {
+  return {
+    virtualNetworkRule: item["virtualNetworkRule"].map(
+      virtualNetworkRuleSerializer,
+    ),
+    ipRules: item["ipRules"].map(iPRulesSerializer),
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
+    defaultAction: item["defaultAction"],
+  };
+}
+
 /** Virtual Network Rule */
 export interface VirtualNetworkRule {
   /** Resource ID of a subnet */
@@ -152,12 +255,29 @@ export interface VirtualNetworkRule {
   state?: string;
 }
 
+export function virtualNetworkRuleSerializer(
+  item: VirtualNetworkRule,
+): VirtualNetworkRuleRest {
+  return {
+    id: item["id"],
+    action: item["action"],
+    state: item["state"],
+  };
+}
+
 /** IP rule with specific IP or IP range in CIDR format. */
 export interface IPRules {
   /** IP Rules Value */
   value?: string;
   /** The action of virtual network rule. */
   action: string;
+}
+
+export function iPRulesSerializer(item: IPRules): IPRulesRest {
+  return {
+    value: item["value"],
+    action: item["action"],
+  };
 }
 
 /** Specifies the default action of allow or deny when no other rules match. */
@@ -174,6 +294,15 @@ export interface ManagedResourceGroupConfiguration {
   name: string;
   /** Managed Resource Group location */
   location: string;
+}
+
+export function managedResourceGroupConfigurationSerializer(
+  item: ManagedResourceGroupConfiguration,
+): ManagedResourceGroupConfigurationRest {
+  return {
+    name: item["name"],
+    location: item["location"],
+  };
 }
 
 /** Details of Consumption Properties */
@@ -204,6 +333,20 @@ export interface ManagedServiceIdentity {
   userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
+export function managedServiceIdentitySerializer(
+  item: ManagedServiceIdentity,
+): ManagedServiceIdentityRest {
+  return {
+    type: item["type"],
+    userAssignedIdentities: !item.userAssignedIdentities
+      ? item.userAssignedIdentities
+      : (serializeRecord(
+          item.userAssignedIdentities as any,
+          userAssignedIdentitySerializer,
+        ) as any),
+  };
+}
+
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType = string;
 
@@ -220,6 +363,10 @@ export interface UserAssignedIdentity {
   readonly principalId?: string;
   /** The client ID of the assigned identity. */
   readonly clientId?: string;
+}
+
+export function userAssignedIdentitySerializer(item: UserAssignedIdentity) {
+  return item as any;
 }
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
@@ -259,6 +406,20 @@ export interface DataProductUpdate {
   properties?: DataProductUpdateProperties;
 }
 
+export function dataProductUpdateSerializer(
+  item: DataProductUpdate,
+): DataProductUpdateRest {
+  return {
+    identity: !item.identity
+      ? item.identity
+      : managedServiceIdentitySerializer(item.identity),
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    properties: !item.properties
+      ? item.properties
+      : dataProductUpdatePropertiesSerializer(item.properties),
+  };
+}
+
 /** The updatable properties of the DataProduct. */
 export interface DataProductUpdateProperties {
   /** List of name or email associated with data product resource deployment. */
@@ -273,6 +434,18 @@ export interface DataProductUpdateProperties {
   currentMinorVersion?: string;
 }
 
+export function dataProductUpdatePropertiesSerializer(
+  item: DataProductUpdateProperties,
+): DataProductUpdatePropertiesRest {
+  return {
+    owners: item["owners"],
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: item["privateLinksEnabled"],
+    currentMinorVersion: item["currentMinorVersion"],
+  };
+}
+
 /** The details for storage account sas creation. */
 export interface AccountSas {
   /** Sas token start timestamp. */
@@ -281,6 +454,14 @@ export interface AccountSas {
   expiryTimeStamp: Date;
   /** Ip Address */
   ipAddress: string;
+}
+
+export function accountSasSerializer(item: AccountSas): AccountSasRest {
+  return {
+    startTimeStamp: item["startTimeStamp"].toISOString(),
+    expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
+    ipAddress: item["ipAddress"],
+  };
 }
 
 /** Details of storage account sas token . */
@@ -293,6 +474,12 @@ export interface AccountSasToken {
 export interface KeyVaultInfo {
   /** key vault url. */
   keyVaultUrl: string;
+}
+
+export function keyVaultInfoSerializer(item: KeyVaultInfo): KeyVaultInfoRest {
+  return {
+    keyVaultUrl: item["keyVaultUrl"],
+  };
 }
 
 /** The details for role assignment common properties. */
@@ -309,6 +496,19 @@ export interface RoleAssignmentCommonProperties {
   principalType: string;
   /** Data Product role to be assigned to a user. */
   role: DataProductUserRole;
+}
+
+export function roleAssignmentCommonPropertiesSerializer(
+  item: RoleAssignmentCommonProperties,
+): RoleAssignmentCommonPropertiesRest {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"],
+    principalType: item["principalType"],
+    role: item["role"],
+  };
 }
 
 /** The data type state */
@@ -337,6 +537,20 @@ export interface RoleAssignmentDetail {
   roleAssignmentId: string;
 }
 
+export function roleAssignmentDetailSerializer(
+  item: RoleAssignmentDetail,
+): RoleAssignmentDetailRest {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"],
+    principalType: item["principalType"],
+    role: item["role"],
+    roleAssignmentId: item["roleAssignmentId"],
+  };
+}
+
 /** list role assignments. */
 export interface ListRoleAssignments {
   /** Count of role assignments. */
@@ -356,10 +570,22 @@ export interface _DataProductListResult {
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
+export function proxyResourceSerializer(item: ProxyResource) {
+  return item as any;
+}
+
 /** The data type resource. */
 export interface DataType extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: DataTypeProperties;
+}
+
+export function dataTypeSerializer(item: DataType): DataTypeRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : dataTypePropertiesSerializer(item.properties),
+  };
 }
 
 /** The data type properties */
@@ -380,6 +606,17 @@ export interface DataTypeProperties {
   readonly visualizationUrl?: string;
 }
 
+export function dataTypePropertiesSerializer(
+  item: DataTypeProperties,
+): DataTypePropertiesRest {
+  return {
+    state: item["state"],
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+  };
+}
+
 /** The data type state */
 export type DataTypeState = string;
 
@@ -391,6 +628,16 @@ export enum KnownDataTypeState {
 /** The type used for update operations of the DataType. */
 export interface DataTypeUpdate {
   properties?: DataTypeUpdateProperties;
+}
+
+export function dataTypeUpdateSerializer(
+  item: DataTypeUpdate,
+): DataTypeUpdateRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : dataTypeUpdatePropertiesSerializer(item.properties),
+  };
 }
 
 /** The updatable properties of the DataType. */
@@ -405,6 +652,17 @@ export interface DataTypeUpdateProperties {
   databaseRetention?: number;
 }
 
+export function dataTypeUpdatePropertiesSerializer(
+  item: DataTypeUpdateProperties,
+): DataTypeUpdatePropertiesRest {
+  return {
+    state: item["state"],
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+  };
+}
+
 /** The details for container sas creation. */
 export interface ContainerSaS {
   /** Sas token start timestamp. */
@@ -413,6 +671,14 @@ export interface ContainerSaS {
   expiryTimeStamp: Date;
   /** Ip Address */
   ipAddress: string;
+}
+
+export function containerSaSSerializer(item: ContainerSaS): ContainerSaSRest {
+  return {
+    startTimeStamp: item["startTimeStamp"].toISOString(),
+    expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
+    ipAddress: item["ipAddress"],
+  };
 }
 
 /** Details of storage container account sas token . */

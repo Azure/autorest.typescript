@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ModelProperty } from "../../models/models.js";
+import { innerModelSerializer, ModelProperty } from "../../models/models.js";
 import {
   ModelGet200Response,
   ModelPut204Response,
@@ -56,7 +56,7 @@ export function _modelPutSend(
     .path("/type/property/value-types/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { property: { property: body.property["property"] } },
+      body: { property: innerModelSerializer(body.property) },
     });
 }
 

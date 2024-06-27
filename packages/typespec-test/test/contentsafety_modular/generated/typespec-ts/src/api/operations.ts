@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 import {
+  textBlockItemInfoSerializer,
+  imageDataSerializer,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
@@ -46,7 +48,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
@@ -122,13 +123,7 @@ export function _analyzeImageSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        image: {
-          content:
-            body.image["content"] !== undefined
-              ? uint8ArrayToString(body.image["content"], "base64")
-              : undefined,
-          blobUrl: body.image["blobUrl"],
-        },
+        image: imageDataSerializer(body.image),
         categories: body["categories"],
         outputType: body["outputType"],
       },
@@ -341,12 +336,7 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        blockItems: body["blockItems"].map((p) => ({
-          description: p["description"],
-          text: p["text"],
-        })),
-      },
+      body: { blockItems: body["blockItems"].map(textBlockItemInfoSerializer) },
     });
 }
 

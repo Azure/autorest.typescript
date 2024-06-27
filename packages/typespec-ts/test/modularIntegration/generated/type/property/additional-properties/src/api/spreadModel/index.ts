@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SpreadModelRecord } from "../../models/models.js";
+import {
+  modelForRecordSerializer,
+  SpreadModelRecord,
+} from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadModelGet200Response,
@@ -12,6 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadModelGetOptionalParams,
   SpreadModelPutOptionalParams,
@@ -33,7 +37,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Get call */
@@ -52,7 +56,10 @@ export function _putSend(
 ): StreamableMethod<SpreadModelPut204Response> {
   return context
     .path("/type/property/additionalProperties/spreadRecordModel")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: serializeRecord(body as any, modelForRecordSerializer) as any,
+    });
 }
 
 export async function _putDeserialize(
