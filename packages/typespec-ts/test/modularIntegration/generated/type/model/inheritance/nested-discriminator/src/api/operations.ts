@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { fishUnionSerializer, FishUnion } from "../models/models.js";
+import { FishUnion } from "../models/models.js";
 import {
   GetMissingDiscriminator200Response,
   GetModel200Response,
@@ -59,10 +59,7 @@ export function _putModelSend(
 ): StreamableMethod<PutModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/model")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: fishUnionSerializer(input),
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putModelDeserialize(
@@ -118,10 +115,7 @@ export function _putRecursiveModelSend(
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: fishUnionSerializer(input),
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putRecursiveModelDeserialize(

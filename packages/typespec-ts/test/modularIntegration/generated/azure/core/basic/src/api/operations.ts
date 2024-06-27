@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  userOrderSerializer,
   User,
   ListItemInputBody,
   FirstItem,
@@ -83,7 +82,10 @@ export function _createOrUpdateSend(
         orders:
           resource["orders"] === undefined
             ? resource["orders"]
-            : resource["orders"].map(userOrderSerializer),
+            : resource["orders"].map((p) => ({
+                userId: p["userId"],
+                detail: p["detail"],
+              })),
       },
     });
 }
@@ -143,7 +145,10 @@ export function _createOrReplaceSend(
         orders:
           resource["orders"] === undefined
             ? resource["orders"]
-            : resource["orders"].map(userOrderSerializer),
+            : resource["orders"].map((p) => ({
+                userId: p["userId"],
+                detail: p["detail"],
+              })),
       },
     });
 }

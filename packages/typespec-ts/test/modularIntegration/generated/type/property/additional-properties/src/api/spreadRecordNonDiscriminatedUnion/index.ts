@@ -12,7 +12,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadRecordNonDiscriminatedUnionGetOptionalParams,
   SpreadRecordNonDiscriminatedUnionPutOptionalParams,
@@ -38,7 +37,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Get call */
@@ -63,10 +62,7 @@ export function _putSend(
     .path(
       "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion",
     )
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: serializeRecord(body as any) as any,
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

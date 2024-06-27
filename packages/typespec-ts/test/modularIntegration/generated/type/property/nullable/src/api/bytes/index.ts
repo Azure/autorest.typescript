@@ -103,10 +103,10 @@ export function _patchNonNullSend(
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
         requiredProperty: body["requiredProperty"],
-        nullableProperty:
-          body["nullableProperty"] === null
-            ? null
-            : uint8ArrayToString(body["nullableProperty"], "base64"),
+        nullableProperty: uint8ArrayToString(
+          body["nullableProperty"],
+          "base64",
+        ),
       },
     });
 }
@@ -144,10 +144,10 @@ export function _patchNullSend(
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
         requiredProperty: body["requiredProperty"],
-        nullableProperty:
-          body["nullableProperty"] === null
-            ? null
-            : uint8ArrayToString(body["nullableProperty"], "base64"),
+        nullableProperty: uint8ArrayToString(
+          body["nullableProperty"],
+          "base64",
+        ),
       },
     });
 }

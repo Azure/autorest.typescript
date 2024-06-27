@@ -35,7 +35,7 @@ export async function _getAvatarAsPngDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 export async function getAvatarAsPng(
@@ -65,7 +65,7 @@ export async function _getAvatarAsJpegDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 export async function getAvatarAsJpeg(

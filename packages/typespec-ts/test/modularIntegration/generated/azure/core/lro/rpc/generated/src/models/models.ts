@@ -1,20 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GenerationOptions as GenerationOptionsRest } from "../rest/index.js";
-
 /** Options for the generation. */
 export interface GenerationOptions {
   /** Prompt. */
   prompt: string;
-}
-
-export function generationOptionsSerializer(
-  item: GenerationOptions,
-): GenerationOptionsRest {
-  return {
-    prompt: item["prompt"],
-  };
 }
 
 /** Result of the generation. */

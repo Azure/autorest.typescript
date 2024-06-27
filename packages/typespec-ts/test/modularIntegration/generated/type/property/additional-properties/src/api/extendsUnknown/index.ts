@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  extendsUnknownAdditionalPropertiesSerializer,
-  ExtendsUnknownAdditionalProperties,
-} from "../../models/models.js";
+import { ExtendsUnknownAdditionalProperties } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   ExtendsUnknownGet200Response,
@@ -36,7 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Get call */
@@ -55,10 +52,7 @@ export function _putSend(
 ): StreamableMethod<ExtendsUnknownPut204Response> {
   return context
     .path("/type/property/additionalProperties/extendsRecordUnknown")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: extendsUnknownAdditionalPropertiesSerializer(body),
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

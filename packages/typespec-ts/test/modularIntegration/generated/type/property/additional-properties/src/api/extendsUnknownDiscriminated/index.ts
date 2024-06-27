@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  extendsUnknownAdditionalPropertiesDiscriminatedUnionSerializer,
-  ExtendsUnknownAdditionalPropertiesDiscriminatedUnion,
-} from "../../models/models.js";
+import { ExtendsUnknownAdditionalPropertiesDiscriminatedUnion } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   ExtendsUnknownDiscriminatedGet200Response,
@@ -38,7 +35,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Get call */
@@ -61,12 +58,7 @@ export function _putSend(
 ): StreamableMethod<ExtendsUnknownDiscriminatedPut204Response> {
   return context
     .path("/type/property/additionalProperties/extendsUnknownDiscriminated")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: extendsUnknownAdditionalPropertiesDiscriminatedUnionSerializer(
-        body,
-      ),
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

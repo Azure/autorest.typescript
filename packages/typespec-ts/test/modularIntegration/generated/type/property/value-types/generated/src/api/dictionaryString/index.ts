@@ -12,7 +12,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   DictionaryStringGetOptionalParams,
   DictionaryStringPutOptionalParams,
@@ -57,7 +56,7 @@ export function _dictionaryStringPutSend(
     .path("/type/property/value-types/dictionary/string")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { property: serializeRecord(body.property as any) as any },
+      body: { property: body["property"] },
     });
 }
 

@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  differentSpreadFloatDerivedSerializer,
-  DifferentSpreadFloatDerived,
-} from "../../models/models.js";
+import { DifferentSpreadFloatDerived } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   ExtendsDifferentSpreadFloatGet200Response,
@@ -38,7 +35,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Get call */
@@ -61,10 +58,7 @@ export function _putSend(
 ): StreamableMethod<ExtendsDifferentSpreadFloatPut204Response> {
   return context
     .path("/type/property/additionalProperties/extendsDifferentSpreadFloat")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: differentSpreadFloatDerivedSerializer(body),
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

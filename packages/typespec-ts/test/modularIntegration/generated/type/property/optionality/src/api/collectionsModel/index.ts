@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  stringPropertySerializer,
-  CollectionsModelProperty,
-} from "../../models/models.js";
+import { CollectionsModelProperty } from "../../models/models.js";
 import {
   CollectionsModelGetAll200Response,
   CollectionsModelGetDefault200Response,
@@ -103,7 +100,7 @@ export function _putAllSend(
         property:
           body["property"] === undefined
             ? body["property"]
-            : body["property"].map(stringPropertySerializer),
+            : body["property"].map((p) => ({ property: p["property"] })),
       },
     });
 }
@@ -141,7 +138,7 @@ export function _putDefaultSend(
         property:
           body["property"] === undefined
             ? body["property"]
-            : body["property"].map(stringPropertySerializer),
+            : body["property"].map((p) => ({ property: p["property"] })),
       },
     });
 }

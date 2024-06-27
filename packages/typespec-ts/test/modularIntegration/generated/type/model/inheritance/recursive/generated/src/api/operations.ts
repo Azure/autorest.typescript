@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { extensionSerializer, Extension } from "../models/models.js";
+import { Extension } from "../models/models.js";
 import {
   Get200Response,
   Put204Response,
@@ -27,7 +27,10 @@ export function _putSend(
         extension:
           input["extension"] === undefined
             ? input["extension"]
-            : input["extension"].map(extensionSerializer),
+            : input["extension"].map((p) => ({
+                extension: !p.extension ? undefined : p.extension,
+                level: p["level"],
+              })),
         level: input["level"],
       },
     });

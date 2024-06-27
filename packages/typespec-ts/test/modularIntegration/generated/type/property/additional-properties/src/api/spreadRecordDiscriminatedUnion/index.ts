@@ -12,7 +12,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadRecordDiscriminatedUnionGetOptionalParams,
   SpreadRecordDiscriminatedUnionPutOptionalParams,
@@ -36,7 +35,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Get call */
@@ -59,10 +58,7 @@ export function _putSend(
 ): StreamableMethod<SpreadRecordDiscriminatedUnionPut204Response> {
   return context
     .path("/type/property/additionalProperties/spreadRecordDiscriminatedUnion")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: serializeRecord(body as any) as any,
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

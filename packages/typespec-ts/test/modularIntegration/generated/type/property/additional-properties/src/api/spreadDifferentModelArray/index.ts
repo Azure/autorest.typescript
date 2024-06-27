@@ -12,7 +12,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadDifferentModelArrayGetOptionalParams,
   SpreadDifferentModelArrayPutOptionalParams,
@@ -34,7 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Get call */
@@ -53,10 +52,7 @@ export function _putSend(
 ): StreamableMethod<SpreadDifferentModelArrayPut204Response> {
   return context
     .path("/type/property/additionalProperties/spreadDifferentRecordModelArray")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: serializeRecord(body as any) as any,
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

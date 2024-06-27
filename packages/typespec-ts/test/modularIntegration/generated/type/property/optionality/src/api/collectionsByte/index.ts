@@ -105,7 +105,9 @@ export function _putAllSend(
         property:
           body["property"] === undefined
             ? body["property"]
-            : body["property"].map((p) => uint8ArrayToString(p, "base64")),
+            : body["property"].map((p) =>
+                p !== undefined ? uint8ArrayToString(p, "base64") : undefined,
+              ),
       },
     });
 }
@@ -143,7 +145,9 @@ export function _putDefaultSend(
         property:
           body["property"] === undefined
             ? body["property"]
-            : body["property"].map((p) => uint8ArrayToString(p, "base64")),
+            : body["property"].map((p) =>
+                p !== undefined ? uint8ArrayToString(p, "base64") : undefined,
+              ),
       },
     });
 }

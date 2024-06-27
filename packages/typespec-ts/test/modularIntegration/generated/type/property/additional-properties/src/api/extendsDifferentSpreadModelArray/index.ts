@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  differentSpreadModelArrayDerivedSerializer,
-  DifferentSpreadModelArrayDerived,
-} from "../../models/models.js";
+import { DifferentSpreadModelArrayDerived } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   ExtendsDifferentSpreadModelArrayGet200Response,
@@ -40,7 +37,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Get call */
@@ -65,10 +62,7 @@ export function _putSend(
     .path(
       "/type/property/additionalProperties/extendsDifferentSpreadModelArray",
     )
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: differentSpreadModelArrayDerivedSerializer(body),
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

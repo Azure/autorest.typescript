@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  innerModelSerializer,
-  CollectionsModelProperty,
-} from "../../models/models.js";
+import { CollectionsModelProperty } from "../../models/models.js";
 import {
   CollectionsModelGetNonNull200Response,
   CollectionsModelGetNull200Response,
@@ -112,7 +109,9 @@ export function _patchNonNullSend(
         nullableProperty:
           body["nullableProperty"] === null
             ? body["nullableProperty"]
-            : body["nullableProperty"].map(innerModelSerializer),
+            : body["nullableProperty"].map((p) => ({
+                property: p["property"],
+              })),
       },
     });
 }
@@ -153,7 +152,9 @@ export function _patchNullSend(
         nullableProperty:
           body["nullableProperty"] === null
             ? body["nullableProperty"]
-            : body["nullableProperty"].map(innerModelSerializer),
+            : body["nullableProperty"].map((p) => ({
+                property: p["property"],
+              })),
       },
     });
 }
