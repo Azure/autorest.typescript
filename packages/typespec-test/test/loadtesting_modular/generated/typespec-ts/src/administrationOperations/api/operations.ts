@@ -12,8 +12,8 @@ import {
   FileInfo,
   TestAppComponents,
   TestServerMetricConfig,
-  PagedFileInfo,
-  PagedTest,
+  _PagedFileInfo,
+  _PagedTest,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -758,7 +758,7 @@ export async function _listTestFilesDeserialize(
   result:
     | LoadTestAdministrationListTestFiles200Response
     | LoadTestAdministrationListTestFilesDefaultResponse,
-): Promise<PagedFileInfo> {
+): Promise<_PagedFileInfo> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -815,7 +815,7 @@ export async function _listTestsDeserialize(
   result:
     | LoadTestAdministrationListTests200Response
     | LoadTestAdministrationListTestsDefaultResponse,
-): Promise<PagedTest> {
+): Promise<_PagedTest> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

@@ -25,18 +25,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export interface PagedSchemaGroup {
-    nextLink?: string;
-    value: SchemaGroup[];
-}
-
-// @public
-export interface PagedVersion {
-    nextLink?: string;
-    value: SchemaVersion[];
-}
-
-// @public
 export interface PageSettings {
     continuationToken?: string;
 }

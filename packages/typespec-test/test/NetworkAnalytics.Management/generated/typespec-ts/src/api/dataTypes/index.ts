@@ -10,7 +10,7 @@ import {
   DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
-  DataTypeListResult,
+  _DataTypeListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -577,7 +577,7 @@ export async function _listByDataProductDeserialize(
   result:
     | DataTypesListByDataProduct200Response
     | DataTypesListByDataProductDefaultResponse,
-): Promise<DataTypeListResult> {
+): Promise<_DataTypeListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

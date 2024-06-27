@@ -208,7 +208,7 @@ export interface TextAnalyzeSeverityResult {
 export type Versions = "2023-10-01";
 
 /** Paged collection of TextBlocklist items */
-export interface PagedTextBlocklist {
+export interface _PagedTextBlocklist {
   /** The TextBlocklist items on this page */
   value: TextBlocklist[];
   /** The link to the next page of items */
@@ -216,7 +216,7 @@ export interface PagedTextBlocklist {
 }
 
 /** Paged collection of TextBlockItem items */
-export interface PagedTextBlockItem {
+export interface _PagedTextBlockItem {
   /** The TextBlockItem items on this page */
   value: TextBlockItem[];
   /** The link to the next page of items */

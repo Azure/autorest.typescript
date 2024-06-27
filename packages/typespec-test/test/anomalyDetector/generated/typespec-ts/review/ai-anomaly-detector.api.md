@@ -143,14 +143,6 @@ export interface MultivariateModelInfo {
 }
 
 // @public
-export interface MultivariateModelList {
-    currentCount: number;
-    maxCount: number;
-    models: MultivariateAnomalyDetectionModel[];
-    nextLink?: string;
-}
-
-// @public
 export interface MultivariateModelState {
     epochIds?: number[];
     latenciesInSeconds?: number[];

@@ -6,13 +6,9 @@ export {
   UserOrder,
   ListItemInputBody,
   ListItemInputExtensibleEnum,
-  UserListResults,
   FirstItem,
   SecondItem,
   Versions,
-  PagedUser,
-  PagedFirstItem,
-  PagedSecondItem,
 } from "./models.js";
 export {
   CreateOrUpdateOptionalParams,
