@@ -481,7 +481,7 @@ export class NetworkAnalyticsClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface NetworkAnalyticsClientOptions extends ClientOptions {
     apiVersion?: string;
 }
