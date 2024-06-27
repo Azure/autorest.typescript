@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BirdUnion, DinosaurUnion } from "../models/models.js";
+import {
+  birdUnionSerializer,
+  BirdUnion,
+  DinosaurUnion,
+} from "../models/models.js";
 import {
   GetLegacyModel200Response,
   GetMissingDiscriminator200Response,
@@ -61,7 +65,10 @@ export function _putModelSend(
 ): StreamableMethod<PutModel204Response> {
   return context
     .path("/type/model/inheritance/single-discriminator/model")
-    .put({ ...operationOptionsToRequestParameters(options), body: input });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: birdUnionSerializer(input),
+    });
 }
 
 export async function _putModelDeserialize(
@@ -117,7 +124,10 @@ export function _putRecursiveModelSend(
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
     .path("/type/model/inheritance/single-discriminator/recursivemodel")
-    .put({ ...operationOptionsToRequestParameters(options), body: input });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: birdUnionSerializer(input),
+    });
 }
 
 export async function _putRecursiveModelDeserialize(

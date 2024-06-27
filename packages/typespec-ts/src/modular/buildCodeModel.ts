@@ -92,6 +92,7 @@ import {
 } from "../utils/modelUtils.js";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import {
+  extractPagedMetadataNested,
   getOperationGroupName,
   getOperationName,
   isBinaryPayload,
@@ -113,6 +114,7 @@ import {
   Response,
   Type as HrlcType
 } from "./modularCodeModel.js";
+import { useContext } from "../contextManager.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -308,6 +310,8 @@ function getType(
   type: EmitterType,
   options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
 ): any {
+  const modularMetatree = useContext("modularMetaTree");
+
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
@@ -322,6 +326,7 @@ function getType(
     }
   }
   let newValue: any;
+
   if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
@@ -330,6 +335,12 @@ function getType(
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
+  }
+
+  if (isTypespecType(type)) {
+    newValue.tcgcType = getClientType(context, type);
+    newValue.__raw = type;
+    modularMetatree.set(type, newValue);
   }
 
   if (enableCache) {
@@ -352,7 +363,8 @@ function getType(
       }
     }
   } else {
-    const key = JSON.stringify(newValue);
+    const { __raw, tcgcType, ...keyableValue } = newValue;
+    const key = JSON.stringify(keyableValue);
     const value = simpleTypesMap.get(key);
     if (value) {
       newValue = value;
@@ -373,10 +385,12 @@ function getType(
       target: type
     });
   }
-  if (!["Credential", "CredentialTypeUnion"].includes(type.kind)) {
-    newValue.tcgcType = getClientType(context, type as Type);
-  }
+
   return newValue;
+}
+
+function isTypespecType(type: EmitterType): type is Type {
+  return type.kind !== "Credential" && type.kind !== "CredentialTypeUnion";
 }
 
 // To pass the yaml dump
@@ -1022,9 +1036,11 @@ function emitModel(
         .join("") + "List";
   }
 
+  const page = extractPagedMetadataNested(context.program, type);
+  const isPaging = page && page.itemsSegments && page.itemsSegments.length > 0;
   return {
     type: "model",
-    name: modelName,
+    name: `${isPaging ? "_" : ""}${modelName}`,
     description: getDocStr(context.program, type),
     parents: baseModel ? [baseModel] : [],
     discriminatedSubtypes: [],
@@ -1342,7 +1358,7 @@ function emitUnion(
   usage: UsageFlags
 ): Record<string, any> {
   let sdkType = getSdkUnion(context, type);
-  const isNull = sdkType.kind === "nullable";
+  const isNull = false;
   if (sdkType.kind === "nullable") {
     sdkType = sdkType.type;
   }

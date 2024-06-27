@@ -271,7 +271,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           return result.body;
+           return result.body as any;
          }
          export async function downloadFile(
            context: Client,
@@ -322,7 +322,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           return result.body;
+           return result.body as any;
          }
          export async function downloadFile(
            context: Client,

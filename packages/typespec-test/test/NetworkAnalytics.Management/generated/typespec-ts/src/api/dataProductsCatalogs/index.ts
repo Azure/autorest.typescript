@@ -3,7 +3,7 @@
 
 import {
   DataProductsCatalog,
-  DataProductsCatalogListResult,
+  _DataProductsCatalogListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -132,7 +132,7 @@ export async function _listByResourceGroupDeserialize(
   result:
     | DataProductsCatalogsListByResourceGroup200Response
     | DataProductsCatalogsListByResourceGroupDefaultResponse,
-): Promise<DataProductsCatalogListResult> {
+): Promise<_DataProductsCatalogListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -223,7 +223,7 @@ export async function _listBySubscriptionDeserialize(
   result:
     | DataProductsCatalogsListBySubscription200Response
     | DataProductsCatalogsListBySubscriptionDefaultResponse,
-): Promise<DataProductsCatalogListResult> {
+): Promise<_DataProductsCatalogListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

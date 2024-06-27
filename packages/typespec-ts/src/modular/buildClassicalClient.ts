@@ -149,7 +149,11 @@ function importAllModels(
     return;
   }
 
-  const exported = [...apiModels.getExportedDeclarations().keys()];
+  const exported = [...apiModels.getExportedDeclarations().keys()].filter(
+    (e) => {
+      return !e.startsWith("_");
+    }
+  );
 
   if (exported.length > 0) {
     clientFile.addImportDeclaration({

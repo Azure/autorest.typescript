@@ -14,6 +14,8 @@ import { assert } from "chai";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 import { createContextWithDefaultOptions } from "../../src/index.js";
+import { provideContext } from "../../src/contextManager.js";
+import { Project } from "ts-morph";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -58,7 +60,11 @@ import "@typespec/rest";
 import "@typespec/versioning";
 ${needTCGC ? 'import "@azure-tools/typespec-client-generator-core";' : ""} 
 ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
-${needArmTemplate ? 'import "@azure-tools/typespec-azure-resource-manager";' : ""}
+${
+  needArmTemplate
+    ? 'import "@azure-tools/typespec-azure-resource-manager";'
+    : ""
+}
 
 using TypeSpec.Rest; 
 using TypeSpec.Http;
@@ -66,7 +72,7 @@ using TypeSpec.Versioning;
 ${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 ${needNamespaces ? namespace : ""}
-${needArmTemplate ? 'using Azure.ResourceManager;' : ""}
+${needArmTemplate ? "using Azure.ResourceManager;" : ""}
 ${
   withVersionedApiVersion && needNamespaces
     ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}'
@@ -88,6 +94,15 @@ export function createDpgContextTestHelper(
   const context = createContextWithDefaultOptions({
     program
   } as EmitContext);
+  provideContext("emitContext", {
+    compilerContext: context as any,
+    tcgcContext: context
+  });
+
+  provideContext("rlcMetaTree", new Map());
+  provideContext("modularMetaTree", new Map());
+  provideContext("symbolMap", new Map());
+  provideContext("outputProject", new Project());
 
   return {
     ...context,
