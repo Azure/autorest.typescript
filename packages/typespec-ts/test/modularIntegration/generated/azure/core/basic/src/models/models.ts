@@ -4,7 +4,7 @@
 import {
   User as UserRest,
   UserOrder as UserOrderRest,
-  ListItemInputBody as ListItemInputBodyRest
+  ListItemInputBody as ListItemInputBodyRest,
 } from "../rest/index.js";
 
 /** Details about a user. */
@@ -25,7 +25,7 @@ export function userSerializer(item: User): UserRest {
     orders:
       item["orders"] === undefined
         ? item["orders"]
-        : item["orders"].map(userOrderSerializer)
+        : item["orders"].map(userOrderSerializer),
   };
 }
 
@@ -42,7 +42,7 @@ export interface UserOrder {
 export function userOrderSerializer(item: UserOrder): UserOrderRest {
   return {
     userId: item["userId"],
-    detail: item["detail"]
+    detail: item["detail"],
   };
 }
 
@@ -53,10 +53,10 @@ export interface ListItemInputBody {
 }
 
 export function listItemInputBodySerializer(
-  item: ListItemInputBody
+  item: ListItemInputBody,
 ): ListItemInputBodyRest {
   return {
-    inputName: item["inputName"]
+    inputName: item["inputName"],
   };
 }
 
