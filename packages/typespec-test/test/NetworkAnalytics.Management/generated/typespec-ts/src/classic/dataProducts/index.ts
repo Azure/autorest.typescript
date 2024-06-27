@@ -41,63 +41,80 @@ import {
   DataProductsListBySubscriptionOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {
+  /** Create data product resource. */
   create: (
     resourceGroupName: string,
     dataProductName: string,
     resource: DataProduct,
     options?: DataProductsCreateOptionalParams,
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
+  /** Retrieve data product resource. */
   get: (
     resourceGroupName: string,
     dataProductName: string,
     options?: DataProductsGetOptionalParams,
   ) => Promise<DataProduct>;
+  /** Update data product resource. */
   update: (
     resourceGroupName: string,
     dataProductName: string,
     properties: DataProductUpdate,
     options?: DataProductsUpdateOptionalParams,
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
+  /** Delete data product resource. */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
     resourceGroupName: string,
     dataProductName: string,
     options?: DataProductsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** Generate sas token for storage account. */
   generateStorageAccountSasToken: (
     resourceGroupName: string,
     dataProductName: string,
     body: AccountSas,
     options?: DataProductsGenerateStorageAccountSasTokenOptionalParams,
   ) => Promise<AccountSasToken>;
+  /** Initiate key rotation on Data Product. */
   rotateKey: (
     resourceGroupName: string,
     dataProductName: string,
     body: KeyVaultInfo,
     options?: DataProductsRotateKeyOptionalParams,
   ) => Promise<void>;
+  /** Assign role to the data product. */
   addUserRole: (
     resourceGroupName: string,
     dataProductName: string,
     body: RoleAssignmentCommonProperties,
     options?: DataProductsAddUserRoleOptionalParams,
   ) => Promise<RoleAssignmentDetail>;
+  /** Remove role from the data product. */
   removeUserRole: (
     resourceGroupName: string,
     dataProductName: string,
     body: RoleAssignmentDetail,
     options?: DataProductsRemoveUserRoleOptionalParams,
   ) => Promise<void>;
+  /** List user roles associated with the data product. */
   listRolesAssignments: (
     resourceGroupName: string,
     dataProductName: string,
     body: Record<string, any>,
     options?: DataProductsListRolesAssignmentsOptionalParams,
   ) => Promise<ListRoleAssignments>;
+  /** List data products by resource group. */
   listByResourceGroup: (
     resourceGroupName: string,
     options?: DataProductsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<DataProduct>;
+  /** List data products by subscription. */
   listBySubscription: (
     options?: DataProductsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<DataProduct>;

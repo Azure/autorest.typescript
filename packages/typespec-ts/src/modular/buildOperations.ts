@@ -362,7 +362,8 @@ export function buildOperationOptions(
           ...buildType(p.clientName, p.type, p.format)
         };
       })
-    )
+    ),
+    docs: [`Optional parameters.`]
   });
 }
 
