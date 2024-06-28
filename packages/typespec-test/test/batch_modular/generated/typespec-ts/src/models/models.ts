@@ -774,7 +774,7 @@ export interface UploadBatchServiceLogsResult {
 }
 
 /** The result of listing the Compute Nodes in a Pool. */
-export interface BatchNodeListResult {
+export interface _BatchNodeListResult {
   /** The list of Compute Nodes. */
   value?: BatchNode[];
   /** The URL to get the next set of results. */
@@ -859,7 +859,7 @@ export interface InstanceViewStatus {
 export type StatusLevelTypes = "Error" | "Info" | "Warning";
 
 /** The result of listing the Compute Node extensions in a Node. */
-export interface NodeVMExtensionList {
+export interface _NodeVMExtensionList {
   /** The list of Compute Node extensions. */
   value?: NodeVMExtension[];
   /** The URL to get the next set of results. */
@@ -870,7 +870,7 @@ export interface NodeVMExtensionList {
  * The result of listing the files on a Compute Node, or the files associated with
  * a Task on a Compute Node.
  */
-export interface NodeFileListResult {
+export interface _NodeFileListResult {
   /** The list of files. */
   value?: NodeFile[];
   /** The URL to get the next set of results. */
@@ -1336,7 +1336,7 @@ export function authenticationTokenSettingsSerializer(
 export type AccessScope = "job";
 
 /** The result of listing the Tasks in a Job. */
-export interface BatchTaskListResult {
+export interface _BatchTaskListResult {
   /** The list of Tasks. */
   value?: BatchTask[];
   /** The URL to get the next set of results. */
@@ -2869,7 +2869,7 @@ export function batchJobScheduleCreateOptionsSerializer(
 }
 
 /** The result of listing the Job Schedules in an Account. */
-export interface BatchJobScheduleListResult {
+export interface _BatchJobScheduleListResult {
   /** The list of Job Schedules. */
   value?: BatchJobSchedule[];
   /** The URL to get the next set of results. */
@@ -2936,7 +2936,7 @@ export interface DeleteCertificateError {
 export type CertificateFormat = "pfx" | "cer";
 
 /** The result of listing the Certificates in the Account. */
-export interface CertificateListResult {
+export interface _CertificateListResult {
   /** The list of Certificates. */
   value?: BatchCertificate[];
   /** The URL to get the next set of results. */
@@ -3230,7 +3230,7 @@ export function batchJobCreateOptionsSerializer(
 }
 
 /** The result of listing the Jobs in an Account. */
-export interface BatchJobListResult {
+export interface _BatchJobListResult {
   /** The list of Jobs. */
   value?: BatchJob[];
   /** The URL to get the next set of results. */
@@ -3241,7 +3241,7 @@ export interface BatchJobListResult {
  * The result of listing the status of the Job Preparation and Job Release Tasks
  * for a Job.
  */
-export interface BatchJobListPreparationAndReleaseTaskStatusResult {
+export interface _BatchJobListPreparationAndReleaseTaskStatusResult {
   /** A list of Job Preparation and Job Release Task execution information. */
   value?: JobPreparationAndReleaseTaskExecutionInformation[];
   /** The URL to get the next set of results. */
@@ -3359,7 +3359,7 @@ export interface TaskSlotCounts {
 }
 
 /** The result of listing the supported Virtual Machine Images. */
-export interface AccountListSupportedImagesResult {
+export interface _AccountListSupportedImagesResult {
   /** The list of supported Virtual Machine Images. */
   value?: ImageInformation[];
   /** The URL to get the next set of results. */
@@ -3391,7 +3391,7 @@ export type OSType = "linux" | "windows";
 export type VerificationType = "verified" | "unverified";
 
 /** The result of listing the Compute Node counts in the Account. */
-export interface PoolNodeCountsListResult {
+export interface _PoolNodeCountsListResult {
   /** A list of Compute Node counts by Pool. */
   value?: PoolNodeCounts[];
   /** The URL to get the next set of results. */
@@ -3441,7 +3441,7 @@ export interface NodeCounts {
 }
 
 /** The result of a listing the usage metrics for an Account. */
-export interface PoolListUsageMetricsResult {
+export interface _PoolListUsageMetricsResult {
   /** The Pool usage metrics data. */
   value?: PoolUsageMetrics[];
   /** The URL to get the next set of results. */
@@ -3575,7 +3575,7 @@ export function batchPoolCreateOptionsSerializer(
 }
 
 /** The result of listing the Pools in an Account. */
-export interface BatchPoolListResult {
+export interface _BatchPoolListResult {
   /** The list of Pools. */
   value?: BatchPool[];
   /** The URL to get the next set of results. */
@@ -3944,7 +3944,7 @@ export function nodeRemoveOptionsSerializer(
 }
 
 /** The result of listing the applications available in an Account. */
-export interface ApplicationListResult {
+export interface _ApplicationListResult {
   /** The list of applications available in the Account. */
   value?: BatchApplication[];
   /** The URL to get the next set of results. */

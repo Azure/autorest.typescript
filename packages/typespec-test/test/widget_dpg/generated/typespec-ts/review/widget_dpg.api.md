@@ -51,12 +51,6 @@ export interface CreateWidget {
 }
 
 // @public (undocumented)
-export interface ListWidgetsPagesResults {
-    "odata.nextLink"?: string;
-    results: Widget[];
-}
-
-// @public (undocumented)
 export interface NonReferencedModel {
     prop1: number;
     prop2: string;

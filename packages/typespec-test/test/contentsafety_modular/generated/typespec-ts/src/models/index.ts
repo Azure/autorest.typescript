@@ -21,8 +21,6 @@ export {
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
   Versions,
-  PagedTextBlocklist,
-  PagedTextBlockItem,
 } from "./models.js";
 export {
   AnalyzeTextOptionalParams,

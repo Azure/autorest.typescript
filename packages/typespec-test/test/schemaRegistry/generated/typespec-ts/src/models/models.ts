@@ -72,7 +72,7 @@ export type ContentTypeEnum =
 export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Paged collection of SchemaGroup items */
-export interface PagedSchemaGroup {
+export interface _PagedSchemaGroup {
   /** The SchemaGroup items on this page */
   value: SchemaGroup[];
   /** The link to the next page of items */
@@ -80,7 +80,7 @@ export interface PagedSchemaGroup {
 }
 
 /** Paged collection of Version items */
-export interface PagedVersion {
+export interface _PagedVersion {
   /** The Version items on this page */
   value: SchemaVersion[];
   /** The link to the next page of items */
