@@ -19,6 +19,7 @@ import {
   isAzureCoreErrorType,
   trimUsage
 } from "../utils/modelUtils.js";
+import { useContext } from "../contextManager.js";
 
 export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;
@@ -87,6 +88,12 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
             getGeneratedModels(value, SchemaContext.Output);
           }
         }
+        if (resps.body?.contentTypeProperty) {
+          getGeneratedModels(
+            resps.body.contentTypeProperty,
+            SchemaContext.Output
+          );
+        }
         const respModel = resps?.body?.type;
         if (!respModel) {
           continue;
@@ -112,6 +119,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   }
   transformHostParameters();
   usageMap.forEach((context, tspModel) => {
+    const metatree = useContext("rlcMetaTree");
     const model = getSchemaForType(dpgContext, tspModel, {
       usage: context,
       isRequestBody: requestBodySet.has(tspModel),
@@ -121,6 +129,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
     if (model) {
       model.usage = context;
     }
+    metatree.set(tspModel, { rlcType: model });
     if (model.name === "") {
       return;
     }

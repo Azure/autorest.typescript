@@ -2,6 +2,11 @@
 // Licensed under the MIT license.
 
 import {
+  chatRequestMessageUnionSerializer,
+  functionDefinitionSerializer,
+  azureChatExtensionConfigurationUnionSerializer,
+  azureChatEnhancementConfigurationSerializer,
+  chatCompletionsResponseFormatUnionSerializer,
   AudioTranscriptionOptions,
   AudioTranscription,
   AudioTranslationOptions,
@@ -16,10 +21,6 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "../models/models.js";
-import {
-  serializeChatRequestMessageUnion,
-  serializeAzureChatExtensionConfigurationUnion,
-} from "../utils/serializeUtil.js";
 import {
   GetAudioSpeech200Response,
   GetAudioSpeechDefaultResponse,
@@ -48,6 +49,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
@@ -363,7 +365,9 @@ export function _getCompletionsSend(
         max_tokens: body["maxTokens"],
         temperature: body["temperature"],
         top_p: body["topP"],
-        logit_bias: body["logitBias"],
+        logit_bias: !body.logitBias
+          ? body.logitBias
+          : (serializeRecord(body.logitBias as any) as any),
         user: body["user"],
         n: body["n"],
         logprobs: body["logprobs"],
@@ -575,21 +579,19 @@ export function _getChatCompletionsSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnion(p),
+          chatRequestMessageUnionSerializer(p),
         ),
         functions:
           body["functions"] === undefined
             ? body["functions"]
-            : body["functions"].map((p) => ({
-                name: p["name"],
-                description: p["description"],
-                parameters: p["parameters"],
-              })),
+            : body["functions"].map(functionDefinitionSerializer),
         function_call: body["functionCall"],
         max_tokens: body["maxTokens"],
         temperature: body["temperature"],
         top_p: body["topP"],
-        logit_bias: body["logitBias"],
+        logit_bias: !body.logitBias
+          ? body.logitBias
+          : (serializeRecord(body.logitBias as any) as any),
         user: body["user"],
         n: body["n"],
         stop: body["stop"],
@@ -601,24 +603,17 @@ export function _getChatCompletionsSend(
           body["dataSources"] === undefined
             ? body["dataSources"]
             : body["dataSources"].map((p) =>
-                serializeAzureChatExtensionConfigurationUnion(p),
+                azureChatExtensionConfigurationUnionSerializer(p),
               ),
         enhancements: !body.enhancements
-          ? undefined
-          : {
-              grounding: !body.enhancements?.grounding
-                ? undefined
-                : { enabled: body.enhancements?.grounding?.["enabled"] },
-              ocr: !body.enhancements?.ocr
-                ? undefined
-                : { enabled: body.enhancements?.ocr?.["enabled"] },
-            },
+          ? body.enhancements
+          : azureChatEnhancementConfigurationSerializer(body.enhancements),
         seed: body["seed"],
         logprobs: body["logprobs"],
         top_logprobs: body["topLogprobs"],
         response_format: !body.responseFormat
-          ? undefined
-          : { type: body.responseFormat?.["type"] },
+          ? body.responseFormat
+          : chatCompletionsResponseFormatUnionSerializer(body.responseFormat),
         tools: body["tools"],
         tool_choice: body["toolChoice"],
       },
@@ -989,7 +984,7 @@ export async function _getAudioSpeechDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 /** Generates text-to-speech audio from the input text. */

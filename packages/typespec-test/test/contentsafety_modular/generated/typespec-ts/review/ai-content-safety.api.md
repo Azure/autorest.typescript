@@ -35,7 +35,7 @@ export interface AnalyzeImageOptions {
     outputType?: AnalyzeImageOutputType;
 }
 
-// @public (undocumented)
+// @public
 export type AnalyzeImageOutputType = "FourLevels";
 
 // @public
@@ -56,7 +56,7 @@ export interface AnalyzeTextOptions {
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 // @public
@@ -114,7 +114,7 @@ export interface ImageAnalyzeSeverityResult {
     severity?: number;
 }
 
-// @public (undocumented)
+// @public
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
 // @public
@@ -139,18 +139,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PagedTextBlockItem {
-    nextLink?: string;
-    value: TextBlockItem[];
-}
-
-// @public
-export interface PagedTextBlocklist {
-    nextLink?: string;
-    value: TextBlocklist[];
 }
 
 // @public
@@ -199,10 +187,10 @@ export interface TextBlocklistMatchResult {
     blocklistName: string;
 }
 
-// @public (undocumented)
+// @public
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
-// @public (undocumented)
+// @public
 export type Versions = "2023-10-01";
 
 // (No @packageDocumentation comment for this package)

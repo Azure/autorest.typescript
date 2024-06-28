@@ -357,7 +357,7 @@
       ],
       "x-ms-enum": {
         "name": "AzureOpenAIOperationState",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "notRunning",
@@ -630,7 +630,7 @@
       ],
       "x-ms-enum": {
         "name": "ChatRole",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "system",
@@ -750,7 +750,7 @@
       ],
       "x-ms-enum": {
         "name": "CompletionsFinishReason",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "stopped",
@@ -1001,7 +1001,7 @@
       ],
       "x-ms-enum": {
         "name": "ContentFilterSeverity",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "safe",
@@ -1158,7 +1158,7 @@
       ],
       "x-ms-enum": {
         "name": "FunctionCallPreset",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "auto",
@@ -1231,7 +1231,7 @@
           ],
           "x-ms-enum": {
             "name": "ImageSize",
-            "modelAsString": true,
+            "modelAsString": false,
             "values": [
               {
                 "name": "Size256x256",
@@ -1274,7 +1274,7 @@
       ],
       "x-ms-enum": {
         "name": "ImageGenerationResponseFormat",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "Url",
@@ -1345,7 +1345,7 @@
       ],
       "x-ms-enum": {
         "name": "ImageSize",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "Size256x256",

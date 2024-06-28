@@ -34,7 +34,7 @@ export function getAzurePackageDependencies({
   specSource
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
-    "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.0.0",
+    "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.1.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
@@ -44,8 +44,8 @@ export function getAzurePackageDependencies({
   if (hasLro) {
     dependencies = {
       ...dependencies,
-      "@azure/core-lro": "3.0.0-beta.2",
-      "@azure/abort-controller": "^2.0.0"
+      "@azure/core-lro": "3.0.0",
+      "@azure/abort-controller": "^2.1.2"
     };
   }
 

@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  User as UserRest,
+  UserOrder as UserOrderRest,
+  ListItemInputBody as ListItemInputBodyRest,
+} from "../rest/index.js";
+
 /** Details about a user. */
 export interface User {
   /** The user's id. */
@@ -13,6 +19,16 @@ export interface User {
   readonly etag: string;
 }
 
+export function userSerializer(item: User): UserRest {
+  return {
+    name: item["name"],
+    orders:
+      item["orders"] === undefined
+        ? item["orders"]
+        : item["orders"].map(userOrderSerializer),
+  };
+}
+
 /** UserOrder for testing list with expand. */
 export interface UserOrder {
   /** The user's id. */
@@ -23,17 +39,31 @@ export interface UserOrder {
   detail: string;
 }
 
+export function userOrderSerializer(item: UserOrder): UserOrderRest {
+  return {
+    userId: item["userId"],
+    detail: item["detail"],
+  };
+}
+
 /** The body of the input. */
 export interface ListItemInputBody {
   /** The name of the input. */
   inputName: string;
 }
 
+export function listItemInputBodySerializer(
+  item: ListItemInputBody,
+): ListItemInputBodyRest {
+  return {
+    inputName: item["inputName"],
+  };
+}
+
 /** An extensible enum input parameter. */
-/** */
 export type ListItemInputExtensibleEnum = "First" | "Second";
 
-export interface UserListResults {
+export interface _UserListResults {
   /** List of items. */
   items: User[];
   /** Link to fetch more items. */
@@ -53,19 +83,10 @@ export interface SecondItem {
 }
 
 /** The version of the API. */
-/** */
 export type Versions = "2022-12-01-preview";
 
 /** Paged collection of User items */
-export interface PagedUser {
-  /** The User items on this page */
-  value: User[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Paged collection of User items */
-export interface PagedUser {
+export interface _PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
@@ -73,7 +94,7 @@ export interface PagedUser {
 }
 
 /** Paged collection of FirstItem items */
-export interface PagedFirstItem {
+export interface _PagedFirstItem {
   /** The FirstItem items on this page */
   value: FirstItem[];
   /** The link to the next page of items */
@@ -81,7 +102,7 @@ export interface PagedFirstItem {
 }
 
 /** Paged collection of SecondItem items */
-export interface PagedSecondItem {
+export interface _PagedSecondItem {
   /** The SecondItem items on this page */
   value: SecondItem[];
   /** The link to the next page of items */

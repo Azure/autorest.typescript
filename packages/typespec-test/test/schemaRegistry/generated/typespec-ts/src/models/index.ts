@@ -10,8 +10,6 @@ export {
   Schema,
   ContentTypeEnum,
   ServiceApiVersions,
-  PagedSchemaGroup,
-  PagedVersion,
 } from "./models.js";
 export {
   SchemaOperationsListSchemaGroupsOptionalParams,
