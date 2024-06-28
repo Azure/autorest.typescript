@@ -23,8 +23,6 @@ export {
   AppComponent,
   TestServerMetricConfig,
   ResourceMetric,
-  PagedFileInfo,
-  PagedTest,
   APIVersions,
   TestRun,
   ErrorDetails,
@@ -49,12 +47,9 @@ export {
   MetricNamespace,
   MetricRequestPayload,
   DimensionFilter,
-  PagedTimeSeriesElement,
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  PagedTestRun,
-  PagedDimensionValueList,
 } from "./models.js";
 export {
   TestRunOptionalParams,

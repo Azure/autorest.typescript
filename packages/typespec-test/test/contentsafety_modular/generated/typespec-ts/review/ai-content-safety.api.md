@@ -142,18 +142,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export interface PagedTextBlockItem {
-    nextLink?: string;
-    value: TextBlockItem[];
-}
-
-// @public
-export interface PagedTextBlocklist {
-    nextLink?: string;
-    value: TextBlocklist[];
-}
-
-// @public
 export interface PageSettings {
     continuationToken?: string;
 }

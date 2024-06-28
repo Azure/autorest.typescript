@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { User, PagedUser } from "../models/models.js";
+import { User, _PagedUser } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import { List200Response, PageableContext as Client } from "../rest/index.js";
@@ -26,7 +26,7 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: List200Response,
-): Promise<PagedUser> {
+): Promise<_PagedUser> {
   if (result.status !== "200") {
     throw createRestError(result);
   }

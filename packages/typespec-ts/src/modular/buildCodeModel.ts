@@ -92,6 +92,7 @@ import {
 } from "../utils/modelUtils.js";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import {
+  extractPagedMetadataNested,
   getOperationGroupName,
   getOperationName,
   isBinaryPayload,
@@ -1035,9 +1036,11 @@ function emitModel(
         .join("") + "List";
   }
 
+  const page = extractPagedMetadataNested(context.program, type);
+  const isPaging = page && page.itemsSegments && page.itemsSegments.length > 0;
   return {
     type: "model",
-    name: modelName,
+    name: `${isPaging ? "_" : ""}${modelName}`,
     description: getDocStr(context.program, type),
     parents: baseModel ? [baseModel] : [],
     discriminatedSubtypes: [],

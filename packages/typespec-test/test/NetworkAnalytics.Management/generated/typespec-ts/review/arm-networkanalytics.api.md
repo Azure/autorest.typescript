@@ -75,12 +75,6 @@ export interface DataProductInformation {
 }
 
 // @public
-export interface DataProductListResult {
-    nextLink?: string;
-    value: DataProduct[];
-}
-
-// @public
 export interface DataProductNetworkAcls {
     allowedQueryIpRangeList: string[];
     defaultAction: DefaultAction;
@@ -119,12 +113,6 @@ export interface DataProductsAddUserRoleOptionalParams extends OperationOptions 
 // @public
 export interface DataProductsCatalog extends ProxyResource {
     properties?: DataProductsCatalogProperties;
-}
-
-// @public
-export interface DataProductsCatalogListResult {
-    nextLink?: string;
-    value: DataProductsCatalog[];
 }
 
 // @public
@@ -252,12 +240,6 @@ export interface DataProductVersion {
 // @public
 export interface DataType extends ProxyResource {
     properties?: DataTypeProperties;
-}
-
-// @public
-export interface DataTypeListResult {
-    nextLink?: string;
-    value: DataType[];
 }
 
 // @public
@@ -522,12 +504,6 @@ export interface OperationDisplay {
     operation?: string;
     provider?: string;
     resource?: string;
-}
-
-// @public
-export interface OperationListResult {
-    nextLink?: string;
-    value: Operation[];
 }
 
 // @public (undocumented)

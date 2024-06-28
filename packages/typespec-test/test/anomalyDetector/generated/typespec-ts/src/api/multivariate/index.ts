@@ -9,9 +9,9 @@ import {
   MultivariateMultivariateBatchDetectionOptions,
   MultivariateModelInfo,
   MultivariateAnomalyDetectionModel,
-  MultivariateModelList,
   MultivariateMultivariateLastDetectionOptions,
   MultivariateMultivariateLastDetectionResult,
+  _MultivariateModelList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -316,7 +316,7 @@ export async function _listMultivariateModelsDeserialize(
   result:
     | ListMultivariateModels200Response
     | ListMultivariateModelsDefaultResponse,
-): Promise<MultivariateModelList> {
+): Promise<_MultivariateModelList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
