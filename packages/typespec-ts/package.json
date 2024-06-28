@@ -63,9 +63,9 @@
   "license": "MIT",
   "devDependencies": {
     "@azure-rest/core-client": "^2.0.0",
-    "@azure-tools/cadl-ranch-expect": "^0.13.4",
-    "@azure-tools/cadl-ranch-specs": "^0.33.4",
-    "@azure-tools/cadl-ranch": "^0.12.8",
+    "@azure-tools/cadl-ranch-expect": "^0.14.0",
+    "@azure-tools/cadl-ranch-specs": "^0.34.0",
+    "@azure-tools/cadl-ranch": "^0.13.0",
     "@azure-tools/typespec-autorest": ">=0.43.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.43.0 <1.0.0",
     "@azure-tools/typespec-azure-resource-manager": ">=0.43.0 <1.0.0",
