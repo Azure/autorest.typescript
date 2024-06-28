@@ -49,22 +49,6 @@ export type CreatedByType = string;
 // @public
 export type CreateMode = string;
 
-// @public (undocumented)
-export class DocumentDBClient {
-    constructor(credential: TokenCredential, options?: DocumentDBClientOptions);
-    readonly firewallRules: FirewallRulesOperations;
-    readonly mongoClusters: MongoClustersOperations;
-    readonly operations: OperationsOperations;
-    readonly pipeline: Pipeline;
-    readonly privateEndpointConnections: PrivateEndpointConnectionsOperations;
-    readonly privateLinks: PrivateLinksOperations;
-}
-
-// @public (undocumented)
-export interface DocumentDBClientOptions extends ClientOptions {
-    apiVersion?: string;
-}
-
 // @public
 export interface ErrorAdditionalInfo {
     readonly info?: Record<string, any>;
@@ -88,12 +72,6 @@ export interface ErrorResponse {
 // @public
 export interface FirewallRule extends ProxyResource {
     properties?: FirewallRuleProperties;
-}
-
-// @public
-export interface FirewallRuleListResult {
-    nextLink?: string;
-    value: FirewallRule[];
 }
 
 // @public
@@ -124,13 +102,13 @@ export interface FirewallRulesListByMongoClusterOptionalParams extends Operation
 // @public (undocumented)
 export interface FirewallRulesOperations {
     // (undocumented)
-    createOrUpdate: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, resource: FirewallRule, options?: FirewallRulesCreateOrUpdateOptionalParams) => PollerLike<OperationState<void>, void>;
+    createOrUpdate: (resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, resource: FirewallRule, options?: FirewallRulesCreateOrUpdateOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    delete: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, options?: FirewallRulesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    delete: (resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, options?: FirewallRulesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    get: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, options?: FirewallRulesGetOptionalParams) => Promise<FirewallRule>;
+    get: (resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, options?: FirewallRulesGetOptionalParams) => Promise<FirewallRule>;
     // (undocumented)
-    listByMongoCluster: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, options?: FirewallRulesListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<FirewallRule>;
+    listByMongoCluster: (resourceGroupName: string, mongoClusterName: string, options?: FirewallRulesListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<FirewallRule>;
 }
 
 // @public (undocumented)
@@ -251,10 +229,20 @@ export interface MongoCluster extends TrackedResource {
     properties?: MongoClusterProperties;
 }
 
-// @public
-export interface MongoClusterListResult {
-    nextLink?: string;
-    value: MongoCluster[];
+// @public (undocumented)
+export class MongoClusterManagementClient {
+    constructor(credential: TokenCredential, subscriptionId: string, options?: MongoClusterManagementClientOptions);
+    readonly firewallRules: FirewallRulesOperations;
+    readonly mongoClusters: MongoClustersOperations;
+    readonly operations: OperationsOperations;
+    readonly pipeline: Pipeline;
+    readonly privateEndpointConnections: PrivateEndpointConnectionsOperations;
+    readonly privateLinks: PrivateLinksOperations;
+}
+
+// @public (undocumented)
+export interface MongoClusterManagementClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -312,21 +300,21 @@ export interface MongoClustersListOptionalParams extends OperationOptions {
 // @public (undocumented)
 export interface MongoClustersOperations {
     // (undocumented)
-    checkNameAvailability: (subscriptionId: string, location: string, body: CheckNameAvailabilityRequest, options?: MongoClustersCheckNameAvailabilityOptionalParams) => Promise<CheckNameAvailabilityResponse>;
+    checkNameAvailability: (location: string, body: CheckNameAvailabilityRequest, options?: MongoClustersCheckNameAvailabilityOptionalParams) => Promise<CheckNameAvailabilityResponse>;
     // (undocumented)
-    createOrUpdate: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, resource: MongoCluster, options?: MongoClustersCreateOrUpdateOptionalParams) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
+    createOrUpdate: (resourceGroupName: string, mongoClusterName: string, resource: MongoCluster, options?: MongoClustersCreateOrUpdateOptionalParams) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
     // (undocumented)
-    delete: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, options?: MongoClustersDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    delete: (resourceGroupName: string, mongoClusterName: string, options?: MongoClustersDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    get: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, options?: MongoClustersGetOptionalParams) => Promise<MongoCluster>;
+    get: (resourceGroupName: string, mongoClusterName: string, options?: MongoClustersGetOptionalParams) => Promise<MongoCluster>;
     // (undocumented)
-    list: (subscriptionId: string, options?: MongoClustersListOptionalParams) => PagedAsyncIterableIterator<MongoCluster>;
+    list: (options?: MongoClustersListOptionalParams) => PagedAsyncIterableIterator<MongoCluster>;
     // (undocumented)
-    listByResourceGroup: (subscriptionId: string, resourceGroupName: string, options?: MongoClustersListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<MongoCluster>;
+    listByResourceGroup: (resourceGroupName: string, options?: MongoClustersListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<MongoCluster>;
     // (undocumented)
-    listConnectionStrings: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, options?: MongoClustersListConnectionStringsOptionalParams) => Promise<ListConnectionStringsResult>;
+    listConnectionStrings: (resourceGroupName: string, mongoClusterName: string, options?: MongoClustersListConnectionStringsOptionalParams) => Promise<ListConnectionStringsResult>;
     // (undocumented)
-    update: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, properties: MongoClusterUpdate, options?: MongoClustersUpdateOptionalParams) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
+    update: (resourceGroupName: string, mongoClusterName: string, properties: MongoClusterUpdate, options?: MongoClustersUpdateOptionalParams) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
 }
 
 // @public
@@ -382,12 +370,6 @@ export interface OperationDisplay {
     resource?: string;
 }
 
-// @public
-export interface OperationListResult {
-    nextLink?: string;
-    value: Operation[];
-}
-
 // @public (undocumented)
 export interface OperationsListOptionalParams extends OperationOptions {
 }
@@ -439,12 +421,6 @@ export interface PrivateEndpointConnectionResource extends ProxyResource {
     properties?: PrivateEndpointConnectionProperties;
 }
 
-// @public
-export interface PrivateEndpointConnectionResourceListResult {
-    nextLink?: string;
-    value: PrivateEndpointConnectionResource[];
-}
-
 // @public (undocumented)
 export interface PrivateEndpointConnectionsCreateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
@@ -466,13 +442,13 @@ export interface PrivateEndpointConnectionsListByMongoClusterOptionalParams exte
 // @public (undocumented)
 export interface PrivateEndpointConnectionsOperations {
     // (undocumented)
-    create: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, resource: PrivateEndpointConnectionResource, options?: PrivateEndpointConnectionsCreateOptionalParams) => PollerLike<OperationState<void>, void>;
+    create: (resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, resource: PrivateEndpointConnectionResource, options?: PrivateEndpointConnectionsCreateOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    delete: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    delete: (resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     // (undocumented)
-    get: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams) => Promise<PrivateEndpointConnectionResource>;
+    get: (resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams) => Promise<PrivateEndpointConnectionResource>;
     // (undocumented)
-    listByMongoCluster: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, options?: PrivateEndpointConnectionsListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<PrivateEndpointConnectionResource>;
+    listByMongoCluster: (resourceGroupName: string, mongoClusterName: string, options?: PrivateEndpointConnectionsListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<PrivateEndpointConnectionResource>;
 }
 
 // @public
@@ -481,12 +457,6 @@ export type PrivateEndpointServiceConnectionStatus = string;
 // @public
 export interface PrivateLinkResource extends ProxyResource {
     properties?: PrivateLinkResourceProperties;
-}
-
-// @public
-export interface PrivateLinkResourceListResult {
-    nextLink?: string;
-    value: PrivateLinkResource[];
 }
 
 // @public
@@ -510,7 +480,7 @@ export interface PrivateLinksListByMongoClusterOptionalParams extends OperationO
 // @public (undocumented)
 export interface PrivateLinksOperations {
     // (undocumented)
-    listByMongoCluster: (subscriptionId: string, resourceGroupName: string, mongoClusterName: string, options?: PrivateLinksListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<PrivateLinkResource>;
+    listByMongoCluster: (resourceGroupName: string, mongoClusterName: string, options?: PrivateLinksListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<PrivateLinkResource>;
 }
 
 // @public
@@ -535,7 +505,7 @@ export interface Resource {
 export type ResourceProvisioningState = string;
 
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: DocumentDBClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: MongoClusterManagementClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {

@@ -46,8 +46,6 @@ export interface MongoClustersCreateOrUpdate200Response extends HttpResponse {
 }
 
 export interface MongoClustersCreateOrUpdate201Headers {
-  /** A link to the status monitor */
-  "azure-asyncoperation"?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
 }

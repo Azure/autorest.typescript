@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  PrivateLinkResourceListResult,
   Resource,
   SystemData,
   CreatedByType,
@@ -13,7 +12,6 @@ export {
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
-  PrivateEndpointConnectionResourceListResult,
   PrivateEndpointConnectionResource,
   PrivateEndpointConnectionProperties,
   PrivateEndpoint,
@@ -26,7 +24,6 @@ export {
   FirewallRuleProperties,
   ResourceProvisioningState,
   KnownResourceProvisioningState,
-  FirewallRuleListResult,
   TrackedResource,
   MongoCluster,
   MongoClusterProperties,
@@ -43,14 +40,12 @@ export {
   PrivateEndpointConnection,
   MongoClusterUpdate,
   MongoClusterUpdateProperties,
-  MongoClusterListResult,
   ListConnectionStringsResult,
   ConnectionString,
   CheckNameAvailabilityRequest,
   CheckNameAvailabilityResponse,
   CheckNameAvailabilityReason,
   KnownCheckNameAvailabilityReason,
-  OperationListResult,
   Operation,
   OperationDisplay,
   Origin,

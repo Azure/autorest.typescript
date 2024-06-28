@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { DocumentDBContext } from "../../api/documentDBContext.js";
+import { DocumentDBContext } from "../../api/mongoClusterManagementContext.js";
 import { FirewallRule } from "../../models/models.js";
 import {
-  firewallRulesGet,
-  firewallRulesCreateOrUpdate,
-  firewallRulesDelete,
-  firewallRulesListByMongoCluster,
+  get,
+  createOrUpdate,
+  $delete,
+  listByMongoCluster,
 } from "../../api/firewallRules/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -56,7 +56,7 @@ export function getFirewallRules(
       firewallRuleName: string,
       options?: FirewallRulesGetOptionalParams,
     ) =>
-      firewallRulesGet(
+      get(
         context,
         subscriptionId,
         resourceGroupName,
@@ -71,7 +71,7 @@ export function getFirewallRules(
       resource: FirewallRule,
       options?: FirewallRulesCreateOrUpdateOptionalParams,
     ) =>
-      firewallRulesCreateOrUpdate(
+      createOrUpdate(
         context,
         subscriptionId,
         resourceGroupName,
@@ -86,7 +86,7 @@ export function getFirewallRules(
       firewallRuleName: string,
       options?: FirewallRulesDeleteOptionalParams,
     ) =>
-      firewallRulesDelete(
+      $delete(
         context,
         subscriptionId,
         resourceGroupName,
@@ -99,7 +99,7 @@ export function getFirewallRules(
       mongoClusterName: string,
       options?: FirewallRulesListByMongoClusterOptionalParams,
     ) =>
-      firewallRulesListByMongoCluster(
+      listByMongoCluster(
         context,
         subscriptionId,
         resourceGroupName,

@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { DocumentDBContext } from "../../api/documentDBContext.js";
+import { DocumentDBContext } from "../../api/mongoClusterManagementContext.js";
 import { PrivateEndpointConnectionResource } from "../../models/models.js";
 import {
-  privateEndpointConnectionsListByMongoCluster,
-  privateEndpointConnectionsGet,
-  privateEndpointConnectionsCreate,
-  privateEndpointConnectionsDelete,
+  listByMongoCluster,
+  get,
+  create,
+  $delete,
 } from "../../api/privateEndpointConnections/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -55,7 +55,7 @@ export function getPrivateEndpointConnections(
       mongoClusterName: string,
       options?: PrivateEndpointConnectionsListByMongoClusterOptionalParams,
     ) =>
-      privateEndpointConnectionsListByMongoCluster(
+      listByMongoCluster(
         context,
         subscriptionId,
         resourceGroupName,
@@ -68,7 +68,7 @@ export function getPrivateEndpointConnections(
       privateEndpointConnectionName: string,
       options?: PrivateEndpointConnectionsGetOptionalParams,
     ) =>
-      privateEndpointConnectionsGet(
+      get(
         context,
         subscriptionId,
         resourceGroupName,
@@ -83,7 +83,7 @@ export function getPrivateEndpointConnections(
       resource: PrivateEndpointConnectionResource,
       options?: PrivateEndpointConnectionsCreateOptionalParams,
     ) =>
-      privateEndpointConnectionsCreate(
+      create(
         context,
         subscriptionId,
         resourceGroupName,
@@ -98,7 +98,7 @@ export function getPrivateEndpointConnections(
       privateEndpointConnectionName: string,
       options?: PrivateEndpointConnectionsDeleteOptionalParams,
     ) =>
-      privateEndpointConnectionsDelete(
+      $delete(
         context,
         subscriptionId,
         resourceGroupName,

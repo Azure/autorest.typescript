@@ -1,8 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import {
+  PrivateEndpointConnectionResource as PrivateEndpointConnectionResourceRest,
+  PrivateEndpointConnectionProperties as PrivateEndpointConnectionPropertiesRest,
+  PrivateLinkServiceConnectionState as PrivateLinkServiceConnectionStateRest,
+  FirewallRule as FirewallRuleRest,
+  FirewallRuleProperties as FirewallRulePropertiesRest,
+  TrackedResource as TrackedResourceRest,
+  MongoCluster as MongoClusterRest,
+  MongoClusterProperties as MongoClusterPropertiesRest,
+  MongoClusterRestoreParameters as MongoClusterRestoreParametersRest,
+  NodeGroupSpec as NodeGroupSpecRest,
+  MongoClusterUpdate as MongoClusterUpdateRest,
+  MongoClusterUpdateProperties as MongoClusterUpdatePropertiesRest,
+  CheckNameAvailabilityRequest as CheckNameAvailabilityRequestRest,
+} from "../rest/index.js";
+
 /** The response of a PrivateLinkResource list operation. */
-export interface PrivateLinkResourceListResult {
+export interface _PrivateLinkResourceListResult {
   /** The PrivateLinkResource items on this page */
   value: PrivateLinkResource[];
   /** The link to the next page of items */
@@ -19,6 +36,10 @@ export interface Resource {
   readonly type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   readonly systemData?: SystemData;
+}
+
+export function resourceSerializer(item: Resource) {
+  return item as any;
 }
 
 /** Metadata pertaining to creation and last modification of the resource. */
@@ -49,6 +70,10 @@ export enum KnownCreatedByType {
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
+
+export function proxyResourceSerializer(item: ProxyResource) {
+  return item as any;
+}
 
 /** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
 export interface PrivateLinkResource extends ProxyResource {
@@ -95,7 +120,7 @@ export interface ErrorAdditionalInfo {
 }
 
 /** The response of a PrivateEndpointConnectionResource list operation. */
-export interface PrivateEndpointConnectionResourceListResult {
+export interface _PrivateEndpointConnectionResourceListResult {
   /** The PrivateEndpointConnectionResource items on this page */
   value: PrivateEndpointConnectionResource[];
   /** The link to the next page of items */
@@ -106,6 +131,16 @@ export interface PrivateEndpointConnectionResourceListResult {
 export interface PrivateEndpointConnectionResource extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: PrivateEndpointConnectionProperties;
+}
+
+export function privateEndpointConnectionResourceSerializer(
+  item: PrivateEndpointConnectionResource,
+): PrivateEndpointConnectionResourceRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : privateEndpointConnectionPropertiesSerializer(item.properties),
+  };
 }
 
 /** Properties of the private endpoint connection. */
@@ -120,10 +155,28 @@ export interface PrivateEndpointConnectionProperties {
   readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
 
+export function privateEndpointConnectionPropertiesSerializer(
+  item: PrivateEndpointConnectionProperties,
+): PrivateEndpointConnectionPropertiesRest {
+  return {
+    privateEndpoint: !item.privateEndpoint
+      ? item.privateEndpoint
+      : privateEndpointSerializer(item.privateEndpoint),
+    privateLinkServiceConnectionState:
+      privateLinkServiceConnectionStateSerializer(
+        item.privateLinkServiceConnectionState,
+      ),
+  };
+}
+
 /** The Private Endpoint resource. */
 export interface PrivateEndpoint {
   /** The resource identifier for private endpoint */
   readonly id?: string;
+}
+
+export function privateEndpointSerializer(item: PrivateEndpoint) {
+  return item as any;
 }
 
 /** A collection of information about the state of the connection between service consumer and provider. */
@@ -134,6 +187,16 @@ export interface PrivateLinkServiceConnectionState {
   description?: string;
   /** A message indicating if changes on the service provider require any updates on the consumer. */
   actionsRequired?: string;
+}
+
+export function privateLinkServiceConnectionStateSerializer(
+  item: PrivateLinkServiceConnectionState,
+): PrivateLinkServiceConnectionStateRest {
+  return {
+    status: item["status"],
+    description: item["description"],
+    actionsRequired: item["actionsRequired"],
+  };
 }
 
 /** The private endpoint connection status. */
@@ -161,6 +224,14 @@ export interface FirewallRule extends ProxyResource {
   properties?: FirewallRuleProperties;
 }
 
+export function firewallRuleSerializer(item: FirewallRule): FirewallRuleRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : firewallRulePropertiesSerializer(item.properties),
+  };
+}
+
 /** The properties of a mongo cluster firewall rule. */
 export interface FirewallRuleProperties {
   /** The provisioning state of the firewall rule. */
@@ -169,6 +240,15 @@ export interface FirewallRuleProperties {
   startIpAddress: string;
   /** The end IP address of the mongo cluster firewall rule. Must be IPv4 format. */
   endIpAddress: string;
+}
+
+export function firewallRulePropertiesSerializer(
+  item: FirewallRuleProperties,
+): FirewallRulePropertiesRest {
+  return {
+    startIpAddress: item["startIpAddress"],
+    endIpAddress: item["endIpAddress"],
+  };
 }
 
 /** The provisioning state of a resource type. */
@@ -181,7 +261,7 @@ export enum KnownResourceProvisioningState {
 }
 
 /** The response of a FirewallRule list operation. */
-export interface FirewallRuleListResult {
+export interface _FirewallRuleListResult {
   /** The FirewallRule items on this page */
   value: FirewallRule[];
   /** The link to the next page of items */
@@ -196,10 +276,29 @@ export interface TrackedResource extends Resource {
   location: string;
 }
 
+export function trackedResourceSerializer(
+  item: TrackedResource,
+): TrackedResourceRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+  };
+}
+
 /** Represents a mongo cluster resource. */
 export interface MongoCluster extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: MongoClusterProperties;
+}
+
+export function mongoClusterSerializer(item: MongoCluster): MongoClusterRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+    properties: !item.properties
+      ? item.properties
+      : mongoClusterPropertiesSerializer(item.properties),
+  };
 }
 
 /** The properties of a mongo cluster. */
@@ -230,6 +329,25 @@ export interface MongoClusterProperties {
   readonly privateEndpointConnections?: PrivateEndpointConnection[];
 }
 
+export function mongoClusterPropertiesSerializer(
+  item: MongoClusterProperties,
+): MongoClusterPropertiesRest {
+  return {
+    createMode: item["createMode"],
+    restoreParameters: !item.restoreParameters
+      ? item.restoreParameters
+      : mongoClusterRestoreParametersSerializer(item.restoreParameters),
+    administratorLogin: item["administratorLogin"],
+    administratorLoginPassword: item["administratorLoginPassword"],
+    serverVersion: item["serverVersion"],
+    publicNetworkAccess: item["publicNetworkAccess"],
+    nodeGroupSpecs:
+      item["nodeGroupSpecs"] === undefined
+        ? item["nodeGroupSpecs"]
+        : item["nodeGroupSpecs"].map(nodeGroupSpecSerializer),
+  };
+}
+
 /** The mode that the Mongo Cluster is created with. */
 export type CreateMode = string;
 
@@ -244,6 +362,15 @@ export interface MongoClusterRestoreParameters {
   pointInTimeUTC?: Date;
   /** Resource ID to locate the source cluster to restore */
   sourceResourceId?: string;
+}
+
+export function mongoClusterRestoreParametersSerializer(
+  item: MongoClusterRestoreParameters,
+): MongoClusterRestoreParametersRest {
+  return {
+    pointInTimeUTC: item["pointInTimeUTC"]?.toISOString(),
+    sourceResourceId: item["sourceResourceId"],
+  };
 }
 
 /** The status of the Mongo cluster resource. */
@@ -281,6 +408,18 @@ export interface NodeGroupSpec {
   nodeCount?: number;
 }
 
+export function nodeGroupSpecSerializer(
+  item: NodeGroupSpec,
+): NodeGroupSpecRest {
+  return {
+    sku: item["sku"],
+    diskSizeGB: item["diskSizeGB"],
+    enableHa: item["enableHa"],
+    kind: item["kind"],
+    nodeCount: item["nodeCount"],
+  };
+}
+
 /** The kind of the node on the cluster. */
 export type NodeKind = string;
 
@@ -301,6 +440,17 @@ export interface MongoClusterUpdate {
   properties?: MongoClusterUpdateProperties;
 }
 
+export function mongoClusterUpdateSerializer(
+  item: MongoClusterUpdate,
+): MongoClusterUpdateRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    properties: !item.properties
+      ? item.properties
+      : mongoClusterUpdatePropertiesSerializer(item.properties),
+  };
+}
+
 /** The updatable properties of the MongoCluster. */
 export interface MongoClusterUpdateProperties {
   /** The administrator's login for the mongo cluster. */
@@ -315,8 +465,23 @@ export interface MongoClusterUpdateProperties {
   nodeGroupSpecs?: NodeGroupSpec[];
 }
 
+export function mongoClusterUpdatePropertiesSerializer(
+  item: MongoClusterUpdateProperties,
+): MongoClusterUpdatePropertiesRest {
+  return {
+    administratorLogin: item["administratorLogin"],
+    administratorLoginPassword: item["administratorLoginPassword"],
+    serverVersion: item["serverVersion"],
+    publicNetworkAccess: item["publicNetworkAccess"],
+    nodeGroupSpecs:
+      item["nodeGroupSpecs"] === undefined
+        ? item["nodeGroupSpecs"]
+        : item["nodeGroupSpecs"].map(nodeGroupSpecSerializer),
+  };
+}
+
 /** The response of a MongoCluster list operation. */
-export interface MongoClusterListResult {
+export interface _MongoClusterListResult {
   /** The MongoCluster items on this page */
   value: MongoCluster[];
   /** The link to the next page of items */
@@ -345,6 +510,15 @@ export interface CheckNameAvailabilityRequest {
   type?: string;
 }
 
+export function checkNameAvailabilityRequestSerializer(
+  item: CheckNameAvailabilityRequest,
+): CheckNameAvailabilityRequestRest {
+  return {
+    name: item["name"],
+    type: item["type"],
+  };
+}
+
 /** The check availability result. */
 export interface CheckNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -364,7 +538,7 @@ export enum KnownCheckNameAvailabilityReason {
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface OperationListResult {
+export interface _OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */

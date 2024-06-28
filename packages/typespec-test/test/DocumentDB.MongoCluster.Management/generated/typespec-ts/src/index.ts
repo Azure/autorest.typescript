@@ -2,12 +2,11 @@
 // Licensed under the MIT license.
 
 export {
-  DocumentDBClient,
-  DocumentDBClientOptions,
-} from "./documentDBClient.js";
+  MongoClusterManagementClient,
+  MongoClusterManagementClientOptions,
+} from "./mongoClusterManagementClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  PrivateLinkResourceListResult,
   Resource,
   SystemData,
   CreatedByType,
@@ -18,7 +17,6 @@ export {
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
-  PrivateEndpointConnectionResourceListResult,
   PrivateEndpointConnectionResource,
   PrivateEndpointConnectionProperties,
   PrivateEndpoint,
@@ -31,7 +29,6 @@ export {
   FirewallRuleProperties,
   ResourceProvisioningState,
   KnownResourceProvisioningState,
-  FirewallRuleListResult,
   TrackedResource,
   MongoCluster,
   MongoClusterProperties,
@@ -48,14 +45,12 @@ export {
   PrivateEndpointConnection,
   MongoClusterUpdate,
   MongoClusterUpdateProperties,
-  MongoClusterListResult,
   ListConnectionStringsResult,
   ConnectionString,
   CheckNameAvailabilityRequest,
   CheckNameAvailabilityResponse,
   CheckNameAvailabilityReason,
   KnownCheckNameAvailabilityReason,
-  OperationListResult,
   Operation,
   OperationDisplay,
   Origin,
