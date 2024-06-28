@@ -57,15 +57,29 @@ export interface SystemData {
   lastModifiedAt?: Date;
 }
 
-/** The kind of entity that created the resource. */
-export type CreatedByType = string;
-
+/** Known values of {@link CreatedByType} that the service accepts. */
 export enum KnownCreatedByType {
+  /** User */
   User = "User",
+  /** Application */
   Application = "Application",
+  /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
+  /** Key */
   Key = "Key",
 }
+
+/**
+ * The kind of entity that created the resource. \
+ * {@link KnownCreatedByType} can be used interchangeably with CreatedByType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **User** \
+ * **Application** \
+ * **ManagedIdentity** \
+ * **Key**
+ */
+export type CreatedByType = string;
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
@@ -179,26 +193,56 @@ export function dataProductPropertiesSerializer(
   };
 }
 
-/** The status of the current operation. */
-export type ProvisioningState = string;
-
+/** Known values of {@link ProvisioningState} that the service accepts. */
 export enum KnownProvisioningState {
+  /** Succeeded */
   Succeeded = "Succeeded",
+  /** Failed */
   Failed = "Failed",
+  /** Canceled */
   Canceled = "Canceled",
+  /** Provisioning */
   Provisioning = "Provisioning",
+  /** Updating */
   Updating = "Updating",
+  /** Deleting */
   Deleting = "Deleting",
+  /** Accepted */
   Accepted = "Accepted",
 }
 
-/** The data type state */
-export type ControlState = string;
+/**
+ * The status of the current operation. \
+ * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Succeeded** \
+ * **Failed** \
+ * **Canceled** \
+ * **Provisioning** \
+ * **Updating** \
+ * **Deleting** \
+ * **Accepted**
+ */
+export type ProvisioningState = string;
 
+/** Known values of {@link ControlState} that the service accepts. */
 export enum KnownControlState {
+  /** Enabled */
   Enabled = "Enabled",
+  /** Disabled */
   Disabled = "Disabled",
 }
+
+/**
+ * The data type state \
+ * {@link KnownControlState} can be used interchangeably with ControlState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Enabled** \
+ * **Disabled**
+ */
+export type ControlState = string;
 
 /** Encryption key details. */
 export interface EncryptionKeyDetails {
@@ -280,13 +324,23 @@ export function iPRulesSerializer(item: IPRules): IPRulesRest {
   };
 }
 
-/** Specifies the default action of allow or deny when no other rules match. */
-export type DefaultAction = string;
-
+/** Known values of {@link DefaultAction} that the service accepts. */
 export enum KnownDefaultAction {
+  /** Allow */
   Allow = "Allow",
+  /** Deny */
   Deny = "Deny",
 }
+
+/**
+ * Specifies the default action of allow or deny when no other rules match. \
+ * {@link KnownDefaultAction} can be used interchangeably with DefaultAction,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Allow** \
+ * **Deny**
+ */
+export type DefaultAction = string;
 
 /** ManagedResourceGroup related properties */
 export interface ManagedResourceGroupConfiguration {
@@ -347,15 +401,29 @@ export function managedServiceIdentitySerializer(
   };
 }
 
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType = string;
-
+/** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
 export enum KnownManagedServiceIdentityType {
+  /** None */
   None = "None",
+  /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
+  /** UserAssigned */
   UserAssigned = "UserAssigned",
+  /** SystemAssigned,UserAssigned */
   "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
 }
+
+/**
+ * Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). \
+ * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None** \
+ * **SystemAssigned** \
+ * **UserAssigned** \
+ * **SystemAssigned,UserAssigned**
+ */
+export type ManagedServiceIdentityType = string;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -511,13 +579,23 @@ export function roleAssignmentCommonPropertiesSerializer(
   };
 }
 
-/** The data type state */
-export type DataProductUserRole = string;
-
+/** Known values of {@link DataProductUserRole} that the service accepts. */
 export enum KnownDataProductUserRole {
+  /** Reader */
   Reader = "Reader",
+  /** SensitiveReader */
   SensitiveReader = "SensitiveReader",
 }
+
+/**
+ * The data type state \
+ * {@link KnownDataProductUserRole} can be used interchangeably with DataProductUserRole,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Reader** \
+ * **SensitiveReader**
+ */
+export type DataProductUserRole = string;
 
 /** The details for role assignment response. */
 export interface RoleAssignmentDetail {
@@ -617,13 +695,23 @@ export function dataTypePropertiesSerializer(
   };
 }
 
-/** The data type state */
-export type DataTypeState = string;
-
+/** Known values of {@link DataTypeState} that the service accepts. */
 export enum KnownDataTypeState {
+  /** Stopped */
   Stopped = "Stopped",
+  /** Running */
   Running = "Running",
 }
+
+/**
+ * The data type state \
+ * {@link KnownDataTypeState} can be used interchangeably with DataTypeState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Stopped** \
+ * **Running**
+ */
+export type DataTypeState = string;
 
 /** The type used for update operations of the DataType. */
 export interface DataTypeUpdate {
@@ -775,21 +863,40 @@ export interface OperationDisplay {
   description?: string;
 }
 
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type Origin = string;
-
+/** Known values of {@link Origin} that the service accepts. */
 export enum KnownOrigin {
+  /** user */
   user = "user",
+  /** system */
   system = "system",
+  /** user,system */
   "user,system" = "user,system",
 }
 
-/** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type ActionType = string;
+/**
+ * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" \
+ * {@link KnownOrigin} can be used interchangeably with Origin,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **user** \
+ * **system** \
+ * **user,system**
+ */
+export type Origin = string;
 
+/** Known values of {@link ActionType} that the service accepts. */
 export enum KnownActionType {
+  /** Internal */
   Internal = "Internal",
 }
 
+/**
+ * Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. \
+ * {@link KnownActionType} can be used interchangeably with ActionType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Internal**
+ */
+export type ActionType = string;
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export type Versions = "2023-11-15";
