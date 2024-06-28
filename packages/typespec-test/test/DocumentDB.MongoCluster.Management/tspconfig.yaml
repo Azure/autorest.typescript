@@ -3,8 +3,6 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     azureSdkForJs: false
-    isModularLibrary: true
-    experimentalExtensibleEnums: true
     title: "MongoClusterManagementClient"
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:

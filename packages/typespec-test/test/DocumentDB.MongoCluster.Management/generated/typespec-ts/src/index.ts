@@ -1,90 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  MongoClusterManagementClient,
-  MongoClusterManagementClientOptions,
-} from "./mongoClusterManagementClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export {
-  Resource,
-  SystemData,
-  CreatedByType,
-  KnownCreatedByType,
-  ProxyResource,
-  PrivateLinkResource,
-  PrivateLinkResourceProperties,
-  ErrorResponse,
-  ErrorDetail,
-  ErrorAdditionalInfo,
-  PrivateEndpointConnectionResource,
-  PrivateEndpointConnectionProperties,
-  PrivateEndpoint,
-  PrivateLinkServiceConnectionState,
-  PrivateEndpointServiceConnectionStatus,
-  KnownPrivateEndpointServiceConnectionStatus,
-  PrivateEndpointConnectionProvisioningState,
-  KnownPrivateEndpointConnectionProvisioningState,
-  FirewallRule,
-  FirewallRuleProperties,
-  ResourceProvisioningState,
-  KnownResourceProvisioningState,
-  TrackedResource,
-  MongoCluster,
-  MongoClusterProperties,
-  CreateMode,
-  KnownCreateMode,
-  MongoClusterRestoreParameters,
-  MongoClusterStatus,
-  KnownMongoClusterStatus,
-  PublicNetworkAccess,
-  KnownPublicNetworkAccess,
-  NodeGroupSpec,
-  NodeKind,
-  KnownNodeKind,
-  PrivateEndpointConnection,
-  MongoClusterUpdate,
-  MongoClusterUpdateProperties,
-  ListConnectionStringsResult,
-  ConnectionString,
-  CheckNameAvailabilityRequest,
-  CheckNameAvailabilityResponse,
-  CheckNameAvailabilityReason,
-  KnownCheckNameAvailabilityReason,
-  Operation,
-  OperationDisplay,
-  Origin,
-  KnownOrigin,
-  ActionType,
-  KnownActionType,
-  Versions,
-  ProvisioningState,
-  OperationsListOptionalParams,
-  MongoClustersGetOptionalParams,
-  MongoClustersCreateOrUpdateOptionalParams,
-  MongoClustersUpdateOptionalParams,
-  MongoClustersDeleteOptionalParams,
-  MongoClustersListByResourceGroupOptionalParams,
-  MongoClustersListOptionalParams,
-  MongoClustersListConnectionStringsOptionalParams,
-  MongoClustersCheckNameAvailabilityOptionalParams,
-  FirewallRulesGetOptionalParams,
-  FirewallRulesCreateOrUpdateOptionalParams,
-  FirewallRulesDeleteOptionalParams,
-  FirewallRulesListByMongoClusterOptionalParams,
-  PrivateEndpointConnectionsListByMongoClusterOptionalParams,
-  PrivateEndpointConnectionsGetOptionalParams,
-  PrivateEndpointConnectionsCreateOptionalParams,
-  PrivateEndpointConnectionsDeleteOptionalParams,
-  PrivateLinksListByMongoClusterOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
-export {
-  FirewallRulesOperations,
-  MongoClustersOperations,
-  OperationsOperations,
-  PrivateEndpointConnectionsOperations,
-  PrivateLinksOperations,
-} from "./classic/index.js";
+import MongoClusterManagementClient from "./mongoClusterManagementClient.js";
+
+export * from "./mongoClusterManagementClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./isUnexpected.js";
+export * from "./models.js";
+export * from "./outputModels.js";
+export * from "./paginateHelper.js";
+export * from "./pollingHelper.js";
+
+export default MongoClusterManagementClient;

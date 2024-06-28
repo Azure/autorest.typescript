@@ -5,19 +5,34 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
+import { CreateHttpPollerOptions } from '@azure/core-lro';
+import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
+import { Paged } from '@azure/core-paging';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
-import { PollerLike } from '@azure/core-lro';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export type ActionType = string;
+export type ActionTypeOutput = string;
 
 // @public
-export type CheckNameAvailabilityReason = string;
+export interface AzureEntityResource extends Resource {
+}
+
+// @public
+export interface AzureEntityResourceOutput extends ResourceOutput {
+    readonly etag?: string;
+}
+
+// @public
+export type CheckNameAvailabilityReasonOutput = string;
 
 // @public
 export interface CheckNameAvailabilityRequest {
@@ -26,47 +41,60 @@ export interface CheckNameAvailabilityRequest {
 }
 
 // @public
-export interface CheckNameAvailabilityResponse {
+export interface CheckNameAvailabilityResponseOutput {
     message?: string;
     nameAvailable?: boolean;
-    reason?: CheckNameAvailabilityReason;
+    reason?: CheckNameAvailabilityReasonOutput;
 }
 
 // @public
-export interface ConnectionString {
+export interface ConnectionStringOutput {
     readonly connectionString?: string;
     readonly description?: string;
 }
 
 // @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
+function createClient(credentials: TokenCredential, { apiVersion, ...options }?: MongoClusterManagementClientOptions): MongoClusterManagementClient;
+export default createClient;
 
 // @public
 export type CreatedByType = string;
 
 // @public
+export type CreatedByTypeOutput = string;
+
+// @public
 export type CreateMode = string;
 
 // @public
-export interface ErrorAdditionalInfo {
+export type CreateModeOutput = string;
+
+// @public
+export interface ErrorAdditionalInfoOutput {
     readonly info?: Record<string, any>;
     readonly type?: string;
 }
 
 // @public
-export interface ErrorDetail {
-    readonly additionalInfo?: ErrorAdditionalInfo[];
+export interface ErrorDetailOutput {
+    readonly additionalInfo?: Array<ErrorAdditionalInfoOutput>;
     readonly code?: string;
-    readonly details?: ErrorDetail[];
+    readonly details?: Array<ErrorDetailOutput>;
     readonly message?: string;
     readonly target?: string;
 }
 
 // @public
-export interface ErrorResponse {
-    error?: ErrorDetail;
+export interface ErrorResponseOutput {
+    error?: ErrorDetailOutput;
+}
+
+// @public
+export interface ExtensionResource extends Resource {
+}
+
+// @public
+export interface ExtensionResourceOutput extends ResourceOutput {
 }
 
 // @public
@@ -75,153 +103,266 @@ export interface FirewallRule extends ProxyResource {
 }
 
 // @public
-export interface FirewallRuleProperties {
-    endIpAddress: string;
-    readonly provisioningState?: ProvisioningState;
-    startIpAddress: string;
-}
+export type FirewallRuleListResultOutput = Paged<FirewallRuleOutput>;
 
-// @public (undocumented)
-export interface FirewallRulesCreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public (undocumented)
-export interface FirewallRulesDeleteOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public (undocumented)
-export interface FirewallRulesGetOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FirewallRulesListByMongoClusterOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FirewallRulesOperations {
-    // (undocumented)
-    createOrUpdate: (resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, resource: FirewallRule, options?: FirewallRulesCreateOrUpdateOptionalParams) => PollerLike<OperationState<void>, void>;
-    // (undocumented)
-    delete: (resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, options?: FirewallRulesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
-    // (undocumented)
-    get: (resourceGroupName: string, mongoClusterName: string, firewallRuleName: string, options?: FirewallRulesGetOptionalParams) => Promise<FirewallRule>;
-    // (undocumented)
-    listByMongoCluster: (resourceGroupName: string, mongoClusterName: string, options?: FirewallRulesListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<FirewallRule>;
-}
-
-// @public (undocumented)
-export enum KnownActionType {
-    // (undocumented)
-    Internal = "Internal"
-}
-
-// @public (undocumented)
-export enum KnownCheckNameAvailabilityReason {
-    // (undocumented)
-    AlreadyExists = "AlreadyExists",
-    // (undocumented)
-    Invalid = "Invalid"
-}
-
-// @public (undocumented)
-export enum KnownCreatedByType {
-    // (undocumented)
-    Application = "Application",
-    // (undocumented)
-    Key = "Key",
-    // (undocumented)
-    ManagedIdentity = "ManagedIdentity",
-    // (undocumented)
-    User = "User"
-}
-
-// @public (undocumented)
-export enum KnownCreateMode {
-    // (undocumented)
-    Default = "Default",
-    // (undocumented)
-    PointInTimeRestore = "PointInTimeRestore"
-}
-
-// @public (undocumented)
-export enum KnownMongoClusterStatus {
-    // (undocumented)
-    Dropping = "Dropping",
-    // (undocumented)
-    Provisioning = "Provisioning",
-    // (undocumented)
-    Ready = "Ready",
-    // (undocumented)
-    Starting = "Starting",
-    // (undocumented)
-    Stopped = "Stopped",
-    // (undocumented)
-    Stopping = "Stopping",
-    // (undocumented)
-    Updating = "Updating"
-}
-
-// @public (undocumented)
-export enum KnownNodeKind {
-    // (undocumented)
-    Shard = "Shard"
-}
-
-// @public (undocumented)
-export enum KnownOrigin {
-    // (undocumented)
-    "user,system" = "user,system",
-    // (undocumented)
-    system = "system",
-    // (undocumented)
-    user = "user"
-}
-
-// @public (undocumented)
-export enum KnownPrivateEndpointConnectionProvisioningState {
-    // (undocumented)
-    Creating = "Creating",
-    // (undocumented)
-    Deleting = "Deleting",
-    // (undocumented)
-    Failed = "Failed",
-    // (undocumented)
-    Succeeded = "Succeeded"
-}
-
-// @public (undocumented)
-export enum KnownPrivateEndpointServiceConnectionStatus {
-    // (undocumented)
-    Approved = "Approved",
-    // (undocumented)
-    Pending = "Pending",
-    // (undocumented)
-    Rejected = "Rejected"
-}
-
-// @public (undocumented)
-export enum KnownPublicNetworkAccess {
-    // (undocumented)
-    Disabled = "Disabled",
-    // (undocumented)
-    Enabled = "Enabled"
-}
-
-// @public (undocumented)
-export enum KnownResourceProvisioningState {
-    // (undocumented)
-    Canceled = "Canceled",
-    // (undocumented)
-    Failed = "Failed",
-    // (undocumented)
-    Succeeded = "Succeeded"
+// @public
+export interface FirewallRuleOutput extends ProxyResourceOutput {
+    properties?: FirewallRulePropertiesOutput;
 }
 
 // @public
-export interface ListConnectionStringsResult {
-    readonly connectionStrings?: ConnectionString[];
+export interface FirewallRuleProperties {
+    endIpAddress: string;
+    startIpAddress: string;
+}
+
+// @public
+export interface FirewallRulePropertiesOutput {
+    endIpAddress: string;
+    readonly provisioningState?: ProvisioningStateOutput;
+    startIpAddress: string;
+}
+
+// @public
+export interface FirewallRulesCreateOrUpdate200Response extends HttpResponse {
+    // (undocumented)
+    body: FirewallRuleOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public
+export interface FirewallRulesCreateOrUpdate201Response extends HttpResponse {
+    // (undocumented)
+    body: FirewallRuleOutput;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+export interface FirewallRulesCreateOrUpdate202Headers {
+    "retry-after"?: number;
+    location?: string;
+}
+
+// @public
+export interface FirewallRulesCreateOrUpdate202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & FirewallRulesCreateOrUpdate202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface FirewallRulesCreateOrUpdateBodyParam {
+    body: FirewallRule;
+}
+
+// @public (undocumented)
+export interface FirewallRulesCreateOrUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface FirewallRulesCreateOrUpdateLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: FirewallRuleOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type FirewallRulesCreateOrUpdateParameters = FirewallRulesCreateOrUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface FirewallRulesDelete202Headers {
+    "retry-after"?: number;
+    location?: string;
+}
+
+// @public
+export interface FirewallRulesDelete202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & FirewallRulesDelete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public
+export interface FirewallRulesDelete204Response extends HttpResponse {
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface FirewallRulesDeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface FirewallRulesDeleteLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type FirewallRulesDeleteParameters = RequestParameters;
+
+// @public (undocumented)
+export interface FirewallRulesGet {
+    delete(options?: FirewallRulesDeleteParameters): StreamableMethod<FirewallRulesDelete202Response | FirewallRulesDelete204Response | FirewallRulesDeleteDefaultResponse>;
+    get(options?: FirewallRulesGetParameters): StreamableMethod<FirewallRulesGet200Response | FirewallRulesGetDefaultResponse>;
+    put(options: FirewallRulesCreateOrUpdateParameters): StreamableMethod<FirewallRulesCreateOrUpdate200Response | FirewallRulesCreateOrUpdate201Response | FirewallRulesCreateOrUpdate202Response | FirewallRulesCreateOrUpdateDefaultResponse>;
+}
+
+// @public
+export interface FirewallRulesGet200Response extends HttpResponse {
+    // (undocumented)
+    body: FirewallRuleOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FirewallRulesGetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type FirewallRulesGetParameters = RequestParameters;
+
+// @public (undocumented)
+export interface FirewallRulesListByMongoCluster {
+    get(options?: FirewallRulesListByMongoClusterParameters): StreamableMethod<FirewallRulesListByMongoCluster200Response | FirewallRulesListByMongoClusterDefaultResponse>;
+}
+
+// @public
+export interface FirewallRulesListByMongoCluster200Response extends HttpResponse {
+    // (undocumented)
+    body: FirewallRuleListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FirewallRulesListByMongoClusterDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type FirewallRulesListByMongoClusterParameters = RequestParameters;
+
+// @public
+export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
+
+// @public
+export function getLongRunningPoller<TResult extends MongoClustersCreateOrUpdateLogicalResponse | MongoClustersCreateOrUpdateDefaultResponse>(client: Client, initialResponse: MongoClustersCreateOrUpdate200Response | MongoClustersCreateOrUpdate201Response | MongoClustersCreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends MongoClustersUpdateLogicalResponse | MongoClustersUpdateDefaultResponse>(client: Client, initialResponse: MongoClustersUpdate200Response | MongoClustersUpdate202Response | MongoClustersUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends MongoClustersDeleteLogicalResponse | MongoClustersDeleteDefaultResponse>(client: Client, initialResponse: MongoClustersDelete202Response | MongoClustersDelete204Response | MongoClustersDeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends FirewallRulesCreateOrUpdateLogicalResponse | FirewallRulesCreateOrUpdateDefaultResponse>(client: Client, initialResponse: FirewallRulesCreateOrUpdate200Response | FirewallRulesCreateOrUpdate201Response | FirewallRulesCreateOrUpdate202Response | FirewallRulesCreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends FirewallRulesDeleteLogicalResponse | FirewallRulesDeleteDefaultResponse>(client: Client, initialResponse: FirewallRulesDelete202Response | FirewallRulesDelete204Response | FirewallRulesDeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends PrivateEndpointConnectionsCreateLogicalResponse | PrivateEndpointConnectionsCreateDefaultResponse>(client: Client, initialResponse: PrivateEndpointConnectionsCreate200Response | PrivateEndpointConnectionsCreate201Response | PrivateEndpointConnectionsCreate202Response | PrivateEndpointConnectionsCreateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends PrivateEndpointConnectionsDeleteLogicalResponse | PrivateEndpointConnectionsDeleteDefaultResponse>(client: Client, initialResponse: PrivateEndpointConnectionsDelete202Response | PrivateEndpointConnectionsDelete204Response | PrivateEndpointConnectionsDeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public
+export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+    page: TPage;
+    nextPageLink?: string;
+}>;
+
+// @public
+export interface Identity {
+    type?: ResourceIdentityType;
+}
+
+// @public
+export interface IdentityOutput {
+    readonly principalId?: string;
+    readonly tenantId?: string;
+    type?: ResourceIdentityTypeOutput;
+}
+
+// @public (undocumented)
+export function isUnexpected(response: OperationsList200Response | OperationsListDefaultResponse): response is OperationsListDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersGet200Response | MongoClustersGetDefaultResponse): response is MongoClustersGetDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersCreateOrUpdate200Response | MongoClustersCreateOrUpdate201Response | MongoClustersCreateOrUpdateLogicalResponse | MongoClustersCreateOrUpdateDefaultResponse): response is MongoClustersCreateOrUpdateDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersUpdate200Response | MongoClustersUpdate202Response | MongoClustersUpdateLogicalResponse | MongoClustersUpdateDefaultResponse): response is MongoClustersUpdateDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersDelete202Response | MongoClustersDelete204Response | MongoClustersDeleteLogicalResponse | MongoClustersDeleteDefaultResponse): response is MongoClustersDeleteDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersListByResourceGroup200Response | MongoClustersListByResourceGroupDefaultResponse): response is MongoClustersListByResourceGroupDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersList200Response | MongoClustersListDefaultResponse): response is MongoClustersListDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersListConnectionStrings200Response | MongoClustersListConnectionStringsDefaultResponse): response is MongoClustersListConnectionStringsDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: MongoClustersCheckNameAvailability200Response | MongoClustersCheckNameAvailabilityDefaultResponse): response is MongoClustersCheckNameAvailabilityDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FirewallRulesGet200Response | FirewallRulesGetDefaultResponse): response is FirewallRulesGetDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FirewallRulesCreateOrUpdate200Response | FirewallRulesCreateOrUpdate201Response | FirewallRulesCreateOrUpdate202Response | FirewallRulesCreateOrUpdateLogicalResponse | FirewallRulesCreateOrUpdateDefaultResponse): response is FirewallRulesCreateOrUpdateDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FirewallRulesDelete202Response | FirewallRulesDelete204Response | FirewallRulesDeleteLogicalResponse | FirewallRulesDeleteDefaultResponse): response is FirewallRulesDeleteDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: FirewallRulesListByMongoCluster200Response | FirewallRulesListByMongoClusterDefaultResponse): response is FirewallRulesListByMongoClusterDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PrivateEndpointConnectionsListByMongoCluster200Response | PrivateEndpointConnectionsListByMongoClusterDefaultResponse): response is PrivateEndpointConnectionsListByMongoClusterDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PrivateEndpointConnectionsGet200Response | PrivateEndpointConnectionsGetDefaultResponse): response is PrivateEndpointConnectionsGetDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PrivateEndpointConnectionsCreate200Response | PrivateEndpointConnectionsCreate201Response | PrivateEndpointConnectionsCreate202Response | PrivateEndpointConnectionsCreateLogicalResponse | PrivateEndpointConnectionsCreateDefaultResponse): response is PrivateEndpointConnectionsCreateDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PrivateEndpointConnectionsDelete202Response | PrivateEndpointConnectionsDelete204Response | PrivateEndpointConnectionsDeleteLogicalResponse | PrivateEndpointConnectionsDeleteDefaultResponse): response is PrivateEndpointConnectionsDeleteDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: PrivateLinksListByMongoCluster200Response | PrivateLinksListByMongoClusterDefaultResponse): response is PrivateLinksListByMongoClusterDefaultResponse;
+
+// @public
+export interface ListConnectionStringsResultOutput {
+    readonly connectionStrings?: Array<ConnectionStringOutput>;
 }
 
 // @public
@@ -229,101 +370,326 @@ export interface MongoCluster extends TrackedResource {
     properties?: MongoClusterProperties;
 }
 
-// @public (undocumented)
-export class MongoClusterManagementClient {
-    constructor(credential: TokenCredential, subscriptionId: string, options?: MongoClusterManagementClientOptions);
-    readonly firewallRules: FirewallRulesOperations;
-    readonly mongoClusters: MongoClustersOperations;
-    readonly operations: OperationsOperations;
-    readonly pipeline: Pipeline;
-    readonly privateEndpointConnections: PrivateEndpointConnectionsOperations;
-    readonly privateLinks: PrivateLinksOperations;
-}
+// @public
+export type MongoClusterListResultOutput = Paged<MongoClusterOutput>;
 
 // @public (undocumented)
+export type MongoClusterManagementClient = Client & {
+    path: Routes;
+};
+
+// @public
 export interface MongoClusterManagementClientOptions extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public
+export interface MongoClusterOutput extends TrackedResourceOutput {
+    properties?: MongoClusterPropertiesOutput;
 }
 
 // @public
 export interface MongoClusterProperties {
     administratorLogin?: string;
     administratorLoginPassword?: string;
-    readonly clusterStatus?: MongoClusterStatus;
-    readonly connectionString?: string;
     createMode?: CreateMode;
-    readonly earliestRestoreTime?: string;
-    nodeGroupSpecs?: NodeGroupSpec[];
-    readonly privateEndpointConnections?: PrivateEndpointConnection[];
-    readonly provisioningState?: ProvisioningState;
+    nodeGroupSpecs?: Array<NodeGroupSpec>;
     publicNetworkAccess?: PublicNetworkAccess;
     restoreParameters?: MongoClusterRestoreParameters;
     serverVersion?: string;
 }
 
 // @public
+export interface MongoClusterPropertiesOutput {
+    administratorLogin?: string;
+    administratorLoginPassword?: string;
+    readonly clusterStatus?: MongoClusterStatusOutput;
+    readonly connectionString?: string;
+    createMode?: CreateModeOutput;
+    readonly earliestRestoreTime?: string;
+    nodeGroupSpecs?: Array<NodeGroupSpecOutput>;
+    readonly privateEndpointConnections?: Array<PrivateEndpointConnectionOutput>;
+    readonly provisioningState?: ProvisioningStateOutput;
+    publicNetworkAccess?: PublicNetworkAccessOutput;
+    restoreParameters?: MongoClusterRestoreParametersOutput;
+    serverVersion?: string;
+}
+
+// @public
 export interface MongoClusterRestoreParameters {
-    pointInTimeUTC?: Date;
+    pointInTimeUTC?: Date | string;
+    sourceResourceId?: string;
+}
+
+// @public
+export interface MongoClusterRestoreParametersOutput {
+    pointInTimeUTC?: string;
     sourceResourceId?: string;
 }
 
 // @public (undocumented)
-export interface MongoClustersCheckNameAvailabilityOptionalParams extends OperationOptions {
+export interface MongoClustersCheckNameAvailability {
+    post(options: MongoClustersCheckNameAvailabilityParameters): StreamableMethod<MongoClustersCheckNameAvailability200Response | MongoClustersCheckNameAvailabilityDefaultResponse>;
+}
+
+// @public
+export interface MongoClustersCheckNameAvailability200Response extends HttpResponse {
+    // (undocumented)
+    body: CheckNameAvailabilityResponseOutput;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
-export interface MongoClustersCreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
+export interface MongoClustersCheckNameAvailabilityBodyParam {
+    body: CheckNameAvailabilityRequest;
 }
 
 // @public (undocumented)
-export interface MongoClustersDeleteOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
+export interface MongoClustersCheckNameAvailabilityDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
 }
 
 // @public (undocumented)
-export interface MongoClustersGetOptionalParams extends OperationOptions {
+export type MongoClustersCheckNameAvailabilityParameters = MongoClustersCheckNameAvailabilityBodyParam & RequestParameters;
+
+// @public
+export interface MongoClustersCreateOrUpdate200Response extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterOutput;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
-export interface MongoClustersListByResourceGroupOptionalParams extends OperationOptions {
+export interface MongoClustersCreateOrUpdate201Headers {
+    "retry-after"?: number;
+}
+
+// @public
+export interface MongoClustersCreateOrUpdate201Response extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & MongoClustersCreateOrUpdate201Headers;
+    // (undocumented)
+    status: "201";
 }
 
 // @public (undocumented)
-export interface MongoClustersListConnectionStringsOptionalParams extends OperationOptions {
+export interface MongoClustersCreateOrUpdateBodyParam {
+    body: MongoCluster;
 }
 
 // @public (undocumented)
-export interface MongoClustersListOptionalParams extends OperationOptions {
+export interface MongoClustersCreateOrUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface MongoClustersCreateOrUpdateLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterOutput;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
-export interface MongoClustersOperations {
-    // (undocumented)
-    checkNameAvailability: (location: string, body: CheckNameAvailabilityRequest, options?: MongoClustersCheckNameAvailabilityOptionalParams) => Promise<CheckNameAvailabilityResponse>;
-    // (undocumented)
-    createOrUpdate: (resourceGroupName: string, mongoClusterName: string, resource: MongoCluster, options?: MongoClustersCreateOrUpdateOptionalParams) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
-    // (undocumented)
-    delete: (resourceGroupName: string, mongoClusterName: string, options?: MongoClustersDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
-    // (undocumented)
-    get: (resourceGroupName: string, mongoClusterName: string, options?: MongoClustersGetOptionalParams) => Promise<MongoCluster>;
-    // (undocumented)
-    list: (options?: MongoClustersListOptionalParams) => PagedAsyncIterableIterator<MongoCluster>;
-    // (undocumented)
-    listByResourceGroup: (resourceGroupName: string, options?: MongoClustersListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<MongoCluster>;
-    // (undocumented)
-    listConnectionStrings: (resourceGroupName: string, mongoClusterName: string, options?: MongoClustersListConnectionStringsOptionalParams) => Promise<ListConnectionStringsResult>;
-    // (undocumented)
-    update: (resourceGroupName: string, mongoClusterName: string, properties: MongoClusterUpdate, options?: MongoClustersUpdateOptionalParams) => PollerLike<OperationState<MongoCluster>, MongoCluster>;
+export type MongoClustersCreateOrUpdateParameters = MongoClustersCreateOrUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface MongoClustersDelete202Headers {
+    "retry-after"?: number;
+    location?: string;
 }
+
+// @public
+export interface MongoClustersDelete202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & MongoClustersDelete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public
+export interface MongoClustersDelete204Response extends HttpResponse {
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface MongoClustersDeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface MongoClustersDeleteLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type MongoClustersDeleteParameters = RequestParameters;
+
+// @public (undocumented)
+export interface MongoClustersGet {
+    delete(options?: MongoClustersDeleteParameters): StreamableMethod<MongoClustersDelete202Response | MongoClustersDelete204Response | MongoClustersDeleteDefaultResponse>;
+    get(options?: MongoClustersGetParameters): StreamableMethod<MongoClustersGet200Response | MongoClustersGetDefaultResponse>;
+    patch(options: MongoClustersUpdateParameters): StreamableMethod<MongoClustersUpdate200Response | MongoClustersUpdate202Response | MongoClustersUpdateDefaultResponse>;
+    put(options: MongoClustersCreateOrUpdateParameters): StreamableMethod<MongoClustersCreateOrUpdate200Response | MongoClustersCreateOrUpdate201Response | MongoClustersCreateOrUpdateDefaultResponse>;
+}
+
+// @public
+export interface MongoClustersGet200Response extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface MongoClustersGetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type MongoClustersGetParameters = RequestParameters;
+
+// @public (undocumented)
+export interface MongoClustersList {
+    get(options?: MongoClustersListParameters): StreamableMethod<MongoClustersList200Response | MongoClustersListDefaultResponse>;
+}
+
+// @public
+export interface MongoClustersList200Response extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface MongoClustersListByResourceGroup {
+    get(options?: MongoClustersListByResourceGroupParameters): StreamableMethod<MongoClustersListByResourceGroup200Response | MongoClustersListByResourceGroupDefaultResponse>;
+}
+
+// @public
+export interface MongoClustersListByResourceGroup200Response extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface MongoClustersListByResourceGroupDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type MongoClustersListByResourceGroupParameters = RequestParameters;
+
+// @public (undocumented)
+export interface MongoClustersListConnectionStrings {
+    post(options: MongoClustersListConnectionStringsParameters): StreamableMethod<MongoClustersListConnectionStrings200Response | MongoClustersListConnectionStringsDefaultResponse>;
+}
+
+// @public
+export interface MongoClustersListConnectionStrings200Response extends HttpResponse {
+    // (undocumented)
+    body: ListConnectionStringsResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface MongoClustersListConnectionStringsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type MongoClustersListConnectionStringsParameters = RequestParameters;
+
+// @public (undocumented)
+export interface MongoClustersListDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type MongoClustersListParameters = RequestParameters;
 
 // @public
 export type MongoClusterStatus = string;
 
-// @public (undocumented)
-export interface MongoClustersUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
+// @public
+export type MongoClusterStatusOutput = string;
+
+// @public
+export interface MongoClustersUpdate200Response extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterOutput;
+    // (undocumented)
+    status: "200";
 }
+
+// @public (undocumented)
+export interface MongoClustersUpdate202Headers {
+    "retry-after"?: number;
+    location?: string;
+}
+
+// @public
+export interface MongoClustersUpdate202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & MongoClustersUpdate202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface MongoClustersUpdateBodyParam {
+    body: MongoClusterUpdate;
+}
+
+// @public (undocumented)
+export interface MongoClustersUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface MongoClustersUpdateLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: MongoClusterOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type MongoClustersUpdateParameters = MongoClustersUpdateBodyParam & RequestParameters;
 
 // @public
 export interface MongoClusterUpdate {
@@ -336,7 +702,7 @@ export interface MongoClusterUpdate {
 export interface MongoClusterUpdateProperties {
     administratorLogin?: string;
     administratorLoginPassword?: string;
-    nodeGroupSpecs?: NodeGroupSpec[];
+    nodeGroupSpecs?: Array<NodeGroupSpec>;
     publicNetworkAccess?: PublicNetworkAccess;
     serverVersion?: string;
 }
@@ -351,53 +717,102 @@ export interface NodeGroupSpec {
 }
 
 // @public
-export type NodeKind = string;
-
-// @public
-export interface Operation {
-    actionType?: ActionType;
-    display?: OperationDisplay;
-    readonly isDataAction?: boolean;
-    readonly name?: string;
-    readonly origin?: Origin;
+export interface NodeGroupSpecOutput {
+    diskSizeGB?: number;
+    enableHa?: boolean;
+    kind?: NodeKindOutput;
+    nodeCount?: number;
+    sku?: string;
 }
 
 // @public
-export interface OperationDisplay {
+export type NodeKind = string;
+
+// @public
+export type NodeKindOutput = string;
+
+// @public
+export interface OperationDisplayOutput {
     description?: string;
     operation?: string;
     provider?: string;
     resource?: string;
 }
 
-// @public (undocumented)
-export interface OperationsListOptionalParams extends OperationOptions {
+// @public
+export type OperationListResultOutput = Paged<OperationOutput>;
+
+// @public
+export interface OperationOutput {
+    actionType?: ActionTypeOutput;
+    display?: OperationDisplayOutput;
+    readonly isDataAction?: boolean;
+    readonly name?: string;
+    readonly origin?: OriginOutput;
 }
 
 // @public (undocumented)
-export interface OperationsOperations {
+export interface OperationsList {
+    get(options?: OperationsListParameters): StreamableMethod<OperationsList200Response | OperationsListDefaultResponse>;
+}
+
+// @public
+export interface OperationsList200Response extends HttpResponse {
     // (undocumented)
-    list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
+    body: OperationListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface OperationsListDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type OperationsListParameters = RequestParameters;
+
+// @public
+export type OriginOutput = string;
+
+// @public
+export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+
+// @public
+export type PaginateReturn<TResult> = TResult extends {
+    body: {
+        value?: infer TPage;
+    };
+} ? GetArrayType<TPage> : Array<unknown>;
+
+// @public
+export interface PagingOptions<TResponse> {
+    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
 // @public
-export type Origin = string;
-
-// @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
+export interface Plan {
+    name: string;
+    product: string;
+    promotionCode?: string;
+    publisher: string;
+    version?: string;
 }
 
 // @public
-export interface PageSettings {
-    continuationToken?: string;
+export interface PlanOutput {
+    name: string;
+    product: string;
+    promotionCode?: string;
+    publisher: string;
+    version?: string;
 }
 
 // @public
 export interface PrivateEndpoint {
-    readonly id?: string;
 }
 
 // @public
@@ -406,53 +821,194 @@ export interface PrivateEndpointConnection extends Resource {
 }
 
 // @public
+export interface PrivateEndpointConnectionOutput extends ResourceOutput {
+    properties?: PrivateEndpointConnectionPropertiesOutput;
+}
+
+// @public
 export interface PrivateEndpointConnectionProperties {
-    readonly groupIds?: string[];
     privateEndpoint?: PrivateEndpoint;
     privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-    readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+
+// @public
+export interface PrivateEndpointConnectionPropertiesOutput {
+    readonly groupIds?: string[];
+    privateEndpoint?: PrivateEndpointOutput;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
+    readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
 }
 
 // @public
 export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
+export type PrivateEndpointConnectionProvisioningStateOutput = string;
+
+// @public
 export interface PrivateEndpointConnectionResource extends ProxyResource {
     properties?: PrivateEndpointConnectionProperties;
 }
 
-// @public (undocumented)
-export interface PrivateEndpointConnectionsCreateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
+// @public
+export type PrivateEndpointConnectionResourceListResultOutput = Paged<PrivateEndpointConnectionResourceOutput>;
+
+// @public
+export interface PrivateEndpointConnectionResourceOutput extends ProxyResourceOutput {
+    properties?: PrivateEndpointConnectionPropertiesOutput;
+}
+
+// @public
+export interface PrivateEndpointConnectionsCreate200Response extends HttpResponse {
+    // (undocumented)
+    body: PrivateEndpointConnectionResourceOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public
+export interface PrivateEndpointConnectionsCreate201Response extends HttpResponse {
+    // (undocumented)
+    body: PrivateEndpointConnectionResourceOutput;
+    // (undocumented)
+    status: "201";
 }
 
 // @public (undocumented)
-export interface PrivateEndpointConnectionsDeleteOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
+export interface PrivateEndpointConnectionsCreate202Headers {
+    "retry-after"?: number;
+    location?: string;
+}
+
+// @public
+export interface PrivateEndpointConnectionsCreate202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PrivateEndpointConnectionsCreate202Headers;
+    // (undocumented)
+    status: "202";
 }
 
 // @public (undocumented)
-export interface PrivateEndpointConnectionsGetOptionalParams extends OperationOptions {
+export interface PrivateEndpointConnectionsCreateBodyParam {
+    body: PrivateEndpointConnectionResource;
 }
 
 // @public (undocumented)
-export interface PrivateEndpointConnectionsListByMongoClusterOptionalParams extends OperationOptions {
+export interface PrivateEndpointConnectionsCreateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface PrivateEndpointConnectionsCreateLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: PrivateEndpointConnectionResourceOutput;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
-export interface PrivateEndpointConnectionsOperations {
+export type PrivateEndpointConnectionsCreateParameters = PrivateEndpointConnectionsCreateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface PrivateEndpointConnectionsDelete202Headers {
+    "retry-after"?: number;
+    location?: string;
+}
+
+// @public
+export interface PrivateEndpointConnectionsDelete202Response extends HttpResponse {
     // (undocumented)
-    create: (resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, resource: PrivateEndpointConnectionResource, options?: PrivateEndpointConnectionsCreateOptionalParams) => PollerLike<OperationState<void>, void>;
+    headers: RawHttpHeaders & PrivateEndpointConnectionsDelete202Headers;
     // (undocumented)
-    delete: (resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    status: "202";
+}
+
+// @public
+export interface PrivateEndpointConnectionsDelete204Response extends HttpResponse {
     // (undocumented)
-    get: (resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams) => Promise<PrivateEndpointConnectionResource>;
+    status: "204";
+}
+
+// @public (undocumented)
+export interface PrivateEndpointConnectionsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    listByMongoCluster: (resourceGroupName: string, mongoClusterName: string, options?: PrivateEndpointConnectionsListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<PrivateEndpointConnectionResource>;
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface PrivateEndpointConnectionsDeleteLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type PrivateEndpointConnectionsDeleteParameters = RequestParameters;
+
+// @public (undocumented)
+export interface PrivateEndpointConnectionsGet {
+    delete(options?: PrivateEndpointConnectionsDeleteParameters): StreamableMethod<PrivateEndpointConnectionsDelete202Response | PrivateEndpointConnectionsDelete204Response | PrivateEndpointConnectionsDeleteDefaultResponse>;
+    get(options?: PrivateEndpointConnectionsGetParameters): StreamableMethod<PrivateEndpointConnectionsGet200Response | PrivateEndpointConnectionsGetDefaultResponse>;
+    put(options: PrivateEndpointConnectionsCreateParameters): StreamableMethod<PrivateEndpointConnectionsCreate200Response | PrivateEndpointConnectionsCreate201Response | PrivateEndpointConnectionsCreate202Response | PrivateEndpointConnectionsCreateDefaultResponse>;
+}
+
+// @public
+export interface PrivateEndpointConnectionsGet200Response extends HttpResponse {
+    // (undocumented)
+    body: PrivateEndpointConnectionResourceOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PrivateEndpointConnectionsGetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type PrivateEndpointConnectionsGetParameters = RequestParameters;
+
+// @public (undocumented)
+export interface PrivateEndpointConnectionsListByMongoCluster {
+    get(options?: PrivateEndpointConnectionsListByMongoClusterParameters): StreamableMethod<PrivateEndpointConnectionsListByMongoCluster200Response | PrivateEndpointConnectionsListByMongoClusterDefaultResponse>;
+}
+
+// @public
+export interface PrivateEndpointConnectionsListByMongoCluster200Response extends HttpResponse {
+    // (undocumented)
+    body: PrivateEndpointConnectionResourceListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PrivateEndpointConnectionsListByMongoClusterDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type PrivateEndpointConnectionsListByMongoClusterParameters = RequestParameters;
+
+// @public
+export interface PrivateEndpointOutput {
+    readonly id?: string;
 }
 
 // @public
 export type PrivateEndpointServiceConnectionStatus = string;
+
+// @public
+export type PrivateEndpointServiceConnectionStatusOutput = string;
 
 // @public
 export interface PrivateLinkResource extends ProxyResource {
@@ -460,7 +1016,30 @@ export interface PrivateLinkResource extends ProxyResource {
 }
 
 // @public
+export interface PrivateLinkResource extends Resource {
+    properties?: PrivateLinkResourceProperties;
+}
+
+// @public
+export type PrivateLinkResourceListResultOutput = Paged<PrivateLinkResourceOutput>;
+
+// @public
+export interface PrivateLinkResourceOutput extends ProxyResourceOutput {
+    properties?: PrivateLinkResourcePropertiesOutput;
+}
+
+// @public
+export interface PrivateLinkResourceOutput extends ResourceOutput {
+    properties?: PrivateLinkResourcePropertiesOutput;
+}
+
+// @public
 export interface PrivateLinkResourceProperties {
+    requiredZoneNames?: string[];
+}
+
+// @public
+export interface PrivateLinkResourcePropertiesOutput {
     readonly groupId?: string;
     readonly requiredMembers?: string[];
     requiredZoneNames?: string[];
@@ -473,31 +1052,98 @@ export interface PrivateLinkServiceConnectionState {
     status?: PrivateEndpointServiceConnectionStatus;
 }
 
-// @public (undocumented)
-export interface PrivateLinksListByMongoClusterOptionalParams extends OperationOptions {
+// @public
+export interface PrivateLinkServiceConnectionStateOutput {
+    actionsRequired?: string;
+    description?: string;
+    status?: PrivateEndpointServiceConnectionStatusOutput;
 }
 
 // @public (undocumented)
-export interface PrivateLinksOperations {
-    // (undocumented)
-    listByMongoCluster: (resourceGroupName: string, mongoClusterName: string, options?: PrivateLinksListByMongoClusterOptionalParams) => PagedAsyncIterableIterator<PrivateLinkResource>;
+export interface PrivateLinksListByMongoCluster {
+    get(options?: PrivateLinksListByMongoClusterParameters): StreamableMethod<PrivateLinksListByMongoCluster200Response | PrivateLinksListByMongoClusterDefaultResponse>;
 }
 
 // @public
-export type ProvisioningState = string | ResourceProvisioningState | "InProgress" | "Updating" | "Dropping";
+export interface PrivateLinksListByMongoCluster200Response extends HttpResponse {
+    // (undocumented)
+    body: PrivateLinkResourceListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PrivateLinksListByMongoClusterDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type PrivateLinksListByMongoClusterParameters = RequestParameters;
+
+// @public
+export type ProvisioningState = string;
+
+// @public
+export type ProvisioningStateOutput = string;
 
 // @public
 export interface ProxyResource extends Resource {
 }
 
 // @public
+export interface ProxyResourceOutput extends ResourceOutput {
+}
+
+// @public
 export type PublicNetworkAccess = string;
 
 // @public
+export type PublicNetworkAccessOutput = string;
+
+// @public
 export interface Resource {
+}
+
+// @public
+export type ResourceIdentityType = "SystemAssigned";
+
+// @public
+export type ResourceIdentityTypeOutput = "SystemAssigned";
+
+// @public
+export interface ResourceModelWithAllowedPropertySet extends TrackedResource {
+    eTag?: string;
+    // (undocumented)
+    identity?: Identity;
+    kind?: string;
+    managedBy?: string;
+    // (undocumented)
+    plan?: Plan;
+    // (undocumented)
+    sku?: Sku;
+}
+
+// @public
+export interface ResourceModelWithAllowedPropertySetOutput extends TrackedResourceOutput {
+    eTag?: string;
+    // (undocumented)
+    identity?: IdentityOutput;
+    kind?: string;
+    managedBy?: string;
+    // (undocumented)
+    plan?: PlanOutput;
+    // (undocumented)
+    sku?: SkuOutput;
+}
+
+// @public
+export interface ResourceOutput {
     readonly id?: string;
     readonly name?: string;
-    readonly systemData?: SystemData;
+    readonly systemData?: SystemDataOutput;
     readonly type?: string;
 }
 
@@ -505,23 +1151,87 @@ export interface Resource {
 export type ResourceProvisioningState = string;
 
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: MongoClusterManagementClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export type ResourceProvisioningStateOutput = string;
 
 // @public (undocumented)
-export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
-    abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => Promise<TResult>;
-    updateIntervalInMs?: number;
+export interface Routes {
+    (path: "/providers/Microsoft.DocumentDB/operations"): OperationsList;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}", subscriptionId: string, resourceGroupName: string, mongoClusterName: string): MongoClustersGet;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters", subscriptionId: string, resourceGroupName: string): MongoClustersListByResourceGroup;
+    (path: "/subscriptions/{subscriptionId}/providers/Microsoft.DocumentDB/mongoClusters", subscriptionId: string): MongoClustersList;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}/listConnectionStrings", subscriptionId: string, resourceGroupName: string, mongoClusterName: string): MongoClustersListConnectionStrings;
+    (path: "/subscriptions/{subscriptionId}/providers/Microsoft.DocumentDB/locations/{location}/checkMongoClusterNameAvailability", subscriptionId: string, location: string): MongoClustersCheckNameAvailability;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}/firewallRules/{firewallRuleName}", subscriptionId: string, resourceGroupName: string, mongoClusterName: string, firewallRuleName: string): FirewallRulesGet;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}/firewallRules", subscriptionId: string, resourceGroupName: string, mongoClusterName: string): FirewallRulesListByMongoCluster;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}/privateEndpointConnections", subscriptionId: string, resourceGroupName: string, mongoClusterName: string): PrivateEndpointConnectionsListByMongoCluster;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}/privateEndpointConnections/{privateEndpointConnectionName}", subscriptionId: string, resourceGroupName: string, mongoClusterName: string, privateEndpointConnectionName: string): PrivateEndpointConnectionsGet;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/mongoClusters/{mongoClusterName}/privateLinkResources", subscriptionId: string, resourceGroupName: string, mongoClusterName: string): PrivateLinksListByMongoCluster;
 }
 
 // @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    // @deprecated
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
+}
+
+// @public
+export interface Sku {
+    capacity?: number;
+    family?: string;
+    name: string;
+    size?: string;
+    tier?: SkuTier;
+}
+
+// @public
+export interface SkuOutput {
+    capacity?: number;
+    family?: string;
+    name: string;
+    size?: string;
+    tier?: SkuTierOutput;
+}
+
+// @public
+export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
+
+// @public
+export type SkuTierOutput = "Free" | "Basic" | "Standard" | "Premium";
+
+// @public
 export interface SystemData {
-    createdAt?: Date;
+    createdAt?: Date | string;
     createdBy?: string;
     createdByType?: CreatedByType;
-    lastModifiedAt?: Date;
+    lastModifiedAt?: Date | string;
     lastModifiedBy?: string;
     lastModifiedByType?: CreatedByType;
+}
+
+// @public
+export interface SystemDataOutput {
+    createdAt?: string;
+    createdBy?: string;
+    createdByType?: CreatedByTypeOutput;
+    lastModifiedAt?: string;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByTypeOutput;
 }
 
 // @public
@@ -531,7 +1241,10 @@ export interface TrackedResource extends Resource {
 }
 
 // @public
-export type Versions = "2024-03-01-preview";
+export interface TrackedResourceOutput extends ResourceOutput {
+    location: string;
+    tags?: Record<string, string>;
+}
 
 // (No @packageDocumentation comment for this package)
 

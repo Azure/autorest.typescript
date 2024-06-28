@@ -307,6 +307,6 @@ export interface Routes {
   ): PrivateLinksListByMongoCluster;
 }
 
-export type DocumentDBContext = Client & {
+export type MongoClusterManagementClient = Client & {
   path: Routes;
 };
