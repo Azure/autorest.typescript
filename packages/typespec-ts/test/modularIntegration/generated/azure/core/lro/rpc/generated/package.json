@@ -14,22 +14,40 @@
       "./api": "./src/api/index.ts",
       "./models": "./src/models/index.ts"
     },
-    "dialects": ["esm", "commonjs"],
-    "esmDialects": ["browser", "react-native"],
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
     "selfLink": false
   },
   "type": "module",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
-  "files": ["dist", "README.md", "LICENSE", "review/*"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "review/*"
+  ],
   "dependencies": {
     "@azure-rest/core-client": "^2.0.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
     "tslib": "^2.6.2",
-    "@azure/core-lro": "3.0.0-beta.2",
+    "@azure/core-lro": "3.0.0",
     "@azure/abort-controller": "^2.1.2"
   },
   "devDependencies": {
