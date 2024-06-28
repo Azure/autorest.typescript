@@ -9,8 +9,11 @@ import {
   BooleanPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Boolean operations. */
 export interface BooleanOperations {
+  /** Get call */
   get: (options?: BooleanGetOptionalParams) => Promise<BooleanProperty>;
+  /** Put operation */
   put: (
     body: BooleanProperty,
     options?: BooleanPutOptionalParams,

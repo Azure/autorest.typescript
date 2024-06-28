@@ -9,8 +9,11 @@ import {
   ModelPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Model operations. */
 export interface ModelOperations {
+  /** Get call */
   get: (options?: ModelGetOptionalParams) => Promise<ModelProperty>;
+  /** Put operation */
   put: (body: ModelProperty, options?: ModelPutOptionalParams) => Promise<void>;
 }
 

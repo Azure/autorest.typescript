@@ -10,12 +10,15 @@ import {
   BudgetsCreateOrUpdateOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Budgets operations. */
 export interface BudgetsOperations {
+  /** Long-running resource create or replace operation template. */
   createOrReplace: (
     name: string,
     resource: User,
     options?: BudgetsCreateOrReplaceOptionalParams,
   ) => PollerLike<OperationState<User>, User>;
+  /** Long-running resource create or update operation template. */
   createOrUpdate: (
     name: string,
     resource: User,

@@ -8,6 +8,7 @@ import {
   StringValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a StringValue operations. */
 export interface StringValueOperations {
   get: (options?: StringValueGetOptionalParams) => Promise<string[]>;
   put: (

@@ -16,17 +16,22 @@ import {
   CollectionsModelPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a CollectionsModel operations. */
 export interface CollectionsModelOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: CollectionsModelGetAllOptionalParams,
   ) => Promise<CollectionsModelProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: CollectionsModelGetDefaultOptionalParams,
   ) => Promise<CollectionsModelProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: CollectionsModelProperty,
     options?: CollectionsModelPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: CollectionsModelProperty,
     options?: CollectionsModelPutDefaultOptionalParams,

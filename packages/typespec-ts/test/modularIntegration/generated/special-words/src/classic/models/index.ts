@@ -108,6 +108,7 @@ import {
   ModelsWithYieldOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Models operations. */
 export interface ModelsOperations {
   withAnd: (body: And, options?: ModelsWithAndOptionalParams) => Promise<void>;
   withAs: (body: As, options?: ModelsWithAsOptionalParams) => Promise<void>;

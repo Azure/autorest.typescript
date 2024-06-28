@@ -16,17 +16,22 @@ import {
   CollectionsBytePatchNullOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a CollectionsByte operations. */
 export interface CollectionsByteOperations {
+  /** Get models that will return all properties in the model */
   getNonNull: (
     options?: CollectionsByteGetNonNullOptionalParams,
   ) => Promise<CollectionsByteProperty>;
+  /** Get models that will return the default object */
   getNull: (
     options?: CollectionsByteGetNullOptionalParams,
   ) => Promise<CollectionsByteProperty>;
+  /** Put a body with all properties present. */
   patchNonNull: (
     body: CollectionsByteProperty,
     options?: CollectionsBytePatchNonNullOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   patchNull: (
     body: CollectionsByteProperty,
     options?: CollectionsBytePatchNullOptionalParams,

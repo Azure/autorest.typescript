@@ -9,8 +9,11 @@ import {
   Decimal128PutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Decimal128 operations. */
 export interface Decimal128Operations {
+  /** Get call */
   get: (options?: Decimal128GetOptionalParams) => Promise<Decimal128Property>;
+  /** Put operation */
   put: (
     body: Decimal128Property,
     options?: Decimal128PutOptionalParams,

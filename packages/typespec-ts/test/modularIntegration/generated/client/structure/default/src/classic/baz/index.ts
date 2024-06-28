@@ -4,6 +4,7 @@
 import { ServiceContext } from "../../api/serviceContext.js";
 import { BazFooOperations, getBazFooOperations } from "./foo/index.js";
 
+/** Interface representing a Baz operations. */
 export interface BazOperations {
   foo: BazFooOperations;
 }

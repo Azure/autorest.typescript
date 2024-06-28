@@ -16,17 +16,22 @@ import {
   CollectionsModelPatchNullOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a CollectionsModel operations. */
 export interface CollectionsModelOperations {
+  /** Get models that will return all properties in the model */
   getNonNull: (
     options?: CollectionsModelGetNonNullOptionalParams,
   ) => Promise<CollectionsModelProperty>;
+  /** Get models that will return the default object */
   getNull: (
     options?: CollectionsModelGetNullOptionalParams,
   ) => Promise<CollectionsModelProperty>;
+  /** Put a body with all properties present. */
   patchNonNull: (
     body: CollectionsModelProperty,
     options?: CollectionsModelPatchNonNullOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   patchNull: (
     body: CollectionsModelProperty,
     options?: CollectionsModelPatchNullOptionalParams,

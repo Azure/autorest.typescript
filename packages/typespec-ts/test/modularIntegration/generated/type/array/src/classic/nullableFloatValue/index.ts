@@ -11,6 +11,7 @@ import {
   NullableFloatValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a NullableFloatValue operations. */
 export interface NullableFloatValueOperations {
   get: (
     options?: NullableFloatValueGetOptionalParams,

@@ -16,15 +16,20 @@ import {
   StringPatchNullOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a String operations. */
 export interface StringOperations {
+  /** Get models that will return all properties in the model */
   getNonNull: (
     options?: StringGetNonNullOptionalParams,
   ) => Promise<StringProperty>;
+  /** Get models that will return the default object */
   getNull: (options?: StringGetNullOptionalParams) => Promise<StringProperty>;
+  /** Put a body with all properties present. */
   patchNonNull: (
     body: StringProperty,
     options?: StringPatchNonNullOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   patchNull: (
     body: StringProperty,
     options?: StringPatchNullOptionalParams,

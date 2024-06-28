@@ -8,8 +8,11 @@ import {
   UnknownPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Unknown operations. */
 export interface UnknownOperations {
+  /** get unknown value */
   get: (options?: UnknownGetOptionalParams) => Promise<any>;
+  /** put unknown value */
   put: (body: any, options?: UnknownPutOptionalParams) => Promise<void>;
 }
 

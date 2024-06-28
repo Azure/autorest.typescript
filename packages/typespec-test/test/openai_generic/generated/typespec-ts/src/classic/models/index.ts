@@ -14,12 +14,18 @@ import {
   ModelsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Models operations. */
 export interface ModelsOperations {
   list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
   retrieve: (
     model: string,
     options?: ModelsRetrieveOptionalParams,
   ) => Promise<Model>;
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
     model: string,
     options?: ModelsDeleteOptionalParams,

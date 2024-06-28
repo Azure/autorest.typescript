@@ -19,6 +19,7 @@ import {
   QueryInt32SecondsArrayOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Query operations. */
 export interface QueryOperations {
   default: (
     input: string,

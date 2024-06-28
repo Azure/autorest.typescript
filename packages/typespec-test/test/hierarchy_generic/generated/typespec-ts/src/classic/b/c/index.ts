@@ -6,6 +6,7 @@ import { BA } from "../../../models/models.js";
 import { op1 } from "../../../api/b/c/index.js";
 import { BCOp1OptionalParams } from "../../../models/options.js";
 
+/** Interface representing a BC operations. */
 export interface BCOperations {
   op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
 }
