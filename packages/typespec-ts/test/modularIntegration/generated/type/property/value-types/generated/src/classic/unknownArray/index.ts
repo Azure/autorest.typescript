@@ -12,10 +12,13 @@ import {
   UnknownArrayPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnknownArray operations. */
 export interface UnknownArrayOperations {
+  /** Get call */
   get: (
     options?: UnknownArrayGetOptionalParams,
   ) => Promise<UnknownArrayProperty>;
+  /** Put operation */
   put: (
     body: UnknownArrayProperty,
     options?: UnknownArrayPutOptionalParams,

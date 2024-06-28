@@ -59,7 +59,8 @@ export function buildClientContext(
           hasQuestionToken: true,
           docs: getDocsFromDescription(p.description)
         };
-      })
+      }),
+    docs: ["Optional parameters for the client."]
   });
   if (isRLCMultiEndpoint(dpgContext)) {
     clientContextFile.addImportDeclaration({

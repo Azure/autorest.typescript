@@ -5,6 +5,7 @@ import { ServiceContext } from "../../../api/serviceContext.js";
 import { seven } from "../../../api/baz/foo/index.js";
 import { BazFooSevenOptionalParams } from "../../../models/options.js";
 
+/** Interface representing a BazFoo operations. */
 export interface BazFooOperations {
   seven: (options?: BazFooSevenOptionalParams) => Promise<void>;
 }

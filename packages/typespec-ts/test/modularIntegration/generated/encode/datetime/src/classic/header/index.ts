@@ -17,6 +17,7 @@ import {
   HeaderUnixTimestampArrayOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Header operations. */
 export interface HeaderOperations {
   default: (
     value: Date,

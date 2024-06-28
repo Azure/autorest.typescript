@@ -9,8 +9,11 @@ import {
   IntPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Int operations. */
 export interface IntOperations {
+  /** Get call */
   get: (options?: IntGetOptionalParams) => Promise<IntProperty>;
+  /** Put operation */
   put: (body: IntProperty, options?: IntPutOptionalParams) => Promise<void>;
 }
 

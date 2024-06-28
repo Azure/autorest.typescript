@@ -3,6 +3,7 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
+/** Optional parameters. */
 export interface TestOptionalParams extends OperationOptions {
   param?: string;
 }

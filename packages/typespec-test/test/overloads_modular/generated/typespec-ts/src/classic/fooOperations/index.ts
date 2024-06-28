@@ -11,11 +11,14 @@ import {
   FooOperationsGetAvatarAsJpegOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a FooOperations operations. */
 export interface FooOperationsOperations {
+  /** A remote procedure call (RPC) operation. */
   getAvatarAsPng: (
     image: Uint8Array,
     options?: FooOperationsGetAvatarAsPngOptionalParams,
   ) => Promise<void>;
+  /** A remote procedure call (RPC) operation. */
   getAvatarAsJpeg: (
     image: Uint8Array,
     options?: FooOperationsGetAvatarAsJpegOptionalParams,

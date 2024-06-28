@@ -9,10 +9,13 @@ import {
   IsFloatPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IsFloat operations. */
 export interface IsFloatOperations {
+  /** Get call */
   get: (
     options?: IsFloatGetOptionalParams,
   ) => Promise<IsFloatAdditionalProperties>;
+  /** Put operation */
   put: (
     body: IsFloatAdditionalProperties,
     options?: IsFloatPutOptionalParams,

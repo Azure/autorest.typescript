@@ -12,10 +12,13 @@ import {
   BooleanLiteralPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a BooleanLiteral operations. */
 export interface BooleanLiteralOperations {
+  /** Get call */
   get: (
     options?: BooleanLiteralGetOptionalParams,
   ) => Promise<BooleanLiteralProperty>;
+  /** Put operation */
   put: (
     body: BooleanLiteralProperty,
     options?: BooleanLiteralPutOptionalParams,

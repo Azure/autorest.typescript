@@ -684,43 +684,43 @@ export interface FunctionName {
     name: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetAudioSpeechOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetChatCompletionsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetCompletionsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetEmbeddingsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetImageGenerationsOptionalParams extends OperationOptions {
 }
 
@@ -864,7 +864,7 @@ export class OpenAIClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface OpenAIClientOptions extends ClientOptions {
     apiVersion?: string;
 }

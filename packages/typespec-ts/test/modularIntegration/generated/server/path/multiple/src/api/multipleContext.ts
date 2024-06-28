@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { MultipleContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface MultipleClientOptions extends ClientOptions {
   /** Pass in v1.0 for API version. */
   apiVersion?: Versions;

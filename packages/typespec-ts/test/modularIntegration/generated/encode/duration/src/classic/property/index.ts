@@ -27,6 +27,7 @@ import {
   PropertyFloatSecondsArrayOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Property operations. */
 export interface PropertyOperations {
   default: (
     body: DefaultDurationProperty,

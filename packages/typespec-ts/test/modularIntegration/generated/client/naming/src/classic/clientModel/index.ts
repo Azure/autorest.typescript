@@ -9,6 +9,7 @@ import {
   ClientModelLanguageOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ClientModel operations. */
 export interface ClientModelOperations {
   client: (
     body: ClientModel,

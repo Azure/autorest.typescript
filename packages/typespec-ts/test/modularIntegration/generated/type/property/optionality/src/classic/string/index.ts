@@ -16,15 +16,20 @@ import {
   StringPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a String operations. */
 export interface StringOperations {
+  /** Get models that will return all properties in the model */
   getAll: (options?: StringGetAllOptionalParams) => Promise<StringProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: StringGetDefaultOptionalParams,
   ) => Promise<StringProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: StringProperty,
     options?: StringPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: StringProperty,
     options?: StringPutDefaultOptionalParams,

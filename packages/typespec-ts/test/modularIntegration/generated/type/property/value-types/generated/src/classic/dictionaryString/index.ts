@@ -12,10 +12,13 @@ import {
   DictionaryStringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DictionaryString operations. */
 export interface DictionaryStringOperations {
+  /** Get call */
   get: (
     options?: DictionaryStringGetOptionalParams,
   ) => Promise<DictionaryStringProperty>;
+  /** Put operation */
   put: (
     body: DictionaryStringProperty,
     options?: DictionaryStringPutOptionalParams,
