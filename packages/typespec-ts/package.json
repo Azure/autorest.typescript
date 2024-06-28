@@ -62,7 +62,7 @@
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
   "devDependencies": {
-    "@azure-rest/core-client": "^2.0.0",
+    "@azure-rest/core-client": "^2.1.0",
     "@azure-tools/cadl-ranch-expect": "^0.13.4",
     "@azure-tools/cadl-ranch-specs": "^0.33.4",
     "@azure-tools/cadl-ranch": "^0.12.8",
