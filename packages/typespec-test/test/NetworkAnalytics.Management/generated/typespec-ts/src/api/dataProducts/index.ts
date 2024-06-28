@@ -15,7 +15,7 @@ import {
   RoleAssignmentCommonProperties,
   RoleAssignmentDetail,
   ListRoleAssignments,
-  DataProductListResult,
+  _DataProductListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -1046,7 +1046,7 @@ export async function _listByResourceGroupDeserialize(
   result:
     | DataProductsListByResourceGroup200Response
     | DataProductsListByResourceGroupDefaultResponse,
-): Promise<DataProductListResult> {
+): Promise<_DataProductListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -1209,7 +1209,7 @@ export async function _listBySubscriptionDeserialize(
   result:
     | DataProductsListBySubscription200Response
     | DataProductsListBySubscriptionDefaultResponse,
-): Promise<DataProductListResult> {
+): Promise<_DataProductListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

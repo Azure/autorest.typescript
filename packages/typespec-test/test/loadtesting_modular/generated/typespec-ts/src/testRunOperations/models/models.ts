@@ -447,7 +447,7 @@ export function resourceMetricSerializer(
 }
 
 /** Collection of files. */
-export interface PagedFileInfo {
+export interface _PagedFileInfo {
   /** The FileInfo items on this page */
   value: FileInfo[];
   /** The link to the next page of items */
@@ -455,7 +455,7 @@ export interface PagedFileInfo {
 }
 
 /** Collection of tests */
-export interface PagedTest {
+export interface _PagedTest {
   /** The Test items on this page */
   value: Test[];
   /** The link to the next page of items */
@@ -828,7 +828,7 @@ export function dimensionFilterSerializer(
 }
 
 /** The response to a metrics query. */
-export interface PagedTimeSeriesElement {
+export interface _PagedTimeSeriesElement {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
@@ -860,7 +860,7 @@ export interface DimensionValue {
 }
 
 /** Collection of test runs */
-export interface PagedTestRun {
+export interface _PagedTestRun {
   /** The TestRun items on this page */
   value: TestRun[];
   /** The link to the next page of items */
@@ -868,7 +868,7 @@ export interface PagedTestRun {
 }
 
 /** Paged collection of DimensionValueList items */
-export interface PagedDimensionValueList {
+export interface _PagedDimensionValueList {
   /** The DimensionValueList items on this page */
   value: DimensionValueList[];
   /** The link to the next page of items */

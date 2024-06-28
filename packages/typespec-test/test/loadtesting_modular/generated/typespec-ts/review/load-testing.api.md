@@ -290,36 +290,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export interface PagedDimensionValueList {
-    nextLink?: string;
-    value: DimensionValueList[];
-}
-
-// @public
-export interface PagedFileInfo {
-    nextLink?: string;
-    value: FileInfo[];
-}
-
-// @public
-export interface PagedTest {
-    nextLink?: string;
-    value: Test[];
-}
-
-// @public
-export interface PagedTestRun {
-    nextLink?: string;
-    value: TestRun[];
-}
-
-// @public
-export interface PagedTimeSeriesElement {
-    nextLink?: string;
-    value: TimeSeriesElement[];
-}
-
-// @public
 export interface PageSettings {
     continuationToken?: string;
 }
@@ -680,36 +650,6 @@ export interface TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPa
     [Symbol.asyncIterator](): TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TestRunOperationsClientContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface TestRunOperationsClientPagedDimensionValueList {
-    nextLink?: string;
-    value: TestRunOperationsClientDimensionValueList[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedFileInfo {
-    nextLink?: string;
-    value: TestRunOperationsClientFileInfo[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedTest {
-    nextLink?: string;
-    value: TestRunOperationsClientTest[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedTestRun {
-    nextLink?: string;
-    value: TestRunOperationsClientTestRun[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedTimeSeriesElement {
-    nextLink?: string;
-    value: TestRunOperationsClientTimeSeriesElement[];
 }
 
 // @public
