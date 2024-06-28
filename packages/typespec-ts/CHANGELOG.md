@@ -1,3 +1,7 @@
+## 0.30.1 (2024-06-29)
+
+- [Bugfix] Remove runtime references to @azure/core-util devDependency. Please refer to [#2634](https://github.com/Azure/autorest.typescript/pull/2634/files).
+
 ## 0.30.0 (2024-06-28)
 
 - [Feature] Support non-exhaustive enum. Please refer to [#2584](https://github.com/Azure/autorest.typescript/pull/2584).
