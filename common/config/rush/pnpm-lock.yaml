@@ -12,7 +12,7 @@ importers:
       '@autorest/testmodeler': ^2.6.1
       '@azure-rest/core-client': ^1.4.0
       '@azure-tools/codegen': ^2.9.1
-      '@azure-tools/rlc-common': workspace:^0.29.0
+      '@azure-tools/rlc-common': workspace:^0.30.0
       '@azure-tools/test-recorder': ^3.0.0
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
@@ -195,7 +195,7 @@ importers:
       '@azure-tools/typespec-azure-core': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-azure-resource-manager': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.43.0 <1.0.0'
-      '@azure-tools/typespec-ts': workspace:^0.29.0
+      '@azure-tools/typespec-ts': workspace:^0.30.0
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
       '@typespec/compiler': '>=0.57.0 <1.0.0'
@@ -228,18 +228,18 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      '@azure-rest/core-client': ^2.0.0
+      '@azure-rest/core-client': ^2.1.0
       '@azure-tools/cadl-ranch': ^0.12.8
       '@azure-tools/cadl-ranch-expect': ^0.13.4
       '@azure-tools/cadl-ranch-specs': ^0.33.4
-      '@azure-tools/rlc-common': workspace:^0.29.0
+      '@azure-tools/rlc-common': workspace:^0.30.0
       '@azure-tools/typespec-autorest': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-azure-resource-manager': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.43.0 <1.0.0'
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
-      '@azure/core-lro': 3.0.0-beta.2
+      '@azure/core-lro': 3.0.0
       '@azure/core-paging': ^1.5.0
       '@azure/core-rest-pipeline': ^1.14.0
       '@azure/core-util': ^1.4.0
@@ -284,7 +284,7 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 2.0.0
+      '@azure-rest/core-client': 2.1.0
       '@azure-tools/cadl-ranch': 0.12.8_idwqxt3tapfhp2vsjq6tobrmge
       '@azure-tools/cadl-ranch-expect': 0.13.4_slesryzarwbyvcf3mhszmr4dlm
       '@azure-tools/cadl-ranch-specs': 0.33.4_os3md7h7fcok2eynvsrvyepqoq
@@ -294,7 +294,7 @@ importers:
       '@azure-tools/typespec-client-generator-core': 0.43.0_uovqfdr3tffszkt2tayxtbnshy
       '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
-      '@azure/core-lro': 3.0.0-beta.2
+      '@azure/core-lro': 3.0.0
       '@azure/core-paging': 1.5.0
       '@azure/core-rest-pipeline': 1.14.0
       '@azure/core-util': 1.5.0
@@ -377,8 +377,8 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-rest/core-client/2.0.0:
-    resolution: {integrity: sha512-MXduH8EZCeH3Z4rMYgTlcI0O+iU9g6R0JKO9CyHni6gWulgBw+jFDB5vv3N1NbQ+xr1AvGjv//nYrqLTMvcSFg==}
+  /@azure-rest/core-client/2.1.0:
+    resolution: {integrity: sha512-Ekq5PXiLyBF1PnfoXeC0IIAmFm1DVBiJdZGzk4lK0wsk8l8KdYDAWDfDQ8P0nqjvEQQjFaWd45pIidri94ih3Q==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/abort-controller': 2.1.2
@@ -693,8 +693,8 @@ packages:
       '@azure/logger': 1.0.4
       tslib: 2.6.2
 
-  /@azure/core-lro/3.0.0-beta.2:
-    resolution: {integrity: sha512-8WwZaYHwgp04oA4bnJcjgoHg9Aty4k/fu1EUhaC+r7OhiPwLNKchaY7NH4Z6KqSS8MpFOjmdUjCPcgyAvtweJQ==}
+  /@azure/core-lro/3.0.0:
+    resolution: {integrity: sha512-t46lsD0jDJ1o71hIGzoUfT9jH+rIkNJAJLhhPqW8XLbPueHBnP4x5PNJ2szXlLoztH/00OcUUH3FbFnAntOSWA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/abort-controller': 2.1.2
