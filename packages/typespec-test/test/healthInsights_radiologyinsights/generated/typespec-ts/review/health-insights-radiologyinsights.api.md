@@ -40,6 +40,19 @@ export interface Annotation extends Element {
 export type ApiVersion = "2023-09-01-preview";
 
 // @public (undocumented)
+<<<<<<< HEAD
+=======
+export type AzureHealthInsightsClient = Client & {
+    path: Routes;
+};
+
+// @public
+export interface AzureHealthInsightsClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
+>>>>>>> main
 export type ClinicalDocumentType = "consultation" | "dischargeSummary" | "historyAndPhysical" | "radiologyReport" | "procedure" | "progress" | "laboratory" | "pathologyReport";
 
 // @public
@@ -118,6 +131,82 @@ export type ContactPointSystem = "phone" | "fax" | "email" | "pager" | "url" | "
 export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 
 // @public
+<<<<<<< HEAD
+=======
+export type ContactPointUseOutput = "home" | "work" | "temp" | "old" | "mobile";
+
+// @public
+function createClient(endpointParam: string, credentials: KeyCredential, { apiVersion, ...options }?: AzureHealthInsightsClientOptions): AzureHealthInsightsClient;
+export default createClient;
+
+// @public (undocumented)
+export interface CreateJob {
+    post(options?: CreateJobParameters): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface CreateJob202Headers {
+    "operation-location": string;
+    "repeatability-result"?: RepeatabilityResultOutput;
+    "retry-after"?: number;
+}
+
+// @public
+export interface CreateJob202Response extends HttpResponse {
+    // (undocumented)
+    body: HealthInsightsOperationStatusOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateJob202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface CreateJobBodyParam {
+    // (undocumented)
+    body?: RadiologyInsightsData;
+}
+
+// @public (undocumented)
+export interface CreateJobDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface CreateJobDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateJobDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface CreateJobHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & CreateJobHeaders;
+}
+
+// @public (undocumented)
+export interface CreateJobHeaders {
+    "Repeatability-First-Sent"?: string;
+    "Repeatability-Request-ID"?: string;
+}
+
+// @public
+export interface CreateJobLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: HealthInsightsOperationStatusOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type CreateJobParameters = CreateJobHeaderParam & CreateJobBodyParam & RequestParameters;
+
+// @public
+>>>>>>> main
 export interface CriticalResult {
     description: string;
     finding?: Observation;
@@ -651,6 +740,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

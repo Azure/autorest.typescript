@@ -183,6 +183,9 @@
             }
           }
         },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
+        },
         "x-ms-long-running-operation": true
       },
       "delete": {
@@ -246,6 +249,9 @@
             }
           }
         },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
+        },
         "x-ms-long-running-operation": true
       }
     },
@@ -292,6 +298,9 @@
             }
           }
         },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
+        },
         "x-ms-long-running-operation": true
       }
     },
@@ -334,6 +343,9 @@
               }
             }
           }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
         },
         "x-ms-long-running-operation": true
       }
@@ -386,6 +398,9 @@
               }
             }
           }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
         },
         "x-ms-long-running-operation": true
       }
@@ -546,6 +561,9 @@
             }
           }
         },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "original-uri"
+        },
         "x-ms-long-running-operation": true
       },
       "delete": {
@@ -615,6 +633,9 @@
               }
             }
           }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
         },
         "x-ms-long-running-operation": true
       }
@@ -765,6 +786,9 @@
               }
             }
           }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
         },
         "x-ms-long-running-operation": true
       }
@@ -1479,23 +1503,6 @@
       "required": [
         "modelLabel"
       ]
-    },
-    "Versions": {
-      "type": "string",
-      "enum": [
-        "2022-05-15-preview"
-      ],
-      "x-ms-enum": {
-        "name": "Versions",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "2022-05-15-preview",
-            "value": "2022-05-15-preview",
-            "description": "Version 2022-08-31"
-          }
-        ]
-      }
     }
   },
   "parameters": {

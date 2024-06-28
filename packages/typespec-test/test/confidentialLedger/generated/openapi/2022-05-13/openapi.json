@@ -826,23 +826,6 @@
         "state",
         "transactionId"
       ]
-    },
-    "Versions": {
-      "type": "string",
-      "enum": [
-        "2022-05-13"
-      ],
-      "x-ms-enum": {
-        "name": "Versions",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "2022-05-13",
-            "value": "2022-05-13",
-            "description": "Version 2022-08-31"
-          }
-        ]
-      }
     }
   },
   "parameters": {

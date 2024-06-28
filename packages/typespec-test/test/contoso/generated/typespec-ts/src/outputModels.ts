@@ -44,12 +44,7 @@ export interface OperationStatusOutput {
   error?: ErrorModel;
 }
 
-/** Enum describing allowed operation states. */
-export type OperationStateOutput =
-  | "NotStarted"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;
 /** Paged collection of Widget items */
 export type PagedWidgetOutput = Paged<WidgetOutput>;

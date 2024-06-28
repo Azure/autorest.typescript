@@ -2,40 +2,40 @@
 // Licensed under the MIT License.
 
 import {
-  SdkClient,
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
-import {
-  ResponseHeaderSchema,
+  getLroLogicalResponseName,
+  Imports,
   OperationResponse,
+  ResponseHeaderSchema,
   ResponseMetadata,
   Schema,
-  SchemaContext,
-  getLroLogicalResponseName,
-  Imports
+  SchemaContext
 } from "@azure-tools/rlc-common";
-import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
+import {
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkClient
+} from "@azure-tools/typespec-client-generator-core";
+import { getDoc, ignoreDiagnostics, isVoidType } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
   HttpOperationResponse
 } from "@typespec/http";
+import { SdkContext } from "../utils/interfaces.js";
 import {
+  getBinaryType,
   getImportedModelName,
-  getTypeName,
   getSchemaForType,
-  getBinaryType
+  getTypeName
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
-  getOperationStatuscode,
-  isBinaryPayload,
   getOperationLroOverload,
   getOperationName,
+  getOperationStatuscode,
+  isBinaryPayload,
   sortedOperationResponses
 } from "../utils/operationUtil.js";
-import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToResponseTypes(
   client: SdkClient,
@@ -123,13 +123,16 @@ function transformHeaders(
     return;
   }
 
-  const rlcHeaders = [];
+  const rlcHeaders: Map<string, ResponseHeaderSchema> = new Map();
   // Current RLC client can't represent different headers per content type.
   // So we merge headers here, and report any duplicates.
   // It may be possible in principle to not error for identically declared
   // headers.
   for (const data of response.responses) {
-    const headers = data?.headers;
+    const headers = data?.headers ?? {};
+    if (data.body?.contentTypeProperty) {
+      headers["content-type"] = data.body?.contentTypeProperty;
+    }
     if (!headers || !Object.keys(headers).length) {
       continue;
     }
@@ -152,11 +155,11 @@ function transformHeaders(
         required: !value?.optional,
         description: getDoc(dpgContext.program, value!)
       };
-      rlcHeaders.push(header);
+      rlcHeaders.set(header.name, header);
     }
   }
 
-  return rlcHeaders.length ? rlcHeaders : undefined;
+  return rlcHeaders.size ? Array.from(rlcHeaders.values()) : undefined;
 }
 
 function transformBody(
@@ -174,7 +177,7 @@ function transformBody(
   let fromCore = false;
   for (const data of response.responses) {
     const body = data?.body;
-    if (!body) {
+    if (!body || isVoidType(body.type)) {
       continue;
     }
     const hasBinaryContent = body.contentTypes.some((contentType) =>

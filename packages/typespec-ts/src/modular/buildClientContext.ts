@@ -1,20 +1,20 @@
+import {
+  getImportSpecifier,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import { SourceFile } from "ts-morph";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
+import { importModels } from "./buildOperations.js";
 import {
   getClientParameters,
   importCredential
 } from "./helpers/clientHelpers.js";
-import { getClientName } from "./helpers/namingHelpers.js";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { importModels } from "./buildOperations.js";
-import { SdkContext } from "../utils/interfaces.js";
-import {
-  getImportSpecifier,
-  normalizeName,
-  NameType
-} from "@azure-tools/rlc-common";
+import { getClientName } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -26,7 +26,7 @@ export function buildClientContext(
 ): SourceFile {
   const { description, subfolder } = client;
   const name = getClientName(client);
-  const params = getClientParameters(client);
+  const params = getClientParameters(client, dpgContext);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${

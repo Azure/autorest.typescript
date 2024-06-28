@@ -1,3 +1,4 @@
+import { PatientRecord as PatientRecordRest, PatientInfo as PatientInfoRest, Resource as ResourceRest, Meta as MetaRest, Element as ElementRest, Extension as ExtensionRest, Quantity as QuantityRest, CodeableConcept as CodeableConceptRest, Coding as CodingRest, Range as RangeRest, Ratio as RatioRest, SampledData as SampledDataRest, Period as PeriodRest, Reference as ReferenceRest, Identifier as IdentifierRest, Encounter as EncounterRest, TimePeriod as TimePeriodRest, PatientDocument as PatientDocumentRest, DocumentAuthor as DocumentAuthorRest, DocumentAdministrativeMetadata as DocumentAdministrativeMetadataRest, Extendible as ExtendibleRest, OrderedProcedure as OrderedProcedureRest, DocumentContent as DocumentContentRest, RadiologyInsightsModelConfiguration as RadiologyInsightsModelConfigurationRest, RadiologyInsightsInferenceOptions as RadiologyInsightsInferenceOptionsRest, FollowupRecommendationOptions as FollowupRecommendationOptionsRest, FindingOptions as FindingOptionsRest, RadiologyInsightsData as RadiologyInsightsDataRest } from "../rest/index.js";
 import { ErrorModel } from "@azure-rest/core-client";
 /** A patient record, including their clinical information and data. */
 export interface PatientRecord {
@@ -10,6 +11,7 @@ export interface PatientRecord {
     /** Patient unstructured clinical data, given as documents. */
     patientDocuments?: PatientDocument[];
 }
+export declare function patientRecordSerializer(item: PatientRecord): PatientRecordRest;
 /** Patient structured information, including demographics and known structured clinical information. */
 export interface PatientInfo {
     /** The patient's sex. */
@@ -19,8 +21,8 @@ export interface PatientInfo {
     /** Known clinical information for the patient, structured. */
     clinicalInfo?: Resource[];
 }
+export declare function patientInfoSerializer(item: PatientInfo): PatientInfoRest;
 /** The patient's sex. */
-/** */
 export type PatientInfoSex = "female" | "male" | "unspecified";
 /**
  * Resource is the ancestor of DomainResource from which most resources are derived. Bundle, Parameters, and Binary extend Resource directly.
@@ -38,6 +40,7 @@ export interface Resource {
     /** Language of the resource content */
     language?: string;
 }
+export declare function resourceSerializer(item: Resource): ResourceRest;
 /**
  * Metadata about a resource
  * Based on [FHIR Meta](https://www.hl7.org/fhir/R4/resource.html#Meta)
@@ -56,6 +59,7 @@ export interface Meta {
     /** Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource. */
     tag?: Coding[];
 }
+export declare function metaSerializer(item: Meta): MetaRest;
 /**
  * The base definition for all elements contained inside a resource.
  * Based on [FHIR Element](https://www.hl7.org/fhir/R4/element.html)
@@ -66,6 +70,7 @@ export interface Element {
     /** Additional Content defined by implementations */
     extension?: Extension[];
 }
+export declare function elementSerializer(item: Element): ElementRest;
 /**
  * Base for all elements
  * Based on [FHIR Element](https://www.hl7.org/fhir/datatypes.html#Element)
@@ -98,6 +103,7 @@ export interface Extension extends Element {
     /** Value as reference. */
     valueReference?: Reference;
 }
+export declare function extensionSerializer(item: Extension): ExtensionRest;
 /**
  * A measured or measurable amount
  * Based on [FHIR Quantity](https://www.hl7.org/fhir/R4/datatypes.html#Quantity)
@@ -114,6 +120,7 @@ export interface Quantity extends Element {
     /** Coded form of the unit */
     code?: string;
 }
+export declare function quantitySerializer(item: Quantity): QuantityRest;
 /**
  * Concept - reference to a terminology or just text
  * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
@@ -124,6 +131,7 @@ export interface CodeableConcept extends Element {
     /** Plain text representation of the concept */
     text?: string;
 }
+export declare function codeableConceptSerializer(item: CodeableConcept): CodeableConceptRest;
 /**
  * A Coding is a representation of a defined concept using a symbol from a defined "code system".
  * Based on [FHIR Coding](https://www.hl7.org/fhir/R4/datatypes.html#Coding)
@@ -138,6 +146,7 @@ export interface Coding extends Element {
     /** Representation defined by the system */
     display?: string;
 }
+export declare function codingSerializer(item: Coding): CodingRest;
 /**
  * A set of ordered Quantities defined by a low and high limit
  * Based on [FHIR Range](https://www.hl7.org/fhir/R4/datatypes.html#Range)
@@ -148,6 +157,7 @@ export interface Range extends Element {
     /** High limit */
     high?: Quantity;
 }
+export declare function rangeSerializer(item: Range): RangeRest;
 /**
  * A ratio of two Quantity values - a numerator and a denominator
  * Based on [FHIR Ratio](https://www.hl7.org/fhir/R4/datatypes.html#Ratio)
@@ -158,6 +168,7 @@ export interface Ratio extends Element {
     /** Denominator value */
     denominator?: Quantity;
 }
+export declare function ratioSerializer(item: Ratio): RatioRest;
 /**
  * A series of measurements taken by a device
  * Based on [FHIR SampledData](https://www.hl7.org/fhir/R4/datatypes.html#SampledData)
@@ -178,6 +189,7 @@ export interface SampledData extends Element {
     /** Decimal values with spaces, or "E" | "U" | "L" */
     data?: string;
 }
+export declare function sampledDataSerializer(item: SampledData): SampledDataRest;
 /**
  * A time period defined by a start and end date and optionally time
  * Based on [FHIR Period](https://www.hl7.org/fhir/R4/datatypes.html#Period)
@@ -188,6 +200,7 @@ export interface Period extends Element {
     /** End time with inclusive boundary, if not ongoing */
     end?: string;
 }
+export declare function periodSerializer(item: Period): PeriodRest;
 /**
  * A reference from one resource to another
  * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
@@ -202,6 +215,7 @@ export interface Reference extends Element {
     /** Text alternative for the resource */
     display?: string;
 }
+export declare function referenceSerializer(item: Reference): ReferenceRest;
 /**
  * An identifier intended for computation
  * Based on [FHIR Identifier](https://www.hl7.org/fhir/R4/identifier.html)
@@ -220,6 +234,7 @@ export interface Identifier extends Element {
     /** Organization that issued id (may be just text) */
     assigner?: Reference;
 }
+export declare function identifierSerializer(item: Identifier): IdentifierRest;
 /** visit/encounter information */
 export interface Encounter {
     /** The id of the visit. */
@@ -232,6 +247,7 @@ export interface Encounter {
     /** The class of the encounter. */
     class?: EncounterClass;
 }
+export declare function encounterSerializer(item: Encounter): EncounterRest;
 /** A duration of time during which an event is happening */
 export interface TimePeriod {
     /** Starting time with inclusive boundary */
@@ -239,8 +255,8 @@ export interface TimePeriod {
     /** End time with inclusive boundary, if not ongoing */
     end?: Date;
 }
+export declare function timePeriodSerializer(item: TimePeriod): TimePeriodRest;
 /** Known values codes that can be used to indicate the class of encounter (TODO://Based on FHIR value set--http://....). */
-/** */
 export type EncounterClass = "inpatient" | "ambulatory" | "observation" | "emergency" | "virtual" | "healthHome";
 /** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
 export interface PatientDocument {
@@ -263,11 +279,10 @@ export interface PatientDocument {
     /** The content of the patient document. */
     content: DocumentContent;
 }
+export declare function patientDocumentSerializer(item: PatientDocument): PatientDocumentRest;
 /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-/** */
 export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
 /** The type of the clinical document. */
-/** */
 export type ClinicalDocumentType = "consultation" | "dischargeSummary" | "historyAndPhysical" | "radiologyReport" | "procedure" | "progress" | "laboratory" | "pathologyReport";
 /** Document author */
 export interface DocumentAuthor {
@@ -276,8 +291,8 @@ export interface DocumentAuthor {
     /** Text representation of the full name */
     fullName?: string;
 }
+export declare function documentAuthorSerializer(item: DocumentAuthor): DocumentAuthorRest;
 /** Known values codes that can be used to indicate the type of the Specialty. */
-/** */
 export type SpecialtyType = "pathology" | "radiology";
 /** Document administrative metadata */
 export interface DocumentAdministrativeMetadata {
@@ -286,11 +301,13 @@ export interface DocumentAdministrativeMetadata {
     /** Reference to the encounter associated with the document. */
     encounterId?: string;
 }
+export declare function documentAdministrativeMetadataSerializer(item: DocumentAdministrativeMetadata): DocumentAdministrativeMetadataRest;
 /** FHIR extendible element */
 export interface Extendible {
     /** Additional Content defined by implementations */
     extension?: Extension[];
 }
+export declare function extendibleSerializer(item: Extendible): ExtendibleRest;
 /** Procedure information */
 export interface OrderedProcedure extends Extendible {
     /** Procedure code */
@@ -298,6 +315,7 @@ export interface OrderedProcedure extends Extendible {
     /** Procedure description */
     description?: string;
 }
+export declare function orderedProcedureSerializer(item: OrderedProcedure): OrderedProcedureRest;
 /** The content of the patient document. */
 export interface DocumentContent {
     /**
@@ -309,12 +327,12 @@ export interface DocumentContent {
     /** The content of the document, given either inline (as a string) or as a reference (URI). */
     value: string;
 }
+export declare function documentContentSerializer(item: DocumentContent): DocumentContentRest;
 /**
  * The type of the content's source.
  * In case the source type is 'inline', the content is given as a string (for instance, text).
  * In case the source type is 'reference', the content is given as a URI.
  */
-/** */
 export type DocumentContentSourceType = "inline" | "reference";
 /** Configuration affecting the Radiology Insights model's inference. */
 export interface RadiologyInsightsModelConfiguration {
@@ -333,8 +351,8 @@ export interface RadiologyInsightsModelConfiguration {
     /** Local for the model to use. If not specified, the model will use the default locale */
     locale?: string;
 }
+export declare function radiologyInsightsModelConfigurationSerializer(item: RadiologyInsightsModelConfiguration): RadiologyInsightsModelConfigurationRest;
 /** A Radiology Insights inference types. */
-/** */
 export type RadiologyInsightsInferenceType = "ageMismatch" | "lateralityDiscrepancy" | "sexMismatch" | "completeOrderDiscrepancy" | "limitedOrderDiscrepancy" | "finding" | "criticalResult" | "followupRecommendation" | "followupCommunication" | "radiologyProcedure";
 /** The options for the Radiology Insights Inferences */
 export interface RadiologyInsightsInferenceOptions {
@@ -343,6 +361,7 @@ export interface RadiologyInsightsInferenceOptions {
     /** Finding Options */
     finding?: FindingOptions;
 }
+export declare function radiologyInsightsInferenceOptionsSerializer(item: RadiologyInsightsInferenceOptions): RadiologyInsightsInferenceOptionsRest;
 /** Followup Recommendation Options */
 export interface FollowupRecommendationOptions {
     /** Include/Exclude followup recommendations with no specific radiologic modality, default is false. */
@@ -352,11 +371,13 @@ export interface FollowupRecommendationOptions {
     /** Provide a single focused sentence as evidence for the recommendation, default is false. */
     provideFocusedSentenceEvidence?: boolean;
 }
+export declare function followupRecommendationOptionsSerializer(item: FollowupRecommendationOptions): FollowupRecommendationOptionsRest;
 /** Finding Options */
 export interface FindingOptions {
     /** Provide a single focused sentence as evidence for the finding, default is false. */
     provideFocusedSentenceEvidence?: boolean;
 }
+export declare function findingOptionsSerializer(item: FindingOptions): FindingOptionsRest;
 /** The body of the Radiology Insights request. */
 export interface RadiologyInsightsData {
     /** The list of patients, including their clinical information and data. */
@@ -364,6 +385,7 @@ export interface RadiologyInsightsData {
     /** Configuration affecting the Radiology Insights model's inference. */
     configuration?: RadiologyInsightsModelConfiguration;
 }
+export declare function radiologyInsightsDataSerializer(item: RadiologyInsightsData): RadiologyInsightsDataRest;
 /** Provides status details for long running operations. */
 export interface HealthInsightsOperationStatusError {
     /** The unique ID of the operation. */
@@ -380,7 +402,6 @@ export interface HealthInsightsOperationStatusError {
     error?: ErrorModel;
 }
 /** The status of the processing job. */
-/** */
 export type JobStatus = "notStarted" | "running" | "succeeded" | "failed" | "canceled";
 /** The inference results for the Radiology Insights request. */
 export interface RadiologyInsightsInferenceResult {
@@ -444,7 +465,6 @@ export interface LateralityDiscrepancyInference extends RadiologyInsightsInferen
     discrepancyType: LateralityDiscrepancyType;
 }
 /** Laterality discrepancy type */
-/** */
 export type LateralityDiscrepancyType = "orderLateralityMismatch" | "textLateralityContradiction" | "textLateralityMissing";
 /**
  * Completed Order mismatch
@@ -576,7 +596,6 @@ export interface Observation extends DomainResource {
  * Observation Status
  * Based on [FHIR ObservationStatus](https://www.hl7.org/fhir/R4/valueset-observation-status.html)
  */
-/** */
 export type ObservationStatusCodeType = "registered" | "preliminary" | "final" | "amended" | "corrected" | "cancelled" | "entered-in-error" | "unknown";
 /**
  * A text note which also  contains information about who made the statement and when
@@ -768,7 +787,6 @@ export interface ResearchStudy extends DomainResource {
     }[];
 }
 /** https://www.hl7.org/fhir/R4/codesystem-research-study-status.html */
-/** */
 export type ResearchStudyStatusCodeType = "active" | "administratively-completed" | "approved" | "closed-to-accrual" | "closed-to-accrual-and-intervention" | "completed" | "disapproved" | "in-review" | "temporarily-closed-to-accrual" | "temporarily-closed-to-accrual-and-intervention" | "withdrawn";
 /** Contact details (See: https://www.hl7.org/fhir/R4/metadatatypes.html#ContactDetail) */
 export interface ContactDetail extends Element {
@@ -797,13 +815,11 @@ export interface ContactPoint {
  * Contact Point System
  * see https://www.hl7.org/fhir/R4/valueset-contact-point-system.html
  */
-/** */
 export type ContactPointSystem = "phone" | "fax" | "email" | "pager" | "url" | "sms" | "other";
 /**
  * Contact Point Use
  * See: 	http://hl7.org/fhir/ValueSet/contact-point-use
  */
-/** */
 export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 /**
  * Any resource that is a [DomainResource](https://www.hl7.org/fhir/domainresource.html) may include a human-readable narrative that contains a summary of the resource and may be used to represent the content of the resource to a human.
@@ -902,7 +918,6 @@ export interface RecommendationFinding extends Extendible {
     recommendationFindingStatus: RecommendationFindingStatusType;
 }
 /** Recommendation finding status */
-/** */
 export type RecommendationFindingStatusType = "present" | "differential" | "ruleOut" | "conditional";
 /** Radiology Insights abstract procedure. */
 export interface ProcedureRecommendation {
@@ -939,7 +954,6 @@ export interface FollowupCommunicationInference extends RadiologyInsightsInferen
     wasAcknowledged: boolean;
 }
 /** Medical Professional Type */
-/** */
 export type MedicalProfessionalType = "unknown" | "doctor" | "nurse" | "midwife" | "physicianAssistant";
 /** The response for the Radiology Insights request. */
 export interface RadiologyInsightsResult {
@@ -958,10 +972,9 @@ export interface RadiologyInsightsResult {
     /** The result of the operation. */
     result?: RadiologyInsightsInferenceResult;
 }
-/** */
+/** Type of ApiVersion */
 export type ApiVersion = "2023-09-01-preview";
 /** Repeatability Result header options */
-/** */
 export type RepeatabilityResult = "accepted" | "rejected";
 /** Alias for RadiologyInsightsInferenceUnion */
 export type RadiologyInsightsInferenceUnion = AgeMismatchInference | SexMismatchInference | LateralityDiscrepancyInference | CompleteOrderDiscrepancyInference | LimitedOrderDiscrepancyInference | FindingInference | CriticalResultInference | RadiologyProcedureInference | FollowupRecommendationInference | FollowupCommunicationInference | RadiologyInsightsInference;

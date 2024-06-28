@@ -1,17 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  paramMessage,
-  createTypeSpecLibrary,
-  JSONSchemaType
-} from "@typespec/compiler";
 import { RLCOptions } from "@azure-tools/rlc-common";
+import {
+  createTypeSpecLibrary,
+  JSONSchemaType,
+  paramMessage
+} from "@typespec/compiler";
 import { Options } from "prettier";
 
 export interface EmitterOptions extends RLCOptions {
   branded?: boolean;
   compatibilityMode?: boolean;
+  experimentalExtensibleEnums?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -90,7 +91,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       enum: ["esm", "cjs"],
       default: "esm"
     },
-    compatibilityMode: { type: "boolean", nullable: true }
+    compatibilityMode: { type: "boolean", nullable: true },
+    experimentalExtensibleEnums: { type: "boolean", nullable: true }
   },
   required: []
 };
@@ -152,7 +154,7 @@ const libDef = {
     "invalid-schema": {
       severity: "error",
       messages: {
-        default: paramMessage`Couldn't get schema for type ${"type"}`
+        default: paramMessage`Couldn't get schema for type ${"type"} with property ${"property"}`
       }
     },
     "union-null": {

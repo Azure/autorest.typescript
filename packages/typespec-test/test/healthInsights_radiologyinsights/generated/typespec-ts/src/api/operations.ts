@@ -4,9 +4,12 @@
 import { getLongRunningPoller } from "./pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  patientRecordSerializer,
+  radiologyInsightsModelConfigurationSerializer,
   RadiologyInsightsData,
   RadiologyInsightsInferenceResult,
 } from "../models/models.js";
+import { deserializeRadiologyInsightsInferenceUnion } from "../utils/deserializeUtil.js";
 import {
   isUnexpected,
   AzureHealthInsightsContext as Client,
@@ -43,7 +46,12 @@ export function _inferRadiologyInsightsSend(
             }
           : {}),
       },
-      body: serializeRadiologyInsightsData(body),
+      body: {
+        patients: body["patients"].map(patientRecordSerializer),
+        configuration: !body.configuration
+          ? body.configuration
+          : radiologyInsightsModelConfigurationSerializer(body.configuration),
+      },
     });
 }
 
@@ -65,8 +73,15 @@ export async function _inferRadiologyInsightsDeserialize(
     );
   }
 
-  return;
-  deserializeRadiologyInsightsInferenceResult(result.body.result);
+  return {
+    patientResults: result.body.result["patientResults"].map((p) => ({
+      patientId: p["patientId"],
+      inferences: p["inferences"].map((p) =>
+        deserializeRadiologyInsightsInferenceUnion(p),
+      ),
+    })),
+    modelVersion: result.body.result["modelVersion"],
+  };
 }
 
 /** Creates a Radiology Insights job with the given request body. */

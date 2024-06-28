@@ -33,6 +33,8 @@ import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { Project } from "ts-morph";
+import { buildSerializers } from "../../src/modular/serialization/index.js";
+import { env } from "process";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -256,14 +258,18 @@ export async function emitResponsesFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
   withRawContent: boolean = false,
-  needTCGC: boolean = false
+  needTCGC: boolean = false,
+  withVersionedApiVersion: boolean = false,
+  needArmTemplate: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     needAzureCore,
     needTCGC,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion,
+    needArmTemplate
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = initInternalImports();
@@ -300,7 +306,8 @@ export async function emitModularModelsFromTypeSpec(
   withRawContent: boolean = false,
   needAzureCore: boolean = false,
   compatibilityMode: boolean = false,
-  mustEmptyDiagnostic = true
+  mustEmptyDiagnostic: boolean = true,
+  experimentalExtensibleEnums: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -320,6 +327,8 @@ export async function emitModularModelsFromTypeSpec(
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
     dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
+    dpgContext.rlcOptions!.experimentalExtensibleEnums =
+      experimentalExtensibleEnums;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
     serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
     const modularCodeModel = emitCodeModel(
@@ -343,7 +352,7 @@ export async function emitModularModelsFromTypeSpec(
           modularCodeModel
         );
       } else {
-        modelFile =  buildModels(modularCodeModel.clients[0], modularCodeModel);
+        modelFile = buildModels(modularCodeModel.clients[0], modularCodeModel);
       }
     }
   }
@@ -436,7 +445,14 @@ export async function emitModularOperationsFromTypeSpec(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel,
-        false
+        false,
+        env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]
+          ? buildSerializers(
+              dpgContext,
+              modularCodeModel,
+              modularCodeModel.clients[0]
+            )
+          : undefined
       );
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;

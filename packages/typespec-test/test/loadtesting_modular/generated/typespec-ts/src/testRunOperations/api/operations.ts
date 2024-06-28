@@ -4,6 +4,13 @@
 import { getLongRunningPoller } from "./pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  passFailCriteriaSerializer,
+  secretSerializer,
+  certificateMetadataSerializer,
+  loadTestConfigurationSerializer,
+  appComponentSerializer,
+  resourceMetricSerializer,
+  dimensionFilterSerializer,
   FileInfo,
   TestRun,
   TestRunAppComponents,
@@ -12,10 +19,10 @@ import {
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
-  PagedTimeSeriesElement,
   TimeSeriesElement,
-  PagedTestRun,
-  PagedDimensionValueList,
+  _PagedDimensionValueList,
+  _PagedTestRun,
+  _PagedTimeSeriesElement,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -60,6 +67,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   TestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -97,47 +105,20 @@ export function _testRunSend(
       queryParameters: { oldTestRunId: options?.oldTestRunId },
       body: {
         passFailCriteria: !resource.passFailCriteria
-          ? undefined
-          : { passFailMetrics: resource.passFailCriteria?.["passFailMetrics"] },
-        secrets: resource["secrets"],
+          ? resource.passFailCriteria
+          : passFailCriteriaSerializer(resource.passFailCriteria),
+        secrets: !resource.secrets
+          ? resource.secrets
+          : (serializeRecord(resource.secrets as any, secretSerializer) as any),
         certificate: !resource.certificate
-          ? undefined
-          : {
-              value: resource.certificate?.["value"],
-              type: resource.certificate?.["type"],
-              name: resource.certificate?.["name"],
-            },
-        environmentVariables: resource["environmentVariables"],
+          ? resource.certificate
+          : certificateMetadataSerializer(resource.certificate),
+        environmentVariables: !resource.environmentVariables
+          ? resource.environmentVariables
+          : (serializeRecord(resource.environmentVariables as any) as any),
         loadTestConfiguration: !resource.loadTestConfiguration
-          ? undefined
-          : {
-              engineInstances:
-                resource.loadTestConfiguration?.["engineInstances"],
-              splitAllCSVs: resource.loadTestConfiguration?.["splitAllCSVs"],
-              quickStartTest:
-                resource.loadTestConfiguration?.["quickStartTest"],
-              optionalLoadTestConfig: !resource.loadTestConfiguration
-                ?.optionalLoadTestConfig
-                ? undefined
-                : {
-                    endpointUrl:
-                      resource.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "endpointUrl"
-                      ],
-                    virtualUsers:
-                      resource.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "virtualUsers"
-                      ],
-                    rampUpTime:
-                      resource.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "rampUpTime"
-                      ],
-                    duration:
-                      resource.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "duration"
-                      ],
-                  },
-            },
+          ? resource.loadTestConfiguration
+          : loadTestConfigurationSerializer(resource.loadTestConfiguration),
         displayName: resource["displayName"],
         testId: resource["testId"],
         description: resource["description"],
@@ -418,7 +399,12 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { components: body["components"] },
+      body: {
+        components: serializeRecord(
+          body.components as any,
+          appComponentSerializer,
+        ) as any,
+      },
     });
 }
 
@@ -476,7 +462,14 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { metrics: body["metrics"] },
+      body: {
+        metrics: !body.metrics
+          ? body.metrics
+          : (serializeRecord(
+              body.metrics as any,
+              resourceMetricSerializer,
+            ) as any),
+      },
     });
 }
 
@@ -980,7 +973,7 @@ export async function _listMetricDimensionValuesDeserialize(
   result:
     | LoadTestRunListMetricDimensionValues200Response
     | LoadTestRunListMetricDimensionValuesDefaultResponse,
-): Promise<PagedDimensionValueList> {
+): Promise<_PagedDimensionValueList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -1137,10 +1130,7 @@ export function _listMetricsSend(
         filters:
           body["filters"] === undefined
             ? body["filters"]
-            : body["filters"].map((p) => ({
-                name: p["name"],
-                values: p["values"],
-              })),
+            : body["filters"].map(dimensionFilterSerializer),
       },
     });
 }
@@ -1149,7 +1139,7 @@ export async function _listMetricsDeserialize(
   result:
     | LoadTestRunListMetrics200Response
     | LoadTestRunListMetricsDefaultResponse,
-): Promise<PagedTimeSeriesElement> {
+): Promise<_PagedTimeSeriesElement> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -1216,7 +1206,7 @@ export async function _listTestRunsDeserialize(
   result:
     | LoadTestRunListTestRuns200Response
     | LoadTestRunListTestRunsDefaultResponse,
-): Promise<PagedTestRun> {
+): Promise<_PagedTestRun> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

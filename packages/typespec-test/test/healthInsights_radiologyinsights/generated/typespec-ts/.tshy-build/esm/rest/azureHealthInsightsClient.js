@@ -8,9 +8,8 @@ import { logger } from "../logger.js";
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(endpointParam, credentials, options = {}) {
+export default function createClient(endpointParam, credentials, { apiVersion = "2023-09-01-preview", ...options } = {}) {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}/health-insights`;
-    options.apiVersion = options.apiVersion ?? "2023-09-01-preview";
     const userAgentInfo = `azsdk-js-health-insights-radiologyinsights-rest/1.0.0-beta.1`;
     const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -28,6 +27,19 @@ export default function createClient(endpointParam, credentials, options = {}) {
         },
     };
     const client = getClient(endpointUrl, credentials, options);
+    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+    client.pipeline.addPolicy({
+        name: "ClientApiVersionPolicy",
+        sendRequest: (req, next) => {
+            // Use the apiVersion defined in request url directly
+            // Append one if there is no apiVersion and we have one at client options
+            const url = new URL(req.url);
+            if (!url.searchParams.get("api-version") && apiVersion) {
+                req.url = `${req.url}${Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"}api-version=${apiVersion}`;
+            }
+            return next(req);
+        },
+    });
     return client;
 }
 //# sourceMappingURL=azureHealthInsightsClient.js.map

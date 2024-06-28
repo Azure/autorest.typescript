@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { DogUnion, SnakeUnion } from "../models/models.js";
+import {
+  dogUnionSerializer,
+  snakeUnionSerializer,
+  DogUnion,
+  SnakeUnion,
+} from "../models/models.js";
 import {
   EnumDiscriminatorContext as Client,
   GetExtensibleModel200Response,
@@ -45,7 +50,7 @@ export async function _getExtensibleModelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as DogUnion;
 }
 
 /** Receive model with extensible enum discriminator type. */
@@ -64,7 +69,10 @@ export function _putExtensibleModelSend(
 ): StreamableMethod<PutExtensibleModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/extensible-enum")
-    .put({ ...operationOptionsToRequestParameters(options), body: input });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: dogUnionSerializer(input),
+    });
 }
 
 export async function _putExtensibleModelDeserialize(
@@ -107,7 +115,7 @@ export async function _getExtensibleModelMissingDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as DogUnion;
 }
 
 /** Get a model omitting the discriminator. */
@@ -144,7 +152,7 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as DogUnion;
 }
 
 /** Get a model containing discriminator value never defined. */
@@ -196,7 +204,10 @@ export function _putFixedModelSend(
 ): StreamableMethod<PutFixedModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/fixed-enum")
-    .put({ ...operationOptionsToRequestParameters(options), body: input });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: snakeUnionSerializer(input),
+    });
 }
 
 export async function _putFixedModelDeserialize(

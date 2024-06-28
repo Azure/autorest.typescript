@@ -6,6 +6,9 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { ApiKeyContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface ApiKeyContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `ApiKeyContext`
  * @param credentials - uniquely identify client credential
@@ -13,7 +16,7 @@ import { ApiKeyContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: ApiKeyContextOptions = {},
 ): ApiKeyContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -34,9 +37,14 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
-
   const client = getClient(endpointUrl, credentials, options) as ApiKeyContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
+
   return client;
 }

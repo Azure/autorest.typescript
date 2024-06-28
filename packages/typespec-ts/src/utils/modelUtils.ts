@@ -2,12 +2,34 @@
 // Licensed under the MIT License.
 
 import {
+  ArraySchema,
+  DictionarySchema,
+  isArraySchema,
+  NameType,
+  normalizeName,
+  ObjectSchema,
+  Schema,
+  SchemaContext
+} from "@azure-tools/rlc-common";
+import {
+  getPagedResult,
+  getUnionAsEnum
+} from "@azure-tools/typespec-azure-core";
+import {
+  getDefaultApiVersion,
+  getWireName,
+  isApiVersion
+} from "@azure-tools/typespec-client-generator-core";
+import {
+  BooleanLiteral,
   Discriminator,
+  EncodeData,
   Enum,
   EnumMember,
   getDiscriminator,
   getDoc,
   getEffectiveModelType,
+  getEncode,
   getFormat,
   getFriendlyName,
   getMaxLength,
@@ -19,65 +41,47 @@ import {
   getPropertyType,
   getSummary,
   getVisibility,
+  isArrayModelType,
   isNeverType,
+  isNullType,
   isNumericType,
+  isRecordModelType,
   isSecret,
   isStringType,
   isTemplateDeclaration,
   isUnknownType,
+  listServices,
   Model,
   ModelProperty,
-  Type,
-  Union,
-  isNullType,
-  Scalar,
-  UnionVariant,
-  StringLiteral,
-  BooleanLiteral,
   NoTarget,
   NumericLiteral,
-  Service,
-  listServices,
   Program,
-  getEncode,
-  EncodeData,
-  isRecordModelType,
-  isArrayModelType
+  Scalar,
+  Service,
+  StringLiteral,
+  Type,
+  Union,
+  UnionVariant,
+  isType
 } from "@typespec/compiler";
-import { reportDiagnostic } from "../lib.js";
 import {
-  ArraySchema,
-  DictionarySchema,
-  NameType,
-  normalizeName,
-  ObjectSchema,
-  Schema,
-  SchemaContext,
-  isArraySchema
-} from "@azure-tools/rlc-common";
-import {
+  createMetadataInfo,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  isStatusCode,
   HttpOperation,
-  createMetadataInfo,
+  isStatusCode,
   Visibility
 } from "@typespec/http";
-import { getPagedResult } from "@azure-tools/typespec-azure-core";
-import { extractPagedMetadataNested } from "./operationUtil.js";
-import {
-  getDefaultApiVersion,
-  getWireName,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
+import { reportDiagnostic } from "../lib.js";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
-import { getModelNamespaceName } from "./namespaceUtils.js";
 import {
-  KnownMediaType,
   hasMediaType,
-  isMediaTypeMultipartFormData
+  isMediaTypeMultipartFormData,
+  KnownMediaType
 } from "./mediaTypes.js";
+import { getModelNamespaceName } from "./namespaceUtils.js";
+import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -231,7 +235,10 @@ export function getSchemaForType(
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
-    format: { type: type.kind },
+    format: {
+      type: type.kind,
+      property: options?.relevantProperty?.name ?? ""
+    },
     target: type
   });
   return undefined;
@@ -242,17 +249,12 @@ export function getEffectiveModelFromType(program: Program, type: Type): Type {
    * set of properties when non-schema properties are excluded.
    */
   if (type.kind === "Model" && type.name === "") {
-    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    const effective = getEffectiveModelType(program, type, (property) =>
+      isSchemaProperty(program, property)
+    );
     if (effective.name) {
       return effective;
     }
-  }
-  function isSchemaProperty(property: ModelProperty) {
-    const headerInfo = getHeaderFieldName(program, property);
-    const queryInfo = getQueryParamName(program, property);
-    const pathInfo = getPathParamName(program, property);
-    const statusCodeInfo = isStatusCode(program, property);
-    return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
   }
   return type;
 }
@@ -381,8 +383,10 @@ function getSchemaForUnion(
   union: Union,
   options?: GetSchemaOptions
 ) {
+  const [asEnum, _] = getUnionAsEnum(union);
   const variants = Array.from(union.variants.values());
-  const values = [];
+
+  let values = [];
 
   for (const variant of variants) {
     // We already know it's not a model type
@@ -390,16 +394,36 @@ function getSchemaForUnion(
       getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
     );
   }
-
+  if (asEnum?.open) {
+    values = [];
+    for (const [_, member] of asEnum.members.entries()) {
+      values.push(
+        getSchemaForType(dpgContext, member.type, {
+          ...options,
+          needRef: false
+        })
+      );
+    }
+  }
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
-    const unionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
-      .join(" | ");
-    const outputUnionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
-      .join(" | ");
+    const unionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+            )
+            .join(" | ");
+    const outputUnionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+            )
+            .join(" | ");
     if (!union.expression) {
       const unionName = union.name
         ? normalizeName(union.name, NameType.Interface)
@@ -554,19 +578,6 @@ function validateDiscriminator(
   }
   return retVals.every((v) => v);
 }
-/**
- * A "schema property" here is a property that is emitted to OpenAPI schema.
- *
- * Headers, parameters, status codes are not schema properties even they are
- * represented as properties in typespec.
- */
-function isSchemaProperty(program: Program, property: ModelProperty) {
-  const headerInfo = getHeaderFieldName(program, property);
-  const queryInfo = getQueryParamName(program, property);
-  const pathInfo = getPathParamName(program, property);
-  const statusCodeinfo = isStatusCode(program, property);
-  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-}
 
 function getSchemaForModel(
   dpgContext: SdkContext,
@@ -600,9 +611,12 @@ function getSchemaForModel(
     model.templateMapper.args.length > 0 &&
     getPagedResult(program, model)
   ) {
+    const templateTypes = model.templateMapper.args.filter((it) =>
+      isType(it)
+    ) as Type[];
     name =
-      model.templateMapper.args
-        .map((it) => {
+      templateTypes
+        .map((it: Type) => {
           switch (it.kind) {
             case "Model":
               return it.name;
@@ -617,7 +631,7 @@ function getSchemaForModel(
 
   const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
 
-  const isCoreModel = isAzureCoreErrorType(model);
+  const isCoreModel = isAzureCoreErrorType(program, model);
   const modelSchema: ObjectSchema = {
     name: isCoreModel
       ? name
@@ -651,7 +665,10 @@ function getSchemaForModel(
     if (paged && paged.itemsProperty) {
       const items = paged.itemsProperty as unknown as Model;
       if (items && items.templateMapper && items.templateMapper.args) {
-        const templateName = items.templateMapper.args
+        const templateTypes = items.templateMapper.args.filter((it) =>
+          isType(it)
+        ) as Type[];
+        const templateName = templateTypes
           ?.map((it) => {
             switch (it.kind) {
               case "Model":
@@ -1587,21 +1604,26 @@ export function trimUsage(model: any) {
   return ordered;
 }
 
-export function buildCoreTypeInfo(t?: Type) {
-  return isAzureCoreErrorType(t)
+export function buildCoreTypeInfo(program: Program, t?: Type) {
+  return isAzureCoreErrorType(program, t)
     ? "ErrorType"
     : isAzureCoreLroType(t)
       ? "LroType"
       : undefined;
 }
 
-export function isAzureCoreErrorType(t?: Type): boolean {
+export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
+  if (!t || t.kind !== "Model") {
+    return false;
+  }
+  const effective = getEffectiveSchemaType(program, t);
   if (
-    t?.kind !== "Model" ||
-    !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
+    !["error", "errorresponse", "innererror"].includes(
+      effective.name.toLowerCase()
+    )
   )
     return false;
-  return isAzureCoreFoundationsNamespace(t);
+  return isAzureCoreFoundationsNamespace(effective);
 }
 
 // Check if the type in the Azure.Core.Foundations has an LRO type in core
@@ -1722,4 +1744,51 @@ function getMultipartInlineSignature(
     .join(" | ");
 
   return `FormData | Array<${types}>`;
+}
+
+/**
+ * A "schema property" here is a property that is emitted to OpenAPI schema.
+ *
+ * Headers, parameters, status codes are not schema properties even they are
+ * represented as properties in typespec.
+ */
+export function isSchemaProperty(
+  program: Program,
+  property: ModelProperty
+): boolean {
+  const headerInfo = getHeaderFieldName(program, property);
+  const queryInfo = getQueryParamName(program, property);
+  const pathInfo = getPathParamName(program, property);
+  const statusCodeInfo = isStatusCode(program, property);
+  return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+}
+
+export function getEffectiveSchemaType(
+  program: Program,
+  type: Model | Union
+): Model {
+  // If type is an anonymous model, tries to find a named model that has the same properties
+  let effective: Model | undefined = undefined;
+  if (type.kind === "Union") {
+    const nonNullOptions = [...type.variants.values()]
+      .map((x) => x.type)
+      .filter((t) => !isNullType(t));
+    if (
+      nonNullOptions.length === 1 &&
+      nonNullOptions[0]?.kind === "Model" &&
+      nonNullOptions[0]?.name === ""
+    ) {
+      effective = getEffectiveModelType(program, nonNullOptions[0]);
+    }
+    return type as any;
+  } else if (type.name === "") {
+    effective = getEffectiveModelType(program, type, (property) =>
+      isSchemaProperty(program, property)
+    );
+  }
+
+  if (effective?.name) {
+    return effective;
+  }
+  return type as Model;
 }

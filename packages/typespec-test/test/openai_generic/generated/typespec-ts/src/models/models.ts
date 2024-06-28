@@ -1,6 +1,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import { uint8ArrayToString } from "@azure/core-util";
+import {
+  CreateModerationRequest as CreateModerationRequestRest,
+  CreateImageRequest as CreateImageRequestRest,
+  CreateImageEditRequest as CreateImageEditRequestRest,
+  CreateImageVariationRequest as CreateImageVariationRequestRest,
+  CreateFineTuneRequest as CreateFineTuneRequestRest,
+  CreateFileRequest as CreateFileRequestRest,
+  CreateEmbeddingRequest as CreateEmbeddingRequestRest,
+  CreateEditRequest as CreateEditRequestRest,
+  CreateCompletionRequest as CreateCompletionRequestRest,
+  CreateFineTuningJobRequest as CreateFineTuningJobRequestRest,
+  ChatCompletionRequestMessage as ChatCompletionRequestMessageRest,
+  ChatCompletionFunctions as ChatCompletionFunctionsRest,
+  ChatCompletionFunctionParameters as ChatCompletionFunctionParametersRest,
+  ChatCompletionFunctionCallOption as ChatCompletionFunctionCallOptionRest,
+  CreateChatCompletionRequest as CreateChatCompletionRequestRest,
+  CreateTranslationRequest as CreateTranslationRequestRest,
+  CreateTranscriptionRequest as CreateTranscriptionRequestRest,
+} from "../rest/index.js";
+
 export interface CreateModerationRequest {
   /** The input text to classify */
   input: string | string[];
@@ -12,6 +34,15 @@ export interface CreateModerationRequest {
    * of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`.
    */
   model?: string | "text-moderation-latest" | "text-moderation-stable";
+}
+
+export function createModerationRequestSerializer(
+  item: CreateModerationRequest,
+): CreateModerationRequestRest {
+  return {
+    input: item["input"],
+    model: item["model"],
+  };
 }
 
 export interface CreateModerationResponse {
@@ -74,6 +105,18 @@ export interface CreateImageRequest {
   user?: string;
 }
 
+export function createImageRequestSerializer(
+  item: CreateImageRequest,
+): CreateImageRequestRest {
+  return {
+    prompt: item["prompt"],
+    n: item["n"],
+    size: item["size"],
+    response_format: item["responseFormat"],
+    user: item["user"],
+  };
+}
+
 export interface ImagesResponse {
   created: Date;
   data: Image[];
@@ -110,6 +153,23 @@ export interface CreateImageEditRequest {
   user?: string;
 }
 
+export function createImageEditRequestSerializer(
+  item: CreateImageEditRequest,
+): CreateImageEditRequestRest {
+  return {
+    prompt: item["prompt"],
+    image: uint8ArrayToString(item["image"], "base64"),
+    mask:
+      item["mask"] !== undefined
+        ? uint8ArrayToString(item["mask"], "base64")
+        : undefined,
+    n: item["n"],
+    size: item["size"],
+    response_format: item["responseFormat"],
+    user: item["user"],
+  };
+}
+
 export interface CreateImageVariationRequest {
   /**
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
@@ -123,6 +183,18 @@ export interface CreateImageVariationRequest {
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
   responseFormat?: "url" | "b64_json";
   user?: string;
+}
+
+export function createImageVariationRequestSerializer(
+  item: CreateImageVariationRequest,
+): CreateImageVariationRequestRest {
+  return {
+    image: uint8ArrayToString(item["image"], "base64"),
+    n: item["n"],
+    size: item["size"],
+    response_format: item["responseFormat"],
+    user: item["user"],
+  };
 }
 
 export interface ListModelsResponse {
@@ -258,6 +330,25 @@ export interface CreateFineTuneRequest {
   suffix?: string | null;
 }
 
+export function createFineTuneRequestSerializer(
+  item: CreateFineTuneRequest,
+): CreateFineTuneRequestRest {
+  return {
+    training_file: item["trainingFile"],
+    validation_file: item["validationFile"],
+    model: item["model"],
+    n_epochs: item["nEpochs"],
+    batch_size: item["batchSize"],
+    learning_rate_multiplier: item["learningRateMultiplier"],
+    prompt_loss_rate: item["promptLossRate"],
+    compute_classification_metrics: item["computeClassificationMetrics"],
+    classification_n_classes: item["classificationNClasses"],
+    classification_positive_class: item["classificationPositiveClass"],
+    classification_betas: item["classificationBetas"],
+    suffix: item["suffix"],
+  };
+}
+
 /** The `FineTune` object represents a legacy fine-tune job that has been created through the API. */
 export interface FineTune {
   /** The object identifier, which can be referenced in the API endpoints. */
@@ -371,6 +462,15 @@ export interface CreateFileRequest {
   purpose: string;
 }
 
+export function createFileRequestSerializer(
+  item: CreateFileRequest,
+): CreateFileRequestRest {
+  return {
+    file: uint8ArrayToString(item["file"], "base64"),
+    purpose: item["purpose"],
+  };
+}
+
 export interface DeleteFileResponse {
   id: string;
   object: string;
@@ -389,6 +489,16 @@ export interface CreateEmbeddingRequest {
    */
   input: string | string[] | number[] | number[][];
   user?: string;
+}
+
+export function createEmbeddingRequestSerializer(
+  item: CreateEmbeddingRequest,
+): CreateEmbeddingRequestRest {
+  return {
+    model: item["model"],
+    input: item["input"],
+    user: item["user"],
+  };
 }
 
 export interface CreateEmbeddingResponse {
@@ -410,7 +520,7 @@ export interface Embedding {
   object: "embedding";
   /**
    * The embedding vector, which is a list of floats. The length of vector depends on the model as\
-   * listed in the [embedding guide](/docs/guides/embeddings).
+   *    * listed in the [embedding guide](/docs/guides/embeddings).
    */
   embedding: number[];
 }
@@ -442,6 +552,19 @@ export interface CreateEditRequest {
    * We generally recommend altering this or `temperature` but not both.
    */
   topP?: number | null;
+}
+
+export function createEditRequestSerializer(
+  item: CreateEditRequest,
+): CreateEditRequestRest {
+  return {
+    model: item["model"],
+    input: item["input"],
+    instruction: item["instruction"],
+    n: item["n"],
+    temperature: item["temperature"],
+    top_p: item["topP"],
+  };
 }
 
 export interface CreateEditResponse {
@@ -582,6 +705,31 @@ export interface CreateCompletionRequest {
   bestOf?: number | null;
 }
 
+export function createCompletionRequestSerializer(
+  item: CreateCompletionRequest,
+): CreateCompletionRequestRest {
+  return {
+    model: item["model"],
+    prompt: item["prompt"],
+    suffix: item["suffix"],
+    temperature: item["temperature"],
+    top_p: item["topP"],
+    n: item["n"],
+    max_tokens: item["maxTokens"],
+    stop: item["stop"],
+    presence_penalty: item["presencePenalty"],
+    frequency_penalty: item["frequencyPenalty"],
+    logit_bias: !item.logitBias
+      ? item.logitBias
+      : (serializeRecord(item.logitBias as any) as any),
+    user: item["user"],
+    stream: item["stream"],
+    logprobs: item["logprobs"],
+    echo: item["echo"],
+    best_of: item["bestOf"],
+  };
+}
+
 /**
  * Represents a completion response from the API. Note: both the streamed and non-streamed response
  * objects share the same shape (unlike the chat endpoint).
@@ -649,6 +797,20 @@ export interface CreateFineTuningJobRequest {
    * `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`.
    */
   suffix?: string | null;
+}
+
+export function createFineTuningJobRequestSerializer(
+  item: CreateFineTuningJobRequest,
+): CreateFineTuningJobRequestRest {
+  return {
+    training_file: item["trainingFile"],
+    validation_file: item["validationFile"],
+    model: item["model"],
+    hyperparameters: !item.hyperparameters
+      ? undefined
+      : { n_epochs: item.hyperparameters?.["nEpochs"] },
+    suffix: item["suffix"],
+  };
 }
 
 export interface FineTuningJob {
@@ -752,6 +914,22 @@ export interface ChatCompletionRequestMessage {
   functionCall?: { name: string; arguments: string };
 }
 
+export function chatCompletionRequestMessageSerializer(
+  item: ChatCompletionRequestMessage,
+): ChatCompletionRequestMessageRest {
+  return {
+    role: item["role"],
+    content: item["content"],
+    name: item["name"],
+    function_call: !item.functionCall
+      ? undefined
+      : {
+          name: item.functionCall?.["name"],
+          arguments: item.functionCall?.["arguments"],
+        },
+  };
+}
+
 export interface ChatCompletionFunctions {
   /**
    * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and
@@ -770,12 +948,40 @@ export interface ChatCompletionFunctions {
    * about the format.\n\nTo describe a function that accepts no parameters, provide the value
    * `{\"type\": \"object\", \"properties\": {}}`.
    */
-  parameters: Record<string, unknown>;
+  parameters: ChatCompletionFunctionParameters;
+}
+
+export function chatCompletionFunctionsSerializer(
+  item: ChatCompletionFunctions,
+): ChatCompletionFunctionsRest {
+  return {
+    name: item["name"],
+    description: item["description"],
+    parameters: serializeRecord(item.parameters as any) as any,
+  };
+}
+
+export interface ChatCompletionFunctionParameters extends Record<string, any> {}
+
+export function chatCompletionFunctionParametersSerializer(
+  item: ChatCompletionFunctionParameters,
+): ChatCompletionFunctionParametersRest {
+  return {
+    ...item,
+  };
 }
 
 export interface ChatCompletionFunctionCallOption {
   /** The name of the function to call. */
   name: string;
+}
+
+export function chatCompletionFunctionCallOptionSerializer(
+  item: ChatCompletionFunctionCallOption,
+): ChatCompletionFunctionCallOptionRest {
+  return {
+    name: item["name"],
+  };
 }
 
 export interface CreateChatCompletionRequest {
@@ -880,6 +1086,32 @@ export interface CreateChatCompletionRequest {
   stream?: boolean | null;
 }
 
+export function createChatCompletionRequestSerializer(
+  item: CreateChatCompletionRequest,
+): CreateChatCompletionRequestRest {
+  return {
+    model: item["model"],
+    messages: item["messages"].map(chatCompletionRequestMessageSerializer),
+    functions:
+      item["functions"] === undefined
+        ? item["functions"]
+        : item["functions"].map(chatCompletionFunctionsSerializer),
+    function_call: item["functionCall"],
+    temperature: item["temperature"],
+    top_p: item["topP"],
+    n: item["n"],
+    max_tokens: item["maxTokens"],
+    stop: item["stop"],
+    presence_penalty: item["presencePenalty"],
+    frequency_penalty: item["frequencyPenalty"],
+    logit_bias: !item.logitBias
+      ? item.logitBias
+      : (serializeRecord(item.logitBias as any) as any),
+    user: item["user"],
+    stream: item["stream"],
+  };
+}
+
 /** Represents a chat completion response returned by model, based on the provided input. */
 export interface CreateChatCompletionResponse {
   /** A unique identifier for the chat completion. */
@@ -935,6 +1167,18 @@ export interface CreateTranslationRequest {
   temperature?: number;
 }
 
+export function createTranslationRequestSerializer(
+  item: CreateTranslationRequest,
+): CreateTranslationRequestRest {
+  return {
+    file: uint8ArrayToString(item["file"], "base64"),
+    model: item["model"],
+    prompt: item["prompt"],
+    response_format: item["responseFormat"],
+    temperature: item["temperature"],
+  };
+}
+
 export interface CreateTranslationResponse {
   text: string;
 }
@@ -970,6 +1214,19 @@ export interface CreateTranscriptionRequest {
    * and latency.
    */
   language?: string;
+}
+
+export function createTranscriptionRequestSerializer(
+  item: CreateTranscriptionRequest,
+): CreateTranscriptionRequestRest {
+  return {
+    file: uint8ArrayToString(item["file"], "base64"),
+    model: item["model"],
+    prompt: item["prompt"],
+    response_format: item["responseFormat"],
+    temperature: item["temperature"],
+    language: item["language"],
+  };
 }
 
 export interface CreateTranscriptionResponse {

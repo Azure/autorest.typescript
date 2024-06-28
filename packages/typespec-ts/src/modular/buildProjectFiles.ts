@@ -1,6 +1,6 @@
-import { ModularCodeModel } from "./modularCodeModel.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
+import { ModularCodeModel } from "./modularCodeModel.js";
 
 function buildExportsForMultiClient(
   codeModel: ModularCodeModel,

@@ -237,7 +237,7 @@ export interface ContentFilterResultsOutput {
 export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
+function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: OpenAIClientOptions): OpenAIClient;
 export default createClient;
 
 // @public
@@ -529,6 +529,11 @@ export type OpenAIClient = Client & {
 };
 
 // @public
+export interface OpenAIClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
 export interface PromptFilterResultOutput {
     content_filter_results?: ContentFilterResultsOutput;
     prompt_index: number;
@@ -549,6 +554,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

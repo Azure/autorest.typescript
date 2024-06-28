@@ -1,4 +1,5 @@
 import {
+  pascalCase,
   NameType,
   normalizeName,
   PackageDetails,
@@ -7,6 +8,10 @@ import {
   ServiceInfo
 } from "@azure-tools/rlc-common";
 import {
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
+import {
   getDoc,
   ignoreDiagnostics,
   NoTarget,
@@ -14,15 +19,11 @@ import {
 } from "@typespec/compiler";
 import { getAuthentication, getHttpOperation } from "@typespec/http";
 import { EmitterOptions, reportDiagnostic } from "../lib.js";
-import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import {
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
-import { getOperationName } from "../utils/operationUtil.js";
+import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
+import { getOperationName } from "../utils/operationUtil.js";
 
 export function transformRLCOptions(
   emitterOptions: EmitterOptions,
@@ -85,7 +86,8 @@ function extractRLCOptions(
     sourceFrom: "TypeSpec",
     enableOperationGroup,
     enableModelNamespace,
-    hierarchyClient
+    hierarchyClient,
+    azureArm: dpgContext.arm
   };
 }
 
@@ -105,7 +107,13 @@ function processAuth(program: Program) {
         case "http":
           securityInfo.addCredentials = true;
           securityInfo.customHttpAuthHeaderName = "Authorization";
-          securityInfo.customHttpAuthSharedKeyPrefix = auth.scheme;
+          // If it is basic or bearer auth we should generate it as Basic or Bearer
+          securityInfo.customHttpAuthSharedKeyPrefix = [
+            "basic",
+            "bearer"
+          ].includes(auth.scheme.toLowerCase())
+            ? pascalCase(auth.scheme)
+            : auth.scheme;
           break;
         case "apiKey":
           if (auth.in === "cookie") {
@@ -128,6 +136,14 @@ function processAuth(program: Program) {
               code: "no-credential-scopes",
               target: NoTarget
             });
+          }
+          // ignore the user_impersonation scope
+          if (
+            flow.scopes.length === 1 &&
+            flow.scopes[0] &&
+            flow.scopes[0].value.toLowerCase() === "user_impersonation"
+          ) {
+            return securityInfo;
           }
           securityInfo.credentialScopes.push(
             ...flow.scopes.map((item) => {

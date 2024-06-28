@@ -6,6 +6,9 @@ import { logger } from "./logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { AuthUnionClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface AuthUnionClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AuthUnionClient`
  * @param credentials - uniquely identify client credential
@@ -13,7 +16,7 @@ import { AuthUnionClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {},
+  options: AuthUnionClientOptions = {},
 ): AuthUnionClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -37,7 +40,6 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
@@ -45,5 +47,11 @@ export default function createClient(
   ) as AuthUnionClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
+
   return client;
 }

@@ -50,6 +50,11 @@ export type AzureLoadTestingClient = Client & {
 };
 
 // @public
+export interface AzureLoadTestingClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
 export interface CertificateMetadata {
     name?: string;
     type?: CertificateType;
@@ -70,7 +75,7 @@ export type CertificateType = "AKV_CERT_URI";
 export type CertificateTypeOutput = "AKV_CERT_URI";
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential, options?: ClientOptions): AzureLoadTestingClient;
+function createClient(endpointParam: string, credentials: TokenCredential, { apiVersion, ...options }?: AzureLoadTestingClientOptions): AzureLoadTestingClient;
 export default createClient;
 
 // @public
@@ -1473,6 +1478,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

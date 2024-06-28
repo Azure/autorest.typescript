@@ -11,10 +11,6 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
      */
     isDone(): boolean;
     /**
-     * Returns true if the poller is stopped.
-     */
-    isStopped(): boolean;
-    /**
      * Returns the state of the operation.
      */
     getOperationState(): TState;
@@ -64,6 +60,11 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
      * @deprecated Use abortSignal to stop polling instead.
      */
     stopPolling(): void;
+    /**
+     * Returns true if the poller is stopped.
+     * @deprecated Use abortSignal status to track this instead.
+     */
+    isStopped(): boolean;
 }
 /**
  * Helper function that builds a Poller object to help polling a long running operation.

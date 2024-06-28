@@ -49,6 +49,89 @@ describe("ModelsPropertyAdditional Rest Client", () => {
       assert.fail(err as string);
     }
   });
+  
+  it("should get extends unknown derived additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/extendsRecordUnknownDerived")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(
+        result.body.name,
+        "ExtendsUnknownAdditionalProperties"
+      );
+      assert.strictEqual(result.body["index"], 314);
+      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["prop1"], 32);
+      assert.strictEqual(result.body["prop2"], true);
+      assert.strictEqual(result.body["prop3"], "abc");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put extends unknown derived additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/extendsRecordUnknownDerived")
+        .put({
+          body: {
+            name: "ExtendsUnknownAdditionalProperties",
+            index: 314,
+            age: 2.71828,
+            prop1: 32,
+            prop2: true,
+            prop3: "abc",
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+  
+  it("should get extends unknown discriminated additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/extendsUnknownDiscriminated")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(
+        result.body.name,
+        "Derived"
+      );
+      assert.strictEqual(result.body["kind"], "derived");
+      assert.strictEqual(result.body["index"], 314);
+      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["prop1"], 32);
+      assert.strictEqual(result.body["prop2"], true);
+      assert.strictEqual(result.body["prop3"], "abc");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put extends unknown discriminated additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/extendsUnknownDiscriminated")
+        .put({
+          body: {
+            kind: "derived",
+            name: "Derived",
+            index: 314,
+            age: 2.71828,
+            prop1: 32,
+            prop2: true,
+            prop3: "abc",
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
 
   it("should get is unknown additional properties", async () => {
     try {
@@ -75,6 +158,82 @@ describe("ModelsPropertyAdditional Rest Client", () => {
             prop1: 32,
             prop2: true,
             prop3: "abc"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get is unknown derived additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/isRecordUnknownDerived")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "IsUnknownAdditionalProperties");
+      assert.strictEqual(result.body["index"], 314);
+      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["prop1"], 32);
+      assert.strictEqual(result.body["prop2"], true);
+      assert.strictEqual(result.body["prop3"], "abc");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put is unknown derived additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/isRecordUnknownDerived")
+        .put({
+          body: {
+            name: "IsUnknownAdditionalProperties",
+            index: 314,
+            age: 2.71828,
+            prop1: 32,
+            prop2: true,
+            prop3: "abc",
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get is unknown discriminated additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/isUnknownDiscriminated")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name,"Derived");
+      assert.strictEqual(result.body["kind"], "derived");
+      assert.strictEqual(result.body["index"], 314);
+      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["prop1"], 32);
+      assert.strictEqual(result.body["prop2"], true);
+      assert.strictEqual(result.body["prop3"], "abc");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put is unknown discriminated additional properties", async () => {
+    try {
+      const result = await client
+        .path("/type/property/additionalProperties/isUnknownDiscriminated")
+        .put({
+          body: {
+            kind: "derived",
+            name: "Derived",
+            index: 314,
+            age: 2.71828,
+            prop1: 32,
+            prop2: true,
+            prop3: "abc",
           }
         });
       assert.strictEqual(result.status, "204");

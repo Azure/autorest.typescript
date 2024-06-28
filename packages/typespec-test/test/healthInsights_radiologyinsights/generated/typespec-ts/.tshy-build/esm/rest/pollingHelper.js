@@ -10,7 +10,7 @@ export async function getLongRunningPoller(client, initialResponse, options = {}
             // response we were provided.
             return getLroResponse(initialResponse);
         },
-        sendPollRequest: async (path, options) => {
+        sendPollRequest: async (path, pollOptions) => {
             // This is the callback that is going to be called to poll the service
             // to get the latest status. We use the client provided and the polling path
             // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
@@ -18,7 +18,7 @@ export async function getLongRunningPoller(client, initialResponse, options = {}
             function abortListener() {
                 abortController.abort();
             }
-            const inputAbortSignal = options?.abortSignal;
+            const inputAbortSignal = pollOptions?.abortSignal;
             const abortSignal = abortController.signal;
             if (inputAbortSignal?.aborted) {
                 abortController.abort();
@@ -50,7 +50,7 @@ export async function getLongRunningPoller(client, initialResponse, options = {}
             return httpPoller.isDone;
         },
         isStopped() {
-            return httpPoller.isStopped;
+            return abortController.signal.aborted;
         },
         getOperationState() {
             if (!httpPoller.operationState) {

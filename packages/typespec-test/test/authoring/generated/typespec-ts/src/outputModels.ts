@@ -118,13 +118,8 @@ export type ProjectKindOutput =
   | "CustomSingleLabelClassification"
   | "CustomMultiLabelClassification"
   | "CustomEntityRecognition";
-/** Enum describing allowed operation states. */
-export type OperationStateOutput =
-  | "NotStarted"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;
 /** Paged collection of Project items */
 export type PagedProjectOutput = Paged<ProjectOutput>;
 /** Paged collection of Deployment items */

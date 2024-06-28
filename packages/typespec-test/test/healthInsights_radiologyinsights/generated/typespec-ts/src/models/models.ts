@@ -1,6 +1,36 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  PatientRecord as PatientRecordRest,
+  PatientInfo as PatientInfoRest,
+  Resource as ResourceRest,
+  Meta as MetaRest,
+  Element as ElementRest,
+  Extension as ExtensionRest,
+  Quantity as QuantityRest,
+  CodeableConcept as CodeableConceptRest,
+  Coding as CodingRest,
+  Range as RangeRest,
+  Ratio as RatioRest,
+  SampledData as SampledDataRest,
+  Period as PeriodRest,
+  Reference as ReferenceRest,
+  Identifier as IdentifierRest,
+  Encounter as EncounterRest,
+  TimePeriod as TimePeriodRest,
+  PatientDocument as PatientDocumentRest,
+  DocumentAuthor as DocumentAuthorRest,
+  DocumentAdministrativeMetadata as DocumentAdministrativeMetadataRest,
+  Extendible as ExtendibleRest,
+  OrderedProcedure as OrderedProcedureRest,
+  DocumentContent as DocumentContentRest,
+  RadiologyInsightsModelConfiguration as RadiologyInsightsModelConfigurationRest,
+  RadiologyInsightsInferenceOptions as RadiologyInsightsInferenceOptionsRest,
+  FollowupRecommendationOptions as FollowupRecommendationOptionsRest,
+  FindingOptions as FindingOptionsRest,
+  RadiologyInsightsData as RadiologyInsightsDataRest,
+} from "../rest/index.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** A patient record, including their clinical information and data. */
@@ -15,6 +45,23 @@ export interface PatientRecord {
   patientDocuments?: PatientDocument[];
 }
 
+export function patientRecordSerializer(
+  item: PatientRecord,
+): PatientRecordRest {
+  return {
+    id: item["id"],
+    info: !item.info ? item.info : patientInfoSerializer(item.info),
+    encounters:
+      item["encounters"] === undefined
+        ? item["encounters"]
+        : item["encounters"].map(encounterSerializer),
+    patientDocuments:
+      item["patientDocuments"] === undefined
+        ? item["patientDocuments"]
+        : item["patientDocuments"].map(patientDocumentSerializer),
+  };
+}
+
 /** Patient structured information, including demographics and known structured clinical information. */
 export interface PatientInfo {
   /** The patient's sex. */
@@ -25,8 +72,18 @@ export interface PatientInfo {
   clinicalInfo?: Resource[];
 }
 
+export function patientInfoSerializer(item: PatientInfo): PatientInfoRest {
+  return {
+    sex: item["sex"],
+    birthDate: item["birthDate"]?.toDateString(),
+    clinicalInfo:
+      item["clinicalInfo"] === undefined
+        ? item["clinicalInfo"]
+        : item["clinicalInfo"].map(resourceSerializer),
+  };
+}
+
 /** The patient's sex. */
-/** */
 export type PatientInfoSex = "female" | "male" | "unspecified";
 
 /**
@@ -44,6 +101,17 @@ export interface Resource {
   implicitRules?: string;
   /** Language of the resource content */
   language?: string;
+}
+
+export function resourceSerializer(item: Resource): ResourceRest {
+  return {
+    ...item,
+    resourceType: item["resourceType"],
+    id: item["id"],
+    meta: !item.meta ? item.meta : metaSerializer(item.meta),
+    implicitRules: item["implicitRules"],
+    language: item["language"],
+  };
 }
 
 /**
@@ -65,6 +133,23 @@ export interface Meta {
   tag?: Coding[];
 }
 
+export function metaSerializer(item: Meta): MetaRest {
+  return {
+    versionId: item["versionId"],
+    lastUpdated: item["lastUpdated"],
+    source: item["source"],
+    profile: item["profile"],
+    security:
+      item["security"] === undefined
+        ? item["security"]
+        : item["security"].map(codingSerializer),
+    tag:
+      item["tag"] === undefined
+        ? item["tag"]
+        : item["tag"].map(codingSerializer),
+  };
+}
+
 /**
  * The base definition for all elements contained inside a resource.
  * Based on [FHIR Element](https://www.hl7.org/fhir/R4/element.html)
@@ -74,6 +159,16 @@ export interface Element {
   id?: string;
   /** Additional Content defined by implementations */
   extension?: Extension[];
+}
+
+export function elementSerializer(item: Element): ElementRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+  };
 }
 
 /**
@@ -109,6 +204,43 @@ export interface Extension extends Element {
   valueReference?: Reference;
 }
 
+export function extensionSerializer(item: Extension): ExtensionRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    url: item["url"],
+    valueQuantity: !item.valueQuantity
+      ? item.valueQuantity
+      : quantitySerializer(item.valueQuantity),
+    valueCodeableConcept: !item.valueCodeableConcept
+      ? item.valueCodeableConcept
+      : codeableConceptSerializer(item.valueCodeableConcept),
+    valueString: item["valueString"],
+    valueBoolean: item["valueBoolean"],
+    valueInteger: item["valueInteger"],
+    valueRange: !item.valueRange
+      ? item.valueRange
+      : rangeSerializer(item.valueRange),
+    valueRatio: !item.valueRatio
+      ? item.valueRatio
+      : ratioSerializer(item.valueRatio),
+    valueSampledData: !item.valueSampledData
+      ? item.valueSampledData
+      : sampledDataSerializer(item.valueSampledData),
+    valueTime: item["valueTime"]?.toTimeString(),
+    valueDateTime: item["valueDateTime"],
+    valuePeriod: !item.valuePeriod
+      ? item.valuePeriod
+      : periodSerializer(item.valuePeriod),
+    valueReference: !item.valueReference
+      ? item.valueReference
+      : referenceSerializer(item.valueReference),
+  };
+}
+
 /**
  * A measured or measurable amount
  * Based on [FHIR Quantity](https://www.hl7.org/fhir/R4/datatypes.html#Quantity)
@@ -126,6 +258,21 @@ export interface Quantity extends Element {
   code?: string;
 }
 
+export function quantitySerializer(item: Quantity): QuantityRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    value: item["value"],
+    comparator: item["comparator"],
+    unit: item["unit"],
+    system: item["system"],
+    code: item["code"],
+  };
+}
+
 /**
  * Concept - reference to a terminology or just text
  * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
@@ -135,6 +282,23 @@ export interface CodeableConcept extends Element {
   coding?: Coding[];
   /** Plain text representation of the concept */
   text?: string;
+}
+
+export function codeableConceptSerializer(
+  item: CodeableConcept,
+): CodeableConceptRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    coding:
+      item["coding"] === undefined
+        ? item["coding"]
+        : item["coding"].map(codingSerializer),
+    text: item["text"],
+  };
 }
 
 /**
@@ -152,6 +316,20 @@ export interface Coding extends Element {
   display?: string;
 }
 
+export function codingSerializer(item: Coding): CodingRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    system: item["system"],
+    version: item["version"],
+    code: item["code"],
+    display: item["display"],
+  };
+}
+
 /**
  * A set of ordered Quantities defined by a low and high limit
  * Based on [FHIR Range](https://www.hl7.org/fhir/R4/datatypes.html#Range)
@@ -163,6 +341,18 @@ export interface Range extends Element {
   high?: Quantity;
 }
 
+export function rangeSerializer(item: Range): RangeRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    low: !item.low ? item.low : quantitySerializer(item.low),
+    high: !item.high ? item.high : quantitySerializer(item.high),
+  };
+}
+
 /**
  * A ratio of two Quantity values - a numerator and a denominator
  * Based on [FHIR Ratio](https://www.hl7.org/fhir/R4/datatypes.html#Ratio)
@@ -172,6 +362,22 @@ export interface Ratio extends Element {
   numerator?: Quantity;
   /** Denominator value */
   denominator?: Quantity;
+}
+
+export function ratioSerializer(item: Ratio): RatioRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    numerator: !item.numerator
+      ? item.numerator
+      : quantitySerializer(item.numerator),
+    denominator: !item.denominator
+      ? item.denominator
+      : quantitySerializer(item.denominator),
+  };
 }
 
 /**
@@ -195,6 +401,23 @@ export interface SampledData extends Element {
   data?: string;
 }
 
+export function sampledDataSerializer(item: SampledData): SampledDataRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    origin: quantitySerializer(item.origin),
+    period: item["period"],
+    factor: item["factor"],
+    lowerLimit: item["lowerLimit"],
+    upperLimit: item["upperLimit"],
+    dimensions: item["dimensions"],
+    data: item["data"],
+  };
+}
+
 /**
  * A time period defined by a start and end date and optionally time
  * Based on [FHIR Period](https://www.hl7.org/fhir/R4/datatypes.html#Period)
@@ -204,6 +427,18 @@ export interface Period extends Element {
   start?: string;
   /** End time with inclusive boundary, if not ongoing */
   end?: string;
+}
+
+export function periodSerializer(item: Period): PeriodRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    start: item["start"],
+    end: item["end"],
+  };
 }
 
 /**
@@ -219,6 +454,22 @@ export interface Reference extends Element {
   identifier?: Identifier;
   /** Text alternative for the resource */
   display?: string;
+}
+
+export function referenceSerializer(item: Reference): ReferenceRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    reference: item["reference"],
+    type: item["type"],
+    identifier: !item.identifier
+      ? item.identifier
+      : identifierSerializer(item.identifier),
+    display: item["display"],
+  };
 }
 
 /**
@@ -240,6 +491,24 @@ export interface Identifier extends Element {
   assigner?: Reference;
 }
 
+export function identifierSerializer(item: Identifier): IdentifierRest {
+  return {
+    id: item["id"],
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    use: item["use"],
+    type: !item.type ? item.type : codeableConceptSerializer(item.type),
+    system: item["system"],
+    value: item["value"],
+    period: !item.period ? item.period : periodSerializer(item.period),
+    assigner: !item.assigner
+      ? item.assigner
+      : referenceSerializer(item.assigner),
+  };
+}
+
 /** visit/encounter information */
 export interface Encounter {
   /** The id of the visit. */
@@ -253,6 +522,14 @@ export interface Encounter {
   class?: EncounterClass;
 }
 
+export function encounterSerializer(item: Encounter): EncounterRest {
+  return {
+    id: item["id"],
+    period: !item.period ? item.period : timePeriodSerializer(item.period),
+    class: item["class"],
+  };
+}
+
 /** A duration of time during which an event is happening */
 export interface TimePeriod {
   /** Starting time with inclusive boundary */
@@ -261,8 +538,14 @@ export interface TimePeriod {
   end?: Date;
 }
 
+export function timePeriodSerializer(item: TimePeriod): TimePeriodRest {
+  return {
+    start: item["start"]?.toISOString(),
+    end: item["end"]?.toISOString(),
+  };
+}
+
 /** Known values codes that can be used to indicate the class of encounter (TODO://Based on FHIR value set--http://....). */
-/** */
 export type EncounterClass =
   | "inpatient"
   | "ambulatory"
@@ -293,15 +576,34 @@ export interface PatientDocument {
   content: DocumentContent;
 }
 
+export function patientDocumentSerializer(
+  item: PatientDocument,
+): PatientDocumentRest {
+  return {
+    type: item["type"],
+    clinicalType: item["clinicalType"],
+    id: item["id"],
+    language: item["language"],
+    createdDateTime: item["createdDateTime"]?.toISOString(),
+    authors:
+      item["authors"] === undefined
+        ? item["authors"]
+        : item["authors"].map(documentAuthorSerializer),
+    specialtyType: item["specialtyType"],
+    administrativeMetadata: !item.administrativeMetadata
+      ? item.administrativeMetadata
+      : documentAdministrativeMetadataSerializer(item.administrativeMetadata),
+    content: documentContentSerializer(item.content),
+  };
+}
+
 /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-/** */
 export type DocumentType =
   | "note"
   | "fhirBundle"
   | "dicom"
   | "genomicSequencing";
 /** The type of the clinical document. */
-/** */
 export type ClinicalDocumentType =
   | "consultation"
   | "dischargeSummary"
@@ -320,8 +622,16 @@ export interface DocumentAuthor {
   fullName?: string;
 }
 
+export function documentAuthorSerializer(
+  item: DocumentAuthor,
+): DocumentAuthorRest {
+  return {
+    id: item["id"],
+    fullName: item["fullName"],
+  };
+}
+
 /** Known values codes that can be used to indicate the type of the Specialty. */
-/** */
 export type SpecialtyType = "pathology" | "radiology";
 
 /** Document administrative metadata */
@@ -332,10 +642,31 @@ export interface DocumentAdministrativeMetadata {
   encounterId?: string;
 }
 
+export function documentAdministrativeMetadataSerializer(
+  item: DocumentAdministrativeMetadata,
+): DocumentAdministrativeMetadataRest {
+  return {
+    orderedProcedures:
+      item["orderedProcedures"] === undefined
+        ? item["orderedProcedures"]
+        : item["orderedProcedures"].map(orderedProcedureSerializer),
+    encounterId: item["encounterId"],
+  };
+}
+
 /** FHIR extendible element */
 export interface Extendible {
   /** Additional Content defined by implementations */
   extension?: Extension[];
+}
+
+export function extendibleSerializer(item: Extendible): ExtendibleRest {
+  return {
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+  };
 }
 
 /** Procedure information */
@@ -344,6 +675,19 @@ export interface OrderedProcedure extends Extendible {
   code?: CodeableConcept;
   /** Procedure description */
   description?: string;
+}
+
+export function orderedProcedureSerializer(
+  item: OrderedProcedure,
+): OrderedProcedureRest {
+  return {
+    extension:
+      item["extension"] === undefined
+        ? item["extension"]
+        : item["extension"].map(extensionSerializer),
+    code: !item.code ? item.code : codeableConceptSerializer(item.code),
+    description: item["description"],
+  };
 }
 
 /** The content of the patient document. */
@@ -358,12 +702,20 @@ export interface DocumentContent {
   value: string;
 }
 
+export function documentContentSerializer(
+  item: DocumentContent,
+): DocumentContentRest {
+  return {
+    sourceType: item["sourceType"],
+    value: item["value"],
+  };
+}
+
 /**
  * The type of the content's source.
  * In case the source type is 'inline', the content is given as a string (for instance, text).
  * In case the source type is 'reference', the content is given as a URI.
  */
-/** */
 export type DocumentContentSourceType = "inline" | "reference";
 
 /** Configuration affecting the Radiology Insights model's inference. */
@@ -384,8 +736,21 @@ export interface RadiologyInsightsModelConfiguration {
   locale?: string;
 }
 
+export function radiologyInsightsModelConfigurationSerializer(
+  item: RadiologyInsightsModelConfiguration,
+): RadiologyInsightsModelConfigurationRest {
+  return {
+    verbose: item["verbose"],
+    includeEvidence: item["includeEvidence"],
+    inferenceTypes: item["inferenceTypes"],
+    inferenceOptions: !item.inferenceOptions
+      ? item.inferenceOptions
+      : radiologyInsightsInferenceOptionsSerializer(item.inferenceOptions),
+    locale: item["locale"],
+  };
+}
+
 /** A Radiology Insights inference types. */
-/** */
 export type RadiologyInsightsInferenceType =
   | "ageMismatch"
   | "lateralityDiscrepancy"
@@ -406,6 +771,19 @@ export interface RadiologyInsightsInferenceOptions {
   finding?: FindingOptions;
 }
 
+export function radiologyInsightsInferenceOptionsSerializer(
+  item: RadiologyInsightsInferenceOptions,
+): RadiologyInsightsInferenceOptionsRest {
+  return {
+    followupRecommendation: !item.followupRecommendation
+      ? item.followupRecommendation
+      : followupRecommendationOptionsSerializer(item.followupRecommendation),
+    finding: !item.finding
+      ? item.finding
+      : findingOptionsSerializer(item.finding),
+  };
+}
+
 /** Followup Recommendation Options */
 export interface FollowupRecommendationOptions {
   /** Include/Exclude followup recommendations with no specific radiologic modality, default is false. */
@@ -416,10 +794,30 @@ export interface FollowupRecommendationOptions {
   provideFocusedSentenceEvidence?: boolean;
 }
 
+export function followupRecommendationOptionsSerializer(
+  item: FollowupRecommendationOptions,
+): FollowupRecommendationOptionsRest {
+  return {
+    includeRecommendationsWithNoSpecifiedModality:
+      item["includeRecommendationsWithNoSpecifiedModality"],
+    includeRecommendationsInReferences:
+      item["includeRecommendationsInReferences"],
+    provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"],
+  };
+}
+
 /** Finding Options */
 export interface FindingOptions {
   /** Provide a single focused sentence as evidence for the finding, default is false. */
   provideFocusedSentenceEvidence?: boolean;
+}
+
+export function findingOptionsSerializer(
+  item: FindingOptions,
+): FindingOptionsRest {
+  return {
+    provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"],
+  };
 }
 
 /** The body of the Radiology Insights request. */
@@ -428,6 +826,17 @@ export interface RadiologyInsightsData {
   patients: PatientRecord[];
   /** Configuration affecting the Radiology Insights model's inference. */
   configuration?: RadiologyInsightsModelConfiguration;
+}
+
+export function radiologyInsightsDataSerializer(
+  item: RadiologyInsightsData,
+): RadiologyInsightsDataRest {
+  return {
+    patients: item["patients"].map(patientRecordSerializer),
+    configuration: !item.configuration
+      ? item.configuration
+      : radiologyInsightsModelConfigurationSerializer(item.configuration),
+  };
 }
 
 /** Provides status details for long running operations. */
@@ -447,7 +856,6 @@ export interface HealthInsightsOperationStatusError {
 }
 
 /** The status of the processing job. */
-/** */
 export type JobStatus =
   | "notStarted"
   | "running"
@@ -524,7 +932,6 @@ export interface LateralityDiscrepancyInference
 }
 
 /** Laterality discrepancy type */
-/** */
 export type LateralityDiscrepancyType =
   | "orderLateralityMismatch"
   | "textLateralityContradiction"
@@ -667,7 +1074,6 @@ export interface Observation extends DomainResource {
  * Observation Status
  * Based on [FHIR ObservationStatus](https://www.hl7.org/fhir/R4/valueset-observation-status.html)
  */
-/** */
 export type ObservationStatusCodeType =
   | "registered"
   | "preliminary"
@@ -867,7 +1273,6 @@ export interface ResearchStudy extends DomainResource {
 }
 
 /** https://www.hl7.org/fhir/R4/codesystem-research-study-status.html */
-/** */
 export type ResearchStudyStatusCodeType =
   | "active"
   | "administratively-completed"
@@ -910,7 +1315,6 @@ export interface ContactPoint {
  * Contact Point System
  * see https://www.hl7.org/fhir/R4/valueset-contact-point-system.html
  */
-/** */
 export type ContactPointSystem =
   | "phone"
   | "fax"
@@ -923,7 +1327,6 @@ export type ContactPointSystem =
  * Contact Point Use
  * See: 	http://hl7.org/fhir/ValueSet/contact-point-use
  */
-/** */
 export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 
 /**
@@ -1033,7 +1436,6 @@ export interface RecommendationFinding extends Extendible {
 }
 
 /** Recommendation finding status */
-/** */
 export type RecommendationFindingStatusType =
   | "present"
   | "differential"
@@ -1082,7 +1484,6 @@ export interface FollowupCommunicationInference
 }
 
 /** Medical Professional Type */
-/** */
 export type MedicalProfessionalType =
   | "unknown"
   | "doctor"
@@ -1108,10 +1509,9 @@ export interface RadiologyInsightsResult {
   result?: RadiologyInsightsInferenceResult;
 }
 
-/** */
+/** Type of ApiVersion */
 export type ApiVersion = "2023-09-01-preview";
 /** Repeatability Result header options */
-/** */
 export type RepeatabilityResult = "accepted" | "rejected";
 /** Alias for RadiologyInsightsInferenceUnion */
 export type RadiologyInsightsInferenceUnion =

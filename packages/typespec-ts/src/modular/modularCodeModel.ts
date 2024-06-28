@@ -1,12 +1,20 @@
-import { Imports } from "@azure-tools/rlc-common";
-import { HelperFunctionDetails } from "@azure-tools/rlc-common";
-import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
-import { UsageFlags } from "@typespec/compiler";
+import {
+  HelperFunctionDetails,
+  Imports,
+  OperationResponse,
+  RLCOptions
+} from "@azure-tools/rlc-common";
+import {
+  SdkBodyParameter,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
+import { UsageFlags, Type as TypespecType } from "@typespec/compiler";
 import { Project } from "ts-morph";
 
 export interface ModularOptions {
   sourceRoot: string;
   compatibilityMode: boolean;
+  experimentalExtensibleEnums: boolean;
 }
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -46,6 +54,7 @@ export interface BodyParameter {
   clientName: string;
   inOverload: boolean;
   isBinaryPayload: boolean;
+  tcgcType: SdkBodyParameter;
 }
 
 export interface OperationGroup {
@@ -66,7 +75,6 @@ export interface EnumValue {
   description: string;
 }
 export interface Type {
-  nullable?: boolean;
   name?: string;
   description?: string;
   type:
@@ -95,6 +103,7 @@ export interface Type {
   value?: string;
   values?: EnumValue[];
   isFixed?: boolean;
+  isNonExhaustive?: boolean;
   valueType?: Type;
   elementType?: Type;
   parents?: Type[];
@@ -109,6 +118,8 @@ export interface Type {
   discriminator?: string;
   discriminatorValue?: string;
   isPolymorphicBaseModel?: boolean;
+  tcgcType?: SdkType;
+  __raw?: TypespecType;
 }
 
 export interface Client {
@@ -151,6 +162,7 @@ export interface Parameter {
   inOverriden?: boolean;
   isApiVersion?: boolean;
   format?: string;
+  tcgcType?: SdkType;
 }
 
 export interface Response {

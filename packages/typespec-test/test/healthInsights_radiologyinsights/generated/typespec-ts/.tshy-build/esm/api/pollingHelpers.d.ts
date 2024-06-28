@@ -16,7 +16,7 @@ export interface GetLongRunningPollerOptions<TResponse> {
      * The original url of the LRO
      * Should not be null when restoreFrom is set
      */
-    initialUrl?: string;
+    initialRequestUrl?: string;
     /**
      * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
      */
@@ -26,5 +26,5 @@ export interface GetLongRunningPollerOptions<TResponse> {
      */
     getInitialResponse?: () => PromiseLike<TResponse>;
 }
-export declare function getLongRunningPoller<TResponse extends PathUncheckedResponse, TResult = void>(client: Client, processResponseBody: (result: TResponse) => PromiseLike<TResult>, options: GetLongRunningPollerOptions<TResponse>): PollerLike<OperationState<TResult>, TResult>;
+export declare function getLongRunningPoller<TResponse extends PathUncheckedResponse, TResult = void>(client: Client, processResponseBody: (result: TResponse) => Promise<TResult>, options: GetLongRunningPollerOptions<TResponse>): PollerLike<OperationState<TResult>, TResult>;
 //# sourceMappingURL=pollingHelpers.d.ts.map
