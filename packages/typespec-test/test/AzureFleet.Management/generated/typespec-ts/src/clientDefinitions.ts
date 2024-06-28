@@ -126,6 +126,6 @@ export interface Routes {
   ): ListVirtualMachineScaleSets;
 }
 
-export type AzureFleetContext = Client & {
+export type AzureFleetClient = Client & {
   path: Routes;
 };

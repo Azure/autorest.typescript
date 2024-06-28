@@ -5,52 +5,52 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { Paged } from '@azure/core-paging';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
-import { PollerLike } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
-export type ActionType = "Internal";
+// @public
+export type ActionTypeOutput = string;
 
 // @public
-export interface ApiError {
+export interface ApiErrorOutput {
 }
 
 // @public
-export interface ArmOperationStatus {
-    readonly endTime?: Date;
-    readonly error?: ErrorDetail;
-    readonly name?: string;
-    readonly percentComplete?: number;
-    readonly startTime?: Date;
-    status: ResourceProvisioningState;
+export interface AzureEntityResource extends Resource {
+}
+
+// @public
+export interface AzureEntityResourceOutput extends ResourceOutput {
+    readonly etag?: string;
 }
 
 // @public (undocumented)
-export class AzureFleetClient {
-    constructor(credential: TokenCredential, options?: AzureFleetClientOptions);
-    readonly fleets: FleetsOperations;
-    readonly operations: OperationsOperations;
-    readonly pipeline: Pipeline;
-}
+export type AzureFleetClient = Client & {
+    path: Routes;
+};
 
-// @public (undocumented)
+// @public
 export interface AzureFleetClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
 // @public
 export interface BaseVirtualMachineProfile {
+}
+
+// @public
+export interface BaseVirtualMachineProfileOutput {
 }
 
 // @public
@@ -61,35 +61,139 @@ export interface ComputeProfile {
 }
 
 // @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
-
-// @public (undocumented)
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+export interface ComputeProfileOutput {
+    baseVirtualMachineProfile: BaseVirtualMachineProfileOutput;
+    computeApiVersion?: string;
+    platformFaultDomainCount?: number;
+}
 
 // @public
-export interface ErrorAdditionalInfo {
+function createClient(credentials: TokenCredential, { apiVersion, ...options }?: AzureFleetClientOptions): AzureFleetClient;
+export default createClient;
+
+// @public
+export type CreatedByType = string;
+
+// @public
+export type CreatedByTypeOutput = string;
+
+// @public
+export interface CreateOrUpdate200Response extends HttpResponse {
+    // (undocumented)
+    body: FleetOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface CreateOrUpdate201Headers {
+    "retry-after"?: number;
+}
+
+// @public
+export interface CreateOrUpdate201Response extends HttpResponse {
+    // (undocumented)
+    body: FleetOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdate201Headers;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateBodyParam {
+    body: Fleet;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface CreateOrUpdateLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: FleetOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type CreateOrUpdateParameters = CreateOrUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface Delete202Headers {
+    "retry-after"?: number;
+    location?: string;
+}
+
+// @public
+export interface Delete202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & Delete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public
+export interface Delete204Response extends HttpResponse {
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface DeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface DeleteLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type DeleteParameters = RequestParameters;
+
+// @public
+export interface ErrorAdditionalInfoOutput {
     readonly info?: Record<string, any>;
     readonly type?: string;
 }
 
 // @public
-export interface ErrorDetail {
-    readonly additionalInfo?: ErrorAdditionalInfo[];
+export interface ErrorDetailOutput {
+    readonly additionalInfo?: Array<ErrorAdditionalInfoOutput>;
     readonly code?: string;
-    readonly details?: ErrorDetail[];
+    readonly details?: Array<ErrorDetailOutput>;
     readonly message?: string;
     readonly target?: string;
 }
 
 // @public
-export interface ErrorResponse {
-    error?: ErrorDetail;
+export interface ErrorResponseOutput {
+    error?: ErrorDetailOutput;
 }
 
-// @public (undocumented)
-export type EvictionPolicy = "Delete" | "Deallocate";
+// @public
+export type EvictionPolicy = string;
+
+// @public
+export type EvictionPolicyOutput = string;
+
+// @public
+export interface ExtensionResource extends Resource {
+}
+
+// @public
+export interface ExtensionResourceOutput extends ResourceOutput {
+}
 
 // @public
 export interface Fleet extends TrackedResource {
@@ -100,67 +204,31 @@ export interface Fleet extends TrackedResource {
 }
 
 // @public
-export interface FleetListResult {
-    nextLink?: string;
-    value: Fleet[];
+export type FleetListResultOutput = Paged<FleetOutput>;
+
+// @public
+export interface FleetOutput extends TrackedResourceOutput {
+    identity?: ManagedServiceIdentityOutput;
+    plan?: PlanOutput;
+    properties?: FleetPropertiesOutput;
+    zones?: string[];
 }
 
 // @public
 export interface FleetProperties {
     computeProfile: ComputeProfile;
-    readonly provisioningState?: ProvisioningState;
     regularPriorityProfile?: RegularPriorityProfile;
     spotPriorityProfile?: SpotPriorityProfile;
-    vmSizesProfile: VmSizeProfile[];
+    vmSizesProfile: Array<VmSizeProfile>;
 }
 
-// @public (undocumented)
-export interface FleetsCreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public (undocumented)
-export interface FleetsDeleteOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public (undocumented)
-export interface FleetsGetOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FleetsListByResourceGroupOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FleetsListBySubscriptionOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FleetsListVirtualMachineScaleSetsOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FleetsOperations {
-    // (undocumented)
-    createOrUpdate: (subscriptionId: string, resourceGroupName: string, fleetName: string, resource: Fleet, options?: FleetsCreateOrUpdateOptionalParams) => PollerLike<OperationState<Fleet>, Fleet>;
-    // (undocumented)
-    delete: (subscriptionId: string, resourceGroupName: string, fleetName: string, options?: FleetsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
-    // (undocumented)
-    get: (subscriptionId: string, resourceGroupName: string, fleetName: string, options?: FleetsGetOptionalParams) => Promise<Fleet>;
-    // (undocumented)
-    listByResourceGroup: (subscriptionId: string, resourceGroupName: string, options?: FleetsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<Fleet>;
-    // (undocumented)
-    listBySubscription: (subscriptionId: string, options?: FleetsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<Fleet>;
-    // (undocumented)
-    listVirtualMachineScaleSets: (subscriptionId: string, resourceGroupName: string, name: string, options?: FleetsListVirtualMachineScaleSetsOptionalParams) => Promise<VirtualMachineScaleSetListResult>;
-    // (undocumented)
-    update: (subscriptionId: string, resourceGroupName: string, fleetName: string, properties: FleetUpdate, options?: FleetsUpdateOptionalParams) => PollerLike<OperationState<Fleet>, Fleet>;
-}
-
-// @public (undocumented)
-export interface FleetsUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
+// @public
+export interface FleetPropertiesOutput {
+    computeProfile: ComputeProfileOutput;
+    readonly provisioningState?: ProvisioningStateOutput;
+    regularPriorityProfile?: RegularPriorityProfileOutput;
+    spotPriorityProfile?: SpotPriorityProfileOutput;
+    vmSizesProfile: Array<VmSizeProfileOutput>;
 }
 
 // @public
@@ -171,69 +239,245 @@ export interface FleetUpdate {
     tags?: Record<string, string>;
 }
 
+// @public (undocumented)
+export interface Get {
+    delete(options?: DeleteParameters): StreamableMethod<Delete202Response | Delete204Response | DeleteDefaultResponse>;
+    get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
+    patch(options: UpdateParameters): StreamableMethod<Update200Response | Update202Response | UpdateDefaultResponse>;
+    put(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
+}
+
 // @public
-export interface ManagedServiceIdentity {
+export interface Get200Response extends HttpResponse {
+    // (undocumented)
+    body: FleetOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public
+export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
+
+// @public (undocumented)
+export interface GetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends UpdateLogicalResponse | UpdateDefaultResponse>(client: Client, initialResponse: Update200Response | Update202Response | UpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteDefaultResponse>(client: Client, initialResponse: Delete202Response | Delete204Response | DeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public
+export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+    page: TPage;
+    nextPageLink?: string;
+}>;
+
+// @public (undocumented)
+export type GetParameters = RequestParameters;
+
+// @public
+export interface Identity {
+    type?: ResourceIdentityType;
+}
+
+// @public
+export interface IdentityOutput {
     readonly principalId?: string;
     readonly tenantId?: string;
-    type: ManagedServiceIdentityType;
-    userAssignedIdentities?: UserAssignedIdentities;
+    type?: ResourceIdentityTypeOutput;
 }
 
 // @public (undocumented)
-export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
+export function isUnexpected(response: List200Response | ListDefaultResponse): response is ListDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: Update200Response | Update202Response | UpdateLogicalResponse | UpdateDefaultResponse): response is UpdateDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: Delete202Response | Delete204Response | DeleteLogicalResponse | DeleteDefaultResponse): response is DeleteDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ListByResourceGroup200Response | ListByResourceGroupDefaultResponse): response is ListByResourceGroupDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ListBySubscription200Response | ListBySubscriptionDefaultResponse): response is ListBySubscriptionDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: ListVirtualMachineScaleSets200Response | ListVirtualMachineScaleSetsDefaultResponse): response is ListVirtualMachineScaleSetsDefaultResponse;
+
+// @public (undocumented)
+export interface List {
+    get(options?: ListParameters): StreamableMethod<List200Response | ListDefaultResponse>;
+}
+
+// @public
+export interface List200Response extends HttpResponse {
+    // (undocumented)
+    body: OperationListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListByResourceGroup {
+    get(options?: ListByResourceGroupParameters): StreamableMethod<ListByResourceGroup200Response | ListByResourceGroupDefaultResponse>;
+}
+
+// @public
+export interface ListByResourceGroup200Response extends HttpResponse {
+    // (undocumented)
+    body: FleetListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListByResourceGroupDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListByResourceGroupParameters = RequestParameters;
+
+// @public (undocumented)
+export interface ListBySubscription {
+    get(options?: ListBySubscriptionParameters): StreamableMethod<ListBySubscription200Response | ListBySubscriptionDefaultResponse>;
+}
+
+// @public
+export interface ListBySubscription200Response extends HttpResponse {
+    // (undocumented)
+    body: FleetListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListBySubscriptionDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListBySubscriptionParameters = RequestParameters;
+
+// @public (undocumented)
+export interface ListDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListParameters = RequestParameters;
+
+// @public (undocumented)
+export interface ListVirtualMachineScaleSets {
+    get(options?: ListVirtualMachineScaleSetsParameters): StreamableMethod<ListVirtualMachineScaleSets200Response | ListVirtualMachineScaleSetsDefaultResponse>;
+}
+
+// @public
+export interface ListVirtualMachineScaleSets200Response extends HttpResponse {
+    // (undocumented)
+    body: VirtualMachineScaleSetListResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListVirtualMachineScaleSetsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListVirtualMachineScaleSetsParameters = RequestParameters;
+
+// @public
+export interface ManagedServiceIdentity {
+    type: ManagedServiceIdentityType;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity> | null;
+}
+
+// @public
+export interface ManagedServiceIdentityOutput {
+    readonly principalId?: string;
+    readonly tenantId?: string;
+    type: ManagedServiceIdentityTypeOutput;
+    userAssignedIdentities?: Record<string, UserAssignedIdentityOutput> | null;
+}
+
+// @public
+export type ManagedServiceIdentityType = string;
+
+// @public
+export type ManagedServiceIdentityTypeOutput = string;
 
 // @public
 export interface ManagedServiceIdentityUpdate {
     type?: ManagedServiceIdentityType;
-    userAssignedIdentities?: UserAssignedIdentities;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity> | null;
 }
 
 // @public
-export interface Operation {
-    actionType?: ActionType;
-    display?: OperationDisplay;
-    readonly isDataAction?: boolean;
-    readonly name?: string;
-    readonly origin?: Origin;
-}
-
-// @public
-export interface OperationDisplay {
+export interface OperationDisplayOutput {
     description?: string;
     operation?: string;
     provider?: string;
     resource?: string;
 }
 
-// @public (undocumented)
-export interface OperationsListOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface OperationsOperations {
-    // (undocumented)
-    list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
-}
-
-// @public (undocumented)
-export type Origin = "user" | "system" | "user,system";
+// @public
+export type OperationListResultOutput = Paged<OperationOutput>;
 
 // @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
+export interface OperationOutput {
+    actionType?: ActionTypeOutput;
+    display?: OperationDisplayOutput;
+    readonly isDataAction?: boolean;
+    readonly name?: string;
+    readonly origin?: OriginOutput;
 }
 
 // @public
-export interface PagedOperation {
-    nextLink?: string;
-    value: Operation[];
-}
+export type OriginOutput = string;
 
 // @public
-export interface PageSettings {
-    continuationToken?: string;
+export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+
+// @public
+export type PaginateReturn<TResult> = TResult extends {
+    body: {
+        value?: infer TPage;
+    };
+} ? GetArrayType<TPage> : Array<unknown>;
+
+// @public
+export interface PagingOptions<TResponse> {
+    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
 // @public
@@ -246,10 +490,114 @@ export interface Plan {
 }
 
 // @public
-export type ProvisioningState = string | ResourceProvisioningState | "Creating" | "Updating" | "Deleting" | "Migrating";
+export interface PlanOutput {
+    name: string;
+    product: string;
+    promotionCode?: string;
+    publisher: string;
+    version?: string;
+}
 
-// @public (undocumented)
-export type RegularPriorityAllocationStrategy = "LowestPrice" | "Prioritized";
+// @public
+export interface PrivateEndpoint {
+}
+
+// @public
+export interface PrivateEndpointConnection extends Resource {
+    properties?: PrivateEndpointConnectionProperties;
+}
+
+// @public
+export interface PrivateEndpointConnectionOutput extends ResourceOutput {
+    properties?: PrivateEndpointConnectionPropertiesOutput;
+}
+
+// @public
+export interface PrivateEndpointConnectionProperties {
+    privateEndpoint?: PrivateEndpoint;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+
+// @public
+export interface PrivateEndpointConnectionPropertiesOutput {
+    readonly groupIds?: string[];
+    privateEndpoint?: PrivateEndpointOutput;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
+    readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
+}
+
+// @public
+export type PrivateEndpointConnectionProvisioningState = string;
+
+// @public
+export type PrivateEndpointConnectionProvisioningStateOutput = string;
+
+// @public
+export interface PrivateEndpointOutput {
+    readonly id?: string;
+}
+
+// @public
+export type PrivateEndpointServiceConnectionStatus = string;
+
+// @public
+export type PrivateEndpointServiceConnectionStatusOutput = string;
+
+// @public
+export interface PrivateLinkResource extends Resource {
+    properties?: PrivateLinkResourceProperties;
+}
+
+// @public
+export interface PrivateLinkResourceOutput extends ResourceOutput {
+    properties?: PrivateLinkResourcePropertiesOutput;
+}
+
+// @public
+export interface PrivateLinkResourceProperties {
+    requiredZoneNames?: string[];
+}
+
+// @public
+export interface PrivateLinkResourcePropertiesOutput {
+    readonly groupId?: string;
+    readonly requiredMembers?: string[];
+    requiredZoneNames?: string[];
+}
+
+// @public
+export interface PrivateLinkServiceConnectionState {
+    actionsRequired?: string;
+    description?: string;
+    status?: PrivateEndpointServiceConnectionStatus;
+}
+
+// @public
+export interface PrivateLinkServiceConnectionStateOutput {
+    actionsRequired?: string;
+    description?: string;
+    status?: PrivateEndpointServiceConnectionStatusOutput;
+}
+
+// @public
+export type ProvisioningState = string;
+
+// @public
+export type ProvisioningStateOutput = string;
+
+// @public
+export interface ProxyResource extends Resource {
+}
+
+// @public
+export interface ProxyResourceOutput extends ResourceOutput {
+}
+
+// @public
+export type RegularPriorityAllocationStrategy = string;
+
+// @public
+export type RegularPriorityAllocationStrategyOutput = string;
 
 // @public
 export interface RegularPriorityProfile {
@@ -259,10 +607,53 @@ export interface RegularPriorityProfile {
 }
 
 // @public
+export interface RegularPriorityProfileOutput {
+    allocationStrategy?: RegularPriorityAllocationStrategyOutput;
+    capacity?: number;
+    minCapacity?: number;
+}
+
+// @public
 export interface Resource {
+}
+
+// @public
+export type ResourceIdentityType = "SystemAssigned";
+
+// @public
+export type ResourceIdentityTypeOutput = "SystemAssigned";
+
+// @public
+export interface ResourceModelWithAllowedPropertySet extends TrackedResource {
+    eTag?: string;
+    // (undocumented)
+    identity?: Identity;
+    kind?: string;
+    managedBy?: string;
+    // (undocumented)
+    plan?: Plan;
+    // (undocumented)
+    sku?: Sku;
+}
+
+// @public
+export interface ResourceModelWithAllowedPropertySetOutput extends TrackedResourceOutput {
+    eTag?: string;
+    // (undocumented)
+    identity?: IdentityOutput;
+    kind?: string;
+    managedBy?: string;
+    // (undocumented)
+    plan?: PlanOutput;
+    // (undocumented)
+    sku?: SkuOutput;
+}
+
+// @public
+export interface ResourceOutput {
     readonly id?: string;
     readonly name?: string;
-    readonly systemData?: SystemData;
+    readonly systemData?: SystemDataOutput;
     readonly type?: string;
 }
 
@@ -275,23 +666,72 @@ export interface ResourcePlanUpdate {
     version?: string;
 }
 
-// @public (undocumented)
-export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
-
-// Warning: (ae-forgotten-export) The symbol "AzureFleetContext" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureFleetContext | AzureFleetClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export type ResourceProvisioningState = string;
+
+// @public
+export type ResourceProvisioningStateOutput = string;
 
 // @public (undocumented)
-export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
-    abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => Promise<TResult>;
-    updateIntervalInMs?: number;
+export interface Routes {
+    (path: "/providers/Microsoft.AzureFleet/operations"): List;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{fleetName}", subscriptionId: string, resourceGroupName: string, fleetName: string): Get;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets", subscriptionId: string, resourceGroupName: string): ListByResourceGroup;
+    (path: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureFleet/fleets", subscriptionId: string): ListBySubscription;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{name}/virtualMachineScaleSets", subscriptionId: string, resourceGroupName: string, name: string): ListVirtualMachineScaleSets;
 }
 
-// @public (undocumented)
-export type SpotAllocationStrategy = "PriceCapacityOptimized" | "LowestPrice" | "CapacityOptimized";
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    // @deprecated
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
+}
+
+// @public
+export interface Sku {
+    capacity?: number;
+    family?: string;
+    name: string;
+    size?: string;
+    tier?: SkuTier;
+}
+
+// @public
+export interface SkuOutput {
+    capacity?: number;
+    family?: string;
+    name: string;
+    size?: string;
+    tier?: SkuTierOutput;
+}
+
+// @public
+export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
+
+// @public
+export type SkuTierOutput = "Free" | "Basic" | "Standard" | "Premium";
+
+// @public
+export type SpotAllocationStrategy = string;
+
+// @public
+export type SpotAllocationStrategyOutput = string;
 
 // @public
 export interface SpotPriorityProfile {
@@ -304,13 +744,33 @@ export interface SpotPriorityProfile {
 }
 
 // @public
+export interface SpotPriorityProfileOutput {
+    allocationStrategy?: SpotAllocationStrategyOutput;
+    capacity?: number;
+    evictionPolicy?: EvictionPolicyOutput;
+    maintain?: boolean;
+    maxPricePerVM?: number;
+    minCapacity?: number;
+}
+
+// @public
 export interface SystemData {
-    readonly createdAt?: Date;
-    readonly createdBy?: string;
-    readonly createdByType?: CreatedByType;
-    readonly lastModifiedAt?: Date;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedByType?: CreatedByType;
+    createdAt?: Date | string;
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    lastModifiedAt?: Date | string;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
+}
+
+// @public
+export interface SystemDataOutput {
+    createdAt?: string;
+    createdBy?: string;
+    createdByType?: CreatedByTypeOutput;
+    lastModifiedAt?: string;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByTypeOutput;
 }
 
 // @public
@@ -320,34 +780,89 @@ export interface TrackedResource extends Resource {
 }
 
 // @public
-export interface UserAssignedIdentities extends Record<string, UserAssignedIdentity> {
+export interface TrackedResourceOutput extends ResourceOutput {
+    location: string;
+    tags?: Record<string, string>;
 }
 
 // @public
-export interface UserAssignedIdentity {
-    clientId?: string;
-    principalId?: string;
+export interface Update200Response extends HttpResponse {
+    // (undocumented)
+    body: FleetOutput;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
-export type Versions = "2023-11-01-preview" | "2024-05-01-preview";
+export interface Update202Headers {
+    "retry-after"?: number;
+    location?: string;
+}
 
 // @public
-export interface VirtualMachineScaleSet {
-    readonly error?: ApiError;
+export interface Update202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & Update202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface UpdateBodyParam {
+    body: FleetUpdate;
+}
+
+// @public (undocumented)
+export interface UpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface UpdateLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: FleetOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type UpdateParameters = UpdateBodyParam & RequestParameters;
+
+// @public
+export interface UserAssignedIdentity {
+}
+
+// @public
+export interface UserAssignedIdentityOutput {
+    readonly clientId?: string;
+    readonly principalId?: string;
+}
+
+// @public
+export interface VirtualMachineScaleSetListResultOutput {
+    nextLink?: string;
+    value: Array<VirtualMachineScaleSetOutput>;
+}
+
+// @public
+export interface VirtualMachineScaleSetOutput {
+    readonly error?: ApiErrorOutput;
     readonly id: string;
-    readonly operationStatus: ProvisioningState;
+    readonly operationStatus: ProvisioningStateOutput;
     readonly type?: string;
 }
 
 // @public
-export interface VirtualMachineScaleSetListResult {
-    nextLink?: string;
-    value: VirtualMachineScaleSet[];
+export interface VmSizeProfile {
+    name: string;
+    rank?: number;
 }
 
 // @public
-export interface VmSizeProfile {
+export interface VmSizeProfileOutput {
     name: string;
     rank?: number;
 }

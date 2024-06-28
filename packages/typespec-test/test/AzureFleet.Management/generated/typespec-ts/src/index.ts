@@ -1,60 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  AzureFleetClient,
-  AzureFleetClientOptions,
-} from "./azureFleetClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export {
-  Resource,
-  SystemData,
-  CreatedByType,
-  TrackedResource,
-  Fleet,
-  FleetProperties,
-  ResourceProvisioningState,
-  SpotPriorityProfile,
-  EvictionPolicy,
-  SpotAllocationStrategy,
-  RegularPriorityProfile,
-  RegularPriorityAllocationStrategy,
-  VmSizeProfile,
-  ComputeProfile,
-  BaseVirtualMachineProfile,
-  ManagedServiceIdentity,
-  ManagedServiceIdentityType,
-  UserAssignedIdentity,
-  UserAssignedIdentities,
-  Plan,
-  ErrorResponse,
-  ErrorDetail,
-  ErrorAdditionalInfo,
-  FleetUpdate,
-  ManagedServiceIdentityUpdate,
-  ResourcePlanUpdate,
-  ArmOperationStatus,
-  FleetListResult,
-  VirtualMachineScaleSetListResult,
-  VirtualMachineScaleSet,
-  ApiError,
-  PagedOperation,
-  Operation,
-  OperationDisplay,
-  Origin,
-  ActionType,
-  Versions,
-  ProvisioningState,
-  OperationsListOptionalParams,
-  FleetsGetOptionalParams,
-  FleetsCreateOrUpdateOptionalParams,
-  FleetsUpdateOptionalParams,
-  FleetsDeleteOptionalParams,
-  FleetsListByResourceGroupOptionalParams,
-  FleetsListBySubscriptionOptionalParams,
-  FleetsListVirtualMachineScaleSetsOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
-export { FleetsOperations, OperationsOperations } from "./classic/index.js";
+import AzureFleetClient from "./azureFleetClient.js";
+
+export * from "./azureFleetClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./isUnexpected.js";
+export * from "./models.js";
+export * from "./outputModels.js";
+export * from "./paginateHelper.js";
+export * from "./pollingHelper.js";
+
+export default AzureFleetClient;

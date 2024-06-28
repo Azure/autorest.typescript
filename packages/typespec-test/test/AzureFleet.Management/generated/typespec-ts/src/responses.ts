@@ -4,7 +4,7 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
-  PagedOperationOutput,
+  OperationListResultOutput,
   ErrorResponseOutput,
   FleetOutput,
   FleetListResultOutput,
@@ -14,7 +14,7 @@ import {
 /** Azure operation completed successfully. */
 export interface List200Response extends HttpResponse {
   status: "200";
-  body: PagedOperationOutput;
+  body: OperationListResultOutput;
 }
 
 export interface ListDefaultResponse extends HttpResponse {
