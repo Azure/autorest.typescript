@@ -210,7 +210,7 @@ function handleDiscriminator(
   if (discriminator) {
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
-    const discriminatedSubtypes: Type[] = [];
+    const discriminatedSubtypes: Type[] = [type];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
@@ -263,6 +263,7 @@ function processModelProperties(
       newValue.properties = [];
     }
     let newProperty = emitProperty(context, property, usage);
+
     if (isDiscriminator(context, model, property.name)) {
       hasDiscriminator = true;
       newProperty = {
@@ -1318,7 +1319,7 @@ function emitListOrDict(
   if (type.indexer !== undefined) {
     if (!isNeverType(type.indexer.key)) {
       const name = type.indexer.key.name;
-      if (name === "string") {
+      if (name === "string" && type.name === "Record") {
         return {
           type: "dict",
           name: type.name,
