@@ -5,6 +5,7 @@ options:
     title: Microsoft Playwright Testing
     description: Microsoft Playwright Testing Client
     generateMetadata: true
+    azureSdkForJs: false
     generateTest: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:

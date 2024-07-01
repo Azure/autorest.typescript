@@ -1,14 +1,23 @@
 {
-  "extends": "../../../tsconfig.package",
   "compilerOptions": {
+    "target": "ES2017",
     "module": "NodeNext",
+    "lib": [],
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "NodeNext",
-    "rootDir": "."
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.mts",
-    "./src/**/*.cts",
-    "test/**/*.ts"
-  ]
+  "include": ["./src/**/*.ts"]
 }
