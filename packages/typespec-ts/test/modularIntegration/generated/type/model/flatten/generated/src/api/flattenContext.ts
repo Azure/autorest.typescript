@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { FlattenContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface FlattenClientOptions extends ClientOptions {}
 
 export { FlattenContext } from "../rest/index.js";

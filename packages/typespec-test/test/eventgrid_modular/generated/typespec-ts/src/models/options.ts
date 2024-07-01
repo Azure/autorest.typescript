@@ -3,16 +3,19 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
+/** Optional parameters. */
 export interface PublishCloudEventOptionalParams extends OperationOptions {
   /** content type */
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
   /** content type */
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
   /** Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. */
   maxEvents?: number;
@@ -20,16 +23,19 @@ export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
   maxWaitTime?: number;
 }
 
+/** Optional parameters. */
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
   /** content type */
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
   /** content type */
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface RejectCloudEventsOptionalParams extends OperationOptions {
   /** content type */
   contentType?: string;

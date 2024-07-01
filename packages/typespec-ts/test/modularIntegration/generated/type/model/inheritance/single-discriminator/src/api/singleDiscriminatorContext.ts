@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { SingleDiscriminatorContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface SingleDiscriminatorClientOptions extends ClientOptions {}
 
 export { SingleDiscriminatorContext } from "../rest/index.js";

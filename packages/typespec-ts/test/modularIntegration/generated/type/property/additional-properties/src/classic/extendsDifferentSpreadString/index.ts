@@ -9,10 +9,13 @@ import {
   ExtendsDifferentSpreadStringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtendsDifferentSpreadString operations. */
 export interface ExtendsDifferentSpreadStringOperations {
+  /** Get call */
   get: (
     options?: ExtendsDifferentSpreadStringGetOptionalParams,
   ) => Promise<DifferentSpreadStringDerived>;
+  /** Put operation */
   put: (
     body: DifferentSpreadStringDerived,
     options?: ExtendsDifferentSpreadStringPutOptionalParams,

@@ -15,15 +15,19 @@ import {
   DataProductsCatalogsListBySubscriptionOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DataProductsCatalogs operations. */
 export interface DataProductsCatalogsOperations {
+  /** Retrieve data type resource. */
   get: (
     resourceGroupName: string,
     options?: DataProductsCatalogsGetOptionalParams,
   ) => Promise<DataProductsCatalog>;
+  /** List data catalog by resource group. */
   listByResourceGroup: (
     resourceGroupName: string,
     options?: DataProductsCatalogsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
+  /** List data catalog by subscription. */
   listBySubscription: (
     options?: DataProductsCatalogsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;

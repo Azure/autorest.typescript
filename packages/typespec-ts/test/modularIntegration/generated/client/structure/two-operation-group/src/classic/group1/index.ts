@@ -9,6 +9,7 @@ import {
   Group1FourOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Group1 operations. */
 export interface Group1Operations {
   one: (options?: Group1OneOptionalParams) => Promise<void>;
   three: (options?: Group1ThreeOptionalParams) => Promise<void>;

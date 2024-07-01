@@ -8,6 +8,7 @@ import {
   SameBodyGetAvatarAsJpegOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a SameBody operations. */
 export interface SameBodyOperations {
   getAvatarAsPng: (
     options?: SameBodyGetAvatarAsPngOptionalParams,

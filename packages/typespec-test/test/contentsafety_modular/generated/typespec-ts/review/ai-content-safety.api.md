@@ -10,7 +10,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
+// @public
 export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
 }
 
@@ -24,7 +24,7 @@ export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
 }
 
-// @public (undocumented)
+// @public
 export interface AnalyzeImageOptionalParams extends OperationOptions {
 }
 
@@ -43,7 +43,7 @@ export interface AnalyzeImageResult {
     analyzeResults: ImageAnalyzeSeverityResult[];
 }
 
-// @public (undocumented)
+// @public
 export interface AnalyzeTextOptionalParams extends OperationOptions {
 }
 
@@ -81,7 +81,7 @@ export class ContentSafetyClient {
     removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsOptionalParams): Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export interface ContentSafetyClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -91,20 +91,20 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTextBlocklistOptionalParams extends OperationOptions {
 }
 
@@ -123,14 +123,14 @@ export interface ImageData {
     content?: Uint8Array;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
     maxpagesize?: number;
     skip?: number;
     top?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {
 }
 
@@ -146,7 +146,7 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface RemoveBlockItemsOptionalParams extends OperationOptions {
 }
 

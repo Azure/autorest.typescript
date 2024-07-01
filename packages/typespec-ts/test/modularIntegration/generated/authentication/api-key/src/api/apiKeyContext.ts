@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { ApiKeyContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface ApiKeyClientOptions extends ClientOptions {}
 
 export { ApiKeyContext } from "../rest/index.js";

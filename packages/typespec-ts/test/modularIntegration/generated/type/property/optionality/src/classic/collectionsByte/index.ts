@@ -16,17 +16,22 @@ import {
   CollectionsBytePutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a CollectionsByte operations. */
 export interface CollectionsByteOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: CollectionsByteGetAllOptionalParams,
   ) => Promise<CollectionsByteProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: CollectionsByteGetDefaultOptionalParams,
   ) => Promise<CollectionsByteProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: CollectionsByteProperty,
     options?: CollectionsBytePutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: CollectionsByteProperty,
     options?: CollectionsBytePutDefaultOptionalParams,

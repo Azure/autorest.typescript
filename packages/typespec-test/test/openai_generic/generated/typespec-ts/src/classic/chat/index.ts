@@ -7,6 +7,7 @@ import {
   getChatCompletionsOperations,
 } from "./completions/index.js";
 
+/** Interface representing a Chat operations. */
 export interface ChatOperations {
   completions: ChatCompletionsOperations;
 }

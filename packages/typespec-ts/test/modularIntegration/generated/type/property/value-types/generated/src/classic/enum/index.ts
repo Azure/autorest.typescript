@@ -9,8 +9,11 @@ import {
   EnumPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Enum operations. */
 export interface EnumOperations {
+  /** Get call */
   get: (options?: EnumGetOptionalParams) => Promise<EnumProperty>;
+  /** Put operation */
   put: (body: EnumProperty, options?: EnumPutOptionalParams) => Promise<void>;
 }
 

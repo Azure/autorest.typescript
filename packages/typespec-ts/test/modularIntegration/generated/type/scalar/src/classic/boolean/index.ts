@@ -8,8 +8,11 @@ import {
   BooleanPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Boolean operations. */
 export interface BooleanOperations {
+  /** get boolean value */
   get: (options?: BooleanGetOptionalParams) => Promise<boolean>;
+  /** put boolean value */
   put: (body: boolean, options?: BooleanPutOptionalParams) => Promise<void>;
 }
 

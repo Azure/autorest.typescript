@@ -9,10 +9,13 @@ import {
   IsStringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IsString operations. */
 export interface IsStringOperations {
+  /** Get call */
   get: (
     options?: IsStringGetOptionalParams,
   ) => Promise<IsStringAdditionalProperties>;
+  /** Put operation */
   put: (
     body: IsStringAdditionalProperties,
     options?: IsStringPutOptionalParams,

@@ -22,6 +22,7 @@ import {
   FineTunesCancelOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a FineTunes operations. */
 export interface FineTunesOperations {
   create: (
     fineTune: CreateFineTuneRequest,

@@ -15,6 +15,7 @@ import {
   StringBodyGetAsJsonOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a StringBody operations. */
 export interface StringBodyOperations {
   sendAsText: (
     text: string,

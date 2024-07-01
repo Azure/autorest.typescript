@@ -16,17 +16,22 @@ import {
   FloatLiteralPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a FloatLiteral operations. */
 export interface FloatLiteralOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: FloatLiteralGetAllOptionalParams,
   ) => Promise<FloatLiteralProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: FloatLiteralGetDefaultOptionalParams,
   ) => Promise<FloatLiteralProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: FloatLiteralProperty,
     options?: FloatLiteralPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: FloatLiteralProperty,
     options?: FloatLiteralPutDefaultOptionalParams,

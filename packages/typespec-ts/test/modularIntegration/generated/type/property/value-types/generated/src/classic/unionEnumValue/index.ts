@@ -12,10 +12,13 @@ import {
   UnionEnumValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnionEnumValue operations. */
 export interface UnionEnumValueOperations {
+  /** Get call */
   get: (
     options?: UnionEnumValueGetOptionalParams,
   ) => Promise<UnionEnumValueProperty>;
+  /** Put operation */
   put: (
     body: UnionEnumValueProperty,
     options?: UnionEnumValuePutOptionalParams,

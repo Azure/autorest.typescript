@@ -16,15 +16,20 @@ import {
   DatetimePutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Datetime operations. */
 export interface DatetimeOperations {
+  /** Get models that will return all properties in the model */
   getAll: (options?: DatetimeGetAllOptionalParams) => Promise<DatetimeProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: DatetimeGetDefaultOptionalParams,
   ) => Promise<DatetimeProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: DatetimeProperty,
     options?: DatetimePutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: DatetimeProperty,
     options?: DatetimePutDefaultOptionalParams,

@@ -62,6 +62,7 @@ describe("modular client context type", () => {
         import { ServiceContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface ServiceClientOptions  extends ClientOptions  {}
         
         export { ServiceContext } from "../rest/index.js";
@@ -135,6 +136,7 @@ describe("modular client context type", () => {
         import { ServiceContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface ServiceClientOptions  extends ClientOptions  {}
         
         export { ServiceContext } from "../rest/index.js";

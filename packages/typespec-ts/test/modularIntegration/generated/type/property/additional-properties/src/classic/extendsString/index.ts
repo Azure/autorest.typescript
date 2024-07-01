@@ -9,10 +9,13 @@ import {
   ExtendsStringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtendsString operations. */
 export interface ExtendsStringOperations {
+  /** Get call */
   get: (
     options?: ExtendsStringGetOptionalParams,
   ) => Promise<ExtendsStringAdditionalProperties>;
+  /** Put operation */
   put: (
     body: ExtendsStringAdditionalProperties,
     options?: ExtendsStringPutOptionalParams,

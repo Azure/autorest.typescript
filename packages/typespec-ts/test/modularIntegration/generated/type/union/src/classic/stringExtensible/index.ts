@@ -11,6 +11,7 @@ import {
   StringExtensibleSendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a StringExtensible operations. */
 export interface StringExtensibleOperations {
   get: (
     options?: StringExtensibleGetOptionalParams,

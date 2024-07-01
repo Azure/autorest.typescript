@@ -16,17 +16,22 @@ import {
   UnionStringLiteralPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnionStringLiteral operations. */
 export interface UnionStringLiteralOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: UnionStringLiteralGetAllOptionalParams,
   ) => Promise<UnionStringLiteralProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: UnionStringLiteralGetDefaultOptionalParams,
   ) => Promise<UnionStringLiteralProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: UnionStringLiteralProperty,
     options?: UnionStringLiteralPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: UnionStringLiteralProperty,
     options?: UnionStringLiteralPutDefaultOptionalParams,

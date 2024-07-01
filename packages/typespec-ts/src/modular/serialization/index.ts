@@ -9,7 +9,6 @@ import {
   SdkUnionType,
   UsageFlags as TCGCUsageFlags
 } from "@azure-tools/typespec-client-generator-core";
-import { isDefined } from "@azure/core-util";
 import { UsageFlags } from "@typespec/compiler";
 import * as path from "path";
 import { FunctionDeclarationStructure, OptionalKind } from "ts-morph";
@@ -26,7 +25,12 @@ import {
   serializeType,
   serializeUnionInline
 } from "./serializers.js";
-import { getUsage, SerializeFunctionType, SerializerMap } from "./util.js";
+import {
+  getUsage,
+  isDefined,
+  SerializeFunctionType,
+  SerializerMap
+} from "./util.js";
 
 export function buildSerializers(
   dpgContext: SdkContext,

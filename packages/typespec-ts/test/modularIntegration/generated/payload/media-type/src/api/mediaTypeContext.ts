@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { MediaTypeContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface MediaTypeClientOptions extends ClientOptions {}
 
 export { MediaTypeContext } from "../rest/index.js";
