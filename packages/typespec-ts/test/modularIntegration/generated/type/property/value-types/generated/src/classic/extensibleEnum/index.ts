@@ -12,10 +12,13 @@ import {
   ExtensibleEnumPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtensibleEnum operations. */
 export interface ExtensibleEnumOperations {
+  /** Get call */
   get: (
     options?: ExtensibleEnumGetOptionalParams,
   ) => Promise<ExtensibleEnumProperty>;
+  /** Put operation */
   put: (
     body: ExtensibleEnumProperty,
     options?: ExtensibleEnumPutOptionalParams,

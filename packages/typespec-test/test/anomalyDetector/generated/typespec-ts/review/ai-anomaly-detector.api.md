@@ -20,7 +20,7 @@ export class AnomalyDetectorClient {
     readonly univariate: UnivariateOperations;
 }
 
-// @public (undocumented)
+// @public
 export interface AnomalyDetectorClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -90,15 +90,15 @@ export interface MultivariateCorrelationChanges {
     changedVariables?: string[];
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateDeleteMultivariateModelOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {
 }
 
@@ -114,15 +114,15 @@ export interface MultivariateErrorResponse {
     message: string;
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateGetMultivariateModelOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateListMultivariateModelsOptionalParams extends OperationOptions {
     skip?: number;
     top?: number;
@@ -185,25 +185,18 @@ export interface MultivariateMultivariateLastDetectionResult {
     variableStates?: MultivariateVariableState[];
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateOperations {
-    // (undocumented)
     deleteMultivariateModel: (modelId: string, options?: MultivariateDeleteMultivariateModelOptionalParams) => Promise<void>;
-    // (undocumented)
     detectMultivariateBatchAnomaly: (modelId: string, options: MultivariateMultivariateBatchDetectionOptions, optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
-    // (undocumented)
     detectMultivariateLastAnomaly: (modelId: string, options: MultivariateMultivariateLastDetectionOptions, optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams) => Promise<MultivariateMultivariateLastDetectionResult>;
-    // (undocumented)
     getMultivariateBatchDetectionResult: (resultId: string, options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
-    // (undocumented)
     getMultivariateModel: (modelId: string, options?: MultivariateGetMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
-    // (undocumented)
     listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
-    // (undocumented)
     trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
 }
 
-// @public (undocumented)
+// @public
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
 }
 
@@ -244,25 +237,22 @@ export interface UnivariateAnomalyDetectorError {
     message?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface UnivariateDetectUnivariateEntireSeriesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface UnivariateDetectUnivariateLastPointOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface UnivariateOperations {
-    // (undocumented)
     detectUnivariateChangePoint: (options: UnivariateUnivariateChangePointDetectionOptions, optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams) => Promise<UnivariateUnivariateChangePointDetectionResult>;
-    // (undocumented)
     detectUnivariateEntireSeries: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams) => Promise<UnivariateUnivariateEntireDetectionResult>;
-    // (undocumented)
     detectUnivariateLastPoint: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<UnivariateUnivariateLastDetectionResult>;
 }
 

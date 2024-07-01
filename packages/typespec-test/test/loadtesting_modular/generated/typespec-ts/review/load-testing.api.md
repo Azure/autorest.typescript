@@ -31,7 +31,7 @@ export class AdministrationOperationsClient {
     uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<FileInfo>;
 }
 
-// @public (undocumented)
+// @public
 export interface AdministrationOperationsClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -68,33 +68,33 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTestFileOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTestOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTestRunOptionalParams extends OperationOptions {
 }
 
@@ -137,50 +137,50 @@ export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FA
 // @public
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
-// @public (undocumented)
+// @public
 export interface GetAppComponentsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestFileOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestRunFileOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestRunOptionalParams extends OperationOptions {
 }
 
 // @public
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
-// @public (undocumented)
+// @public
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
     metricNamespace?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListMetricDimensionValuesOptionalParams extends OperationOptions {
     interval?: TestRunOperationsClientInterval;
     metricName?: string;
     timespan?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ListMetricsOptionalParams extends OperationOptions {
     aggregation?: string;
     interval?: TestRunOperationsClientInterval;
@@ -189,11 +189,11 @@ export interface ListMetricsOptionalParams extends OperationOptions {
     timespan?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTestFilesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ListTestRunsOptionalParams extends OperationOptions {
     executionFrom?: string;
     executionTo?: string;
@@ -204,7 +204,7 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
     testId?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTestsOptionalParams extends OperationOptions {
     lastModifiedEndTime?: string;
     lastModifiedStartTime?: string;
@@ -360,7 +360,7 @@ export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 // @public
 export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
-// @public (undocumented)
+// @public
 export interface StopTestRunOptionalParams extends OperationOptions {
 }
 
@@ -509,13 +509,13 @@ export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]>
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
@@ -560,11 +560,11 @@ export type TestRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SU
 // @public
 export type TestRunOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientGetAppComponentsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientGetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
@@ -640,7 +640,7 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
     virtualUsers?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -859,7 +859,7 @@ export interface TestRunOperationsClientTimeSeriesElement {
     dimensionValues?: TestRunOperationsClientDimensionValue[];
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOptionalParams extends OperationOptions {
     contentType?: string;
     oldTestRunId?: string;
@@ -919,7 +919,7 @@ export interface TimeSeriesElement {
     dimensionValues?: DimensionValue[];
 }
 
-// @public (undocumented)
+// @public
 export interface UploadTestFileOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;

@@ -16,15 +16,20 @@ import {
   BytesPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Bytes operations. */
 export interface BytesOperations {
+  /** Get models that will return all properties in the model */
   getAll: (options?: BytesGetAllOptionalParams) => Promise<BytesProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: BytesGetDefaultOptionalParams,
   ) => Promise<BytesProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: BytesProperty,
     options?: BytesPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: BytesProperty,
     options?: BytesPutDefaultOptionalParams,

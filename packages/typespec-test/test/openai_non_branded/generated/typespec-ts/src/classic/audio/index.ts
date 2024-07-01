@@ -10,6 +10,7 @@ import {
   getAudioTranslationsOperations,
 } from "./translations/index.js";
 
+/** Interface representing a Audio operations. */
 export interface AudioOperations {
   transcriptions: AudioTranscriptionsOperations;
   translations: AudioTranslationsOperations;

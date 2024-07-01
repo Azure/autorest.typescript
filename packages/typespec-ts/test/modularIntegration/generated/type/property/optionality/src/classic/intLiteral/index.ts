@@ -16,17 +16,22 @@ import {
   IntLiteralPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IntLiteral operations. */
 export interface IntLiteralOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: IntLiteralGetAllOptionalParams,
   ) => Promise<IntLiteralProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: IntLiteralGetDefaultOptionalParams,
   ) => Promise<IntLiteralProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: IntLiteralProperty,
     options?: IntLiteralPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: IntLiteralProperty,
     options?: IntLiteralPutDefaultOptionalParams,

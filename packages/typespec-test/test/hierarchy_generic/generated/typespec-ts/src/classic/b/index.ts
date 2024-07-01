@@ -8,6 +8,7 @@ import { BOp1OptionalParams } from "../../models/options.js";
 import { BCOperations, getBCOperations } from "./c/index.js";
 import { BEOperations, getBEOperations } from "./e/index.js";
 
+/** Interface representing a B operations. */
 export interface BOperations {
   op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
   e: BEOperations;

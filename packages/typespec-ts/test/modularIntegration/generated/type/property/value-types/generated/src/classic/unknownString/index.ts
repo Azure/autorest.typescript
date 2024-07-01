@@ -12,10 +12,13 @@ import {
   UnknownStringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnknownString operations. */
 export interface UnknownStringOperations {
+  /** Get call */
   get: (
     options?: UnknownStringGetOptionalParams,
   ) => Promise<UnknownStringProperty>;
+  /** Put operation */
   put: (
     body: UnknownStringProperty,
     options?: UnknownStringPutOptionalParams,

@@ -8,6 +8,7 @@ import {
   IntsOnlySendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IntsOnly operations. */
 export interface IntsOnlyOperations {
   get: (options?: IntsOnlyGetOptionalParams) => Promise<{ prop: 1 | 2 | 3 }>;
   send: (

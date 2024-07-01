@@ -8,6 +8,7 @@ import {
 import { create } from "../../../api/audio/transcriptions/index.js";
 import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 
+/** Interface representing a AudioTranscriptions operations. */
 export interface AudioTranscriptionsOperations {
   create: (
     audio: CreateTranscriptionRequest,

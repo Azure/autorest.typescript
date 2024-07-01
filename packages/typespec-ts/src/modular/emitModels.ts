@@ -192,7 +192,7 @@ export function buildModels(
         continue;
       }
       const enumAlias = buildEnumModel(model);
-      modelsFile.addTypeAlias(enumAlias);
+
       if (model.isNonExhaustive && model.name) {
         modelsFile.addEnum({
           name: `Known${model.name}`,
@@ -200,10 +200,19 @@ export function buildModels(
           members:
             model.values?.map((v) => ({
               name: v.value,
-              value: v.value
-            })) ?? []
+              value: v.value,
+              docs: [v.value]
+            })) ?? [],
+          docs: [
+            `Known values of {@link ${model.name}} that the service accepts.`
+          ]
         });
+        const description = getExtensibleEnumDescription(model);
+        if (description) {
+          enumAlias.docs = [description];
+        }
       }
+      modelsFile.addTypeAlias(enumAlias);
     } else {
       const modelInterface = buildModelInterface(model, {
         coreClientTypes,
@@ -294,6 +303,26 @@ export function buildModels(
     }
   });
   return modelsFile;
+}
+
+function getExtensibleEnumDescription(model: ModularType): string | undefined {
+  if (!(model.isNonExhaustive && model.name && model.values)) {
+    return;
+  }
+  const valueDescriptions = model.values
+    .map((v) => `**${v.value}**${v.description ? `: ${v.description}` : ""}`)
+    .join(` \\\n`)
+    // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
+    .replace(/^\//g, "\\/")
+    .replace(/([^\\])(\/)/g, "$1\\/");
+  const enumLink = `{@link Known${model.name}} can be used interchangeably with ${model.name},\n this enum contains the known values that the service supports.`;
+
+  return [
+    `${model.description} \\`,
+    enumLink,
+    `### Known values supported by the service`,
+    valueDescriptions
+  ].join(" \n");
 }
 
 function addExtendedDictInfo(

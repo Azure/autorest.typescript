@@ -15,6 +15,7 @@ import {
   QueryBase64urlArrayOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Query operations. */
 export interface QueryOperations {
   default: (
     value: Uint8Array,

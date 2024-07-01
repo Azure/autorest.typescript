@@ -73,6 +73,7 @@ import {
   OperationsYieldOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Operations operations. */
 export interface OperationsOperations {
   and: (options?: OperationsAndOptionalParams) => Promise<void>;
   as: (options?: OperationsAsOptionalParams) => Promise<void>;

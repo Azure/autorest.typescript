@@ -8,6 +8,7 @@ import {
   Int64ValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Int64Value operations. */
 export interface Int64ValueOperations {
   get: (
     options?: Int64ValueGetOptionalParams,

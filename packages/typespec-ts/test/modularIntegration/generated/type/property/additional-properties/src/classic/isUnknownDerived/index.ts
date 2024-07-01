@@ -9,10 +9,13 @@ import {
   IsUnknownDerivedPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IsUnknownDerived operations. */
 export interface IsUnknownDerivedOperations {
+  /** Get call */
   get: (
     options?: IsUnknownDerivedGetOptionalParams,
   ) => Promise<IsUnknownAdditionalPropertiesDerived>;
+  /** Put operation */
   put: (
     body: IsUnknownAdditionalPropertiesDerived,
     options?: IsUnknownDerivedPutOptionalParams,

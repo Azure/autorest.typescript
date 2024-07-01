@@ -22,6 +22,7 @@ import {
   FilesDownloadOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Files operations. */
 export interface FilesOperations {
   list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
   create: (
@@ -32,6 +33,11 @@ export interface FilesOperations {
     fileId: string,
     options?: FilesRetrieveOptionalParams,
   ) => Promise<OpenAIFile>;
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
     fileId: string,
     options?: FilesDeleteOptionalParams,

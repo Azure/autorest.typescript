@@ -10,8 +10,8 @@ export {
   Lr,
   Ud,
   Dog,
-  StringExtensibleNamedUnion,
   KnownStringExtensibleNamedUnion,
+  StringExtensibleNamedUnion,
 } from "./models.js";
 export {
   StringsOnlyGetOptionalParams,

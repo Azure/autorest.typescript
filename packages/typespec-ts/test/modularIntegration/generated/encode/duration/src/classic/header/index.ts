@@ -19,6 +19,7 @@ import {
   HeaderFloat64SecondsOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Header operations. */
 export interface HeaderOperations {
   default: (
     duration: string,

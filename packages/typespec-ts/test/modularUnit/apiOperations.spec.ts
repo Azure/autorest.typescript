@@ -514,6 +514,7 @@ describe("api operations in Modular", () => {
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface TestingClientOptions  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
@@ -628,6 +629,7 @@ describe("api operations in Modular", () => {
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface TestingClientOptions extends ClientOptions  {
           apiVersion?: string;
         }
@@ -776,6 +778,7 @@ describe("api operations in Modular", () => {
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface TestingClientOptions  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
