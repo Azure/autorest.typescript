@@ -1,0 +1,13 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    title: Microsoft Playwright Testing
+    description: Microsoft Playwright Testing Client
+    generateMetadata: true
+    generateTest: false
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@azure-rest/microsoft-playwright-testing"
+      description: "This package contains Microsoft Playwright Testing client library."
+      version: 1.0.0
