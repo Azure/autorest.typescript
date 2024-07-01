@@ -8,7 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
-    generateSample: true
+    isModularLibrary: true
     hierarchyClient: false
     packageDetails:
       name: "@azure/arm-resources"

@@ -1,57 +1,49 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger.js";
-import { ResourcesClient } from "./clientDefinitions.js";
+import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  getTopLevelTrackedResourcesOperations,
+  TopLevelTrackedResourcesOperations,
+} from "./classic/topLevelTrackedResources/index.js";
+import {
+  getNestedProxyResourcesOperations,
+  NestedProxyResourcesOperations,
+} from "./classic/nestedProxyResources/index.js";
+import {
+  createResources,
+  ResourcesClientOptions,
+  ResourcesContext,
+} from "./api/index.js";
 
-/** The optional parameters for the client */
-export interface ResourcesClientOptions extends ClientOptions {
-  /** The api version option of the client */
-  apiVersion?: string;
-}
+export { ResourcesClientOptions } from "./api/resourcesContext.js";
 
-/**
- * Initialize a new instance of `ResourcesClient`
- * @param options - the parameter for all optional parameters
- */
-export default function createClient({
-  apiVersion = "2023-12-01-preview",
-  ...options
-}: ResourcesClientOptions = {}): ResourcesClient {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
-  const userAgentInfo = `azsdk-js-arm-resources-rest/1.0.0`;
-  const userAgentPrefix =
-    options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-      ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
-      : `${userAgentInfo}`;
-  options = {
-    ...options,
-    userAgentOptions: {
-      userAgentPrefix,
-    },
-    loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info,
-    },
-  };
-  const client = getClient(endpointUrl, options) as ResourcesClient;
+export class ResourcesClient {
+  private _client: ResourcesContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
-  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  client.pipeline.addPolicy({
-    name: "ClientApiVersionPolicy",
-    sendRequest: (req, next) => {
-      // Use the apiVersion defined in request url directly
-      // Append one if there is no apiVersion and we have one at client options
-      const url = new URL(req.url);
-      if (!url.searchParams.get("api-version") && apiVersion) {
-        req.url = `${req.url}${
-          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-        }api-version=${apiVersion}`;
-      }
+  /** Arm Resource Provider management API. */
+  constructor(
+    credential: TokenCredential,
+    subscriptionId: string,
+    options: ResourcesClientOptions = {},
+  ) {
+    this._client = createResources(credential, options);
+    this.pipeline = this._client.pipeline;
+    this.topLevelTrackedResources = getTopLevelTrackedResourcesOperations(
+      this._client,
+      subscriptionId,
+    );
+    this.nestedProxyResources = getNestedProxyResourcesOperations(
+      this._client,
+      subscriptionId,
+    );
+  }
 
-      return next(req);
-    },
-  });
-  return client;
+  /** The operation groups for TopLevelTrackedResources */
+  public readonly topLevelTrackedResources: TopLevelTrackedResourcesOperations;
+  /** The operation groups for NestedProxyResources */
+  public readonly nestedProxyResources: NestedProxyResourcesOperations;
 }

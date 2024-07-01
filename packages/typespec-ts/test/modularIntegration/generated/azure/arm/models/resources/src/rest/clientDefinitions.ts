@@ -179,6 +179,6 @@ export interface Routes {
   ): NestedProxyResourcesListByTopLevelTrackedResource;
 }
 
-export type ResourcesClient = Client & {
+export type ResourcesContext = Client & {
   path: Routes;
 };

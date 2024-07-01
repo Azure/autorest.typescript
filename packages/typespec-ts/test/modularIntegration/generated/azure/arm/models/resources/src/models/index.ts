@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ResourcesClient, ResourcesClientOptions } from "./resourcesClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Resource,
   SystemData,
@@ -23,6 +21,8 @@ export {
   TopLevelTrackedResourceUpdateProperties,
   Versions,
   ProvisioningState,
+} from "./models.js";
+export {
   TopLevelTrackedResourcesGetOptionalParams,
   TopLevelTrackedResourcesCreateOrReplaceOptionalParams,
   TopLevelTrackedResourcesUpdateOptionalParams,
@@ -34,11 +34,9 @@ export {
   NestedProxyResourcesUpdateOptionalParams,
   NestedProxyResourcesDeleteOptionalParams,
   NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
+} from "./options.js";
+export {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
-} from "./models/index.js";
-export {
-  NestedProxyResourcesOperations,
-  TopLevelTrackedResourcesOperations,
-} from "./classic/index.js";
+} from "./pagingTypes.js";
