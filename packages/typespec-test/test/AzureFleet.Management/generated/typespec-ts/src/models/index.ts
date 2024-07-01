@@ -2,11 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  AzureFleetClient,
-  AzureFleetClientOptions,
-} from "./azureFleetClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export {
   Resource,
   SystemData,
   KnownCreatedByType,
@@ -49,6 +44,8 @@ export {
   ActionType,
   Versions,
   ProvisioningState,
+} from "./models.js";
+export {
   OperationsListOptionalParams,
   FleetsGetOptionalParams,
   FleetsCreateOrUpdateOptionalParams,
@@ -57,8 +54,9 @@ export {
   FleetsListByResourceGroupOptionalParams,
   FleetsListBySubscriptionOptionalParams,
   FleetsListVirtualMachineScaleSetsOptionalParams,
+} from "./options.js";
+export {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
-} from "./models/index.js";
-export { FleetsOperations, OperationsOperations } from "./classic/index.js";
+} from "./pagingTypes.js";
