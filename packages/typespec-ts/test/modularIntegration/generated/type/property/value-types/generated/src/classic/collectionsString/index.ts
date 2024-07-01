@@ -12,10 +12,13 @@ import {
   CollectionsStringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a CollectionsString operations. */
 export interface CollectionsStringOperations {
+  /** Get call */
   get: (
     options?: CollectionsStringGetOptionalParams,
   ) => Promise<CollectionsStringProperty>;
+  /** Put operation */
   put: (
     body: CollectionsStringProperty,
     options?: CollectionsStringPutOptionalParams,

@@ -9,6 +9,7 @@ import {
 import { create } from "../../api/moderations/index.js";
 import { ModerationsCreateOptionalParams } from "../../models/options.js";
 
+/** Interface representing a Moderations operations. */
 export interface ModerationsOperations {
   create: (
     content: CreateModerationRequest,

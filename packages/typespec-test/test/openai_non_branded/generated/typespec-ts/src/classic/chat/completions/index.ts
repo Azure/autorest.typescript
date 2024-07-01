@@ -8,6 +8,7 @@ import {
 import { create } from "../../../api/chat/completions/index.js";
 import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
 
+/** Interface representing a ChatCompletions operations. */
 export interface ChatCompletionsOperations {
   create: (
     body: CreateChatCompletionRequest,

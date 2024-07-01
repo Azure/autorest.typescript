@@ -9,10 +9,13 @@ import {
   SpreadRecordDiscriminatedUnionPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a SpreadRecordDiscriminatedUnion operations. */
 export interface SpreadRecordDiscriminatedUnionOperations {
+  /** Get call */
   get: (
     options?: SpreadRecordDiscriminatedUnionGetOptionalParams,
   ) => Promise<SpreadRecordForDiscriminatedUnion>;
+  /** Put operation */
   put: (
     body: SpreadRecordForDiscriminatedUnion,
     options?: SpreadRecordDiscriminatedUnionPutOptionalParams,

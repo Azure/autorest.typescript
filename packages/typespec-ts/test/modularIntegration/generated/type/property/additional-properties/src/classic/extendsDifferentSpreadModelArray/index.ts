@@ -9,10 +9,13 @@ import {
   ExtendsDifferentSpreadModelArrayPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtendsDifferentSpreadModelArray operations. */
 export interface ExtendsDifferentSpreadModelArrayOperations {
+  /** Get call */
   get: (
     options?: ExtendsDifferentSpreadModelArrayGetOptionalParams,
   ) => Promise<DifferentSpreadModelArrayDerived>;
+  /** Put operation */
   put: (
     body: DifferentSpreadModelArrayDerived,
     options?: ExtendsDifferentSpreadModelArrayPutOptionalParams,

@@ -9,10 +9,13 @@ import {
   IsUnknownDiscriminatedPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IsUnknownDiscriminated operations. */
 export interface IsUnknownDiscriminatedOperations {
+  /** Get call */
   get: (
     options?: IsUnknownDiscriminatedGetOptionalParams,
   ) => Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion>;
+  /** Put operation */
   put: (
     body: IsUnknownAdditionalPropertiesDiscriminatedUnion,
     options?: IsUnknownDiscriminatedPutOptionalParams,

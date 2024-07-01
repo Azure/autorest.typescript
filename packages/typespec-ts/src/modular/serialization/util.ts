@@ -165,3 +165,7 @@ function toDpgUsageFlags(usage: TCGCUsageFlags): UsageFlags {
     (usage & TCGCUsageFlags.Output ? UsageFlags.Output : 0)
   );
 }
+
+export function isDefined<T>(thing: T | undefined | null): thing is T {
+  return typeof thing !== "undefined" && thing !== null;
+}

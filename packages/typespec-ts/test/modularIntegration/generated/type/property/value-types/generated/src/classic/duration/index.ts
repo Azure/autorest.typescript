@@ -9,8 +9,11 @@ import {
   DurationPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Duration operations. */
 export interface DurationOperations {
+  /** Get call */
   get: (options?: DurationGetOptionalParams) => Promise<DurationProperty>;
+  /** Put operation */
   put: (
     body: DurationProperty,
     options?: DurationPutOptionalParams,

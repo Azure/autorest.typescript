@@ -16,17 +16,22 @@ import {
   RequiredAndOptionalPutRequiredOnlyOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a RequiredAndOptional operations. */
 export interface RequiredAndOptionalOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: RequiredAndOptionalGetAllOptionalParams,
   ) => Promise<RequiredAndOptionalProperty>;
+  /** Get models that will return only the required properties */
   getRequiredOnly: (
     options?: RequiredAndOptionalGetRequiredOnlyOptionalParams,
   ) => Promise<RequiredAndOptionalProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: RequiredAndOptionalProperty,
     options?: RequiredAndOptionalPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with only required properties. */
   putRequiredOnly: (
     body: RequiredAndOptionalProperty,
     options?: RequiredAndOptionalPutRequiredOnlyOptionalParams,

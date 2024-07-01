@@ -11,6 +11,7 @@ import {
   StringsOnlySendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a StringsOnly operations. */
 export interface StringsOnlyOperations {
   get: (
     options?: StringsOnlyGetOptionalParams,

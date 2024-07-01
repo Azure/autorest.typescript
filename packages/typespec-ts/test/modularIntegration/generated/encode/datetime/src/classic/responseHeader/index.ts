@@ -15,6 +15,7 @@ import {
   ResponseHeaderUnixTimestampOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ResponseHeader operations. */
 export interface ResponseHeaderOperations {
   default: (options?: ResponseHeaderDefaultOptionalParams) => Promise<void>;
   rfc3339: (options?: ResponseHeaderRfc3339OptionalParams) => Promise<void>;

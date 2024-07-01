@@ -8,6 +8,7 @@ import {
   Int32ValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Int32Value operations. */
 export interface Int32ValueOperations {
   get: (options?: Int32ValueGetOptionalParams) => Promise<number[]>;
   put: (body: number[], options?: Int32ValuePutOptionalParams) => Promise<void>;

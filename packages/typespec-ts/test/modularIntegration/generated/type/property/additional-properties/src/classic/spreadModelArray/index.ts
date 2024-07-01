@@ -9,10 +9,13 @@ import {
   SpreadModelArrayPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a SpreadModelArray operations. */
 export interface SpreadModelArrayOperations {
+  /** Get call */
   get: (
     options?: SpreadModelArrayGetOptionalParams,
   ) => Promise<SpreadModelArrayRecord>;
+  /** Put operation */
   put: (
     body: SpreadModelArrayRecord,
     options?: SpreadModelArrayPutOptionalParams,

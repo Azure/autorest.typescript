@@ -9,10 +9,13 @@ import {
   ExtendsUnknownPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtendsUnknown operations. */
 export interface ExtendsUnknownOperations {
+  /** Get call */
   get: (
     options?: ExtendsUnknownGetOptionalParams,
   ) => Promise<ExtendsUnknownAdditionalProperties>;
+  /** Put operation */
   put: (
     body: ExtendsUnknownAdditionalProperties,
     options?: ExtendsUnknownPutOptionalParams,

@@ -46,43 +46,37 @@ export interface SchemaGroup {
     readonly groupName: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaOperationsGetSchemaByIdOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaOperationsGetSchemaByVersionOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaOperationsGetSchemaIdByContentOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaOperationsListSchemaGroupsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaOperationsListSchemaVersionsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaOperationsOperations {
-    // (undocumented)
     getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
-    // (undocumented)
     getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
-    // (undocumented)
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
-    // (undocumented)
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
-    // (undocumented)
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
-    // (undocumented)
     registerSchema: (groupName: string, name: string, contentType: SchemaContentTypeValues, content: Uint8Array, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaOperationsRegisterSchemaOptionalParams extends OperationOptions {
 }
 
@@ -102,7 +96,7 @@ export class SchemaRegistryClient {
     readonly schemaOperations: SchemaOperationsOperations;
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaRegistryClientOptions extends ClientOptions {
     apiVersion?: string;
 }

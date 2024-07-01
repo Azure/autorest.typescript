@@ -16,15 +16,20 @@ import {
   DurationPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Duration operations. */
 export interface DurationOperations {
+  /** Get models that will return all properties in the model */
   getAll: (options?: DurationGetAllOptionalParams) => Promise<DurationProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: DurationGetDefaultOptionalParams,
   ) => Promise<DurationProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: DurationProperty,
     options?: DurationPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: DurationProperty,
     options?: DurationPutDefaultOptionalParams,

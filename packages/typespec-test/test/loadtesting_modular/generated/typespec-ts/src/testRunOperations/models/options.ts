@@ -4,6 +4,7 @@
 import { OperationOptions } from "@azure-rest/core-client";
 import { Interval } from "./models.js";
 
+/** Optional parameters. */
 export interface TestRunOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -18,27 +19,35 @@ export interface TestRunOptionalParams extends OperationOptions {
   oldTestRunId?: string;
 }
 
+/** Optional parameters. */
 export interface CreateOrUpdateAppComponentsOptionalParams
   extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface CreateOrUpdateServerMetricsConfigOptionalParams
   extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DeleteTestRunOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetAppComponentsOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetServerMetricsConfigOptionalParams
   extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetTestRunOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetTestRunFileOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface ListMetricDimensionValuesOptionalParams
   extends OperationOptions {
   /** The interval (i.e. timegrain) of the query. */
@@ -52,13 +61,16 @@ export interface ListMetricDimensionValuesOptionalParams
   timespan?: string;
 }
 
+/** Optional parameters. */
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
   /** Metric namespace to query metric definitions for. */
   metricNamespace?: string;
 }
 
+/** Optional parameters. */
 export interface ListMetricNamespacesOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface ListMetricsOptionalParams extends OperationOptions {
   /** The aggregation */
   aggregation?: string;
@@ -75,6 +87,7 @@ export interface ListMetricsOptionalParams extends OperationOptions {
   timespan?: string;
 }
 
+/** Optional parameters. */
 export interface ListTestRunsOptionalParams extends OperationOptions {
   /**
    * Sort on the supported fields in (field asc/desc) format. eg: executedDateTime
@@ -99,4 +112,5 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
   maxpagesize?: number;
 }
 
+/** Optional parameters. */
 export interface StopTestRunOptionalParams extends OperationOptions {}

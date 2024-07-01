@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { SpreadContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface SpreadClientOptions extends ClientOptions {}
 
 export { SpreadContext } from "../rest/index.js";

@@ -9,8 +9,11 @@ import {
   UnknownDictPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnknownDict operations. */
 export interface UnknownDictOperations {
+  /** Get call */
   get: (options?: UnknownDictGetOptionalParams) => Promise<UnknownDictProperty>;
+  /** Put operation */
   put: (
     body: UnknownDictProperty,
     options?: UnknownDictPutOptionalParams,
