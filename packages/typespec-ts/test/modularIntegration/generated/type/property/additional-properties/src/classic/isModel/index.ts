@@ -9,10 +9,13 @@ import {
   IsModelPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IsModel operations. */
 export interface IsModelOperations {
+  /** Get call */
   get: (
     options?: IsModelGetOptionalParams,
   ) => Promise<IsModelAdditionalProperties>;
+  /** Put operation */
   put: (
     body: IsModelAdditionalProperties,
     options?: IsModelPutOptionalParams,

@@ -17,6 +17,7 @@ import {
   QueryUnixTimestampArrayOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Query operations. */
 export interface QueryOperations {
   default: (value: Date, options?: QueryDefaultOptionalParams) => Promise<void>;
   rfc3339: (value: Date, options?: QueryRfc3339OptionalParams) => Promise<void>;

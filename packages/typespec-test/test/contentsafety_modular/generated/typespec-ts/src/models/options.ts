@@ -3,28 +3,38 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
+/** Optional parameters. */
 export interface AnalyzeTextOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface AnalyzeImageOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetTextBlocklistOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface CreateOrUpdateTextBlocklistOptionalParams
   extends OperationOptions {
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DeleteTextBlocklistOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface RemoveBlockItemsOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
   /** The number of result items to return. */
   top?: number;

@@ -9,8 +9,11 @@ import {
   IntLiteralPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IntLiteral operations. */
 export interface IntLiteralOperations {
+  /** Get call */
   get: (options?: IntLiteralGetOptionalParams) => Promise<IntLiteralProperty>;
+  /** Put operation */
   put: (
     body: IntLiteralProperty,
     options?: IntLiteralPutOptionalParams,

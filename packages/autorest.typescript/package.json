@@ -76,11 +76,11 @@
     "source-map-support": "^0.5.16",
     "ts-morph": "^15.1.0",
     "@azure/core-auth": "^1.6.0",
-    "@azure-tools/rlc-common": "workspace:^0.29.0"
+    "@azure-tools/rlc-common": "workspace:^0.30.0"
   },
   "devDependencies": {
     "@azure-tools/test-recorder": "^3.0.0",
-    "@azure/abort-controller": "^1.0.1",
+    "@azure/abort-controller": "^2.1.2",
     "@azure/core-util": "^1.4.0",
     "@azure/core-xml": "^1.0.0-beta.1",
     "@microsoft.azure/autorest.testserver": "^3.3.34",

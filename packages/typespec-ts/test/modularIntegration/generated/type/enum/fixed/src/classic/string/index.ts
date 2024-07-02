@@ -14,14 +14,18 @@ import {
   StringPutUnknownValueOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a String operations. */
 export interface StringOperations {
+  /** getKnownValue */
   getKnownValue: (
     options?: StringGetKnownValueOptionalParams,
   ) => Promise<DaysOfWeekEnum>;
+  /** putKnownValue */
   putKnownValue: (
     body: DaysOfWeekEnum,
     options?: StringPutKnownValueOptionalParams,
   ) => Promise<void>;
+  /** putUnknownValue */
   putUnknownValue: (
     body: DaysOfWeekEnum,
     options?: StringPutUnknownValueOptionalParams,

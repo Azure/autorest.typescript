@@ -5,11 +5,16 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { JsonContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface JsonContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `JsonContext`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): JsonContext {
+export default function createClient(
+  options: JsonContextOptions = {},
+): JsonContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-serialization-encoded-name-json-rest/1.0.0-beta.1`;
@@ -26,7 +31,6 @@ export default function createClient(options: ClientOptions = {}): JsonContext {
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as JsonContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import {
+  chatMessageSerializer,
   StreamingChatCompletionOptionsRecord,
   ChatCompletionChunkRecord,
   ChatCompletionOptionsRecord,
@@ -17,6 +18,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   CreateStreamingOptionalParams,
   CreateOptionalParams,
@@ -32,14 +34,12 @@ export function _createStreamingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body["messages"].map((p) => ({
-          content: p["content"],
-          role: p["role"],
-          session_state: p["sessionState"],
-        })),
+        messages: body["messages"].map(chatMessageSerializer),
         stream: body["stream"],
         session_state: body["sessionState"],
-        context: body["context"],
+        context: !body.context
+          ? body.context
+          : (serializeRecord(body.context as any) as any),
       },
     }) as StreamableMethod<CreateStreaming200Response>;
 }
@@ -86,14 +86,12 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body["messages"].map((p) => ({
-          content: p["content"],
-          role: p["role"],
-          session_state: p["sessionState"],
-        })),
+        messages: body["messages"].map(chatMessageSerializer),
         stream: body["stream"],
         session_state: body["sessionState"],
-        context: body["context"],
+        context: !body.context
+          ? body.context
+          : (serializeRecord(body.context as any) as any),
       },
     }) as StreamableMethod<Create200Response>;
 }

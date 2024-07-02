@@ -2,25 +2,27 @@
 // Licensed under the MIT License.
 
 import {
-  getResponseTypeName,
   getParameterTypeName,
+  getResponseTypeName,
+  Imports,
+  OperationMethod,
   PathMetadata,
   Paths,
-  OperationMethod,
-  Imports
+  SchemaContext
 } from "@azure-tools/rlc-common";
+import {
+  isApiVersion,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkClient
+} from "@azure-tools/typespec-client-generator-core";
 import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
   HttpOperationParameters
 } from "@typespec/http";
-import {
-  SdkClient,
-  listOperationGroups,
-  listOperationsInOperationGroup,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "../utils/interfaces.js";
 import {
   getImportedModelName,
   getSchemaForType,
@@ -28,16 +30,14 @@ import {
 } from "../utils/modelUtils.js";
 import {
   extractOperationLroDetail,
-  getOperationSuccessStatus,
   getOperationGroupName,
   getOperationName,
   getOperationResponseTypes,
   getOperationStatuscode,
+  getOperationSuccessStatus,
   isPagingOperation,
   sortedOperationResponses
 } from "../utils/operationUtil.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { SchemaContext } from "@azure-tools/rlc-common";
 
 export function transformPaths(
   client: SdkClient,

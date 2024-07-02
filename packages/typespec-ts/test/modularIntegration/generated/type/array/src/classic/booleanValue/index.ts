@@ -11,6 +11,7 @@ import {
   BooleanValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a BooleanValue operations. */
 export interface BooleanValueOperations {
   get: (options?: BooleanValueGetOptionalParams) => Promise<boolean[]>;
   put: (

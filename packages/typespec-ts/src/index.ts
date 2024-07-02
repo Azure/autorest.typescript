@@ -1,69 +1,73 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Program, EmitContext } from "@typespec/compiler";
-import * as fsextra from "fs-extra";
-import { existsSync } from "fs";
 import {
-  buildClientDefinitions,
-  buildResponseTypes,
-  buildParameterTypes,
-  buildIsUnexpectedHelper,
-  buildClient,
-  buildIndexFile,
-  buildTopLevelIndex,
-  buildRollupConfig,
-  buildTsConfig,
   buildApiExtractorConfig,
-  buildPackageFile,
-  buildPollingHelper,
-  buildPaginateHelper as buildRLCPaginateHelper,
+  buildClient,
+  buildClientDefinitions,
   buildEsLintConfig,
+  buildIndexFile,
+  buildIsUnexpectedHelper,
   buildKarmaConfigFile,
-  buildRecordedClientFile,
-  buildSampleTest,
-  buildReadmeFile,
-  buildSerializeHelper,
   buildLogger,
-  RLCOptions,
+  buildPackageFile,
+  buildPaginateHelper as buildRLCPaginateHelper,
+  buildParameterTypes,
+  buildPollingHelper,
+  buildReadmeFile,
+  buildRecordedClientFile,
+  buildResponseTypes,
+  buildRollupConfig,
+  buildSamples,
+  buildSampleTest,
+  buildSerializeHelper,
+  buildTopLevelIndex,
+  buildTsConfig,
+  buildTsTestBrowserConfig,
+  buildVitestConfig,
+  getClientName,
   hasUnexpectedHelper,
   RLCModel,
-  buildSamples,
-  buildVitestConfig,
-  buildTsTestBrowserConfig
+  RLCOptions
 } from "@azure-tools/rlc-common";
-import { transformRLCModel } from "./transform/transform.js";
-import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
+import { EmitContext, Program } from "@typespec/compiler";
+import { existsSync } from "fs";
+import * as fsextra from "fs-extra";
+import { join } from "path";
+import { env } from "process";
 import { Project } from "ts-morph";
-import { buildClientContext } from "./modular/buildClientContext.js";
-import { emitCodeModel } from "./modular/buildCodeModel.js";
-import {
-  buildRootIndex,
-  buildSubClientIndexFile
-} from "./modular/buildRootIndex.js";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
-import { buildOperationFiles } from "./modular/buildOperations.js";
-import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
+import { EmitterOptions } from "./lib.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { getRLCClients } from "./utils/clientUtils.js";
-import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
-import { join } from "path";
-import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
-import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
-import { ModularCodeModel } from "./modular/modularCodeModel.js";
-import { getClientName } from "@azure-tools/rlc-common";
-import {
-  buildPagingTypes,
-  buildPagingHelpers as buildModularPagingHelpers
-} from "./modular/buildPagingFiles.js";
-import { EmitterOptions } from "./lib.js";
-import { getModuleExports } from "./modular/buildProjectFiles.js";
+import { buildClientContext } from "./modular/buildClientContext.js";
+import { emitCodeModel } from "./modular/buildCodeModel.js";
 import {
   buildGetPollerHelper,
   buildRestorePollerHelper
 } from "./modular/buildLroFiles.js";
+import { buildOperationFiles } from "./modular/buildOperations.js";
+import {
+  buildPagingHelpers as buildModularPagingHelpers,
+  buildPagingTypes
+} from "./modular/buildPagingFiles.js";
+import { getModuleExports } from "./modular/buildProjectFiles.js";
+import {
+  buildRootIndex,
+  buildSubClientIndexFile
+} from "./modular/buildRootIndex.js";
+import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
+import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
+import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
+import { ModularCodeModel } from "./modular/modularCodeModel.js";
+import { buildSerializers } from "./modular/serialization/index.js";
+import { transformRLCModel } from "./transform/transform.js";
+import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
+import { getRLCClients } from "./utils/clientUtils.js";
+import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
+import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
+import { provideContext, useContext } from "./contextManager.js";
+import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 
 export * from "./lib.js";
 
@@ -77,6 +81,15 @@ export async function $onEmit(context: EmitContext) {
     string,
     RLCModel
   >();
+  provideContext("rlcMetaTree", new Map());
+  provideContext("symbolMap", new Map());
+  provideContext("modularMetaTree", new Map());
+  provideContext("outputProject", new Project());
+  provideContext("emitContext", {
+    compilerContext: context,
+    tcgcContext: dpgContext
+  });
+
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
   // 1. Enrich the dpg context with path detail and common options
@@ -171,7 +184,8 @@ export async function $onEmit(context: EmitContext) {
       // TODO: Emit modular parts of the library
       const modularSourcesRoot =
         dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
-      const project = new Project();
+      const project = useContext("outputProject");
+      emitSerializerHelpersFile(project, modularSourcesRoot);
       modularCodeModel = emitCodeModel(
         dpgContext,
         serviceNameToRlcModelsMap,
@@ -195,7 +209,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
-        buildSerializeUtils(subClient, modularCodeModel);
+        buildSerializeUtils(modularCodeModel);
         // build paging files
         buildPagingTypes(subClient, modularCodeModel);
         buildModularPagingHelpers(
@@ -205,11 +219,15 @@ export async function $onEmit(context: EmitContext) {
           isMultiClients
         );
         // build operation files
+        const serializerMap = env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]
+          ? buildSerializers(dpgContext, modularCodeModel, subClient)
+          : undefined;
         buildOperationFiles(
           subClient,
           dpgContext,
           modularCodeModel,
-          hasClientUnexpectedHelper
+          hasClientUnexpectedHelper,
+          serializerMap
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
         buildSubpathIndexFile(subClient, modularCodeModel, "models");
@@ -230,7 +248,7 @@ export async function $onEmit(context: EmitContext) {
         }
 
         buildClassicalClient(subClient, dpgContext, modularCodeModel);
-        buildClassicOperationFiles(modularCodeModel, subClient);
+        buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
         buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
           exportIndex: true,
           interfaceOnly: true
@@ -295,7 +313,7 @@ export async function $onEmit(context: EmitContext) {
       );
 
       if (option.isModularLibrary) {
-        const project = new Project();
+        const project = useContext("outputProject");
         for (const file of project.getSourceFiles()) {
           await emitContentByBuilder(
             program,

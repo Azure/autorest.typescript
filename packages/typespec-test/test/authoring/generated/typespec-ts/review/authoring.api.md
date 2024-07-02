@@ -27,7 +27,12 @@ export type AuthoringClient = Client & {
 };
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): AuthoringClient;
+export interface AuthoringClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
+function createClient(endpointParam: string, credentials: KeyCredential, { apiVersion, ...options }?: AuthoringClientOptions): AuthoringClient;
 export default createClient;
 
 // @public (undocumented)
@@ -724,7 +729,7 @@ export interface ListTrainingConfigVersionsQueryParamProperties {
 }
 
 // @public
-export type OperationStateOutput = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
+export type OperationStateOutput = string;
 
 // @public
 export interface OperationStatusOutput {
@@ -823,6 +828,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

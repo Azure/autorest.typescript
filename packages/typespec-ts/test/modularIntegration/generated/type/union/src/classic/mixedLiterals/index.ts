@@ -12,6 +12,7 @@ import {
   MixedLiteralsSendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a MixedLiterals operations. */
 export interface MixedLiteralsOperations {
   get: (
     options?: MixedLiteralsGetOptionalParams,

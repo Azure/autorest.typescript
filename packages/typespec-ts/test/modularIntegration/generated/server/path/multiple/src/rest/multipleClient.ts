@@ -6,7 +6,9 @@ import { logger } from "../logger.js";
 import { MultipleContext } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
+/** The optional parameters for the client */
 export interface MultipleContextOptions extends ClientOptions {
+  /** Pass in v1.0 for API version. */
   apiVersion?: Versions;
 }
 
@@ -17,14 +19,12 @@ export interface MultipleContextOptions extends ClientOptions {
  */
 export default function createClient(
   endpointParam: string,
-  options: MultipleContextOptions = {},
+  { apiVersion = "v1.0", ...options }: MultipleContextOptions = {},
 ): MultipleContext {
-  const apiVersion = options.apiVersion ?? "v1.0";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/server/path/multiple/${apiVersion}`;
-
   const userAgentInfo = `azsdk-js-multipleparam-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -39,15 +39,9 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as MultipleContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   return client;
 }

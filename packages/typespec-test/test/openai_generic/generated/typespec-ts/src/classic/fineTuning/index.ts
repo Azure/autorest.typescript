@@ -7,6 +7,7 @@ import {
   getFineTuningJobsOperations,
 } from "./jobs/index.js";
 
+/** Interface representing a FineTuning operations. */
 export interface FineTuningOperations {
   jobs: FineTuningJobsOperations;
 }

@@ -2,12 +2,34 @@
 // Licensed under the MIT License.
 
 import {
+  ArraySchema,
+  DictionarySchema,
+  isArraySchema,
+  NameType,
+  normalizeName,
+  ObjectSchema,
+  Schema,
+  SchemaContext
+} from "@azure-tools/rlc-common";
+import {
+  getPagedResult,
+  getUnionAsEnum
+} from "@azure-tools/typespec-azure-core";
+import {
+  getDefaultApiVersion,
+  getWireName,
+  isApiVersion
+} from "@azure-tools/typespec-client-generator-core";
+import {
+  BooleanLiteral,
   Discriminator,
+  EncodeData,
   Enum,
   EnumMember,
   getDiscriminator,
   getDoc,
   getEffectiveModelType,
+  getEncode,
   getFormat,
   getFriendlyName,
   getMaxLength,
@@ -19,65 +41,47 @@ import {
   getPropertyType,
   getSummary,
   getVisibility,
+  isArrayModelType,
   isNeverType,
+  isNullType,
   isNumericType,
+  isRecordModelType,
   isSecret,
   isStringType,
   isTemplateDeclaration,
   isUnknownType,
+  listServices,
   Model,
   ModelProperty,
-  Type,
-  Union,
-  isNullType,
-  Scalar,
-  UnionVariant,
-  StringLiteral,
-  BooleanLiteral,
   NoTarget,
   NumericLiteral,
-  Service,
-  listServices,
   Program,
-  getEncode,
-  EncodeData,
-  isRecordModelType,
-  isArrayModelType
+  Scalar,
+  Service,
+  StringLiteral,
+  Type,
+  Union,
+  UnionVariant,
+  isType
 } from "@typespec/compiler";
-import { reportDiagnostic } from "../lib.js";
 import {
-  ArraySchema,
-  DictionarySchema,
-  NameType,
-  normalizeName,
-  ObjectSchema,
-  Schema,
-  SchemaContext,
-  isArraySchema
-} from "@azure-tools/rlc-common";
-import {
+  createMetadataInfo,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  isStatusCode,
   HttpOperation,
-  createMetadataInfo,
+  isStatusCode,
   Visibility
 } from "@typespec/http";
-import { getPagedResult } from "@azure-tools/typespec-azure-core";
-import { extractPagedMetadataNested } from "./operationUtil.js";
-import {
-  getDefaultApiVersion,
-  getWireName,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
+import { reportDiagnostic } from "../lib.js";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
-import { getModelNamespaceName } from "./namespaceUtils.js";
 import {
-  KnownMediaType,
   hasMediaType,
-  isMediaTypeMultipartFormData
+  isMediaTypeMultipartFormData,
+  KnownMediaType
 } from "./mediaTypes.js";
+import { getModelNamespaceName } from "./namespaceUtils.js";
+import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -379,8 +383,10 @@ function getSchemaForUnion(
   union: Union,
   options?: GetSchemaOptions
 ) {
+  const [asEnum, _] = getUnionAsEnum(union);
   const variants = Array.from(union.variants.values());
-  const values = [];
+
+  let values = [];
 
   for (const variant of variants) {
     // We already know it's not a model type
@@ -388,16 +394,36 @@ function getSchemaForUnion(
       getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
     );
   }
-
+  if (asEnum?.open) {
+    values = [];
+    for (const [_, member] of asEnum.members.entries()) {
+      values.push(
+        getSchemaForType(dpgContext, member.type, {
+          ...options,
+          needRef: false
+        })
+      );
+    }
+  }
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
-    const unionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
-      .join(" | ");
-    const outputUnionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
-      .join(" | ");
+    const unionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+            )
+            .join(" | ");
+    const outputUnionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+            )
+            .join(" | ");
     if (!union.expression) {
       const unionName = union.name
         ? normalizeName(union.name, NameType.Interface)
@@ -585,9 +611,12 @@ function getSchemaForModel(
     model.templateMapper.args.length > 0 &&
     getPagedResult(program, model)
   ) {
+    const templateTypes = model.templateMapper.args.filter((it) =>
+      isType(it)
+    ) as Type[];
     name =
-      model.templateMapper.args
-        .map((it) => {
+      templateTypes
+        .map((it: Type) => {
           switch (it.kind) {
             case "Model":
               return it.name;
@@ -636,7 +665,10 @@ function getSchemaForModel(
     if (paged && paged.itemsProperty) {
       const items = paged.itemsProperty as unknown as Model;
       if (items && items.templateMapper && items.templateMapper.args) {
-        const templateName = items.templateMapper.args
+        const templateTypes = items.templateMapper.args.filter((it) =>
+          isType(it)
+        ) as Type[];
+        const templateName = templateTypes
           ?.map((it) => {
             switch (it.kind) {
               case "Model":

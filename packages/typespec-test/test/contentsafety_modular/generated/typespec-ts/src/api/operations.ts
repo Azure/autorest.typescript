@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 import {
+  textBlockItemInfoSerializer,
+  imageDataSerializer,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
@@ -11,8 +13,8 @@ import {
   AnalyzeImageResult,
   AnalyzeTextOptions,
   AnalyzeTextResult,
-  PagedTextBlocklist,
-  PagedTextBlockItem,
+  _PagedTextBlockItem,
+  _PagedTextBlocklist,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -46,7 +48,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
@@ -122,13 +123,7 @@ export function _analyzeImageSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        image: {
-          content:
-            body.image["content"] !== undefined
-              ? uint8ArrayToString(body.image["content"], "base64")
-              : undefined,
-          blobUrl: body.image["blobUrl"],
-        },
+        image: imageDataSerializer(body.image),
         categories: body["categories"],
         outputType: body["outputType"],
       },
@@ -299,7 +294,7 @@ export function _listTextBlocklistsSend(
 
 export async function _listTextBlocklistsDeserialize(
   result: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse,
-): Promise<PagedTextBlocklist> {
+): Promise<_PagedTextBlocklist> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -341,12 +336,7 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        blockItems: body["blockItems"].map((p) => ({
-          description: p["description"],
-          text: p["text"],
-        })),
-      },
+      body: { blockItems: body["blockItems"].map(textBlockItemInfoSerializer) },
     });
 }
 
@@ -499,7 +489,7 @@ export async function _listTextBlocklistItemsDeserialize(
   result:
     | ListTextBlocklistItems200Response
     | ListTextBlocklistItemsDefaultResponse,
-): Promise<PagedTextBlockItem> {
+): Promise<_PagedTextBlockItem> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

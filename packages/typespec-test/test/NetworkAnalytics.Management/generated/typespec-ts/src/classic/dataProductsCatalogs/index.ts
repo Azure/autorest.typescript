@@ -15,38 +15,39 @@ import {
   DataProductsCatalogsListBySubscriptionOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DataProductsCatalogs operations. */
 export interface DataProductsCatalogsOperations {
+  /** Retrieve data type resource. */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: DataProductsCatalogsGetOptionalParams,
   ) => Promise<DataProductsCatalog>;
+  /** List data catalog by resource group. */
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: DataProductsCatalogsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
+  /** List data catalog by subscription. */
   listBySubscription: (
-    subscriptionId: string,
     options?: DataProductsCatalogsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }
 
-export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
+export function getDataProductsCatalogs(
+  context: NetworkAnalyticsContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: DataProductsCatalogsGetOptionalParams,
     ) => get(context, subscriptionId, resourceGroupName, options),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: DataProductsCatalogsListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
       options?: DataProductsCatalogsListBySubscriptionOptionalParams,
     ) => listBySubscription(context, subscriptionId, options),
   };
@@ -54,8 +55,9 @@ export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
 
 export function getDataProductsCatalogsOperations(
   context: NetworkAnalyticsContext,
+  subscriptionId: string,
 ): DataProductsCatalogsOperations {
   return {
-    ...getDataProductsCatalogs(context),
+    ...getDataProductsCatalogs(context, subscriptionId),
   };
 }

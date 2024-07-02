@@ -12,10 +12,13 @@ import {
   StringLiteralPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a StringLiteral operations. */
 export interface StringLiteralOperations {
+  /** Get call */
   get: (
     options?: StringLiteralGetOptionalParams,
   ) => Promise<StringLiteralProperty>;
+  /** Put operation */
   put: (
     body: StringLiteralProperty,
     options?: StringLiteralPutOptionalParams,

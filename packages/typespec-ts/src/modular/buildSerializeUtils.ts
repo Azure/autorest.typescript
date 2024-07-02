@@ -1,32 +1,32 @@
-import { toPascalCase } from "../utils/casingUtils.js";
 import {
-  getResponseMapping,
-  getRequestModelMapping,
-  serializeRequestValue,
-  deserializeResponseValue,
-  getAllAncestors
-} from "./helpers/operationHelpers.js";
-import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
+  addImportsToFiles,
+  addImportToSpecifier,
+  clearImportSets,
+  Imports as RuntimeImports
+} from "@azure-tools/rlc-common";
+import { UsageFlags } from "@typespec/compiler";
 import {
   FunctionDeclarationStructure,
   SourceFile,
   StructureKind
 } from "ts-morph";
+import { toPascalCase } from "../utils/casingUtils.js";
 import {
-  Imports as RuntimeImports,
-  addImportToSpecifier,
-  addImportsToFiles,
-  clearImportSets
-} from "@azure-tools/rlc-common";
-import { UsageFlags } from "@typespec/compiler";
-import path from "path";
+  deserializeResponseValue,
+  getAllAncestors,
+  getRequestModelMapping,
+  getResponseMapping,
+  serializeRequestValue
+} from "./helpers/operationHelpers.js";
+import { ModularCodeModel, Type } from "./modularCodeModel.js";
+import path from "path/posix";
 
 /**
  * This function creates serialize and deserialize utils for special unions and that are used in the operation.
  */
-export function buildSerializeUtils(client: Client, model: ModularCodeModel) {
+export function buildSerializeUtils(model: ModularCodeModel) {
   const serializeUtilFiles = [];
-  for (const serializeType of ["serialize", "deserialize"]) {
+  for (const serializeType of ["deserialize"]) {
     const usageCondition =
       serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
     const specialUnions = model.types.filter(
@@ -38,7 +38,6 @@ export function buildSerializeUtils(client: Client, model: ModularCodeModel) {
     clearImportSets(model.runtimeImports);
     const filePath = path.join(
       model.modularOptions.sourceRoot,
-      client.subfolder ?? "",
       `utils/${serializeType}Util.ts`
     );
     const utilsFile = model.project.createSourceFile(filePath);
@@ -110,8 +109,9 @@ export function buildSerializeUtils(client: Client, model: ModularCodeModel) {
       }
     });
     addImportsToFiles(model.runtimeImports, utilsFile, {
-      rlcIndex: `../${client.subfolder ? "../" : ""}rest/index.js`,
-      modularModel: "../models/models.js"
+      rlcIndex: "../rest/index.js",
+      modularModel: "../models/models.js",
+      coreUtil: "@azure/core-util"
     });
     serializeUtilFiles.push(utilsFile);
   }
@@ -521,11 +521,14 @@ function getTypeSerializeFunction(
       returnType: typeName
     };
     if (type.properties) {
-      statements.push(
-        `return {${getRequestModelMapping(type, "obj", runtimeImports).join(
-          ", "
-        )}};`
+      const { propertiesStr } = getRequestModelMapping(
+        type,
+        "obj",
+        runtimeImports
       );
+      statements.push(`return {
+        ${propertiesStr.join(", ")}
+        };`);
     } else {
       statements.push(`return {};`);
     }
@@ -560,12 +563,16 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: type.elementType.name + "[]" }],
       returnType: `${typeName}[]`
     };
+    const { propertiesStr } = getRequestModelMapping(
+      type.elementType,
+      "item",
+      runtimeImports
+    );
+
     statements.push(
-      `return (obj || []).map(item => { return {${getRequestModelMapping(
-        type.elementType,
-        "item",
-        runtimeImports
-      ).join(", ")}}})`
+      `return (obj || []).map(item => { 
+          return { ${propertiesStr.join(", ")} }
+        })`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {

@@ -9,8 +9,11 @@ import {
   FloatPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Float operations. */
 export interface FloatOperations {
+  /** Get call */
   get: (options?: FloatGetOptionalParams) => Promise<FloatProperty>;
+  /** Put operation */
   put: (body: FloatProperty, options?: FloatPutOptionalParams) => Promise<void>;
 }
 

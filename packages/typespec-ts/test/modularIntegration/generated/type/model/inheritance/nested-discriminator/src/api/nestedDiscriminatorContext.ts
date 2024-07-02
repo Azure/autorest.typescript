@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { NestedDiscriminatorContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface NestedDiscriminatorClientOptions extends ClientOptions {}
 
 export { NestedDiscriminatorContext } from "../rest/index.js";
