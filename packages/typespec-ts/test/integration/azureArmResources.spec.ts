@@ -63,7 +63,7 @@ describe.only("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(body.name, validTopLevelResource.name);
     assert.strictEqual(body.type, validTopLevelResource.type);
   });
-  it.skip("should create or replace top level tracked resources", async () => {
+  it.only("should create or replace top level tracked resources", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -91,7 +91,7 @@ describe.only("Azure Arm Resources Rest Client", () => {
       validTopLevelResource.properties?.description
     );
   });
-  it("should update top level tracked resources", async () => {
+  it.only("should update top level tracked resources", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",

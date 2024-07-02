@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { TokenCredential } from "@azure/core-auth";
 import { ClientOptions } from "@azure-rest/core-client";
 import { ResourcesContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
@@ -16,9 +15,8 @@ export { ResourcesContext } from "../rest/index.js";
 
 /** Arm Resource Provider management API. */
 export function createResources(
-  credential: TokenCredential,
-  options: ResourcesClientOptions = {}
+  options: ResourcesClientOptions = {},
 ): ResourcesContext {
-  const clientContext = getClient(credential, options);
+  const clientContext = getClient(options);
   return clientContext;
 }
