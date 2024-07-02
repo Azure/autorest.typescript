@@ -1,12 +1,16 @@
-emit: ["@azure-tools/typespec-ts"]
+emit:
+  - "@azure-tools/typespec-ts"
+  - "@azure-tools/typespec-autorest"
 options:
   "@azure-tools/typespec-ts":
-    generateMetadata: true
-    generateTest: true
-    generateSample: true
-    isModularLibrary: true
     azureSdkForJs: false
+    isModularLibrary: true
+    hierarchyClient: true
+    generateOrphanModels: true
     experimentalExtensibleEnums: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
-      name: "@azure/arm-fleet"
+      name: "@azure/arm_azurefleet"
+      description: "Azure Fleet Service"
+  "@azure-tools/typespec-autorest":
+    "emitter-output-dir": "{project-root}/generated/openapi"

@@ -26,7 +26,7 @@ export default function createClient(
 ): AzureFleetContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
-  const userAgentInfo = `azsdk-js-arm-fleet-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-arm_azurefleet-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

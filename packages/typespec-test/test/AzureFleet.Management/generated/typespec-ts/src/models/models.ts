@@ -347,7 +347,7 @@ export interface ManagedServiceIdentity {
   /** The type of managed identity assigned to this resource. */
   type: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
-  userAssignedIdentities?: Record<string, UserAssignedIdentity>;
+  userAssignedIdentities?: Record<string, UserAssignedIdentity> | null;
 }
 
 export function managedServiceIdentitySerializer(
@@ -482,7 +482,7 @@ export interface ManagedServiceIdentityUpdate {
   /** The type of managed identity assigned to this resource. */
   type?: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
-  userAssignedIdentities?: Record<string, UserAssignedIdentity>;
+  userAssignedIdentities?: Record<string, UserAssignedIdentity> | null;
 }
 
 export function managedServiceIdentityUpdateSerializer(
