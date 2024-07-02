@@ -13,8 +13,8 @@ export { ScalarContext } from "../rest/index.js";
 export function createScalar(options: ScalarClientOptions = {}): ScalarContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-modular-api`
-    : "azsdk-js-modular-api";
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
 
   const clientContext = getClient({
     ...options,

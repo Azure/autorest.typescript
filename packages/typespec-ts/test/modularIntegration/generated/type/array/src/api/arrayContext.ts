@@ -14,8 +14,8 @@ export { ArrayContext } from "../rest/index.js";
 export function createArray(options: ArrayClientOptions = {}): ArrayContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-modular-api`
-    : "azsdk-js-modular-api";
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
 
   const clientContext = getClient({
     ...options,

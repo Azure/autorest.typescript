@@ -117,8 +117,8 @@ export class ValueTypesClient {
   constructor(options: ValueTypesClientOptions = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
-      ? `${prefixFromOptions} azsdk-js-modular-classic`
-      : "azsdk-js-modular-classic";
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
 
     this._client = createValueTypes({
       ...options,

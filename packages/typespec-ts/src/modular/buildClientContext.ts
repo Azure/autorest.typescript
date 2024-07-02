@@ -107,7 +107,7 @@ export function buildClientContext(
 
   const paramNames = params.map((p) => p.name);
   const { userAgentStatements, updatedParamNames } = getUserAgentStatements(
-    "azsdk-js-modular-api",
+    "azsdk-js-api",
     paramNames
   );
 

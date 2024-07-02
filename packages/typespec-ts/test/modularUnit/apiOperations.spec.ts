@@ -526,8 +526,8 @@ describe("api operations in Modular", () => {
         ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
-            ? \`\${prefixFromOptions} azsdk-js-modular-api\`
-            : "azsdk-js-modular-api";
+            ? \`\${prefixFromOptions} azsdk-js-api\`
+            : "azsdk-js-api";
         
           const clientContext = getClient(endpoint, apiVersion, {
             ...options,
@@ -558,8 +558,8 @@ describe("api operations in Modular", () => {
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
-              ? \`\${prefixFromOptions} azsdk-js-modular-classic\`
-              : "azsdk-js-modular-classic";
+              ? \`\${prefixFromOptions} azsdk-js-client\`
+              : "azsdk-js-client";
         
             this._client = createTesting(endpoint, apiVersion, {
               ...options,
@@ -658,8 +658,8 @@ describe("api operations in Modular", () => {
         ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
-            ? \`\${prefixFromOptions} azsdk-js-modular-api\`
-            : "azsdk-js-modular-api";
+            ? \`\${prefixFromOptions} azsdk-js-api\`
+            : "azsdk-js-api";
         
           const clientContext = getClient(endpoint, {
             ...options,
@@ -693,8 +693,8 @@ describe("api operations in Modular", () => {
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
-              ? \`\${prefixFromOptions} azsdk-js-modular-classic\`
-              : "azsdk-js-modular-classic";
+              ? \`\${prefixFromOptions} azsdk-js-client\`
+              : "azsdk-js-client";
         
             this._client = createTesting(endpoint, {
               ...options,
@@ -821,8 +821,8 @@ describe("api operations in Modular", () => {
           ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
-            ? \`\${prefixFromOptions} azsdk-js-modular-api\`
-            : "azsdk-js-modular-api";
+            ? \`\${prefixFromOptions} azsdk-js-api\`
+            : "azsdk-js-api";
         
           const clientContext = getClient(endpoint, {
             ...options,
@@ -852,8 +852,8 @@ describe("api operations in Modular", () => {
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
-              ? \`\${prefixFromOptions} azsdk-js-modular-classic\`
-              : "azsdk-js-modular-classic";
+              ? \`\${prefixFromOptions} azsdk-js-client\`
+              : "azsdk-js-client";
         
             this._client = createTesting(endpoint, {
               ...options,

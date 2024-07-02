@@ -93,7 +93,7 @@ export function buildClassicalClient(
 
   const paramNames = (contextParams ?? []).map((p) => p.name);
   const { updatedParamNames, userAgentStatements } = getUserAgentStatements(
-    "azsdk-js-modular-classic",
+    "azsdk-js-client",
     paramNames
   );
 
