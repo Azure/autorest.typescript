@@ -17,7 +17,7 @@ export { ResourcesContext } from "../rest/index.js";
 /** Arm Resource Provider management API. */
 export function createResources(
   credential: TokenCredential,
-  options: ResourcesClientOptions = {},
+  options: ResourcesClientOptions = {}
 ): ResourcesContext {
   const clientContext = getClient(credential, options);
   return clientContext;

@@ -6,7 +6,6 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   topLevelTrackedResourcePropertiesSerializer,
   topLevelTrackedResourceUpdatePropertiesSerializer,
-  CreatedByType,
   TopLevelTrackedResource,
   TopLevelTrackedResourceUpdate,
   _TopLevelTrackedResourceListResult,
@@ -89,17 +88,13 @@ export async function _topLevelTrackedResourcesGetDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
-            "createdByType"
-          ] as CreatedByType,
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
-            "lastModifiedByType"
-          ] as CreatedByType,
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -108,9 +103,7 @@ export async function _topLevelTrackedResourcesGetDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.[
-            "provisioningState"
-          ] as any,
+          provisioningState: result.body.properties?.["provisioningState"],
           description: result.body.properties?.["description"],
         },
   };
@@ -192,17 +185,13 @@ export async function _topLevelTrackedResourcesCreateOrReplaceDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
-            "createdByType"
-          ] as CreatedByType,
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
-            "lastModifiedByType"
-          ] as CreatedByType,
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -211,9 +200,7 @@ export async function _topLevelTrackedResourcesCreateOrReplaceDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.[
-            "provisioningState"
-          ] as any,
+          provisioningState: result.body.properties?.["provisioningState"],
           description: result.body.properties?.["description"],
         },
   };
@@ -314,17 +301,13 @@ export async function _topLevelTrackedResourcesUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
-            "createdByType"
-          ] as CreatedByType,
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
-            "lastModifiedByType"
-          ] as CreatedByType,
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -333,9 +316,7 @@ export async function _topLevelTrackedResourcesUpdateDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.[
-            "provisioningState"
-          ] as any,
+          provisioningState: result.body.properties?.["provisioningState"],
           description: result.body.properties?.["description"],
         },
   };
@@ -484,15 +465,13 @@ export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"] as CreatedByType,
+            createdByType: p.systemData?.["createdByType"],
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.[
-              "lastModifiedByType"
-            ] as CreatedByType,
+            lastModifiedByType: p.systemData?.["lastModifiedByType"],
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -501,7 +480,7 @@ export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
       properties: !p.properties
         ? undefined
         : {
-            provisioningState: p.properties?.["provisioningState"] as any,
+            provisioningState: p.properties?.["provisioningState"],
             description: p.properties?.["description"],
           },
     })),
@@ -570,15 +549,13 @@ export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"] as CreatedByType,
+            createdByType: p.systemData?.["createdByType"],
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.[
-              "lastModifiedByType"
-            ] as CreatedByType,
+            lastModifiedByType: p.systemData?.["lastModifiedByType"],
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -587,7 +564,7 @@ export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
       properties: !p.properties
         ? undefined
         : {
-            provisioningState: p.properties?.["provisioningState"] as any,
+            provisioningState: p.properties?.["provisioningState"],
             description: p.properties?.["description"],
           },
     })),

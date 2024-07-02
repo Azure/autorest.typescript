@@ -4,10 +4,12 @@
 export {
   Resource,
   SystemData,
+  KnownCreatedByType,
   CreatedByType,
   ProxyResource,
   NestedProxyResource,
   NestedProxyResourceProperties,
+  KnownResourceProvisioningState,
   ResourceProvisioningState,
   ErrorResponse,
   ErrorDetail,

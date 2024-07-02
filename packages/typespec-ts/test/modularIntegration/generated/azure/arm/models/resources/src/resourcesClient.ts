@@ -5,16 +5,16 @@ import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   getTopLevelTrackedResourcesOperations,
-  TopLevelTrackedResourcesOperations,
+  TopLevelTrackedResourcesOperations
 } from "./classic/topLevelTrackedResources/index.js";
 import {
   getNestedProxyResourcesOperations,
-  NestedProxyResourcesOperations,
+  NestedProxyResourcesOperations
 } from "./classic/nestedProxyResources/index.js";
 import {
   createResources,
   ResourcesClientOptions,
-  ResourcesContext,
+  ResourcesContext
 } from "./api/index.js";
 
 export { ResourcesClientOptions } from "./api/resourcesContext.js";
@@ -28,17 +28,17 @@ export class ResourcesClient {
   constructor(
     credential: TokenCredential,
     subscriptionId: string,
-    options: ResourcesClientOptions = {},
+    options: ResourcesClientOptions = {}
   ) {
     this._client = createResources(credential, options);
     this.pipeline = this._client.pipeline;
     this.topLevelTrackedResources = getTopLevelTrackedResourcesOperations(
       this._client,
-      subscriptionId,
+      subscriptionId
     );
     this.nestedProxyResources = getNestedProxyResourcesOperations(
       this._client,
-      subscriptionId,
+      subscriptionId
     );
   }
 

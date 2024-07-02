@@ -10,6 +10,7 @@ options:
     isTypeSpecTest: true
     isModularLibrary: true
     hierarchyClient: false
+    experimentalExtensibleEnums: true
     packageDetails:
       name: "@azure/arm-resources"
       description: "Azure Arm Resource Test Service"
