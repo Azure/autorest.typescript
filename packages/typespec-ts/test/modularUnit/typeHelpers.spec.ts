@@ -783,7 +783,7 @@ describe("typeHelpers", () => {
           }
         };
         const result = buildType("ClientDictInt", type);
-        expect(result.type).to.equal("Record<string, number> | null");
+        expect(result.type).to.equal("(Record<string, number> | null)");
       });
 
       it("should build type for dictionary type with nullable integer values", () => {
