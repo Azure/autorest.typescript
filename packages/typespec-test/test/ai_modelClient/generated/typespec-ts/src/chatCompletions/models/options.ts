@@ -3,13 +3,16 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 import {
+  ChatCompletionsToolDefinitionUnion,
+  ChatCompletionsNamedToolSelectionUnion,
+} from "../../models/models.js";
+import {
   UnknownParams,
   ChatCompletionsResponseFormat,
-  ChatCompletionsToolDefinitionUnion,
   ChatCompletionsToolSelectionPreset,
-  ChatCompletionsNamedToolSelectionUnion,
-} from "./models.js";
+} from "../../rest/models.js";
 
+/** Optional parameters. */
 export interface CompleteOptionalParams extends OperationOptions {
   /**
    * Controls what happens if unknown parameters are passed in the JSON request payload.
@@ -68,4 +71,5 @@ export interface CompleteOptionalParams extends OperationOptions {
   seed?: number;
 }
 
+/** Optional parameters. */
 export interface GetModelInfoOptionalParams extends OperationOptions {}

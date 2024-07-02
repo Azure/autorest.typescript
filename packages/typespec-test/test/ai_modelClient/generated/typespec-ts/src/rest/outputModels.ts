@@ -86,7 +86,7 @@ export interface ChatChoiceOutput {
   /** The ordered index associated with this chat completions choice. */
   index: number;
   /** The reason that this chat completions choice completed its generated. */
-  finish_reason: CompletionsFinishReasonOutput | null;
+  finish_reason;
   /** The chat message for a given chat completions prompt. */
   message: ChatResponseMessageOutput;
 }
@@ -165,22 +165,10 @@ export type ChatCompletionsToolCallOutput =
   | ChatCompletionsToolCallOutputParent
   | ChatCompletionsFunctionToolCallOutput;
 /** Alias for ChatRoleOutput */
-export type ChatRoleOutput = string | "system" | "user" | "assistant" | "tool";
+export type ChatRoleOutput = string;
 /** Alias for CapacityTypeOutput */
-export type CapacityTypeOutput = string | "usage" | "fixed";
+export type CapacityTypeOutput = string;
 /** Alias for CompletionsFinishReasonOutput */
-export type CompletionsFinishReasonOutput =
-  | string
-  | "stop"
-  | "length"
-  | "content_filter"
-  | "tool_calls";
+export type CompletionsFinishReasonOutput = string;
 /** Alias for ModelTypeOutput */
-export type ModelTypeOutput =
-  | string
-  | "embeddings"
-  | "image_generation"
-  | "text_generation"
-  | "image_embeddings"
-  | "audio_generation"
-  | "chat";
+export type ModelTypeOutput = string;

@@ -392,7 +392,7 @@ export async function emitModularSerializeUtilsFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildSerializeUtils(modularCodeModel.clients[0],modularCodeModel);
+      return buildSerializeUtils(modularCodeModel);
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);

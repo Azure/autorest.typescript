@@ -2,12 +2,7 @@
 // Licensed under the MIT license.
 
 import {
-  ChatCompletions,
-  ModelInfo,
-  ChatRequestMessageUnion,
-} from "../models/models.js";
-import { serializeChatRequestMessageUnion } from "../utils/serializeUtil.js";
-import {
+  ChatRole,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetModelInfo200Response,
@@ -20,6 +15,15 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  ChatRequestMessageUnion,
+  chatRequestMessageUnionSerializer,
+  ChatCompletions,
+  CapacityType,
+  CompletionsFinishReason,
+  ModelInfo,
+  ModelType,
+} from "../../models/models.js";
 import {
   CompleteOptionalParams,
   GetModelInfoOptionalParams,
@@ -42,7 +46,7 @@ export function _completeSend(
           : {}),
       },
       body: {
-        messages: messages.map((p) => serializeChatRequestMessageUnion(p)),
+        messages: messages.map((p) => chatRequestMessageUnionSerializer(p)),
         frequency_penalty: options?.frequencyPenalty,
         stream: options?.stream,
         presence_penalty: options?.presencePenalty,
@@ -70,16 +74,16 @@ export async function _completeDeserialize(
     created: new Date(result.body["created"]),
     model: result.body["model"],
     usage: {
-      capacityType: result.body.usage["capacity_type"],
+      capacityType: result.body.usage["capacity_type"] as CapacityType,
       completionTokens: result.body.usage["completion_tokens"],
       promptTokens: result.body.usage["prompt_tokens"],
       totalTokens: result.body.usage["total_tokens"],
     },
     choices: result.body["choices"].map((p) => ({
       index: p["index"],
-      finishReason: p["finish_reason"],
+      finishReason: p["finish_reason"] as CompletionsFinishReason,
       message: {
-        role: p.message["role"],
+        role: p.message["role"] as ChatRole,
         content: p.message["content"],
         toolCalls:
           p.message["tool_calls"] === undefined
@@ -122,7 +126,7 @@ export async function _getModelInfoDeserialize(
 
   return {
     modelName: result.body["model_name"],
-    modelType: result.body["model_type"],
+    modelType: result.body["model_type"] as ModelType,
     modelProviderName: result.body["model_provider_name"],
   };
 }

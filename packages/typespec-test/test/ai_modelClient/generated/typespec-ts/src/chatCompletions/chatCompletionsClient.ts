@@ -4,21 +4,21 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  ChatCompletions,
-  ModelInfo,
-  ChatRequestMessageUnion,
-} from "./models/models.js";
-import {
-  CompleteOptionalParams,
-  GetModelInfoOptionalParams,
-} from "./models/options.js";
-import {
   createChatCompletions,
   ChatCompletionsClientOptions,
   ModelClientContext,
   complete,
   getModelInfo,
 } from "./api/index.js";
+import {
+  ChatRequestMessageUnion,
+  ChatCompletions,
+  ModelInfo,
+} from "../models/models.js";
+import {
+  CompleteOptionalParams,
+  GetModelInfoOptionalParams,
+} from "./models/options.js";
 
 export { ChatCompletionsClientOptions } from "./api/chatCompletionsContext.js";
 

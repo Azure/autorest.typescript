@@ -164,25 +164,14 @@ export type ChatCompletionsNamedToolSelection =
   | ChatCompletionsNamedToolSelectionParent
   | ChatCompletionsNamedFunctionToolSelection;
 /** Alias for UnknownParams */
-export type UnknownParams = string | "error" | "drop" | "pass_through";
+export type UnknownParams = string;
 /** Alias for ChatRole */
-export type ChatRole = string | "system" | "user" | "assistant" | "tool";
+export type ChatRole = string;
 /** Alias for ChatCompletionsResponseFormat */
-export type ChatCompletionsResponseFormat = string | "text" | "json_object";
+export type ChatCompletionsResponseFormat = string;
 /** Alias for ChatCompletionsToolSelectionPreset */
-export type ChatCompletionsToolSelectionPreset =
-  | string
-  | "auto"
-  | "none"
-  | "required";
+export type ChatCompletionsToolSelectionPreset = string;
 /** Alias for EmbeddingEncodingFormat */
-export type EmbeddingEncodingFormat =
-  | string
-  | "base64"
-  | "binary"
-  | "float"
-  | "int8"
-  | "ubinary"
-  | "uint8";
+export type EmbeddingEncodingFormat = string;
 /** Alias for EmbeddingInputType */
-export type EmbeddingInputType = string | "text" | "query" | "document";
+export type EmbeddingInputType = string;

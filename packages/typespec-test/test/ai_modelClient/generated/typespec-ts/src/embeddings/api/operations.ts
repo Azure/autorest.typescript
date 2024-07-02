@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ModelInfo, EmbeddingsResult } from "../models/models.js";
 import {
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
@@ -15,6 +14,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  EmbeddingsResult,
+  CapacityType,
+  ModelInfo,
+  ModelType,
+} from "../../models/models.js";
 import {
   EmbedOptionalParams,
   GetModelInfoOptionalParams,
@@ -57,7 +62,7 @@ export async function _embedDeserialize(
       index: p["index"],
     })),
     usage: {
-      capacityType: result.body.usage["capacity_type"],
+      capacityType: result.body.usage["capacity_type"] as CapacityType,
       inputTokens: result.body.usage["input_tokens"],
       promptTokens: result.body.usage["prompt_tokens"],
       totalTokens: result.body.usage["total_tokens"],
@@ -94,7 +99,7 @@ export async function _getModelInfoDeserialize(
 
   return {
     modelName: result.body["model_name"],
-    modelType: result.body["model_type"],
+    modelType: result.body["model_type"] as ModelType,
     modelProviderName: result.body["model_provider_name"],
   };
 }

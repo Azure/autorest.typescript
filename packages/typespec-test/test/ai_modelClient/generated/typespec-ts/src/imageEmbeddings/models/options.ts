@@ -6,8 +6,9 @@ import {
   UnknownParams,
   EmbeddingEncodingFormat,
   EmbeddingInputType,
-} from "./models.js";
+} from "../../rest/models.js";
 
+/** Optional parameters. */
 export interface EmbedOptionalParams extends OperationOptions {
   /**
    * Controls what happens if unknown parameters are passed in the JSON request payload.
@@ -33,4 +34,5 @@ export interface EmbedOptionalParams extends OperationOptions {
   inputType?: EmbeddingInputType;
 }
 
+/** Optional parameters. */
 export interface GetModelInfoOptionalParams extends OperationOptions {}

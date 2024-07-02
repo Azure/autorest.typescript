@@ -4,21 +4,16 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  ModelInfo,
-  EmbeddingsResult,
-  EmbeddingInput,
-} from "./models/models.js";
-import {
-  EmbedOptionalParams,
-  GetModelInfoOptionalParams,
-} from "./models/options.js";
-import {
   createImageEmbeddings,
   ImageEmbeddingsClientOptions,
   ModelClientContext,
   embed,
   getModelInfo,
 } from "./api/index.js";
+import { GetModelInfoOptionalParams } from "../chatCompletions/index.js";
+import { EmbedOptionalParams } from "../embeddings/index.js";
+import { EmbeddingsResult, ModelInfo } from "../models/models.js";
+import { EmbeddingInput } from "../rest/models.js";
 
 export { ImageEmbeddingsClientOptions } from "./api/imageEmbeddingsContext.js";
 

@@ -2,11 +2,7 @@
 // Licensed under the MIT license.
 
 import {
-  ModelInfo,
-  EmbeddingsResult,
   EmbeddingInput,
-} from "../models/models.js";
-import {
   GetImageEmbeddings200Response,
   GetImageEmbeddingsDefaultResponse,
   GetModelInfo200Response,
@@ -19,6 +15,13 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  embeddingInputSerializer,
+  EmbeddingsResult,
+  CapacityType,
+  ModelInfo,
+  ModelType,
+} from "../../models/models.js";
 import {
   EmbedOptionalParams,
   GetModelInfoOptionalParams,
@@ -41,7 +44,7 @@ export function _embedSend(
           : {}),
       },
       body: {
-        input: input.map((p) => ({ image: p["image"], text: p["text"] })),
+        input: input.map(embeddingInputSerializer),
         dimensions: options?.dimensions,
         encoding_format: options?.encodingFormat,
         input_type: options?.inputType,
@@ -63,7 +66,7 @@ export async function _embedDeserialize(
       index: p["index"],
     })),
     usage: {
-      capacityType: result.body.usage["capacity_type"],
+      capacityType: result.body.usage["capacity_type"] as CapacityType,
       inputTokens: result.body.usage["input_tokens"],
       promptTokens: result.body.usage["prompt_tokens"],
       totalTokens: result.body.usage["total_tokens"],
@@ -100,7 +103,7 @@ export async function _getModelInfoDeserialize(
 
   return {
     modelName: result.body["model_name"],
-    modelType: result.body["model_type"],
+    modelType: result.body["model_type"] as ModelType,
     modelProviderName: result.body["model_provider_name"],
   };
 }
