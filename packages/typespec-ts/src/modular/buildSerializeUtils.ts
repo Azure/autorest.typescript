@@ -19,6 +19,7 @@ import {
   serializeRequestValue
 } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Type } from "./modularCodeModel.js";
+import path from "path/posix";
 
 /**
  * This function creates serialize and deserialize utils for special unions and that are used in the operation.
@@ -35,9 +36,11 @@ export function buildSerializeUtils(model: ModularCodeModel) {
       continue;
     }
     clearImportSets(model.runtimeImports);
-    const utilsFile = model.project.createSourceFile(
-      `${model.modularOptions.sourceRoot}/utils/${serializeType}Util.ts`
+    const filePath = path.join(
+      model.modularOptions.sourceRoot,
+      `utils/${serializeType}Util.ts`
     );
+    const utilsFile = model.project.createSourceFile(filePath);
 
     specialUnions.forEach((su) => {
       let types = su.types;

@@ -204,13 +204,14 @@ export async function $onEmit(context: EmitContext) {
       );
 
       const isMultiClients = modularCodeModel.clients.length > 1;
+      buildModels(modularCodeModel);
+      if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]) {
+        buildSerializeUtils(modularCodeModel);
+      }
       for (const subClient of modularCodeModel.clients) {
-        buildModels(subClient, modularCodeModel);
         buildModelsOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
-        if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
-          buildSerializeUtils(modularCodeModel);
         // build paging files
         buildPagingTypes(subClient, modularCodeModel);
         buildModularPagingHelpers(

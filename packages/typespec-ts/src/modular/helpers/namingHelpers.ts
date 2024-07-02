@@ -93,7 +93,7 @@ export function getRLCIndexFilePath(
 
 export function getModularModelFilePath(
   codeModel: ModularCodeModel,
-  client: Client | SdkClient,
+  client?: Client | SdkClient,
   ext: "js" | "ts" = "ts"
 ): string {
   return path.join(
@@ -106,19 +106,21 @@ export function getModularModelFilePath(
   );
 }
 
-function getSubfolder(client: Client): string | undefined;
+function getSubfolder(): string | undefined;
+function getSubfolder(client?: Client): string | undefined;
 function getSubfolder(
-  client: Client | SdkClient,
+  client?: Client | SdkClient,
   dpgContext?: SdkContext
 ): string | undefined;
 function getSubfolder(
-  client: Client | SdkClient,
+  client?: Client | SdkClient,
   dpgContext?: SdkContext
 ): string | undefined {
-  return (
-    (client as Client).subfolder ??
-    (dpgContext?.rlcOptions!.batch && dpgContext?.rlcOptions!.batch?.length > 1
-      ? normalizeName(client.name.replace("Client", ""), NameType.File)
-      : undefined)
-  );
+  return !client
+    ? client
+    : (client as Client).subfolder ??
+        (dpgContext?.rlcOptions!.batch &&
+        dpgContext?.rlcOptions!.batch?.length > 1
+          ? normalizeName(client.name.replace("Client", ""), NameType.File)
+          : undefined);
 }

@@ -169,7 +169,6 @@ export function buildModelInterface(
  * This function creates the file containing all the models defined in TypeSpec
  */
 export function buildModels(
-  subClient: Client,
   codeModel: ModularCodeModel
 ): SourceFile | undefined {
   // We are generating both models and enums here
@@ -183,7 +182,7 @@ export function buildModels(
     return;
   }
   const modelsFile = codeModel.project.createSourceFile(
-    getModularModelFilePath(codeModel, subClient)
+    getModularModelFilePath(codeModel)
   );
   for (const model of models) {
     if (model.type === "enum") {
@@ -251,11 +250,10 @@ export function buildModels(
     }
   }
 
-  const projectRootFromModels = codeModel.clients.length > 1 ? "../.." : "../";
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-    rlcIndex: path.posix.join(projectRootFromModels, "rest", "index.js"),
+    rlcIndex: path.posix.join("../rest", "index.js"),
     serializerHelpers: path.posix.join(
-      projectRootFromModels,
+      "../",
       "helpers",
       "serializerHelpers.js"
     )
