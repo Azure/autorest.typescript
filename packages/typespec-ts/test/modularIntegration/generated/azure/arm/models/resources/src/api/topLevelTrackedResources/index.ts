@@ -108,7 +108,9 @@ export async function _topLevelTrackedResourcesGetDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           description: result.body.properties?.["description"],
         },
   };
@@ -209,7 +211,9 @@ export async function _topLevelTrackedResourcesCreateOrReplaceDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           description: result.body.properties?.["description"],
         },
   };
@@ -329,7 +333,9 @@ export async function _topLevelTrackedResourcesUpdateDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           description: result.body.properties?.["description"],
         },
   };
@@ -495,7 +501,7 @@ export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
       properties: !p.properties
         ? undefined
         : {
-            provisioningState: p.properties?.["provisioningState"],
+            provisioningState: p.properties?.["provisioningState"] as any,
             description: p.properties?.["description"],
           },
     })),
@@ -581,7 +587,7 @@ export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
       properties: !p.properties
         ? undefined
         : {
-            provisioningState: p.properties?.["provisioningState"],
+            provisioningState: p.properties?.["provisioningState"] as any,
             description: p.properties?.["description"],
           },
     })),
