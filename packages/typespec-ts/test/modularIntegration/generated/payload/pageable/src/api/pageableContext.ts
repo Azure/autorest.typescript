@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { PageableContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface PageableClientOptions extends ClientOptions {}
 
 export { PageableContext } from "../rest/index.js";

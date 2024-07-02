@@ -6,6 +6,7 @@ import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
 import { create } from "../../api/edits/index.js";
 import { EditsCreateOptionalParams } from "../../models/options.js";
 
+/** Interface representing a Edits operations. */
 export interface EditsOperations {
   create: (
     edit: CreateEditRequest,

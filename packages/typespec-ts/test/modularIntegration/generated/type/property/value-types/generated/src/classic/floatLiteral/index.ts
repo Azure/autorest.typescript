@@ -12,10 +12,13 @@ import {
   FloatLiteralPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a FloatLiteral operations. */
 export interface FloatLiteralOperations {
+  /** Get call */
   get: (
     options?: FloatLiteralGetOptionalParams,
   ) => Promise<FloatLiteralProperty>;
+  /** Put operation */
   put: (
     body: FloatLiteralProperty,
     options?: FloatLiteralPutOptionalParams,

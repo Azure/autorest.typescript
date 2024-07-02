@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { NullableContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface NullableClientOptions extends ClientOptions {}
 
 export { NullableContext } from "../rest/index.js";

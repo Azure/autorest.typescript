@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { DurationContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface DurationClientOptions extends ClientOptions {}
 
 export { DurationContext } from "../rest/index.js";

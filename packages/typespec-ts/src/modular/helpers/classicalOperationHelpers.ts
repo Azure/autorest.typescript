@@ -66,12 +66,13 @@ export function getClassicalOperation(
       return declarations;
     });
 
-  const interfaceName = `${getClassicalLayerPrefix(
+  const interfaceNamePrefix = getClassicalLayerPrefix(
     operationGroup,
     NameType.Interface,
     "",
     layer
-  )}Operations`;
+  );
+  const interfaceName = `${interfaceNamePrefix}Operations`;
   const existInterface = classicFile
     .getInterfaces()
     .filter((i) => i.getName() === interfaceName)[0];
@@ -113,7 +114,8 @@ export function getClassicalOperation(
               ": " +
               p.type
           )
-          .join(",")}) => ${d.returnType}`
+          .join(",")}) => ${d.returnType}`,
+        docs: d.docs
       });
     });
   }
@@ -123,7 +125,8 @@ export function getClassicalOperation(
     classicFile.addInterface({
       name: interfaceName,
       isExported: true,
-      properties
+      properties,
+      docs: [`Interface representing a ${interfaceNamePrefix} operations.`]
     });
   }
 

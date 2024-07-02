@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { RepeatabilityContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface RepeatabilityClientOptions extends ClientOptions {}
 
 export { RepeatabilityContext } from "../rest/index.js";

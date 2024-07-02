@@ -15,6 +15,7 @@ import {
   HeaderBase64urlArrayOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Header operations. */
 export interface HeaderOperations {
   default: (
     value: Uint8Array,

@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { ReturnTypeChangedFromContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface ReturnTypeChangedFromClientOptions extends ClientOptions {}
 
 export { ReturnTypeChangedFromContext } from "../rest/index.js";

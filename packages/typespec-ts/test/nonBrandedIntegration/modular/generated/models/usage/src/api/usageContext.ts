@@ -4,6 +4,7 @@ import { ClientOptions } from "@typespec/ts-http-runtime";
 import { UsageContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface UsageClientOptions extends ClientOptions {}
 
 export { UsageContext } from "../rest/index.js";

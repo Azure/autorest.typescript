@@ -18,24 +18,22 @@ export interface AnalyzeResult {
     summary: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
     apiVersion?: string;
     updateIntervalInMs?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface BudgetsCreateOrUpdateOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     updateIntervalInMs?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface BudgetsOperations {
-    // (undocumented)
     createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
-    // (undocumented)
     createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptionalParams) => PollerLike<OperationState<User>, User>;
 }
 
@@ -107,21 +105,21 @@ export interface WidgetError {
     message: string;
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
     apiVersion?: string;
     updateIntervalInMs?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsCreateWidgetOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {
 }
 
@@ -133,15 +131,15 @@ export class WidgetServiceClient {
     readonly widgets: WidgetsOperations;
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetServiceClientOptions extends ClientOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsGetWidgetOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsListWidgetsOptionalParams extends OperationOptions {
     // (undocumented)
     nullableDateHeader?: Date | null;
@@ -153,37 +151,30 @@ export interface WidgetsListWidgetsOptionalParams extends OperationOptions {
     optionalHeader?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsListWidgetsPagesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsOperations {
-    // (undocumented)
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) => Promise<AnalyzeResult>;
-    // (undocumented)
     createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
-    // (undocumented)
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptionalParams) => Promise<Widget>;
-    // (undocumented)
     deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) => Promise<void>;
-    // (undocumented)
     getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) => Promise<Widget>;
-    // (undocumented)
     listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptionalParams) => Promise<Widget[]>;
     // (undocumented)
     listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
     queryWidgetsPages: (page: number, pageSize: number, options?: WidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
-    // (undocumented)
     updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsQueryWidgetsPagesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
 }
 

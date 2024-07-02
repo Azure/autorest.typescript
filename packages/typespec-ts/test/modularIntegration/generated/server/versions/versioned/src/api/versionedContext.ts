@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { VersionedContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface VersionedClientOptions extends ClientOptions {}
 
 export { VersionedContext } from "../rest/index.js";

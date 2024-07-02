@@ -9,8 +9,11 @@ import {
   StringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a String operations. */
 export interface StringOperations {
+  /** Get call */
   get: (options?: StringGetOptionalParams) => Promise<StringProperty>;
+  /** Put operation */
   put: (
     body: StringProperty,
     options?: StringPutOptionalParams,

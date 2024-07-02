@@ -114,10 +114,20 @@ export function dogSerializer(item: Dog): DogRest {
   };
 }
 
-/** Type of StringExtensibleNamedUnion */
-export type StringExtensibleNamedUnion = string;
-
+/** Known values of {@link StringExtensibleNamedUnion} that the service accepts. */
 export enum KnownStringExtensibleNamedUnion {
+  /** b */
   b = "b",
+  /** c */
   c = "c",
 }
+
+/**
+ * Type of StringExtensibleNamedUnion \
+ * {@link KnownStringExtensibleNamedUnion} can be used interchangeably with StringExtensibleNamedUnion,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **b** \
+ * **c**
+ */
+export type StringExtensibleNamedUnion = string;

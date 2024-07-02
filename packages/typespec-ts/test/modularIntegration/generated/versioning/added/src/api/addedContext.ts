@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { AddedContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface AddedClientOptions extends ClientOptions {}
 
 export { AddedContext } from "../rest/index.js";

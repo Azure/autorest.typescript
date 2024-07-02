@@ -8,7 +8,6 @@ import {
   SdkType,
   SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
-import { isDefined } from "@azure/core-util";
 import { getDiscriminator, UsageFlags } from "@typespec/compiler";
 import _ from "lodash";
 import * as Reify from "../../reify/index.js";
@@ -16,6 +15,7 @@ import {
   getEncodingFormat,
   getParameterTypePropertyName,
   getReturnTypePropertyName,
+  isDefined,
   SerializerMap,
   SerializerOutput
 } from "./util.js";

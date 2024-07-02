@@ -9,8 +9,11 @@ import {
   BytesPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Bytes operations. */
 export interface BytesOperations {
+  /** Get call */
   get: (options?: BytesGetOptionalParams) => Promise<BytesProperty>;
+  /** Put operation */
   put: (body: BytesProperty, options?: BytesPutOptionalParams) => Promise<void>;
 }
 

@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { NotDiscriminatedContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface NotDiscriminatedClientOptions extends ClientOptions {}
 
 export { NotDiscriminatedContext } from "../rest/index.js";

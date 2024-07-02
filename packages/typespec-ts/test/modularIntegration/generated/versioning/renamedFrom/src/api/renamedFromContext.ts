@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { RenamedFromContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface RenamedFromClientOptions extends ClientOptions {}
 
 export { RenamedFromContext } from "../rest/index.js";

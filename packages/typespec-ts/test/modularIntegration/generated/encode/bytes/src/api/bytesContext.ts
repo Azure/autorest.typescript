@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { BytesContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface BytesClientOptions extends ClientOptions {}
 
 export { BytesContext } from "../rest/index.js";

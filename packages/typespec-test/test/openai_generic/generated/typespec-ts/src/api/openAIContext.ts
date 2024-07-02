@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { OpenAIContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface OpenAIClientOptions extends ClientOptions {}
 
 export { OpenAIContext } from "../rest/index.js";

@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { WidgetServiceContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface WidgetServiceClientOptions extends ClientOptions {}
 
 export { WidgetServiceContext } from "../rest/index.js";

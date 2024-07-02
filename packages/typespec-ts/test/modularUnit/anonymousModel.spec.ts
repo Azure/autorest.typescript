@@ -165,6 +165,7 @@ describe("anonymous model", () => {
           `
         import { OperationOptions  } from "@azure-rest/core-client";
         
+        /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;
@@ -289,6 +290,7 @@ describe("anonymous model", () => {
           `
         import { OperationOptions  } from "@azure-rest/core-client";
         
+        /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;

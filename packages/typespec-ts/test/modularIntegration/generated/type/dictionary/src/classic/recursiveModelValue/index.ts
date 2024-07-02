@@ -9,6 +9,7 @@ import {
   RecursiveModelValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a RecursiveModelValue operations. */
 export interface RecursiveModelValueOperations {
   get: (
     options?: RecursiveModelValueGetOptionalParams,

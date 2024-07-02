@@ -16,17 +16,22 @@ import {
   DurationPatchNullOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Duration operations. */
 export interface DurationOperations {
+  /** Get models that will return all properties in the model */
   getNonNull: (
     options?: DurationGetNonNullOptionalParams,
   ) => Promise<DurationProperty>;
+  /** Get models that will return the default object */
   getNull: (
     options?: DurationGetNullOptionalParams,
   ) => Promise<DurationProperty>;
+  /** Put a body with all properties present. */
   patchNonNull: (
     body: DurationProperty,
     options?: DurationPatchNonNullOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   patchNull: (
     body: DurationProperty,
     options?: DurationPatchNullOptionalParams,

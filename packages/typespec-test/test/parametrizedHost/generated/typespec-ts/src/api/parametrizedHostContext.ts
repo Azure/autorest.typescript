@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { ParametrizedHostContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface ParametrizedHostClientOptions extends ClientOptions {
   host?: string;
   subdomain?: string;

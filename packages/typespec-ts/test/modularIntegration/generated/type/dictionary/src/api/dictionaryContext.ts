@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { DictionaryContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface DictionaryClientOptions extends ClientOptions {}
 
 export { DictionaryContext } from "../rest/index.js";

@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { ChatProtocolContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface ChatProtocolClientOptions extends ClientOptions {}
 
 export { ChatProtocolContext } from "../rest/index.js";

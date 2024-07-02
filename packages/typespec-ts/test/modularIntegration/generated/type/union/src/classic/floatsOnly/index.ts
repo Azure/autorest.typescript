@@ -8,6 +8,7 @@ import {
   FloatsOnlySendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a FloatsOnly operations. */
 export interface FloatsOnlyOperations {
   get: (
     options?: FloatsOnlyGetOptionalParams,

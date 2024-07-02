@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { ContentNegotiationContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface ContentNegotiationClientOptions extends ClientOptions {}
 
 export { ContentNegotiationContext } from "../rest/index.js";

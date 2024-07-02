@@ -8,6 +8,7 @@ import {
   DurationValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DurationValue operations. */
 export interface DurationValueOperations {
   get: (
     options?: DurationValueGetOptionalParams,

@@ -9,10 +9,13 @@ import {
   SpreadDifferentFloatPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a SpreadDifferentFloat operations. */
 export interface SpreadDifferentFloatOperations {
+  /** Get call */
   get: (
     options?: SpreadDifferentFloatGetOptionalParams,
   ) => Promise<DifferentSpreadFloatRecord>;
+  /** Put operation */
   put: (
     body: DifferentSpreadFloatRecord,
     options?: SpreadDifferentFloatPutOptionalParams,

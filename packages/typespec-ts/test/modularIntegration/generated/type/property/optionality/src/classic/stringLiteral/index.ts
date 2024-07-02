@@ -16,17 +16,22 @@ import {
   StringLiteralPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a StringLiteral operations. */
 export interface StringLiteralOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: StringLiteralGetAllOptionalParams,
   ) => Promise<StringLiteralProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: StringLiteralGetDefaultOptionalParams,
   ) => Promise<StringLiteralProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: StringLiteralProperty,
     options?: StringLiteralPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: StringLiteralProperty,
     options?: StringLiteralPutDefaultOptionalParams,

@@ -16,17 +16,22 @@ import {
   BooleanLiteralPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a BooleanLiteral operations. */
 export interface BooleanLiteralOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: BooleanLiteralGetAllOptionalParams,
   ) => Promise<BooleanLiteralProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: BooleanLiteralGetDefaultOptionalParams,
   ) => Promise<BooleanLiteralProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: BooleanLiteralProperty,
     options?: BooleanLiteralPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: BooleanLiteralProperty,
     options?: BooleanLiteralPutDefaultOptionalParams,

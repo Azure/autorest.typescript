@@ -20,11 +20,11 @@ export interface BA {
     prop2: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BCOp1OptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface BCOperations {
     // (undocumented)
     op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
@@ -36,27 +36,27 @@ export interface BEA {
     prop3: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BECOp1OptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface BECOperations {
     // (undocumented)
     op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export interface BEOperations {
     // (undocumented)
     c: BECOperations;
 }
 
-// @public (undocumented)
+// @public
 export interface BOp1OptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface BOperations {
     // (undocumented)
     c: BCOperations;
@@ -66,11 +66,11 @@ export interface BOperations {
     op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export interface DOp1OptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface DOperations {
     // (undocumented)
     op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
@@ -86,11 +86,11 @@ export class FooClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface FooClientOptions extends ClientOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface Op1OptionalParams extends OperationOptions {
 }
 
