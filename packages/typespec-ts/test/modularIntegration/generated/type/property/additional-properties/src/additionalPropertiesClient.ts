@@ -145,7 +145,15 @@ export class AdditionalPropertiesClient {
 
   /** Tests for additional properties of models */
   constructor(options: AdditionalPropertiesClientOptions = {}) {
-    this._client = createAdditionalProperties(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createAdditionalProperties({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.extendsUnknown = getExtendsUnknownOperations(this._client);
     this.extendsUnknownDerived = getExtendsUnknownDerivedOperations(

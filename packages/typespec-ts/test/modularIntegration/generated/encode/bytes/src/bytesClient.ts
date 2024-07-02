@@ -30,7 +30,15 @@ export class BytesClient {
 
   /** Test for encode decorator on bytes. */
   constructor(options: BytesClientOptions = {}) {
-    this._client = createBytes(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createBytes({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.query = getQueryOperations(this._client);
     this.property = getPropertyOperations(this._client);

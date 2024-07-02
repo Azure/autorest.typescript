@@ -70,7 +70,15 @@ export class OptionalClient {
 
   /** Illustrates models with optional properties. */
   constructor(options: OptionalClientOptions = {}) {
-    this._client = createOptional(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createOptional({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
     this.bytes = getBytesOperations(this._client);

@@ -17,6 +17,14 @@ export function createBatch(
   credential: TokenCredential,
   options: BatchClientOptions = {},
 ): BatchContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
+  const clientContext = getClient(endpointParam, credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

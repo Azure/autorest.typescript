@@ -19,7 +19,15 @@ export class SingleClient {
 
   /** Illustrates server with a single path parameter @server */
   constructor(endpointParam: string, options: SingleClientOptions = {}) {
-    this._client = createSingle(endpointParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createSingle(endpointParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

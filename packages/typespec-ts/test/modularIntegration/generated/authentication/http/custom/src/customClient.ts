@@ -24,7 +24,15 @@ export class CustomClient {
 
   /** Illustrates clients generated with generic HTTP auth. */
   constructor(credential: KeyCredential, options: CustomClientOptions = {}) {
-    this._client = createCustom(credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createCustom(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -64,7 +64,15 @@ export class TestRunOperationsClient {
     credential: TokenCredential,
     options: TestRunOperationsClientOptions = {},
   ) {
-    this._client = createTestRunOperations(endpointParam, credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createTestRunOperations(endpointParam, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

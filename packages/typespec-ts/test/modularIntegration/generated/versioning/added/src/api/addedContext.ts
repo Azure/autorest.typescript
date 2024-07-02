@@ -17,6 +17,14 @@ export function createAdded(
   version: Versions,
   options: AddedClientOptions = {},
 ): AddedContext {
-  const clientContext = getClient(endpointParam, version, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
+  const clientContext = getClient(endpointParam, version, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

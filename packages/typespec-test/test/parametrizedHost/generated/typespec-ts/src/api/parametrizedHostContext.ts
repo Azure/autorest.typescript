@@ -20,6 +20,14 @@ export function createParametrizedHost(
   credential: TokenCredential,
   options: ParametrizedHostClientOptions = {},
 ): ParametrizedHostContext {
-  const clientContext = getClient(credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
+  const clientContext = getClient(credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

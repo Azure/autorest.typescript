@@ -25,7 +25,15 @@ export class ContentNegotiationClient {
 
   /** Test describing optionality of the request body. */
   constructor(options: ContentNegotiationClientOptions = {}) {
-    this._client = createContentNegotiation(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createContentNegotiation({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.sameBody = getSameBodyOperations(this._client);
     this.differentBody = getDifferentBodyOperations(this._client);

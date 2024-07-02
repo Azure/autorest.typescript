@@ -11,6 +11,14 @@ export interface ScalarClientOptions extends ClientOptions {}
 export { ScalarContext } from "../rest/index.js";
 
 export function createScalar(options: ScalarClientOptions = {}): ScalarContext {
-  const clientContext = getClient(options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

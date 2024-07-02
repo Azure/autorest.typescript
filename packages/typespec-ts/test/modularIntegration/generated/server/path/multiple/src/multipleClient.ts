@@ -22,7 +22,15 @@ export class MultipleClient {
   public readonly pipeline: Pipeline;
 
   constructor(endpointParam: string, options: MultipleClientOptions = {}) {
-    this._client = createMultiple(endpointParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createMultiple(endpointParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

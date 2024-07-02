@@ -24,7 +24,15 @@ export class MadeOptionalClient {
     version: Versions,
     options: MadeOptionalClientOptions = {},
   ) {
-    this._client = createMadeOptional(endpointParam, version, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createMadeOptional(endpointParam, version, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

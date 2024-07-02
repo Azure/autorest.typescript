@@ -28,7 +28,15 @@ export class RenamedFromClient {
     version: Versions,
     options: RenamedFromClientOptions = {},
   ) {
-    this._client = createRenamedFrom(endpointParam, version, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createRenamedFrom(endpointParam, version, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

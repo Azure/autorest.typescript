@@ -15,6 +15,14 @@ export function createNotDefined(
   endpoint: string,
   options: NotDefinedClientOptions = {},
 ): NotDefinedContext {
-  const clientContext = getClient(endpoint, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
+  const clientContext = getClient(endpoint, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

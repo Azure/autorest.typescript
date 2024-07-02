@@ -16,6 +16,14 @@ export function createA(
   clientParam: ClientType,
   options: AClientOptions = {},
 ): ServiceContext {
-  const clientContext = getClient(endpointParam, clientParam, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
+  const clientContext = getClient(endpointParam, clientParam, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

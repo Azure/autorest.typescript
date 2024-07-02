@@ -16,6 +16,14 @@ export function createOpenAI(
   credential: KeyCredential,
   options: OpenAIClientOptions = {},
 ): OpenAIContext {
-  const clientContext = getClient(credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-modular-api`
+    : "azsdk-js-modular-api";
+
+  const clientContext = getClient(credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

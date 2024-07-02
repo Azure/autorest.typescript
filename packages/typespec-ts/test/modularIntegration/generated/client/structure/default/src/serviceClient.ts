@@ -37,7 +37,15 @@ export class ServiceClient {
     clientParam: ClientType,
     options: ServiceClientOptions = {},
   ) {
-    this._client = createService(endpointParam, clientParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createService(endpointParam, clientParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.baz = getBazOperations(this._client);
     this.qux = getQuxOperations(this._client);

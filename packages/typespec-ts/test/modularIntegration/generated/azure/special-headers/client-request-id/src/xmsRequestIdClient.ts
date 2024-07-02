@@ -19,7 +19,15 @@ export class XmsRequestIdClient {
 
   /** Azure client request id header configurations. */
   constructor(options: XmsRequestIdClientOptions = {}) {
-    this._client = createXmsRequestId(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createXmsRequestId({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

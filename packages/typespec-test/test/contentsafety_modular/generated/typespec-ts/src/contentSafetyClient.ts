@@ -56,7 +56,15 @@ export class ContentSafetyClient {
     credential: KeyCredential | TokenCredential,
     options: ContentSafetyClientOptions = {},
   ) {
-    this._client = createContentSafety(endpointParam, credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createContentSafety(endpointParam, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

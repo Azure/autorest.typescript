@@ -20,7 +20,15 @@ export class ExtensibleClient {
   public readonly pipeline: Pipeline;
 
   constructor(options: ExtensibleClientOptions = {}) {
-    this._client = createExtensible(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-modular-classic`
+      : "azsdk-js-modular-classic";
+
+    this._client = createExtensible({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
   }
