@@ -2,7 +2,7 @@ import { assert } from "chai";
 import AzureArmResourceClientFactory, {
   AzureArmResourceClient
 } from "./generated/azure/arm/models/resources/src/index.js";
-describe.only("Azure Arm Resources Rest Client", () => {
+describe("Azure Arm Resources Rest Client", () => {
   let client: AzureArmResourceClient;
 
   beforeEach(() => {
@@ -63,7 +63,7 @@ describe.only("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(body.name, validTopLevelResource.name);
     assert.strictEqual(body.type, validTopLevelResource.type);
   });
-  it.only("should create or replace top level tracked resources", async () => {
+  it("should create or replace top level tracked resources", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -91,7 +91,7 @@ describe.only("Azure Arm Resources Rest Client", () => {
       validTopLevelResource.properties?.description
     );
   });
-  it.only("should update top level tracked resources", async () => {
+  it("should update top level tracked resources", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -179,7 +179,7 @@ describe.only("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(body.type, validNestedResource.type);
   });
 
-  it.skip("should create or replace nested proxy resource", async () => {
+  it("should create or replace nested proxy resource", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.Arm.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
