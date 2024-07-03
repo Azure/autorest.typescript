@@ -2,6 +2,12 @@
 // Licensed under the MIT license.
 
 import {
+  CapacityType,
+  ModelInfo,
+  ModelType,
+  EmbeddingsResult,
+} from "../../models/models.js";
+import {
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
   GetModelInfo200Response,
@@ -14,12 +20,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  EmbeddingsResult,
-  CapacityType,
-  ModelInfo,
-  ModelType,
-} from "../../models/models.js";
 import {
   EmbedOptionalParams,
   GetModelInfoOptionalParams,

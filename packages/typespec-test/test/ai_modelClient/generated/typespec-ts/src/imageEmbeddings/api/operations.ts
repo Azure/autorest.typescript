@@ -2,7 +2,14 @@
 // Licensed under the MIT license.
 
 import {
+  embeddingInputSerializer,
+  CapacityType,
+  ModelInfo,
+  ModelType,
+  EmbeddingsResult,
   EmbeddingInput,
+} from "../../models/models.js";
+import {
   GetImageEmbeddings200Response,
   GetImageEmbeddingsDefaultResponse,
   GetModelInfo200Response,
@@ -15,13 +22,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  embeddingInputSerializer,
-  EmbeddingsResult,
-  CapacityType,
-  ModelInfo,
-  ModelType,
-} from "../../models/models.js";
 import {
   EmbedOptionalParams,
   GetModelInfoOptionalParams,

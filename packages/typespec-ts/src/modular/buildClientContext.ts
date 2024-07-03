@@ -36,7 +36,12 @@ export function buildClientContext(
 
   let factoryFunction;
   importCredential(codeModel.runtimeImports, clientContextFile);
-  importModels(srcPath, clientContextFile, codeModel.project, subfolder);
+  importModels(
+    srcPath,
+    clientContextFile,
+    codeModel.project,
+    subfolder !== "" ? 1 : 0
+  );
   clientContextFile.addImportDeclaration({
     moduleSpecifier: getImportSpecifier("restClient", codeModel.runtimeImports),
     namedImports: ["ClientOptions"]

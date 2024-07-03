@@ -2,6 +2,16 @@
 // Licensed under the MIT license.
 
 import {
+  chatRequestMessageUnionSerializer,
+  ChatRole,
+  ChatCompletions,
+  CapacityType,
+  CompletionsFinishReason,
+  ModelInfo,
+  ModelType,
+  ChatRequestMessageUnion,
+} from "../../models/models.js";
+import {
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetModelInfo200Response,
@@ -14,16 +24,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  ChatRequestMessageUnion,
-  chatRequestMessageUnionSerializer,
-  ChatCompletions,
-  CapacityType,
-  CompletionsFinishReason,
-  ModelInfo,
-  ModelType,
-  ChatRole,
-} from "../../models/models.js";
 import {
   CompleteOptionalParams,
   GetModelInfoOptionalParams,

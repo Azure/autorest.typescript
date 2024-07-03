@@ -59,6 +59,9 @@ export function buildOperationFiles(
           "operations";
 
     const subfolder = client.subfolder;
+    if (subfolder === "chatCompletions") {
+      subfolder;
+    }
     const srcPath = codeModel.modularOptions.sourceRoot;
     const operationGroupFile = codeModel.project.createSourceFile(
       `${srcPath}/${
@@ -77,7 +80,6 @@ export function buildOperationFiles(
       srcPath,
       operationGroupFile,
       codeModel.project,
-      subfolder,
       operationGroup.namespaceHierarchies.length
     );
 
@@ -211,17 +213,12 @@ export function importModels(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,
-  subfolder: string = "",
   importLayer: number = 0
 ) {
   const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
     return i.getModuleSpecifierValue().endsWith(`models/models.js`);
   });
-  const modelsFile = project.getSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }models/models.ts`
-  );
+  const modelsFile = project.getSourceFile(`${srcPath}/models/models.ts`);
   const models: string[] = [];
 
   for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {
@@ -233,7 +230,7 @@ export function importModels(
 
   if (models.length > 0 && !hasModelsImport) {
     sourceFile.addImportDeclaration({
-      moduleSpecifier: `${"../".repeat(importLayer + 1)}models/models.js`,
+      moduleSpecifier: `${"../".repeat(importLayer + 2)}models/models.js`,
       namedImports: models
     });
   }
