@@ -25,7 +25,7 @@ import { ModularCodeModel, Type } from "./modularCodeModel.js";
  */
 export function buildSerializeUtils(model: ModularCodeModel) {
   const serializeUtilFiles = [];
-  for (const serializeType of ["serialize", "deserialize"]) {
+  for (const serializeType of ["deserialize"]) {
     const usageCondition =
       serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
     const specialUnions = model.types.filter(
@@ -107,7 +107,8 @@ export function buildSerializeUtils(model: ModularCodeModel) {
     });
     addImportsToFiles(model.runtimeImports, utilsFile, {
       rlcIndex: "../rest/index.js",
-      modularModel: "../models/models.js"
+      modularModel: "../models/models.js",
+      coreUtil: "@azure/core-util"
     });
     serializeUtilFiles.push(utilsFile);
   }
@@ -517,11 +518,14 @@ function getTypeSerializeFunction(
       returnType: typeName
     };
     if (type.properties) {
-      statements.push(
-        `return {${getRequestModelMapping(type, "obj", runtimeImports).join(
-          ", "
-        )}};`
+      const { propertiesStr } = getRequestModelMapping(
+        type,
+        "obj",
+        runtimeImports
       );
+      statements.push(`return {
+        ${propertiesStr.join(", ")}
+        };`);
     } else {
       statements.push(`return {};`);
     }
@@ -556,12 +560,16 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: type.elementType.name + "[]" }],
       returnType: `${typeName}[]`
     };
+    const { propertiesStr } = getRequestModelMapping(
+      type.elementType,
+      "item",
+      runtimeImports
+    );
+
     statements.push(
-      `return (obj || []).map(item => { return {${getRequestModelMapping(
-        type.elementType,
-        "item",
-        runtimeImports
-      ).join(", ")}}})`
+      `return (obj || []).map(item => { 
+          return { ${propertiesStr.join(", ")} }
+        })`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {

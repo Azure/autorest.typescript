@@ -1,29 +1,27 @@
 import { ImportType } from "@azure-tools/rlc-common";
 import {
-  SdkArrayType,
   SdkConstantType,
   SdkContext,
-  SdkDatetimeType,
   SdkEnumType,
   SdkModelPropertyType,
   SdkModelType,
   SdkType,
   SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
-import { isDefined } from "@azure/core-util";
 import { getDiscriminator, UsageFlags } from "@typespec/compiler";
 import _ from "lodash";
 import * as Reify from "../../reify/index.js";
 import {
   getEncodingFormat,
-  getModularTypeId,
   getParameterTypePropertyName,
   getReturnTypePropertyName,
-  getRLCTypeId,
+  isDefined,
   SerializerMap,
   SerializerOutput
 } from "./util.js";
 import { serializeHeader } from "./serializeHeaders.js";
+import { serializeArray } from "./serializeArray.js";
+import { serializeDatetime } from "./serializeDateTime.js";
 
 export interface SerializeTypeOptions<
   TCGCType extends SdkType | SdkModelPropertyType
@@ -100,7 +98,8 @@ function getSerializeHandler<TCGCType extends SdkType | SdkModelPropertyType>(
     | "uint8"
     | "uri"
     | "url"
-    | "uuid";
+    | "uuid"
+    | "nullable";
 
   type SerializeHandler<
     TCGCTypeKind extends (SdkType | SdkModelPropertyType)["kind"]
@@ -172,65 +171,6 @@ function serializeByteArray(
   return `(typeof (${valueExpr}) === 'string')
       ? (stringToUint8Array(${args}))
       : (${valueExpr})`;
-}
-
-function serializeDatetime(
-  options: SerializeTypeOptions<SdkDatetimeType>
-): string {
-  const { functionType, type, valueExpr } = options;
-  if (functionType === UsageFlags.Input) {
-    switch (type.encode) {
-      case "rfc7231":
-        return `(${valueExpr}).toUTCString()`;
-      case "unixTimestamp":
-        return `(${valueExpr}).getTime()`;
-      case "rfc3339":
-      default:
-        return `(${valueExpr}).toISOString()`;
-    }
-  } else {
-    return `new Date(${valueExpr})`;
-  }
-}
-
-export function serializeArray(
-  options: SerializeTypeOptions<SdkArrayType>
-): SerializerOutput {
-  const { dpgContext, functionType, serializerMap, type, valueExpr } = options;
-  const valueType = type.valueType as SdkType & { name?: string };
-  const mapParameterId = "e";
-  const elementTypeName =
-    valueType.name &&
-    (functionType === UsageFlags.Input
-      ? getModularTypeId(valueType)
-      : getRLCTypeId(dpgContext, valueType));
-  const serializedChildExpr = serializeType({
-    ...options,
-    type: valueType,
-    valueExpr: mapParameterId
-  });
-
-  if (serializedChildExpr === mapParameterId) {
-    // mapping over identity function, so map is unnecessary
-    // arr.map((e) => e) -> arr
-    return valueExpr;
-  }
-
-  // arr.map((e) => f(e)) -> arr.map(f)
-  const unaryFunctionInvocation =
-    /(?<functionName>\w+)\((?<childArgExpr>\w+)\)/;
-  const { functionName, childArgExpr } =
-    serializedChildExpr.match(unaryFunctionInvocation)?.groups ?? {};
-  const mapArg =
-    elementTypeName && serializerMap?.[elementTypeName]
-      ? mapParameterId
-      : `${mapParameterId}: ${elementTypeName}`;
-  const mapFunction =
-    childArgExpr === mapParameterId
-      ? functionName
-      : `(${mapArg})=>(${serializedChildExpr})`;
-
-  return `${valueExpr}.map(${mapFunction})`;
 }
 
 export function serializeModelPropertiesInline(
@@ -353,14 +293,12 @@ function getPropertyDeclaration(
 function getPropertyInitializer(
   options: SerializeTypeOptions<SdkModelPropertyType>
 ): string {
-  const { type, valueExpr } = options;
+  const { type } = options;
 
   const propSerializer = serializeType({
     ...options,
     type: { ...type.type, nullable: false, optional: false }
   });
 
-  return type.nullable
-    ? `((${valueExpr}) === null) ? (${valueExpr}) : (${propSerializer})`
-    : propSerializer;
+  return propSerializer;
 }

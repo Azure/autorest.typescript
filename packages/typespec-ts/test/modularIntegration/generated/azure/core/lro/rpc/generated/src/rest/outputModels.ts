@@ -21,10 +21,5 @@ export interface GenerationResultOutput {
   data: string;
 }
 
-/** Enum describing allowed operation states. */
-export type OperationStateOutput =
-  | "NotStarted"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;

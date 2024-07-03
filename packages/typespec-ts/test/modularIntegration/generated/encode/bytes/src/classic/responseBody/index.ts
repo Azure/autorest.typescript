@@ -17,6 +17,7 @@ import {
   ResponseBodyBase64urlOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ResponseBody operations. */
 export interface ResponseBodyOperations {
   default: (options?: ResponseBodyDefaultOptionalParams) => Promise<Uint8Array>;
   octetStream: (

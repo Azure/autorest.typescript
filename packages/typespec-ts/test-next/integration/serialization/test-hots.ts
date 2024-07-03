@@ -2,19 +2,22 @@ import {
   SdkContext,
   createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
+import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
 import { EmitContext } from "@typespec/compiler";
 import { createTestHost, createTestWrapper } from "@typespec/compiler/testing";
 import { HttpTestLibrary } from "@typespec/http/testing";
 
 export async function createMyTestHost() {
   return createTestHost({
-    libraries: [HttpTestLibrary]
+    libraries: [HttpTestLibrary, SdkTestLibrary]
   });
 }
 
 export async function createMyTestRunner() {
   const host = await createMyTestHost();
-  return createTestWrapper(host, { autoUsings: ["TypeSpec.Http"] });
+  return createTestWrapper(host, {
+    autoUsings: ["TypeSpec.Http", "Azure.ClientGenerator.Core"]
+  });
 }
 
 export function createTcgcContext(

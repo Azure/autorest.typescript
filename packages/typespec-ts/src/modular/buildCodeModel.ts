@@ -52,6 +52,7 @@ import {
   isNumericType,
   isStringType,
   isTemplateDeclarationOrInstance,
+  isType,
   isVoidType,
   listServices,
   Model,
@@ -91,6 +92,7 @@ import {
 } from "../utils/modelUtils.js";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import {
+  extractPagedMetadataNested,
   getOperationGroupName,
   getOperationName,
   isBinaryPayload,
@@ -112,6 +114,7 @@ import {
   Response,
   Type as HrlcType
 } from "./modularCodeModel.js";
+import { useContext } from "../contextManager.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -307,6 +310,8 @@ function getType(
   type: EmitterType,
   options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
 ): any {
+  const modularMetatree = useContext("modularMetaTree");
+
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
@@ -321,6 +326,7 @@ function getType(
     }
   }
   let newValue: any;
+
   if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
@@ -329,6 +335,12 @@ function getType(
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
+  }
+
+  if (isTypespecType(type)) {
+    newValue.tcgcType = getClientType(context, type);
+    newValue.__raw = type;
+    modularMetatree.set(type, newValue);
   }
 
   if (enableCache) {
@@ -351,7 +363,8 @@ function getType(
       }
     }
   } else {
-    const key = JSON.stringify(newValue);
+    const { __raw, tcgcType, ...keyableValue } = newValue;
+    const key = JSON.stringify(keyableValue);
     const value = simpleTypesMap.get(key);
     if (value) {
       newValue = value;
@@ -372,10 +385,12 @@ function getType(
       target: type
     });
   }
-  if (!["Credential", "CredentialTypeUnion"].includes(type.kind)) {
-    newValue.tcgcType = getClientType(context, type as Type);
-  }
+
   return newValue;
+}
+
+function isTypespecType(type: EmitterType): type is Type {
+  return type.kind !== "Credential" && type.kind !== "CredentialTypeUnion";
 }
 
 // To pass the yaml dump
@@ -447,26 +462,33 @@ type BodyParameter = ParamBase & {
 function emitBodyParameter(
   context: SdkContext,
   httpOperation: HttpOperation
-): BodyParameter {
+): BodyParameter | undefined {
   const params = httpOperation.parameters;
   const body = params.body!;
-  const base = emitParamBase(context, body.parameter ?? body.type);
-  let contentTypes = body.contentTypes;
-  if (contentTypes.length === 0) {
-    contentTypes = ["application/json"];
-  }
-  const type = getType(context, getBodyType(context.program, httpOperation)!, {
-    disableEffectiveModel: true,
-    usage: UsageFlags.Input
-  });
+  if (body.bodyKind === "single") {
+    const base = emitParamBase(context, body.parameter ?? body.type);
+    let contentTypes = body.contentTypes;
+    if (contentTypes.length === 0) {
+      contentTypes = ["application/json"];
+    }
+    const type = getType(
+      context,
+      getBodyType(context.program, httpOperation)!,
+      {
+        disableEffectiveModel: true,
+        usage: UsageFlags.Input
+      }
+    );
 
-  return {
-    contentTypes,
-    type,
-    location: "body",
-    ...base,
-    isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
-  };
+    return {
+      contentTypes,
+      type,
+      location: "body",
+      ...base,
+      isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
+    };
+  }
+  return undefined;
 }
 
 function emitParameter(
@@ -950,7 +972,7 @@ function getName(program: Program, type: Model): string {
     ) {
       return (
         type.name +
-        type.templateMapper.args
+        (type.templateMapper.args.filter((it) => isType(it)) as Type[])
           .map((it) => (it.kind === "Model" ? it.name : ""))
           .join("")
       );
@@ -1000,7 +1022,7 @@ function emitModel(
     getPagedResult(context.program, type)
   ) {
     modelName =
-      type.templateMapper.args
+      (type.templateMapper.args.filter((it) => isType(it)) as Type[])
         .map((it) => {
           switch (it.kind) {
             case "Model":
@@ -1014,9 +1036,11 @@ function emitModel(
         .join("") + "List";
   }
 
+  const page = extractPagedMetadataNested(context.program, type);
+  const isPaging = page && page.itemsSegments && page.itemsSegments.length > 0;
   return {
     type: "model",
-    name: modelName,
+    name: `${isPaging ? "_" : ""}${modelName}`,
     description: getDocStr(context.program, type),
     parents: baseModel ? [baseModel] : [],
     discriminatedSubtypes: [],
@@ -1053,13 +1077,17 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     });
   }
 
+  const name = normalizeName(
+    getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
+    NameType.Interface
+  );
   return {
     type: "enum",
-    name: normalizeName(
-      getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
-      NameType.Interface
-    ),
-    description: getDocStr(program, type),
+    name,
+    description:
+      getDocStr(program, type) === ""
+        ? `Type of ${name}`
+        : getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
     isFixed: true,
@@ -1329,7 +1357,11 @@ function emitUnion(
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
-  const sdkType = getSdkUnion(context, type);
+  let sdkType = getSdkUnion(context, type);
+  const isNull = false;
+  if (sdkType.kind === "nullable") {
+    sdkType = sdkType.type;
+  }
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
@@ -1353,7 +1385,7 @@ function emitUnion(
       ? normalizeName(unionName, NameType.Interface)
       : undefined;
     return {
-      nullable: sdkType.nullable,
+      nullable: isNull,
       name: unionTypeName,
       description: `Type of ${unionTypeName}`,
       internal: true,
@@ -1381,25 +1413,26 @@ function emitUnion(
       : undefined;
     return {
       name: typeName,
-      nullable: sdkType.nullable,
+      nullable: isNull,
       description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
+      isNonExhaustive: context.rlcOptions?.experimentalExtensibleEnums ?? false,
       xmlMetadata: {},
       usage
     };
   } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
       ...emitType(context, nonNullOptions[0], usage),
-      nullable: sdkType.nullable
+      nullable: isNull
     };
   } else {
     return {
       ...emitType(context, sdkType.__raw!, usage),
-      nullable: sdkType.nullable
+      nullable: isNull
     };
   }
 }
@@ -1436,7 +1469,7 @@ function emitSimpleType(
   }
 
   return {
-    nullable: sdkType.nullable,
+    nullable: isNullType(sdkType.__raw!),
     type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
@@ -1822,7 +1855,9 @@ export function emitCodeModel(
     options: dpgContext.rlcOptions ?? {},
     modularOptions: {
       sourceRoot: modularSourcesRoot,
-      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode
+      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode,
+      experimentalExtensibleEnums:
+        !!dpgContext.rlcOptions?.experimentalExtensibleEnums
     },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},

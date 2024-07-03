@@ -9,10 +9,13 @@ import {
   SpreadDifferentStringPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a SpreadDifferentString operations. */
 export interface SpreadDifferentStringOperations {
+  /** Get call */
   get: (
     options?: SpreadDifferentStringGetOptionalParams,
   ) => Promise<DifferentSpreadStringRecord>;
+  /** Put operation */
   put: (
     body: DifferentSpreadStringRecord,
     options?: SpreadDifferentStringPutOptionalParams,

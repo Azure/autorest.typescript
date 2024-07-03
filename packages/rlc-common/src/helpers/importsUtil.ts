@@ -90,6 +90,10 @@ export function initInternalImports(): Imports {
     rlcClientDefinition: {
       type: "rlcClientDefinition",
       importsSet: new Set<string>()
+    },
+    serializerHelpers: {
+      type: "serializerHelpers",
+      importsSet: new Set<string>()
     }
   } as Imports;
 }
@@ -155,6 +159,9 @@ export function addImportsToFiles(
       const specifier =
         internalSpecifierMap?.[importType.type] ?? importType.specifier!;
       let hasModifier = false;
+      if (!specifier) {
+        return;
+      }
       file
         .getImportDeclarations()
         .filter((importDeclaration) => {

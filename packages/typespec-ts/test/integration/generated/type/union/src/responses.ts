@@ -26,7 +26,7 @@ export interface StringsOnlySend204Response extends HttpResponse {
 /** The request has succeeded. */
 export interface StringExtensibleGet200Response extends HttpResponse {
   status: "200";
-  body: { prop: string | "b" | "c" };
+  body: { prop: string };
 }
 
 /** There is no content to send for this request, but the headers may be useful. */

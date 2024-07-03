@@ -10,9 +10,12 @@ import {
 import { Client } from "../modularCodeModel.js";
 import { getClientName } from "./namingHelpers.js";
 import { getType } from "./typeHelpers.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export function getClientParameters(
-  client: Client
+  client: Client,
+  dpgContext: SdkContext,
+  isClassicalClient = false
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const { parameters } = client;
   const name = getClientName(client);
@@ -40,9 +43,17 @@ export function getClientParameters(
           name: p.clientName,
           type: typeName
         };
-      }),
-    optionsParam
+      })
   ];
+  // Add promoted client-level parameters for classical clients
+  if (isClassicalClient && dpgContext.rlcOptions?.azureArm) {
+    // added subscriptionId parameter for ARM clients
+    params.push({
+      name: "subscriptionId",
+      type: `string`
+    });
+  }
+  params.push(optionsParam);
 
   return params;
 }

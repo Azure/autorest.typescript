@@ -4,7 +4,6 @@ import {
   ReservedModelNames
 } from "@azure-tools/rlc-common";
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
-import { isDefined } from "@azure/core-util";
 import * as path from "path";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { SdkContext } from "../../utils/interfaces.js";
@@ -14,6 +13,7 @@ import {
   Operation,
   OperationGroup
 } from "../modularCodeModel.js";
+import { isDefined } from "../serialization/util.js";
 
 export function getClientName(client: Client) {
   return client.name.replace(/Client$/, "");

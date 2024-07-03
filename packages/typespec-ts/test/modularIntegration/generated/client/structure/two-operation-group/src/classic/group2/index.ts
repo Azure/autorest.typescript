@@ -9,6 +9,7 @@ import {
   Group2SixOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Group2 operations. */
 export interface Group2Operations {
   two: (options?: Group2TwoOptionalParams) => Promise<void>;
   five: (options?: Group2FiveOptionalParams) => Promise<void>;

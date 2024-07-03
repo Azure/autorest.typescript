@@ -8,7 +8,7 @@ export interface User {
 }
 
 /** Paged collection of User items */
-export interface PagedUser {
+export interface _PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */

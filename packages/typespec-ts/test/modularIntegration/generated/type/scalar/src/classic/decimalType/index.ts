@@ -13,6 +13,7 @@ import {
   DecimalTypeRequestParameterOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DecimalType operations. */
 export interface DecimalTypeOperations {
   responseBody: (
     options?: DecimalTypeResponseBodyOptionalParams,

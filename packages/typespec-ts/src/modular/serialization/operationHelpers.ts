@@ -33,12 +33,11 @@ import {
   Type
 } from "../modularCodeModel.js";
 
-import { isDefined } from "@azure/core-util";
 import { UsageFlags } from "@typespec/compiler";
 import _ from "lodash";
 import { Parameter } from "../modularCodeModel.js";
 import { serializeType } from "../serialization/serializers.js";
-import { SerializerMap } from "../serialization/util.js";
+import { SerializerMap, isDefined } from "../serialization/util.js";
 
 export function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {

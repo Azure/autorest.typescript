@@ -26,7 +26,7 @@ export function buildClientContext(
 ): SourceFile {
   const { description, subfolder } = client;
   const name = getClientName(client);
-  const params = getClientParameters(client);
+  const params = getClientParameters(client, dpgContext);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
@@ -59,7 +59,8 @@ export function buildClientContext(
           hasQuestionToken: true,
           docs: getDocsFromDescription(p.description)
         };
-      })
+      }),
+    docs: ["Optional parameters for the client."]
   });
   if (isRLCMultiEndpoint(dpgContext)) {
     clientContextFile.addImportDeclaration({

@@ -8,12 +8,13 @@ import {
   SdkBodyParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { UsageFlags } from "@typespec/compiler";
+import { UsageFlags, Type as TypespecType } from "@typespec/compiler";
 import { Project } from "ts-morph";
 
 export interface ModularOptions {
   sourceRoot: string;
   compatibilityMode: boolean;
+  experimentalExtensibleEnums: boolean;
 }
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -74,7 +75,6 @@ export interface EnumValue {
   description: string;
 }
 export interface Type {
-  nullable?: boolean;
   name?: string;
   description?: string;
   type:
@@ -103,6 +103,7 @@ export interface Type {
   value?: string;
   values?: EnumValue[];
   isFixed?: boolean;
+  isNonExhaustive?: boolean;
   valueType?: Type;
   elementType?: Type;
   parents?: Type[];
@@ -118,6 +119,7 @@ export interface Type {
   discriminatorValue?: string;
   isPolymorphicBaseModel?: boolean;
   tcgcType?: SdkType;
+  __raw?: TypespecType;
 }
 
 export interface Client {

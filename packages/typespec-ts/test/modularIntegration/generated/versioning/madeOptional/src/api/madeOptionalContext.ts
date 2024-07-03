@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { MadeOptionalContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface MadeOptionalClientOptions extends ClientOptions {}
 
 export { MadeOptionalContext } from "../rest/index.js";
