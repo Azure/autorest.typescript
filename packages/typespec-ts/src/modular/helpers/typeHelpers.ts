@@ -246,8 +246,13 @@ function handleDictType(type: Type): TypeMetadata {
   }
   const elementType = getType(type.elementType, type.elementType.format);
   const elementName = elementType.name;
+  const name = handleNullableTypeName({
+    name: `Record<string, ${elementName}>`,
+    nullable: isTypeNullable(type)
+  });
   return {
-    name: `Record<string, ${elementName}>`
+    name,
+    nullable: isTypeNullable(type)
   };
 }
 

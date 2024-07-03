@@ -667,7 +667,7 @@ export interface CreateCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logitBias?: Record<string, number>;
+  logitBias?: Record<string, number> | null;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
@@ -1070,7 +1070,7 @@ export interface CreateChatCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logitBias?: Record<string, number>;
+  logitBias?: Record<string, number> | null;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
