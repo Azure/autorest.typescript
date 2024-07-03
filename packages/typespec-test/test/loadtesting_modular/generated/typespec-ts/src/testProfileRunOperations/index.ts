@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 export {
-  AdministrationOperationsClient,
-  AdministrationOperationsClientOptions,
-} from "./administrationOperationsClient.js";
+  TestProfileRunOperationsClient,
+  TestProfileRunOperationsClientOptions,
+} from "./testProfileRunOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -70,18 +70,11 @@ export {
   TestProfileRunRecommendation,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
-  CreateOrUpdateTestOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestOptionalParams,
-  GetTestFileOptionalParams,
-  ListTestFilesOptionalParams,
-  ListTestsOptionalParams,
-  UploadTestFileOptionalParams,
-  DeleteTestFileOptionalParams,
-  DeleteTestOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  GetTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  StopOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
