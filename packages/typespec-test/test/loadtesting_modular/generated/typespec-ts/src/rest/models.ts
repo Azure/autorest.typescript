@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Load test model. */
+/** Load test model */
 export interface Test {
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
-  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
-  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -15,24 +13,18 @@ export interface Test {
    * SECRET_VALUE.
    */
   secrets?: Record<string, Secret>;
-  /** Certificates metadata. */
+  /** Certificates metadata */
   certificate?: CertificateMetadata;
   /** Environment variables which are defined as a set of <name,value> pairs. */
   environmentVariables?: Record<string, string>;
   /** The load test configuration. */
   loadTestConfiguration?: LoadTestConfiguration;
-  /** Id of the test run to be marked as baseline to view trends of client-side metrics from recent test runs */
-  baselineTestRunId?: string;
   /** The test description. */
   description?: string;
   /** Display name of a test. */
   displayName?: string;
   /** Subnet ID on which the load test instances should run. */
   subnetId?: string;
-  /** Kind of test. */
-  kind?: TestKind;
-  /** Inject load test engines without deploying public IP for outbound access */
-  publicIPDisabled?: boolean;
   /** Type of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityType?: string;
   /** Resource Id of the managed identity referencing the Key vault. */
@@ -69,16 +61,6 @@ export interface PassFailMetric {
   action?: PFAction;
 }
 
-/** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
-export interface AutoStopCriteria {
-  /** Whether auto-stop should be disabled. The default value is false. */
-  autoStopDisabled?: boolean;
-  /** Threshold percentage of errors on which test run should be automatically stopped. Allowed values are in range of 0.0-100.0 */
-  errorRate?: number;
-  /** Time window during which the error percentage should be evaluated in seconds. */
-  errorRateTimeWindowInSeconds?: number;
-}
-
 /** Secret */
 export interface Secret {
   /** The value of the secret for the respective type */
@@ -97,9 +79,12 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** Configurations for the load test. */
+/** The load test configuration. */
 export interface LoadTestConfiguration {
-  /** The number of engine instances to execute load test. Supported values are in range of 1-400. Required for creating a new test. */
+  /**
+   * The number of engine instances to execute load test. Supported values are in
+   * range of 1-45. Required for creating a new test.
+   */
   engineInstances?: number;
   /**
    * If false, Azure Load Testing copies and processes your input files unmodified
@@ -113,47 +98,54 @@ export interface LoadTestConfiguration {
    * not required to upload.
    */
   quickStartTest?: boolean;
-  /** Configuration for quick load test */
+  /** Optional load test config */
   optionalLoadTestConfig?: OptionalLoadTestConfig;
 }
 
-/** Configuration for quick load test */
+/** Optional load test config */
 export interface OptionalLoadTestConfig {
-  /** Test URL. Provide the complete HTTP URL. For example, https://contoso-app.azurewebsites.net/login */
+  /**
+   * Test URL. Provide the complete HTTP URL. For example,
+   * http://contoso-app.azurewebsites.net/login
+   */
   endpointUrl?: string;
-  /** Target throughput (requests per second). This may not be necessarily achieved. The actual throughput will be lower if the application is not capable of handling it. */
-  requestsPerSecond?: number;
-  /** Maximum response time in milliseconds of the API/endpoint. */
-  maxResponseTimeInMs?: number;
-  /** No of concurrent virtual users. */
+  /** No of concurrent virtual users */
   virtualUsers?: number;
-  /** Ramp up time in seconds. */
+  /** Ramp up time */
   rampUpTime?: number;
-  /** Test run duration in seconds. */
+  /** Test run duration */
   duration?: number;
 }
 
 /** The input artifacts for the test. */
 export interface TestInputArtifacts {
   /** File info */
-  configFileInfo?: TestFileInfo;
+  configFileInfo?: FileInfo;
   /** File info */
-  testScriptFileInfo?: TestFileInfo;
+  testScriptFileInfo?: FileInfo;
   /** File info */
-  userPropFileInfo?: TestFileInfo;
+  userPropFileInfo?: FileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: TestFileInfo;
-  /** The config json file for url based test */
-  urlTestConfigFileInfo?: TestFileInfo;
+  inputArtifactsZipFileInfo?: FileInfo;
 }
 
-/** Test file info. */
-export interface TestFileInfo {
+/** File info */
+export interface FileInfo {
+  /** File URL. */
+  url?: string;
   /** Name of the file. */
-  fileName: string;
+  fileName?: string;
+  /** File type */
+  fileType?: FileType;
+  /** Expiry time of the file (ISO 8601 literal format) */
+  expireDateTime?: string;
+  /** Validation status of the file */
+  validationStatus?: FileStatus;
+  /** Validation failure error details */
+  validationFailureDetails?: string;
 }
 
-/** Test app components */
+/** Test app component */
 export interface TestAppComponents {
   /**
    * Azure resource collection { resource id (fully qualified resource Id e.g
@@ -163,12 +155,15 @@ export interface TestAppComponents {
   components: Record<string, AppComponent>;
 }
 
-/** An Azure resource object (Refer azure generic resource model :https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource) */
+/**
+ * An Azure resource object (Refer azure generic resource model :
+ * https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)
+ */
 export interface AppComponent {
   /** Azure resource name, required while creating the app component. */
-  resourceName: string;
+  resourceName?: string;
   /** Azure resource type, required while creating the app component. */
-  resourceType: string;
+  resourceType?: string;
   /** Azure resource display name */
   displayName?: string;
   /** Kind of Azure resource type */
@@ -182,7 +177,7 @@ export interface TestServerMetricConfig {
    * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
    * for metric id).
    */
-  metrics: Record<string, ResourceMetric>;
+  metrics?: Record<string, ResourceMetric>;
 }
 
 /**
@@ -211,8 +206,6 @@ export interface ResourceMetric {
 export interface TestRun {
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
-  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
-  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -250,42 +243,24 @@ export interface TestRunArtifacts {
 /** The input artifacts for the test run. */
 export interface TestRunInputArtifacts {
   /** File info */
-  configFileInfo?: TestRunFileInfo;
+  configFileInfo?: FileInfo;
   /** File info */
-  testScriptFileInfo?: TestRunFileInfo;
+  testScriptFileInfo?: FileInfo;
   /** File info */
-  userPropFileInfo?: TestRunFileInfo;
+  userPropFileInfo?: FileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: TestRunFileInfo;
-  /** The config json file for url based test */
-  urlTestConfigFileInfo?: TestRunFileInfo;
-}
-
-/** Test run file info. */
-export interface TestRunFileInfo {
-  /** Name of the file. */
-  fileName: string;
+  inputArtifactsZipFileInfo?: FileInfo;
 }
 
 /** The output artifacts for the test run. */
 export interface TestRunOutputArtifacts {
   /** File info */
-  resultFileInfo?: TestRunFileInfo;
+  resultFileInfo?: FileInfo;
   /** File info */
-  logsFileInfo?: TestRunFileInfo;
-  /** The container for test run artifacts. */
-  artifactsContainerInfo?: ArtifactsContainerInfo;
+  logsFileInfo?: FileInfo;
 }
 
-/** Artifacts container info. */
-export interface ArtifactsContainerInfo {
-  /** This is a SAS URI to an Azure Storage Container that contains the test run artifacts. */
-  url?: string;
-  /** Expiry time of the container (RFC 3339 literal format) */
-  expireDateTime?: Date | string;
-}
-
-/** Filters to fetch the set of metric. */
+/** Filters to fetch the set of metric */
 export interface MetricRequestPayload {
   /**
    * Get metrics for specific dimension values. Example: Metric contains dimension
@@ -326,7 +301,6 @@ export interface TestRunServerMetricConfig {
 
 /** Alias for PFMetrics */
 export type PFMetrics =
-  | string
   | "response_time_ms"
   | "latency"
   | "error"
@@ -334,7 +308,6 @@ export type PFMetrics =
   | "requests_per_sec";
 /** Alias for PFAgFunc */
 export type PFAgFunc =
-  | string
   | "count"
   | "percentage"
   | "avg"
@@ -345,36 +318,26 @@ export type PFAgFunc =
   | "min"
   | "max";
 /** Alias for PFAction */
-export type PFAction = string | "continue" | "stop";
+export type PFAction = "continue" | "stop";
 /** Alias for PFResult */
-export type PFResult = string | "passed" | "undetermined" | "failed";
+export type PFResult = "passed" | "undetermined" | "failed";
 /** Alias for SecretType */
-export type SecretType = string | "AKV_SECRET_URI" | "SECRET_VALUE";
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 /** Alias for CertificateType */
-export type CertificateType = string | "AKV_CERT_URI";
+export type CertificateType = "AKV_CERT_URI";
 /** Alias for FileType */
-export type FileType =
-  | string
-  | "JMX_FILE"
-  | "USER_PROPERTIES"
-  | "ADDITIONAL_ARTIFACTS"
-  | "ZIPPED_ARTIFACTS"
-  | "URL_TEST_CONFIG_JSON";
+export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 /** Alias for FileStatus */
 export type FileStatus =
-  | string
   | "NOT_VALIDATED"
   | "VALIDATION_SUCCESS"
   | "VALIDATION_FAILURE"
   | "VALIDATION_INITIATED"
   | "VALIDATION_NOT_REQUIRED";
-/** Alias for TestKind */
-export type TestKind = string | "URL" | "JMX";
 /** Alias for PFTestResult */
-export type PFTestResult = string | "PASSED" | "NOT_APPLICABLE" | "FAILED";
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 /** Alias for Status */
 export type Status =
-  | string
   | "ACCEPTED"
   | "NOTSTARTED"
   | "PROVISIONING"
@@ -391,5 +354,5 @@ export type Status =
   | "FAILED"
   | "VALIDATION_SUCCESS"
   | "VALIDATION_FAILURE";
-/** Alias for TimeGrain */
-export type TimeGrain = string | "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+/** Alias for Interval */
+export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";

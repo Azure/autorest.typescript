@@ -4,11 +4,13 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  dataTypePropertiesSerializer,
+  dataTypeUpdatePropertiesSerializer,
   DataType,
   DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
-  DataTypeListResult,
+  _DataTypeListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -79,15 +81,8 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !resource.properties
-          ? undefined
-          : {
-              state: resource.properties?.["state"],
-              storageOutputRetention:
-                resource.properties?.["storageOutputRetention"],
-              databaseCacheRetention:
-                resource.properties?.["databaseCacheRetention"],
-              databaseRetention: resource.properties?.["databaseRetention"],
-            },
+          ? resource.properties
+          : dataTypePropertiesSerializer(resource.properties),
       },
     });
 }
@@ -274,15 +269,8 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !properties.properties
-          ? undefined
-          : {
-              state: properties.properties?.["state"],
-              storageOutputRetention:
-                properties.properties?.["storageOutputRetention"],
-              databaseCacheRetention:
-                properties.properties?.["databaseCacheRetention"],
-              databaseRetention: properties.properties?.["databaseRetention"],
-            },
+          ? properties.properties
+          : dataTypeUpdatePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -589,7 +577,7 @@ export async function _listByDataProductDeserialize(
   result:
     | DataTypesListByDataProduct200Response
     | DataTypesListByDataProductDefaultResponse,
-): Promise<DataTypeListResult> {
+): Promise<_DataTypeListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

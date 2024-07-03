@@ -14,7 +14,6 @@ export interface SchemaVersion {
 }
 
 /** Type of SchemaContentTypeValues */
-/** */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
@@ -35,8 +34,17 @@ export interface SchemaProperties {
   version: number;
 }
 
+export function schemaPropertiesSerializer(item: SchemaProperties) {
+  return {
+    id: item["id"],
+    format: item["format"],
+    groupName: item["groupName"],
+    name: item["name"],
+    version: item["version"],
+  };
+}
+
 /** Represents the format of the schema to be stored by the Schema Registry service. */
-/** */
 export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 
 /** The schema content of a schema, along with id and meta properties. */
@@ -47,19 +55,24 @@ export interface Schema {
   properties: SchemaProperties;
 }
 
+export function schemaSerializer(item: Schema) {
+  return {
+    definition: item["definition"],
+    properties: schemaPropertiesSerializer(item.properties),
+  };
+}
+
 /** The content type for the schema. */
-/** */
 export type ContentTypeEnum =
   | "application/octet-stream"
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
 /** Represents the Schema Registry API version to use for requests. */
-/** */
 export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Paged collection of SchemaGroup items */
-export interface PagedSchemaGroup {
+export interface _PagedSchemaGroup {
   /** The SchemaGroup items on this page */
   value: SchemaGroup[];
   /** The link to the next page of items */
@@ -67,7 +80,7 @@ export interface PagedSchemaGroup {
 }
 
 /** Paged collection of Version items */
-export interface PagedVersion {
+export interface _PagedVersion {
   /** The Version items on this page */
   value: SchemaVersion[];
   /** The link to the next page of items */

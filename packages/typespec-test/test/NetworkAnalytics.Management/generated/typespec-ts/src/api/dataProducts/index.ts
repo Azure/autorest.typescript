@@ -4,6 +4,9 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  dataProductPropertiesSerializer,
+  managedServiceIdentitySerializer,
+  dataProductUpdatePropertiesSerializer,
   DataProduct,
   DataProductUpdate,
   AccountSas,
@@ -12,7 +15,7 @@ import {
   RoleAssignmentCommonProperties,
   RoleAssignmentDetail,
   ListRoleAssignments,
-  DataProductListResult,
+  _DataProductListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -53,6 +56,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   DataProductsCreateOptionalParams,
   DataProductsGetOptionalParams,
@@ -90,76 +94,16 @@ export function _createSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
+        tags: !resource.tags
+          ? resource.tags
+          : (serializeRecord(resource.tags as any) as any),
         location: resource["location"],
-        tags: resource["tags"],
         properties: !resource.properties
-          ? undefined
-          : {
-              publisher: resource.properties?.["publisher"],
-              product: resource.properties?.["product"],
-              majorVersion: resource.properties?.["majorVersion"],
-              owners: resource.properties?.["owners"],
-              redundancy: resource.properties?.["redundancy"],
-              purviewAccount: resource.properties?.["purviewAccount"],
-              purviewCollection: resource.properties?.["purviewCollection"],
-              privateLinksEnabled: resource.properties?.["privateLinksEnabled"],
-              publicNetworkAccess: resource.properties?.["publicNetworkAccess"],
-              customerManagedKeyEncryptionEnabled:
-                resource.properties?.["customerManagedKeyEncryptionEnabled"],
-              customerEncryptionKey: !resource.properties?.customerEncryptionKey
-                ? undefined
-                : {
-                    keyVaultUri:
-                      resource.properties?.customerEncryptionKey?.[
-                        "keyVaultUri"
-                      ],
-                    keyName:
-                      resource.properties?.customerEncryptionKey?.["keyName"],
-                    keyVersion:
-                      resource.properties?.customerEncryptionKey?.[
-                        "keyVersion"
-                      ],
-                  },
-              networkacls: !resource.properties?.networkacls
-                ? undefined
-                : {
-                    virtualNetworkRule: resource.properties?.networkacls?.[
-                      "virtualNetworkRule"
-                    ].map((p) => ({
-                      id: p["id"],
-                      action: p["action"],
-                      state: p["state"],
-                    })),
-                    ipRules: resource.properties?.networkacls?.["ipRules"].map(
-                      (p) => ({ value: p["value"], action: p["action"] }),
-                    ),
-                    allowedQueryIpRangeList:
-                      resource.properties?.networkacls?.[
-                        "allowedQueryIpRangeList"
-                      ],
-                    defaultAction:
-                      resource.properties?.networkacls?.["defaultAction"],
-                  },
-              managedResourceGroupConfiguration: !resource.properties
-                ?.managedResourceGroupConfiguration
-                ? undefined
-                : {
-                    name: resource.properties
-                      ?.managedResourceGroupConfiguration?.["name"],
-                    location:
-                      resource.properties?.managedResourceGroupConfiguration?.[
-                        "location"
-                      ],
-                  },
-              currentMinorVersion: resource.properties?.["currentMinorVersion"],
-            },
+          ? resource.properties
+          : dataProductPropertiesSerializer(resource.properties),
         identity: !resource.identity
-          ? undefined
-          : {
-              type: resource.identity?.["type"],
-              userAssignedIdentities:
-                resource.identity?.["userAssignedIdentities"],
-            },
+          ? resource.identity
+          : managedServiceIdentitySerializer(resource.identity),
       },
     });
 }
@@ -177,8 +121,8 @@ export async function _createDeserialize(
 
   result = result as DataProductsCreateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -292,8 +236,8 @@ export async function _createDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -352,8 +296,8 @@ export async function _getDeserialize(
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -467,8 +411,8 @@ export async function _getDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -518,24 +462,14 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         identity: !properties.identity
-          ? undefined
-          : {
-              type: properties.identity?.["type"],
-              userAssignedIdentities:
-                properties.identity?.["userAssignedIdentities"],
-            },
-        tags: properties["tags"],
+          ? properties.identity
+          : managedServiceIdentitySerializer(properties.identity),
+        tags: !properties.tags
+          ? properties.tags
+          : (serializeRecord(properties.tags as any) as any),
         properties: !properties.properties
-          ? undefined
-          : {
-              owners: properties.properties?.["owners"],
-              purviewAccount: properties.properties?.["purviewAccount"],
-              purviewCollection: properties.properties?.["purviewCollection"],
-              privateLinksEnabled:
-                properties.properties?.["privateLinksEnabled"],
-              currentMinorVersion:
-                properties.properties?.["currentMinorVersion"],
-            },
+          ? properties.properties
+          : dataProductUpdatePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -553,8 +487,8 @@ export async function _updateDeserialize(
 
   result = result as DataProductsUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -668,8 +602,8 @@ export async function _updateDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
           type: result.body.identity?.["type"],
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
@@ -1112,15 +1046,15 @@ export async function _listByResourceGroupDeserialize(
   result:
     | DataProductsListByResourceGroup200Response
     | DataProductsListByResourceGroupDefaultResponse,
-): Promise<DataProductListResult> {
+): Promise<_DataProductListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],
@@ -1220,8 +1154,8 @@ export async function _listByResourceGroupDeserialize(
       identity: !p.identity
         ? undefined
         : {
-            tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
+            tenantId: p.identity?.["tenantId"],
             type: p.identity?.["type"],
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
@@ -1275,15 +1209,15 @@ export async function _listBySubscriptionDeserialize(
   result:
     | DataProductsListBySubscription200Response
     | DataProductsListBySubscriptionDefaultResponse,
-): Promise<DataProductListResult> {
+): Promise<_DataProductListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
       name: p["name"],
       type: p["type"],
@@ -1383,8 +1317,8 @@ export async function _listBySubscriptionDeserialize(
       identity: !p.identity
         ? undefined
         : {
-            tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
+            tenantId: p.identity?.["tenantId"],
             type: p.identity?.["type"],
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },

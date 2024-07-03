@@ -15,13 +15,12 @@ export interface Collection {
     readonly collectionId: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ConfidentialLedgerListCollectionsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ConfidentialLedgerOperations {
-    // (undocumented)
     listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
 
@@ -32,7 +31,7 @@ export class ParametrizedHostClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface ParametrizedHostClientOptions extends ClientOptions {
     // (undocumented)
     apiVersion?: string;

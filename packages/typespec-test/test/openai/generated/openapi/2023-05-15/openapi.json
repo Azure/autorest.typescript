@@ -272,7 +272,7 @@
       ],
       "x-ms-enum": {
         "name": "AzureOpenAIOperationState",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "notRunning",
@@ -472,7 +472,7 @@
       ],
       "x-ms-enum": {
         "name": "ChatRole",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "system",
@@ -572,7 +572,7 @@
       ],
       "x-ms-enum": {
         "name": "CompletionsFinishReason",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "stopped",

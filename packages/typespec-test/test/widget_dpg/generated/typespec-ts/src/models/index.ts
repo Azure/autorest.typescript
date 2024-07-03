@@ -5,7 +5,6 @@ export {
   User,
   Widget,
   WidgetError,
-  ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
@@ -23,6 +22,7 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
+  BudgetsCreateOrUpdateOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

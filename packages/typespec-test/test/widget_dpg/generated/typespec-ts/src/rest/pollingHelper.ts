@@ -20,6 +20,10 @@ import {
   BudgetsCreateOrReplace201Response,
   BudgetsCreateOrReplaceDefaultResponse,
   BudgetsCreateOrReplaceLogicalResponse,
+  BudgetsCreateOrUpdate200Response,
+  BudgetsCreateOrUpdate201Response,
+  BudgetsCreateOrUpdateDefaultResponse,
+  BudgetsCreateOrUpdateLogicalResponse,
 } from "./responses.js";
 
 /**
@@ -102,6 +106,18 @@ export interface SimplePollerLike<
  */
 export async function getLongRunningPoller<
   TResult extends
+    | BudgetsCreateOrUpdateLogicalResponse
+    | BudgetsCreateOrUpdateDefaultResponse,
+>(
+  client: Client,
+  initialResponse:
+    | BudgetsCreateOrUpdate200Response
+    | BudgetsCreateOrUpdate201Response
+    | BudgetsCreateOrUpdateDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
     | WidgetsCreateOrReplaceLogicalResponse
     | WidgetsCreateOrReplaceDefaultResponse,
 >(
@@ -139,7 +155,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     },
     sendPollRequest: async (
       path: string,
-      options?: { abortSignal?: AbortSignalLike },
+      pollOptions?: { abortSignal?: AbortSignalLike },
     ) => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
@@ -148,7 +164,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       function abortListener(): void {
         abortController.abort();
       }
-      const inputAbortSignal = options?.abortSignal;
+      const inputAbortSignal = pollOptions?.abortSignal;
       const abortSignal = abortController.signal;
       if (inputAbortSignal?.aborted) {
         abortController.abort();

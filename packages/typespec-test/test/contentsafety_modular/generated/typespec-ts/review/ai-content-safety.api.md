@@ -10,7 +10,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
+// @public
 export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
 }
 
@@ -24,7 +24,7 @@ export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
 }
 
-// @public (undocumented)
+// @public
 export interface AnalyzeImageOptionalParams extends OperationOptions {
 }
 
@@ -35,7 +35,7 @@ export interface AnalyzeImageOptions {
     outputType?: AnalyzeImageOutputType;
 }
 
-// @public (undocumented)
+// @public
 export type AnalyzeImageOutputType = "FourLevels";
 
 // @public
@@ -43,7 +43,7 @@ export interface AnalyzeImageResult {
     analyzeResults: ImageAnalyzeSeverityResult[];
 }
 
-// @public (undocumented)
+// @public
 export interface AnalyzeTextOptionalParams extends OperationOptions {
 }
 
@@ -56,7 +56,7 @@ export interface AnalyzeTextOptions {
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 // @public
@@ -81,7 +81,7 @@ export class ContentSafetyClient {
     removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsOptionalParams): Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export interface ContentSafetyClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -91,20 +91,20 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTextBlocklistOptionalParams extends OperationOptions {
 }
 
@@ -114,7 +114,7 @@ export interface ImageAnalyzeSeverityResult {
     severity?: number;
 }
 
-// @public (undocumented)
+// @public
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
 // @public
@@ -123,14 +123,14 @@ export interface ImageData {
     content?: Uint8Array;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
     maxpagesize?: number;
     skip?: number;
     top?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {
 }
 
@@ -142,23 +142,11 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export interface PagedTextBlockItem {
-    nextLink?: string;
-    value: TextBlockItem[];
-}
-
-// @public
-export interface PagedTextBlocklist {
-    nextLink?: string;
-    value: TextBlocklist[];
-}
-
-// @public
 export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface RemoveBlockItemsOptionalParams extends OperationOptions {
 }
 
@@ -199,10 +187,10 @@ export interface TextBlocklistMatchResult {
     blocklistName: string;
 }
 
-// @public (undocumented)
+// @public
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
-// @public (undocumented)
+// @public
 export type Versions = "2023-10-01";
 
 // (No @packageDocumentation comment for this package)

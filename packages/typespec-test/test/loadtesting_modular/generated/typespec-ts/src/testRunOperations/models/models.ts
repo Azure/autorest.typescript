@@ -1,12 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Load test model. */
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import {
+  Test as TestRest,
+  PassFailCriteria as PassFailCriteriaRest,
+  PassFailMetric as PassFailMetricRest,
+  Secret as SecretRest,
+  CertificateMetadata as CertificateMetadataRest,
+  LoadTestConfiguration as LoadTestConfigurationRest,
+  OptionalLoadTestConfig as OptionalLoadTestConfigRest,
+  TestAppComponents as TestAppComponentsRest,
+  AppComponent as AppComponentRest,
+  TestServerMetricConfig as TestServerMetricConfigRest,
+  ResourceMetric as ResourceMetricRest,
+  TestRun as TestRunRest,
+  TestRunAppComponents as TestRunAppComponentsRest,
+  TestRunServerMetricConfig as TestRunServerMetricConfigRest,
+  MetricRequestPayload as MetricRequestPayloadRest,
+  DimensionFilter as DimensionFilterRest,
+} from "../../rest/index.js";
+
+/** Load test model */
 export interface Test {
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
-  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
-  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -15,46 +33,78 @@ export interface Test {
    * SECRET_VALUE.
    */
   secrets?: Record<string, Secret>;
-  /** Certificates metadata. */
+  /** Certificates metadata */
   certificate?: CertificateMetadata;
   /** Environment variables which are defined as a set of <name,value> pairs. */
   environmentVariables?: Record<string, string>;
   /** The load test configuration. */
   loadTestConfiguration?: LoadTestConfiguration;
-  /** Id of the test run to be marked as baseline to view trends of client-side metrics from recent test runs */
-  baselineTestRunId?: string;
   /** The input artifacts for the test. */
   readonly inputArtifacts?: TestInputArtifacts;
-  /** Unique test identifier for the load test, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
-  readonly testId: string;
+  /** Unique test name as identifier. */
+  readonly testId?: string;
   /** The test description. */
   description?: string;
   /** Display name of a test. */
   displayName?: string;
   /** Subnet ID on which the load test instances should run. */
   subnetId?: string;
-  /** Kind of test. */
-  kind?: TestKind;
-  /** Inject load test engines without deploying public IP for outbound access */
-  publicIPDisabled?: boolean;
   /** Type of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityType?: string;
   /** Resource Id of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityId?: string;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testSerializer(item: Test): TestRest {
+  return {
+    passFailCriteria: !item.passFailCriteria
+      ? item.passFailCriteria
+      : passFailCriteriaSerializer(item.passFailCriteria),
+    secrets: !item.secrets
+      ? item.secrets
+      : (serializeRecord(item.secrets as any, secretSerializer) as any),
+    certificate: !item.certificate
+      ? item.certificate
+      : certificateMetadataSerializer(item.certificate),
+    environmentVariables: !item.environmentVariables
+      ? item.environmentVariables
+      : (serializeRecord(item.environmentVariables as any) as any),
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? item.loadTestConfiguration
+      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    description: item["description"],
+    displayName: item["displayName"],
+    subnetId: item["subnetId"],
+    keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
+    keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
+  };
 }
 
 /** Pass fail criteria for a test. */
 export interface PassFailCriteria {
   /** Map of id and pass fail metrics { id  : pass fail metrics }. */
   passFailMetrics?: Record<string, PassFailMetric>;
+}
+
+export function passFailCriteriaSerializer(
+  item: PassFailCriteria,
+): PassFailCriteriaRest {
+  return {
+    passFailMetrics: !item.passFailMetrics
+      ? item.passFailMetrics
+      : (serializeRecord(
+          item.passFailMetrics as any,
+          passFailMetricSerializer,
+        ) as any),
+  };
 }
 
 /** Pass fail metric */
@@ -85,28 +135,41 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
-/** Metrics for pass/fail criteria. */
-/** "response_time_ms", "latency", "error", "requests", "requests_per_sec" */
-export type PFMetrics = string;
-/** Aggregation functions for pass/fail criteria. */
-/** "count", "percentage", "avg", "p50", "p90", "p95", "p99", "min", "max" */
-export type PFAgFunc = string;
-/** Action to take on failure of pass/fail criteria. */
-/** "continue", "stop" */
-export type PFAction = string;
-/** Pass/fail criteria result. */
-/** "passed", "undetermined", "failed" */
-export type PFResult = string;
-
-/** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
-export interface AutoStopCriteria {
-  /** Whether auto-stop should be disabled. The default value is false. */
-  autoStopDisabled?: boolean;
-  /** Threshold percentage of errors on which test run should be automatically stopped. Allowed values are in range of 0.0-100.0 */
-  errorRate?: number;
-  /** Time window during which the error percentage should be evaluated in seconds. */
-  errorRateTimeWindowInSeconds?: number;
+export function passFailMetricSerializer(
+  item: PassFailMetric,
+): PassFailMetricRest {
+  return {
+    clientMetric: item["clientMetric"],
+    aggregate: item["aggregate"],
+    condition: item["condition"],
+    requestName: item["requestName"],
+    value: item["value"],
+    action: item["action"],
+  };
 }
+
+/** Type of PFMetrics */
+export type PFMetrics =
+  | "response_time_ms"
+  | "latency"
+  | "error"
+  | "requests"
+  | "requests_per_sec";
+/** Type of PFAgFunc */
+export type PFAgFunc =
+  | "count"
+  | "percentage"
+  | "avg"
+  | "p50"
+  | "p90"
+  | "p95"
+  | "p99"
+  | "min"
+  | "max";
+/** Type of PFAction */
+export type PFAction = "continue" | "stop";
+/** Type of PFResult */
+export type PFResult = "passed" | "undetermined" | "failed";
 
 /** Secret */
 export interface Secret {
@@ -116,9 +179,15 @@ export interface Secret {
   type?: SecretType;
 }
 
-/** Types of secrets supported. */
-/** "AKV_SECRET_URI", "SECRET_VALUE" */
-export type SecretType = string;
+export function secretSerializer(item: Secret): SecretRest {
+  return {
+    value: item["value"],
+    type: item["type"],
+  };
+}
+
+/** Type of SecretType */
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -130,13 +199,25 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** Types of certificates supported. */
-/** "AKV_CERT_URI" */
-export type CertificateType = string;
+export function certificateMetadataSerializer(
+  item: CertificateMetadata,
+): CertificateMetadataRest {
+  return {
+    value: item["value"],
+    type: item["type"],
+    name: item["name"],
+  };
+}
 
-/** Configurations for the load test. */
+/** Type of CertificateType */
+export type CertificateType = "AKV_CERT_URI";
+
+/** The load test configuration. */
 export interface LoadTestConfiguration {
-  /** The number of engine instances to execute load test. Supported values are in range of 1-400. Required for creating a new test. */
+  /**
+   * The number of engine instances to execute load test. Supported values are in
+   * range of 1-45. Required for creating a new test.
+   */
   engineInstances?: number;
   /**
    * If false, Azure Load Testing copies and processes your input files unmodified
@@ -150,69 +231,90 @@ export interface LoadTestConfiguration {
    * not required to upload.
    */
   quickStartTest?: boolean;
-  /** Configuration for quick load test */
+  /** Optional load test config */
   optionalLoadTestConfig?: OptionalLoadTestConfig;
 }
 
-/** Configuration for quick load test */
+export function loadTestConfigurationSerializer(
+  item: LoadTestConfiguration,
+): LoadTestConfigurationRest {
+  return {
+    engineInstances: item["engineInstances"],
+    splitAllCSVs: item["splitAllCSVs"],
+    quickStartTest: item["quickStartTest"],
+    optionalLoadTestConfig: !item.optionalLoadTestConfig
+      ? item.optionalLoadTestConfig
+      : optionalLoadTestConfigSerializer(item.optionalLoadTestConfig),
+  };
+}
+
+/** Optional load test config */
 export interface OptionalLoadTestConfig {
-  /** Test URL. Provide the complete HTTP URL. For example, https://contoso-app.azurewebsites.net/login */
+  /**
+   * Test URL. Provide the complete HTTP URL. For example,
+   * http://contoso-app.azurewebsites.net/login
+   */
   endpointUrl?: string;
-  /** Target throughput (requests per second). This may not be necessarily achieved. The actual throughput will be lower if the application is not capable of handling it. */
-  requestsPerSecond?: number;
-  /** Maximum response time in milliseconds of the API/endpoint. */
-  maxResponseTimeInMs?: number;
-  /** No of concurrent virtual users. */
+  /** No of concurrent virtual users */
   virtualUsers?: number;
-  /** Ramp up time in seconds. */
+  /** Ramp up time */
   rampUpTime?: number;
-  /** Test run duration in seconds. */
+  /** Test run duration */
   duration?: number;
+}
+
+export function optionalLoadTestConfigSerializer(
+  item: OptionalLoadTestConfig,
+): OptionalLoadTestConfigRest {
+  return {
+    endpointUrl: item["endpointUrl"],
+    virtualUsers: item["virtualUsers"],
+    rampUpTime: item["rampUpTime"],
+    duration: item["duration"],
+  };
 }
 
 /** The input artifacts for the test. */
 export interface TestInputArtifacts {
   /** File info */
-  configFileInfo?: TestFileInfo;
+  configFileInfo?: FileInfo;
   /** File info */
-  testScriptFileInfo?: TestFileInfo;
+  testScriptFileInfo?: FileInfo;
   /** File info */
-  userPropFileInfo?: TestFileInfo;
+  userPropFileInfo?: FileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: TestFileInfo;
-  /** The config json file for url based test */
-  urlTestConfigFileInfo?: TestFileInfo;
+  inputArtifactsZipFileInfo?: FileInfo;
   /** Additional supported files for the test run */
-  readonly additionalFileInfo?: TestFileInfo[];
+  readonly additionalFileInfo?: FileInfo[];
 }
 
-/** Test file info. */
-export interface TestFileInfo {
-  /** Name of the file. */
-  fileName: string;
+/** File info */
+export interface FileInfo {
   /** File URL. */
-  readonly url?: string;
+  url?: string;
+  /** Name of the file. */
+  fileName?: string;
   /** File type */
-  readonly fileType?: FileType;
-  /** Expiry time of the file (RFC 3339 literal format) */
-  readonly expireDateTime?: Date;
+  fileType?: FileType;
+  /** Expiry time of the file (ISO 8601 literal format) */
+  expireDateTime?: string;
   /** Validation status of the file */
-  readonly validationStatus?: FileStatus;
+  validationStatus?: FileStatus;
   /** Validation failure error details */
-  readonly validationFailureDetails?: string;
+  validationFailureDetails?: string;
 }
 
-/** Types of file supported. */
-/** "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS", "ZIPPED_ARTIFACTS", "URL_TEST_CONFIG_JSON" */
-export type FileType = string;
-/** File status. */
-/** "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED" */
-export type FileStatus = string;
-/** Test kind */
-/** "URL", "JMX" */
-export type TestKind = string;
+/** Type of FileType */
+export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
+/** Type of FileStatus */
+export type FileStatus =
+  | "NOT_VALIDATED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE"
+  | "VALIDATION_INITIATED"
+  | "VALIDATION_NOT_REQUIRED";
 
-/** Test app components */
+/** Test app component */
 export interface TestAppComponents {
   /**
    * Azure resource collection { resource id (fully qualified resource Id e.g
@@ -222,24 +324,41 @@ export interface TestAppComponents {
   components: Record<string, AppComponent>;
   /** Test identifier */
   readonly testId?: string;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
 
-/** An Azure resource object (Refer azure generic resource model :https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource) */
+export function testAppComponentsSerializer(
+  item: TestAppComponents,
+): TestAppComponentsRest {
+  return {
+    components: serializeRecord(
+      item.components as any,
+      appComponentSerializer,
+    ) as any,
+  };
+}
+
+/**
+ * An Azure resource object (Refer azure generic resource model :
+ * https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)
+ */
 export interface AppComponent {
-  /** fully qualified resource Id e.g subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} */
-  readonly resourceId: string;
+  /**
+   * fully qualified resource Id e.g
+   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}
+   */
+  readonly resourceId?: string;
   /** Azure resource name, required while creating the app component. */
-  resourceName: string;
+  resourceName?: string;
   /** Azure resource type, required while creating the app component. */
-  resourceType: string;
+  resourceType?: string;
   /** Azure resource display name */
   displayName?: string;
   /** Resource group name of the Azure resource */
@@ -248,6 +367,15 @@ export interface AppComponent {
   readonly subscriptionId?: string;
   /** Kind of Azure resource type */
   kind?: string;
+}
+
+export function appComponentSerializer(item: AppComponent): AppComponentRest {
+  return {
+    resourceName: item["resourceName"],
+    resourceType: item["resourceType"],
+    displayName: item["displayName"],
+    kind: item["kind"],
+  };
 }
 
 /** Test server metrics configuration */
@@ -259,15 +387,25 @@ export interface TestServerMetricConfig {
    * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
    * for metric id).
    */
-  metrics: Record<string, ResourceMetric>;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
+  metrics?: Record<string, ResourceMetric>;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testServerMetricConfigSerializer(
+  item: TestServerMetricConfig,
+): TestServerMetricConfigRest {
+  return {
+    metrics: !item.metrics
+      ? item.metrics
+      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+  };
 }
 
 /**
@@ -294,18 +432,45 @@ export interface ResourceMetric {
   resourceType: string;
 }
 
-/** Azure Load Testing API versions. */
-/** */
-export type APIVersions = "2022-11-01" | "2023-04-01-preview";
+export function resourceMetricSerializer(
+  item: ResourceMetric,
+): ResourceMetricRest {
+  return {
+    resourceId: item["resourceId"],
+    metricNamespace: item["metricNamespace"],
+    displayDescription: item["displayDescription"],
+    name: item["name"],
+    aggregation: item["aggregation"],
+    unit: item["unit"],
+    resourceType: item["resourceType"],
+  };
+}
+
+/** Collection of files. */
+export interface _PagedFileInfo {
+  /** The FileInfo items on this page */
+  value: FileInfo[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Collection of tests */
+export interface _PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Type of APIVersions */
+export type APIVersions = "2022-11-01";
 
 /** Load test run model */
 export interface TestRun {
-  /** Unique test run identifier for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
+  /** Unique test run name as identifier */
   readonly testRunId: string;
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
-  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
-  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -338,30 +503,49 @@ export interface TestRun {
   description?: string;
   /** The test run status. */
   readonly status?: Status;
-  /** The test run start DateTime(RFC 3339 literal format). */
-  readonly startDateTime?: Date;
-  /** The test run end DateTime(RFC 3339 literal format). */
-  readonly endDateTime?: Date;
+  /** The test run start DateTime(ISO 8601 literal format). */
+  readonly startDateTime?: string;
+  /** The test run end DateTime(ISO 8601 literal format). */
+  readonly endDateTime?: string;
   /** Test run initiated time. */
-  readonly executedDateTime?: Date;
+  readonly executedDateTime?: string;
   /** Portal url. */
   readonly portalUrl?: string;
   /** Test run duration in milliseconds. */
   readonly duration?: number;
   /** Subnet ID on which the load test instances should run. */
   readonly subnetId?: string;
-  /** Type of test. */
-  readonly kind?: TestKind;
-  /** Inject load test engines without deploying public IP for outbound access */
-  readonly publicIPDisabled?: boolean;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testRunSerializer(item: TestRun): TestRunRest {
+  return {
+    passFailCriteria: !item.passFailCriteria
+      ? item.passFailCriteria
+      : passFailCriteriaSerializer(item.passFailCriteria),
+    secrets: !item.secrets
+      ? item.secrets
+      : (serializeRecord(item.secrets as any, secretSerializer) as any),
+    certificate: !item.certificate
+      ? item.certificate
+      : certificateMetadataSerializer(item.certificate),
+    environmentVariables: !item.environmentVariables
+      ? item.environmentVariables
+      : (serializeRecord(item.environmentVariables as any) as any),
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? item.loadTestConfiguration
+      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    displayName: item["displayName"],
+    testId: item["testId"],
+    description: item["description"],
+  };
 }
 
 /** Error details if there is any failure in load test run */
@@ -413,59 +597,45 @@ export interface TestRunArtifacts {
 /** The input artifacts for the test run. */
 export interface TestRunInputArtifacts {
   /** File info */
-  configFileInfo?: TestRunFileInfo;
+  configFileInfo?: FileInfo;
   /** File info */
-  testScriptFileInfo?: TestRunFileInfo;
+  testScriptFileInfo?: FileInfo;
   /** File info */
-  userPropFileInfo?: TestRunFileInfo;
+  userPropFileInfo?: FileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: TestRunFileInfo;
-  /** The config json file for url based test */
-  urlTestConfigFileInfo?: TestRunFileInfo;
+  inputArtifactsZipFileInfo?: FileInfo;
   /** Additional supported files for the test run */
-  readonly additionalFileInfo?: TestRunFileInfo[];
-}
-
-/** Test run file info. */
-export interface TestRunFileInfo {
-  /** Name of the file. */
-  fileName: string;
-  /** File URL. */
-  readonly url?: string;
-  /** File type */
-  readonly fileType?: FileType;
-  /** Expiry time of the file (RFC 3339 literal format) */
-  readonly expireDateTime?: Date;
-  /** Validation status of the file */
-  readonly validationStatus?: FileStatus;
-  /** Validation failure error details */
-  readonly validationFailureDetails?: string;
+  readonly additionalFileInfo?: FileInfo[];
 }
 
 /** The output artifacts for the test run. */
 export interface TestRunOutputArtifacts {
   /** File info */
-  resultFileInfo?: TestRunFileInfo;
+  resultFileInfo?: FileInfo;
   /** File info */
-  logsFileInfo?: TestRunFileInfo;
-  /** The container for test run artifacts. */
-  artifactsContainerInfo?: ArtifactsContainerInfo;
+  logsFileInfo?: FileInfo;
 }
 
-/** Artifacts container info. */
-export interface ArtifactsContainerInfo {
-  /** This is a SAS URI to an Azure Storage Container that contains the test run artifacts. */
-  url?: string;
-  /** Expiry time of the container (RFC 3339 literal format) */
-  expireDateTime?: Date;
-}
-
-/** Test result based on pass/fail criteria. */
-/** "PASSED", "NOT_APPLICABLE", "FAILED" */
-export type PFTestResult = string;
-/** Test run status. */
-/** "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE" */
-export type Status = string;
+/** Type of PFTestResult */
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** Type of Status */
+export type Status =
+  | "ACCEPTED"
+  | "NOTSTARTED"
+  | "PROVISIONING"
+  | "PROVISIONED"
+  | "CONFIGURING"
+  | "CONFIGURED"
+  | "EXECUTING"
+  | "EXECUTED"
+  | "DEPROVISIONING"
+  | "DEPROVISIONED"
+  | "DONE"
+  | "CANCELLING"
+  | "CANCELLED"
+  | "FAILED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE";
 
 /** Test run app component */
 export interface TestRunAppComponents {
@@ -477,14 +647,25 @@ export interface TestRunAppComponents {
   components: Record<string, AppComponent>;
   /** Test run identifier */
   readonly testRunId?: string;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testRunAppComponentsSerializer(
+  item: TestRunAppComponents,
+): TestRunAppComponentsRest {
+  return {
+    components: serializeRecord(
+      item.components as any,
+      appComponentSerializer,
+    ) as any,
+  };
 }
 
 /** Test run server metrics configuration */
@@ -497,28 +678,31 @@ export interface TestRunServerMetricConfig {
    * for metric id).
    */
   metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
 
-/** Time Grain */
-/** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
-export type TimeGrain = string;
+export function testRunServerMetricConfigSerializer(
+  item: TestRunServerMetricConfig,
+): TestRunServerMetricConfigRest {
+  return {
+    metrics: !item.metrics
+      ? item.metrics
+      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+  };
+}
 
-/** Metrics dimension values. */
+/** Type of Interval */
+export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+
 export interface DimensionValueList {
-  /** The dimension name */
-  readonly name?: string;
-  /** The dimension value */
-  value?: string[];
-  /** Link for the next set of values in case of paginated results, if applicable. */
-  nextLink?: string;
+  value: string[];
 }
 
 /** Represents collection of metric definitions. */
@@ -558,12 +742,25 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** Aggregation type. */
-/** "Average", "Count", "None", "Total", "Percentile90", "Percentile95", "Percentile99" */
-export type AggregationType = string;
-/** Metric unit. */
-/** "NotSpecified", "Percent", "Count", "Seconds", "Milliseconds", "Bytes", "BytesPerSecond", "CountPerSecond" */
-export type MetricUnit = string;
+/** Type of AggregationType */
+export type AggregationType =
+  | "Average"
+  | "Count"
+  | "None"
+  | "Total"
+  | "Percentile90"
+  | "Percentile95"
+  | "Percentile99";
+/** Type of MetricUnit */
+export type MetricUnit =
+  | "NotSpecified"
+  | "Percent"
+  | "Count"
+  | "Seconds"
+  | "Milliseconds"
+  | "Bytes"
+  | "BytesPerSecond"
+  | "CountPerSecond";
 
 /** Metric availability specifies the time grain (aggregation interval or frequency) */
 export interface MetricAvailability {
@@ -573,6 +770,9 @@ export interface MetricAvailability {
    */
   timeGrain?: TimeGrain;
 }
+
+/** Type of TimeGrain */
+export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
@@ -588,7 +788,7 @@ export interface MetricNamespace {
   name?: string;
 }
 
-/** Filters to fetch the set of metric. */
+/** Filters to fetch the set of metric */
 export interface MetricRequestPayload {
   /**
    * Get metrics for specific dimension values. Example: Metric contains dimension
@@ -599,6 +799,17 @@ export interface MetricRequestPayload {
   filters?: DimensionFilter[];
 }
 
+export function metricRequestPayloadSerializer(
+  item: MetricRequestPayload,
+): MetricRequestPayloadRest {
+  return {
+    filters:
+      item["filters"] === undefined
+        ? item["filters"]
+        : item["filters"].map(dimensionFilterSerializer),
+  };
+}
+
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */
@@ -607,8 +818,17 @@ export interface DimensionFilter {
   values?: string[];
 }
 
+export function dimensionFilterSerializer(
+  item: DimensionFilter,
+): DimensionFilterRest {
+  return {
+    name: item["name"],
+    values: item["values"],
+  };
+}
+
 /** The response to a metrics query. */
-export interface Metrics {
+export interface _PagedTimeSeriesElement {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
@@ -625,8 +845,8 @@ export interface TimeSeriesElement {
 
 /** Represents a metric value. */
 export interface MetricValue {
-  /** The timestamp for the metric value in RFC 3339 format. */
-  timestamp?: Date;
+  /** The timestamp for the metric value in ISO 8601 format. */
+  timestamp?: string;
   /** The metric value. */
   value?: number;
 }
@@ -639,26 +859,18 @@ export interface DimensionValue {
   value?: string;
 }
 
-/** Paged collection of TestFileInfo items */
-export interface PagedTestFileInfo {
-  /** The TestFileInfo items on this page */
-  value: TestFileInfo[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Paged collection of Test items */
-export interface PagedTest {
-  /** The Test items on this page */
-  value: Test[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Paged collection of TestRun items */
-export interface PagedTestRun {
+/** Collection of test runs */
+export interface _PagedTestRun {
   /** The TestRun items on this page */
   value: TestRun[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Paged collection of DimensionValueList items */
+export interface _PagedDimensionValueList {
+  /** The DimensionValueList items on this page */
+  value: DimensionValueList[];
   /** The link to the next page of items */
   nextLink?: string;
 }

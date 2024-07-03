@@ -14,8 +14,6 @@ export {
   Schema,
   ContentTypeEnum,
   ServiceApiVersions,
-  PagedSchemaGroup,
-  PagedVersion,
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,

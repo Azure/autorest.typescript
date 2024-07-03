@@ -21,7 +21,7 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(endpointParam: string, options?: ClientOptions): WidgetManagerClient;
+function createClient(endpointParam: string, { apiVersion, ...options }?: WidgetManagerClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)
@@ -269,7 +269,7 @@ export interface ListWidgetsDefaultResponse extends HttpResponse {
 export type ListWidgetsParameters = RequestParameters;
 
 // @public
-export type OperationStateOutput = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
+export type OperationStateOutput = string;
 
 // @public
 export interface OperationStatusOutput {
@@ -343,6 +343,11 @@ export interface Widget {
 export type WidgetManagerClient = Client & {
     path: Routes;
 };
+
+// @public
+export interface WidgetManagerClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
 
 // @public
 export interface WidgetOutput {

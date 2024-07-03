@@ -12,6 +12,7 @@ import {
   WidgetsCreateOrReplaceParameters,
   WidgetsAnalyzeWidgetParameters,
   BudgetsCreateOrReplaceParameters,
+  BudgetsCreateOrUpdateParameters,
 } from "./parameters.js";
 import {
   WidgetsListWidgets200Response,
@@ -36,6 +37,9 @@ import {
   BudgetsCreateOrReplace200Response,
   BudgetsCreateOrReplace201Response,
   BudgetsCreateOrReplaceDefaultResponse,
+  BudgetsCreateOrUpdate200Response,
+  BudgetsCreateOrUpdate201Response,
+  BudgetsCreateOrUpdateDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -132,6 +136,17 @@ export interface BudgetsCreateOrReplace {
   >;
 }
 
+export interface BudgetsCreateOrUpdate {
+  /** Long-running resource create or update operation template. */
+  patch(
+    options: BudgetsCreateOrUpdateParameters,
+  ): StreamableMethod<
+    | BudgetsCreateOrUpdate200Response
+    | BudgetsCreateOrUpdate201Response
+    | BudgetsCreateOrUpdateDefaultResponse
+  >;
+}
+
 export interface Routes {
   /** Resource for '/widgets' has methods for the following verbs: get, post */
   (path: "/widgets"): WidgetsListWidgets;
@@ -151,6 +166,11 @@ export interface Routes {
     path: "/budgets/widgets/createOrReplace/users/{name}",
     name: string,
   ): BudgetsCreateOrReplace;
+  /** Resource for '/budgets/widgets/createOrUpdate/users/\{name\}' has methods for the following verbs: patch */
+  (
+    path: "/budgets/widgets/createOrUpdate/users/{name}",
+    name: string,
+  ): BudgetsCreateOrUpdate;
 }
 
 export type WidgetServiceContext = Client & {

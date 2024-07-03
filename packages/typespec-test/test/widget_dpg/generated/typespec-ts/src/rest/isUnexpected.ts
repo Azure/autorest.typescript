@@ -26,6 +26,10 @@ import {
   BudgetsCreateOrReplace201Response,
   BudgetsCreateOrReplaceLogicalResponse,
   BudgetsCreateOrReplaceDefaultResponse,
+  BudgetsCreateOrUpdate200Response,
+  BudgetsCreateOrUpdate201Response,
+  BudgetsCreateOrUpdateLogicalResponse,
+  BudgetsCreateOrUpdateDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -41,6 +45,8 @@ const responseMap: Record<string, string[]> = {
   "POST /widgets/{id}/analyze": ["200"],
   "GET /budgets/widgets/createOrReplace/users/{name}": ["200", "201"],
   "PUT /budgets/widgets/createOrReplace/users/{name}": ["200", "201"],
+  "GET /budgets/widgets/createOrUpdate/users/{name}": ["200", "201"],
+  "PATCH /budgets/widgets/createOrUpdate/users/{name}": ["200", "201"],
 };
 
 export function isUnexpected(
@@ -89,6 +95,13 @@ export function isUnexpected(
 ): response is BudgetsCreateOrReplaceDefaultResponse;
 export function isUnexpected(
   response:
+    | BudgetsCreateOrUpdate200Response
+    | BudgetsCreateOrUpdate201Response
+    | BudgetsCreateOrUpdateLogicalResponse
+    | BudgetsCreateOrUpdateDefaultResponse,
+): response is BudgetsCreateOrUpdateDefaultResponse;
+export function isUnexpected(
+  response:
     | WidgetsListWidgets200Response
     | WidgetsListWidgetsDefaultResponse
     | WidgetsCreateWidget201Response
@@ -112,7 +125,11 @@ export function isUnexpected(
     | BudgetsCreateOrReplace200Response
     | BudgetsCreateOrReplace201Response
     | BudgetsCreateOrReplaceLogicalResponse
-    | BudgetsCreateOrReplaceDefaultResponse,
+    | BudgetsCreateOrReplaceDefaultResponse
+    | BudgetsCreateOrUpdate200Response
+    | BudgetsCreateOrUpdate201Response
+    | BudgetsCreateOrUpdateLogicalResponse
+    | BudgetsCreateOrUpdateDefaultResponse,
 ): response is
   | WidgetsListWidgetsDefaultResponse
   | WidgetsCreateWidgetDefaultResponse
@@ -123,7 +140,8 @@ export function isUnexpected(
   | WidgetsDeleteWidgetDefaultResponse
   | WidgetsCreateOrReplaceDefaultResponse
   | WidgetsAnalyzeWidgetDefaultResponse
-  | BudgetsCreateOrReplaceDefaultResponse {
+  | BudgetsCreateOrReplaceDefaultResponse
+  | BudgetsCreateOrUpdateDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
