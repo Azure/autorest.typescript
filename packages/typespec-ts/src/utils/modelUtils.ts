@@ -185,11 +185,11 @@ export function getSchemaForType(
       } else {
         // Handle non-empty anonymous model as inline model
         if (usage && usage.includes(SchemaContext.Output)) {
-          schema.outputTypeName = getModelInlineSigniture(schema, {
+          schema.outputTypeName = getModelInlineSignature(schema, {
             usage: [SchemaContext.Output]
           });
         }
-        schema.typeName = getModelInlineSigniture(schema, {
+        schema.typeName = getModelInlineSignature(schema, {
           usage: [SchemaContext.Input],
           multipart:
             options?.isRequestBody &&
@@ -394,7 +394,7 @@ function getSchemaForUnion(
       getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
     );
   }
-  if (asEnum?.open) {
+  if (asEnum?.open && asEnum?.members.size > 0) {
     values = [];
     for (const [_, member] of asEnum.members.entries()) {
       values.push(
@@ -1664,7 +1664,7 @@ export function isAnonymousModelType(type: Type) {
  * @param options other optional parameters
  * @returns
  */
-export function getModelInlineSigniture(
+export function getModelInlineSignature(
   schema: ObjectSchema,
   options: {
     importedModels?: Set<string>;

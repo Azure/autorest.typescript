@@ -252,11 +252,7 @@ export function buildModels(
 
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
     rlcIndex: path.posix.join("../rest", "index.js"),
-    serializerHelpers: path.posix.join(
-      "../",
-      "helpers",
-      "serializerHelpers.js"
-    )
+    serializerHelpers: path.posix.join("../", "helpers", "serializerHelpers.js")
   });
 
   if (coreClientTypes.size > 0) {

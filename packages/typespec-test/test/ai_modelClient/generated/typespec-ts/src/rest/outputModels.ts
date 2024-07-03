@@ -86,7 +86,7 @@ export interface ChatChoiceOutput {
   /** The ordered index associated with this chat completions choice. */
   index: number;
   /** The reason that this chat completions choice completed its generated. */
-  finish_reason;
+  finish_reason: string;
   /** The chat message for a given chat completions prompt. */
   message: ChatResponseMessageOutput;
 }

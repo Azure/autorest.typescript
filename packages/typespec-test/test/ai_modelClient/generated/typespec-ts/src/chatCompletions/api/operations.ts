@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  ChatRole,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetModelInfo200Response,
@@ -23,6 +22,7 @@ import {
   CompletionsFinishReason,
   ModelInfo,
   ModelType,
+  ChatRole,
 } from "../../models/models.js";
 import {
   CompleteOptionalParams,
