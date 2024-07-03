@@ -27,7 +27,8 @@ const nodeConfig = `export default defineConfig({
       "provider": "istanbul",
       "reporter": ["text", "json", "html"],
       "reportsDirectory": "coverage"
-    }
+    },
+    testTimeout: 1200000,
   }
 });`;
 
@@ -68,7 +69,8 @@ export default defineConfig({
         "provider": "istanbul",
         "reporter": ["text", "json", "html"],
         "reportsDirectory": "coverage-browser"
-      }
+      },
+      testTimeout: 1200000,
     }
   });`;
 

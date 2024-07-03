@@ -116,7 +116,7 @@ export interface CreateChatCompletionRequest {
     frequencyPenalty?: number | null;
     functionCall?: "none" | "auto" | ChatCompletionFunctionCallOption;
     functions?: ChatCompletionFunctions[];
-    logitBias?: Record<string, number>;
+    logitBias?: Record<string, number> | null;
     maxTokens?: number | null;
     messages: ChatCompletionRequestMessage[];
     model: string | "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
@@ -149,7 +149,7 @@ export interface CreateCompletionRequest {
     bestOf?: number | null;
     echo?: boolean | null;
     frequencyPenalty?: number | null;
-    logitBias?: Record<string, number>;
+    logitBias?: Record<string, number> | null;
     logprobs?: number | null;
     maxTokens?: number | null;
     model: string | "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
