@@ -59,9 +59,6 @@ export function buildOperationFiles(
           "operations";
 
     const subfolder = client.subfolder;
-    if (subfolder === "chatCompletions") {
-      subfolder;
-    }
     const srcPath = codeModel.modularOptions.sourceRoot;
     const operationGroupFile = codeModel.project.createSourceFile(
       `${srcPath}/${
