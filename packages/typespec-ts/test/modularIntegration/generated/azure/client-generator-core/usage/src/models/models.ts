@@ -25,6 +25,18 @@ export function outputModelSerializer(item: OutputModel) {
   };
 }
 
+export interface RoundTripModel {
+  readonly result: ResultModel;
+}
+
+export function roundTripModelSerializer(item: RoundTripModel) {
+  return item as any;
+}
+
+export interface ResultModel {
+  name: string;
+}
+
 /** Not used anywhere, but access is override to public so still need to be generated and exported with serialization. */
 export interface OrphanModel {
   name: string;

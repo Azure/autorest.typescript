@@ -10,7 +10,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Send {
   post(
-    options?: PropertySendParameters,
+    options: PropertySendParameters,
   ): StreamableMethod<PropertySend204Response>;
   get(
     options?: PropertyGetParameters,

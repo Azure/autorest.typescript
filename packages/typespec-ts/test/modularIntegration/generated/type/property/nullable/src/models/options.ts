@@ -118,3 +118,25 @@ export interface CollectionsModelPatchNullOptionalParams
   /** content-type is application/merge-patch+json */
   contentType?: string;
 }
+
+/** Optional parameters. */
+export interface CollectionsStringGetNonNullOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CollectionsStringGetNullOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CollectionsStringPatchNonNullOptionalParams
+  extends OperationOptions {
+  /** content-type is application/merge-patch+json */
+  contentType?: string;
+}
+
+/** Optional parameters. */
+export interface CollectionsStringPatchNullOptionalParams
+  extends OperationOptions {
+  /** content-type is application/merge-patch+json */
+  contentType?: string;
+}

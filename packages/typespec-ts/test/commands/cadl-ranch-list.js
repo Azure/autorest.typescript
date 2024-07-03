@@ -268,8 +268,8 @@ export const rlcTsps = [
     inputPath: "type/model/flatten"
   },
   {
-    outputPath: "azure/arm/models/resources",
-    inputPath: "azure/arm/models/resources"
+    outputPath: "azure/resource-manager/models/resources",
+    inputPath: "azure/resource-manager/models/resources"
   }
 ];
 
@@ -282,8 +282,8 @@ export const nonBrandedRlcTsps = [
 
 export const modularTsps = [
   {
-    outputPath: "azure/arm/models/resources",
-    inputPath: "azure/arm/models/resources"
+    outputPath: "azure/resource-manager/models/resources",
+    inputPath: "azure/resource-manager/models/resources"
   },
   { outputPath: "azure/core/lro/rpc", inputPath: "azure/core/lro/rpc" },
   {

@@ -18,7 +18,8 @@
       "./api/datetime": "src/api/datetime/index.ts",
       "./api/duration": "src/api/duration/index.ts",
       "./api/collectionsByte": "src/api/collectionsByte/index.ts",
-      "./api/collectionsModel": "src/api/collectionsModel/index.ts"
+      "./api/collectionsModel": "src/api/collectionsModel/index.ts",
+      "./api/collectionsString": "src/api/collectionsString/index.ts"
     },
     "dialects": ["esm", "commonjs"],
     "esmDialects": ["browser", "react-native"],

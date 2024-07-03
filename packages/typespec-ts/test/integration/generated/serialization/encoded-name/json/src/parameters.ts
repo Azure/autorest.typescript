@@ -5,7 +5,7 @@ import { RequestParameters } from "@azure-rest/core-client";
 import { JsonEncodedNameModel } from "./models.js";
 
 export interface PropertySendBodyParam {
-  body?: JsonEncodedNameModel;
+  body: JsonEncodedNameModel;
 }
 
 export type PropertySendParameters = PropertySendBodyParam & RequestParameters;

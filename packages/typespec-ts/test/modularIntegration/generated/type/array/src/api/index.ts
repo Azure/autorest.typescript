@@ -14,8 +14,24 @@ export { int32ValueGet, int32ValuePut } from "./int32Value/index.js";
 export { int64ValueGet, int64ValuePut } from "./int64Value/index.js";
 export { modelValueGet, modelValuePut } from "./modelValue/index.js";
 export {
+  nullableBooleanValueGet,
+  nullableBooleanValuePut,
+} from "./nullableBooleanValue/index.js";
+export {
   nullableFloatValueGet,
   nullableFloatValuePut,
 } from "./nullableFloatValue/index.js";
+export {
+  nullableInt32ValueGet,
+  nullableInt32ValuePut,
+} from "./nullableInt32Value/index.js";
+export {
+  nullableModelValueGet,
+  nullableModelValuePut,
+} from "./nullableModelValue/index.js";
+export {
+  nullableStringValueGet,
+  nullableStringValuePut,
+} from "./nullableStringValue/index.js";
 export { stringValueGet, stringValuePut } from "./stringValue/index.js";
 export { unknownValueGet, unknownValuePut } from "./unknownValue/index.js";

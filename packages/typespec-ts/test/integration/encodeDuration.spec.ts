@@ -38,11 +38,11 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/property/float-seconds`)
           .post({
             body: {
-              value: 35.621
+              value: 35.625
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body.value, 35.621);
+        assert.strictEqual(result.body.value, 35.625);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -54,11 +54,11 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/property/float64-seconds`)
           .post({
             body: {
-              value: 35.621
+              value: 35.625
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body.value, 35.621);
+        assert.strictEqual(result.body.value, 35.625);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -102,11 +102,11 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/property/float-seconds-array`)
           .post({
             body: {
-              value: [35.621, 46.781]
+              value: [35.625, 46.75]
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.deepEqual(result.body.value, [35.621, 46.781]);
+        assert.deepEqual(result.body.value, [35.625, 46.75]);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -177,7 +177,7 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/query/float-seconds`)
           .get({
             queryParameters: {
-              input: 35.621
+              input: 35.625
             }
           });
         assert.strictEqual(result.status, "204");
@@ -192,7 +192,7 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/query/float64-seconds`)
           .get({
             queryParameters: {
-              input: 35.621
+              input: 35.625
             }
           });
         assert.strictEqual(result.status, "204");
@@ -269,7 +269,7 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/header/float-seconds`)
           .get({
             headers: {
-              duration: 35.621
+              duration: 35.625
             }
           });
         assert.strictEqual(result.status, "204");
@@ -284,7 +284,7 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/header/float64-seconds`)
           .get({
             headers: {
-              duration: 35.621
+              duration: 35.625
             }
           });
         assert.strictEqual(result.status, "204");
