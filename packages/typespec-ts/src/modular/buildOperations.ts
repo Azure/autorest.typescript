@@ -77,7 +77,9 @@ export function buildOperationFiles(
       srcPath,
       operationGroupFile,
       codeModel.project,
-      operationGroup.namespaceHierarchies.length
+      subfolder !== ""
+        ? operationGroup.namespaceHierarchies.length + 1
+        : operationGroup.namespaceHierarchies.length
     );
 
     // Import the deserializeUtils
@@ -227,7 +229,7 @@ export function importModels(
 
   if (models.length > 0 && !hasModelsImport) {
     sourceFile.addImportDeclaration({
-      moduleSpecifier: `${"../".repeat(importLayer + 2)}models/models.js`,
+      moduleSpecifier: `${"../".repeat(importLayer + 1)}models/models.js`,
       namedImports: models
     });
   }

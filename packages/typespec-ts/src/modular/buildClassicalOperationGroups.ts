@@ -51,7 +51,7 @@ export function buildClassicOperationFiles(
         srcPath,
         classicFile,
         codeModel.project,
-        subfolder === ""
+        subfolder !== ""
           ? operationGroup.namespaceHierarchies.length + 1
           : operationGroup.namespaceHierarchies.length
       );
