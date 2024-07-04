@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { OperationOptions } from "@azure-rest/core-client";
 import {
+  ChatCompletionsResponseFormat,
+  ChatCompletionsToolSelectionPreset,
+  UnknownParams,
   ChatCompletionsToolDefinitionUnion,
   ChatCompletionsNamedToolSelectionUnion,
 } from "../../models/models.js";
-import {
-  UnknownParams,
-  ChatCompletionsResponseFormat,
-  ChatCompletionsToolSelectionPreset,
-} from "../../rest/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface CompleteOptionalParams extends OperationOptions {

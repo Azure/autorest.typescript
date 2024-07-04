@@ -11,15 +11,13 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
+      "./models": "./src/models/index.ts",
       "./chatCompletions": "./src/chatCompletions/index.ts",
       "./chatCompletions/api": "./src/chatCompletions/api/index.ts",
-      "./chatCompletions/models": "./src/chatCompletions/models/index.ts",
       "./embeddings": "./src/embeddings/index.ts",
       "./embeddings/api": "./src/embeddings/api/index.ts",
-      "./embeddings/models": "./src/embeddings/models/index.ts",
       "./imageEmbeddings": "./src/imageEmbeddings/index.ts",
-      "./imageEmbeddings/api": "./src/imageEmbeddings/api/index.ts",
-      "./imageEmbeddings/models": "./src/imageEmbeddings/models/index.ts"
+      "./imageEmbeddings/api": "./src/imageEmbeddings/api/index.ts"
     },
     "dialects": [
       "esm",
@@ -49,7 +47,7 @@
     "review/*"
   ],
   "dependencies": {
-    "@azure-rest/core-client": "^2.0.0",
+    "@azure-rest/core-client": "^2.1.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
@@ -66,13 +64,13 @@
     "typescript": "~5.4.5",
     "tshy": "1.11.1",
     "@azure/core-util": "^1.0.0",
-    "@azure-tools/test-credential": "^1.1.0",
-    "@azure/identity": "^4.0.1",
-    "@azure-tools/test-recorder": "^3.0.0",
+    "@azure/identity": "^4.2.1",
     "@vitest/browser": "^1.3.1",
     "@vitest/coverage-istanbul": "^1.3.1",
     "playwright": "^1.41.2",
-    "vitest": "^1.3.1"
+    "vitest": "^1.3.1",
+    "@azure-tools/test-credential": "^2.0.0",
+    "@azure-tools/test-recorder": "^4.0.0"
   },
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
@@ -113,6 +111,24 @@
         "default": "./dist/commonjs/index.js"
       }
     },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
+      }
+    },
     "./chatCompletions": {
       "browser": {
         "types": "./dist/browser/chatCompletions/index.d.ts",
@@ -147,24 +163,6 @@
       "require": {
         "types": "./dist/commonjs/chatCompletions/api/index.d.ts",
         "default": "./dist/commonjs/chatCompletions/api/index.js"
-      }
-    },
-    "./chatCompletions/models": {
-      "browser": {
-        "types": "./dist/browser/chatCompletions/models/index.d.ts",
-        "default": "./dist/browser/chatCompletions/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/chatCompletions/models/index.d.ts",
-        "default": "./dist/react-native/chatCompletions/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/chatCompletions/models/index.d.ts",
-        "default": "./dist/esm/chatCompletions/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/chatCompletions/models/index.d.ts",
-        "default": "./dist/commonjs/chatCompletions/models/index.js"
       }
     },
     "./embeddings": {
@@ -203,24 +201,6 @@
         "default": "./dist/commonjs/embeddings/api/index.js"
       }
     },
-    "./embeddings/models": {
-      "browser": {
-        "types": "./dist/browser/embeddings/models/index.d.ts",
-        "default": "./dist/browser/embeddings/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/embeddings/models/index.d.ts",
-        "default": "./dist/react-native/embeddings/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/embeddings/models/index.d.ts",
-        "default": "./dist/esm/embeddings/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/embeddings/models/index.d.ts",
-        "default": "./dist/commonjs/embeddings/models/index.js"
-      }
-    },
     "./imageEmbeddings": {
       "browser": {
         "types": "./dist/browser/imageEmbeddings/index.d.ts",
@@ -255,24 +235,6 @@
       "require": {
         "types": "./dist/commonjs/imageEmbeddings/api/index.d.ts",
         "default": "./dist/commonjs/imageEmbeddings/api/index.js"
-      }
-    },
-    "./imageEmbeddings/models": {
-      "browser": {
-        "types": "./dist/browser/imageEmbeddings/models/index.d.ts",
-        "default": "./dist/browser/imageEmbeddings/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/imageEmbeddings/models/index.d.ts",
-        "default": "./dist/react-native/imageEmbeddings/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/imageEmbeddings/models/index.d.ts",
-        "default": "./dist/esm/imageEmbeddings/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/imageEmbeddings/models/index.d.ts",
-        "default": "./dist/commonjs/imageEmbeddings/models/index.js"
       }
     }
   },

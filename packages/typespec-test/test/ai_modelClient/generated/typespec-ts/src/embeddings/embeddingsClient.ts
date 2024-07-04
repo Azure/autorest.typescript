@@ -3,6 +3,11 @@
 
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { ModelInfo, EmbeddingsResult } from "./../models/models.js";
+import {
+  EmbedOptionalParams,
+  GetModelInfoOptionalParams,
+} from "./models/options.js";
 import {
   createEmbeddings,
   EmbeddingsClientOptions,
@@ -10,9 +15,6 @@ import {
   embed,
   getModelInfo,
 } from "./api/index.js";
-import { GetModelInfoOptionalParams } from "../chatCompletions/index.js";
-import { EmbeddingsResult, ModelInfo } from "../models/models.js";
-import { EmbedOptionalParams } from "./models/options.js";
 
 export { EmbeddingsClientOptions } from "./api/embeddingsContext.js";
 

@@ -52,7 +52,7 @@ export class EmbeddingsClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: EmbeddingsClientOptions);
     // Warning: (ae-forgotten-export) The symbol "EmbeddingsResult" needs to be exported by the entry point index.d.ts
     embed(input: string[], options?: EmbedOptionalParams): Promise<EmbeddingsResult>;
-    getModelInfo(options?: GetModelInfoOptionalParams): Promise<ModelInfo>;
+    getModelInfo(options?: EmbeddingsClientGetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
 }
 
@@ -83,8 +83,8 @@ export interface GetModelInfoOptionalParams extends OperationOptions {
 export class ImageEmbeddingsClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ImageEmbeddingsClientOptions);
     // Warning: (ae-forgotten-export) The symbol "EmbeddingInput" needs to be exported by the entry point index.d.ts
-    embed(input: EmbeddingInput[], options?: EmbedOptionalParams): Promise<EmbeddingsResult>;
-    getModelInfo(options?: GetModelInfoOptionalParams): Promise<ModelInfo>;
+    embed(input: EmbeddingInput[], options?: ImageEmbeddingsClientEmbedOptionalParams): Promise<EmbeddingsResult>;
+    getModelInfo(options?: ImageEmbeddingsClientGetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
 }
 
