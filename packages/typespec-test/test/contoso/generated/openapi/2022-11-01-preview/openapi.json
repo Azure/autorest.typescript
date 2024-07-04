@@ -158,6 +158,9 @@
             }
           }
         },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
+        },
         "x-ms-long-running-operation": true
       },
       "delete": {
@@ -220,6 +223,9 @@
               }
             }
           }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "operation-location"
         },
         "x-ms-long-running-operation": true
       }
@@ -452,22 +458,6 @@
       "required": [
         "value"
       ]
-    },
-    "Versions": {
-      "type": "string",
-      "enum": [
-        "2022-11-01-preview"
-      ],
-      "x-ms-enum": {
-        "name": "Versions",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "v2022_11_01_Preview",
-            "value": "2022-11-01-preview"
-          }
-        ]
-      }
     },
     "Widget": {
       "type": "object",

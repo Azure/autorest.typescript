@@ -77,7 +77,7 @@
     "prettier": "^2.5.1",
     "rimraf": "^5.0.0",
     "source-map-support": "^0.5.9",
-    "typescript": "~5.4.5",
+    "typescript": "~5.5.3",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-multi-entry": "^6.0.0",
@@ -85,8 +85,8 @@
     "rollup": "^2.66.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9",
-    "@azure-tools/test-credential": "^1.0.0",
-    "@azure/identity": "^4.0.1",
+    "@azure-tools/test-credential": "^1.1.0",
+    "@azure/identity": "^4.2.1",
     "@azure-tools/test-recorder": "^3.0.0",
     "mocha": "^10.0.0",
     "@types/mocha": "^10.0.0",
@@ -106,8 +106,5 @@
     "nyc": "^15.1.0",
     "ts-node": "^10.0.0"
   },
-  "type": "module",
-  "browser": {
-    "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
-  }
+  "type": "module"
 }

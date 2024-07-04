@@ -14,7 +14,7 @@ export interface CreateTranscriptionRequest {
     | NodeJS.ReadableStream
     | File;
   /** ID of the model to use. Only `whisper-1` is currently available. */
-  model: string | "whisper-1";
+  model: string;
   /**
    * An optional text to guide the model's style or continue a previous audio segment. The
    * [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.
@@ -54,7 +54,7 @@ export interface CreateTranslationRequest {
     | NodeJS.ReadableStream
     | File;
   /** ID of the model to use. Only `whisper-1` is currently available. */
-  model: string | "whisper-1";
+  model: string;
   /**
    * An optional text to guide the model's style or continue a previous audio segment. The
    * [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.
@@ -79,19 +79,7 @@ export interface CreateChatCompletionRequest {
    * ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility)
    * table for details on which models work with the Chat API.
    */
-  model:
-    | string
-    | "gpt4"
-    | "gpt-4-0314"
-    | "gpt-4-0613"
-    | "gpt-4-32k"
-    | "gpt-4-32k-0314"
-    | "gpt-4-32k-0613"
-    | "gpt-3.5-turbo"
-    | "gpt-3.5-turbo-16k"
-    | "gpt-3.5-turbo-0301"
-    | "gpt-3.5-turbo-0613"
-    | "gpt-3.5-turbo-16k-0613";
+  model: string;
   /**
    * A list of messages comprising the conversation so far.
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
@@ -252,7 +240,7 @@ export interface CreateFineTuningJobRequest {
    * The name of the model to fine-tune. You can select one of the
    * [supported models](/docs/guides/fine-tuning/what-models-can-be-fine-tuned).
    */
-  model: string | "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
+  model: string;
   /** The hyperparameters used for the fine-tuning job. */
   hyperparameters?: { n_epochs?: "auto" | number };
   /**
@@ -270,17 +258,7 @@ export interface CreateCompletionRequest {
    * see all of your available models, or see our [Model overview](/docs/models/overview) for
    * descriptions of them.
    */
-  model:
-    | string
-    | "babbage-002"
-    | "davinci-002"
-    | "text-davinci-003"
-    | "text-davinci-002"
-    | "text-davinci-001"
-    | "code-davinci-002"
-    | "text-curie-001"
-    | "text-babbage-001"
-    | "text-ada-001";
+  model: string;
   /**
    * The prompt(s) to generate completions for, encoded as a string, array of strings, array of
    * tokens, or array of token arrays.
@@ -387,7 +365,7 @@ export interface CreateEditRequest {
    * ID of the model to use. You can use the `text-davinci-edit-001` or `code-davinci-edit-001`
    * model with this endpoint.
    */
-  model: string | "text-davinci-edit-001" | "code-davinci-edit-001";
+  model: string;
   /** The input text to use as a starting point for the edit. */
   input?: string | null;
   /** The instruction that tells the model how to edit the prompt. */
@@ -413,7 +391,7 @@ export interface CreateEditRequest {
 
 export interface CreateEmbeddingRequest {
   /** ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. */
-  model: string | "text-embedding-ada-002";
+  model: string;
   /**
    * Input text to embed, encoded as a string or array of tokens. To embed multiple inputs in a
    * single request, pass an array of strings or array of token arrays. Each input must not exceed
@@ -482,7 +460,7 @@ export interface CreateFineTuneRequest {
    * "davinci", or a fine-tuned model created after 2022-04-21 and before 2023-08-22. To learn more
    * about these models, see the [Models](/docs/models) documentation.
    */
-  model?: string | "ada" | "babbage" | "curie" | "davinci" | null;
+  model?: string;
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
@@ -638,7 +616,7 @@ export interface CreateModerationRequest {
    * `text-moderation-stable`, we will provide advanced notice before updating the model. Accuracy
    * of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`.
    */
-  model?: string | "text-moderation-latest" | "text-moderation-stable";
+  model?: string;
 }
 
 /** Alias for Stop */

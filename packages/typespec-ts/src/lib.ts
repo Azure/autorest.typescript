@@ -1,16 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  paramMessage,
-  createTypeSpecLibrary,
-  JSONSchemaType
-} from "@typespec/compiler";
 import { RLCOptions } from "@azure-tools/rlc-common";
+import {
+  createTypeSpecLibrary,
+  JSONSchemaType,
+  paramMessage
+} from "@typespec/compiler";
 import { Options } from "prettier";
 
 export interface EmitterOptions extends RLCOptions {
   branded?: boolean;
+  compatibilityMode?: boolean;
+  experimentalExtensibleEnums?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -88,7 +90,9 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       enum: ["esm", "cjs"],
       default: "esm"
-    }
+    },
+    compatibilityMode: { type: "boolean", nullable: true },
+    experimentalExtensibleEnums: { type: "boolean", nullable: true }
   },
   required: []
 };
@@ -150,7 +154,7 @@ const libDef = {
     "invalid-schema": {
       severity: "error",
       messages: {
-        default: paramMessage`Couldn't get schema for type ${"type"}`
+        default: paramMessage`Couldn't get schema for type ${"type"} with property ${"property"}`
       }
     },
     "union-null": {
@@ -220,6 +224,12 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Please note the header ${"type"} is not serializable.`
+      }
+    },
+    "compatible-additional-properties": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
       }
     }
   },

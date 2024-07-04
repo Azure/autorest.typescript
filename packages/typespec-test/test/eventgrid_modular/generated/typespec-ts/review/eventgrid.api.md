@@ -9,7 +9,7 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -33,7 +33,7 @@ export interface BrokerProperties {
 
 // @public
 export interface CloudEvent {
-    data?: unknown;
+    data?: any;
     dataBase64?: Uint8Array;
     datacontenttype?: string;
     dataschema?: string;
@@ -50,14 +50,14 @@ export class EventGridClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptions);
     acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
     readonly pipeline: Pipeline;
-    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptionalParams): Promise<Record<string, any>>;
-    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<Record<string, any>>;
+    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptionalParams): Promise<PublishResult>;
+    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<PublishResult>;
     receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
     rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
     releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
 }
 
-// @public (undocumented)
+// @public
 export interface EventGridClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -69,17 +69,21 @@ export interface FailedLockToken {
     lockToken: string;
 }
 
-// @public (undocumented)
+// @public
 export interface PublishCloudEventOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
+export interface PublishResult {
+}
+
+// @public
 export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
     maxEvents?: number;
     maxWaitTime?: number;
@@ -96,7 +100,7 @@ export interface ReceiveResult {
     value: ReceiveDetails[];
 }
 
-// @public (undocumented)
+// @public
 export interface RejectCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -112,7 +116,7 @@ export interface RejectResult {
     succeededLockTokens: string[];
 }
 
-// @public (undocumented)
+// @public
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -128,7 +132,7 @@ export interface ReleaseResult {
     succeededLockTokens: string[];
 }
 
-// @public (undocumented)
+// @public
 export type ServiceApiVersions = "2023-06-01-preview";
 
 // (No @packageDocumentation comment for this package)

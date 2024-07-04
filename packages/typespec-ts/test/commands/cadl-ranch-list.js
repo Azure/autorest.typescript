@@ -1,4 +1,3 @@
-
 export const rlcTsps = [
   {
     outputPath: "payload/multipart",
@@ -9,11 +8,11 @@ export const rlcTsps = [
     inputPath: "union-body"
   },
   {
-    outputPath: "headers/clientRequestId",
-    inputPath: "special-headers/client-request-id"
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
   },
   {
-    outputPath: "headers/repeatability",
+    outputPath: "special-headers/repeatability",
     inputPath: "special-headers/repeatability"
   },
   {
@@ -33,11 +32,11 @@ export const rlcTsps = [
     inputPath: "encode/datetime"
   },
   {
-    outputPath: "sharedRoute",
+    outputPath: "shared-route",
     inputPath: "shared-route"
   },
   {
-    outputPath: "mediaTypes",
+    outputPath: "media-types",
     inputPath: "media-types"
   },
   {
@@ -45,15 +44,15 @@ export const rlcTsps = [
     inputPath: "overload"
   },
   {
-    outputPath: "arrays/itemTypes",
+    outputPath: "type/array",
     inputPath: "type/array"
   },
   {
-    outputPath: "authentication/apiKey",
+    outputPath: "authentication/api-key",
     inputPath: "authentication/api-key"
   },
   {
-    outputPath: "authentication/http-custom",
+    outputPath: "authentication/http/custom",
     inputPath: "authentication/http/custom"
   },
   {
@@ -65,87 +64,87 @@ export const rlcTsps = [
     inputPath: "authentication/union"
   },
   {
-    outputPath: "dictionary",
+    outputPath: "type/dictionary",
     inputPath: "type/dictionary"
   },
   {
-    outputPath: "enums/extensible",
+    outputPath: "type/enum/extensible",
     inputPath: "type/enum/extensible"
   },
   {
-    outputPath: "enums/fixed",
+    outputPath: "type/enum/fixed",
     inputPath: "type/enum/fixed"
   },
   {
-    outputPath: "lro/lroCore",
+    outputPath: "azure/core/lro/standard",
     inputPath: "azure/core/lro/standard"
   },
   {
-    outputPath: "lro/lroRPC",
+    outputPath: "azure/core/lro/rpc",
     inputPath: "azure/core/lro/rpc"
   },
   {
-    outputPath: "models/inheritance",
+    outputPath: "type/model/inheritance/nested-discriminator",
     inputPath: "type/model/inheritance/nested-discriminator"
   },
   {
-    outputPath: "models/inheritance-not-discriminated",
+    outputPath: "type/model/inheritance/not-discriminated",
     inputPath: "type/model/inheritance/not-discriminated"
   },
   {
-    outputPath: "models/inheritance-enum-discriminator",
+    outputPath: "type/model/inheritance/enum-discriminator",
     inputPath: "type/model/inheritance/enum-discriminator"
   },
   {
-    outputPath: "models/inheritance-single-discriminator",
+    outputPath: "type/model/inheritance/single-discriminator",
     inputPath: "type/model/inheritance/single-discriminator"
   },
   {
-    outputPath: "models/inheritance-recursive",
+    outputPath: "type/model/inheritance/recursive",
     inputPath: "type/model/inheritance/recursive"
   },
   {
-    outputPath: "models/propertyOptional",
+    outputPath: "type/property/optionality",
     inputPath: "type/property/optionality"
   },
   {
-    outputPath: "models/propertyNullable",
+    outputPath: "type/property/nullable",
     inputPath: "type/property/nullable"
   },
   {
-    outputPath: "models/propertyTypes",
+    outputPath: "type/property/value-types",
     inputPath: "type/property/value-types"
   },
   {
-    outputPath: "models/propertyAdditional",
+    outputPath: "type/property/additional-properties",
     inputPath: "type/property/additional-properties"
   },
   {
-    outputPath: "models/visibility",
+    outputPath: "type/model/visibility",
     inputPath: "type/model/visibility"
   },
   {
-    outputPath: "models/usage",
+    outputPath: "type/model/usage",
     inputPath: "type/model/usage"
   },
   {
-    outputPath: "models/empty",
+    outputPath: "type/model/empty",
     inputPath: "type/model/empty"
   },
   {
-    outputPath: "resiliency/srvDriven1",
+    outputPath: "resiliency/srv-driven-old",
     inputPath: "resiliency/srv-driven/old.tsp"
   },
   {
-    outputPath: "resiliency/srvDriven2",
+    outputPath: "resiliency/srv-driven-main",
     inputPath: "resiliency/srv-driven/main.tsp"
   },
   {
-    outputPath: "specialWords",
+    outputPath: "special-words",
     inputPath: "special-words"
   },
   {
-    outputPath: "unions",
+    outputPath: "type/union",
     inputPath: "type/union"
   },
   {
@@ -165,11 +164,11 @@ export const rlcTsps = [
     inputPath: "server/path/multiple"
   },
   {
-    outputPath: "azure/core",
+    outputPath: "azure/core/basic",
     inputPath: "azure/core/basic"
   },
   {
-    outputPath: "azure/core-traits",
+    outputPath: "azure/core/traits",
     inputPath: "azure/core/traits"
   },
   {
@@ -189,15 +188,15 @@ export const rlcTsps = [
     inputPath: "client/structure/two-operation-group"
   },
   {
-    outputPath: "scalar",
+    outputPath: "type/scalar",
     inputPath: "type/scalar"
   },
   {
-    outputPath: "azure/clientGeneratorCore/access",
+    outputPath: "azure/client-generator-core/access",
     inputPath: "azure/client-generator-core/access"
   },
   {
-    outputPath: "azure/clientGeneratorCore/usage",
+    outputPath: "azure/client-generator-core/usage",
     inputPath: "azure/client-generator-core/usage"
   },
   {
@@ -217,7 +216,7 @@ export const rlcTsps = [
     inputPath: "serialization/encoded-name/json"
   },
   {
-    outputPath: "azure/core-scalar",
+    outputPath: "azure/core/scalar",
     inputPath: "azure/core/scalar"
   },
   {
@@ -235,6 +234,38 @@ export const rlcTsps = [
   {
     outputPath: "payload/content-negotiation",
     inputPath: "payload/content-negotiation"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
+  },
+  {
+    outputPath: "versioning/added",
+    inputPath: "versioning/added"
+  },
+  {
+    outputPath: "versioning/madeOptional",
+    inputPath: "versioning/madeOptional"
+  },
+  {
+    outputPath: "versioning/removed",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/renamedFrom",
+    inputPath: "versioning/renamedFrom"
+  },
+  {
+    outputPath: "versioning/returnTypeChangedFrom",
+    inputPath: "versioning/returnTypeChangedFrom"
+  },
+  {
+    outputPath: "versioning/typeChangedFrom",
+    inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
   }
 ];
 
@@ -245,16 +276,18 @@ export const nonBrandedRlcTsps = [
   }
 ];
 
-
 export const modularTsps = [
-  { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
-  { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
+  { outputPath: "azure/core/lro/rpc", inputPath: "azure/core/lro/rpc" },
   {
-    outputPath: "azure/clientGeneratorCore/access",
+    outputPath: "azure/core/lro/standard",
+    inputPath: "azure/core/lro/standard"
+  },
+  {
+    outputPath: "azure/client-generator-core/access",
     inputPath: "azure/client-generator-core/access"
   },
   {
-    outputPath: "azure/clientGeneratorCore/usage",
+    outputPath: "azure/client-generator-core/usage",
     inputPath: "azure/client-generator-core/usage"
   },
   {
@@ -262,7 +295,7 @@ export const modularTsps = [
     inputPath: "parameters/body-optionality"
   },
   {
-    outputPath: "models/usage",
+    outputPath: "type/model/usage",
     inputPath: "type/model/usage"
   },
   {
@@ -282,31 +315,43 @@ export const modularTsps = [
     inputPath: "client/structure/two-operation-group"
   },
   {
-    outputPath: "headers/client-request-id",
-    inputPath: "special-headers/client-request-id"
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
   },
   {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"
   },
   {
-    outputPath: "azure/core",
+    outputPath: "azure/core/basic",
     inputPath: "azure/core/basic"
   },
   {
-    outputPath: "models/inheritance/nested-discriminator",
+    outputPath: "type/dictionary",
+    inputPath: "type/dictionary"
+  },
+  {
+    outputPath: "type/property/nullable",
+    inputPath: "type/property/nullable"
+  },
+  {
+    outputPath: "type/property/optionality",
+    inputPath: "type/property/optionality"
+  },
+  {
+    outputPath: "type/model/inheritance/nested-discriminator",
     inputPath: "type/model/inheritance/nested-discriminator"
   },
   {
-    outputPath: "models/inheritance/not-discriminated",
+    outputPath: "type/model/inheritance/not-discriminated",
     inputPath: "type/model/inheritance/not-discriminated"
   },
   {
-    outputPath: "models/inheritance/enum-discriminator",
+    outputPath: "type/model/inheritance/enum-discriminator",
     inputPath: "type/model/inheritance/enum-discriminator"
   },
   {
-    outputPath: "models/inheritance/single-discriminator",
+    outputPath: "type/model/inheritance/single-discriminator",
     inputPath: "type/model/inheritance/single-discriminator"
   },
   {
@@ -338,7 +383,7 @@ export const modularTsps = [
     inputPath: "authentication/api-key"
   },
   {
-    outputPath: "authentication/http-custom",
+    outputPath: "authentication/http/custom",
     inputPath: "authentication/http/custom"
   },
   {
@@ -354,28 +399,28 @@ export const modularTsps = [
     inputPath: "authentication/union"
   },
   {
-    outputPath: "headers/repeatability",
+    outputPath: "special-headers/repeatability",
     inputPath: "special-headers/repeatability"
   },
   {
-    outputPath: "azure/core-traits",
+    outputPath: "azure/core/traits",
     inputPath: "azure/core/traits"
   },
   {
-    outputPath: "models/empty",
+    outputPath: "type/model/empty",
     inputPath: "type/model/empty"
   },
   {
-    outputPath: "models/propertyTypes",
+    outputPath: "type/property/value-types",
     inputPath: "type/property/value-types"
   },
-  { outputPath: "arrays/items", inputPath: "type/array" },
+  { outputPath: "type/array", inputPath: "type/array" },
   {
-    outputPath: "models/inheritance/recursive",
+    outputPath: "type/model/inheritance/recursive",
     inputPath: "type/model/inheritance/recursive"
   },
   {
-    outputPath: "unions",
+    outputPath: "type/union",
     inputPath: "type/union"
   },
   {
@@ -391,7 +436,7 @@ export const modularTsps = [
     inputPath: "server/versions/not-versioned"
   },
   {
-    outputPath: "scalar",
+    outputPath: "type/scalar",
     inputPath: "type/scalar"
   },
   {
@@ -403,7 +448,7 @@ export const modularTsps = [
     inputPath: "serialization/encoded-name/json"
   },
   {
-    outputPath: "azure/core-scalar",
+    outputPath: "azure/core/scalar",
     inputPath: "azure/core/scalar"
   },
   {
@@ -411,16 +456,56 @@ export const modularTsps = [
     inputPath: "server/endpoint/not-defined"
   },
   {
-    outputPath: "specialWords",
+    outputPath: "special-words",
     inputPath: "special-words"
   },
   {
-    outputPath: "enums/extensible",
+    outputPath: "type/enum/extensible",
     inputPath: "type/enum/extensible"
   },
   {
-    outputPath: "enums/fixed",
+    outputPath: "type/enum/fixed",
     inputPath: "type/enum/fixed"
+  },
+  {
+    outputPath: "type/property/additional-properties",
+    inputPath: "type/property/additional-properties"
+  },
+  {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
+  },
+  {
+    outputPath: "versioning/added",
+    inputPath: "versioning/added"
+  },
+  {
+    outputPath: "versioning/madeOptional",
+    inputPath: "versioning/madeOptional"
+  },
+  {
+    outputPath: "versioning/removed",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/renamedFrom",
+    inputPath: "versioning/renamedFrom"
+  },
+  {
+    outputPath: "versioning/returnTypeChangedFrom",
+    inputPath: "versioning/returnTypeChangedFrom"
+  },
+  {
+    outputPath: "versioning/typeChangedFrom",
+    inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
   }
 ];
 

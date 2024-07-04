@@ -7,7 +7,6 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { AzureLoadTestingContext } from "./api/testRunOperationsContext.js";
 import { TestRunOperationsClient } from "./testRunOperationsClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _testRunDeserialize } from "./api/operations.js";
@@ -28,7 +27,7 @@ export interface RestorePollerOptions<
    */
   abortSignal?: AbortSignalLike;
   /** Deserialization function for raw response body */
-  processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+  processResponseBody?: (result: TResponse) => Promise<TResult>;
 }
 
 /**
@@ -37,7 +36,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: AzureLoadTestingContext | TestRunOperationsClient,
+  client: TestRunOperationsClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]
@@ -45,8 +44,8 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   options?: RestorePollerOptions<TResult>,
 ): PollerLike<OperationState<TResult>, TResult> {
   const pollerConfig = deserializeState(serializedState).config;
-  const { initialUrl, requestMethod, metadata } = pollerConfig;
-  if (!initialUrl || !requestMethod) {
+  const { initialRequestUrl, requestMethod, metadata } = pollerConfig;
+  if (!initialRequestUrl || !requestMethod) {
     throw new Error(
       `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`,
     );
@@ -56,7 +55,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
     | undefined;
   const deserializeHelper =
     options?.processResponseBody ??
-    getDeserializationHelper(initialUrl, requestMethod);
+    getDeserializationHelper(initialRequestUrl, requestMethod);
   if (!deserializeHelper) {
     throw new Error(
       `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`,
@@ -64,13 +63,13 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   }
   return getLongRunningPoller(
     (client as any)["_client"] ?? client,
-    deserializeHelper as (result: TResponse) => PromiseLike<TResult>,
+    deserializeHelper as (result: TResponse) => Promise<TResult>,
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       resourceLocationConfig,
       restoreFrom: serializedState,
-      initialUrl,
+      initialRequestUrl,
     },
   );
 }
@@ -82,7 +81,7 @@ const deserializeMap: Record<string, Function> = {
 function getDeserializationHelper(
   urlStr: string,
   method: string,
-): ((result: unknown) => PromiseLike<unknown>) | undefined {
+): ((result: unknown) => Promise<unknown>) | undefined {
   const path = new URL(urlStr).pathname;
   const pathParts = path.split("/");
 
@@ -90,7 +89,7 @@ function getDeserializationHelper(
   // matchedLen: the length of candidate path
   // matchedValue: the matched status code array
   let matchedLen = -1,
-    matchedValue: ((result: unknown) => PromiseLike<unknown>) | undefined;
+    matchedValue: ((result: unknown) => Promise<unknown>) | undefined;
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(deserializeMap)) {
@@ -144,7 +143,7 @@ function getDeserializationHelper(
     // Update the matched value if and only if we found the longer pattern
     if (found && candidatePath.length > matchedLen) {
       matchedLen = candidatePath.length;
-      matchedValue = value as (result: unknown) => PromiseLike<unknown>;
+      matchedValue = value as (result: unknown) => Promise<unknown>;
     }
   }
 

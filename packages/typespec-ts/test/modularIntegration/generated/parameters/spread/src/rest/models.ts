@@ -5,3 +5,8 @@
 export interface BodyParameter {
   name: string;
 }
+
+/** This is a model with non-body http request decorator. */
+export interface CompositeRequestMix {
+  prop: string;
+}

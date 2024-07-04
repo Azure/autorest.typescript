@@ -7,11 +7,12 @@ import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Responses.ts", () => {
   describe("property name generation", () => {
-    it("should generate property name with custome name", async () => {
+    it("should generate property name with custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
         model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
+            @statusCode _: 204;
             @doc("The location for monitoring the operation state.")
             @header("Operation-Location")
             operationLocation: ResourceLocation<SimpleModel>;
@@ -38,11 +39,12 @@ describe("Responses.ts", () => {
       );
     });
 
-    it("should generate property name without custome name", async () => {
+    it("should generate property name without custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
         model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
+            @statusCode _: 204;
             @doc("The location for monitoring the operation state.")
             @header
             operationLocation: ResourceLocation<SimpleModel>;
@@ -71,7 +73,7 @@ describe("Responses.ts", () => {
   });
 
   describe("statusCode generation", () => {
-    it("should generate property name with custome name", async () => {
+    it("should generate property name with custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
       @doc("Error")
       @error
@@ -107,6 +109,24 @@ describe("Responses.ts", () => {
   });
 
   describe("body generation", () => {
+    it("void as response body should be omitted", async () => {
+      const parameters = await emitResponsesFromTypeSpec(`
+      @post op read(): {@body body: void; @statusCode _: 204; };
+      `);
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+    
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Read204Response extends HttpResponse {
+          status: "204";
+        }
+      `
+      );
+    });
+
     it("unknown array response generation", async () => {
       const parameters = await emitResponsesFromTypeSpec(`
       @post op read():  unknown[];
@@ -176,13 +196,19 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
+      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
       
+      export interface Read200Headers {
+        "content-type": "image/png";
+      }
+
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
         status: "200";
         /** Value may contain any sequence of octets */
         body: Uint8Array;
+        headers: RawHttpHeaders & Read200Headers;
       }
       `
       );
@@ -195,13 +221,19 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
+      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
-      
-      /** The request has succeeded. */
-      export interface Read200Response extends HttpResponse {
-        status: "200";
-        body: string;
+       
+      export interface Read200Headers {
+        "content-type": "text/plain";
       }
+      
+       /** The request has succeeded. */
+       export interface Read200Response extends HttpResponse {
+         status: "200";
+         body: string;
+         headers: RawHttpHeaders & Read200Headers;
+       }
       `
       );
     });
@@ -309,6 +341,7 @@ describe("Responses.ts", () => {
       export interface Read200Headers {
         foo: string;
         bar: string;
+        "content-type": "image/png";
       }
       
       /** The request has succeeded. */

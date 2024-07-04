@@ -56,7 +56,7 @@ describe("Input/output model type", () => {
     #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     @route("/models")
     @get
-    op getModel(@body input: InputOutputModel): InputOutputModel;`,
+    op getModel(@bodyRoot input: InputOutputModel): InputOutputModel;`,
       needAzureCore,
       needTCGC
     );
@@ -86,6 +86,23 @@ describe("Input/output model type", () => {
     ${additionalOutputContent}`
     );
   }
+
+  describe("void generation", async () => {
+    it("should throw exception for property with void type", async () => {
+      try {
+        const tspType = "void";
+        const typeScriptType = "void";
+        await verifyPropertyType(tspType, typeScriptType);
+        assert.fail("Should throw exception");
+      } catch (err: any) {
+        assert.equal(
+          err[0].message,
+          "Couldn't get schema for type Intrinsic with property prop"
+        );
+        assert.equal(err[0]?.target?.name, "void");
+      }
+    });
+  });
 
   describe("null generation", async () => {
     it("should generate null only", async () => {
@@ -1603,6 +1620,73 @@ describe("Input/output model type", () => {
           expiry: string;
           id: string;
         }`
+      );
+    });
+
+    it("should handle model additional properties from spread record of int64 | string", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      
+      model Vegetables {
+        ...Record<int64 | string>;
+        carrots: int64;
+        beans: int64;
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables extends Record<string, number | string>{
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput extends Record<string, number | string> {
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+    });
+
+    it("should handle model extends with additional properties", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      
+      model Base {
+        foo: int32;
+      }
+      model A extends Base{
+        ...Record<int32>;
+        prop: int32
+      }
+      op post(@body body: A): { @body body: A };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.isTrue(inputModelFile?.path?.endsWith("models.ts"));
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface A extends Record<string, number>, Base {
+          prop: number;
+        }
+
+        export interface Base {
+          foo: number;
+        }
+        `
       );
     });
   });
@@ -3457,7 +3541,7 @@ describe("Input/output model type", () => {
       op get(
         @header("test-header") testHeader: SchemaContentTypeValues,
         @body body: string,
-      ): { @header("test-header") testHeader: SchemaContentTypeValues };
+      ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
@@ -3567,7 +3651,7 @@ describe("Input/output model type", () => {
       op get(
         @header("test-header") testHeader: "A" | "B",
         @body body: string,
-      ): { @header("test-header") testHeader: "A" | "B" };
+      ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,

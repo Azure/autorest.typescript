@@ -1,12 +1,32 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { uint8ArrayToString } from "@azure/core-util";
+import {
+  TextBlocklist as TextBlocklistRest,
+  TextBlockItemInfo as TextBlockItemInfoRest,
+  AddOrUpdateBlockItemsOptions as AddOrUpdateBlockItemsOptionsRest,
+  RemoveBlockItemsOptions as RemoveBlockItemsOptionsRest,
+  AnalyzeImageOptions as AnalyzeImageOptionsRest,
+  ImageData as ImageDataRest,
+  AnalyzeTextOptions as AnalyzeTextOptionsRest,
+} from "../rest/index.js";
+
 /** Text Blocklist. */
 export interface TextBlocklist {
   /** Text blocklist name. */
   blocklistName: string;
   /** Text blocklist description. */
   description?: string;
+}
+
+export function textBlocklistSerializer(
+  item: TextBlocklist,
+): TextBlocklistRest {
+  return {
+    blocklistName: item["blocklistName"],
+    description: item["description"],
+  };
 }
 
 /** Block item info in text blocklist. */
@@ -17,10 +37,27 @@ export interface TextBlockItemInfo {
   text: string;
 }
 
+export function textBlockItemInfoSerializer(
+  item: TextBlockItemInfo,
+): TextBlockItemInfoRest {
+  return {
+    description: item["description"],
+    text: item["text"],
+  };
+}
+
 /** The request of adding blockItems to text blocklist. */
 export interface AddOrUpdateBlockItemsOptions {
   /** Array of blockItemInfo to add. */
   blockItems: TextBlockItemInfo[];
+}
+
+export function addOrUpdateBlockItemsOptionsSerializer(
+  item: AddOrUpdateBlockItemsOptions,
+): AddOrUpdateBlockItemsOptionsRest {
+  return {
+    blockItems: item["blockItems"].map(textBlockItemInfoSerializer),
+  };
 }
 
 /** The response of adding blockItems to text blocklist. */
@@ -45,6 +82,14 @@ export interface RemoveBlockItemsOptions {
   blockItemIds: string[];
 }
 
+export function removeBlockItemsOptionsSerializer(
+  item: RemoveBlockItemsOptions,
+): RemoveBlockItemsOptionsRest {
+  return {
+    blockItemIds: item["blockItemIds"],
+  };
+}
+
 /** The analysis request of the image. */
 export interface AnalyzeImageOptions {
   /** The image needs to be analyzed. */
@@ -55,6 +100,16 @@ export interface AnalyzeImageOptions {
   outputType?: AnalyzeImageOutputType;
 }
 
+export function analyzeImageOptionsSerializer(
+  item: AnalyzeImageOptions,
+): AnalyzeImageOptionsRest {
+  return {
+    image: imageDataSerializer(item.image),
+    categories: item["categories"],
+    outputType: item["outputType"],
+  };
+}
+
 /** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
 export interface ImageData {
   /** Base64 encoding of image. */
@@ -63,11 +118,19 @@ export interface ImageData {
   blobUrl?: string;
 }
 
+export function imageDataSerializer(item: ImageData): ImageDataRest {
+  return {
+    content:
+      item["content"] !== undefined
+        ? uint8ArrayToString(item["content"], "base64")
+        : undefined,
+    blobUrl: item["blobUrl"],
+  };
+}
+
 /** Image analyze category */
-/** */
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of image analysis output. */
-/** */
 export type AnalyzeImageOutputType = "FourLevels";
 
 /** The analysis response of the image. */
@@ -98,11 +161,21 @@ export interface AnalyzeTextOptions {
   outputType?: AnalyzeTextOutputType;
 }
 
+export function analyzeTextOptionsSerializer(
+  item: AnalyzeTextOptions,
+): AnalyzeTextOptionsRest {
+  return {
+    text: item["text"],
+    categories: item["categories"],
+    blocklistNames: item["blocklistNames"],
+    breakByBlocklists: item["breakByBlocklists"],
+    outputType: item["outputType"],
+  };
+}
+
 /** Text analyze category */
-/** */
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of text analysis output. */
-/** */
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 /** The analysis response of the text */
@@ -131,11 +204,11 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
-/** */
+/** Type of Versions */
 export type Versions = "2023-10-01";
 
 /** Paged collection of TextBlocklist items */
-export interface PagedTextBlocklist {
+export interface _PagedTextBlocklist {
   /** The TextBlocklist items on this page */
   value: TextBlocklist[];
   /** The link to the next page of items */
@@ -143,7 +216,7 @@ export interface PagedTextBlocklist {
 }
 
 /** Paged collection of TextBlockItem items */
-export interface PagedTextBlockItem {
+export interface _PagedTextBlockItem {
   /** The TextBlockItem items on this page */
   value: TextBlockItem[];
   /** The link to the next page of items */

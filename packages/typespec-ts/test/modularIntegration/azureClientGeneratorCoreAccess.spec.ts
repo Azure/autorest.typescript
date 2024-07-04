@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { AccessClient } from "./generated/azure/clientGeneratorCore/access/src/index.js";
+import { AccessClient } from "./generated/azure/client-generator-core/access/src/index.js";
 describe("Azure ClientGeneratorCore Access Client", () => {
   let client: AccessClient;
 

@@ -47,38 +47,15 @@ export interface LivenessSessionCreationContentForMultipart {
 }
 
 /** Alias for FaceAttributeType */
-export type FaceAttributeType =
-  | string
-  | "headPose"
-  | "glasses"
-  | "occlusion"
-  | "accessories"
-  | "blur"
-  | "exposure"
-  | "noise"
-  | "mask"
-  | "qualityForRecognition"
-  | "age"
-  | "smile"
-  | "facialHair"
-  | "hair";
+export type FaceAttributeType = string;
 /** Alias for RecognitionModel */
-export type RecognitionModel =
-  | string
-  | "recognition_01"
-  | "recognition_02"
-  | "recognition_03"
-  | "recognition_04";
+export type RecognitionModel = string;
 /** Alias for DetectionModel */
-export type DetectionModel =
-  | string
-  | "detection_01"
-  | "detection_02"
-  | "detection_03";
+export type DetectionModel = string;
 /** Alias for FindSimilarMatchMode */
-export type FindSimilarMatchMode = string | "matchPerson" | "matchFace";
+export type FindSimilarMatchMode = string;
 /** Alias for LivenessOperationMode */
-export type LivenessOperationMode = string | "Passive";
+export type LivenessOperationMode = string;
 /** Request of liveness with verify session creation. */
 export type LivenessSessionWithVerifyImageCreationContent =
   | FormData

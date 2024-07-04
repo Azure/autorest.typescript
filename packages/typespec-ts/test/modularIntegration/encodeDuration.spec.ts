@@ -41,6 +41,15 @@ describe("EncodeDurationClient Rest Client", () => {
       }
     });
 
+    it(`should get float64 seconds`, async () => {
+      try {
+        const result = await client.query.float64Seconds(35.621);
+        assert.isUndefined(result);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
     it(`should get int32 seconds`, async () => {
       try {
         const result = await client.query.int32Seconds(36);
@@ -82,6 +91,15 @@ describe("EncodeDurationClient Rest Client", () => {
     it(`should get float seconds`, async () => {
       try {
         const result = await client.property.floatSeconds({ value: 35.621 });
+        assert.deepEqual(result.value, 35.621);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get float64 seconds`, async () => {
+      try {
+        const result = await client.property.float64Seconds({ value: 35.621 });
         assert.deepEqual(result.value, 35.621);
       } catch (err) {
         assert.fail(err as string);
@@ -131,6 +149,15 @@ describe("EncodeDurationClient Rest Client", () => {
     it(`should get float seconds`, async () => {
       try {
         const result = await client.header.floatSeconds(35.621);
+        assert.isUndefined(result);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get float64 seconds`, async () => {
+      try {
+        const result = await client.header.float64Seconds(35.621);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);

@@ -26,13 +26,26 @@ describe("anonymous model", () => {
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
         await assertEqualContent(
-          modelFile?.getFullText()!,
+          modelFile?.getInterface("Bar")?.getText()!,
           `
           export interface Bar {
             prop1: string;
             prop2: number;
           }`
         );
+
+        const serializer = modelFile?.getFunction("barSerializer")?.getText();
+        await assertEqualContent(
+          serializer!,
+          `
+          export function barSerializer(item: Bar): BarRest {
+            return {
+              prop1: item["prop1"],
+              prop2: item["prop2"],
+            }
+          };`
+        );
+
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
@@ -124,11 +137,22 @@ describe("anonymous model", () => {
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
         await assertEqualContent(
-          modelFile?.getFullText()!,
+          modelFile?.getInterface("Bar")?.getFullText()!,
           `
           export interface Bar {
             prop1: string;
             prop2: number;
+          }`
+        );
+
+        await assertEqualContent(
+          modelFile?.getFunction("barSerializer")?.getFullText()!,
+          `
+          export function barSerializer(item: Bar): BarRest {
+            return {
+              prop1: item["prop1"],
+              prop2: item["prop2"],
+            }
           }`
         );
         const optionFile = await emitModularModelsFromTypeSpec(
@@ -141,6 +165,7 @@ describe("anonymous model", () => {
           `
         import { OperationOptions  } from "@azure-rest/core-client";
         
+        /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;
@@ -235,13 +260,26 @@ describe("anonymous model", () => {
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
         await assertEqualContent(
-          modelFile?.getFullText()!,
+          modelFile?.getInterface("Bar")?.getFullText()!,
           `
           export interface Bar {
             prop1: string;
             prop2: number;
           }`
         );
+
+        const serializer = modelFile?.getFunction("barSerializer")?.getText();
+        await assertEqualContent(
+          serializer!,
+          `
+          export function barSerializer(item: Bar): BarRest {
+            return {
+              prop1: item["prop1"],
+              prop2: item["prop2"],
+            }
+          };`
+        );
+
         const optionFile = await emitModularModelsFromTypeSpec(
           tspContent,
           true
@@ -252,6 +290,7 @@ describe("anonymous model", () => {
           `
         import { OperationOptions  } from "@azure-rest/core-client";
         
+        /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;
@@ -343,13 +382,17 @@ describe("anonymous model", () => {
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
         await assertEqualContent(
-          modelFile?.getFullText()!,
+          modelFile?.getInterface("Bar")?.getFullText()!,
           `
         export interface Bar {
           prop1: string;
           prop2: number;
-        }
+        }`
+        );
 
+        await assertEqualContent(
+          modelFile?.getInterface("Foo")?.getFullText()!,
+          `
         export interface Foo {
           prop1: string;
           prop2: number;
@@ -358,6 +401,32 @@ describe("anonymous model", () => {
           prop5: Bar;
         }`
         );
+
+        await assertEqualContent(
+          modelFile?.getFunction("barSerializer")?.getText()!,
+          `
+          export function barSerializer(item: Bar): BarRest {
+            return {
+              prop1: item["prop1"],
+              prop2: item["prop2"],
+            }
+          };`
+        );
+
+        await assertEqualContent(
+          modelFile?.getFunction("fooSerializer")?.getText()!,
+          `
+          export function fooSerializer(item: Foo): FooRest {
+            return {
+              prop1: item["prop1"],
+              prop2: item["prop2"],
+              prop3: item["prop3"].toISOString(),
+              prop4: item["prop4"],
+              prop5: barSerializer(item.prop5),
+            }
+          };`
+        );
+
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
@@ -388,7 +457,7 @@ describe("anonymous model", () => {
                 prop2: body["prop2"],
                 prop3: body["prop3"].toISOString(),
                 prop4: body["prop4"],
-                prop5: { prop1: body.prop5["prop1"], prop2: body.prop5["prop2"] },
+                prop5: barSerializer(body.prop5),
               },
             });
         }
@@ -486,11 +555,21 @@ describe("anonymous model", () => {
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
         await assertEqualContent(
-          modelFile?.getFullText()!,
+          modelFile?.getInterface("Bar")?.getFullText()!,
           `
           export interface Bar {
             prop1: string;
             prop2: number;
+          }`
+        );
+        await assertEqualContent(
+          modelFile?.getFunction("barSerializer")?.getFullText()!,
+          `
+          export function barSerializer(item: Bar): BarRest {
+            return {
+              prop1: item["prop1"],
+              prop2: item["prop2"],
+            }
           }`
         );
         const operationFiles =
@@ -565,11 +644,22 @@ describe("anonymous model", () => {
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
         await assertEqualContent(
-          modelFile!.getFullText()!,
+          modelFile!.getInterface("Test")?.getFullText()!,
           `
         export interface Test {
           color: Record<string, any>;
         }`
+        );
+
+        const serializer = modelFile?.getFunction("testSerializer")?.getText();
+        await assertEqualContent(
+          serializer!,
+          `
+          export function testSerializer(item: Test): TestRest {
+            return {
+              color: item["color"],
+            }
+          };`
         );
 
         const operationFiles =
@@ -622,16 +712,27 @@ describe("anonymous model", () => {
             foo?: string;
           };
         }
-        op read(@body body: Test): void;
+        op read(@bodyRoot body: Test): void;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
         await assertEqualContent(
-          modelFile!.getFullText()!,
+          modelFile!.getInterface("Test")?.getFullText()!,
           `
         export interface Test {
           color: { foo?: string };
         }`
+        );
+
+        const serializer = modelFile?.getFunction("testSerializer")?.getText();
+        await assertEqualContent(
+          serializer!,
+          `
+          export function testSerializer(item: Test): TestRest {
+            return {
+              color: {foo: item.color["foo"]},
+            }
+          };`
         );
 
         const operationFiles =
@@ -706,7 +807,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-          return result.body;
+          return result.body ${returnType.startsWith("Record") ? "as any" : ""};
         }
         export async function read(
           context: Client,
@@ -723,7 +824,7 @@ describe("anonymous model", () => {
       }
       it("should map empty anonymous model({}) => Record<string, any>", async () => {
         const tspContent = `
-        op read(): {};
+        op read(): { @body _: {}; };
         `;
         // No models.ts file generated
         assert.isUndefined(await emitModularModelsFromTypeSpec(tspContent));
@@ -741,7 +842,7 @@ describe("anonymous model", () => {
         const tspContent = `
         model PublishResult {
         }
-        op read(): PublishResult;
+        op read(): {@body _: PublishResult};
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         await assertEqualContent(

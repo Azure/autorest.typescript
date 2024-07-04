@@ -30,7 +30,7 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   "byte-array": { name: "Uint8Array" },
   string: { name: "string" },
   any: { name: "Record<string, any>" },
-  unknown: { name: "unknown" }
+  unknown: { name: "any" }
 };
 
 function handleAnomymousModelName(type: Type) {
@@ -72,7 +72,7 @@ export function getType(type: Type, format?: string): TypeMetadata {
   const simpleType = simpleTypeMap[type.type];
   if (simpleType) {
     const typeMetadata: TypeMetadata = { ...simpleType };
-    if (type.nullable) {
+    if (isTypeNullable(type)) {
       typeMetadata.nullable = true;
       typeMetadata.name = handleNullableTypeName(typeMetadata);
     }
@@ -102,7 +102,7 @@ export function getType(type: Type, format?: string): TypeMetadata {
       return handleDictType(type);
 
     case "never":
-      return { name: "never", nullable: type.nullable };
+      return { name: "never", nullable: isTypeNullable(type) };
     default:
       throw new Error(`Unsupported type ${type.type}`);
   }
@@ -118,9 +118,9 @@ function handleConstantType(type: Type): TypeMetadata {
   }
   const name = handleNullableTypeName({
     name: typeName,
-    nullable: type.nullable
+    nullable: isTypeNullable(type)
   });
-  return { name, nullable: type.nullable };
+  return { name, nullable: isTypeNullable(type) };
 }
 
 /**
@@ -137,18 +137,22 @@ function handleEnumType(type: Type): TypeMetadata {
           return getType(e as Type).name;
         })
         .join(" | ")}`,
-      nullable: type.nullable
+      nullable: isTypeNullable(type)
     };
   }
   const name = handleNullableTypeName({
     name: type.name,
-    nullable: type.nullable
+    nullable: isTypeNullable(type)
   });
   return {
     name,
-    nullable: type.nullable,
+    nullable: isTypeNullable(type),
     originModule: "models.js"
   };
+}
+
+export function isTypeNullable(type: Type) {
+  return Boolean(type.tcgcType?.kind === "nullable");
 }
 
 /**
@@ -164,14 +168,17 @@ function handleListType(type: Type): TypeMetadata {
     type.elementType.format
   );
 
-  const name = handleNullableTypeName({
-    name: `${elementTypeMetadata.name}[]`,
-    nullable: type.nullable
-  });
+  let name = `${elementTypeMetadata.name}[]`;
+
+  const isTypeNullable = type.tcgcType?.kind === "nullable";
+
+  if (isTypeNullable) {
+    name = `(${name} | null)`;
+  }
 
   const listTypeMetadata: TypeMetadata = {
     name: name,
-    nullable: type.elementType.nullable,
+    nullable: isTypeNullable,
     originModule: type.elementType?.type === "model" ? "models.js" : undefined
   };
 
@@ -185,11 +192,11 @@ function handleModelType(type: Type): TypeMetadata {
   let name = !type.name ? handleAnomymousModelName(type) : type.name;
   name = handleNullableTypeName({
     name,
-    nullable: type.nullable
+    nullable: isTypeNullable(type)
   });
   return {
     name,
-    nullable: type.nullable,
+    nullable: isTypeNullable(type),
     originModule: "models.js"
   };
 }
@@ -200,10 +207,10 @@ function handleModelType(type: Type): TypeMetadata {
 function handleDurationType(type: Type, format?: string): TypeMetadata {
   const isFormatSeconds = format === "seconds";
   let name = isFormatSeconds ? "number" : "string";
-  name = handleNullableTypeName({ name, nullable: type.nullable });
+  name = handleNullableTypeName({ name, nullable: isTypeNullable(type) });
   return {
     name,
-    nullable: type.nullable
+    nullable: isTypeNullable(type)
   };
 }
 
@@ -222,7 +229,7 @@ function handleCombinedType(type: Type): TypeMetadata {
         return `${sdkType}`;
       })
       .join(" | ");
-  return { name: `(${name})`, nullable: type.nullable };
+  return { name: `(${name})`, nullable: isTypeNullable(type) };
 }
 
 /**
@@ -232,11 +239,20 @@ function handleDictType(type: Type): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process dict without elemetType info");
   }
-
+  if (type.name && type.name !== "Record") {
+    return {
+      name: type.name
+    };
+  }
   const elementType = getType(type.elementType, type.elementType.format);
   const elementName = elementType.name;
+  const name = handleNullableTypeName({
+    name: `Record<string, ${elementName}>`,
+    nullable: isTypeNullable(type)
+  });
   return {
-    name: `Record<string, ${elementName}>`
+    name,
+    nullable: isTypeNullable(type)
   };
 }
 
@@ -251,4 +267,34 @@ export function buildType(clientName?: string, type?: Type, format?: string) {
   const typeMetadata = getType(type, format);
 
   return { name: clientName ?? "", type: typeMetadata.name };
+}
+
+const NumericTypeKinds = [
+  "numeric",
+  "integer",
+  "safeint",
+  "int8",
+  "int16",
+  "int32",
+  "int64",
+  "uint8",
+  "uint16",
+  "uint32",
+  "uint64",
+  "float",
+  "float32",
+  "float64",
+  "decimal",
+  "decimal128"
+];
+
+const DateTimeTypeKinds = ["plainDate", "plainTime"];
+
+// This may be a good candidate to move to TCGC
+export function isNumericTypeKind(kind: string): boolean {
+  return NumericTypeKinds.includes(kind);
+}
+
+export function isDateTimeTypeKind(kind: string): boolean {
+  return DateTimeTypeKinds.includes(kind);
 }

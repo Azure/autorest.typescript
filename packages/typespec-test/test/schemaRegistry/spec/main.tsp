@@ -108,7 +108,7 @@ interface SchemaOperations {
       @body
       schemaContent: bytes;
     },
-    SchemaHeaders
+    SchemaHeaders & { @statusCode _: 204; }
   >;
 
   //  PUT https://{namespaceName}.servicebus.windows.net/$schemaGroups/{groupName}/schemas/{name}?api-version={apiVersion}

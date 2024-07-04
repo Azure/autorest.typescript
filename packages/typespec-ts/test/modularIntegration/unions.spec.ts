@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { UnionClient } from "./generated/unions/src/index.js";
+import { UnionClient } from "./generated/type/union/src/index.js";
 describe("Type Union Client", () => {
   let client: UnionClient;
 
@@ -203,7 +203,15 @@ describe("Type Union Client", () => {
         model: { name: "test" },
         literal: "a",
         int: 2,
-        boolean: true
+        boolean: true,
+        array: [
+          {
+            name: "test"
+          },
+          "a",
+          2,
+          true
+        ]
       });
       assert.isUndefined(result);
     } catch (err) {

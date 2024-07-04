@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { CollectionFormatContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface CollectionFormatClientOptions extends ClientOptions {}
 
 export { CollectionFormatContext } from "../rest/index.js";

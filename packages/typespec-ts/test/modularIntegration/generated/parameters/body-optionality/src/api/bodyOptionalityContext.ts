@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { BodyOptionalityContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface BodyOptionalityClientOptions extends ClientOptions {}
 
 export { BodyOptionalityContext } from "../rest/index.js";

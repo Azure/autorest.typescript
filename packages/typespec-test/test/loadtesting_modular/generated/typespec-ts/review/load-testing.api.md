@@ -4,22 +4,13 @@
 
 ```ts
 
-/// <reference types="node" />
-
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
@@ -40,15 +31,15 @@ export class AdministrationOperationsClient {
     uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<FileInfo>;
 }
 
-// @public (undocumented)
+// @public
 export interface AdministrationOperationsClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export type AggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
 
-// @public (undocumented)
+// @public
 export type APIVersions = "2022-11-01";
 
 // @public
@@ -69,7 +60,7 @@ export interface CertificateMetadata {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type CertificateType = "AKV_CERT_URI";
 
 // @public
@@ -77,33 +68,33 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTestFileOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTestOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTestRunOptionalParams extends OperationOptions {
 }
 
@@ -140,56 +131,56 @@ export interface FileInfo {
     validationStatus?: FileStatus;
 }
 
-// @public (undocumented)
+// @public
 export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
-// @public (undocumented)
+// @public
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
-// @public (undocumented)
+// @public
 export interface GetAppComponentsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestFileOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestRunFileOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface GetTestRunOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
-// @public (undocumented)
+// @public
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
     metricNamespace?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListMetricDimensionValuesOptionalParams extends OperationOptions {
     interval?: TestRunOperationsClientInterval;
     metricName?: string;
     timespan?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ListMetricsOptionalParams extends OperationOptions {
     aggregation?: string;
     interval?: TestRunOperationsClientInterval;
@@ -198,11 +189,11 @@ export interface ListMetricsOptionalParams extends OperationOptions {
     timespan?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTestFilesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ListTestRunsOptionalParams extends OperationOptions {
     executionFrom?: string;
     executionTo?: string;
@@ -213,7 +204,7 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
     testId?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTestsOptionalParams extends OperationOptions {
     lastModifiedEndTime?: string;
     lastModifiedStartTime?: string;
@@ -268,7 +259,7 @@ export interface MetricRequestPayload {
     filters?: DimensionFilter[];
 }
 
-// @public (undocumented)
+// @public
 export type MetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
@@ -299,36 +290,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export interface PagedDimensionValueList {
-    nextLink?: string;
-    value: DimensionValueList[];
-}
-
-// @public
-export interface PagedFileInfo {
-    nextLink?: string;
-    value: FileInfo[];
-}
-
-// @public
-export interface PagedTest {
-    nextLink?: string;
-    value: Test[];
-}
-
-// @public
-export interface PagedTestRun {
-    nextLink?: string;
-    value: TestRun[];
-}
-
-// @public
-export interface PagedTimeSeriesElement {
-    nextLink?: string;
-    value: TimeSeriesElement[];
-}
-
-// @public
 export interface PageSettings {
     continuationToken?: string;
 }
@@ -350,19 +311,19 @@ export interface PassFailMetric {
     value?: number;
 }
 
-// @public (undocumented)
+// @public
 export type PFAction = "continue" | "stop";
 
-// @public (undocumented)
+// @public
 export type PFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public (undocumented)
+// @public
 export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public (undocumented)
+// @public
 export type PFResult = "passed" | "undetermined" | "failed";
 
-// @public (undocumented)
+// @public
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
@@ -377,15 +338,13 @@ export interface ResourceMetric {
     unit?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
     abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    processResponseBody?: (result: TResponse) => Promise<TResult>;
     updateIntervalInMs?: number;
 }
 
@@ -395,13 +354,13 @@ export interface Secret {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
-// @public (undocumented)
+// @public
 export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
-// @public (undocumented)
+// @public
 export interface StopTestRunOptionalParams extends OperationOptions {
 }
 
@@ -518,10 +477,10 @@ export class TestRunOperationsClient {
     testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptionalParams): PollerLike<OperationState<TestRunOperationsClientTestRun>, TestRunOperationsClientTestRun>;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientAggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientAPIVersions = "2022-11-01";
 
 // @public
@@ -542,7 +501,7 @@ export interface TestRunOperationsClientCertificateMetadata {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientCertificateType = "AKV_CERT_URI";
 
 // @public
@@ -550,13 +509,13 @@ export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]>
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
@@ -595,21 +554,21 @@ export interface TestRunOperationsClientFileInfo {
     validationStatus?: TestRunOperationsClientFileStatus;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientGetAppComponentsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientGetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientInterval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
@@ -658,7 +617,7 @@ export interface TestRunOperationsClientMetricRequestPayload {
     filters?: TestRunOperationsClientDimensionFilter[];
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
@@ -681,7 +640,7 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
     virtualUsers?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOperationsClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -691,36 +650,6 @@ export interface TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPa
     [Symbol.asyncIterator](): TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TestRunOperationsClientContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface TestRunOperationsClientPagedDimensionValueList {
-    nextLink?: string;
-    value: TestRunOperationsClientDimensionValueList[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedFileInfo {
-    nextLink?: string;
-    value: TestRunOperationsClientFileInfo[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedTest {
-    nextLink?: string;
-    value: TestRunOperationsClientTest[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedTestRun {
-    nextLink?: string;
-    value: TestRunOperationsClientTestRun[];
-}
-
-// @public
-export interface TestRunOperationsClientPagedTimeSeriesElement {
-    nextLink?: string;
-    value: TestRunOperationsClientTimeSeriesElement[];
 }
 
 // @public
@@ -745,19 +674,19 @@ export interface TestRunOperationsClientPassFailMetric {
     value?: number;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFAction = "continue" | "stop";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFResult = "passed" | "undetermined" | "failed";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientPFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
@@ -778,10 +707,10 @@ export interface TestRunOperationsClientSecret {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
 // @public
@@ -921,7 +850,7 @@ export interface TestRunOperationsClientTestServerMetricConfig {
     readonly testId?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TestRunOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
@@ -930,7 +859,7 @@ export interface TestRunOperationsClientTimeSeriesElement {
     dimensionValues?: TestRunOperationsClientDimensionValue[];
 }
 
-// @public (undocumented)
+// @public
 export interface TestRunOptionalParams extends OperationOptions {
     contentType?: string;
     oldTestRunId?: string;
@@ -981,7 +910,7 @@ export interface TestServerMetricConfig {
     readonly testId?: string;
 }
 
-// @public (undocumented)
+// @public
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
@@ -990,7 +919,7 @@ export interface TimeSeriesElement {
     dimensionValues?: DimensionValue[];
 }
 
-// @public (undocumented)
+// @public
 export interface UploadTestFileOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;

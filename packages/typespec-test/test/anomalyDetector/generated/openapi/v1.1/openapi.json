@@ -91,7 +91,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
+              "$ref": "#/definitions/Multivariate.ErrorResponse"
             },
             "headers": {
               "x-ms-error-code": {
@@ -137,7 +137,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
+              "$ref": "#/definitions/Multivariate.ErrorResponse"
             },
             "headers": {
               "x-ms-error-code": {
@@ -182,7 +182,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
+              "$ref": "#/definitions/Multivariate.ErrorResponse"
             },
             "headers": {
               "x-ms-error-code": {
@@ -218,7 +218,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
+              "$ref": "#/definitions/Multivariate.ErrorResponse"
             },
             "headers": {
               "x-ms-error-code": {
@@ -249,7 +249,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
+              "$ref": "#/definitions/Multivariate.ErrorResponse"
             },
             "headers": {
               "x-ms-error-code": {
@@ -304,7 +304,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
+              "$ref": "#/definitions/Multivariate.ErrorResponse"
             },
             "headers": {
               "x-ms-error-code": {
@@ -349,7 +349,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
+              "$ref": "#/definitions/Multivariate.ErrorResponse"
             },
             "headers": {
               "x-ms-error-code": {
@@ -658,7 +658,7 @@
       ],
       "x-ms-enum": {
         "name": "DataSchema",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "OneTable",
@@ -721,7 +721,7 @@
       ],
       "x-ms-enum": {
         "name": "FillNAMethod",
-        "modelAsString": true
+        "modelAsString": false
       }
     },
     "Multivariate.ModelInfo": {
@@ -1167,7 +1167,7 @@
       ],
       "x-ms-enum": {
         "name": "AnomalyDetectorErrorCodes",
-        "modelAsString": true
+        "modelAsString": false
       }
     },
     "Univariate.ImputeMode": {
@@ -1182,7 +1182,7 @@
       ],
       "x-ms-enum": {
         "name": "ImputeMode",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "Auto",
@@ -1535,22 +1535,6 @@
         "isNegativeAnomaly",
         "isPositiveAnomaly"
       ]
-    },
-    "Versions": {
-      "type": "string",
-      "enum": [
-        "v1.1"
-      ],
-      "x-ms-enum": {
-        "name": "Versions",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "v1_1",
-            "value": "v1.1"
-          }
-        ]
-      }
     }
   },
   "parameters": {}

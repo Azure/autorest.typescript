@@ -24,6 +24,7 @@ import {
   PropertyUnixTimestampArrayOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Property operations. */
 export interface PropertyOperations {
   default: (
     body: DefaultDatetimeProperty,

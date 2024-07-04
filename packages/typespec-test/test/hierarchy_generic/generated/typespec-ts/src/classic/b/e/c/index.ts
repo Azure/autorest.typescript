@@ -6,6 +6,7 @@ import { BEA } from "../../../../models/models.js";
 import { op1 } from "../../../../api/b/e/c/index.js";
 import { BECOp1OptionalParams } from "../../../../models/options.js";
 
+/** Interface representing a BEC operations. */
 export interface BECOperations {
   op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
 }

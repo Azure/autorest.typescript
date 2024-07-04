@@ -1,6 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  MultivariateVariableState as MultivariateVariableStateRest,
+  MultivariateMultivariateBatchDetectionOptions as MultivariateMultivariateBatchDetectionOptionsRest,
+  MultivariateModelInfo as MultivariateModelInfoRest,
+  MultivariateAlignPolicy as MultivariateAlignPolicyRest,
+  MultivariateDiagnosticsInfo as MultivariateDiagnosticsInfoRest,
+  MultivariateModelState as MultivariateModelStateRest,
+  MultivariateMultivariateLastDetectionOptions as MultivariateMultivariateLastDetectionOptionsRest,
+  MultivariateVariableValues as MultivariateVariableValuesRest,
+  UnivariateUnivariateDetectionOptions as UnivariateUnivariateDetectionOptionsRest,
+  UnivariateTimeSeriesPoint as UnivariateTimeSeriesPointRest,
+  UnivariateUnivariateChangePointDetectionOptions as UnivariateUnivariateChangePointDetectionOptionsRest,
+} from "../rest/index.js";
+
 /** Detection results for the given resultId. */
 export interface MultivariateMultivariateDetectionResult {
   /** Result identifier, which is used to fetch the results of an inference call. */
@@ -26,7 +40,7 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
 }
 
-/** */
+/** Type of MultivariateBatchDetectionStatus */
 export type MultivariateBatchDetectionStatus =
   | "CREATED"
   | "RUNNING"
@@ -53,6 +67,18 @@ export interface MultivariateVariableState {
   firstTimestamp?: Date;
   /** Last valid timestamp with value of input data. */
   lastTimestamp?: Date;
+}
+
+export function multivariateVariableStateSerializer(
+  item: MultivariateVariableState,
+): MultivariateVariableStateRest {
+  return {
+    variable: item["variable"],
+    filledNARatio: item["filledNARatio"],
+    effectiveCount: item["effectiveCount"],
+    firstTimestamp: item["firstTimestamp"]?.toISOString(),
+    lastTimestamp: item["lastTimestamp"]?.toISOString(),
+  };
 }
 
 /**
@@ -83,6 +109,17 @@ export interface MultivariateMultivariateBatchDetectionOptions {
    * be date-time of ISO 8601 format.
    */
   endTime: Date;
+}
+
+export function multivariateMultivariateBatchDetectionOptionsSerializer(
+  item: MultivariateMultivariateBatchDetectionOptions,
+): MultivariateMultivariateBatchDetectionOptionsRest {
+  return {
+    dataSource: item["dataSource"],
+    topContributorCount: item["topContributorCount"],
+    startTime: item["startTime"].toISOString(),
+    endTime: item["endTime"].toISOString(),
+  };
 }
 
 /** Anomaly status and information. */
@@ -132,14 +169,6 @@ export interface MultivariateCorrelationChanges {
   changedVariables?: string[];
 }
 
-/** Error response */
-export interface MultivariateResponseError {
-  /** The error code. */
-  code: string;
-  /** The message explaining the error reported by the service. */
-  message: string;
-}
-
 /**
  * Training result of a model including its status, errors and diagnostics
  * information.
@@ -186,8 +215,27 @@ export interface MultivariateModelInfo {
   diagnosticsInfo?: MultivariateDiagnosticsInfo;
 }
 
+export function multivariateModelInfoSerializer(
+  item: MultivariateModelInfo,
+): MultivariateModelInfoRest {
+  return {
+    dataSource: item["dataSource"],
+    dataSchema: item["dataSchema"],
+    startTime: item["startTime"].toISOString(),
+    endTime: item["endTime"].toISOString(),
+    displayName: item["displayName"],
+    slidingWindow: item["slidingWindow"],
+    alignPolicy: !item.alignPolicy
+      ? item.alignPolicy
+      : multivariateAlignPolicySerializer(item.alignPolicy),
+    status: item["status"],
+    diagnosticsInfo: !item.diagnosticsInfo
+      ? item.diagnosticsInfo
+      : multivariateDiagnosticsInfoSerializer(item.diagnosticsInfo),
+  };
+}
+
 /** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
-/** */
 export type DataSchema = "OneTable" | "MultiTable";
 
 /** An optional field, indicating the manner to align multiple variables. */
@@ -206,17 +254,26 @@ export interface MultivariateAlignPolicy {
   paddingValue?: number;
 }
 
-/** */
+export function multivariateAlignPolicySerializer(
+  item: MultivariateAlignPolicy,
+): MultivariateAlignPolicyRest {
+  return {
+    alignMode: item["alignMode"],
+    fillNAMethod: item["fillNAMethod"],
+    paddingValue: item["paddingValue"],
+  };
+}
+
+/** Type of AlignMode */
 export type AlignMode = "Inner" | "Outer";
 /** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
-/** */
 export type FillNAMethod =
   | "Previous"
   | "Subsequent"
   | "Linear"
   | "Zero"
   | "Fixed";
-/** */
+/** Type of ModelStatus */
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 /** Diagnostics information to help inspect the states of model or variable. */
@@ -225,6 +282,20 @@ export interface MultivariateDiagnosticsInfo {
   modelState?: MultivariateModelState;
   /** Variable Status. */
   variableStates?: MultivariateVariableState[];
+}
+
+export function multivariateDiagnosticsInfoSerializer(
+  item: MultivariateDiagnosticsInfo,
+): MultivariateDiagnosticsInfoRest {
+  return {
+    modelState: !item.modelState
+      ? item.modelState
+      : multivariateModelStateSerializer(item.modelState),
+    variableStates:
+      item["variableStates"] === undefined
+        ? item["variableStates"]
+        : item["variableStates"].map(multivariateVariableStateSerializer),
+  };
 }
 
 /** Model status. */
@@ -248,6 +319,17 @@ export interface MultivariateModelState {
   latenciesInSeconds?: number[];
 }
 
+export function multivariateModelStateSerializer(
+  item: MultivariateModelState,
+): MultivariateModelStateRest {
+  return {
+    epochIds: item["epochIds"],
+    trainLosses: item["trainLosses"],
+    validationLosses: item["validationLosses"],
+    latenciesInSeconds: item["latenciesInSeconds"],
+  };
+}
+
 /** Response of getting a model. */
 export interface MultivariateAnomalyDetectionModel {
   /** Model identifier. */
@@ -264,7 +346,7 @@ export interface MultivariateAnomalyDetectionModel {
 }
 
 /** Response of listing models. */
-export interface MultivariateModelList {
+export interface _MultivariateModelList {
   /** List of models. */
   models: MultivariateAnomalyDetectionModel[];
   /** Number of trained multivariate models. */
@@ -290,6 +372,15 @@ export interface MultivariateMultivariateLastDetectionOptions {
   topContributorCount: number;
 }
 
+export function multivariateMultivariateLastDetectionOptionsSerializer(
+  item: MultivariateMultivariateLastDetectionOptions,
+): MultivariateMultivariateLastDetectionOptionsRest {
+  return {
+    variables: item["variables"].map(multivariateVariableValuesSerializer),
+    topContributorCount: item["topContributorCount"],
+  };
+}
+
 /** Variable values. */
 export interface MultivariateVariableValues {
   /** Variable name of last detection request. */
@@ -298,6 +389,16 @@ export interface MultivariateVariableValues {
   timestamps: string[];
   /** Values of variables. */
   values: number[];
+}
+
+export function multivariateVariableValuesSerializer(
+  item: MultivariateVariableValues,
+): MultivariateVariableValuesRest {
+  return {
+    variable: item["variable"],
+    timestamps: item["timestamps"],
+    values: item["values"],
+  };
 }
 
 /** Results of last detection. */
@@ -355,6 +456,21 @@ export interface UnivariateUnivariateDetectionOptions {
   imputeFixedValue?: number;
 }
 
+export function univariateUnivariateDetectionOptionsSerializer(
+  item: UnivariateUnivariateDetectionOptions,
+): UnivariateUnivariateDetectionOptionsRest {
+  return {
+    series: item["series"].map(univariateTimeSeriesPointSerializer),
+    granularity: item["granularity"],
+    customInterval: item["customInterval"],
+    period: item["period"],
+    maxAnomalyRatio: item["maxAnomalyRatio"],
+    sensitivity: item["sensitivity"],
+    imputeMode: item["imputeMode"],
+    imputeFixedValue: item["imputeFixedValue"],
+  };
+}
+
 /** The definition of input timeseries points. */
 export interface UnivariateTimeSeriesPoint {
   /** Optional argument, timestamp of a data point (ISO8601 format). */
@@ -363,7 +479,16 @@ export interface UnivariateTimeSeriesPoint {
   value: number;
 }
 
-/** */
+export function univariateTimeSeriesPointSerializer(
+  item: UnivariateTimeSeriesPoint,
+): UnivariateTimeSeriesPointRest {
+  return {
+    timestamp: item["timestamp"]?.toISOString(),
+    value: item["value"],
+  };
+}
+
+/** Type of TimeGranularity */
 export type TimeGranularity =
   | "yearly"
   | "monthly"
@@ -374,7 +499,7 @@ export type TimeGranularity =
   | "secondly"
   | "microsecond"
   | "none";
-/** */
+/** Type of ImputeMode */
 export type ImputeMode =
   | "auto"
   | "previous"
@@ -447,7 +572,7 @@ export interface UnivariateAnomalyDetectorError {
   message?: string;
 }
 
-/** */
+/** Type of AnomalyDetectorErrorCodes */
 export type AnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
   | "BadArgument"
@@ -544,6 +669,19 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
   threshold?: number;
 }
 
+export function univariateUnivariateChangePointDetectionOptionsSerializer(
+  item: UnivariateUnivariateChangePointDetectionOptions,
+): UnivariateUnivariateChangePointDetectionOptionsRest {
+  return {
+    series: item["series"].map(univariateTimeSeriesPointSerializer),
+    granularity: item["granularity"],
+    customInterval: item["customInterval"],
+    period: item["period"],
+    stableTrendWindow: item["stableTrendWindow"],
+    threshold: item["threshold"],
+  };
+}
+
 /** The response of change point detection. */
 export interface UnivariateUnivariateChangePointDetectionResult {
   /**
@@ -561,5 +699,5 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
-/** */
+/** Type of Versions */
 export type Versions = "v1.1";

@@ -34,7 +34,7 @@ export function getAzurePackageDependencies({
   specSource
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
-    "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.0.0",
+    "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.1.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
@@ -44,8 +44,8 @@ export function getAzurePackageDependencies({
   if (hasLro) {
     dependencies = {
       ...dependencies,
-      "@azure/core-lro": "3.0.0-beta.1",
-      "@azure/abort-controller": "^2.0.0"
+      "@azure/core-lro": "3.0.0",
+      "@azure/abort-controller": "^2.1.2"
     };
   }
 
@@ -99,6 +99,8 @@ function getAzurePackageCjsDevDependencies({
     return {};
   }
   const testDevDependencies = {
+    "@azure-tools/test-credential": "^1.1.0",
+    "@azure-tools/test-recorder": "^3.0.0",
     nyc: "^15.1.0",
     mocha: "^10.0.0",
     "@types/mocha": "^10.0.0",
@@ -140,7 +142,9 @@ function getAzurePackageEsmDevDependencies({
       "@vitest/browser": "^1.3.1",
       "@vitest/coverage-istanbul": "^1.3.1",
       playwright: "^1.41.2",
-      vitest: "^1.3.1"
+      vitest: "^1.3.1",
+      "@azure-tools/test-credential": "^2.0.0",
+      "@azure-tools/test-recorder": "^4.0.0"
     };
   }
 
@@ -153,9 +157,7 @@ export function getAzurePackageDevDependencies(config: AzurePackageInfoConfig) {
 
   const testDevDependencies = {
     "@azure/core-util": "^1.0.0",
-    "@azure-tools/test-credential": "^1.0.0",
-    "@azure/identity": "^4.0.1",
-    "@azure-tools/test-recorder": "^3.0.0"
+    "@azure/identity": "^4.2.1"
   };
 
   return {

@@ -1,102 +1,98 @@
 import {
-  getPagedResult,
-  getLroMetadata
+  buildRuntimeImports,
+  getClientName,
+  NameType,
+  normalizeName,
+  RLCModel
+} from "@azure-tools/rlc-common";
+import {
+  getLroMetadata,
+  getPagedResult
 } from "@azure-tools/typespec-azure-core";
 import {
+  getAllModels,
+  getClientNamespaceString,
+  getClientType,
+  getDefaultApiVersion,
+  getLibraryName,
+  getSdkBuiltInType,
+  getSdkUnion,
+  getWireName,
+  isApiVersion,
+  listClients,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkBuiltInType,
+  SdkClient,
+  SdkEnumValueType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
+import {
   Enum,
+  getDiscriminator,
   getDoc,
+  getEncode,
   getFriendlyName,
+  getMaxItems,
   getMaxLength,
   getMaxValue,
+  getMinItems,
   getMinLength,
   getMinValue,
   getPattern,
+  getPropertyType,
   getSummary,
   getVisibility,
   ignoreDiagnostics,
+  IntrinsicScalarName,
+  IntrinsicType,
   isErrorModel,
   isNeverType,
+  isNullType,
+  isNumericType,
+  isStringType,
+  isTemplateDeclarationOrInstance,
+  isType,
+  isVoidType,
+  listServices,
   Model,
   ModelProperty,
   Namespace,
-  Program,
-  getEffectiveModelType,
-  getDiscriminator,
   Operation,
+  Program,
   Scalar,
-  IntrinsicScalarName,
-  isStringType,
-  getPropertyType,
-  isNumericType,
-  getMinItems,
-  getMaxItems,
-  listServices,
-  Union,
   Type,
-  IntrinsicType,
-  isNullType,
-  getEncode,
-  isTemplateDeclarationOrInstance,
+  Union,
   UsageFlags
 } from "@typespec/compiler";
 import {
   getAuthentication,
-  getHeaderFieldName,
-  getPathParamName,
-  getQueryParamName,
+  getHttpOperation,
   getServers,
   HttpAuth,
+  HttpOperation,
   HttpOperationParameter,
   HttpOperationResponse,
   HttpOperationResponseContent,
   HttpServer,
-  isStatusCode,
-  HttpOperation,
-  getHttpOperation,
   isSharedRoute
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
-import {
-  SdkClient,
-  listClients,
-  listOperationGroups,
-  listOperationsInOperationGroup,
-  isApiVersion,
-  getDefaultApiVersion,
-  getClientNamespaceString,
-  getSdkUnion,
-  getAllModels,
-  SdkBuiltInType,
-  getSdkBuiltInType,
-  SdkEnumValueType,
-  getLibraryName,
-  getWireName
-} from "@azure-tools/typespec-client-generator-core";
-import {
-  ModularCodeModel,
-  Client as HrlcClient,
-  Parameter,
-  Operation as HrlcOperation,
-  OperationGroup,
-  Response,
-  Type as HrlcType,
-  Header,
-  Property
-} from "./modularCodeModel.js";
+import { Project } from "ts-morph";
+import { reportDiagnostic } from "../lib.js";
+import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 import {
   buildCoreTypeInfo,
   getBodyType,
   getDefaultApiVersionString,
-  isAzureCoreErrorType
+  getEffectiveSchemaType,
+  isAzureCoreErrorType,
+  isSchemaProperty
 } from "../utils/modelUtils.js";
-import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
+import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import {
-  RLCModel,
-  getClientName,
-  NameType,
-  normalizeName
-} from "@azure-tools/rlc-common";
-import {
+  extractPagedMetadataNested,
   getOperationGroupName,
   getOperationName,
   isBinaryPayload,
@@ -105,12 +101,20 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { Project } from "ts-morph";
-import { buildRuntimeImports } from "@azure-tools/rlc-common";
-import { getModelNamespaceName } from "../utils/namespaceUtils.js";
-import { reportDiagnostic } from "../lib.js";
+import { isModelWithAdditionalProperties } from "./emitModels.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
+import {
+  Client as HrlcClient,
+  Header,
+  ModularCodeModel,
+  Operation as HrlcOperation,
+  OperationGroup,
+  Parameter,
+  Property,
+  Response,
+  Type as HrlcType
+} from "./modularCodeModel.js";
+import { useContext } from "../contextManager.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -239,47 +243,6 @@ function handleDiscriminator(
   return undefined;
 }
 
-function isSchemaProperty(program: Program, property: ModelProperty): boolean {
-  const headerInfo = getHeaderFieldName(program, property);
-  const queryInfo = getQueryParamName(program, property);
-  const pathInfo = getPathParamName(program, property);
-  const statusCodeinfo = isStatusCode(program, property);
-  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-}
-
-function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
-  function isSchemaProperty(property: ModelProperty): boolean {
-    const headerInfo = getHeaderFieldName(program, property);
-    const queryInfo = getQueryParamName(program, property);
-    const pathInfo = getPathParamName(program, property);
-    const statusCodeinfo = isStatusCode(program, property);
-    return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-  }
-
-  // If type is an anonymous model, tries to find a named model that has the same properties
-  let effective: Model | undefined = undefined;
-  if (type.kind === "Union") {
-    const nonNullOptions = [...type.variants.values()]
-      .map((x) => x.type)
-      .filter((t) => !isNullType(t));
-    if (
-      nonNullOptions.length === 1 &&
-      nonNullOptions[0]?.kind === "Model" &&
-      nonNullOptions[0]?.name === ""
-    ) {
-      effective = getEffectiveModelType(program, nonNullOptions[0]);
-    }
-    return type as any;
-  } else if (type.name === "") {
-    effective = getEffectiveModelType(program, type, isSchemaProperty);
-  }
-
-  if (effective?.name) {
-    return effective;
-  }
-  return type as Model;
-}
-
 function processModelProperties(
   context: SdkContext,
   newValue: any,
@@ -347,6 +310,8 @@ function getType(
   type: EmitterType,
   options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
 ): any {
+  const modularMetatree = useContext("modularMetaTree");
+
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
@@ -361,6 +326,7 @@ function getType(
     }
   }
   let newValue: any;
+
   if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
@@ -369,6 +335,12 @@ function getType(
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
+  }
+
+  if (isTypespecType(type)) {
+    newValue.tcgcType = getClientType(context, type);
+    newValue.__raw = type;
+    modularMetatree.set(type, newValue);
   }
 
   if (enableCache) {
@@ -385,9 +357,14 @@ function getType(
     if (type.kind === "Model") {
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type, options.usage!);
+      if (newValue.type === "dict") {
+        newValue = { ...emitModel(context, type, options.usage!), ...newValue };
+        typesMap.set(effectiveModel, newValue);
+      }
     }
   } else {
-    const key = JSON.stringify(newValue);
+    const { __raw, tcgcType, ...keyableValue } = newValue;
+    const key = JSON.stringify(keyableValue);
     const value = simpleTypesMap.get(key);
     if (value) {
       newValue = value;
@@ -395,8 +372,25 @@ function getType(
       simpleTypesMap.set(key, newValue);
     }
   }
+  if (
+    type.kind === "Model" &&
+    isModelWithAdditionalProperties(newValue) &&
+    !context.rlcOptions?.compatibilityMode
+  ) {
+    reportDiagnostic(context.program, {
+      code: "compatible-additional-properties",
+      format: {
+        modelName: type?.name ?? ""
+      },
+      target: type
+    });
+  }
 
   return newValue;
+}
+
+function isTypespecType(type: EmitterType): type is Type {
+  return type.kind !== "Credential" && type.kind !== "CredentialTypeUnion";
 }
 
 // To pass the yaml dump
@@ -412,6 +406,7 @@ type ParamBase = {
   restApiName: string;
   inOverload: boolean;
   format?: string;
+  tcgcType: SdkType;
 };
 function emitParamBase(
   context: SdkContext,
@@ -451,7 +446,8 @@ function emitParamBase(
     clientName: applyCasing(name, { casing: CASING }),
     restApiName,
     inOverload: false,
-    format
+    format,
+    tcgcType: getClientType(context, parameter)
   };
 }
 
@@ -466,26 +462,33 @@ type BodyParameter = ParamBase & {
 function emitBodyParameter(
   context: SdkContext,
   httpOperation: HttpOperation
-): BodyParameter {
+): BodyParameter | undefined {
   const params = httpOperation.parameters;
   const body = params.body!;
-  const base = emitParamBase(context, body.parameter ?? body.type);
-  let contentTypes = body.contentTypes;
-  if (contentTypes.length === 0) {
-    contentTypes = ["application/json"];
-  }
-  const type = getType(context, getBodyType(context.program, httpOperation)!, {
-    disableEffectiveModel: true,
-    usage: UsageFlags.Input
-  });
+  if (body.bodyKind === "single") {
+    const base = emitParamBase(context, body.parameter ?? body.type);
+    let contentTypes = body.contentTypes;
+    if (contentTypes.length === 0) {
+      contentTypes = ["application/json"];
+    }
+    const type = getType(
+      context,
+      getBodyType(context.program, httpOperation)!,
+      {
+        disableEffectiveModel: true,
+        usage: UsageFlags.Input
+      }
+    );
 
-  return {
-    contentTypes,
-    type,
-    location: "body",
-    ...base,
-    isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
-  };
+    return {
+      contentTypes,
+      type,
+      location: "body",
+      ...base,
+      isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
+    };
+  }
+  return undefined;
 }
 
 function emitParameter(
@@ -507,7 +510,7 @@ function emitParameter(
     clientDefaultValue = type["value"];
     type = type["valueType"];
   }
-  const paramMap: any = {
+  const paramMap = {
     restApiName: parameter.name,
     location: parameter.type,
     type: base.format ? { ...type, format: base.format } : type,
@@ -529,7 +532,7 @@ function emitParameter(
       getServiceNamespace(context.program)
     );
     paramMap.implementation = implementation;
-    paramMap.in_docstring = false;
+    (paramMap as any).in_docstring = false;
     if (defaultApiVersion) {
       clientDefaultValue = defaultApiVersion.value;
     }
@@ -537,7 +540,7 @@ function emitParameter(
       clientDefaultValue = getDefaultApiVersionString(context);
     }
     if (clientDefaultValue !== undefined) {
-      paramMap.optional = true;
+      (paramMap as any).optional = true;
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
@@ -594,7 +597,7 @@ function emitResponse(
   let type = undefined;
   if (
     innerResponse.body?.type &&
-    !isAzureCoreErrorType(innerResponse.body?.type)
+    !isAzureCoreErrorType(context.program, innerResponse.body?.type)
   ) {
     // temporary logic. It can be removed after compiler optimize the response
     const candidate = [
@@ -616,9 +619,11 @@ function emitResponse(
           ? undefined
           : getType(context, metadata.finalResult);
     } else {
-      type = getType(context, innerResponse.body.type, {
-        usage: UsageFlags.Output
-      });
+      type = isVoidType(innerResponse.body.type)
+        ? undefined
+        : getType(context, innerResponse.body.type, {
+            usage: UsageFlags.Output
+          });
     }
   }
   const statusCodes: (number | "default")[] = [];
@@ -828,7 +833,10 @@ function emitBasicOperation(
   }
 
   let bodyParameter: any | undefined;
-  if (httpOperation.parameters.body === undefined) {
+  if (
+    httpOperation.parameters.body === undefined ||
+    isVoidType(httpOperation.parameters.body.type)
+  ) {
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
@@ -964,7 +972,7 @@ function getName(program: Program, type: Model): string {
     ) {
       return (
         type.name +
-        type.templateMapper.args
+        (type.templateMapper.args.filter((it) => isType(it)) as Type[])
           .map((it) => (it.kind === "Model" ? it.name : ""))
           .join("")
       );
@@ -1014,7 +1022,7 @@ function emitModel(
     getPagedResult(context.program, type)
   ) {
     modelName =
-      type.templateMapper.args
+      (type.templateMapper.args.filter((it) => isType(it)) as Type[])
         .map((it) => {
           switch (it.kind) {
             case "Model":
@@ -1028,9 +1036,11 @@ function emitModel(
         .join("") + "List";
   }
 
+  const page = extractPagedMetadataNested(context.program, type);
+  const isPaging = page && page.itemsSegments && page.itemsSegments.length > 0;
   return {
     type: "model",
-    name: modelName,
+    name: `${isPaging ? "_" : ""}${modelName}`,
     description: getDocStr(context.program, type),
     parents: baseModel ? [baseModel] : [],
     discriminatedSubtypes: [],
@@ -1040,7 +1050,7 @@ function emitModel(
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    coreTypeInfo: buildCoreTypeInfo(type),
+    coreTypeInfo: buildCoreTypeInfo(context.program, type),
     usage
   };
 }
@@ -1067,17 +1077,21 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     });
   }
 
+  const name = normalizeName(
+    getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
+    NameType.Interface
+  );
   return {
     type: "enum",
-    name: normalizeName(
-      getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
-      NameType.Interface
-    ),
-    description: getDocStr(program, type),
+    name,
+    description:
+      getDocStr(program, type) === ""
+        ? `Type of ${name}`
+        : getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
     isFixed: true,
-    coreTypeInfo: buildCoreTypeInfo(type)
+    coreTypeInfo: buildCoreTypeInfo(program, type)
   };
 }
 
@@ -1307,6 +1321,7 @@ function emitListOrDict(
       if (name === "string") {
         return {
           type: "dict",
+          name: type.name,
           elementType: getType(context, type.indexer.value!, { usage })
         };
       } else if (name === "integer") {
@@ -1342,7 +1357,11 @@ function emitUnion(
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
-  const sdkType = getSdkUnion(context, type);
+  let sdkType = getSdkUnion(context, type);
+  const isNull = false;
+  if (sdkType.kind === "nullable") {
+    sdkType = sdkType.type;
+  }
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
@@ -1366,7 +1385,7 @@ function emitUnion(
       ? normalizeName(unionName, NameType.Interface)
       : undefined;
     return {
-      nullable: sdkType.nullable,
+      nullable: isNull,
       name: unionTypeName,
       description: `Type of ${unionTypeName}`,
       internal: true,
@@ -1380,7 +1399,8 @@ function emitUnion(
       aliasType:
         unionName === "" || unionName === undefined
           ? undefined
-          : variantTypes.map((x) => getTypeName(x).name).join(" | ")
+          : variantTypes.map((x) => getTypeName(x).name).join(" | "),
+      tcgcType: sdkType
     };
   } else if (sdkType.kind === "enum") {
     let typeName = getLibraryName(context, type)
@@ -1393,25 +1413,26 @@ function emitUnion(
       : undefined;
     return {
       name: typeName,
-      nullable: sdkType.nullable,
+      nullable: isNull,
       description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
+      isNonExhaustive: context.rlcOptions?.experimentalExtensibleEnums ?? false,
       xmlMetadata: {},
       usage
     };
   } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
       ...emitType(context, nonNullOptions[0], usage),
-      nullable: sdkType.nullable
+      nullable: isNull
     };
   } else {
     return {
       ...emitType(context, sdkType.__raw!, usage),
-      nullable: sdkType.nullable
+      nullable: isNull
     };
   }
 }
@@ -1448,7 +1469,7 @@ function emitSimpleType(
   }
 
   return {
-    nullable: sdkType.nullable,
+    nullable: isNullType(sdkType.__raw!),
     type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
@@ -1832,7 +1853,12 @@ export function emitCodeModel(
   // Get types
   const codeModel: ModularCodeModel = {
     options: dpgContext.rlcOptions ?? {},
-    modularOptions: { sourceRoot: modularSourcesRoot },
+    modularOptions: {
+      sourceRoot: modularSourcesRoot,
+      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode,
+      experimentalExtensibleEnums:
+        !!dpgContext.rlcOptions?.experimentalExtensibleEnums
+    },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
@@ -1847,7 +1873,6 @@ export function emitCodeModel(
   for (const model of allModels) {
     getType(dpgContext, model.__raw!, { usage: model.usage as UsageFlags });
   }
-
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
       codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);

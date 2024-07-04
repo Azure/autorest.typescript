@@ -9,7 +9,7 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export interface AudioOperations {
     // (undocumented)
     transcriptions: AudioTranscriptionsOperations;
@@ -17,25 +17,25 @@ export interface AudioOperations {
     translations: AudioTranslationsOperations;
 }
 
-// @public (undocumented)
+// @public
 export interface AudioTranscriptionsCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface AudioTranscriptionsOperations {
     // (undocumented)
     create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptionalParams) => Promise<CreateTranscriptionResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface AudioTranslationsCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface AudioTranslationsOperations {
     // (undocumented)
     create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptionalParams) => Promise<CreateTranslationResponse>;
@@ -47,10 +47,14 @@ export interface ChatCompletionFunctionCallOption {
 }
 
 // @public (undocumented)
+export interface ChatCompletionFunctionParameters extends Record<string, any> {
+}
+
+// @public (undocumented)
 export interface ChatCompletionFunctions {
     description?: string;
     name: string;
-    parameters: Record<string, unknown>;
+    parameters: ChatCompletionFunctionParameters;
 }
 
 // @public (undocumented)
@@ -74,27 +78,27 @@ export interface ChatCompletionResponseMessage {
     role: "system" | "user" | "assistant" | "function";
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionsOperations {
     // (undocumented)
     create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptionalParams) => Promise<CreateChatCompletionResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatOperations {
     // (undocumented)
     completions: ChatCompletionsOperations;
 }
 
-// @public (undocumented)
+// @public
 export interface CompletionsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface CompletionsOperations {
     // (undocumented)
     create: (body: CreateCompletionRequest, options?: CompletionsCreateOptionalParams) => Promise<CreateCompletionResponse>;
@@ -112,7 +116,7 @@ export interface CreateChatCompletionRequest {
     frequencyPenalty?: number | null;
     functionCall?: "none" | "auto" | ChatCompletionFunctionCallOption;
     functions?: ChatCompletionFunctions[];
-    logitBias?: Record<string, number>;
+    logitBias?: Record<string, number> | null;
     maxTokens?: number | null;
     messages: ChatCompletionRequestMessage[];
     model: string | "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
@@ -145,7 +149,7 @@ export interface CreateCompletionRequest {
     bestOf?: number | null;
     echo?: boolean | null;
     frequencyPenalty?: number | null;
-    logitBias?: Record<string, number>;
+    logitBias?: Record<string, number> | null;
     logprobs?: number | null;
     maxTokens?: number | null;
     model: string | "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
@@ -380,11 +384,11 @@ export interface DeleteModelResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EditsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface EditsOperations {
     // (undocumented)
     create: (edit: CreateEditRequest, options?: EditsCreateOptionalParams) => Promise<CreateEditResponse>;
@@ -397,11 +401,11 @@ export interface Embedding {
     object: "embedding";
 }
 
-// @public (undocumented)
+// @public
 export interface EmbeddingsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface EmbeddingsOperations {
     // (undocumented)
     create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
@@ -425,29 +429,28 @@ export interface ErrorResponse {
     error: ErrorModel;
 }
 
-// @public (undocumented)
+// @public
 export interface FilesCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FilesDeleteOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FilesDownloadOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FilesListOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FilesOperations {
     // (undocumented)
     create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
-    // (undocumented)
     delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
     // (undocumented)
     download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
@@ -457,7 +460,7 @@ export interface FilesOperations {
     retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
 }
 
-// @public (undocumented)
+// @public
 export interface FilesRetrieveOptionalParams extends OperationOptions {
 }
 
@@ -498,24 +501,24 @@ export interface FineTuneEvent {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTunesCancelOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTunesCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTunesListEventsOptionalParams extends OperationOptions {
     stream?: boolean;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTunesListOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTunesOperations {
     // (undocumented)
     cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) => Promise<FineTune>;
@@ -529,7 +532,7 @@ export interface FineTunesOperations {
     retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptionalParams) => Promise<FineTune>;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 }
 
@@ -571,31 +574,30 @@ export interface FineTuningJobEvent {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobsCancelOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobsListEventsOptionalParams extends OperationOptions {
     after?: string;
     limit?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobsListOptionalParams extends OperationOptions {
     after?: string;
     limit?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobsOperations {
     // (undocumented)
     cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptionalParams) => Promise<FineTuningJob>;
-    // (undocumented)
     create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptionalParams) => Promise<FineTuningJob>;
     // (undocumented)
     list: (options?: FineTuningJobsListOptionalParams) => Promise<ListPaginatedFineTuningJobsResponse>;
@@ -605,11 +607,11 @@ export interface FineTuningJobsOperations {
     retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptionalParams) => Promise<FineTuningJob>;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningOperations {
     // (undocumented)
     jobs: FineTuningJobsOperations;
@@ -621,23 +623,23 @@ export interface Image {
     url?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ImagesCreateEditOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ImagesCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ImagesCreateVariationOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ImagesOperations {
     // (undocumented)
     create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) => Promise<ImagesResponse>;
@@ -713,17 +715,16 @@ export interface Model {
     ownedBy: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ModelsDeleteOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ModelsListOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ModelsOperations {
-    // (undocumented)
     delete: (model: string, options?: ModelsDeleteOptionalParams) => Promise<DeleteModelResponse>;
     // (undocumented)
     list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
@@ -731,15 +732,15 @@ export interface ModelsOperations {
     retrieve: (model: string, options?: ModelsRetrieveOptionalParams) => Promise<Model>;
 }
 
-// @public (undocumented)
+// @public
 export interface ModelsRetrieveOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ModerationsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ModerationsOperations {
     // (undocumented)
     create: (content: CreateModerationRequest, options?: ModerationsCreateOptionalParams) => Promise<CreateModerationResponse>;
@@ -762,7 +763,7 @@ export class OpenAIClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface OpenAIClientOptions extends ClientOptions {
 }
 

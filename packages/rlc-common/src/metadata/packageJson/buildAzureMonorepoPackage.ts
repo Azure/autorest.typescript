@@ -230,8 +230,8 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
       "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
     test: "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
     "unit-test:browser":
-      "npm run build:test && dev-tool run test:vitest --no-test-proxy --browser",
-    "unit-test:node": "dev-tool run test:vitest --no-test-proxy"
+      "npm run build:test && dev-tool run test:vitest --browser",
+    "unit-test:node": "dev-tool run test:vitest"
   };
 }
 

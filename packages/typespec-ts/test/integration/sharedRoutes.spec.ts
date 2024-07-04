@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import SharedRouteTestClientFactory, {
   SharedRouteClient
-} from "./generated/sharedRoute/src/index.js";
+} from "./generated/shared-route/src/index.js";
 describe("SharedRouteTest Rest Client", () => {
   let client: SharedRouteClient;
 

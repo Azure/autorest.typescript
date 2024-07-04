@@ -1,4 +1,4 @@
-import { CustomClient } from "./generated/authentication/http-custom/src/index.js";
+import { CustomClient } from "./generated/authentication/http/custom/src/index.js";
 import { assert } from "chai";
 
 describe("CustomClient Classical Client", () => {

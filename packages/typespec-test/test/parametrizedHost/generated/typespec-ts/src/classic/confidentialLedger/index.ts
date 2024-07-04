@@ -6,7 +6,9 @@ import { Collection } from "../../models/models.js";
 import { listCollections } from "../../api/confidentialLedger/index.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "../../models/options.js";
 
+/** Interface representing a ConfidentialLedger operations. */
 export interface ConfidentialLedgerOperations {
+  /** Collection ids are user-created collections of ledger entries */
   listCollections: (
     apiVersion: string,
     options?: ConfidentialLedgerListCollectionsOptionalParams,

@@ -25,6 +25,9 @@ export interface CloudEventOutput {
   subject?: string;
 }
 
+/** The result of the Publish operation. */
+export interface PublishResultOutput {}
+
 /** Details of the Receive operation response. */
 export interface ReceiveResultOutput {
   /** Array of receive responses, one per cloud event. */

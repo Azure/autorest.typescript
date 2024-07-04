@@ -2,13 +2,16 @@
 // Licensed under the MIT license.
 
 import {
+  multivariateAlignPolicySerializer,
+  multivariateDiagnosticsInfoSerializer,
+  multivariateVariableValuesSerializer,
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionOptions,
   MultivariateModelInfo,
   MultivariateAnomalyDetectionModel,
-  MultivariateModelList,
   MultivariateMultivariateLastDetectionOptions,
   MultivariateMultivariateLastDetectionResult,
+  _MultivariateModelList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -177,43 +180,12 @@ export function _trainMultivariateModelSend(
         displayName: modelInfo["displayName"],
         slidingWindow: modelInfo["slidingWindow"],
         alignPolicy: !modelInfo.alignPolicy
-          ? undefined
-          : {
-              alignMode: modelInfo.alignPolicy?.["alignMode"],
-              fillNAMethod: modelInfo.alignPolicy?.["fillNAMethod"],
-              paddingValue: modelInfo.alignPolicy?.["paddingValue"],
-            },
+          ? modelInfo.alignPolicy
+          : multivariateAlignPolicySerializer(modelInfo.alignPolicy),
         status: modelInfo["status"],
         diagnosticsInfo: !modelInfo.diagnosticsInfo
-          ? undefined
-          : {
-              modelState: !modelInfo.diagnosticsInfo?.modelState
-                ? undefined
-                : {
-                    epochIds:
-                      modelInfo.diagnosticsInfo?.modelState?.["epochIds"],
-                    trainLosses:
-                      modelInfo.diagnosticsInfo?.modelState?.["trainLosses"],
-                    validationLosses:
-                      modelInfo.diagnosticsInfo?.modelState?.[
-                        "validationLosses"
-                      ],
-                    latenciesInSeconds:
-                      modelInfo.diagnosticsInfo?.modelState?.[
-                        "latenciesInSeconds"
-                      ],
-                  },
-              variableStates:
-                modelInfo.diagnosticsInfo?.["variableStates"] === undefined
-                  ? modelInfo.diagnosticsInfo?.["variableStates"]
-                  : modelInfo.diagnosticsInfo?.["variableStates"].map((p) => ({
-                      variable: p["variable"],
-                      filledNARatio: p["filledNARatio"],
-                      effectiveCount: p["effectiveCount"],
-                      firstTimestamp: p["firstTimestamp"]?.toISOString(),
-                      lastTimestamp: p["lastTimestamp"]?.toISOString(),
-                    })),
-            },
+          ? modelInfo.diagnosticsInfo
+          : multivariateDiagnosticsInfoSerializer(modelInfo.diagnosticsInfo),
       },
     });
 }
@@ -344,7 +316,7 @@ export async function _listMultivariateModelsDeserialize(
   result:
     | ListMultivariateModels200Response
     | ListMultivariateModelsDefaultResponse,
-): Promise<MultivariateModelList> {
+): Promise<_MultivariateModelList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -737,11 +709,9 @@ export function _detectMultivariateLastAnomalySend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        variables: options["variables"].map((p) => ({
-          variable: p["variable"],
-          timestamps: p["timestamps"],
-          values: p["values"],
-        })),
+        variables: options["variables"].map(
+          multivariateVariableValuesSerializer,
+        ),
         topContributorCount: options["topContributorCount"],
       },
     });

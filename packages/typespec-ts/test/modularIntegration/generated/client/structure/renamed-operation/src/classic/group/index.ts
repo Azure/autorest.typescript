@@ -9,6 +9,7 @@ import {
   GroupRenamedSixOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Group operations. */
 export interface GroupOperations {
   renamedTwo: (options?: GroupRenamedTwoOptionalParams) => Promise<void>;
   renamedFour: (options?: GroupRenamedFourOptionalParams) => Promise<void>;
