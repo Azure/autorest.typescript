@@ -7,7 +7,6 @@ export {
   AzureFleetContext,
 } from "./azureFleetContext.js";
 export {
-  list,
   get,
   createOrUpdate,
   update,
@@ -15,4 +14,5 @@ export {
   listByResourceGroup,
   listBySubscription,
   listVirtualMachineScaleSets,
-} from "./operations.js";
+} from "./fleets/index.js";
+export { list } from "./operations/index.js";

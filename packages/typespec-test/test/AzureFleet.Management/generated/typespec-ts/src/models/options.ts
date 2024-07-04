@@ -4,35 +4,37 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ListOptionalParams extends OperationOptions {}
+export interface OperationsListOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetOptionalParams extends OperationOptions {}
+export interface FleetsGetOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateOrUpdateOptionalParams extends OperationOptions {
+export interface FleetsCreateOrUpdateOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface UpdateOptionalParams extends OperationOptions {
+export interface FleetsUpdateOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DeleteOptionalParams extends OperationOptions {
+export interface FleetsDeleteOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface ListByResourceGroupOptionalParams extends OperationOptions {}
+export interface FleetsListByResourceGroupOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ListBySubscriptionOptionalParams extends OperationOptions {}
+export interface FleetsListBySubscriptionOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ListVirtualMachineScaleSetsOptionalParams
+export interface FleetsListVirtualMachineScaleSetsOptionalParams
   extends OperationOptions {}

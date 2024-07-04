@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "./pollingHelpers.js";
+import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   fleetPropertiesSerializer,
@@ -12,110 +12,57 @@ import {
   Fleet,
   FleetUpdate,
   VirtualMachineScaleSetListResult,
-  Operation,
   _FleetListResult,
-  _OperationListResult,
-} from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
+} from "../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
   isUnexpected,
   AzureFleetContext as Client,
-  CreateOrUpdate200Response,
-  CreateOrUpdate201Response,
-  CreateOrUpdateDefaultResponse,
-  CreateOrUpdateLogicalResponse,
-  Delete202Response,
-  Delete204Response,
-  DeleteDefaultResponse,
-  DeleteLogicalResponse,
-  Get200Response,
-  GetDefaultResponse,
-  List200Response,
-  ListByResourceGroup200Response,
-  ListByResourceGroupDefaultResponse,
-  ListBySubscription200Response,
-  ListBySubscriptionDefaultResponse,
-  ListDefaultResponse,
-  ListVirtualMachineScaleSets200Response,
-  ListVirtualMachineScaleSetsDefaultResponse,
-  Update200Response,
-  Update202Response,
-  UpdateDefaultResponse,
-  UpdateLogicalResponse,
-} from "../rest/index.js";
+  FleetsCreateOrUpdate200Response,
+  FleetsCreateOrUpdate201Response,
+  FleetsCreateOrUpdateDefaultResponse,
+  FleetsCreateOrUpdateLogicalResponse,
+  FleetsDelete202Response,
+  FleetsDelete204Response,
+  FleetsDeleteDefaultResponse,
+  FleetsDeleteLogicalResponse,
+  FleetsGet200Response,
+  FleetsGetDefaultResponse,
+  FleetsListByResourceGroup200Response,
+  FleetsListByResourceGroupDefaultResponse,
+  FleetsListBySubscription200Response,
+  FleetsListBySubscriptionDefaultResponse,
+  FleetsListVirtualMachineScaleSets200Response,
+  FleetsListVirtualMachineScaleSetsDefaultResponse,
+  FleetsUpdate200Response,
+  FleetsUpdate202Response,
+  FleetsUpdateDefaultResponse,
+  FleetsUpdateLogicalResponse,
+} from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
-  ListOptionalParams,
-  GetOptionalParams,
-  CreateOrUpdateOptionalParams,
-  UpdateOptionalParams,
-  DeleteOptionalParams,
-  ListByResourceGroupOptionalParams,
-  ListBySubscriptionOptionalParams,
-  ListVirtualMachineScaleSetsOptionalParams,
-} from "../models/options.js";
-
-export function _listSend(
-  context: Client,
-  options: ListOptionalParams = { requestOptions: {} },
-): StreamableMethod<List200Response | ListDefaultResponse> {
-  return context
-    .path("/providers/Microsoft.AzureFleet/operations")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _listDeserialize(
-  result: List200Response | ListDefaultResponse,
-): Promise<_OperationListResult> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  return {
-    value: result.body["value"].map((p) => ({
-      name: p["name"],
-      isDataAction: p["isDataAction"],
-      display: !p.display
-        ? undefined
-        : {
-            provider: p.display?.["provider"],
-            resource: p.display?.["resource"],
-            operation: p.display?.["operation"],
-            description: p.display?.["description"],
-          },
-      origin: p["origin"],
-      actionType: p["actionType"],
-    })),
-    nextLink: result.body["nextLink"],
-  };
-}
-
-/** List the operations for the provider */
-export function list(
-  context: Client,
-  options: ListOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<Operation> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listSend(context, options),
-    _listDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" },
-  );
-}
+  FleetsGetOptionalParams,
+  FleetsCreateOrUpdateOptionalParams,
+  FleetsUpdateOptionalParams,
+  FleetsDeleteOptionalParams,
+  FleetsListByResourceGroupOptionalParams,
+  FleetsListBySubscriptionOptionalParams,
+  FleetsListVirtualMachineScaleSetsOptionalParams,
+} from "../../models/options.js";
 
 export function _getSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   fleetName: string,
-  options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get200Response | GetDefaultResponse> {
+  options: FleetsGetOptionalParams = { requestOptions: {} },
+): StreamableMethod<FleetsGet200Response | FleetsGetDefaultResponse> {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{fleetName}",
@@ -127,7 +74,7 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result: Get200Response | GetDefaultResponse,
+  result: FleetsGet200Response | FleetsGetDefaultResponse,
 ): Promise<Fleet> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -237,7 +184,7 @@ export async function get(
   subscriptionId: string,
   resourceGroupName: string,
   fleetName: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: FleetsGetOptionalParams = { requestOptions: {} },
 ): Promise<Fleet> {
   const result = await _getSend(
     context,
@@ -255,12 +202,12 @@ export function _createOrUpdateSend(
   resourceGroupName: string,
   fleetName: string,
   resource: Fleet,
-  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
+  options: FleetsCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | CreateOrUpdate200Response
-  | CreateOrUpdate201Response
-  | CreateOrUpdateDefaultResponse
-  | CreateOrUpdateLogicalResponse
+  | FleetsCreateOrUpdate200Response
+  | FleetsCreateOrUpdate201Response
+  | FleetsCreateOrUpdateDefaultResponse
+  | FleetsCreateOrUpdateLogicalResponse
 > {
   return context
     .path(
@@ -290,16 +237,16 @@ export function _createOrUpdateSend(
 
 export async function _createOrUpdateDeserialize(
   result:
-    | CreateOrUpdate200Response
-    | CreateOrUpdate201Response
-    | CreateOrUpdateDefaultResponse
-    | CreateOrUpdateLogicalResponse,
+    | FleetsCreateOrUpdate200Response
+    | FleetsCreateOrUpdate201Response
+    | FleetsCreateOrUpdateDefaultResponse
+    | FleetsCreateOrUpdateLogicalResponse,
 ): Promise<Fleet> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  result = result as CreateOrUpdateLogicalResponse;
+  result = result as FleetsCreateOrUpdateLogicalResponse;
   return {
     tags: result.body["tags"],
     location: result.body["location"],
@@ -405,7 +352,7 @@ export function createOrUpdate(
   resourceGroupName: string,
   fleetName: string,
   resource: Fleet,
-  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
+  options: FleetsCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<Fleet>, Fleet> {
   return getLongRunningPoller(context, _createOrUpdateDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -428,12 +375,12 @@ export function _updateSend(
   resourceGroupName: string,
   fleetName: string,
   properties: FleetUpdate,
-  options: UpdateOptionalParams = { requestOptions: {} },
+  options: FleetsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | Update200Response
-  | Update202Response
-  | UpdateDefaultResponse
-  | UpdateLogicalResponse
+  | FleetsUpdate200Response
+  | FleetsUpdate202Response
+  | FleetsUpdateDefaultResponse
+  | FleetsUpdateLogicalResponse
 > {
   return context
     .path(
@@ -463,16 +410,16 @@ export function _updateSend(
 
 export async function _updateDeserialize(
   result:
-    | Update200Response
-    | Update202Response
-    | UpdateDefaultResponse
-    | UpdateLogicalResponse,
+    | FleetsUpdate200Response
+    | FleetsUpdate202Response
+    | FleetsUpdateDefaultResponse
+    | FleetsUpdateLogicalResponse,
 ): Promise<Fleet> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  result = result as UpdateLogicalResponse;
+  result = result as FleetsUpdateLogicalResponse;
   return {
     tags: result.body["tags"],
     location: result.body["location"],
@@ -578,7 +525,7 @@ export function update(
   resourceGroupName: string,
   fleetName: string,
   properties: FleetUpdate,
-  options: UpdateOptionalParams = { requestOptions: {} },
+  options: FleetsUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<Fleet>, Fleet> {
   return getLongRunningPoller(context, _updateDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -600,12 +547,12 @@ export function _$deleteSend(
   subscriptionId: string,
   resourceGroupName: string,
   fleetName: string,
-  options: DeleteOptionalParams = { requestOptions: {} },
+  options: FleetsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | Delete202Response
-  | Delete204Response
-  | DeleteDefaultResponse
-  | DeleteLogicalResponse
+  | FleetsDelete202Response
+  | FleetsDelete204Response
+  | FleetsDeleteDefaultResponse
+  | FleetsDeleteLogicalResponse
 > {
   return context
     .path(
@@ -619,16 +566,16 @@ export function _$deleteSend(
 
 export async function _$deleteDeserialize(
   result:
-    | Delete202Response
-    | Delete204Response
-    | DeleteDefaultResponse
-    | DeleteLogicalResponse,
+    | FleetsDelete202Response
+    | FleetsDelete204Response
+    | FleetsDeleteDefaultResponse
+    | FleetsDeleteLogicalResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  result = result as DeleteLogicalResponse;
+  result = result as FleetsDeleteLogicalResponse;
   return;
 }
 
@@ -643,7 +590,7 @@ export function $delete(
   subscriptionId: string,
   resourceGroupName: string,
   fleetName: string,
-  options: DeleteOptionalParams = { requestOptions: {} },
+  options: FleetsDeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(context, _$deleteDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -663,9 +610,10 @@ export function _listByResourceGroupSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
-  options: ListByResourceGroupOptionalParams = { requestOptions: {} },
+  options: FleetsListByResourceGroupOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  ListByResourceGroup200Response | ListByResourceGroupDefaultResponse
+  | FleetsListByResourceGroup200Response
+  | FleetsListByResourceGroupDefaultResponse
 > {
   return context
     .path(
@@ -677,7 +625,9 @@ export function _listByResourceGroupSend(
 }
 
 export async function _listByResourceGroupDeserialize(
-  result: ListByResourceGroup200Response | ListByResourceGroupDefaultResponse,
+  result:
+    | FleetsListByResourceGroup200Response
+    | FleetsListByResourceGroupDefaultResponse,
 ): Promise<_FleetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -775,7 +725,7 @@ export function listByResourceGroup(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
-  options: ListByResourceGroupOptionalParams = { requestOptions: {} },
+  options: FleetsListByResourceGroupOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Fleet> {
   return buildPagedAsyncIterator(
     context,
@@ -794,9 +744,9 @@ export function listByResourceGroup(
 export function _listBySubscriptionSend(
   context: Client,
   subscriptionId: string,
-  options: ListBySubscriptionOptionalParams = { requestOptions: {} },
+  options: FleetsListBySubscriptionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  ListBySubscription200Response | ListBySubscriptionDefaultResponse
+  FleetsListBySubscription200Response | FleetsListBySubscriptionDefaultResponse
 > {
   return context
     .path(
@@ -807,7 +757,9 @@ export function _listBySubscriptionSend(
 }
 
 export async function _listBySubscriptionDeserialize(
-  result: ListBySubscription200Response | ListBySubscriptionDefaultResponse,
+  result:
+    | FleetsListBySubscription200Response
+    | FleetsListBySubscriptionDefaultResponse,
 ): Promise<_FleetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -904,7 +856,7 @@ export async function _listBySubscriptionDeserialize(
 export function listBySubscription(
   context: Client,
   subscriptionId: string,
-  options: ListBySubscriptionOptionalParams = { requestOptions: {} },
+  options: FleetsListBySubscriptionOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Fleet> {
   return buildPagedAsyncIterator(
     context,
@@ -919,10 +871,12 @@ export function _listVirtualMachineScaleSetsSend(
   subscriptionId: string,
   resourceGroupName: string,
   name: string,
-  options: ListVirtualMachineScaleSetsOptionalParams = { requestOptions: {} },
+  options: FleetsListVirtualMachineScaleSetsOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
-  | ListVirtualMachineScaleSets200Response
-  | ListVirtualMachineScaleSetsDefaultResponse
+  | FleetsListVirtualMachineScaleSets200Response
+  | FleetsListVirtualMachineScaleSetsDefaultResponse
 > {
   return context
     .path(
@@ -936,8 +890,8 @@ export function _listVirtualMachineScaleSetsSend(
 
 export async function _listVirtualMachineScaleSetsDeserialize(
   result:
-    | ListVirtualMachineScaleSets200Response
-    | ListVirtualMachineScaleSetsDefaultResponse,
+    | FleetsListVirtualMachineScaleSets200Response
+    | FleetsListVirtualMachineScaleSetsDefaultResponse,
 ): Promise<VirtualMachineScaleSetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -960,7 +914,9 @@ export async function listVirtualMachineScaleSets(
   subscriptionId: string,
   resourceGroupName: string,
   name: string,
-  options: ListVirtualMachineScaleSetsOptionalParams = { requestOptions: {} },
+  options: FleetsListVirtualMachineScaleSetsOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<VirtualMachineScaleSetListResult> {
   const result = await _listVirtualMachineScaleSetsSend(
     context,
