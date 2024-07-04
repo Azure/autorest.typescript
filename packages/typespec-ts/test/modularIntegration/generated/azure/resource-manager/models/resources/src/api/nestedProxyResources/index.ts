@@ -427,33 +427,35 @@ export async function _nestedProxyResourcesListByTopLevelTrackedResourceDeserial
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            description: p.properties?.["description"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"],
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.["lastModifiedByType"],
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"],
+              description: p.properties?.["description"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

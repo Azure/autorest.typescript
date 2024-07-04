@@ -64,7 +64,7 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(body.name, validTopLevelResource.name);
     assert.strictEqual(body.type, validTopLevelResource.type);
   });
-  it.skip("should create or replace top level tracked resources", async () => {
+  it("should create or replace top level tracked resources", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -180,7 +180,7 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(body.type, validNestedResource.type);
   });
 
-  it.skip("should create or replace nested proxy resource", async () => {
+  it("should create or replace nested proxy resource", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",

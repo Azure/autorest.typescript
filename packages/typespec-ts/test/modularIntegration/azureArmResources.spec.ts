@@ -54,7 +54,7 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(result.type, validTopLevelResource.type);
   });
 
-  it.skip("should create or replace top level tracked resources", async () => {
+  it("should create or replace top level tracked resources", async () => {
     const result = await client.topLevelTrackedResources.createOrReplace(
       "test-rg",
       "top",
@@ -133,7 +133,7 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(result.type, validNestedResource.type);
   });
 
-  it.skip("should create or replace nested proxy resource", async () => {
+  it("should create or replace nested proxy resource", async () => {
     const result = await client.nestedProxyResources.createOrReplace(
       "test-rg",
       "top",

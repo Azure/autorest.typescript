@@ -37,7 +37,9 @@ export async function _collectionsModelGetDeserialize(
   }
 
   return {
-    property: result.body["property"].map((p) => ({ property: p["property"] })),
+    property: result.body["property"].map((p) => {
+      return { property: p["property"] };
+    }),
   };
 }
 
