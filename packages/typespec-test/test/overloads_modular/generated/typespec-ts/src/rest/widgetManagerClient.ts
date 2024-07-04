@@ -26,7 +26,7 @@ export default function createClient(
 ): WidgetManagerContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/widget`;
-  const userAgentInfo = `azsdk-js-overload_modular-modular-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-overload_modular/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

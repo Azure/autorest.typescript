@@ -18,7 +18,7 @@ export default function createClient(
   options: NotDefinedContextOptions = {},
 ): NotDefinedContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  const userAgentInfo = `azsdk-js-notdefinedparam-modular-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-notdefinedparam/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

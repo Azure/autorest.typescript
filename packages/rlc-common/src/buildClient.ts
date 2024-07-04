@@ -346,9 +346,7 @@ export function getClientFactoryBody(
     endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
   }
 
-  if (model.options.isModularLibrary) {
-    clientPackageName += "-modular-rest";
-  } else if (!clientPackageName.endsWith("-rest")) {
+  if (!model.options.isModularLibrary && !clientPackageName.endsWith("-rest")) {
     clientPackageName += "-rest";
   }
 

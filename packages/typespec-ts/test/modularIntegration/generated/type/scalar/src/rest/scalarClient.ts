@@ -17,7 +17,7 @@ export default function createClient(
 ): ScalarContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-scalar-modular-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-scalar/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

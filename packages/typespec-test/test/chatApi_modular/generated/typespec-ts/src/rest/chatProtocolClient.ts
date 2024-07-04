@@ -21,7 +21,7 @@ export default function createClient(
   options: ChatProtocolContextOptions = {},
 ): ChatProtocolContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  const userAgentInfo = `azsdk-js-ai-chat-protocol-modular-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-ai-chat-protocol/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

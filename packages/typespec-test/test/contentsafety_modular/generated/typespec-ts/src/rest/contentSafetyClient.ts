@@ -26,7 +26,7 @@ export default function createClient(
 ): ContentSafetyContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/contentsafety`;
-  const userAgentInfo = `azsdk-js-ai-content-safety-modular-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-ai-content-safety/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
