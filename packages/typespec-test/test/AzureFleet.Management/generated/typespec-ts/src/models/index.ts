@@ -46,14 +46,14 @@ export {
   ProvisioningState,
 } from "./models.js";
 export {
-  OperationsListOptionalParams,
-  FleetsGetOptionalParams,
-  FleetsCreateOrUpdateOptionalParams,
-  FleetsUpdateOptionalParams,
-  FleetsDeleteOptionalParams,
-  FleetsListByResourceGroupOptionalParams,
-  FleetsListBySubscriptionOptionalParams,
-  FleetsListVirtualMachineScaleSetsOptionalParams,
+  ListOptionalParams,
+  GetOptionalParams,
+  CreateOrUpdateOptionalParams,
+  UpdateOptionalParams,
+  DeleteOptionalParams,
+  ListByResourceGroupOptionalParams,
+  ListBySubscriptionOptionalParams,
+  ListVirtualMachineScaleSetsOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

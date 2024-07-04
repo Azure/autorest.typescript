@@ -13,7 +13,7 @@ import {
   _createOrUpdateDeserialize,
   _updateDeserialize,
   _$deleteDeserialize,
-} from "./api/fleets/index.js";
+} from "./api/operations.js";
 import {
   PathUncheckedResponse,
   OperationOptions,
