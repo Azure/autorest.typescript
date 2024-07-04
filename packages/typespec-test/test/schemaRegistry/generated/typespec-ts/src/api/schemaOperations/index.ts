@@ -66,7 +66,9 @@ export async function _listSchemaGroupsDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({ groupName: p["groupName"] })),
+    value: result.body["value"].map((p) => {
+      return { groupName: p["groupName"] };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -141,9 +143,9 @@ export async function _listSchemaVersionsDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      schemaVersion: p["schemaVersion"],
-    })),
+    value: result.body["value"].map((p) => {
+      return { schemaVersion: p["schemaVersion"] };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

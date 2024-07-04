@@ -583,38 +583,40 @@ export async function _listByDataProductDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            state: p.properties?.["state"],
-            stateReason: p.properties?.["stateReason"],
-            storageOutputRetention: p.properties?.["storageOutputRetention"],
-            databaseCacheRetention: p.properties?.["databaseCacheRetention"],
-            databaseRetention: p.properties?.["databaseRetention"],
-            visualizationUrl: p.properties?.["visualizationUrl"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"],
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.["lastModifiedByType"],
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"],
+              state: p.properties?.["state"],
+              stateReason: p.properties?.["stateReason"],
+              storageOutputRetention: p.properties?.["storageOutputRetention"],
+              databaseCacheRetention: p.properties?.["databaseCacheRetention"],
+              databaseRetention: p.properties?.["databaseRetention"],
+              visualizationUrl: p.properties?.["visualizationUrl"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
