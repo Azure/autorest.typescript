@@ -4,9 +4,14 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  assetEndpointProfilePropertiesSerializer,
+  extendedLocationSerializer,
+  assetEndpointProfileUpdatePropertiesSerializer,
+  CreatedByType,
   AssetEndpointProfile,
+  UserAuthenticationMode,
   AssetEndpointProfileUpdate,
-  AssetEndpointProfileListResult,
+  _AssetEndpointProfileListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -37,6 +42,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   AssetEndpointProfilesGetOptionalParams,
   AssetEndpointProfilesCreateOrReplaceOptionalParams,
@@ -75,21 +81,26 @@ export async function _getDeserialize(
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
+    name: result.body["name"],
     type: result.body["type"],
     systemData: !result.body.systemData
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -103,7 +114,9 @@ export async function _getDeserialize(
           userAuthentication: !result.body.properties?.userAuthentication
             ? undefined
             : {
-                mode: result.body.properties?.userAuthentication?.["mode"],
+                mode: result.body.properties?.userAuthentication?.[
+                  "mode"
+                ] as UserAuthenticationMode,
                 usernamePasswordCredentials: !result.body.properties
                   ?.userAuthentication?.usernamePasswordCredentials
                   ? undefined
@@ -191,60 +204,14 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
+        tags: !resource.tags
+          ? resource.tags
+          : (serializeRecord(resource.tags as any) as any),
         location: resource["location"],
-        tags: resource["tags"],
         properties: !resource.properties
-          ? undefined
-          : {
-              targetAddress: resource.properties?.["targetAddress"],
-              userAuthentication: !resource.properties?.userAuthentication
-                ? undefined
-                : {
-                    mode: resource.properties?.userAuthentication?.["mode"],
-                    usernamePasswordCredentials: !resource.properties
-                      ?.userAuthentication?.usernamePasswordCredentials
-                      ? undefined
-                      : {
-                          usernameReference:
-                            resource.properties?.userAuthentication
-                              ?.usernamePasswordCredentials?.[
-                              "usernameReference"
-                            ],
-                          passwordReference:
-                            resource.properties?.userAuthentication
-                              ?.usernamePasswordCredentials?.[
-                              "passwordReference"
-                            ],
-                        },
-                    x509Credentials: !resource.properties?.userAuthentication
-                      ?.x509Credentials
-                      ? undefined
-                      : {
-                          certificateReference:
-                            resource.properties?.userAuthentication
-                              ?.x509Credentials?.["certificateReference"],
-                        },
-                  },
-              transportAuthentication: !resource.properties
-                ?.transportAuthentication
-                ? undefined
-                : {
-                    ownCertificates:
-                      resource.properties?.transportAuthentication?.[
-                        "ownCertificates"
-                      ].map((p) => ({
-                        certThumbprint: p["certThumbprint"],
-                        certSecretReference: p["certSecretReference"],
-                        certPasswordReference: p["certPasswordReference"],
-                      })),
-                  },
-              additionalConfiguration:
-                resource.properties?.["additionalConfiguration"],
-            },
-        extendedLocation: {
-          type: resource.extendedLocation["type"],
-          name: resource.extendedLocation["name"],
-        },
+          ? resource.properties
+          : assetEndpointProfilePropertiesSerializer(resource.properties),
+        extendedLocation: extendedLocationSerializer(resource.extendedLocation),
       },
     });
 }
@@ -262,21 +229,26 @@ export async function _createOrReplaceDeserialize(
 
   result = result as AssetEndpointProfilesCreateOrReplaceLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
+    name: result.body["name"],
     type: result.body["type"],
     systemData: !result.body.systemData
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -290,7 +262,9 @@ export async function _createOrReplaceDeserialize(
           userAuthentication: !result.body.properties?.userAuthentication
             ? undefined
             : {
-                mode: result.body.properties?.userAuthentication?.["mode"],
+                mode: result.body.properties?.userAuthentication?.[
+                  "mode"
+                ] as UserAuthenticationMode,
                 usernamePasswordCredentials: !result.body.properties
                   ?.userAuthentication?.usernamePasswordCredentials
                   ? undefined
@@ -384,55 +358,14 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       body: {
-        tags: properties["tags"],
+        tags: !properties.tags
+          ? properties.tags
+          : (serializeRecord(properties.tags as any) as any),
         properties: !properties.properties
-          ? undefined
-          : {
-              targetAddress: properties.properties?.["targetAddress"],
-              userAuthentication: !properties.properties?.userAuthentication
-                ? undefined
-                : {
-                    mode: properties.properties?.userAuthentication?.["mode"],
-                    usernamePasswordCredentials: !properties.properties
-                      ?.userAuthentication?.usernamePasswordCredentials
-                      ? undefined
-                      : {
-                          usernameReference:
-                            properties.properties?.userAuthentication
-                              ?.usernamePasswordCredentials?.[
-                              "usernameReference"
-                            ],
-                          passwordReference:
-                            properties.properties?.userAuthentication
-                              ?.usernamePasswordCredentials?.[
-                              "passwordReference"
-                            ],
-                        },
-                    x509Credentials: !properties.properties?.userAuthentication
-                      ?.x509Credentials
-                      ? undefined
-                      : {
-                          certificateReference:
-                            properties.properties?.userAuthentication
-                              ?.x509Credentials?.["certificateReference"],
-                        },
-                  },
-              transportAuthentication: !properties.properties
-                ?.transportAuthentication
-                ? undefined
-                : {
-                    ownCertificates:
-                      properties.properties?.transportAuthentication?.[
-                        "ownCertificates"
-                      ].map((p) => ({
-                        certThumbprint: p["certThumbprint"],
-                        certSecretReference: p["certSecretReference"],
-                        certPasswordReference: p["certPasswordReference"],
-                      })),
-                  },
-              additionalConfiguration:
-                properties.properties?.["additionalConfiguration"],
-            },
+          ? properties.properties
+          : assetEndpointProfileUpdatePropertiesSerializer(
+              properties.properties,
+            ),
       },
     });
 }
@@ -450,21 +383,26 @@ export async function _updateDeserialize(
 
   result = result as AssetEndpointProfilesUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
+    name: result.body["name"],
     type: result.body["type"],
     systemData: !result.body.systemData
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -478,7 +416,9 @@ export async function _updateDeserialize(
           userAuthentication: !result.body.properties?.userAuthentication
             ? undefined
             : {
-                mode: result.body.properties?.userAuthentication?.["mode"],
+                mode: result.body.properties?.userAuthentication?.[
+                  "mode"
+                ] as UserAuthenticationMode,
                 usernamePasswordCredentials: !result.body.properties
                   ?.userAuthentication?.usernamePasswordCredentials
                   ? undefined
@@ -635,28 +575,31 @@ export async function _listByResourceGroupDeserialize(
   result:
     | AssetEndpointProfilesListByResourceGroup200Response
     | AssetEndpointProfilesListByResourceGroupDefaultResponse,
-): Promise<AssetEndpointProfileListResult> {
+): Promise<_AssetEndpointProfileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
+      name: p["name"],
       type: p["type"],
       systemData: !p.systemData
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -670,7 +613,9 @@ export async function _listByResourceGroupDeserialize(
             userAuthentication: !p.properties?.userAuthentication
               ? undefined
               : {
-                  mode: p.properties?.userAuthentication?.["mode"],
+                  mode: p.properties?.userAuthentication?.[
+                    "mode"
+                  ] as UserAuthenticationMode,
                   usernamePasswordCredentials: !p.properties?.userAuthentication
                     ?.usernamePasswordCredentials
                     ? undefined
@@ -764,28 +709,31 @@ export async function _listBySubscriptionDeserialize(
   result:
     | AssetEndpointProfilesListBySubscription200Response
     | AssetEndpointProfilesListBySubscriptionDefaultResponse,
-): Promise<AssetEndpointProfileListResult> {
+): Promise<_AssetEndpointProfileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
+      name: p["name"],
       type: p["type"],
       systemData: !p.systemData
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -799,7 +747,9 @@ export async function _listBySubscriptionDeserialize(
             userAuthentication: !p.properties?.userAuthentication
               ? undefined
               : {
-                  mode: p.properties?.userAuthentication?.["mode"],
+                  mode: p.properties?.userAuthentication?.[
+                    "mode"
+                  ] as UserAuthenticationMode,
                   usernamePasswordCredentials: !p.properties?.userAuthentication
                     ?.usernamePasswordCredentials
                     ? undefined

@@ -25,48 +25,56 @@ import {
   AssetEndpointProfilesListBySubscriptionOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a AssetEndpointProfiles operations. */
 export interface AssetEndpointProfilesOperations {
+  /** Get a AssetEndpointProfile */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     assetEndpointProfileName: string,
     options?: AssetEndpointProfilesGetOptionalParams,
   ) => Promise<AssetEndpointProfile>;
+  /** Create a AssetEndpointProfile */
   createOrReplace: (
-    subscriptionId: string,
     resourceGroupName: string,
     assetEndpointProfileName: string,
     resource: AssetEndpointProfile,
     options?: AssetEndpointProfilesCreateOrReplaceOptionalParams,
   ) => PollerLike<OperationState<AssetEndpointProfile>, AssetEndpointProfile>;
+  /** Update a AssetEndpointProfile */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     assetEndpointProfileName: string,
     properties: AssetEndpointProfileUpdate,
     options?: AssetEndpointProfilesUpdateOptionalParams,
   ) => PollerLike<OperationState<AssetEndpointProfile>, AssetEndpointProfile>;
+  /** Delete a AssetEndpointProfile */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     assetEndpointProfileName: string,
     options?: AssetEndpointProfilesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** List AssetEndpointProfile resources by resource group */
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: AssetEndpointProfilesListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<AssetEndpointProfile>;
+  /** List AssetEndpointProfile resources by subscription ID */
   listBySubscription: (
-    subscriptionId: string,
     options?: AssetEndpointProfilesListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<AssetEndpointProfile>;
 }
 
-export function getAssetEndpointProfiles(context: DeviceRegistryContext) {
+export function getAssetEndpointProfiles(
+  context: DeviceRegistryContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       assetEndpointProfileName: string,
       options?: AssetEndpointProfilesGetOptionalParams,
@@ -79,7 +87,6 @@ export function getAssetEndpointProfiles(context: DeviceRegistryContext) {
         options,
       ),
     createOrReplace: (
-      subscriptionId: string,
       resourceGroupName: string,
       assetEndpointProfileName: string,
       resource: AssetEndpointProfile,
@@ -94,7 +101,6 @@ export function getAssetEndpointProfiles(context: DeviceRegistryContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       assetEndpointProfileName: string,
       properties: AssetEndpointProfileUpdate,
@@ -109,7 +115,6 @@ export function getAssetEndpointProfiles(context: DeviceRegistryContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       assetEndpointProfileName: string,
       options?: AssetEndpointProfilesDeleteOptionalParams,
@@ -122,13 +127,11 @@ export function getAssetEndpointProfiles(context: DeviceRegistryContext) {
         options,
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: AssetEndpointProfilesListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
       options?: AssetEndpointProfilesListBySubscriptionOptionalParams,
     ) => listBySubscription(context, subscriptionId, options),
   };
@@ -136,8 +139,9 @@ export function getAssetEndpointProfiles(context: DeviceRegistryContext) {
 
 export function getAssetEndpointProfilesOperations(
   context: DeviceRegistryContext,
+  subscriptionId: string,
 ): AssetEndpointProfilesOperations {
   return {
-    ...getAssetEndpointProfiles(context),
+    ...getAssetEndpointProfiles(context, subscriptionId),
   };
 }

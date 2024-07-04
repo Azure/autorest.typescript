@@ -7,11 +7,10 @@ export {
 } from "./deviceRegistryClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  ArmResourceBase,
-  ArmResource,
+  Resource,
   SystemData,
   CreatedByType,
-  TrackedResourceBase,
+  TrackedResource,
   AssetEndpointProfile,
   AssetEndpointProfileProperties,
   UserAuthentication,
@@ -27,8 +26,6 @@ export {
   ErrorAdditionalInfo,
   AssetEndpointProfileUpdate,
   AssetEndpointProfileUpdateProperties,
-  ArmOperationStatusResourceProvisioningState,
-  AssetEndpointProfileListResult,
   Asset,
   AssetProperties,
   DataPoint,
@@ -39,9 +36,7 @@ export {
   AssetStatusError,
   AssetUpdate,
   AssetUpdateProperties,
-  AssetListResult,
   OperationStatusResult,
-  PagedOperation,
   Operation,
   OperationDisplay,
   Origin,

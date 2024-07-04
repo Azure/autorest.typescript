@@ -6,19 +6,22 @@ import { OperationStatusResult } from "../../models/models.js";
 import { get } from "../../api/operationStatus/index.js";
 import { OperationStatusGetOptionalParams } from "../../models/options.js";
 
+/** Interface representing a OperationStatus operations. */
 export interface OperationStatusOperations {
+  /** Returns the current status of an async operation. */
   get: (
-    subscriptionId: string,
     location: string,
     operationId: string,
     options?: OperationStatusGetOptionalParams,
   ) => Promise<OperationStatusResult>;
 }
 
-export function getOperationStatus(context: DeviceRegistryContext) {
+export function getOperationStatus(
+  context: DeviceRegistryContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       location: string,
       operationId: string,
       options?: OperationStatusGetOptionalParams,
@@ -28,8 +31,9 @@ export function getOperationStatus(context: DeviceRegistryContext) {
 
 export function getOperationStatusOperations(
   context: DeviceRegistryContext,
+  subscriptionId: string,
 ): OperationStatusOperations {
   return {
-    ...getOperationStatus(context),
+    ...getOperationStatus(context, subscriptionId),
   };
 }

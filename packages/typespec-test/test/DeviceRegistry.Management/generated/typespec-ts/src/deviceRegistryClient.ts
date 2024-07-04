@@ -35,15 +35,20 @@ export class DeviceRegistryClient {
   /** Microsoft.DeviceRegistry Resource Provider management API. */
   constructor(
     credential: TokenCredential,
+    subscriptionId: string,
     options: DeviceRegistryClientOptions = {},
   ) {
     this._client = createDeviceRegistry(credential, options);
     this.pipeline = this._client.pipeline;
     this.operations = getOperationsOperations(this._client);
-    this.operationStatus = getOperationStatusOperations(this._client);
-    this.assets = getAssetsOperations(this._client);
+    this.operationStatus = getOperationStatusOperations(
+      this._client,
+      subscriptionId,
+    );
+    this.assets = getAssetsOperations(this._client, subscriptionId);
     this.assetEndpointProfiles = getAssetEndpointProfilesOperations(
       this._client,
+      subscriptionId,
     );
   }
 

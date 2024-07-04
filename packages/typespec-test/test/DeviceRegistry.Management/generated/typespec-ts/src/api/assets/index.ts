@@ -3,7 +3,17 @@
 
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { Asset, AssetUpdate, AssetListResult } from "../../models/models.js";
+import {
+  extendedLocationSerializer,
+  assetPropertiesSerializer,
+  assetUpdatePropertiesSerializer,
+  CreatedByType,
+  Asset,
+  DataPointsObservabilityMode,
+  EventsObservabilityMode,
+  AssetUpdate,
+  _AssetListResult,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -33,6 +43,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   AssetsGetOptionalParams,
   AssetsCreateOrReplaceOptionalParams,
@@ -67,21 +78,26 @@ export async function _getDeserialize(
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
+    name: result.body["name"],
     type: result.body["type"],
     systemData: !result.body.systemData
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -119,7 +135,9 @@ export async function _getDeserialize(
                   name: p["name"],
                   dataSource: p["dataSource"],
                   capabilityId: p["capabilityId"],
-                  observabilityMode: p["observabilityMode"],
+                  observabilityMode: p[
+                    "observabilityMode"
+                  ] as DataPointsObservabilityMode,
                   dataPointConfiguration: p["dataPointConfiguration"],
                 })),
           events:
@@ -129,7 +147,9 @@ export async function _getDeserialize(
                   name: p["name"],
                   eventNotifier: p["eventNotifier"],
                   capabilityId: p["capabilityId"],
-                  observabilityMode: p["observabilityMode"],
+                  observabilityMode: p[
+                    "observabilityMode"
+                  ] as EventsObservabilityMode,
                   eventConfiguration: p["eventConfiguration"],
                 })),
           status: !result.body.properties?.status
@@ -194,56 +214,14 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
+        tags: !resource.tags
+          ? resource.tags
+          : (serializeRecord(resource.tags as any) as any),
         location: resource["location"],
-        tags: resource["tags"],
         properties: !resource.properties
-          ? undefined
-          : {
-              assetType: resource.properties?.["assetType"],
-              enabled: resource.properties?.["enabled"],
-              externalAssetId: resource.properties?.["externalAssetId"],
-              displayName: resource.properties?.["displayName"],
-              description: resource.properties?.["description"],
-              assetEndpointProfileUri:
-                resource.properties?.["assetEndpointProfileUri"],
-              manufacturer: resource.properties?.["manufacturer"],
-              manufacturerUri: resource.properties?.["manufacturerUri"],
-              model: resource.properties?.["model"],
-              productCode: resource.properties?.["productCode"],
-              hardwareRevision: resource.properties?.["hardwareRevision"],
-              softwareRevision: resource.properties?.["softwareRevision"],
-              documentationUri: resource.properties?.["documentationUri"],
-              serialNumber: resource.properties?.["serialNumber"],
-              attributes: resource.properties?.["attributes"],
-              defaultDataPointsConfiguration:
-                resource.properties?.["defaultDataPointsConfiguration"],
-              defaultEventsConfiguration:
-                resource.properties?.["defaultEventsConfiguration"],
-              dataPoints:
-                resource.properties?.["dataPoints"] === undefined
-                  ? resource.properties?.["dataPoints"]
-                  : resource.properties?.["dataPoints"].map((p) => ({
-                      name: p["name"],
-                      dataSource: p["dataSource"],
-                      capabilityId: p["capabilityId"],
-                      observabilityMode: p["observabilityMode"],
-                      dataPointConfiguration: p["dataPointConfiguration"],
-                    })),
-              events:
-                resource.properties?.["events"] === undefined
-                  ? resource.properties?.["events"]
-                  : resource.properties?.["events"].map((p) => ({
-                      name: p["name"],
-                      eventNotifier: p["eventNotifier"],
-                      capabilityId: p["capabilityId"],
-                      observabilityMode: p["observabilityMode"],
-                      eventConfiguration: p["eventConfiguration"],
-                    })),
-            },
-        extendedLocation: {
-          type: resource.extendedLocation["type"],
-          name: resource.extendedLocation["name"],
-        },
+          ? resource.properties
+          : assetPropertiesSerializer(resource.properties),
+        extendedLocation: extendedLocationSerializer(resource.extendedLocation),
       },
     });
 }
@@ -261,21 +239,26 @@ export async function _createOrReplaceDeserialize(
 
   result = result as AssetsCreateOrReplaceLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
+    name: result.body["name"],
     type: result.body["type"],
     systemData: !result.body.systemData
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -313,7 +296,9 @@ export async function _createOrReplaceDeserialize(
                   name: p["name"],
                   dataSource: p["dataSource"],
                   capabilityId: p["capabilityId"],
-                  observabilityMode: p["observabilityMode"],
+                  observabilityMode: p[
+                    "observabilityMode"
+                  ] as DataPointsObservabilityMode,
                   dataPointConfiguration: p["dataPointConfiguration"],
                 })),
           events:
@@ -323,7 +308,9 @@ export async function _createOrReplaceDeserialize(
                   name: p["name"],
                   eventNotifier: p["eventNotifier"],
                   capabilityId: p["capabilityId"],
-                  observabilityMode: p["observabilityMode"],
+                  observabilityMode: p[
+                    "observabilityMode"
+                  ] as EventsObservabilityMode,
                   eventConfiguration: p["eventConfiguration"],
                 })),
           status: !result.body.properties?.status
@@ -394,48 +381,12 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       body: {
-        tags: properties["tags"],
+        tags: !properties.tags
+          ? properties.tags
+          : (serializeRecord(properties.tags as any) as any),
         properties: !properties.properties
-          ? undefined
-          : {
-              assetType: properties.properties?.["assetType"],
-              enabled: properties.properties?.["enabled"],
-              displayName: properties.properties?.["displayName"],
-              description: properties.properties?.["description"],
-              manufacturer: properties.properties?.["manufacturer"],
-              manufacturerUri: properties.properties?.["manufacturerUri"],
-              model: properties.properties?.["model"],
-              productCode: properties.properties?.["productCode"],
-              hardwareRevision: properties.properties?.["hardwareRevision"],
-              softwareRevision: properties.properties?.["softwareRevision"],
-              documentationUri: properties.properties?.["documentationUri"],
-              serialNumber: properties.properties?.["serialNumber"],
-              attributes: properties.properties?.["attributes"],
-              defaultDataPointsConfiguration:
-                properties.properties?.["defaultDataPointsConfiguration"],
-              defaultEventsConfiguration:
-                properties.properties?.["defaultEventsConfiguration"],
-              dataPoints:
-                properties.properties?.["dataPoints"] === undefined
-                  ? properties.properties?.["dataPoints"]
-                  : properties.properties?.["dataPoints"].map((p) => ({
-                      name: p["name"],
-                      dataSource: p["dataSource"],
-                      capabilityId: p["capabilityId"],
-                      observabilityMode: p["observabilityMode"],
-                      dataPointConfiguration: p["dataPointConfiguration"],
-                    })),
-              events:
-                properties.properties?.["events"] === undefined
-                  ? properties.properties?.["events"]
-                  : properties.properties?.["events"].map((p) => ({
-                      name: p["name"],
-                      eventNotifier: p["eventNotifier"],
-                      capabilityId: p["capabilityId"],
-                      observabilityMode: p["observabilityMode"],
-                      eventConfiguration: p["eventConfiguration"],
-                    })),
-            },
+          ? properties.properties
+          : assetUpdatePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -453,21 +404,26 @@ export async function _updateDeserialize(
 
   result = result as AssetsUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
+    name: result.body["name"],
     type: result.body["type"],
     systemData: !result.body.systemData
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -505,7 +461,9 @@ export async function _updateDeserialize(
                   name: p["name"],
                   dataSource: p["dataSource"],
                   capabilityId: p["capabilityId"],
-                  observabilityMode: p["observabilityMode"],
+                  observabilityMode: p[
+                    "observabilityMode"
+                  ] as DataPointsObservabilityMode,
                   dataPointConfiguration: p["dataPointConfiguration"],
                 })),
           events:
@@ -515,7 +473,9 @@ export async function _updateDeserialize(
                   name: p["name"],
                   eventNotifier: p["eventNotifier"],
                   capabilityId: p["capabilityId"],
-                  observabilityMode: p["observabilityMode"],
+                  observabilityMode: p[
+                    "observabilityMode"
+                  ] as EventsObservabilityMode,
                   eventConfiguration: p["eventConfiguration"],
                 })),
           status: !result.body.properties?.status
@@ -649,28 +609,31 @@ export async function _listByResourceGroupDeserialize(
   result:
     | AssetsListByResourceGroup200Response
     | AssetsListByResourceGroupDefaultResponse,
-): Promise<AssetListResult> {
+): Promise<_AssetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
+      name: p["name"],
       type: p["type"],
       systemData: !p.systemData
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -707,7 +670,9 @@ export async function _listByResourceGroupDeserialize(
                     name: p["name"],
                     dataSource: p["dataSource"],
                     capabilityId: p["capabilityId"],
-                    observabilityMode: p["observabilityMode"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as DataPointsObservabilityMode,
                     dataPointConfiguration: p["dataPointConfiguration"],
                   })),
             events:
@@ -717,7 +682,9 @@ export async function _listByResourceGroupDeserialize(
                     name: p["name"],
                     eventNotifier: p["eventNotifier"],
                     capabilityId: p["capabilityId"],
-                    observabilityMode: p["observabilityMode"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as EventsObservabilityMode,
                     eventConfiguration: p["eventConfiguration"],
                   })),
             status: !p.properties?.status
@@ -783,28 +750,31 @@ export async function _listBySubscriptionDeserialize(
   result:
     | AssetsListBySubscription200Response
     | AssetsListBySubscriptionDefaultResponse,
-): Promise<AssetListResult> {
+): Promise<_AssetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
     value: result.body["value"].map((p) => ({
-      location: p["location"],
       tags: p["tags"],
+      location: p["location"],
       id: p["id"],
+      name: p["name"],
       type: p["type"],
       systemData: !p.systemData
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -841,7 +811,9 @@ export async function _listBySubscriptionDeserialize(
                     name: p["name"],
                     dataSource: p["dataSource"],
                     capabilityId: p["capabilityId"],
-                    observabilityMode: p["observabilityMode"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as DataPointsObservabilityMode,
                     dataPointConfiguration: p["dataPointConfiguration"],
                   })),
             events:
@@ -851,7 +823,9 @@ export async function _listBySubscriptionDeserialize(
                     name: p["name"],
                     eventNotifier: p["eventNotifier"],
                     capabilityId: p["capabilityId"],
-                    observabilityMode: p["observabilityMode"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as EventsObservabilityMode,
                     eventConfiguration: p["eventConfiguration"],
                   })),
             status: !p.properties?.status

@@ -1,53 +1,98 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Base class used for type definitions */
-export interface ArmResourceBase {}
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import {
+  TrackedResource as TrackedResourceRest,
+  AssetEndpointProfile as AssetEndpointProfileRest,
+  AssetEndpointProfileProperties as AssetEndpointProfilePropertiesRest,
+  UserAuthentication as UserAuthenticationRest,
+  UsernamePasswordCredentials as UsernamePasswordCredentialsRest,
+  X509Credentials as X509CredentialsRest,
+  TransportAuthentication as TransportAuthenticationRest,
+  OwnCertificate as OwnCertificateRest,
+  ExtendedLocation as ExtendedLocationRest,
+  AssetEndpointProfileUpdate as AssetEndpointProfileUpdateRest,
+  AssetEndpointProfileUpdateProperties as AssetEndpointProfileUpdatePropertiesRest,
+  Asset as AssetRest,
+  AssetProperties as AssetPropertiesRest,
+  DataPoint as DataPointRest,
+  Event as EventRest,
+  AssetUpdate as AssetUpdateRest,
+  AssetUpdateProperties as AssetUpdatePropertiesRest,
+} from "../rest/index.js";
 
-/** Common properties for all Azure Resource Manager resources. */
-export interface ArmResource extends ArmResourceBase {
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
+export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  readonly id: string;
+  readonly id?: string;
+  /** The name of the resource */
+  readonly name?: string;
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  readonly type: string;
+  readonly type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   readonly systemData?: SystemData;
+}
+
+export function resourceSerializer(item: Resource) {
+  return item as any;
 }
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByType;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: Date;
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByType;
+  lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: Date;
+  lastModifiedAt?: Date;
 }
 
 /** The kind of entity that created the resource. */
-/** */
 export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
-/** The resource model definition for an Azure Resource Manager tracked top level resource */
-export interface TrackedResourceBase extends ArmResource {
-  /** The geo-location where the resource lives */
-  location: string;
+/** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
+export interface TrackedResource extends Resource {
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
+}
+
+export function trackedResourceSerializer(
+  item: TrackedResource,
+): TrackedResourceRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+  };
 }
 
 /** Asset Endpoint Profile definition. */
-export interface AssetEndpointProfile extends TrackedResourceBase {
+export interface AssetEndpointProfile extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: AssetEndpointProfileProperties;
   /** The extended location. */
   extendedLocation: ExtendedLocation;
+}
+
+export function assetEndpointProfileSerializer(
+  item: AssetEndpointProfile,
+): AssetEndpointProfileRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+    properties: !item.properties
+      ? item.properties
+      : assetEndpointProfilePropertiesSerializer(item.properties),
+    extendedLocation: extendedLocationSerializer(item.extendedLocation),
+  };
 }
 
 /** Defines the Asset Endpoint Profile properties. */
@@ -66,6 +111,21 @@ export interface AssetEndpointProfileProperties {
   readonly provisioningState?: ProvisioningState;
 }
 
+export function assetEndpointProfilePropertiesSerializer(
+  item: AssetEndpointProfileProperties,
+): AssetEndpointProfilePropertiesRest {
+  return {
+    targetAddress: item["targetAddress"],
+    userAuthentication: !item.userAuthentication
+      ? item.userAuthentication
+      : userAuthenticationSerializer(item.userAuthentication),
+    transportAuthentication: !item.transportAuthentication
+      ? item.transportAuthentication
+      : transportAuthenticationSerializer(item.transportAuthentication),
+    additionalConfiguration: item["additionalConfiguration"],
+  };
+}
+
 /** Definition of the client authentication mechanism to the server. */
 export interface UserAuthentication {
   /** Defines the mode to authenticate the user of the client at the server. */
@@ -76,9 +136,25 @@ export interface UserAuthentication {
   x509Credentials?: X509Credentials;
 }
 
+export function userAuthenticationSerializer(
+  item: UserAuthentication,
+): UserAuthenticationRest {
+  return {
+    mode: item["mode"],
+    usernamePasswordCredentials: !item.usernamePasswordCredentials
+      ? item.usernamePasswordCredentials
+      : usernamePasswordCredentialsSerializer(item.usernamePasswordCredentials),
+    x509Credentials: !item.x509Credentials
+      ? item.x509Credentials
+      : x509CredentialsSerializer(item.x509Credentials),
+  };
+}
+
 /** The mode to authenticate the user of the client at the server. */
-/** "Anonymous", "Certificate", "UsernamePassword" */
-export type UserAuthenticationMode = string;
+export type UserAuthenticationMode =
+  | "Anonymous"
+  | "Certificate"
+  | "UsernamePassword";
 
 /** The credentials for authentication mode UsernamePassword. */
 export interface UsernamePasswordCredentials {
@@ -88,16 +164,41 @@ export interface UsernamePasswordCredentials {
   passwordReference: string;
 }
 
+export function usernamePasswordCredentialsSerializer(
+  item: UsernamePasswordCredentials,
+): UsernamePasswordCredentialsRest {
+  return {
+    usernameReference: item["usernameReference"],
+    passwordReference: item["passwordReference"],
+  };
+}
+
 /** The x509 certificate for authentication mode Certificate. */
 export interface X509Credentials {
   /** A reference to secret containing the certificate and private key (e.g. stored as .der/.pem or .der/.pfx). */
   certificateReference: string;
 }
 
+export function x509CredentialsSerializer(
+  item: X509Credentials,
+): X509CredentialsRest {
+  return {
+    certificateReference: item["certificateReference"],
+  };
+}
+
 /** Definition of the authentication mechanism for the southbound connector. */
 export interface TransportAuthentication {
   /** Defines a reference to a secret which contains all certificates and private keys that can be used by the southbound connector connecting to the shop floor/OT device. The accepted extensions are .der for certificates and .pfx/.pem for private keys. */
   ownCertificates: OwnCertificate[];
+}
+
+export function transportAuthenticationSerializer(
+  item: TransportAuthentication,
+): TransportAuthenticationRest {
+  return {
+    ownCertificates: item["ownCertificates"].map(ownCertificateSerializer),
+  };
 }
 
 /** Certificate or private key that can be used by the southbound connector connecting to the shop floor/OT device. The accepted extensions are .der for certificates and .pfx/.pem for private keys. */
@@ -110,8 +211,17 @@ export interface OwnCertificate {
   certPasswordReference?: string;
 }
 
+export function ownCertificateSerializer(
+  item: OwnCertificate,
+): OwnCertificateRest {
+  return {
+    certThumbprint: item["certThumbprint"],
+    certSecretReference: item["certSecretReference"],
+    certPasswordReference: item["certPasswordReference"],
+  };
+}
+
 /** The provisioning state of a resource type. */
-/** */
 export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 /** The extended location. */
@@ -120,6 +230,15 @@ export interface ExtendedLocation {
   type: string;
   /** The extended location name. */
   name: string;
+}
+
+export function extendedLocationSerializer(
+  item: ExtendedLocation,
+): ExtendedLocationRest {
+  return {
+    type: item["type"],
+    name: item["name"],
+  };
 }
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
@@ -157,6 +276,17 @@ export interface AssetEndpointProfileUpdate {
   properties?: AssetEndpointProfileUpdateProperties;
 }
 
+export function assetEndpointProfileUpdateSerializer(
+  item: AssetEndpointProfileUpdate,
+): AssetEndpointProfileUpdateRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    properties: !item.properties
+      ? item.properties
+      : assetEndpointProfileUpdatePropertiesSerializer(item.properties),
+  };
+}
+
 /** The updatable properties of the AssetEndpointProfile. */
 export interface AssetEndpointProfileUpdateProperties {
   /** The local valid URI specifying the network address/DNS name of a southbound device. The scheme part of the targetAddress URI specifies the type of the device. The additionalConfiguration field holds further connector type specific configuration. */
@@ -169,24 +299,23 @@ export interface AssetEndpointProfileUpdateProperties {
   additionalConfiguration?: string;
 }
 
-/** Standard Azure Resource Manager operation status response */
-export interface ArmOperationStatusResourceProvisioningState {
-  /** The operation status */
-  status: ResourceProvisioningState;
-  /** The name of the  operationStatus resource */
-  readonly name?: string;
-  /** Operation start time */
-  readonly startTime?: Date;
-  /** Operation complete time */
-  readonly endTime?: Date;
-  /** The progress made toward completing the operation */
-  readonly percentComplete?: number;
-  /** Errors that occurred if the operation ended with Canceled or Failed status */
-  readonly error?: ErrorDetail;
+export function assetEndpointProfileUpdatePropertiesSerializer(
+  item: AssetEndpointProfileUpdateProperties,
+): AssetEndpointProfileUpdatePropertiesRest {
+  return {
+    targetAddress: item["targetAddress"],
+    userAuthentication: !item.userAuthentication
+      ? item.userAuthentication
+      : userAuthenticationSerializer(item.userAuthentication),
+    transportAuthentication: !item.transportAuthentication
+      ? item.transportAuthentication
+      : transportAuthenticationSerializer(item.transportAuthentication),
+    additionalConfiguration: item["additionalConfiguration"],
+  };
 }
 
 /** The response of a AssetEndpointProfile list operation. */
-export interface AssetEndpointProfileListResult {
+export interface _AssetEndpointProfileListResult {
   /** The AssetEndpointProfile items on this page */
   value: AssetEndpointProfile[];
   /** The link to the next page of items */
@@ -194,11 +323,22 @@ export interface AssetEndpointProfileListResult {
 }
 
 /** Asset definition. */
-export interface Asset extends TrackedResourceBase {
+export interface Asset extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: AssetProperties;
   /** The extended location. */
   extendedLocation: ExtendedLocation;
+}
+
+export function assetSerializer(item: Asset): AssetRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+    properties: !item.properties
+      ? item.properties
+      : assetPropertiesSerializer(item.properties),
+    extendedLocation: extendedLocationSerializer(item.extendedLocation),
+  };
 }
 
 /** Defines the asset properties. */
@@ -236,7 +376,7 @@ export interface AssetProperties {
   /** Asset serial number. */
   serialNumber?: string;
   /** A set of key-value pairs that contain custom attributes set by the customer. */
-  attributes?: Record<string, unknown>;
+  attributes?: Record<string, any>;
   /** Protocol-specific default configuration for all data points. Each data point can have its own configuration that overrides the default settings here. This assumes that each asset instance has one protocol. */
   defaultDataPointsConfiguration?: string;
   /** Protocol-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here. This assumes that each asset instance has one protocol. */
@@ -249,6 +389,40 @@ export interface AssetProperties {
   readonly status?: AssetStatus;
   /** Provisioning state of the resource. */
   readonly provisioningState?: ProvisioningState;
+}
+
+export function assetPropertiesSerializer(
+  item: AssetProperties,
+): AssetPropertiesRest {
+  return {
+    assetType: item["assetType"],
+    enabled: item["enabled"],
+    externalAssetId: item["externalAssetId"],
+    displayName: item["displayName"],
+    description: item["description"],
+    assetEndpointProfileUri: item["assetEndpointProfileUri"],
+    manufacturer: item["manufacturer"],
+    manufacturerUri: item["manufacturerUri"],
+    model: item["model"],
+    productCode: item["productCode"],
+    hardwareRevision: item["hardwareRevision"],
+    softwareRevision: item["softwareRevision"],
+    documentationUri: item["documentationUri"],
+    serialNumber: item["serialNumber"],
+    attributes: !item.attributes
+      ? item.attributes
+      : (serializeRecord(item.attributes as any) as any),
+    defaultDataPointsConfiguration: item["defaultDataPointsConfiguration"],
+    defaultEventsConfiguration: item["defaultEventsConfiguration"],
+    dataPoints:
+      item["dataPoints"] === undefined
+        ? item["dataPoints"]
+        : item["dataPoints"].map(dataPointSerializer),
+    events:
+      item["events"] === undefined
+        ? item["events"]
+        : item["events"].map(eventSerializer),
+  };
 }
 
 /** Defines the data point properties. */
@@ -265,9 +439,23 @@ export interface DataPoint {
   dataPointConfiguration?: string;
 }
 
+export function dataPointSerializer(item: DataPoint): DataPointRest {
+  return {
+    name: item["name"],
+    dataSource: item["dataSource"],
+    capabilityId: item["capabilityId"],
+    observabilityMode: item["observabilityMode"],
+    dataPointConfiguration: item["dataPointConfiguration"],
+  };
+}
+
 /** Defines the data point observability mode. */
-/** "none", "counter", "gauge", "histogram", "log" */
-export type DataPointsObservabilityMode = string;
+export type DataPointsObservabilityMode =
+  | "none"
+  | "counter"
+  | "gauge"
+  | "histogram"
+  | "log";
 
 /** Defines the event properties. */
 export interface Event {
@@ -283,9 +471,18 @@ export interface Event {
   eventConfiguration?: string;
 }
 
+export function eventSerializer(item: Event): EventRest {
+  return {
+    name: item["name"],
+    eventNotifier: item["eventNotifier"],
+    capabilityId: item["capabilityId"],
+    observabilityMode: item["observabilityMode"],
+    eventConfiguration: item["eventConfiguration"],
+  };
+}
+
 /** Defines the event observability mode. */
-/** "none", "log" */
-export type EventsObservabilityMode = string;
+export type EventsObservabilityMode = "none" | "log";
 
 /** Defines the asset status properties. */
 export interface AssetStatus {
@@ -308,6 +505,15 @@ export interface AssetUpdate {
   /** Resource tags. */
   tags?: Record<string, string>;
   properties?: AssetUpdateProperties;
+}
+
+export function assetUpdateSerializer(item: AssetUpdate): AssetUpdateRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    properties: !item.properties
+      ? item.properties
+      : assetUpdatePropertiesSerializer(item.properties),
+  };
 }
 
 /** The updatable properties of the Asset. */
@@ -337,7 +543,7 @@ export interface AssetUpdateProperties {
   /** Asset serial number. */
   serialNumber?: string;
   /** A set of key-value pairs that contain custom attributes set by the customer. */
-  attributes?: Record<string, unknown>;
+  attributes?: Record<string, any>;
   /** Protocol-specific default configuration for all data points. Each data point can have its own configuration that overrides the default settings here. This assumes that each asset instance has one protocol. */
   defaultDataPointsConfiguration?: string;
   /** Protocol-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here. This assumes that each asset instance has one protocol. */
@@ -348,8 +554,40 @@ export interface AssetUpdateProperties {
   events?: Event[];
 }
 
+export function assetUpdatePropertiesSerializer(
+  item: AssetUpdateProperties,
+): AssetUpdatePropertiesRest {
+  return {
+    assetType: item["assetType"],
+    enabled: item["enabled"],
+    displayName: item["displayName"],
+    description: item["description"],
+    manufacturer: item["manufacturer"],
+    manufacturerUri: item["manufacturerUri"],
+    model: item["model"],
+    productCode: item["productCode"],
+    hardwareRevision: item["hardwareRevision"],
+    softwareRevision: item["softwareRevision"],
+    documentationUri: item["documentationUri"],
+    serialNumber: item["serialNumber"],
+    attributes: !item.attributes
+      ? item.attributes
+      : (serializeRecord(item.attributes as any) as any),
+    defaultDataPointsConfiguration: item["defaultDataPointsConfiguration"],
+    defaultEventsConfiguration: item["defaultEventsConfiguration"],
+    dataPoints:
+      item["dataPoints"] === undefined
+        ? item["dataPoints"]
+        : item["dataPoints"].map(dataPointSerializer),
+    events:
+      item["events"] === undefined
+        ? item["events"]
+        : item["events"].map(eventSerializer),
+  };
+}
+
 /** The response of a Asset list operation. */
-export interface AssetListResult {
+export interface _AssetListResult {
   /** The Asset items on this page */
   value: Asset[];
   /** The link to the next page of items */
@@ -371,13 +609,13 @@ export interface OperationStatusResult {
   /** The end time of the operation. */
   endTime?: Date;
   /** The operations list. */
-  operations: OperationStatusResult[];
+  operations?: OperationStatusResult[];
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface PagedOperation {
+export interface _OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
@@ -394,7 +632,7 @@ export interface Operation {
   display?: OperationDisplay;
   /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
   readonly origin?: Origin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
   actionType?: ActionType;
 }
 
@@ -411,13 +649,10 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** */
 export type Origin = "user" | "system" | "user,system";
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** */
+/** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type ActionType = "Internal";
 /** Microsoft.DeviceRegistry Resource Provider supported API versions. */
-/** */
 export type Versions = "2023-11-01-preview";
 /** Alias for ProvisioningState */
 export type ProvisioningState = string | ResourceProvisioningState | "Accepted";

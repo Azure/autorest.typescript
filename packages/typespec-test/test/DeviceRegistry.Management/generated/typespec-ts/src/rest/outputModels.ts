@@ -13,7 +13,7 @@ export interface OperationOutput {
   display?: OperationDisplayOutput;
   /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
   readonly origin?: OriginOutput;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
   actionType?: ActionTypeOutput;
 }
 
@@ -72,13 +72,13 @@ export interface OperationStatusResultOutput {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations: Array<OperationStatusResultOutput>;
+  operations?: Array<OperationStatusResultOutput>;
   /** If present, details of the operation error. */
   error?: ErrorDetailOutput;
 }
 
 /** Asset definition. */
-export interface AssetOutput extends TrackedResourceBaseOutput {
+export interface AssetOutput extends TrackedResourceOutput {
   /** The resource-specific properties for this resource. */
   properties?: AssetPropertiesOutput;
   /** The extended location. */
@@ -187,20 +187,22 @@ export interface ExtendedLocationOutput {
   name: string;
 }
 
-/** The resource model definition for an Azure Resource Manager tracked top level resource */
-export interface TrackedResourceBaseOutput extends ArmResourceOutput {
-  /** The geo-location where the resource lives */
-  location: string;
+/** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
+export interface TrackedResourceOutput extends ResourceOutput {
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
 }
 
-/** Common properties for all Azure Resource Manager resources. */
-export interface ArmResourceOutput extends ArmResourceBaseOutput {
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
+export interface ResourceOutput {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  readonly id: string;
+  readonly id?: string;
+  /** The name of the resource */
+  readonly name?: string;
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  readonly type: string;
+  readonly type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   readonly systemData?: SystemDataOutput;
 }
@@ -208,62 +210,34 @@ export interface ArmResourceOutput extends ArmResourceBaseOutput {
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemDataOutput {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByTypeOutput;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: string;
+  createdByType?: CreatedByTypeOutput;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByTypeOutput;
+  lastModifiedByType?: CreatedByTypeOutput;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: string;
+  lastModifiedAt?: string;
 }
 
-/** Base class used for type definitions */
-export interface ArmResourceBaseOutput {}
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
+export interface ProxyResourceOutput extends ResourceOutput {}
 
-/** The base proxy resource. */
-export interface ProxyResourceBaseOutput extends ArmResourceOutput {}
+/** The base extension resource. */
+export interface ExtensionResourceOutput extends ResourceOutput {}
 
-/** The private endpoint connection resource */
-export interface PrivateEndpointConnectionOutput
-  extends ProxyResourceBaseOutput {
-  /** The private endpoint connection properties */
-  properties?: PrivateEndpointConnectionPropertiesOutput;
+/** The resource model definition for an Azure Resource Manager resource with an etag. */
+export interface AzureEntityResourceOutput extends ResourceOutput {
+  /** Resource Etag. */
+  readonly etag?: string;
 }
 
-/** Properties of he private endpoint connection resource */
-export interface PrivateEndpointConnectionPropertiesOutput {
-  /** The group identifiers for the private endpoint resource */
-  readonly groupIds?: string[];
-  /** The private endpoint resource */
-  privateEndpoint?: PrivateEndpointOutput;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
-}
-
-/** The private endpoint resource */
-export interface PrivateEndpointOutput {
-  /** The resource identifier for private endpoint */
-  id?: string;
-}
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateLinkServiceConnectionStateOutput {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatusOutput;
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-
-export interface PrivateLinkResourceOutput extends ProxyResourceBaseOutput {
-  /** Properties of the private link resource. */
+/** A private link resource. */
+export interface PrivateLinkResourceOutput extends ResourceOutput {
+  /** Resource properties. */
   properties?: PrivateLinkResourcePropertiesOutput;
 }
 
@@ -277,11 +251,40 @@ export interface PrivateLinkResourcePropertiesOutput {
   requiredZoneNames?: string[];
 }
 
-/** The base extension resource. */
-export interface ExtensionResourceBaseOutput extends ArmResourceOutput {}
+/** The private endpoint connection resource */
+export interface PrivateEndpointConnectionOutput extends ResourceOutput {
+  /** The private endpoint connection properties */
+  properties?: PrivateEndpointConnectionPropertiesOutput;
+}
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionPropertiesOutput {
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpointOutput;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
+  /** The provisioning state of the private endpoint connection resource. */
+  readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
+}
+
+/** The Private Endpoint resource. */
+export interface PrivateEndpointOutput {
+  /** The resource identifier for private endpoint */
+  readonly id?: string;
+}
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateLinkServiceConnectionStateOutput {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatusOutput;
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
 
 /** Asset Endpoint Profile definition. */
-export interface AssetEndpointProfileOutput extends TrackedResourceBaseOutput {
+export interface AssetEndpointProfileOutput extends TrackedResourceOutput {
   /** The resource-specific properties for this resource. */
   properties?: AssetEndpointProfilePropertiesOutput;
   /** The extended location. */
@@ -344,56 +347,94 @@ export interface OwnCertificateOutput {
   certPasswordReference?: string;
 }
 
+/** The resource model definition containing the full set of allowed properties for a resource. Except properties bag, there cannot be a top level property outside of this set. */
+export interface ResourceModelWithAllowedPropertySetOutput
+  extends TrackedResourceOutput {
+  /**
+   * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource.
+   * If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource.
+   */
+  managedBy?: string;
+  /**
+   * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.
+   * If supported, the resource provider must validate and persist this value.
+   */
+  kind?: string;
+  /**
+   * The etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal etag convention.
+   * Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19),
+   * If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
+   */
+  eTag?: string;
+  identity?: IdentityOutput;
+  sku?: SkuOutput;
+  plan?: PlanOutput;
+}
+
+/** Identity for the resource. */
+export interface IdentityOutput {
+  /** The principal ID of resource identity. The value must be an UUID. */
+  readonly principalId?: string;
+  /** The tenant ID of resource. The value must be an UUID. */
+  readonly tenantId?: string;
+  /** The identity type. */
+  type?: ResourceIdentityTypeOutput;
+}
+
+/** The resource model definition representing SKU */
+export interface SkuOutput {
+  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
+  name: string;
+  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+  tier?: SkuTierOutput;
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+
+/** Plan for the resource. */
+export interface PlanOutput {
+  /** A user defined name of the 3rd Party Artifact that is being procured. */
+  name: string;
+  /** The publisher of the 3rd Party Artifact that is being bought. E.g. NewRelic */
+  publisher: string;
+  /** The 3rd Party artifact that is being procured. E.g. NewRelic. Product maps to the OfferID specified for the artifact at the time of Data Market onboarding. */
+  product: string;
+  /** A publisher provided promotion code as provisioned in Data Market for the said product/artifact. */
+  promotionCode?: string;
+  /** The version of the desired product/artifact. */
+  version?: string;
+}
+
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export type PagedOperationOutput = Paged<OperationOutput>;
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OriginOutput = "user" | "system" | "user,system";
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type ActionTypeOutput = "Internal";
+export type OperationListResultOutput = Paged<OperationOutput>;
+/** Alias for OriginOutput */
+export type OriginOutput = string;
+/** Alias for ActionTypeOutput */
+export type ActionTypeOutput = string;
 /** Alias for DataPointsObservabilityModeOutput */
-export type DataPointsObservabilityModeOutput =
-  | string
-  | "none"
-  | "counter"
-  | "gauge"
-  | "histogram"
-  | "log";
+export type DataPointsObservabilityModeOutput = string;
 /** Alias for EventsObservabilityModeOutput */
-export type EventsObservabilityModeOutput = string | "none" | "log";
-/** The provisioning state of a resource type. */
-export type ResourceProvisioningStateOutput =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+export type EventsObservabilityModeOutput = string;
+/** Alias for ResourceProvisioningStateOutput */
+export type ResourceProvisioningStateOutput = string;
 /** Alias for ProvisioningStateOutput */
-export type ProvisioningStateOutput =
-  | string
-  | ResourceProvisioningStateOutput
-  | "Accepted";
-/** The kind of entity that created the resource. */
-export type CreatedByTypeOutput =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-/** The private endpoint connection status */
-export type PrivateEndpointServiceConnectionStatusOutput =
-  | "Pending"
-  | "Approved"
-  | "Rejected";
-/** The provisioning state of the connection */
-export type PrivateEndpointConnectionProvisioningStateOutput =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Creating"
-  | "Deleting";
+export type ProvisioningStateOutput = string;
+/** Alias for CreatedByTypeOutput */
+export type CreatedByTypeOutput = string;
+/** Alias for PrivateEndpointServiceConnectionStatusOutput */
+export type PrivateEndpointServiceConnectionStatusOutput = string;
+/** Alias for PrivateEndpointConnectionProvisioningStateOutput */
+export type PrivateEndpointConnectionProvisioningStateOutput = string;
 /** Alias for UserAuthenticationModeOutput */
-export type UserAuthenticationModeOutput =
-  | string
-  | "Anonymous"
-  | "Certificate"
-  | "UsernamePassword";
+export type UserAuthenticationModeOutput = string;
+/** Alias for ResourceIdentityTypeOutput */
+export type ResourceIdentityTypeOutput = "SystemAssigned";
+/** Alias for SkuTierOutput */
+export type SkuTierOutput = "Free" | "Basic" | "Standard" | "Premium";
 /** The response of a Asset list operation. */
 export type AssetListResultOutput = Paged<AssetOutput>;
 /** The response of a AssetEndpointProfile list operation. */
