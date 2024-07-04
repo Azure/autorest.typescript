@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   Test as TestRest,
   PassFailCriteria as PassFailCriteriaRest,
@@ -19,7 +19,7 @@ import {
   TestRunServerMetricConfig as TestRunServerMetricConfigRest,
   MetricRequestPayload as MetricRequestPayloadRest,
   DimensionFilter as DimensionFilterRest,
-} from "../../rest/index.js";
+} from "../rest/index.js";
 
 /** Load test model */
 export interface Test {

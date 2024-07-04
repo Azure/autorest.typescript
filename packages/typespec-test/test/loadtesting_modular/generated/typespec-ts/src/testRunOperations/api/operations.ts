@@ -23,7 +23,7 @@ import {
   _PagedDimensionValueList,
   _PagedTestRun,
   _PagedTimeSeriesElement,
-} from "../models/models.js";
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {

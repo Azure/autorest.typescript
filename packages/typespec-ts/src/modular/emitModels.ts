@@ -6,7 +6,7 @@ import {
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { buildOperationOptions } from "./buildOperations.js";
+import { buildOperationOptions, importModels } from "./buildOperations.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
@@ -378,6 +378,12 @@ export function buildModelsOptions(
       buildOperationOptions(o, modelOptionsFile);
     });
   }
+  importModels(
+    codeModel.modularOptions.sourceRoot,
+    modelOptionsFile,
+    codeModel.project,
+    client.subfolder !== "" ? 1 : 0
+  );
   modelOptionsFile.addImportDeclarations([
     {
       moduleSpecifier: getImportSpecifier(
@@ -395,6 +401,7 @@ export function buildModelsOptions(
       importModuleSpecifierEnding: "js"
     }
   );
+  modelOptionsFile.fixUnusedIdentifiers();
   modelOptionsFile
     .getImportDeclarations()
     .filter((id) => {

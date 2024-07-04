@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Interval } from "../../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
-import { Interval } from "./models.js";
 
 /** Optional parameters. */
 export interface TestRunOptionalParams extends OperationOptions {

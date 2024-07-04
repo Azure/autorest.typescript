@@ -14,7 +14,7 @@ import {
   MetricNamespaceCollection,
   MetricRequestPayload,
   TimeSeriesElement,
-} from "./models/models.js";
+} from "./../models/models.js";
 import {
   TestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,

@@ -14,7 +14,7 @@ import {
   TestServerMetricConfig,
   _PagedFileInfo,
   _PagedTest,
-} from "../models/models.js";
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
