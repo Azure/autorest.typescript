@@ -10,13 +10,17 @@ using TypeSpec.Rest;
 namespace Face;
 
 alias FaceDetectionOptions = {
+  @doc("The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.")
+  @query
+  detectionModel?: DetectionModel = "detection_01";
+
+  @doc("The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.")
+  @query
+  recognitionModel?: RecognitionModel = "recognition_01";
+
   @doc("Return faceIds of the detected faces or not. The default value is true.")
   @query
   returnFaceId?: boolean = true;
-
-  @doc("Return face landmarks of the detected faces or not. The default value is false.")
-  @query
-  returnFaceLandmarks?: boolean = false;
 
   @doc("Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost.")
   @query({
@@ -24,17 +28,13 @@ alias FaceDetectionOptions = {
   })
   returnFaceAttributes?: FaceAttributeType[];
 
-  @doc("The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.")
+  @doc("Return face landmarks of the detected faces or not. The default value is false.")
   @query
-  recognitionModel?: RecognitionModel = "recognition_01";
+  returnFaceLandmarks?: boolean = false;
 
-  @doc("Return 'recognitionModel' or not. The default value is false.")
+  @doc("Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true.")
   @query
   returnRecognitionModel?: boolean = false;
-
-  @doc("The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.")
-  @query
-  detectionModel?: DetectionModel = "detection_01";
 
   @doc("The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours).")
   @query
@@ -72,7 +72,7 @@ union FaceAttributeType {
   @doc("Whether each face is wearing a mask. Mask type returns 'noMask', 'faceMask', 'otherMaskOrOcclusion', or 'uncertain'. Value returns a boolean 'noseAndMouthCovered' indicating whether nose and mouth are covered.")
   "mask",
 
-  @doc("The overall image quality regarding whether the image being used in the detection is of sufficient quality to attempt face recognition on. The value is an informal rating of low, medium, or high. Only 'high' quality images are recommended for person enrollment and quality at or above 'medium' is recommended for identification scenarios. The attribute is only available when using any combinations of detection models detection_01 or detection_03, and recognition models recognition_03 or recognition_04.")
+  @doc("The overall image quality regarding whether the image being used in the detection is of sufficient quality to attempt face recognition on. The value is an informal rating of low, medium, or high. Only 'high' quality images are recommended for person enrollment and quality at or above 'medium' is recommended for identification scenarios. The attribute is only available when using recognition models recognition_03 or recognition_04.")
   "qualityForRecognition",
 
   @doc("Age in years.")

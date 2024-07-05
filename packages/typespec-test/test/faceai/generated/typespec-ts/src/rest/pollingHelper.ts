@@ -15,12 +15,6 @@ import {
   TrainLargeFaceList202Response,
   TrainLargeFaceListDefaultResponse,
   TrainLargeFaceListLogicalResponse,
-  TrainPersonGroup202Response,
-  TrainPersonGroupDefaultResponse,
-  TrainPersonGroupLogicalResponse,
-  TrainLargePersonGroup202Response,
-  TrainLargePersonGroupDefaultResponse,
-  TrainLargePersonGroupLogicalResponse,
   CreatePerson202Response,
   CreatePersonDefaultResponse,
   CreatePersonLogicalResponse,
@@ -42,6 +36,12 @@ import {
   UpdateDynamicPersonGroupWithPersonChanges202Response,
   UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
   UpdateDynamicPersonGroupWithPersonChangesLogicalResponse,
+  TrainPersonGroup202Response,
+  TrainPersonGroupDefaultResponse,
+  TrainPersonGroupLogicalResponse,
+  TrainLargePersonGroup202Response,
+  TrainLargePersonGroupDefaultResponse,
+  TrainLargePersonGroupLogicalResponse,
 } from "./responses.js";
 
 /**
@@ -134,28 +134,6 @@ export async function getLongRunningPoller<
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
-  TResult extends
-    | TrainPersonGroupLogicalResponse
-    | TrainPersonGroupDefaultResponse,
->(
-  client: Client,
-  initialResponse:
-    | TrainPersonGroup202Response
-    | TrainPersonGroupDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends
-    | TrainLargePersonGroupLogicalResponse
-    | TrainLargePersonGroupDefaultResponse,
->(
-  client: Client,
-  initialResponse:
-    | TrainLargePersonGroup202Response
-    | TrainLargePersonGroupDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
   TResult extends CreatePersonLogicalResponse | CreatePersonDefaultResponse,
 >(
   client: Client,
@@ -218,6 +196,28 @@ export async function getLongRunningPoller<
   initialResponse:
     | UpdateDynamicPersonGroupWithPersonChanges202Response
     | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | TrainPersonGroupLogicalResponse
+    | TrainPersonGroupDefaultResponse,
+>(
+  client: Client,
+  initialResponse:
+    | TrainPersonGroup202Response
+    | TrainPersonGroupDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | TrainLargePersonGroupLogicalResponse
+    | TrainLargePersonGroupDefaultResponse,
+>(
+  client: Client,
+  initialResponse:
+    | TrainLargePersonGroup202Response
+    | TrainLargePersonGroupDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

@@ -2,19 +2,19 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger.js";
+import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { FaceClient } from "./clientDefinitions.js";
+import { FaceContext } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
 /** The optional parameters for the client */
-export interface FaceClientOptions extends ClientOptions {
+export interface FaceContextOptions extends ClientOptions {
   /** API Version */
   apiVersion?: Versions;
 }
 
 /**
- * Initialize a new instance of `FaceClient`
+ * Initialize a new instance of `FaceContext`
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://{resource-name}.cognitiveservices.azure.com).
  * @param credentials - uniquely identify client credential
@@ -23,8 +23,8 @@ export interface FaceClientOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  { apiVersion = "v1.1-preview.1", ...options }: FaceClientOptions = {},
-): FaceClient {
+  { apiVersion = "v1.1-preview.1", ...options }: FaceContextOptions = {},
+): FaceContext {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
@@ -50,7 +50,7 @@ export default function createClient(
         options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
-  const client = getClient(endpointUrl, credentials, options) as FaceClient;
+  const client = getClient(endpointUrl, credentials, options) as FaceContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
