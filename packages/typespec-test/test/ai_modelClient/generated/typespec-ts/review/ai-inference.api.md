@@ -10,13 +10,29 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
+// @public
+export type CapacityType = "usage" | "fixed";
+
+// @public
+export interface ChatChoice {
+    finishReason: CompletionsFinishReason | null;
+    index: number;
+    message: ChatResponseMessage;
+}
+
+// @public
+export interface ChatCompletions {
+    choices: ChatChoice[];
+    created: Date;
+    id: string;
+    model: string;
+    usage: CompletionsUsage;
+}
+
 // @public (undocumented)
 export class ChatCompletionsClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ChatCompletionsClientOptions);
-    // Warning: (ae-forgotten-export) The symbol "ChatRequestMessageUnion" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "ChatCompletions" needs to be exported by the entry point index.d.ts
     complete(messages: ChatRequestMessageUnion[], options?: CompleteOptionalParams): Promise<ChatCompletions>;
-    // Warning: (ae-forgotten-export) The symbol "ModelInfo" needs to be exported by the entry point index.d.ts
     getModelInfo(options?: GetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
 }
@@ -27,30 +43,151 @@ export interface ChatCompletionsClientOptions extends ClientOptions {
 }
 
 // @public
+export interface ChatCompletionsFunctionToolCall extends ChatCompletionsToolCall {
+    function: FunctionCall;
+    type: "function";
+}
+
+// @public
+export interface ChatCompletionsFunctionToolDefinition extends ChatCompletionsToolDefinition {
+    function: FunctionDefinition;
+    type: "function";
+}
+
+// @public
+export interface ChatCompletionsFunctionToolSelection {
+    name: string;
+}
+
+// @public
+export interface ChatCompletionsNamedFunctionToolSelection extends ChatCompletionsNamedToolSelection {
+    function: ChatCompletionsFunctionToolSelection;
+    type: "function";
+}
+
+// @public
+export interface ChatCompletionsNamedToolSelection {
+    type: string;
+}
+
+// @public
+export type ChatCompletionsNamedToolSelectionUnion = ChatCompletionsNamedFunctionToolSelection | ChatCompletionsNamedToolSelection;
+
+// @public
+export type ChatCompletionsResponseFormat = "text" | "json_object";
+
+// @public
+export interface ChatCompletionsToolCall {
+    id: string;
+    type: string;
+}
+
+// @public
+export type ChatCompletionsToolCallUnion = ChatCompletionsFunctionToolCall | ChatCompletionsToolCall;
+
+// @public
+export interface ChatCompletionsToolDefinition {
+    type: string;
+}
+
+// @public
+export type ChatCompletionsToolDefinitionUnion = ChatCompletionsFunctionToolDefinition | ChatCompletionsToolDefinition;
+
+// @public
+export type ChatCompletionsToolSelectionPreset = "auto" | "none" | "required";
+
+// @public
+export interface ChatRequestAssistantMessage extends ChatRequestMessage {
+    content?: string | null;
+    role: "assistant";
+    toolCalls?: ChatCompletionsToolCallUnion[];
+}
+
+// @public
+export interface ChatRequestMessage {
+    role: ChatRole;
+}
+
+// @public
+export type ChatRequestMessageUnion = ChatRequestSystemMessage | ChatRequestUserMessage | ChatRequestAssistantMessage | ChatRequestToolMessage | ChatRequestMessage;
+
+// @public
+export interface ChatRequestSystemMessage extends ChatRequestMessage {
+    content: string;
+    role: "system";
+}
+
+// @public
+export interface ChatRequestToolMessage extends ChatRequestMessage {
+    content: string | null;
+    role: "tool";
+    toolCallId: string;
+}
+
+// @public
+export interface ChatRequestUserMessage extends ChatRequestMessage {
+    content: string;
+    role: "user";
+}
+
+// @public
+export interface ChatResponseMessage {
+    content: string | null;
+    role: ChatRole;
+    toolCalls?: ChatCompletionsToolCallUnion[];
+}
+
+// @public
+export type ChatRole = "system" | "user" | "assistant" | "tool";
+
+// @public
 export interface CompleteOptionalParams extends OperationOptions {
     frequencyPenalty?: number;
     maxTokens?: number;
     presencePenalty?: number;
-    // Warning: (ae-forgotten-export) The symbol "ChatCompletionsResponseFormat" needs to be exported by the entry point index.d.ts
     responseFormat?: ChatCompletionsResponseFormat;
     seed?: number;
     stop?: string[];
     stream?: boolean;
     temperature?: number;
-    // Warning: (ae-forgotten-export) The symbol "ChatCompletionsToolSelectionPreset" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "ChatCompletionsNamedToolSelectionUnion" needs to be exported by the entry point index.d.ts
     toolChoice?: ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
-    // Warning: (ae-forgotten-export) The symbol "ChatCompletionsToolDefinitionUnion" needs to be exported by the entry point index.d.ts
     tools?: ChatCompletionsToolDefinitionUnion[];
     topP?: number;
-    // Warning: (ae-forgotten-export) The symbol "UnknownParams" needs to be exported by the entry point index.d.ts
     unknownParams?: UnknownParams;
+}
+
+// @public
+export type CompletionsFinishReason = "stop" | "length" | "content_filter" | "tool_calls";
+
+// @public
+export interface CompletionsUsage {
+    capacityType: CapacityType;
+    completionTokens: number;
+    promptTokens: number;
+    totalTokens: number;
+}
+
+// @public
+export type EmbeddingEncodingFormat = "base64" | "binary" | "float" | "int8" | "ubinary" | "uint8";
+
+// @public
+export interface EmbeddingInput {
+    image: string;
+    text?: string;
+}
+
+// @public
+export type EmbeddingInputType = "text" | "query" | "document";
+
+// @public
+export interface EmbeddingItem {
+    embedding: number[];
+    index: number;
 }
 
 // @public (undocumented)
 export class EmbeddingsClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: EmbeddingsClientOptions);
-    // Warning: (ae-forgotten-export) The symbol "EmbeddingsResult" needs to be exported by the entry point index.d.ts
     embed(input: string[], options?: EmbedOptionalParams): Promise<EmbeddingsResult>;
     getModelInfo(options?: EmbeddingsClientGetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
@@ -66,13 +203,40 @@ export interface EmbeddingsClientOptions extends ClientOptions {
 }
 
 // @public
+export interface EmbeddingsResult {
+    data: EmbeddingItem[];
+    id: string;
+    model: string;
+    usage: EmbeddingsUsage;
+}
+
+// @public
+export interface EmbeddingsUsage {
+    capacityType: CapacityType;
+    inputTokens: number;
+    promptTokens: number;
+    totalTokens: number;
+}
+
+// @public
 export interface EmbedOptionalParams extends OperationOptions {
     dimensions?: number;
-    // Warning: (ae-forgotten-export) The symbol "EmbeddingEncodingFormat" needs to be exported by the entry point index.d.ts
     encodingFormat?: EmbeddingEncodingFormat;
-    // Warning: (ae-forgotten-export) The symbol "EmbeddingInputType" needs to be exported by the entry point index.d.ts
     inputType?: EmbeddingInputType;
     unknownParams?: UnknownParams;
+}
+
+// @public
+export interface FunctionCall {
+    arguments: string;
+    name: string;
+}
+
+// @public
+export interface FunctionDefinition {
+    description?: string;
+    name: string;
+    parameters?: any;
 }
 
 // @public
@@ -82,7 +246,6 @@ export interface GetModelInfoOptionalParams extends OperationOptions {
 // @public (undocumented)
 export class ImageEmbeddingsClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ImageEmbeddingsClientOptions);
-    // Warning: (ae-forgotten-export) The symbol "EmbeddingInput" needs to be exported by the entry point index.d.ts
     embed(input: EmbeddingInput[], options?: ImageEmbeddingsClientEmbedOptionalParams): Promise<EmbeddingsResult>;
     getModelInfo(options?: ImageEmbeddingsClientGetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
@@ -104,6 +267,22 @@ export interface ImageEmbeddingsClientGetModelInfoOptionalParams extends Operati
 export interface ImageEmbeddingsClientOptions extends ClientOptions {
     apiVersion?: string;
 }
+
+// @public
+export interface ModelInfo {
+    modelName: string;
+    modelProviderName: string;
+    modelType: ModelType;
+}
+
+// @public
+export type ModelType = "embeddings" | "image_generation" | "text_generation" | "image_embeddings" | "audio_generation" | "chat";
+
+// @public
+export type UnknownParams = "error" | "drop" | "pass_through";
+
+// @public
+export type Versions = "2024-05-01-preview";
 
 // (No @packageDocumentation comment for this package)
 

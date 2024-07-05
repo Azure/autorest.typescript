@@ -127,7 +127,9 @@ function exportModules(
 ) {
   const modelsFile = project.getSourceFile(
     `${srcPath}/${
-      options.subfolder !== "" ? options.subfolder + "/" : ""
+      options.subfolder !== "" && options.subfolder
+        ? options.subfolder + "/"
+        : ""
     }${moduleName}/index.ts`
   );
   if (!modelsFile) {
@@ -159,8 +161,10 @@ function exportModules(
       }
       return exDeclaration[0];
     });
-  const moduleSpecifier = `./${
-    options.isTopLevel && options.subfolder !== ""
+  const moduleSpecifier = `${
+    moduleName === "models" && !options.isTopLevel ? "../" : "./"
+  }${
+    options.isTopLevel && options.subfolder !== "" && options.subfolder
       ? options.subfolder + "/"
       : ""
   }${moduleName}/index.js`;
@@ -204,7 +208,7 @@ export function buildSubClientIndexFile(
     codeModel.project,
     srcPath,
     clientName,
-    `${subfolder !== "" ? "../" : ""}models`
+    "models"
   );
   exportModules(
     subClientIndexFile,
