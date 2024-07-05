@@ -47,14 +47,6 @@ export function buildClassicalClient(
     )}.ts`
   );
 
-  clientFile.addExportDeclaration({
-    namedExports: [`${classicalClientName}Options`],
-    moduleSpecifier: `./api/${normalizeName(
-      modularClientName,
-      NameType.File
-    )}Context.js`
-  });
-
   const clientClass = clientFile.addClass({
     isExported: true,
     name: `${classicalClientName}`

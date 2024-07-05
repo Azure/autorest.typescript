@@ -358,15 +358,12 @@ export function buildModelTypeAlias(model: ModularType) {
   };
 }
 
-export function buildModelsOptions(
-  client: Client,
-  codeModel: ModularCodeModel
-) {
+export function buildApiOptions(client: Client, codeModel: ModularCodeModel) {
   const modelOptionsFile = codeModel.project.createSourceFile(
     path.join(
       codeModel.modularOptions.sourceRoot,
       client.subfolder ?? "",
-      `models/options.ts`
+      `api/options.ts`
     ),
     undefined,
     {

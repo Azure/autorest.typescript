@@ -58,7 +58,7 @@ import {
 } from "./modular/buildRootIndex.js";
 import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
+import { buildModels, buildApiOptions } from "./modular/emitModels.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { buildSerializers } from "./modular/serialization/index.js";
 import { transformRLCModel } from "./transform/transform.js";
@@ -205,11 +205,12 @@ export async function $onEmit(context: EmitContext) {
 
       const isMultiClients = modularCodeModel.clients.length > 1;
       buildModels(modularCodeModel);
+      buildSubpathIndexFile(modularCodeModel, "models");
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]) {
         buildSerializeUtils(modularCodeModel);
       }
       for (const subClient of modularCodeModel.clients) {
-        buildModelsOptions(subClient, modularCodeModel);
+        buildApiOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         // build paging files
@@ -232,7 +233,6 @@ export async function $onEmit(context: EmitContext) {
           serializerMap
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
-        buildSubpathIndexFile(subClient, modularCodeModel, "models");
         // build lro files
         buildGetPollerHelper(
           modularCodeModel,
@@ -242,16 +242,16 @@ export async function $onEmit(context: EmitContext) {
         );
         buildRestorePollerHelper(modularCodeModel, subClient);
         if (dpgContext.rlcOptions?.hierarchyClient) {
-          buildSubpathIndexFile(subClient, modularCodeModel, "api");
+          buildSubpathIndexFile(modularCodeModel, "api", subClient);
         } else {
-          buildSubpathIndexFile(subClient, modularCodeModel, "api", {
+          buildSubpathIndexFile(modularCodeModel, "api", subClient, {
             exportIndex: true
           });
         }
 
         buildClassicalClient(subClient, dpgContext, modularCodeModel);
         buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
-        buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
+        buildSubpathIndexFile(modularCodeModel, "classic", subClient, {
           exportIndex: true,
           interfaceOnly: true
         });

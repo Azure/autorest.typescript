@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { ChatCompletionsClient } from "./chatCompletionsClient.js";
 export {
-  ChatCompletionsClient,
   ChatCompletionsClientOptions,
-} from "./chatCompletionsClient.js";
-export {
   CompleteOptionalParams,
   GetModelInfoOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

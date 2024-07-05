@@ -20,10 +20,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  EmbedOptionalParams,
-  GetModelInfoOptionalParams,
-} from "../models/options.js";
+import { EmbedOptionalParams, GetModelInfoOptionalParams } from "./options.js";
 
 export function _embedSend(
   context: Client,

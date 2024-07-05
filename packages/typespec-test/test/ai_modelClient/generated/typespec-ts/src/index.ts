@@ -1,27 +1,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { ChatCompletionsClient } from "./chatCompletions/chatCompletionsClient.js";
 export {
-  ChatCompletionsClient,
   ChatCompletionsClientOptions,
-} from "./chatCompletions/chatCompletionsClient.js";
-export {
   CompleteOptionalParams,
   GetModelInfoOptionalParams,
-} from "./chatCompletions/models/index.js";
+} from "./chatCompletions/api/index.js";
+export { EmbeddingsClient } from "./embeddings/embeddingsClient.js";
 export {
-  EmbeddingsClient,
   EmbeddingsClientOptions,
-} from "./embeddings/embeddingsClient.js";
-export {
   EmbedOptionalParams,
   GetModelInfoOptionalParams as EmbeddingsClientGetModelInfoOptionalParams,
-} from "./embeddings/models/index.js";
+} from "./embeddings/api/index.js";
+export { ImageEmbeddingsClient } from "./imageEmbeddings/imageEmbeddingsClient.js";
 export {
-  ImageEmbeddingsClient,
   ImageEmbeddingsClientOptions,
-} from "./imageEmbeddings/imageEmbeddingsClient.js";
-export {
   EmbedOptionalParams as ImageEmbeddingsClientEmbedOptionalParams,
   GetModelInfoOptionalParams as ImageEmbeddingsClientGetModelInfoOptionalParams,
-} from "./imageEmbeddings/models/index.js";
+} from "./imageEmbeddings/api/index.js";

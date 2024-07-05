@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { EmbeddingsClient } from "./embeddingsClient.js";
 export {
-  EmbeddingsClient,
   EmbeddingsClientOptions,
-} from "./embeddingsClient.js";
-export {
   EmbedOptionalParams,
   GetModelInfoOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

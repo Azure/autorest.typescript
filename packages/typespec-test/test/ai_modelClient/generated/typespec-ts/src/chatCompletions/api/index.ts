@@ -7,3 +7,7 @@ export {
   ModelClientContext,
 } from "./chatCompletionsContext.js";
 export { complete, getModelInfo } from "./operations.js";
+export {
+  CompleteOptionalParams,
+  GetModelInfoOptionalParams,
+} from "./options.js";

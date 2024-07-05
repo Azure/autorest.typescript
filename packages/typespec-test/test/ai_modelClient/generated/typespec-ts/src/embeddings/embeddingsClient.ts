@@ -5,18 +5,14 @@ import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ModelInfo, EmbeddingsResult } from "./../models/models.js";
 import {
-  EmbedOptionalParams,
-  GetModelInfoOptionalParams,
-} from "./models/options.js";
-import {
   createEmbeddings,
   EmbeddingsClientOptions,
   ModelClientContext,
   embed,
   getModelInfo,
+  EmbedOptionalParams,
+  GetModelInfoOptionalParams,
 } from "./api/index.js";
-
-export { EmbeddingsClientOptions } from "./api/embeddingsContext.js";
 
 export class EmbeddingsClient {
   private _client: ModelClientContext;

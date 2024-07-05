@@ -27,7 +27,7 @@ import {
 import {
   CompleteOptionalParams,
   GetModelInfoOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _completeSend(
   context: Client,

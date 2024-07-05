@@ -9,18 +9,14 @@ import {
   EmbeddingInput,
 } from "./../models/models.js";
 import {
-  EmbedOptionalParams,
-  GetModelInfoOptionalParams,
-} from "./models/options.js";
-import {
   createImageEmbeddings,
   ImageEmbeddingsClientOptions,
   ModelClientContext,
   embed,
   getModelInfo,
+  EmbedOptionalParams,
+  GetModelInfoOptionalParams,
 } from "./api/index.js";
-
-export { ImageEmbeddingsClientOptions } from "./api/imageEmbeddingsContext.js";
 
 export class ImageEmbeddingsClient {
   private _client: ModelClientContext;

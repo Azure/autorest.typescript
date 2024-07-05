@@ -9,18 +9,14 @@ import {
   ChatRequestMessageUnion,
 } from "./../models/models.js";
 import {
-  CompleteOptionalParams,
-  GetModelInfoOptionalParams,
-} from "./models/options.js";
-import {
   createChatCompletions,
   ChatCompletionsClientOptions,
   ModelClientContext,
   complete,
   getModelInfo,
+  CompleteOptionalParams,
+  GetModelInfoOptionalParams,
 } from "./api/index.js";
-
-export { ChatCompletionsClientOptions } from "./api/chatCompletionsContext.js";
 
 export class ChatCompletionsClient {
   private _client: ModelClientContext;
