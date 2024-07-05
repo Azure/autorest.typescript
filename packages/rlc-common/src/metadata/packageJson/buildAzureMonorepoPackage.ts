@@ -76,7 +76,7 @@ export function getAzureMonorepoPackageInfo(
     ...commonPackageInfo,
     ...getAzureCommonPackageInfo(config),
     "sdk-type": `${
-      config.azureArm || config.flavor === "azure" ? "mgmt" : "client"
+      config.azureArm ? "mgmt" : "client"
     }`,
     repository: "github:Azure/azure-sdk-for-js",
     bugs: {

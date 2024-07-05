@@ -11,7 +11,6 @@ export interface PackageCommonInfoConfig {
   withSamples: boolean;
   exports?: Record<string, any>;
   azureArm?: boolean;
-  flavor?: string;
 }
 
 /**
