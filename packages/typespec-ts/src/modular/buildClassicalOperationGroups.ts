@@ -1,16 +1,18 @@
+import { NameType } from "@azure-tools/rlc-common";
+import { SourceFile } from "ts-morph";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { importModels, importPagingDependencies } from "./buildOperations.js";
+import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
+import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import {
   Client,
   ModularCodeModel,
   OperationGroup
 } from "./modularCodeModel.js";
-import { NameType } from "@azure-tools/rlc-common";
-import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
-import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
-import { SourceFile } from "ts-morph";
-import { importModels, importPagingDependencies } from "./buildOperations.js";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildClassicOperationFiles(
+  dpgContext: SdkContext,
   codeModel: ModularCodeModel,
   client: Client
 ) {
@@ -41,7 +43,7 @@ export function buildClassicOperationFiles(
             subfolder && subfolder !== "" ? subfolder + "/" : ""
           }classic/${classicOperationFileName}.ts`
         );
-      getClassicalOperation(classicFile, client, operationGroup);
+      getClassicalOperation(dpgContext, client, classicFile, operationGroup);
 
       // Import models used from ./models.ts
       // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
@@ -95,7 +97,13 @@ export function buildClassicOperationFiles(
               subfolder && subfolder !== "" ? subfolder + "/" : ""
             }classic/${classicOperationFileName}.ts`
           );
-        getClassicalOperation(classicFile, client, operationGroup, layer);
+        getClassicalOperation(
+          dpgContext,
+          client,
+          classicFile,
+          operationGroup,
+          layer
+        );
 
         // Import models used from ./models.ts
         // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().

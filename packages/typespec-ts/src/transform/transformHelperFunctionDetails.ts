@@ -1,20 +1,20 @@
-import {
-  SdkClient,
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
 import { HelperFunctionDetails, PackageFlavor } from "@azure-tools/rlc-common";
+import {
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkClient
+} from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
 import { getHttpOperation, HttpOperation } from "@typespec/http";
-import {
-  hasPagingOperations,
-  extractPagedMetadataNested,
-  hasPollingOperations,
-  getSpecialSerializeInfo,
-  parseNextLinkName,
-  parseItemName
-} from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
+import {
+  extractPagedMetadataNested,
+  getSpecialSerializeInfo,
+  hasPagingOperations,
+  hasPollingOperations,
+  parseItemName,
+  parseNextLinkName
+} from "../utils/operationUtil.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,

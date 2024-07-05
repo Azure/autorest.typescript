@@ -5,8 +5,8 @@ import {
   SchemaGroup,
   SchemaVersion,
   SchemaContentTypeValues,
-  PagedSchemaGroup,
-  PagedVersion,
+  _PagedSchemaGroup,
+  _PagedVersion,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -60,7 +60,7 @@ export function _listSchemaGroupsSend(
 
 export async function _listSchemaGroupsDeserialize(
   result: ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse,
-): Promise<PagedSchemaGroup> {
+): Promise<_PagedSchemaGroup> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -135,7 +135,7 @@ export function _listSchemaVersionsSend(
 
 export async function _listSchemaVersionsDeserialize(
   result: ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse,
-): Promise<PagedVersion> {
+): Promise<_PagedVersion> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }

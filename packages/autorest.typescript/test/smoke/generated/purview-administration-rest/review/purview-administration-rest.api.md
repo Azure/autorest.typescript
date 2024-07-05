@@ -558,10 +558,10 @@ interface ComplexReplacerConfigOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
+function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: PurviewMetadataPoliciesClientOptions): PurviewMetadataPoliciesClient;
 
 // @public
-function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountClient;
+function createClient_2(endpoint: string, credentials: TokenCredential, { apiVersion, ...options }?: PurviewAccountClientOptions): PurviewAccountClient;
 
 // @public
 interface DataPlaneAccountUpdateParameters {
@@ -1312,6 +1312,7 @@ interface PrivateLinkServiceConnectionStateOutput {
 declare namespace PurviewAccount {
     export {
         createClient_2 as createClient,
+        PurviewAccountClientOptions,
         Parameters_3 as Parameters,
         Responses_2 as Responses,
         Client_3 as Client,
@@ -1328,9 +1329,15 @@ type PurviewAccountClient = Client & {
     path: Routes_2;
 };
 
+// @public
+interface PurviewAccountClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
 declare namespace PurviewMetadataPolicies {
     export {
         createClient,
+        PurviewMetadataPoliciesClientOptions,
         Parameters_2 as Parameters,
         Responses,
         Client_2 as Client,
@@ -1346,6 +1353,11 @@ export { PurviewMetadataPolicies }
 type PurviewMetadataPoliciesClient = Client & {
     path: Routes;
 };
+
+// @public
+interface PurviewMetadataPoliciesClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
 
 // @public (undocumented)
 interface RegexReplacer {

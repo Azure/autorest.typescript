@@ -68,7 +68,7 @@ export async function _responseBodyOctetStreamDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 export async function responseBodyOctetStream(
@@ -95,7 +95,7 @@ export async function _responseBodyCustomContentTypeDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as any;
 }
 
 export async function responseBodyCustomContentType(

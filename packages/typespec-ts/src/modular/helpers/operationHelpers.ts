@@ -1,9 +1,35 @@
 import {
+  addImportToSpecifier,
+  getResponseBaseName,
+  getResponseTypeName,
+  Imports as RuntimeImports,
+  NameType,
+  OperationResponse
+} from "@azure-tools/rlc-common";
+import {
+  SdkContext,
+  SdkModelType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
+import { NoTarget, Program } from "@typespec/compiler";
+import {
   FunctionDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { toPascalCase } from "../../utils/casingUtils.js";
+import { reportDiagnostic } from "../../lib.js";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+import {
+  getCollectionFormatHelper,
+  hasCollectionFormatInfo
+} from "../../utils/operationUtil.js";
+import {
+  getDeserializeFunctionName,
+  isNormalUnion,
+  isPolymorphicUnion,
+  isSpecialHandledUnion,
+  isSpecialUnionVariant
+} from "../buildSerializeUtils.js";
 import {
   BodyParameter,
   Client,
@@ -13,34 +39,12 @@ import {
   Property,
   Type
 } from "../modularCodeModel.js";
-import { buildType } from "./typeHelpers.js";
 import {
-  Imports as RuntimeImports,
-  NameType,
-  OperationResponse,
-  getResponseBaseName,
-  getResponseTypeName
-} from "@azure-tools/rlc-common";
-import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
-import {
-  getFixmeForMultilineDocs,
-  getDocsFromDescription
+  getDocsFromDescription,
+  getFixmeForMultilineDocs
 } from "./docsHelpers.js";
-import {
-  getDeserializeFunctionName,
-  isNormalUnion,
-  isPolymorphicUnion,
-  isSpecialHandledUnion,
-  isSpecialUnionVariant
-} from "../buildSerializeUtils.js";
-import {
-  getCollectionFormatHelper,
-  hasCollectionFormatInfo
-} from "../../utils/operationUtil.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
-import { Program, NoTarget } from "@typespec/compiler";
-import { reportDiagnostic } from "../../lib.js";
-import { addImportToSpecifier } from "@azure-tools/rlc-common";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
+import { buildType, isTypeNullable } from "./typeHelpers.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -215,11 +219,15 @@ export function getDeserializePrivateFunction(
     deserializedType?.type === "dict" ||
     (deserializedType?.type === "model" &&
       allParents.some((p) => p.type === "dict")) ||
-    response.isBinaryPayload ||
-    deserializedType?.aliasType
+    response.isBinaryPayload
   ) {
-    statements.push(`return result.body`);
-  } else if (deserializedType && properties.length > 0) {
+    // TODO: Fix this any cast when implementing handling dict.
+    statements.push(`return result.body as any`);
+  } else if (
+    deserializedType &&
+    properties.length > 0 &&
+    !deserializedType.aliasType
+  ) {
     statements.push(
       `return {`,
       getResponseMapping(
@@ -237,9 +245,7 @@ export function getDeserializePrivateFunction(
         deserializedType,
         deserializedRoot,
         runtimeImports,
-        deserializedType.nullable !== undefined
-          ? !deserializedType.nullable
-          : false,
+        false, // TODO: Calculate if required
         [deserializedType],
         deserializedType.format
       )}`
@@ -560,7 +566,7 @@ function buildHeaderParameter(
   paramMap: string,
   param: Parameter
 ): string {
-  if (!param.optional && param.type.nullable === true) {
+  if (!param.optional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
       code: "nullable-required-header",
       target: NoTarget
@@ -571,7 +577,7 @@ function buildHeaderParameter(
   if (param.optional) {
     conditions.push(`options?.${param.clientName} !== undefined`);
   }
-  if (param.type.nullable === true) {
+  if (isTypeNullable(param.type) === true) {
     conditions.push(`options?.${param.clientName} !== null`);
   }
   return conditions.length > 0
@@ -593,7 +599,7 @@ function buildBodyParameter(
     !bodyParameter.type.aliasType &&
     !allParents.some((p) => p.type === "dict")
   ) {
-    const bodyParts: string[] = getRequestModelMapping(
+    const { propertiesStr: bodyParts } = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
       runtimeImports,
@@ -608,13 +614,32 @@ function buildBodyParameter(
     } else if (bodyParameter && bodyParts.length === 0) {
       return `\nbody: ${bodyParameter.clientName},`;
     }
+  } else if (isDiscriminatedUnion(bodyParameter.type.tcgcType)) {
+    const serializerName = toCamelCase(`${bodyParameter.type.name}Serializer`);
+    addImportToSpecifier("modularModel", runtimeImports, serializerName);
+    return `\nbody: ${serializerName}(${bodyParameter.clientName}),`;
   } else if (
     (bodyParameter.type.type === "model" &&
       (bodyParameter.type.aliasType ||
         allParents.some((p) => p.type === "dict"))) ||
     bodyParameter.type.type === "dict"
   ) {
-    return `\nbody: ${bodyParameter.clientName},`;
+    const elementSerializerName =
+      bodyParameter.type.elementType?.type === "model"
+        ? toCamelCase(`${bodyParameter.type.elementType.name}Serializer`)
+        : "";
+    let modelSerializerName = "";
+
+    if (bodyParameter.type.type !== "dict") {
+      modelSerializerName = toCamelCase(`${bodyParameter.type.name}Serializer`);
+    }
+    if (modelSerializerName) {
+      return `\nbody: ${modelSerializerName}(${bodyParameter.clientName}),`;
+    } else {
+      // Need to do this so that Records are compatible with additional properties of other types
+      // this should check for compatibility mode once we support the additionalProperties property
+      return `\nbody: serializeRecord(${bodyParameter.clientName} as any, ${elementSerializerName}) as any,`;
+    }
   }
 
   if (bodyParameter.type.type === "list") {
@@ -622,15 +647,20 @@ function buildBodyParameter(
       bodyParameter.type.elementType?.type === "model" &&
       !bodyParameter.type.elementType.aliasType
     ) {
-      const bodyParts = getRequestModelMapping(
-        bodyParameter.type.elementType,
-        "p",
-        runtimeImports,
-        [bodyParameter.type.elementType]
-      );
-      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
-        ${bodyParts.join(", ")}
-      };}),`;
+      const { propertiesStr: bodyParts, directAssignment } =
+        getRequestModelMapping(
+          bodyParameter.type.elementType,
+          "p",
+          runtimeImports,
+          [bodyParameter.type.elementType]
+        );
+      const mapBody =
+        directAssignment === true
+          ? bodyParts.join(", ")
+          : `{ ${bodyParts.join(", ")} }`;
+      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { 
+      return ${mapBody};
+      }),`;
     }
     return `\nbody: ${bodyParameter.clientName},`;
   }
@@ -761,12 +791,13 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 
 function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": {${getRequestModelMapping(
+    const { propertiesStr } = getRequestModelMapping(
       param.type,
       param.clientName,
       runtimeImports,
       [param.type]
-    ).join(",")}}`;
+    );
+    return `"${param.restApiName}": { ${propertiesStr.join(",")} }`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
@@ -815,12 +846,13 @@ function isOptional(param: Parameter | Property): param is OptionalType {
 
 function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": {${getRequestModelMapping(
+    const { propertiesStr } = getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
       runtimeImports,
       [param.type]
-    ).join(", ")}}`;
+    );
+    return `"${param.restApiName}": { ${propertiesStr.join(", ")} }`;
   }
   if (
     param.restApiName === "api-version" &&
@@ -890,7 +922,7 @@ function getPathParameters(operation: Operation) {
 }
 
 function getNullableCheck(name: string, type: Type) {
-  if (!type.nullable) {
+  if (!isTypeNullable(type)) {
     return "";
   }
 
@@ -902,33 +934,47 @@ function getNullableCheck(name: string, type: Type) {
  * This function helps translating an HLC request to RLC request,
  * extracting properties from body and headers and building the RLC response object
  */
+interface RequestModelMappingResult {
+  propertiesStr: string[];
+  directAssignment?: boolean;
+}
 export function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
   runtimeImports: RuntimeImports,
   typeStack: Type[] = []
-) {
+): RequestModelMappingResult {
   const props: string[] = [];
   const allParents = getAllAncestors(modelPropertyType);
   const properties: Property[] =
     getAllProperties(modelPropertyType, allParents) ?? [];
   if (properties.length <= 0) {
-    return [];
+    return { propertiesStr: [] };
   }
+
+  let serializerName =
+    "name" in modelPropertyType && modelPropertyType.name
+      ? `${toCamelCase(modelPropertyType.name)}Serializer`
+      : undefined;
+
   if (isSpecialHandledUnion(modelPropertyType)) {
-    const deserializeFunctionName = getDeserializeFunctionName(
-      modelPropertyType,
-      "serialize"
-    );
-    const definition = `${deserializeFunctionName}(${propertyPath})`;
+    serializerName =
+      serializerName ??
+      getDeserializeFunctionName(modelPropertyType, "serialize");
+    const definition = `${serializerName}(${propertyPath})`;
     props.push(definition);
-    return props;
+    return { propertiesStr: props, directAssignment: true };
   }
   for (const property of properties) {
     if (property.readonly) {
       continue;
     }
-    const propertyFullName = `${propertyPath}.${property.clientName}`;
+    const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+      property,
+      propertyPath
+    );
+
+    const propertyFullName = getPropertyFullName(property, propertyPath);
     if (property.type.type === "model") {
       let definition;
       if (property.type.coreTypeInfo === "ErrorType") {
@@ -948,29 +994,35 @@ export function getRequestModelMapping(
               }`
         }`;
       } else if (isPolymorphicUnion(property.type)) {
-        let nullOrUndefinedPrefix = "";
-        if (property.optional || property.type.nullable) {
-          nullOrUndefinedPrefix = `!${propertyFullName} ? ${propertyFullName} :`;
-        }
-        const deserializeFunctionName = getDeserializeFunctionName(
-          property.type,
-          "serialize"
-        );
+        const deserializeFunctionName = property.type.name
+          ? `${toCamelCase(property.type.name)}Serializer`
+          : getDeserializeFunctionName(property.type, "serialize");
         definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
-        definition = `"${property.restApiName}": ${getNullableCheck(
-          propertyFullName,
-          property.type
-        )} ${
-          !property.optional ? "" : `!${propertyFullName} ? undefined :`
-        } {${getRequestModelMapping(
-          property.type,
-          `${propertyPath}.${property.clientName}${
-            property.optional ? "?" : ""
-          }`,
-          runtimeImports,
-          [...typeStack, property.type]
-        )}}`;
+        if (property.type.name) {
+          serializerName = `${toCamelCase(property.type.name)}Serializer`;
+          definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
+        } else {
+          const { propertiesStr, directAssignment } = getRequestModelMapping(
+            property.type,
+            `${propertyPath}.${property.clientName}${
+              property.optional ? "?" : ""
+            }`,
+            runtimeImports,
+            [...typeStack, property.type]
+          );
+
+          const serializeContent =
+            directAssignment === true
+              ? propertiesStr.join(",")
+              : `{${propertiesStr.join(",")}}`;
+          definition = `"${property.restApiName}": ${getNullableCheck(
+            propertyFullName,
+            property.type
+          )} ${
+            !property.optional ? "" : `!${propertyFullName} ? undefined :`
+          } ${serializeContent}`;
+        }
       }
 
       props.push(definition);
@@ -984,6 +1036,23 @@ export function getRequestModelMapping(
             }`
       }`;
       props.push(definition);
+    } else if (property.type.type === "dict") {
+      const modelName = property.type.elementType?.name;
+      serializerName = modelName ? `${toCamelCase(modelName)}Serializer` : "";
+      // definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializerName}(${propertyPath}.${property.clientName})`;
+      const statement = `"${property.restApiName}": ${nullOrUndefinedPrefix} serializeRecord(${propertyFullName} as any, ${serializerName}) as any`;
+      // addImportToSpecifier(
+      //   "serializerHelpers",
+      //   runtimeImports,
+      //   "serializeRecord"
+      // );
+
+      addImportToSpecifier("modularModel", runtimeImports, serializerName);
+      props.push(statement);
+    } else if (modelPropertyType.type === "enum") {
+      props.push(
+        `"${property.restApiName}": ${nullOrUndefinedPrefix}${propertyPath}.${property.clientName}`
+      );
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";
       const clientValue = `${
@@ -1002,7 +1071,7 @@ export function getRequestModelMapping(
     }
   }
 
-  return props;
+  return { propertiesStr: props };
 }
 
 /**
@@ -1043,10 +1112,10 @@ export function getResponseMapping(
               }`
         }`;
       } else if (isSpecialHandledUnion(property.type)) {
-        let nullOrUndefinedPrefix = "";
-        if (property.optional || property.type.nullable) {
-          nullOrUndefinedPrefix = `!${propertyFullName} ? ${propertyFullName} :`;
-        }
+        const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+          property,
+          propertyPath
+        );
         const deserializeFunctionName = getDeserializeFunctionName(
           property.type,
           "deserialize"
@@ -1118,7 +1187,7 @@ export function deserializeResponseValue(
   format?: string
 ): string {
   const requiredPrefix = required === false ? `${restValue} === undefined` : "";
-  const nullablePrefix = type.nullable ? `${restValue} === null` : "";
+  const nullablePrefix = isTypeNullable(type) ? `${restValue} === null` : "";
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""
       ? `(${requiredPrefix} || ${nullablePrefix})`
@@ -1126,13 +1195,13 @@ export function deserializeResponseValue(
   switch (type.type) {
     case "datetime":
       return required
-        ? type.nullable
+        ? isTypeNullable(type)
           ? `${restValue} === null ? null : new Date(${restValue})`
           : `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "list": {
       const prefix =
-        required && !type.nullable
+        required && !isTypeNullable(type)
           ? `${restValue}`
           : `${requiredOrNullablePrefix} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
@@ -1145,7 +1214,7 @@ export function deserializeResponseValue(
           )}}))`;
         } else if (isPolymorphicUnion(type.elementType)) {
           let nullOrUndefinedPrefix = "";
-          if (type.elementType.nullable) {
+          if (isTypeNullable(type.elementType)) {
             nullOrUndefinedPrefix = `!p ? p :`;
           }
           const deserializeFunctionName = getDeserializeFunctionName(
@@ -1191,6 +1260,25 @@ export function deserializeResponseValue(
       } else {
         return `${restValue} as any`;
       }
+    case "enum":
+      if (!type.isFixed && !type.isNonExhaustive) {
+        return `${restValue} as ${type.name}`;
+      }
+      return restValue;
+    case "model":
+      if (type.discriminator) {
+        const discriminatorProp = type.properties?.filter(
+          (p) => p.restApiName === type.discriminator
+        );
+        if (
+          discriminatorProp?.length === 1 &&
+          discriminatorProp[0]?.type.isFixed === false &&
+          discriminatorProp[0].type.isNonExhaustive === false
+        ) {
+          return `${restValue} as ${type.name}`;
+        }
+      }
+      return restValue;
     default:
       return restValue;
   }
@@ -1211,7 +1299,7 @@ export function serializeRequestValue(
 ): string {
   const requiredPrefix =
     required === false ? `${clientValue} === undefined` : "";
-  const nullablePrefix = type.nullable ? `${clientValue} === null` : "";
+  const nullablePrefix = isTypeNullable(type) ? `${clientValue} === null` : "";
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""
       ? `(${requiredPrefix} || ${nullablePrefix})`
@@ -1230,20 +1318,32 @@ export function serializeRequestValue(
           return `${clientValue}${required ? "" : "?"}.getTime()`;
         case "rfc3339":
         default:
-          return `${clientValue}${required ? "" : "?"}.toISOString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.toISOString()`;
       }
     case "list": {
       const prefix =
-        required && !type.nullable
+        required && !isTypeNullable(type)
           ? `${clientValue}`
           : `${requiredOrNullablePrefix}? ${clientValue}: ${clientValue}`;
       if (type.elementType?.type === "model" && !type.elementType.aliasType) {
-        return `${prefix}.map(p => ({${getRequestModelMapping(
-          type.elementType,
-          "p",
-          runtimeImports,
-          [...typeStack, type.elementType]
-        )}}))`;
+        if (!type.elementType.name) {
+          // If it is an anonymous model we need to serialize inline
+          const { propertiesStr } = getRequestModelMapping(
+            type.elementType,
+            "p",
+            runtimeImports,
+            [...typeStack, type.elementType]
+          );
+
+          return `${prefix}.map(p => ({${propertiesStr}}))`;
+        } else {
+          // When it is not anonymous we can hand it off to the serializer function
+          return `${prefix}.map(${toCamelCase(
+            type.elementType.name + "Serializer"
+          )})`;
+        }
       } else if (
         needsDeserialize(type.elementType) &&
         !type.elementType?.aliasType
@@ -1252,7 +1352,7 @@ export function serializeRequestValue(
           type.elementType!,
           "p",
           runtimeImports,
-          required,
+          true,
           [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
@@ -1261,13 +1361,12 @@ export function serializeRequestValue(
         isPolymorphicUnion(type.elementType)
       ) {
         let nullOrUndefinedPrefix = "";
-        if (type.elementType.nullable) {
+        if (isTypeNullable(type.elementType)) {
           nullOrUndefinedPrefix = `!p ? p :`;
         }
-        const serializeFunctionName = getDeserializeFunctionName(
-          type.elementType,
-          "serialize"
-        );
+        const serializeFunctionName = type.elementType?.name
+          ? `${toCamelCase(type.elementType.name)}Serializer`
+          : getDeserializeFunctionName(type.elementType, "serialize");
         return `${prefix}.map(p => ${nullOrUndefinedPrefix}${serializeFunctionName}(p))`;
       } else {
         return clientValue;
@@ -1277,7 +1376,10 @@ export function serializeRequestValue(
       if (format !== "binary") {
         addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
         return required
-          ? `uint8ArrayToString(${clientValue}, "${
+          ? `${getNullableCheck(
+              clientValue,
+              type
+            )} uint8ArrayToString(${clientValue}, "${
               getEncodingFormat({ format }) ?? "base64"
             }")`
           : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
@@ -1289,10 +1391,9 @@ export function serializeRequestValue(
       if (isNormalUnion(type)) {
         return `${clientValue}`;
       } else if (isSpecialHandledUnion(type)) {
-        const serializeFunctionName = getDeserializeFunctionName(
-          type,
-          "serialize"
-        );
+        const serializeFunctionName = type.name
+          ? `${toCamelCase(type.name)}Serializer`
+          : getDeserializeFunctionName(type, "serialize");
         return `${serializeFunctionName}(${clientValue})`;
       } else {
         return `${clientValue} as any`;
@@ -1376,4 +1477,39 @@ export function getAllAncestors(type: Type): Type[] {
     ancestors.push(...getAllAncestors(p));
   });
   return ancestors;
+}
+
+export function getPropertySerializationPrefix(
+  modularType: Property | Parameter,
+  propertyPath?: string
+) {
+  const propertyFullName = getPropertyFullName(modularType, propertyPath);
+  if (modularType.optional || isTypeNullable(modularType.type)) {
+    return `!${propertyFullName} ? ${propertyFullName} :`;
+  }
+
+  return "";
+}
+
+export function getPropertyFullName(
+  modularType: Property | Parameter,
+  propertyPath?: string
+) {
+  let fullName = `${modularType.clientName}`;
+  if (propertyPath) {
+    fullName = `${propertyPath}.${modularType.clientName}`;
+  }
+  return fullName;
+}
+
+export function isDiscriminatedUnion(type?: SdkType): type is SdkModelType {
+  if (!type) {
+    return false;
+  }
+
+  return Boolean(
+    type.kind === "model" &&
+      type.discriminatorProperty &&
+      type.discriminatedSubtypes
+  );
 }

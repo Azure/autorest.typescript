@@ -6,11 +6,16 @@ import { HttpTestLibrary } from "@typespec/http/testing";
 import { VersioningTestLibrary } from "@typespec/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
 import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
+import { OpenAPITestLibrary } from "@typespec/openapi/testing";
+import { AutorestTestLibrary } from "@azure-tools/typespec-autorest/testing";
+import { AzureResourceManagerTestLibrary } from "@azure-tools/typespec-azure-resource-manager/testing";
 import { SdkContext } from "../../src/utils/interfaces.js";
 import { assert } from "chai";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 import { createContextWithDefaultOptions } from "../../src/index.js";
+import { provideContext } from "../../src/contextManager.js";
+import { Project } from "ts-morph";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -19,7 +24,10 @@ export async function createRLCEmitterTestHost() {
       RestTestLibrary,
       VersioningTestLibrary,
       AzureCoreTestLibrary,
-      SdkTestLibrary
+      SdkTestLibrary,
+      AzureResourceManagerTestLibrary,
+      OpenAPITestLibrary,
+      AutorestTestLibrary
     ]
   });
 }
@@ -30,7 +38,8 @@ export async function rlcEmitterFor(
   needAzureCore: boolean = false,
   needTCGC: boolean = false,
   withRawContent: boolean = false,
-  withVersionedApiVersion: boolean = false
+  withVersionedApiVersion: boolean = false,
+  needArmTemplate: boolean = false
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
@@ -51,6 +60,11 @@ import "@typespec/rest";
 import "@typespec/versioning";
 ${needTCGC ? 'import "@azure-tools/typespec-client-generator-core";' : ""} 
 ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
+${
+  needArmTemplate
+    ? 'import "@azure-tools/typespec-azure-resource-manager";'
+    : ""
+}
 
 using TypeSpec.Rest; 
 using TypeSpec.Http;
@@ -58,6 +72,7 @@ using TypeSpec.Versioning;
 ${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 ${needNamespaces ? namespace : ""}
+${needArmTemplate ? "using Azure.ResourceManager;" : ""}
 ${
   withVersionedApiVersion && needNamespaces
     ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}'
@@ -79,6 +94,15 @@ export function createDpgContextTestHelper(
   const context = createContextWithDefaultOptions({
     program
   } as EmitContext);
+  provideContext("emitContext", {
+    compilerContext: context as any,
+    tcgcContext: context
+  });
+
+  provideContext("rlcMetaTree", new Map());
+  provideContext("modularMetaTree", new Map());
+  provideContext("symbolMap", new Map());
+  provideContext("outputProject", new Project());
 
   return {
     ...context,
@@ -97,11 +121,11 @@ export async function assertEqualContent(
 ) {
   assert.strictEqual(
     await format(
-      ignoreWeirdLine ? actual.replace(/\n/g, "") : actual,
+      ignoreWeirdLine ? actual.replace(/$\n^/g, "").replace(/\s+/g, " ") : actual,
       prettierTypeScriptOptions
     ),
     await format(
-      ignoreWeirdLine ? expected.replace(/\n/g, "") : expected,
+      ignoreWeirdLine ? expected.replace(/$\n^/g, "").replace(/\s+/g, " ") : expected,
       prettierTypeScriptOptions
     )
   );

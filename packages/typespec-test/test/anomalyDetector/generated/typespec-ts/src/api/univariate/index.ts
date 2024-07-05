@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import {
+  univariateTimeSeriesPointSerializer,
   UnivariateUnivariateDetectionOptions,
   UnivariateUnivariateEntireDetectionResult,
   UnivariateUnivariateLastDetectionResult,
@@ -44,10 +45,7 @@ export function _detectUnivariateEntireSeriesSend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        series: options["series"].map((p) => ({
-          timestamp: p["timestamp"]?.toISOString(),
-          value: p["value"],
-        })),
+        series: options["series"].map(univariateTimeSeriesPointSerializer),
         granularity: options["granularity"],
         customInterval: options["customInterval"],
         period: options["period"],
@@ -116,10 +114,7 @@ export function _detectUnivariateLastPointSend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        series: options["series"].map((p) => ({
-          timestamp: p["timestamp"]?.toISOString(),
-          value: p["value"],
-        })),
+        series: options["series"].map(univariateTimeSeriesPointSerializer),
         granularity: options["granularity"],
         customInterval: options["customInterval"],
         period: options["period"],
@@ -187,10 +182,7 @@ export function _detectUnivariateChangePointSend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        series: options["series"].map((p) => ({
-          timestamp: p["timestamp"]?.toISOString(),
-          value: p["value"],
-        })),
+        series: options["series"].map(univariateTimeSeriesPointSerializer),
         granularity: options["granularity"],
         customInterval: options["customInterval"],
         period: options["period"],

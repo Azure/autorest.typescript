@@ -6,10 +6,15 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { ParametrizedHostContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface ParametrizedHostContextOptions extends ClientOptions {
+  /** A sequence of textual characters. */
   host?: string;
+  /** A sequence of textual characters. */
   subdomain?: string;
+  /** A sequence of textual characters. */
   sufix?: string;
+  /** A sequence of textual characters. */
   apiVersion?: string;
 }
 
@@ -20,17 +25,15 @@ export interface ParametrizedHostContextOptions extends ClientOptions {
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ParametrizedHostContextOptions = {},
+  { apiVersion = "v1", ...options }: ParametrizedHostContextOptions = {},
 ): ParametrizedHostContext {
   const host = options.host ?? "one";
   const subdomain = options.subdomain ?? "two";
   const sufix = options.sufix ?? "three";
-  const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${host}.${subdomain}.${sufix}.com/${apiVersion}`;
-
   const userAgentInfo = `azsdk-js-parametrized-host-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -50,7 +53,6 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

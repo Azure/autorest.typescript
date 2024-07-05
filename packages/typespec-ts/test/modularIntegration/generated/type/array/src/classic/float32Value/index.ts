@@ -11,6 +11,7 @@ import {
   Float32ValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Float32Value operations. */
 export interface Float32ValueOperations {
   get: (options?: Float32ValueGetOptionalParams) => Promise<number[]>;
   put: (

@@ -5,7 +5,6 @@ export {
   User,
   Widget,
   WidgetError,
-  ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,

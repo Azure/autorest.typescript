@@ -11,19 +11,17 @@ import {
   UnknownValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnknownValue operations. */
 export interface UnknownValueOperations {
-  get: (options?: UnknownValueGetOptionalParams) => Promise<unknown[]>;
-  put: (
-    body: unknown[],
-    options?: UnknownValuePutOptionalParams,
-  ) => Promise<void>;
+  get: (options?: UnknownValueGetOptionalParams) => Promise<any[]>;
+  put: (body: any[], options?: UnknownValuePutOptionalParams) => Promise<void>;
 }
 
 export function getUnknownValue(context: ArrayContext) {
   return {
     get: (options?: UnknownValueGetOptionalParams) =>
       unknownValueGet(context, options),
-    put: (body: unknown[], options?: UnknownValuePutOptionalParams) =>
+    put: (body: any[], options?: UnknownValuePutOptionalParams) =>
       unknownValuePut(context, body, options),
   };
 }

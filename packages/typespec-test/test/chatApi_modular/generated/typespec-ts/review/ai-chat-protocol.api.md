@@ -10,16 +10,16 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
+// @public
 export type APIVersion = "2023-10-01-preview";
 
 // @public
 export interface ChatChoiceRecord {
-    context?: Record<string, unknown>;
+    context?: Record<string, any>;
     finishReason: FinishReason;
     index: number;
     message: ChatMessage;
-    sessionState?: unknown;
+    sessionState?: any;
 }
 
 // @public
@@ -29,9 +29,9 @@ export interface ChatCompletionChunkRecord {
 
 // @public
 export interface ChatCompletionOptionsRecord {
-    context?: Record<string, unknown>;
+    context?: Record<string, any>;
     messages: ChatMessage[];
-    sessionState?: unknown;
+    sessionState?: any;
     stream: false;
 }
 
@@ -44,14 +44,14 @@ export interface ChatCompletionRecord {
 export interface ChatMessage {
     content: string;
     role: ChatRole;
-    sessionState?: unknown;
+    sessionState?: any;
 }
 
 // @public
 export interface ChatMessageDelta {
     content?: string;
     role?: ChatRole;
-    sessionState?: unknown;
+    sessionState?: any;
 }
 
 // @public (undocumented)
@@ -62,38 +62,38 @@ export class ChatProtocolClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatProtocolClientOptions extends ClientOptions {
 }
 
-// @public (undocumented)
+// @public
 export type ChatRole = "user" | "system" | "assistant";
 
 // @public
 export interface ChoiceDeltaRecord {
-    context?: Record<string, unknown>;
+    context?: Record<string, any>;
     delta: ChatMessageDelta;
     finishReason?: FinishReason;
     index: number;
-    sessionState?: unknown;
+    sessionState?: any;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface CreateStreamingOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type FinishReason = "stop" | "length";
 
 // @public
 export interface StreamingChatCompletionOptionsRecord {
-    context?: Record<string, unknown>;
+    context?: Record<string, any>;
     messages: ChatMessage[];
-    sessionState?: unknown;
+    sessionState?: any;
     stream: true;
 }
 

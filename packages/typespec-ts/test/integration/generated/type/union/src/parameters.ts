@@ -23,7 +23,7 @@ export type StringsOnlySendParameters = StringsOnlySendBodyParam &
 export type StringExtensibleGetParameters = RequestParameters;
 
 export interface StringExtensibleSendBodyParam {
-  body?: { prop: string | "b" | "c" };
+  body?: { prop: string };
 }
 
 export type StringExtensibleSendParameters = StringExtensibleSendBodyParam &

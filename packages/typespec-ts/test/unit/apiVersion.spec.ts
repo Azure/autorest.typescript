@@ -118,38 +118,78 @@ const buildMixedDefinition = (options: DefinitionOptions) => {
 const buildDefaultReturn = (
   hasDefault: boolean,
   hasQueryDefinition: boolean,
-  hasApiVersionInClient: boolean = false
+  hasApiVersionInClient: boolean = false,
+  apiVersionRequired: boolean = true
 ) => {
-  const defaultDef = !hasDefault
-    ? hasApiVersionInClient
-      ? `options.apiVersion = options.apiVersion ?? apiVersion;`
-      : ""
-    : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
-  const apiVersionDef = !hasQueryDefinition
-    ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });\n    \n`
-    : ``;
+  const apiVersionWarning =
+    apiVersionRequired && !hasDefault && hasApiVersionInClient
+      ? `
+      if (options.apiVersion) {
+      logger.warning(
+        "This client does not support to set api-version in options, please change it at positional argument",
+        );
+      }`
+      : !hasApiVersionInClient
+        ? `
+        if (options.apiVersion) {
+          logger.warning("This client does not support client api-version, please change it at the operation level");
+        }`
+        : "";
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   
+  /** The optional parameters for the client */
+  export interface testClientOptions extends ClientOptions ${
+    hasApiVersionInClient && (!apiVersionRequired || hasDefault)
+      ? `{
+    /** The api version option of the client */
+    apiVersion?: string;
+  }`
+      : "{}"
+  }
+
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.${
-     hasApiVersionInClient && !hasDefault
-       ? "\n   * @param apiVersion - The parameter apiVersion"
+     hasApiVersionInClient && apiVersionRequired && !hasDefault
+       ? "\n  * @param apiVersion - The parameter apiVersion"
        : ""
    }
-   * @param options - the parameter for all optional parameters
+   * @param ${
+     (!hasDefault && apiVersionRequired) || hasApiVersionInClient
+       ? "options - the parameter for all optional parameters"
+       : `{
+   *     ${
+     hasDefault && hasApiVersionInClient
+       ? `apiVersion = "2022-05-15-preview"`
+       : hasApiVersionInClient
+         ? "apiVersion"
+         : ""
+   }, ...options} - the parameter for all optional parameters`
+   }
    */
   export default function createClient(
     endpointParam: string,${
-      hasApiVersionInClient && !hasDefault ? "\napiVersion: string," : ""
+      hasApiVersionInClient && apiVersionRequired && !hasDefault
+        ? "apiVersion: string,"
+        : ""
     }
-    options: ClientOptions = {}
+    ${
+      (!hasDefault && apiVersionRequired) || !hasApiVersionInClient
+        ? "options"
+        : `{
+         ${
+           hasDefault && hasApiVersionInClient
+             ? `apiVersion = "2022-05-15-preview"`
+             : hasApiVersionInClient
+               ? "apiVersion"
+               : ""
+         }, ...options}`
+    }: testClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
-    ${defaultDef}
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -162,11 +202,32 @@ const buildDefaultReturn = (
       },
       loggingOptions: {
         logger: options.loggingOptions?.logger ?? logger.info
-      },
+      }
     };
-  
     const client = getClient(endpointUrl, options) as testClient;
-    ${apiVersionDef}
+
+    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });${apiVersionWarning}
+    ${
+      hasQueryDefinition
+        ? `client.pipeline.addPolicy({
+      name: "ClientApiVersionPolicy",
+      sendRequest: (req, next) => {
+        // Use the apiVersion defined in request url directly
+        // Append one if there is no apiVersion and we have one at client options
+        const url = new URL(req.url);
+        if (!url.searchParams.get("api-version") && apiVersion) {
+          req.url = \`\${req.url}\${
+            Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+          }api-version=\${apiVersion}\`;
+        }
+
+        return next(req);
+      },
+    });`
+        : ``
+    }
+    
+
     return client;
   }`;
 };
@@ -177,8 +238,9 @@ const buildPathReturn_WithDefault = () => {
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   import { Versions } from "./models.js";
-
+  /** The optional parameters for the client */
   export interface testClientOptions extends ClientOptions {
+    /** Api Version */
     apiVersion?: Versions;
   }
   
@@ -189,11 +251,9 @@ const buildPathReturn_WithDefault = () => {
    */
   export default function createClient(
     endpointParam: string,
-    options: testClientOptions = {}
+    { apiVersion = "2022-05-15-preview", ...options}: testClientOptions = {}
   ): testClient {
-    const apiVersion = options.apiVersion ?? "2022-05-15-preview";
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
-
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -206,14 +266,13 @@ const buildPathReturn_WithDefault = () => {
       },
       loggingOptions: {
         logger: options.loggingOptions?.logger ?? logger.info
-      },
+      }
     };
   
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  
-    return client;          
+    return client;       
   }`;
 };
 
@@ -223,7 +282,8 @@ const buildPathReturn_WithoutDefault = () => {
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   import { Versions } from "./models.js";
-  
+  /** The optional parameters for the client */
+  export interface testClientOptions extends ClientOptions {}
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.
@@ -233,10 +293,9 @@ const buildPathReturn_WithoutDefault = () => {
   export default function createClient(
     endpointParam: string,
     apiVersion: Versions,
-    options: ClientOptions = {}
+    options: testClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
-
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -249,14 +308,17 @@ const buildPathReturn_WithoutDefault = () => {
       },
       loggingOptions: {
         logger: options.loggingOptions?.logger ?? logger.info
-      },
+      }
     };
   
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  
-    return client;          
+    if (options.apiVersion) {
+      logger.warning("This client does not support to set api-version in options, please change it at positional argument");
+    }
+
+    return client;       
   }`;
 };
 
@@ -267,7 +329,7 @@ describe("api-version", () => {
         const def = buildQueryDefinition({
           "@versioned": true
         });
-        const expectedRes = buildDefaultReturn(true, true);
+        const expectedRes = buildDefaultReturn(true, true, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -294,7 +356,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes, true);
       });
     });
     describe("without default value", () => {
@@ -305,7 +367,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithoutDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes, true);
       });
     });
   });
@@ -318,7 +380,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes, true);
       });
     });
     describe("without default value", () => {
@@ -329,7 +391,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithoutDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes, true);
       });
     });
   });
@@ -343,7 +405,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(false, false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes, true);
       });
     });
     describe("without default value", () => {
@@ -354,7 +416,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(false, false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes, true);
       });
     });
   });

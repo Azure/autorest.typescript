@@ -3,6 +3,7 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
+/** Optional parameters. */
 export interface ListApplicationsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -18,6 +19,7 @@ export interface ListApplicationsOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface GetApplicationOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -28,6 +30,7 @@ export interface GetApplicationOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -60,6 +63,7 @@ export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
   $filter?: string;
 }
 
+/** Optional parameters. */
 export interface CreatePoolOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -72,6 +76,7 @@ export interface CreatePoolOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListPoolsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -96,6 +101,7 @@ export interface ListPoolsOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface DeletePoolOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -130,6 +136,7 @@ export interface DeletePoolOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface PoolExistsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -164,6 +171,7 @@ export interface PoolExistsOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface GetPoolOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -202,6 +210,7 @@ export interface GetPoolOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface UpdatePoolOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -238,6 +247,7 @@ export interface UpdatePoolOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DisablePoolAutoScaleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -248,6 +258,7 @@ export interface DisablePoolAutoScaleOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface EnablePoolAutoScaleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -284,6 +295,7 @@ export interface EnablePoolAutoScaleOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface EvaluatePoolAutoScaleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -296,6 +308,7 @@ export interface EvaluatePoolAutoScaleOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ResizePoolOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -332,6 +345,7 @@ export interface ResizePoolOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface StopPoolResizeOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -366,6 +380,7 @@ export interface StopPoolResizeOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface ReplacePoolPropertiesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -378,6 +393,7 @@ export interface ReplacePoolPropertiesOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface RemoveNodesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -414,6 +430,7 @@ export interface RemoveNodesOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListSupportedImagesOptionalParams extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -432,6 +449,7 @@ export interface ListSupportedImagesOptionalParams extends OperationOptions {
   $filter?: string;
 }
 
+/** Optional parameters. */
 export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -452,6 +470,7 @@ export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
   $filter?: string;
 }
 
+/** Optional parameters. */
 export interface DeleteJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -486,6 +505,7 @@ export interface DeleteJobOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface GetJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -524,6 +544,7 @@ export interface GetJobOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface UpdateJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -560,6 +581,7 @@ export interface UpdateJobOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ReplaceJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -596,6 +618,7 @@ export interface ReplaceJobOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DisableJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -632,6 +655,7 @@ export interface DisableJobOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface EnableJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -666,6 +690,7 @@ export interface EnableJobOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface TerminateJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -702,6 +727,7 @@ export interface TerminateJobOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface CreateJobOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -714,6 +740,7 @@ export interface CreateJobOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListJobsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -738,6 +765,7 @@ export interface ListJobsOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -762,6 +790,7 @@ export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface ListJobPreparationAndReleaseTaskStatusOptionalParams
   extends OperationOptions {
   /**
@@ -783,6 +812,7 @@ export interface ListJobPreparationAndReleaseTaskStatusOptionalParams
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface GetJobTaskCountsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -793,6 +823,7 @@ export interface GetJobTaskCountsOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface CreateCertificateOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -805,6 +836,7 @@ export interface CreateCertificateOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListCertificatesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -827,6 +859,7 @@ export interface ListCertificatesOptionalParams extends OperationOptions {
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface CancelCertificateDeletionOptionalParams
   extends OperationOptions {
   /** The API version to use for this operation. */
@@ -838,6 +871,7 @@ export interface CancelCertificateDeletionOptionalParams
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface DeleteCertificateOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -848,6 +882,7 @@ export interface DeleteCertificateOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface GetCertificateOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -860,6 +895,7 @@ export interface GetCertificateOptionalParams extends OperationOptions {
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface JobScheduleExistsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -894,6 +930,7 @@ export interface JobScheduleExistsOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface DeleteJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -928,6 +965,7 @@ export interface DeleteJobScheduleOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface GetJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -966,6 +1004,7 @@ export interface GetJobScheduleOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface UpdateJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1002,6 +1041,7 @@ export interface UpdateJobScheduleOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ReplaceJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1038,6 +1078,7 @@ export interface ReplaceJobScheduleOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DisableJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1072,6 +1113,7 @@ export interface DisableJobScheduleOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface EnableJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1106,6 +1148,7 @@ export interface EnableJobScheduleOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface TerminateJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1140,6 +1183,7 @@ export interface TerminateJobScheduleOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface CreateJobScheduleOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1152,6 +1196,7 @@ export interface CreateJobScheduleOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListJobSchedulesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1176,6 +1221,7 @@ export interface ListJobSchedulesOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface CreateTaskOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1188,6 +1234,7 @@ export interface CreateTaskOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListTasksOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1212,6 +1259,7 @@ export interface ListTasksOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface CreateTaskCollectionOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1224,6 +1272,7 @@ export interface CreateTaskCollectionOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DeleteTaskOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1258,6 +1307,7 @@ export interface DeleteTaskOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface GetTaskOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1296,6 +1346,7 @@ export interface GetTaskOptionalParams extends OperationOptions {
   $expand?: string[];
 }
 
+/** Optional parameters. */
 export interface ReplaceTaskOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1332,6 +1383,7 @@ export interface ReplaceTaskOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListSubTasksOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1344,6 +1396,7 @@ export interface ListSubTasksOptionalParams extends OperationOptions {
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface TerminateTaskOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1378,6 +1431,7 @@ export interface TerminateTaskOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface ReactivateTaskOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1412,6 +1466,7 @@ export interface ReactivateTaskOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface DeleteTaskFileOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1429,6 +1484,7 @@ export interface DeleteTaskFileOptionalParams extends OperationOptions {
   recursive?: boolean;
 }
 
+/** Optional parameters. */
 export interface GetTaskFileOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1456,6 +1512,7 @@ export interface GetTaskFileOptionalParams extends OperationOptions {
   ocpRange?: string;
 }
 
+/** Optional parameters. */
 export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1478,6 +1535,7 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface ListTaskFilesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1503,6 +1561,7 @@ export interface ListTaskFilesOptionalParams extends OperationOptions {
   recursive?: boolean;
 }
 
+/** Optional parameters. */
 export interface CreateNodeUserOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1515,6 +1574,7 @@ export interface CreateNodeUserOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DeleteNodeUserOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1525,6 +1585,7 @@ export interface DeleteNodeUserOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface ReplaceNodeUserOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1537,6 +1598,7 @@ export interface ReplaceNodeUserOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface GetNodeOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1549,6 +1611,7 @@ export interface GetNodeOptionalParams extends OperationOptions {
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface RebootNodeOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1561,6 +1624,7 @@ export interface RebootNodeOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ReimageNodeOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1573,6 +1637,7 @@ export interface ReimageNodeOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface DisableNodeSchedulingOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1585,6 +1650,7 @@ export interface DisableNodeSchedulingOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface EnableNodeSchedulingOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1595,6 +1661,7 @@ export interface EnableNodeSchedulingOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface GetNodeRemoteLoginSettingsOptionalParams
   extends OperationOptions {
   /** The API version to use for this operation. */
@@ -1606,6 +1673,7 @@ export interface GetNodeRemoteLoginSettingsOptionalParams
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface GetNodeRemoteDesktopFileOptionalParams
   extends OperationOptions {
   /** The API version to use for this operation. */
@@ -1617,6 +1685,7 @@ export interface GetNodeRemoteDesktopFileOptionalParams
   timeOutInSeconds?: number;
 }
 
+/** Optional parameters. */
 export interface UploadNodeLogsOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1629,6 +1698,7 @@ export interface UploadNodeLogsOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface ListNodesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1651,6 +1721,7 @@ export interface ListNodesOptionalParams extends OperationOptions {
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface GetNodeExtensionOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1663,6 +1734,7 @@ export interface GetNodeExtensionOptionalParams extends OperationOptions {
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface ListNodeExtensionsOptionalParams extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -1678,6 +1750,7 @@ export interface ListNodeExtensionsOptionalParams extends OperationOptions {
   $select?: string[];
 }
 
+/** Optional parameters. */
 export interface DeleteNodeFileOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1695,6 +1768,7 @@ export interface DeleteNodeFileOptionalParams extends OperationOptions {
   recursive?: boolean;
 }
 
+/** Optional parameters. */
 export interface GetNodeFileOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1722,6 +1796,7 @@ export interface GetNodeFileOptionalParams extends OperationOptions {
   ocpRange?: string;
 }
 
+/** Optional parameters. */
 export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -1744,6 +1819,7 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
+/** Optional parameters. */
 export interface ListNodeFilesOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;

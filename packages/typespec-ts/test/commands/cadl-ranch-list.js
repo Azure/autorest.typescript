@@ -262,6 +262,10 @@ export const rlcTsps = [
   {
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
   }
 ];
 
@@ -321,6 +325,18 @@ export const modularTsps = [
   {
     outputPath: "azure/core/basic",
     inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "type/dictionary",
+    inputPath: "type/dictionary"
+  },
+  {
+    outputPath: "type/property/nullable",
+    inputPath: "type/property/nullable"
+  },
+  {
+    outputPath: "type/property/optionality",
+    inputPath: "type/property/optionality"
   },
   {
     outputPath: "type/model/inheritance/nested-discriminator",
@@ -456,6 +472,10 @@ export const modularTsps = [
     inputPath: "type/property/additional-properties"
   },
   {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
+  },
+  {
     outputPath: "parameters/basic",
     inputPath: "parameters/basic"
   },
@@ -482,6 +502,10 @@ export const modularTsps = [
   {
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
   }
 ];
 

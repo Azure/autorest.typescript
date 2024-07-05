@@ -32,6 +32,6 @@ export type Dog = DogParent | Golden;
 /** Test fixed enum type for discriminator */
 export type Snake = SnakeParent | Cobra;
 /** Alias for DogKind */
-export type DogKind = string | "golden";
+export type DogKind = string;
 /** fixed enum type for discriminator */
 export type SnakeKind = "cobra";

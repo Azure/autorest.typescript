@@ -9,8 +9,11 @@ import {
   DatetimePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Datetime operations. */
 export interface DatetimeOperations {
+  /** Get call */
   get: (options?: DatetimeGetOptionalParams) => Promise<DatetimeProperty>;
+  /** Put operation */
   put: (
     body: DatetimeProperty,
     options?: DatetimePutOptionalParams,

@@ -37,6 +37,7 @@ export {
   FineTuningJobEvent,
   ChatCompletionRequestMessage,
   ChatCompletionFunctions,
+  ChatCompletionFunctionParameters,
   ChatCompletionFunctionCallOption,
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,

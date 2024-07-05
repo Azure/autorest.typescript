@@ -27,13 +27,16 @@ const nodeConfig = `export default defineConfig({
       "provider": "istanbul",
       "reporter": ["text", "json", "html"],
       "reportsDirectory": "coverage"
-    }
+    },
+    testTimeout: 1200000,
   }
 });`;
 
 const browserConfig = (options: {
   isAzureSdkForJs: boolean;
-}) => `export default defineConfig({
+}) => `process.env.RECORDINGS_RELATIVE_PATH = relativeRecordingsPath();
+
+export default defineConfig({
     "define": {
       "process.env": process.env
     },
@@ -66,7 +69,8 @@ const browserConfig = (options: {
         "provider": "istanbul",
         "reporter": ["text", "json", "html"],
         "reportsDirectory": "coverage-browser"
-      }
+      },
+      testTimeout: 1200000,
     }
   });`;
 
@@ -101,6 +105,11 @@ export function buildVitestConfig(
   configFile.addImportDeclaration({
     moduleSpecifier: "vitest/config",
     namedImports: ["defineConfig"]
+  });
+
+  configFile.addImportDeclaration({
+    moduleSpecifier: "@azure-tools/test-recorder",
+    namedImports: ["relativeRecordingsPath"]
   });
 
   return {

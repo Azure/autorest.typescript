@@ -6,6 +6,9 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { OpenAIContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface OpenAIContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `OpenAIContext`
  * @param credentials - uniquely identify client credential
@@ -13,7 +16,7 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: OpenAIContextOptions = {},
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;
@@ -31,15 +34,19 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as OpenAIContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   client.pipeline.addPolicy({
     name: "customKeyCredentialPolicy",
     async sendRequest(request, next) {
-      request.headers.set("Authorization", "bearer " + credentials.key);
+      request.headers.set("Authorization", "Bearer " + credentials.key);
       return next(request);
     },
   });

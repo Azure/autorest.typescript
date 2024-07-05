@@ -4,8 +4,6 @@
 
 ```ts
 
-/// <reference types="node" />
-
 import { AbortSignalLike } from '@azure/abort-controller';
 import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
@@ -479,6 +477,11 @@ export type AzureAgriFoodPlatformDataPlaneServiceClient = Client & {
 };
 
 // @public
+export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
 export interface BoundariesCreateCascadeDeleteJob202Response extends HttpResponse {
     // (undocumented)
     body: CascadeDeleteJobOutput;
@@ -876,7 +879,7 @@ export interface CascadeDeleteJobOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: AzureAgriFoodPlatformDataPlaneServiceClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
 // @public
@@ -4215,6 +4218,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

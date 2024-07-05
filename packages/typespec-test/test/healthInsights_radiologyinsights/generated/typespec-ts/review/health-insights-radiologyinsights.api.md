@@ -49,6 +49,11 @@ export type AzureHealthInsightsClient = Client & {
 };
 
 // @public
+export interface AzureHealthInsightsClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
 export type ClinicalDocumentType = "consultation" | "dischargeSummary" | "historyAndPhysical" | "radiologyReport" | "procedure" | "progress" | "laboratory" | "pathologyReport";
 
 // @public
@@ -202,7 +207,7 @@ export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 export type ContactPointUseOutput = "home" | "work" | "temp" | "old" | "mobile";
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): AzureHealthInsightsClient;
+function createClient(endpointParam: string, credentials: KeyCredential, { apiVersion, ...options }?: AzureHealthInsightsClientOptions): AzureHealthInsightsClient;
 export default createClient;
 
 // @public (undocumented)
@@ -1199,6 +1204,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

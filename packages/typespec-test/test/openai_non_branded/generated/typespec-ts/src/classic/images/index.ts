@@ -14,6 +14,7 @@ import {
   ImagesCreateVariationOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Images operations. */
 export interface ImagesOperations {
   create: (
     image: CreateImageRequest,

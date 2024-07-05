@@ -22,7 +22,16 @@ import {
   FineTuningJobsCancelOptionalParams,
 } from "../../../models/options.js";
 
+/** Interface representing a FineTuningJobs operations. */
 export interface FineTuningJobsOperations {
+  /**
+   * Creates a job that fine-tunes a specified model from a given dataset.
+   *
+   * Response includes details of the enqueued job including job status and the name of the
+   * fine-tuned models once complete.
+   *
+   * [Learn more about fine-tuning](/docs/guides/fine-tuning)
+   */
   create: (
     job: CreateFineTuningJobRequest,
     options?: FineTuningJobsCreateOptionalParams,

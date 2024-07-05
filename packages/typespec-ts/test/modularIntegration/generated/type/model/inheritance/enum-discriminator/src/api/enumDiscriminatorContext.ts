@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { EnumDiscriminatorContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface EnumDiscriminatorClientOptions extends ClientOptions {}
 
 export { EnumDiscriminatorContext } from "../rest/index.js";

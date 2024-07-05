@@ -9,8 +9,11 @@ import {
   SpreadFloatPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a SpreadFloat operations. */
 export interface SpreadFloatOperations {
+  /** Get call */
   get: (options?: SpreadFloatGetOptionalParams) => Promise<SpreadFloatRecord>;
+  /** Put operation */
   put: (
     body: SpreadFloatRecord,
     options?: SpreadFloatPutOptionalParams,

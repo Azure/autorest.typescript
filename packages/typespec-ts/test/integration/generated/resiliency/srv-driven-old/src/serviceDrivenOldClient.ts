@@ -5,7 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { ServiceDrivenOldClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
 export interface ServiceDrivenOldClientOptions extends ClientOptions {
+  /** Pass in 'v1'. This represents the API version of the service. Will grow up in the next deployment to be both 'v1' and 'v2' */
   apiVersion?: string;
 }
 
@@ -18,14 +20,12 @@ export interface ServiceDrivenOldClientOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   serviceDeploymentVersion: string,
-  options: ServiceDrivenOldClientOptions = {},
+  { apiVersion = "v1", ...options }: ServiceDrivenOldClientOptions = {},
 ): ServiceDrivenOldClient {
-  const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/resiliency/service-driven/client:v1/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
-
   const userAgentInfo = `azsdk-js-srv-driven-old-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -40,7 +40,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as ServiceDrivenOldClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

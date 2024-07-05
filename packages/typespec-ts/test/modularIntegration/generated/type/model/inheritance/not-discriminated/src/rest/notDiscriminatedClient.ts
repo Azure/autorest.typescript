@@ -5,12 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { NotDiscriminatedContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface NotDiscriminatedContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `NotDiscriminatedContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: NotDiscriminatedContextOptions = {},
 ): NotDiscriminatedContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -28,9 +31,14 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as NotDiscriminatedContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
+
   return client;
 }

@@ -9,6 +9,7 @@ import {
   EnumsOnlySendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a EnumsOnly operations. */
 export interface EnumsOnlyOperations {
   get: (
     options?: EnumsOnlyGetOptionalParams,

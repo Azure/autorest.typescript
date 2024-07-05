@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { BatchContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface BatchClientOptions extends ClientOptions {}
 
 export { BatchContext } from "../rest/index.js";

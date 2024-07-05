@@ -276,10 +276,7 @@ describe("operations", () => {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
               body: (bars ?? []).map((p) => {
-                    return {
-                      prop1: p["prop1"],
-                      prop2: p["prop2"],
-                    };
+                    return { prop1: p["prop1"], prop2: p["prop2"],};
                   }),
            });
         }
@@ -478,28 +475,16 @@ describe("operations", () => {
                 optionalBars:
                   body["optionalBars"] === undefined
                     ? body["optionalBars"]
-                    : body["optionalBars"].map((p) => ({
-                        prop1: p["prop1"],
-                        prop2: p["prop2"],
-                      })),
-                requiredBars: body["requiredBars"].map((p) => ({
-                  prop1: p["prop1"],
-                  prop2: p["prop2"],
-                })),
+                    : body["optionalBars"].map(barSerializer),
+                requiredBars: body["requiredBars"].map(barSerializer),
                 nullableBars:
                   body["nullableBars"] === undefined || body["nullableBars"] === null
                     ? body["nullableBars"]
-                    : body["nullableBars"].map((p) => ({
-                        prop1: p["prop1"],
-                        prop2: p["prop2"],
-                      })),
+                    : body["nullableBars"].map(barSerializer),
                 nullableRequiredBars:
                   body["nullableRequiredBars"] === null
                     ? body["nullableRequiredBars"]
-                    : body["nullableRequiredBars"].map((p) => ({
-                        prop1: p["prop1"],
-                        prop2: p["prop2"],
-                      })),
+                    : body["nullableRequiredBars"].map(barSerializer),
               },
             });
         }
@@ -643,7 +628,7 @@ describe("operations", () => {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
         }
 
-        export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
+        export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<_Bar> {
             if(result.status !== "200"){
               throw createRestError(result);
             }

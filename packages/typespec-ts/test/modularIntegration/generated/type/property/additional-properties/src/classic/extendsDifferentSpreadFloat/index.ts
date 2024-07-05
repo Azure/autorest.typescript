@@ -9,10 +9,13 @@ import {
   ExtendsDifferentSpreadFloatPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtendsDifferentSpreadFloat operations. */
 export interface ExtendsDifferentSpreadFloatOperations {
+  /** Get call */
   get: (
     options?: ExtendsDifferentSpreadFloatGetOptionalParams,
   ) => Promise<DifferentSpreadFloatDerived>;
+  /** Put operation */
   put: (
     body: DifferentSpreadFloatDerived,
     options?: ExtendsDifferentSpreadFloatPutOptionalParams,

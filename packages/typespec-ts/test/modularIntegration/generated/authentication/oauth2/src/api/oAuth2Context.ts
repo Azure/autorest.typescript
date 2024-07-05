@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { OAuth2Context } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface OAuth2ClientOptions extends ClientOptions {}
 
 export { OAuth2Context } from "../rest/index.js";

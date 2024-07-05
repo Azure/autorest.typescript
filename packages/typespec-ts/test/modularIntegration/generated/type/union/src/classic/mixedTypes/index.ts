@@ -9,6 +9,7 @@ import {
   MixedTypesSendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a MixedTypes operations. */
 export interface MixedTypesOperations {
   get: (
     options?: MixedTypesGetOptionalParams,
