@@ -175,13 +175,17 @@ export async function _createDeserialize(
             : {
                 virtualNetworkRule: result.body.properties?.networkacls?.[
                   "virtualNetworkRule"
-                ].map((p) => ({
-                  id: p["id"],
-                  action: p["action"],
-                  state: p["state"],
-                })),
+                ].map((p) => {
+                  return {
+                    id: p["id"],
+                    action: p["action"],
+                    state: p["state"],
+                  };
+                }),
                 ipRules: result.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => ({ value: p["value"], action: p["action"] }),
+                  (p) => {
+                    return { value: p["value"], action: p["action"] };
+                  },
                 ),
                 allowedQueryIpRangeList:
                   result.body.properties?.networkacls?.[
@@ -350,13 +354,17 @@ export async function _getDeserialize(
             : {
                 virtualNetworkRule: result.body.properties?.networkacls?.[
                   "virtualNetworkRule"
-                ].map((p) => ({
-                  id: p["id"],
-                  action: p["action"],
-                  state: p["state"],
-                })),
+                ].map((p) => {
+                  return {
+                    id: p["id"],
+                    action: p["action"],
+                    state: p["state"],
+                  };
+                }),
                 ipRules: result.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => ({ value: p["value"], action: p["action"] }),
+                  (p) => {
+                    return { value: p["value"], action: p["action"] };
+                  },
                 ),
                 allowedQueryIpRangeList:
                   result.body.properties?.networkacls?.[
@@ -541,13 +549,17 @@ export async function _updateDeserialize(
             : {
                 virtualNetworkRule: result.body.properties?.networkacls?.[
                   "virtualNetworkRule"
-                ].map((p) => ({
-                  id: p["id"],
-                  action: p["action"],
-                  state: p["state"],
-                })),
+                ].map((p) => {
+                  return {
+                    id: p["id"],
+                    action: p["action"],
+                    state: p["state"],
+                  };
+                }),
                 ipRules: result.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => ({ value: p["value"], action: p["action"] }),
+                  (p) => {
+                    return { value: p["value"], action: p["action"] };
+                  },
                 ),
                 allowedQueryIpRangeList:
                   result.body.properties?.networkacls?.[
@@ -988,15 +1000,17 @@ export async function _listRolesAssignmentsDeserialize(
 
   return {
     count: result.body["count"],
-    roleAssignmentResponse: result.body["roleAssignmentResponse"].map((p) => ({
-      roleId: p["roleId"],
-      principalId: p["principalId"],
-      userName: p["userName"],
-      dataTypeScope: p["dataTypeScope"],
-      principalType: p["principalType"],
-      role: p["role"],
-      roleAssignmentId: p["roleAssignmentId"],
-    })),
+    roleAssignmentResponse: result.body["roleAssignmentResponse"].map((p) => {
+      return {
+        roleId: p["roleId"],
+        principalId: p["principalId"],
+        userName: p["userName"],
+        dataTypeScope: p["dataTypeScope"],
+        principalType: p["principalType"],
+        role: p["role"],
+        roleAssignmentId: p["roleAssignmentId"],
+      };
+    }),
   };
 }
 
@@ -1052,114 +1066,119 @@ export async function _listByResourceGroupDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      tags: p["tags"],
-      location: p["location"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            resourceGuid: p.properties?.["resourceGuid"],
-            provisioningState: p.properties?.["provisioningState"],
-            publisher: p.properties?.["publisher"],
-            product: p.properties?.["product"],
-            majorVersion: p.properties?.["majorVersion"],
-            owners: p.properties?.["owners"],
-            redundancy: p.properties?.["redundancy"],
-            purviewAccount: p.properties?.["purviewAccount"],
-            purviewCollection: p.properties?.["purviewCollection"],
-            privateLinksEnabled: p.properties?.["privateLinksEnabled"],
-            publicNetworkAccess: p.properties?.["publicNetworkAccess"],
-            customerManagedKeyEncryptionEnabled:
-              p.properties?.["customerManagedKeyEncryptionEnabled"],
-            customerEncryptionKey: !p.properties?.customerEncryptionKey
-              ? undefined
-              : {
-                  keyVaultUri:
-                    p.properties?.customerEncryptionKey?.["keyVaultUri"],
-                  keyName: p.properties?.customerEncryptionKey?.["keyName"],
-                  keyVersion:
-                    p.properties?.customerEncryptionKey?.["keyVersion"],
-                },
-            networkacls: !p.properties?.networkacls
-              ? undefined
-              : {
-                  virtualNetworkRule: p.properties?.networkacls?.[
-                    "virtualNetworkRule"
-                  ].map((p) => ({
-                    id: p["id"],
-                    action: p["action"],
-                    state: p["state"],
-                  })),
-                  ipRules: p.properties?.networkacls?.["ipRules"].map((p) => ({
-                    value: p["value"],
-                    action: p["action"],
-                  })),
-                  allowedQueryIpRangeList:
-                    p.properties?.networkacls?.["allowedQueryIpRangeList"],
-                  defaultAction: p.properties?.networkacls?.["defaultAction"],
-                },
-            managedResourceGroupConfiguration: !p.properties
-              ?.managedResourceGroupConfiguration
-              ? undefined
-              : {
-                  name: p.properties?.managedResourceGroupConfiguration?.[
-                    "name"
-                  ],
-                  location:
-                    p.properties?.managedResourceGroupConfiguration?.[
-                      "location"
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"],
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.["lastModifiedByType"],
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              resourceGuid: p.properties?.["resourceGuid"],
+              provisioningState: p.properties?.["provisioningState"],
+              publisher: p.properties?.["publisher"],
+              product: p.properties?.["product"],
+              majorVersion: p.properties?.["majorVersion"],
+              owners: p.properties?.["owners"],
+              redundancy: p.properties?.["redundancy"],
+              purviewAccount: p.properties?.["purviewAccount"],
+              purviewCollection: p.properties?.["purviewCollection"],
+              privateLinksEnabled: p.properties?.["privateLinksEnabled"],
+              publicNetworkAccess: p.properties?.["publicNetworkAccess"],
+              customerManagedKeyEncryptionEnabled:
+                p.properties?.["customerManagedKeyEncryptionEnabled"],
+              customerEncryptionKey: !p.properties?.customerEncryptionKey
+                ? undefined
+                : {
+                    keyVaultUri:
+                      p.properties?.customerEncryptionKey?.["keyVaultUri"],
+                    keyName: p.properties?.customerEncryptionKey?.["keyName"],
+                    keyVersion:
+                      p.properties?.customerEncryptionKey?.["keyVersion"],
+                  },
+              networkacls: !p.properties?.networkacls
+                ? undefined
+                : {
+                    virtualNetworkRule: p.properties?.networkacls?.[
+                      "virtualNetworkRule"
+                    ].map((p) => {
+                      return {
+                        id: p["id"],
+                        action: p["action"],
+                        state: p["state"],
+                      };
+                    }),
+                    ipRules: p.properties?.networkacls?.["ipRules"].map((p) => {
+                      return { value: p["value"], action: p["action"] };
+                    }),
+                    allowedQueryIpRangeList:
+                      p.properties?.networkacls?.["allowedQueryIpRangeList"],
+                    defaultAction: p.properties?.networkacls?.["defaultAction"],
+                  },
+              managedResourceGroupConfiguration: !p.properties
+                ?.managedResourceGroupConfiguration
+                ? undefined
+                : {
+                    name: p.properties?.managedResourceGroupConfiguration?.[
+                      "name"
                     ],
-                },
-            availableMinorVersions: p.properties?.["availableMinorVersions"],
-            currentMinorVersion: p.properties?.["currentMinorVersion"],
-            documentation: p.properties?.["documentation"],
-            consumptionEndpoints: !p.properties?.consumptionEndpoints
-              ? undefined
-              : {
-                  ingestionUrl:
-                    p.properties?.consumptionEndpoints?.["ingestionUrl"],
-                  ingestionResourceId:
-                    p.properties?.consumptionEndpoints?.["ingestionResourceId"],
-                  fileAccessUrl:
-                    p.properties?.consumptionEndpoints?.["fileAccessUrl"],
-                  fileAccessResourceId:
-                    p.properties?.consumptionEndpoints?.[
-                      "fileAccessResourceId"
-                    ],
-                  queryUrl: p.properties?.consumptionEndpoints?.["queryUrl"],
-                  queryResourceId:
-                    p.properties?.consumptionEndpoints?.["queryResourceId"],
-                },
-            keyVaultUrl: p.properties?.["keyVaultUrl"],
-          },
-      identity: !p.identity
-        ? undefined
-        : {
-            principalId: p.identity?.["principalId"],
-            tenantId: p.identity?.["tenantId"],
-            type: p.identity?.["type"],
-            userAssignedIdentities: p.identity?.["userAssignedIdentities"],
-          },
-    })),
+                    location:
+                      p.properties?.managedResourceGroupConfiguration?.[
+                        "location"
+                      ],
+                  },
+              availableMinorVersions: p.properties?.["availableMinorVersions"],
+              currentMinorVersion: p.properties?.["currentMinorVersion"],
+              documentation: p.properties?.["documentation"],
+              consumptionEndpoints: !p.properties?.consumptionEndpoints
+                ? undefined
+                : {
+                    ingestionUrl:
+                      p.properties?.consumptionEndpoints?.["ingestionUrl"],
+                    ingestionResourceId:
+                      p.properties?.consumptionEndpoints?.[
+                        "ingestionResourceId"
+                      ],
+                    fileAccessUrl:
+                      p.properties?.consumptionEndpoints?.["fileAccessUrl"],
+                    fileAccessResourceId:
+                      p.properties?.consumptionEndpoints?.[
+                        "fileAccessResourceId"
+                      ],
+                    queryUrl: p.properties?.consumptionEndpoints?.["queryUrl"],
+                    queryResourceId:
+                      p.properties?.consumptionEndpoints?.["queryResourceId"],
+                  },
+              keyVaultUrl: p.properties?.["keyVaultUrl"],
+            },
+        identity: !p.identity
+          ? undefined
+          : {
+              principalId: p.identity?.["principalId"],
+              tenantId: p.identity?.["tenantId"],
+              type: p.identity?.["type"],
+              userAssignedIdentities: p.identity?.["userAssignedIdentities"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -1215,114 +1234,119 @@ export async function _listBySubscriptionDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      tags: p["tags"],
-      location: p["location"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            resourceGuid: p.properties?.["resourceGuid"],
-            provisioningState: p.properties?.["provisioningState"],
-            publisher: p.properties?.["publisher"],
-            product: p.properties?.["product"],
-            majorVersion: p.properties?.["majorVersion"],
-            owners: p.properties?.["owners"],
-            redundancy: p.properties?.["redundancy"],
-            purviewAccount: p.properties?.["purviewAccount"],
-            purviewCollection: p.properties?.["purviewCollection"],
-            privateLinksEnabled: p.properties?.["privateLinksEnabled"],
-            publicNetworkAccess: p.properties?.["publicNetworkAccess"],
-            customerManagedKeyEncryptionEnabled:
-              p.properties?.["customerManagedKeyEncryptionEnabled"],
-            customerEncryptionKey: !p.properties?.customerEncryptionKey
-              ? undefined
-              : {
-                  keyVaultUri:
-                    p.properties?.customerEncryptionKey?.["keyVaultUri"],
-                  keyName: p.properties?.customerEncryptionKey?.["keyName"],
-                  keyVersion:
-                    p.properties?.customerEncryptionKey?.["keyVersion"],
-                },
-            networkacls: !p.properties?.networkacls
-              ? undefined
-              : {
-                  virtualNetworkRule: p.properties?.networkacls?.[
-                    "virtualNetworkRule"
-                  ].map((p) => ({
-                    id: p["id"],
-                    action: p["action"],
-                    state: p["state"],
-                  })),
-                  ipRules: p.properties?.networkacls?.["ipRules"].map((p) => ({
-                    value: p["value"],
-                    action: p["action"],
-                  })),
-                  allowedQueryIpRangeList:
-                    p.properties?.networkacls?.["allowedQueryIpRangeList"],
-                  defaultAction: p.properties?.networkacls?.["defaultAction"],
-                },
-            managedResourceGroupConfiguration: !p.properties
-              ?.managedResourceGroupConfiguration
-              ? undefined
-              : {
-                  name: p.properties?.managedResourceGroupConfiguration?.[
-                    "name"
-                  ],
-                  location:
-                    p.properties?.managedResourceGroupConfiguration?.[
-                      "location"
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"],
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.["lastModifiedByType"],
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              resourceGuid: p.properties?.["resourceGuid"],
+              provisioningState: p.properties?.["provisioningState"],
+              publisher: p.properties?.["publisher"],
+              product: p.properties?.["product"],
+              majorVersion: p.properties?.["majorVersion"],
+              owners: p.properties?.["owners"],
+              redundancy: p.properties?.["redundancy"],
+              purviewAccount: p.properties?.["purviewAccount"],
+              purviewCollection: p.properties?.["purviewCollection"],
+              privateLinksEnabled: p.properties?.["privateLinksEnabled"],
+              publicNetworkAccess: p.properties?.["publicNetworkAccess"],
+              customerManagedKeyEncryptionEnabled:
+                p.properties?.["customerManagedKeyEncryptionEnabled"],
+              customerEncryptionKey: !p.properties?.customerEncryptionKey
+                ? undefined
+                : {
+                    keyVaultUri:
+                      p.properties?.customerEncryptionKey?.["keyVaultUri"],
+                    keyName: p.properties?.customerEncryptionKey?.["keyName"],
+                    keyVersion:
+                      p.properties?.customerEncryptionKey?.["keyVersion"],
+                  },
+              networkacls: !p.properties?.networkacls
+                ? undefined
+                : {
+                    virtualNetworkRule: p.properties?.networkacls?.[
+                      "virtualNetworkRule"
+                    ].map((p) => {
+                      return {
+                        id: p["id"],
+                        action: p["action"],
+                        state: p["state"],
+                      };
+                    }),
+                    ipRules: p.properties?.networkacls?.["ipRules"].map((p) => {
+                      return { value: p["value"], action: p["action"] };
+                    }),
+                    allowedQueryIpRangeList:
+                      p.properties?.networkacls?.["allowedQueryIpRangeList"],
+                    defaultAction: p.properties?.networkacls?.["defaultAction"],
+                  },
+              managedResourceGroupConfiguration: !p.properties
+                ?.managedResourceGroupConfiguration
+                ? undefined
+                : {
+                    name: p.properties?.managedResourceGroupConfiguration?.[
+                      "name"
                     ],
-                },
-            availableMinorVersions: p.properties?.["availableMinorVersions"],
-            currentMinorVersion: p.properties?.["currentMinorVersion"],
-            documentation: p.properties?.["documentation"],
-            consumptionEndpoints: !p.properties?.consumptionEndpoints
-              ? undefined
-              : {
-                  ingestionUrl:
-                    p.properties?.consumptionEndpoints?.["ingestionUrl"],
-                  ingestionResourceId:
-                    p.properties?.consumptionEndpoints?.["ingestionResourceId"],
-                  fileAccessUrl:
-                    p.properties?.consumptionEndpoints?.["fileAccessUrl"],
-                  fileAccessResourceId:
-                    p.properties?.consumptionEndpoints?.[
-                      "fileAccessResourceId"
-                    ],
-                  queryUrl: p.properties?.consumptionEndpoints?.["queryUrl"],
-                  queryResourceId:
-                    p.properties?.consumptionEndpoints?.["queryResourceId"],
-                },
-            keyVaultUrl: p.properties?.["keyVaultUrl"],
-          },
-      identity: !p.identity
-        ? undefined
-        : {
-            principalId: p.identity?.["principalId"],
-            tenantId: p.identity?.["tenantId"],
-            type: p.identity?.["type"],
-            userAssignedIdentities: p.identity?.["userAssignedIdentities"],
-          },
-    })),
+                    location:
+                      p.properties?.managedResourceGroupConfiguration?.[
+                        "location"
+                      ],
+                  },
+              availableMinorVersions: p.properties?.["availableMinorVersions"],
+              currentMinorVersion: p.properties?.["currentMinorVersion"],
+              documentation: p.properties?.["documentation"],
+              consumptionEndpoints: !p.properties?.consumptionEndpoints
+                ? undefined
+                : {
+                    ingestionUrl:
+                      p.properties?.consumptionEndpoints?.["ingestionUrl"],
+                    ingestionResourceId:
+                      p.properties?.consumptionEndpoints?.[
+                        "ingestionResourceId"
+                      ],
+                    fileAccessUrl:
+                      p.properties?.consumptionEndpoints?.["fileAccessUrl"],
+                    fileAccessResourceId:
+                      p.properties?.consumptionEndpoints?.[
+                        "fileAccessResourceId"
+                      ],
+                    queryUrl: p.properties?.consumptionEndpoints?.["queryUrl"],
+                    queryResourceId:
+                      p.properties?.consumptionEndpoints?.["queryResourceId"],
+                  },
+              keyVaultUrl: p.properties?.["keyVaultUrl"],
+            },
+        identity: !p.identity
+          ? undefined
+          : {
+              principalId: p.identity?.["principalId"],
+              tenantId: p.identity?.["tenantId"],
+              type: p.identity?.["type"],
+              userAssignedIdentities: p.identity?.["userAssignedIdentities"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

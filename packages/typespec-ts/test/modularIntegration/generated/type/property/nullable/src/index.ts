@@ -3,6 +3,7 @@
 
 export { NullableClient, NullableClientOptions } from "./nullableClient.js";
 export {
+  CollectionsStringProperty,
   CollectionsModelProperty,
   InnerModel,
   CollectionsByteProperty,
@@ -34,11 +35,16 @@ export {
   CollectionsModelGetNullOptionalParams,
   CollectionsModelPatchNonNullOptionalParams,
   CollectionsModelPatchNullOptionalParams,
+  CollectionsStringGetNonNullOptionalParams,
+  CollectionsStringGetNullOptionalParams,
+  CollectionsStringPatchNonNullOptionalParams,
+  CollectionsStringPatchNullOptionalParams,
 } from "./models/index.js";
 export {
   BytesOperations,
   CollectionsByteOperations,
   CollectionsModelOperations,
+  CollectionsStringOperations,
   DatetimeOperations,
   DurationOperations,
   StringOperations,

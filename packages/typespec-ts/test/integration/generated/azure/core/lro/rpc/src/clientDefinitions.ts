@@ -11,7 +11,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface LongRunningRpc {
   /** Generate data. */
   post(
-    options?: LongRunningRpcParameters,
+    options: LongRunningRpcParameters,
   ): StreamableMethod<
     LongRunningRpc202Response | LongRunningRpcDefaultResponse
   >;

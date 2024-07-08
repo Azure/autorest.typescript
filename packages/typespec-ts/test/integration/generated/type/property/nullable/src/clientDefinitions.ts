@@ -26,6 +26,10 @@ import {
   CollectionsModelPatchNonNullParameters,
   CollectionsModelGetNullParameters,
   CollectionsModelPatchNullParameters,
+  CollectionsStringGetNonNullParameters,
+  CollectionsStringPatchNonNullParameters,
+  CollectionsStringGetNullParameters,
+  CollectionsStringPatchNullParameters,
 } from "./parameters.js";
 import {
   StringModelGetNonNull200Response,
@@ -52,6 +56,10 @@ import {
   CollectionsModelPatchNonNull204Response,
   CollectionsModelGetNull200Response,
   CollectionsModelPatchNull204Response,
+  CollectionsStringGetNonNull200Response,
+  CollectionsStringPatchNonNull204Response,
+  CollectionsStringGetNull200Response,
+  CollectionsStringPatchNull204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -187,6 +195,28 @@ export interface CollectionsModelGetNull {
   ): StreamableMethod<CollectionsModelPatchNull204Response>;
 }
 
+export interface CollectionsStringGetNonNull {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: CollectionsStringGetNonNullParameters,
+  ): StreamableMethod<CollectionsStringGetNonNull200Response>;
+  /** Put a body with all properties present. */
+  patch(
+    options: CollectionsStringPatchNonNullParameters,
+  ): StreamableMethod<CollectionsStringPatchNonNull204Response>;
+}
+
+export interface CollectionsStringGetNull {
+  /** Get models that will return the default object */
+  get(
+    options?: CollectionsStringGetNullParameters,
+  ): StreamableMethod<CollectionsStringGetNull200Response>;
+  /** Put a body with default properties. */
+  patch(
+    options: CollectionsStringPatchNullParameters,
+  ): StreamableMethod<CollectionsStringPatchNull204Response>;
+}
+
 export interface Routes {
   /** Resource for '/type/property/nullable/string/non-null' has methods for the following verbs: get, patch */
   (path: "/type/property/nullable/string/non-null"): StringModelGetNonNull;
@@ -220,6 +250,14 @@ export interface Routes {
   (
     path: "/type/property/nullable/collections/model/null",
   ): CollectionsModelGetNull;
+  /** Resource for '/type/property/nullable/collections/string/non-null' has methods for the following verbs: get, patch */
+  (
+    path: "/type/property/nullable/collections/string/non-null",
+  ): CollectionsStringGetNonNull;
+  /** Resource for '/type/property/nullable/collections/string/null' has methods for the following verbs: get, patch */
+  (
+    path: "/type/property/nullable/collections/string/null",
+  ): CollectionsStringGetNull;
 }
 
 export type NullableClient = Client & {

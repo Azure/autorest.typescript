@@ -49,7 +49,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get extends unknown derived additional properties", async () => {
     try {
       const result = await client
@@ -61,7 +61,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
         "ExtendsUnknownAdditionalProperties"
       );
       assert.strictEqual(result.body["index"], 314);
-      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["age"], 2.71875);
       assert.strictEqual(result.body["prop1"], 32);
       assert.strictEqual(result.body["prop2"], true);
       assert.strictEqual(result.body["prop3"], "abc");
@@ -78,10 +78,10 @@ describe("ModelsPropertyAdditional Rest Client", () => {
           body: {
             name: "ExtendsUnknownAdditionalProperties",
             index: 314,
-            age: 2.71828,
+            age: 2.71875,
             prop1: 32,
             prop2: true,
-            prop3: "abc",
+            prop3: "abc"
           }
         });
       assert.strictEqual(result.status, "204");
@@ -89,20 +89,17 @@ describe("ModelsPropertyAdditional Rest Client", () => {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get extends unknown discriminated additional properties", async () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsUnknownDiscriminated")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(
-        result.body.name,
-        "Derived"
-      );
+      assert.strictEqual(result.body.name, "Derived");
       assert.strictEqual(result.body["kind"], "derived");
       assert.strictEqual(result.body["index"], 314);
-      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["age"], 2.71875);
       assert.strictEqual(result.body["prop1"], 32);
       assert.strictEqual(result.body["prop2"], true);
       assert.strictEqual(result.body["prop3"], "abc");
@@ -120,10 +117,10 @@ describe("ModelsPropertyAdditional Rest Client", () => {
             kind: "derived",
             name: "Derived",
             index: 314,
-            age: 2.71828,
+            age: 2.71875,
             prop1: 32,
             prop2: true,
-            prop3: "abc",
+            prop3: "abc"
           }
         });
       assert.strictEqual(result.status, "204");
@@ -131,7 +128,6 @@ describe("ModelsPropertyAdditional Rest Client", () => {
       assert.fail(err as string);
     }
   });
-
 
   it("should get is unknown additional properties", async () => {
     try {
@@ -174,7 +170,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.name, "IsUnknownAdditionalProperties");
       assert.strictEqual(result.body["index"], 314);
-      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["age"], 2.71875);
       assert.strictEqual(result.body["prop1"], 32);
       assert.strictEqual(result.body["prop2"], true);
       assert.strictEqual(result.body["prop3"], "abc");
@@ -191,10 +187,10 @@ describe("ModelsPropertyAdditional Rest Client", () => {
           body: {
             name: "IsUnknownAdditionalProperties",
             index: 314,
-            age: 2.71828,
+            age: 2.71875,
             prop1: 32,
             prop2: true,
-            prop3: "abc",
+            prop3: "abc"
           }
         });
       assert.strictEqual(result.status, "204");
@@ -209,10 +205,10 @@ describe("ModelsPropertyAdditional Rest Client", () => {
         .path("/type/property/additionalProperties/isUnknownDiscriminated")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name,"Derived");
+      assert.strictEqual(result.body.name, "Derived");
       assert.strictEqual(result.body["kind"], "derived");
       assert.strictEqual(result.body["index"], 314);
-      assert.strictEqual(result.body["age"], 2.71828);
+      assert.strictEqual(result.body["age"], 2.71875);
       assert.strictEqual(result.body["prop1"], 32);
       assert.strictEqual(result.body["prop2"], true);
       assert.strictEqual(result.body["prop3"], "abc");
@@ -230,10 +226,10 @@ describe("ModelsPropertyAdditional Rest Client", () => {
             kind: "derived",
             name: "Derived",
             index: 314,
-            age: 2.71828,
+            age: 2.71875,
             prop1: 32,
             prop2: true,
-            prop3: "abc",
+            prop3: "abc"
           }
         });
       assert.strictEqual(result.status, "204");

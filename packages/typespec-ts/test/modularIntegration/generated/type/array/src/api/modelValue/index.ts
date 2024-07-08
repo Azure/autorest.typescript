@@ -35,10 +35,12 @@ export async function _modelValueGetDeserialize(
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => ({
-        property: p["property"],
-        children: !p.children ? undefined : p.children,
-      }));
+    : result.body.map((p) => {
+        return {
+          property: p["property"],
+          children: !p.children ? undefined : p.children,
+        };
+      });
 }
 
 export async function modelValueGet(

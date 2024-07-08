@@ -70,10 +70,12 @@ export async function _getDeserialize(
     extension:
       result.body["extension"] === undefined
         ? result.body["extension"]
-        : result.body["extension"].map((p) => ({
-            extension: !p.extension ? undefined : p.extension,
-            level: p["level"],
-          })),
+        : result.body["extension"].map((p) => {
+            return {
+              extension: !p.extension ? undefined : p.extension,
+              level: p["level"],
+            };
+          }),
     level: result.body["level"],
   };
 }

@@ -34,7 +34,8 @@ export interface RepeatableActionHeaders {
 }
 
 export interface RepeatableActionBodyParam {
-  body?: UserActionParam;
+  /** The body parameter. */
+  body: UserActionParam;
 }
 
 export interface RepeatableActionHeaderParam {
