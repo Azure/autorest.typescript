@@ -3,6 +3,9 @@
 import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { TodoContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface TodoContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `TodoContext`
  * @param endpointParam - The parameter endpointParam
@@ -10,10 +13,9 @@ import { TodoContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: TodoContextOptions = {},
 ): TodoContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-todo-non-branded-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -25,7 +27,6 @@ export default function createClient(
       userAgentPrefix,
     },
   };
-
   const client = getClient(endpointUrl, options) as TodoContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

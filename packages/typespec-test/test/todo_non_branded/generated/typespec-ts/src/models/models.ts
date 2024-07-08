@@ -1,5 +1,15 @@
 // Licensed under the MIT license.
 
+import {
+  TodoItem as TodoItemRest,
+  TodoLabelRecord as TodoLabelRecordRest,
+  TodoFileAttachment as TodoFileAttachmentRest,
+  TodoUrlAttachment as TodoUrlAttachmentRest,
+  TodoItemPatch as TodoItemPatchRest,
+  User as UserRest,
+} from "../rest/index.js";
+import { uint8ArrayToString } from "@typespec/ts-http-runtime";
+
 export interface TodoPage {
   /** The items in the page */
   items: TodoItem[];
@@ -34,9 +44,29 @@ export interface TodoItem {
   dummy?: string;
 }
 
+export function todoItemSerializer(item: TodoItem): TodoItemRest {
+  return {
+    title: item["title"],
+    assignedTo: item["assignedTo"],
+    description: item["description"],
+    status: item["status"],
+    labels: item["labels"],
+    _dummy: item["dummy"],
+  };
+}
+
 export interface TodoLabelRecord {
   name: string;
   color?: string;
+}
+
+export function todoLabelRecordSerializer(
+  item: TodoLabelRecord,
+): TodoLabelRecordRest {
+  return {
+    name: item["name"],
+    color: item["color"],
+  };
 }
 
 export interface ApiError {
@@ -61,11 +91,30 @@ export interface TodoFileAttachment {
   contents: Uint8Array;
 }
 
+export function todoFileAttachmentSerializer(
+  item: TodoFileAttachment,
+): TodoFileAttachmentRest {
+  return {
+    filename: item["filename"],
+    mediaType: item["mediaType"],
+    contents: uint8ArrayToString(item["contents"], "base64"),
+  };
+}
+
 export interface TodoUrlAttachment {
   /** A description of the URL */
   description: string;
   /** The url */
   url: string;
+}
+
+export function todoUrlAttachmentSerializer(
+  item: TodoUrlAttachment,
+): TodoUrlAttachmentRest {
+  return {
+    description: item["description"],
+    url: item["url"],
+  };
 }
 
 export interface InvalidTodoItem extends ApiError {}
@@ -79,6 +128,17 @@ export interface TodoItemPatch {
   description?: string | null;
   /** The status of the todo item */
   status?: "NotStarted" | "InProgress" | "Completed";
+}
+
+export function todoItemPatchSerializer(
+  item: TodoItemPatch,
+): TodoItemPatchRest {
+  return {
+    title: item["title"],
+    assignedTo: item["assignedTo"],
+    description: item["description"],
+    status: item["status"],
+  };
 }
 
 export interface User {
@@ -95,6 +155,15 @@ export interface User {
   password: string;
   /** Whether the user is validated. Never visible to the API. */
   validated: boolean;
+}
+
+export function userSerializer(item: User): UserRest {
+  return {
+    username: item["username"],
+    email: item["email"],
+    password: item["password"],
+    validated: item["validated"],
+  };
 }
 
 /** The user already exists */

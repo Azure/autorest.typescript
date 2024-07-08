@@ -26,6 +26,7 @@ import {
   getTodoItemsAttachmentsOperations,
 } from "./attachments/index.js";
 
+/** Interface representing a TodoItems operations. */
 export interface TodoItemsOperations {
   list: (options?: TodoItemsListOptionalParams) => Promise<TodoPage>;
   create: (
@@ -74,6 +75,11 @@ export interface TodoItemsOperations {
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
     id: number,
     options?: TodoItemsDeleteOptionalParams,

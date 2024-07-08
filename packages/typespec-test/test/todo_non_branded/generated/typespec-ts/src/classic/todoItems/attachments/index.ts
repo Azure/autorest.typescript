@@ -11,6 +11,7 @@ import {
   TodoItemsAttachmentsCreateAttachmentOptionalParams,
 } from "../../../models/options.js";
 
+/** Interface representing a TodoItemsAttachments operations. */
 export interface TodoItemsAttachmentsOperations {
   list: (
     itemId: number,

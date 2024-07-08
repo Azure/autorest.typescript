@@ -5,6 +5,7 @@ import { User } from "../../models/models.js";
 import { create } from "../../api/users/index.js";
 import { UsersCreateOptionalParams } from "../../models/options.js";
 
+/** Interface representing a Users operations. */
 export interface UsersOperations {
   create: (
     user: User,

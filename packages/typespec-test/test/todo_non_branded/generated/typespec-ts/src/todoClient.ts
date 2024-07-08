@@ -19,7 +19,7 @@ export class TodoClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | KeyCredential,
-    options: TodoClientOptions = {}
+    options: TodoClientOptions = {},
   ) {
     this._client = createTodo(endpoint, credential, options);
     this.pipeline = this._client.pipeline;

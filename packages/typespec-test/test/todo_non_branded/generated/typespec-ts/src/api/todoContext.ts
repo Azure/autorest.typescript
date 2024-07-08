@@ -5,6 +5,7 @@ import { ClientOptions } from "@typespec/ts-http-runtime";
 import { TodoContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface TodoClientOptions extends ClientOptions {}
 
 export { TodoContext } from "../rest/index.js";
