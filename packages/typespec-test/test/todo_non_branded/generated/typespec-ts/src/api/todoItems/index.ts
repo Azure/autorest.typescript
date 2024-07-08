@@ -61,20 +61,24 @@ export async function _listDeserialize(
   }
 
   return {
-    items: result.body["items"].map((p) => ({
-      id: p["id"],
-      title: p["title"],
-      createdBy: p["createdBy"],
-      assignedTo: p["assignedTo"],
-      description: p["description"],
-      status: p["status"],
-      createdAt: new Date(p["createdAt"]),
-      updatedAt: new Date(p["updatedAt"]),
-      completedAt:
-        p["completedAt"] !== undefined ? new Date(p["completedAt"]) : undefined,
-      labels: p["labels"],
-      dummy: p["_dummy"],
-    })),
+    items: result.body["items"].map((p) => {
+      return {
+        id: p["id"],
+        title: p["title"],
+        createdBy: p["createdBy"],
+        assignedTo: p["assignedTo"],
+        description: p["description"],
+        status: p["status"],
+        createdAt: new Date(p["createdAt"]),
+        updatedAt: new Date(p["updatedAt"]),
+        completedAt:
+          p["completedAt"] !== undefined
+            ? new Date(p["completedAt"])
+            : undefined,
+        labels: p["labels"],
+        dummy: p["_dummy"],
+      };
+    }),
     pagination: {
       pageSize: result.body.pagination["pageSize"],
       totalSize: result.body.pagination["totalSize"],
