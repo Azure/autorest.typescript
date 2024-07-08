@@ -78,16 +78,20 @@ export async function _getDeserialize(
       ? undefined
       : {
           provisioningState: result.body.properties?.["provisioningState"],
-          publishers: result.body.properties?.["publishers"].map((p) => ({
-            publisherName: p["publisherName"],
-            dataProducts: p["dataProducts"].map((p) => ({
-              dataProductName: p["dataProductName"],
-              description: p["description"],
-              dataProductVersions: p["dataProductVersions"].map((p) => ({
-                version: p["version"],
-              })),
-            })),
-          })),
+          publishers: result.body.properties?.["publishers"].map((p) => {
+            return {
+              publisherName: p["publisherName"],
+              dataProducts: p["dataProducts"].map((p) => {
+                return {
+                  dataProductName: p["dataProductName"],
+                  description: p["description"],
+                  dataProductVersions: p["dataProductVersions"].map((p) => {
+                    return { version: p["version"] };
+                  }),
+                };
+              }),
+            };
+          }),
         },
   };
 }
@@ -138,42 +142,48 @@ export async function _listByResourceGroupDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            publishers: p.properties?.["publishers"].map((p) => ({
-              publisherName: p["publisherName"],
-              dataProducts: p["dataProducts"].map((p) => ({
-                dataProductName: p["dataProductName"],
-                description: p["description"],
-                dataProductVersions: p["dataProductVersions"].map((p) => ({
-                  version: p["version"],
-                })),
-              })),
-            })),
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"],
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.["lastModifiedByType"],
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"],
+              publishers: p.properties?.["publishers"].map((p) => {
+                return {
+                  publisherName: p["publisherName"],
+                  dataProducts: p["dataProducts"].map((p) => {
+                    return {
+                      dataProductName: p["dataProductName"],
+                      description: p["description"],
+                      dataProductVersions: p["dataProductVersions"].map((p) => {
+                        return { version: p["version"] };
+                      }),
+                    };
+                  }),
+                };
+              }),
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -229,42 +239,48 @@ export async function _listBySubscriptionDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            publishers: p.properties?.["publishers"].map((p) => ({
-              publisherName: p["publisherName"],
-              dataProducts: p["dataProducts"].map((p) => ({
-                dataProductName: p["dataProductName"],
-                description: p["description"],
-                dataProductVersions: p["dataProductVersions"].map((p) => ({
-                  version: p["version"],
-                })),
-              })),
-            })),
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"],
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.["lastModifiedByType"],
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"],
+              publishers: p.properties?.["publishers"].map((p) => {
+                return {
+                  publisherName: p["publisherName"],
+                  dataProducts: p["dataProducts"].map((p) => {
+                    return {
+                      dataProductName: p["dataProductName"],
+                      description: p["description"],
+                      dataProductVersions: p["dataProductVersions"].map((p) => {
+                        return { version: p["version"] };
+                      }),
+                    };
+                  }),
+                };
+              }),
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

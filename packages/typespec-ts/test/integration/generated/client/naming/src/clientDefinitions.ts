@@ -39,19 +39,19 @@ export interface Parameter {
 
 export interface PropertyClient {
   post(
-    options?: PropertyClientParameters,
+    options: PropertyClientParameters,
   ): StreamableMethod<PropertyClient204Response>;
 }
 
 export interface PropertyLanguage {
   post(
-    options?: PropertyLanguageParameters,
+    options: PropertyLanguageParameters,
   ): StreamableMethod<PropertyLanguage204Response>;
 }
 
 export interface PropertyCompatibleWithEncodedName {
   post(
-    options?: PropertyCompatibleWithEncodedNameParameters,
+    options: PropertyCompatibleWithEncodedNameParameters,
   ): StreamableMethod<PropertyCompatibleWithEncodedName204Response>;
 }
 
@@ -66,13 +66,13 @@ export interface HeaderRequest {
 
 export interface ModelClient {
   post(
-    options?: ModelClientParameters,
+    options: ModelClientParameters,
   ): StreamableMethod<ModelClient204Response>;
 }
 
 export interface ModelLanguage {
   post(
-    options?: ModelLanguageParameters,
+    options: ModelLanguageParameters,
   ): StreamableMethod<ModelLanguage204Response>;
 }
 

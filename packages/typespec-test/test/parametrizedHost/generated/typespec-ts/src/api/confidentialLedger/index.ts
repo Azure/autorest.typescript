@@ -41,7 +41,9 @@ export async function _listCollectionsDeserialize(
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => ({ collectionId: p["collectionId"] }));
+    : result.body.map((p) => {
+        return { collectionId: p["collectionId"] };
+      });
 }
 
 /** Collection ids are user-created collections of ledger entries */

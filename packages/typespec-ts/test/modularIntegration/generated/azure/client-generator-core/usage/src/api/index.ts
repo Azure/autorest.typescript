@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { inputToInputOutput, outputToInputOutput } from "./operations.js";
+export {
+  inputToInputOutput,
+  outputToInputOutput,
+  modelInReadOnlyProperty,
+} from "./operations.js";
 export {
   createUsage,
   UsageClientOptions,

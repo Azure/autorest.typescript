@@ -2,14 +2,16 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { InputModel, OutputModel } from "./models/models.js";
+import { InputModel, OutputModel, RoundTripModel } from "./models/models.js";
 import {
   InputToInputOutputOptionalParams,
   OutputToInputOutputOptionalParams,
+  ModelInReadOnlyPropertyOptionalParams,
 } from "./models/options.js";
 import {
   inputToInputOutput,
   outputToInputOutput,
+  modelInReadOnlyProperty,
   createUsage,
   UsageClientOptions,
   UsageContext,
@@ -55,5 +57,28 @@ export class UsageClient {
     options: OutputToInputOutputOptionalParams = { requestOptions: {} },
   ): Promise<OutputModel> {
     return outputToInputOutput(this._client, options);
+  }
+
+  /**
+   * "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+   *
+   * Expected body parameter:
+   * ```json
+   * {
+   * }
+   * ```
+   *
+   * Expected response body:
+   * ```json
+   * {
+   *   "name": <any string>
+   * }
+   * ```
+   */
+  modelInReadOnlyProperty(
+    body: RoundTripModel,
+    options: ModelInReadOnlyPropertyOptionalParams = { requestOptions: {} },
+  ): Promise<RoundTripModel> {
+    return modelInReadOnlyProperty(this._client, body, options);
   }
 }

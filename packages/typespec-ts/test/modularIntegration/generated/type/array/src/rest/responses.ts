@@ -113,3 +113,47 @@ export interface NullableFloatValueGet200Response extends HttpResponse {
 export interface NullableFloatValuePut204Response extends HttpResponse {
   status: "204";
 }
+
+/** The request has succeeded. */
+export interface NullableInt32ValueGet200Response extends HttpResponse {
+  status: "200";
+  body: (number | null)[];
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface NullableInt32ValuePut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface NullableBooleanValueGet200Response extends HttpResponse {
+  status: "200";
+  body: (boolean | null)[];
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface NullableBooleanValuePut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface NullableStringValueGet200Response extends HttpResponse {
+  status: "200";
+  body: (string | null)[];
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface NullableStringValuePut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface NullableModelValueGet200Response extends HttpResponse {
+  status: "200";
+  body: (InnerModelOutput | null)[];
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface NullableModelValuePut204Response extends HttpResponse {
+  status: "204";
+}

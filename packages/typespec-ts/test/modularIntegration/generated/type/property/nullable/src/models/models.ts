@@ -3,6 +3,7 @@
 
 import { uint8ArrayToString } from "@azure/core-util";
 import {
+  CollectionsStringProperty as CollectionsStringPropertyRest,
   CollectionsModelProperty as CollectionsModelPropertyRest,
   InnerModel as InnerModelRest,
   CollectionsByteProperty as CollectionsBytePropertyRest,
@@ -11,6 +12,23 @@ import {
   BytesProperty as BytesPropertyRest,
   StringProperty as StringPropertyRest,
 } from "../rest/index.js";
+
+/** Model with collection string properties */
+export interface CollectionsStringProperty {
+  /** Required property */
+  requiredProperty: string;
+  /** Property */
+  nullableProperty: string[] | null;
+}
+
+export function collectionsStringPropertySerializer(
+  item: CollectionsStringProperty,
+): CollectionsStringPropertyRest {
+  return {
+    requiredProperty: item["requiredProperty"],
+    nullableProperty: item["nullableProperty"],
+  };
+}
 
 /** Model with collection models properties */
 export interface CollectionsModelProperty {
