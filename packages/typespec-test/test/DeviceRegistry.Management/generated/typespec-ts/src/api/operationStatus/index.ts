@@ -57,49 +57,54 @@ export async function _getDeserialize(
     operations:
       result.body["operations"] === undefined
         ? result.body["operations"]
-        : result.body["operations"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            status: p["status"],
-            percentComplete: p["percentComplete"],
-            startTime:
-              p["startTime"] !== undefined
-                ? new Date(p["startTime"])
-                : undefined,
-            endTime:
-              p["endTime"] !== undefined ? new Date(p["endTime"]) : undefined,
-            operations: !p.operations ? undefined : (p.operations as any),
-            error: !p.error
-              ? undefined
-              : {
-                  code: p.error?.["code"],
-                  message: p.error?.["message"],
-                  target: p.error?.["target"],
-                  details:
-                    p.error?.["details"] === undefined
-                      ? p.error?.["details"]
-                      : p.error?.["details"].map((p) => ({
-                          code: p["code"],
-                          message: p["message"],
-                          target: p["target"],
-                          details: !p.details ? undefined : p.details,
-                          additionalInfo:
-                            p["additionalInfo"] === undefined
-                              ? p["additionalInfo"]
-                              : p["additionalInfo"].map((p) => ({
-                                  type: p["type"],
-                                  info: p["info"],
-                                })),
-                        })),
-                  additionalInfo:
-                    p.error?.["additionalInfo"] === undefined
-                      ? p.error?.["additionalInfo"]
-                      : p.error?.["additionalInfo"].map((p) => ({
-                          type: p["type"],
-                          info: p["info"],
-                        })),
-                },
-          })),
+        : result.body["operations"].map((p) => {
+            return {
+              id: p["id"],
+              name: p["name"],
+              status: p["status"],
+              percentComplete: p["percentComplete"],
+              startTime:
+                p["startTime"] !== undefined
+                  ? new Date(p["startTime"])
+                  : undefined,
+              endTime:
+                p["endTime"] !== undefined ? new Date(p["endTime"]) : undefined,
+              operations: !p.operations ? undefined : (p.operations as any),
+              error: !p.error
+                ? undefined
+                : {
+                    code: p.error?.["code"],
+                    message: p.error?.["message"],
+                    target: p.error?.["target"],
+                    details:
+                      p.error?.["details"] === undefined
+                        ? p.error?.["details"]
+                        : p.error?.["details"].map((p) => {
+                            return {
+                              code: p["code"],
+                              message: p["message"],
+                              target: p["target"],
+                              details: !p.details ? undefined : p.details,
+                              additionalInfo:
+                                p["additionalInfo"] === undefined
+                                  ? p["additionalInfo"]
+                                  : p["additionalInfo"].map((p) => {
+                                      return {
+                                        type: p["type"],
+                                        info: p["info"],
+                                      };
+                                    }),
+                            };
+                          }),
+                    additionalInfo:
+                      p.error?.["additionalInfo"] === undefined
+                        ? p.error?.["additionalInfo"]
+                        : p.error?.["additionalInfo"].map((p) => {
+                            return { type: p["type"], info: p["info"] };
+                          }),
+                  },
+            };
+          }),
     error: !result.body.error
       ? undefined
       : {
@@ -109,26 +114,26 @@ export async function _getDeserialize(
           details:
             result.body.error?.["details"] === undefined
               ? result.body.error?.["details"]
-              : result.body.error?.["details"].map((p) => ({
-                  code: p["code"],
-                  message: p["message"],
-                  target: p["target"],
-                  details: !p.details ? undefined : p.details,
-                  additionalInfo:
-                    p["additionalInfo"] === undefined
-                      ? p["additionalInfo"]
-                      : p["additionalInfo"].map((p) => ({
-                          type: p["type"],
-                          info: p["info"],
-                        })),
-                })),
+              : result.body.error?.["details"].map((p) => {
+                  return {
+                    code: p["code"],
+                    message: p["message"],
+                    target: p["target"],
+                    details: !p.details ? undefined : p.details,
+                    additionalInfo:
+                      p["additionalInfo"] === undefined
+                        ? p["additionalInfo"]
+                        : p["additionalInfo"].map((p) => {
+                            return { type: p["type"], info: p["info"] };
+                          }),
+                  };
+                }),
           additionalInfo:
             result.body.error?.["additionalInfo"] === undefined
               ? result.body.error?.["additionalInfo"]
-              : result.body.error?.["additionalInfo"].map((p) => ({
-                  type: p["type"],
-                  info: p["info"],
-                })),
+              : result.body.error?.["additionalInfo"].map((p) => {
+                  return { type: p["type"], info: p["info"] };
+                }),
         },
   };
 }

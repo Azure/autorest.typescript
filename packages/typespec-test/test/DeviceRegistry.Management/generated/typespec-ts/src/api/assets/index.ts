@@ -131,40 +131,45 @@ export async function _getDeserialize(
           dataPoints:
             result.body.properties?.["dataPoints"] === undefined
               ? result.body.properties?.["dataPoints"]
-              : result.body.properties?.["dataPoints"].map((p) => ({
-                  name: p["name"],
-                  dataSource: p["dataSource"],
-                  capabilityId: p["capabilityId"],
-                  observabilityMode: p[
-                    "observabilityMode"
-                  ] as DataPointsObservabilityMode,
-                  dataPointConfiguration: p["dataPointConfiguration"],
-                })),
+              : result.body.properties?.["dataPoints"].map((p) => {
+                  return {
+                    name: p["name"],
+                    dataSource: p["dataSource"],
+                    capabilityId: p["capabilityId"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as DataPointsObservabilityMode,
+                    dataPointConfiguration: p["dataPointConfiguration"],
+                  };
+                }),
           events:
             result.body.properties?.["events"] === undefined
               ? result.body.properties?.["events"]
-              : result.body.properties?.["events"].map((p) => ({
-                  name: p["name"],
-                  eventNotifier: p["eventNotifier"],
-                  capabilityId: p["capabilityId"],
-                  observabilityMode: p[
-                    "observabilityMode"
-                  ] as EventsObservabilityMode,
-                  eventConfiguration: p["eventConfiguration"],
-                })),
+              : result.body.properties?.["events"].map((p) => {
+                  return {
+                    name: p["name"],
+                    eventNotifier: p["eventNotifier"],
+                    capabilityId: p["capabilityId"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as EventsObservabilityMode,
+                    eventConfiguration: p["eventConfiguration"],
+                  };
+                }),
           status: !result.body.properties?.status
             ? undefined
             : {
                 errors:
                   result.body.properties?.status?.["errors"] === undefined
                     ? result.body.properties?.status?.["errors"]
-                    : result.body.properties?.status?.["errors"].map((p) => ({
-                        code: p["code"],
-                        message: p["message"],
-                      })),
+                    : result.body.properties?.status?.["errors"].map((p) => {
+                        return { code: p["code"], message: p["message"] };
+                      }),
                 version: result.body.properties?.status?.["version"],
               },
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
         },
     extendedLocation: {
       type: result.body.extendedLocation["type"],
@@ -292,40 +297,45 @@ export async function _createOrReplaceDeserialize(
           dataPoints:
             result.body.properties?.["dataPoints"] === undefined
               ? result.body.properties?.["dataPoints"]
-              : result.body.properties?.["dataPoints"].map((p) => ({
-                  name: p["name"],
-                  dataSource: p["dataSource"],
-                  capabilityId: p["capabilityId"],
-                  observabilityMode: p[
-                    "observabilityMode"
-                  ] as DataPointsObservabilityMode,
-                  dataPointConfiguration: p["dataPointConfiguration"],
-                })),
+              : result.body.properties?.["dataPoints"].map((p) => {
+                  return {
+                    name: p["name"],
+                    dataSource: p["dataSource"],
+                    capabilityId: p["capabilityId"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as DataPointsObservabilityMode,
+                    dataPointConfiguration: p["dataPointConfiguration"],
+                  };
+                }),
           events:
             result.body.properties?.["events"] === undefined
               ? result.body.properties?.["events"]
-              : result.body.properties?.["events"].map((p) => ({
-                  name: p["name"],
-                  eventNotifier: p["eventNotifier"],
-                  capabilityId: p["capabilityId"],
-                  observabilityMode: p[
-                    "observabilityMode"
-                  ] as EventsObservabilityMode,
-                  eventConfiguration: p["eventConfiguration"],
-                })),
+              : result.body.properties?.["events"].map((p) => {
+                  return {
+                    name: p["name"],
+                    eventNotifier: p["eventNotifier"],
+                    capabilityId: p["capabilityId"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as EventsObservabilityMode,
+                    eventConfiguration: p["eventConfiguration"],
+                  };
+                }),
           status: !result.body.properties?.status
             ? undefined
             : {
                 errors:
                   result.body.properties?.status?.["errors"] === undefined
                     ? result.body.properties?.status?.["errors"]
-                    : result.body.properties?.status?.["errors"].map((p) => ({
-                        code: p["code"],
-                        message: p["message"],
-                      })),
+                    : result.body.properties?.status?.["errors"].map((p) => {
+                        return { code: p["code"], message: p["message"] };
+                      }),
                 version: result.body.properties?.status?.["version"],
               },
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
         },
     extendedLocation: {
       type: result.body.extendedLocation["type"],
@@ -457,40 +467,45 @@ export async function _updateDeserialize(
           dataPoints:
             result.body.properties?.["dataPoints"] === undefined
               ? result.body.properties?.["dataPoints"]
-              : result.body.properties?.["dataPoints"].map((p) => ({
-                  name: p["name"],
-                  dataSource: p["dataSource"],
-                  capabilityId: p["capabilityId"],
-                  observabilityMode: p[
-                    "observabilityMode"
-                  ] as DataPointsObservabilityMode,
-                  dataPointConfiguration: p["dataPointConfiguration"],
-                })),
+              : result.body.properties?.["dataPoints"].map((p) => {
+                  return {
+                    name: p["name"],
+                    dataSource: p["dataSource"],
+                    capabilityId: p["capabilityId"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as DataPointsObservabilityMode,
+                    dataPointConfiguration: p["dataPointConfiguration"],
+                  };
+                }),
           events:
             result.body.properties?.["events"] === undefined
               ? result.body.properties?.["events"]
-              : result.body.properties?.["events"].map((p) => ({
-                  name: p["name"],
-                  eventNotifier: p["eventNotifier"],
-                  capabilityId: p["capabilityId"],
-                  observabilityMode: p[
-                    "observabilityMode"
-                  ] as EventsObservabilityMode,
-                  eventConfiguration: p["eventConfiguration"],
-                })),
+              : result.body.properties?.["events"].map((p) => {
+                  return {
+                    name: p["name"],
+                    eventNotifier: p["eventNotifier"],
+                    capabilityId: p["capabilityId"],
+                    observabilityMode: p[
+                      "observabilityMode"
+                    ] as EventsObservabilityMode,
+                    eventConfiguration: p["eventConfiguration"],
+                  };
+                }),
           status: !result.body.properties?.status
             ? undefined
             : {
                 errors:
                   result.body.properties?.status?.["errors"] === undefined
                     ? result.body.properties?.status?.["errors"]
-                    : result.body.properties?.status?.["errors"].map((p) => ({
-                        code: p["code"],
-                        message: p["message"],
-                      })),
+                    : result.body.properties?.status?.["errors"].map((p) => {
+                        return { code: p["code"], message: p["message"] };
+                      }),
                 version: result.body.properties?.status?.["version"],
               },
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
         },
     extendedLocation: {
       type: result.body.extendedLocation["type"],
@@ -615,97 +630,103 @@ export async function _listByResourceGroupDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      tags: p["tags"],
-      location: p["location"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"] as CreatedByType,
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.[
-              "lastModifiedByType"
-            ] as CreatedByType,
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            uuid: p.properties?.["uuid"],
-            assetType: p.properties?.["assetType"],
-            enabled: p.properties?.["enabled"],
-            externalAssetId: p.properties?.["externalAssetId"],
-            displayName: p.properties?.["displayName"],
-            description: p.properties?.["description"],
-            assetEndpointProfileUri: p.properties?.["assetEndpointProfileUri"],
-            version: p.properties?.["version"],
-            manufacturer: p.properties?.["manufacturer"],
-            manufacturerUri: p.properties?.["manufacturerUri"],
-            model: p.properties?.["model"],
-            productCode: p.properties?.["productCode"],
-            hardwareRevision: p.properties?.["hardwareRevision"],
-            softwareRevision: p.properties?.["softwareRevision"],
-            documentationUri: p.properties?.["documentationUri"],
-            serialNumber: p.properties?.["serialNumber"],
-            attributes: p.properties?.["attributes"],
-            defaultDataPointsConfiguration:
-              p.properties?.["defaultDataPointsConfiguration"],
-            defaultEventsConfiguration:
-              p.properties?.["defaultEventsConfiguration"],
-            dataPoints:
-              p.properties?.["dataPoints"] === undefined
-                ? p.properties?.["dataPoints"]
-                : p.properties?.["dataPoints"].map((p) => ({
-                    name: p["name"],
-                    dataSource: p["dataSource"],
-                    capabilityId: p["capabilityId"],
-                    observabilityMode: p[
-                      "observabilityMode"
-                    ] as DataPointsObservabilityMode,
-                    dataPointConfiguration: p["dataPointConfiguration"],
-                  })),
-            events:
-              p.properties?.["events"] === undefined
-                ? p.properties?.["events"]
-                : p.properties?.["events"].map((p) => ({
-                    name: p["name"],
-                    eventNotifier: p["eventNotifier"],
-                    capabilityId: p["capabilityId"],
-                    observabilityMode: p[
-                      "observabilityMode"
-                    ] as EventsObservabilityMode,
-                    eventConfiguration: p["eventConfiguration"],
-                  })),
-            status: !p.properties?.status
-              ? undefined
-              : {
-                  errors:
-                    p.properties?.status?.["errors"] === undefined
-                      ? p.properties?.status?.["errors"]
-                      : p.properties?.status?.["errors"].map((p) => ({
-                          code: p["code"],
-                          message: p["message"],
-                        })),
-                  version: p.properties?.status?.["version"],
-                },
-            provisioningState: p.properties?.["provisioningState"],
-          },
-      extendedLocation: {
-        type: p.extendedLocation["type"],
-        name: p.extendedLocation["name"],
-      },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              uuid: p.properties?.["uuid"],
+              assetType: p.properties?.["assetType"],
+              enabled: p.properties?.["enabled"],
+              externalAssetId: p.properties?.["externalAssetId"],
+              displayName: p.properties?.["displayName"],
+              description: p.properties?.["description"],
+              assetEndpointProfileUri:
+                p.properties?.["assetEndpointProfileUri"],
+              version: p.properties?.["version"],
+              manufacturer: p.properties?.["manufacturer"],
+              manufacturerUri: p.properties?.["manufacturerUri"],
+              model: p.properties?.["model"],
+              productCode: p.properties?.["productCode"],
+              hardwareRevision: p.properties?.["hardwareRevision"],
+              softwareRevision: p.properties?.["softwareRevision"],
+              documentationUri: p.properties?.["documentationUri"],
+              serialNumber: p.properties?.["serialNumber"],
+              attributes: p.properties?.["attributes"],
+              defaultDataPointsConfiguration:
+                p.properties?.["defaultDataPointsConfiguration"],
+              defaultEventsConfiguration:
+                p.properties?.["defaultEventsConfiguration"],
+              dataPoints:
+                p.properties?.["dataPoints"] === undefined
+                  ? p.properties?.["dataPoints"]
+                  : p.properties?.["dataPoints"].map((p) => {
+                      return {
+                        name: p["name"],
+                        dataSource: p["dataSource"],
+                        capabilityId: p["capabilityId"],
+                        observabilityMode: p[
+                          "observabilityMode"
+                        ] as DataPointsObservabilityMode,
+                        dataPointConfiguration: p["dataPointConfiguration"],
+                      };
+                    }),
+              events:
+                p.properties?.["events"] === undefined
+                  ? p.properties?.["events"]
+                  : p.properties?.["events"].map((p) => {
+                      return {
+                        name: p["name"],
+                        eventNotifier: p["eventNotifier"],
+                        capabilityId: p["capabilityId"],
+                        observabilityMode: p[
+                          "observabilityMode"
+                        ] as EventsObservabilityMode,
+                        eventConfiguration: p["eventConfiguration"],
+                      };
+                    }),
+              status: !p.properties?.status
+                ? undefined
+                : {
+                    errors:
+                      p.properties?.status?.["errors"] === undefined
+                        ? p.properties?.status?.["errors"]
+                        : p.properties?.status?.["errors"].map((p) => {
+                            return { code: p["code"], message: p["message"] };
+                          }),
+                    version: p.properties?.status?.["version"],
+                  },
+              provisioningState: p.properties?.["provisioningState"] as any,
+            },
+        extendedLocation: {
+          type: p.extendedLocation["type"],
+          name: p.extendedLocation["name"],
+        },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -756,97 +777,103 @@ export async function _listBySubscriptionDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      tags: p["tags"],
-      location: p["location"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"] as CreatedByType,
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.[
-              "lastModifiedByType"
-            ] as CreatedByType,
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            uuid: p.properties?.["uuid"],
-            assetType: p.properties?.["assetType"],
-            enabled: p.properties?.["enabled"],
-            externalAssetId: p.properties?.["externalAssetId"],
-            displayName: p.properties?.["displayName"],
-            description: p.properties?.["description"],
-            assetEndpointProfileUri: p.properties?.["assetEndpointProfileUri"],
-            version: p.properties?.["version"],
-            manufacturer: p.properties?.["manufacturer"],
-            manufacturerUri: p.properties?.["manufacturerUri"],
-            model: p.properties?.["model"],
-            productCode: p.properties?.["productCode"],
-            hardwareRevision: p.properties?.["hardwareRevision"],
-            softwareRevision: p.properties?.["softwareRevision"],
-            documentationUri: p.properties?.["documentationUri"],
-            serialNumber: p.properties?.["serialNumber"],
-            attributes: p.properties?.["attributes"],
-            defaultDataPointsConfiguration:
-              p.properties?.["defaultDataPointsConfiguration"],
-            defaultEventsConfiguration:
-              p.properties?.["defaultEventsConfiguration"],
-            dataPoints:
-              p.properties?.["dataPoints"] === undefined
-                ? p.properties?.["dataPoints"]
-                : p.properties?.["dataPoints"].map((p) => ({
-                    name: p["name"],
-                    dataSource: p["dataSource"],
-                    capabilityId: p["capabilityId"],
-                    observabilityMode: p[
-                      "observabilityMode"
-                    ] as DataPointsObservabilityMode,
-                    dataPointConfiguration: p["dataPointConfiguration"],
-                  })),
-            events:
-              p.properties?.["events"] === undefined
-                ? p.properties?.["events"]
-                : p.properties?.["events"].map((p) => ({
-                    name: p["name"],
-                    eventNotifier: p["eventNotifier"],
-                    capabilityId: p["capabilityId"],
-                    observabilityMode: p[
-                      "observabilityMode"
-                    ] as EventsObservabilityMode,
-                    eventConfiguration: p["eventConfiguration"],
-                  })),
-            status: !p.properties?.status
-              ? undefined
-              : {
-                  errors:
-                    p.properties?.status?.["errors"] === undefined
-                      ? p.properties?.status?.["errors"]
-                      : p.properties?.status?.["errors"].map((p) => ({
-                          code: p["code"],
-                          message: p["message"],
-                        })),
-                  version: p.properties?.status?.["version"],
-                },
-            provisioningState: p.properties?.["provisioningState"],
-          },
-      extendedLocation: {
-        type: p.extendedLocation["type"],
-        name: p.extendedLocation["name"],
-      },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              uuid: p.properties?.["uuid"],
+              assetType: p.properties?.["assetType"],
+              enabled: p.properties?.["enabled"],
+              externalAssetId: p.properties?.["externalAssetId"],
+              displayName: p.properties?.["displayName"],
+              description: p.properties?.["description"],
+              assetEndpointProfileUri:
+                p.properties?.["assetEndpointProfileUri"],
+              version: p.properties?.["version"],
+              manufacturer: p.properties?.["manufacturer"],
+              manufacturerUri: p.properties?.["manufacturerUri"],
+              model: p.properties?.["model"],
+              productCode: p.properties?.["productCode"],
+              hardwareRevision: p.properties?.["hardwareRevision"],
+              softwareRevision: p.properties?.["softwareRevision"],
+              documentationUri: p.properties?.["documentationUri"],
+              serialNumber: p.properties?.["serialNumber"],
+              attributes: p.properties?.["attributes"],
+              defaultDataPointsConfiguration:
+                p.properties?.["defaultDataPointsConfiguration"],
+              defaultEventsConfiguration:
+                p.properties?.["defaultEventsConfiguration"],
+              dataPoints:
+                p.properties?.["dataPoints"] === undefined
+                  ? p.properties?.["dataPoints"]
+                  : p.properties?.["dataPoints"].map((p) => {
+                      return {
+                        name: p["name"],
+                        dataSource: p["dataSource"],
+                        capabilityId: p["capabilityId"],
+                        observabilityMode: p[
+                          "observabilityMode"
+                        ] as DataPointsObservabilityMode,
+                        dataPointConfiguration: p["dataPointConfiguration"],
+                      };
+                    }),
+              events:
+                p.properties?.["events"] === undefined
+                  ? p.properties?.["events"]
+                  : p.properties?.["events"].map((p) => {
+                      return {
+                        name: p["name"],
+                        eventNotifier: p["eventNotifier"],
+                        capabilityId: p["capabilityId"],
+                        observabilityMode: p[
+                          "observabilityMode"
+                        ] as EventsObservabilityMode,
+                        eventConfiguration: p["eventConfiguration"],
+                      };
+                    }),
+              status: !p.properties?.status
+                ? undefined
+                : {
+                    errors:
+                      p.properties?.status?.["errors"] === undefined
+                        ? p.properties?.status?.["errors"]
+                        : p.properties?.status?.["errors"].map((p) => {
+                            return { code: p["code"], message: p["message"] };
+                          }),
+                    version: p.properties?.status?.["version"],
+                  },
+              provisioningState: p.properties?.["provisioningState"] as any,
+            },
+        extendedLocation: {
+          type: p.extendedLocation["type"],
+          name: p.extendedLocation["name"],
+        },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

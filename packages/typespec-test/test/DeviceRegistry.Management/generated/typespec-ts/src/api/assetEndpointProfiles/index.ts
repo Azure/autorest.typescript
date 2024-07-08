@@ -144,15 +144,19 @@ export async function _getDeserialize(
                 ownCertificates:
                   result.body.properties?.transportAuthentication?.[
                     "ownCertificates"
-                  ].map((p) => ({
-                    certThumbprint: p["certThumbprint"],
-                    certSecretReference: p["certSecretReference"],
-                    certPasswordReference: p["certPasswordReference"],
-                  })),
+                  ].map((p) => {
+                    return {
+                      certThumbprint: p["certThumbprint"],
+                      certSecretReference: p["certSecretReference"],
+                      certPasswordReference: p["certPasswordReference"],
+                    };
+                  }),
               },
           additionalConfiguration:
             result.body.properties?.["additionalConfiguration"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
         },
     extendedLocation: {
       type: result.body.extendedLocation["type"],
@@ -292,15 +296,19 @@ export async function _createOrReplaceDeserialize(
                 ownCertificates:
                   result.body.properties?.transportAuthentication?.[
                     "ownCertificates"
-                  ].map((p) => ({
-                    certThumbprint: p["certThumbprint"],
-                    certSecretReference: p["certSecretReference"],
-                    certPasswordReference: p["certPasswordReference"],
-                  })),
+                  ].map((p) => {
+                    return {
+                      certThumbprint: p["certThumbprint"],
+                      certSecretReference: p["certSecretReference"],
+                      certPasswordReference: p["certPasswordReference"],
+                    };
+                  }),
               },
           additionalConfiguration:
             result.body.properties?.["additionalConfiguration"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
         },
     extendedLocation: {
       type: result.body.extendedLocation["type"],
@@ -446,15 +454,19 @@ export async function _updateDeserialize(
                 ownCertificates:
                   result.body.properties?.transportAuthentication?.[
                     "ownCertificates"
-                  ].map((p) => ({
-                    certThumbprint: p["certThumbprint"],
-                    certSecretReference: p["certSecretReference"],
-                    certPasswordReference: p["certPasswordReference"],
-                  })),
+                  ].map((p) => {
+                    return {
+                      certThumbprint: p["certThumbprint"],
+                      certSecretReference: p["certSecretReference"],
+                      certPasswordReference: p["certPasswordReference"],
+                    };
+                  }),
               },
           additionalConfiguration:
             result.body.properties?.["additionalConfiguration"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
         },
     extendedLocation: {
       type: result.body.extendedLocation["type"],
@@ -581,85 +593,90 @@ export async function _listByResourceGroupDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      tags: p["tags"],
-      location: p["location"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"] as CreatedByType,
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.[
-              "lastModifiedByType"
-            ] as CreatedByType,
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            uuid: p.properties?.["uuid"],
-            targetAddress: p.properties?.["targetAddress"],
-            userAuthentication: !p.properties?.userAuthentication
-              ? undefined
-              : {
-                  mode: p.properties?.userAuthentication?.[
-                    "mode"
-                  ] as UserAuthenticationMode,
-                  usernamePasswordCredentials: !p.properties?.userAuthentication
-                    ?.usernamePasswordCredentials
-                    ? undefined
-                    : {
-                        usernameReference:
-                          p.properties?.userAuthentication
-                            ?.usernamePasswordCredentials?.[
-                            "usernameReference"
-                          ],
-                        passwordReference:
-                          p.properties?.userAuthentication
-                            ?.usernamePasswordCredentials?.[
-                            "passwordReference"
-                          ],
-                      },
-                  x509Credentials: !p.properties?.userAuthentication
-                    ?.x509Credentials
-                    ? undefined
-                    : {
-                        certificateReference:
-                          p.properties?.userAuthentication?.x509Credentials?.[
-                            "certificateReference"
-                          ],
-                      },
-                },
-            transportAuthentication: !p.properties?.transportAuthentication
-              ? undefined
-              : {
-                  ownCertificates: p.properties?.transportAuthentication?.[
-                    "ownCertificates"
-                  ].map((p) => ({
-                    certThumbprint: p["certThumbprint"],
-                    certSecretReference: p["certSecretReference"],
-                    certPasswordReference: p["certPasswordReference"],
-                  })),
-                },
-            additionalConfiguration: p.properties?.["additionalConfiguration"],
-            provisioningState: p.properties?.["provisioningState"],
-          },
-      extendedLocation: {
-        type: p.extendedLocation["type"],
-        name: p.extendedLocation["name"],
-      },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              uuid: p.properties?.["uuid"],
+              targetAddress: p.properties?.["targetAddress"],
+              userAuthentication: !p.properties?.userAuthentication
+                ? undefined
+                : {
+                    mode: p.properties?.userAuthentication?.[
+                      "mode"
+                    ] as UserAuthenticationMode,
+                    usernamePasswordCredentials: !p.properties
+                      ?.userAuthentication?.usernamePasswordCredentials
+                      ? undefined
+                      : {
+                          usernameReference:
+                            p.properties?.userAuthentication
+                              ?.usernamePasswordCredentials?.[
+                              "usernameReference"
+                            ],
+                          passwordReference:
+                            p.properties?.userAuthentication
+                              ?.usernamePasswordCredentials?.[
+                              "passwordReference"
+                            ],
+                        },
+                    x509Credentials: !p.properties?.userAuthentication
+                      ?.x509Credentials
+                      ? undefined
+                      : {
+                          certificateReference:
+                            p.properties?.userAuthentication?.x509Credentials?.[
+                              "certificateReference"
+                            ],
+                        },
+                  },
+              transportAuthentication: !p.properties?.transportAuthentication
+                ? undefined
+                : {
+                    ownCertificates: p.properties?.transportAuthentication?.[
+                      "ownCertificates"
+                    ].map((p) => {
+                      return {
+                        certThumbprint: p["certThumbprint"],
+                        certSecretReference: p["certSecretReference"],
+                        certPasswordReference: p["certPasswordReference"],
+                      };
+                    }),
+                  },
+              additionalConfiguration:
+                p.properties?.["additionalConfiguration"],
+              provisioningState: p.properties?.["provisioningState"] as any,
+            },
+        extendedLocation: {
+          type: p.extendedLocation["type"],
+          name: p.extendedLocation["name"],
+        },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -715,85 +732,90 @@ export async function _listBySubscriptionDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      tags: p["tags"],
-      location: p["location"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"] as CreatedByType,
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.[
-              "lastModifiedByType"
-            ] as CreatedByType,
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            uuid: p.properties?.["uuid"],
-            targetAddress: p.properties?.["targetAddress"],
-            userAuthentication: !p.properties?.userAuthentication
-              ? undefined
-              : {
-                  mode: p.properties?.userAuthentication?.[
-                    "mode"
-                  ] as UserAuthenticationMode,
-                  usernamePasswordCredentials: !p.properties?.userAuthentication
-                    ?.usernamePasswordCredentials
-                    ? undefined
-                    : {
-                        usernameReference:
-                          p.properties?.userAuthentication
-                            ?.usernamePasswordCredentials?.[
-                            "usernameReference"
-                          ],
-                        passwordReference:
-                          p.properties?.userAuthentication
-                            ?.usernamePasswordCredentials?.[
-                            "passwordReference"
-                          ],
-                      },
-                  x509Credentials: !p.properties?.userAuthentication
-                    ?.x509Credentials
-                    ? undefined
-                    : {
-                        certificateReference:
-                          p.properties?.userAuthentication?.x509Credentials?.[
-                            "certificateReference"
-                          ],
-                      },
-                },
-            transportAuthentication: !p.properties?.transportAuthentication
-              ? undefined
-              : {
-                  ownCertificates: p.properties?.transportAuthentication?.[
-                    "ownCertificates"
-                  ].map((p) => ({
-                    certThumbprint: p["certThumbprint"],
-                    certSecretReference: p["certSecretReference"],
-                    certPasswordReference: p["certPasswordReference"],
-                  })),
-                },
-            additionalConfiguration: p.properties?.["additionalConfiguration"],
-            provisioningState: p.properties?.["provisioningState"],
-          },
-      extendedLocation: {
-        type: p.extendedLocation["type"],
-        name: p.extendedLocation["name"],
-      },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              uuid: p.properties?.["uuid"],
+              targetAddress: p.properties?.["targetAddress"],
+              userAuthentication: !p.properties?.userAuthentication
+                ? undefined
+                : {
+                    mode: p.properties?.userAuthentication?.[
+                      "mode"
+                    ] as UserAuthenticationMode,
+                    usernamePasswordCredentials: !p.properties
+                      ?.userAuthentication?.usernamePasswordCredentials
+                      ? undefined
+                      : {
+                          usernameReference:
+                            p.properties?.userAuthentication
+                              ?.usernamePasswordCredentials?.[
+                              "usernameReference"
+                            ],
+                          passwordReference:
+                            p.properties?.userAuthentication
+                              ?.usernamePasswordCredentials?.[
+                              "passwordReference"
+                            ],
+                        },
+                    x509Credentials: !p.properties?.userAuthentication
+                      ?.x509Credentials
+                      ? undefined
+                      : {
+                          certificateReference:
+                            p.properties?.userAuthentication?.x509Credentials?.[
+                              "certificateReference"
+                            ],
+                        },
+                  },
+              transportAuthentication: !p.properties?.transportAuthentication
+                ? undefined
+                : {
+                    ownCertificates: p.properties?.transportAuthentication?.[
+                      "ownCertificates"
+                    ].map((p) => {
+                      return {
+                        certThumbprint: p["certThumbprint"],
+                        certSecretReference: p["certSecretReference"],
+                        certPasswordReference: p["certPasswordReference"],
+                      };
+                    }),
+                  },
+              additionalConfiguration:
+                p.properties?.["additionalConfiguration"],
+              provisioningState: p.properties?.["provisioningState"] as any,
+            },
+        extendedLocation: {
+          type: p.extendedLocation["type"],
+          name: p.extendedLocation["name"],
+        },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

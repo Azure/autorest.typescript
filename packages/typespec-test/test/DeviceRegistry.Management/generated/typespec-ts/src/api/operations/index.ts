@@ -39,20 +39,22 @@ export async function _listDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      name: p["name"],
-      isDataAction: p["isDataAction"],
-      display: !p.display
-        ? undefined
-        : {
-            provider: p.display?.["provider"],
-            resource: p.display?.["resource"],
-            operation: p.display?.["operation"],
-            description: p.display?.["description"],
-          },
-      origin: p["origin"] as Origin,
-      actionType: p["actionType"] as ActionType,
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        name: p["name"],
+        isDataAction: p["isDataAction"],
+        display: !p.display
+          ? undefined
+          : {
+              provider: p.display?.["provider"],
+              resource: p.display?.["resource"],
+              operation: p.display?.["operation"],
+              description: p.display?.["description"],
+            },
+        origin: p["origin"] as Origin,
+        actionType: p["actionType"] as ActionType,
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
