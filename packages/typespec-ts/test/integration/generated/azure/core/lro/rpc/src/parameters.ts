@@ -5,7 +5,8 @@ import { RequestParameters } from "@azure-rest/core-client";
 import { GenerationOptions } from "./models.js";
 
 export interface LongRunningRpcBodyParam {
-  body?: GenerationOptions;
+  /** The body parameter. */
+  body: GenerationOptions;
 }
 
 export type LongRunningRpcParameters = LongRunningRpcBodyParam &

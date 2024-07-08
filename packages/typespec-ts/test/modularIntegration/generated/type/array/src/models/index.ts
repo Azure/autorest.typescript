@@ -23,4 +23,12 @@ export {
   ModelValuePutOptionalParams,
   NullableFloatValueGetOptionalParams,
   NullableFloatValuePutOptionalParams,
+  NullableInt32ValueGetOptionalParams,
+  NullableInt32ValuePutOptionalParams,
+  NullableBooleanValueGetOptionalParams,
+  NullableBooleanValuePutOptionalParams,
+  NullableStringValueGetOptionalParams,
+  NullableStringValuePutOptionalParams,
+  NullableModelValueGetOptionalParams,
+  NullableModelValuePutOptionalParams,
 } from "./options.js";

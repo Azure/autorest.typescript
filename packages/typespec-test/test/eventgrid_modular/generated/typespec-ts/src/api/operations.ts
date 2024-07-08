@@ -198,28 +198,32 @@ export async function _receiveCloudEventsDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      brokerProperties: {
-        lockToken: p.brokerProperties["lockToken"],
-        deliveryCount: p.brokerProperties["deliveryCount"],
-      },
-      event: {
-        id: p.event["id"],
-        source: p.event["source"],
-        data: p.event["data"],
-        dataBase64:
-          typeof p.event["data_base64"] === "string"
-            ? stringToUint8Array(p.event["data_base64"], "base64")
-            : p.event["data_base64"],
-        type: p.event["type"],
-        time:
-          p.event["time"] !== undefined ? new Date(p.event["time"]) : undefined,
-        specversion: p.event["specversion"],
-        dataschema: p.event["dataschema"],
-        datacontenttype: p.event["datacontenttype"],
-        subject: p.event["subject"],
-      },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        brokerProperties: {
+          lockToken: p.brokerProperties["lockToken"],
+          deliveryCount: p.brokerProperties["deliveryCount"],
+        },
+        event: {
+          id: p.event["id"],
+          source: p.event["source"],
+          data: p.event["data"],
+          dataBase64:
+            typeof p.event["data_base64"] === "string"
+              ? stringToUint8Array(p.event["data_base64"], "base64")
+              : p.event["data_base64"],
+          type: p.event["type"],
+          time:
+            p.event["time"] !== undefined
+              ? new Date(p.event["time"])
+              : undefined,
+          specversion: p.event["specversion"],
+          dataschema: p.event["dataschema"],
+          datacontenttype: p.event["datacontenttype"],
+          subject: p.event["subject"],
+        },
+      };
+    }),
   };
 }
 
@@ -272,11 +276,13 @@ export async function _acknowledgeCloudEventsDeserialize(
   }
 
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => ({
-      lockToken: p["lockToken"],
-      errorCode: p["errorCode"],
-      errorDescription: p["errorDescription"],
-    })),
+    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+      return {
+        lockToken: p["lockToken"],
+        errorCode: p["errorCode"],
+        errorDescription: p["errorDescription"],
+      };
+    }),
     succeededLockTokens: result.body["succeededLockTokens"],
   };
 }
@@ -330,11 +336,13 @@ export async function _releaseCloudEventsDeserialize(
   }
 
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => ({
-      lockToken: p["lockToken"],
-      errorCode: p["errorCode"],
-      errorDescription: p["errorDescription"],
-    })),
+    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+      return {
+        lockToken: p["lockToken"],
+        errorCode: p["errorCode"],
+        errorDescription: p["errorDescription"],
+      };
+    }),
     succeededLockTokens: result.body["succeededLockTokens"],
   };
 }
@@ -388,11 +396,13 @@ export async function _rejectCloudEventsDeserialize(
   }
 
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => ({
-      lockToken: p["lockToken"],
-      errorCode: p["errorCode"],
-      errorDescription: p["errorDescription"],
-    })),
+    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+      return {
+        lockToken: p["lockToken"],
+        errorCode: p["errorCode"],
+        errorDescription: p["errorDescription"],
+      };
+    }),
     succeededLockTokens: result.body["succeededLockTokens"],
   };
 }

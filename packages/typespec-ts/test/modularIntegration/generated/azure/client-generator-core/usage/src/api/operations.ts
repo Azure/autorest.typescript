@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { InputModel, OutputModel } from "../models/models.js";
+import { InputModel, OutputModel, RoundTripModel } from "../models/models.js";
 import {
   InputToInputOutput204Response,
+  ModelInReadOnlyProperty200Response,
   OutputToInputOutput200Response,
   UsageContext as Client,
 } from "../rest/index.js";
@@ -15,6 +16,7 @@ import {
 import {
   InputToInputOutputOptionalParams,
   OutputToInputOutputOptionalParams,
+  ModelInReadOnlyPropertyOptionalParams,
 } from "../models/options.js";
 
 export function _inputToInputOutputSend(
@@ -92,4 +94,51 @@ export async function outputToInputOutput(
 ): Promise<OutputModel> {
   const result = await _outputToInputOutputSend(context, options);
   return _outputToInputOutputDeserialize(result);
+}
+
+export function _modelInReadOnlyPropertySend(
+  context: Client,
+  body: RoundTripModel,
+  options: ModelInReadOnlyPropertyOptionalParams = { requestOptions: {} },
+): StreamableMethod<ModelInReadOnlyProperty200Response> {
+  return context
+    .path("/azure/client-generator-core/usage/modelInReadOnlyProperty")
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
+}
+
+export async function _modelInReadOnlyPropertyDeserialize(
+  result: ModelInReadOnlyProperty200Response,
+): Promise<RoundTripModel> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
+  return {
+    result: { name: result.body.result["name"] },
+  };
+}
+
+/**
+ * "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+ *
+ * Expected body parameter:
+ * ```json
+ * {
+ * }
+ * ```
+ *
+ * Expected response body:
+ * ```json
+ * {
+ *   "name": <any string>
+ * }
+ * ```
+ */
+export async function modelInReadOnlyProperty(
+  context: Client,
+  body: RoundTripModel,
+  options: ModelInReadOnlyPropertyOptionalParams = { requestOptions: {} },
+): Promise<RoundTripModel> {
+  const result = await _modelInReadOnlyPropertySend(context, body, options);
+  return _modelInReadOnlyPropertyDeserialize(result);
 }

@@ -52,17 +52,19 @@ export async function _createStreamingDeserialize(
   }
 
   return {
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      delta: {
-        content: p.delta["content"],
-        role: p.delta["role"],
-        sessionState: p.delta["session_state"],
-      },
-      sessionState: p["session_state"],
-      context: p["context"],
-      finishReason: p["finish_reason"],
-    })),
+    choices: result.body["choices"].map((p) => {
+      return {
+        index: p["index"],
+        delta: {
+          content: p.delta["content"],
+          role: p.delta["role"],
+          sessionState: p.delta["session_state"],
+        },
+        sessionState: p["session_state"],
+        context: p["context"],
+        finishReason: p["finish_reason"],
+      };
+    }),
   };
 }
 
@@ -104,17 +106,19 @@ export async function _createDeserialize(
   }
 
   return {
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      message: {
-        content: p.message["content"],
-        role: p.message["role"],
-        sessionState: p.message["session_state"],
-      },
-      sessionState: p["session_state"],
-      context: p["context"],
-      finishReason: p["finish_reason"],
-    })),
+    choices: result.body["choices"].map((p) => {
+      return {
+        index: p["index"],
+        message: {
+          content: p.message["content"],
+          role: p.message["role"],
+          sessionState: p.message["session_state"],
+        },
+        sessionState: p["session_state"],
+        context: p["context"],
+        finishReason: p["finish_reason"],
+      };
+    }),
   };
 }
 

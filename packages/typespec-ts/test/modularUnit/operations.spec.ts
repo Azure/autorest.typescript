@@ -554,29 +554,25 @@ describe("operations", () => {
             optionalBars:
               result.body["optionalBars"] === undefined
                 ? result.body["optionalBars"]
-                : result.body["optionalBars"].map((p) => ({
-                    prop1: p["prop1"],
-                    prop2: p["prop2"],
-                  })),
-            requiredBars: result.body["requiredBars"].map((p) => ({
-              prop1: p["prop1"],
-              prop2: p["prop2"],
-            })),
+                : result.body["optionalBars"].map((p) => {
+                             return { prop1: p["prop1"], prop2: p["prop2"] };
+                           }),
+            requiredBars: result.body["requiredBars"].map((p) => {
+                   return { prop1: p["prop1"], prop2: p["prop2"] };
+                 }),
             nullableBars:
               result.body["nullableBars"] === undefined ||
               result.body["nullableBars"] === null
                 ? result.body["nullableBars"]
-                : result.body["nullableBars"].map((p) => ({
-                    prop1: p["prop1"],
-                    prop2: p["prop2"],
-                  })),
+                : result.body["nullableBars"].map((p) => {
+                             return { prop1: p["prop1"], prop2: p["prop2"] };
+                           }),
             nullableRequiredBars:
               result.body["nullableRequiredBars"] === null
                 ? result.body["nullableRequiredBars"]
-                : result.body["nullableRequiredBars"].map((p) => ({
-                    prop1: p["prop1"],
-                    prop2: p["prop2"],
-                  })),
+                : result.body["nullableRequiredBars"].map((p) => {
+                             return { prop1: p["prop1"], prop2: p["prop2"] };
+                           }),
           };
         }
         

@@ -22,6 +22,14 @@ import {
   ModelValuePutParameters,
   NullableFloatValueGetParameters,
   NullableFloatValuePutParameters,
+  NullableInt32ValueGetParameters,
+  NullableInt32ValuePutParameters,
+  NullableBooleanValueGetParameters,
+  NullableBooleanValuePutParameters,
+  NullableStringValueGetParameters,
+  NullableStringValuePutParameters,
+  NullableModelValueGetParameters,
+  NullableModelValuePutParameters,
 } from "./parameters.js";
 import {
   Int32ValueGet200Response,
@@ -44,6 +52,14 @@ import {
   ModelValuePut204Response,
   NullableFloatValueGet200Response,
   NullableFloatValuePut204Response,
+  NullableInt32ValueGet200Response,
+  NullableInt32ValuePut204Response,
+  NullableBooleanValueGet200Response,
+  NullableBooleanValuePut204Response,
+  NullableStringValueGet200Response,
+  NullableStringValuePut204Response,
+  NullableModelValueGet200Response,
+  NullableModelValuePut204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -137,6 +153,42 @@ export interface NullableFloatValueGet {
   ): StreamableMethod<NullableFloatValuePut204Response>;
 }
 
+export interface NullableInt32ValueGet {
+  get(
+    options?: NullableInt32ValueGetParameters,
+  ): StreamableMethod<NullableInt32ValueGet200Response>;
+  put(
+    options: NullableInt32ValuePutParameters,
+  ): StreamableMethod<NullableInt32ValuePut204Response>;
+}
+
+export interface NullableBooleanValueGet {
+  get(
+    options?: NullableBooleanValueGetParameters,
+  ): StreamableMethod<NullableBooleanValueGet200Response>;
+  put(
+    options: NullableBooleanValuePutParameters,
+  ): StreamableMethod<NullableBooleanValuePut204Response>;
+}
+
+export interface NullableStringValueGet {
+  get(
+    options?: NullableStringValueGetParameters,
+  ): StreamableMethod<NullableStringValueGet200Response>;
+  put(
+    options: NullableStringValuePutParameters,
+  ): StreamableMethod<NullableStringValuePut204Response>;
+}
+
+export interface NullableModelValueGet {
+  get(
+    options?: NullableModelValueGetParameters,
+  ): StreamableMethod<NullableModelValueGet200Response>;
+  put(
+    options: NullableModelValuePutParameters,
+  ): StreamableMethod<NullableModelValuePut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/type/array/int32' has methods for the following verbs: get, put */
   (path: "/type/array/int32"): Int32ValueGet;
@@ -158,6 +210,14 @@ export interface Routes {
   (path: "/type/array/model"): ModelValueGet;
   /** Resource for '/type/array/nullable-float' has methods for the following verbs: get, put */
   (path: "/type/array/nullable-float"): NullableFloatValueGet;
+  /** Resource for '/type/array/nullable-int32' has methods for the following verbs: get, put */
+  (path: "/type/array/nullable-int32"): NullableInt32ValueGet;
+  /** Resource for '/type/array/nullable-boolean' has methods for the following verbs: get, put */
+  (path: "/type/array/nullable-boolean"): NullableBooleanValueGet;
+  /** Resource for '/type/array/nullable-string' has methods for the following verbs: get, put */
+  (path: "/type/array/nullable-string"): NullableStringValueGet;
+  /** Resource for '/type/array/nullable-model' has methods for the following verbs: get, put */
+  (path: "/type/array/nullable-model"): NullableModelValueGet;
 }
 
 export type ArrayContext = Client & {

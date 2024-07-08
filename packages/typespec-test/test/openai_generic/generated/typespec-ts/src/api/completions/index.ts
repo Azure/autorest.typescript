@@ -65,20 +65,22 @@ export async function _createDeserialize(
     object: result.body["object"],
     created: new Date(result.body["created"]),
     model: result.body["model"],
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      text: p["text"],
-      logprobs:
-        p.logprobs === null
-          ? null
-          : {
-              tokens: p.logprobs["tokens"],
-              tokenLogprobs: p.logprobs["token_logprobs"],
-              topLogprobs: p.logprobs["top_logprobs"],
-              textOffset: p.logprobs["text_offset"],
-            },
-      finishReason: p["finish_reason"],
-    })),
+    choices: result.body["choices"].map((p) => {
+      return {
+        index: p["index"],
+        text: p["text"],
+        logprobs:
+          p.logprobs === null
+            ? null
+            : {
+                tokens: p.logprobs["tokens"],
+                tokenLogprobs: p.logprobs["token_logprobs"],
+                topLogprobs: p.logprobs["top_logprobs"],
+                textOffset: p.logprobs["text_offset"],
+              },
+        finishReason: p["finish_reason"],
+      };
+    }),
     usage: !result.body.usage
       ? undefined
       : {

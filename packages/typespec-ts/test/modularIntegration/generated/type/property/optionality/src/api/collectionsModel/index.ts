@@ -44,7 +44,9 @@ export async function _getAllDeserialize(
     property:
       result.body["property"] === undefined
         ? result.body["property"]
-        : result.body["property"].map((p) => ({ property: p["property"] })),
+        : result.body["property"].map((p) => {
+            return { property: p["property"] };
+          }),
   };
 }
 
@@ -77,7 +79,9 @@ export async function _getDefaultDeserialize(
     property:
       result.body["property"] === undefined
         ? result.body["property"]
-        : result.body["property"].map((p) => ({ property: p["property"] })),
+        : result.body["property"].map((p) => {
+            return { property: p["property"] };
+          }),
   };
 }
 

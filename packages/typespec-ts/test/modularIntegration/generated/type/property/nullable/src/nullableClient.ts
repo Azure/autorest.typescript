@@ -24,6 +24,10 @@ import {
   CollectionsModelOperations,
 } from "./classic/collectionsModel/index.js";
 import {
+  getCollectionsStringOperations,
+  CollectionsStringOperations,
+} from "./classic/collectionsString/index.js";
+import {
   createNullable,
   NullableClientOptions,
   NullableContext,
@@ -46,6 +50,7 @@ export class NullableClient {
     this.duration = getDurationOperations(this._client);
     this.collectionsByte = getCollectionsByteOperations(this._client);
     this.collectionsModel = getCollectionsModelOperations(this._client);
+    this.collectionsString = getCollectionsStringOperations(this._client);
   }
 
   /** The operation groups for String */
@@ -60,4 +65,6 @@ export class NullableClient {
   public readonly collectionsByte: CollectionsByteOperations;
   /** The operation groups for CollectionsModel */
   public readonly collectionsModel: CollectionsModelOperations;
+  /** The operation groups for CollectionsString */
+  public readonly collectionsString: CollectionsStringOperations;
 }
