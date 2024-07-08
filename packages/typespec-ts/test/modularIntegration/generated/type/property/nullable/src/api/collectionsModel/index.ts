@@ -45,9 +45,9 @@ export async function _getNonNullDeserialize(
     nullableProperty:
       result.body["nullableProperty"] === null
         ? result.body["nullableProperty"]
-        : result.body["nullableProperty"].map((p) => ({
-            property: p["property"],
-          })),
+        : result.body["nullableProperty"].map((p) => {
+            return { property: p["property"] };
+          }),
   };
 }
 
@@ -81,9 +81,9 @@ export async function _getNullDeserialize(
     nullableProperty:
       result.body["nullableProperty"] === null
         ? result.body["nullableProperty"]
-        : result.body["nullableProperty"].map((p) => ({
-            property: p["property"],
-          })),
+        : result.body["nullableProperty"].map((p) => {
+            return { property: p["property"] };
+          }),
   };
 }
 

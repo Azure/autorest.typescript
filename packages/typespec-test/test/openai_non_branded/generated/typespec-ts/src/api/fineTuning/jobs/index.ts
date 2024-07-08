@@ -131,29 +131,32 @@ export async function _listDeserialize(
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      finishedAt: p["finished_at"] === null ? null : new Date(p["finished_at"]),
-      model: p["model"],
-      fineTunedModel: p["fine_tuned_model"],
-      organizationId: p["organization_id"],
-      status: p["status"],
-      hyperparameters: { nEpochs: p.hyperparameters["n_epochs"] },
-      trainingFile: p["training_file"],
-      validationFile: p["validation_file"],
-      resultFiles: p["result_files"],
-      trainedTokens: p["trained_tokens"],
-      error:
-        p.error === null
-          ? null
-          : {
-              message: p.error["message"],
-              code: p.error["code"],
-              param: p.error["param"],
-            },
-    })),
+    data: result.body["data"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        createdAt: new Date(p["created_at"]),
+        finishedAt:
+          p["finished_at"] === null ? null : new Date(p["finished_at"]),
+        model: p["model"],
+        fineTunedModel: p["fine_tuned_model"],
+        organizationId: p["organization_id"],
+        status: p["status"],
+        hyperparameters: { nEpochs: p.hyperparameters["n_epochs"] },
+        trainingFile: p["training_file"],
+        validationFile: p["validation_file"],
+        resultFiles: p["result_files"],
+        trainedTokens: p["trained_tokens"],
+        error:
+          p.error === null
+            ? null
+            : {
+                message: p.error["message"],
+                code: p.error["code"],
+                param: p.error["param"],
+              },
+      };
+    }),
     hasMore: result.body["has_more"],
   };
 }
@@ -250,13 +253,15 @@ export async function _listEventsDeserialize(
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    data: result.body["data"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        createdAt: new Date(p["created_at"]),
+        level: p["level"],
+        message: p["message"],
+      };
+    }),
   };
 }
 

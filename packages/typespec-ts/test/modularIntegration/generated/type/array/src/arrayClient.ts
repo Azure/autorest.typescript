@@ -42,6 +42,22 @@ import {
   getNullableFloatValueOperations,
   NullableFloatValueOperations,
 } from "./classic/nullableFloatValue/index.js";
+import {
+  getNullableInt32ValueOperations,
+  NullableInt32ValueOperations,
+} from "./classic/nullableInt32Value/index.js";
+import {
+  getNullableBooleanValueOperations,
+  NullableBooleanValueOperations,
+} from "./classic/nullableBooleanValue/index.js";
+import {
+  getNullableStringValueOperations,
+  NullableStringValueOperations,
+} from "./classic/nullableStringValue/index.js";
+import {
+  getNullableModelValueOperations,
+  NullableModelValueOperations,
+} from "./classic/nullableModelValue/index.js";
 import { createArray, ArrayClientOptions, ArrayContext } from "./api/index.js";
 
 export { ArrayClientOptions } from "./api/arrayContext.js";
@@ -65,6 +81,10 @@ export class ArrayClient {
     this.unknownValue = getUnknownValueOperations(this._client);
     this.modelValue = getModelValueOperations(this._client);
     this.nullableFloatValue = getNullableFloatValueOperations(this._client);
+    this.nullableInt32Value = getNullableInt32ValueOperations(this._client);
+    this.nullableBooleanValue = getNullableBooleanValueOperations(this._client);
+    this.nullableStringValue = getNullableStringValueOperations(this._client);
+    this.nullableModelValue = getNullableModelValueOperations(this._client);
   }
 
   /** The operation groups for Int32Value */
@@ -87,4 +107,12 @@ export class ArrayClient {
   public readonly modelValue: ModelValueOperations;
   /** The operation groups for NullableFloatValue */
   public readonly nullableFloatValue: NullableFloatValueOperations;
+  /** The operation groups for NullableInt32Value */
+  public readonly nullableInt32Value: NullableInt32ValueOperations;
+  /** The operation groups for NullableBooleanValue */
+  public readonly nullableBooleanValue: NullableBooleanValueOperations;
+  /** The operation groups for NullableStringValue */
+  public readonly nullableStringValue: NullableStringValueOperations;
+  /** The operation groups for NullableModelValue */
+  public readonly nullableModelValue: NullableModelValueOperations;
 }

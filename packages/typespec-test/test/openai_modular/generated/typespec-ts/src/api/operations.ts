@@ -174,18 +174,20 @@ export async function _getAudioTranscriptionAsResponseObjectDeserialize(
     segments:
       result.body["segments"] === undefined
         ? result.body["segments"]
-        : result.body["segments"].map((p) => ({
-            id: p["id"],
-            start: p["start"],
-            end: p["end"],
-            text: p["text"],
-            temperature: p["temperature"],
-            avgLogprob: p["avg_logprob"],
-            compressionRatio: p["compression_ratio"],
-            noSpeechProb: p["no_speech_prob"],
-            tokens: p["tokens"],
-            seek: p["seek"],
-          })),
+        : result.body["segments"].map((p) => {
+            return {
+              id: p["id"],
+              start: p["start"],
+              end: p["end"],
+              text: p["text"],
+              temperature: p["temperature"],
+              avgLogprob: p["avg_logprob"],
+              compressionRatio: p["compression_ratio"],
+              noSpeechProb: p["no_speech_prob"],
+              tokens: p["tokens"],
+              seek: p["seek"],
+            };
+          }),
   };
 }
 
@@ -317,18 +319,20 @@ export async function _getAudioTranslationAsResponseObjectDeserialize(
     segments:
       result.body["segments"] === undefined
         ? result.body["segments"]
-        : result.body["segments"].map((p) => ({
-            id: p["id"],
-            start: p["start"],
-            end: p["end"],
-            text: p["text"],
-            temperature: p["temperature"],
-            avgLogprob: p["avg_logprob"],
-            compressionRatio: p["compression_ratio"],
-            noSpeechProb: p["no_speech_prob"],
-            tokens: p["tokens"],
-            seek: p["seek"],
-          })),
+        : result.body["segments"].map((p) => {
+            return {
+              id: p["id"],
+              start: p["start"],
+              end: p["end"],
+              text: p["text"],
+              temperature: p["temperature"],
+              avgLogprob: p["avg_logprob"],
+              compressionRatio: p["compression_ratio"],
+              noSpeechProb: p["no_speech_prob"],
+              tokens: p["tokens"],
+              seek: p["seek"],
+            };
+          }),
   };
 }
 
@@ -395,148 +399,156 @@ export async function _getCompletionsDeserialize(
     promptFilterResults:
       result.body["prompt_filter_results"] === undefined
         ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p) => ({
-            promptIndex: p["prompt_index"],
-            contentFilterResults: {
-              sexual: !p.content_filter_results.sexual
+        : result.body["prompt_filter_results"].map((p) => {
+            return {
+              promptIndex: p["prompt_index"],
+              contentFilterResults: {
+                sexual: !p.content_filter_results.sexual
+                  ? undefined
+                  : {
+                      severity: p.content_filter_results.sexual?.["severity"],
+                      filtered: p.content_filter_results.sexual?.["filtered"],
+                    },
+                violence: !p.content_filter_results.violence
+                  ? undefined
+                  : {
+                      severity: p.content_filter_results.violence?.["severity"],
+                      filtered: p.content_filter_results.violence?.["filtered"],
+                    },
+                hate: !p.content_filter_results.hate
+                  ? undefined
+                  : {
+                      severity: p.content_filter_results.hate?.["severity"],
+                      filtered: p.content_filter_results.hate?.["filtered"],
+                    },
+                selfHarm: !p.content_filter_results.self_harm
+                  ? undefined
+                  : {
+                      severity:
+                        p.content_filter_results.self_harm?.["severity"],
+                      filtered:
+                        p.content_filter_results.self_harm?.["filtered"],
+                    },
+                profanity: !p.content_filter_results.profanity
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.profanity?.["filtered"],
+                      detected:
+                        p.content_filter_results.profanity?.["detected"],
+                    },
+                customBlocklists:
+                  p.content_filter_results["custom_blocklists"] === undefined
+                    ? p.content_filter_results["custom_blocklists"]
+                    : p.content_filter_results["custom_blocklists"].map((p) => {
+                        return { id: p["id"], filtered: p["filtered"] };
+                      }),
+                error: !p.content_filter_results.error
+                  ? undefined
+                  : p.content_filter_results.error,
+                jailbreak: !p.content_filter_results.jailbreak
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.jailbreak?.["filtered"],
+                      detected:
+                        p.content_filter_results.jailbreak?.["detected"],
+                    },
+              },
+            };
+          }),
+    choices: result.body["choices"].map((p) => {
+      return {
+        text: p["text"],
+        index: p["index"],
+        contentFilterResults: !p.content_filter_results
+          ? undefined
+          : {
+              sexual: !p.content_filter_results?.sexual
                 ? undefined
                 : {
-                    severity: p.content_filter_results.sexual?.["severity"],
-                    filtered: p.content_filter_results.sexual?.["filtered"],
+                    severity: p.content_filter_results?.sexual?.["severity"],
+                    filtered: p.content_filter_results?.sexual?.["filtered"],
                   },
-              violence: !p.content_filter_results.violence
+              violence: !p.content_filter_results?.violence
                 ? undefined
                 : {
-                    severity: p.content_filter_results.violence?.["severity"],
-                    filtered: p.content_filter_results.violence?.["filtered"],
+                    severity: p.content_filter_results?.violence?.["severity"],
+                    filtered: p.content_filter_results?.violence?.["filtered"],
                   },
-              hate: !p.content_filter_results.hate
+              hate: !p.content_filter_results?.hate
                 ? undefined
                 : {
-                    severity: p.content_filter_results.hate?.["severity"],
-                    filtered: p.content_filter_results.hate?.["filtered"],
+                    severity: p.content_filter_results?.hate?.["severity"],
+                    filtered: p.content_filter_results?.hate?.["filtered"],
                   },
-              selfHarm: !p.content_filter_results.self_harm
+              selfHarm: !p.content_filter_results?.self_harm
                 ? undefined
                 : {
-                    severity: p.content_filter_results.self_harm?.["severity"],
-                    filtered: p.content_filter_results.self_harm?.["filtered"],
+                    severity: p.content_filter_results?.self_harm?.["severity"],
+                    filtered: p.content_filter_results?.self_harm?.["filtered"],
                   },
-              profanity: !p.content_filter_results.profanity
+              profanity: !p.content_filter_results?.profanity
                 ? undefined
                 : {
-                    filtered: p.content_filter_results.profanity?.["filtered"],
-                    detected: p.content_filter_results.profanity?.["detected"],
+                    filtered: p.content_filter_results?.profanity?.["filtered"],
+                    detected: p.content_filter_results?.profanity?.["detected"],
                   },
               customBlocklists:
-                p.content_filter_results["custom_blocklists"] === undefined
-                  ? p.content_filter_results["custom_blocklists"]
-                  : p.content_filter_results["custom_blocklists"].map((p) => ({
-                      id: p["id"],
-                      filtered: p["filtered"],
-                    })),
-              error: !p.content_filter_results.error
+                p.content_filter_results?.["custom_blocklists"] === undefined
+                  ? p.content_filter_results?.["custom_blocklists"]
+                  : p.content_filter_results?.["custom_blocklists"].map((p) => {
+                      return { id: p["id"], filtered: p["filtered"] };
+                    }),
+              error: !p.content_filter_results?.error
                 ? undefined
-                : p.content_filter_results.error,
-              jailbreak: !p.content_filter_results.jailbreak
+                : p.content_filter_results?.error,
+              protectedMaterialText: !p.content_filter_results
+                ?.protected_material_text
                 ? undefined
                 : {
-                    filtered: p.content_filter_results.jailbreak?.["filtered"],
-                    detected: p.content_filter_results.jailbreak?.["detected"],
+                    filtered:
+                      p.content_filter_results?.protected_material_text?.[
+                        "filtered"
+                      ],
+                    detected:
+                      p.content_filter_results?.protected_material_text?.[
+                        "detected"
+                      ],
+                  },
+              protectedMaterialCode: !p.content_filter_results
+                ?.protected_material_code
+                ? undefined
+                : {
+                    filtered:
+                      p.content_filter_results?.protected_material_code?.[
+                        "filtered"
+                      ],
+                    detected:
+                      p.content_filter_results?.protected_material_code?.[
+                        "detected"
+                      ],
+                    url: p.content_filter_results?.protected_material_code?.[
+                      "URL"
+                    ],
+                    license:
+                      p.content_filter_results?.protected_material_code?.[
+                        "license"
+                      ],
                   },
             },
-          })),
-    choices: result.body["choices"].map((p) => ({
-      text: p["text"],
-      index: p["index"],
-      contentFilterResults: !p.content_filter_results
-        ? undefined
-        : {
-            sexual: !p.content_filter_results?.sexual
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.sexual?.["severity"],
-                  filtered: p.content_filter_results?.sexual?.["filtered"],
-                },
-            violence: !p.content_filter_results?.violence
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.violence?.["severity"],
-                  filtered: p.content_filter_results?.violence?.["filtered"],
-                },
-            hate: !p.content_filter_results?.hate
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.hate?.["severity"],
-                  filtered: p.content_filter_results?.hate?.["filtered"],
-                },
-            selfHarm: !p.content_filter_results?.self_harm
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.self_harm?.["severity"],
-                  filtered: p.content_filter_results?.self_harm?.["filtered"],
-                },
-            profanity: !p.content_filter_results?.profanity
-              ? undefined
-              : {
-                  filtered: p.content_filter_results?.profanity?.["filtered"],
-                  detected: p.content_filter_results?.profanity?.["detected"],
-                },
-            customBlocklists:
-              p.content_filter_results?.["custom_blocklists"] === undefined
-                ? p.content_filter_results?.["custom_blocklists"]
-                : p.content_filter_results?.["custom_blocklists"].map((p) => ({
-                    id: p["id"],
-                    filtered: p["filtered"],
-                  })),
-            error: !p.content_filter_results?.error
-              ? undefined
-              : p.content_filter_results?.error,
-            protectedMaterialText: !p.content_filter_results
-              ?.protected_material_text
-              ? undefined
-              : {
-                  filtered:
-                    p.content_filter_results?.protected_material_text?.[
-                      "filtered"
-                    ],
-                  detected:
-                    p.content_filter_results?.protected_material_text?.[
-                      "detected"
-                    ],
-                },
-            protectedMaterialCode: !p.content_filter_results
-              ?.protected_material_code
-              ? undefined
-              : {
-                  filtered:
-                    p.content_filter_results?.protected_material_code?.[
-                      "filtered"
-                    ],
-                  detected:
-                    p.content_filter_results?.protected_material_code?.[
-                      "detected"
-                    ],
-                  url: p.content_filter_results?.protected_material_code?.[
-                    "URL"
-                  ],
-                  license:
-                    p.content_filter_results?.protected_material_code?.[
-                      "license"
-                    ],
-                },
-          },
-      logprobs:
-        p.logprobs === null
-          ? null
-          : {
-              tokens: p.logprobs["tokens"],
-              tokenLogprobs: p.logprobs["token_logprobs"],
-              topLogprobs: p.logprobs["top_logprobs"],
-              textOffset: p.logprobs["text_offset"],
-            },
-      finishReason: p["finish_reason"],
-    })),
+        logprobs:
+          p.logprobs === null
+            ? null
+            : {
+                tokens: p.logprobs["tokens"],
+                tokenLogprobs: p.logprobs["token_logprobs"],
+                topLogprobs: p.logprobs["top_logprobs"],
+                textOffset: p.logprobs["text_offset"],
+              },
+        finishReason: p["finish_reason"],
+      };
+    }),
     usage: {
       completionTokens: result.body.usage["completion_tokens"],
       promptTokens: result.body.usage["prompt_tokens"],
@@ -630,247 +642,266 @@ export async function _getChatCompletionsDeserialize(
   return {
     id: result.body["id"],
     created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p) => ({
-      message: !p.message
-        ? undefined
-        : {
-            role: p.message?.["role"],
-            content: p.message?.["content"],
-            toolCalls:
-              p.message?.["tool_calls"] === undefined
-                ? p.message?.["tool_calls"]
-                : p.message?.["tool_calls"],
-            functionCall: !p.message?.function_call
-              ? undefined
-              : {
-                  name: p.message?.function_call?.["name"],
-                  arguments: p.message?.function_call?.["arguments"],
-                },
-            context: !p.message?.context
-              ? undefined
-              : {
-                  citations:
-                    p.message?.context?.["citations"] === undefined
-                      ? p.message?.context?.["citations"]
-                      : p.message?.context?.["citations"].map((p) => ({
-                          content: p["content"],
-                          title: p["title"],
-                          url: p["url"],
-                          filepath: p["filepath"],
-                          chunkId: p["chunk_id"],
-                        })),
-                  intent: p.message?.context?.["intent"],
-                },
-          },
-      logprobs:
-        p.logprobs === null
-          ? null
+    choices: result.body["choices"].map((p) => {
+      return {
+        message: !p.message
+          ? undefined
           : {
-              content:
-                p.logprobs["content"] === null
-                  ? p.logprobs["content"]
-                  : p.logprobs["content"].map((p) => ({
-                      token: p["token"],
-                      logprob: p["logprob"],
-                      bytes: p["bytes"],
-                      topLogprobs:
-                        p["top_logprobs"] === null
-                          ? p["top_logprobs"]
-                          : p["top_logprobs"].map((p) => ({
-                              token: p["token"],
-                              logprob: p["logprob"],
-                              bytes: p["bytes"],
-                            })),
-                    })),
+              role: p.message?.["role"],
+              content: p.message?.["content"],
+              toolCalls:
+                p.message?.["tool_calls"] === undefined
+                  ? p.message?.["tool_calls"]
+                  : p.message?.["tool_calls"],
+              functionCall: !p.message?.function_call
+                ? undefined
+                : {
+                    name: p.message?.function_call?.["name"],
+                    arguments: p.message?.function_call?.["arguments"],
+                  },
+              context: !p.message?.context
+                ? undefined
+                : {
+                    citations:
+                      p.message?.context?.["citations"] === undefined
+                        ? p.message?.context?.["citations"]
+                        : p.message?.context?.["citations"].map((p) => {
+                            return {
+                              content: p["content"],
+                              title: p["title"],
+                              url: p["url"],
+                              filepath: p["filepath"],
+                              chunkId: p["chunk_id"],
+                            };
+                          }),
+                    intent: p.message?.context?.["intent"],
+                  },
             },
-      index: p["index"],
-      finishReason: p["finish_reason"],
-      finishDetails: !p.finish_details
-        ? undefined
-        : { type: p.finish_details?.["type"] },
-      delta: !p.delta
-        ? undefined
-        : {
-            role: p.delta?.["role"],
-            content: p.delta?.["content"],
-            toolCalls:
-              p.delta?.["tool_calls"] === undefined
-                ? p.delta?.["tool_calls"]
-                : p.delta?.["tool_calls"],
-            functionCall: !p.delta?.function_call
-              ? undefined
-              : {
-                  name: p.delta?.function_call?.["name"],
-                  arguments: p.delta?.function_call?.["arguments"],
-                },
-            context: !p.delta?.context
-              ? undefined
-              : {
-                  citations:
-                    p.delta?.context?.["citations"] === undefined
-                      ? p.delta?.context?.["citations"]
-                      : p.delta?.context?.["citations"].map((p) => ({
-                          content: p["content"],
-                          title: p["title"],
-                          url: p["url"],
-                          filepath: p["filepath"],
-                          chunkId: p["chunk_id"],
-                        })),
-                  intent: p.delta?.context?.["intent"],
-                },
-          },
-      contentFilterResults: !p.content_filter_results
-        ? undefined
-        : {
-            sexual: !p.content_filter_results?.sexual
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.sexual?.["severity"],
-                  filtered: p.content_filter_results?.sexual?.["filtered"],
-                },
-            violence: !p.content_filter_results?.violence
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.violence?.["severity"],
-                  filtered: p.content_filter_results?.violence?.["filtered"],
-                },
-            hate: !p.content_filter_results?.hate
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.hate?.["severity"],
-                  filtered: p.content_filter_results?.hate?.["filtered"],
-                },
-            selfHarm: !p.content_filter_results?.self_harm
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.self_harm?.["severity"],
-                  filtered: p.content_filter_results?.self_harm?.["filtered"],
-                },
-            profanity: !p.content_filter_results?.profanity
-              ? undefined
-              : {
-                  filtered: p.content_filter_results?.profanity?.["filtered"],
-                  detected: p.content_filter_results?.profanity?.["detected"],
-                },
-            customBlocklists:
-              p.content_filter_results?.["custom_blocklists"] === undefined
-                ? p.content_filter_results?.["custom_blocklists"]
-                : p.content_filter_results?.["custom_blocklists"].map((p) => ({
-                    id: p["id"],
-                    filtered: p["filtered"],
-                  })),
-            error: !p.content_filter_results?.error
-              ? undefined
-              : p.content_filter_results?.error,
-            protectedMaterialText: !p.content_filter_results
-              ?.protected_material_text
-              ? undefined
-              : {
-                  filtered:
-                    p.content_filter_results?.protected_material_text?.[
-                      "filtered"
+        logprobs:
+          p.logprobs === null
+            ? null
+            : {
+                content:
+                  p.logprobs["content"] === null
+                    ? p.logprobs["content"]
+                    : p.logprobs["content"].map((p) => {
+                        return {
+                          token: p["token"],
+                          logprob: p["logprob"],
+                          bytes: p["bytes"],
+                          topLogprobs:
+                            p["top_logprobs"] === null
+                              ? p["top_logprobs"]
+                              : p["top_logprobs"].map((p) => {
+                                  return {
+                                    token: p["token"],
+                                    logprob: p["logprob"],
+                                    bytes: p["bytes"],
+                                  };
+                                }),
+                        };
+                      }),
+              },
+        index: p["index"],
+        finishReason: p["finish_reason"],
+        finishDetails: !p.finish_details
+          ? undefined
+          : { type: p.finish_details?.["type"] },
+        delta: !p.delta
+          ? undefined
+          : {
+              role: p.delta?.["role"],
+              content: p.delta?.["content"],
+              toolCalls:
+                p.delta?.["tool_calls"] === undefined
+                  ? p.delta?.["tool_calls"]
+                  : p.delta?.["tool_calls"],
+              functionCall: !p.delta?.function_call
+                ? undefined
+                : {
+                    name: p.delta?.function_call?.["name"],
+                    arguments: p.delta?.function_call?.["arguments"],
+                  },
+              context: !p.delta?.context
+                ? undefined
+                : {
+                    citations:
+                      p.delta?.context?.["citations"] === undefined
+                        ? p.delta?.context?.["citations"]
+                        : p.delta?.context?.["citations"].map((p) => {
+                            return {
+                              content: p["content"],
+                              title: p["title"],
+                              url: p["url"],
+                              filepath: p["filepath"],
+                              chunkId: p["chunk_id"],
+                            };
+                          }),
+                    intent: p.delta?.context?.["intent"],
+                  },
+            },
+        contentFilterResults: !p.content_filter_results
+          ? undefined
+          : {
+              sexual: !p.content_filter_results?.sexual
+                ? undefined
+                : {
+                    severity: p.content_filter_results?.sexual?.["severity"],
+                    filtered: p.content_filter_results?.sexual?.["filtered"],
+                  },
+              violence: !p.content_filter_results?.violence
+                ? undefined
+                : {
+                    severity: p.content_filter_results?.violence?.["severity"],
+                    filtered: p.content_filter_results?.violence?.["filtered"],
+                  },
+              hate: !p.content_filter_results?.hate
+                ? undefined
+                : {
+                    severity: p.content_filter_results?.hate?.["severity"],
+                    filtered: p.content_filter_results?.hate?.["filtered"],
+                  },
+              selfHarm: !p.content_filter_results?.self_harm
+                ? undefined
+                : {
+                    severity: p.content_filter_results?.self_harm?.["severity"],
+                    filtered: p.content_filter_results?.self_harm?.["filtered"],
+                  },
+              profanity: !p.content_filter_results?.profanity
+                ? undefined
+                : {
+                    filtered: p.content_filter_results?.profanity?.["filtered"],
+                    detected: p.content_filter_results?.profanity?.["detected"],
+                  },
+              customBlocklists:
+                p.content_filter_results?.["custom_blocklists"] === undefined
+                  ? p.content_filter_results?.["custom_blocklists"]
+                  : p.content_filter_results?.["custom_blocklists"].map((p) => {
+                      return { id: p["id"], filtered: p["filtered"] };
+                    }),
+              error: !p.content_filter_results?.error
+                ? undefined
+                : p.content_filter_results?.error,
+              protectedMaterialText: !p.content_filter_results
+                ?.protected_material_text
+                ? undefined
+                : {
+                    filtered:
+                      p.content_filter_results?.protected_material_text?.[
+                        "filtered"
+                      ],
+                    detected:
+                      p.content_filter_results?.protected_material_text?.[
+                        "detected"
+                      ],
+                  },
+              protectedMaterialCode: !p.content_filter_results
+                ?.protected_material_code
+                ? undefined
+                : {
+                    filtered:
+                      p.content_filter_results?.protected_material_code?.[
+                        "filtered"
+                      ],
+                    detected:
+                      p.content_filter_results?.protected_material_code?.[
+                        "detected"
+                      ],
+                    url: p.content_filter_results?.protected_material_code?.[
+                      "URL"
                     ],
-                  detected:
-                    p.content_filter_results?.protected_material_text?.[
-                      "detected"
-                    ],
-                },
-            protectedMaterialCode: !p.content_filter_results
-              ?.protected_material_code
-              ? undefined
-              : {
-                  filtered:
-                    p.content_filter_results?.protected_material_code?.[
-                      "filtered"
-                    ],
-                  detected:
-                    p.content_filter_results?.protected_material_code?.[
-                      "detected"
-                    ],
-                  url: p.content_filter_results?.protected_material_code?.[
-                    "URL"
-                  ],
-                  license:
-                    p.content_filter_results?.protected_material_code?.[
-                      "license"
-                    ],
-                },
-          },
-      enhancements: !p.enhancements
-        ? undefined
-        : {
-            grounding: !p.enhancements?.grounding
-              ? undefined
-              : {
-                  lines: p.enhancements?.grounding?.["lines"].map((p) => ({
-                    text: p["text"],
-                    spans: p["spans"].map((p) => ({
-                      text: p["text"],
-                      offset: p["offset"],
-                      length: p["length"],
-                      polygon: p["polygon"].map((p) => ({
-                        x: p["x"],
-                        y: p["y"],
-                      })),
-                    })),
-                  })),
-                },
-          },
-    })),
+                    license:
+                      p.content_filter_results?.protected_material_code?.[
+                        "license"
+                      ],
+                  },
+            },
+        enhancements: !p.enhancements
+          ? undefined
+          : {
+              grounding: !p.enhancements?.grounding
+                ? undefined
+                : {
+                    lines: p.enhancements?.grounding?.["lines"].map((p) => {
+                      return {
+                        text: p["text"],
+                        spans: p["spans"].map((p) => {
+                          return {
+                            text: p["text"],
+                            offset: p["offset"],
+                            length: p["length"],
+                            polygon: p["polygon"].map((p) => {
+                              return { x: p["x"], y: p["y"] };
+                            }),
+                          };
+                        }),
+                      };
+                    }),
+                  },
+            },
+      };
+    }),
     promptFilterResults:
       result.body["prompt_filter_results"] === undefined
         ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p) => ({
-            promptIndex: p["prompt_index"],
-            contentFilterResults: {
-              sexual: !p.content_filter_results.sexual
-                ? undefined
-                : {
-                    severity: p.content_filter_results.sexual?.["severity"],
-                    filtered: p.content_filter_results.sexual?.["filtered"],
-                  },
-              violence: !p.content_filter_results.violence
-                ? undefined
-                : {
-                    severity: p.content_filter_results.violence?.["severity"],
-                    filtered: p.content_filter_results.violence?.["filtered"],
-                  },
-              hate: !p.content_filter_results.hate
-                ? undefined
-                : {
-                    severity: p.content_filter_results.hate?.["severity"],
-                    filtered: p.content_filter_results.hate?.["filtered"],
-                  },
-              selfHarm: !p.content_filter_results.self_harm
-                ? undefined
-                : {
-                    severity: p.content_filter_results.self_harm?.["severity"],
-                    filtered: p.content_filter_results.self_harm?.["filtered"],
-                  },
-              profanity: !p.content_filter_results.profanity
-                ? undefined
-                : {
-                    filtered: p.content_filter_results.profanity?.["filtered"],
-                    detected: p.content_filter_results.profanity?.["detected"],
-                  },
-              customBlocklists:
-                p.content_filter_results["custom_blocklists"] === undefined
-                  ? p.content_filter_results["custom_blocklists"]
-                  : p.content_filter_results["custom_blocklists"].map((p) => ({
-                      id: p["id"],
-                      filtered: p["filtered"],
-                    })),
-              error: !p.content_filter_results.error
-                ? undefined
-                : p.content_filter_results.error,
-              jailbreak: !p.content_filter_results.jailbreak
-                ? undefined
-                : {
-                    filtered: p.content_filter_results.jailbreak?.["filtered"],
-                    detected: p.content_filter_results.jailbreak?.["detected"],
-                  },
-            },
-          })),
+        : result.body["prompt_filter_results"].map((p) => {
+            return {
+              promptIndex: p["prompt_index"],
+              contentFilterResults: {
+                sexual: !p.content_filter_results.sexual
+                  ? undefined
+                  : {
+                      severity: p.content_filter_results.sexual?.["severity"],
+                      filtered: p.content_filter_results.sexual?.["filtered"],
+                    },
+                violence: !p.content_filter_results.violence
+                  ? undefined
+                  : {
+                      severity: p.content_filter_results.violence?.["severity"],
+                      filtered: p.content_filter_results.violence?.["filtered"],
+                    },
+                hate: !p.content_filter_results.hate
+                  ? undefined
+                  : {
+                      severity: p.content_filter_results.hate?.["severity"],
+                      filtered: p.content_filter_results.hate?.["filtered"],
+                    },
+                selfHarm: !p.content_filter_results.self_harm
+                  ? undefined
+                  : {
+                      severity:
+                        p.content_filter_results.self_harm?.["severity"],
+                      filtered:
+                        p.content_filter_results.self_harm?.["filtered"],
+                    },
+                profanity: !p.content_filter_results.profanity
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.profanity?.["filtered"],
+                      detected:
+                        p.content_filter_results.profanity?.["detected"],
+                    },
+                customBlocklists:
+                  p.content_filter_results["custom_blocklists"] === undefined
+                    ? p.content_filter_results["custom_blocklists"]
+                    : p.content_filter_results["custom_blocklists"].map((p) => {
+                        return { id: p["id"], filtered: p["filtered"] };
+                      }),
+                error: !p.content_filter_results.error
+                  ? undefined
+                  : p.content_filter_results.error,
+                jailbreak: !p.content_filter_results.jailbreak
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.jailbreak?.["filtered"],
+                      detected:
+                        p.content_filter_results.jailbreak?.["detected"],
+                    },
+              },
+            };
+          }),
     systemFingerprint: result.body["system_fingerprint"],
     usage: {
       completionTokens: result.body.usage["completion_tokens"],
@@ -934,11 +965,13 @@ export async function _getImageGenerationsDeserialize(
 
   return {
     created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      base64Data: p["b64_json"],
-      revisedPrompt: p["revised_prompt"],
-    })),
+    data: result.body["data"].map((p) => {
+      return {
+        url: p["url"],
+        base64Data: p["b64_json"],
+        revisedPrompt: p["revised_prompt"],
+      };
+    }),
   };
 }
 
@@ -1030,10 +1063,9 @@ export async function _getEmbeddingsDeserialize(
   }
 
   return {
-    data: result.body["data"].map((p) => ({
-      embedding: p["embedding"],
-      index: p["index"],
-    })),
+    data: result.body["data"].map((p) => {
+      return { embedding: p["embedding"], index: p["index"] };
+    }),
     usage: {
       promptTokens: result.body.usage["prompt_tokens"],
       totalTokens: result.body.usage["total_tokens"],
