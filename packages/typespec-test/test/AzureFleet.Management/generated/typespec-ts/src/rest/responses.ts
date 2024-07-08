@@ -12,63 +12,63 @@ import {
 } from "./outputModels.js";
 
 /** Azure operation completed successfully. */
-export interface OperationsList200Response extends HttpResponse {
+export interface List200Response extends HttpResponse {
   status: "200";
   body: OperationListResultOutput;
 }
 
-export interface OperationsListDefaultResponse extends HttpResponse {
+export interface ListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Azure operation completed successfully. */
-export interface FleetsGet200Response extends HttpResponse {
+export interface Get200Response extends HttpResponse {
   status: "200";
   body: FleetOutput;
 }
 
-export interface FleetsGetDefaultResponse extends HttpResponse {
+export interface GetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Resource 'Fleet' update operation succeeded */
-export interface FleetsCreateOrUpdate200Response extends HttpResponse {
+export interface CreateOrUpdate200Response extends HttpResponse {
   status: "200";
   body: FleetOutput;
 }
 
-export interface FleetsCreateOrUpdate201Headers {
+export interface CreateOrUpdate201Headers {
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
 }
 
 /** Resource 'Fleet' create operation succeeded */
-export interface FleetsCreateOrUpdate201Response extends HttpResponse {
+export interface CreateOrUpdate201Response extends HttpResponse {
   status: "201";
   body: FleetOutput;
-  headers: RawHttpHeaders & FleetsCreateOrUpdate201Headers;
+  headers: RawHttpHeaders & CreateOrUpdate201Headers;
 }
 
-export interface FleetsCreateOrUpdateDefaultResponse extends HttpResponse {
+export interface CreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The final response for long-running createOrUpdate operation */
-export interface FleetsCreateOrUpdateLogicalResponse extends HttpResponse {
+export interface CreateOrUpdateLogicalResponse extends HttpResponse {
   status: "200";
   body: FleetOutput;
 }
 
 /** Azure operation completed successfully. */
-export interface FleetsUpdate200Response extends HttpResponse {
+export interface Update200Response extends HttpResponse {
   status: "200";
   body: FleetOutput;
 }
 
-export interface FleetsUpdate202Headers {
+export interface Update202Headers {
   /** The Location header contains the URL where the status of the long running operation can be checked. */
   location?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
@@ -76,23 +76,23 @@ export interface FleetsUpdate202Headers {
 }
 
 /** Resource update request accepted. */
-export interface FleetsUpdate202Response extends HttpResponse {
+export interface Update202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & FleetsUpdate202Headers;
+  headers: RawHttpHeaders & Update202Headers;
 }
 
-export interface FleetsUpdateDefaultResponse extends HttpResponse {
+export interface UpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The final response for long-running update operation */
-export interface FleetsUpdateLogicalResponse extends HttpResponse {
+export interface UpdateLogicalResponse extends HttpResponse {
   status: "200";
   body: FleetOutput;
 }
 
-export interface FleetsDelete202Headers {
+export interface Delete202Headers {
   /** The Location header contains the URL where the status of the long running operation can be checked. */
   location?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
@@ -100,56 +100,55 @@ export interface FleetsDelete202Headers {
 }
 
 /** Resource deletion accepted. */
-export interface FleetsDelete202Response extends HttpResponse {
+export interface Delete202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & FleetsDelete202Headers;
+  headers: RawHttpHeaders & Delete202Headers;
 }
 
 /** Resource does not exist. */
-export interface FleetsDelete204Response extends HttpResponse {
+export interface Delete204Response extends HttpResponse {
   status: "204";
 }
 
-export interface FleetsDeleteDefaultResponse extends HttpResponse {
+export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The final response for long-running delete operation */
-export interface FleetsDeleteLogicalResponse extends HttpResponse {
+export interface DeleteLogicalResponse extends HttpResponse {
   status: "200";
 }
 
 /** Azure operation completed successfully. */
-export interface FleetsListByResourceGroup200Response extends HttpResponse {
+export interface ListByResourceGroup200Response extends HttpResponse {
   status: "200";
   body: FleetListResultOutput;
 }
 
-export interface FleetsListByResourceGroupDefaultResponse extends HttpResponse {
+export interface ListByResourceGroupDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Azure operation completed successfully. */
-export interface FleetsListBySubscription200Response extends HttpResponse {
+export interface ListBySubscription200Response extends HttpResponse {
   status: "200";
   body: FleetListResultOutput;
 }
 
-export interface FleetsListBySubscriptionDefaultResponse extends HttpResponse {
+export interface ListBySubscriptionDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Azure operation completed successfully. */
-export interface FleetsListVirtualMachineScaleSets200Response
-  extends HttpResponse {
+export interface ListVirtualMachineScaleSets200Response extends HttpResponse {
   status: "200";
   body: VirtualMachineScaleSetListResultOutput;
 }
 
-export interface FleetsListVirtualMachineScaleSetsDefaultResponse
+export interface ListVirtualMachineScaleSetsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;

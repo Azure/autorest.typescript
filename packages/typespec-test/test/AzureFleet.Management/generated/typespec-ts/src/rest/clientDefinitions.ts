@@ -2,136 +2,128 @@
 // Licensed under the MIT license.
 
 import {
-  OperationsListParameters,
-  FleetsGetParameters,
-  FleetsCreateOrUpdateParameters,
-  FleetsUpdateParameters,
-  FleetsDeleteParameters,
-  FleetsListByResourceGroupParameters,
-  FleetsListBySubscriptionParameters,
-  FleetsListVirtualMachineScaleSetsParameters,
+  ListParameters,
+  GetParameters,
+  CreateOrUpdateParameters,
+  UpdateParameters,
+  DeleteParameters,
+  ListByResourceGroupParameters,
+  ListBySubscriptionParameters,
+  ListVirtualMachineScaleSetsParameters,
 } from "./parameters.js";
 import {
-  OperationsList200Response,
-  OperationsListDefaultResponse,
-  FleetsGet200Response,
-  FleetsGetDefaultResponse,
-  FleetsCreateOrUpdate200Response,
-  FleetsCreateOrUpdate201Response,
-  FleetsCreateOrUpdateDefaultResponse,
-  FleetsUpdate200Response,
-  FleetsUpdate202Response,
-  FleetsUpdateDefaultResponse,
-  FleetsDelete202Response,
-  FleetsDelete204Response,
-  FleetsDeleteDefaultResponse,
-  FleetsListByResourceGroup200Response,
-  FleetsListByResourceGroupDefaultResponse,
-  FleetsListBySubscription200Response,
-  FleetsListBySubscriptionDefaultResponse,
-  FleetsListVirtualMachineScaleSets200Response,
-  FleetsListVirtualMachineScaleSetsDefaultResponse,
+  List200Response,
+  ListDefaultResponse,
+  Get200Response,
+  GetDefaultResponse,
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  Update200Response,
+  Update202Response,
+  UpdateDefaultResponse,
+  Delete202Response,
+  Delete204Response,
+  DeleteDefaultResponse,
+  ListByResourceGroup200Response,
+  ListByResourceGroupDefaultResponse,
+  ListBySubscription200Response,
+  ListBySubscriptionDefaultResponse,
+  ListVirtualMachineScaleSets200Response,
+  ListVirtualMachineScaleSetsDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface OperationsList {
+export interface List {
   /** List the operations for the provider */
   get(
-    options?: OperationsListParameters,
-  ): StreamableMethod<
-    OperationsList200Response | OperationsListDefaultResponse
-  >;
+    options?: ListParameters,
+  ): StreamableMethod<List200Response | ListDefaultResponse>;
 }
 
-export interface FleetsGet {
+export interface Get {
   /** Get a Fleet */
   get(
-    options?: FleetsGetParameters,
-  ): StreamableMethod<FleetsGet200Response | FleetsGetDefaultResponse>;
+    options?: GetParameters,
+  ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Create a Fleet */
   put(
-    options: FleetsCreateOrUpdateParameters,
+    options: CreateOrUpdateParameters,
   ): StreamableMethod<
-    | FleetsCreateOrUpdate200Response
-    | FleetsCreateOrUpdate201Response
-    | FleetsCreateOrUpdateDefaultResponse
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
   >;
   /** Update a Fleet */
   patch(
-    options: FleetsUpdateParameters,
+    options: UpdateParameters,
   ): StreamableMethod<
-    | FleetsUpdate200Response
-    | FleetsUpdate202Response
-    | FleetsUpdateDefaultResponse
+    Update200Response | Update202Response | UpdateDefaultResponse
   >;
   /** Delete a Fleet */
   delete(
-    options?: FleetsDeleteParameters,
+    options?: DeleteParameters,
   ): StreamableMethod<
-    | FleetsDelete202Response
-    | FleetsDelete204Response
-    | FleetsDeleteDefaultResponse
+    Delete202Response | Delete204Response | DeleteDefaultResponse
   >;
 }
 
-export interface FleetsListByResourceGroup {
+export interface ListByResourceGroup {
   /** List Fleet resources by resource group */
   get(
-    options?: FleetsListByResourceGroupParameters,
+    options?: ListByResourceGroupParameters,
   ): StreamableMethod<
-    | FleetsListByResourceGroup200Response
-    | FleetsListByResourceGroupDefaultResponse
+    ListByResourceGroup200Response | ListByResourceGroupDefaultResponse
   >;
 }
 
-export interface FleetsListBySubscription {
+export interface ListBySubscription {
   /** List Fleet resources by subscription ID */
   get(
-    options?: FleetsListBySubscriptionParameters,
+    options?: ListBySubscriptionParameters,
   ): StreamableMethod<
-    | FleetsListBySubscription200Response
-    | FleetsListBySubscriptionDefaultResponse
+    ListBySubscription200Response | ListBySubscriptionDefaultResponse
   >;
 }
 
-export interface FleetsListVirtualMachineScaleSets {
+export interface ListVirtualMachineScaleSets {
   /** List VirtualMachineScaleSet resources by Fleet */
   get(
-    options?: FleetsListVirtualMachineScaleSetsParameters,
+    options?: ListVirtualMachineScaleSetsParameters,
   ): StreamableMethod<
-    | FleetsListVirtualMachineScaleSets200Response
-    | FleetsListVirtualMachineScaleSetsDefaultResponse
+    | ListVirtualMachineScaleSets200Response
+    | ListVirtualMachineScaleSetsDefaultResponse
   >;
 }
 
 export interface Routes {
   /** Resource for '/providers/Microsoft.AzureFleet/operations' has methods for the following verbs: get */
-  (path: "/providers/Microsoft.AzureFleet/operations"): OperationsList;
+  (path: "/providers/Microsoft.AzureFleet/operations"): List;
   /** Resource for '/subscriptions/\{subscriptionId\}/resourceGroups/\{resourceGroupName\}/providers/Microsoft.AzureFleet/fleets/\{fleetName\}' has methods for the following verbs: get, put, patch, delete */
   (
     path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{fleetName}",
     subscriptionId: string,
     resourceGroupName: string,
     fleetName: string,
-  ): FleetsGet;
+  ): Get;
   /** Resource for '/subscriptions/\{subscriptionId\}/resourceGroups/\{resourceGroupName\}/providers/Microsoft.AzureFleet/fleets' has methods for the following verbs: get */
   (
     path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets",
     subscriptionId: string,
     resourceGroupName: string,
-  ): FleetsListByResourceGroup;
+  ): ListByResourceGroup;
   /** Resource for '/subscriptions/\{subscriptionId\}/providers/Microsoft.AzureFleet/fleets' has methods for the following verbs: get */
   (
     path: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureFleet/fleets",
     subscriptionId: string,
-  ): FleetsListBySubscription;
+  ): ListBySubscription;
   /** Resource for '/subscriptions/\{subscriptionId\}/resourceGroups/\{resourceGroupName\}/providers/Microsoft.AzureFleet/fleets/\{name\}/virtualMachineScaleSets' has methods for the following verbs: get */
   (
     path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{name}/virtualMachineScaleSets",
     subscriptionId: string,
     resourceGroupName: string,
     name: string,
-  ): FleetsListVirtualMachineScaleSets;
+  ): ListVirtualMachineScaleSets;
 }
 
 export type AzureFleetContext = Client & {

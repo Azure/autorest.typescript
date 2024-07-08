@@ -12,18 +12,18 @@ import {
   createHttpPoller,
 } from "@azure/core-lro";
 import {
-  FleetsCreateOrUpdate200Response,
-  FleetsCreateOrUpdate201Response,
-  FleetsCreateOrUpdateDefaultResponse,
-  FleetsCreateOrUpdateLogicalResponse,
-  FleetsUpdate200Response,
-  FleetsUpdate202Response,
-  FleetsUpdateDefaultResponse,
-  FleetsUpdateLogicalResponse,
-  FleetsDelete202Response,
-  FleetsDelete204Response,
-  FleetsDeleteDefaultResponse,
-  FleetsDeleteLogicalResponse,
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  CreateOrUpdateLogicalResponse,
+  Update200Response,
+  Update202Response,
+  UpdateDefaultResponse,
+  UpdateLogicalResponse,
+  Delete202Response,
+  Delete204Response,
+  DeleteDefaultResponse,
+  DeleteLogicalResponse,
 } from "./responses.js";
 
 /**
@@ -105,35 +105,33 @@ export interface SimplePollerLike<
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
 export async function getLongRunningPoller<
-  TResult extends
-    | FleetsCreateOrUpdateLogicalResponse
-    | FleetsCreateOrUpdateDefaultResponse,
+  TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse,
 >(
   client: Client,
   initialResponse:
-    | FleetsCreateOrUpdate200Response
-    | FleetsCreateOrUpdate201Response
-    | FleetsCreateOrUpdateDefaultResponse,
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
-  TResult extends FleetsUpdateLogicalResponse | FleetsUpdateDefaultResponse,
+  TResult extends UpdateLogicalResponse | UpdateDefaultResponse,
 >(
   client: Client,
   initialResponse:
-    | FleetsUpdate200Response
-    | FleetsUpdate202Response
-    | FleetsUpdateDefaultResponse,
+    | Update200Response
+    | Update202Response
+    | UpdateDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
-  TResult extends FleetsDeleteLogicalResponse | FleetsDeleteDefaultResponse,
+  TResult extends DeleteLogicalResponse | DeleteDefaultResponse,
 >(
   client: Client,
   initialResponse:
-    | FleetsDelete202Response
-    | FleetsDelete204Response
-    | FleetsDeleteDefaultResponse,
+    | Delete202Response
+    | Delete204Response
+    | DeleteDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

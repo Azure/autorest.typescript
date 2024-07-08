@@ -4,24 +4,24 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { Fleet, FleetUpdate } from "./models.js";
 
-export type OperationsListParameters = RequestParameters;
-export type FleetsGetParameters = RequestParameters;
+export type ListParameters = RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface FleetsCreateOrUpdateBodyParam {
+export interface CreateOrUpdateBodyParam {
   /** Resource create parameters. */
   body: Fleet;
 }
 
-export type FleetsCreateOrUpdateParameters = FleetsCreateOrUpdateBodyParam &
+export type CreateOrUpdateParameters = CreateOrUpdateBodyParam &
   RequestParameters;
 
-export interface FleetsUpdateBodyParam {
+export interface UpdateBodyParam {
   /** The resource properties to be updated. */
   body: FleetUpdate;
 }
 
-export type FleetsUpdateParameters = FleetsUpdateBodyParam & RequestParameters;
-export type FleetsDeleteParameters = RequestParameters;
-export type FleetsListByResourceGroupParameters = RequestParameters;
-export type FleetsListBySubscriptionParameters = RequestParameters;
-export type FleetsListVirtualMachineScaleSetsParameters = RequestParameters;
+export type UpdateParameters = UpdateBodyParam & RequestParameters;
+export type DeleteParameters = RequestParameters;
+export type ListByResourceGroupParameters = RequestParameters;
+export type ListBySubscriptionParameters = RequestParameters;
+export type ListVirtualMachineScaleSetsParameters = RequestParameters;

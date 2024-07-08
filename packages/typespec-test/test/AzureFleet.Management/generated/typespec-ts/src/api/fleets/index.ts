@@ -19,26 +19,26 @@ import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
   isUnexpected,
   AzureFleetContext as Client,
-  FleetsCreateOrUpdate200Response,
-  FleetsCreateOrUpdate201Response,
-  FleetsCreateOrUpdateDefaultResponse,
-  FleetsCreateOrUpdateLogicalResponse,
-  FleetsDelete202Response,
-  FleetsDelete204Response,
-  FleetsDeleteDefaultResponse,
-  FleetsDeleteLogicalResponse,
-  FleetsGet200Response,
-  FleetsGetDefaultResponse,
-  FleetsListByResourceGroup200Response,
-  FleetsListByResourceGroupDefaultResponse,
-  FleetsListBySubscription200Response,
-  FleetsListBySubscriptionDefaultResponse,
-  FleetsListVirtualMachineScaleSets200Response,
-  FleetsListVirtualMachineScaleSetsDefaultResponse,
-  FleetsUpdate200Response,
-  FleetsUpdate202Response,
-  FleetsUpdateDefaultResponse,
-  FleetsUpdateLogicalResponse,
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  CreateOrUpdateLogicalResponse,
+  Delete202Response,
+  Delete204Response,
+  DeleteDefaultResponse,
+  DeleteLogicalResponse,
+  Get200Response,
+  GetDefaultResponse,
+  ListByResourceGroup200Response,
+  ListByResourceGroupDefaultResponse,
+  ListBySubscription200Response,
+  ListBySubscriptionDefaultResponse,
+  ListVirtualMachineScaleSets200Response,
+  ListVirtualMachineScaleSetsDefaultResponse,
+  Update200Response,
+  Update202Response,
+  UpdateDefaultResponse,
+  UpdateLogicalResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -62,7 +62,7 @@ export function _getSend(
   resourceGroupName: string,
   fleetName: string,
   options: FleetsGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<FleetsGet200Response | FleetsGetDefaultResponse> {
+): StreamableMethod<Get200Response | GetDefaultResponse> {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{fleetName}",
@@ -74,7 +74,7 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result: FleetsGet200Response | FleetsGetDefaultResponse,
+  result: Get200Response | GetDefaultResponse,
 ): Promise<Fleet> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -204,10 +204,10 @@ export function _createOrUpdateSend(
   resource: Fleet,
   options: FleetsCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | FleetsCreateOrUpdate200Response
-  | FleetsCreateOrUpdate201Response
-  | FleetsCreateOrUpdateDefaultResponse
-  | FleetsCreateOrUpdateLogicalResponse
+  | CreateOrUpdate200Response
+  | CreateOrUpdate201Response
+  | CreateOrUpdateDefaultResponse
+  | CreateOrUpdateLogicalResponse
 > {
   return context
     .path(
@@ -237,16 +237,16 @@ export function _createOrUpdateSend(
 
 export async function _createOrUpdateDeserialize(
   result:
-    | FleetsCreateOrUpdate200Response
-    | FleetsCreateOrUpdate201Response
-    | FleetsCreateOrUpdateDefaultResponse
-    | FleetsCreateOrUpdateLogicalResponse,
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
+    | CreateOrUpdateLogicalResponse,
 ): Promise<Fleet> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  result = result as FleetsCreateOrUpdateLogicalResponse;
+  result = result as CreateOrUpdateLogicalResponse;
   return {
     tags: result.body["tags"],
     location: result.body["location"],
@@ -377,10 +377,10 @@ export function _updateSend(
   properties: FleetUpdate,
   options: FleetsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | FleetsUpdate200Response
-  | FleetsUpdate202Response
-  | FleetsUpdateDefaultResponse
-  | FleetsUpdateLogicalResponse
+  | Update200Response
+  | Update202Response
+  | UpdateDefaultResponse
+  | UpdateLogicalResponse
 > {
   return context
     .path(
@@ -410,16 +410,16 @@ export function _updateSend(
 
 export async function _updateDeserialize(
   result:
-    | FleetsUpdate200Response
-    | FleetsUpdate202Response
-    | FleetsUpdateDefaultResponse
-    | FleetsUpdateLogicalResponse,
+    | Update200Response
+    | Update202Response
+    | UpdateDefaultResponse
+    | UpdateLogicalResponse,
 ): Promise<Fleet> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  result = result as FleetsUpdateLogicalResponse;
+  result = result as UpdateLogicalResponse;
   return {
     tags: result.body["tags"],
     location: result.body["location"],
@@ -549,10 +549,10 @@ export function _$deleteSend(
   fleetName: string,
   options: FleetsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | FleetsDelete202Response
-  | FleetsDelete204Response
-  | FleetsDeleteDefaultResponse
-  | FleetsDeleteLogicalResponse
+  | Delete202Response
+  | Delete204Response
+  | DeleteDefaultResponse
+  | DeleteLogicalResponse
 > {
   return context
     .path(
@@ -566,16 +566,16 @@ export function _$deleteSend(
 
 export async function _$deleteDeserialize(
   result:
-    | FleetsDelete202Response
-    | FleetsDelete204Response
-    | FleetsDeleteDefaultResponse
-    | FleetsDeleteLogicalResponse,
+    | Delete202Response
+    | Delete204Response
+    | DeleteDefaultResponse
+    | DeleteLogicalResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  result = result as FleetsDeleteLogicalResponse;
+  result = result as DeleteLogicalResponse;
   return;
 }
 
@@ -612,8 +612,7 @@ export function _listByResourceGroupSend(
   resourceGroupName: string,
   options: FleetsListByResourceGroupOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | FleetsListByResourceGroup200Response
-  | FleetsListByResourceGroupDefaultResponse
+  ListByResourceGroup200Response | ListByResourceGroupDefaultResponse
 > {
   return context
     .path(
@@ -625,9 +624,7 @@ export function _listByResourceGroupSend(
 }
 
 export async function _listByResourceGroupDeserialize(
-  result:
-    | FleetsListByResourceGroup200Response
-    | FleetsListByResourceGroupDefaultResponse,
+  result: ListByResourceGroup200Response | ListByResourceGroupDefaultResponse,
 ): Promise<_FleetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -746,7 +743,7 @@ export function _listBySubscriptionSend(
   subscriptionId: string,
   options: FleetsListBySubscriptionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  FleetsListBySubscription200Response | FleetsListBySubscriptionDefaultResponse
+  ListBySubscription200Response | ListBySubscriptionDefaultResponse
 > {
   return context
     .path(
@@ -757,9 +754,7 @@ export function _listBySubscriptionSend(
 }
 
 export async function _listBySubscriptionDeserialize(
-  result:
-    | FleetsListBySubscription200Response
-    | FleetsListBySubscriptionDefaultResponse,
+  result: ListBySubscription200Response | ListBySubscriptionDefaultResponse,
 ): Promise<_FleetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -875,8 +870,8 @@ export function _listVirtualMachineScaleSetsSend(
     requestOptions: {},
   },
 ): StreamableMethod<
-  | FleetsListVirtualMachineScaleSets200Response
-  | FleetsListVirtualMachineScaleSetsDefaultResponse
+  | ListVirtualMachineScaleSets200Response
+  | ListVirtualMachineScaleSetsDefaultResponse
 > {
   return context
     .path(
@@ -890,8 +885,8 @@ export function _listVirtualMachineScaleSetsSend(
 
 export async function _listVirtualMachineScaleSetsDeserialize(
   result:
-    | FleetsListVirtualMachineScaleSets200Response
-    | FleetsListVirtualMachineScaleSetsDefaultResponse,
+    | ListVirtualMachineScaleSets200Response
+    | ListVirtualMachineScaleSetsDefaultResponse,
 ): Promise<VirtualMachineScaleSetListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
