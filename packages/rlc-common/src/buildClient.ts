@@ -345,9 +345,11 @@ export function getClientFactoryBody(
   } else {
     endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
   }
-  if (!clientPackageName.endsWith("-rest")) {
-    clientPackageName = clientPackageName + "-rest";
+
+  if (!model.options.isModularLibrary && !clientPackageName.endsWith("-rest")) {
+    clientPackageName += "-rest";
   }
+
   const userAgentInfoStatement =
     "const userAgentInfo = `azsdk-js-" +
     clientPackageName +

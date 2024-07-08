@@ -20,6 +20,14 @@ export function createSchemaRegistry(
   credential: TokenCredential,
   options: SchemaRegistryClientOptions = {},
 ): SchemaRegistryContext {
-  const clientContext = getClient(fullyQualifiedNamespace, credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(fullyQualifiedNamespace, credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

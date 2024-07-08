@@ -27,7 +27,15 @@ export class VersionedClient {
 
   /** Illustrates versioned server. */
   constructor(endpointParam: string, options: VersionedClientOptions = {}) {
-    this._client = createVersioned(endpointParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createVersioned(endpointParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

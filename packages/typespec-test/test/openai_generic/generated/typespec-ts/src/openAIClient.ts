@@ -50,7 +50,15 @@ export class OpenAIClient {
 
   /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
   constructor(credential: KeyCredential, options: OpenAIClientOptions = {}) {
-    this._client = createOpenAI(credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createOpenAI(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.audio = getAudioOperations(this._client);
     this.chat = getChatOperations(this._client);

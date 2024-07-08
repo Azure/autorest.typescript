@@ -24,7 +24,15 @@ export class TypeChangedFromClient {
     version: Versions,
     options: TypeChangedFromClientOptions = {},
   ) {
-    this._client = createTypeChangedFrom(endpointParam, version, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createTypeChangedFrom(endpointParam, version, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

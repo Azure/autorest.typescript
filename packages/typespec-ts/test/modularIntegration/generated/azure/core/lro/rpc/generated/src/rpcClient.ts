@@ -21,7 +21,15 @@ export class RpcClient {
 
   /** Illustrates bodies templated with Azure Core with long-running RPC operation */
   constructor(options: RpcClientOptions = {}) {
-    this._client = createRpc(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createRpc({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 
