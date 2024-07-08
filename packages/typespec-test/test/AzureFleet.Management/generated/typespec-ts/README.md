@@ -1,13 +1,13 @@
 # AzureFleet REST client library for JavaScript
 
-
+Azure Fleet Service
 
 **If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@azure/arm-fleet)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/arm-fleet?view=azure-node-preview)
+- [Package (NPM)](https://www.npmjs.com/package/@azure/arm_azurefleet)
+- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/arm_azurefleet?view=azure-node-preview)
 
 ## Getting started
 
@@ -19,12 +19,12 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@azure/arm-fleet` package
+### Install the `@azure/arm_azurefleet` package
 
 Install the AzureFleet REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @azure/arm-fleet
+npm install @azure/arm_azurefleet
 ```
 
 ### Create and authenticate a `AzureFleetClient`
