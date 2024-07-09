@@ -38,7 +38,15 @@ export class DeviceRegistryClient {
     subscriptionId: string,
     options: DeviceRegistryClientOptions = {},
   ) {
-    this._client = createDeviceRegistry(credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createDeviceRegistry(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.operations = getOperationsOperations(this._client);
     this.operationStatus = getOperationStatusOperations(

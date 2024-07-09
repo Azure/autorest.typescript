@@ -41,23 +41,24 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as OperationStatusGet200Response;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
-    status: result.body["status"],
-    percentComplete: result.body["percentComplete"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    status: _result.body["status"],
+    percentComplete: _result.body["percentComplete"],
     startTime:
-      result.body["startTime"] !== undefined
-        ? new Date(result.body["startTime"])
+      _result.body["startTime"] !== undefined
+        ? new Date(_result.body["startTime"])
         : undefined,
     endTime:
-      result.body["endTime"] !== undefined
-        ? new Date(result.body["endTime"])
+      _result.body["endTime"] !== undefined
+        ? new Date(_result.body["endTime"])
         : undefined,
     operations:
-      result.body["operations"] === undefined
-        ? result.body["operations"]
-        : result.body["operations"].map((p) => {
+      _result.body["operations"] === undefined
+        ? _result.body["operations"]
+        : _result.body["operations"].map((p) => {
             return {
               id: p["id"],
               name: p["name"],
@@ -105,16 +106,16 @@ export async function _getDeserialize(
                   },
             };
           }),
-    error: !result.body.error
+    error: !_result.body.error
       ? undefined
       : {
-          code: result.body.error?.["code"],
-          message: result.body.error?.["message"],
-          target: result.body.error?.["target"],
+          code: _result.body.error?.["code"],
+          message: _result.body.error?.["message"],
+          target: _result.body.error?.["target"],
           details:
-            result.body.error?.["details"] === undefined
-              ? result.body.error?.["details"]
-              : result.body.error?.["details"].map((p) => {
+            _result.body.error?.["details"] === undefined
+              ? _result.body.error?.["details"]
+              : _result.body.error?.["details"].map((p) => {
                   return {
                     code: p["code"],
                     message: p["message"],
@@ -129,9 +130,9 @@ export async function _getDeserialize(
                   };
                 }),
           additionalInfo:
-            result.body.error?.["additionalInfo"] === undefined
-              ? result.body.error?.["additionalInfo"]
-              : result.body.error?.["additionalInfo"].map((p) => {
+            _result.body.error?.["additionalInfo"] === undefined
+              ? _result.body.error?.["additionalInfo"]
+              : _result.body.error?.["additionalInfo"].map((p) => {
                   return { type: p["type"], info: p["info"] };
                 }),
         },

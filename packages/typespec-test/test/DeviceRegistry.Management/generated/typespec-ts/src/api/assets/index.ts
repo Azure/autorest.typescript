@@ -77,61 +77,62 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AssetsGet200Response;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.[
             "createdByType"
           ] as CreatedByType,
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.[
             "lastModifiedByType"
           ] as CreatedByType,
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          uuid: result.body.properties?.["uuid"],
-          assetType: result.body.properties?.["assetType"],
-          enabled: result.body.properties?.["enabled"],
-          externalAssetId: result.body.properties?.["externalAssetId"],
-          displayName: result.body.properties?.["displayName"],
-          description: result.body.properties?.["description"],
+          uuid: _result.body.properties?.["uuid"],
+          assetType: _result.body.properties?.["assetType"],
+          enabled: _result.body.properties?.["enabled"],
+          externalAssetId: _result.body.properties?.["externalAssetId"],
+          displayName: _result.body.properties?.["displayName"],
+          description: _result.body.properties?.["description"],
           assetEndpointProfileUri:
-            result.body.properties?.["assetEndpointProfileUri"],
-          version: result.body.properties?.["version"],
-          manufacturer: result.body.properties?.["manufacturer"],
-          manufacturerUri: result.body.properties?.["manufacturerUri"],
-          model: result.body.properties?.["model"],
-          productCode: result.body.properties?.["productCode"],
-          hardwareRevision: result.body.properties?.["hardwareRevision"],
-          softwareRevision: result.body.properties?.["softwareRevision"],
-          documentationUri: result.body.properties?.["documentationUri"],
-          serialNumber: result.body.properties?.["serialNumber"],
-          attributes: result.body.properties?.["attributes"],
+            _result.body.properties?.["assetEndpointProfileUri"],
+          version: _result.body.properties?.["version"],
+          manufacturer: _result.body.properties?.["manufacturer"],
+          manufacturerUri: _result.body.properties?.["manufacturerUri"],
+          model: _result.body.properties?.["model"],
+          productCode: _result.body.properties?.["productCode"],
+          hardwareRevision: _result.body.properties?.["hardwareRevision"],
+          softwareRevision: _result.body.properties?.["softwareRevision"],
+          documentationUri: _result.body.properties?.["documentationUri"],
+          serialNumber: _result.body.properties?.["serialNumber"],
+          attributes: _result.body.properties?.["attributes"],
           defaultDataPointsConfiguration:
-            result.body.properties?.["defaultDataPointsConfiguration"],
+            _result.body.properties?.["defaultDataPointsConfiguration"],
           defaultEventsConfiguration:
-            result.body.properties?.["defaultEventsConfiguration"],
+            _result.body.properties?.["defaultEventsConfiguration"],
           dataPoints:
-            result.body.properties?.["dataPoints"] === undefined
-              ? result.body.properties?.["dataPoints"]
-              : result.body.properties?.["dataPoints"].map((p) => {
+            _result.body.properties?.["dataPoints"] === undefined
+              ? _result.body.properties?.["dataPoints"]
+              : _result.body.properties?.["dataPoints"].map((p) => {
                   return {
                     name: p["name"],
                     dataSource: p["dataSource"],
@@ -143,9 +144,9 @@ export async function _getDeserialize(
                   };
                 }),
           events:
-            result.body.properties?.["events"] === undefined
-              ? result.body.properties?.["events"]
-              : result.body.properties?.["events"].map((p) => {
+            _result.body.properties?.["events"] === undefined
+              ? _result.body.properties?.["events"]
+              : _result.body.properties?.["events"].map((p) => {
                   return {
                     name: p["name"],
                     eventNotifier: p["eventNotifier"],
@@ -156,24 +157,24 @@ export async function _getDeserialize(
                     eventConfiguration: p["eventConfiguration"],
                   };
                 }),
-          status: !result.body.properties?.status
+          status: !_result.body.properties?.status
             ? undefined
             : {
                 errors:
-                  result.body.properties?.status?.["errors"] === undefined
-                    ? result.body.properties?.status?.["errors"]
-                    : result.body.properties?.status?.["errors"].map((p) => {
+                  _result.body.properties?.status?.["errors"] === undefined
+                    ? _result.body.properties?.status?.["errors"]
+                    : _result.body.properties?.status?.["errors"].map((p) => {
                         return { code: p["code"], message: p["message"] };
                       }),
-                version: result.body.properties?.status?.["version"],
+                version: _result.body.properties?.status?.["version"],
               },
-          provisioningState: result.body.properties?.[
+          provisioningState: _result.body.properties?.[
             "provisioningState"
           ] as any,
         },
     extendedLocation: {
-      type: result.body.extendedLocation["type"],
-      name: result.body.extendedLocation["name"],
+      type: _result.body.extendedLocation["type"],
+      name: _result.body.extendedLocation["name"],
     },
   };
 }
@@ -242,62 +243,62 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as AssetsCreateOrReplaceLogicalResponse;
+  const _result = result as unknown as AssetsCreateOrReplaceLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.[
             "createdByType"
           ] as CreatedByType,
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.[
             "lastModifiedByType"
           ] as CreatedByType,
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          uuid: result.body.properties?.["uuid"],
-          assetType: result.body.properties?.["assetType"],
-          enabled: result.body.properties?.["enabled"],
-          externalAssetId: result.body.properties?.["externalAssetId"],
-          displayName: result.body.properties?.["displayName"],
-          description: result.body.properties?.["description"],
+          uuid: _result.body.properties?.["uuid"],
+          assetType: _result.body.properties?.["assetType"],
+          enabled: _result.body.properties?.["enabled"],
+          externalAssetId: _result.body.properties?.["externalAssetId"],
+          displayName: _result.body.properties?.["displayName"],
+          description: _result.body.properties?.["description"],
           assetEndpointProfileUri:
-            result.body.properties?.["assetEndpointProfileUri"],
-          version: result.body.properties?.["version"],
-          manufacturer: result.body.properties?.["manufacturer"],
-          manufacturerUri: result.body.properties?.["manufacturerUri"],
-          model: result.body.properties?.["model"],
-          productCode: result.body.properties?.["productCode"],
-          hardwareRevision: result.body.properties?.["hardwareRevision"],
-          softwareRevision: result.body.properties?.["softwareRevision"],
-          documentationUri: result.body.properties?.["documentationUri"],
-          serialNumber: result.body.properties?.["serialNumber"],
-          attributes: result.body.properties?.["attributes"],
+            _result.body.properties?.["assetEndpointProfileUri"],
+          version: _result.body.properties?.["version"],
+          manufacturer: _result.body.properties?.["manufacturer"],
+          manufacturerUri: _result.body.properties?.["manufacturerUri"],
+          model: _result.body.properties?.["model"],
+          productCode: _result.body.properties?.["productCode"],
+          hardwareRevision: _result.body.properties?.["hardwareRevision"],
+          softwareRevision: _result.body.properties?.["softwareRevision"],
+          documentationUri: _result.body.properties?.["documentationUri"],
+          serialNumber: _result.body.properties?.["serialNumber"],
+          attributes: _result.body.properties?.["attributes"],
           defaultDataPointsConfiguration:
-            result.body.properties?.["defaultDataPointsConfiguration"],
+            _result.body.properties?.["defaultDataPointsConfiguration"],
           defaultEventsConfiguration:
-            result.body.properties?.["defaultEventsConfiguration"],
+            _result.body.properties?.["defaultEventsConfiguration"],
           dataPoints:
-            result.body.properties?.["dataPoints"] === undefined
-              ? result.body.properties?.["dataPoints"]
-              : result.body.properties?.["dataPoints"].map((p) => {
+            _result.body.properties?.["dataPoints"] === undefined
+              ? _result.body.properties?.["dataPoints"]
+              : _result.body.properties?.["dataPoints"].map((p) => {
                   return {
                     name: p["name"],
                     dataSource: p["dataSource"],
@@ -309,9 +310,9 @@ export async function _createOrReplaceDeserialize(
                   };
                 }),
           events:
-            result.body.properties?.["events"] === undefined
-              ? result.body.properties?.["events"]
-              : result.body.properties?.["events"].map((p) => {
+            _result.body.properties?.["events"] === undefined
+              ? _result.body.properties?.["events"]
+              : _result.body.properties?.["events"].map((p) => {
                   return {
                     name: p["name"],
                     eventNotifier: p["eventNotifier"],
@@ -322,24 +323,24 @@ export async function _createOrReplaceDeserialize(
                     eventConfiguration: p["eventConfiguration"],
                   };
                 }),
-          status: !result.body.properties?.status
+          status: !_result.body.properties?.status
             ? undefined
             : {
                 errors:
-                  result.body.properties?.status?.["errors"] === undefined
-                    ? result.body.properties?.status?.["errors"]
-                    : result.body.properties?.status?.["errors"].map((p) => {
+                  _result.body.properties?.status?.["errors"] === undefined
+                    ? _result.body.properties?.status?.["errors"]
+                    : _result.body.properties?.status?.["errors"].map((p) => {
                         return { code: p["code"], message: p["message"] };
                       }),
-                version: result.body.properties?.status?.["version"],
+                version: _result.body.properties?.status?.["version"],
               },
-          provisioningState: result.body.properties?.[
+          provisioningState: _result.body.properties?.[
             "provisioningState"
           ] as any,
         },
     extendedLocation: {
-      type: result.body.extendedLocation["type"],
-      name: result.body.extendedLocation["name"],
+      type: _result.body.extendedLocation["type"],
+      name: _result.body.extendedLocation["name"],
     },
   };
 }
@@ -412,62 +413,62 @@ export async function _updateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as AssetsUpdateLogicalResponse;
+  const _result = result as unknown as AssetsUpdateLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.[
             "createdByType"
           ] as CreatedByType,
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.[
             "lastModifiedByType"
           ] as CreatedByType,
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          uuid: result.body.properties?.["uuid"],
-          assetType: result.body.properties?.["assetType"],
-          enabled: result.body.properties?.["enabled"],
-          externalAssetId: result.body.properties?.["externalAssetId"],
-          displayName: result.body.properties?.["displayName"],
-          description: result.body.properties?.["description"],
+          uuid: _result.body.properties?.["uuid"],
+          assetType: _result.body.properties?.["assetType"],
+          enabled: _result.body.properties?.["enabled"],
+          externalAssetId: _result.body.properties?.["externalAssetId"],
+          displayName: _result.body.properties?.["displayName"],
+          description: _result.body.properties?.["description"],
           assetEndpointProfileUri:
-            result.body.properties?.["assetEndpointProfileUri"],
-          version: result.body.properties?.["version"],
-          manufacturer: result.body.properties?.["manufacturer"],
-          manufacturerUri: result.body.properties?.["manufacturerUri"],
-          model: result.body.properties?.["model"],
-          productCode: result.body.properties?.["productCode"],
-          hardwareRevision: result.body.properties?.["hardwareRevision"],
-          softwareRevision: result.body.properties?.["softwareRevision"],
-          documentationUri: result.body.properties?.["documentationUri"],
-          serialNumber: result.body.properties?.["serialNumber"],
-          attributes: result.body.properties?.["attributes"],
+            _result.body.properties?.["assetEndpointProfileUri"],
+          version: _result.body.properties?.["version"],
+          manufacturer: _result.body.properties?.["manufacturer"],
+          manufacturerUri: _result.body.properties?.["manufacturerUri"],
+          model: _result.body.properties?.["model"],
+          productCode: _result.body.properties?.["productCode"],
+          hardwareRevision: _result.body.properties?.["hardwareRevision"],
+          softwareRevision: _result.body.properties?.["softwareRevision"],
+          documentationUri: _result.body.properties?.["documentationUri"],
+          serialNumber: _result.body.properties?.["serialNumber"],
+          attributes: _result.body.properties?.["attributes"],
           defaultDataPointsConfiguration:
-            result.body.properties?.["defaultDataPointsConfiguration"],
+            _result.body.properties?.["defaultDataPointsConfiguration"],
           defaultEventsConfiguration:
-            result.body.properties?.["defaultEventsConfiguration"],
+            _result.body.properties?.["defaultEventsConfiguration"],
           dataPoints:
-            result.body.properties?.["dataPoints"] === undefined
-              ? result.body.properties?.["dataPoints"]
-              : result.body.properties?.["dataPoints"].map((p) => {
+            _result.body.properties?.["dataPoints"] === undefined
+              ? _result.body.properties?.["dataPoints"]
+              : _result.body.properties?.["dataPoints"].map((p) => {
                   return {
                     name: p["name"],
                     dataSource: p["dataSource"],
@@ -479,9 +480,9 @@ export async function _updateDeserialize(
                   };
                 }),
           events:
-            result.body.properties?.["events"] === undefined
-              ? result.body.properties?.["events"]
-              : result.body.properties?.["events"].map((p) => {
+            _result.body.properties?.["events"] === undefined
+              ? _result.body.properties?.["events"]
+              : _result.body.properties?.["events"].map((p) => {
                   return {
                     name: p["name"],
                     eventNotifier: p["eventNotifier"],
@@ -492,24 +493,24 @@ export async function _updateDeserialize(
                     eventConfiguration: p["eventConfiguration"],
                   };
                 }),
-          status: !result.body.properties?.status
+          status: !_result.body.properties?.status
             ? undefined
             : {
                 errors:
-                  result.body.properties?.status?.["errors"] === undefined
-                    ? result.body.properties?.status?.["errors"]
-                    : result.body.properties?.status?.["errors"].map((p) => {
+                  _result.body.properties?.status?.["errors"] === undefined
+                    ? _result.body.properties?.status?.["errors"]
+                    : _result.body.properties?.status?.["errors"].map((p) => {
                         return { code: p["code"], message: p["message"] };
                       }),
-                version: result.body.properties?.status?.["version"],
+                version: _result.body.properties?.status?.["version"],
               },
-          provisioningState: result.body.properties?.[
+          provisioningState: _result.body.properties?.[
             "provisioningState"
           ] as any,
         },
     extendedLocation: {
-      type: result.body.extendedLocation["type"],
-      name: result.body.extendedLocation["name"],
+      type: _result.body.extendedLocation["type"],
+      name: _result.body.extendedLocation["name"],
     },
   };
 }
@@ -571,7 +572,6 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as AssetsDeleteLogicalResponse;
   return;
 }
 
@@ -629,8 +629,9 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AssetsListByResourceGroup200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -727,7 +728,7 @@ export async function _listByResourceGroupDeserialize(
         },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -776,8 +777,9 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AssetsListBySubscription200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -874,7 +876,7 @@ export async function _listBySubscriptionDeserialize(
         },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 

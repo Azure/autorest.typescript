@@ -80,69 +80,70 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AssetEndpointProfilesGet200Response;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.[
             "createdByType"
           ] as CreatedByType,
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.[
             "lastModifiedByType"
           ] as CreatedByType,
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          uuid: result.body.properties?.["uuid"],
-          targetAddress: result.body.properties?.["targetAddress"],
-          userAuthentication: !result.body.properties?.userAuthentication
+          uuid: _result.body.properties?.["uuid"],
+          targetAddress: _result.body.properties?.["targetAddress"],
+          userAuthentication: !_result.body.properties?.userAuthentication
             ? undefined
             : {
-                mode: result.body.properties?.userAuthentication?.[
+                mode: _result.body.properties?.userAuthentication?.[
                   "mode"
                 ] as UserAuthenticationMode,
-                usernamePasswordCredentials: !result.body.properties
+                usernamePasswordCredentials: !_result.body.properties
                   ?.userAuthentication?.usernamePasswordCredentials
                   ? undefined
                   : {
                       usernameReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.usernamePasswordCredentials?.["usernameReference"],
                       passwordReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.usernamePasswordCredentials?.["passwordReference"],
                     },
-                x509Credentials: !result.body.properties?.userAuthentication
+                x509Credentials: !_result.body.properties?.userAuthentication
                   ?.x509Credentials
                   ? undefined
                   : {
                       certificateReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.x509Credentials?.["certificateReference"],
                     },
               },
-          transportAuthentication: !result.body.properties
+          transportAuthentication: !_result.body.properties
             ?.transportAuthentication
             ? undefined
             : {
                 ownCertificates:
-                  result.body.properties?.transportAuthentication?.[
+                  _result.body.properties?.transportAuthentication?.[
                     "ownCertificates"
                   ].map((p) => {
                     return {
@@ -153,14 +154,14 @@ export async function _getDeserialize(
                   }),
               },
           additionalConfiguration:
-            result.body.properties?.["additionalConfiguration"],
-          provisioningState: result.body.properties?.[
+            _result.body.properties?.["additionalConfiguration"],
+          provisioningState: _result.body.properties?.[
             "provisioningState"
           ] as any,
         },
     extendedLocation: {
-      type: result.body.extendedLocation["type"],
-      name: result.body.extendedLocation["name"],
+      type: _result.body.extendedLocation["type"],
+      name: _result.body.extendedLocation["name"],
     },
   };
 }
@@ -231,70 +232,71 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as AssetEndpointProfilesCreateOrReplaceLogicalResponse;
+  const _result =
+    result as unknown as AssetEndpointProfilesCreateOrReplaceLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.[
             "createdByType"
           ] as CreatedByType,
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.[
             "lastModifiedByType"
           ] as CreatedByType,
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          uuid: result.body.properties?.["uuid"],
-          targetAddress: result.body.properties?.["targetAddress"],
-          userAuthentication: !result.body.properties?.userAuthentication
+          uuid: _result.body.properties?.["uuid"],
+          targetAddress: _result.body.properties?.["targetAddress"],
+          userAuthentication: !_result.body.properties?.userAuthentication
             ? undefined
             : {
-                mode: result.body.properties?.userAuthentication?.[
+                mode: _result.body.properties?.userAuthentication?.[
                   "mode"
                 ] as UserAuthenticationMode,
-                usernamePasswordCredentials: !result.body.properties
+                usernamePasswordCredentials: !_result.body.properties
                   ?.userAuthentication?.usernamePasswordCredentials
                   ? undefined
                   : {
                       usernameReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.usernamePasswordCredentials?.["usernameReference"],
                       passwordReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.usernamePasswordCredentials?.["passwordReference"],
                     },
-                x509Credentials: !result.body.properties?.userAuthentication
+                x509Credentials: !_result.body.properties?.userAuthentication
                   ?.x509Credentials
                   ? undefined
                   : {
                       certificateReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.x509Credentials?.["certificateReference"],
                     },
               },
-          transportAuthentication: !result.body.properties
+          transportAuthentication: !_result.body.properties
             ?.transportAuthentication
             ? undefined
             : {
                 ownCertificates:
-                  result.body.properties?.transportAuthentication?.[
+                  _result.body.properties?.transportAuthentication?.[
                     "ownCertificates"
                   ].map((p) => {
                     return {
@@ -305,14 +307,14 @@ export async function _createOrReplaceDeserialize(
                   }),
               },
           additionalConfiguration:
-            result.body.properties?.["additionalConfiguration"],
-          provisioningState: result.body.properties?.[
+            _result.body.properties?.["additionalConfiguration"],
+          provisioningState: _result.body.properties?.[
             "provisioningState"
           ] as any,
         },
     extendedLocation: {
-      type: result.body.extendedLocation["type"],
-      name: result.body.extendedLocation["name"],
+      type: _result.body.extendedLocation["type"],
+      name: _result.body.extendedLocation["name"],
     },
   };
 }
@@ -389,70 +391,71 @@ export async function _updateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as AssetEndpointProfilesUpdateLogicalResponse;
+  const _result =
+    result as unknown as AssetEndpointProfilesUpdateLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.[
             "createdByType"
           ] as CreatedByType,
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.[
             "lastModifiedByType"
           ] as CreatedByType,
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          uuid: result.body.properties?.["uuid"],
-          targetAddress: result.body.properties?.["targetAddress"],
-          userAuthentication: !result.body.properties?.userAuthentication
+          uuid: _result.body.properties?.["uuid"],
+          targetAddress: _result.body.properties?.["targetAddress"],
+          userAuthentication: !_result.body.properties?.userAuthentication
             ? undefined
             : {
-                mode: result.body.properties?.userAuthentication?.[
+                mode: _result.body.properties?.userAuthentication?.[
                   "mode"
                 ] as UserAuthenticationMode,
-                usernamePasswordCredentials: !result.body.properties
+                usernamePasswordCredentials: !_result.body.properties
                   ?.userAuthentication?.usernamePasswordCredentials
                   ? undefined
                   : {
                       usernameReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.usernamePasswordCredentials?.["usernameReference"],
                       passwordReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.usernamePasswordCredentials?.["passwordReference"],
                     },
-                x509Credentials: !result.body.properties?.userAuthentication
+                x509Credentials: !_result.body.properties?.userAuthentication
                   ?.x509Credentials
                   ? undefined
                   : {
                       certificateReference:
-                        result.body.properties?.userAuthentication
+                        _result.body.properties?.userAuthentication
                           ?.x509Credentials?.["certificateReference"],
                     },
               },
-          transportAuthentication: !result.body.properties
+          transportAuthentication: !_result.body.properties
             ?.transportAuthentication
             ? undefined
             : {
                 ownCertificates:
-                  result.body.properties?.transportAuthentication?.[
+                  _result.body.properties?.transportAuthentication?.[
                     "ownCertificates"
                   ].map((p) => {
                     return {
@@ -463,14 +466,14 @@ export async function _updateDeserialize(
                   }),
               },
           additionalConfiguration:
-            result.body.properties?.["additionalConfiguration"],
-          provisioningState: result.body.properties?.[
+            _result.body.properties?.["additionalConfiguration"],
+          provisioningState: _result.body.properties?.[
             "provisioningState"
           ] as any,
         },
     extendedLocation: {
-      type: result.body.extendedLocation["type"],
-      name: result.body.extendedLocation["name"],
+      type: _result.body.extendedLocation["type"],
+      name: _result.body.extendedLocation["name"],
     },
   };
 }
@@ -532,7 +535,6 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as AssetEndpointProfilesDeleteLogicalResponse;
   return;
 }
 
@@ -592,8 +594,10 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as AssetEndpointProfilesListByResourceGroup200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -677,7 +681,7 @@ export async function _listByResourceGroupDeserialize(
         },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -731,8 +735,10 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as AssetEndpointProfilesListBySubscription200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -816,7 +822,7 @@ export async function _listBySubscriptionDeserialize(
         },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 

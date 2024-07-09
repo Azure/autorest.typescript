@@ -26,7 +26,7 @@ export default function createClient(
 ): DeviceRegistryContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
-  const userAgentInfo = `azsdk-js-arm-deviceregistry-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-arm-deviceregistry/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
