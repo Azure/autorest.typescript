@@ -17,6 +17,14 @@ export function createTypeChangedFrom(
   version: Versions,
   options: TypeChangedFromClientOptions = {},
 ): TypeChangedFromContext {
-  const clientContext = getClient(endpointParam, version, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, version, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

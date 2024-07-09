@@ -24,7 +24,15 @@ export class OAuth2Client {
 
   /** Illustrates clients generated with OAuth2 authentication. */
   constructor(credential: TokenCredential, options: OAuth2ClientOptions = {}) {
-    this._client = createOAuth2(credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createOAuth2(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

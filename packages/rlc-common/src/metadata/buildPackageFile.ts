@@ -26,7 +26,8 @@ export function buildPackageFile(
     withSamples: model.options?.generateSample === true,
     withTests: model.options?.generateTest === true,
     nameWithoutScope: model.options?.packageDetails?.nameWithoutScope,
-    exports
+    exports,
+    azureArm: model.options?.azureArm
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);

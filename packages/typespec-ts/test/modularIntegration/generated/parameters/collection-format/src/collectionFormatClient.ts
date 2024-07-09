@@ -22,7 +22,15 @@ export class CollectionFormatClient {
 
   /** Test for collectionFormat. */
   constructor(options: CollectionFormatClientOptions = {}) {
-    this._client = createCollectionFormat(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createCollectionFormat({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.query = getQueryOperations(this._client);
     this.header = getHeaderOperations(this._client);

@@ -15,6 +15,14 @@ export { BasicContext } from "../rest/index.js";
 
 /** Illustrates bodies templated with Azure Core */
 export function createBasic(options: BasicClientOptions = {}): BasicContext {
-  const clientContext = getClient(options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }
