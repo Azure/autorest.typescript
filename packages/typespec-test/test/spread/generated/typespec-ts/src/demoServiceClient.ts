@@ -17,7 +17,15 @@ export class DemoServiceClient {
   public readonly pipeline: Pipeline;
 
   constructor(endpoint: string, options: DemoServiceClientOptions = {}) {
-    this._client = createDemoService(endpoint, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createDemoService(endpoint, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.a = getAOperations(this._client);
   }

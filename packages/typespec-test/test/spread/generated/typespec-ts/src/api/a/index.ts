@@ -23,16 +23,14 @@ import {
 
 export function _test1Send(
   context: Client,
-  a: string,
-  b: string,
-  c: string,
+  body: { a: string; b: string; c: string },
   options: ATest1OptionalParams = { requestOptions: {} },
 ): StreamableMethod<Test1204Response> {
   return context
     .path("/test1")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { a: a, b: b, c: c },
+      body: { a: body["a"], b: body["b"], c: body["c"] },
     });
 }
 
@@ -48,12 +46,10 @@ export async function _test1Deserialize(
 
 export async function test1(
   context: Client,
-  a: string,
-  b: string,
-  c: string,
+  body: { a: string; b: string; c: string },
   options: ATest1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _test1Send(context, a, b, c, options);
+  const result = await _test1Send(context, body, options);
   return _test1Deserialize(result);
 }
 
@@ -91,14 +87,14 @@ export async function test2(
 
 export function _test3Send(
   context: Client,
-  prop: string,
+  body: { prop: string },
   options: ATest3OptionalParams = { requestOptions: {} },
 ): StreamableMethod<Test3204Response> {
   return context
     .path("/test3")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop: prop },
+      body: { prop: body["prop"] },
     });
 }
 
@@ -114,10 +110,10 @@ export async function _test3Deserialize(
 
 export async function test3(
   context: Client,
-  prop: string,
+  body: { prop: string },
   options: ATest3OptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _test3Send(context, prop, options);
+  const result = await _test3Send(context, body, options);
   return _test3Deserialize(result);
 }
 

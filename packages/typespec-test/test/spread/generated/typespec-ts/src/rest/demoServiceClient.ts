@@ -18,7 +18,7 @@ export default function createClient(
   options: DemoServiceContextOptions = {},
 ): DemoServiceContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  const userAgentInfo = `azsdk-js-spread-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-spread/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

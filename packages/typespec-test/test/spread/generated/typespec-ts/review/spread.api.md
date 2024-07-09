@@ -8,31 +8,37 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export interface AOperations {
     // (undocumented)
-    test1: (a: string, b: string, c: string, options?: ATest1OptionalParams) => Promise<void>;
+    test1: (body: {
+        a: string;
+        b: string;
+        c: string;
+    }, options?: ATest1OptionalParams) => Promise<void>;
     // (undocumented)
     test2: (body: Test, options?: ATest2OptionalParams) => Promise<void>;
     // (undocumented)
-    test3: (prop: string, options?: ATest3OptionalParams) => Promise<void>;
+    test3: (body: {
+        prop: string;
+    }, options?: ATest3OptionalParams) => Promise<void>;
     // (undocumented)
     test4: (body: Test, options?: ATest4OptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export interface ATest1OptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ATest2OptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ATest3OptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ATest4OptionalParams extends OperationOptions {
 }
 
@@ -43,7 +49,7 @@ export class DemoServiceClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface DemoServiceClientOptions extends ClientOptions {
 }
 

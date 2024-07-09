@@ -11,26 +11,30 @@ import {
   ATest4OptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a A operations. */
 export interface AOperations {
   test1: (
-    a: string,
-    b: string,
-    c: string,
+    body: { a: string; b: string; c: string },
     options?: ATest1OptionalParams,
   ) => Promise<void>;
   test2: (body: Test, options?: ATest2OptionalParams) => Promise<void>;
-  test3: (prop: string, options?: ATest3OptionalParams) => Promise<void>;
+  test3: (
+    body: { prop: string },
+    options?: ATest3OptionalParams,
+  ) => Promise<void>;
   test4: (body: Test, options?: ATest4OptionalParams) => Promise<void>;
 }
 
 export function getA(context: DemoServiceContext) {
   return {
-    test1: (a: string, b: string, c: string, options?: ATest1OptionalParams) =>
-      test1(context, a, b, c, options),
+    test1: (
+      body: { a: string; b: string; c: string },
+      options?: ATest1OptionalParams,
+    ) => test1(context, body, options),
     test2: (body: Test, options?: ATest2OptionalParams) =>
       test2(context, body, options),
-    test3: (prop: string, options?: ATest3OptionalParams) =>
-      test3(context, prop, options),
+    test3: (body: { prop: string }, options?: ATest3OptionalParams) =>
+      test3(context, body, options),
     test4: (body: Test, options?: ATest4OptionalParams) =>
       test4(context, body, options),
   };
