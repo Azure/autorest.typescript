@@ -4,6 +4,9 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
+export interface GetAudioSpeechOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
 export interface GetAudioTranscriptionAsPlainTextOptionalParams
   extends OperationOptions {
   /** The content type for the operation. Always multipart/form-data for this operation. */
@@ -39,9 +42,6 @@ export interface GetChatCompletionsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface GetImageGenerationsOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetAudioSpeechOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface GetEmbeddingsOptionalParams extends OperationOptions {}

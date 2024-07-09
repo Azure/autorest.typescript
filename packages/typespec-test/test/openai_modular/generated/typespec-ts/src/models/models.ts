@@ -4,6 +4,10 @@
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
+  AudioSpeechOptions as AudioSpeechOptionsRest,
+  AudioTranscriptionOptions as AudioTranscriptionOptionsRest,
+  AudioTranslationOptions as AudioTranslationOptionsRest,
+  CompletionsOptions as CompletionsOptionsRest,
   ChatRequestMessage as ChatRequestMessageRest,
   ChatRequestSystemMessage as ChatRequestSystemMessageRest,
   ChatRequestUserMessage as ChatRequestUserMessageRest,
@@ -57,8 +61,44 @@ import {
   ChatCompletionsNamedToolSelection as ChatCompletionsNamedToolSelectionRest,
   ChatCompletionsNamedFunctionToolSelection as ChatCompletionsNamedFunctionToolSelectionRest,
   ChatCompletionsFunctionToolSelection as ChatCompletionsFunctionToolSelectionRest,
+  ChatCompletionsOptions as ChatCompletionsOptionsRest,
+  ImageGenerationOptions as ImageGenerationOptionsRest,
+  EmbeddingsOptions as EmbeddingsOptionsRest,
 } from "../rest/index.js";
 import { ErrorModel } from "@azure-rest/core-client";
+
+/** The available voices for text-to-speech. */
+export type AudioSpeechVoice =
+  | "alloy"
+  | "echo"
+  | "fable"
+  | "onyx"
+  | "nova"
+  | "shimmer";
+/** The supported audio output formats for text-to-speech. */
+export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
+
+export interface AudioSpeechOptions {
+  /** The text to generate audio for. The maximum length is 4096 characters. */
+  input: string;
+  /** The voice to use for text-to-speech. */
+  voice: AudioSpeechVoice;
+  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
+  responseFormat?: AudioSpeechOutputFormat;
+  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
+  speed?: number;
+}
+
+export function audioSpeechOptionsSerializer(
+  item: AudioSpeechOptions,
+): AudioSpeechOptionsRest {
+  return {
+    input: item["input"],
+    voice: item["voice"],
+    response_format: item["responseFormat"],
+    speed: item["speed"],
+  };
+}
 
 /** Defines available options for the underlying response format of output transcription information. */
 export type AudioTranscriptionFormat =
@@ -101,7 +141,7 @@ export interface AudioTranscriptionOptions {
 
 export function audioTranscriptionOptionsSerializer(
   item: AudioTranscriptionOptions,
-) {
+): AudioTranscriptionOptionsRest {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -202,7 +242,7 @@ export interface AudioTranslationOptions {
 
 export function audioTranslationOptionsSerializer(
   item: AudioTranslationOptions,
-) {
+): AudioTranslationOptionsRest {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -351,7 +391,9 @@ export interface CompletionsOptions {
   model?: string;
 }
 
-export function completionsOptionsSerializer(item: CompletionsOptions) {
+export function completionsOptionsSerializer(
+  item: CompletionsOptions,
+): CompletionsOptionsRest {
   return {
     prompt: item["prompt"],
     max_tokens: item["maxTokens"],
@@ -2178,7 +2220,9 @@ export interface ChatCompletionsOptions {
     | ChatCompletionsNamedToolSelectionUnion;
 }
 
-export function chatCompletionsOptionsSerializer(item: ChatCompletionsOptions) {
+export function chatCompletionsOptionsSerializer(
+  item: ChatCompletionsOptions,
+): ChatCompletionsOptionsRest {
   return {
     messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
     functions:
@@ -2498,7 +2542,9 @@ export interface ImageGenerationOptions {
   user?: string;
 }
 
-export function imageGenerationOptionsSerializer(item: ImageGenerationOptions) {
+export function imageGenerationOptionsSerializer(
+  item: ImageGenerationOptions,
+): ImageGenerationOptionsRest {
   return {
     model: item["model"],
     prompt: item["prompt"],
@@ -2522,13 +2568,6 @@ export interface ImageGenerations {
   data: ImageGenerationData[];
 }
 
-export function imageGenerationsSerializer(item: ImageGenerations) {
-  return {
-    created: item["created"].getTime(),
-    data: item["data"].map(imageGenerationDataSerializer),
-  };
-}
-
 /**
  * A representation of a single generated image, provided as either base64-encoded data or as a URL from which the image
  * may be retrieved.
@@ -2543,45 +2582,6 @@ export interface ImageGenerationData {
    * Only provided with dall-3-models and only when revisions were made to the prompt.
    */
   revisedPrompt?: string;
-}
-
-export function imageGenerationDataSerializer(item: ImageGenerationData) {
-  return {
-    url: item["url"],
-    b64_json: item["base64Data"],
-    revised_prompt: item["revisedPrompt"],
-  };
-}
-
-/** The available voices for text-to-speech. */
-export type AudioSpeechVoice =
-  | "alloy"
-  | "echo"
-  | "fable"
-  | "onyx"
-  | "nova"
-  | "shimmer";
-/** The supported audio output formats for text-to-speech. */
-export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
-
-export interface AudioSpeechOptions {
-  /** The text to generate audio for. The maximum length is 4096 characters. */
-  input: string;
-  /** The voice to use for text-to-speech. */
-  voice: AudioSpeechVoice;
-  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
-  responseFormat?: AudioSpeechOutputFormat;
-  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
-  speed?: number;
-}
-
-export function audioSpeechOptionsSerializer(item: AudioSpeechOptions) {
-  return {
-    input: item["input"],
-    voice: item["voice"],
-    response_format: item["responseFormat"],
-    speed: item["speed"],
-  };
 }
 
 export interface EmbeddingsOptions {
@@ -2608,7 +2608,9 @@ export interface EmbeddingsOptions {
   inputType?: string;
 }
 
-export function embeddingsOptionsSerializer(item: EmbeddingsOptions) {
+export function embeddingsOptionsSerializer(
+  item: EmbeddingsOptions,
+): EmbeddingsOptionsRest {
   return {
     user: item["user"],
     model: item["model"],

@@ -7,6 +7,7 @@ import {
   azureChatExtensionConfigurationUnionSerializer,
   azureChatEnhancementConfigurationSerializer,
   chatCompletionsResponseFormatUnionSerializer,
+  AudioSpeechOptions,
   AudioTranscriptionOptions,
   AudioTranscription,
   AudioTranslationOptions,
@@ -17,7 +18,6 @@ import {
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
-  AudioSpeechOptions,
   EmbeddingsOptions,
   Embeddings,
 } from "../models/models.js";
@@ -51,6 +51,7 @@ import {
 import { uint8ArrayToString } from "@azure/core-util";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
+  GetAudioSpeechOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -58,9 +59,53 @@ import {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "../models/options.js";
+
+export function _getAudioSpeechSend(
+  context: Client,
+  deploymentId: string,
+  body: AudioSpeechOptions,
+  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+): StreamableMethod<GetAudioSpeech200Response | GetAudioSpeechDefaultResponse> {
+  return context
+    .path("/deployments/{deploymentId}/audio/speech", deploymentId)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        input: body["input"],
+        voice: body["voice"],
+        response_format: body["responseFormat"],
+        speed: body["speed"],
+      },
+    });
+}
+
+export async function _getAudioSpeechDeserialize(
+  result: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
+): Promise<Uint8Array> {
+  if (isUnexpected(result)) {
+    throw createRestError(result);
+  }
+
+  return result.body as any;
+}
+
+/** Generates text-to-speech audio from the input text. */
+export async function getAudioSpeech(
+  context: Client,
+  deploymentId: string,
+  body: AudioSpeechOptions,
+  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+): Promise<Uint8Array> {
+  const result = await _getAudioSpeechSend(
+    context,
+    deploymentId,
+    body,
+    options,
+  );
+  return _getAudioSpeechDeserialize(result);
+}
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
@@ -989,51 +1034,6 @@ export async function getImageGenerations(
     options,
   );
   return _getImageGenerationsDeserialize(result);
-}
-
-export function _getAudioSpeechSend(
-  context: Client,
-  deploymentId: string,
-  body: AudioSpeechOptions,
-  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetAudioSpeech200Response | GetAudioSpeechDefaultResponse> {
-  return context
-    .path("/deployments/{deploymentId}/audio/speech", deploymentId)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: {
-        input: body["input"],
-        voice: body["voice"],
-        response_format: body["responseFormat"],
-        speed: body["speed"],
-      },
-    });
-}
-
-export async function _getAudioSpeechDeserialize(
-  result: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
-): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  return result.body as any;
-}
-
-/** Generates text-to-speech audio from the input text. */
-export async function getAudioSpeech(
-  context: Client,
-  deploymentId: string,
-  body: AudioSpeechOptions,
-  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
-  const result = await _getAudioSpeechSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
-  return _getAudioSpeechDeserialize(result);
 }
 
 export function _getEmbeddingsSend(

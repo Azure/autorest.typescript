@@ -4,6 +4,7 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
+  AudioSpeechOptions,
   AudioTranscriptionOptions,
   AudioTranscription,
   AudioTranslationOptions,
@@ -14,11 +15,11 @@ import {
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
-  AudioSpeechOptions,
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
 import {
+  GetAudioSpeechOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -26,13 +27,13 @@ import {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./models/options.js";
 import {
   createOpenAI,
   OpenAIClientOptions,
   OpenAIContext,
+  getAudioSpeech,
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,
   getAudioTranslationAsPlainText,
@@ -40,7 +41,6 @@ import {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
-  getAudioSpeech,
   getEmbeddings,
 } from "./api/index.js";
 
@@ -51,6 +51,7 @@ export class OpenAIClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
+  /** Azure OpenAI APIs for completions and search */
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
@@ -66,6 +67,15 @@ export class OpenAIClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
+  }
+
+  /** Generates text-to-speech audio from the input text. */
+  getAudioSpeech(
+    deploymentId: string,
+    body: AudioSpeechOptions,
+    options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+  ): Promise<Uint8Array> {
+    return getAudioSpeech(this._client, deploymentId, body, options);
   }
 
   /**
@@ -171,15 +181,6 @@ export class OpenAIClient {
     options: GetImageGenerationsOptionalParams = { requestOptions: {} },
   ): Promise<ImageGenerations> {
     return getImageGenerations(this._client, deploymentId, body, options);
-  }
-
-  /** Generates text-to-speech audio from the input text. */
-  getAudioSpeech(
-    deploymentId: string,
-    body: AudioSpeechOptions,
-    options: GetAudioSpeechOptionalParams = { requestOptions: {} },
-  ): Promise<Uint8Array> {
-    return getAudioSpeech(this._client, deploymentId, body, options);
   }
 
   /** Return the embeddings for a given prompt. */

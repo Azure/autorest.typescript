@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 import {
+  GetAudioSpeech200Response,
+  GetAudioSpeechDefaultResponse,
   GetAudioTranscriptionAsPlainText200Response,
   GetAudioTranscriptionAsPlainTextDefaultResponse,
   GetAudioTranscriptionAsResponseObject200Response,
@@ -16,22 +18,23 @@ import {
   GetChatCompletionsDefaultResponse,
   GetImageGenerations200Response,
   GetImageGenerationsDefaultResponse,
-  GetAudioSpeech200Response,
-  GetAudioSpeechDefaultResponse,
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
+  "POST /deployments/{deploymentId}/audio/speech": ["200"],
   "POST /deployments/{deploymentId}/audio/transcriptions": ["200"],
   "POST /deployments/{deploymentId}/audio/translations": ["200"],
   "POST /deployments/{deploymentId}/completions": ["200"],
   "POST /deployments/{deploymentId}/chat/completions": ["200"],
   "POST /deployments/{deploymentId}/images/generations": ["200"],
-  "POST /deployments/{deploymentId}/audio/speech": ["200"],
   "POST /deployments/{deploymentId}/embeddings": ["200"],
 };
 
+export function isUnexpected(
+  response: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
+): response is GetAudioSpeechDefaultResponse;
 export function isUnexpected(
   response:
     | GetAudioTranscriptionAsPlainText200Response
@@ -62,13 +65,12 @@ export function isUnexpected(
   response: GetImageGenerations200Response | GetImageGenerationsDefaultResponse,
 ): response is GetImageGenerationsDefaultResponse;
 export function isUnexpected(
-  response: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
-): response is GetAudioSpeechDefaultResponse;
-export function isUnexpected(
   response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
 ): response is GetEmbeddingsDefaultResponse;
 export function isUnexpected(
   response:
+    | GetAudioSpeech200Response
+    | GetAudioSpeechDefaultResponse
     | GetAudioTranscriptionAsPlainText200Response
     | GetAudioTranscriptionAsPlainTextDefaultResponse
     | GetAudioTranscriptionAsResponseObject200Response
@@ -83,11 +85,10 @@ export function isUnexpected(
     | GetChatCompletionsDefaultResponse
     | GetImageGenerations200Response
     | GetImageGenerationsDefaultResponse
-    | GetAudioSpeech200Response
-    | GetAudioSpeechDefaultResponse
     | GetEmbeddings200Response
     | GetEmbeddingsDefaultResponse,
 ): response is
+  | GetAudioSpeechDefaultResponse
   | GetAudioTranscriptionAsPlainTextDefaultResponse
   | GetAudioTranscriptionAsResponseObjectDefaultResponse
   | GetAudioTranslationAsPlainTextDefaultResponse
@@ -95,7 +96,6 @@ export function isUnexpected(
   | GetCompletionsDefaultResponse
   | GetChatCompletionsDefaultResponse
   | GetImageGenerationsDefaultResponse
-  | GetAudioSpeechDefaultResponse
   | GetEmbeddingsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
