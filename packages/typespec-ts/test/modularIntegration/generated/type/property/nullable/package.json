@@ -18,7 +18,8 @@
       "./api/datetime": "src/api/datetime/index.ts",
       "./api/duration": "src/api/duration/index.ts",
       "./api/collectionsByte": "src/api/collectionsByte/index.ts",
-      "./api/collectionsModel": "src/api/collectionsModel/index.ts"
+      "./api/collectionsModel": "src/api/collectionsModel/index.ts",
+      "./api/collectionsString": "src/api/collectionsString/index.ts"
     },
     "dialects": ["esm", "commonjs"],
     "esmDialects": ["browser", "react-native"],
@@ -44,7 +45,7 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1",
-    "typescript": "~5.4.5",
+    "typescript": "~5.5.3",
     "tshy": "1.11.1"
   },
   "scripts": {

@@ -44,7 +44,15 @@ export class ScalarClient {
   public readonly pipeline: Pipeline;
 
   constructor(options: ScalarClientOptions = {}) {
-    this._client = createScalar(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createScalar({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
     this.boolean = getBooleanOperations(this._client);

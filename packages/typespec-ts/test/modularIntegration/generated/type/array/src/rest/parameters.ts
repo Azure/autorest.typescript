@@ -84,3 +84,35 @@ export interface NullableFloatValuePutBodyParam {
 
 export type NullableFloatValuePutParameters = NullableFloatValuePutBodyParam &
   RequestParameters;
+export type NullableInt32ValueGetParameters = RequestParameters;
+
+export interface NullableInt32ValuePutBodyParam {
+  body: (number | null)[];
+}
+
+export type NullableInt32ValuePutParameters = NullableInt32ValuePutBodyParam &
+  RequestParameters;
+export type NullableBooleanValueGetParameters = RequestParameters;
+
+export interface NullableBooleanValuePutBodyParam {
+  body: (boolean | null)[];
+}
+
+export type NullableBooleanValuePutParameters =
+  NullableBooleanValuePutBodyParam & RequestParameters;
+export type NullableStringValueGetParameters = RequestParameters;
+
+export interface NullableStringValuePutBodyParam {
+  body: (string | null)[];
+}
+
+export type NullableStringValuePutParameters = NullableStringValuePutBodyParam &
+  RequestParameters;
+export type NullableModelValueGetParameters = RequestParameters;
+
+export interface NullableModelValuePutBodyParam {
+  body: (InnerModel | null)[];
+}
+
+export type NullableModelValuePutParameters = NullableModelValuePutBodyParam &
+  RequestParameters;

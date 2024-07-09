@@ -32,7 +32,9 @@ export async function _listDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({ name: p["name"] })),
+    value: result.body["value"].map((p) => {
+      return { name: p["name"] };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

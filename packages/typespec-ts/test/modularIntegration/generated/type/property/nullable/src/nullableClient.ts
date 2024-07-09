@@ -24,6 +24,10 @@ import {
   CollectionsModelOperations,
 } from "./classic/collectionsModel/index.js";
 import {
+  getCollectionsStringOperations,
+  CollectionsStringOperations,
+} from "./classic/collectionsString/index.js";
+import {
   createNullable,
   NullableClientOptions,
   NullableContext,
@@ -38,7 +42,15 @@ export class NullableClient {
 
   /** Illustrates models with nullable properties. */
   constructor(options: NullableClientOptions = {}) {
-    this._client = createNullable(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createNullable({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
     this.bytes = getBytesOperations(this._client);
@@ -46,6 +58,7 @@ export class NullableClient {
     this.duration = getDurationOperations(this._client);
     this.collectionsByte = getCollectionsByteOperations(this._client);
     this.collectionsModel = getCollectionsModelOperations(this._client);
+    this.collectionsString = getCollectionsStringOperations(this._client);
   }
 
   /** The operation groups for String */
@@ -60,4 +73,6 @@ export class NullableClient {
   public readonly collectionsByte: CollectionsByteOperations;
   /** The operation groups for CollectionsModel */
   public readonly collectionsModel: CollectionsModelOperations;
+  /** The operation groups for CollectionsString */
+  public readonly collectionsString: CollectionsStringOperations;
 }

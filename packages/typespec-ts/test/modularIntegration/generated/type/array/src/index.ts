@@ -24,6 +24,14 @@ export {
   ModelValuePutOptionalParams,
   NullableFloatValueGetOptionalParams,
   NullableFloatValuePutOptionalParams,
+  NullableInt32ValueGetOptionalParams,
+  NullableInt32ValuePutOptionalParams,
+  NullableBooleanValueGetOptionalParams,
+  NullableBooleanValuePutOptionalParams,
+  NullableStringValueGetOptionalParams,
+  NullableStringValuePutOptionalParams,
+  NullableModelValueGetOptionalParams,
+  NullableModelValuePutOptionalParams,
 } from "./models/index.js";
 export {
   BooleanValueOperations,
@@ -33,7 +41,11 @@ export {
   Int32ValueOperations,
   Int64ValueOperations,
   ModelValueOperations,
+  NullableBooleanValueOperations,
   NullableFloatValueOperations,
+  NullableInt32ValueOperations,
+  NullableModelValueOperations,
+  NullableStringValueOperations,
   StringValueOperations,
   UnknownValueOperations,
 } from "./classic/index.js";

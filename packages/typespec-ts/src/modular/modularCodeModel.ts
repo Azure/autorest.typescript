@@ -120,6 +120,8 @@ export interface Type {
   isPolymorphicBaseModel?: boolean;
   tcgcType?: SdkType;
   __raw?: TypespecType;
+  nullable?: boolean;
+  optional?: boolean;
 }
 
 export interface Client {

@@ -651,8 +651,15 @@ function buildBodyParameter(
         directAssignment === true
           ? bodyParts.join(", ")
           : `{ ${bodyParts.join(", ")} }`;
+      let bodyElementStatement = "";
+      if (
+        isTypeNullable(bodyParameter.type.elementType) ||
+        bodyParameter.type.elementType.optional
+      ) {
+        bodyElementStatement = `!p ? p : `;
+      }
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { 
-      return ${mapBody};
+      return ${bodyElementStatement}${mapBody};
       }),`;
     }
     return `\nbody: ${bodyParameter.clientName},`;
@@ -1199,12 +1206,16 @@ export function deserializeResponseValue(
           : `${requiredOrNullablePrefix} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
         if (!type.elementType.aliasType) {
-          return `${prefix}.map(p => ({${getResponseMapping(
+          const elementNullOrUndefinedPrefix =
+            isTypeNullable(type.elementType) || type.elementType.optional
+              ? "!p ? p :"
+              : "";
+          return `${prefix}.map(p => { return ${elementNullOrUndefinedPrefix}{${getResponseMapping(
             type.elementType,
             "p",
             runtimeImports,
             [...typeStack, type.elementType]
-          )}}))`;
+          )}}})`;
         } else if (isPolymorphicUnion(type.elementType)) {
           let nullOrUndefinedPrefix = "";
           if (isTypeNullable(type.elementType)) {
@@ -1321,6 +1332,10 @@ export function serializeRequestValue(
           ? `${clientValue}`
           : `${requiredOrNullablePrefix}? ${clientValue}: ${clientValue}`;
       if (type.elementType?.type === "model" && !type.elementType.aliasType) {
+        const elementNullOrUndefinedPrefix =
+          isTypeNullable(type.elementType) || type.elementType.optional
+            ? "!p ? p :"
+            : "";
         if (!type.elementType.name) {
           // If it is an anonymous model we need to serialize inline
           const { propertiesStr } = getRequestModelMapping(
@@ -1330,7 +1345,7 @@ export function serializeRequestValue(
             [...typeStack, type.elementType]
           );
 
-          return `${prefix}.map(p => ({${propertiesStr}}))`;
+          return `${prefix}.map(p => { return ${elementNullOrUndefinedPrefix}{${propertiesStr}}})`;
         } else {
           // When it is not anonymous we can hand it off to the serializer function
           return `${prefix}.map(${toCamelCase(

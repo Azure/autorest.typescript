@@ -198,7 +198,8 @@ export function isSpecialUnionVariant(
         })
         ?.some((p) => {
           return isSpecialUnionVariant(p, [...variantStack, p]);
-        }))
+        })) ||
+    (t.type === "enum" && !(t.isFixed || t.isNonExhaustive))
   ) {
     specialVariantMap.set(t, true);
     variantStack.pop();
