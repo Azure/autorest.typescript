@@ -14,6 +14,7 @@ import {
   getClientNamespaceString,
   getClientType,
   getDefaultApiVersion,
+  getHttpOperationWithCache,
   getLibraryName,
   getSdkBuiltInType,
   getSdkUnion,
@@ -43,7 +44,6 @@ import {
   getPropertyType,
   getSummary,
   getVisibility,
-  ignoreDiagnostics,
   IntrinsicScalarName,
   IntrinsicType,
   isErrorModel,
@@ -67,7 +67,6 @@ import {
 } from "@typespec/compiler";
 import {
   getAuthentication,
-  getHttpOperation,
   getServers,
   HttpAuth,
   HttpOperation,
@@ -471,14 +470,10 @@ function emitBodyParameter(
     if (contentTypes.length === 0) {
       contentTypes = ["application/json"];
     }
-    const type = getType(
-      context,
-      getBodyType(context.program, httpOperation)!,
-      {
-        disableEffectiveModel: true,
-        usage: UsageFlags.Input
-      }
-    );
+    const type = getType(context, getBodyType(httpOperation)!, {
+      disableEffectiveModel: true,
+      usage: UsageFlags.Input
+    });
 
     return {
       contentTypes,
@@ -677,7 +672,7 @@ function emitOperation(
   }
   const lro = isLongRunningOperation(
     context.program,
-    ignoreDiagnostics(getHttpOperation(context.program, operation))
+    getHttpOperationWithCache(context, operation)
   );
   const pagingMetadata = getPagedResult(context.program, operation);
   // Disable the paging feature if no itemsSegments is found.
@@ -761,9 +756,7 @@ function emitBasicOperation(
       parameters.push(param);
     }
   }
-  const httpOperation = ignoreDiagnostics(
-    getHttpOperation(context.program, operation)
-  );
+  const httpOperation = getHttpOperationWithCache(context, operation);
   const sourceOperation =
     operation.sourceOperation &&
     !isTemplateDeclarationOrInstance(operation.sourceOperation)
@@ -774,9 +767,7 @@ function emitBasicOperation(
     sourceOperation
   );
   const sourceOperationName = getOperationName(context, sourceOperation);
-  const sourceRoutePath = ignoreDiagnostics(
-    getHttpOperation(context.program, operation)
-  ).path;
+  const sourceRoutePath = getHttpOperationWithCache(context, operation).path;
   const rlcResponses = rlcModels.responses?.filter((op) => {
     return (
       (sourceOperationGroupName === "" ||
@@ -844,7 +835,14 @@ function emitBasicOperation(
     if (
       bodyParameter.type.type === "model" &&
       bodyParameter.type.name === "" &&
-      bodyParameter.type.properties.length > 0
+      [...bodyParameter.type.properties.keys()].every(
+        (k) =>
+          operation.parameters.properties.has(k) &&
+          (operation.parameters.properties.get(k) ===
+            (bodyParameter.type as Model).properties.get(k) ||
+            operation.parameters.properties.get(k) ===
+              (bodyParameter.type as Model).properties.get(k)?.sourceProperty)
+      )
     ) {
       for (const param of bodyParameter.type.properties) {
         param.implementation = "Method";

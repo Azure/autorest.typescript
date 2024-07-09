@@ -4,9 +4,6 @@
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
-  AudioTranscriptionOptions as AudioTranscriptionOptionsRest,
-  AudioTranslationOptions as AudioTranslationOptionsRest,
-  CompletionsOptions as CompletionsOptionsRest,
   ChatRequestMessage as ChatRequestMessageRest,
   ChatRequestSystemMessage as ChatRequestSystemMessageRest,
   ChatRequestUserMessage as ChatRequestUserMessageRest,
@@ -60,10 +57,6 @@ import {
   ChatCompletionsNamedToolSelection as ChatCompletionsNamedToolSelectionRest,
   ChatCompletionsNamedFunctionToolSelection as ChatCompletionsNamedFunctionToolSelectionRest,
   ChatCompletionsFunctionToolSelection as ChatCompletionsFunctionToolSelectionRest,
-  ChatCompletionsOptions as ChatCompletionsOptionsRest,
-  ImageGenerationOptions as ImageGenerationOptionsRest,
-  AudioSpeechOptions as AudioSpeechOptionsRest,
-  EmbeddingsOptions as EmbeddingsOptionsRest,
 } from "../rest/index.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
@@ -75,7 +68,6 @@ export type AudioTranscriptionFormat =
   | "srt"
   | "vtt";
 
-/** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
   /**
    * The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
@@ -109,7 +101,7 @@ export interface AudioTranscriptionOptions {
 
 export function audioTranscriptionOptionsSerializer(
   item: AudioTranscriptionOptions,
-): AudioTranscriptionOptionsRest {
+) {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -183,7 +175,6 @@ export type AudioTranslationFormat =
   | "srt"
   | "vtt";
 
-/** The configuration information for an audio translation request. */
 export interface AudioTranslationOptions {
   /**
    * The audio data to translate. This must be the binary content of a file in one of the supported media formats:
@@ -211,7 +202,7 @@ export interface AudioTranslationOptions {
 
 export function audioTranslationOptionsSerializer(
   item: AudioTranslationOptions,
-): AudioTranslationOptionsRest {
+) {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -273,11 +264,6 @@ export interface AudioTranslationSegment {
   seek: number;
 }
 
-/**
- * The configuration information for a completions request.
- * Completions support a wide variety of tasks and generate text that continues from or "completes"
- * provided prompt data.
- */
 export interface CompletionsOptions {
   /** The prompts to generate completions from. */
   prompt: string[];
@@ -365,9 +351,7 @@ export interface CompletionsOptions {
   model?: string;
 }
 
-export function completionsOptionsSerializer(
-  item: CompletionsOptions,
-): CompletionsOptionsRest {
+export function completionsOptionsSerializer(item: CompletionsOptions) {
   return {
     prompt: item["prompt"],
     max_tokens: item["maxTokens"],
@@ -2087,11 +2071,6 @@ export function chatCompletionsFunctionToolSelectionSerializer(
   };
 }
 
-/**
- * The configuration information for a chat completions request.
- * Completions support a wide variety of tasks and generate text that continues from or "completes"
- * provided prompt data.
- */
 export interface ChatCompletionsOptions {
   /**
    * The collection of context messages associated with this chat completions request.
@@ -2199,9 +2178,7 @@ export interface ChatCompletionsOptions {
     | ChatCompletionsNamedToolSelectionUnion;
 }
 
-export function chatCompletionsOptionsSerializer(
-  item: ChatCompletionsOptions,
-): ChatCompletionsOptionsRest {
+export function chatCompletionsOptionsSerializer(item: ChatCompletionsOptions) {
   return {
     messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
     functions:
@@ -2485,7 +2462,6 @@ export type ImageGenerationQuality = "standard" | "hd";
  */
 export type ImageGenerationStyle = "natural" | "vivid";
 
-/** Represents the request data used to generate images. */
 export interface ImageGenerationOptions {
   /**
    * The model name or Azure OpenAI model deployment name to use for image generation. If not specified, dall-e-2 will be
@@ -2522,9 +2498,7 @@ export interface ImageGenerationOptions {
   user?: string;
 }
 
-export function imageGenerationOptionsSerializer(
-  item: ImageGenerationOptions,
-): ImageGenerationOptionsRest {
+export function imageGenerationOptionsSerializer(item: ImageGenerationOptions) {
   return {
     model: item["model"],
     prompt: item["prompt"],
@@ -2590,7 +2564,6 @@ export type AudioSpeechVoice =
 /** The supported audio output formats for text-to-speech. */
 export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
 
-/** A representation of the request options that control the behavior of a text-to-speech operation. */
 export interface AudioSpeechOptions {
   /** The text to generate audio for. The maximum length is 4096 characters. */
   input: string;
@@ -2602,9 +2575,7 @@ export interface AudioSpeechOptions {
   speed?: number;
 }
 
-export function audioSpeechOptionsSerializer(
-  item: AudioSpeechOptions,
-): AudioSpeechOptionsRest {
+export function audioSpeechOptionsSerializer(item: AudioSpeechOptions) {
   return {
     input: item["input"],
     voice: item["voice"],
@@ -2613,11 +2584,6 @@ export function audioSpeechOptionsSerializer(
   };
 }
 
-/**
- * The configuration information for an embeddings request.
- * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
- * recommendations, and other similar scenarios.
- */
 export interface EmbeddingsOptions {
   /**
    * An identifier for the caller or end user of the operation. This may be used for tracking
@@ -2642,9 +2608,7 @@ export interface EmbeddingsOptions {
   inputType?: string;
 }
 
-export function embeddingsOptionsSerializer(
-  item: EmbeddingsOptions,
-): EmbeddingsOptionsRest {
+export function embeddingsOptionsSerializer(item: EmbeddingsOptions) {
   return {
     user: item["user"],
     model: item["model"],

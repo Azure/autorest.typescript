@@ -65,13 +65,11 @@ import {
   isType
 } from "@typespec/compiler";
 import {
-  createMetadataInfo,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
   HttpOperation,
-  isStatusCode,
-  Visibility
+  isStatusCode
 } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
@@ -1495,19 +1493,16 @@ export function getFormattedPropertyDoc(
   return propertyDoc ?? enhancedDocFromType;
 }
 
-export function getBodyType(
-  program: Program,
-  route: HttpOperation
-): Type | undefined {
+export function getBodyType(route: HttpOperation): Type | undefined {
   const bodyModel = route.parameters.body?.type;
-  if (bodyModel) {
-    const metadataInfo = createMetadataInfo(program);
-    const payloadType = metadataInfo.getEffectivePayloadType(
-      bodyModel,
-      Visibility.All
-    );
-    return payloadType;
-  }
+  // if (bodyModel) {
+  //   const metadataInfo = createMetadataInfo(program);
+  //   const payloadType = metadataInfo.getEffectivePayloadType(
+  //     bodyModel,
+  //     Visibility.All
+  //   );
+  //   return payloadType;
+  // }
   return bodyModel;
 }
 
