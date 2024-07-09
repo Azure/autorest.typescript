@@ -240,26 +240,28 @@ export async function _listTestProfilesDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      testProfileId: p["testProfileId"],
-      displayName: p["displayName"],
-      description: p["description"],
-      testId: p["testId"],
-      targetResourceId: p["targetResourceId"],
-      targetResourceConfigurations: !p.targetResourceConfigurations
-        ? undefined
-        : { kind: p.targetResourceConfigurations?.["kind"] as ResourceKind },
-      createdDateTime:
-        p["createdDateTime"] !== undefined
-          ? new Date(p["createdDateTime"])
-          : undefined,
-      createdBy: p["createdBy"],
-      lastModifiedDateTime:
-        p["lastModifiedDateTime"] !== undefined
-          ? new Date(p["lastModifiedDateTime"])
-          : undefined,
-      lastModifiedBy: p["lastModifiedBy"],
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        testProfileId: p["testProfileId"],
+        displayName: p["displayName"],
+        description: p["description"],
+        testId: p["testId"],
+        targetResourceId: p["targetResourceId"],
+        targetResourceConfigurations: !p.targetResourceConfigurations
+          ? undefined
+          : { kind: p.targetResourceConfigurations?.["kind"] as ResourceKind },
+        createdDateTime:
+          p["createdDateTime"] !== undefined
+            ? new Date(p["createdDateTime"])
+            : undefined,
+        createdBy: p["createdBy"],
+        lastModifiedDateTime:
+          p["lastModifiedDateTime"] !== undefined
+            ? new Date(p["lastModifiedDateTime"])
+            : undefined,
+        lastModifiedBy: p["lastModifiedBy"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

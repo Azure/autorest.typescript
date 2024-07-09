@@ -1283,6 +1283,9 @@ export function deserializeResponseValue(
         }
       }
       return restValue;
+    case "dict":
+      // TODO: Need to handle the dictionary cases
+      return `${restValue} as any`;
     default:
       return restValue;
   }

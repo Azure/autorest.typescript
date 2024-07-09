@@ -89,7 +89,9 @@ export async function _createOrUpdateTestProfileRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
+        : result.body["errorDetails"].map((p) => {
+            return { message: p["message"] };
+          }),
     startDateTime:
       result.body["startDateTime"] !== undefined
         ? new Date(result.body["startDateTime"])
@@ -99,14 +101,16 @@ export async function _createOrUpdateTestProfileRunDeserialize(
         ? new Date(result.body["endDateTime"])
         : undefined,
     durationInSeconds: result.body["durationInSeconds"],
-    testRunDetails: result.body["testRunDetails"],
+    testRunDetails: result.body["testRunDetails"] as any,
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
-        : result.body["recommendations"].map((p) => ({
-            category: p["category"] as RecommendationCategory,
-            configurations: p["configurations"],
-          })),
+        : result.body["recommendations"].map((p) => {
+            return {
+              category: p["category"] as RecommendationCategory,
+              configurations: p["configurations"],
+            };
+          }),
     createdDateTime:
       result.body["createdDateTime"] !== undefined
         ? new Date(result.body["createdDateTime"])
@@ -214,7 +218,9 @@ export async function _getTestProfileRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
+        : result.body["errorDetails"].map((p) => {
+            return { message: p["message"] };
+          }),
     startDateTime:
       result.body["startDateTime"] !== undefined
         ? new Date(result.body["startDateTime"])
@@ -224,14 +230,16 @@ export async function _getTestProfileRunDeserialize(
         ? new Date(result.body["endDateTime"])
         : undefined,
     durationInSeconds: result.body["durationInSeconds"],
-    testRunDetails: result.body["testRunDetails"],
+    testRunDetails: result.body["testRunDetails"] as any,
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
-        : result.body["recommendations"].map((p) => ({
-            category: p["category"] as RecommendationCategory,
-            configurations: p["configurations"],
-          })),
+        : result.body["recommendations"].map((p) => {
+            return {
+              category: p["category"] as RecommendationCategory,
+              configurations: p["configurations"],
+            };
+          }),
     createdDateTime:
       result.body["createdDateTime"] !== undefined
         ? new Date(result.body["createdDateTime"])
@@ -295,46 +303,54 @@ export async function _listTestProfileRunsDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      testProfileRunId: p["testProfileRunId"],
-      displayName: p["displayName"],
-      description: p["description"],
-      testProfileId: p["testProfileId"],
-      targetResourceId: p["targetResourceId"],
-      targetResourceConfigurations: !p.targetResourceConfigurations
-        ? undefined
-        : { kind: p.targetResourceConfigurations?.["kind"] as ResourceKind },
-      status: p["status"] as TestProfileRunStatus,
-      errorDetails:
-        p["errorDetails"] === undefined
-          ? p["errorDetails"]
-          : p["errorDetails"].map((p) => ({ message: p["message"] })),
-      startDateTime:
-        p["startDateTime"] !== undefined
-          ? new Date(p["startDateTime"])
-          : undefined,
-      endDateTime:
-        p["endDateTime"] !== undefined ? new Date(p["endDateTime"]) : undefined,
-      durationInSeconds: p["durationInSeconds"],
-      testRunDetails: p["testRunDetails"],
-      recommendations:
-        p["recommendations"] === undefined
-          ? p["recommendations"]
-          : p["recommendations"].map((p) => ({
-              category: p["category"] as RecommendationCategory,
-              configurations: p["configurations"],
-            })),
-      createdDateTime:
-        p["createdDateTime"] !== undefined
-          ? new Date(p["createdDateTime"])
-          : undefined,
-      createdBy: p["createdBy"],
-      lastModifiedDateTime:
-        p["lastModifiedDateTime"] !== undefined
-          ? new Date(p["lastModifiedDateTime"])
-          : undefined,
-      lastModifiedBy: p["lastModifiedBy"],
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        testProfileRunId: p["testProfileRunId"],
+        displayName: p["displayName"],
+        description: p["description"],
+        testProfileId: p["testProfileId"],
+        targetResourceId: p["targetResourceId"],
+        targetResourceConfigurations: !p.targetResourceConfigurations
+          ? undefined
+          : { kind: p.targetResourceConfigurations?.["kind"] as ResourceKind },
+        status: p["status"] as TestProfileRunStatus,
+        errorDetails:
+          p["errorDetails"] === undefined
+            ? p["errorDetails"]
+            : p["errorDetails"].map((p) => {
+                return { message: p["message"] };
+              }),
+        startDateTime:
+          p["startDateTime"] !== undefined
+            ? new Date(p["startDateTime"])
+            : undefined,
+        endDateTime:
+          p["endDateTime"] !== undefined
+            ? new Date(p["endDateTime"])
+            : undefined,
+        durationInSeconds: p["durationInSeconds"],
+        testRunDetails: p["testRunDetails"] as any,
+        recommendations:
+          p["recommendations"] === undefined
+            ? p["recommendations"]
+            : p["recommendations"].map((p) => {
+                return {
+                  category: p["category"] as RecommendationCategory,
+                  configurations: p["configurations"],
+                };
+              }),
+        createdDateTime:
+          p["createdDateTime"] !== undefined
+            ? new Date(p["createdDateTime"])
+            : undefined,
+        createdBy: p["createdBy"],
+        lastModifiedDateTime:
+          p["lastModifiedDateTime"] !== undefined
+            ? new Date(p["lastModifiedDateTime"])
+            : undefined,
+        lastModifiedBy: p["lastModifiedBy"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -391,7 +407,9 @@ export async function _stopDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
+        : result.body["errorDetails"].map((p) => {
+            return { message: p["message"] };
+          }),
     startDateTime:
       result.body["startDateTime"] !== undefined
         ? new Date(result.body["startDateTime"])
@@ -401,14 +419,16 @@ export async function _stopDeserialize(
         ? new Date(result.body["endDateTime"])
         : undefined,
     durationInSeconds: result.body["durationInSeconds"],
-    testRunDetails: result.body["testRunDetails"],
+    testRunDetails: result.body["testRunDetails"] as any,
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
-        : result.body["recommendations"].map((p) => ({
-            category: p["category"] as RecommendationCategory,
-            configurations: p["configurations"],
-          })),
+        : result.body["recommendations"].map((p) => {
+            return {
+              category: p["category"] as RecommendationCategory,
+              configurations: p["configurations"],
+            };
+          }),
     createdDateTime:
       result.body["createdDateTime"] !== undefined
         ? new Date(result.body["createdDateTime"])

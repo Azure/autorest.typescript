@@ -20,6 +20,14 @@ export function createTestProfileAdministrationOperations(
   credential: TokenCredential,
   options: TestProfileAdministrationOperationsClientOptions = {},
 ): LoadTestServiceContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }
