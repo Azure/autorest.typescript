@@ -25,16 +25,8 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface BudgetsCreateOrUpdateOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
-    updateIntervalInMs?: number;
-}
-
-// @public
 export interface BudgetsOperations {
     createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
-    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptionalParams) => PollerLike<OperationState<User>, User>;
 }
 
 // @public
