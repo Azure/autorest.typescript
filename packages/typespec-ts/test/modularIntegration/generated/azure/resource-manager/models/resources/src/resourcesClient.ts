@@ -25,7 +25,15 @@ export class ResourcesClient {
 
   /** Arm Resource Provider management API. */
   constructor(subscriptionId: string, options: ResourcesClientOptions = {}) {
-    this._client = createResources(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createResources({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.topLevelTrackedResources = getTopLevelTrackedResourcesOperations(
       this._client,
