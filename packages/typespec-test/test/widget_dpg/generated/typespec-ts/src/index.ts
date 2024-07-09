@@ -25,7 +25,6 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  BudgetsCreateOrUpdateOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

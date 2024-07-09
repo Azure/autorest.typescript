@@ -103,29 +103,3 @@ export type BudgetsCreateOrReplaceParameters =
   BudgetsCreateOrReplaceQueryParam &
     BudgetsCreateOrReplaceBodyParam &
     RequestParameters;
-/** The resource instance. */
-export type UserResourceMergeAndPatch = Partial<User>;
-
-export interface BudgetsCreateOrUpdateBodyParam {
-  /** The resource instance. */
-  body: UserResourceMergeAndPatch;
-}
-
-export interface BudgetsCreateOrUpdateQueryParamProperties {
-  /** The API version to use for this operation. */
-  "api-version": string;
-}
-
-export interface BudgetsCreateOrUpdateQueryParam {
-  queryParameters: BudgetsCreateOrUpdateQueryParamProperties;
-}
-
-export interface BudgetsCreateOrUpdateMediaTypesParam {
-  /** This request has a JSON Merge Patch body. */
-  contentType: "application/merge-patch+json";
-}
-
-export type BudgetsCreateOrUpdateParameters = BudgetsCreateOrUpdateQueryParam &
-  BudgetsCreateOrUpdateMediaTypesParam &
-  BudgetsCreateOrUpdateBodyParam &
-  RequestParameters;
