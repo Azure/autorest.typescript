@@ -42,7 +42,15 @@ export class NullableClient {
 
   /** Illustrates models with nullable properties. */
   constructor(options: NullableClientOptions = {}) {
-    this._client = createNullable(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createNullable({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
     this.bytes = getBytesOperations(this._client);

@@ -14,6 +14,14 @@ export function createWidgetService(
   endpoint: string,
   options: WidgetServiceClientOptions = {},
 ): WidgetServiceContext {
-  const clientContext = getClient(endpoint, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpoint, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }
