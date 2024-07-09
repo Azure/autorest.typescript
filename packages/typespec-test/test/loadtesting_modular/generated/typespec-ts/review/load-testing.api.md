@@ -436,7 +436,11 @@ export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
 // @public
-export interface StopOptionalParams extends OperationOptions {
+export interface StopTestProfileRunOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface StopTestRunOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -1052,7 +1056,7 @@ export class TestProfileRunOperationsClient {
     getTestProfileRun(testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
     listTestProfileRuns(options?: ListTestProfileRunsOptionalParams): TestProfileRunOperationsClientPagedAsyncIterableIterator<TestProfileRunOperationsClientTestProfileRun>;
     readonly pipeline: Pipeline;
-    stop(testProfileRunId: string, options?: TestProfileRunOperationsClientStopOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
+    stopTestProfileRun(testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
 }
 
 // @public
@@ -1301,10 +1305,6 @@ export type TestProfileRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRE
 
 // @public
 export type TestProfileRunOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
-
-// @public
-export interface TestProfileRunOperationsClientStopOptionalParams extends OperationOptions {
-}
 
 // @public
 export interface TestProfileRunOperationsClientTargetResourceConfigurations {
@@ -1664,7 +1664,7 @@ export class TestRunOperationsClient {
     listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: TestRunOperationsClientMetricRequestPayload, options?: ListMetricsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
     listTestRuns(options?: ListTestRunsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
-    stop(testRunId: string, options?: StopOptionalParams): Promise<TestRunOperationsClientTestRun>;
+    stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
 }
 
 // @public

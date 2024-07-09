@@ -83,7 +83,7 @@ export {
   ListMetricNamespacesOptionalParams,
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
-  StopOptionalParams,
+  StopTestRunOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

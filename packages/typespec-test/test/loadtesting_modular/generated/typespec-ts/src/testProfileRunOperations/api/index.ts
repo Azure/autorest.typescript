@@ -6,7 +6,7 @@ export {
   deleteTestProfileRun,
   getTestProfileRun,
   listTestProfileRuns,
-  stop,
+  stopTestProfileRun,
 } from "./operations.js";
 export {
   createTestProfileRunOperations,

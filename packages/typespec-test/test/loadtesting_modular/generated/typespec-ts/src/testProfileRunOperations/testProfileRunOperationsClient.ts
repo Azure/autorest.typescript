@@ -9,7 +9,7 @@ import {
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
-  StopOptionalParams,
+  StopTestProfileRunOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -17,7 +17,7 @@ import {
   deleteTestProfileRun,
   getTestProfileRun,
   listTestProfileRuns,
-  stop,
+  stopTestProfileRun,
   createTestProfileRunOperations,
   TestProfileRunOperationsClientOptions,
   LoadTestServiceContext,
@@ -87,10 +87,10 @@ export class TestProfileRunOperationsClient {
   }
 
   /** Stop test profile run for the given test profile run Id. */
-  stop(
+  stopTestProfileRun(
     testProfileRunId: string,
-    options: StopOptionalParams = { requestOptions: {} },
+    options: StopTestProfileRunOptionalParams = { requestOptions: {} },
   ): Promise<TestProfileRun> {
-    return stop(this._client, testProfileRunId, options);
+    return stopTestProfileRun(this._client, testProfileRunId, options);
   }
 }
