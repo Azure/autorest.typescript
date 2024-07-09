@@ -58,10 +58,9 @@ export async function _embedDeserialize(
 
   return {
     id: result.body["id"],
-    data: result.body["data"].map((p) => ({
-      embedding: p["embedding"],
-      index: p["index"],
-    })),
+    data: result.body["data"].map((p) => {
+      return { embedding: p["embedding"], index: p["index"] };
+    }),
     usage: {
       capacityType: result.body.usage["capacity_type"] as CapacityType,
       inputTokens: result.body.usage["input_tokens"],

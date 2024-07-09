@@ -56,7 +56,7 @@ export function _completeSend(
         response_format: options?.responseFormat,
         stop: options?.stop,
         tools: options?.tools,
-        tool_choice: options?.toolChoice,
+        tool_choice: options?.toolChoice as any,
         seed: options?.seed,
       },
     });
@@ -79,18 +79,20 @@ export async function _completeDeserialize(
       promptTokens: result.body.usage["prompt_tokens"],
       totalTokens: result.body.usage["total_tokens"],
     },
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      finishReason: p["finish_reason"] as CompletionsFinishReason,
-      message: {
-        role: p.message["role"] as ChatRole,
-        content: p.message["content"],
-        toolCalls:
-          p.message["tool_calls"] === undefined
-            ? p.message["tool_calls"]
-            : p.message["tool_calls"],
-      },
-    })),
+    choices: result.body["choices"].map((p) => {
+      return {
+        index: p["index"],
+        finishReason: p["finish_reason"] as CompletionsFinishReason,
+        message: {
+          role: p.message["role"] as ChatRole,
+          content: p.message["content"],
+          toolCalls:
+            p.message["tool_calls"] === undefined
+              ? p.message["tool_calls"]
+              : p.message["tool_calls"],
+        },
+      };
+    }),
   };
 }
 

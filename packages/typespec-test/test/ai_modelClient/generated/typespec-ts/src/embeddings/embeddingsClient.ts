@@ -24,7 +24,15 @@ export class EmbeddingsClient {
     credential: KeyCredential | TokenCredential,
     options: EmbeddingsClientOptions = {},
   ) {
-    this._client = createEmbeddings(endpoint, credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createEmbeddings(endpoint, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 
