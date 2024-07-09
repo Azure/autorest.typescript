@@ -21,7 +21,7 @@ export default function createClient({
 }: ResourcesContextOptions = {}): ResourcesContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
-  const userAgentInfo = `azsdk-js-arm-resources-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-arm-resources/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
