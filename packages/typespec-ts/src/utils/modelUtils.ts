@@ -16,7 +16,9 @@ import {
   getUnionAsEnum
 } from "@azure-tools/typespec-azure-core";
 import {
+  getAccess,
   getDefaultApiVersion,
+  getUsage,
   getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
@@ -152,7 +154,7 @@ export function getSchemaForType(
 ) {
   const program = dpgContext.program;
   const { usage } = options ?? {};
-  const type = getEffectiveModelFromType(program, typeInput);
+  const type = getEffectiveModelFromType(dpgContext, typeInput);
 
   const builtinType = getSchemaForLiteral(type);
   if (builtinType !== undefined) {
@@ -241,14 +243,18 @@ export function getSchemaForType(
   });
   return undefined;
 }
-export function getEffectiveModelFromType(program: Program, type: Type): Type {
+export function getEffectiveModelFromType(context: SdkContext, type: Type): Type {
   /**
    * If type is an anonymous model, tries to find a named model that has the same
    * set of properties when non-schema properties are excluded.
    */
   if (type.kind === "Model" && type.name === "") {
-    const effective = getEffectiveModelType(program, type, (property) =>
-      isSchemaProperty(program, property)
+    const access = getAccess(context, type);
+    const usage = getUsage(context, type);
+    access;
+    usage;
+    const effective = getEffectiveModelType(context.program, type, (property) =>
+      isSchemaProperty(context.program, property)
     );
     if (effective.name) {
       return effective;
@@ -1495,14 +1501,6 @@ export function getFormattedPropertyDoc(
 
 export function getBodyType(route: HttpOperation): Type | undefined {
   const bodyModel = route.parameters.body?.type;
-  // if (bodyModel) {
-  //   const metadataInfo = createMetadataInfo(program);
-  //   const payloadType = metadataInfo.getEffectivePayloadType(
-  //     bodyModel,
-  //     Visibility.All
-  //   );
-  //   return payloadType;
-  // }
   return bodyModel;
 }
 

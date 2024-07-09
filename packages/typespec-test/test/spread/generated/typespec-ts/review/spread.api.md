@@ -11,13 +11,9 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 // @public
 export interface AOperations {
     // (undocumented)
-    test1: (body: {
-        a: string;
-        b: string;
-        c: string;
-    }, options?: ATest1OptionalParams) => Promise<void>;
+    test1: (a: string, b: string, c: string, options?: ATest1OptionalParams) => Promise<void>;
     // (undocumented)
-    test2: (body: Test, options?: ATest2OptionalParams) => Promise<void>;
+    test2: (prop: string, options?: ATest2OptionalParams) => Promise<void>;
     // (undocumented)
     test3: (body: {
         prop: string;

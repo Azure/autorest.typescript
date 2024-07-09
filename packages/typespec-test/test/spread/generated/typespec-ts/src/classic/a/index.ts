@@ -14,10 +14,12 @@ import {
 /** Interface representing a A operations. */
 export interface AOperations {
   test1: (
-    body: { a: string; b: string; c: string },
+    a: string,
+    b: string,
+    c: string,
     options?: ATest1OptionalParams,
   ) => Promise<void>;
-  test2: (body: Test, options?: ATest2OptionalParams) => Promise<void>;
+  test2: (prop: string, options?: ATest2OptionalParams) => Promise<void>;
   test3: (
     body: { prop: string },
     options?: ATest3OptionalParams,
@@ -27,12 +29,10 @@ export interface AOperations {
 
 export function getA(context: DemoServiceContext) {
   return {
-    test1: (
-      body: { a: string; b: string; c: string },
-      options?: ATest1OptionalParams,
-    ) => test1(context, body, options),
-    test2: (body: Test, options?: ATest2OptionalParams) =>
-      test2(context, body, options),
+    test1: (a: string, b: string, c: string, options?: ATest1OptionalParams) =>
+      test1(context, a, b, c, options),
+    test2: (prop: string, options?: ATest2OptionalParams) =>
+      test2(context, prop, options),
     test3: (body: { prop: string }, options?: ATest3OptionalParams) =>
       test3(context, body, options),
     test4: (body: Test, options?: ATest4OptionalParams) =>

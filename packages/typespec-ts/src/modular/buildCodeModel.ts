@@ -832,16 +832,18 @@ function emitBasicOperation(
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
     // Flatten the body parameter if it is an anonymous model
+    const originalBodyType = httpOperation.parameters.body.type;
+
     if (
-      bodyParameter.type.type === "model" &&
-      bodyParameter.type.name === "" &&
-      [...bodyParameter.type.properties.keys()].every(
+      originalBodyType.kind === "Model" &&
+      originalBodyType.name === "" &&
+      [...originalBodyType.properties.keys()].every(
         (k) =>
           operation.parameters.properties.has(k) &&
           (operation.parameters.properties.get(k) ===
-            (bodyParameter.type as Model).properties.get(k) ||
+            (originalBodyType as Model).properties.get(k) ||
             operation.parameters.properties.get(k) ===
-              (bodyParameter.type as Model).properties.get(k)?.sourceProperty)
+              (originalBodyType as Model).properties.get(k)?.sourceProperty)
       )
     ) {
       for (const param of bodyParameter.type.properties) {
