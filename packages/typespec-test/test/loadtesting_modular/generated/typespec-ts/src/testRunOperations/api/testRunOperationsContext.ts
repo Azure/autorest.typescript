@@ -19,14 +19,6 @@ export function createTestRunOperations(
   credential: TokenCredential,
   options: TestRunOperationsClientOptions = {},
 ): LoadTestServiceContext {
-  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
-
-  const clientContext = getClient(endpointParam, credential, {
-    ...options,
-    userAgentOptions: { userAgentPrefix },
-  });
+  const clientContext = getClient(endpointParam, credential, options);
   return clientContext;
 }

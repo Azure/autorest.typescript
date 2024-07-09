@@ -171,9 +171,7 @@ export async function _createOrUpdateTestRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
-            return { message: p["message"] };
-          }),
+        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     regionalStatistics: result.body["regionalStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
@@ -377,9 +375,8 @@ export async function _createOrUpdateTestRunDeserialize(
                       ]
                     : result.body.testArtifacts?.inputArtifacts?.[
                         "additionalFileInfo"
-                      ].map((p) => {
-                        return {
-                          fileName: p["fileName"],
+                      ].map((p) => ({
+                        fileName: p["fileName"],
                         url: p["url"],
                         fileType: p["fileType"] as FileType,
                         expireDateTime:
@@ -387,6 +384,8 @@ export async function _createOrUpdateTestRunDeserialize(
                             ? new Date(p["expireDateTime"])
                             : undefined,
                         validationStatus: p["validationStatus"] as FileStatus,
+                        validationFailureDetails: p["validationFailureDetails"],
+                      })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
@@ -863,9 +862,7 @@ export async function _getTestRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
-            return { message: p["message"] };
-          }),
+        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     regionalStatistics: result.body["regionalStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
@@ -1069,9 +1066,8 @@ export async function _getTestRunDeserialize(
                       ]
                     : result.body.testArtifacts?.inputArtifacts?.[
                         "additionalFileInfo"
-                      ].map((p) => {
-                        return {
-                          fileName: p["fileName"],
+                      ].map((p) => ({
+                        fileName: p["fileName"],
                         url: p["url"],
                         fileType: p["fileType"] as FileType,
                         expireDateTime:
@@ -1079,6 +1075,8 @@ export async function _getTestRunDeserialize(
                             ? new Date(p["expireDateTime"])
                             : undefined,
                         validationStatus: p["validationStatus"] as FileStatus,
+                        validationFailureDetails: p["validationFailureDetails"],
+                      })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
@@ -1334,7 +1332,6 @@ export async function _listMetricDimensionValuesDeserialize(
   return {
     name: result.body["name"],
     value: result.body["value"],
-    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -1388,28 +1385,27 @@ export async function _listMetricDefinitionsDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => {
-      return {
-        dimensions:
-          p["dimensions"] === undefined
-            ? p["dimensions"]
-            : p["dimensions"].map((p) => {
-                return { description: p["description"], name: p["name"] };
-              }),
-        description: p["description"],
-        name: p["name"],
-        namespace: p["namespace"],
+    value: result.body["value"].map((p) => ({
+      dimensions:
+        p["dimensions"] === undefined
+          ? p["dimensions"]
+          : p["dimensions"].map((p) => ({
+              description: p["description"],
+              name: p["name"],
+            })),
+      description: p["description"],
+      name: p["name"],
+      namespace: p["namespace"],
       primaryAggregationType: p["primaryAggregationType"] as AggregationType,
-        supportedAggregationTypes: p["supportedAggregationTypes"],
+      supportedAggregationTypes: p["supportedAggregationTypes"],
       unit: p["unit"] as MetricUnit,
-        metricAvailabilities:
-          p["metricAvailabilities"] === undefined
-            ? p["metricAvailabilities"]
-            : p["metricAvailabilities"].map((p) => {
+      metricAvailabilities:
+        p["metricAvailabilities"] === undefined
+          ? p["metricAvailabilities"]
+          : p["metricAvailabilities"].map((p) => ({
               timeGrain: p["timeGrain"] as TimeGrain,
-              }),
-      };
-    }),
+            })),
+    })),
   };
 }
 
@@ -1452,9 +1448,10 @@ export async function _listMetricNamespacesDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => {
-      return { description: p["description"], name: p["name"] };
-    }),
+    value: result.body["value"].map((p) => ({
+      description: p["description"],
+      name: p["name"],
+    })),
   };
 }
 
@@ -1512,24 +1509,25 @@ export async function _listMetricsDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => {
-      return {
-        data:
-          p["data"] === undefined
-            ? p["data"]
-            : p["data"].map((p) => {
+    value: result.body["value"].map((p) => ({
+      data:
+        p["data"] === undefined
+          ? p["data"]
+          : p["data"].map((p) => ({
               timestamp:
                 p["timestamp"] !== undefined
                   ? new Date(p["timestamp"])
                   : undefined,
-        dimensionValues:
-          p["dimensionValues"] === undefined
-            ? p["dimensionValues"]
-            : p["dimensionValues"].map((p) => {
-                return { name: p["name"], value: p["value"] };
-              }),
-      };
-    }),
+              value: p["value"],
+            })),
+      dimensionValues:
+        p["dimensionValues"] === undefined
+          ? p["dimensionValues"]
+          : p["dimensionValues"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
+    })),
     nextLink: result.body["nextLink"],
   };
 }
@@ -1593,12 +1591,11 @@ export async function _listTestRunsDeserialize(
   }
 
   return {
-    value: result.body["value"].map((p) => {
-      return {
-        testRunId: p["testRunId"],
-        passFailCriteria: !p.passFailCriteria
-          ? undefined
-          : { passFailMetrics: p.passFailCriteria?.["passFailMetrics"] },
+    value: result.body["value"].map((p) => ({
+      testRunId: p["testRunId"],
+      passFailCriteria: !p.passFailCriteria
+        ? undefined
+        : { passFailMetrics: p.passFailCriteria?.["passFailMetrics"] },
       autoStopCriteria: !p.autoStopCriteria
         ? undefined
         : {
@@ -1607,37 +1604,35 @@ export async function _listTestRunsDeserialize(
             errorRateTimeWindowInSeconds:
               p.autoStopCriteria?.["errorRateTimeWindowInSeconds"],
           },
-        secrets: p["secrets"],
-        certificate: !p.certificate
-          ? undefined
-          : {
-              value: p.certificate?.["value"],
+      secrets: p["secrets"],
+      certificate: !p.certificate
+        ? undefined
+        : {
+            value: p.certificate?.["value"],
             type: p.certificate?.["type"] as CertificateType,
-              name: p.certificate?.["name"],
-            },
-        environmentVariables: p["environmentVariables"],
-        errorDetails:
-          p["errorDetails"] === undefined
-            ? p["errorDetails"]
-            : p["errorDetails"].map((p) => {
-                return { message: p["message"] };
-              }),
-        testRunStatistics: p["testRunStatistics"],
+            name: p.certificate?.["name"],
+          },
+      environmentVariables: p["environmentVariables"],
+      errorDetails:
+        p["errorDetails"] === undefined
+          ? p["errorDetails"]
+          : p["errorDetails"].map((p) => ({ message: p["message"] })),
+      testRunStatistics: p["testRunStatistics"],
       regionalStatistics: p["regionalStatistics"],
-        loadTestConfiguration: !p.loadTestConfiguration
-          ? undefined
-          : {
-              engineInstances: p.loadTestConfiguration?.["engineInstances"],
-              splitAllCSVs: p.loadTestConfiguration?.["splitAllCSVs"],
-              quickStartTest: p.loadTestConfiguration?.["quickStartTest"],
-              optionalLoadTestConfig: !p.loadTestConfiguration
-                ?.optionalLoadTestConfig
-                ? undefined
-                : {
-                    endpointUrl:
-                      p.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "endpointUrl"
-                      ],
+      loadTestConfiguration: !p.loadTestConfiguration
+        ? undefined
+        : {
+            engineInstances: p.loadTestConfiguration?.["engineInstances"],
+            splitAllCSVs: p.loadTestConfiguration?.["splitAllCSVs"],
+            quickStartTest: p.loadTestConfiguration?.["quickStartTest"],
+            optionalLoadTestConfig: !p.loadTestConfiguration
+              ?.optionalLoadTestConfig
+              ? undefined
+              : {
+                  endpointUrl:
+                    p.loadTestConfiguration?.optionalLoadTestConfig?.[
+                      "endpointUrl"
+                    ],
                   requestsPerSecond:
                     p.loadTestConfiguration?.optionalLoadTestConfig?.[
                       "requestsPerSecond"
@@ -1646,19 +1641,19 @@ export async function _listTestRunsDeserialize(
                     p.loadTestConfiguration?.optionalLoadTestConfig?.[
                       "maxResponseTimeInMs"
                     ],
-                    virtualUsers:
-                      p.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "virtualUsers"
-                      ],
-                    rampUpTime:
-                      p.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "rampUpTime"
-                      ],
-                    duration:
-                      p.loadTestConfiguration?.optionalLoadTestConfig?.[
-                        "duration"
-                      ],
-                  },
+                  virtualUsers:
+                    p.loadTestConfiguration?.optionalLoadTestConfig?.[
+                      "virtualUsers"
+                    ],
+                  rampUpTime:
+                    p.loadTestConfiguration?.optionalLoadTestConfig?.[
+                      "rampUpTime"
+                    ],
+                  duration:
+                    p.loadTestConfiguration?.optionalLoadTestConfig?.[
+                      "duration"
+                    ],
+                },
             regionalLoadTestConfig:
               p.loadTestConfiguration?.["regionalLoadTestConfig"] === undefined
                 ? p.loadTestConfiguration?.["regionalLoadTestConfig"]
@@ -1668,29 +1663,29 @@ export async function _listTestRunsDeserialize(
                       region: p["region"],
                     }),
                   ),
-            },
-        testArtifacts: !p.testArtifacts
-          ? undefined
-          : {
-              inputArtifacts: !p.testArtifacts?.inputArtifacts
-                ? undefined
-                : {
-                    configFileInfo: !p.testArtifacts?.inputArtifacts
-                      ?.configFileInfo
-                      ? undefined
-                      : {
-                          fileName:
-                            p.testArtifacts?.inputArtifacts?.configFileInfo?.[
-                              "fileName"
-                            ],
+          },
+      testArtifacts: !p.testArtifacts
+        ? undefined
+        : {
+            inputArtifacts: !p.testArtifacts?.inputArtifacts
+              ? undefined
+              : {
+                  configFileInfo: !p.testArtifacts?.inputArtifacts
+                    ?.configFileInfo
+                    ? undefined
+                    : {
+                        fileName:
+                          p.testArtifacts?.inputArtifacts?.configFileInfo?.[
+                            "fileName"
+                          ],
                         url: p.testArtifacts?.inputArtifacts?.configFileInfo?.[
                           "url"
                         ],
                         fileType: p.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["fileType"] as FileType,
-                          expireDateTime:
-                            p.testArtifacts?.inputArtifacts?.configFileInfo?.[
-                              "expireDateTime"
+                        expireDateTime:
+                          p.testArtifacts?.inputArtifacts?.configFileInfo?.[
+                            "expireDateTime"
                           ] !== undefined
                             ? new Date(
                                 p.testArtifacts?.inputArtifacts
@@ -1699,25 +1694,26 @@ export async function _listTestRunsDeserialize(
                             : undefined,
                         validationStatus: p.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["validationStatus"] as FileStatus,
-                          validationFailureDetails:
-                            p.testArtifacts?.inputArtifacts?.configFileInfo?.[
-                              "validationFailureDetails"
-                            ],
-                        },
-                    testScriptFileInfo: !p.testArtifacts?.inputArtifacts
-                      ?.testScriptFileInfo
-                      ? undefined
-                      : {
-                          fileName:
-                            p.testArtifacts?.inputArtifacts
-                              ?.testScriptFileInfo?.["fileName"],
+                        validationFailureDetails:
+                          p.testArtifacts?.inputArtifacts?.configFileInfo?.[
+                            "validationFailureDetails"
+                          ],
+                      },
+                  testScriptFileInfo: !p.testArtifacts?.inputArtifacts
+                    ?.testScriptFileInfo
+                    ? undefined
+                    : {
+                        fileName:
+                          p.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
+                            "fileName"
+                          ],
                         url: p.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["url"],
                         fileType: p.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["fileType"] as FileType,
-                          expireDateTime:
-                            p.testArtifacts?.inputArtifacts
-                              ?.testScriptFileInfo?.["expireDateTime"],
+                        expireDateTime:
+                          p.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
+                            "expireDateTime"
                           ] !== undefined
                             ? new Date(
                                 p.testArtifacts?.inputArtifacts
@@ -1728,27 +1724,26 @@ export async function _listTestRunsDeserialize(
                           ?.testScriptFileInfo?.[
                           "validationStatus"
                         ] as FileStatus,
-                          validationFailureDetails:
-                            p.testArtifacts?.inputArtifacts
-                              ?.testScriptFileInfo?.[
-                              "validationFailureDetails"
-                            ],
-                        },
-                    userPropFileInfo: !p.testArtifacts?.inputArtifacts
-                      ?.userPropFileInfo
-                      ? undefined
-                      : {
-                          fileName:
-                            p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
-                              "fileName"
-                            ],
+                        validationFailureDetails:
+                          p.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
+                            "validationFailureDetails"
+                          ],
+                      },
+                  userPropFileInfo: !p.testArtifacts?.inputArtifacts
+                    ?.userPropFileInfo
+                    ? undefined
+                    : {
+                        fileName:
+                          p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
+                            "fileName"
+                          ],
                         url: p.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["url"],
                         fileType: p.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["fileType"] as FileType,
-                          expireDateTime:
-                            p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
-                              "expireDateTime"
+                        expireDateTime:
+                          p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
+                            "expireDateTime"
                           ] !== undefined
                             ? new Date(
                                 p.testArtifacts?.inputArtifacts
@@ -1759,24 +1754,24 @@ export async function _listTestRunsDeserialize(
                           ?.userPropFileInfo?.[
                           "validationStatus"
                         ] as FileStatus,
-                          validationFailureDetails:
-                            p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
-                              "validationFailureDetails"
-                            ],
-                        },
-                    inputArtifactsZipFileInfo: !p.testArtifacts?.inputArtifacts
-                      ?.inputArtifactsZipFileInfo
-                      ? undefined
-                      : {
-                          fileName:
-                            p.testArtifacts?.inputArtifacts
-                              ?.inputArtifactsZipFileInfo?.["fileName"],
+                        validationFailureDetails:
+                          p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
+                            "validationFailureDetails"
+                          ],
+                      },
+                  inputArtifactsZipFileInfo: !p.testArtifacts?.inputArtifacts
+                    ?.inputArtifactsZipFileInfo
+                    ? undefined
+                    : {
+                        fileName:
+                          p.testArtifacts?.inputArtifacts
+                            ?.inputArtifactsZipFileInfo?.["fileName"],
                         url: p.testArtifacts?.inputArtifacts
                           ?.inputArtifactsZipFileInfo?.["url"],
                         fileType: p.testArtifacts?.inputArtifacts
                           ?.inputArtifactsZipFileInfo?.["fileType"] as FileType,
-                          expireDateTime:
-                            p.testArtifacts?.inputArtifacts
+                        expireDateTime:
+                          p.testArtifacts?.inputArtifacts
                             ?.inputArtifactsZipFileInfo?.["expireDateTime"] !==
                           undefined
                             ? new Date(
@@ -1790,12 +1785,12 @@ export async function _listTestRunsDeserialize(
                           ?.inputArtifactsZipFileInfo?.[
                           "validationStatus"
                         ] as FileStatus,
-                          validationFailureDetails:
-                            p.testArtifacts?.inputArtifacts
-                              ?.inputArtifactsZipFileInfo?.[
-                              "validationFailureDetails"
-                            ],
-                        },
+                        validationFailureDetails:
+                          p.testArtifacts?.inputArtifacts
+                            ?.inputArtifactsZipFileInfo?.[
+                            "validationFailureDetails"
+                          ],
+                      },
                   urlTestConfigFileInfo: !p.testArtifacts?.inputArtifacts
                     ?.urlTestConfigFileInfo
                     ? undefined
@@ -1826,18 +1821,14 @@ export async function _listTestRunsDeserialize(
                             "validationFailureDetails"
                           ],
                       },
-                    additionalFileInfo:
-                      p.testArtifacts?.inputArtifacts?.[
-                        "additionalFileInfo"
-                      ] === undefined
-                        ? p.testArtifacts?.inputArtifacts?.[
-                            "additionalFileInfo"
-                          ]
-                        : p.testArtifacts?.inputArtifacts?.[
-                            "additionalFileInfo"
-                          ].map((p) => {
-                            return {
-                              fileName: p["fileName"],
+                  additionalFileInfo:
+                    p.testArtifacts?.inputArtifacts?.["additionalFileInfo"] ===
+                    undefined
+                      ? p.testArtifacts?.inputArtifacts?.["additionalFileInfo"]
+                      : p.testArtifacts?.inputArtifacts?.[
+                          "additionalFileInfo"
+                        ].map((p) => ({
+                          fileName: p["fileName"],
                           url: p["url"],
                           fileType: p["fileType"] as FileType,
                           expireDateTime:
@@ -1845,30 +1836,29 @@ export async function _listTestRunsDeserialize(
                               ? new Date(p["expireDateTime"])
                               : undefined,
                           validationStatus: p["validationStatus"] as FileStatus,
-                              validationFailureDetails:
-                                p["validationFailureDetails"],
-                            };
-                          }),
-                  },
-              outputArtifacts: !p.testArtifacts?.outputArtifacts
-                ? undefined
-                : {
-                    resultFileInfo: !p.testArtifacts?.outputArtifacts
-                      ?.resultFileInfo
-                      ? undefined
-                      : {
-                          fileName:
-                            p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
-                              "fileName"
-                            ],
+                          validationFailureDetails:
+                            p["validationFailureDetails"],
+                        })),
+                },
+            outputArtifacts: !p.testArtifacts?.outputArtifacts
+              ? undefined
+              : {
+                  resultFileInfo: !p.testArtifacts?.outputArtifacts
+                    ?.resultFileInfo
+                    ? undefined
+                    : {
+                        fileName:
+                          p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
+                            "fileName"
+                          ],
                         url: p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
                           "url"
                         ],
                         fileType: p.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["fileType"] as FileType,
-                          expireDateTime:
-                            p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
-                              "expireDateTime"
+                        expireDateTime:
+                          p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
+                            "expireDateTime"
                           ] !== undefined
                             ? new Date(
                                 p.testArtifacts?.outputArtifacts
@@ -1877,27 +1867,26 @@ export async function _listTestRunsDeserialize(
                             : undefined,
                         validationStatus: p.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["validationStatus"] as FileStatus,
-                          validationFailureDetails:
-                            p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
-                              "validationFailureDetails"
-                            ],
-                        },
-                    logsFileInfo: !p.testArtifacts?.outputArtifacts
-                      ?.logsFileInfo
-                      ? undefined
-                      : {
-                          fileName:
-                            p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
-                              "fileName"
-                            ],
+                        validationFailureDetails:
+                          p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
+                            "validationFailureDetails"
+                          ],
+                      },
+                  logsFileInfo: !p.testArtifacts?.outputArtifacts?.logsFileInfo
+                    ? undefined
+                    : {
+                        fileName:
+                          p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
+                            "fileName"
+                          ],
                         url: p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
                           "url"
                         ],
                         fileType: p.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["fileType"] as FileType,
-                          expireDateTime:
-                            p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
-                              "expireDateTime"
+                        expireDateTime:
+                          p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
+                            "expireDateTime"
                           ] !== undefined
                             ? new Date(
                                 p.testArtifacts?.outputArtifacts
@@ -1907,9 +1896,9 @@ export async function _listTestRunsDeserialize(
                         validationStatus: p.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["validationStatus"] as FileStatus,
                         validationFailureDetails:
-                            p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
+                          p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
                             "validationFailureDetails"
-                            ],
+                          ],
                       },
                   artifactsContainerInfo: !p.testArtifacts?.outputArtifacts
                     ?.artifactsContainerInfo
@@ -1951,18 +1940,18 @@ export async function _listTestRunsDeserialize(
                             : undefined,
                         validationStatus: p.testArtifacts?.outputArtifacts
                           ?.reportFileInfo?.["validationStatus"] as FileStatus,
-                          validationFailureDetails:
+                        validationFailureDetails:
                           p.testArtifacts?.outputArtifacts?.reportFileInfo?.[
-                              "validationFailureDetails"
-                            ],
-                        },
-                  },
-            },
+                            "validationFailureDetails"
+                          ],
+                      },
+                },
+          },
       testResult: p["testResult"] as PFTestResult,
-        virtualUsers: p["virtualUsers"],
-        displayName: p["displayName"],
-        testId: p["testId"],
-        description: p["description"],
+      virtualUsers: p["virtualUsers"],
+      displayName: p["displayName"],
+      testId: p["testId"],
+      description: p["description"],
       status: p["status"] as Status,
       startDateTime:
         p["startDateTime"] !== undefined
@@ -1974,9 +1963,9 @@ export async function _listTestRunsDeserialize(
         p["executedDateTime"] !== undefined
           ? new Date(p["executedDateTime"])
           : undefined,
-        portalUrl: p["portalUrl"],
-        duration: p["duration"],
-        subnetId: p["subnetId"],
+      portalUrl: p["portalUrl"],
+      duration: p["duration"],
+      subnetId: p["subnetId"],
       kind: p["kind"] as TestKind,
       requestDataLevel: p["requestDataLevel"] as RequestDataLevel,
       debugLogsEnabled: p["debugLogsEnabled"],
@@ -1985,14 +1974,13 @@ export async function _listTestRunsDeserialize(
         p["createdDateTime"] !== undefined
           ? new Date(p["createdDateTime"])
           : undefined,
-        createdBy: p["createdBy"],
+      createdBy: p["createdBy"],
       lastModifiedDateTime:
         p["lastModifiedDateTime"] !== undefined
           ? new Date(p["lastModifiedDateTime"])
           : undefined,
-        lastModifiedBy: p["lastModifiedBy"],
-      };
-    }),
+      lastModifiedBy: p["lastModifiedBy"],
+    })),
     nextLink: result.body["nextLink"],
   };
 }
@@ -2054,9 +2042,7 @@ export async function _stopDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
-            return { message: p["message"] };
-          }),
+        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     regionalStatistics: result.body["regionalStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
@@ -2260,9 +2246,8 @@ export async function _stopDeserialize(
                       ]
                     : result.body.testArtifacts?.inputArtifacts?.[
                         "additionalFileInfo"
-                      ].map((p) => {
-                        return {
-                          fileName: p["fileName"],
+                      ].map((p) => ({
+                        fileName: p["fileName"],
                         url: p["url"],
                         fileType: p["fileType"] as FileType,
                         expireDateTime:
@@ -2270,6 +2255,8 @@ export async function _stopDeserialize(
                             ? new Date(p["expireDateTime"])
                             : undefined,
                         validationStatus: p["validationStatus"] as FileStatus,
+                        validationFailureDetails: p["validationFailureDetails"],
+                      })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
