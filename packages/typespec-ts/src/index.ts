@@ -28,7 +28,8 @@ import {
   getClientName,
   hasUnexpectedHelper,
   RLCModel,
-  RLCOptions
+  RLCOptions,
+  buildLicenseFile
 } from "@azure-tools/rlc-common";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { EmitContext, Program } from "@typespec/compiler";
@@ -289,7 +290,8 @@ export async function $onEmit(context: EmitContext) {
       const commonBuilders = [
         buildRollupConfig,
         buildApiExtractorConfig,
-        buildReadmeFile
+        buildReadmeFile,
+        buildLicenseFile
       ];
       if (option.moduleKind === "esm") {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
