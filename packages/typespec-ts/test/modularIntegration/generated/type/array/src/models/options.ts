@@ -62,3 +62,31 @@ export interface NullableFloatValueGetOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface NullableFloatValuePutOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableInt32ValueGetOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableInt32ValuePutOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableBooleanValueGetOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableBooleanValuePutOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableStringValueGetOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableStringValuePutOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableModelValueGetOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface NullableModelValuePutOptionalParams extends OperationOptions {}

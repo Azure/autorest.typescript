@@ -27,7 +27,15 @@ export class StandardClient {
 
   /** Illustrates bodies templated with Azure Core with long-running operation */
   constructor(options: StandardClientOptions = {}) {
-    this._client = createStandard(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createStandard({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

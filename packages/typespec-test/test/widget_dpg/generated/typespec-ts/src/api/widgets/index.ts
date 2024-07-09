@@ -112,11 +112,9 @@ export async function _listWidgetsDeserialize(
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => ({
-        id: p["id"],
-        weight: p["weight"],
-        color: p["color"],
-      }));
+    : result.body.map((p) => {
+        return { id: p["id"], weight: p["weight"], color: p["color"] };
+      });
 }
 
 /**
@@ -171,11 +169,9 @@ export async function _listWidgetsPagesDeserialize(
   }
 
   return {
-    results: result.body["results"].map((p) => ({
-      id: p["id"],
-      weight: p["weight"],
-      color: p["color"],
-    })),
+    results: result.body["results"].map((p) => {
+      return { id: p["id"], weight: p["weight"], color: p["color"] };
+    }),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -220,11 +216,9 @@ export async function _queryWidgetsPagesDeserialize(
   }
 
   return {
-    results: result.body["results"].map((p) => ({
-      id: p["id"],
-      weight: p["weight"],
-      color: p["color"],
-    })),
+    results: result.body["results"].map((p) => {
+      return { id: p["id"], weight: p["weight"], color: p["color"] };
+    }),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }

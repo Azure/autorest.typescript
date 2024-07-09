@@ -72,7 +72,15 @@ describe("modular client context type", () => {
           clientParam: ClientType,
           options: ServiceClientOptions  = {}
         ): ServiceContext {
-          const clientContext = getClient(endpointParam, clientParam, options);
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\$\{prefixFromOptions\} azsdk-js-api\`
+            : "azsdk-js-api";
+        
+          const clientContext = getClient(endpointParam, clientParam, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }`
     );
@@ -146,7 +154,15 @@ describe("modular client context type", () => {
           clientParam: ClientType,
           options: ServiceClientOptions  = {}
         ): ServiceContext {
-          const clientContext = getClient(endpointParam, clientParam, options);
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\$\{prefixFromOptions\} azsdk-js-api\`
+            : "azsdk-js-api";
+        
+          const clientContext = getClient(endpointParam, clientParam, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }`
     );

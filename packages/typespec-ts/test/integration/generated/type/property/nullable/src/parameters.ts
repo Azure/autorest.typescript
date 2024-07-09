@@ -9,6 +9,7 @@ import {
   DurationProperty,
   CollectionsByteProperty,
   CollectionsModelProperty,
+  CollectionsStringProperty,
 } from "./models.js";
 
 export type StringModelGetNonNullParameters = RequestParameters;
@@ -194,4 +195,36 @@ export interface CollectionsModelPatchNullMediaTypesParam {
 export type CollectionsModelPatchNullParameters =
   CollectionsModelPatchNullMediaTypesParam &
     CollectionsModelPatchNullBodyParam &
+    RequestParameters;
+export type CollectionsStringGetNonNullParameters = RequestParameters;
+export type CollectionsStringGetNullParameters = RequestParameters;
+export type CollectionsStringPropertyResourceMergeAndPatch =
+  Partial<CollectionsStringProperty>;
+
+export interface CollectionsStringPatchNonNullBodyParam {
+  body: CollectionsStringPropertyResourceMergeAndPatch;
+}
+
+export interface CollectionsStringPatchNonNullMediaTypesParam {
+  /** content-type is application/merge-patch+json */
+  contentType: "application/merge-patch+json";
+}
+
+export type CollectionsStringPatchNonNullParameters =
+  CollectionsStringPatchNonNullMediaTypesParam &
+    CollectionsStringPatchNonNullBodyParam &
+    RequestParameters;
+
+export interface CollectionsStringPatchNullBodyParam {
+  body: CollectionsStringPropertyResourceMergeAndPatch;
+}
+
+export interface CollectionsStringPatchNullMediaTypesParam {
+  /** content-type is application/merge-patch+json */
+  contentType: "application/merge-patch+json";
+}
+
+export type CollectionsStringPatchNullParameters =
+  CollectionsStringPatchNullMediaTypesParam &
+    CollectionsStringPatchNullBodyParam &
     RequestParameters;

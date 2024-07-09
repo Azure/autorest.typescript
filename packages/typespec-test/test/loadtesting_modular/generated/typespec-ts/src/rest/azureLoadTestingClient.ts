@@ -28,7 +28,7 @@ export default function createClient(
 ): AzureLoadTestingContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
-  const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
+  const userAgentInfo = `azsdk-js-load-testing/1.0.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

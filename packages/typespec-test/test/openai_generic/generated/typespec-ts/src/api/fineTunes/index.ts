@@ -92,45 +92,53 @@ export async function _createDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
-    validationFiles: result.body["validation_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
-    resultFiles: result.body["result_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
+    trainingFiles: result.body["training_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
+    validationFiles: result.body["validation_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
+    resultFiles: result.body["result_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
     events:
       result.body["events"] === undefined
         ? result.body["events"]
-        : result.body["events"].map((p) => ({
-            object: p["object"],
-            createdAt: new Date(p["created_at"]),
-            level: p["level"],
-            message: p["message"],
-          })),
+        : result.body["events"].map((p) => {
+            return {
+              object: p["object"],
+              createdAt: new Date(p["created_at"]),
+              level: p["level"],
+              message: p["message"],
+            };
+          }),
   };
 }
 
@@ -161,66 +169,76 @@ export async function _listDeserialize(
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      updatedAt: new Date(p["updated_at"]),
-      model: p["model"],
-      fineTunedModel: p["fine_tuned_model"],
-      organizationId: p["organization_id"],
-      status: p["status"],
-      hyperparams: {
-        nEpochs: p.hyperparams["n_epochs"],
-        batchSize: p.hyperparams["batch_size"],
-        promptLossWeight: p.hyperparams["prompt_loss_weight"],
-        learningRateMultiplier: p.hyperparams["learning_rate_multiplier"],
-        computeClassificationMetrics:
-          p.hyperparams["compute_classification_metrics"],
-        classificationPositiveClass:
-          p.hyperparams["classification_positive_class"],
-        classificationNClasses: p.hyperparams["classification_n_classes"],
-      },
-      trainingFiles: p["training_files"].map((p) => ({
+    data: result.body["data"].map((p) => {
+      return {
         id: p["id"],
         object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
+        createdAt: new Date(p["created_at"]),
+        updatedAt: new Date(p["updated_at"]),
+        model: p["model"],
+        fineTunedModel: p["fine_tuned_model"],
+        organizationId: p["organization_id"],
         status: p["status"],
-        statusDetails: p["status_details"],
-      })),
-      validationFiles: p["validation_files"].map((p) => ({
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      })),
-      resultFiles: p["result_files"].map((p) => ({
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      })),
-      events:
-        p["events"] === undefined
-          ? p["events"]
-          : p["events"].map((p) => ({
-              object: p["object"],
-              createdAt: new Date(p["created_at"]),
-              level: p["level"],
-              message: p["message"],
-            })),
-    })),
+        hyperparams: {
+          nEpochs: p.hyperparams["n_epochs"],
+          batchSize: p.hyperparams["batch_size"],
+          promptLossWeight: p.hyperparams["prompt_loss_weight"],
+          learningRateMultiplier: p.hyperparams["learning_rate_multiplier"],
+          computeClassificationMetrics:
+            p.hyperparams["compute_classification_metrics"],
+          classificationPositiveClass:
+            p.hyperparams["classification_positive_class"],
+          classificationNClasses: p.hyperparams["classification_n_classes"],
+        },
+        trainingFiles: p["training_files"].map((p) => {
+          return {
+            id: p["id"],
+            object: p["object"],
+            bytes: p["bytes"],
+            createdAt: new Date(p["createdAt"]),
+            filename: p["filename"],
+            purpose: p["purpose"],
+            status: p["status"],
+            statusDetails: p["status_details"],
+          };
+        }),
+        validationFiles: p["validation_files"].map((p) => {
+          return {
+            id: p["id"],
+            object: p["object"],
+            bytes: p["bytes"],
+            createdAt: new Date(p["createdAt"]),
+            filename: p["filename"],
+            purpose: p["purpose"],
+            status: p["status"],
+            statusDetails: p["status_details"],
+          };
+        }),
+        resultFiles: p["result_files"].map((p) => {
+          return {
+            id: p["id"],
+            object: p["object"],
+            bytes: p["bytes"],
+            createdAt: new Date(p["createdAt"]),
+            filename: p["filename"],
+            purpose: p["purpose"],
+            status: p["status"],
+            statusDetails: p["status_details"],
+          };
+        }),
+        events:
+          p["events"] === undefined
+            ? p["events"]
+            : p["events"].map((p) => {
+                return {
+                  object: p["object"],
+                  createdAt: new Date(p["created_at"]),
+                  level: p["level"],
+                  message: p["message"],
+                };
+              }),
+      };
+    }),
   };
 }
 
@@ -273,45 +291,53 @@ export async function _retrieveDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
-    validationFiles: result.body["validation_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
-    resultFiles: result.body["result_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
+    trainingFiles: result.body["training_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
+    validationFiles: result.body["validation_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
+    resultFiles: result.body["result_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
     events:
       result.body["events"] === undefined
         ? result.body["events"]
-        : result.body["events"].map((p) => ({
-            object: p["object"],
-            createdAt: new Date(p["created_at"]),
-            level: p["level"],
-            message: p["message"],
-          })),
+        : result.body["events"].map((p) => {
+            return {
+              object: p["object"],
+              createdAt: new Date(p["created_at"]),
+              level: p["level"],
+              message: p["message"],
+            };
+          }),
   };
 }
 
@@ -348,12 +374,14 @@ export async function _listEventsDeserialize(
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    data: result.body["data"].map((p) => {
+      return {
+        object: p["object"],
+        createdAt: new Date(p["created_at"]),
+        level: p["level"],
+        message: p["message"],
+      };
+    }),
   };
 }
 
@@ -407,45 +435,53 @@ export async function _cancelDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
-    validationFiles: result.body["validation_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
-    resultFiles: result.body["result_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
+    trainingFiles: result.body["training_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
+    validationFiles: result.body["validation_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
+    resultFiles: result.body["result_files"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        bytes: p["bytes"],
+        createdAt: new Date(p["createdAt"]),
+        filename: p["filename"],
+        purpose: p["purpose"],
+        status: p["status"],
+        statusDetails: p["status_details"],
+      };
+    }),
     events:
       result.body["events"] === undefined
         ? result.body["events"]
-        : result.body["events"].map((p) => ({
-            object: p["object"],
-            createdAt: new Date(p["created_at"]),
-            level: p["level"],
-            message: p["message"],
-          })),
+        : result.body["events"].map((p) => {
+            return {
+              object: p["object"],
+              createdAt: new Date(p["created_at"]),
+              level: p["level"],
+              message: p["message"],
+            };
+          }),
   };
 }
 

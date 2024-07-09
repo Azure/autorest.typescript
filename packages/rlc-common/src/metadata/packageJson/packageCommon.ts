@@ -10,6 +10,7 @@ export interface PackageCommonInfoConfig {
   withTests: boolean;
   withSamples: boolean;
   exports?: Record<string, any>;
+  azureArm?: boolean;
 }
 
 /**

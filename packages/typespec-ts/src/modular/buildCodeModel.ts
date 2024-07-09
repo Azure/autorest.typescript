@@ -1358,7 +1358,7 @@ function emitUnion(
   usage: UsageFlags
 ): Record<string, any> {
   let sdkType = getSdkUnion(context, type);
-  const isNull = false;
+  const isNull = sdkType.kind === "nullable";
   if (sdkType.kind === "nullable") {
     sdkType = sdkType.type;
   }
@@ -1714,7 +1714,10 @@ function emitCredentialParam(
         credential_types.push(type);
       }
     }
-    if (credential_types.length > 0) {
+    if (
+      credential_types.length > 0 &&
+      context.rlcOptions?.addCredentials !== false
+    ) {
       let type: EmitterType;
       if (credential_types.length === 1 && credential_types[0]) {
         type = credential_types[0];
