@@ -45,11 +45,12 @@ export async function _putFlattenModelDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PutFlattenModel200Response;
   return {
-    name: result.body["name"],
+    name: _result.body["name"],
     properties: {
-      description: result.body.properties["description"],
-      age: result.body.properties["age"],
+      description: _result.body.properties["description"],
+      age: _result.body.properties["age"],
     },
   };
 }
@@ -86,13 +87,14 @@ export async function _putNestedFlattenModelDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PutNestedFlattenModel200Response;
   return {
-    name: result.body["name"],
+    name: _result.body["name"],
     properties: {
-      summary: result.body.properties["summary"],
+      summary: _result.body.properties["summary"],
       properties: {
-        description: result.body.properties.properties["description"],
-        age: result.body.properties.properties["age"],
+        description: _result.body.properties.properties["description"],
+        age: _result.body.properties.properties["age"],
       },
     },
   };

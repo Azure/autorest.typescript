@@ -34,11 +34,12 @@ export async function _bytesGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as BytesGet200Response;
   return {
     property:
-      typeof result.body["property"] === "string"
-        ? stringToUint8Array(result.body["property"], "base64")
-        : result.body["property"],
+      typeof _result.body["property"] === "string"
+        ? stringToUint8Array(_result.body["property"], "base64")
+        : _result.body["property"],
   };
 }
 

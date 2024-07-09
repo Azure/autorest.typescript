@@ -87,7 +87,8 @@ export async function _publishCloudEventDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as PublishCloudEvent200Response;
+  return _result.body;
 }
 
 /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -148,7 +149,8 @@ export async function _publishCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as PublishCloudEvents200Response;
+  return _result.body;
 }
 
 /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -197,8 +199,9 @@ export async function _receiveCloudEventsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ReceiveCloudEvents200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         brokerProperties: {
           lockToken: p.brokerProperties["lockToken"],
@@ -275,15 +278,16 @@ export async function _acknowledgeCloudEventsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AcknowledgeCloudEvents200Response;
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+    failedLockTokens: _result.body["failedLockTokens"].map((p) => {
       return {
         lockToken: p["lockToken"],
         errorCode: p["errorCode"],
         errorDescription: p["errorDescription"],
       };
     }),
-    succeededLockTokens: result.body["succeededLockTokens"],
+    succeededLockTokens: _result.body["succeededLockTokens"],
   };
 }
 
@@ -335,15 +339,16 @@ export async function _releaseCloudEventsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ReleaseCloudEvents200Response;
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+    failedLockTokens: _result.body["failedLockTokens"].map((p) => {
       return {
         lockToken: p["lockToken"],
         errorCode: p["errorCode"],
         errorDescription: p["errorDescription"],
       };
     }),
-    succeededLockTokens: result.body["succeededLockTokens"],
+    succeededLockTokens: _result.body["succeededLockTokens"],
   };
 }
 
@@ -395,15 +400,16 @@ export async function _rejectCloudEventsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as RejectCloudEvents200Response;
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+    failedLockTokens: _result.body["failedLockTokens"].map((p) => {
       return {
         lockToken: p["lockToken"],
         errorCode: p["errorCode"],
         errorDescription: p["errorDescription"],
       };
     }),
-    succeededLockTokens: result.body["succeededLockTokens"],
+    succeededLockTokens: _result.body["succeededLockTokens"],
   };
 }
 

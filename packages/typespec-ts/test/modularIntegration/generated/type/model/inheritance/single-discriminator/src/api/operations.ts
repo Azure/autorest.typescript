@@ -47,7 +47,8 @@ export async function _getModelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as GetModel200Response;
+  return _result.body;
 }
 
 export async function getModel(
@@ -106,7 +107,8 @@ export async function _getRecursiveModelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as GetRecursiveModel200Response;
+  return _result.body;
 }
 
 export async function getRecursiveModel(
@@ -165,7 +167,8 @@ export async function _getMissingDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as GetMissingDiscriminator200Response;
+  return _result.body;
 }
 
 export async function getMissingDiscriminator(
@@ -192,7 +195,8 @@ export async function _getWrongDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as GetWrongDiscriminator200Response;
+  return _result.body;
 }
 
 export async function getWrongDiscriminator(
@@ -219,7 +223,8 @@ export async function _getLegacyModelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as GetLegacyModel200Response;
+  return _result.body;
 }
 
 export async function getLegacyModel(

@@ -32,7 +32,8 @@ export async function _durationValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as DurationValueGet200Response;
+  return _result.body;
 }
 
 export async function durationValueGet(

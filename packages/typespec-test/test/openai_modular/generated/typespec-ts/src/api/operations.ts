@@ -102,7 +102,9 @@ export async function _getAudioTranscriptionAsPlainTextDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result =
+    result as unknown as GetAudioTranscriptionAsPlainText200Response;
+  return _result.body;
 }
 
 /**
@@ -166,15 +168,17 @@ export async function _getAudioTranscriptionAsResponseObjectDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as GetAudioTranscriptionAsResponseObject200Response;
   return {
-    text: result.body["text"],
-    task: result.body["task"],
-    language: result.body["language"],
-    duration: result.body["duration"],
+    text: _result.body["text"],
+    task: _result.body["task"],
+    language: _result.body["language"],
+    duration: _result.body["duration"],
     segments:
-      result.body["segments"] === undefined
-        ? result.body["segments"]
-        : result.body["segments"].map((p) => {
+      _result.body["segments"] === undefined
+        ? _result.body["segments"]
+        : _result.body["segments"].map((p) => {
             return {
               id: p["id"],
               start: p["start"],
@@ -251,7 +255,9 @@ export async function _getAudioTranslationAsPlainTextDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result =
+    result as unknown as GetAudioTranslationAsPlainText200Response;
+  return _result.body;
 }
 
 /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
@@ -311,15 +317,17 @@ export async function _getAudioTranslationAsResponseObjectDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as GetAudioTranslationAsResponseObject200Response;
   return {
-    text: result.body["text"],
-    task: result.body["task"],
-    language: result.body["language"],
-    duration: result.body["duration"],
+    text: _result.body["text"],
+    task: _result.body["task"],
+    language: _result.body["language"],
+    duration: _result.body["duration"],
     segments:
-      result.body["segments"] === undefined
-        ? result.body["segments"]
-        : result.body["segments"].map((p) => {
+      _result.body["segments"] === undefined
+        ? _result.body["segments"]
+        : _result.body["segments"].map((p) => {
             return {
               id: p["id"],
               start: p["start"],
@@ -393,13 +401,14 @@ export async function _getCompletionsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as GetCompletions200Response;
   return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
+    id: _result.body["id"],
+    created: new Date(_result.body["created"]),
     promptFilterResults:
-      result.body["prompt_filter_results"] === undefined
-        ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p) => {
+      _result.body["prompt_filter_results"] === undefined
+        ? _result.body["prompt_filter_results"]
+        : _result.body["prompt_filter_results"].map((p) => {
             return {
               promptIndex: p["prompt_index"],
               contentFilterResults: {
@@ -457,7 +466,7 @@ export async function _getCompletionsDeserialize(
               },
             };
           }),
-    choices: result.body["choices"].map((p) => {
+    choices: _result.body["choices"].map((p) => {
       return {
         text: p["text"],
         index: p["index"],
@@ -550,9 +559,9 @@ export async function _getCompletionsDeserialize(
       };
     }),
     usage: {
-      completionTokens: result.body.usage["completion_tokens"],
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
+      completionTokens: _result.body.usage["completion_tokens"],
+      promptTokens: _result.body.usage["prompt_tokens"],
+      totalTokens: _result.body.usage["total_tokens"],
     },
   };
 }
@@ -639,10 +648,11 @@ export async function _getChatCompletionsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as GetChatCompletions200Response;
   return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p) => {
+    id: _result.body["id"],
+    created: new Date(_result.body["created"]),
+    choices: _result.body["choices"].map((p) => {
       return {
         message: !p.message
           ? undefined
@@ -842,9 +852,9 @@ export async function _getChatCompletionsDeserialize(
       };
     }),
     promptFilterResults:
-      result.body["prompt_filter_results"] === undefined
-        ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p) => {
+      _result.body["prompt_filter_results"] === undefined
+        ? _result.body["prompt_filter_results"]
+        : _result.body["prompt_filter_results"].map((p) => {
             return {
               promptIndex: p["prompt_index"],
               contentFilterResults: {
@@ -902,11 +912,11 @@ export async function _getChatCompletionsDeserialize(
               },
             };
           }),
-    systemFingerprint: result.body["system_fingerprint"],
+    systemFingerprint: _result.body["system_fingerprint"],
     usage: {
-      completionTokens: result.body.usage["completion_tokens"],
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
+      completionTokens: _result.body.usage["completion_tokens"],
+      promptTokens: _result.body.usage["prompt_tokens"],
+      totalTokens: _result.body.usage["total_tokens"],
     },
   };
 }
@@ -963,9 +973,10 @@ export async function _getImageGenerationsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as GetImageGenerations200Response;
   return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    created: new Date(_result.body["created"]),
+    data: _result.body["data"].map((p) => {
       return {
         url: p["url"],
         base64Data: p["b64_json"],
@@ -1017,7 +1028,8 @@ export async function _getAudioSpeechDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  const _result = result as unknown as GetAudioSpeech200Response;
+  return _result.body as any;
 }
 
 /** Generates text-to-speech audio from the input text. */
@@ -1062,13 +1074,14 @@ export async function _getEmbeddingsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as GetEmbeddings200Response;
   return {
-    data: result.body["data"].map((p) => {
+    data: _result.body["data"].map((p) => {
       return { embedding: p["embedding"], index: p["index"] };
     }),
     usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
+      promptTokens: _result.body.usage["prompt_tokens"],
+      totalTokens: _result.body.usage["total_tokens"],
     },
   };
 }

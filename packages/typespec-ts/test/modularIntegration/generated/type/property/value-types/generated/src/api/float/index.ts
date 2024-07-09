@@ -33,8 +33,9 @@ export async function _floatGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as FloatGet200Response;
   return {
-    property: result.body["property"],
+    property: _result.body["property"],
   };
 }
 

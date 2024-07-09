@@ -110,9 +110,10 @@ export async function _listWidgetsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body === undefined
-    ? result.body
-    : result.body.map((p) => {
+  const _result = result as unknown as WidgetsListWidgets200Response;
+  return _result.body === undefined
+    ? _result.body
+    : _result.body.map((p) => {
         return { id: p["id"], weight: p["weight"], color: p["color"] };
       });
 }
@@ -168,11 +169,12 @@ export async function _listWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as WidgetsListWidgetsPages200Response;
   return {
-    results: result.body["results"].map((p) => {
+    results: _result.body["results"].map((p) => {
       return { id: p["id"], weight: p["weight"], color: p["color"] };
     }),
-    "odata.nextLink": result.body["odata.nextLink"],
+    "odata.nextLink": _result.body["odata.nextLink"],
   };
 }
 
@@ -215,11 +217,12 @@ export async function _queryWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as WidgetsQueryWidgetsPages200Response;
   return {
-    results: result.body["results"].map((p) => {
+    results: _result.body["results"].map((p) => {
       return { id: p["id"], weight: p["weight"], color: p["color"] };
     }),
-    "odata.nextLink": result.body["odata.nextLink"],
+    "odata.nextLink": _result.body["odata.nextLink"],
   };
 }
 
@@ -256,10 +259,11 @@ export async function _getWidgetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as WidgetsGetWidget200Response;
   return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
+    id: _result.body["id"],
+    weight: _result.body["weight"],
+    color: _result.body["color"],
   };
 }
 
@@ -295,10 +299,11 @@ export async function _createWidgetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as WidgetsCreateWidget201Response;
   return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
+    id: _result.body["id"],
+    weight: _result.body["weight"],
+    color: _result.body["color"],
   };
 }
 
@@ -348,11 +353,11 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as WidgetsCreateOrReplaceLogicalResponse;
+  const _result = result as unknown as WidgetsCreateOrReplaceLogicalResponse;
   return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
+    name: _result.body["name"],
+    role: _result.body["role"],
+    id: _result.body["id"],
   };
 }
 
@@ -394,10 +399,11 @@ export async function _updateWidgetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as WidgetsUpdateWidget200Response;
   return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
+    id: _result.body["id"],
+    weight: _result.body["weight"],
+    color: _result.body["color"],
   };
 }
 
@@ -466,8 +472,9 @@ export async function _analyzeWidgetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as WidgetsAnalyzeWidget200Response;
   return {
-    summary: result.body["summary"],
+    summary: _result.body["summary"],
   };
 }
 

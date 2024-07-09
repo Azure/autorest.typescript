@@ -57,11 +57,11 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as BudgetsCreateOrReplaceLogicalResponse;
+  const _result = result as unknown as BudgetsCreateOrReplaceLogicalResponse;
   return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
+    name: _result.body["name"],
+    role: _result.body["role"],
+    id: _result.body["id"],
   };
 }
 
@@ -113,11 +113,11 @@ export async function _createOrUpdateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as BudgetsCreateOrUpdateLogicalResponse;
+  const _result = result as unknown as BudgetsCreateOrUpdateLogicalResponse;
   return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
+    name: _result.body["name"],
+    role: _result.body["role"],
+    id: _result.body["id"],
   };
 }
 

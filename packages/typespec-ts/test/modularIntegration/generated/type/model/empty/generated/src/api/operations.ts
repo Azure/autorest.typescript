@@ -64,7 +64,8 @@ export async function _getEmptyDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as GetEmpty200Response;
+  return _result.body;
 }
 
 export async function getEmpty(
@@ -92,7 +93,8 @@ export async function _postRoundTripEmptyDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as PostRoundTripEmpty200Response;
+  return _result.body;
 }
 
 export async function postRoundTripEmpty(

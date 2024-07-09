@@ -47,11 +47,12 @@ export async function _propertyDefaultDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyDefault200Response;
   return {
     value:
-      typeof result.body["value"] === "string"
-        ? stringToUint8Array(result.body["value"], "base64")
-        : result.body["value"],
+      typeof _result.body["value"] === "string"
+        ? stringToUint8Array(_result.body["value"], "base64")
+        : _result.body["value"],
   };
 }
 
@@ -84,11 +85,12 @@ export async function _propertyBase64Deserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyBase64200Response;
   return {
     value:
-      typeof result.body["value"] === "string"
-        ? stringToUint8Array(result.body["value"], "base64")
-        : result.body["value"],
+      typeof _result.body["value"] === "string"
+        ? stringToUint8Array(_result.body["value"], "base64")
+        : _result.body["value"],
   };
 }
 
@@ -121,11 +123,12 @@ export async function _propertyBase64urlDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyBase64url200Response;
   return {
     value:
-      typeof result.body["value"] === "string"
-        ? stringToUint8Array(result.body["value"], "base64url")
-        : result.body["value"],
+      typeof _result.body["value"] === "string"
+        ? stringToUint8Array(_result.body["value"], "base64url")
+        : _result.body["value"],
   };
 }
 
@@ -160,8 +163,9 @@ export async function _propertyBase64urlArrayDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyBase64urlArray200Response;
   return {
-    value: result.body["value"].map((p) =>
+    value: _result.body["value"].map((p) =>
       typeof p === "string" ? stringToUint8Array(p, "base64url") : p,
     ),
   };

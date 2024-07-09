@@ -34,8 +34,9 @@ export async function _dictionaryStringGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as DictionaryStringGet200Response;
   return {
-    property: result.body["property"],
+    property: _result.body["property"],
   };
 }
 

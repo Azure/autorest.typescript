@@ -33,9 +33,10 @@ export async function _modelValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body === undefined
-    ? result.body
-    : result.body.map((p) => {
+  const _result = result as unknown as ModelValueGet200Response;
+  return _result.body === undefined
+    ? _result.body
+    : _result.body.map((p) => {
         return {
           property: p["property"],
           children: !p.children ? undefined : p.children,

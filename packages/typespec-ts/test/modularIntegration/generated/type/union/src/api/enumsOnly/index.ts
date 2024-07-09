@@ -33,8 +33,9 @@ export async function _enumsOnlyGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as EnumsOnlyGet200Response;
   return {
-    prop: { lr: result.body.prop["lr"], ud: result.body.prop["ud"] },
+    prop: { lr: _result.body.prop["lr"], ud: _result.body.prop["ud"] },
   };
 }
 

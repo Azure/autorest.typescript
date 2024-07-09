@@ -66,17 +66,18 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as Get200Response;
   return {
     extension:
-      result.body["extension"] === undefined
-        ? result.body["extension"]
-        : result.body["extension"].map((p) => {
+      _result.body["extension"] === undefined
+        ? _result.body["extension"]
+        : _result.body["extension"].map((p) => {
             return {
               extension: !p.extension ? undefined : p.extension,
               level: p["level"],
             };
           }),
-    level: result.body["level"],
+    level: _result.body["level"],
   };
 }
 

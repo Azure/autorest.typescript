@@ -60,8 +60,9 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as Get200Response;
   return {
-    defaultName: result.body["wireName"],
+    defaultName: _result.body["wireName"],
   };
 }
 

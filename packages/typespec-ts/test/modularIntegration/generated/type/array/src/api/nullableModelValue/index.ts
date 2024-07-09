@@ -33,9 +33,10 @@ export async function _nullableModelValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body === undefined
-    ? result.body
-    : result.body.map((p) => {
+  const _result = result as unknown as NullableModelValueGet200Response;
+  return _result.body === undefined
+    ? _result.body
+    : _result.body.map((p) => {
         return !p
           ? p
           : {

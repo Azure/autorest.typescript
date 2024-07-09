@@ -37,7 +37,8 @@ export async function _getKnownValueDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as DaysOfWeekExtensibleEnum;
+  const _result = result as unknown as GetKnownValue200Response;
+  return _result.body as DaysOfWeekExtensibleEnum;
 }
 
 export async function getKnownValue(
@@ -64,7 +65,8 @@ export async function _getUnknownValueDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as DaysOfWeekExtensibleEnum;
+  const _result = result as unknown as GetUnknownValue200Response;
+  return _result.body as DaysOfWeekExtensibleEnum;
 }
 
 export async function getUnknownValue(

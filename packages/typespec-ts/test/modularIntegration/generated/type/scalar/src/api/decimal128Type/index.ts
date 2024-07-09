@@ -34,7 +34,8 @@ export async function _decimal128TypeResponseBodyDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as Decimal128TypeResponseBody200Response;
+  return _result.body;
 }
 
 export async function decimal128TypeResponseBody(

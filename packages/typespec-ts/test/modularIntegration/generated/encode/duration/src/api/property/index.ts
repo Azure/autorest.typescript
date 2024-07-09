@@ -52,8 +52,9 @@ export async function _propertyDefaultDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyDefault200Response;
   return {
-    value: result.body["value"],
+    value: _result.body["value"],
   };
 }
 
@@ -86,8 +87,9 @@ export async function _propertyIso8601Deserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyIso8601200Response;
   return {
-    value: result.body["value"],
+    value: _result.body["value"],
   };
 }
 
@@ -120,8 +122,9 @@ export async function _propertyInt32SecondsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyInt32Seconds200Response;
   return {
-    value: result.body["value"],
+    value: _result.body["value"],
   };
 }
 
@@ -154,8 +157,9 @@ export async function _propertyFloatSecondsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyFloatSeconds200Response;
   return {
-    value: result.body["value"],
+    value: _result.body["value"],
   };
 }
 
@@ -188,8 +192,9 @@ export async function _propertyFloat64SecondsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyFloat64Seconds200Response;
   return {
-    value: result.body["value"],
+    value: _result.body["value"],
   };
 }
 
@@ -222,8 +227,9 @@ export async function _propertyFloatSecondsArrayDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyFloatSecondsArray200Response;
   return {
-    value: result.body["value"],
+    value: _result.body["value"],
   };
 }
 

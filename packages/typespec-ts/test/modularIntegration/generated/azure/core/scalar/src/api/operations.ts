@@ -37,7 +37,8 @@ export async function _getDeserialize(result: Get200Response): Promise<string> {
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as Get200Response;
+  return _result.body;
 }
 
 /** get azureLocation value */
@@ -97,8 +98,9 @@ export async function _postDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as Post200Response;
   return {
-    location: result.body["location"],
+    location: _result.body["location"],
   };
 }
 

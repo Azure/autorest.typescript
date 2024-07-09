@@ -33,8 +33,9 @@ export async function _booleanLiteralGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as BooleanLiteralGet200Response;
   return {
-    property: result.body["property"],
+    property: _result.body["property"],
   };
 }
 

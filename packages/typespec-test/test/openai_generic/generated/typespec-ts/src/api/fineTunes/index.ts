@@ -70,29 +70,30 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as FineTunesCreate200Response;
   return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
+    id: _result.body["id"],
+    object: _result.body["object"],
+    createdAt: new Date(_result.body["created_at"]),
+    updatedAt: new Date(_result.body["updated_at"]),
+    model: _result.body["model"],
+    fineTunedModel: _result.body["fine_tuned_model"],
+    organizationId: _result.body["organization_id"],
+    status: _result.body["status"],
     hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
+      nEpochs: _result.body.hyperparams["n_epochs"],
+      batchSize: _result.body.hyperparams["batch_size"],
+      promptLossWeight: _result.body.hyperparams["prompt_loss_weight"],
       learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
+        _result.body.hyperparams["learning_rate_multiplier"],
       computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
+        _result.body.hyperparams["compute_classification_metrics"],
       classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
+        _result.body.hyperparams["classification_positive_class"],
       classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
+        _result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => {
+    trainingFiles: _result.body["training_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -104,7 +105,7 @@ export async function _createDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    validationFiles: result.body["validation_files"].map((p) => {
+    validationFiles: _result.body["validation_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -116,7 +117,7 @@ export async function _createDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    resultFiles: result.body["result_files"].map((p) => {
+    resultFiles: _result.body["result_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -129,9 +130,9 @@ export async function _createDeserialize(
       };
     }),
     events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p) => {
+      _result.body["events"] === undefined
+        ? _result.body["events"]
+        : _result.body["events"].map((p) => {
             return {
               object: p["object"],
               createdAt: new Date(p["created_at"]),
@@ -167,9 +168,10 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as FineTunesList200Response;
   return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => {
+    object: _result.body["object"],
+    data: _result.body["data"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -269,29 +271,30 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as FineTunesRetrieve200Response;
   return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
+    id: _result.body["id"],
+    object: _result.body["object"],
+    createdAt: new Date(_result.body["created_at"]),
+    updatedAt: new Date(_result.body["updated_at"]),
+    model: _result.body["model"],
+    fineTunedModel: _result.body["fine_tuned_model"],
+    organizationId: _result.body["organization_id"],
+    status: _result.body["status"],
     hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
+      nEpochs: _result.body.hyperparams["n_epochs"],
+      batchSize: _result.body.hyperparams["batch_size"],
+      promptLossWeight: _result.body.hyperparams["prompt_loss_weight"],
       learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
+        _result.body.hyperparams["learning_rate_multiplier"],
       computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
+        _result.body.hyperparams["compute_classification_metrics"],
       classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
+        _result.body.hyperparams["classification_positive_class"],
       classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
+        _result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => {
+    trainingFiles: _result.body["training_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -303,7 +306,7 @@ export async function _retrieveDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    validationFiles: result.body["validation_files"].map((p) => {
+    validationFiles: _result.body["validation_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -315,7 +318,7 @@ export async function _retrieveDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    resultFiles: result.body["result_files"].map((p) => {
+    resultFiles: _result.body["result_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -328,9 +331,9 @@ export async function _retrieveDeserialize(
       };
     }),
     events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p) => {
+      _result.body["events"] === undefined
+        ? _result.body["events"]
+        : _result.body["events"].map((p) => {
             return {
               object: p["object"],
               createdAt: new Date(p["created_at"]),
@@ -372,9 +375,10 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as FineTunesListEvents200Response;
   return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => {
+    object: _result.body["object"],
+    data: _result.body["data"].map((p) => {
       return {
         object: p["object"],
         createdAt: new Date(p["created_at"]),
@@ -413,29 +417,30 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as FineTunesCancel200Response;
   return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
+    id: _result.body["id"],
+    object: _result.body["object"],
+    createdAt: new Date(_result.body["created_at"]),
+    updatedAt: new Date(_result.body["updated_at"]),
+    model: _result.body["model"],
+    fineTunedModel: _result.body["fine_tuned_model"],
+    organizationId: _result.body["organization_id"],
+    status: _result.body["status"],
     hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
+      nEpochs: _result.body.hyperparams["n_epochs"],
+      batchSize: _result.body.hyperparams["batch_size"],
+      promptLossWeight: _result.body.hyperparams["prompt_loss_weight"],
       learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
+        _result.body.hyperparams["learning_rate_multiplier"],
       computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
+        _result.body.hyperparams["compute_classification_metrics"],
       classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
+        _result.body.hyperparams["classification_positive_class"],
       classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
+        _result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => {
+    trainingFiles: _result.body["training_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -447,7 +452,7 @@ export async function _cancelDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    validationFiles: result.body["validation_files"].map((p) => {
+    validationFiles: _result.body["validation_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -459,7 +464,7 @@ export async function _cancelDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    resultFiles: result.body["result_files"].map((p) => {
+    resultFiles: _result.body["result_files"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -472,9 +477,9 @@ export async function _cancelDeserialize(
       };
     }),
     events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p) => {
+      _result.body["events"] === undefined
+        ? _result.body["events"]
+        : _result.body["events"].map((p) => {
             return {
               object: p["object"],
               createdAt: new Date(p["created_at"]),

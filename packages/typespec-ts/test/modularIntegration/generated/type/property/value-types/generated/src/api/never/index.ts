@@ -33,7 +33,8 @@ export async function _neverGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as NeverGet200Response;
+  return _result.body;
 }
 
 /** Get call */

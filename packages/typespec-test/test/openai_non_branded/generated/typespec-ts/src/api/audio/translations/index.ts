@@ -49,8 +49,9 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AudioTranslationsCreate200Response;
   return {
-    text: result.body["text"],
+    text: _result.body["text"],
   };
 }
 

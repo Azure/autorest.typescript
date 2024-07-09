@@ -54,31 +54,32 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as DataProductsCatalogsGet200Response;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          publishers: result.body.properties?.["publishers"].map((p) => {
+          provisioningState: _result.body.properties?.["provisioningState"],
+          publishers: _result.body.properties?.["publishers"].map((p) => {
             return {
               publisherName: p["publisherName"],
               dataProducts: p["dataProducts"].map((p) => {
@@ -141,8 +142,10 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as DataProductsCatalogsListByResourceGroup200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -184,7 +187,7 @@ export async function _listByResourceGroupDeserialize(
             },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -238,8 +241,10 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as DataProductsCatalogsListBySubscription200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -281,7 +286,7 @@ export async function _listBySubscriptionDeserialize(
             },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 

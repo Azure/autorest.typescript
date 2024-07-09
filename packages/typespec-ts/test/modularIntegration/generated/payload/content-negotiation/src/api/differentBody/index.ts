@@ -37,7 +37,8 @@ export async function _getAvatarAsPngDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  const _result = result as unknown as DifferentBodyGetAvatarAsPng200Response;
+  return _result.body as any;
 }
 
 export async function getAvatarAsPng(
@@ -67,11 +68,12 @@ export async function _getAvatarAsJsonDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as DifferentBodyGetAvatarAsJson200Response;
   return {
     content:
-      typeof result.body["content"] === "string"
-        ? stringToUint8Array(result.body["content"], "base64")
-        : result.body["content"],
+      typeof _result.body["content"] === "string"
+        ? stringToUint8Array(_result.body["content"], "base64")
+        : _result.body["content"],
   };
 }
 

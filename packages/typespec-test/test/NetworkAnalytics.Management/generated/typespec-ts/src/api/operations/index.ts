@@ -33,8 +33,9 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as OperationsList200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         name: p["name"],
         isDataAction: p["isDataAction"],
@@ -50,7 +51,7 @@ export async function _listDeserialize(
         actionType: p["actionType"],
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 

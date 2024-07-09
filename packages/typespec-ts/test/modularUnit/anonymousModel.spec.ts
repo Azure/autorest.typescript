@@ -807,7 +807,10 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-          return result.body ${returnType.startsWith("Record") ? "as any" : ""};
+          const _result = result as unknown as Read200Response;
+          return _result.body ${
+            returnType.startsWith("Record") ? "as any" : ""
+          };
         }
         export async function read(
           context: Client,
@@ -895,8 +898,9 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
+          const _result = result as unknown as Read200Response;
           return {
-            foo: !result.body.foo ? undefined : { bar: result.body.foo?.["bar"] },
+            foo: !_result.body.foo ? undefined : { bar: _result.body.foo?.["bar"] },
           };
         }
         export async function read(
@@ -973,15 +977,16 @@ describe("anonymous model", () => {
             throw createRestError(result);
           }
 
+          const _result = result as unknown as Read200Response;
           return {
-            emptyAnomyous: result.body["emptyAnomyous"],
-            emptyAnomyousArray: result.body["emptyAnomyousArray"],
-            emptyAnomyousDict: result.body["emptyAnomyousDict"],
+            emptyAnomyous: _result.body["emptyAnomyous"],
+            emptyAnomyousArray: _result.body["emptyAnomyousArray"],
+            emptyAnomyousDict: _result.body["emptyAnomyousDict"],
             emptyModel: {},
-            emptyModelArray: result.body["emptyModelArray"].map(() => {
+            emptyModelArray: _result.body["emptyModelArray"].map(() => {
                     return {};
               }),
-            emptyModelDict: result.body["emptyModelDict"],
+            emptyModelDict: _result.body["emptyModelDict"],
           };
         }
 
@@ -1060,22 +1065,23 @@ describe("anonymous model", () => {
             if (result.status !== "200") {
               throw createRestError(result);
             }
-          
+
+            const _result = result as unknown as Read200Response;
             return {
               baz: {
-                foo: result.body.baz["foo"],
-                bas: result.body.baz["bas"],
+                foo: _result.body.baz["foo"],
+                bas: _result.body.baz["bas"],
                 bar:
-                  result.body.baz["test"] === undefined
-                    ? result.body.baz["test"]
-                    : result.body.baz["test"].map((p) => {
+                  _result.body.baz["test"] === undefined
+                    ? _result.body.baz["test"]
+                    : _result.body.baz["test"].map((p) => {
                                    return { test: p["test"] };
                                  }),
-                nonemptyAnomyous: { a: result.body.baz.nonemptyAnomyous["a"] },
-                nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p) => {
+                nonemptyAnomyous: { a: _result.body.baz.nonemptyAnomyous["a"] },
+                nonemptyAnomyousArray: _result.body.baz["nonemptyAnomyousArray"].map((p) => {
                           return { b: p["b"] };
                          },),
-                nonemptyAnomyousDict: result.body.baz["nonemptyAnomyousDict"],
+                nonemptyAnomyousDict: _result.body.baz["nonemptyAnomyousDict"],
               },
             };
           }

@@ -49,8 +49,9 @@ export async function _propertyDefaultDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyDefault200Response;
   return {
-    value: new Date(result.body["value"]),
+    value: new Date(_result.body["value"]),
   };
 }
 
@@ -83,8 +84,9 @@ export async function _propertyRfc3339Deserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyRfc3339200Response;
   return {
-    value: new Date(result.body["value"]),
+    value: new Date(_result.body["value"]),
   };
 }
 
@@ -117,8 +119,9 @@ export async function _propertyRfc7231Deserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyRfc7231200Response;
   return {
-    value: new Date(result.body["value"]),
+    value: new Date(_result.body["value"]),
   };
 }
 
@@ -151,8 +154,9 @@ export async function _propertyUnixTimestampDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyUnixTimestamp200Response;
   return {
-    value: new Date(result.body["value"]),
+    value: new Date(_result.body["value"]),
   };
 }
 
@@ -185,8 +189,9 @@ export async function _propertyUnixTimestampArrayDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as PropertyUnixTimestampArray200Response;
   return {
-    value: result.body["value"].map((p) => new Date(p)),
+    value: _result.body["value"].map((p) => new Date(p)),
   };
 }
 

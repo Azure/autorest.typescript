@@ -59,10 +59,10 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as CreateOrReplaceLogicalResponse;
+  const _result = result as unknown as CreateOrReplaceLogicalResponse;
   return {
-    name: result.body["name"],
-    role: result.body["role"],
+    name: _result.body["name"],
+    role: _result.body["role"],
   };
 }
 
@@ -100,7 +100,6 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DeleteLogicalResponse;
   return;
 }
 
@@ -145,17 +144,17 @@ export async function _$exportDeserialize(
     throw createRestError(result);
   }
 
-  result = result as ExportLogicalResponse;
-  if (result?.body?.result === undefined) {
+  const _result = result as unknown as ExportLogicalResponse;
+  if (_result?.body?.result === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
+      `Expected a result in the response at position "_result.body.result"`,
       result,
     );
   }
 
   return {
-    name: result.body.result["name"],
-    resourceUri: result.body.result["resourceUri"],
+    name: _result.body.result["name"],
+    resourceUri: _result.body.result["resourceUri"],
   };
 }
 

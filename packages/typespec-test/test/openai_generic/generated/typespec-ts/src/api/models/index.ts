@@ -43,9 +43,10 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ModelsList200Response;
   return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => {
+    object: _result.body["object"],
+    data: _result.body["data"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -81,11 +82,12 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ModelsRetrieve200Response;
   return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    ownedBy: result.body["owned_by"],
+    id: _result.body["id"],
+    object: _result.body["object"],
+    created: new Date(_result.body["created"]),
+    ownedBy: _result.body["owned_by"],
   };
 }
 
@@ -115,10 +117,11 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ModelsDelete200Response;
   return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
+    id: _result.body["id"],
+    object: _result.body["object"],
+    deleted: _result.body["deleted"],
   };
 }
 

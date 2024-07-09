@@ -37,9 +37,10 @@ export async function _getNonNullDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as DurationGetNonNull200Response;
   return {
-    requiredProperty: result.body["requiredProperty"],
-    nullableProperty: result.body["nullableProperty"],
+    requiredProperty: _result.body["requiredProperty"],
+    nullableProperty: _result.body["nullableProperty"],
   };
 }
 
@@ -68,9 +69,10 @@ export async function _getNullDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as DurationGetNull200Response;
   return {
-    requiredProperty: result.body["requiredProperty"],
-    nullableProperty: result.body["nullableProperty"],
+    requiredProperty: _result.body["requiredProperty"],
+    nullableProperty: _result.body["nullableProperty"],
   };
 }
 

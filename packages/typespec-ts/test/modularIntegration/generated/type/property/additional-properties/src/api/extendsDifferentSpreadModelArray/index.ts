@@ -40,7 +40,9 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  const _result =
+    result as unknown as ExtendsDifferentSpreadModelArrayGet200Response;
+  return _result.body as any;
 }
 
 /** Get call */

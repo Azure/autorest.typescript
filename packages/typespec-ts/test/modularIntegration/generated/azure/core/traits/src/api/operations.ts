@@ -58,9 +58,10 @@ export async function _smokeTestDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as SmokeTest200Response;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
+    id: _result.body["id"],
+    name: _result.body["name"],
   };
 }
 
@@ -109,8 +110,9 @@ export async function _repeatableActionDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as RepeatableAction200Response;
   return {
-    userActionResult: result.body["userActionResult"],
+    userActionResult: _result.body["userActionResult"],
   };
 }
 

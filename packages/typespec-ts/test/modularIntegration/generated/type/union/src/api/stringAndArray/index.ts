@@ -33,10 +33,11 @@ export async function _stringAndArrayGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as StringAndArrayGet200Response;
   return {
     prop: {
-      string: result.body.prop["string"],
-      array: result.body.prop["array"],
+      string: _result.body.prop["string"],
+      array: _result.body.prop["array"],
     },
   };
 }

@@ -32,7 +32,8 @@ export async function _nullableStringValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as NullableStringValueGet200Response;
+  return _result.body;
 }
 
 export async function nullableStringValueGet(

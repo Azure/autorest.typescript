@@ -38,12 +38,13 @@ export async function _getNonNullDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as BytesGetNonNull200Response;
   return {
-    requiredProperty: result.body["requiredProperty"],
+    requiredProperty: _result.body["requiredProperty"],
     nullableProperty:
-      typeof result.body["nullableProperty"] === "string"
-        ? stringToUint8Array(result.body["nullableProperty"], "base64")
-        : result.body["nullableProperty"],
+      typeof _result.body["nullableProperty"] === "string"
+        ? stringToUint8Array(_result.body["nullableProperty"], "base64")
+        : _result.body["nullableProperty"],
   };
 }
 
@@ -72,12 +73,13 @@ export async function _getNullDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as BytesGetNull200Response;
   return {
-    requiredProperty: result.body["requiredProperty"],
+    requiredProperty: _result.body["requiredProperty"],
     nullableProperty:
-      typeof result.body["nullableProperty"] === "string"
-        ? stringToUint8Array(result.body["nullableProperty"], "base64")
-        : result.body["nullableProperty"],
+      typeof _result.body["nullableProperty"] === "string"
+        ? stringToUint8Array(_result.body["nullableProperty"], "base64")
+        : _result.body["nullableProperty"],
   };
 }
 

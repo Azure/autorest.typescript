@@ -78,33 +78,34 @@ export async function _topLevelTrackedResourcesGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as TopLevelTrackedResourcesGet200Response;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          description: result.body.properties?.["description"],
+          provisioningState: _result.body.properties?.["provisioningState"],
+          description: _result.body.properties?.["description"],
         },
   };
 }
@@ -174,34 +175,35 @@ export async function _topLevelTrackedResourcesCreateOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as TopLevelTrackedResourcesCreateOrReplaceLogicalResponse;
+  const _result =
+    result as unknown as TopLevelTrackedResourcesCreateOrReplaceLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          description: result.body.properties?.["description"],
+          provisioningState: _result.body.properties?.["provisioningState"],
+          description: _result.body.properties?.["description"],
         },
   };
 }
@@ -290,34 +292,35 @@ export async function _topLevelTrackedResourcesUpdateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as TopLevelTrackedResourcesUpdateLogicalResponse;
+  const _result =
+    result as unknown as TopLevelTrackedResourcesUpdateLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: _result.body["tags"],
+    location: _result.body["location"],
+    id: _result.body["id"],
+    name: _result.body["name"],
+    type: _result.body["type"],
+    systemData: !_result.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: _result.body.systemData?.["createdBy"],
+          createdByType: _result.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            _result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(_result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            _result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(_result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !_result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          description: result.body.properties?.["description"],
+          provisioningState: _result.body.properties?.["provisioningState"],
+          description: _result.body.properties?.["description"],
         },
   };
 }
@@ -393,7 +396,6 @@ export async function _topLevelTrackedResourcesDeleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as TopLevelTrackedResourcesDeleteLogicalResponse;
   return;
 }
 
@@ -454,8 +456,10 @@ export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as TopLevelTrackedResourcesListByResourceGroup200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -486,7 +490,7 @@ export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
             },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -540,8 +544,10 @@ export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
+  const _result =
+    result as unknown as TopLevelTrackedResourcesListBySubscription200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -572,7 +578,7 @@ export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
             },
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 

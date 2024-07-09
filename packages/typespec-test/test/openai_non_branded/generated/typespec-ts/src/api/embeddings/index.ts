@@ -43,10 +43,11 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as EmbeddingsCreate200Response;
   return {
-    object: result.body["object"],
-    model: result.body["model"],
-    data: result.body["data"].map((p) => {
+    object: _result.body["object"],
+    model: _result.body["model"],
+    data: _result.body["data"].map((p) => {
       return {
         index: p["index"],
         object: p["object"],
@@ -54,8 +55,8 @@ export async function _createDeserialize(
       };
     }),
     usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
+      promptTokens: _result.body.usage["prompt_tokens"],
+      totalTokens: _result.body.usage["total_tokens"],
     },
   };
 }

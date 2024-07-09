@@ -87,18 +87,19 @@ export async function _analyzeTextDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AnalyzeText200Response;
   return {
     blocklistsMatchResults:
-      result.body["blocklistsMatchResults"] === undefined
-        ? result.body["blocklistsMatchResults"]
-        : result.body["blocklistsMatchResults"].map((p) => {
+      _result.body["blocklistsMatchResults"] === undefined
+        ? _result.body["blocklistsMatchResults"]
+        : _result.body["blocklistsMatchResults"].map((p) => {
             return {
               blocklistName: p["blocklistName"],
               blockItemId: p["blockItemId"],
               blockItemText: p["blockItemText"],
             };
           }),
-    analyzeResults: result.body["analyzeResults"].map((p) => {
+    analyzeResults: _result.body["analyzeResults"].map((p) => {
       return { category: p["category"], severity: p["severity"] };
     }),
   };
@@ -138,8 +139,9 @@ export async function _analyzeImageDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AnalyzeImage200Response;
   return {
-    analyzeResults: result.body["analyzeResults"].map((p) => {
+    analyzeResults: _result.body["analyzeResults"].map((p) => {
       return { category: p["category"], severity: p["severity"] };
     }),
   };
@@ -174,9 +176,10 @@ export async function _getTextBlocklistDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as GetTextBlocklist200Response;
   return {
-    blocklistName: result.body["blocklistName"],
-    description: result.body["description"],
+    blocklistName: _result.body["blocklistName"],
+    description: _result.body["description"],
   };
 }
 
@@ -223,9 +226,10 @@ export async function _createOrUpdateTextBlocklistDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as CreateOrUpdateTextBlocklist201Response;
   return {
-    blocklistName: result.body["blocklistName"],
-    description: result.body["description"],
+    blocklistName: _result.body["blocklistName"],
+    description: _result.body["description"],
   };
 }
 
@@ -299,14 +303,15 @@ export async function _listTextBlocklistsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ListTextBlocklists200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         blocklistName: p["blocklistName"],
         description: p["description"],
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -351,11 +356,12 @@ export async function _addOrUpdateBlockItemsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as AddOrUpdateBlockItems200Response;
   return {
     value:
-      result.body["value"] === undefined
-        ? result.body["value"]
-        : result.body["value"].map((p) => {
+      _result.body["value"] === undefined
+        ? _result.body["value"]
+        : _result.body["value"].map((p) => {
             return {
               blockItemId: p["blockItemId"],
               description: p["description"],
@@ -447,10 +453,11 @@ export async function _getTextBlocklistItemDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as GetTextBlocklistItem200Response;
   return {
-    blockItemId: result.body["blockItemId"],
-    description: result.body["description"],
-    text: result.body["text"],
+    blockItemId: _result.body["blockItemId"],
+    description: _result.body["description"],
+    text: _result.body["text"],
   };
 }
 
@@ -498,15 +505,16 @@ export async function _listTextBlocklistItemsDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ListTextBlocklistItems200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         blockItemId: p["blockItemId"],
         description: p["description"],
         text: p["text"],
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 

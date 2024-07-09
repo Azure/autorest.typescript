@@ -51,8 +51,9 @@ export async function _createStreamingDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as CreateStreaming200Response;
   return {
-    choices: result.body["choices"].map((p) => {
+    choices: _result.body["choices"].map((p) => {
       return {
         index: p["index"],
         delta: {
@@ -105,8 +106,9 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as Create200Response;
   return {
-    choices: result.body["choices"].map((p) => {
+    choices: _result.body["choices"].map((p) => {
       return {
         index: p["index"],
         message: {

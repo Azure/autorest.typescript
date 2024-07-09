@@ -40,12 +40,13 @@ export async function _getNonNullDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as CollectionsModelGetNonNull200Response;
   return {
-    requiredProperty: result.body["requiredProperty"],
+    requiredProperty: _result.body["requiredProperty"],
     nullableProperty:
-      result.body["nullableProperty"] === null
-        ? result.body["nullableProperty"]
-        : result.body["nullableProperty"].map((p) => {
+      _result.body["nullableProperty"] === null
+        ? _result.body["nullableProperty"]
+        : _result.body["nullableProperty"].map((p) => {
             return { property: p["property"] };
           }),
   };
@@ -76,12 +77,13 @@ export async function _getNullDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as CollectionsModelGetNull200Response;
   return {
-    requiredProperty: result.body["requiredProperty"],
+    requiredProperty: _result.body["requiredProperty"],
     nullableProperty:
-      result.body["nullableProperty"] === null
-        ? result.body["nullableProperty"]
-        : result.body["nullableProperty"].map((p) => {
+      _result.body["nullableProperty"] === null
+        ? _result.body["nullableProperty"]
+        : _result.body["nullableProperty"].map((p) => {
             return { property: p["property"] };
           }),
   };

@@ -37,8 +37,9 @@ export async function _getAllDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as UnionStringLiteralGetAll200Response;
   return {
-    property: result.body["property"],
+    property: _result.body["property"],
   };
 }
 
@@ -67,8 +68,9 @@ export async function _getDefaultDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as UnionStringLiteralGetDefault200Response;
   return {
-    property: result.body["property"],
+    property: _result.body["property"],
   };
 }
 

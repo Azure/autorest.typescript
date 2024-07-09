@@ -39,9 +39,10 @@ export async function _responseBodyDefaultDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  const _result = result as unknown as ResponseBodyDefault200Response;
+  return typeof _result.body === "string"
+    ? stringToUint8Array(_result.body, "base64")
+    : _result.body;
 }
 
 export async function responseBodyDefault(
@@ -68,7 +69,8 @@ export async function _responseBodyOctetStreamDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  const _result = result as unknown as ResponseBodyOctetStream200Response;
+  return _result.body as any;
 }
 
 export async function responseBodyOctetStream(
@@ -95,7 +97,8 @@ export async function _responseBodyCustomContentTypeDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  const _result = result as unknown as ResponseBodyCustomContentType200Response;
+  return _result.body as any;
 }
 
 export async function responseBodyCustomContentType(
@@ -122,9 +125,10 @@ export async function _responseBodyBase64Deserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  const _result = result as unknown as ResponseBodyBase64200Response;
+  return typeof _result.body === "string"
+    ? stringToUint8Array(_result.body, "base64")
+    : _result.body;
 }
 
 export async function responseBodyBase64(
@@ -151,9 +155,10 @@ export async function _responseBodyBase64urlDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64url")
-    : result.body;
+  const _result = result as unknown as ResponseBodyBase64url200Response;
+  return typeof _result.body === "string"
+    ? stringToUint8Array(_result.body, "base64url")
+    : _result.body;
 }
 
 export async function responseBodyBase64url(

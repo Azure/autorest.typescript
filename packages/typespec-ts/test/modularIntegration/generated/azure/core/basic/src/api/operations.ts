@@ -98,16 +98,17 @@ export async function _createOrUpdateDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as CreateOrUpdate201Response;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
+    id: _result.body["id"],
+    name: _result.body["name"],
     orders:
-      result.body["orders"] === undefined
-        ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+      _result.body["orders"] === undefined
+        ? _result.body["orders"]
+        : _result.body["orders"].map((p) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
-    etag: result.body["etag"],
+    etag: _result.body["etag"],
   };
 }
 
@@ -156,16 +157,17 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as CreateOrReplace201Response;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
+    id: _result.body["id"],
+    name: _result.body["name"],
     orders:
-      result.body["orders"] === undefined
-        ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+      _result.body["orders"] === undefined
+        ? _result.body["orders"]
+        : _result.body["orders"].map((p) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
-    etag: result.body["etag"],
+    etag: _result.body["etag"],
   };
 }
 
@@ -197,16 +199,17 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as Get200Response;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
+    id: _result.body["id"],
+    name: _result.body["name"],
     orders:
-      result.body["orders"] === undefined
-        ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+      _result.body["orders"] === undefined
+        ? _result.body["orders"]
+        : _result.body["orders"].map((p) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
-    etag: result.body["etag"],
+    etag: _result.body["etag"],
   };
 }
 
@@ -256,8 +259,9 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as List200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -274,7 +278,7 @@ export async function _listDeserialize(
         etag: p["etag"],
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -307,8 +311,9 @@ export async function _listWithPageDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ListWithPage200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -325,7 +330,7 @@ export async function _listWithPageDeserialize(
         etag: p["etag"],
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -365,8 +370,9 @@ export async function _listWithParametersDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ListWithParameters200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -383,7 +389,7 @@ export async function _listWithParametersDeserialize(
         etag: p["etag"],
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -421,8 +427,9 @@ export async function _listWithCustomPageModelDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ListWithCustomPageModel200Response;
   return {
-    items: result.body["items"].map((p) => {
+    items: _result.body["items"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -439,7 +446,7 @@ export async function _listWithCustomPageModelDeserialize(
         etag: p["etag"],
       };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -512,16 +519,17 @@ export async function _$exportDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as Export200Response;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
+    id: _result.body["id"],
+    name: _result.body["name"],
     orders:
-      result.body["orders"] === undefined
-        ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+      _result.body["orders"] === undefined
+        ? _result.body["orders"]
+        : _result.body["orders"].map((p) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
-    etag: result.body["etag"],
+    etag: _result.body["etag"],
   };
 }
 
@@ -557,11 +565,12 @@ export async function _listFirstItemDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ListFirstItem200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return { id: p["id"] };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 
@@ -594,11 +603,12 @@ export async function _listSecondItemDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ListSecondItem200Response;
   return {
-    value: result.body["value"].map((p) => {
+    value: _result.body["value"].map((p) => {
       return { name: p["name"] };
     }),
-    nextLink: result.body["nextLink"],
+    nextLink: _result.body["nextLink"],
   };
 }
 

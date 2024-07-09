@@ -32,7 +32,8 @@ export async function _int32ValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as Int32ValueGet200Response;
+  return _result.body;
 }
 
 export async function int32ValueGet(

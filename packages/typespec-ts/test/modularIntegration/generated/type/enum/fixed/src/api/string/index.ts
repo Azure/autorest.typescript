@@ -35,7 +35,8 @@ export async function _getKnownValueDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const _result = result as unknown as GetKnownValue200Response;
+  return _result.body;
 }
 
 /** getKnownValue */

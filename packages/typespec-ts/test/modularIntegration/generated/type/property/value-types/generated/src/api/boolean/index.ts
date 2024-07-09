@@ -33,8 +33,9 @@ export async function _booleanGetDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as BooleanModelGet200Response;
   return {
-    property: result.body["property"],
+    property: _result.body["property"],
   };
 }
 

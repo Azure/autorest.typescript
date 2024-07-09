@@ -34,9 +34,10 @@ export async function _testDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as Test200Response;
   return {
-    prop: result.body["prop"],
-    changedProp: result.body["changedProp"],
+    prop: _result.body["prop"],
+    changedProp: _result.body["changedProp"],
   };
 }
 

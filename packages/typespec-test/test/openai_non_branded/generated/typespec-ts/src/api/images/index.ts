@@ -55,9 +55,10 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ImagesCreate200Response;
   return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    created: new Date(_result.body["created"]),
+    data: _result.body["data"].map((p) => {
       return {
         url: p["url"],
         b64Json:
@@ -112,9 +113,10 @@ export async function _createEditDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ImagesCreateEdit200Response;
   return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    created: new Date(_result.body["created"]),
+    data: _result.body["data"].map((p) => {
       return {
         url: p["url"],
         b64Json:
@@ -166,9 +168,10 @@ export async function _createVariationDeserialize(
     throw createRestError(result);
   }
 
+  const _result = result as unknown as ImagesCreateVariation200Response;
   return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    created: new Date(_result.body["created"]),
+    data: _result.body["data"].map((p) => {
       return {
         url: p["url"],
         b64Json:

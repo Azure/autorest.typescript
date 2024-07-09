@@ -34,7 +34,8 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  const _result = result as unknown as SpreadFloatGet200Response;
+  return _result.body as any;
 }
 
 /** Get call */
