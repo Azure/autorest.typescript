@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ResourceKind,
-  TestProfileRun,
-  TestProfileRunStatus,
-  RecommendationCategory,
-  _PagedTestProfileRun,
-} from "../models/models.js";
+import { TestProfileRun, _PagedTestProfileRun } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
@@ -80,12 +74,8 @@ export async function _createOrUpdateTestProfileRunDeserialize(
     targetResourceId: result.body["targetResourceId"],
     targetResourceConfigurations: !result.body.targetResourceConfigurations
       ? undefined
-      : {
-          kind: result.body.targetResourceConfigurations?.[
-            "kind"
-          ] as ResourceKind,
-        },
-    status: result.body["status"] as TestProfileRunStatus,
+      : { kind: result.body.targetResourceConfigurations?.["kind"] },
+    status: result.body["status"],
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
@@ -101,13 +91,13 @@ export async function _createOrUpdateTestProfileRunDeserialize(
         ? new Date(result.body["endDateTime"])
         : undefined,
     durationInSeconds: result.body["durationInSeconds"],
-    testRunDetails: result.body["testRunDetails"] as any,
+    testRunDetails: result.body["testRunDetails"],
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
         : result.body["recommendations"].map((p) => {
             return {
-              category: p["category"] as RecommendationCategory,
+              category: p["category"],
               configurations: p["configurations"],
             };
           }),
@@ -209,12 +199,8 @@ export async function _getTestProfileRunDeserialize(
     targetResourceId: result.body["targetResourceId"],
     targetResourceConfigurations: !result.body.targetResourceConfigurations
       ? undefined
-      : {
-          kind: result.body.targetResourceConfigurations?.[
-            "kind"
-          ] as ResourceKind,
-        },
-    status: result.body["status"] as TestProfileRunStatus,
+      : { kind: result.body.targetResourceConfigurations?.["kind"] },
+    status: result.body["status"],
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
@@ -230,13 +216,13 @@ export async function _getTestProfileRunDeserialize(
         ? new Date(result.body["endDateTime"])
         : undefined,
     durationInSeconds: result.body["durationInSeconds"],
-    testRunDetails: result.body["testRunDetails"] as any,
+    testRunDetails: result.body["testRunDetails"],
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
         : result.body["recommendations"].map((p) => {
             return {
-              category: p["category"] as RecommendationCategory,
+              category: p["category"],
               configurations: p["configurations"],
             };
           }),
@@ -312,8 +298,8 @@ export async function _listTestProfileRunsDeserialize(
         targetResourceId: p["targetResourceId"],
         targetResourceConfigurations: !p.targetResourceConfigurations
           ? undefined
-          : { kind: p.targetResourceConfigurations?.["kind"] as ResourceKind },
-        status: p["status"] as TestProfileRunStatus,
+          : { kind: p.targetResourceConfigurations?.["kind"] },
+        status: p["status"],
         errorDetails:
           p["errorDetails"] === undefined
             ? p["errorDetails"]
@@ -329,13 +315,13 @@ export async function _listTestProfileRunsDeserialize(
             ? new Date(p["endDateTime"])
             : undefined,
         durationInSeconds: p["durationInSeconds"],
-        testRunDetails: p["testRunDetails"] as any,
+        testRunDetails: p["testRunDetails"],
         recommendations:
           p["recommendations"] === undefined
             ? p["recommendations"]
             : p["recommendations"].map((p) => {
                 return {
-                  category: p["category"] as RecommendationCategory,
+                  category: p["category"],
                   configurations: p["configurations"],
                 };
               }),
@@ -398,12 +384,8 @@ export async function _stopTestProfileRunDeserialize(
     targetResourceId: result.body["targetResourceId"],
     targetResourceConfigurations: !result.body.targetResourceConfigurations
       ? undefined
-      : {
-          kind: result.body.targetResourceConfigurations?.[
-            "kind"
-          ] as ResourceKind,
-        },
-    status: result.body["status"] as TestProfileRunStatus,
+      : { kind: result.body.targetResourceConfigurations?.["kind"] },
+    status: result.body["status"],
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
@@ -419,13 +401,13 @@ export async function _stopTestProfileRunDeserialize(
         ? new Date(result.body["endDateTime"])
         : undefined,
     durationInSeconds: result.body["durationInSeconds"],
-    testRunDetails: result.body["testRunDetails"] as any,
+    testRunDetails: result.body["testRunDetails"],
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
         : result.body["recommendations"].map((p) => {
             return {
-              category: p["category"] as RecommendationCategory,
+              category: p["category"],
               configurations: p["configurations"],
             };
           }),

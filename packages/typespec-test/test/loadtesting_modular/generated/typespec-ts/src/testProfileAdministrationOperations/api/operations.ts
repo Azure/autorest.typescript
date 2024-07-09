@@ -4,7 +4,6 @@
 import {
   targetResourceConfigurationsUnionSerializer,
   TestProfile,
-  ResourceKind,
   _PagedTestProfile,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
@@ -82,11 +81,7 @@ export async function _createOrUpdateTestProfileDeserialize(
     targetResourceId: result.body["targetResourceId"],
     targetResourceConfigurations: !result.body.targetResourceConfigurations
       ? undefined
-      : {
-          kind: result.body.targetResourceConfigurations?.[
-            "kind"
-          ] as ResourceKind,
-        },
+      : { kind: result.body.targetResourceConfigurations?.["kind"] },
     createdDateTime:
       result.body["createdDateTime"] !== undefined
         ? new Date(result.body["createdDateTime"])
@@ -181,11 +176,7 @@ export async function _getTestProfileDeserialize(
     targetResourceId: result.body["targetResourceId"],
     targetResourceConfigurations: !result.body.targetResourceConfigurations
       ? undefined
-      : {
-          kind: result.body.targetResourceConfigurations?.[
-            "kind"
-          ] as ResourceKind,
-        },
+      : { kind: result.body.targetResourceConfigurations?.["kind"] },
     createdDateTime:
       result.body["createdDateTime"] !== undefined
         ? new Date(result.body["createdDateTime"])
@@ -249,7 +240,7 @@ export async function _listTestProfilesDeserialize(
         targetResourceId: p["targetResourceId"],
         targetResourceConfigurations: !p.targetResourceConfigurations
           ? undefined
-          : { kind: p.targetResourceConfigurations?.["kind"] as ResourceKind },
+          : { kind: p.targetResourceConfigurations?.["kind"] },
         createdDateTime:
           p["createdDateTime"] !== undefined
             ? new Date(p["createdDateTime"])

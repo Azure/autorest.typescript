@@ -45,7 +45,7 @@ export interface AdministrationOperationsClientOptions extends ClientOptions {
 }
 
 // @public
-export type AggregationType = "Average" | "Count" | "None" | "Total" | "Percentile75" | "Percentile90" | "Percentile95" | "Percentile96" | "Percentile97" | "Percentile98" | "Percentile99" | "Percentile999" | "Percentile9999";
+export type AggregationType = string;
 
 // @public
 export type APIVersions = "2022-11-01" | "2023-04-01-preview" | "2024-03-01-preview" | "2024-05-01-preview";
@@ -82,7 +82,7 @@ export interface CertificateMetadata {
 }
 
 // @public
-export type CertificateType = "AKV_CERT_URI";
+export type CertificateType = string;
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -165,10 +165,10 @@ export interface ErrorDetails {
 }
 
 // @public
-export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
+export type FileStatus = string;
 
 // @public
-export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS" | "ZIPPED_ARTIFACTS" | "URL_TEST_CONFIG" | "TEST_SCRIPT";
+export type FileType = string;
 
 // @public
 export interface FunctionFlexConsumptionResourceConfiguration {
@@ -212,6 +212,177 @@ export interface GetTestRunFileOptionalParams extends OperationOptions {
 
 // @public
 export interface GetTestRunOptionalParams extends OperationOptions {
+}
+
+// @public
+export enum KnownAggregationType {
+    Average = "Average",
+    Count = "Count",
+    None = "None",
+    Percentile75 = "Percentile75",
+    Percentile90 = "Percentile90",
+    Percentile95 = "Percentile95",
+    Percentile96 = "Percentile96",
+    Percentile97 = "Percentile97",
+    Percentile98 = "Percentile98",
+    Percentile99 = "Percentile99",
+    Percentile999 = "Percentile999",
+    Percentile9999 = "Percentile9999",
+    Total = "Total"
+}
+
+// @public
+export enum KnownCertificateType {
+    AKV_CERT_URI = "AKV_CERT_URI"
+}
+
+// @public
+export enum KnownFileStatus {
+    NOT_VALIDATED = "NOT_VALIDATED",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_INITIATED = "VALIDATION_INITIATED",
+    VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum KnownFileType {
+    ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+    JMX_FILE = "JMX_FILE",
+    TEST_SCRIPT = "TEST_SCRIPT",
+    URL_TEST_CONFIG = "URL_TEST_CONFIG",
+    USER_PROPERTIES = "USER_PROPERTIES",
+    ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS"
+}
+
+// @public
+export enum KnownMetricUnit {
+    Bytes = "Bytes",
+    BytesPerSecond = "BytesPerSecond",
+    Count = "Count",
+    CountPerSecond = "CountPerSecond",
+    Milliseconds = "Milliseconds",
+    NotSpecified = "NotSpecified",
+    Percent = "Percent",
+    Seconds = "Seconds"
+}
+
+// @public
+export enum KnownPFAction {
+    "continue" = "continue",
+    stop = "stop"
+}
+
+// @public
+export enum KnownPFAgFunc {
+    "p99.9" = "p99.9",
+    "p99.99" = "p99.99",
+    avg = "avg",
+    count = "count",
+    max = "max",
+    min = "min",
+    p50 = "p50",
+    p75 = "p75",
+    p90 = "p90",
+    p95 = "p95",
+    p96 = "p96",
+    p97 = "p97",
+    p98 = "p98",
+    p99 = "p99",
+    percentage = "percentage"
+}
+
+// @public
+export enum KnownPFMetrics {
+    error = "error",
+    latency = "latency",
+    requests = "requests",
+    requests_per_sec = "requests_per_sec",
+    response_time_ms = "response_time_ms"
+}
+
+// @public
+export enum KnownPFResult {
+    failed = "failed",
+    passed = "passed",
+    undetermined = "undetermined"
+}
+
+// @public
+export enum KnownPFTestResult {
+    FAILED = "FAILED",
+    NOT_APPLICABLE = "NOT_APPLICABLE",
+    PASSED = "PASSED"
+}
+
+// @public
+export enum KnownRecommendationCategory {
+    CostOptimized = "CostOptimized",
+    ThroughputOptimized = "ThroughputOptimized"
+}
+
+// @public
+export enum KnownRequestDataLevel {
+    ERRORS = "ERRORS",
+    NONE = "NONE"
+}
+
+// @public
+export enum KnownResourceKind {
+    FunctionsFlexConsumption = "FunctionsFlexConsumption"
+}
+
+// @public
+export enum KnownSecretType {
+    AKV_SECRET_URI = "AKV_SECRET_URI",
+    SECRET_VALUE = "SECRET_VALUE"
+}
+
+// @public
+export enum KnownStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    CONFIGURED = "CONFIGURED",
+    CONFIGURING = "CONFIGURING",
+    DEPROVISIONED = "DEPROVISIONED",
+    DEPROVISIONING = "DEPROVISIONING",
+    DONE = "DONE",
+    EXECUTED = "EXECUTED",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED",
+    PROVISIONED = "PROVISIONED",
+    PROVISIONING = "PROVISIONING",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum KnownTestKind {
+    JMX = "JMX",
+    Locust = "Locust",
+    URL = "URL"
+}
+
+// @public
+export enum KnownTestProfileRunStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    DONE = "DONE",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED"
+}
+
+// @public
+export enum KnownTimeGrain {
+    PT10S = "PT10S",
+    PT1H = "PT1H",
+    PT1M = "PT1M",
+    PT5M = "PT5M",
+    PT5S = "PT5S"
 }
 
 // @public
@@ -328,7 +499,7 @@ export interface MetricRequestPayload {
 }
 
 // @public
-export type MetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
+export type MetricUnit = string;
 
 // @public
 export interface MetricValue {
@@ -382,22 +553,22 @@ export interface PassFailMetric {
 }
 
 // @public
-export type PFAction = "continue" | "stop";
+export type PFAction = string;
 
 // @public
-export type PFAgFunc = "count" | "percentage" | "avg" | "p50" | "p75" | "p90" | "p95" | "p96" | "p97" | "p98" | "p99" | "p99.9" | "p99.99" | "min" | "max";
+export type PFAgFunc = string;
 
 // @public
-export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
+export type PFMetrics = string;
 
 // @public
-export type PFResult = "passed" | "undetermined" | "failed";
+export type PFResult = string;
 
 // @public
-export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+export type PFTestResult = string;
 
 // @public
-export type RecommendationCategory = "ThroughputOptimized" | "CostOptimized";
+export type RecommendationCategory = string;
 
 // @public
 export interface RegionalConfiguration {
@@ -406,10 +577,10 @@ export interface RegionalConfiguration {
 }
 
 // @public
-export type RequestDataLevel = "NONE" | "ERRORS";
+export type RequestDataLevel = string;
 
 // @public
-export type ResourceKind = "FunctionsFlexConsumption";
+export type ResourceKind = string;
 
 // @public
 export interface ResourceMetric {
@@ -430,10 +601,10 @@ export interface Secret {
 }
 
 // @public
-export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
+export type SecretType = string;
 
 // @public
-export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
+export type Status = string;
 
 // @public
 export interface StopTestProfileRunOptionalParams extends OperationOptions {
@@ -506,7 +677,7 @@ export interface TestInputArtifacts {
 }
 
 // @public
-export type TestKind = "URL" | "JMX" | "Locust";
+export type TestKind = string;
 
 // @public
 export interface TestProfile {
@@ -533,7 +704,7 @@ export class TestProfileAdministrationOperationsClient {
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientAggregationType = "Average" | "Count" | "None" | "Total" | "Percentile75" | "Percentile90" | "Percentile95" | "Percentile96" | "Percentile97" | "Percentile98" | "Percentile99" | "Percentile999" | "Percentile9999";
+export type TestProfileAdministrationOperationsClientAggregationType = string;
 
 // @public
 export type TestProfileAdministrationOperationsClientAPIVersions = "2022-11-01" | "2023-04-01-preview" | "2024-03-01-preview" | "2024-05-01-preview";
@@ -570,7 +741,7 @@ export interface TestProfileAdministrationOperationsClientCertificateMetadata {
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientCertificateType = "AKV_CERT_URI";
+export type TestProfileAdministrationOperationsClientCertificateType = string;
 
 // @public
 export type TestProfileAdministrationOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -602,10 +773,10 @@ export interface TestProfileAdministrationOperationsClientErrorDetails {
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
+export type TestProfileAdministrationOperationsClientFileStatus = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS" | "ZIPPED_ARTIFACTS" | "URL_TEST_CONFIG" | "TEST_SCRIPT";
+export type TestProfileAdministrationOperationsClientFileType = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientFunctionFlexConsumptionResourceConfiguration {
@@ -617,6 +788,177 @@ export interface TestProfileAdministrationOperationsClientFunctionFlexConsumptio
 export interface TestProfileAdministrationOperationsClientFunctionFlexConsumptionTargetResourceConfigurations extends TestProfileAdministrationOperationsClientTargetResourceConfigurations {
     configurations?: Record<string, TestProfileAdministrationOperationsClientFunctionFlexConsumptionResourceConfiguration>;
     kind: "FunctionsFlexConsumption";
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownAggregationType {
+    Average = "Average",
+    Count = "Count",
+    None = "None",
+    Percentile75 = "Percentile75",
+    Percentile90 = "Percentile90",
+    Percentile95 = "Percentile95",
+    Percentile96 = "Percentile96",
+    Percentile97 = "Percentile97",
+    Percentile98 = "Percentile98",
+    Percentile99 = "Percentile99",
+    Percentile999 = "Percentile999",
+    Percentile9999 = "Percentile9999",
+    Total = "Total"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownCertificateType {
+    AKV_CERT_URI = "AKV_CERT_URI"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownFileStatus {
+    NOT_VALIDATED = "NOT_VALIDATED",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_INITIATED = "VALIDATION_INITIATED",
+    VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownFileType {
+    ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+    JMX_FILE = "JMX_FILE",
+    TEST_SCRIPT = "TEST_SCRIPT",
+    URL_TEST_CONFIG = "URL_TEST_CONFIG",
+    USER_PROPERTIES = "USER_PROPERTIES",
+    ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownMetricUnit {
+    Bytes = "Bytes",
+    BytesPerSecond = "BytesPerSecond",
+    Count = "Count",
+    CountPerSecond = "CountPerSecond",
+    Milliseconds = "Milliseconds",
+    NotSpecified = "NotSpecified",
+    Percent = "Percent",
+    Seconds = "Seconds"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownPFAction {
+    "continue" = "continue",
+    stop = "stop"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownPFAgFunc {
+    "p99.9" = "p99.9",
+    "p99.99" = "p99.99",
+    avg = "avg",
+    count = "count",
+    max = "max",
+    min = "min",
+    p50 = "p50",
+    p75 = "p75",
+    p90 = "p90",
+    p95 = "p95",
+    p96 = "p96",
+    p97 = "p97",
+    p98 = "p98",
+    p99 = "p99",
+    percentage = "percentage"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownPFMetrics {
+    error = "error",
+    latency = "latency",
+    requests = "requests",
+    requests_per_sec = "requests_per_sec",
+    response_time_ms = "response_time_ms"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownPFResult {
+    failed = "failed",
+    passed = "passed",
+    undetermined = "undetermined"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownPFTestResult {
+    FAILED = "FAILED",
+    NOT_APPLICABLE = "NOT_APPLICABLE",
+    PASSED = "PASSED"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownRecommendationCategory {
+    CostOptimized = "CostOptimized",
+    ThroughputOptimized = "ThroughputOptimized"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownRequestDataLevel {
+    ERRORS = "ERRORS",
+    NONE = "NONE"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownResourceKind {
+    FunctionsFlexConsumption = "FunctionsFlexConsumption"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownSecretType {
+    AKV_SECRET_URI = "AKV_SECRET_URI",
+    SECRET_VALUE = "SECRET_VALUE"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    CONFIGURED = "CONFIGURED",
+    CONFIGURING = "CONFIGURING",
+    DEPROVISIONED = "DEPROVISIONED",
+    DEPROVISIONING = "DEPROVISIONING",
+    DONE = "DONE",
+    EXECUTED = "EXECUTED",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED",
+    PROVISIONED = "PROVISIONED",
+    PROVISIONING = "PROVISIONING",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownTestKind {
+    JMX = "JMX",
+    Locust = "Locust",
+    URL = "URL"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownTestProfileRunStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    DONE = "DONE",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED"
+}
+
+// @public
+export enum TestProfileAdministrationOperationsClientKnownTimeGrain {
+    PT10S = "PT10S",
+    PT1H = "PT1H",
+    PT1M = "PT1M",
+    PT5M = "PT5M",
+    PT5S = "PT5S"
 }
 
 // @public
@@ -667,7 +1009,7 @@ export interface TestProfileAdministrationOperationsClientMetricRequestPayload {
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
+export type TestProfileAdministrationOperationsClientMetricUnit = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientMetricValue {
@@ -726,22 +1068,22 @@ export interface TestProfileAdministrationOperationsClientPassFailMetric {
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientPFAction = "continue" | "stop";
+export type TestProfileAdministrationOperationsClientPFAction = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientPFAgFunc = "count" | "percentage" | "avg" | "p50" | "p75" | "p90" | "p95" | "p96" | "p97" | "p98" | "p99" | "p99.9" | "p99.99" | "min" | "max";
+export type TestProfileAdministrationOperationsClientPFAgFunc = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientPFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
+export type TestProfileAdministrationOperationsClientPFMetrics = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientPFResult = "passed" | "undetermined" | "failed";
+export type TestProfileAdministrationOperationsClientPFResult = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientPFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+export type TestProfileAdministrationOperationsClientPFTestResult = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientRecommendationCategory = "ThroughputOptimized" | "CostOptimized";
+export type TestProfileAdministrationOperationsClientRecommendationCategory = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientRegionalConfiguration {
@@ -750,10 +1092,10 @@ export interface TestProfileAdministrationOperationsClientRegionalConfiguration 
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientRequestDataLevel = "NONE" | "ERRORS";
+export type TestProfileAdministrationOperationsClientRequestDataLevel = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientResourceKind = "FunctionsFlexConsumption";
+export type TestProfileAdministrationOperationsClientResourceKind = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientResourceMetric {
@@ -774,10 +1116,10 @@ export interface TestProfileAdministrationOperationsClientSecret {
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
+export type TestProfileAdministrationOperationsClientSecretType = string;
 
 // @public
-export type TestProfileAdministrationOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
+export type TestProfileAdministrationOperationsClientStatus = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientTargetResourceConfigurations {
@@ -842,7 +1184,7 @@ export interface TestProfileAdministrationOperationsClientTestInputArtifacts {
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientTestKind = "URL" | "JMX" | "Locust";
+export type TestProfileAdministrationOperationsClientTestKind = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientTestProfile {
@@ -886,7 +1228,7 @@ export interface TestProfileAdministrationOperationsClientTestProfileRunRecommen
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientTestProfileRunStatus = "ACCEPTED" | "NOTSTARTED" | "EXECUTING" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED";
+export type TestProfileAdministrationOperationsClientTestProfileRunStatus = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientTestRun {
@@ -1019,7 +1361,7 @@ export interface TestProfileAdministrationOperationsClientTestServerMetricConfig
 }
 
 // @public
-export type TestProfileAdministrationOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+export type TestProfileAdministrationOperationsClientTimeGrain = string;
 
 // @public
 export interface TestProfileAdministrationOperationsClientTimeSeriesElement {
@@ -1060,7 +1402,7 @@ export class TestProfileRunOperationsClient {
 }
 
 // @public
-export type TestProfileRunOperationsClientAggregationType = "Average" | "Count" | "None" | "Total" | "Percentile75" | "Percentile90" | "Percentile95" | "Percentile96" | "Percentile97" | "Percentile98" | "Percentile99" | "Percentile999" | "Percentile9999";
+export type TestProfileRunOperationsClientAggregationType = string;
 
 // @public
 export type TestProfileRunOperationsClientAPIVersions = "2022-11-01" | "2023-04-01-preview" | "2024-03-01-preview" | "2024-05-01-preview";
@@ -1097,7 +1439,7 @@ export interface TestProfileRunOperationsClientCertificateMetadata {
 }
 
 // @public
-export type TestProfileRunOperationsClientCertificateType = "AKV_CERT_URI";
+export type TestProfileRunOperationsClientCertificateType = string;
 
 // @public
 export type TestProfileRunOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -1129,10 +1471,10 @@ export interface TestProfileRunOperationsClientErrorDetails {
 }
 
 // @public
-export type TestProfileRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
+export type TestProfileRunOperationsClientFileStatus = string;
 
 // @public
-export type TestProfileRunOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS" | "ZIPPED_ARTIFACTS" | "URL_TEST_CONFIG" | "TEST_SCRIPT";
+export type TestProfileRunOperationsClientFileType = string;
 
 // @public
 export interface TestProfileRunOperationsClientFunctionFlexConsumptionResourceConfiguration {
@@ -1144,6 +1486,177 @@ export interface TestProfileRunOperationsClientFunctionFlexConsumptionResourceCo
 export interface TestProfileRunOperationsClientFunctionFlexConsumptionTargetResourceConfigurations extends TestProfileRunOperationsClientTargetResourceConfigurations {
     configurations?: Record<string, TestProfileRunOperationsClientFunctionFlexConsumptionResourceConfiguration>;
     kind: "FunctionsFlexConsumption";
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownAggregationType {
+    Average = "Average",
+    Count = "Count",
+    None = "None",
+    Percentile75 = "Percentile75",
+    Percentile90 = "Percentile90",
+    Percentile95 = "Percentile95",
+    Percentile96 = "Percentile96",
+    Percentile97 = "Percentile97",
+    Percentile98 = "Percentile98",
+    Percentile99 = "Percentile99",
+    Percentile999 = "Percentile999",
+    Percentile9999 = "Percentile9999",
+    Total = "Total"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownCertificateType {
+    AKV_CERT_URI = "AKV_CERT_URI"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownFileStatus {
+    NOT_VALIDATED = "NOT_VALIDATED",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_INITIATED = "VALIDATION_INITIATED",
+    VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownFileType {
+    ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+    JMX_FILE = "JMX_FILE",
+    TEST_SCRIPT = "TEST_SCRIPT",
+    URL_TEST_CONFIG = "URL_TEST_CONFIG",
+    USER_PROPERTIES = "USER_PROPERTIES",
+    ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownMetricUnit {
+    Bytes = "Bytes",
+    BytesPerSecond = "BytesPerSecond",
+    Count = "Count",
+    CountPerSecond = "CountPerSecond",
+    Milliseconds = "Milliseconds",
+    NotSpecified = "NotSpecified",
+    Percent = "Percent",
+    Seconds = "Seconds"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownPFAction {
+    "continue" = "continue",
+    stop = "stop"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownPFAgFunc {
+    "p99.9" = "p99.9",
+    "p99.99" = "p99.99",
+    avg = "avg",
+    count = "count",
+    max = "max",
+    min = "min",
+    p50 = "p50",
+    p75 = "p75",
+    p90 = "p90",
+    p95 = "p95",
+    p96 = "p96",
+    p97 = "p97",
+    p98 = "p98",
+    p99 = "p99",
+    percentage = "percentage"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownPFMetrics {
+    error = "error",
+    latency = "latency",
+    requests = "requests",
+    requests_per_sec = "requests_per_sec",
+    response_time_ms = "response_time_ms"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownPFResult {
+    failed = "failed",
+    passed = "passed",
+    undetermined = "undetermined"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownPFTestResult {
+    FAILED = "FAILED",
+    NOT_APPLICABLE = "NOT_APPLICABLE",
+    PASSED = "PASSED"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownRecommendationCategory {
+    CostOptimized = "CostOptimized",
+    ThroughputOptimized = "ThroughputOptimized"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownRequestDataLevel {
+    ERRORS = "ERRORS",
+    NONE = "NONE"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownResourceKind {
+    FunctionsFlexConsumption = "FunctionsFlexConsumption"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownSecretType {
+    AKV_SECRET_URI = "AKV_SECRET_URI",
+    SECRET_VALUE = "SECRET_VALUE"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    CONFIGURED = "CONFIGURED",
+    CONFIGURING = "CONFIGURING",
+    DEPROVISIONED = "DEPROVISIONED",
+    DEPROVISIONING = "DEPROVISIONING",
+    DONE = "DONE",
+    EXECUTED = "EXECUTED",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED",
+    PROVISIONED = "PROVISIONED",
+    PROVISIONING = "PROVISIONING",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownTestKind {
+    JMX = "JMX",
+    Locust = "Locust",
+    URL = "URL"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownTestProfileRunStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    DONE = "DONE",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED"
+}
+
+// @public
+export enum TestProfileRunOperationsClientKnownTimeGrain {
+    PT10S = "PT10S",
+    PT1H = "PT1H",
+    PT1M = "PT1M",
+    PT5M = "PT5M",
+    PT5S = "PT5S"
 }
 
 // @public
@@ -1194,7 +1707,7 @@ export interface TestProfileRunOperationsClientMetricRequestPayload {
 }
 
 // @public
-export type TestProfileRunOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
+export type TestProfileRunOperationsClientMetricUnit = string;
 
 // @public
 export interface TestProfileRunOperationsClientMetricValue {
@@ -1253,22 +1766,22 @@ export interface TestProfileRunOperationsClientPassFailMetric {
 }
 
 // @public
-export type TestProfileRunOperationsClientPFAction = "continue" | "stop";
+export type TestProfileRunOperationsClientPFAction = string;
 
 // @public
-export type TestProfileRunOperationsClientPFAgFunc = "count" | "percentage" | "avg" | "p50" | "p75" | "p90" | "p95" | "p96" | "p97" | "p98" | "p99" | "p99.9" | "p99.99" | "min" | "max";
+export type TestProfileRunOperationsClientPFAgFunc = string;
 
 // @public
-export type TestProfileRunOperationsClientPFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
+export type TestProfileRunOperationsClientPFMetrics = string;
 
 // @public
-export type TestProfileRunOperationsClientPFResult = "passed" | "undetermined" | "failed";
+export type TestProfileRunOperationsClientPFResult = string;
 
 // @public
-export type TestProfileRunOperationsClientPFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+export type TestProfileRunOperationsClientPFTestResult = string;
 
 // @public
-export type TestProfileRunOperationsClientRecommendationCategory = "ThroughputOptimized" | "CostOptimized";
+export type TestProfileRunOperationsClientRecommendationCategory = string;
 
 // @public
 export interface TestProfileRunOperationsClientRegionalConfiguration {
@@ -1277,10 +1790,10 @@ export interface TestProfileRunOperationsClientRegionalConfiguration {
 }
 
 // @public
-export type TestProfileRunOperationsClientRequestDataLevel = "NONE" | "ERRORS";
+export type TestProfileRunOperationsClientRequestDataLevel = string;
 
 // @public
-export type TestProfileRunOperationsClientResourceKind = "FunctionsFlexConsumption";
+export type TestProfileRunOperationsClientResourceKind = string;
 
 // @public
 export interface TestProfileRunOperationsClientResourceMetric {
@@ -1301,10 +1814,10 @@ export interface TestProfileRunOperationsClientSecret {
 }
 
 // @public
-export type TestProfileRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
+export type TestProfileRunOperationsClientSecretType = string;
 
 // @public
-export type TestProfileRunOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
+export type TestProfileRunOperationsClientStatus = string;
 
 // @public
 export interface TestProfileRunOperationsClientTargetResourceConfigurations {
@@ -1369,7 +1882,7 @@ export interface TestProfileRunOperationsClientTestInputArtifacts {
 }
 
 // @public
-export type TestProfileRunOperationsClientTestKind = "URL" | "JMX" | "Locust";
+export type TestProfileRunOperationsClientTestKind = string;
 
 // @public
 export interface TestProfileRunOperationsClientTestProfile {
@@ -1413,7 +1926,7 @@ export interface TestProfileRunOperationsClientTestProfileRunRecommendation {
 }
 
 // @public
-export type TestProfileRunOperationsClientTestProfileRunStatus = "ACCEPTED" | "NOTSTARTED" | "EXECUTING" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED";
+export type TestProfileRunOperationsClientTestProfileRunStatus = string;
 
 // @public
 export interface TestProfileRunOperationsClientTestRun {
@@ -1546,7 +2059,7 @@ export interface TestProfileRunOperationsClientTestServerMetricConfig {
 }
 
 // @public
-export type TestProfileRunOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+export type TestProfileRunOperationsClientTimeGrain = string;
 
 // @public
 export interface TestProfileRunOperationsClientTimeSeriesElement {
@@ -1561,7 +2074,7 @@ export interface TestProfileRunRecommendation {
 }
 
 // @public
-export type TestProfileRunStatus = "ACCEPTED" | "NOTSTARTED" | "EXECUTING" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED";
+export type TestProfileRunStatus = string;
 
 // @public
 export interface TestRun {
@@ -1668,7 +2181,7 @@ export class TestRunOperationsClient {
 }
 
 // @public
-export type TestRunOperationsClientAggregationType = "Average" | "Count" | "None" | "Total" | "Percentile75" | "Percentile90" | "Percentile95" | "Percentile96" | "Percentile97" | "Percentile98" | "Percentile99" | "Percentile999" | "Percentile9999";
+export type TestRunOperationsClientAggregationType = string;
 
 // @public
 export type TestRunOperationsClientAPIVersions = "2022-11-01" | "2023-04-01-preview" | "2024-03-01-preview" | "2024-05-01-preview";
@@ -1705,7 +2218,7 @@ export interface TestRunOperationsClientCertificateMetadata {
 }
 
 // @public
-export type TestRunOperationsClientCertificateType = "AKV_CERT_URI";
+export type TestRunOperationsClientCertificateType = string;
 
 // @public
 export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -1747,10 +2260,10 @@ export interface TestRunOperationsClientErrorDetails {
 }
 
 // @public
-export type TestRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
+export type TestRunOperationsClientFileStatus = string;
 
 // @public
-export type TestRunOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS" | "ZIPPED_ARTIFACTS" | "URL_TEST_CONFIG" | "TEST_SCRIPT";
+export type TestRunOperationsClientFileType = string;
 
 // @public
 export interface TestRunOperationsClientFunctionFlexConsumptionResourceConfiguration {
@@ -1770,6 +2283,177 @@ export interface TestRunOperationsClientGetAppComponentsOptionalParams extends O
 
 // @public
 export interface TestRunOperationsClientGetServerMetricsConfigOptionalParams extends OperationOptions {
+}
+
+// @public
+export enum TestRunOperationsClientKnownAggregationType {
+    Average = "Average",
+    Count = "Count",
+    None = "None",
+    Percentile75 = "Percentile75",
+    Percentile90 = "Percentile90",
+    Percentile95 = "Percentile95",
+    Percentile96 = "Percentile96",
+    Percentile97 = "Percentile97",
+    Percentile98 = "Percentile98",
+    Percentile99 = "Percentile99",
+    Percentile999 = "Percentile999",
+    Percentile9999 = "Percentile9999",
+    Total = "Total"
+}
+
+// @public
+export enum TestRunOperationsClientKnownCertificateType {
+    AKV_CERT_URI = "AKV_CERT_URI"
+}
+
+// @public
+export enum TestRunOperationsClientKnownFileStatus {
+    NOT_VALIDATED = "NOT_VALIDATED",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_INITIATED = "VALIDATION_INITIATED",
+    VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum TestRunOperationsClientKnownFileType {
+    ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+    JMX_FILE = "JMX_FILE",
+    TEST_SCRIPT = "TEST_SCRIPT",
+    URL_TEST_CONFIG = "URL_TEST_CONFIG",
+    USER_PROPERTIES = "USER_PROPERTIES",
+    ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS"
+}
+
+// @public
+export enum TestRunOperationsClientKnownMetricUnit {
+    Bytes = "Bytes",
+    BytesPerSecond = "BytesPerSecond",
+    Count = "Count",
+    CountPerSecond = "CountPerSecond",
+    Milliseconds = "Milliseconds",
+    NotSpecified = "NotSpecified",
+    Percent = "Percent",
+    Seconds = "Seconds"
+}
+
+// @public
+export enum TestRunOperationsClientKnownPFAction {
+    "continue" = "continue",
+    stop = "stop"
+}
+
+// @public
+export enum TestRunOperationsClientKnownPFAgFunc {
+    "p99.9" = "p99.9",
+    "p99.99" = "p99.99",
+    avg = "avg",
+    count = "count",
+    max = "max",
+    min = "min",
+    p50 = "p50",
+    p75 = "p75",
+    p90 = "p90",
+    p95 = "p95",
+    p96 = "p96",
+    p97 = "p97",
+    p98 = "p98",
+    p99 = "p99",
+    percentage = "percentage"
+}
+
+// @public
+export enum TestRunOperationsClientKnownPFMetrics {
+    error = "error",
+    latency = "latency",
+    requests = "requests",
+    requests_per_sec = "requests_per_sec",
+    response_time_ms = "response_time_ms"
+}
+
+// @public
+export enum TestRunOperationsClientKnownPFResult {
+    failed = "failed",
+    passed = "passed",
+    undetermined = "undetermined"
+}
+
+// @public
+export enum TestRunOperationsClientKnownPFTestResult {
+    FAILED = "FAILED",
+    NOT_APPLICABLE = "NOT_APPLICABLE",
+    PASSED = "PASSED"
+}
+
+// @public
+export enum TestRunOperationsClientKnownRecommendationCategory {
+    CostOptimized = "CostOptimized",
+    ThroughputOptimized = "ThroughputOptimized"
+}
+
+// @public
+export enum TestRunOperationsClientKnownRequestDataLevel {
+    ERRORS = "ERRORS",
+    NONE = "NONE"
+}
+
+// @public
+export enum TestRunOperationsClientKnownResourceKind {
+    FunctionsFlexConsumption = "FunctionsFlexConsumption"
+}
+
+// @public
+export enum TestRunOperationsClientKnownSecretType {
+    AKV_SECRET_URI = "AKV_SECRET_URI",
+    SECRET_VALUE = "SECRET_VALUE"
+}
+
+// @public
+export enum TestRunOperationsClientKnownStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    CONFIGURED = "CONFIGURED",
+    CONFIGURING = "CONFIGURING",
+    DEPROVISIONED = "DEPROVISIONED",
+    DEPROVISIONING = "DEPROVISIONING",
+    DONE = "DONE",
+    EXECUTED = "EXECUTED",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED",
+    PROVISIONED = "PROVISIONED",
+    PROVISIONING = "PROVISIONING",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum TestRunOperationsClientKnownTestKind {
+    JMX = "JMX",
+    Locust = "Locust",
+    URL = "URL"
+}
+
+// @public
+export enum TestRunOperationsClientKnownTestProfileRunStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    DONE = "DONE",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED"
+}
+
+// @public
+export enum TestRunOperationsClientKnownTimeGrain {
+    PT10S = "PT10S",
+    PT1H = "PT1H",
+    PT1M = "PT1M",
+    PT5M = "PT5M",
+    PT5S = "PT5S"
 }
 
 // @public
@@ -1820,7 +2504,7 @@ export interface TestRunOperationsClientMetricRequestPayload {
 }
 
 // @public
-export type TestRunOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
+export type TestRunOperationsClientMetricUnit = string;
 
 // @public
 export interface TestRunOperationsClientMetricValue {
@@ -1879,22 +2563,22 @@ export interface TestRunOperationsClientPassFailMetric {
 }
 
 // @public
-export type TestRunOperationsClientPFAction = "continue" | "stop";
+export type TestRunOperationsClientPFAction = string;
 
 // @public
-export type TestRunOperationsClientPFAgFunc = "count" | "percentage" | "avg" | "p50" | "p75" | "p90" | "p95" | "p96" | "p97" | "p98" | "p99" | "p99.9" | "p99.99" | "min" | "max";
+export type TestRunOperationsClientPFAgFunc = string;
 
 // @public
-export type TestRunOperationsClientPFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
+export type TestRunOperationsClientPFMetrics = string;
 
 // @public
-export type TestRunOperationsClientPFResult = "passed" | "undetermined" | "failed";
+export type TestRunOperationsClientPFResult = string;
 
 // @public
-export type TestRunOperationsClientPFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+export type TestRunOperationsClientPFTestResult = string;
 
 // @public
-export type TestRunOperationsClientRecommendationCategory = "ThroughputOptimized" | "CostOptimized";
+export type TestRunOperationsClientRecommendationCategory = string;
 
 // @public
 export interface TestRunOperationsClientRegionalConfiguration {
@@ -1903,10 +2587,10 @@ export interface TestRunOperationsClientRegionalConfiguration {
 }
 
 // @public
-export type TestRunOperationsClientRequestDataLevel = "NONE" | "ERRORS";
+export type TestRunOperationsClientRequestDataLevel = string;
 
 // @public
-export type TestRunOperationsClientResourceKind = "FunctionsFlexConsumption";
+export type TestRunOperationsClientResourceKind = string;
 
 // @public
 export interface TestRunOperationsClientResourceMetric {
@@ -1927,10 +2611,10 @@ export interface TestRunOperationsClientSecret {
 }
 
 // @public
-export type TestRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
+export type TestRunOperationsClientSecretType = string;
 
 // @public
-export type TestRunOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
+export type TestRunOperationsClientStatus = string;
 
 // @public
 export interface TestRunOperationsClientTargetResourceConfigurations {
@@ -1995,7 +2679,7 @@ export interface TestRunOperationsClientTestInputArtifacts {
 }
 
 // @public
-export type TestRunOperationsClientTestKind = "URL" | "JMX" | "Locust";
+export type TestRunOperationsClientTestKind = string;
 
 // @public
 export interface TestRunOperationsClientTestProfile {
@@ -2039,7 +2723,7 @@ export interface TestRunOperationsClientTestProfileRunRecommendation {
 }
 
 // @public
-export type TestRunOperationsClientTestProfileRunStatus = "ACCEPTED" | "NOTSTARTED" | "EXECUTING" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED";
+export type TestRunOperationsClientTestProfileRunStatus = string;
 
 // @public
 export interface TestRunOperationsClientTestRun {
@@ -2172,7 +2856,7 @@ export interface TestRunOperationsClientTestServerMetricConfig {
 }
 
 // @public
-export type TestRunOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+export type TestRunOperationsClientTimeGrain = string;
 
 // @public
 export interface TestRunOperationsClientTimeSeriesElement {
@@ -2233,7 +2917,7 @@ export interface TestServerMetricConfig {
 }
 
 // @public
-export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+export type TimeGrain = string;
 
 // @public
 export interface TimeSeriesElement {
