@@ -60,3 +60,8 @@ export {
   ActionType,
   Versions,
 } from "./models.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

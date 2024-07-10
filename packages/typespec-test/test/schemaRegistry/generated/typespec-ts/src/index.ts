@@ -11,6 +11,9 @@ export {
   Schema,
   ContentTypeEnum,
   ServiceApiVersions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   SchemaOperationsListSchemaGroupsOptionalParams,

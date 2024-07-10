@@ -195,3 +195,8 @@ export {
   BatchApplication,
   Versions,
 } from "./models.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

@@ -24,8 +24,6 @@ import {
   _PagedTestRun,
   _PagedTimeSeriesElement,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
@@ -68,6 +66,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   TestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -84,6 +83,7 @@ import {
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
 } from "./options.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 
 export function _testRunSend(
   context: Client,

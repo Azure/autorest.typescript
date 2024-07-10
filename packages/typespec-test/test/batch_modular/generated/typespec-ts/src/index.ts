@@ -195,6 +195,9 @@ export {
   NodeRemoveOptions,
   BatchApplication,
   Versions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   BatchClientOptions,

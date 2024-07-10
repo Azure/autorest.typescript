@@ -25,7 +25,6 @@ export class AdministrationOperationsClient {
     getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
     getTest(testId: string, options?: GetTestOptionalParams): Promise<Test>;
     getTestFile(testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<FileInfo>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     listTestFiles(testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<FileInfo>;
     listTests(options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
     readonly pipeline: Pipeline;
@@ -63,6 +62,11 @@ export interface CertificateMetadata {
 
 // @public
 export type CertificateType = "AKV_CERT_URI";
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
@@ -279,6 +283,18 @@ export interface OptionalLoadTestConfig {
 }
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
 export interface PassFailCriteria {
     passFailMetrics?: Record<string, PassFailMetric>;
 }
@@ -452,11 +468,10 @@ export class TestRunOperationsClient {
     getTestRun(testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
     getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<FileInfo>;
     listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator_2" needs to be exported by the entry point index.d.ts
-    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptionalParams): PagedAsyncIterableIterator_2<DimensionValueList>;
+    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptionalParams): PagedAsyncIterableIterator<DimensionValueList>;
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
-    listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator_2<TimeSeriesElement>;
-    listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator_2<TestRun>;
+    listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
+    listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
     testRun(testRunId: string, resource: TestRun, options?: TestRunOptionalParams): PollerLike<OperationState<TestRun>, TestRun>;

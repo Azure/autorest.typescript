@@ -37,6 +37,11 @@ export interface BudgetsOperations {
     createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptionalParams) => PollerLike<OperationState<User>, User>;
 }
 
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
 // @public (undocumented)
 export interface CreateWidget {
     color: "red" | "blue";
@@ -47,6 +52,18 @@ export interface CreateWidget {
 export interface NonReferencedModel {
     prop1: number;
     prop2: string;
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -146,8 +163,6 @@ export interface WidgetsOperations {
     deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) => Promise<void>;
     getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) => Promise<Widget>;
     listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptionalParams) => Promise<Widget[]>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)

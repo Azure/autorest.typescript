@@ -22,6 +22,9 @@ export {
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
   Versions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   ContentSafetyClientOptions,

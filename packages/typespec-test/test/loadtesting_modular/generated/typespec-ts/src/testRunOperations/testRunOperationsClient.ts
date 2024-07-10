@@ -48,7 +48,7 @@ import {
   TestRunOperationsClientOptions,
   AzureLoadTestingContext,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 
 export class TestRunOperationsClient {
   private _client: AzureLoadTestingContext;

@@ -11,3 +11,8 @@ export {
   ContentTypeEnum,
   ServiceApiVersions,
 } from "./models.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

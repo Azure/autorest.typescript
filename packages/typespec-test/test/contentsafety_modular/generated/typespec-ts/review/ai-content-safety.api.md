@@ -76,7 +76,6 @@ export class ContentSafetyClient {
     getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptionalParams): Promise<TextBlocklist>;
     getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlockItem>;
     listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlockItem>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     listTextBlocklists(options?: ListTextBlocklistsOptionalParams): PagedAsyncIterableIterator<TextBlocklist>;
     readonly pipeline: Pipeline;
     removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsOptionalParams): Promise<void>;
@@ -86,6 +85,11 @@ export class ContentSafetyClient {
 export interface ContentSafetyClientOptions extends ClientOptions {
     apiVersion?: string;
 }
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
@@ -128,6 +132,18 @@ export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public

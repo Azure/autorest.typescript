@@ -61,6 +61,9 @@ export {
   KnownActionType,
   ActionType,
   Versions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   NetworkAnalyticsClientOptions,

@@ -38,7 +38,7 @@ import {
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 
 export class AdministrationOperationsClient {
   private _client: AzureLoadTestingContext;

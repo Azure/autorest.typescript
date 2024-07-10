@@ -206,6 +206,8 @@ export async function $onEmit(context: EmitContext) {
 
       const isMultiClients = modularCodeModel.clients.length > 1;
       buildModels(modularCodeModel);
+      // build paging files
+      buildPagingTypes(modularCodeModel);
       buildSubpathIndexFile(modularCodeModel, "models");
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]) {
         buildSerializeUtils(modularCodeModel);
@@ -214,8 +216,7 @@ export async function $onEmit(context: EmitContext) {
         buildApiOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
-        // build paging files
-        buildPagingTypes(subClient, modularCodeModel);
+
         buildModularPagingHelpers(
           subClient,
           modularCodeModel,

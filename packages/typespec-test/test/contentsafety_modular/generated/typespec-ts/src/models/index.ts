@@ -22,3 +22,8 @@ export {
   TextAnalyzeSeverityResult,
   Versions,
 } from "./models.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

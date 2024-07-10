@@ -51,3 +51,8 @@ export {
   MetricValue,
   DimensionValue,
 } from "./models.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

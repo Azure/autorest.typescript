@@ -51,6 +51,9 @@ export {
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "../models/index.js";
 export {
   AdministrationOperationsClientOptions,
