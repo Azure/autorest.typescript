@@ -544,8 +544,6 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-        export { TestingClientOptions  } from "./api/testingContext.js";
-        
         export class TestingClient {
           private _client: TestingContext;
           /** The pipeline used by this client to make requests */
@@ -679,8 +677,6 @@ describe("api operations in Modular", () => {
         classicClient?.getFullText()!,
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
-        
-        export { TestingClientOptions  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;
@@ -838,8 +834,6 @@ describe("api operations in Modular", () => {
         classicClient?.getFullText()!,
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
-        
-        export { TestingClientOptions  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;

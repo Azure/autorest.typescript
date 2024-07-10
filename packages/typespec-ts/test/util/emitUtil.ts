@@ -25,8 +25,8 @@ import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
 import {
-  buildModels,
-  buildModelsOptions
+  buildApiOptions,
+  buildModels
 } from "../../src/modular/emitModels.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
@@ -347,12 +347,12 @@ export async function emitModularModelsFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       if (needOptions) {
-        modelFile = buildModelsOptions(
+        modelFile = buildApiOptions(
           modularCodeModel.clients[0],
           modularCodeModel
         );
       } else {
-        modelFile = buildModels(modularCodeModel.clients[0], modularCodeModel);
+        modelFile = buildModels(modularCodeModel);
       }
     }
   }
