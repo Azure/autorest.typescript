@@ -13,7 +13,7 @@ import {
 } from "./models.js";
 
 export interface GetAudioTranscriptionAsPlainTextBodyParam {
-  body?: AudioTranscriptionOptions;
+  body: AudioTranscriptionOptions;
 }
 
 export interface GetAudioTranscriptionAsPlainTextMediaTypesParam {
@@ -27,7 +27,7 @@ export type GetAudioTranscriptionAsPlainTextParameters =
     RequestParameters;
 
 export interface GetAudioTranscriptionAsResponseObjectBodyParam {
-  body?: AudioTranscriptionOptions;
+  body: AudioTranscriptionOptions;
 }
 
 export interface GetAudioTranscriptionAsResponseObjectMediaTypesParam {
@@ -41,7 +41,7 @@ export type GetAudioTranscriptionAsResponseObjectParameters =
     RequestParameters;
 
 export interface GetAudioTranslationAsPlainTextBodyParam {
-  body?: AudioTranslationOptions;
+  body: AudioTranslationOptions;
 }
 
 export interface GetAudioTranslationAsPlainTextMediaTypesParam {
@@ -55,7 +55,7 @@ export type GetAudioTranslationAsPlainTextParameters =
     RequestParameters;
 
 export interface GetAudioTranslationAsResponseObjectBodyParam {
-  body?: AudioTranslationOptions;
+  body: AudioTranslationOptions;
 }
 
 export interface GetAudioTranslationAsResponseObjectMediaTypesParam {
@@ -83,21 +83,21 @@ export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
   RequestParameters;
 
 export interface GetImageGenerationsBodyParam {
-  body?: ImageGenerationOptions;
+  body: ImageGenerationOptions;
 }
 
 export type GetImageGenerationsParameters = GetImageGenerationsBodyParam &
   RequestParameters;
 
 export interface GetAudioSpeechBodyParam {
-  body?: AudioSpeechOptions;
+  body: AudioSpeechOptions;
 }
 
 export type GetAudioSpeechParameters = GetAudioSpeechBodyParam &
   RequestParameters;
 
 export interface GetEmbeddingsBodyParam {
-  body?: EmbeddingsOptions;
+  body: EmbeddingsOptions;
 }
 
 export type GetEmbeddingsParameters = GetEmbeddingsBodyParam &

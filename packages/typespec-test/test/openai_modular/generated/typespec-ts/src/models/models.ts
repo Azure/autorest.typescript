@@ -4,6 +4,8 @@
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
+  AudioTranscriptionOptions as AudioTranscriptionOptionsRest,
+  AudioTranslationOptions as AudioTranslationOptionsRest,
   CompletionsOptions as CompletionsOptionsRest,
   ChatCompletionsOptions as ChatCompletionsOptionsRest,
   ChatRequestMessage as ChatRequestMessageRest,
@@ -59,17 +61,13 @@ import {
   ChatCompletionsNamedToolSelection as ChatCompletionsNamedToolSelectionRest,
   ChatCompletionsNamedFunctionToolSelection as ChatCompletionsNamedFunctionToolSelectionRest,
   ChatCompletionsFunctionToolSelection as ChatCompletionsFunctionToolSelectionRest,
+  ImageGenerationOptions as ImageGenerationOptionsRest,
+  AudioSpeechOptions as AudioSpeechOptionsRest,
+  EmbeddingsOptions as EmbeddingsOptionsRest,
 } from "../rest/index.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
-/** Defines available options for the underlying response format of output transcription information. */
-export type AudioTranscriptionFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
-
+/** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
   /**
    * The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
@@ -103,7 +101,7 @@ export interface AudioTranscriptionOptions {
 
 export function audioTranscriptionOptionsSerializer(
   item: AudioTranscriptionOptions,
-) {
+): AudioTranscriptionOptionsRest {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -114,6 +112,14 @@ export function audioTranscriptionOptionsSerializer(
     model: item["model"],
   };
 }
+
+/** Defines available options for the underlying response format of output transcription information. */
+export type AudioTranscriptionFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
 
 /** Result information for an operation that transcribed spoken audio into written text. */
 export interface AudioTranscription {
@@ -169,14 +175,7 @@ export interface AudioTranscriptionSegment {
   seek: number;
 }
 
-/** Defines available options for the underlying response format of output translation information. */
-export type AudioTranslationFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
-
+/** The configuration information for an audio translation request. */
 export interface AudioTranslationOptions {
   /**
    * The audio data to translate. This must be the binary content of a file in one of the supported media formats:
@@ -204,7 +203,7 @@ export interface AudioTranslationOptions {
 
 export function audioTranslationOptionsSerializer(
   item: AudioTranslationOptions,
-) {
+): AudioTranslationOptionsRest {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -214,6 +213,14 @@ export function audioTranslationOptionsSerializer(
     model: item["model"],
   };
 }
+
+/** Defines available options for the underlying response format of output translation information. */
+export type AudioTranslationFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
 
 /** Result information for an operation that translated spoken audio into written text. */
 export interface AudioTranslation {
@@ -2458,26 +2465,7 @@ export interface AzureGroundingEnhancementCoordinatePoint {
   y: number;
 }
 
-/** The desired size of generated images. */
-export type ImageSize =
-  | "256x256"
-  | "512x512"
-  | "1024x1024"
-  | "1792x1024"
-  | "1024x1792";
-/** The format in which the generated images are returned. */
-export type ImageGenerationResponseFormat = "url" | "b64_json";
-/**
- * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationQuality = "standard" | "hd";
-/**
- * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationStyle = "natural" | "vivid";
-
+/** Represents the request data used to generate images. */
 export interface ImageGenerationOptions {
   /**
    * The model name or Azure OpenAI model deployment name to use for image generation. If not specified, dall-e-2 will be
@@ -2514,7 +2502,9 @@ export interface ImageGenerationOptions {
   user?: string;
 }
 
-export function imageGenerationOptionsSerializer(item: ImageGenerationOptions) {
+export function imageGenerationOptionsSerializer(
+  item: ImageGenerationOptions,
+): ImageGenerationOptionsRest {
   return {
     model: item["model"],
     prompt: item["prompt"],
@@ -2526,6 +2516,26 @@ export function imageGenerationOptionsSerializer(item: ImageGenerationOptions) {
     user: item["user"],
   };
 }
+
+/** The desired size of generated images. */
+export type ImageSize =
+  | "256x256"
+  | "512x512"
+  | "1024x1024"
+  | "1792x1024"
+  | "1024x1792";
+/** The format in which the generated images are returned. */
+export type ImageGenerationResponseFormat = "url" | "b64_json";
+/**
+ * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationQuality = "standard" | "hd";
+/**
+ * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationStyle = "natural" | "vivid";
 
 /** The result of a successful image generation operation. */
 export interface ImageGenerations {
@@ -2569,17 +2579,7 @@ export function imageGenerationDataSerializer(item: ImageGenerationData) {
   };
 }
 
-/** The available voices for text-to-speech. */
-export type AudioSpeechVoice =
-  | "alloy"
-  | "echo"
-  | "fable"
-  | "onyx"
-  | "nova"
-  | "shimmer";
-/** The supported audio output formats for text-to-speech. */
-export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
-
+/** A representation of the request options that control the behavior of a text-to-speech operation. */
 export interface AudioSpeechOptions {
   /** The text to generate audio for. The maximum length is 4096 characters. */
   input: string;
@@ -2591,7 +2591,9 @@ export interface AudioSpeechOptions {
   speed?: number;
 }
 
-export function audioSpeechOptionsSerializer(item: AudioSpeechOptions) {
+export function audioSpeechOptionsSerializer(
+  item: AudioSpeechOptions,
+): AudioSpeechOptionsRest {
   return {
     input: item["input"],
     voice: item["voice"],
@@ -2600,6 +2602,22 @@ export function audioSpeechOptionsSerializer(item: AudioSpeechOptions) {
   };
 }
 
+/** The available voices for text-to-speech. */
+export type AudioSpeechVoice =
+  | "alloy"
+  | "echo"
+  | "fable"
+  | "onyx"
+  | "nova"
+  | "shimmer";
+/** The supported audio output formats for text-to-speech. */
+export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
+
+/**
+ * The configuration information for an embeddings request.
+ * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
+ * recommendations, and other similar scenarios.
+ */
 export interface EmbeddingsOptions {
   /**
    * An identifier for the caller or end user of the operation. This may be used for tracking
@@ -2624,7 +2642,9 @@ export interface EmbeddingsOptions {
   inputType?: string;
 }
 
-export function embeddingsOptionsSerializer(item: EmbeddingsOptions) {
+export function embeddingsOptionsSerializer(
+  item: EmbeddingsOptions,
+): EmbeddingsOptionsRest {
   return {
     user: item["user"],
     model: item["model"],

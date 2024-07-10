@@ -103,7 +103,7 @@ export interface GetChatCompletions {
 export interface GetImageGenerations {
   /** Creates an image given a prompt. */
   post(
-    options?: GetImageGenerationsParameters,
+    options: GetImageGenerationsParameters,
   ): StreamableMethod<
     GetImageGenerations200Response | GetImageGenerationsDefaultResponse
   >;
@@ -112,7 +112,7 @@ export interface GetImageGenerations {
 export interface GetAudioSpeech {
   /** Generates text-to-speech audio from the input text. */
   post(
-    options?: GetAudioSpeechParameters,
+    options: GetAudioSpeechParameters,
   ): StreamableMethod<
     GetAudioSpeech200Response | GetAudioSpeechDefaultResponse
   >;
@@ -121,7 +121,7 @@ export interface GetAudioSpeech {
 export interface GetEmbeddings {
   /** Return the embeddings for a given prompt. */
   post(
-    options?: GetEmbeddingsParameters,
+    options: GetEmbeddingsParameters,
   ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
 }
 
