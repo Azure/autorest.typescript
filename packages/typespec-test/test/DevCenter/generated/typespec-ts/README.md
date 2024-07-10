@@ -1,4 +1,4 @@
-# Azure DevCenterService REST client library for JavaScript
+# Azure DevCenter REST client library for JavaScript
 
 DevCenter service
 
@@ -6,8 +6,8 @@ DevCenter service
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@azure/devcenter)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/devcenter?view=azure-node-preview)
+- [Package (NPM)](https://www.npmjs.com/package/@azure-rest/developer-devcenter)
+- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/developer-devcenter)
 
 ## Getting started
 
@@ -19,15 +19,15 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@azure/devcenter` package
+### Install the `@azure-rest/developer-devcenter` package
 
-Install the Azure DevCenterService REST client REST client library for JavaScript with `npm`:
+Install the Azure DevCenter REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @azure/devcenter
+npm install @azure-rest/developer-devcenter
 ```
 
-### Create and authenticate a `DevCenterServiceClient`
+### Create and authenticate a `AzureDeveloperDevCenterClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

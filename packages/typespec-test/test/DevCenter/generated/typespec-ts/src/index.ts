@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import DevCenterServiceClient from "./devCenterServiceClient.js";
+import AzureDeveloperDevCenter from "./azureDeveloperDevCenter.js";
 
-export * from "./devCenterServiceClient.js";
+export * from "./azureDeveloperDevCenter.js";
 export * from "./parameters.js";
 export * from "./responses.js";
 export * from "./clientDefinitions.js";
@@ -13,4 +13,4 @@ export * from "./outputModels.js";
 export * from "./paginateHelper.js";
 export * from "./pollingHelper.js";
 
-export default DevCenterServiceClient;
+export default AzureDeveloperDevCenter;
