@@ -520,7 +520,7 @@ describe("Input/output model type", () => {
           true // throw exception for diagnostics
         );
       } catch (err: any) {
-        assert.strictEqual(err.length, 1);
+        assert.strictEqual(err.length, 2);
         assert.strictEqual(
           err[0].code,
           "@azure-tools/typespec-ts/decimal-to-number"
@@ -3179,7 +3179,7 @@ describe("Input/output model type", () => {
         @action("validate")
         validateDataConnection is Operations.ResourceCollectionAction<
           DataConnection,
-          DataConnectionData,
+          { @body body: DataConnectionData },
           ValidateResult
         >;
       }
@@ -3369,7 +3369,7 @@ describe("Input/output model type", () => {
         @put
         createOrReplaceDataConnection is Foundations.ResourceOperation<
           DataConnection,
-          DataConnectionData,
+          { @body body: DataConnectionData },
           DataConnection
         >;
       }
