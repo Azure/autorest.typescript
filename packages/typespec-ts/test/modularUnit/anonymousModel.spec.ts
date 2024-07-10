@@ -165,6 +165,7 @@ describe("anonymous model", () => {
           `
         import { OperationOptions  } from "@azure-rest/core-client";
         
+        /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;
@@ -289,6 +290,7 @@ describe("anonymous model", () => {
           `
         import { OperationOptions  } from "@azure-rest/core-client";
         
+        /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;
@@ -976,7 +978,9 @@ describe("anonymous model", () => {
             emptyAnomyousArray: result.body["emptyAnomyousArray"],
             emptyAnomyousDict: result.body["emptyAnomyousDict"],
             emptyModel: {},
-            emptyModelArray: result.body["emptyModelArray"].map(() => ({})),
+            emptyModelArray: result.body["emptyModelArray"].map(() => {
+                    return {};
+              }),
             emptyModelDict: result.body["emptyModelDict"],
           };
         }
@@ -1064,9 +1068,13 @@ describe("anonymous model", () => {
                 bar:
                   result.body.baz["test"] === undefined
                     ? result.body.baz["test"]
-                    : result.body.baz["test"].map((p) => ({ test: p["test"] })),
+                    : result.body.baz["test"].map((p) => {
+                                   return { test: p["test"] };
+                                 }),
                 nonemptyAnomyous: { a: result.body.baz.nonemptyAnomyous["a"] },
-                nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p) => ({ b: p["b"] })),
+                nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p) => {
+                          return { b: p["b"] };
+                         },),
                 nonemptyAnomyousDict: result.body.baz["nonemptyAnomyousDict"],
               },
             };

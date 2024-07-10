@@ -9,7 +9,7 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -57,7 +57,7 @@ export class EventGridClient {
     releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
 }
 
-// @public (undocumented)
+// @public
 export interface EventGridClientOptions extends ClientOptions {
     apiVersion?: string;
 }
@@ -69,12 +69,12 @@ export interface FailedLockToken {
     lockToken: string;
 }
 
-// @public (undocumented)
+// @public
 export interface PublishCloudEventOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -83,7 +83,7 @@ export interface PublishCloudEventsOptionalParams extends OperationOptions {
 export interface PublishResult {
 }
 
-// @public (undocumented)
+// @public
 export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
     maxEvents?: number;
     maxWaitTime?: number;
@@ -100,7 +100,7 @@ export interface ReceiveResult {
     value: ReceiveDetails[];
 }
 
-// @public (undocumented)
+// @public
 export interface RejectCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -116,7 +116,7 @@ export interface RejectResult {
     succeededLockTokens: string[];
 }
 
-// @public (undocumented)
+// @public
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }

@@ -12,6 +12,7 @@ import {
   DifferentBodyGetAvatarAsJsonOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DifferentBody operations. */
 export interface DifferentBodyOperations {
   getAvatarAsPng: (
     options?: DifferentBodyGetAvatarAsPngOptionalParams,

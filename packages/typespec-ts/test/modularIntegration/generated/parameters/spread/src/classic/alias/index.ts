@@ -13,6 +13,7 @@ import {
   AliasSpreadWithMultipleParametersOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Alias operations. */
 export interface AliasOperations {
   spreadAsRequestBody: (
     name: string,

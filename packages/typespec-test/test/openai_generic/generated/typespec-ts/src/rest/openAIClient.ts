@@ -20,7 +20,7 @@ export default function createClient(
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;
-  const userAgentInfo = `azsdk-js-openai-generic-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-openai-generic/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

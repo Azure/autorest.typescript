@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 export {
+  CollectionsStringProperty,
   CollectionsModelProperty,
   InnerModel,
   CollectionsByteProperty,
@@ -35,4 +36,8 @@ export {
   CollectionsModelGetNullOptionalParams,
   CollectionsModelPatchNonNullOptionalParams,
   CollectionsModelPatchNullOptionalParams,
+  CollectionsStringGetNonNullOptionalParams,
+  CollectionsStringGetNullOptionalParams,
+  CollectionsStringPatchNonNullOptionalParams,
+  CollectionsStringPatchNullOptionalParams,
 } from "./options.js";

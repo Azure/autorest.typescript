@@ -18,7 +18,7 @@ export default function createClient(
   options: FooContextOptions = {},
 ): FooContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  const userAgentInfo = `azsdk-js-hierarchy-generic-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-hierarchy-generic/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

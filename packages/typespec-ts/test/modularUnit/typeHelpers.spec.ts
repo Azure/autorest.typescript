@@ -774,6 +774,18 @@ describe("typeHelpers", () => {
         expect(result.type).to.equal("Record<string, number>");
       });
 
+      it("should build type for nullable dictionary type", () => {
+        const type: Type = {
+          type: "dict",
+          tcgcType: { kind: "nullable" } as any,
+          elementType: {
+            type: "integer"
+          }
+        };
+        const result = buildType("ClientDictInt", type);
+        expect(result.type).to.equal("(Record<string, number> | null)");
+      });
+
       it("should build type for dictionary type with nullable integer values", () => {
         const type: Type = {
           type: "dict",

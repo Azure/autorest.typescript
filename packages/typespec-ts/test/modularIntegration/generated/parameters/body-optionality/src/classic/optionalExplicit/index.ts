@@ -9,6 +9,7 @@ import {
   OptionalExplicitOmitOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a OptionalExplicit operations. */
 export interface OptionalExplicitOperations {
   set: (
     body?: BodyModel,

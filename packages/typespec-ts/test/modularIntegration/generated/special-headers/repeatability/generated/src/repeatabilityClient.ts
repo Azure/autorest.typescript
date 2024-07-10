@@ -19,7 +19,15 @@ export class RepeatabilityClient {
 
   /** Illustrates OASIS repeatability headers */
   constructor(options: RepeatabilityClientOptions = {}) {
-    this._client = createRepeatability(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createRepeatability({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

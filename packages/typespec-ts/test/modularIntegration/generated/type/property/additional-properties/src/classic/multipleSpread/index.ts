@@ -9,10 +9,13 @@ import {
   MultipleSpreadPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a MultipleSpread operations. */
 export interface MultipleSpreadOperations {
+  /** Get call */
   get: (
     options?: MultipleSpreadGetOptionalParams,
   ) => Promise<MultipleSpreadRecord>;
+  /** Put operation */
   put: (
     body: MultipleSpreadRecord,
     options?: MultipleSpreadPutOptionalParams,

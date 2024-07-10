@@ -29,7 +29,15 @@ export class UsageClient {
 
   /** Illustrates usage of Record in different places(Operation parameters, return type or both). */
   constructor(options: UsageClientOptions = {}) {
-    this._client = createUsage(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createUsage({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

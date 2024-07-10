@@ -10,6 +10,7 @@ export interface PackageCommonInfoConfig {
   withTests: boolean;
   withSamples: boolean;
   exports?: Record<string, any>;
+  azureArm?: boolean;
 }
 
 /**
@@ -45,7 +46,7 @@ export function getCommonPackageDevDependencies(
     prettier: "^3.2.5",
     rimraf: "^5.0.5",
     mkdirp: "^3.0.1",
-    typescript: "~5.4.5",
+    typescript: "~5.5.3",
     ...getEsmDevDependencies(config)
   };
 }

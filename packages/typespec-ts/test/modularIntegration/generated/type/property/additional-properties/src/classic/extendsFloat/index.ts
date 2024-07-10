@@ -9,10 +9,13 @@ import {
   ExtendsFloatPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtendsFloat operations. */
 export interface ExtendsFloatOperations {
+  /** Get call */
   get: (
     options?: ExtendsFloatGetOptionalParams,
   ) => Promise<ExtendsFloatAdditionalProperties>;
+  /** Put operation */
   put: (
     body: ExtendsFloatAdditionalProperties,
     options?: ExtendsFloatPutOptionalParams,

@@ -6,6 +6,7 @@ import { User } from "../../models/models.js";
 import { explicitBodySimple } from "../../api/explicitBody/index.js";
 import { ExplicitBodySimpleOptionalParams } from "../../models/options.js";
 
+/** Interface representing a ExplicitBody operations. */
 export interface ExplicitBodyOperations {
   simple: (
     body: User,

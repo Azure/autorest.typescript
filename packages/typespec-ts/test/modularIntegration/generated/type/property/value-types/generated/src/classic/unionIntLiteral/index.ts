@@ -12,10 +12,13 @@ import {
   UnionIntLiteralPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnionIntLiteral operations. */
 export interface UnionIntLiteralOperations {
+  /** Get call */
   get: (
     options?: UnionIntLiteralGetOptionalParams,
   ) => Promise<UnionIntLiteralProperty>;
+  /** Put operation */
   put: (
     body: UnionIntLiteralProperty,
     options?: UnionIntLiteralPutOptionalParams,

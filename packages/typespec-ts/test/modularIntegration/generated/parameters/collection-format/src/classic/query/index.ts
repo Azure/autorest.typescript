@@ -17,6 +17,7 @@ import {
   QueryCsvOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Query operations. */
 export interface QueryOperations {
   multi: (
     colors: string[],

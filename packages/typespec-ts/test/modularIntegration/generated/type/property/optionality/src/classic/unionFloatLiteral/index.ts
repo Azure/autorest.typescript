@@ -16,17 +16,22 @@ import {
   UnionFloatLiteralPutDefaultOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnionFloatLiteral operations. */
 export interface UnionFloatLiteralOperations {
+  /** Get models that will return all properties in the model */
   getAll: (
     options?: UnionFloatLiteralGetAllOptionalParams,
   ) => Promise<UnionFloatLiteralProperty>;
+  /** Get models that will return the default object */
   getDefault: (
     options?: UnionFloatLiteralGetDefaultOptionalParams,
   ) => Promise<UnionFloatLiteralProperty>;
+  /** Put a body with all properties present. */
   putAll: (
     body: UnionFloatLiteralProperty,
     options?: UnionFloatLiteralPutAllOptionalParams,
   ) => Promise<void>;
+  /** Put a body with default properties. */
   putDefault: (
     body: UnionFloatLiteralProperty,
     options?: UnionFloatLiteralPutDefaultOptionalParams,

@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { MadeOptionalContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface MadeOptionalClientOptions extends ClientOptions {}
 
 export { MadeOptionalContext } from "../rest/index.js";
@@ -16,6 +17,14 @@ export function createMadeOptional(
   version: Versions,
   options: MadeOptionalClientOptions = {},
 ): MadeOptionalContext {
-  const clientContext = getClient(endpointParam, version, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, version, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

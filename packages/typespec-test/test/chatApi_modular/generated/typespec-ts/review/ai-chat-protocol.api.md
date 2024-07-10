@@ -62,7 +62,7 @@ export class ChatProtocolClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatProtocolClientOptions extends ClientOptions {
 }
 
@@ -78,11 +78,11 @@ export interface ChoiceDeltaRecord {
     sessionState?: any;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface CreateStreamingOptionalParams extends OperationOptions {
 }
 

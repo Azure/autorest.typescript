@@ -61,7 +61,15 @@ export class DictionaryClient {
 
   /** Illustrates various of dictionaries. */
   constructor(options: DictionaryClientOptions = {}) {
-    this._client = createDictionary(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createDictionary({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.int32Value = getInt32ValueOperations(this._client);
     this.int64Value = getInt64ValueOperations(this._client);

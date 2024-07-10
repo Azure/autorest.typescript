@@ -9,6 +9,7 @@ import {
   DurationPropertyOutput,
   CollectionsBytePropertyOutput,
   CollectionsModelPropertyOutput,
+  CollectionsStringPropertyOutput,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
@@ -140,5 +141,27 @@ export interface CollectionsModelPatchNonNull204Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface CollectionsModelPatchNull204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface CollectionsStringGetNonNull200Response extends HttpResponse {
+  status: "200";
+  body: CollectionsStringPropertyOutput;
+}
+
+/** The request has succeeded. */
+export interface CollectionsStringGetNull200Response extends HttpResponse {
+  status: "200";
+  body: CollectionsStringPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CollectionsStringPatchNonNull204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CollectionsStringPatchNull204Response extends HttpResponse {
   status: "204";
 }

@@ -45,12 +45,14 @@ export async function _listDeserialize(
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      created: new Date(p["created"]),
-      ownedBy: p["owned_by"],
-    })),
+    data: result.body["data"].map((p) => {
+      return {
+        id: p["id"],
+        object: p["object"],
+        created: new Date(p["created"]),
+        ownedBy: p["owned_by"],
+      };
+    }),
   };
 }
 

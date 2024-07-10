@@ -17,6 +17,7 @@ import {
   RequestBodyBase64urlOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a RequestBody operations. */
 export interface RequestBodyOperations {
   default: (
     value: Uint8Array,

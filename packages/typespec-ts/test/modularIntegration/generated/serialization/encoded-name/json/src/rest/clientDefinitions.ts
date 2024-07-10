@@ -6,7 +6,7 @@ import { Send204Response, Get200Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Send {
-  post(options?: SendParameters): StreamableMethod<Send204Response>;
+  post(options: SendParameters): StreamableMethod<Send204Response>;
   get(options?: GetParameters): StreamableMethod<Get200Response>;
 }
 
