@@ -835,6 +835,7 @@ function emitBasicOperation(
     const originalBodyType = httpOperation.parameters.body.type;
 
     if (
+      bodyParameter.type.type === "model" &&
       originalBodyType.kind === "Model" &&
       originalBodyType.name === "" &&
       [...originalBodyType.properties.keys()].every(

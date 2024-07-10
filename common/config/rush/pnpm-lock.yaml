@@ -194,7 +194,7 @@ importers:
       '@azure-tools/typespec-autorest': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-azure-resource-manager': '>=0.43.0 <1.0.0'
-      '@azure-tools/typespec-client-generator-core': 0.44.0-dev.19
+      '@azure-tools/typespec-client-generator-core': '>=0.43.2 <1.0.0'
       '@azure-tools/typespec-ts': workspace:^0.30.1
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
@@ -208,10 +208,10 @@ importers:
       ts-node: ^8.5.2
       typescript: ~5.5.3
     dependencies:
-      '@azure-tools/typespec-autorest': 0.43.0_dpjile2u3hd3xdyp6mhj2ivpte
+      '@azure-tools/typespec-autorest': 0.43.0_xxn6en2eo6kipj2fez2t5ohbxa
       '@azure-tools/typespec-azure-core': 0.43.0_2idjsbfb2yn4ycais27dictks4
       '@azure-tools/typespec-azure-resource-manager': 0.43.0_anmwdl6ok3gaj7stcmaljgk3mi
-      '@azure-tools/typespec-client-generator-core': 0.44.0-dev.19_uovqfdr3tffszkt2tayxtbnshy
+      '@azure-tools/typespec-client-generator-core': 0.43.2_uovqfdr3tffszkt2tayxtbnshy
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 0.57.0
       '@typespec/http': 0.57.0_@typespec+compiler@0.57.0
@@ -236,7 +236,7 @@ importers:
       '@azure-tools/typespec-autorest': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.43.0 <1.0.0'
       '@azure-tools/typespec-azure-resource-manager': '>=0.43.0 <1.0.0'
-      '@azure-tools/typespec-client-generator-core': 0.44.0-dev.19
+      '@azure-tools/typespec-client-generator-core': '>=0.43.2 <1.0.0'
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': 3.0.0
@@ -288,10 +288,10 @@ importers:
       '@azure-tools/cadl-ranch': 0.13.3_idwqxt3tapfhp2vsjq6tobrmge
       '@azure-tools/cadl-ranch-expect': 0.14.0_slesryzarwbyvcf3mhszmr4dlm
       '@azure-tools/cadl-ranch-specs': 0.34.3_qkfanh6eieeylro4cyctaqmiee
-      '@azure-tools/typespec-autorest': 0.43.0_dpjile2u3hd3xdyp6mhj2ivpte
+      '@azure-tools/typespec-autorest': 0.43.0_xxn6en2eo6kipj2fez2t5ohbxa
       '@azure-tools/typespec-azure-core': 0.43.0_2idjsbfb2yn4ycais27dictks4
       '@azure-tools/typespec-azure-resource-manager': 0.43.0_anmwdl6ok3gaj7stcmaljgk3mi
-      '@azure-tools/typespec-client-generator-core': 0.44.0-dev.19_uovqfdr3tffszkt2tayxtbnshy
+      '@azure-tools/typespec-client-generator-core': 0.43.2_uovqfdr3tffszkt2tayxtbnshy
       '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 3.0.0
@@ -531,7 +531,7 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/typespec-autorest/0.43.0_dpjile2u3hd3xdyp6mhj2ivpte:
+  /@azure-tools/typespec-autorest/0.43.0_xxn6en2eo6kipj2fez2t5ohbxa:
     resolution: {integrity: sha512-tZ9uXXOdxu2y01W9n3mzXf+IEY2MQkP/JaQaKlcOx2+dbklHNQWSDU0Vm6Gmm6l//XiF9QiI8653BiuO97czyw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
@@ -546,7 +546,7 @@ packages:
     dependencies:
       '@azure-tools/typespec-azure-core': 0.43.0_2idjsbfb2yn4ycais27dictks4
       '@azure-tools/typespec-azure-resource-manager': 0.43.0_anmwdl6ok3gaj7stcmaljgk3mi
-      '@azure-tools/typespec-client-generator-core': 0.44.0-dev.19_uovqfdr3tffszkt2tayxtbnshy
+      '@azure-tools/typespec-client-generator-core': 0.43.2_uovqfdr3tffszkt2tayxtbnshy
       '@typespec/compiler': 0.57.0
       '@typespec/http': 0.57.0_@typespec+compiler@0.57.0
       '@typespec/openapi': 0.57.0_vbvnqkewpm5abpu22tn3mnmkfa
@@ -585,15 +585,15 @@ packages:
       change-case: 5.4.4
       pluralize: 8.0.0
 
-  /@azure-tools/typespec-client-generator-core/0.44.0-dev.19_uovqfdr3tffszkt2tayxtbnshy:
-    resolution: {integrity: sha512-/3FMc15fmj6PZ/oM6hp2Ju4PgNGyH7TAeZcSakSopF+2GNEKkNXrKp/AzoQ1xp+7NX9jbDbzbiDWdJc65AN1yg==}
+  /@azure-tools/typespec-client-generator-core/0.43.2_uovqfdr3tffszkt2tayxtbnshy:
+    resolution: {integrity: sha512-UAVV30BtTQBiXmBoQ3SyvmiuBDYoqWFIn7G96hjojpwXpE6D5ba0y5LascMuF1b65eAhGnnf974DElJE9DGepQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ~0.43.0 || >=0.44.0-dev <0.44.0
-      '@typespec/compiler': ~0.57.0 || >=0.58.0-dev <0.58.0
-      '@typespec/http': ~0.57.0 || >=0.58.0-dev <0.58.0
-      '@typespec/rest': ~0.57.0 || >=0.58.0-dev <0.58.0
-      '@typespec/versioning': ~0.57.0 || >=0.58.0-dev <0.58.0
+      '@azure-tools/typespec-azure-core': ~0.43.0
+      '@typespec/compiler': ~0.57.0
+      '@typespec/http': ~0.57.0
+      '@typespec/rest': ~0.57.0
+      '@typespec/versioning': ~0.57.0
     dependencies:
       '@azure-tools/typespec-azure-core': 0.43.0_2idjsbfb2yn4ycais27dictks4
       '@typespec/compiler': 0.57.0

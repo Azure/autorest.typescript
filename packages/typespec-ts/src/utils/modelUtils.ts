@@ -243,7 +243,10 @@ export function getSchemaForType(
   });
   return undefined;
 }
-export function getEffectiveModelFromType(context: SdkContext, type: Type): Type {
+export function getEffectiveModelFromType(
+  context: SdkContext,
+  type: Type
+): Type {
   /**
    * If type is an anonymous model, tries to find a named model that has the same
    * set of properties when non-schema properties are excluded.
