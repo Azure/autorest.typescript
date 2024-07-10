@@ -60,7 +60,7 @@ import {
   GetImageGenerationsOptionalParams,
   GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,

@@ -13,23 +13,6 @@ import { TokenCredential } from '@azure/core-auth';
 export type ContentTypeEnum = "application/octet-stream" | "application/json; serialization=Avro" | "application/json; serialization=json" | "text/vnd.ms.protobuf";
 
 // @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
-
-// @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PageSettings {
-    continuationToken?: string;
-}
-
-// @public
 export interface Schema {
     definition: string;
     properties: SchemaProperties;
@@ -71,6 +54,7 @@ export interface SchemaOperationsOperations {
     getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
     getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
+    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
     registerSchema: (groupName: string, name: string, contentType: SchemaContentTypeValues, content: Uint8Array, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;

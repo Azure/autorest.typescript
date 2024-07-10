@@ -21,7 +21,7 @@ import {
   FilesRetrieveOptionalParams,
   FilesDeleteOptionalParams,
   FilesDownloadOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {

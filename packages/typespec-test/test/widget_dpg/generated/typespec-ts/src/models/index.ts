@@ -11,21 +11,3 @@ export {
   NonReferencedModel,
   Versions,
 } from "./models.js";
-export {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
-  BudgetsCreateOrReplaceOptionalParams,
-  BudgetsCreateOrUpdateOptionalParams,
-} from "./options.js";
-export {
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";

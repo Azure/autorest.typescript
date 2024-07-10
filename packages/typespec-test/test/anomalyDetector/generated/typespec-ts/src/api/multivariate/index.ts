@@ -46,7 +46,7 @@ import {
   MultivariateGetMultivariateModelOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getMultivariateBatchDetectionResultSend(
   context: Client,

@@ -11,16 +11,3 @@ export {
   ContentTypeEnum,
   ServiceApiVersions,
 } from "./models.js";
-export {
-  SchemaOperationsListSchemaGroupsOptionalParams,
-  SchemaOperationsGetSchemaByIdOptionalParams,
-  SchemaOperationsListSchemaVersionsOptionalParams,
-  SchemaOperationsGetSchemaByVersionOptionalParams,
-  SchemaOperationsGetSchemaIdByContentOptionalParams,
-  SchemaOperationsRegisterSchemaOptionalParams,
-} from "./options.js";
-export {
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";

@@ -16,23 +16,6 @@ import {
   TimeSeriesElement,
 } from "./../models/models.js";
 import {
-  TestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
-import {
   testRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -47,12 +30,25 @@ import {
   listMetrics,
   listTestRuns,
   stopTestRun,
+  TestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
   createTestRunOperations,
   TestRunOperationsClientOptions,
   AzureLoadTestingContext,
 } from "./api/index.js";
-
-export { TestRunOperationsClientOptions } from "./api/testRunOperationsContext.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 
 export class TestRunOperationsClient {
   private _client: AzureLoadTestingContext;

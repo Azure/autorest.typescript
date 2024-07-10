@@ -18,6 +18,22 @@ export {
   stopTestRun,
 } from "./operations.js";
 export {
+  TestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
+} from "./options.js";
+export {
   createTestRunOperations,
   TestRunOperationsClientOptions,
   AzureLoadTestingContext,

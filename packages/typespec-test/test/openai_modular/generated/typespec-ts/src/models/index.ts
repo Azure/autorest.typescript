@@ -130,14 +130,3 @@ export {
   ChatCompletionsNamedToolSelectionUnion,
   ChatFinishDetailsUnion,
 } from "./models.js";
-export {
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
-  GetEmbeddingsOptionalParams,
-} from "./options.js";

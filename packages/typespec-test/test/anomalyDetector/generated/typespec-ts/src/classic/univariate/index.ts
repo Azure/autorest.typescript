@@ -18,7 +18,7 @@ import {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateChangePointOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Univariate operations. */
 export interface UnivariateOperations {

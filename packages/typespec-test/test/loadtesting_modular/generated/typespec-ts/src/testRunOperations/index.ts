@@ -1,11 +1,58 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  TestRunOperationsClient,
-  TestRunOperationsClientOptions,
-} from "./testRunOperationsClient.js";
+export { TestRunOperationsClient } from "./testRunOperationsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
+export {
+  Test,
+  PassFailCriteria,
+  PassFailMetric,
+  PFMetrics,
+  PFAgFunc,
+  PFAction,
+  PFResult,
+  Secret,
+  SecretType,
+  CertificateMetadata,
+  CertificateType,
+  LoadTestConfiguration,
+  OptionalLoadTestConfig,
+  TestInputArtifacts,
+  FileInfo,
+  FileType,
+  FileStatus,
+  TestAppComponents,
+  AppComponent,
+  TestServerMetricConfig,
+  ResourceMetric,
+  APIVersions,
+  TestRun,
+  ErrorDetails,
+  TestRunStatistics,
+  TestRunArtifacts,
+  TestRunInputArtifacts,
+  TestRunOutputArtifacts,
+  PFTestResult,
+  Status,
+  TestRunAppComponents,
+  TestRunServerMetricConfig,
+  Interval,
+  DimensionValueList,
+  MetricDefinitionCollection,
+  MetricDefinition,
+  NameAndDesc,
+  AggregationType,
+  MetricUnit,
+  MetricAvailability,
+  TimeGrain,
+  MetricNamespaceCollection,
+  MetricNamespace,
+  MetricRequestPayload,
+  DimensionFilter,
+  TimeSeriesElement,
+  MetricValue,
+  DimensionValue,
+} from "../models/index.js";
 export {
   TestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -21,7 +68,5 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+  TestRunOperationsClientOptions,
+} from "./api/index.js";

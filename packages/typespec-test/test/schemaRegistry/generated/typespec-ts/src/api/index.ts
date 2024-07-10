@@ -2,6 +2,14 @@
 // Licensed under the MIT license.
 
 export {
+  SchemaOperationsListSchemaGroupsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsRegisterSchemaOptionalParams,
+} from "./options.js";
+export {
   createSchemaRegistry,
   SchemaRegistryClientOptions,
   SchemaRegistryContext,

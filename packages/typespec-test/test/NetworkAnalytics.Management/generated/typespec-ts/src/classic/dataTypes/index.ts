@@ -27,7 +27,7 @@ import {
   DataTypesDeleteDataOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
   DataTypesListByDataProductOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a DataTypes operations. */
 export interface DataTypesOperations {

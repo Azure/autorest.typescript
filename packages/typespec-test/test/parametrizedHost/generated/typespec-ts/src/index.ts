@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { ParametrizedHostClient } from "./parametrizedHostClient.js";
+export { Collection } from "./models/index.js";
 export {
-  ParametrizedHostClient,
-  ParametrizedHostClientOptions,
-} from "./parametrizedHostClient.js";
-export {
-  Collection,
   ConfidentialLedgerListCollectionsOptionalParams,
-} from "./models/index.js";
+  ParametrizedHostClientOptions,
+} from "./api/index.js";
 export { ConfidentialLedgerOperations } from "./classic/index.js";

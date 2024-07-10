@@ -130,12 +130,6 @@ export interface AzureChatExtensionDataSourceResponseCitation {
 }
 
 // @public
-export interface AzureChatExtensionsMessageContext {
-    citations?: AzureChatExtensionDataSourceResponseCitation[];
-    intent?: string;
-}
-
-// @public
 export type AzureChatExtensionType = "azure_search" | "azure_ml_index" | "azure_cosmos_db" | "elasticsearch" | "Pinecone";
 
 // @public
@@ -465,6 +459,7 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
 // @public
 export interface ChatResponseMessage {
     content: string | null;
+    // Warning: (ae-forgotten-export) The symbol "AzureChatExtensionsMessageContext" needs to be exported by the entry point index.d.ts
     context?: AzureChatExtensionsMessageContext;
     functionCall?: FunctionCall;
     role: ChatRole;

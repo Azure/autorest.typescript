@@ -15,7 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { ModerationsCreateOptionalParams } from "../../models/options.js";
+import { ModerationsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { AdministrationOperationsClient } from "./administrationOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -51,19 +50,4 @@ export {
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-} from "../models/index.js";
-export {
-  AdministrationOperationsClientOptions,
-  CreateOrUpdateTestOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestOptionalParams,
-  GetTestFileOptionalParams,
-  ListTestFilesOptionalParams,
-  ListTestsOptionalParams,
-  UploadTestFileOptionalParams,
-  DeleteTestFileOptionalParams,
-  DeleteTestOptionalParams,
-} from "./api/index.js";
+} from "./models.js";

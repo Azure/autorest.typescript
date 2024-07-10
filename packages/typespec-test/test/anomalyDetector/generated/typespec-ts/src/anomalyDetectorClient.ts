@@ -17,8 +17,6 @@ import {
   AnomalyDetectorContext,
 } from "./api/index.js";
 
-export { AnomalyDetectorClientOptions } from "./api/anomalyDetectorContext.js";
-
 export class AnomalyDetectorClient {
   private _client: AnomalyDetectorContext;
   /** The pipeline used by this client to make requests */

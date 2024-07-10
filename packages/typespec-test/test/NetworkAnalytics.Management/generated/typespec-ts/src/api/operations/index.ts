@@ -15,7 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { OperationsListOptionalParams } from "../../models/options.js";
+import { OperationsListOptionalParams } from "../options.js";
 
 export function _listSend(
   context: Client,

@@ -3,7 +3,7 @@
 import { OpenAIContext } from "../../api/openAIContext.js";
 import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
 import { create } from "../../api/edits/index.js";
-import { EditsCreateOptionalParams } from "../../models/options.js";
+import { EditsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Edits operations. */
 export interface EditsOperations {

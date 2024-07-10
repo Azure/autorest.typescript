@@ -28,7 +28,7 @@ import {
   MultivariateGetMultivariateModelOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Multivariate operations. */
 export interface MultivariateOperations {

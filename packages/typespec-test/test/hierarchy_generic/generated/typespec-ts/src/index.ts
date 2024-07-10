@@ -1,17 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { FooClient, FooClientOptions } from "./fooClient.js";
+export { FooClient } from "./fooClient.js";
+export { A, BA, BEA } from "./models/index.js";
 export {
-  A,
-  BA,
-  BEA,
+  FooClientOptions,
   Op1OptionalParams,
   BOp1OptionalParams,
   BECOp1OptionalParams,
   BCOp1OptionalParams,
   DOp1OptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   BOperations,
   DOperations,

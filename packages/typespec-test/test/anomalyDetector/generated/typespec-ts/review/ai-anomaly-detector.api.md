@@ -29,11 +29,6 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
 export type AnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
-
-// @public
 export type DataSchema = "OneTable" | "MultiTable";
 
 // @public
@@ -192,6 +187,7 @@ export interface MultivariateOperations {
     detectMultivariateLastAnomaly: (modelId: string, options: MultivariateMultivariateLastDetectionOptions, optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams) => Promise<MultivariateMultivariateLastDetectionResult>;
     getMultivariateBatchDetectionResult: (resultId: string, options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
     getMultivariateModel: (modelId: string, options?: MultivariateGetMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
+    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
     trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
 }
@@ -214,18 +210,6 @@ export interface MultivariateVariableValues {
     timestamps: string[];
     values: number[];
     variable: string;
-}
-
-// @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PageSettings {
-    continuationToken?: string;
 }
 
 // @public

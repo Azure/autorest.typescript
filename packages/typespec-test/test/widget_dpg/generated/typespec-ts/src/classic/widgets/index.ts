@@ -32,7 +32,7 @@ import {
   WidgetsUpdateWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Widgets operations. */
 export interface WidgetsOperations {

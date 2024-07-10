@@ -83,7 +83,7 @@ import {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _testRunSend(
   context: Client,

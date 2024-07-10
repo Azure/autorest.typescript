@@ -11,7 +11,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { BECOp1OptionalParams } from "../../../../models/options.js";
+import { BECOp1OptionalParams } from "../../../options.js";
 
 export function _op1Send(
   context: Client,

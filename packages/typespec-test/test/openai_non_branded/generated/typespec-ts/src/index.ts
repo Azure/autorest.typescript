@@ -1,6 +1,6 @@
 // Licensed under the MIT license.
 
-export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
+export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
@@ -49,6 +49,9 @@ export {
   CreateTranscriptionResponse,
   Prompt,
   Stop,
+} from "./models/index.js";
+export {
+  OpenAIClientOptions,
   AudioTranscriptionsCreateOptionalParams,
   AudioTranslationsCreateOptionalParams,
   ChatCompletionsCreateOptionalParams,
@@ -77,7 +80,7 @@ export {
   ImagesCreateEditOptionalParams,
   ImagesCreateVariationOptionalParams,
   ModerationsCreateOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   AudioOperations,
   ChatOperations,

@@ -17,7 +17,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
-import { CompletionsCreateOptionalParams } from "../../models/options.js";
+import { CompletionsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

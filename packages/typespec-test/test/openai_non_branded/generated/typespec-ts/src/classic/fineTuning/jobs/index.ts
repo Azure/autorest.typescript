@@ -20,7 +20,7 @@ import {
   FineTuningJobsRetrieveOptionalParams,
   FineTuningJobsListEventsOptionalParams,
   FineTuningJobsCancelOptionalParams,
-} from "../../../models/options.js";
+} from "../../../api/options.js";
 
 /** Interface representing a FineTuningJobs operations. */
 export interface FineTuningJobsOperations {

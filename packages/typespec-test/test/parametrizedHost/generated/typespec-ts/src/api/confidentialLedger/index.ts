@@ -13,7 +13,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "../../models/options.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "../options.js";
 
 export function _listCollectionsSend(
   context: Client,

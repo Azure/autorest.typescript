@@ -13,8 +13,6 @@ import {
   WidgetManagerContext,
 } from "./api/index.js";
 
-export { WidgetManagerClientOptions } from "./api/widgetManagerContext.js";
-
 export class WidgetManagerClient {
   private _client: WidgetManagerContext;
   /** The pipeline used by this client to make requests */

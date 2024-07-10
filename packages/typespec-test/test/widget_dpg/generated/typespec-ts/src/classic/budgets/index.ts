@@ -8,7 +8,7 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   BudgetsCreateOrReplaceOptionalParams,
   BudgetsCreateOrUpdateOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Budgets operations. */
 export interface BudgetsOperations {

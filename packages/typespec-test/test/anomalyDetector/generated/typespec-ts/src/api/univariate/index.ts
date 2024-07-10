@@ -28,7 +28,7 @@ import {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateChangePointOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _detectUnivariateEntireSeriesSend(
   context: Client,

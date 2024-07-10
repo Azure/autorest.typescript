@@ -13,8 +13,6 @@ import {
   ParametrizedHostContext,
 } from "./api/index.js";
 
-export { ParametrizedHostClientOptions } from "./api/parametrizedHostContext.js";
-
 export class ParametrizedHostClient {
   private _client: ParametrizedHostContext;
   /** The pipeline used by this client to make requests */

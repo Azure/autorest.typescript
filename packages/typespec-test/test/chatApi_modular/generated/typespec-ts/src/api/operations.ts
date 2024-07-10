@@ -22,7 +22,7 @@ import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   CreateStreamingOptionalParams,
   CreateOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _createStreamingSend(
   context: Client,

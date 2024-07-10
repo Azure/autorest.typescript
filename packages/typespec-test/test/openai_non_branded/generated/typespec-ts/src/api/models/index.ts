@@ -24,7 +24,7 @@ import {
   ModelsListOptionalParams,
   ModelsRetrieveOptionalParams,
   ModelsDeleteOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _listSend(
   context: Client,

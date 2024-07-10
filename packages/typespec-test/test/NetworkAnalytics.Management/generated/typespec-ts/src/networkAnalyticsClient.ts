@@ -25,8 +25,6 @@ import {
   NetworkAnalyticsContext,
 } from "./api/index.js";
 
-export { NetworkAnalyticsClientOptions } from "./api/networkAnalyticsContext.js";
-
 export class NetworkAnalyticsClient {
   private _client: NetworkAnalyticsContext;
   /** The pipeline used by this client to make requests */

@@ -24,7 +24,7 @@ import {
 import {
   BudgetsCreateOrReplaceOptionalParams,
   BudgetsCreateOrUpdateOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _createOrReplaceSend(
   context: Client,

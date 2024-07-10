@@ -10,18 +10,14 @@ import {
   ChatCompletionRecord,
 } from "./models/models.js";
 import {
-  CreateStreamingOptionalParams,
-  CreateOptionalParams,
-} from "./models/options.js";
-import {
   createChatProtocol,
   ChatProtocolClientOptions,
   ChatProtocolContext,
   createStreaming,
   create,
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
 } from "./api/index.js";
-
-export { ChatProtocolClientOptions } from "./api/chatProtocolContext.js";
 
 export class ChatProtocolClient {
   private _client: ChatProtocolContext;

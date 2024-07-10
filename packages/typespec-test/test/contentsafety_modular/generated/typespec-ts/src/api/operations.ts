@@ -59,7 +59,7 @@ import {
   RemoveBlockItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   ListTextBlocklistItemsOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _analyzeTextSend(
   context: Client,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
+export { OpenAIClient } from "./openAIClient.js";
 export {
   AudioTranscriptionFormat,
   AudioTranscriptionOptions,
@@ -92,7 +92,6 @@ export {
   ChatCompletions,
   ChatChoice,
   ChatResponseMessage,
-  AzureChatExtensionsMessageContext,
   AzureChatExtensionDataSourceResponseCitation,
   ChatChoiceLogProbabilityInfo,
   ChatTokenLogProbabilityResult,
@@ -130,6 +129,9 @@ export {
   ChatCompletionsToolDefinitionUnion,
   ChatCompletionsNamedToolSelectionUnion,
   ChatFinishDetailsUnion,
+} from "./models/index.js";
+export {
+  OpenAIClientOptions,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -139,4 +141,4 @@ export {
   GetImageGenerationsOptionalParams,
   GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

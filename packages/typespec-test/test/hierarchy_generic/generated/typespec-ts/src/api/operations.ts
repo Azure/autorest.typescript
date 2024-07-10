@@ -8,7 +8,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { Op1OptionalParams } from "../models/options.js";
+import { Op1OptionalParams } from "./options.js";
 
 export function _op1Send(
   context: Client,

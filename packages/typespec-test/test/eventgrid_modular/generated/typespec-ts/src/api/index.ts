@@ -14,3 +14,11 @@ export {
   releaseCloudEvents,
   rejectCloudEvents,
 } from "./operations.js";
+export {
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
+} from "./options.js";

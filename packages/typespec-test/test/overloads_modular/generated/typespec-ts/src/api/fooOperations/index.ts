@@ -17,7 +17,7 @@ import {
 import {
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getAvatarAsPngSend(
   context: Client,

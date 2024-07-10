@@ -13,8 +13,6 @@ import {
   SchemaRegistryContext,
 } from "./api/index.js";
 
-export { SchemaRegistryClientOptions } from "./api/schemaRegistryContext.js";
-
 export class SchemaRegistryClient {
   private _client: SchemaRegistryContext;
   /** The pipeline used by this client to make requests */

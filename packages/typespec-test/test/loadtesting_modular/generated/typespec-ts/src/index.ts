@@ -1,11 +1,59 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { AdministrationOperationsClient } from "./administrationOperations/administrationOperationsClient.js";
 export {
-  AdministrationOperationsClient,
+  Test,
+  PassFailCriteria,
+  PassFailMetric,
+  PFMetrics,
+  PFAgFunc,
+  PFAction,
+  PFResult,
+  Secret,
+  SecretType,
+  CertificateMetadata,
+  CertificateType,
+  LoadTestConfiguration,
+  OptionalLoadTestConfig,
+  TestInputArtifacts,
+  FileInfo,
+  FileType,
+  FileStatus,
+  TestAppComponents,
+  AppComponent,
+  TestServerMetricConfig,
+  ResourceMetric,
+  APIVersions,
+  TestRun,
+  ErrorDetails,
+  TestRunStatistics,
+  TestRunArtifacts,
+  TestRunInputArtifacts,
+  TestRunOutputArtifacts,
+  PFTestResult,
+  Status,
+  TestRunAppComponents,
+  TestRunServerMetricConfig,
+  Interval,
+  DimensionValueList,
+  MetricDefinitionCollection,
+  MetricDefinition,
+  NameAndDesc,
+  AggregationType,
+  MetricUnit,
+  MetricAvailability,
+  TimeGrain,
+  MetricNamespaceCollection,
+  MetricNamespace,
+  MetricRequestPayload,
+  DimensionFilter,
+  TimeSeriesElement,
+  MetricValue,
+  DimensionValue,
+} from "./models/index.js";
+export {
   AdministrationOperationsClientOptions,
-} from "./administrationOperations/administrationOperationsClient.js";
-export {
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -18,14 +66,8 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./administrationOperations/models/index.js";
-export {
-  TestRunOperationsClient,
-  TestRunOperationsClientOptions,
-} from "./testRunOperations/testRunOperationsClient.js";
+} from "./administrationOperations/api/index.js";
+export { TestRunOperationsClient } from "./testRunOperations/testRunOperationsClient.js";
 export {
   restorePoller,
   RestorePollerOptions,
@@ -45,7 +87,5 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-  PageSettings as TestRunOperationsClientPageSettings,
-  ContinuablePage as TestRunOperationsClientContinuablePage,
-  PagedAsyncIterableIterator as TestRunOperationsClientPagedAsyncIterableIterator,
-} from "./testRunOperations/models/index.js";
+  TestRunOperationsClientOptions,
+} from "./testRunOperations/api/index.js";

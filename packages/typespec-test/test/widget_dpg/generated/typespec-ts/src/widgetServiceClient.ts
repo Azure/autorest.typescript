@@ -16,8 +16,6 @@ import {
   WidgetServiceContext,
 } from "./api/index.js";
 
-export { WidgetServiceClientOptions } from "./api/widgetServiceContext.js";
-
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;
   /** The pipeline used by this client to make requests */

@@ -41,8 +41,6 @@ import {
   OpenAIContext,
 } from "./api/index.js";
 
-export { OpenAIClientOptions } from "./api/openAIContext.js";
-
 export class OpenAIClient {
   private _client: OpenAIContext;
   /** The pipeline used by this client to make requests */

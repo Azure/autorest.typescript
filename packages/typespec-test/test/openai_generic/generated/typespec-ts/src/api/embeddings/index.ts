@@ -16,7 +16,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
+import { EmbeddingsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

@@ -39,7 +39,7 @@ import {
   DataProductsListRolesAssignmentsOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {

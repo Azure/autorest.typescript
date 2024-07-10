@@ -54,7 +54,7 @@ import {
   WidgetsUpdateWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _listWidgetsSend(
   context: Client,

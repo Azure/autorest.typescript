@@ -3,12 +3,15 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { A } from "./models/models.js";
-import { Op1OptionalParams } from "./models/options.js";
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
-import { createFoo, FooClientOptions, FooContext, op1 } from "./api/index.js";
-
-export { FooClientOptions } from "./api/fooContext.js";
+import {
+  createFoo,
+  FooClientOptions,
+  FooContext,
+  op1,
+  Op1OptionalParams,
+} from "./api/index.js";
 
 export class FooClient {
   private _client: FooContext;

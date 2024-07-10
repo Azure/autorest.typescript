@@ -149,6 +149,7 @@ export class BatchClient {
     getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptionalParams): Promise<Uint8Array>;
     getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptionalParams): Promise<void>;
     jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptionalParams): Promise<void>;
+    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     listApplications(options?: ListApplicationsOptionalParams): PagedAsyncIterableIterator<BatchApplication>;
     listCertificates(options?: ListCertificatesOptionalParams): PagedAsyncIterableIterator<BatchCertificate>;
     listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptionalParams): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
@@ -639,11 +640,6 @@ export type ContainerType = "dockerCompatible" | "criCompatible";
 
 // @public
 export type ContainerWorkingDirectory = "taskWorkingDirectory" | "containerImageDefault";
-
-// @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
 
 // @public
 export interface CreateCertificateOptionalParams extends OperationOptions {
@@ -1636,18 +1632,6 @@ export type OutputFileUploadCondition = "tasksuccess" | "taskfailure" | "taskcom
 // @public
 export interface OutputFileUploadOptions {
     uploadCondition: OutputFileUploadCondition;
-}
-
-// @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PageSettings {
-    continuationToken?: string;
 }
 
 // @public

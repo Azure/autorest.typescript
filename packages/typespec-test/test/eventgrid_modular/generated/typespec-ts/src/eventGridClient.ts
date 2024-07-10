@@ -15,14 +15,6 @@ import {
   RejectResult,
 } from "./models/models.js";
 import {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "./models/options.js";
-import {
   createEventGrid,
   EventGridClientOptions,
   EventGridContext,
@@ -32,9 +24,13 @@ import {
   acknowledgeCloudEvents,
   releaseCloudEvents,
   rejectCloudEvents,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
 } from "./api/index.js";
-
-export { EventGridClientOptions } from "./api/eventGridContext.js";
 
 export class EventGridClient {
   private _client: EventGridContext;

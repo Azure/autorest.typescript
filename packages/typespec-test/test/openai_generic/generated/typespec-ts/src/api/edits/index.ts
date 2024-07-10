@@ -13,7 +13,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { EditsCreateOptionalParams } from "../../models/options.js";
+import { EditsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

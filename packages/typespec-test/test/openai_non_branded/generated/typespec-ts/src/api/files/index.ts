@@ -32,7 +32,7 @@ import {
   FilesRetrieveOptionalParams,
   FilesDeleteOptionalParams,
   FilesDownloadOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _listSend(
   context: Client,

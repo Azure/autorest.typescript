@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { EventGridClient, EventGridClientOptions } from "./eventGridClient.js";
+export { EventGridClient } from "./eventGridClient.js";
 export {
   CloudEvent,
   PublishResult,
@@ -16,10 +16,13 @@ export {
   RejectOptions,
   RejectResult,
   ServiceApiVersions,
+} from "./models/index.js";
+export {
+  EventGridClientOptions,
   PublishCloudEventOptionalParams,
   PublishCloudEventsOptionalParams,
   ReceiveCloudEventsOptionalParams,
   AcknowledgeCloudEventsOptionalParams,
   ReleaseCloudEventsOptionalParams,
   RejectCloudEventsOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

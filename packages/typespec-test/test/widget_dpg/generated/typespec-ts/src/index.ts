@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  WidgetServiceClient,
-  WidgetServiceClientOptions,
-} from "./widgetServiceClient.js";
+export { WidgetServiceClient } from "./widgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,
@@ -15,6 +12,8 @@ export {
   AnalyzeResult,
   NonReferencedModel,
   Versions,
+} from "./models/index.js";
+export {
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,
@@ -26,8 +25,6 @@ export {
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
   BudgetsCreateOrUpdateOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+  WidgetServiceClientOptions,
+} from "./api/index.js";
 export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";

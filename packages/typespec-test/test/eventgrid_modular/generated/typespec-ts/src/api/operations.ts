@@ -41,7 +41,7 @@ import {
   AcknowledgeCloudEventsOptionalParams,
   ReleaseCloudEventsOptionalParams,
   RejectCloudEventsOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _publishCloudEventSend(
   context: Client,
