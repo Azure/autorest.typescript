@@ -11,7 +11,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public
+// @public (undocumented)
 export interface AudioSpeechOptions {
     input: string;
     responseFormat?: AudioSpeechOutputFormat;
@@ -40,7 +40,7 @@ export interface AudioTranscription {
 // @public
 export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
-// @public
+// @public (undocumented)
 export interface AudioTranscriptionOptions {
     file: Uint8Array;
     filename?: string;
@@ -77,7 +77,7 @@ export interface AudioTranslation {
 // @public
 export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
-// @public
+// @public (undocumented)
 export interface AudioTranslationOptions {
     file: Uint8Array;
     filename?: string;
@@ -649,7 +649,7 @@ export interface Embeddings {
     usage: EmbeddingsUsage;
 }
 
-// @public
+// @public (undocumented)
 export interface EmbeddingsOptions {
     input: string[];
     inputType?: string;
@@ -686,26 +686,50 @@ export interface FunctionName {
 
 // @public
 export interface GetAudioSpeechOptionalParams extends OperationOptions {
+    responseFormat?: AudioSpeechOutputFormat;
+    speed?: number;
 }
 
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
     contentType?: string;
+    filename?: string;
+    language?: string;
+    model?: string;
+    prompt?: string;
+    responseFormat?: AudioTranscriptionFormat;
+    temperature?: number;
 }
 
 // @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
+    filename?: string;
+    language?: string;
+    model?: string;
+    prompt?: string;
+    responseFormat?: AudioTranscriptionFormat;
+    temperature?: number;
 }
 
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
     contentType?: string;
+    filename?: string;
+    model?: string;
+    prompt?: string;
+    responseFormat?: AudioTranslationFormat;
+    temperature?: number;
 }
 
 // @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
+    filename?: string;
+    model?: string;
+    prompt?: string;
+    responseFormat?: AudioTranslationFormat;
+    temperature?: number;
 }
 
 // @public
@@ -718,10 +742,20 @@ export interface GetCompletionsOptionalParams extends OperationOptions {
 
 // @public
 export interface GetEmbeddingsOptionalParams extends OperationOptions {
+    inputType?: string;
+    model?: string;
+    user?: string;
 }
 
 // @public
 export interface GetImageGenerationsOptionalParams extends OperationOptions {
+    model?: string;
+    n?: number;
+    quality?: ImageGenerationQuality;
+    responseFormat?: ImageGenerationResponseFormat;
+    size?: ImageSize;
+    style?: ImageGenerationStyle;
+    user?: string;
 }
 
 // @public
@@ -731,7 +765,7 @@ export interface ImageGenerationData {
     url?: string;
 }
 
-// @public
+// @public (undocumented)
 export interface ImageGenerationOptions {
     model?: string;
     n?: number;
@@ -852,15 +886,15 @@ export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorization
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
-    getAudioSpeech(deploymentId: string, body: AudioSpeechOptions, options?: GetAudioSpeechOptionalParams): Promise<Uint8Array>;
-    getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<string>;
-    getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptionalParams): Promise<AudioTranscription>;
-    getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<string>;
-    getAudioTranslationAsResponseObject(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsResponseObjectOptionalParams): Promise<AudioTranslation>;
+    getAudioSpeech(deploymentId: string, input: string, voice: AudioSpeechVoice, options?: GetAudioSpeechOptionalParams): Promise<Uint8Array>;
+    getAudioTranscriptionAsPlainText(deploymentId: string, file: Uint8Array, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<string>;
+    getAudioTranscriptionAsResponseObject(deploymentId: string, file: Uint8Array, options?: GetAudioTranscriptionAsResponseObjectOptionalParams): Promise<AudioTranscription>;
+    getAudioTranslationAsPlainText(deploymentId: string, file: Uint8Array, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<string>;
+    getAudioTranslationAsResponseObject(deploymentId: string, file: Uint8Array, options?: GetAudioTranslationAsResponseObjectOptionalParams): Promise<AudioTranslation>;
     getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptionalParams): Promise<ChatCompletions>;
     getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptionalParams): Promise<Completions>;
-    getEmbeddings(deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptionalParams): Promise<Embeddings>;
-    getImageGenerations(deploymentId: string, body: ImageGenerationOptions, options?: GetImageGenerationsOptionalParams): Promise<ImageGenerations>;
+    getEmbeddings(deploymentId: string, input: string[], options?: GetEmbeddingsOptionalParams): Promise<Embeddings>;
+    getImageGenerations(deploymentId: string, prompt: string, options?: GetImageGenerationsOptionalParams): Promise<ImageGenerations>;
     readonly pipeline: Pipeline;
 }
 

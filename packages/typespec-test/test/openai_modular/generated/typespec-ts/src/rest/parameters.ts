@@ -3,21 +3,14 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  AudioSpeechOptions,
   AudioTranscriptionOptions,
   AudioTranslationOptions,
   CompletionsOptions,
   ChatCompletionsOptions,
   ImageGenerationOptions,
+  AudioSpeechOptions,
   EmbeddingsOptions,
 } from "./models.js";
-
-export interface GetAudioSpeechBodyParam {
-  body?: AudioSpeechOptions;
-}
-
-export type GetAudioSpeechParameters = GetAudioSpeechBodyParam &
-  RequestParameters;
 
 export interface GetAudioTranscriptionAsPlainTextBodyParam {
   body?: AudioTranscriptionOptions;
@@ -76,14 +69,14 @@ export type GetAudioTranslationAsResponseObjectParameters =
     RequestParameters;
 
 export interface GetCompletionsBodyParam {
-  body?: CompletionsOptions;
+  body: CompletionsOptions;
 }
 
 export type GetCompletionsParameters = GetCompletionsBodyParam &
   RequestParameters;
 
 export interface GetChatCompletionsBodyParam {
-  body?: ChatCompletionsOptions;
+  body: ChatCompletionsOptions;
 }
 
 export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
@@ -94,6 +87,13 @@ export interface GetImageGenerationsBodyParam {
 }
 
 export type GetImageGenerationsParameters = GetImageGenerationsBodyParam &
+  RequestParameters;
+
+export interface GetAudioSpeechBodyParam {
+  body?: AudioSpeechOptions;
+}
+
+export type GetAudioSpeechParameters = GetAudioSpeechBodyParam &
   RequestParameters;
 
 export interface GetEmbeddingsBodyParam {

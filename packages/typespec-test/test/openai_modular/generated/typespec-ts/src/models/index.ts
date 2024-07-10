@@ -2,9 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  AudioSpeechVoice,
-  AudioSpeechOutputFormat,
-  AudioSpeechOptions,
   AudioTranscriptionFormat,
   AudioTranscriptionOptions,
   AudioTranscription,
@@ -28,6 +25,7 @@ export {
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
+  ChatCompletionsOptions,
   ChatRequestMessage,
   ChatRequestSystemMessage,
   ChatRequestUserMessage,
@@ -90,7 +88,6 @@ export {
   ChatCompletionsNamedToolSelection,
   ChatCompletionsNamedFunctionToolSelection,
   ChatCompletionsFunctionToolSelection,
-  ChatCompletionsOptions,
   ChatCompletions,
   ChatChoice,
   ChatResponseMessage,
@@ -114,6 +111,9 @@ export {
   ImageGenerationOptions,
   ImageGenerations,
   ImageGenerationData,
+  AudioSpeechVoice,
+  AudioSpeechOutputFormat,
+  AudioSpeechOptions,
   EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,
@@ -131,7 +131,6 @@ export {
   ChatFinishDetailsUnion,
 } from "./models.js";
 export {
-  GetAudioSpeechOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -139,5 +138,6 @@ export {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
+  GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./options.js";

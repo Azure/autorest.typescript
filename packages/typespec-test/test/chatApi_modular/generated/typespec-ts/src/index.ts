@@ -6,9 +6,9 @@ export {
   ChatProtocolClientOptions,
 } from "./chatProtocolClient.js";
 export {
+  StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
-  StreamingChatCompletionOptionsRecord,
   ChatCompletionChunkRecord,
   ChoiceDeltaRecord,
   ChatMessageDelta,

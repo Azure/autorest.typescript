@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 export {
+  StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
-  StreamingChatCompletionOptionsRecord,
   ChatCompletionChunkRecord,
   ChoiceDeltaRecord,
   ChatMessageDelta,

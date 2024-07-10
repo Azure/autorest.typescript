@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  GetAudioSpeechParameters,
   GetAudioTranscriptionAsPlainTextParameters,
   GetAudioTranscriptionAsResponseObjectParameters,
   GetAudioTranslationAsPlainTextParameters,
@@ -10,11 +9,10 @@ import {
   GetCompletionsParameters,
   GetChatCompletionsParameters,
   GetImageGenerationsParameters,
+  GetAudioSpeechParameters,
   GetEmbeddingsParameters,
 } from "./parameters.js";
 import {
-  GetAudioSpeech200Response,
-  GetAudioSpeechDefaultResponse,
   GetAudioTranscriptionAsPlainText200Response,
   GetAudioTranscriptionAsPlainTextDefaultResponse,
   GetAudioTranscriptionAsResponseObject200Response,
@@ -29,19 +27,12 @@ import {
   GetChatCompletionsDefaultResponse,
   GetImageGenerations200Response,
   GetImageGenerationsDefaultResponse,
+  GetAudioSpeech200Response,
+  GetAudioSpeechDefaultResponse,
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
-
-export interface GetAudioSpeech {
-  /** Generates text-to-speech audio from the input text. */
-  post(
-    options?: GetAudioSpeechParameters,
-  ): StreamableMethod<
-    GetAudioSpeech200Response | GetAudioSpeechDefaultResponse
-  >;
-}
 
 export interface GetAudioTranscriptionAsPlainText {
   /**
@@ -90,7 +81,7 @@ export interface GetCompletions {
    * provided prompt data.
    */
   post(
-    options?: GetCompletionsParameters,
+    options: GetCompletionsParameters,
   ): StreamableMethod<
     GetCompletions200Response | GetCompletionsDefaultResponse
   >;
@@ -103,7 +94,7 @@ export interface GetChatCompletions {
    * provided prompt data.
    */
   post(
-    options?: GetChatCompletionsParameters,
+    options: GetChatCompletionsParameters,
   ): StreamableMethod<
     GetChatCompletions200Response | GetChatCompletionsDefaultResponse
   >;
@@ -118,6 +109,15 @@ export interface GetImageGenerations {
   >;
 }
 
+export interface GetAudioSpeech {
+  /** Generates text-to-speech audio from the input text. */
+  post(
+    options?: GetAudioSpeechParameters,
+  ): StreamableMethod<
+    GetAudioSpeech200Response | GetAudioSpeechDefaultResponse
+  >;
+}
+
 export interface GetEmbeddings {
   /** Return the embeddings for a given prompt. */
   post(
@@ -126,11 +126,6 @@ export interface GetEmbeddings {
 }
 
 export interface Routes {
-  /** Resource for '/deployments/\{deploymentId\}/audio/speech' has methods for the following verbs: post */
-  (
-    path: "/deployments/{deploymentId}/audio/speech",
-    deploymentId: string,
-  ): GetAudioSpeech;
   /** Resource for '/deployments/\{deploymentId\}/audio/transcriptions' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/audio/transcriptions",
@@ -156,6 +151,11 @@ export interface Routes {
     path: "/deployments/{deploymentId}/images/generations",
     deploymentId: string,
   ): GetImageGenerations;
+  /** Resource for '/deployments/\{deploymentId\}/audio/speech' has methods for the following verbs: post */
+  (
+    path: "/deployments/{deploymentId}/audio/speech",
+    deploymentId: string,
+  ): GetAudioSpeech;
   /** Resource for '/deployments/\{deploymentId\}/embeddings' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/embeddings",

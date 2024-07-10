@@ -7,18 +7,14 @@ import {
   azureChatExtensionConfigurationUnionSerializer,
   azureChatEnhancementConfigurationSerializer,
   chatCompletionsResponseFormatUnionSerializer,
-  AudioSpeechOptions,
-  AudioTranscriptionOptions,
   AudioTranscription,
-  AudioTranslationOptions,
   AudioTranslation,
   CompletionsOptions,
   Completions,
   ChatCompletionsOptions,
   ChatCompletions,
-  ImageGenerationOptions,
   ImageGenerations,
-  EmbeddingsOptions,
+  AudioSpeechVoice,
   Embeddings,
 } from "../models/models.js";
 import {
@@ -51,7 +47,6 @@ import {
 import { uint8ArrayToString } from "@azure/core-util";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
-  GetAudioSpeechOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -59,58 +54,14 @@ import {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
+  GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "../models/options.js";
-
-export function _getAudioSpeechSend(
-  context: Client,
-  deploymentId: string,
-  body: AudioSpeechOptions,
-  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetAudioSpeech200Response | GetAudioSpeechDefaultResponse> {
-  return context
-    .path("/deployments/{deploymentId}/audio/speech", deploymentId)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: {
-        input: body["input"],
-        voice: body["voice"],
-        response_format: body["responseFormat"],
-        speed: body["speed"],
-      },
-    });
-}
-
-export async function _getAudioSpeechDeserialize(
-  result: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
-): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  return result.body as any;
-}
-
-/** Generates text-to-speech audio from the input text. */
-export async function getAudioSpeech(
-  context: Client,
-  deploymentId: string,
-  body: AudioSpeechOptions,
-  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
-  const result = await _getAudioSpeechSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
-  return _getAudioSpeechDeserialize(result);
-}
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
   deploymentId: string,
-  body: AudioTranscriptionOptions,
+  file: Uint8Array,
   options: GetAudioTranscriptionAsPlainTextOptionalParams = {
     requestOptions: {},
   },
@@ -124,13 +75,13 @@ export function _getAudioTranscriptionAsPlainTextSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        language: body["language"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
+        file: uint8ArrayToString(file, "base64"),
+        filename: options?.filename,
+        response_format: options?.responseFormat,
+        language: options?.language,
+        prompt: options?.prompt,
+        temperature: options?.temperature,
+        model: options?.model,
       },
     }) as StreamableMethod<
     | GetAudioTranscriptionAsPlainText200Response
@@ -157,7 +108,7 @@ export async function _getAudioTranscriptionAsPlainTextDeserialize(
 export async function getAudioTranscriptionAsPlainText(
   context: Client,
   deploymentId: string,
-  body: AudioTranscriptionOptions,
+  file: Uint8Array,
   options: GetAudioTranscriptionAsPlainTextOptionalParams = {
     requestOptions: {},
   },
@@ -165,7 +116,7 @@ export async function getAudioTranscriptionAsPlainText(
   const result = await _getAudioTranscriptionAsPlainTextSend(
     context,
     deploymentId,
-    body,
+    file,
     options,
   );
   return _getAudioTranscriptionAsPlainTextDeserialize(result);
@@ -174,7 +125,7 @@ export async function getAudioTranscriptionAsPlainText(
 export function _getAudioTranscriptionAsResponseObjectSend(
   context: Client,
   deploymentId: string,
-  body: AudioTranscriptionOptions,
+  file: Uint8Array,
   options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
@@ -188,13 +139,13 @@ export function _getAudioTranscriptionAsResponseObjectSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        language: body["language"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
+        file: uint8ArrayToString(file, "base64"),
+        filename: options?.filename,
+        response_format: options?.responseFormat,
+        language: options?.language,
+        prompt: options?.prompt,
+        temperature: options?.temperature,
+        model: options?.model,
       },
     }) as StreamableMethod<
     | GetAudioTranscriptionAsResponseObject200Response
@@ -243,7 +194,7 @@ export async function _getAudioTranscriptionAsResponseObjectDeserialize(
 export async function getAudioTranscriptionAsResponseObject(
   context: Client,
   deploymentId: string,
-  body: AudioTranscriptionOptions,
+  file: Uint8Array,
   options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
@@ -251,7 +202,7 @@ export async function getAudioTranscriptionAsResponseObject(
   const result = await _getAudioTranscriptionAsResponseObjectSend(
     context,
     deploymentId,
-    body,
+    file,
     options,
   );
   return _getAudioTranscriptionAsResponseObjectDeserialize(result);
@@ -260,7 +211,7 @@ export async function getAudioTranscriptionAsResponseObject(
 export function _getAudioTranslationAsPlainTextSend(
   context: Client,
   deploymentId: string,
-  body: AudioTranslationOptions,
+  file: Uint8Array,
   options: GetAudioTranslationAsPlainTextOptionalParams = {
     requestOptions: {},
   },
@@ -274,12 +225,12 @@ export function _getAudioTranslationAsPlainTextSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
+        file: uint8ArrayToString(file, "base64"),
+        filename: options?.filename,
+        response_format: options?.responseFormat,
+        prompt: options?.prompt,
+        temperature: options?.temperature,
+        model: options?.model,
       },
     }) as StreamableMethod<
     | GetAudioTranslationAsPlainText200Response
@@ -303,7 +254,7 @@ export async function _getAudioTranslationAsPlainTextDeserialize(
 export async function getAudioTranslationAsPlainText(
   context: Client,
   deploymentId: string,
-  body: AudioTranslationOptions,
+  file: Uint8Array,
   options: GetAudioTranslationAsPlainTextOptionalParams = {
     requestOptions: {},
   },
@@ -311,7 +262,7 @@ export async function getAudioTranslationAsPlainText(
   const result = await _getAudioTranslationAsPlainTextSend(
     context,
     deploymentId,
-    body,
+    file,
     options,
   );
   return _getAudioTranslationAsPlainTextDeserialize(result);
@@ -320,7 +271,7 @@ export async function getAudioTranslationAsPlainText(
 export function _getAudioTranslationAsResponseObjectSend(
   context: Client,
   deploymentId: string,
-  body: AudioTranslationOptions,
+  file: Uint8Array,
   options: GetAudioTranslationAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
@@ -334,12 +285,12 @@ export function _getAudioTranslationAsResponseObjectSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
+        file: uint8ArrayToString(file, "base64"),
+        filename: options?.filename,
+        response_format: options?.responseFormat,
+        prompt: options?.prompt,
+        temperature: options?.temperature,
+        model: options?.model,
       },
     }) as StreamableMethod<
     | GetAudioTranslationAsResponseObject200Response
@@ -385,7 +336,7 @@ export async function _getAudioTranslationAsResponseObjectDeserialize(
 export async function getAudioTranslationAsResponseObject(
   context: Client,
   deploymentId: string,
-  body: AudioTranslationOptions,
+  file: Uint8Array,
   options: GetAudioTranslationAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
@@ -393,7 +344,7 @@ export async function getAudioTranslationAsResponseObject(
   const result = await _getAudioTranslationAsResponseObjectSend(
     context,
     deploymentId,
-    body,
+    file,
     options,
   );
   return _getAudioTranslationAsResponseObjectDeserialize(result);
@@ -979,7 +930,7 @@ export async function getChatCompletions(
 export function _getImageGenerationsSend(
   context: Client,
   deploymentId: string,
-  body: ImageGenerationOptions,
+  prompt: string,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetImageGenerations200Response | GetImageGenerationsDefaultResponse
@@ -989,14 +940,14 @@ export function _getImageGenerationsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        model: body["model"],
-        prompt: body["prompt"],
-        n: body["n"],
-        size: body["size"],
-        response_format: body["responseFormat"],
-        quality: body["quality"],
-        style: body["style"],
-        user: body["user"],
+        model: options?.model,
+        prompt: prompt,
+        n: options?.n,
+        size: options?.size,
+        response_format: options?.responseFormat,
+        quality: options?.quality,
+        style: options?.style,
+        user: options?.user,
       },
     });
 }
@@ -1024,22 +975,70 @@ export async function _getImageGenerationsDeserialize(
 export async function getImageGenerations(
   context: Client,
   deploymentId: string,
-  body: ImageGenerationOptions,
+  prompt: string,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): Promise<ImageGenerations> {
   const result = await _getImageGenerationsSend(
     context,
     deploymentId,
-    body,
+    prompt,
     options,
   );
   return _getImageGenerationsDeserialize(result);
 }
 
+export function _getAudioSpeechSend(
+  context: Client,
+  deploymentId: string,
+  input: string,
+  voice: AudioSpeechVoice,
+  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+): StreamableMethod<GetAudioSpeech200Response | GetAudioSpeechDefaultResponse> {
+  return context
+    .path("/deployments/{deploymentId}/audio/speech", deploymentId)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        input: input,
+        voice: voice,
+        response_format: options?.responseFormat,
+        speed: options?.speed,
+      },
+    });
+}
+
+export async function _getAudioSpeechDeserialize(
+  result: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
+): Promise<Uint8Array> {
+  if (isUnexpected(result)) {
+    throw createRestError(result);
+  }
+
+  return result.body as any;
+}
+
+/** Generates text-to-speech audio from the input text. */
+export async function getAudioSpeech(
+  context: Client,
+  deploymentId: string,
+  input: string,
+  voice: AudioSpeechVoice,
+  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+): Promise<Uint8Array> {
+  const result = await _getAudioSpeechSend(
+    context,
+    deploymentId,
+    input,
+    voice,
+    options,
+  );
+  return _getAudioSpeechDeserialize(result);
+}
+
 export function _getEmbeddingsSend(
   context: Client,
   deploymentId: string,
-  body: EmbeddingsOptions,
+  input: string[],
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse> {
   return context
@@ -1047,10 +1046,10 @@ export function _getEmbeddingsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        user: body["user"],
-        model: body["model"],
-        input: body["input"],
-        input_type: body["inputType"],
+        user: options?.user,
+        model: options?.model,
+        input: input,
+        input_type: options?.inputType,
       },
     });
 }
@@ -1077,9 +1076,14 @@ export async function _getEmbeddingsDeserialize(
 export async function getEmbeddings(
   context: Client,
   deploymentId: string,
-  body: EmbeddingsOptions,
+  input: string[],
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): Promise<Embeddings> {
-  const result = await _getEmbeddingsSend(context, deploymentId, body, options);
+  const result = await _getEmbeddingsSend(
+    context,
+    deploymentId,
+    input,
+    options,
+  );
   return _getEmbeddingsDeserialize(result);
 }

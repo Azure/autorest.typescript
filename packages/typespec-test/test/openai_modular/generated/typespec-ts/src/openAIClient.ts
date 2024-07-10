@@ -4,22 +4,17 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  AudioSpeechOptions,
-  AudioTranscriptionOptions,
   AudioTranscription,
-  AudioTranslationOptions,
   AudioTranslation,
   CompletionsOptions,
   Completions,
   ChatCompletionsOptions,
   ChatCompletions,
-  ImageGenerationOptions,
   ImageGenerations,
-  EmbeddingsOptions,
+  AudioSpeechVoice,
   Embeddings,
 } from "./models/models.js";
 import {
-  GetAudioSpeechOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -27,13 +22,13 @@ import {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
+  GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./models/options.js";
 import {
   createOpenAI,
   OpenAIClientOptions,
   OpenAIContext,
-  getAudioSpeech,
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,
   getAudioTranslationAsPlainText,
@@ -41,6 +36,7 @@ import {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
+  getAudioSpeech,
   getEmbeddings,
 } from "./api/index.js";
 
@@ -51,7 +47,6 @@ export class OpenAIClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  /** Azure OpenAI APIs for completions and search */
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
@@ -69,22 +64,13 @@ export class OpenAIClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Generates text-to-speech audio from the input text. */
-  getAudioSpeech(
-    deploymentId: string,
-    body: AudioSpeechOptions,
-    options: GetAudioSpeechOptionalParams = { requestOptions: {} },
-  ): Promise<Uint8Array> {
-    return getAudioSpeech(this._client, deploymentId, body, options);
-  }
-
   /**
    * Gets transcribed text and associated metadata from provided spoken audio data. Audio will be transcribed in the
    * written language corresponding to the language it was spoken in.
    */
   getAudioTranscriptionAsPlainText(
     deploymentId: string,
-    body: AudioTranscriptionOptions,
+    file: Uint8Array,
     options: GetAudioTranscriptionAsPlainTextOptionalParams = {
       requestOptions: {},
     },
@@ -92,7 +78,7 @@ export class OpenAIClient {
     return getAudioTranscriptionAsPlainText(
       this._client,
       deploymentId,
-      body,
+      file,
       options,
     );
   }
@@ -103,7 +89,7 @@ export class OpenAIClient {
    */
   getAudioTranscriptionAsResponseObject(
     deploymentId: string,
-    body: AudioTranscriptionOptions,
+    file: Uint8Array,
     options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
       requestOptions: {},
     },
@@ -111,7 +97,7 @@ export class OpenAIClient {
     return getAudioTranscriptionAsResponseObject(
       this._client,
       deploymentId,
-      body,
+      file,
       options,
     );
   }
@@ -119,7 +105,7 @@ export class OpenAIClient {
   /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
   getAudioTranslationAsPlainText(
     deploymentId: string,
-    body: AudioTranslationOptions,
+    file: Uint8Array,
     options: GetAudioTranslationAsPlainTextOptionalParams = {
       requestOptions: {},
     },
@@ -127,7 +113,7 @@ export class OpenAIClient {
     return getAudioTranslationAsPlainText(
       this._client,
       deploymentId,
-      body,
+      file,
       options,
     );
   }
@@ -135,7 +121,7 @@ export class OpenAIClient {
   /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
   getAudioTranslationAsResponseObject(
     deploymentId: string,
-    body: AudioTranslationOptions,
+    file: Uint8Array,
     options: GetAudioTranslationAsResponseObjectOptionalParams = {
       requestOptions: {},
     },
@@ -143,7 +129,7 @@ export class OpenAIClient {
     return getAudioTranslationAsResponseObject(
       this._client,
       deploymentId,
-      body,
+      file,
       options,
     );
   }
@@ -177,18 +163,28 @@ export class OpenAIClient {
   /** Creates an image given a prompt. */
   getImageGenerations(
     deploymentId: string,
-    body: ImageGenerationOptions,
+    prompt: string,
     options: GetImageGenerationsOptionalParams = { requestOptions: {} },
   ): Promise<ImageGenerations> {
-    return getImageGenerations(this._client, deploymentId, body, options);
+    return getImageGenerations(this._client, deploymentId, prompt, options);
+  }
+
+  /** Generates text-to-speech audio from the input text. */
+  getAudioSpeech(
+    deploymentId: string,
+    input: string,
+    voice: AudioSpeechVoice,
+    options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+  ): Promise<Uint8Array> {
+    return getAudioSpeech(this._client, deploymentId, input, voice, options);
   }
 
   /** Return the embeddings for a given prompt. */
   getEmbeddings(
     deploymentId: string,
-    body: EmbeddingsOptions,
+    input: string[],
     options: GetEmbeddingsOptionalParams = { requestOptions: {} },
   ): Promise<Embeddings> {
-    return getEmbeddings(this._client, deploymentId, body, options);
+    return getEmbeddings(this._client, deploymentId, input, options);
   }
 }

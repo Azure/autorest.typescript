@@ -14,7 +14,6 @@ export interface OpenAIClientOptions extends ClientOptions {
 
 export { OpenAIContext } from "../rest/index.js";
 
-/** Azure OpenAI APIs for completions and search */
 export function createOpenAI(
   endpointParam: string,
   credential: KeyCredential | TokenCredential,
