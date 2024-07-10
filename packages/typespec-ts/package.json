@@ -108,7 +108,7 @@
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.43.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": "0.44.0-dev.19",
+    "@azure-tools/typespec-client-generator-core": ">=0.43.2 <1.0.0",
     "@typespec/compiler": ">=0.57.0 <1.0.0",
     "@typespec/http": ">=0.57.0 <1.0.0",
     "@typespec/rest": ">=0.57.0 <1.0.0",

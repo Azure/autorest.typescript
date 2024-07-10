@@ -16,9 +16,7 @@ import {
   getUnionAsEnum
 } from "@azure-tools/typespec-azure-core";
 import {
-  getAccess,
   getDefaultApiVersion,
-  getUsage,
   getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
@@ -252,10 +250,6 @@ export function getEffectiveModelFromType(
    * set of properties when non-schema properties are excluded.
    */
   if (type.kind === "Model" && type.name === "") {
-    const access = getAccess(context, type);
-    const usage = getUsage(context, type);
-    access;
-    usage;
     const effective = getEffectiveModelType(context.program, type, (property) =>
       isSchemaProperty(context.program, property)
     );
