@@ -222,8 +222,6 @@ If you'd like to contribute to this library, please read the [contributing guide
 {{#if impressionURL}}![Impressions]({{ impressionURL }})
 {{/if}}
 
-[azure_cli]: https://docs.microsoft.com/cli/azure
-[azure_sub]: https://azure.microsoft.com/free/
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
 {{#if identityPackageURL}}[azure_identity]: {{ identityPackageURL }}
