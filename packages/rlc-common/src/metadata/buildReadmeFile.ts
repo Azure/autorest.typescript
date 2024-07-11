@@ -164,7 +164,6 @@ const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscript
 // });
 // const client = new {{ clientClassName }}(credential, subscriptionId);
 \`\`\`
-{{/if}}
 {{else}}
 \`\`\`javascript
 const { {{ clientClassName }} } = require("{{ clientPackageName }}");
