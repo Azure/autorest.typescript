@@ -231,7 +231,6 @@ If you'd like to contribute to this library, please read the [contributing guide
 {{/if}}
 `;
 
-
 const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
 {{ description }}
@@ -320,7 +319,9 @@ export function buildReadmeFile(model: RLCModel) {
   const metadata = createMetadata(model) ?? {};
   const readmeFileContents = hbs.compile(
     model.options?.flavor === "azure"
-      ? (model.options.isModularLibrary? azureReadmeModularTemplate : azureReadmeNonModularTemplate)
+      ? model.options.isModularLibrary
+        ? azureReadmeModularTemplate
+        : azureReadmeNonModularTemplate
       : nonBrandedReadmeTemplate,
     { noEscape: true }
   );
@@ -396,7 +397,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
       ? packageParentDirectoryName &&
         packageDirectoryName &&
         `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
-      : undefined,
+      : undefined
   };
 }
 
