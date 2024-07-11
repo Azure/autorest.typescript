@@ -7,7 +7,7 @@ import { RLCModel } from "../interfaces.js";
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 
-const azureReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+const azureReadmeNonModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
 {{ description }}
 
@@ -83,6 +83,165 @@ setLogLevel("info");
 
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
 `;
+
+const azureReadmeModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for {{ clientDescriptiveName }}.
+
+{{ description }}
+
+{{#if packageSourceURL}}
+[Source code]({{ packageSourceURL }}) |
+{{/if}}
+{{#if packageNPMURL}}
+[Package (NPM)]({{ packageNPMURL }}) |
+{{/if}}
+{{#if apiRefURL}}
+[API reference documentation]({{ apiRefURL }}) |
+{{/if}}
+{{#if samplesURL}}
+[Samples]({{samplesURL}})
+{{/if}}
+
+## Getting started
+
+### Currently supported environments
+
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- Latest versions of Safari, Chrome, Edge and Firefox.
+
+See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
+
+{{#if azure}}
+### Prerequisites
+
+- An [Azure subscription][azure_sub].
+{{/if}}
+
+{{#if isReleasablePackage}}
+### Install the \`{{ clientPackageName }}\` package
+
+Install the {{ clientDescriptiveName }} library for JavaScript with \`npm\`:
+
+\`\`\`bash
+npm install {{ clientPackageName }}
+\`\`\`
+{{/if}}
+
+{{#if azure}}
+{{#if addCredentials}}
+### Create and authenticate a \`{{ clientClassName}}\`
+
+To create a client object to access the {{ serviceName }} API, you will need the \`endpoint\` of your {{ serviceName }} resource and a \`credential\`. The {{ clientDescriptiveName }} can use Azure Active Directory credentials to authenticate.
+You can find the endpoint for your {{ serviceName }} resource in the [Azure Portal][azure_portal].
+
+You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
+
+To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the \`@azure/identity\` package:
+
+\`\`\`bash
+npm install @azure/identity
+\`\`\`
+
+You will also need to **register a new AAD application and grant access to {{ serviceName}}** by assigning the suitable role to your service principal (note: roles such as \`"Owner"\` will not grant the necessary permissions).
+Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: \`AZURE_CLIENT_ID\`, \`AZURE_TENANT_ID\`, \`AZURE_CLIENT_SECRET\`.
+
+For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
+
+{{#if azureArm}}
+\`\`\`javascript
+const { {{ clientClassName }} } = require("{{ clientPackageName }}");
+const { DefaultAzureCredential } = require("@azure/identity");
+// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
+
+{{#if hasClientSubscriptionId}}
+const subscriptionId = "00000000-0000-0000-0000-000000000000";
+const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscriptionId);
+
+// For client-side applications running in the browser, use this code instead:
+// const credential = new InteractiveBrowserCredential({
+//   tenantId: "<YOUR_TENANT_ID>",
+//   clientId: "<YOUR_CLIENT_ID>"
+// });
+// const client = new {{ clientClassName }}(credential, subscriptionId);
+\`\`\`
+{{else}}
+const client = new {{ clientClassName }}(new DefaultAzureCredential());
+
+// For client-side applications running in the browser, use this code instead:
+// const credential = new InteractiveBrowserCredential({
+//   tenantId: "<YOUR_TENANT_ID>",
+//   clientId: "<YOUR_CLIENT_ID>"
+// });
+// const client = new {{ clientClassName }}(credential);
+\`\`\`
+{{/if}}
+{{else}}
+\`\`\`javascript
+const { {{ clientClassName }} } = require("{{ clientPackageName }}");
+const { DefaultAzureCredential } = require("@azure/identity");
+// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
+
+const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
+// For client-side applications running in the browser, use this code instead:
+// const credential = new InteractiveBrowserCredential({
+//   tenantId: "<YOUR_TENANT_ID>",
+//   clientId: "<YOUR_CLIENT_ID>"
+// });
+// const client = new {{ clientClassName }}("<endpoint>", credential);
+\`\`\`
+{{/if}}
+{{/if}}{{/if}}
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
+
+## Key concepts
+
+### {{ clientClassName }}
+
+\`{{ clientClassName }}\` is the primary interface for developers using the {{ clientDescriptiveName }} library. Explore the methods on this client object to understand the different features of the {{ serviceName }} service that you can access.
+
+{{#if azure}}
+## Troubleshooting
+
+### Logging
+
+Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the \`AZURE_LOG_LEVEL\` environment variable to \`info\`. Alternatively, logging can be enabled at runtime by calling \`setLogLevel\` in the \`@azure/logger\`:
+
+\`\`\`javascript
+const { setLogLevel } = require("@azure/logger");
+setLogLevel("info");
+\`\`\`
+
+For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs]({{ repoURL }}/tree/main/sdk/core/logger).
+
+{{#if samplesURL}}
+## Next steps
+
+Please take a look at the [samples]({{ samplesURL }}) directory for detailed examples on how to use this library.
+{{/if}}
+
+## Contributing
+
+If you'd like to contribute to this library, please read the [contributing guide]({{ contributingGuideURL }}) to learn more about how to build and test the code.
+
+## Related projects
+
+- [{{ projectName }}]({{ repoURL }})
+
+{{#if impressionURL}}![Impressions]({{ impressionURL }})
+{{/if}}
+
+[azure_cli]: https://docs.microsoft.com/cli/azure
+[azure_sub]: https://azure.microsoft.com/free/
+[azure_sub]: https://azure.microsoft.com/free/
+[azure_portal]: https://portal.azure.com
+{{#if identityPackageURL}}[azure_identity]: {{ identityPackageURL }}
+{{/if}}[defaultazurecredential]: {{ identityPackageURL }}#defaultazurecredential
+{{/if}}
+`;
+
 
 const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
@@ -160,13 +319,21 @@ interface Metadata {
   apiRefURL?: string;
   /** Check if the rp is management plane */
   azureArm?: boolean;
+  /** Whether the package being generated is for an Azure service */
+  azure: boolean;
+  /** Indicates if the package is a test/releasable package. */
+  isReleasablePackage?: boolean;
+  /** The URL for impression */
+  impressionURL?: string;
+  /** Indicates if we have a client-level subscription id paramter */
+  hasClientSubscriptionId?: boolean;
 }
 
 export function buildReadmeFile(model: RLCModel) {
   const metadata = createMetadata(model) ?? {};
   const readmeFileContents = hbs.compile(
     model.options?.flavor === "azure"
-      ? azureReadmeTemplate
+      ? (model.options.isModularLibrary? azureReadmeModularTemplate : azureReadmeNonModularTemplate)
       : nonBrandedReadmeTemplate,
     { noEscape: true }
   );
@@ -193,7 +360,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     dependencyInfo,
     multiClient,
     batch,
-    serviceInfo
+    serviceInfo,
+    isTestPackage
   } = model.options;
 
   const azureHuh =
@@ -209,6 +377,9 @@ function createMetadata(model: RLCModel): Metadata | undefined {
   const clientPackageName = packageDetails?.name;
   const clientClassName = getClientName(model);
   const serviceName = getServiceName(model);
+  const names = relativePackageSourcePath?.split("/").slice(1);
+  const packageParentDirectoryName = names?.[0];
+  const packageDirectoryName = names?.[1];
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
   if (packageDetails?.version.includes("beta")) {
@@ -231,7 +402,15 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     dependencyDescription: dependencyInfo?.description,
     dependencyLink: dependencyInfo?.link,
     hasMultiClients: multiClient && batch && batch.length > 1,
-    azureArm: Boolean(model.options.azureArm)
+    azureArm: Boolean(model.options.azureArm),
+    azure: azureHuh,
+    isReleasablePackage: !isTestPackage,
+    impressionURL: azureHuh
+      ? packageParentDirectoryName &&
+        packageDirectoryName &&
+        `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
+      : undefined,
+      hasClientSubscriptionId: hasClientSubscriptionId(clientDetails?.samples)
   };
 }
 
@@ -273,4 +452,16 @@ function getClientName(model: RLCModel) {
   return clientName.endsWith("Client")
     ? `${clientName}`
     : `${clientName}Client`;
+}
+
+function hasClientSubscriptionId(samples?: SampleGroup[]) {
+  if (!samples || samples.length === 0) {
+    // have the subscription id parameter in constructor if no samples
+    return true;
+  }
+  return samples.some(group => {
+    return group.samples.some(sample =>
+      sample.clientParameterNames.toLocaleLowerCase().includes("subscriptionid")
+    );
+  });
 }
