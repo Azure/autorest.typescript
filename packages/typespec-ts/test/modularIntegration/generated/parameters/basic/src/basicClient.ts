@@ -12,8 +12,6 @@ import {
 } from "./classic/implicitBody/index.js";
 import { createBasic, BasicClientOptions, BasicContext } from "./api/index.js";
 
-export { BasicClientOptions } from "./api/basicContext.js";
-
 export class BasicClient {
   private _client: BasicContext;
   /** The pipeline used by this client to make requests */

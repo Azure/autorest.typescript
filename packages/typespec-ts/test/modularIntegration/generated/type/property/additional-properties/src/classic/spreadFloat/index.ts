@@ -7,7 +7,7 @@ import { get, put } from "../../api/spreadFloat/index.js";
 import {
   SpreadFloatGetOptionalParams,
   SpreadFloatPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadFloat operations. */
 export interface SpreadFloatOperations {

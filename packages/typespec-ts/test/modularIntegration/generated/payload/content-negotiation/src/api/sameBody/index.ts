@@ -14,7 +14,7 @@ import {
 import {
   SameBodyGetAvatarAsPngOptionalParams,
   SameBodyGetAvatarAsJpegOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getAvatarAsPngSend(
   context: Client,

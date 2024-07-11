@@ -16,7 +16,7 @@ import {
   Group2TwoOptionalParams,
   Group2FiveOptionalParams,
   Group2SixOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _twoSend(
   context: Client,

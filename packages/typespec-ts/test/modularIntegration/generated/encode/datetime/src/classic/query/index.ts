@@ -15,7 +15,7 @@ import {
   QueryRfc7231OptionalParams,
   QueryUnixTimestampOptionalParams,
   QueryUnixTimestampArrayOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Query operations. */
 export interface QueryOperations {

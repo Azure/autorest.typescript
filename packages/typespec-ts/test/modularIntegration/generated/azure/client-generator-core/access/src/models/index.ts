@@ -15,14 +15,3 @@ export {
   PublicDecoratorModelInPublic,
   AbstractModelUnion,
 } from "./models.js";
-export {
-  NoDecoratorInPublicOptionalParams,
-  PublicDecoratorInPublicOptionalParams,
-  NoDecoratorInInternalOptionalParams,
-  InternalDecoratorInInternalOptionalParams,
-  PublicDecoratorInInternalOptionalParams,
-  PublicOptionalParams,
-  InternalOptionalParams,
-  OperationOptionalParams,
-  DiscriminatorOptionalParams,
-} from "./options.js";

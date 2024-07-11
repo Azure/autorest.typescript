@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsDifferentSpreadString/index.js";
 import {
   ExtendsDifferentSpreadStringGetOptionalParams,
   ExtendsDifferentSpreadStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsDifferentSpreadString operations. */
 export interface ExtendsDifferentSpreadStringOperations {

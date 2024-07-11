@@ -10,7 +10,7 @@ import {
 import {
   UnknownArrayGetOptionalParams,
   UnknownArrayPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a UnknownArray operations. */
 export interface UnknownArrayOperations {

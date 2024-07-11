@@ -3,15 +3,13 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TestModel, Versions } from "./models/models.js";
-import { TestOptionalParams } from "./models/options.js";
 import {
   createMadeOptional,
   MadeOptionalClientOptions,
   MadeOptionalContext,
   test,
+  TestOptionalParams,
 } from "./api/index.js";
-
-export { MadeOptionalClientOptions } from "./api/madeOptionalContext.js";
 
 export class MadeOptionalClient {
   private _client: MadeOptionalContext;

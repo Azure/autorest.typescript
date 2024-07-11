@@ -44,8 +44,6 @@ import {
 } from "./classic/mixedTypes/index.js";
 import { createUnion, UnionClientOptions, UnionContext } from "./api/index.js";
 
-export { UnionClientOptions } from "./api/unionContext.js";
-
 export class UnionClient {
   private _client: UnionContext;
   /** The pipeline used by this client to make requests */

@@ -6,7 +6,7 @@ import { three, four } from "../../api/foo/index.js";
 import {
   FooThreeOptionalParams,
   FooFourOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Foo operations. */
 export interface FooOperations {

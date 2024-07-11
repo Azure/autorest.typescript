@@ -14,7 +14,7 @@ import {
 import {
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _int32ValueGetSend(
   context: Client,

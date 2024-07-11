@@ -7,7 +7,7 @@ import {
   GroupRenamedTwoOptionalParams,
   GroupRenamedFourOptionalParams,
   GroupRenamedSixOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Group operations. */
 export interface GroupOperations {

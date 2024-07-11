@@ -15,7 +15,7 @@ import {
 import {
   UnionEnumValueGetOptionalParams,
   UnionEnumValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _unionEnumValueGetSend(
   context: Client,

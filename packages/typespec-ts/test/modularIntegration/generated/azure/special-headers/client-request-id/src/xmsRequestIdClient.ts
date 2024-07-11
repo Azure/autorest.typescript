@@ -4,13 +4,11 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   get,
+  GetOptionalParams,
   createXmsRequestId,
   XmsRequestIdClientOptions,
   XmsRequestIdClientContext,
 } from "./api/index.js";
-import { GetOptionalParams } from "./models/options.js";
-
-export { XmsRequestIdClientOptions } from "./api/xmsRequestIdContext.js";
 
 export class XmsRequestIdClient {
   private _client: XmsRequestIdClientContext;

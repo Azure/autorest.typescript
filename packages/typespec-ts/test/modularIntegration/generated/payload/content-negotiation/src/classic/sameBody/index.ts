@@ -6,7 +6,7 @@ import { getAvatarAsPng, getAvatarAsJpeg } from "../../api/sameBody/index.js";
 import {
   SameBodyGetAvatarAsPngOptionalParams,
   SameBodyGetAvatarAsJpegOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SameBody operations. */
 export interface SameBodyOperations {

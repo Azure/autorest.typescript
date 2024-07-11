@@ -7,7 +7,7 @@ import { get, put } from "../../api/isString/index.js";
 import {
   IsStringGetOptionalParams,
   IsStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a IsString operations. */
 export interface IsStringOperations {

@@ -10,16 +10,3 @@ export {
   ClientModel,
   TSModel,
 } from "./models.js";
-export {
-  ClientNameOptionalParams,
-  ParameterOptionalParams,
-  ClientOptionalParams,
-  LanguageOptionalParams,
-  CompatibleWithEncodedNameOptionalParams,
-  RequestOptionalParams,
-  ResponseOptionalParams,
-  ClientModelClientOptionalParams,
-  ClientModelLanguageOptionalParams,
-  UnionEnumUnionEnumNameOptionalParams,
-  UnionEnumUnionEnumMemberNameOptionalParams,
-} from "./options.js";

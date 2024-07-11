@@ -16,7 +16,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { LongRunningRpcOptionalParams } from "../models/options.js";
+import { LongRunningRpcOptionalParams } from "./options.js";
 
 export function _longRunningRpcSend(
   context: Client,

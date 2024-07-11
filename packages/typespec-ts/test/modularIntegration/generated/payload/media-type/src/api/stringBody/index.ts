@@ -18,7 +18,7 @@ import {
   StringBodyGetAsTextOptionalParams,
   StringBodySendAsJsonOptionalParams,
   StringBodyGetAsJsonOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _sendAsTextSend(
   context: Client,

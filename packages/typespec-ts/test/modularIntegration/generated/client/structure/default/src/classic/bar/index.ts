@@ -6,7 +6,7 @@ import { five, six } from "../../api/bar/index.js";
 import {
   BarFiveOptionalParams,
   BarSixOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Bar operations. */
 export interface BarOperations {

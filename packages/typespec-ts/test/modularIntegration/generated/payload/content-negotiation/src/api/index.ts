@@ -6,3 +6,9 @@ export {
   ContentNegotiationClientOptions,
   ContentNegotiationContext,
 } from "./contentNegotiationContext.js";
+export {
+  SameBodyGetAvatarAsPngOptionalParams,
+  SameBodyGetAvatarAsJpegOptionalParams,
+  DifferentBodyGetAvatarAsPngOptionalParams,
+  DifferentBodyGetAvatarAsJsonOptionalParams,
+} from "./options.js";

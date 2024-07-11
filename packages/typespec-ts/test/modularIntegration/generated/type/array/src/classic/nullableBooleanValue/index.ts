@@ -9,7 +9,7 @@ import {
 import {
   NullableBooleanValueGetOptionalParams,
   NullableBooleanValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a NullableBooleanValue operations. */
 export interface NullableBooleanValueOperations {

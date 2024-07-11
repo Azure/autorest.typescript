@@ -7,7 +7,7 @@ import { decimalGet, decimalPut } from "../../api/decimal/index.js";
 import {
   DecimalGetOptionalParams,
   DecimalPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Decimal operations. */
 export interface DecimalOperations {

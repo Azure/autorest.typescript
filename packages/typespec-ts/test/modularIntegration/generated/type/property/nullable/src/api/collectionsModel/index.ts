@@ -22,7 +22,7 @@ import {
   CollectionsModelGetNullOptionalParams,
   CollectionsModelPatchNonNullOptionalParams,
   CollectionsModelPatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getNonNullSend(
   context: Client,

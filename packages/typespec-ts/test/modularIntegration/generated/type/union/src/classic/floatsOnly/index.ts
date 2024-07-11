@@ -6,7 +6,7 @@ import { floatsOnlyGet, floatsOnlySend } from "../../api/floatsOnly/index.js";
 import {
   FloatsOnlyGetOptionalParams,
   FloatsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a FloatsOnly operations. */
 export interface FloatsOnlyOperations {

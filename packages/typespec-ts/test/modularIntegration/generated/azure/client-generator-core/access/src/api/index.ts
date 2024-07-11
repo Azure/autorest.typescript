@@ -17,3 +17,14 @@ export {
   operation,
   discriminator,
 } from "./operations.js";
+export {
+  NoDecoratorInPublicOptionalParams,
+  PublicDecoratorInPublicOptionalParams,
+  NoDecoratorInInternalOptionalParams,
+  InternalDecoratorInInternalOptionalParams,
+  PublicDecoratorInInternalOptionalParams,
+  PublicOptionalParams,
+  InternalOptionalParams,
+  OperationOptionalParams,
+  DiscriminatorOptionalParams,
+} from "./options.js";

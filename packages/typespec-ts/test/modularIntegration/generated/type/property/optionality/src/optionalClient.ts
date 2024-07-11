@@ -61,8 +61,6 @@ import {
   OptionalContext,
 } from "./api/index.js";
 
-export { OptionalClientOptions } from "./api/optionalContext.js";
-
 export class OptionalClient {
   private _client: OptionalContext;
   /** The pipeline used by this client to make requests */

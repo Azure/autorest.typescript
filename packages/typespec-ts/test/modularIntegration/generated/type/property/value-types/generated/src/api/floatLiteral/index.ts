@@ -15,7 +15,7 @@ import {
 import {
   FloatLiteralGetOptionalParams,
   FloatLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _floatLiteralGetSend(
   context: Client,

@@ -14,7 +14,7 @@ import {
 import {
   NullableFloatValueGetOptionalParams,
   NullableFloatValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _nullableFloatValueGetSend(
   context: Client,

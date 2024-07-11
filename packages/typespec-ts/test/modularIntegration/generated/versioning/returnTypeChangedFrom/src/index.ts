@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { ReturnTypeChangedFromClient } from "./returnTypeChangedFromClient.js";
+export { Versions } from "./models/index.js";
 export {
-  ReturnTypeChangedFromClient,
+  TestOptionalParams,
   ReturnTypeChangedFromClientOptions,
-} from "./returnTypeChangedFromClient.js";
-export { Versions, TestOptionalParams } from "./models/index.js";
+} from "./api/index.js";

@@ -9,7 +9,7 @@ import {
 import {
   NullableStringValueGetOptionalParams,
   NullableStringValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a NullableStringValue operations. */
 export interface NullableStringValueOperations {

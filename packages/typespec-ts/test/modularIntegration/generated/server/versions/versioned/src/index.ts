@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { VersionedClient, VersionedClientOptions } from "./versionedClient.js";
+export { VersionedClient } from "./versionedClient.js";
+export { Versions } from "./models/index.js";
 export {
-  Versions,
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
   WithQueryOldApiVersionOptionalParams,
-} from "./models/index.js";
+  VersionedClientOptions,
+} from "./api/index.js";

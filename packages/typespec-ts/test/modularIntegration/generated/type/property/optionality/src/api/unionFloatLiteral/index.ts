@@ -19,7 +19,7 @@ import {
   UnionFloatLiteralGetDefaultOptionalParams,
   UnionFloatLiteralPutAllOptionalParams,
   UnionFloatLiteralPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getAllSend(
   context: Client,

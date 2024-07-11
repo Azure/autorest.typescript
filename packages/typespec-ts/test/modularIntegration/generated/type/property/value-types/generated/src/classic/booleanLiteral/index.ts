@@ -10,7 +10,7 @@ import {
 import {
   BooleanLiteralGetOptionalParams,
   BooleanLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a BooleanLiteral operations. */
 export interface BooleanLiteralOperations {

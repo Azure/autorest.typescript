@@ -7,6 +7,11 @@ export {
   modelInReadOnlyProperty,
 } from "./operations.js";
 export {
+  InputToInputOutputOptionalParams,
+  OutputToInputOutputOptionalParams,
+  ModelInReadOnlyPropertyOptionalParams,
+} from "./options.js";
+export {
   createUsage,
   UsageClientOptions,
   UsageContext,

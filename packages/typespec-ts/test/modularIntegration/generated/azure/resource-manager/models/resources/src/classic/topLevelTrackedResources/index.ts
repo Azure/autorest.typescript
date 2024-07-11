@@ -23,7 +23,7 @@ import {
   TopLevelTrackedResourcesDeleteOptionalParams,
   TopLevelTrackedResourcesListByResourceGroupOptionalParams,
   TopLevelTrackedResourcesListBySubscriptionOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a TopLevelTrackedResources operations. */
 export interface TopLevelTrackedResourcesOperations {

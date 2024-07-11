@@ -6,6 +6,36 @@ export {
   ArrayClientOptions,
   ArrayContext,
 } from "./arrayContext.js";
+export {
+  Int32ValueGetOptionalParams,
+  Int32ValuePutOptionalParams,
+  Int64ValueGetOptionalParams,
+  Int64ValuePutOptionalParams,
+  BooleanValueGetOptionalParams,
+  BooleanValuePutOptionalParams,
+  StringValueGetOptionalParams,
+  StringValuePutOptionalParams,
+  Float32ValueGetOptionalParams,
+  Float32ValuePutOptionalParams,
+  DatetimeValueGetOptionalParams,
+  DatetimeValuePutOptionalParams,
+  DurationValueGetOptionalParams,
+  DurationValuePutOptionalParams,
+  UnknownValueGetOptionalParams,
+  UnknownValuePutOptionalParams,
+  ModelValueGetOptionalParams,
+  ModelValuePutOptionalParams,
+  NullableFloatValueGetOptionalParams,
+  NullableFloatValuePutOptionalParams,
+  NullableInt32ValueGetOptionalParams,
+  NullableInt32ValuePutOptionalParams,
+  NullableBooleanValueGetOptionalParams,
+  NullableBooleanValuePutOptionalParams,
+  NullableStringValueGetOptionalParams,
+  NullableStringValuePutOptionalParams,
+  NullableModelValueGetOptionalParams,
+  NullableModelValuePutOptionalParams,
+} from "./options.js";
 export { booleanValueGet, booleanValuePut } from "./booleanValue/index.js";
 export { datetimeValueGet, datetimeValuePut } from "./datetimeValue/index.js";
 export { durationValueGet, durationValuePut } from "./durationValue/index.js";

@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { EmptyClient, EmptyClientOptions } from "./emptyClient.js";
+export { EmptyClient } from "./emptyClient.js";
+export { EmptyInput, EmptyOutput, EmptyInputOutput } from "./models/index.js";
 export {
-  EmptyInput,
-  EmptyOutput,
-  EmptyInputOutput,
+  EmptyClientOptions,
   PutEmptyOptionalParams,
   GetEmptyOptionalParams,
   PostRoundTripEmptyOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OptionalClient, OptionalClientOptions } from "./optionalClient.js";
+export { OptionalClient } from "./optionalClient.js";
 export {
   RequiredAndOptionalProperty,
   UnionFloatLiteralProperty,
@@ -17,6 +17,9 @@ export {
   DurationProperty,
   DatetimeProperty,
   BytesProperty,
+} from "./models/index.js";
+export {
+  OptionalClientOptions,
   StringGetAllOptionalParams,
   StringGetDefaultOptionalParams,
   StringPutAllOptionalParams,
@@ -73,7 +76,7 @@ export {
   RequiredAndOptionalGetRequiredOnlyOptionalParams,
   RequiredAndOptionalPutAllOptionalParams,
   RequiredAndOptionalPutRequiredOnlyOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   BooleanLiteralOperations,
   BytesOperations,

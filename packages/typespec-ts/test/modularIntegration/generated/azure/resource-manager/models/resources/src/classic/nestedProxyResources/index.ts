@@ -21,7 +21,7 @@ import {
   NestedProxyResourcesUpdateOptionalParams,
   NestedProxyResourcesDeleteOptionalParams,
   NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a NestedProxyResources operations. */
 export interface NestedProxyResourcesOperations {

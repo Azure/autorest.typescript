@@ -11,7 +11,7 @@ import {
   Decimal128TypeResponseBodyOptionalParams,
   Decimal128TypeRequestBodyOptionalParams,
   Decimal128TypeRequestParameterOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Decimal128Type operations. */
 export interface Decimal128TypeOperations {

@@ -12,10 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  NeverGetOptionalParams,
-  NeverPutOptionalParams,
-} from "../../models/options.js";
+import { NeverGetOptionalParams, NeverPutOptionalParams } from "../options.js";
 
 export function _neverGetSend(
   context: Client,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { AccessClient, AccessClientOptions } from "./accessClient.js";
+export { AccessClient } from "./accessClient.js";
 export {
   BaseModel,
   OuterModel,
@@ -15,6 +15,9 @@ export {
   NoDecoratorModelInPublic,
   PublicDecoratorModelInPublic,
   AbstractModelUnion,
+} from "./models/index.js";
+export {
+  AccessClientOptions,
   NoDecoratorInPublicOptionalParams,
   PublicDecoratorInPublicOptionalParams,
   NoDecoratorInInternalOptionalParams,
@@ -24,4 +27,4 @@ export {
   InternalOptionalParams,
   OperationOptionalParams,
   DiscriminatorOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

@@ -16,7 +16,7 @@ import {
   DecimalTypeResponseBodyOptionalParams,
   DecimalTypeRequestBodyOptionalParams,
   DecimalTypeRequestParameterOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _decimalTypeResponseBodySend(
   context: Client,

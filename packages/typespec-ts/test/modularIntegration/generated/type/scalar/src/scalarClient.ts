@@ -36,8 +36,6 @@ import {
   ScalarContext,
 } from "./api/index.js";
 
-export { ScalarClientOptions } from "./api/scalarContext.js";
-
 export class ScalarClient {
   private _client: ScalarContext;
   /** The pipeline used by this client to make requests */

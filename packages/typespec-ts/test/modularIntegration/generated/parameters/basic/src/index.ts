@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BasicClient, BasicClientOptions } from "./basicClient.js";
+export { BasicClient } from "./basicClient.js";
+export { User } from "./models/index.js";
 export {
-  User,
+  BasicClientOptions,
   ExplicitBodySimpleOptionalParams,
   ImplicitBodySimpleOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   ExplicitBodyOperations,
   ImplicitBodyOperations,

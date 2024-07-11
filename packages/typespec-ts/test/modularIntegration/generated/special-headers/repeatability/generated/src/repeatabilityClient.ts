@@ -4,13 +4,11 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   immediateSuccess,
+  ImmediateSuccessOptionalParams,
   createRepeatability,
   RepeatabilityClientOptions,
   RepeatabilityContext,
 } from "./api/index.js";
-import { ImmediateSuccessOptionalParams } from "./models/options.js";
-
-export { RepeatabilityClientOptions } from "./api/repeatabilityContext.js";
 
 export class RepeatabilityClient {
   private _client: RepeatabilityContext;

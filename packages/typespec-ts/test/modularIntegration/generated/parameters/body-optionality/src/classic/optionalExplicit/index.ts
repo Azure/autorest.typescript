@@ -7,7 +7,7 @@ import { set, omit } from "../../api/optionalExplicit/index.js";
 import {
   OptionalExplicitSetOptionalParams,
   OptionalExplicitOmitOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a OptionalExplicit operations. */
 export interface OptionalExplicitOperations {

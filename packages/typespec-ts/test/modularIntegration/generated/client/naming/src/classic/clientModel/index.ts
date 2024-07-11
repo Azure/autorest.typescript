@@ -7,7 +7,7 @@ import { client, language } from "../../api/clientModel/index.js";
 import {
   ClientModelClientOptionalParams,
   ClientModelLanguageOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ClientModel operations. */
 export interface ClientModelOperations {

@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  SingleDiscriminatorClient,
-  SingleDiscriminatorClientOptions,
-} from "./singleDiscriminatorClient.js";
+export { SingleDiscriminatorClient } from "./singleDiscriminatorClient.js";
 export {
   Bird,
   SeaGull,
@@ -15,6 +12,8 @@ export {
   TRex,
   BirdUnion,
   DinosaurUnion,
+} from "./models/index.js";
+export {
   GetModelOptionalParams,
   PutModelOptionalParams,
   GetRecursiveModelOptionalParams,
@@ -22,4 +21,5 @@ export {
   GetMissingDiscriminatorOptionalParams,
   GetWrongDiscriminatorOptionalParams,
   GetLegacyModelOptionalParams,
-} from "./models/index.js";
+  SingleDiscriminatorClientOptions,
+} from "./api/index.js";

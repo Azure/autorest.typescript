@@ -15,7 +15,7 @@ import {
   RequestBodyCustomContentTypeOptionalParams,
   RequestBodyBase64OptionalParams,
   RequestBodyBase64urlOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a RequestBody operations. */
 export interface RequestBodyOperations {

@@ -3,22 +3,18 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
-import {
-  RenamedOneOptionalParams,
-  RenamedThreeOptionalParams,
-  RenamedFiveOptionalParams,
-} from "./models/options.js";
 import { getGroupOperations, GroupOperations } from "./classic/group/index.js";
 import {
   renamedOne,
   renamedThree,
   renamedFive,
+  RenamedOneOptionalParams,
+  RenamedThreeOptionalParams,
+  RenamedFiveOptionalParams,
   createRenamedOperation,
   RenamedOperationClientOptions,
   ServiceContext,
 } from "./api/index.js";
-
-export { RenamedOperationClientOptions } from "./api/renamedOperationContext.js";
 
 export class RenamedOperationClient {
   private _client: ServiceContext;

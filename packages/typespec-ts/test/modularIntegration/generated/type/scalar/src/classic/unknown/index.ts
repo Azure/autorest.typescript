@@ -6,7 +6,7 @@ import { unknownGet, unknownPut } from "../../api/unknown/index.js";
 import {
   UnknownGetOptionalParams,
   UnknownPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Unknown operations. */
 export interface UnknownOperations {

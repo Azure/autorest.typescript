@@ -7,7 +7,7 @@ import { get, put } from "../../api/spreadModelArray/index.js";
 import {
   SpreadModelArrayGetOptionalParams,
   SpreadModelArrayPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadModelArray operations. */
 export interface SpreadModelArrayOperations {

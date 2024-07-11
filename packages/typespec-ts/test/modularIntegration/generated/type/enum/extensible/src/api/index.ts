@@ -6,3 +6,9 @@ export {
   ExtensibleClientOptions,
   ExtensibleContext,
 } from "./extensibleContext.js";
+export {
+  StringGetKnownValueOptionalParams,
+  StringGetUnknownValueOptionalParams,
+  StringPutKnownValueOptionalParams,
+  StringPutUnknownValueOptionalParams,
+} from "./options.js";

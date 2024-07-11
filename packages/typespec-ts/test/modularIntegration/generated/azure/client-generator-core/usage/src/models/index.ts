@@ -8,8 +8,3 @@ export {
   ResultModel,
   OrphanModel,
 } from "./models.js";
-export {
-  InputToInputOutputOptionalParams,
-  OutputToInputOutputOptionalParams,
-  ModelInReadOnlyPropertyOptionalParams,
-} from "./options.js";

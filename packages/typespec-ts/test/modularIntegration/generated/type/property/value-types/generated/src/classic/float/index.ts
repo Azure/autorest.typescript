@@ -7,7 +7,7 @@ import { floatGet, floatPut } from "../../api/float/index.js";
 import {
   FloatGetOptionalParams,
   FloatPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Float operations. */
 export interface FloatOperations {

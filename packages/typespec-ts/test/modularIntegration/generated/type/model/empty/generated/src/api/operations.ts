@@ -17,7 +17,7 @@ import {
   PutEmptyOptionalParams,
   GetEmptyOptionalParams,
   PostRoundTripEmptyOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _putEmptySend(
   context: Client,

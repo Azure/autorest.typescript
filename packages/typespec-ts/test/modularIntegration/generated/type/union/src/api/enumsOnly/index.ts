@@ -15,7 +15,7 @@ import {
 import {
   EnumsOnlyGetOptionalParams,
   EnumsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _enumsOnlyGetSend(
   context: Client,

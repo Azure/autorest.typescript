@@ -4,16 +4,6 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { DogUnion, SnakeUnion } from "./models/models.js";
 import {
-  GetExtensibleModelOptionalParams,
-  PutExtensibleModelOptionalParams,
-  GetExtensibleModelMissingDiscriminatorOptionalParams,
-  GetExtensibleModelWrongDiscriminatorOptionalParams,
-  GetFixedModelOptionalParams,
-  PutFixedModelOptionalParams,
-  GetFixedModelMissingDiscriminatorOptionalParams,
-  GetFixedModelWrongDiscriminatorOptionalParams,
-} from "./models/options.js";
-import {
   createEnumDiscriminator,
   EnumDiscriminatorClientOptions,
   EnumDiscriminatorContext,
@@ -25,9 +15,15 @@ import {
   putFixedModel,
   getFixedModelMissingDiscriminator,
   getFixedModelWrongDiscriminator,
+  GetExtensibleModelOptionalParams,
+  PutExtensibleModelOptionalParams,
+  GetExtensibleModelMissingDiscriminatorOptionalParams,
+  GetExtensibleModelWrongDiscriminatorOptionalParams,
+  GetFixedModelOptionalParams,
+  PutFixedModelOptionalParams,
+  GetFixedModelMissingDiscriminatorOptionalParams,
+  GetFixedModelWrongDiscriminatorOptionalParams,
 } from "./api/index.js";
-
-export { EnumDiscriminatorClientOptions } from "./api/enumDiscriminatorContext.js";
 
 export class EnumDiscriminatorClient {
   private _client: EnumDiscriminatorContext;

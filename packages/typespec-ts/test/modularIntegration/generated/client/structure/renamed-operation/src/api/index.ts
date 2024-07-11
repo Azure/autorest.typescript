@@ -3,6 +3,14 @@
 
 export { renamedOne, renamedThree, renamedFive } from "./operations.js";
 export {
+  RenamedOneOptionalParams,
+  RenamedThreeOptionalParams,
+  RenamedFiveOptionalParams,
+  GroupRenamedTwoOptionalParams,
+  GroupRenamedFourOptionalParams,
+  GroupRenamedSixOptionalParams,
+} from "./options.js";
+export {
   createRenamedOperation,
   RenamedOperationClientOptions,
   ServiceContext,

@@ -10,7 +10,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ValidOptionalParams } from "../models/options.js";
+import { ValidOptionalParams } from "./options.js";
 
 export function _validSend(
   context: Client,

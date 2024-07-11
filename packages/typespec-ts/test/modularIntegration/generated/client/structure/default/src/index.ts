@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ServiceClient, ServiceClientOptions } from "./serviceClient.js";
+export { ServiceClient } from "./serviceClient.js";
+export { ClientType } from "./models/index.js";
 export {
-  ClientType,
   OneOptionalParams,
   TwoOptionalParams,
   BazFooSevenOptionalParams,
@@ -13,7 +13,8 @@ export {
   FooFourOptionalParams,
   BarFiveOptionalParams,
   BarSixOptionalParams,
-} from "./models/index.js";
+  ServiceClientOptions,
+} from "./api/index.js";
 export {
   BarOperations,
   BazOperations,

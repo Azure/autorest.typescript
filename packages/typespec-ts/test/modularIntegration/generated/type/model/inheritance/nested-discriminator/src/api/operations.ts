@@ -23,7 +23,7 @@ import {
   PutRecursiveModelOptionalParams,
   GetMissingDiscriminatorOptionalParams,
   GetWrongDiscriminatorOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _getModelSend(
   context: Client,

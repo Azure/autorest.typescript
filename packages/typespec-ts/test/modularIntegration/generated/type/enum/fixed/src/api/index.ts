@@ -6,3 +6,8 @@ export {
   FixedClientOptions,
   FixedContext,
 } from "./fixedContext.js";
+export {
+  StringGetKnownValueOptionalParams,
+  StringPutKnownValueOptionalParams,
+  StringPutUnknownValueOptionalParams,
+} from "./options.js";

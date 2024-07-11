@@ -32,7 +32,7 @@ import {
   PutFixedModelOptionalParams,
   GetFixedModelMissingDiscriminatorOptionalParams,
   GetFixedModelWrongDiscriminatorOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _getExtensibleModelSend(
   context: Client,

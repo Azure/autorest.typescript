@@ -16,8 +16,6 @@ import {
   ResourcesContext,
 } from "./api/index.js";
 
-export { ResourcesClientOptions } from "./api/resourcesContext.js";
-
 export class ResourcesClient {
   private _client: ResourcesContext;
   /** The pipeline used by this client to make requests */

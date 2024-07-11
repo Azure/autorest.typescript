@@ -13,7 +13,7 @@ import {
   ResponseHeaderRfc3339OptionalParams,
   ResponseHeaderRfc7231OptionalParams,
   ResponseHeaderUnixTimestampOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ResponseHeader operations. */
 export interface ResponseHeaderOperations {

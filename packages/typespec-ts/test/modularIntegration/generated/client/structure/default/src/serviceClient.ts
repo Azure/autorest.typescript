@@ -3,7 +3,6 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
-import { OneOptionalParams, TwoOptionalParams } from "./models/options.js";
 import { getBazOperations, BazOperations } from "./classic/baz/index.js";
 import { getQuxOperations, QuxOperations } from "./classic/qux/index.js";
 import { getFooOperations, FooOperations } from "./classic/foo/index.js";
@@ -11,12 +10,12 @@ import { getBarOperations, BarOperations } from "./classic/bar/index.js";
 import {
   one,
   two,
+  OneOptionalParams,
+  TwoOptionalParams,
   createService,
   ServiceClientOptions,
   ServiceContext,
 } from "./api/index.js";
-
-export { ServiceClientOptions } from "./api/serviceContext.js";
 
 export class ServiceClient {
   private _client: ServiceContext;

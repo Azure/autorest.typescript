@@ -15,7 +15,7 @@ import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   Float32ValueGetOptionalParams,
   Float32ValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getSend(
   context: Client,

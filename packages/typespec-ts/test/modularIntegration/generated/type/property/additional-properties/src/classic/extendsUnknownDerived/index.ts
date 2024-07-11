@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsUnknownDerived/index.js";
 import {
   ExtendsUnknownDerivedGetOptionalParams,
   ExtendsUnknownDerivedPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsUnknownDerived operations. */
 export interface ExtendsUnknownDerivedOperations {

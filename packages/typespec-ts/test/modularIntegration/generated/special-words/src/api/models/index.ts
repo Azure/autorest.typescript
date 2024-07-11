@@ -111,7 +111,7 @@ import {
   ModelsWithWhileOptionalParams,
   ModelsWithWithOptionalParams,
   ModelsWithYieldOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _modelsWithAndSend(
   context: Client,

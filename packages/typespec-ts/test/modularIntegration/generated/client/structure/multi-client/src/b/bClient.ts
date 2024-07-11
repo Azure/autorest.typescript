@@ -2,12 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { ClientType } from "./models/models.js";
-import {
-  RenamedTwoOptionalParams,
-  RenamedFourOptionalParams,
-  RenamedSixOptionalParams,
-} from "./models/options.js";
+import { ClientType } from "./../models/models.js";
 import {
   createB,
   BClientOptions,
@@ -15,9 +10,10 @@ import {
   renamedTwo,
   renamedFour,
   renamedSix,
+  RenamedTwoOptionalParams,
+  RenamedFourOptionalParams,
+  RenamedSixOptionalParams,
 } from "./api/index.js";
-
-export { BClientOptions } from "./api/bContext.js";
 
 export class BClient {
   private _client: ServiceContext;

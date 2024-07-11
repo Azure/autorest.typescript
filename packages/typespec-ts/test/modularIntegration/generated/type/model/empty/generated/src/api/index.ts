@@ -7,3 +7,8 @@ export {
   EmptyContext,
 } from "./emptyContext.js";
 export { putEmpty, getEmpty, postRoundTripEmpty } from "./operations.js";
+export {
+  PutEmptyOptionalParams,
+  GetEmptyOptionalParams,
+  PostRoundTripEmptyOptionalParams,
+} from "./options.js";

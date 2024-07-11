@@ -19,7 +19,7 @@ import {
   CollectionsStringGetNullOptionalParams,
   CollectionsStringPatchNonNullOptionalParams,
   CollectionsStringPatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getNonNullSend(
   context: Client,

@@ -2,6 +2,16 @@
 // Licensed under the MIT license.
 
 export {
+  ModelSpreadAsRequestBodyOptionalParams,
+  ModelSpreadCompositeRequestOnlyWithBodyOptionalParams,
+  ModelSpreadCompositeRequestWithoutBodyOptionalParams,
+  ModelSpreadCompositeRequestOptionalParams,
+  ModelSpreadCompositeRequestMixOptionalParams,
+  AliasSpreadAsRequestBodyOptionalParams,
+  AliasSpreadAsRequestParameterOptionalParams,
+  AliasSpreadWithMultipleParametersOptionalParams,
+} from "./options.js";
+export {
   createSpread,
   SpreadClientOptions,
   SpreadContext,

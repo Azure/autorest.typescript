@@ -14,7 +14,7 @@ import {
 import {
   IntsOnlyGetOptionalParams,
   IntsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _intsOnlyGetSend(
   context: Client,

@@ -3,15 +3,13 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { Versions } from "./models/models.js";
-import { TestOptionalParams } from "./models/options.js";
 import {
   test,
+  TestOptionalParams,
   createReturnTypeChangedFrom,
   ReturnTypeChangedFromClientOptions,
   ReturnTypeChangedFromContext,
 } from "./api/index.js";
-
-export { ReturnTypeChangedFromClientOptions } from "./api/returnTypeChangedFromContext.js";
 
 export class ReturnTypeChangedFromClient {
   private _client: ReturnTypeChangedFromContext;

@@ -60,8 +60,6 @@ import {
 } from "./classic/nullableModelValue/index.js";
 import { createArray, ArrayClientOptions, ArrayContext } from "./api/index.js";
 
-export { ArrayClientOptions } from "./api/arrayContext.js";
-
 export class ArrayClient {
   private _client: ArrayContext;
   /** The pipeline used by this client to make requests */

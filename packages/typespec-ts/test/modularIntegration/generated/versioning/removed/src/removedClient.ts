@@ -3,15 +3,13 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ModelV2, Versions } from "./models/models.js";
-import { V2OptionalParams } from "./models/options.js";
 import {
   v2,
+  V2OptionalParams,
   createRemoved,
   RemovedClientOptions,
   RemovedContext,
 } from "./api/index.js";
-
-export { RemovedClientOptions } from "./api/removedContext.js";
 
 export class RemovedClient {
   private _client: RemovedContext;

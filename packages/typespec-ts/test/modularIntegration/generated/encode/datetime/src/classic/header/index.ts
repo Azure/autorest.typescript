@@ -15,7 +15,7 @@ import {
   HeaderRfc7231OptionalParams,
   HeaderUnixTimestampOptionalParams,
   HeaderUnixTimestampArrayOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Header operations. */
 export interface HeaderOperations {

@@ -15,7 +15,7 @@ import {
   QueryTsvOptionalParams,
   QueryPipesOptionalParams,
   QueryCsvOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Query operations. */
 export interface QueryOperations {

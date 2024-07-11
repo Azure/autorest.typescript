@@ -4,15 +4,13 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { GenerationOptions, GenerationResult } from "./models/models.js";
-import { LongRunningRpcOptionalParams } from "./models/options.js";
 import {
   longRunningRpc,
+  LongRunningRpcOptionalParams,
   createRpc,
   RpcClientOptions,
   RpcContext,
 } from "./api/index.js";
-
-export { RpcClientOptions } from "./api/rpcContext.js";
 
 export class RpcClient {
   private _client: RpcContext;

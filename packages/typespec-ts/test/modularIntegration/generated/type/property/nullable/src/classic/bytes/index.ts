@@ -14,7 +14,7 @@ import {
   BytesGetNullOptionalParams,
   BytesPatchNonNullOptionalParams,
   BytesPatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Bytes operations. */
 export interface BytesOperations {

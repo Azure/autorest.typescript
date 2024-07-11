@@ -4,20 +4,16 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { EmptyInput, EmptyOutput, EmptyInputOutput } from "./models/models.js";
 import {
-  PutEmptyOptionalParams,
-  GetEmptyOptionalParams,
-  PostRoundTripEmptyOptionalParams,
-} from "./models/options.js";
-import {
   createEmpty,
   EmptyClientOptions,
   EmptyContext,
   putEmpty,
   getEmpty,
   postRoundTripEmpty,
+  PutEmptyOptionalParams,
+  GetEmptyOptionalParams,
+  PostRoundTripEmptyOptionalParams,
 } from "./api/index.js";
-
-export { EmptyClientOptions } from "./api/emptyContext.js";
 
 export class EmptyClient {
   private _client: EmptyContext;

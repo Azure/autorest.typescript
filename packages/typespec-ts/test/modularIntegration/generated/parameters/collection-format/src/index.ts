@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { CollectionFormatClient } from "./collectionFormatClient.js";
 export {
-  CollectionFormatClient,
   CollectionFormatClientOptions,
-} from "./collectionFormatClient.js";
-export {
   QueryMultiOptionalParams,
   QuerySsvOptionalParams,
   QueryTsvOptionalParams,
   QueryPipesOptionalParams,
   QueryCsvOptionalParams,
   HeaderCsvOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export { HeaderOperations, QueryOperations } from "./classic/index.js";

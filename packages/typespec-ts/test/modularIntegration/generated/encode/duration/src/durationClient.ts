@@ -17,8 +17,6 @@ import {
   DurationContext,
 } from "./api/index.js";
 
-export { DurationClientOptions } from "./api/durationContext.js";
-
 export class DurationClient {
   private _client: DurationContext;
   /** The pipeline used by this client to make requests */

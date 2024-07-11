@@ -21,8 +21,6 @@ import {
 } from "./classic/responseBody/index.js";
 import { createBytes, BytesClientOptions, BytesContext } from "./api/index.js";
 
-export { BytesClientOptions } from "./api/bytesContext.js";
-
 export class BytesClient {
   private _client: BytesContext;
   /** The pipeline used by this client to make requests */

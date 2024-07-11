@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsString/index.js";
 import {
   ExtendsStringGetOptionalParams,
   ExtendsStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsString operations. */
 export interface ExtendsStringOperations {

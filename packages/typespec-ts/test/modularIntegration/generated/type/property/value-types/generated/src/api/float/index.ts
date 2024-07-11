@@ -12,10 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  FloatGetOptionalParams,
-  FloatPutOptionalParams,
-} from "../../models/options.js";
+import { FloatGetOptionalParams, FloatPutOptionalParams } from "../options.js";
 
 export function _floatGetSend(
   context: Client,

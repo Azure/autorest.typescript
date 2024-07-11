@@ -14,7 +14,7 @@ import {
   FloatLiteralGetDefaultOptionalParams,
   FloatLiteralPutAllOptionalParams,
   FloatLiteralPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a FloatLiteral operations. */
 export interface FloatLiteralOperations {

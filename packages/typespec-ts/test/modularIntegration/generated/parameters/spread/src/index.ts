@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { SpreadClient, SpreadClientOptions } from "./spreadClient.js";
+export { SpreadClient } from "./spreadClient.js";
+export { BodyParameter, CompositeRequestMix } from "./models/index.js";
 export {
-  BodyParameter,
-  CompositeRequestMix,
   ModelSpreadAsRequestBodyOptionalParams,
   ModelSpreadCompositeRequestOnlyWithBodyOptionalParams,
   ModelSpreadCompositeRequestWithoutBodyOptionalParams,
@@ -13,5 +12,6 @@ export {
   AliasSpreadAsRequestBodyOptionalParams,
   AliasSpreadAsRequestParameterOptionalParams,
   AliasSpreadWithMultipleParametersOptionalParams,
-} from "./models/index.js";
+  SpreadClientOptions,
+} from "./api/index.js";
 export { AliasOperations, ModelOperations } from "./classic/index.js";

@@ -20,7 +20,7 @@ import {
   InputOptionalParams,
   OutputOptionalParams,
   InputAndOutputOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _inputSend(
   context: Client,

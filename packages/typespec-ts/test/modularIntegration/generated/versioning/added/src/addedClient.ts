@@ -4,20 +4,16 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ModelV1, ModelV2, Versions } from "./models/models.js";
 import {
-  V1OptionalParams,
-  V2OptionalParams,
-  V2InInterfaceOptionalParams,
-} from "./models/options.js";
-import {
   createAdded,
   AddedClientOptions,
   AddedContext,
   v1,
   v2,
   v2InInterface,
+  V1OptionalParams,
+  V2OptionalParams,
+  V2InInterfaceOptionalParams,
 } from "./api/index.js";
-
-export { AddedClientOptions } from "./api/addedContext.js";
 
 export class AddedClient {
   private _client: AddedContext;

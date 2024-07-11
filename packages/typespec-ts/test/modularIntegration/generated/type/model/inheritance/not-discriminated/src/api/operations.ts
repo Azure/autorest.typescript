@@ -17,7 +17,7 @@ import {
   PostValidOptionalParams,
   GetValidOptionalParams,
   PutValidOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _postValidSend(
   context: Client,

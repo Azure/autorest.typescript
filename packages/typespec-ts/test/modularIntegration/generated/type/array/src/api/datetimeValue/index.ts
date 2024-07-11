@@ -14,7 +14,7 @@ import {
 import {
   DatetimeValueGetOptionalParams,
   DatetimeValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _datetimeValueGetSend(
   context: Client,

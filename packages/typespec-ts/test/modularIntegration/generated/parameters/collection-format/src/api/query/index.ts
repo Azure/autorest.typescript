@@ -24,7 +24,7 @@ import {
   QueryTsvOptionalParams,
   QueryPipesOptionalParams,
   QueryCsvOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _queryMultiSend(
   context: Client,

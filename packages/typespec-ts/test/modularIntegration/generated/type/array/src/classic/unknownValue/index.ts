@@ -9,7 +9,7 @@ import {
 import {
   UnknownValueGetOptionalParams,
   UnknownValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a UnknownValue operations. */
 export interface UnknownValueOperations {

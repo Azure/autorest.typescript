@@ -7,3 +7,4 @@ export {
   OAuth2Context,
 } from "./oAuth2Context.js";
 export { valid, invalid } from "./operations.js";
+export { ValidOptionalParams, InvalidOptionalParams } from "./options.js";

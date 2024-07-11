@@ -3,7 +3,7 @@
 
 import { ServiceContext } from "../../../api/serviceContext.js";
 import { seven } from "../../../api/baz/foo/index.js";
-import { BazFooSevenOptionalParams } from "../../../models/options.js";
+import { BazFooSevenOptionalParams } from "../../../api/options.js";
 
 /** Interface representing a BazFoo operations. */
 export interface BazFooOperations {

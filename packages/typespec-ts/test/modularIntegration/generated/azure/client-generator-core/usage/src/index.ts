@@ -1,14 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { UsageClient, UsageClientOptions } from "./usageClient.js";
+export { UsageClient } from "./usageClient.js";
 export {
   InputModel,
   OutputModel,
   RoundTripModel,
   ResultModel,
   OrphanModel,
+} from "./models/index.js";
+export {
   InputToInputOutputOptionalParams,
   OutputToInputOutputOptionalParams,
   ModelInReadOnlyPropertyOptionalParams,
-} from "./models/index.js";
+  UsageClientOptions,
+} from "./api/index.js";

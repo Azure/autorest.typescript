@@ -10,7 +10,7 @@ import {
 import {
   CollectionsIntGetOptionalParams,
   CollectionsIntPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a CollectionsInt operations. */
 export interface CollectionsIntOperations {

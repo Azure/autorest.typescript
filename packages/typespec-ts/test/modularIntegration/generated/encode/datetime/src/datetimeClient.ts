@@ -21,8 +21,6 @@ import {
   DatetimeContext,
 } from "./api/index.js";
 
-export { DatetimeClientOptions } from "./api/datetimeContext.js";
-
 export class DatetimeClient {
   private _client: DatetimeContext;
   /** The pipeline used by this client to make requests */

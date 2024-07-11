@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  NotDefinedClient,
-  NotDefinedClientOptions,
-} from "./notDefinedClient.js";
-export { ValidOptionalParams } from "./models/index.js";
+export { NotDefinedClient } from "./notDefinedClient.js";
+export { NotDefinedClientOptions, ValidOptionalParams } from "./api/index.js";

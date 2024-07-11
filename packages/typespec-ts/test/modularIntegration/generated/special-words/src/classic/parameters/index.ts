@@ -73,7 +73,7 @@ import {
   ParametersWithWithOptionalParams,
   ParametersWithYieldOptionalParams,
   ParametersWithCancellationTokenOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Parameters operations. */
 export interface ParametersOperations {

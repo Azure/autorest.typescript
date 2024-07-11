@@ -4,7 +4,7 @@
 import { SpecialWordsContext } from "../../api/specialWordsContext.js";
 import { SameAsModel } from "../../models/models.js";
 import { modelPropertiesSameAsModel } from "../../api/modelProperties/index.js";
-import { ModelPropertiesSameAsModelOptionalParams } from "../../models/options.js";
+import { ModelPropertiesSameAsModelOptionalParams } from "../../api/options.js";
 
 /** Interface representing a ModelProperties operations. */
 export interface ModelPropertiesOperations {

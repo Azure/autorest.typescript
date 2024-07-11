@@ -4,18 +4,14 @@
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  ValidOptionalParams,
-  InvalidOptionalParams,
-} from "./models/options.js";
-import {
   createApiKey,
   ApiKeyClientOptions,
   ApiKeyContext,
   valid,
   invalid,
+  ValidOptionalParams,
+  InvalidOptionalParams,
 } from "./api/index.js";
-
-export { ApiKeyClientOptions } from "./api/apiKeyContext.js";
 
 export class ApiKeyClient {
   private _client: ApiKeyContext;

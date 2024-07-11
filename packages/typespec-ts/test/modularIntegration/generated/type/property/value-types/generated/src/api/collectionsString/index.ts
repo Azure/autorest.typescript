@@ -15,7 +15,7 @@ import {
 import {
   CollectionsStringGetOptionalParams,
   CollectionsStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _collectionsStringGetSend(
   context: Client,

@@ -15,7 +15,7 @@ import {
 import {
   UnionEnumUnionEnumNameOptionalParams,
   UnionEnumUnionEnumMemberNameOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _unionEnumNameSend(
   context: Client,

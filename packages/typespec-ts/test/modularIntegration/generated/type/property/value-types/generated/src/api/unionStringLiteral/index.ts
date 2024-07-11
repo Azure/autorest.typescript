@@ -15,7 +15,7 @@ import {
 import {
   UnionStringLiteralGetOptionalParams,
   UnionStringLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _unionStringLiteralGetSend(
   context: Client,

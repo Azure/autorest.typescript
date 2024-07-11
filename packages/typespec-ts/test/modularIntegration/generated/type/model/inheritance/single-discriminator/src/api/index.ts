@@ -11,6 +11,15 @@ export {
   getLegacyModel,
 } from "./operations.js";
 export {
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
+  GetLegacyModelOptionalParams,
+} from "./options.js";
+export {
   createSingleDiscriminator,
   SingleDiscriminatorClientOptions,
   SingleDiscriminatorContext,

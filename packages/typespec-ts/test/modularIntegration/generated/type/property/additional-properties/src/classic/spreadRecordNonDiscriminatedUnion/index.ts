@@ -7,7 +7,7 @@ import { get, put } from "../../api/spreadRecordNonDiscriminatedUnion/index.js";
 import {
   SpreadRecordNonDiscriminatedUnionGetOptionalParams,
   SpreadRecordNonDiscriminatedUnionPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadRecordNonDiscriminatedUnion operations. */
 export interface SpreadRecordNonDiscriminatedUnionOperations {

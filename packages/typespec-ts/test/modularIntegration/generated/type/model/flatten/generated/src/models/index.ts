@@ -7,7 +7,3 @@ export {
   NestedFlattenModel,
   ChildFlattenModel,
 } from "./models.js";
-export {
-  PutFlattenModelOptionalParams,
-  PutNestedFlattenModelOptionalParams,
-} from "./options.js";

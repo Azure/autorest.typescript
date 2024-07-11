@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { AClient, AClientOptions } from "./aClient.js";
+export { AClient } from "./aClient.js";
+export { ClientType } from "../models/index.js";
 export {
-  ClientType,
+  AClientOptions,
   RenamedOneOptionalParams,
   RenamedThreeOptionalParams,
   RenamedFiveOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

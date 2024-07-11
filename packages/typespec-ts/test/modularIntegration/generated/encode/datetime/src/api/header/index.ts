@@ -21,7 +21,7 @@ import {
   HeaderRfc7231OptionalParams,
   HeaderUnixTimestampOptionalParams,
   HeaderUnixTimestampArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _headerDefaultSend(
   context: Client,

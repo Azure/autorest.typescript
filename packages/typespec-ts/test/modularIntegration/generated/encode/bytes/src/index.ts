@@ -1,12 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BytesClient, BytesClientOptions } from "./bytesClient.js";
+export { BytesClient } from "./bytesClient.js";
 export {
   DefaultBytesProperty,
   Base64BytesProperty,
   Base64urlBytesProperty,
   Base64urlArrayBytesProperty,
+} from "./models/index.js";
+export {
+  BytesClientOptions,
   QueryDefaultOptionalParams,
   QueryBase64OptionalParams,
   QueryBase64urlOptionalParams,
@@ -29,7 +32,7 @@ export {
   ResponseBodyCustomContentTypeOptionalParams,
   ResponseBodyBase64OptionalParams,
   ResponseBodyBase64urlOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   HeaderOperations,
   PropertyOperations,

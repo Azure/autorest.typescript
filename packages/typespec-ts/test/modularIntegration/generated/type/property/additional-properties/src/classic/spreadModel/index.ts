@@ -7,7 +7,7 @@ import { get, put } from "../../api/spreadModel/index.js";
 import {
   SpreadModelGetOptionalParams,
   SpreadModelPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadModel operations. */
 export interface SpreadModelOperations {

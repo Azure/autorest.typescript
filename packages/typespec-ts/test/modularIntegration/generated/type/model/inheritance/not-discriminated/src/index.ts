@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { NotDiscriminatedClient } from "./notDiscriminatedClient.js";
+export { Pet, Cat, Siamese } from "./models/index.js";
 export {
-  NotDiscriminatedClient,
   NotDiscriminatedClientOptions,
-} from "./notDiscriminatedClient.js";
-export {
-  Pet,
-  Cat,
-  Siamese,
   PostValidOptionalParams,
   GetValidOptionalParams,
   PutValidOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

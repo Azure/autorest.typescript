@@ -4,14 +4,6 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { FishUnion } from "./models/models.js";
 import {
-  GetModelOptionalParams,
-  PutModelOptionalParams,
-  GetRecursiveModelOptionalParams,
-  PutRecursiveModelOptionalParams,
-  GetMissingDiscriminatorOptionalParams,
-  GetWrongDiscriminatorOptionalParams,
-} from "./models/options.js";
-import {
   createNestedDiscriminator,
   NestedDiscriminatorClientOptions,
   NestedDiscriminatorContext,
@@ -21,9 +13,13 @@ import {
   putRecursiveModel,
   getMissingDiscriminator,
   getWrongDiscriminator,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
 } from "./api/index.js";
-
-export { NestedDiscriminatorClientOptions } from "./api/nestedDiscriminatorContext.js";
 
 export class NestedDiscriminatorClient {
   private _client: NestedDiscriminatorContext;

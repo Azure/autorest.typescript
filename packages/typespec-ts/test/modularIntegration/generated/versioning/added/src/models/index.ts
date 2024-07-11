@@ -10,8 +10,3 @@ export {
   UnionV1,
   UnionV2,
 } from "./models.js";
-export {
-  V1OptionalParams,
-  V2OptionalParams,
-  V2InInterfaceOptionalParams,
-} from "./options.js";

@@ -11,7 +11,7 @@ import {
   AliasSpreadAsRequestBodyOptionalParams,
   AliasSpreadAsRequestParameterOptionalParams,
   AliasSpreadWithMultipleParametersOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Alias operations. */
 export interface AliasOperations {

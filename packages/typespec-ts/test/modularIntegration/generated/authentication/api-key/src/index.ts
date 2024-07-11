@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ApiKeyClient, ApiKeyClientOptions } from "./apiKeyClient.js";
+export { ApiKeyClient } from "./apiKeyClient.js";
+export { InvalidAuth } from "./models/index.js";
 export {
-  InvalidAuth,
+  ApiKeyClientOptions,
   ValidOptionalParams,
   InvalidOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

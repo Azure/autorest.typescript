@@ -16,7 +16,7 @@ import {
   ModelSpreadCompositeRequestWithoutBodyOptionalParams,
   ModelSpreadCompositeRequestOptionalParams,
   ModelSpreadCompositeRequestMixOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Model operations. */
 export interface ModelOperations {

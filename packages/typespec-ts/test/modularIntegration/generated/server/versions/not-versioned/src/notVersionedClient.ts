@@ -9,14 +9,10 @@ import {
   withoutApiVersion,
   withQueryApiVersion,
   withPathApiVersion,
-} from "./api/index.js";
-import {
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
-} from "./models/options.js";
-
-export { NotVersionedClientOptions } from "./api/notVersionedContext.js";
+} from "./api/index.js";
 
 export class NotVersionedClient {
   private _client: NotVersionedContext;

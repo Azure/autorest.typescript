@@ -4,7 +4,7 @@
 import { BasicContext } from "../../api/basicContext.js";
 import { User } from "../../models/models.js";
 import { explicitBodySimple } from "../../api/explicitBody/index.js";
-import { ExplicitBodySimpleOptionalParams } from "../../models/options.js";
+import { ExplicitBodySimpleOptionalParams } from "../../api/options.js";
 
 /** Interface representing a ExplicitBody operations. */
 export interface ExplicitBodyOperations {

@@ -9,20 +9,6 @@ import {
   SecondItem,
 } from "./models/models.js";
 import {
-  CreateOrUpdateOptionalParams,
-  CreateOrReplaceOptionalParams,
-  GetOptionalParams,
-  ListOptionalParams,
-  ListWithPageOptionalParams,
-  ListWithParametersOptionalParams,
-  ListWithCustomPageModelOptionalParams,
-  DeleteOptionalParams,
-  ExportOptionalParams,
-  ListFirstItemOptionalParams,
-  ListSecondItemOptionalParams,
-} from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
-import {
   createBasic,
   BasicClientOptions,
   BasicContext,
@@ -37,9 +23,19 @@ import {
   $export,
   listFirstItem,
   listSecondItem,
+  CreateOrUpdateOptionalParams,
+  CreateOrReplaceOptionalParams,
+  GetOptionalParams,
+  ListOptionalParams,
+  ListWithPageOptionalParams,
+  ListWithParametersOptionalParams,
+  ListWithCustomPageModelOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
+  ListFirstItemOptionalParams,
+  ListSecondItemOptionalParams,
 } from "./api/index.js";
-
-export { BasicClientOptions } from "./api/basicContext.js";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 export class BasicClient {
   private _client: BasicContext;

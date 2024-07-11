@@ -24,8 +24,6 @@ import {
   SpecialWordsContext,
 } from "./api/index.js";
 
-export { SpecialWordsClientOptions } from "./api/specialWordsContext.js";
-
 export class SpecialWordsClient {
   private _client: SpecialWordsContext;
   /** The pipeline used by this client to make requests */

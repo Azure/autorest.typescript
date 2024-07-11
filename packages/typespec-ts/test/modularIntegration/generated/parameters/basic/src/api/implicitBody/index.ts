@@ -10,7 +10,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ImplicitBodySimpleOptionalParams } from "../../models/options.js";
+import { ImplicitBodySimpleOptionalParams } from "../options.js";
 
 export function _implicitBodySimpleSend(
   context: Client,

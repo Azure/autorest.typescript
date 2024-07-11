@@ -7,7 +7,7 @@ import { enumGet, enumPut } from "../../api/enum/index.js";
 import {
   EnumGetOptionalParams,
   EnumPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Enum operations. */
 export interface EnumOperations {

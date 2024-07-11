@@ -7,7 +7,7 @@ import {
   Group2TwoOptionalParams,
   Group2FiveOptionalParams,
   Group2SixOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Group2 operations. */
 export interface Group2Operations {

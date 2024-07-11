@@ -1,17 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { ContentNegotiationClient } from "./contentNegotiationClient.js";
+export { PngImageAsJson } from "./models/index.js";
 export {
-  ContentNegotiationClient,
   ContentNegotiationClientOptions,
-} from "./contentNegotiationClient.js";
-export {
-  PngImageAsJson,
   SameBodyGetAvatarAsPngOptionalParams,
   SameBodyGetAvatarAsJpegOptionalParams,
   DifferentBodyGetAvatarAsPngOptionalParams,
   DifferentBodyGetAvatarAsJsonOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   DifferentBodyOperations,
   SameBodyOperations,

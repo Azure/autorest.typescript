@@ -6,7 +6,7 @@ import { stringGet, stringPut } from "../../api/string/index.js";
 import {
   StringGetOptionalParams,
   StringPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a String operations. */
 export interface StringOperations {

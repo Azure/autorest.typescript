@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { UnionClient, UnionClientOptions } from "./unionClient.js";
+export { UnionClient } from "./unionClient.js";
 export {
   MixedTypesCases,
   Cat,
@@ -13,6 +13,8 @@ export {
   Dog,
   KnownStringExtensibleNamedUnion,
   StringExtensibleNamedUnion,
+} from "./models/index.js";
+export {
   StringsOnlyGetOptionalParams,
   StringsOnlySendOptionalParams,
   StringExtensibleGetOptionalParams,
@@ -33,7 +35,8 @@ export {
   MixedLiteralsSendOptionalParams,
   MixedTypesGetOptionalParams,
   MixedTypesSendOptionalParams,
-} from "./models/index.js";
+  UnionClientOptions,
+} from "./api/index.js";
 export {
   EnumsOnlyOperations,
   FloatsOnlyOperations,

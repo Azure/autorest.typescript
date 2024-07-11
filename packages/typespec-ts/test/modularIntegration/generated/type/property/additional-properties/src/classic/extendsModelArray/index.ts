@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsModelArray/index.js";
 import {
   ExtendsModelArrayGetOptionalParams,
   ExtendsModelArrayPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsModelArray operations. */
 export interface ExtendsModelArrayOperations {

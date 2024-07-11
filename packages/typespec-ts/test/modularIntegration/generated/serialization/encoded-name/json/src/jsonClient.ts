@@ -3,16 +3,15 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { JsonEncodedNameModel } from "./models/models.js";
-import { SendOptionalParams, GetOptionalParams } from "./models/options.js";
 import {
   createJson,
   JsonClientOptions,
   JsonContext,
   send,
   get,
+  SendOptionalParams,
+  GetOptionalParams,
 } from "./api/index.js";
-
-export { JsonClientOptions } from "./api/jsonContext.js";
 
 export class JsonClient {
   private _client: JsonContext;

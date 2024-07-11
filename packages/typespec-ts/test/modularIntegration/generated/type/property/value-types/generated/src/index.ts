@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  ValueTypesClient,
-  ValueTypesClientOptions,
-} from "./valueTypesClient.js";
+export { ValueTypesClient } from "./valueTypesClient.js";
 export {
   UnionEnumValueProperty,
   ExtendedEnum,
@@ -39,6 +36,8 @@ export {
   BytesProperty,
   StringProperty,
   BooleanProperty,
+} from "./models/index.js";
+export {
   BooleanGetOptionalParams,
   BooleanPutOptionalParams,
   StringGetOptionalParams,
@@ -97,7 +96,8 @@ export {
   UnionFloatLiteralPutOptionalParams,
   UnionEnumValueGetOptionalParams,
   UnionEnumValuePutOptionalParams,
-} from "./models/index.js";
+  ValueTypesClientOptions,
+} from "./api/index.js";
 export {
   BooleanOperations,
   BooleanLiteralOperations,

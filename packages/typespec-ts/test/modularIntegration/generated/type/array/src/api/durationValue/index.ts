@@ -14,7 +14,7 @@ import {
 import {
   DurationValueGetOptionalParams,
   DurationValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _durationValueGetSend(
   context: Client,

@@ -8,8 +8,6 @@ import {
 } from "./classic/string/index.js";
 import { createFixed, FixedClientOptions, FixedContext } from "./api/index.js";
 
-export { FixedClientOptions } from "./api/fixedContext.js";
-
 export class FixedClient {
   private _client: FixedContext;
   /** The pipeline used by this client to make requests */

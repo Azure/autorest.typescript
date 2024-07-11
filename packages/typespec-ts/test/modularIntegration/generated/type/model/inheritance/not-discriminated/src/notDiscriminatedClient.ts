@@ -4,20 +4,16 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { Siamese } from "./models/models.js";
 import {
-  PostValidOptionalParams,
-  GetValidOptionalParams,
-  PutValidOptionalParams,
-} from "./models/options.js";
-import {
   createNotDiscriminated,
   NotDiscriminatedClientOptions,
   NotDiscriminatedContext,
   postValid,
   getValid,
   putValid,
+  PostValidOptionalParams,
+  GetValidOptionalParams,
+  PutValidOptionalParams,
 } from "./api/index.js";
-
-export { NotDiscriminatedClientOptions } from "./api/notDiscriminatedContext.js";
 
 export class NotDiscriminatedClient {
   private _client: NotDiscriminatedContext;

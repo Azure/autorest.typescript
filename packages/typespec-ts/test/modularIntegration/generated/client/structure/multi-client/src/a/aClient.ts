@@ -2,12 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { ClientType } from "./models/models.js";
-import {
-  RenamedOneOptionalParams,
-  RenamedThreeOptionalParams,
-  RenamedFiveOptionalParams,
-} from "./models/options.js";
+import { ClientType } from "./../models/models.js";
 import {
   createA,
   AClientOptions,
@@ -15,9 +10,10 @@ import {
   renamedOne,
   renamedThree,
   renamedFive,
+  RenamedOneOptionalParams,
+  RenamedThreeOptionalParams,
+  RenamedFiveOptionalParams,
 } from "./api/index.js";
-
-export { AClientOptions } from "./api/aContext.js";
 
 export class AClient {
   private _client: ServiceContext;

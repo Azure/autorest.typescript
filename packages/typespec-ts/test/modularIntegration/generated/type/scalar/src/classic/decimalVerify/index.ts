@@ -9,7 +9,7 @@ import {
 import {
   DecimalVerifyPrepareVerifyOptionalParams,
   DecimalVerifyVerifyOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a DecimalVerify operations. */
 export interface DecimalVerifyOperations {

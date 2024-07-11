@@ -33,8 +33,6 @@ import {
   NullableContext,
 } from "./api/index.js";
 
-export { NullableClientOptions } from "./api/nullableContext.js";
-
 export class NullableClient {
   private _client: NullableContext;
   /** The pipeline used by this client to make requests */

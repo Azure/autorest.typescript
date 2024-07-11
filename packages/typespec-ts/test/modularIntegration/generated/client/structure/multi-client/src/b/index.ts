@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BClient, BClientOptions } from "./bClient.js";
+export { BClient } from "./bClient.js";
+export { ClientType } from "../models/index.js";
 export {
-  ClientType,
+  BClientOptions,
   RenamedTwoOptionalParams,
   RenamedFourOptionalParams,
   RenamedSixOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

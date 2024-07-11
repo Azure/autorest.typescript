@@ -13,8 +13,6 @@ import {
   CollectionFormatContext,
 } from "./api/index.js";
 
-export { CollectionFormatClientOptions } from "./api/collectionFormatContext.js";
-
 export class CollectionFormatClient {
   private _client: CollectionFormatContext;
   /** The pipeline used by this client to make requests */

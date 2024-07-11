@@ -14,7 +14,7 @@ import {
   RequiredAndOptionalGetRequiredOnlyOptionalParams,
   RequiredAndOptionalPutAllOptionalParams,
   RequiredAndOptionalPutRequiredOnlyOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a RequiredAndOptional operations. */
 export interface RequiredAndOptionalOperations {

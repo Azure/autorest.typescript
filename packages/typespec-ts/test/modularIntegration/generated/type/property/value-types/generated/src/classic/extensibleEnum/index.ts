@@ -10,7 +10,7 @@ import {
 import {
   ExtensibleEnumGetOptionalParams,
   ExtensibleEnumPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtensibleEnum operations. */
 export interface ExtensibleEnumOperations {

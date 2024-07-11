@@ -13,7 +13,7 @@ import {
   StringBodyGetAsTextOptionalParams,
   StringBodySendAsJsonOptionalParams,
   StringBodyGetAsJsonOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a StringBody operations. */
 export interface StringBodyOperations {

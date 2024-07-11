@@ -22,7 +22,7 @@ import {
   QueryFloatSecondsOptionalParams,
   QueryFloat64SecondsOptionalParams,
   QueryInt32SecondsArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _queryDefaultSend(
   context: Client,

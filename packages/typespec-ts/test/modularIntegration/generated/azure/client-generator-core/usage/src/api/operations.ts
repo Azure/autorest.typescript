@@ -17,7 +17,7 @@ import {
   InputToInputOutputOptionalParams,
   OutputToInputOutputOptionalParams,
   ModelInReadOnlyPropertyOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _inputToInputOutputSend(
   context: Client,

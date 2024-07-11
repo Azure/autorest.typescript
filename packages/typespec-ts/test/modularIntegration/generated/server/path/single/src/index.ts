@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { SingleClient, SingleClientOptions } from "./singleClient.js";
-export { MyOpOptionalParams } from "./models/index.js";
+export { SingleClient } from "./singleClient.js";
+export { MyOpOptionalParams, SingleClientOptions } from "./api/index.js";

@@ -6,16 +6,12 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   validKey,
   validToken,
+  ValidKeyOptionalParams,
+  ValidTokenOptionalParams,
   createUnion,
   UnionClientOptions,
   UnionContext,
 } from "./api/index.js";
-import {
-  ValidKeyOptionalParams,
-  ValidTokenOptionalParams,
-} from "./models/options.js";
-
-export { UnionClientOptions } from "./api/unionContext.js";
 
 export class UnionClient {
   private _client: UnionContext;

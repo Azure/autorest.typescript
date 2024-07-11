@@ -4,15 +4,6 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { BirdUnion, DinosaurUnion } from "./models/models.js";
 import {
-  GetModelOptionalParams,
-  PutModelOptionalParams,
-  GetRecursiveModelOptionalParams,
-  PutRecursiveModelOptionalParams,
-  GetMissingDiscriminatorOptionalParams,
-  GetWrongDiscriminatorOptionalParams,
-  GetLegacyModelOptionalParams,
-} from "./models/options.js";
-import {
   getModel,
   putModel,
   getRecursiveModel,
@@ -20,12 +11,17 @@ import {
   getMissingDiscriminator,
   getWrongDiscriminator,
   getLegacyModel,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
+  GetLegacyModelOptionalParams,
   createSingleDiscriminator,
   SingleDiscriminatorClientOptions,
   SingleDiscriminatorContext,
 } from "./api/index.js";
-
-export { SingleDiscriminatorClientOptions } from "./api/singleDiscriminatorContext.js";
 
 export class SingleDiscriminatorClient {
   private _client: SingleDiscriminatorContext;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ScalarClient, ScalarClientOptions } from "./scalarClient.js";
+export { ScalarClient } from "./scalarClient.js";
 export {
   StringGetOptionalParams,
   StringPutOptionalParams,
@@ -19,7 +19,8 @@ export {
   DecimalVerifyVerifyOptionalParams,
   Decimal128VerifyPrepareVerifyOptionalParams,
   Decimal128VerifyVerifyOptionalParams,
-} from "./models/index.js";
+  ScalarClientOptions,
+} from "./api/index.js";
 export {
   BooleanOperations,
   Decimal128TypeOperations,

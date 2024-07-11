@@ -8,7 +8,3 @@ export {
   Versions,
   RepeatabilityResult,
 } from "./models.js";
-export {
-  SmokeTestOptionalParams,
-  RepeatableActionOptionalParams,
-} from "./options.js";

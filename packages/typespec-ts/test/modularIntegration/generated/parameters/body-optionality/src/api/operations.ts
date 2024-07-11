@@ -15,7 +15,7 @@ import {
 import {
   RequiredExplicitOptionalParams,
   RequiredImplicitOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _requiredExplicitSend(
   context: Client,

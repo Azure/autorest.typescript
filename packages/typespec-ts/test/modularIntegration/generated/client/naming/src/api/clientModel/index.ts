@@ -15,7 +15,7 @@ import {
 import {
   ClientModelClientOptionalParams,
   ClientModelLanguageOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _clientSend(
   context: Client,

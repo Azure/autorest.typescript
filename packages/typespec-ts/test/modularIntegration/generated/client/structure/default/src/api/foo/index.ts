@@ -11,10 +11,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  FooThreeOptionalParams,
-  FooFourOptionalParams,
-} from "../../models/options.js";
+import { FooThreeOptionalParams, FooFourOptionalParams } from "../options.js";
 
 export function _threeSend(
   context: Client,

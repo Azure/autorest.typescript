@@ -4,10 +4,6 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { BodyModel } from "./models/models.js";
 import {
-  RequiredExplicitOptionalParams,
-  RequiredImplicitOptionalParams,
-} from "./models/options.js";
-import {
   getOptionalExplicitOperations,
   OptionalExplicitOperations,
 } from "./classic/optionalExplicit/index.js";
@@ -17,9 +13,9 @@ import {
   BodyOptionalityContext,
   requiredExplicit,
   requiredImplicit,
+  RequiredExplicitOptionalParams,
+  RequiredImplicitOptionalParams,
 } from "./api/index.js";
-
-export { BodyOptionalityClientOptions } from "./api/bodyOptionalityContext.js";
 
 export class BodyOptionalityClient {
   private _client: BodyOptionalityContext;

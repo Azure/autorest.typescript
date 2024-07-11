@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  EnumDiscriminatorClient,
-  EnumDiscriminatorClientOptions,
-} from "./enumDiscriminatorClient.js";
+export { EnumDiscriminatorClient } from "./enumDiscriminatorClient.js";
 export {
   Dog,
   Golden,
@@ -14,6 +11,9 @@ export {
   SnakeKind,
   DogUnion,
   SnakeUnion,
+} from "./models/index.js";
+export {
+  EnumDiscriminatorClientOptions,
   GetExtensibleModelOptionalParams,
   PutExtensibleModelOptionalParams,
   GetExtensibleModelMissingDiscriminatorOptionalParams,
@@ -22,4 +22,4 @@ export {
   PutFixedModelOptionalParams,
   GetFixedModelMissingDiscriminatorOptionalParams,
   GetFixedModelWrongDiscriminatorOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

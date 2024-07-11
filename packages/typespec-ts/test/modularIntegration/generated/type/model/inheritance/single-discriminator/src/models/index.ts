@@ -12,12 +12,3 @@ export {
   BirdUnion,
   DinosaurUnion,
 } from "./models.js";
-export {
-  GetModelOptionalParams,
-  PutModelOptionalParams,
-  GetRecursiveModelOptionalParams,
-  PutRecursiveModelOptionalParams,
-  GetMissingDiscriminatorOptionalParams,
-  GetWrongDiscriminatorOptionalParams,
-  GetLegacyModelOptionalParams,
-} from "./options.js";

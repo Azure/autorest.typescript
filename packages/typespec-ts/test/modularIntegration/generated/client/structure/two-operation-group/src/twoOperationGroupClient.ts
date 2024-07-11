@@ -17,8 +17,6 @@ import {
   ServiceContext,
 } from "./api/index.js";
 
-export { TwoOperationGroupClientOptions } from "./api/twoOperationGroupContext.js";
-
 export class TwoOperationGroupClient {
   private _client: ServiceContext;
   /** The pipeline used by this client to make requests */

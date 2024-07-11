@@ -14,7 +14,7 @@ import {
 import {
   FloatsOnlyGetOptionalParams,
   FloatsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _floatsOnlyGetSend(
   context: Client,

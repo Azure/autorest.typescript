@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  NestedDiscriminatorClient,
-  NestedDiscriminatorClientOptions,
-} from "./nestedDiscriminatorClient.js";
+export { NestedDiscriminatorClient } from "./nestedDiscriminatorClient.js";
 export {
   Fish,
   Shark,
@@ -13,10 +10,13 @@ export {
   Salmon,
   FishUnion,
   SharkUnion,
+} from "./models/index.js";
+export {
+  NestedDiscriminatorClientOptions,
   GetModelOptionalParams,
   PutModelOptionalParams,
   GetRecursiveModelOptionalParams,
   PutRecursiveModelOptionalParams,
   GetMissingDiscriminatorOptionalParams,
   GetWrongDiscriminatorOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

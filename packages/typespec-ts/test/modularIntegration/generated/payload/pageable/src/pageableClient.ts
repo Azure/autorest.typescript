@@ -3,16 +3,14 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User } from "./models/models.js";
-import { ListOptionalParams } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   list,
+  ListOptionalParams,
   createPageable,
   PageableClientOptions,
   PageableContext,
 } from "./api/index.js";
-
-export { PageableClientOptions } from "./api/pageableContext.js";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 export class PageableClient {
   private _client: PageableContext;

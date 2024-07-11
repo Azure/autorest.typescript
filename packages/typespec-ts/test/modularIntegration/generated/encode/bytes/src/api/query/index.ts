@@ -19,7 +19,7 @@ import {
   QueryBase64OptionalParams,
   QueryBase64urlOptionalParams,
   QueryBase64urlArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _queryDefaultSend(
   context: Client,

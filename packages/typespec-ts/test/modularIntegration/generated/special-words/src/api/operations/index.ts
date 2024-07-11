@@ -76,7 +76,7 @@ import {
   OperationsWhileOptionalParams,
   OperationsWithOptionalParams,
   OperationsYieldOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _operationsAndSend(
   context: Client,

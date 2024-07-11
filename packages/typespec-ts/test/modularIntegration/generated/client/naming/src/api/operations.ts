@@ -29,7 +29,7 @@ import {
   CompatibleWithEncodedNameOptionalParams,
   RequestOptionalParams,
   ResponseOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _clientNameSend(
   context: Client,

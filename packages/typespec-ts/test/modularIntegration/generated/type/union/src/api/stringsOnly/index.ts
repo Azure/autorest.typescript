@@ -14,7 +14,7 @@ import {
 import {
   StringsOnlyGetOptionalParams,
   StringsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _stringsOnlyGetSend(
   context: Client,

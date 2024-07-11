@@ -10,7 +10,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { QuxEightOptionalParams } from "../../models/options.js";
+import { QuxEightOptionalParams } from "../options.js";
 
 export function _eightSend(
   context: Client,

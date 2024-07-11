@@ -9,7 +9,7 @@ import {
 import {
   BooleanValueGetOptionalParams,
   BooleanValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a BooleanValue operations. */
 export interface BooleanValueOperations {

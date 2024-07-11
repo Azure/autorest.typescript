@@ -15,7 +15,7 @@ import {
 import {
   StringAndArrayGetOptionalParams,
   StringAndArraySendOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _stringAndArrayGetSend(
   context: Client,

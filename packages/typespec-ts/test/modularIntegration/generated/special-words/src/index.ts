@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  SpecialWordsClient,
-  SpecialWordsClientOptions,
-} from "./specialWordsClient.js";
+export { SpecialWordsClient } from "./specialWordsClient.js";
 export {
   SameAsModel,
   And,
@@ -40,6 +37,8 @@ export {
   While,
   With,
   Yield,
+} from "./models/index.js";
+export {
   ModelsWithAndOptionalParams,
   ModelsWithAsOptionalParams,
   ModelsWithAssertOptionalParams,
@@ -141,7 +140,8 @@ export {
   ParametersWithWithOptionalParams,
   ParametersWithYieldOptionalParams,
   ParametersWithCancellationTokenOptionalParams,
-} from "./models/index.js";
+  SpecialWordsClientOptions,
+} from "./api/index.js";
 export {
   ModelPropertiesOperations,
   ModelsOperations,

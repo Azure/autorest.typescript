@@ -20,7 +20,7 @@ import {
   QueryRfc7231OptionalParams,
   QueryUnixTimestampOptionalParams,
   QueryUnixTimestampArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _queryDefaultSend(
   context: Client,

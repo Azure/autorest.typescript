@@ -16,7 +16,7 @@ import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadDifferentModelArrayGetOptionalParams,
   SpreadDifferentModelArrayPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getSend(
   context: Client,

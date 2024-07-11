@@ -18,7 +18,7 @@ import {
 import {
   SmokeTestOptionalParams,
   RepeatableActionOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _smokeTestSend(
   context: Client,

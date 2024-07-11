@@ -2,6 +2,19 @@
 // Licensed under the MIT license.
 
 export {
+  TopLevelTrackedResourcesGetOptionalParams,
+  TopLevelTrackedResourcesCreateOrReplaceOptionalParams,
+  TopLevelTrackedResourcesUpdateOptionalParams,
+  TopLevelTrackedResourcesDeleteOptionalParams,
+  TopLevelTrackedResourcesListByResourceGroupOptionalParams,
+  TopLevelTrackedResourcesListBySubscriptionOptionalParams,
+  NestedProxyResourcesGetOptionalParams,
+  NestedProxyResourcesCreateOrReplaceOptionalParams,
+  NestedProxyResourcesUpdateOptionalParams,
+  NestedProxyResourcesDeleteOptionalParams,
+  NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
+} from "./options.js";
+export {
   createResources,
   ResourcesClientOptions,
   ResourcesContext,

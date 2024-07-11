@@ -78,7 +78,7 @@ import {
   ParametersWithWithOptionalParams,
   ParametersWithYieldOptionalParams,
   ParametersWithCancellationTokenOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _parametersWithAndSend(
   context: Client,

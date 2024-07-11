@@ -106,8 +106,6 @@ import {
   ValueTypesContext,
 } from "./api/index.js";
 
-export { ValueTypesClientOptions } from "./api/valueTypesContext.js";
-
 export class ValueTypesClient {
   private _client: ValueTypesContext;
   /** The pipeline used by this client to make requests */

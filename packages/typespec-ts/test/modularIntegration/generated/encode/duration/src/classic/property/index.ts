@@ -25,7 +25,7 @@ import {
   PropertyFloatSecondsOptionalParams,
   PropertyFloat64SecondsOptionalParams,
   PropertyFloatSecondsArrayOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Property operations. */
 export interface PropertyOperations {

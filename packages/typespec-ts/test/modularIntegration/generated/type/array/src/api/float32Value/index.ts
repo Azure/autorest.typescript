@@ -14,7 +14,7 @@ import {
 import {
   Float32ValueGetOptionalParams,
   Float32ValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _float32ValueGetSend(
   context: Client,

@@ -136,8 +136,6 @@ import {
   AdditionalPropertiesContext,
 } from "./api/index.js";
 
-export { AdditionalPropertiesClientOptions } from "./api/additionalPropertiesContext.js";
-
 export class AdditionalPropertiesClient {
   private _client: AdditionalPropertiesContext;
   /** The pipeline used by this client to make requests */

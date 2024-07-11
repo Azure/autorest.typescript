@@ -7,7 +7,7 @@ import { mixedTypesGet, mixedTypesSend } from "../../api/mixedTypes/index.js";
 import {
   MixedTypesGetOptionalParams,
   MixedTypesSendOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a MixedTypes operations. */
 export interface MixedTypesOperations {

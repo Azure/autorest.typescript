@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ArrayClient, ArrayClientOptions } from "./arrayClient.js";
+export { ArrayClient } from "./arrayClient.js";
+export { InnerModel } from "./models/index.js";
 export {
-  InnerModel,
+  ArrayClientOptions,
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,
   Int64ValueGetOptionalParams,
@@ -32,7 +33,7 @@ export {
   NullableStringValuePutOptionalParams,
   NullableModelValueGetOptionalParams,
   NullableModelValuePutOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   BooleanValueOperations,
   DatetimeValueOperations,

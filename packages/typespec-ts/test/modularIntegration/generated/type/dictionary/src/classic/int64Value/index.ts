@@ -6,7 +6,7 @@ import { get, put } from "../../api/int64Value/index.js";
 import {
   Int64ValueGetOptionalParams,
   Int64ValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Int64Value operations. */
 export interface Int64ValueOperations {

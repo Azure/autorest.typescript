@@ -7,20 +7,16 @@ import {
   InputOutputRecord,
 } from "./models/models.js";
 import {
-  InputOptionalParams,
-  OutputOptionalParams,
-  InputAndOutputOptionalParams,
-} from "./models/options.js";
-import {
   input,
   output,
   inputAndOutput,
+  InputOptionalParams,
+  OutputOptionalParams,
+  InputAndOutputOptionalParams,
   createUsage,
   UsageClientOptions,
   UsageContext,
 } from "./api/index.js";
-
-export { UsageClientOptions } from "./api/usageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;

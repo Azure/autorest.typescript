@@ -8,6 +8,12 @@ export {
   withQueryOldApiVersion,
 } from "./operations.js";
 export {
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
+  WithQueryOldApiVersionOptionalParams,
+} from "./options.js";
+export {
   createVersioned,
   VersionedClientOptions,
   VersionedContext,

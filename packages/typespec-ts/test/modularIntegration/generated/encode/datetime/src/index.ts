@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { DatetimeClient, DatetimeClientOptions } from "./datetimeClient.js";
+export { DatetimeClient } from "./datetimeClient.js";
 export {
   DefaultDatetimeProperty,
   Rfc3339DatetimeProperty,
   Rfc7231DatetimeProperty,
   UnixTimestampDatetimeProperty,
   UnixTimestampArrayDatetimeProperty,
+} from "./models/index.js";
+export {
+  DatetimeClientOptions,
   QueryDefaultOptionalParams,
   QueryRfc3339OptionalParams,
   QueryRfc7231OptionalParams,
@@ -27,7 +30,7 @@ export {
   ResponseHeaderRfc3339OptionalParams,
   ResponseHeaderRfc7231OptionalParams,
   ResponseHeaderUnixTimestampOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   HeaderOperations,
   PropertyOperations,

@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { DictionaryClient } from "./dictionaryClient.js";
+export { InnerModel } from "./models/index.js";
 export {
-  DictionaryClient,
   DictionaryClientOptions,
-} from "./dictionaryClient.js";
-export {
-  InnerModel,
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,
   Int64ValueGetOptionalParams,
@@ -29,7 +27,7 @@ export {
   RecursiveModelValuePutOptionalParams,
   NullableFloatValueGetOptionalParams,
   NullableFloatValuePutOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   BooleanValueOperations,
   DatetimeValueOperations,

@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsDifferentSpreadModel/index.js";
 import {
   ExtendsDifferentSpreadModelGetOptionalParams,
   ExtendsDifferentSpreadModelPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsDifferentSpreadModel operations. */
 export interface ExtendsDifferentSpreadModelOperations {

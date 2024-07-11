@@ -8,15 +8,6 @@ import {
   ClientNameAndJsonEncodedNameModel,
 } from "./models/models.js";
 import {
-  ClientNameOptionalParams,
-  ParameterOptionalParams,
-  ClientOptionalParams,
-  LanguageOptionalParams,
-  CompatibleWithEncodedNameOptionalParams,
-  RequestOptionalParams,
-  ResponseOptionalParams,
-} from "./models/options.js";
-import {
   getClientModelOperations,
   ClientModelOperations,
 } from "./classic/clientModel/index.js";
@@ -35,9 +26,14 @@ import {
   compatibleWithEncodedName,
   request,
   response,
+  ClientNameOptionalParams,
+  ParameterOptionalParams,
+  ClientOptionalParams,
+  LanguageOptionalParams,
+  CompatibleWithEncodedNameOptionalParams,
+  RequestOptionalParams,
+  ResponseOptionalParams,
 } from "./api/index.js";
-
-export { NamingClientOptions } from "./api/namingContext.js";
 
 export class NamingClient {
   private _client: NamingContext;

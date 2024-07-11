@@ -16,7 +16,7 @@ import {
   RenamedTwoOptionalParams,
   RenamedFourOptionalParams,
   RenamedSixOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _renamedTwoSend(
   context: Client,
