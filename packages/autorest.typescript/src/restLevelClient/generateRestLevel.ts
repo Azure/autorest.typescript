@@ -24,6 +24,7 @@ import {
   buildPaginateHelper,
   buildPollingHelper,
   buildEsLintConfig,
+  buildKarmaConfigFile,
   buildRecordedClientFile,
   buildSampleTest,
   buildLicenseFile,
@@ -78,6 +79,8 @@ export async function generateRestLevelClient() {
     generateFileByBuilder(project, buildEsLintConfig, rlcModels);
   }
   if (generateTest) {
+    // buildKarmaConfigFile
+    generateFileByBuilder(project, buildKarmaConfigFile, rlcModels);
     // buildRecordedClientFile
     generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
     // buildSampleTest
