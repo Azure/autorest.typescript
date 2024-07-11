@@ -154,7 +154,6 @@ const { {{ clientClassName }} } = require("{{ clientPackageName }}");
 const { DefaultAzureCredential } = require("@azure/identity");
 // For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
 
-{{#if hasClientSubscriptionId}}
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscriptionId);
 
@@ -164,16 +163,6 @@ const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscript
 //   clientId: "<YOUR_CLIENT_ID>"
 // });
 // const client = new {{ clientClassName }}(credential, subscriptionId);
-\`\`\`
-{{else}}
-const client = new {{ clientClassName }}(new DefaultAzureCredential());
-
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new {{ clientClassName }}(credential);
 \`\`\`
 {{/if}}
 {{else}}
@@ -325,8 +314,6 @@ interface Metadata {
   isReleasablePackage?: boolean;
   /** The URL for impression */
   impressionURL?: string;
-  /** Indicates if we have a client-level subscription id paramter */
-  hasClientSubscriptionId?: boolean;
 }
 
 export function buildReadmeFile(model: RLCModel) {
@@ -361,7 +348,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     multiClient,
     batch,
     serviceInfo,
-    isTestPackage
+    isTypeSpecTest
   } = model.options;
 
   const azureHuh =
@@ -404,13 +391,12 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     hasMultiClients: multiClient && batch && batch.length > 1,
     azureArm: Boolean(model.options.azureArm),
     azure: azureHuh,
-    isReleasablePackage: !isTestPackage,
+    isReleasablePackage: !isTypeSpecTest,
     impressionURL: azureHuh
       ? packageParentDirectoryName &&
         packageDirectoryName &&
         `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
-      hasClientSubscriptionId: hasClientSubscriptionId(clientDetails?.samples)
   };
 }
 
@@ -452,16 +438,4 @@ function getClientName(model: RLCModel) {
   return clientName.endsWith("Client")
     ? `${clientName}`
     : `${clientName}Client`;
-}
-
-function hasClientSubscriptionId(samples?: SampleGroup[]) {
-  if (!samples || samples.length === 0) {
-    // have the subscription id parameter in constructor if no samples
-    return true;
-  }
-  return samples.some(group => {
-    return group.samples.some(sample =>
-      sample.clientParameterNames.toLocaleLowerCase().includes("subscriptionid")
-    );
-  });
 }
