@@ -12,7 +12,7 @@ describe("SpreadClient Client", () => {
 
   it("should spread named model", async () => {
     try {
-      const result = await client.model.spreadAsRequestBody({ name: "foo" });
+      const result = await client.model.spreadAsRequestBody("foo");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -67,7 +67,7 @@ describe("SpreadClient Client", () => {
       const result = await client.model.spreadCompositeRequestMix(
         "foo",
         "bar",
-        { prop: "foo" }
+        "foo"
       );
       assert.isUndefined(result);
     } catch (err) {
