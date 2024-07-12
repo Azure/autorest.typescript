@@ -1446,7 +1446,11 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
 }
 
 function getEnumStringDescription(type: any) {
-  if (type.name === "string" && type.enum && type.enum.length > 0) {
+  if (
+    (type.name === "string" || type.alias === "string") &&
+    type.enum &&
+    type.enum.length > 0
+  ) {
     return `Possible values: ${type.enum
       .map((e: Schema) => {
         return e.type;
