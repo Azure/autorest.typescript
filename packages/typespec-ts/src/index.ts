@@ -69,6 +69,7 @@ import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
+import { provideSdkTypes } from "./context/sdkTypes.js";
 
 export * from "./lib.js";
 
@@ -90,6 +91,7 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
+  provideSdkTypes(dpgContext.experimental_sdkPackage);
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;

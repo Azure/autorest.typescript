@@ -16,6 +16,7 @@ import { prettierTypeScriptOptions } from "../../src/lib.js";
 import { createContextWithDefaultOptions } from "../../src/index.js";
 import { provideContext } from "../../src/contextManager.js";
 import { Project } from "ts-morph";
+import { provideSdkTypes } from "../../src/context/sdkTypes.js";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -91,20 +92,16 @@ export function createDpgContextTestHelper(
   program: Program,
   enableModelNamespace = false
 ): SdkContext {
-  const context = createContextWithDefaultOptions({
-    program
-  } as EmitContext);
-  provideContext("emitContext", {
-    compilerContext: context as any,
-    tcgcContext: context
-  });
-
   provideContext("rlcMetaTree", new Map());
   provideContext("modularMetaTree", new Map());
   provideContext("symbolMap", new Map());
   provideContext("outputProject", new Project());
 
-  return {
+  const context = createContextWithDefaultOptions({
+    program
+  } as EmitContext);
+
+  const sdkContext = {
     ...context,
     program,
     rlcOptions: { flavor: "azure", enableModelNamespace },
@@ -112,6 +109,15 @@ export function createDpgContextTestHelper(
     emitterName: "@azure-tools/typespec-ts",
     originalProgram: program
   } as SdkContext;
+
+  provideContext("emitContext", {
+    compilerContext: context as any,
+    tcgcContext: sdkContext
+  });
+
+  provideSdkTypes(context.experimental_sdkPackage);
+
+  return sdkContext;
 }
 
 export async function assertEqualContent(
@@ -121,11 +127,15 @@ export async function assertEqualContent(
 ) {
   assert.strictEqual(
     await format(
-      ignoreWeirdLine ? actual.replace(/$\n^/g, "").replace(/\s+/g, " ") : actual,
+      ignoreWeirdLine
+        ? actual.replace(/$\n^/g, "").replace(/\s+/g, " ")
+        : actual,
       prettierTypeScriptOptions
     ),
     await format(
-      ignoreWeirdLine ? expected.replace(/$\n^/g, "").replace(/\s+/g, " ") : expected,
+      ignoreWeirdLine
+        ? expected.replace(/$\n^/g, "").replace(/\s+/g, " ")
+        : expected,
       prettierTypeScriptOptions
     )
   );
