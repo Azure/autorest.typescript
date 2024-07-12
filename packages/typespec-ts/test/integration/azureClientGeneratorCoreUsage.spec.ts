@@ -37,4 +37,16 @@ describe("Usage Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should put usage model in operation", async () => {
+    try {
+      const result = await client
+        .path("/azure/client-generator-core/usage/modelInReadOnlyProperty")
+        .put({ body: {} });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual((result.body as any).name, "Madge");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });

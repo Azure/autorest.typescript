@@ -270,6 +270,10 @@ export const rlcTsps = [
   {
     outputPath: "azure/resource-manager/models/resources",
     inputPath: "azure/resource-manager/models/resources"
+  },
+  {
+    outputPath: "azure/core/model",
+    inputPath: "azure/core/model"
   }
 ];
 
@@ -281,6 +285,10 @@ export const nonBrandedRlcTsps = [
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "azure/core/model",
+    inputPath: "azure/core/model"
+  },
   {
     outputPath: "azure/resource-manager/models/resources",
     inputPath: "azure/resource-manager/models/resources"
