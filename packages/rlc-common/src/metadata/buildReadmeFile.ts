@@ -7,7 +7,7 @@ import { RLCModel } from "../interfaces.js";
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 
-const azureReadmeNonModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
 {{ description }}
 
@@ -318,7 +318,7 @@ export function buildReadmeFile(model: RLCModel) {
     model.options?.flavor === "azure"
       ? model.options.isModularLibrary
         ? azureReadmeModularTemplate
-        : azureReadmeNonModularTemplate
+        : azureReadmeRLCTemplate
       : nonBrandedReadmeTemplate,
     { noEscape: true }
   );
@@ -394,7 +394,10 @@ function createMetadata(model: RLCModel): Metadata | undefined {
       ? packageParentDirectoryName &&
         packageDirectoryName &&
         `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
-      : undefined
+      : undefined,
+    repoURL: repoURL,
+    projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
+    identityPackageURL : repoURL && `${repoURL}/tree/main/sdk/identity/identity`
   };
 }
 
