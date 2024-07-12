@@ -78,19 +78,5 @@ export interface AnalyzeResult {
   summary: string;
 }
 
-export interface NonReferencedModel {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  prop1: number;
-  /** The color of the widget. */
-  prop2: string;
-}
-
-export function nonReferencedModelSerializer(item: NonReferencedModel) {
-  return {
-    prop1: item["prop1"],
-    prop2: item["prop2"],
-  };
-}
-
 /** The Contoso Widget Manager service version. */
 export type Versions = "1.0.0";
