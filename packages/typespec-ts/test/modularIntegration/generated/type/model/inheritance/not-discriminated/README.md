@@ -1,56 +1,30 @@
 # NotDiscriminated REST client library for JavaScript
 
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for NotDiscriminated REST client.
+
 Illustrates not-discriminated inheritance model.
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
-
-Key links:
-
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/model-inheritance-not-discriminated)
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/model-inheritance-not-discriminated) |
 
 ## Getting started
 
 ### Currently supported environments
 
-- LTS versions of Node.js
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### Prerequisites
+See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
-- You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@msinternal/model-inheritance-not-discriminated` package
 
-Install the NotDiscriminated REST client REST client library for JavaScript with `npm`:
 
-```bash
-npm install @msinternal/model-inheritance-not-discriminated
-```
 
-### Create and authenticate a `NotDiscriminatedClient`
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
-To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
-provide an instance of the desired credential type obtained from the
-[@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
+## Key concepts
 
-To authenticate with AAD, you must first `npm` install [`@azure/identity`](https://www.npmjs.com/package/@azure/identity) 
+### NotDiscriminatedClient
 
-After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from `@azure/identity` to use.
-As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)
-can be used to authenticate the client.
+`NotDiscriminatedClient` is the primary interface for developers using the NotDiscriminated REST client library. Explore the methods on this client object to understand the different features of the NotDiscriminated service that you can access.
 
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
-AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
-
-## Troubleshooting
-
-### Logging
-
-Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the `AZURE_LOG_LEVEL` environment variable to `info`. Alternatively, logging can be enabled at runtime by calling `setLogLevel` in the `@azure/logger`:
-
-```javascript
-const { setLogLevel } = require("@azure/logger");
-
-setLogLevel("info");
-```
-
-For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).

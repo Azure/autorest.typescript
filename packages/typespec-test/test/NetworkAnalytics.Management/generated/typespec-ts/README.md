@@ -1,46 +1,43 @@
 # Azure NetworkAnalytics REST client library for JavaScript
 
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure NetworkAnalytics REST client.
 
 
-**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
-Key links:
-
-- [Package (NPM)](https://www.npmjs.com/package/@azure/arm-networkanalytics)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/arm-networkanalytics?view=azure-node-preview)
+[Package (NPM)](https://www.npmjs.com/package/@azure/arm-networkanalytics) |
+[API reference documentation](https://docs.microsoft.com/javascript/api/@azure/arm-networkanalytics?view=azure-node-preview) |
 
 ## Getting started
 
 ### Currently supported environments
 
-- LTS versions of Node.js
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- Latest versions of Safari, Chrome, Edge and Firefox.
+
+See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 ### Prerequisites
 
-- You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
+- An [Azure subscription][azure_sub].
 
 ### Install the `@azure/arm-networkanalytics` package
 
-Install the Azure NetworkAnalytics REST client REST client library for JavaScript with `npm`:
+Install the Azure NetworkAnalytics REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure/arm-networkanalytics
 ```
 
-### Create and authenticate a `NetworkAnalyticsClient`
 
-To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
-provide an instance of the desired credential type obtained from the
-[@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
-To authenticate with AAD, you must first `npm` install [`@azure/identity`](https://www.npmjs.com/package/@azure/identity) 
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
-After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from `@azure/identity` to use.
-As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)
-can be used to authenticate the client.
+## Key concepts
 
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
-AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
+### NetworkAnalyticsClient
+
+`NetworkAnalyticsClient` is the primary interface for developers using the Azure NetworkAnalytics REST client library. Explore the methods on this client object to understand the different features of the Azure NetworkAnalytics service that you can access.
 
 ## Troubleshooting
 
@@ -50,8 +47,21 @@ Enabling logging may help uncover useful information about failures. In order to
 
 ```javascript
 const { setLogLevel } = require("@azure/logger");
-
 setLogLevel("info");
 ```
 
-For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
+For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](/tree/main/sdk/core/logger).
+
+
+## Contributing
+
+If you'd like to contribute to this library, please read the [contributing guide]() to learn more about how to build and test the code.
+
+## Related projects
+
+- []()
+
+
+[azure_sub]: https://azure.microsoft.com/free/
+[azure_portal]: https://portal.azure.com
+[defaultazurecredential]: #defaultazurecredential

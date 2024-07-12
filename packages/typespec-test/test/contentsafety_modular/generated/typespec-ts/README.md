@@ -1,46 +1,43 @@
 # Azure ContentSafety REST client library for JavaScript
 
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure ContentSafety REST client.
+
 Analyze harmful content
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
-
-Key links:
-
-- [Package (NPM)](https://www.npmjs.com/package/@azure-rest/ai-content-safety)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/ai-content-safety)
+[Package (NPM)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) |
+[API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/ai-content-safety) |
 
 ## Getting started
 
 ### Currently supported environments
 
-- LTS versions of Node.js
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- Latest versions of Safari, Chrome, Edge and Firefox.
+
+See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 ### Prerequisites
 
-- You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
+- An [Azure subscription][azure_sub].
 
 ### Install the `@azure-rest/ai-content-safety` package
 
-Install the Azure ContentSafety REST client REST client library for JavaScript with `npm`:
+Install the Azure ContentSafety REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/ai-content-safety
 ```
 
-### Create and authenticate a `ContentSafetyClient`
 
-To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
-provide an instance of the desired credential type obtained from the
-[@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
-To authenticate with AAD, you must first `npm` install [`@azure/identity`](https://www.npmjs.com/package/@azure/identity) 
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
-After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from `@azure/identity` to use.
-As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)
-can be used to authenticate the client.
+## Key concepts
 
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
-AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
+### ContentSafetyClient
+
+`ContentSafetyClient` is the primary interface for developers using the Azure ContentSafety REST client library. Explore the methods on this client object to understand the different features of the Azure ContentSafety service that you can access.
 
 ## Troubleshooting
 
@@ -50,8 +47,21 @@ Enabling logging may help uncover useful information about failures. In order to
 
 ```javascript
 const { setLogLevel } = require("@azure/logger");
-
 setLogLevel("info");
 ```
 
-For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
+For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](/tree/main/sdk/core/logger).
+
+
+## Contributing
+
+If you'd like to contribute to this library, please read the [contributing guide]() to learn more about how to build and test the code.
+
+## Related projects
+
+- []()
+
+
+[azure_sub]: https://azure.microsoft.com/free/
+[azure_portal]: https://portal.azure.com
+[defaultazurecredential]: #defaultazurecredential
