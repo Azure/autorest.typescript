@@ -77,6 +77,7 @@ export function transformToResponseTypes(
       operationGroup: getOperationGroupName(dpgContext, route),
       operationName: getOperationName(dpgContext, route.operation),
       path: route.path,
+      isDefaultSubsetOfOthers: false,
       responses: []
     };
     for (const resp of sortedOperationResponses(route.responses)) {
@@ -104,15 +105,35 @@ export function transformToResponseTypes(
     if (lroLogicalResponse) {
       rlcOperationUnit.responses.push(lroLogicalResponse);
     }
+    rlcOperationUnit.isDefaultSubsetOfOthers = transformIsDefaultSubsetOfOthers(
+      rlcOperationUnit.responses
+    );
     rlcResponses.push(rlcOperationUnit);
   }
   return rlcResponses;
 }
 
+function transformIsDefaultSubsetOfOthers(responses: ResponseMetadata[]) {
+  const defaultResponse = responses.find((r) => r.statusCode === "default");
+  const nonDefaultResponses = responses.filter(
+    (r) => r.statusCode !== "default"
+  );
+  if (!defaultResponse && nonDefaultResponses.length === 0) {
+    return false;
+  }
+  const defaultSchema = defaultResponse?.body;
+  for (const response of nonDefaultResponses) {
+    if (response.body?.type !== defaultSchema) {
+      return false;
+    }
+  }
+  return false;
+}
+
 /**
  * Return undefined if no valid header param
  * @param response response detail
- * @returns rlc header shcema
+ * @returns rlc header schema
  */
 function transformHeaders(
   dpgContext: SdkContext,
@@ -170,7 +191,7 @@ function transformBody(
   if (!response.responses.length) {
     return;
   }
-  // Currently RLC reponse only have one header and body defined
+  // Currently RLC response only have one header and body defined
   // So we'll union all body shapes together with "|"
   const typeSet = new Set<string>();
   const descriptions = new Set<string>();
