@@ -91,7 +91,7 @@ function getNarrowedRLCResponse(
   return (
     // if the response is a LRO response, narrow to the lro logical response
     lroResponse?.at(0) ??
-    // if the default response is a superset of all other responses, narrow to the normal response
+    // if the default response is a superset of one of other responses, narrow to the normal response
     (rlcResponse.isDefaultSupersetOfOthers
       ? normalResponse?.at(0) ?? "any"
       : undefined)
