@@ -59,7 +59,11 @@ export interface DataPoint {
   dataSource: string;
   /** The path to the type definition of the capability (e.g. DTMI, OPC UA information model node id, etc.), for example dtmi:com:example:Robot:_contents:__prop1;1. */
   capabilityId?: string;
-  /** An indication of how the data point should be mapped to OpenTelemetry. */
+  /**
+   * An indication of how the data point should be mapped to OpenTelemetry.
+   *
+   * Possible values: "none", "counter", "gauge", "histogram", "log"
+   */
   observabilityMode?: DataPointsObservabilityMode;
   /** Protocol-specific configuration for the data point. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize. */
   dataPointConfiguration?: string;
@@ -73,7 +77,11 @@ export interface Event {
   eventNotifier: string;
   /** The path to the type definition of the capability (e.g. DTMI, OPC UA information model node id, etc.), for example dtmi:com:example:Robot:_contents:__prop1;1. */
   capabilityId?: string;
-  /** An indication of how the event should be mapped to OpenTelemetry. */
+  /**
+   * An indication of how the event should be mapped to OpenTelemetry.
+   *
+   * Possible values: "none", "log"
+   */
   observabilityMode?: EventsObservabilityMode;
   /** Protocol-specific configuration for the event. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize. */
   eventConfiguration?: string;
@@ -118,13 +126,21 @@ export interface Resource {}
 export interface SystemData {
   /** The identity that created the resource. */
   createdBy?: string;
-  /** The type of identity that created the resource. */
+  /**
+   * The type of identity that created the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   createdByType?: CreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: Date | string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
+  /**
+   * The type of identity that last modified the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: Date | string;
@@ -170,7 +186,11 @@ export interface PrivateEndpoint {}
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  /**
+   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+   *
+   * Possible values: "Pending", "Approved", "Rejected"
+   */
   status?: PrivateEndpointServiceConnectionStatus;
   /** The reason for approval/rejection of the connection. */
   description?: string;
@@ -200,7 +220,11 @@ export interface AssetEndpointProfileProperties {
 
 /** Definition of the client authentication mechanism to the server. */
 export interface UserAuthentication {
-  /** Defines the mode to authenticate the user of the client at the server. */
+  /**
+   * Defines the mode to authenticate the user of the client at the server.
+   *
+   * Possible values: "Anonymous", "Certificate", "UsernamePassword"
+   */
   mode: UserAuthenticationMode;
   /** Defines the username and password references when UsernamePassword user authentication mode is selected. */
   usernamePasswordCredentials?: UsernamePasswordCredentials;

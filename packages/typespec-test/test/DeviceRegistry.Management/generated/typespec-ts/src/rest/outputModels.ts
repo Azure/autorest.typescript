@@ -11,9 +11,17 @@ export interface OperationOutput {
   readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
   display?: OperationDisplayOutput;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  /**
+   * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system"
+   *
+   * Possible values: "user", "system", "user,system"
+   */
   readonly origin?: OriginOutput;
-  /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  /**
+   * Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs.
+   *
+   * Possible values: "Internal"
+   */
   actionType?: ActionTypeOutput;
 }
 
@@ -131,7 +139,11 @@ export interface AssetPropertiesOutput {
   events?: Array<EventOutput>;
   /** Read only object to reflect changes that have occurred on the Edge. Similar to Kubernetes status property for custom resources. */
   readonly status?: AssetStatusOutput;
-  /** Provisioning state of the resource. */
+  /**
+   * Provisioning state of the resource.
+   *
+   * Possible values: "Accepted"
+   */
   readonly provisioningState?: ProvisioningStateOutput;
 }
 
@@ -143,7 +155,11 @@ export interface DataPointOutput {
   dataSource: string;
   /** The path to the type definition of the capability (e.g. DTMI, OPC UA information model node id, etc.), for example dtmi:com:example:Robot:_contents:__prop1;1. */
   capabilityId?: string;
-  /** An indication of how the data point should be mapped to OpenTelemetry. */
+  /**
+   * An indication of how the data point should be mapped to OpenTelemetry.
+   *
+   * Possible values: "none", "counter", "gauge", "histogram", "log"
+   */
   observabilityMode?: DataPointsObservabilityModeOutput;
   /** Protocol-specific configuration for the data point. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize. */
   dataPointConfiguration?: string;
@@ -157,7 +173,11 @@ export interface EventOutput {
   eventNotifier: string;
   /** The path to the type definition of the capability (e.g. DTMI, OPC UA information model node id, etc.), for example dtmi:com:example:Robot:_contents:__prop1;1. */
   capabilityId?: string;
-  /** An indication of how the event should be mapped to OpenTelemetry. */
+  /**
+   * An indication of how the event should be mapped to OpenTelemetry.
+   *
+   * Possible values: "none", "log"
+   */
   observabilityMode?: EventsObservabilityModeOutput;
   /** Protocol-specific configuration for the event. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize. */
   eventConfiguration?: string;
@@ -211,13 +231,21 @@ export interface ResourceOutput {
 export interface SystemDataOutput {
   /** The identity that created the resource. */
   createdBy?: string;
-  /** The type of identity that created the resource. */
+  /**
+   * The type of identity that created the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   createdByType?: CreatedByTypeOutput;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
+  /**
+   * The type of identity that last modified the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   lastModifiedByType?: CreatedByTypeOutput;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
@@ -263,7 +291,11 @@ export interface PrivateEndpointConnectionPropertiesOutput {
   privateEndpoint?: PrivateEndpointOutput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
-  /** The provisioning state of the private endpoint connection resource. */
+  /**
+   * The provisioning state of the private endpoint connection resource.
+   *
+   * Possible values: "Succeeded", "Creating", "Deleting", "Failed"
+   */
   readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
 }
 
@@ -275,7 +307,11 @@ export interface PrivateEndpointOutput {
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionStateOutput {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  /**
+   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+   *
+   * Possible values: "Pending", "Approved", "Rejected"
+   */
   status?: PrivateEndpointServiceConnectionStatusOutput;
   /** The reason for approval/rejection of the connection. */
   description?: string;
@@ -303,13 +339,21 @@ export interface AssetEndpointProfilePropertiesOutput {
   transportAuthentication?: TransportAuthenticationOutput;
   /** Contains connectivity type specific further configuration (e.g. OPC UA, Modbus, ONVIF). */
   additionalConfiguration?: string;
-  /** Provisioning state of the resource. */
+  /**
+   * Provisioning state of the resource.
+   *
+   * Possible values: "Accepted"
+   */
   readonly provisioningState?: ProvisioningStateOutput;
 }
 
 /** Definition of the client authentication mechanism to the server. */
 export interface UserAuthenticationOutput {
-  /** Defines the mode to authenticate the user of the client at the server. */
+  /**
+   * Defines the mode to authenticate the user of the client at the server.
+   *
+   * Possible values: "Anonymous", "Certificate", "UsernamePassword"
+   */
   mode: UserAuthenticationModeOutput;
   /** Defines the username and password references when UsernamePassword user authentication mode is selected. */
   usernamePasswordCredentials?: UsernamePasswordCredentialsOutput;
