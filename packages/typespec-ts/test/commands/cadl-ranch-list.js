@@ -270,6 +270,10 @@ export const rlcTsps = [
   {
     outputPath: "azure/resource-manager/models/resources",
     inputPath: "azure/resource-manager/models/resources"
+  },
+  {
+    outputPath: "special-headers/conditional-request",
+    inputPath: "special-headers/conditional-request"
   }
 ];
 
@@ -514,6 +518,10 @@ export const modularTsps = [
   {
     outputPath: "type/model/flatten",
     inputPath: "type/model/flatten"
+  },
+  {
+    outputPath: "special-headers/conditional-request",
+    inputPath: "special-headers/conditional-request"
   }
 ];
 
