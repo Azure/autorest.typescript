@@ -7,7 +7,11 @@ import { ErrorModel } from "@azure-rest/core-client";
 export interface ResourceOperationStatusOutput {
   /** The unique ID of the operation. */
   readonly id: string;
-  /** The status of the operation */
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
   status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
