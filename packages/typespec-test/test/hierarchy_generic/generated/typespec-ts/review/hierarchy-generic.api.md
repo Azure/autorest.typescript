@@ -9,15 +9,21 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
-export interface A {
+export interface A_0 {
     // (undocumented)
     prop1: string;
 }
 
 // @public (undocumented)
-export interface BA {
+export interface A_1 {
     // (undocumented)
     prop2: string;
+}
+
+// @public (undocumented)
+export interface A_2 {
+    // (undocumented)
+    prop3: string;
 }
 
 // @public
@@ -27,13 +33,7 @@ export interface BCOp1OptionalParams extends OperationOptions {
 // @public
 export interface BCOperations {
     // (undocumented)
-    op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
-}
-
-// @public (undocumented)
-export interface BEA {
-    // (undocumented)
-    prop3: string;
+    op1: (body: A_1, options?: BCOp1OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -43,7 +43,7 @@ export interface BECOp1OptionalParams extends OperationOptions {
 // @public
 export interface BECOperations {
     // (undocumented)
-    op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
+    op1: (body: A_2, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -63,7 +63,7 @@ export interface BOperations {
     // (undocumented)
     e: BEOperations;
     // (undocumented)
-    op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
+    op1: (body: A_1, options?: BOp1OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -73,7 +73,7 @@ export interface DOp1OptionalParams extends OperationOptions {
 // @public
 export interface DOperations {
     // (undocumented)
-    op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
+    op1: (body: A_0, options?: DOp1OptionalParams) => Promise<void>;
 }
 
 // @public (undocumented)
@@ -82,7 +82,7 @@ export class FooClient {
     readonly b: BOperations;
     readonly d: DOperations;
     // (undocumented)
-    op1(body: A, options?: Op1OptionalParams): Promise<void>;
+    op1(body: A_0, options?: Op1OptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
 }
 

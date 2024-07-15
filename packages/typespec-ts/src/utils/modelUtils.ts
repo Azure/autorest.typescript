@@ -80,7 +80,6 @@ import {
   isMediaTypeMultipartFormData,
   KnownMediaType
 } from "./mediaTypes.js";
-import { getModelNamespaceName } from "./namespaceUtils.js";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export const BINARY_TYPE_UNION =
@@ -579,6 +578,20 @@ function validateDiscriminator(
   return retVals.every((v) => v);
 }
 
+export function getResolvedModelName(
+  dpgContext: SdkContext,
+  name: string,
+  model: Model
+) {
+  if (
+    dpgContext.nameModelMap?.get(name) &&
+    dpgContext.nameModelMap.get(name)!.length > 1
+  ) {
+    return `${name}_${dpgContext.nameModelMap?.get(name)?.indexOf(model)}`;
+  }
+  return name;
+}
+
 function getSchemaForModel(
   dpgContext: SdkContext,
   model: Model,
@@ -597,12 +610,6 @@ function getSchemaForModel(
   const program = dpgContext.program;
   const overridedModelName =
     getFriendlyName(program, model) ?? getWireName(dpgContext, model);
-  const fullNamespaceName =
-    getModelNamespaceName(dpgContext, model.namespace!)
-      .map((nsName) => {
-        return normalizeName(nsName, NameType.Interface);
-      })
-      .join("") + model.name;
   let name = model.name;
   if (
     !overridedModelName &&
@@ -638,7 +645,7 @@ function getSchemaForModel(
       : overridedModelName !== name
         ? overridedModelName
         : dpgContext.rlcOptions?.autoResolveModelConflict
-          ? fullNamespaceName
+          ? getResolvedModelName(dpgContext, name, model)
           : name,
     type: "object",
     isMultipartBody,

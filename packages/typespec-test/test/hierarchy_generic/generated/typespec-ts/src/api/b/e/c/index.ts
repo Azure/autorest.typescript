@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BEA } from "../../../../models/models.js";
+import { A_2 } from "../../../../models/models.js";
 import {
   BecOp1204Response,
   FooContext as Client,
@@ -15,7 +15,7 @@ import { BECOp1OptionalParams } from "../../../options.js";
 
 export function _op1Send(
   context: Client,
-  body: BEA,
+  body: A_2,
   options: BECOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod<BecOp1204Response> {
   return context
@@ -38,7 +38,7 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: BEA,
+  body: A_2,
   options: BECOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);

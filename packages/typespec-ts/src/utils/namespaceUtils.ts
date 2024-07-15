@@ -1,4 +1,4 @@
-import { getAllModels, SdkType } from "@azure-tools/typespec-client-generator-core";
+import { getAllModels } from "@azure-tools/typespec-client-generator-core";
 import {
   getNamespaceFullName,
   isGlobalNamespace,
@@ -67,34 +67,37 @@ export function getOperationNamespaceInterfaceName(
 
 export function detectModelConflicts(dpgContext: SdkContext) {
   const allModels = getAllModels(dpgContext);
-  const nameSet = new Map<string, SdkType[]>();
+  const nameSet = new Map<string, Model[]>();
   let hasConflict = false;
   for (const model of allModels) {
     if (model.name === "") {
       continue;
     }
     if (nameSet.has(model.name)) {
-
-      nameSet.set(model.name, [...nameSet.get(model.name)!, model]);
+      nameSet.set(model.name, [
+        ...nameSet.get(model.name)!,
+        model.__raw! as Model
+      ]);
       hasConflict = true;
     } else {
-      nameSet.set(model.name, [model]);
+      nameSet.set(model.name, [model.__raw! as Model]);
     }
   }
-  for(const [key, value] of nameSet) {
-    if(value.length > 1) {
-      const fullNamespaceNames = nameSet.get(key)!.map((m) =>
-        getNamespaceFullName((m.__raw! as Model).namespace!)
-      );
+  for (const [key, value] of nameSet) {
+    if (value.length > 1) {
+      const fullNamespaceNames = nameSet
+        .get(key)!
+        .map((m) => getNamespaceFullName(m.namespace!));
       reportDiagnostic(dpgContext.program, {
         code: "duplicate-model-name",
         format: {
           modelName: key,
           namespace: fullNamespaceNames.join(", ")
         },
-        target: value[0]!.__raw!
+        target: value[0]!
       });
     }
   }
+  dpgContext.nameModelMap = nameSet;
   return hasConflict;
 }

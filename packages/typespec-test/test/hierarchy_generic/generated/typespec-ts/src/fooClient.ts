@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { A } from "./models/models.js";
+import { A_0 } from "./models/models.js";
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
@@ -34,7 +34,7 @@ export class FooClient {
   }
 
   op1(
-    body: A,
+    body: A_0,
     options: Op1OptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return op1(this._client, body, options);

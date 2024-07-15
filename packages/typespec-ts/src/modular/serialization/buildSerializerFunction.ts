@@ -62,8 +62,11 @@ export function buildModelSerializer(
       const subType = discriminatedTgcType.discriminatedSubtypes[key]!;
       const discriminatedValue = subType.discriminatorValue!;
       const union = subType.discriminatedSubtypes ? "Union" : "";
-      const subTypeName = `${toPascalCase(subType.name)}${union}`;
-      const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+      const subTypeFunctionName = `${toPascalCase(subType.name)}${union}`;
+      const subTypeName = `${subType.name}${union}`;
+      const subtypeSerializerName = toCamelCase(
+        `${subTypeFunctionName}Serializer`
+      );
 
       cases.push(`
         case "${discriminatedValue}":
@@ -71,9 +74,7 @@ export function buildModelSerializer(
       `);
     }
     output.push(`
-    export function ${toCamelCase(type.name)}Serializer(item: ${toPascalCase(
-      type.name
-    )}) {
+    export function ${toCamelCase(type.name)}Serializer(item: ${type.name}) {
       switch (item.${type.discriminator}) {
        ${cases.join("\n")}
         default:
@@ -125,9 +126,7 @@ export function buildModelSerializer(
              )}
           }`;
       output.push(`
-        export function ${serializerName}(item: ${toPascalCase(
-          type.name
-        )})${serializerReturnType} {
+        export function ${serializerName}(item: ${type.name})${serializerReturnType} {
           return ${fnBody}
         }
         `);
@@ -141,16 +140,14 @@ export function buildModelSerializer(
       }
     } else {
       output.push(`
-        export function ${serializerName}(item: ${toPascalCase(type.name)}) {
+        export function ${serializerName}(item: ${type.name}) {
           return item as any;
         }
         `);
     }
   } else if (type.type === "enum") {
     output.push(`
-    export function ${serializerName}(item: ${toPascalCase(
-      type.name
-    )})${serializerReturnType} {
+    export function ${serializerName}(item: ${type.name})${serializerReturnType} {
       return item;
     }
     `);
@@ -209,9 +206,7 @@ function buildPolymorphicSerializer(type: ModularType) {
   }
 
   output.push(`
-    export function ${toCamelCase(type.name!)}Serializer(item: ${toPascalCase(
-      type.name!
-    )}) {
+    export function ${toCamelCase(type.name!)}Serializer(item: ${type.name!}) {
       switch (item.${type.discriminator}) {
        ${cases.join("\n")}
         default:

@@ -87,10 +87,10 @@ import {
   getBodyType,
   getDefaultApiVersionString,
   getEffectiveSchemaType,
+  getResolvedModelName,
   isAzureCoreErrorType,
   isSchemaProperty
 } from "../utils/modelUtils.js";
-import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import {
   extractPagedMetadataNested,
   getOperationGroupName,
@@ -999,18 +999,11 @@ function emitModel(
     NameType.Interface,
     true
   );
-  const fullNamespaceName =
-    getModelNamespaceName(context, type.namespace!)
-      .map((nsName) => {
-        return normalizeName(nsName, NameType.Interface);
-      })
-      .join("") +
-    (effectiveName ? effectiveName : getName(context.program, type));
   let modelName =
     overridedModelName !== type.name
       ? overridedModelName
       : context.rlcOptions?.autoResolveModelConflict
-        ? fullNamespaceName
+        ? getResolvedModelName(context, type.name, type!)
         : effectiveName
           ? effectiveName
           : getName(context.program, type);

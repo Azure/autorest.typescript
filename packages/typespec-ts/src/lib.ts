@@ -235,7 +235,7 @@ const libDef = {
     "duplicate-model-name": {
       severity: "warning",
       messages: {
-        default: paramMessage`Duplicate model name found - ${"modelName"} in namespace ${"namespace"} .`
+        default: paramMessage`Duplicate model name found - ${"modelName"} in namespace ${"namespace"} , please consider renaming the model in TypeSpec.`
       }
     }
   },
