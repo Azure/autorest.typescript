@@ -1,6 +1,6 @@
-# AdditionalProperties REST client library for JavaScript
+# AdditionalProperties client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AdditionalProperties REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AdditionalProperties client.
 
 Tests for additional properties of models
 
@@ -26,5 +26,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### AdditionalPropertiesClient
 
-`AdditionalPropertiesClient` is the primary interface for developers using the AdditionalProperties REST client library. Explore the methods on this client object to understand the different features of the AdditionalProperties service that you can access.
+`AdditionalPropertiesClient` is the primary interface for developers using the AdditionalProperties client library. Explore the methods on this client object to understand the different features of the AdditionalProperties service that you can access.
 

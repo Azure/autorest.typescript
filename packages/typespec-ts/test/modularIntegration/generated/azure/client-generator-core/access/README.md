@@ -1,6 +1,6 @@
-# _Specs_Azure REST client library for JavaScript
+# _Specs_Azure client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for _Specs_Azure REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for _Specs_Azure client.
 
 Test for internal decorator.
 
@@ -26,5 +26,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### AccessClient
 
-`AccessClient` is the primary interface for developers using the _Specs_Azure REST client library. Explore the methods on this client object to understand the different features of the _Specs_Azure service that you can access.
+`AccessClient` is the primary interface for developers using the _Specs_Azure client library. Explore the methods on this client object to understand the different features of the _Specs_Azure service that you can access.
 

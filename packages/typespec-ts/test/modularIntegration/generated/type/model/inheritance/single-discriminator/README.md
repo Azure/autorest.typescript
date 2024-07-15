@@ -1,6 +1,6 @@
-# SingleDiscriminator REST client library for JavaScript
+# SingleDiscriminator client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for SingleDiscriminator REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for SingleDiscriminator client.
 
 Illustrates inheritance with single discriminator.
 
@@ -26,5 +26,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### SingleDiscriminatorClient
 
-`SingleDiscriminatorClient` is the primary interface for developers using the SingleDiscriminator REST client library. Explore the methods on this client object to understand the different features of the SingleDiscriminator service that you can access.
+`SingleDiscriminatorClient` is the primary interface for developers using the SingleDiscriminator client library. Explore the methods on this client object to understand the different features of the SingleDiscriminator service that you can access.
 

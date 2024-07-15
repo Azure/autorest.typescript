@@ -1,6 +1,6 @@
-# NestedDiscriminator REST client library for JavaScript
+# NestedDiscriminator client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for NestedDiscriminator REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for NestedDiscriminator client.
 
 Illustrates multiple level inheritance with multiple discriminators.
 
@@ -26,5 +26,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### NestedDiscriminatorClient
 
-`NestedDiscriminatorClient` is the primary interface for developers using the NestedDiscriminator REST client library. Explore the methods on this client object to understand the different features of the NestedDiscriminator service that you can access.
+`NestedDiscriminatorClient` is the primary interface for developers using the NestedDiscriminator client library. Explore the methods on this client object to understand the different features of the NestedDiscriminator service that you can access.
 

@@ -1,6 +1,6 @@
-# Optional REST client library for JavaScript
+# Optional client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Optional REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Optional client.
 
 Illustrates models with optional properties.
 
@@ -26,5 +26,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### OptionalClient
 
-`OptionalClient` is the primary interface for developers using the Optional REST client library. Explore the methods on this client object to understand the different features of the Optional service that you can access.
+`OptionalClient` is the primary interface for developers using the Optional client library. Explore the methods on this client object to understand the different features of the Optional service that you can access.
 

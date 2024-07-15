@@ -1,6 +1,6 @@
-# Multi REST client library for JavaScript
+# Multi client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Multi REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Multi client.
 
 Test that we can use @client and @operationGroup decorators to customize client side code structure, such as:
 1. have everything as default.
@@ -32,5 +32,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### ServiceClient
 
-`ServiceClient` is the primary interface for developers using the Multi REST client library. Explore the methods on this client object to understand the different features of the Multi service that you can access.
+`ServiceClient` is the primary interface for developers using the Multi client library. Explore the methods on this client object to understand the different features of the Multi service that you can access.
 

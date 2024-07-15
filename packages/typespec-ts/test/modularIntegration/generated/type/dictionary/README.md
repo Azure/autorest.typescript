@@ -1,6 +1,6 @@
-# Dictionary REST client library for JavaScript
+# Dictionary client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Dictionary REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Dictionary client.
 
 Illustrates various of dictionaries.
 
@@ -26,5 +26,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### DictionaryClient
 
-`DictionaryClient` is the primary interface for developers using the Dictionary REST client library. Explore the methods on this client object to understand the different features of the Dictionary service that you can access.
+`DictionaryClient` is the primary interface for developers using the Dictionary client library. Explore the methods on this client object to understand the different features of the Dictionary service that you can access.
 

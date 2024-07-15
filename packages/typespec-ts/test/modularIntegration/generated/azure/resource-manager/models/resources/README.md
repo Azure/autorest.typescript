@@ -1,6 +1,6 @@
-# Azure Resources REST client library for JavaScript
+# Azure Resources client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure Resources REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure Resources client.
 
 Arm Resource Provider management API.
 
@@ -30,7 +30,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### ResourcesClient
 
-`ResourcesClient` is the primary interface for developers using the Azure Resources REST client library. Explore the methods on this client object to understand the different features of the Azure Resources service that you can access.
+`ResourcesClient` is the primary interface for developers using the Azure Resources client library. Explore the methods on this client object to understand the different features of the Azure Resources service that you can access.
 
 ## Troubleshooting
 

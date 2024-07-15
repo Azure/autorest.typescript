@@ -1,6 +1,6 @@
-# Rpc REST client library for JavaScript
+# Rpc client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Rpc REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Rpc client.
 
 Illustrates bodies templated with Azure Core with long-running RPC operation
 
@@ -18,7 +18,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/modular-lro-rpc` package
 
-Install the Rpc REST client library for JavaScript with `npm`:
+Install the Rpc client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/modular-lro-rpc
@@ -33,5 +33,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### RpcClient
 
-`RpcClient` is the primary interface for developers using the Rpc REST client library. Explore the methods on this client object to understand the different features of the Rpc service that you can access.
+`RpcClient` is the primary interface for developers using the Rpc client library. Explore the methods on this client object to understand the different features of the Rpc service that you can access.
 

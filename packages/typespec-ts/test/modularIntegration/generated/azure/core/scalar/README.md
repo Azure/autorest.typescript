@@ -1,6 +1,6 @@
-# Scalar REST client library for JavaScript
+# Scalar client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Scalar REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Scalar client.
 
 
 
@@ -26,5 +26,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### ScalarClient
 
-`ScalarClient` is the primary interface for developers using the Scalar REST client library. Explore the methods on this client object to understand the different features of the Scalar service that you can access.
+`ScalarClient` is the primary interface for developers using the Scalar client library. Explore the methods on this client object to understand the different features of the Scalar service that you can access.
 
