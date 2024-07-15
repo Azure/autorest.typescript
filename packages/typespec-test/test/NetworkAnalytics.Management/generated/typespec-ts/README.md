@@ -1,6 +1,6 @@
-# Azure NetworkAnalytics REST client library for JavaScript
+# Azure NetworkAnalytics client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure NetworkAnalytics REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure NetworkAnalytics client.
 
 
 
@@ -22,7 +22,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@azure/arm-networkanalytics` package
 
-Install the Azure NetworkAnalytics REST client library for JavaScript with `npm`:
+Install the Azure NetworkAnalytics client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure/arm-networkanalytics
@@ -37,7 +37,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### NetworkAnalyticsClient
 
-`NetworkAnalyticsClient` is the primary interface for developers using the Azure NetworkAnalytics REST client library. Explore the methods on this client object to understand the different features of the Azure NetworkAnalytics service that you can access.
+`NetworkAnalyticsClient` is the primary interface for developers using the Azure NetworkAnalytics client library. Explore the methods on this client object to understand the different features of the Azure NetworkAnalytics service that you can access.
 
 ## Troubleshooting
 

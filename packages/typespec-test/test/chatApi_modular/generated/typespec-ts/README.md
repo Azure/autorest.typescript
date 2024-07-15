@@ -1,6 +1,6 @@
-# Azure ChatProtocol REST client library for JavaScript
+# Azure ChatProtocol client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure ChatProtocol REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure ChatProtocol client.
 
 Azure APIs for the Azure Chat protocol.
 
@@ -22,7 +22,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@azure/ai-chat-protocol` package
 
-Install the Azure ChatProtocol REST client library for JavaScript with `npm`:
+Install the Azure ChatProtocol client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure/ai-chat-protocol
@@ -37,7 +37,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### ChatProtocolClient
 
-`ChatProtocolClient` is the primary interface for developers using the Azure ChatProtocol REST client library. Explore the methods on this client object to understand the different features of the Azure ChatProtocol service that you can access.
+`ChatProtocolClient` is the primary interface for developers using the Azure ChatProtocol client library. Explore the methods on this client object to understand the different features of the Azure ChatProtocol service that you can access.
 
 ## Troubleshooting
 

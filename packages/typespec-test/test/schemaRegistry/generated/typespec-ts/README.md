@@ -1,6 +1,6 @@
-# SchemaRegistry REST client library for JavaScript
+# SchemaRegistry client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for SchemaRegistry REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for SchemaRegistry client.
 
 SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service.
 
@@ -18,7 +18,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/schema-registry` package
 
-Install the SchemaRegistry REST client library for JavaScript with `npm`:
+Install the SchemaRegistry client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/schema-registry
@@ -33,5 +33,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### SchemaRegistryClient
 
-`SchemaRegistryClient` is the primary interface for developers using the SchemaRegistry REST client library. Explore the methods on this client object to understand the different features of the SchemaRegistry service that you can access.
+`SchemaRegistryClient` is the primary interface for developers using the SchemaRegistry client library. Explore the methods on this client object to understand the different features of the SchemaRegistry service that you can access.
 

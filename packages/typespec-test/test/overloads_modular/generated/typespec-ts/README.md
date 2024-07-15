@@ -1,6 +1,6 @@
-# WidgetManager REST client library for JavaScript
+# WidgetManager client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for WidgetManager REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for WidgetManager client.
 
 Mock Service
 
@@ -18,7 +18,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/overload_modular` package
 
-Install the WidgetManager REST client library for JavaScript with `npm`:
+Install the WidgetManager client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/overload_modular
@@ -33,5 +33,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### WidgetManagerClient
 
-`WidgetManagerClient` is the primary interface for developers using the WidgetManager REST client library. Explore the methods on this client object to understand the different features of the WidgetManager service that you can access.
+`WidgetManagerClient` is the primary interface for developers using the WidgetManager client library. Explore the methods on this client object to understand the different features of the WidgetManager service that you can access.
 

@@ -1,6 +1,6 @@
-# WidgetService REST client library for JavaScript
+# WidgetService client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for WidgetService REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for WidgetService client.
 
 Widget Service
 
@@ -18,7 +18,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/widget_dpg` package
 
-Install the WidgetService REST client library for JavaScript with `npm`:
+Install the WidgetService client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/widget_dpg
@@ -33,5 +33,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### WidgetServiceClient
 
-`WidgetServiceClient` is the primary interface for developers using the WidgetService REST client library. Explore the methods on this client object to understand the different features of the WidgetService service that you can access.
+`WidgetServiceClient` is the primary interface for developers using the WidgetService client library. Explore the methods on this client object to understand the different features of the WidgetService service that you can access.
 

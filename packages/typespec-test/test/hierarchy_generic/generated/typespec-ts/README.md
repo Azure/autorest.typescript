@@ -1,6 +1,6 @@
-# Foo REST client library for JavaScript
+# Foo client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Foo REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Foo client.
 
 OpenAI
 
@@ -18,7 +18,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/hierarchy-generic` package
 
-Install the Foo REST client library for JavaScript with `npm`:
+Install the Foo client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/hierarchy-generic
@@ -33,5 +33,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### FooClient
 
-`FooClient` is the primary interface for developers using the Foo REST client library. Explore the methods on this client object to understand the different features of the Foo service that you can access.
+`FooClient` is the primary interface for developers using the Foo client library. Explore the methods on this client object to understand the different features of the Foo service that you can access.
 

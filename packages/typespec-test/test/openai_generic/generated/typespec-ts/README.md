@@ -1,6 +1,6 @@
-# OpenAI REST client library for JavaScript
+# OpenAI client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for OpenAI REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for OpenAI client.
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
@@ -18,7 +18,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/openai-generic` package
 
-Install the OpenAI REST client library for JavaScript with `npm`:
+Install the OpenAI client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/openai-generic
@@ -33,5 +33,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### OpenAIClient
 
-`OpenAIClient` is the primary interface for developers using the OpenAI REST client library. Explore the methods on this client object to understand the different features of the OpenAI service that you can access.
+`OpenAIClient` is the primary interface for developers using the OpenAI client library. Explore the methods on this client object to understand the different features of the OpenAI service that you can access.
 

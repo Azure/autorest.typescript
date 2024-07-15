@@ -1,6 +1,6 @@
-# AnomalyDetector REST client library for JavaScript
+# AnomalyDetector client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AnomalyDetector REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AnomalyDetector client.
 
 The Anomaly Detector API detects anomalies automatically in time series data.
 It supports two kinds of mode, one is for stateless using, another is for
@@ -33,7 +33,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/ai-anomaly-detector` package
 
-Install the AnomalyDetector REST client library for JavaScript with `npm`:
+Install the AnomalyDetector client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/ai-anomaly-detector
@@ -48,5 +48,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### AnomalyDetectorClient
 
-`AnomalyDetectorClient` is the primary interface for developers using the AnomalyDetector REST client library. Explore the methods on this client object to understand the different features of the AnomalyDetector service that you can access.
+`AnomalyDetectorClient` is the primary interface for developers using the AnomalyDetector client library. Explore the methods on this client object to understand the different features of the AnomalyDetector service that you can access.
 

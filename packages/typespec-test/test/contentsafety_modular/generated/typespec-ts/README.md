@@ -1,6 +1,6 @@
-# Azure ContentSafety REST client library for JavaScript
+# Azure ContentSafety client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure ContentSafety REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure ContentSafety client.
 
 Analyze harmful content
 
@@ -22,7 +22,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@azure-rest/ai-content-safety` package
 
-Install the Azure ContentSafety REST client library for JavaScript with `npm`:
+Install the Azure ContentSafety client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/ai-content-safety
@@ -37,7 +37,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### ContentSafetyClient
 
-`ContentSafetyClient` is the primary interface for developers using the Azure ContentSafety REST client library. Explore the methods on this client object to understand the different features of the Azure ContentSafety service that you can access.
+`ContentSafetyClient` is the primary interface for developers using the Azure ContentSafety client library. Explore the methods on this client object to understand the different features of the Azure ContentSafety service that you can access.
 
 ## Troubleshooting
 

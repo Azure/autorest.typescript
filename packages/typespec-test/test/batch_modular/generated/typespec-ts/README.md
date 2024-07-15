@@ -1,6 +1,6 @@
-# Azure Batch REST client library for JavaScript
+# Azure Batch client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure Batch REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure Batch client.
 
 Azure Batch provides Cloud-scale job scheduling and compute management.
 
@@ -22,7 +22,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@azure-rest/batch` package
 
-Install the Azure Batch REST client library for JavaScript with `npm`:
+Install the Azure Batch client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/batch
@@ -37,7 +37,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### BatchClient
 
-`BatchClient` is the primary interface for developers using the Azure Batch REST client library. Explore the methods on this client object to understand the different features of the Azure Batch service that you can access.
+`BatchClient` is the primary interface for developers using the Azure Batch client library. Explore the methods on this client object to understand the different features of the Azure Batch service that you can access.
 
 ## Troubleshooting
 

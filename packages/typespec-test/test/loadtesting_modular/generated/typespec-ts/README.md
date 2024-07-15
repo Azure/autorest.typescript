@@ -1,6 +1,6 @@
-# AzureLoadTesting REST client library for JavaScript
+# AzureLoadTesting client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AzureLoadTesting REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AzureLoadTesting client.
 
 These APIs allow end users to create, view and run load tests using Azure Load
 Test Service.
@@ -23,7 +23,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@azure/load-testing` package
 
-Install the AzureLoadTesting REST client library for JavaScript with `npm`:
+Install the AzureLoadTesting client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure/load-testing
@@ -38,7 +38,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### AzureLoadTestingClient
 
-`AzureLoadTestingClient` is the primary interface for developers using the AzureLoadTesting REST client library. Explore the methods on this client object to understand the different features of the AzureLoadTesting service that you can access.
+`AzureLoadTestingClient` is the primary interface for developers using the AzureLoadTesting client library. Explore the methods on this client object to understand the different features of the AzureLoadTesting service that you can access.
 
 ## Troubleshooting
 

@@ -1,6 +1,6 @@
-# ParametrizedHost REST client library for JavaScript
+# ParametrizedHost client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ParametrizedHost REST client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ParametrizedHost client.
 
 Parametrized host test
 
@@ -18,7 +18,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/parametrized-host` package
 
-Install the ParametrizedHost REST client library for JavaScript with `npm`:
+Install the ParametrizedHost client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/parametrized-host
@@ -33,5 +33,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### ParametrizedHostClient
 
-`ParametrizedHostClient` is the primary interface for developers using the ParametrizedHost REST client library. Explore the methods on this client object to understand the different features of the ParametrizedHost service that you can access.
+`ParametrizedHostClient` is the primary interface for developers using the ParametrizedHost client library. Explore the methods on this client object to understand the different features of the ParametrizedHost service that you can access.
 

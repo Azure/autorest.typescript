@@ -258,7 +258,7 @@ Key links:
 
 ### Install the \`{{ clientPackageName }}\` package
 
-Install the {{ clientDescriptiveName }} REST client library for JavaScript with \`npm\`:
+Install the {{ clientDescriptiveName }} library for JavaScript with \`npm\`:
 
 \`\`\`bash
 npm install {{ clientPackageName }}
@@ -375,7 +375,9 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     serviceName,
     clientClassName,
     clientPackageName: clientPackageName,
-    clientDescriptiveName: `${serviceName} REST client`,
+    clientDescriptiveName: model.options.isModularLibrary
+      ? `${serviceName} client`
+      : `${serviceName} REST client`,
     description: serviceInfo?.description ?? packageDetails.description,
     serviceDocURL: productDocLink,
     packageSourceURL: packageSourceURL,
