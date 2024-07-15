@@ -81,7 +81,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     sourceFrom: { type: "string", nullable: true },
     isModularLibrary: { type: "boolean", nullable: true, default: false },
     enableOperationGroup: { type: "boolean", nullable: true },
-    enableModelNamespace: { type: "boolean", nullable: true },
+    autoResolveModelConflict: { type: "boolean", nullable: true },
     hierarchyClient: { type: "boolean", nullable: true },
     branded: { type: "boolean", nullable: true },
     flavor: { type: "string", nullable: true },
@@ -230,6 +230,12 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
+      }
+    },
+    "duplicate-model-name": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Duplicate model name found - ${"modelName"} in namespace ${"namespace"} .`
       }
     }
   },

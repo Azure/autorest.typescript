@@ -637,7 +637,7 @@ function getSchemaForModel(
       ? name
       : overridedModelName !== name
         ? overridedModelName
-        : dpgContext.rlcOptions?.enableModelNamespace
+        : dpgContext.rlcOptions?.autoResolveModelConflict
           ? fullNamespaceName
           : name,
     type: "object",

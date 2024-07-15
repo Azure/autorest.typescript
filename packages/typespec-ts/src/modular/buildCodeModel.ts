@@ -1009,7 +1009,7 @@ function emitModel(
   let modelName =
     overridedModelName !== type.name
       ? overridedModelName
-      : context.rlcOptions?.enableModelNamespace
+      : context.rlcOptions?.autoResolveModelConflict
         ? fullNamespaceName
         : effectiveName
           ? effectiveName

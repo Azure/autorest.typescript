@@ -65,7 +65,7 @@ function extractRLCOptions(
     dpgContext,
     emitterOptions
   );
-  const enableModelNamespace = getEnableModelNamespace(
+  const autoResolveModelConflict = getEnableModelNamespace(
     dpgContext,
     emitterOptions
   );
@@ -85,7 +85,7 @@ function extractRLCOptions(
     azureOutputDirectory,
     sourceFrom: "TypeSpec",
     enableOperationGroup,
-    enableModelNamespace,
+    autoResolveModelConflict,
     hierarchyClient,
     azureArm: dpgContext.arm
   };
@@ -179,10 +179,10 @@ function getEnableModelNamespace(
   emitterOptions: EmitterOptions
 ) {
   if (
-    emitterOptions.enableModelNamespace === true ||
-    emitterOptions.enableModelNamespace === false
+    emitterOptions.autoResolveModelConflict === true ||
+    emitterOptions.autoResolveModelConflict === false
   ) {
-    return emitterOptions.enableModelNamespace;
+    return emitterOptions.autoResolveModelConflict;
   }
   // Detect if existing name conflicts if customers didn't set the option explicitly
   return detectModelConflicts(dpgContext);
