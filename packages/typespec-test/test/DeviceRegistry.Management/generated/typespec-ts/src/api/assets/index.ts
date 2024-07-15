@@ -77,62 +77,61 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as undefined;
   return {
-    tags: _result.body["tags"],
-    location: _result.body["location"],
-    id: _result.body["id"],
-    name: _result.body["name"],
-    type: _result.body["type"],
-    systemData: !_result.body.systemData
+    tags: result.body["tags"],
+    location: result.body["location"],
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: _result.body.systemData?.["createdBy"],
-          createdByType: _result.body.systemData?.[
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.[
             "createdByType"
           ] as CreatedByType,
           createdAt:
-            _result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(_result.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: _result.body.systemData?.[
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.[
             "lastModifiedByType"
           ] as CreatedByType,
           lastModifiedAt:
-            _result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(_result.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !_result.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          uuid: _result.body.properties?.["uuid"],
-          assetType: _result.body.properties?.["assetType"],
-          enabled: _result.body.properties?.["enabled"],
-          externalAssetId: _result.body.properties?.["externalAssetId"],
-          displayName: _result.body.properties?.["displayName"],
-          description: _result.body.properties?.["description"],
+          uuid: result.body.properties?.["uuid"],
+          assetType: result.body.properties?.["assetType"],
+          enabled: result.body.properties?.["enabled"],
+          externalAssetId: result.body.properties?.["externalAssetId"],
+          displayName: result.body.properties?.["displayName"],
+          description: result.body.properties?.["description"],
           assetEndpointProfileUri:
-            _result.body.properties?.["assetEndpointProfileUri"],
-          version: _result.body.properties?.["version"],
-          manufacturer: _result.body.properties?.["manufacturer"],
-          manufacturerUri: _result.body.properties?.["manufacturerUri"],
-          model: _result.body.properties?.["model"],
-          productCode: _result.body.properties?.["productCode"],
-          hardwareRevision: _result.body.properties?.["hardwareRevision"],
-          softwareRevision: _result.body.properties?.["softwareRevision"],
-          documentationUri: _result.body.properties?.["documentationUri"],
-          serialNumber: _result.body.properties?.["serialNumber"],
-          attributes: _result.body.properties?.["attributes"],
+            result.body.properties?.["assetEndpointProfileUri"],
+          version: result.body.properties?.["version"],
+          manufacturer: result.body.properties?.["manufacturer"],
+          manufacturerUri: result.body.properties?.["manufacturerUri"],
+          model: result.body.properties?.["model"],
+          productCode: result.body.properties?.["productCode"],
+          hardwareRevision: result.body.properties?.["hardwareRevision"],
+          softwareRevision: result.body.properties?.["softwareRevision"],
+          documentationUri: result.body.properties?.["documentationUri"],
+          serialNumber: result.body.properties?.["serialNumber"],
+          attributes: result.body.properties?.["attributes"],
           defaultDataPointsConfiguration:
-            _result.body.properties?.["defaultDataPointsConfiguration"],
+            result.body.properties?.["defaultDataPointsConfiguration"],
           defaultEventsConfiguration:
-            _result.body.properties?.["defaultEventsConfiguration"],
+            result.body.properties?.["defaultEventsConfiguration"],
           dataPoints:
-            _result.body.properties?.["dataPoints"] === undefined
-              ? _result.body.properties?.["dataPoints"]
-              : _result.body.properties?.["dataPoints"].map((p) => {
+            result.body.properties?.["dataPoints"] === undefined
+              ? result.body.properties?.["dataPoints"]
+              : result.body.properties?.["dataPoints"].map((p) => {
                   return {
                     name: p["name"],
                     dataSource: p["dataSource"],
@@ -144,9 +143,9 @@ export async function _getDeserialize(
                   };
                 }),
           events:
-            _result.body.properties?.["events"] === undefined
-              ? _result.body.properties?.["events"]
-              : _result.body.properties?.["events"].map((p) => {
+            result.body.properties?.["events"] === undefined
+              ? result.body.properties?.["events"]
+              : result.body.properties?.["events"].map((p) => {
                   return {
                     name: p["name"],
                     eventNotifier: p["eventNotifier"],
@@ -157,24 +156,24 @@ export async function _getDeserialize(
                     eventConfiguration: p["eventConfiguration"],
                   };
                 }),
-          status: !_result.body.properties?.status
+          status: !result.body.properties?.status
             ? undefined
             : {
                 errors:
-                  _result.body.properties?.status?.["errors"] === undefined
-                    ? _result.body.properties?.status?.["errors"]
-                    : _result.body.properties?.status?.["errors"].map((p) => {
+                  result.body.properties?.status?.["errors"] === undefined
+                    ? result.body.properties?.status?.["errors"]
+                    : result.body.properties?.status?.["errors"].map((p) => {
                         return { code: p["code"], message: p["message"] };
                       }),
-                version: _result.body.properties?.status?.["version"],
+                version: result.body.properties?.status?.["version"],
               },
-          provisioningState: _result.body.properties?.[
+          provisioningState: result.body.properties?.[
             "provisioningState"
           ] as any,
         },
     extendedLocation: {
-      type: _result.body.extendedLocation["type"],
-      name: _result.body.extendedLocation["name"],
+      type: result.body.extendedLocation["type"],
+      name: result.body.extendedLocation["name"],
     },
   };
 }
@@ -629,9 +628,8 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as undefined;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -728,7 +726,7 @@ export async function _listByResourceGroupDeserialize(
         },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 
@@ -777,9 +775,8 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as undefined;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -876,7 +873,7 @@ export async function _listBySubscriptionDeserialize(
         },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 
