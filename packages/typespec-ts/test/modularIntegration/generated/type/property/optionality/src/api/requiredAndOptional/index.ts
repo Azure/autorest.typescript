@@ -37,10 +37,9 @@ export async function _getAllDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as RequiredAndOptionalGetAll200Response;
   return {
-    optionalProperty: _result.body["optionalProperty"],
-    requiredProperty: _result.body["requiredProperty"],
+    optionalProperty: result.body["optionalProperty"],
+    requiredProperty: result.body["requiredProperty"],
   };
 }
 
@@ -71,11 +70,9 @@ export async function _getRequiredOnlyDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as RequiredAndOptionalGetRequiredOnly200Response;
   return {
-    optionalProperty: _result.body["optionalProperty"],
-    requiredProperty: _result.body["requiredProperty"],
+    optionalProperty: result.body["optionalProperty"],
+    requiredProperty: result.body["requiredProperty"],
   };
 }
 

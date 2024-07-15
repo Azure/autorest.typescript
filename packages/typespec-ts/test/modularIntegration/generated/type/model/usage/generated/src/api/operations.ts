@@ -71,9 +71,8 @@ export async function _outputDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as Output200Response;
   return {
-    requiredProp: _result.body["requiredProp"],
+    requiredProp: result.body["requiredProp"],
   };
 }
 
@@ -105,9 +104,8 @@ export async function _inputAndOutputDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as InputAndOutput200Response;
   return {
-    requiredProp: _result.body["requiredProp"],
+    requiredProp: result.body["requiredProp"],
   };
 }
 

@@ -33,9 +33,8 @@ export async function _unionStringLiteralGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as UnionStringLiteralGet200Response;
   return {
-    property: _result.body["property"],
+    property: result.body["property"],
   };
 }
 

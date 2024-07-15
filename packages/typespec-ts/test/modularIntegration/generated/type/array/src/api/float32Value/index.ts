@@ -32,8 +32,7 @@ export async function _float32ValueGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as Float32ValueGet200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function float32ValueGet(

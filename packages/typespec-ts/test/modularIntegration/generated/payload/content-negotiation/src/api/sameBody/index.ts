@@ -35,8 +35,7 @@ export async function _getAvatarAsPngDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as SameBodyGetAvatarAsPng200Response;
-  return _result.body as any;
+  return result.body as any;
 }
 
 export async function getAvatarAsPng(
@@ -66,8 +65,7 @@ export async function _getAvatarAsJpegDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as SameBodyGetAvatarAsJpeg200Response;
-  return _result.body as any;
+  return result.body as any;
 }
 
 export async function getAvatarAsJpeg(

@@ -33,9 +33,8 @@ export async function _stringExtensibleNamedGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as StringExtensibleNamedGet200Response;
   return {
-    prop: _result.body["prop"],
+    prop: result.body["prop"],
   };
 }
 

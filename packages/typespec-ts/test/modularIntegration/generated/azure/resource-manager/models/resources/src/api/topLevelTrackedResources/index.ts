@@ -78,34 +78,33 @@ export async function _topLevelTrackedResourcesGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as TopLevelTrackedResourcesGet200Response;
   return {
-    tags: _result.body["tags"],
-    location: _result.body["location"],
-    id: _result.body["id"],
-    name: _result.body["name"],
-    type: _result.body["type"],
-    systemData: !_result.body.systemData
+    tags: result.body["tags"],
+    location: result.body["location"],
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: _result.body.systemData?.["createdBy"],
-          createdByType: _result.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            _result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(_result.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            _result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(_result.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !_result.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: _result.body.properties?.["provisioningState"],
-          description: _result.body.properties?.["description"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          description: result.body.properties?.["description"],
         },
   };
 }
@@ -456,10 +455,8 @@ export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as TopLevelTrackedResourcesListByResourceGroup200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -490,7 +487,7 @@ export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
             },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 
@@ -544,10 +541,8 @@ export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as TopLevelTrackedResourcesListBySubscription200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -578,7 +573,7 @@ export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
             },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 

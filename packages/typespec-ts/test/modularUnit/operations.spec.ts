@@ -550,28 +550,27 @@ describe("operations", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-          const _result = result as unknown as Read200Response;
           return {
             optionalBars:
-              _result.body["optionalBars"] === undefined
-                ? _result.body["optionalBars"]
-                : _result.body["optionalBars"].map((p) => {
+              result.body["optionalBars"] === undefined
+                ? result.body["optionalBars"]
+                : result.body["optionalBars"].map((p) => {
                              return { prop1: p["prop1"], prop2: p["prop2"] };
                            }),
-            requiredBars: _result.body["requiredBars"].map((p) => {
+            requiredBars: result.body["requiredBars"].map((p) => {
                    return { prop1: p["prop1"], prop2: p["prop2"] };
                  }),
             nullableBars:
-              _result.body["nullableBars"] === undefined ||
-              _result.body["nullableBars"] === null
-                ? _result.body["nullableBars"]
-                : _result.body["nullableBars"].map((p) => {
+              result.body["nullableBars"] === undefined ||
+              result.body["nullableBars"] === null
+                ? result.body["nullableBars"]
+                : result.body["nullableBars"].map((p) => {
                              return { prop1: p["prop1"], prop2: p["prop2"] };
                            }),
             nullableRequiredBars:
-              _result.body["nullableRequiredBars"] === null
-                ? _result.body["nullableRequiredBars"]
-                : _result.body["nullableRequiredBars"].map((p) => {
+              result.body["nullableRequiredBars"] === null
+                ? result.body["nullableRequiredBars"]
+                : result.body["nullableRequiredBars"].map((p) => {
                              return { prop1: p["prop1"], prop2: p["prop2"] };
                            }),
           };
@@ -629,9 +628,8 @@ describe("operations", () => {
             if(result.status !== "200"){
               throw createRestError(result);
             }
-            const _result = result as unknown as Test200Response;
             return {
-              "lists": _result.body["lists"]
+              "lists": result.body["lists"]
             }
         }
 
@@ -697,9 +695,8 @@ describe("operations", () => {
             if(result.status !== "200"){
             throw createRestError(result);
             }
-            const _result = result as unknown as Test200Response;
             return {
-            "lists": _result.body["lists"]
+            "lists": result.body["lists"]
             }
         }
 

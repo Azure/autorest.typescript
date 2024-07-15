@@ -31,12 +31,11 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as List200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return { name: p["name"] };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 

@@ -33,9 +33,8 @@ export async function _extensibleEnumGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ExtensibleEnumGet200Response;
   return {
-    property: _result.body["property"] as InnerEnum,
+    property: result.body["property"] as InnerEnum,
   };
 }
 

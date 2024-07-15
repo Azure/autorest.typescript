@@ -33,9 +33,8 @@ export async function _collectionsIntGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as CollectionsIntGet200Response;
   return {
-    property: _result.body["property"],
+    property: result.body["property"],
   };
 }
 

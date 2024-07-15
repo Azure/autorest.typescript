@@ -43,11 +43,10 @@ export async function _v1Deserialize(result: V1200Response): Promise<ModelV1> {
     throw createRestError(result);
   }
 
-  const _result = result as unknown as V1200Response;
   return {
-    prop: _result.body["prop"],
-    enumProp: _result.body["enumProp"],
-    unionProp: _result.body["unionProp"],
+    prop: result.body["prop"],
+    enumProp: result.body["enumProp"],
+    unionProp: result.body["unionProp"],
   };
 }
 
@@ -83,11 +82,10 @@ export async function _v2Deserialize(result: V2200Response): Promise<ModelV2> {
     throw createRestError(result);
   }
 
-  const _result = result as unknown as V2200Response;
   return {
-    prop: _result.body["prop"],
-    enumProp: _result.body["enumProp"],
-    unionProp: _result.body["unionProp"],
+    prop: result.body["prop"],
+    enumProp: result.body["enumProp"],
+    unionProp: result.body["unionProp"],
   };
 }
 
@@ -124,11 +122,10 @@ export async function _v2InInterfaceDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as V2InInterface200Response;
   return {
-    prop: _result.body["prop"],
-    enumProp: _result.body["enumProp"],
-    unionProp: _result.body["unionProp"],
+    prop: result.body["prop"],
+    enumProp: result.body["enumProp"],
+    unionProp: result.body["unionProp"],
   };
 }
 

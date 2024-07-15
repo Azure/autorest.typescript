@@ -37,13 +37,12 @@ export async function _getNonNullDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DatetimeGetNonNull200Response;
   return {
-    requiredProperty: _result.body["requiredProperty"],
+    requiredProperty: result.body["requiredProperty"],
     nullableProperty:
-      _result.body["nullableProperty"] === null
+      result.body["nullableProperty"] === null
         ? null
-        : new Date(_result.body["nullableProperty"]),
+        : new Date(result.body["nullableProperty"]),
   };
 }
 
@@ -72,13 +71,12 @@ export async function _getNullDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DatetimeGetNull200Response;
   return {
-    requiredProperty: _result.body["requiredProperty"],
+    requiredProperty: result.body["requiredProperty"],
     nullableProperty:
-      _result.body["nullableProperty"] === null
+      result.body["nullableProperty"] === null
         ? null
-        : new Date(_result.body["nullableProperty"]),
+        : new Date(result.body["nullableProperty"]),
   };
 }
 

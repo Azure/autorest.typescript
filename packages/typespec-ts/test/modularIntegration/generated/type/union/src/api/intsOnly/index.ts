@@ -32,9 +32,8 @@ export async function _intsOnlyGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as IntsOnlyGet200Response;
   return {
-    prop: _result.body["prop"],
+    prop: result.body["prop"],
   };
 }
 

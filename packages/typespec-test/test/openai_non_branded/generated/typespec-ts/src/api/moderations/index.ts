@@ -39,11 +39,10 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ModerationsCreate200Response;
   return {
-    id: _result.body["id"],
-    model: _result.body["model"],
-    results: _result.body["results"].map((p) => {
+    id: result.body["id"],
+    model: result.body["model"],
+    results: result.body["results"].map((p) => {
       return {
         flagged: p["flagged"],
         categories: {

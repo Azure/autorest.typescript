@@ -32,8 +32,7 @@ export async function _stringValueGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as StringValueGet200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function stringValueGet(

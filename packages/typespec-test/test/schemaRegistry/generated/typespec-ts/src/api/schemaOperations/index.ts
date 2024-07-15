@@ -65,12 +65,11 @@ export async function _listSchemaGroupsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListSchemaGroups200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return { groupName: p["groupName"] };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 
@@ -106,10 +105,9 @@ export async function _getSchemaByIdDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetSchemaById200Response;
-  return typeof _result.body === "string"
-    ? stringToUint8Array(_result.body, "base64")
-    : _result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
@@ -144,12 +142,11 @@ export async function _listSchemaVersionsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListSchemaVersions200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return { schemaVersion: p["schemaVersion"] };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 
@@ -198,10 +195,9 @@ export async function _getSchemaByVersionDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetSchemaByVersion200Response;
-  return typeof _result.body === "string"
-    ? stringToUint8Array(_result.body, "base64")
-    : _result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets one specific version of one schema. */

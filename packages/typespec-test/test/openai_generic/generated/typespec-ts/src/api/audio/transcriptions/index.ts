@@ -52,9 +52,8 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as AudioTranscriptionsCreate200Response;
   return {
-    text: _result.body["text"],
+    text: result.body["text"],
   };
 }
 

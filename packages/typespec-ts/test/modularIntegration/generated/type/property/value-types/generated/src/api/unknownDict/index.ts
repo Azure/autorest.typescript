@@ -33,9 +33,8 @@ export async function _unknownDictGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as UnknownDictGet200Response;
   return {
-    property: _result.body["property"],
+    property: result.body["property"],
   };
 }
 

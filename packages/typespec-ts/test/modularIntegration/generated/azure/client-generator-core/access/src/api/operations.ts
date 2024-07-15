@@ -62,9 +62,8 @@ export async function _noDecoratorInPublicDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as NoDecoratorInPublic200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -99,9 +98,8 @@ export async function _publicDecoratorInPublicDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as PublicDecoratorInPublic200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -136,9 +134,8 @@ export async function _noDecoratorInInternalDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as NoDecoratorInInternal200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -173,9 +170,8 @@ export async function _internalDecoratorInInternalDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as InternalDecoratorInInternal200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -210,9 +206,8 @@ export async function _publicDecoratorInInternalDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as PublicDecoratorInInternal200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -245,9 +240,8 @@ export async function _$publicDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as Public200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -285,9 +279,8 @@ export async function _internalDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as Internal200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -322,10 +315,9 @@ export async function _operationDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as Operation200Response;
   return {
-    name: _result.body["name"],
-    inner: { name: _result.body.inner["name"] },
+    name: result.body["name"],
+    inner: { name: result.body.inner["name"] },
   };
 }
 
@@ -373,8 +365,7 @@ export async function _discriminatorDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as Discriminator200Response;
-  return _result.body;
+  return result.body;
 }
 
 /**

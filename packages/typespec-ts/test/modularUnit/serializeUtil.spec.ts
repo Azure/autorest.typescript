@@ -1070,12 +1070,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: _result.body["data"],
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: result.body["data"],
         };
       }
       export async function customGet1(
@@ -1150,12 +1149,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: _result.body["data"],
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: result.body["data"],
         };
       }
       export async function customGet1(
@@ -1222,12 +1220,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: _result.body["data"] as any,
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: result.body["data"] as any,
         };
       }
       export async function customGet1(
@@ -1294,12 +1291,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: _result.body["data"] as any,
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: result.body["data"] as any,
         };
       }
       export async function customGet1(
@@ -1371,12 +1367,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: _result.body["data"] as any,
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: result.body["data"] as any,
         };
       }
       export async function customGet1(
@@ -1447,12 +1442,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: _result.body["data"] as any,
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: result.body["data"] as any,
         };
       }
       export async function customGet1(
@@ -1557,12 +1551,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: deserializeWidgetData(_result.body["data"]),
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData(result.body["data"]),
         };
       }
       export async function customGet1(
@@ -1669,12 +1662,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: deserializeWidgetData(_result.body["data"]),
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData(result.body["data"]),
         };
       }
       export async function customGet1(
@@ -1793,12 +1785,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: deserializeWidgetData(_result.body["data"]),
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData(result.body["data"]),
         };
       }
       export async function customGet1(
@@ -1923,12 +1914,11 @@ describe("modular special union deserialization", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as CustomGet1200Response;
         return {
-          id: _result.body["id"],
-          weight: _result.body["weight"],
-          color: _result.body["color"],
-          data: deserializeWidgetData(_result.body["data"]),
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData(result.body["data"]),
         };
       }
       export async function customGet1(

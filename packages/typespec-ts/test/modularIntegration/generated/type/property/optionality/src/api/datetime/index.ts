@@ -37,11 +37,10 @@ export async function _getAllDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DatetimeGetAll200Response;
   return {
     property:
-      _result.body["property"] !== undefined
-        ? new Date(_result.body["property"])
+      result.body["property"] !== undefined
+        ? new Date(result.body["property"])
         : undefined,
   };
 }
@@ -71,11 +70,10 @@ export async function _getDefaultDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DatetimeGetDefault200Response;
   return {
     property:
-      _result.body["property"] !== undefined
-        ? new Date(_result.body["property"])
+      result.body["property"] !== undefined
+        ? new Date(result.body["property"])
         : undefined,
   };
 }

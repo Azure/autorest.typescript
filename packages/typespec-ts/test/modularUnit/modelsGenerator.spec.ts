@@ -182,12 +182,11 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
-          prop1: new Date(_result.body["prop1"]),
-          prop2: new Date(_result.body["prop2"]),
-          prop3: new Date(_result.body["prop3"]),
-          prop4: _result.body["prop4"],
+          prop1: new Date(result.body["prop1"]),
+          prop2: new Date(result.body["prop2"]),
+          prop3: new Date(result.body["prop3"]),
+          prop4: result.body["prop4"],
         };
       }
       
@@ -321,10 +320,9 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
-          prop1: new Date(_result.body["prop1"]),
-          prop2: _result.body["prop2"],
+          prop1: new Date(result.body["prop1"]),
+          prop2: result.body["prop2"],
         };
       }
       
@@ -406,10 +404,9 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
-          prop1: new Date(_result.body["prop1"]),
-          prop2: _result.body["prop2"],
+          prop1: new Date(result.body["prop1"]),
+          prop2: result.body["prop2"],
         };
       }
       
@@ -486,9 +483,8 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
-          prop1: new Date(_result.body["prop1"]),
+          prop1: new Date(result.body["prop1"]),
         };
       }
       
@@ -554,9 +550,8 @@ describe("modular encode test for property type duration", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
-          prop1: _result.body["prop1"],
+          prop1: result.body["prop1"],
         };
       }
       
@@ -621,9 +616,8 @@ describe("modular encode test for property type duration", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
-          prop1: _result.body["prop1"],
+          prop1: result.body["prop1"],
         };
       }
       
@@ -692,10 +686,9 @@ describe("modular encode test for property type duration", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
-          prop1: _result.body["prop1"],
-          prop2: _result.body["prop2"],
+          prop1: result.body["prop1"],
+          prop2: result.body["prop2"],
         };
       }
       
@@ -774,12 +767,11 @@ describe("modular encode test for property type bytes", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
           prop1:
-            typeof _result.body["prop1"] === "string"
-              ? stringToUint8Array(_result.body["prop1"], "base64")
-              : _result.body["prop1"],
+            typeof result.body["prop1"] === "string"
+              ? stringToUint8Array(result.body["prop1"], "base64")
+              : result.body["prop1"],
         };
       }
       
@@ -845,12 +837,11 @@ describe("modular encode test for property type bytes", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
           prop1:
-            typeof _result.body["prop1"] === "string"
-              ? stringToUint8Array(_result.body["prop1"], "base64")
-              : _result.body["prop1"],
+            typeof result.body["prop1"] === "string"
+              ? stringToUint8Array(result.body["prop1"], "base64")
+              : result.body["prop1"],
         };
       }
       
@@ -916,12 +907,11 @@ describe("modular encode test for property type bytes", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-        const _result = result as unknown as Read200Response;
         return {
           prop1:
-            typeof _result.body["prop1"] === "string"
-              ? stringToUint8Array(_result.body["prop1"], "base64url")
-              : _result.body["prop1"],
+            typeof result.body["prop1"] === "string"
+              ? stringToUint8Array(result.body["prop1"], "base64url")
+              : result.body["prop1"],
         };
       }
       
@@ -1034,12 +1024,11 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
         
-        const _result = result as unknown as Read200Response;
         return {
-          name: _result.body["name"],
-          weight: _result.body["weight"],
-          kind: _result.body["kind"],
-          meow: _result.body["meow"],
+          name: result.body["name"],
+          weight: result.body["weight"],
+          kind: result.body["kind"],
+          meow: result.body["meow"],
         };
       }
       
@@ -1114,12 +1103,11 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
 
-        const _result = result as unknown as Read200Response;
         return {
-          weight: _result.body["weight"],
-          name: _result.body["name"],
-          kind: _result.body["kind"],
-          meow: _result.body["meow"],
+          weight: result.body["weight"],
+          name: result.body["name"],
+          kind: result.body["kind"],
+          meow: result.body["meow"],
         };
       }
 
@@ -1204,12 +1192,11 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
 
-        const _result = result as unknown as Read200Response;
         return {
-          kind: _result.body["kind"],
-          name: _result.body["name"],
-          weight: _result.body["weight"],
-          meow: _result.body["meow"],
+          kind: result.body["kind"],
+          name: result.body["name"],
+          weight: result.body["weight"],
+          meow: result.body["meow"],
         };
       }
       
@@ -1294,8 +1281,7 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
 
-        const _result = result as unknown as Read200Response;
-        return _result.body;
+        return result.body;
       }
       
       export async function read(

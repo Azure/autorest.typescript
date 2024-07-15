@@ -33,13 +33,12 @@ export async function _mixedLiteralsGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as MixedLiteralsGet200Response;
   return {
     prop: {
-      stringLiteral: _result.body.prop["stringLiteral"],
-      intLiteral: _result.body.prop["intLiteral"],
-      floatLiteral: _result.body.prop["floatLiteral"],
-      booleanLiteral: _result.body.prop["booleanLiteral"],
+      stringLiteral: result.body.prop["stringLiteral"],
+      intLiteral: result.body.prop["intLiteral"],
+      floatLiteral: result.body.prop["floatLiteral"],
+      booleanLiteral: result.body.prop["booleanLiteral"],
     },
   };
 }

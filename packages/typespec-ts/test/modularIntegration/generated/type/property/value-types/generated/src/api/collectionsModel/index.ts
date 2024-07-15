@@ -36,9 +36,8 @@ export async function _collectionsModelGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as CollectionsModelGet200Response;
   return {
-    property: _result.body["property"].map((p) => {
+    property: result.body["property"].map((p) => {
       return { property: p["property"] };
     }),
   };

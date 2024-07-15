@@ -69,8 +69,7 @@ export async function _getAsTextDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetAsText200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function getAsText(
@@ -130,8 +129,7 @@ export async function _getAsJsonDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetAsJson200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function getAsJson(

@@ -43,11 +43,10 @@ export async function _newOpDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as NewOp200Response;
   return {
-    newProp: _result.body["newProp"],
-    enumProp: _result.body["enumProp"],
-    unionProp: _result.body["unionProp"],
+    newProp: result.body["newProp"],
+    enumProp: result.body["enumProp"],
+    unionProp: result.body["unionProp"],
   };
 }
 
@@ -85,11 +84,10 @@ export async function _newOpInNewInterfaceDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as NewOpInNewInterface200Response;
   return {
-    newProp: _result.body["newProp"],
-    enumProp: _result.body["enumProp"],
-    unionProp: _result.body["unionProp"],
+    newProp: result.body["newProp"],
+    enumProp: result.body["enumProp"],
+    unionProp: result.body["unionProp"],
   };
 }
 

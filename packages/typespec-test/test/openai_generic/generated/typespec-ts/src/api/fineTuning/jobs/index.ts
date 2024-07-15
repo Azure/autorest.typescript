@@ -64,31 +64,30 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FineTuningJobsCreate200Response;
   return {
-    id: _result.body["id"],
-    object: _result.body["object"],
-    createdAt: new Date(_result.body["created_at"]),
+    id: result.body["id"],
+    object: result.body["object"],
+    createdAt: new Date(result.body["created_at"]),
     finishedAt:
-      _result.body["finished_at"] === null
+      result.body["finished_at"] === null
         ? null
-        : new Date(_result.body["finished_at"]),
-    model: _result.body["model"],
-    fineTunedModel: _result.body["fine_tuned_model"],
-    organizationId: _result.body["organization_id"],
-    status: _result.body["status"],
-    hyperparameters: { nEpochs: _result.body.hyperparameters["n_epochs"] },
-    trainingFile: _result.body["training_file"],
-    validationFile: _result.body["validation_file"],
-    resultFiles: _result.body["result_files"],
-    trainedTokens: _result.body["trained_tokens"],
+        : new Date(result.body["finished_at"]),
+    model: result.body["model"],
+    fineTunedModel: result.body["fine_tuned_model"],
+    organizationId: result.body["organization_id"],
+    status: result.body["status"],
+    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
+    trainingFile: result.body["training_file"],
+    validationFile: result.body["validation_file"],
+    resultFiles: result.body["result_files"],
+    trainedTokens: result.body["trained_tokens"],
     error:
-      _result.body.error === null
+      result.body.error === null
         ? null
         : {
-            message: _result.body.error["message"],
-            code: _result.body.error["code"],
-            param: _result.body.error["param"],
+            message: result.body.error["message"],
+            code: result.body.error["code"],
+            param: result.body.error["param"],
           },
   };
 }
@@ -131,10 +130,9 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FineTuningJobsList200Response;
   return {
-    object: _result.body["object"],
-    data: _result.body["data"].map((p) => {
+    object: result.body["object"],
+    data: result.body["data"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -160,7 +158,7 @@ export async function _listDeserialize(
               },
       };
     }),
-    hasMore: _result.body["has_more"],
+    hasMore: result.body["has_more"],
   };
 }
 
@@ -193,31 +191,30 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FineTuningJobsRetrieve200Response;
   return {
-    id: _result.body["id"],
-    object: _result.body["object"],
-    createdAt: new Date(_result.body["created_at"]),
+    id: result.body["id"],
+    object: result.body["object"],
+    createdAt: new Date(result.body["created_at"]),
     finishedAt:
-      _result.body["finished_at"] === null
+      result.body["finished_at"] === null
         ? null
-        : new Date(_result.body["finished_at"]),
-    model: _result.body["model"],
-    fineTunedModel: _result.body["fine_tuned_model"],
-    organizationId: _result.body["organization_id"],
-    status: _result.body["status"],
-    hyperparameters: { nEpochs: _result.body.hyperparameters["n_epochs"] },
-    trainingFile: _result.body["training_file"],
-    validationFile: _result.body["validation_file"],
-    resultFiles: _result.body["result_files"],
-    trainedTokens: _result.body["trained_tokens"],
+        : new Date(result.body["finished_at"]),
+    model: result.body["model"],
+    fineTunedModel: result.body["fine_tuned_model"],
+    organizationId: result.body["organization_id"],
+    status: result.body["status"],
+    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
+    trainingFile: result.body["training_file"],
+    validationFile: result.body["validation_file"],
+    resultFiles: result.body["result_files"],
+    trainedTokens: result.body["trained_tokens"],
     error:
-      _result.body.error === null
+      result.body.error === null
         ? null
         : {
-            message: _result.body.error["message"],
-            code: _result.body.error["code"],
-            param: _result.body.error["param"],
+            message: result.body.error["message"],
+            code: result.body.error["code"],
+            param: result.body.error["param"],
           },
   };
 }
@@ -255,10 +252,9 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FineTuningJobsListEvents200Response;
   return {
-    object: _result.body["object"],
-    data: _result.body["data"].map((p) => {
+    object: result.body["object"],
+    data: result.body["data"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -298,31 +294,30 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FineTuningJobsCancel200Response;
   return {
-    id: _result.body["id"],
-    object: _result.body["object"],
-    createdAt: new Date(_result.body["created_at"]),
+    id: result.body["id"],
+    object: result.body["object"],
+    createdAt: new Date(result.body["created_at"]),
     finishedAt:
-      _result.body["finished_at"] === null
+      result.body["finished_at"] === null
         ? null
-        : new Date(_result.body["finished_at"]),
-    model: _result.body["model"],
-    fineTunedModel: _result.body["fine_tuned_model"],
-    organizationId: _result.body["organization_id"],
-    status: _result.body["status"],
-    hyperparameters: { nEpochs: _result.body.hyperparameters["n_epochs"] },
-    trainingFile: _result.body["training_file"],
-    validationFile: _result.body["validation_file"],
-    resultFiles: _result.body["result_files"],
-    trainedTokens: _result.body["trained_tokens"],
+        : new Date(result.body["finished_at"]),
+    model: result.body["model"],
+    fineTunedModel: result.body["fine_tuned_model"],
+    organizationId: result.body["organization_id"],
+    status: result.body["status"],
+    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
+    trainingFile: result.body["training_file"],
+    validationFile: result.body["validation_file"],
+    resultFiles: result.body["result_files"],
+    trainedTokens: result.body["trained_tokens"],
     error:
-      _result.body.error === null
+      result.body.error === null
         ? null
         : {
-            message: _result.body.error["message"],
-            code: _result.body.error["code"],
-            param: _result.body.error["param"],
+            message: result.body.error["message"],
+            code: result.body.error["code"],
+            param: result.body.error["param"],
           },
   };
 }

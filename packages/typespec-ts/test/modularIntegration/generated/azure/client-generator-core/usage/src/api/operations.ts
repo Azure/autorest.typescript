@@ -75,9 +75,8 @@ export async function _outputToInputOutputDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as OutputToInputOutput200Response;
   return {
-    name: _result.body["name"],
+    name: result.body["name"],
   };
 }
 
@@ -114,9 +113,8 @@ export async function _modelInReadOnlyPropertyDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ModelInReadOnlyProperty200Response;
   return {
-    result: { name: _result.body.result["name"] },
+    result: { name: result.body.result["name"] },
   };
 }
 

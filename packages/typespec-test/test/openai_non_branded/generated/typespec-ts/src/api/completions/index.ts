@@ -59,13 +59,12 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as CompletionsCreate200Response;
   return {
-    id: _result.body["id"],
-    object: _result.body["object"],
-    created: new Date(_result.body["created"]),
-    model: _result.body["model"],
-    choices: _result.body["choices"].map((p) => {
+    id: result.body["id"],
+    object: result.body["object"],
+    created: new Date(result.body["created"]),
+    model: result.body["model"],
+    choices: result.body["choices"].map((p) => {
       return {
         index: p["index"],
         text: p["text"],
@@ -81,12 +80,12 @@ export async function _createDeserialize(
         finishReason: p["finish_reason"],
       };
     }),
-    usage: !_result.body.usage
+    usage: !result.body.usage
       ? undefined
       : {
-          promptTokens: _result.body.usage?.["prompt_tokens"],
-          completionTokens: _result.body.usage?.["completion_tokens"],
-          totalTokens: _result.body.usage?.["total_tokens"],
+          promptTokens: result.body.usage?.["prompt_tokens"],
+          completionTokens: result.body.usage?.["completion_tokens"],
+          totalTokens: result.body.usage?.["total_tokens"],
         },
   };
 }

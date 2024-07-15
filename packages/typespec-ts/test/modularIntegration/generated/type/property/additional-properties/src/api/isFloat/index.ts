@@ -34,8 +34,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as IsFloatGet200Response;
-  return _result.body as any;
+  return result.body as any;
 }
 
 /** Get call */

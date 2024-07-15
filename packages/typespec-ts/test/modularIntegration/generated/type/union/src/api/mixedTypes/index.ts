@@ -33,14 +33,13 @@ export async function _mixedTypesGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as MixedTypesGet200Response;
   return {
     prop: {
-      model: _result.body.prop["model"],
-      literal: _result.body.prop["literal"],
-      int: _result.body.prop["int"],
-      boolean: _result.body.prop["boolean"],
-      array: _result.body.prop["array"],
+      model: result.body.prop["model"],
+      literal: result.body.prop["literal"],
+      int: result.body.prop["int"],
+      boolean: result.body.prop["boolean"],
+      array: result.body.prop["array"],
     },
   };
 }

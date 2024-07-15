@@ -357,19 +357,18 @@ export async function _listApplicationsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListApplications200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
               versions: p["versions"],
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -415,11 +414,10 @@ export async function _getApplicationDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetApplication200Response;
   return {
-    id: _result.body["id"],
-    displayName: _result.body["displayName"],
-    versions: _result.body["versions"],
+    id: result.body["id"],
+    displayName: result.body["displayName"],
+    versions: result.body["versions"],
   };
 }
 
@@ -467,12 +465,11 @@ export async function _listPoolUsageMetricsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListPoolUsageMetrics200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               poolId: p["poolId"],
               startTime: new Date(p["startTime"]),
@@ -481,7 +478,7 @@ export async function _listPoolUsageMetricsDeserialize(
               totalCoreHours: p["totalCoreHours"],
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -628,12 +625,11 @@ export async function _listPoolsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListPools200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -1195,7 +1191,7 @@ export async function _listPoolsDeserialize(
               currentNodeCommunicationMode: p["currentNodeCommunicationMode"],
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -1369,78 +1365,74 @@ export async function _getPoolDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetPool200Response;
   return {
-    id: _result.body["id"],
-    displayName: _result.body["displayName"],
-    url: _result.body["url"],
-    eTag: _result.body["eTag"],
+    id: result.body["id"],
+    displayName: result.body["displayName"],
+    url: result.body["url"],
+    eTag: result.body["eTag"],
     lastModified:
-      _result.body["lastModified"] !== undefined
-        ? new Date(_result.body["lastModified"])
+      result.body["lastModified"] !== undefined
+        ? new Date(result.body["lastModified"])
         : undefined,
     creationTime:
-      _result.body["creationTime"] !== undefined
-        ? new Date(_result.body["creationTime"])
+      result.body["creationTime"] !== undefined
+        ? new Date(result.body["creationTime"])
         : undefined,
-    state: _result.body["state"],
+    state: result.body["state"],
     stateTransitionTime:
-      _result.body["stateTransitionTime"] !== undefined
-        ? new Date(_result.body["stateTransitionTime"])
+      result.body["stateTransitionTime"] !== undefined
+        ? new Date(result.body["stateTransitionTime"])
         : undefined,
-    allocationState: _result.body["allocationState"],
+    allocationState: result.body["allocationState"],
     allocationStateTransitionTime:
-      _result.body["allocationStateTransitionTime"] !== undefined
-        ? new Date(_result.body["allocationStateTransitionTime"])
+      result.body["allocationStateTransitionTime"] !== undefined
+        ? new Date(result.body["allocationStateTransitionTime"])
         : undefined,
-    vmSize: _result.body["vmSize"],
-    cloudServiceConfiguration: !_result.body.cloudServiceConfiguration
+    vmSize: result.body["vmSize"],
+    cloudServiceConfiguration: !result.body.cloudServiceConfiguration
       ? undefined
       : {
-          osFamily: _result.body.cloudServiceConfiguration?.["osFamily"],
-          osVersion: _result.body.cloudServiceConfiguration?.["osVersion"],
+          osFamily: result.body.cloudServiceConfiguration?.["osFamily"],
+          osVersion: result.body.cloudServiceConfiguration?.["osVersion"],
         },
-    virtualMachineConfiguration: !_result.body.virtualMachineConfiguration
+    virtualMachineConfiguration: !result.body.virtualMachineConfiguration
       ? undefined
       : {
           imageReference: {
             publisher:
-              _result.body.virtualMachineConfiguration?.imageReference[
+              result.body.virtualMachineConfiguration?.imageReference[
                 "publisher"
               ],
             offer:
-              _result.body.virtualMachineConfiguration?.imageReference["offer"],
-            sku: _result.body.virtualMachineConfiguration?.imageReference[
-              "sku"
-            ],
+              result.body.virtualMachineConfiguration?.imageReference["offer"],
+            sku: result.body.virtualMachineConfiguration?.imageReference["sku"],
             version:
-              _result.body.virtualMachineConfiguration?.imageReference[
+              result.body.virtualMachineConfiguration?.imageReference[
                 "version"
               ],
             virtualMachineImageId:
-              _result.body.virtualMachineConfiguration?.imageReference[
+              result.body.virtualMachineConfiguration?.imageReference[
                 "virtualMachineImageId"
               ],
             exactVersion:
-              _result.body.virtualMachineConfiguration?.imageReference[
+              result.body.virtualMachineConfiguration?.imageReference[
                 "exactVersion"
               ],
           },
           nodeAgentSkuId:
-            _result.body.virtualMachineConfiguration?.["nodeAgentSKUId"],
-          windowsConfiguration: !_result.body.virtualMachineConfiguration
+            result.body.virtualMachineConfiguration?.["nodeAgentSKUId"],
+          windowsConfiguration: !result.body.virtualMachineConfiguration
             ?.windowsConfiguration
             ? undefined
             : {
                 enableAutomaticUpdates:
-                  _result.body.virtualMachineConfiguration
+                  result.body.virtualMachineConfiguration
                     ?.windowsConfiguration?.["enableAutomaticUpdates"],
               },
           dataDisks:
-            _result.body.virtualMachineConfiguration?.["dataDisks"] ===
-            undefined
-              ? _result.body.virtualMachineConfiguration?.["dataDisks"]
-              : _result.body.virtualMachineConfiguration?.["dataDisks"].map(
+            result.body.virtualMachineConfiguration?.["dataDisks"] === undefined
+              ? result.body.virtualMachineConfiguration?.["dataDisks"]
+              : result.body.virtualMachineConfiguration?.["dataDisks"].map(
                   (p) => {
                     return {
                       lun: p["lun"],
@@ -1450,24 +1442,23 @@ export async function _getPoolDeserialize(
                     };
                   },
                 ),
-          licenseType:
-            _result.body.virtualMachineConfiguration?.["licenseType"],
-          containerConfiguration: !_result.body.virtualMachineConfiguration
+          licenseType: result.body.virtualMachineConfiguration?.["licenseType"],
+          containerConfiguration: !result.body.virtualMachineConfiguration
             ?.containerConfiguration
             ? undefined
             : {
-                type: _result.body.virtualMachineConfiguration
+                type: result.body.virtualMachineConfiguration
                   ?.containerConfiguration?.["type"],
                 containerImageNames:
-                  _result.body.virtualMachineConfiguration
+                  result.body.virtualMachineConfiguration
                     ?.containerConfiguration?.["containerImageNames"],
                 containerRegistries:
-                  _result.body.virtualMachineConfiguration
+                  result.body.virtualMachineConfiguration
                     ?.containerConfiguration?.["containerRegistries"] ===
                   undefined
-                    ? _result.body.virtualMachineConfiguration
+                    ? result.body.virtualMachineConfiguration
                         ?.containerConfiguration?.["containerRegistries"]
-                    : _result.body.virtualMachineConfiguration?.containerConfiguration?.[
+                    : result.body.virtualMachineConfiguration?.containerConfiguration?.[
                         "containerRegistries"
                       ].map((p) => {
                         return {
@@ -1482,27 +1473,27 @@ export async function _getPoolDeserialize(
                         };
                       }),
               },
-          diskEncryptionConfiguration: !_result.body.virtualMachineConfiguration
+          diskEncryptionConfiguration: !result.body.virtualMachineConfiguration
             ?.diskEncryptionConfiguration
             ? undefined
             : {
                 targets:
-                  _result.body.virtualMachineConfiguration
+                  result.body.virtualMachineConfiguration
                     ?.diskEncryptionConfiguration?.["targets"],
               },
-          nodePlacementConfiguration: !_result.body.virtualMachineConfiguration
+          nodePlacementConfiguration: !result.body.virtualMachineConfiguration
             ?.nodePlacementConfiguration
             ? undefined
             : {
                 policy:
-                  _result.body.virtualMachineConfiguration
+                  result.body.virtualMachineConfiguration
                     ?.nodePlacementConfiguration?.["policy"],
               },
           extensions:
-            _result.body.virtualMachineConfiguration?.["extensions"] ===
+            result.body.virtualMachineConfiguration?.["extensions"] ===
             undefined
-              ? _result.body.virtualMachineConfiguration?.["extensions"]
-              : _result.body.virtualMachineConfiguration?.["extensions"].map(
+              ? result.body.virtualMachineConfiguration?.["extensions"]
+              : result.body.virtualMachineConfiguration?.["extensions"].map(
                   (p) => {
                     return {
                       name: p["name"],
@@ -1517,24 +1508,24 @@ export async function _getPoolDeserialize(
                     };
                   },
                 ),
-          osDisk: !_result.body.virtualMachineConfiguration?.osDisk
+          osDisk: !result.body.virtualMachineConfiguration?.osDisk
             ? undefined
             : {
-                ephemeralOSDiskSettings: !_result.body
+                ephemeralOSDiskSettings: !result.body
                   .virtualMachineConfiguration?.osDisk?.ephemeralOSDiskSettings
                   ? undefined
                   : {
                       placement:
-                        _result.body.virtualMachineConfiguration?.osDisk
+                        result.body.virtualMachineConfiguration?.osDisk
                           ?.ephemeralOSDiskSettings?.["placement"],
                     },
               },
         },
-    resizeTimeout: _result.body["resizeTimeout"],
+    resizeTimeout: result.body["resizeTimeout"],
     resizeErrors:
-      _result.body["resizeErrors"] === undefined
-        ? _result.body["resizeErrors"]
-        : _result.body["resizeErrors"].map((p) => {
+      result.body["resizeErrors"] === undefined
+        ? result.body["resizeErrors"]
+        : result.body["resizeErrors"].map((p) => {
             return {
               code: p["code"],
               message: p["message"],
@@ -1546,44 +1537,44 @@ export async function _getPoolDeserialize(
                     }),
             };
           }),
-    currentDedicatedNodes: _result.body["currentDedicatedNodes"],
-    currentLowPriorityNodes: _result.body["currentLowPriorityNodes"],
-    targetDedicatedNodes: _result.body["targetDedicatedNodes"],
-    targetLowPriorityNodes: _result.body["targetLowPriorityNodes"],
-    enableAutoScale: _result.body["enableAutoScale"],
-    autoScaleFormula: _result.body["autoScaleFormula"],
-    autoScaleEvaluationInterval: _result.body["autoScaleEvaluationInterval"],
-    autoScaleRun: !_result.body.autoScaleRun
+    currentDedicatedNodes: result.body["currentDedicatedNodes"],
+    currentLowPriorityNodes: result.body["currentLowPriorityNodes"],
+    targetDedicatedNodes: result.body["targetDedicatedNodes"],
+    targetLowPriorityNodes: result.body["targetLowPriorityNodes"],
+    enableAutoScale: result.body["enableAutoScale"],
+    autoScaleFormula: result.body["autoScaleFormula"],
+    autoScaleEvaluationInterval: result.body["autoScaleEvaluationInterval"],
+    autoScaleRun: !result.body.autoScaleRun
       ? undefined
       : {
-          timestamp: new Date(_result.body.autoScaleRun?.["timestamp"]),
-          results: _result.body.autoScaleRun?.["results"],
-          error: !_result.body.autoScaleRun?.error
+          timestamp: new Date(result.body.autoScaleRun?.["timestamp"]),
+          results: result.body.autoScaleRun?.["results"],
+          error: !result.body.autoScaleRun?.error
             ? undefined
             : {
-                code: _result.body.autoScaleRun?.error?.["code"],
-                message: _result.body.autoScaleRun?.error?.["message"],
+                code: result.body.autoScaleRun?.error?.["code"],
+                message: result.body.autoScaleRun?.error?.["message"],
                 values:
-                  _result.body.autoScaleRun?.error?.["values"] === undefined
-                    ? _result.body.autoScaleRun?.error?.["values"]
-                    : _result.body.autoScaleRun?.error?.["values"].map((p) => {
+                  result.body.autoScaleRun?.error?.["values"] === undefined
+                    ? result.body.autoScaleRun?.error?.["values"]
+                    : result.body.autoScaleRun?.error?.["values"].map((p) => {
                         return { name: p["name"], value: p["value"] };
                       }),
               },
         },
-    enableInterNodeCommunication: _result.body["enableInterNodeCommunication"],
-    networkConfiguration: !_result.body.networkConfiguration
+    enableInterNodeCommunication: result.body["enableInterNodeCommunication"],
+    networkConfiguration: !result.body.networkConfiguration
       ? undefined
       : {
-          subnetId: _result.body.networkConfiguration?.["subnetId"],
+          subnetId: result.body.networkConfiguration?.["subnetId"],
           dynamicVNetAssignmentScope:
-            _result.body.networkConfiguration?.["dynamicVNetAssignmentScope"],
-          endpointConfiguration: !_result.body.networkConfiguration
+            result.body.networkConfiguration?.["dynamicVNetAssignmentScope"],
+          endpointConfiguration: !result.body.networkConfiguration
             ?.endpointConfiguration
             ? undefined
             : {
                 inboundNatPools:
-                  _result.body.networkConfiguration?.endpointConfiguration?.[
+                  result.body.networkConfiguration?.endpointConfiguration?.[
                     "inboundNATPools"
                   ].map((p) => {
                     return {
@@ -1606,66 +1597,66 @@ export async function _getPoolDeserialize(
                     };
                   }),
               },
-          publicIpAddressConfiguration: !_result.body.networkConfiguration
+          publicIpAddressConfiguration: !result.body.networkConfiguration
             ?.publicIPAddressConfiguration
             ? undefined
             : {
                 ipAddressProvisioningType:
-                  _result.body.networkConfiguration
+                  result.body.networkConfiguration
                     ?.publicIPAddressConfiguration?.["provision"],
                 ipAddressIds:
-                  _result.body.networkConfiguration
+                  result.body.networkConfiguration
                     ?.publicIPAddressConfiguration?.["ipAddressIds"],
               },
           enableAcceleratedNetworking:
-            _result.body.networkConfiguration?.["enableAcceleratedNetworking"],
+            result.body.networkConfiguration?.["enableAcceleratedNetworking"],
         },
-    startTask: !_result.body.startTask
+    startTask: !result.body.startTask
       ? undefined
       : {
-          commandLine: _result.body.startTask?.["commandLine"],
-          containerSettings: !_result.body.startTask?.containerSettings
+          commandLine: result.body.startTask?.["commandLine"],
+          containerSettings: !result.body.startTask?.containerSettings
             ? undefined
             : {
                 containerRunOptions:
-                  _result.body.startTask?.containerSettings?.[
+                  result.body.startTask?.containerSettings?.[
                     "containerRunOptions"
                   ],
                 imageName:
-                  _result.body.startTask?.containerSettings?.["imageName"],
-                registry: !_result.body.startTask?.containerSettings?.registry
+                  result.body.startTask?.containerSettings?.["imageName"],
+                registry: !result.body.startTask?.containerSettings?.registry
                   ? undefined
                   : {
                       username:
-                        _result.body.startTask?.containerSettings?.registry?.[
+                        result.body.startTask?.containerSettings?.registry?.[
                           "username"
                         ],
                       password:
-                        _result.body.startTask?.containerSettings?.registry?.[
+                        result.body.startTask?.containerSettings?.registry?.[
                           "password"
                         ],
                       registryServer:
-                        _result.body.startTask?.containerSettings?.registry?.[
+                        result.body.startTask?.containerSettings?.registry?.[
                           "registryServer"
                         ],
-                      identityReference: !_result.body.startTask
+                      identityReference: !result.body.startTask
                         ?.containerSettings?.registry?.identityReference
                         ? undefined
                         : {
                             resourceId:
-                              _result.body.startTask?.containerSettings
-                                ?.registry?.identityReference?.["resourceId"],
+                              result.body.startTask?.containerSettings?.registry
+                                ?.identityReference?.["resourceId"],
                           },
                     },
                 workingDirectory:
-                  _result.body.startTask?.containerSettings?.[
+                  result.body.startTask?.containerSettings?.[
                     "workingDirectory"
                   ],
               },
           resourceFiles:
-            _result.body.startTask?.["resourceFiles"] === undefined
-              ? _result.body.startTask?.["resourceFiles"]
-              : _result.body.startTask?.["resourceFiles"].map((p) => {
+            result.body.startTask?.["resourceFiles"] === undefined
+              ? result.body.startTask?.["resourceFiles"]
+              : result.body.startTask?.["resourceFiles"].map((p) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -1679,35 +1670,35 @@ export async function _getPoolDeserialize(
                   };
                 }),
           environmentSettings:
-            _result.body.startTask?.["environmentSettings"] === undefined
-              ? _result.body.startTask?.["environmentSettings"]
-              : _result.body.startTask?.["environmentSettings"].map((p) => {
+            result.body.startTask?.["environmentSettings"] === undefined
+              ? result.body.startTask?.["environmentSettings"]
+              : result.body.startTask?.["environmentSettings"].map((p) => {
                   return { name: p["name"], value: p["value"] };
                 }),
-          userIdentity: !_result.body.startTask?.userIdentity
+          userIdentity: !result.body.startTask?.userIdentity
             ? undefined
             : {
-                username: _result.body.startTask?.userIdentity?.["username"],
-                autoUser: !_result.body.startTask?.userIdentity?.autoUser
+                username: result.body.startTask?.userIdentity?.["username"],
+                autoUser: !result.body.startTask?.userIdentity?.autoUser
                   ? undefined
                   : {
                       scope:
-                        _result.body.startTask?.userIdentity?.autoUser?.[
+                        result.body.startTask?.userIdentity?.autoUser?.[
                           "scope"
                         ],
                       elevationLevel:
-                        _result.body.startTask?.userIdentity?.autoUser?.[
+                        result.body.startTask?.userIdentity?.autoUser?.[
                           "elevationLevel"
                         ],
                     },
               },
-          maxTaskRetryCount: _result.body.startTask?.["maxTaskRetryCount"],
-          waitForSuccess: _result.body.startTask?.["waitForSuccess"],
+          maxTaskRetryCount: result.body.startTask?.["maxTaskRetryCount"],
+          waitForSuccess: result.body.startTask?.["waitForSuccess"],
         },
     certificateReferences:
-      _result.body["certificateReferences"] === undefined
-        ? _result.body["certificateReferences"]
-        : _result.body["certificateReferences"].map((p) => {
+      result.body["certificateReferences"] === undefined
+        ? result.body["certificateReferences"]
+        : result.body["certificateReferences"].map((p) => {
             return {
               thumbprint: p["thumbprint"],
               thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -1717,20 +1708,20 @@ export async function _getPoolDeserialize(
             };
           }),
     applicationPackageReferences:
-      _result.body["applicationPackageReferences"] === undefined
-        ? _result.body["applicationPackageReferences"]
-        : _result.body["applicationPackageReferences"].map((p) => {
+      result.body["applicationPackageReferences"] === undefined
+        ? result.body["applicationPackageReferences"]
+        : result.body["applicationPackageReferences"].map((p) => {
             return { applicationId: p["applicationId"], version: p["version"] };
           }),
-    applicationLicenses: _result.body["applicationLicenses"],
-    taskSlotsPerNode: _result.body["taskSlotsPerNode"],
-    taskSchedulingPolicy: !_result.body.taskSchedulingPolicy
+    applicationLicenses: result.body["applicationLicenses"],
+    taskSlotsPerNode: result.body["taskSlotsPerNode"],
+    taskSchedulingPolicy: !result.body.taskSchedulingPolicy
       ? undefined
-      : { nodeFillType: _result.body.taskSchedulingPolicy?.["nodeFillType"] },
+      : { nodeFillType: result.body.taskSchedulingPolicy?.["nodeFillType"] },
     userAccounts:
-      _result.body["userAccounts"] === undefined
-        ? _result.body["userAccounts"]
-        : _result.body["userAccounts"].map((p) => {
+      result.body["userAccounts"] === undefined
+        ? result.body["userAccounts"]
+        : result.body["userAccounts"].map((p) => {
             return {
               name: p["name"],
               password: p["password"],
@@ -1748,63 +1739,63 @@ export async function _getPoolDeserialize(
             };
           }),
     metadata:
-      _result.body["metadata"] === undefined
-        ? _result.body["metadata"]
-        : _result.body["metadata"].map((p) => {
+      result.body["metadata"] === undefined
+        ? result.body["metadata"]
+        : result.body["metadata"].map((p) => {
             return { name: p["name"], value: p["value"] };
           }),
-    stats: !_result.body.stats
+    stats: !result.body.stats
       ? undefined
       : {
-          url: _result.body.stats?.["url"],
-          startTime: new Date(_result.body.stats?.["startTime"]),
-          lastUpdateTime: new Date(_result.body.stats?.["lastUpdateTime"]),
-          usageStats: !_result.body.stats?.usageStats
+          url: result.body.stats?.["url"],
+          startTime: new Date(result.body.stats?.["startTime"]),
+          lastUpdateTime: new Date(result.body.stats?.["lastUpdateTime"]),
+          usageStats: !result.body.stats?.usageStats
             ? undefined
             : {
                 startTime: new Date(
-                  _result.body.stats?.usageStats?.["startTime"],
+                  result.body.stats?.usageStats?.["startTime"],
                 ),
                 lastUpdateTime: new Date(
-                  _result.body.stats?.usageStats?.["lastUpdateTime"],
+                  result.body.stats?.usageStats?.["lastUpdateTime"],
                 ),
                 dedicatedCoreTime:
-                  _result.body.stats?.usageStats?.["dedicatedCoreTime"],
+                  result.body.stats?.usageStats?.["dedicatedCoreTime"],
               },
-          resourceStats: !_result.body.stats?.resourceStats
+          resourceStats: !result.body.stats?.resourceStats
             ? undefined
             : {
                 startTime: new Date(
-                  _result.body.stats?.resourceStats?.["startTime"],
+                  result.body.stats?.resourceStats?.["startTime"],
                 ),
                 lastUpdateTime: new Date(
-                  _result.body.stats?.resourceStats?.["lastUpdateTime"],
+                  result.body.stats?.resourceStats?.["lastUpdateTime"],
                 ),
                 avgCpuPercentage:
-                  _result.body.stats?.resourceStats?.["avgCPUPercentage"],
+                  result.body.stats?.resourceStats?.["avgCPUPercentage"],
                 avgMemoryGiB:
-                  _result.body.stats?.resourceStats?.["avgMemoryGiB"],
+                  result.body.stats?.resourceStats?.["avgMemoryGiB"],
                 peakMemoryGiB:
-                  _result.body.stats?.resourceStats?.["peakMemoryGiB"],
-                avgDiskGiB: _result.body.stats?.resourceStats?.["avgDiskGiB"],
-                peakDiskGiB: _result.body.stats?.resourceStats?.["peakDiskGiB"],
+                  result.body.stats?.resourceStats?.["peakMemoryGiB"],
+                avgDiskGiB: result.body.stats?.resourceStats?.["avgDiskGiB"],
+                peakDiskGiB: result.body.stats?.resourceStats?.["peakDiskGiB"],
                 diskReadIOps:
-                  _result.body.stats?.resourceStats?.["diskReadIOps"],
+                  result.body.stats?.resourceStats?.["diskReadIOps"],
                 diskWriteIOps:
-                  _result.body.stats?.resourceStats?.["diskWriteIOps"],
-                diskReadGiB: _result.body.stats?.resourceStats?.["diskReadGiB"],
+                  result.body.stats?.resourceStats?.["diskWriteIOps"],
+                diskReadGiB: result.body.stats?.resourceStats?.["diskReadGiB"],
                 diskWriteGiB:
-                  _result.body.stats?.resourceStats?.["diskWriteGiB"],
+                  result.body.stats?.resourceStats?.["diskWriteGiB"],
                 networkReadGiB:
-                  _result.body.stats?.resourceStats?.["networkReadGiB"],
+                  result.body.stats?.resourceStats?.["networkReadGiB"],
                 networkWriteGiB:
-                  _result.body.stats?.resourceStats?.["networkWriteGiB"],
+                  result.body.stats?.resourceStats?.["networkWriteGiB"],
               },
         },
     mountConfiguration:
-      _result.body["mountConfiguration"] === undefined
-        ? _result.body["mountConfiguration"]
-        : _result.body["mountConfiguration"].map((p) => {
+      result.body["mountConfiguration"] === undefined
+        ? result.body["mountConfiguration"]
+        : result.body["mountConfiguration"].map((p) => {
             return {
               azureBlobFileSystemConfiguration:
                 !p.azureBlobFileSystemConfiguration
@@ -1864,14 +1855,14 @@ export async function _getPoolDeserialize(
                   },
             };
           }),
-    identity: !_result.body.identity
+    identity: !result.body.identity
       ? undefined
       : {
-          type: _result.body.identity?.["type"],
+          type: result.body.identity?.["type"],
           userAssignedIdentities:
-            _result.body.identity?.["userAssignedIdentities"] === undefined
-              ? _result.body.identity?.["userAssignedIdentities"]
-              : _result.body.identity?.["userAssignedIdentities"].map((p) => {
+            result.body.identity?.["userAssignedIdentities"] === undefined
+              ? result.body.identity?.["userAssignedIdentities"]
+              : result.body.identity?.["userAssignedIdentities"].map((p) => {
                   return {
                     resourceId: p["resourceId"],
                     clientId: p["clientId"],
@@ -1879,8 +1870,8 @@ export async function _getPoolDeserialize(
                   };
                 }),
         },
-    targetNodeCommunicationMode: _result.body["targetNodeCommunicationMode"],
-    currentNodeCommunicationMode: _result.body["currentNodeCommunicationMode"],
+    targetNodeCommunicationMode: result.body["targetNodeCommunicationMode"],
+    currentNodeCommunicationMode: result.body["currentNodeCommunicationMode"],
   };
 }
 
@@ -2111,19 +2102,18 @@ export async function _evaluatePoolAutoScaleDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as EvaluatePoolAutoScale200Response;
   return {
-    timestamp: new Date(_result.body["timestamp"]),
-    results: _result.body["results"],
-    error: !_result.body.error
+    timestamp: new Date(result.body["timestamp"]),
+    results: result.body["results"],
+    error: !result.body.error
       ? undefined
       : {
-          code: _result.body.error?.["code"],
-          message: _result.body.error?.["message"],
+          code: result.body.error?.["code"],
+          message: result.body.error?.["message"],
           values:
-            _result.body.error?.["values"] === undefined
-              ? _result.body.error?.["values"]
-              : _result.body.error?.["values"].map((p) => {
+            result.body.error?.["values"] === undefined
+              ? result.body.error?.["values"]
+              : result.body.error?.["values"].map((p) => {
                   return { name: p["name"], value: p["value"] };
                 }),
         },
@@ -2433,12 +2423,11 @@ export async function _listSupportedImagesDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListSupportedImages200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               nodeAgentSkuId: p["nodeAgentSKUId"],
               imageReference: {
@@ -2459,7 +2448,7 @@ export async function _listSupportedImagesDeserialize(
               verificationType: p["verificationType"],
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -2502,12 +2491,11 @@ export async function _listPoolNodeCountsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListPoolNodeCounts200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               poolId: p["poolId"],
               dedicated: !p.dedicated
@@ -2548,7 +2536,7 @@ export async function _listPoolNodeCountsDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -2667,86 +2655,85 @@ export async function _getJobDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetJob200Response;
   return {
-    id: _result.body["id"],
-    displayName: _result.body["displayName"],
-    usesTaskDependencies: _result.body["usesTaskDependencies"],
-    url: _result.body["url"],
-    eTag: _result.body["eTag"],
+    id: result.body["id"],
+    displayName: result.body["displayName"],
+    usesTaskDependencies: result.body["usesTaskDependencies"],
+    url: result.body["url"],
+    eTag: result.body["eTag"],
     lastModified:
-      _result.body["lastModified"] !== undefined
-        ? new Date(_result.body["lastModified"])
+      result.body["lastModified"] !== undefined
+        ? new Date(result.body["lastModified"])
         : undefined,
     creationTime:
-      _result.body["creationTime"] !== undefined
-        ? new Date(_result.body["creationTime"])
+      result.body["creationTime"] !== undefined
+        ? new Date(result.body["creationTime"])
         : undefined,
-    state: _result.body["state"],
+    state: result.body["state"],
     stateTransitionTime:
-      _result.body["stateTransitionTime"] !== undefined
-        ? new Date(_result.body["stateTransitionTime"])
+      result.body["stateTransitionTime"] !== undefined
+        ? new Date(result.body["stateTransitionTime"])
         : undefined,
-    previousState: _result.body["previousState"],
+    previousState: result.body["previousState"],
     previousStateTransitionTime:
-      _result.body["previousStateTransitionTime"] !== undefined
-        ? new Date(_result.body["previousStateTransitionTime"])
+      result.body["previousStateTransitionTime"] !== undefined
+        ? new Date(result.body["previousStateTransitionTime"])
         : undefined,
-    priority: _result.body["priority"],
-    allowTaskPreemption: _result.body["allowTaskPreemption"],
-    maxParallelTasks: _result.body["maxParallelTasks"],
-    constraints: !_result.body.constraints
+    priority: result.body["priority"],
+    allowTaskPreemption: result.body["allowTaskPreemption"],
+    maxParallelTasks: result.body["maxParallelTasks"],
+    constraints: !result.body.constraints
       ? undefined
       : {
-          maxWallClockTime: _result.body.constraints?.["maxWallClockTime"],
-          maxTaskRetryCount: _result.body.constraints?.["maxTaskRetryCount"],
+          maxWallClockTime: result.body.constraints?.["maxWallClockTime"],
+          maxTaskRetryCount: result.body.constraints?.["maxTaskRetryCount"],
         },
-    jobManagerTask: !_result.body.jobManagerTask
+    jobManagerTask: !result.body.jobManagerTask
       ? undefined
       : {
-          id: _result.body.jobManagerTask?.["id"],
-          displayName: _result.body.jobManagerTask?.["displayName"],
-          commandLine: _result.body.jobManagerTask?.["commandLine"],
-          containerSettings: !_result.body.jobManagerTask?.containerSettings
+          id: result.body.jobManagerTask?.["id"],
+          displayName: result.body.jobManagerTask?.["displayName"],
+          commandLine: result.body.jobManagerTask?.["commandLine"],
+          containerSettings: !result.body.jobManagerTask?.containerSettings
             ? undefined
             : {
                 containerRunOptions:
-                  _result.body.jobManagerTask?.containerSettings?.[
+                  result.body.jobManagerTask?.containerSettings?.[
                     "containerRunOptions"
                   ],
                 imageName:
-                  _result.body.jobManagerTask?.containerSettings?.["imageName"],
-                registry: !_result.body.jobManagerTask?.containerSettings
+                  result.body.jobManagerTask?.containerSettings?.["imageName"],
+                registry: !result.body.jobManagerTask?.containerSettings
                   ?.registry
                   ? undefined
                   : {
                       username:
-                        _result.body.jobManagerTask?.containerSettings
+                        result.body.jobManagerTask?.containerSettings
                           ?.registry?.["username"],
                       password:
-                        _result.body.jobManagerTask?.containerSettings
+                        result.body.jobManagerTask?.containerSettings
                           ?.registry?.["password"],
                       registryServer:
-                        _result.body.jobManagerTask?.containerSettings
+                        result.body.jobManagerTask?.containerSettings
                           ?.registry?.["registryServer"],
-                      identityReference: !_result.body.jobManagerTask
+                      identityReference: !result.body.jobManagerTask
                         ?.containerSettings?.registry?.identityReference
                         ? undefined
                         : {
                             resourceId:
-                              _result.body.jobManagerTask?.containerSettings
+                              result.body.jobManagerTask?.containerSettings
                                 ?.registry?.identityReference?.["resourceId"],
                           },
                     },
                 workingDirectory:
-                  _result.body.jobManagerTask?.containerSettings?.[
+                  result.body.jobManagerTask?.containerSettings?.[
                     "workingDirectory"
                   ],
               },
           resourceFiles:
-            _result.body.jobManagerTask?.["resourceFiles"] === undefined
-              ? _result.body.jobManagerTask?.["resourceFiles"]
-              : _result.body.jobManagerTask?.["resourceFiles"].map((p) => {
+            result.body.jobManagerTask?.["resourceFiles"] === undefined
+              ? result.body.jobManagerTask?.["resourceFiles"]
+              : result.body.jobManagerTask?.["resourceFiles"].map((p) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -2760,9 +2747,9 @@ export async function _getJobDeserialize(
                   };
                 }),
           outputFiles:
-            _result.body.jobManagerTask?.["outputFiles"] === undefined
-              ? _result.body.jobManagerTask?.["outputFiles"]
-              : _result.body.jobManagerTask?.["outputFiles"].map((p) => {
+            result.body.jobManagerTask?.["outputFiles"] === undefined
+              ? result.body.jobManagerTask?.["outputFiles"]
+              : result.body.jobManagerTask?.["outputFiles"].map((p) => {
                   return {
                     filePattern: p["filePattern"],
                     destination: {
@@ -2800,54 +2787,50 @@ export async function _getJobDeserialize(
                   };
                 }),
           environmentSettings:
-            _result.body.jobManagerTask?.["environmentSettings"] === undefined
-              ? _result.body.jobManagerTask?.["environmentSettings"]
-              : _result.body.jobManagerTask?.["environmentSettings"].map(
-                  (p) => {
-                    return { name: p["name"], value: p["value"] };
-                  },
-                ),
-          constraints: !_result.body.jobManagerTask?.constraints
+            result.body.jobManagerTask?.["environmentSettings"] === undefined
+              ? result.body.jobManagerTask?.["environmentSettings"]
+              : result.body.jobManagerTask?.["environmentSettings"].map((p) => {
+                  return { name: p["name"], value: p["value"] };
+                }),
+          constraints: !result.body.jobManagerTask?.constraints
             ? undefined
             : {
                 maxWallClockTime:
-                  _result.body.jobManagerTask?.constraints?.[
-                    "maxWallClockTime"
-                  ],
+                  result.body.jobManagerTask?.constraints?.["maxWallClockTime"],
                 retentionTime:
-                  _result.body.jobManagerTask?.constraints?.["retentionTime"],
+                  result.body.jobManagerTask?.constraints?.["retentionTime"],
                 maxTaskRetryCount:
-                  _result.body.jobManagerTask?.constraints?.[
+                  result.body.jobManagerTask?.constraints?.[
                     "maxTaskRetryCount"
                   ],
               },
-          requiredSlots: _result.body.jobManagerTask?.["requiredSlots"],
+          requiredSlots: result.body.jobManagerTask?.["requiredSlots"],
           killJobOnCompletion:
-            _result.body.jobManagerTask?.["killJobOnCompletion"],
-          userIdentity: !_result.body.jobManagerTask?.userIdentity
+            result.body.jobManagerTask?.["killJobOnCompletion"],
+          userIdentity: !result.body.jobManagerTask?.userIdentity
             ? undefined
             : {
                 username:
-                  _result.body.jobManagerTask?.userIdentity?.["username"],
-                autoUser: !_result.body.jobManagerTask?.userIdentity?.autoUser
+                  result.body.jobManagerTask?.userIdentity?.["username"],
+                autoUser: !result.body.jobManagerTask?.userIdentity?.autoUser
                   ? undefined
                   : {
                       scope:
-                        _result.body.jobManagerTask?.userIdentity?.autoUser?.[
+                        result.body.jobManagerTask?.userIdentity?.autoUser?.[
                           "scope"
                         ],
                       elevationLevel:
-                        _result.body.jobManagerTask?.userIdentity?.autoUser?.[
+                        result.body.jobManagerTask?.userIdentity?.autoUser?.[
                           "elevationLevel"
                         ],
                     },
               },
-          runExclusive: _result.body.jobManagerTask?.["runExclusive"],
+          runExclusive: result.body.jobManagerTask?.["runExclusive"],
           applicationPackageReferences:
-            _result.body.jobManagerTask?.["applicationPackageReferences"] ===
+            result.body.jobManagerTask?.["applicationPackageReferences"] ===
             undefined
-              ? _result.body.jobManagerTask?.["applicationPackageReferences"]
-              : _result.body.jobManagerTask?.[
+              ? result.body.jobManagerTask?.["applicationPackageReferences"]
+              : result.body.jobManagerTask?.[
                   "applicationPackageReferences"
                 ].map((p) => {
                   return {
@@ -2855,65 +2838,65 @@ export async function _getJobDeserialize(
                     version: p["version"],
                   };
                 }),
-          authenticationTokenSettings: !_result.body.jobManagerTask
+          authenticationTokenSettings: !result.body.jobManagerTask
             ?.authenticationTokenSettings
             ? undefined
             : {
                 access:
-                  _result.body.jobManagerTask?.authenticationTokenSettings?.[
+                  result.body.jobManagerTask?.authenticationTokenSettings?.[
                     "access"
                   ],
               },
           allowLowPriorityNode:
-            _result.body.jobManagerTask?.["allowLowPriorityNode"],
+            result.body.jobManagerTask?.["allowLowPriorityNode"],
         },
-    jobPreparationTask: !_result.body.jobPreparationTask
+    jobPreparationTask: !result.body.jobPreparationTask
       ? undefined
       : {
-          id: _result.body.jobPreparationTask?.["id"],
-          commandLine: _result.body.jobPreparationTask?.["commandLine"],
-          containerSettings: !_result.body.jobPreparationTask?.containerSettings
+          id: result.body.jobPreparationTask?.["id"],
+          commandLine: result.body.jobPreparationTask?.["commandLine"],
+          containerSettings: !result.body.jobPreparationTask?.containerSettings
             ? undefined
             : {
                 containerRunOptions:
-                  _result.body.jobPreparationTask?.containerSettings?.[
+                  result.body.jobPreparationTask?.containerSettings?.[
                     "containerRunOptions"
                   ],
                 imageName:
-                  _result.body.jobPreparationTask?.containerSettings?.[
+                  result.body.jobPreparationTask?.containerSettings?.[
                     "imageName"
                   ],
-                registry: !_result.body.jobPreparationTask?.containerSettings
+                registry: !result.body.jobPreparationTask?.containerSettings
                   ?.registry
                   ? undefined
                   : {
                       username:
-                        _result.body.jobPreparationTask?.containerSettings
+                        result.body.jobPreparationTask?.containerSettings
                           ?.registry?.["username"],
                       password:
-                        _result.body.jobPreparationTask?.containerSettings
+                        result.body.jobPreparationTask?.containerSettings
                           ?.registry?.["password"],
                       registryServer:
-                        _result.body.jobPreparationTask?.containerSettings
+                        result.body.jobPreparationTask?.containerSettings
                           ?.registry?.["registryServer"],
-                      identityReference: !_result.body.jobPreparationTask
+                      identityReference: !result.body.jobPreparationTask
                         ?.containerSettings?.registry?.identityReference
                         ? undefined
                         : {
                             resourceId:
-                              _result.body.jobPreparationTask?.containerSettings
+                              result.body.jobPreparationTask?.containerSettings
                                 ?.registry?.identityReference?.["resourceId"],
                           },
                     },
                 workingDirectory:
-                  _result.body.jobPreparationTask?.containerSettings?.[
+                  result.body.jobPreparationTask?.containerSettings?.[
                     "workingDirectory"
                   ],
               },
           resourceFiles:
-            _result.body.jobPreparationTask?.["resourceFiles"] === undefined
-              ? _result.body.jobPreparationTask?.["resourceFiles"]
-              : _result.body.jobPreparationTask?.["resourceFiles"].map((p) => {
+            result.body.jobPreparationTask?.["resourceFiles"] === undefined
+              ? result.body.jobPreparationTask?.["resourceFiles"]
+              : result.body.jobPreparationTask?.["resourceFiles"].map((p) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -2927,96 +2910,96 @@ export async function _getJobDeserialize(
                   };
                 }),
           environmentSettings:
-            _result.body.jobPreparationTask?.["environmentSettings"] ===
+            result.body.jobPreparationTask?.["environmentSettings"] ===
             undefined
-              ? _result.body.jobPreparationTask?.["environmentSettings"]
-              : _result.body.jobPreparationTask?.["environmentSettings"].map(
+              ? result.body.jobPreparationTask?.["environmentSettings"]
+              : result.body.jobPreparationTask?.["environmentSettings"].map(
                   (p) => {
                     return { name: p["name"], value: p["value"] };
                   },
                 ),
-          constraints: !_result.body.jobPreparationTask?.constraints
+          constraints: !result.body.jobPreparationTask?.constraints
             ? undefined
             : {
                 maxWallClockTime:
-                  _result.body.jobPreparationTask?.constraints?.[
+                  result.body.jobPreparationTask?.constraints?.[
                     "maxWallClockTime"
                   ],
                 retentionTime:
-                  _result.body.jobPreparationTask?.constraints?.[
+                  result.body.jobPreparationTask?.constraints?.[
                     "retentionTime"
                   ],
                 maxTaskRetryCount:
-                  _result.body.jobPreparationTask?.constraints?.[
+                  result.body.jobPreparationTask?.constraints?.[
                     "maxTaskRetryCount"
                   ],
               },
-          waitForSuccess: _result.body.jobPreparationTask?.["waitForSuccess"],
-          userIdentity: !_result.body.jobPreparationTask?.userIdentity
+          waitForSuccess: result.body.jobPreparationTask?.["waitForSuccess"],
+          userIdentity: !result.body.jobPreparationTask?.userIdentity
             ? undefined
             : {
                 username:
-                  _result.body.jobPreparationTask?.userIdentity?.["username"],
-                autoUser: !_result.body.jobPreparationTask?.userIdentity
+                  result.body.jobPreparationTask?.userIdentity?.["username"],
+                autoUser: !result.body.jobPreparationTask?.userIdentity
                   ?.autoUser
                   ? undefined
                   : {
                       scope:
-                        _result.body.jobPreparationTask?.userIdentity
+                        result.body.jobPreparationTask?.userIdentity
                           ?.autoUser?.["scope"],
                       elevationLevel:
-                        _result.body.jobPreparationTask?.userIdentity
+                        result.body.jobPreparationTask?.userIdentity
                           ?.autoUser?.["elevationLevel"],
                     },
               },
           rerunOnNodeRebootAfterSuccess:
-            _result.body.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
+            result.body.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
         },
-    jobReleaseTask: !_result.body.jobReleaseTask
+    jobReleaseTask: !result.body.jobReleaseTask
       ? undefined
       : {
-          id: _result.body.jobReleaseTask?.["id"],
-          commandLine: _result.body.jobReleaseTask?.["commandLine"],
-          containerSettings: !_result.body.jobReleaseTask?.containerSettings
+          id: result.body.jobReleaseTask?.["id"],
+          commandLine: result.body.jobReleaseTask?.["commandLine"],
+          containerSettings: !result.body.jobReleaseTask?.containerSettings
             ? undefined
             : {
                 containerRunOptions:
-                  _result.body.jobReleaseTask?.containerSettings?.[
+                  result.body.jobReleaseTask?.containerSettings?.[
                     "containerRunOptions"
                   ],
                 imageName:
-                  _result.body.jobReleaseTask?.containerSettings?.["imageName"],
-                registry: !_result.body.jobReleaseTask?.containerSettings
+                  result.body.jobReleaseTask?.containerSettings?.["imageName"],
+                registry: !result.body.jobReleaseTask?.containerSettings
                   ?.registry
                   ? undefined
                   : {
                       username:
-                        _result.body.jobReleaseTask?.containerSettings
+                        result.body.jobReleaseTask?.containerSettings
                           ?.registry?.["username"],
                       password:
-                        _result.body.jobReleaseTask?.containerSettings
+                        result.body.jobReleaseTask?.containerSettings
                           ?.registry?.["password"],
                       registryServer:
-                        _result.body.jobReleaseTask?.containerSettings
+                        result.body.jobReleaseTask?.containerSettings
                           ?.registry?.["registryServer"],
-                      identityReference: !_result.body.jobReleaseTask
+                      identityReference: !result.body.jobReleaseTask
                         ?.containerSettings?.registry?.identityReference
                         ? undefined
                         : {
                             resourceId:
-                              _result.body.jobReleaseTask?.containerSettings
+                              result.body.jobReleaseTask?.containerSettings
                                 ?.registry?.identityReference?.["resourceId"],
                           },
                     },
                 workingDirectory:
-                  _result.body.jobReleaseTask?.containerSettings?.[
+                  result.body.jobReleaseTask?.containerSettings?.[
                     "workingDirectory"
                   ],
               },
           resourceFiles:
-            _result.body.jobReleaseTask?.["resourceFiles"] === undefined
-              ? _result.body.jobReleaseTask?.["resourceFiles"]
-              : _result.body.jobReleaseTask?.["resourceFiles"].map((p) => {
+            result.body.jobReleaseTask?.["resourceFiles"] === undefined
+              ? result.body.jobReleaseTask?.["resourceFiles"]
+              : result.body.jobReleaseTask?.["resourceFiles"].map((p) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -3030,132 +3013,130 @@ export async function _getJobDeserialize(
                   };
                 }),
           environmentSettings:
-            _result.body.jobReleaseTask?.["environmentSettings"] === undefined
-              ? _result.body.jobReleaseTask?.["environmentSettings"]
-              : _result.body.jobReleaseTask?.["environmentSettings"].map(
-                  (p) => {
-                    return { name: p["name"], value: p["value"] };
-                  },
-                ),
-          maxWallClockTime: _result.body.jobReleaseTask?.["maxWallClockTime"],
-          retentionTime: _result.body.jobReleaseTask?.["retentionTime"],
-          userIdentity: !_result.body.jobReleaseTask?.userIdentity
+            result.body.jobReleaseTask?.["environmentSettings"] === undefined
+              ? result.body.jobReleaseTask?.["environmentSettings"]
+              : result.body.jobReleaseTask?.["environmentSettings"].map((p) => {
+                  return { name: p["name"], value: p["value"] };
+                }),
+          maxWallClockTime: result.body.jobReleaseTask?.["maxWallClockTime"],
+          retentionTime: result.body.jobReleaseTask?.["retentionTime"],
+          userIdentity: !result.body.jobReleaseTask?.userIdentity
             ? undefined
             : {
                 username:
-                  _result.body.jobReleaseTask?.userIdentity?.["username"],
-                autoUser: !_result.body.jobReleaseTask?.userIdentity?.autoUser
+                  result.body.jobReleaseTask?.userIdentity?.["username"],
+                autoUser: !result.body.jobReleaseTask?.userIdentity?.autoUser
                   ? undefined
                   : {
                       scope:
-                        _result.body.jobReleaseTask?.userIdentity?.autoUser?.[
+                        result.body.jobReleaseTask?.userIdentity?.autoUser?.[
                           "scope"
                         ],
                       elevationLevel:
-                        _result.body.jobReleaseTask?.userIdentity?.autoUser?.[
+                        result.body.jobReleaseTask?.userIdentity?.autoUser?.[
                           "elevationLevel"
                         ],
                     },
               },
         },
     commonEnvironmentSettings:
-      _result.body["commonEnvironmentSettings"] === undefined
-        ? _result.body["commonEnvironmentSettings"]
-        : _result.body["commonEnvironmentSettings"].map((p) => {
+      result.body["commonEnvironmentSettings"] === undefined
+        ? result.body["commonEnvironmentSettings"]
+        : result.body["commonEnvironmentSettings"].map((p) => {
             return { name: p["name"], value: p["value"] };
           }),
     poolInfo: {
-      poolId: _result.body.poolInfo["poolId"],
-      autoPoolSpecification: !_result.body.poolInfo.autoPoolSpecification
+      poolId: result.body.poolInfo["poolId"],
+      autoPoolSpecification: !result.body.poolInfo.autoPoolSpecification
         ? undefined
         : {
             autoPoolIdPrefix:
-              _result.body.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
+              result.body.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
             poolLifetimeOption:
-              _result.body.poolInfo.autoPoolSpecification?.[
+              result.body.poolInfo.autoPoolSpecification?.[
                 "poolLifetimeOption"
               ],
             keepAlive:
-              _result.body.poolInfo.autoPoolSpecification?.["keepAlive"],
-            pool: !_result.body.poolInfo.autoPoolSpecification?.pool
+              result.body.poolInfo.autoPoolSpecification?.["keepAlive"],
+            pool: !result.body.poolInfo.autoPoolSpecification?.pool
               ? undefined
               : {
                   displayName:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "displayName"
                     ],
                   vmSize:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "vmSize"
                     ],
-                  cloudServiceConfiguration: !_result.body.poolInfo
+                  cloudServiceConfiguration: !result.body.poolInfo
                     .autoPoolSpecification?.pool?.cloudServiceConfiguration
                     ? undefined
                     : {
                         osFamily:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.cloudServiceConfiguration?.["osFamily"],
                         osVersion:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.cloudServiceConfiguration?.["osVersion"],
                       },
-                  virtualMachineConfiguration: !_result.body.poolInfo
+                  virtualMachineConfiguration: !result.body.poolInfo
                     .autoPoolSpecification?.pool?.virtualMachineConfiguration
                     ? undefined
                     : {
                         imageReference: {
                           publisher:
-                            _result.body.poolInfo.autoPoolSpecification?.pool
+                            result.body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.imageReference[
                               "publisher"
                             ],
                           offer:
-                            _result.body.poolInfo.autoPoolSpecification?.pool
+                            result.body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.imageReference[
                               "offer"
                             ],
-                          sku: _result.body.poolInfo.autoPoolSpecification?.pool
+                          sku: result.body.poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.imageReference[
                             "sku"
                           ],
                           version:
-                            _result.body.poolInfo.autoPoolSpecification?.pool
+                            result.body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.imageReference[
                               "version"
                             ],
                           virtualMachineImageId:
-                            _result.body.poolInfo.autoPoolSpecification?.pool
+                            result.body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.imageReference[
                               "virtualMachineImageId"
                             ],
                           exactVersion:
-                            _result.body.poolInfo.autoPoolSpecification?.pool
+                            result.body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.imageReference[
                               "exactVersion"
                             ],
                         },
                         nodeAgentSkuId:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.["nodeAgentSKUId"],
-                        windowsConfiguration: !_result.body.poolInfo
+                        windowsConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool
                           ?.virtualMachineConfiguration?.windowsConfiguration
                           ? undefined
                           : {
                               enableAutomaticUpdates:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.virtualMachineConfiguration
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
                                   ?.windowsConfiguration?.[
                                   "enableAutomaticUpdates"
                                 ],
                             },
                         dataDisks:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.["dataDisks"] ===
                           undefined
-                            ? _result.body.poolInfo.autoPoolSpecification?.pool
+                            ? result.body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["dataDisks"]
-                            : _result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                            : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                 "dataDisks"
                               ].map((p) => {
                                 return {
@@ -3166,34 +3147,34 @@ export async function _getJobDeserialize(
                                 };
                               }),
                         licenseType:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.["licenseType"],
-                        containerConfiguration: !_result.body.poolInfo
+                        containerConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool
                           ?.virtualMachineConfiguration?.containerConfiguration
                           ? undefined
                           : {
-                              type: _result.body.poolInfo.autoPoolSpecification
+                              type: result.body.poolInfo.autoPoolSpecification
                                 ?.pool?.virtualMachineConfiguration
                                 ?.containerConfiguration?.["type"],
                               containerImageNames:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.virtualMachineConfiguration
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
                                   ?.containerConfiguration?.[
                                   "containerImageNames"
                                 ],
                               containerRegistries:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.virtualMachineConfiguration
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
                                   ?.containerConfiguration?.[
                                   "containerRegistries"
                                 ] === undefined
-                                  ? _result.body.poolInfo.autoPoolSpecification
+                                  ? result.body.poolInfo.autoPoolSpecification
                                       ?.pool?.virtualMachineConfiguration
                                       ?.containerConfiguration?.[
                                       "containerRegistries"
                                     ]
-                                  : _result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                  : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                       "containerRegistries"
                                     ].map((p) => {
                                       return {
@@ -3211,35 +3192,35 @@ export async function _getJobDeserialize(
                                       };
                                     }),
                             },
-                        diskEncryptionConfiguration: !_result.body.poolInfo
+                        diskEncryptionConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool
                           ?.virtualMachineConfiguration
                           ?.diskEncryptionConfiguration
                           ? undefined
                           : {
                               targets:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.virtualMachineConfiguration
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
                                   ?.diskEncryptionConfiguration?.["targets"],
                             },
-                        nodePlacementConfiguration: !_result.body.poolInfo
+                        nodePlacementConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool
                           ?.virtualMachineConfiguration
                           ?.nodePlacementConfiguration
                           ? undefined
                           : {
                               policy:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.virtualMachineConfiguration
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
                                   ?.nodePlacementConfiguration?.["policy"],
                             },
                         extensions:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.["extensions"] ===
                           undefined
-                            ? _result.body.poolInfo.autoPoolSpecification?.pool
+                            ? result.body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["extensions"]
-                            : _result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                            : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                 "extensions"
                               ].map((p) => {
                                 return {
@@ -3257,85 +3238,84 @@ export async function _getJobDeserialize(
                                     p["provisionAfterExtensions"],
                                 };
                               }),
-                        osDisk: !_result.body.poolInfo.autoPoolSpecification
+                        osDisk: !result.body.poolInfo.autoPoolSpecification
                           ?.pool?.virtualMachineConfiguration?.osDisk
                           ? undefined
                           : {
-                              ephemeralOSDiskSettings: !_result.body.poolInfo
+                              ephemeralOSDiskSettings: !result.body.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.osDisk
                                 ?.ephemeralOSDiskSettings
                                 ? undefined
                                 : {
                                     placement:
-                                      _result.body.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk
-                                        ?.ephemeralOSDiskSettings?.[
+                                      result.body.poolInfo.autoPoolSpecification
+                                        ?.pool?.virtualMachineConfiguration
+                                        ?.osDisk?.ephemeralOSDiskSettings?.[
                                         "placement"
                                       ],
                                   },
                             },
                       },
                   taskSlotsPerNode:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "taskSlotsPerNode"
                     ],
-                  taskSchedulingPolicy: !_result.body.poolInfo
+                  taskSchedulingPolicy: !result.body.poolInfo
                     .autoPoolSpecification?.pool?.taskSchedulingPolicy
                     ? undefined
                     : {
                         nodeFillType:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.taskSchedulingPolicy?.["nodeFillType"],
                       },
                   resizeTimeout:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "resizeTimeout"
                     ],
                   targetDedicatedNodes:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "targetDedicatedNodes"
                     ],
                   targetLowPriorityNodes:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "targetLowPriorityNodes"
                     ],
                   enableAutoScale:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "enableAutoScale"
                     ],
                   autoScaleFormula:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "autoScaleFormula"
                     ],
                   autoScaleEvaluationInterval:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "autoScaleEvaluationInterval"
                     ],
                   enableInterNodeCommunication:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "enableInterNodeCommunication"
                     ],
-                  networkConfiguration: !_result.body.poolInfo
+                  networkConfiguration: !result.body.poolInfo
                     .autoPoolSpecification?.pool?.networkConfiguration
                     ? undefined
                     : {
                         subnetId:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.networkConfiguration?.["subnetId"],
                         dynamicVNetAssignmentScope:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.networkConfiguration?.[
                             "dynamicVNetAssignmentScope"
                           ],
-                        endpointConfiguration: !_result.body.poolInfo
+                        endpointConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool?.networkConfiguration
                           ?.endpointConfiguration
                           ? undefined
                           : {
                               inboundNatPools:
-                                _result.body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                result.body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                   "inboundNATPools"
                                 ].map((p) => {
                                   return {
@@ -3365,81 +3345,73 @@ export async function _getJobDeserialize(
                                   };
                                 }),
                             },
-                        publicIpAddressConfiguration: !_result.body.poolInfo
+                        publicIpAddressConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool?.networkConfiguration
                           ?.publicIPAddressConfiguration
                           ? undefined
                           : {
                               ipAddressProvisioningType:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.networkConfiguration
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration
                                   ?.publicIPAddressConfiguration?.["provision"],
                               ipAddressIds:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.networkConfiguration
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration
                                   ?.publicIPAddressConfiguration?.[
                                   "ipAddressIds"
                                 ],
                             },
                         enableAcceleratedNetworking:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.networkConfiguration?.[
                             "enableAcceleratedNetworking"
                           ],
                       },
-                  startTask: !_result.body.poolInfo.autoPoolSpecification?.pool
+                  startTask: !result.body.poolInfo.autoPoolSpecification?.pool
                     ?.startTask
                     ? undefined
                     : {
                         commandLine:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.startTask?.["commandLine"],
-                        containerSettings: !_result.body.poolInfo
+                        containerSettings: !result.body.poolInfo
                           .autoPoolSpecification?.pool?.startTask
                           ?.containerSettings
                           ? undefined
                           : {
                               containerRunOptions:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.containerSettings?.[
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.containerSettings?.[
                                   "containerRunOptions"
                                 ],
                               imageName:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.containerSettings?.[
-                                  "imageName"
-                                ],
-                              registry: !_result.body.poolInfo
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.containerSettings?.["imageName"],
+                              registry: !result.body.poolInfo
                                 .autoPoolSpecification?.pool?.startTask
                                 ?.containerSettings?.registry
                                 ? undefined
                                 : {
                                     username:
-                                      _result.body.poolInfo
-                                        .autoPoolSpecification?.pool?.startTask
-                                        ?.containerSettings?.registry?.[
-                                        "username"
-                                      ],
+                                      result.body.poolInfo.autoPoolSpecification
+                                        ?.pool?.startTask?.containerSettings
+                                        ?.registry?.["username"],
                                     password:
-                                      _result.body.poolInfo
-                                        .autoPoolSpecification?.pool?.startTask
-                                        ?.containerSettings?.registry?.[
-                                        "password"
-                                      ],
+                                      result.body.poolInfo.autoPoolSpecification
+                                        ?.pool?.startTask?.containerSettings
+                                        ?.registry?.["password"],
                                     registryServer:
-                                      _result.body.poolInfo
-                                        .autoPoolSpecification?.pool?.startTask
-                                        ?.containerSettings?.registry?.[
-                                        "registryServer"
-                                      ],
-                                    identityReference: !_result.body.poolInfo
+                                      result.body.poolInfo.autoPoolSpecification
+                                        ?.pool?.startTask?.containerSettings
+                                        ?.registry?.["registryServer"],
+                                    identityReference: !result.body.poolInfo
                                       .autoPoolSpecification?.pool?.startTask
                                       ?.containerSettings?.registry
                                       ?.identityReference
                                       ? undefined
                                       : {
                                           resourceId:
-                                            _result.body.poolInfo
+                                            result.body.poolInfo
                                               .autoPoolSpecification?.pool
                                               ?.startTask?.containerSettings
                                               ?.registry?.identityReference?.[
@@ -3448,17 +3420,17 @@ export async function _getJobDeserialize(
                                         },
                                   },
                               workingDirectory:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.containerSettings?.[
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.containerSettings?.[
                                   "workingDirectory"
                                 ],
                             },
                         resourceFiles:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.startTask?.["resourceFiles"] === undefined
-                            ? _result.body.poolInfo.autoPoolSpecification?.pool
+                            ? result.body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["resourceFiles"]
-                            : _result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                            : result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                 "resourceFiles"
                               ].map((p) => {
                                 return {
@@ -3478,54 +3450,52 @@ export async function _getJobDeserialize(
                                 };
                               }),
                         environmentSettings:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.startTask?.["environmentSettings"] === undefined
-                            ? _result.body.poolInfo.autoPoolSpecification?.pool
+                            ? result.body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["environmentSettings"]
-                            : _result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                            : result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                 "environmentSettings"
                               ].map((p) => {
                                 return { name: p["name"], value: p["value"] };
                               }),
-                        userIdentity: !_result.body.poolInfo
+                        userIdentity: !result.body.poolInfo
                           .autoPoolSpecification?.pool?.startTask?.userIdentity
                           ? undefined
                           : {
                               username:
-                                _result.body.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.userIdentity?.["username"],
-                              autoUser: !_result.body.poolInfo
+                                result.body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.userIdentity?.["username"],
+                              autoUser: !result.body.poolInfo
                                 .autoPoolSpecification?.pool?.startTask
                                 ?.userIdentity?.autoUser
                                 ? undefined
                                 : {
                                     scope:
-                                      _result.body.poolInfo
-                                        .autoPoolSpecification?.pool?.startTask
-                                        ?.userIdentity?.autoUser?.["scope"],
+                                      result.body.poolInfo.autoPoolSpecification
+                                        ?.pool?.startTask?.userIdentity
+                                        ?.autoUser?.["scope"],
                                     elevationLevel:
-                                      _result.body.poolInfo
-                                        .autoPoolSpecification?.pool?.startTask
-                                        ?.userIdentity?.autoUser?.[
-                                        "elevationLevel"
-                                      ],
+                                      result.body.poolInfo.autoPoolSpecification
+                                        ?.pool?.startTask?.userIdentity
+                                        ?.autoUser?.["elevationLevel"],
                                   },
                             },
                         maxTaskRetryCount:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.startTask?.["maxTaskRetryCount"],
                         waitForSuccess:
-                          _result.body.poolInfo.autoPoolSpecification?.pool
+                          result.body.poolInfo.autoPoolSpecification?.pool
                             ?.startTask?.["waitForSuccess"],
                       },
                   certificateReferences:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "certificateReferences"
                     ] === undefined
-                      ? _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      ? result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "certificateReferences"
                         ]
-                      : _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "certificateReferences"
                         ].map((p) => {
                           return {
@@ -3537,13 +3507,13 @@ export async function _getJobDeserialize(
                           };
                         }),
                   applicationPackageReferences:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "applicationPackageReferences"
                     ] === undefined
-                      ? _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      ? result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationPackageReferences"
                         ]
-                      : _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationPackageReferences"
                         ].map((p) => {
                           return {
@@ -3552,17 +3522,17 @@ export async function _getJobDeserialize(
                           };
                         }),
                   applicationLicenses:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "applicationLicenses"
                     ],
                   userAccounts:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "userAccounts"
                     ] === undefined
-                      ? _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      ? result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "userAccounts"
                         ]
-                      : _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "userAccounts"
                         ].map((p) => {
                           return {
@@ -3587,25 +3557,25 @@ export async function _getJobDeserialize(
                           };
                         }),
                   metadata:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "metadata"
                     ] === undefined
-                      ? _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      ? result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "metadata"
                         ]
-                      : _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "metadata"
                         ].map((p) => {
                           return { name: p["name"], value: p["value"] };
                         }),
                   mountConfiguration:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "mountConfiguration"
                     ] === undefined
-                      ? _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      ? result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "mountConfiguration"
                         ]
-                      : _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                      : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "mountConfiguration"
                         ].map((p) => {
                           return {
@@ -3703,69 +3673,69 @@ export async function _getJobDeserialize(
                           };
                         }),
                   targetNodeCommunicationMode:
-                    _result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "targetNodeCommunicationMode"
                     ],
                 },
           },
     },
-    onAllTasksComplete: _result.body["onAllTasksComplete"],
-    onTaskFailure: _result.body["onTaskFailure"],
-    networkConfiguration: !_result.body.networkConfiguration
+    onAllTasksComplete: result.body["onAllTasksComplete"],
+    onTaskFailure: result.body["onTaskFailure"],
+    networkConfiguration: !result.body.networkConfiguration
       ? undefined
-      : { subnetId: _result.body.networkConfiguration?.["subnetId"] },
+      : { subnetId: result.body.networkConfiguration?.["subnetId"] },
     metadata:
-      _result.body["metadata"] === undefined
-        ? _result.body["metadata"]
-        : _result.body["metadata"].map((p) => {
+      result.body["metadata"] === undefined
+        ? result.body["metadata"]
+        : result.body["metadata"].map((p) => {
             return { name: p["name"], value: p["value"] };
           }),
-    executionInfo: !_result.body.executionInfo
+    executionInfo: !result.body.executionInfo
       ? undefined
       : {
-          startTime: new Date(_result.body.executionInfo?.["startTime"]),
+          startTime: new Date(result.body.executionInfo?.["startTime"]),
           endTime:
-            _result.body.executionInfo?.["endTime"] !== undefined
-              ? new Date(_result.body.executionInfo?.["endTime"])
+            result.body.executionInfo?.["endTime"] !== undefined
+              ? new Date(result.body.executionInfo?.["endTime"])
               : undefined,
-          poolId: _result.body.executionInfo?.["poolId"],
-          schedulingError: !_result.body.executionInfo?.schedulingError
+          poolId: result.body.executionInfo?.["poolId"],
+          schedulingError: !result.body.executionInfo?.schedulingError
             ? undefined
             : {
                 category:
-                  _result.body.executionInfo?.schedulingError?.["category"],
-                code: _result.body.executionInfo?.schedulingError?.["code"],
+                  result.body.executionInfo?.schedulingError?.["category"],
+                code: result.body.executionInfo?.schedulingError?.["code"],
                 message:
-                  _result.body.executionInfo?.schedulingError?.["message"],
+                  result.body.executionInfo?.schedulingError?.["message"],
                 details:
-                  _result.body.executionInfo?.schedulingError?.["details"] ===
+                  result.body.executionInfo?.schedulingError?.["details"] ===
                   undefined
-                    ? _result.body.executionInfo?.schedulingError?.["details"]
-                    : _result.body.executionInfo?.schedulingError?.[
+                    ? result.body.executionInfo?.schedulingError?.["details"]
+                    : result.body.executionInfo?.schedulingError?.[
                         "details"
                       ].map((p) => {
                         return { name: p["name"], value: p["value"] };
                       }),
               },
-          terminateReason: _result.body.executionInfo?.["terminateReason"],
+          terminateReason: result.body.executionInfo?.["terminateReason"],
         },
-    stats: !_result.body.stats
+    stats: !result.body.stats
       ? undefined
       : {
-          url: _result.body.stats?.["url"],
-          startTime: new Date(_result.body.stats?.["startTime"]),
-          lastUpdateTime: new Date(_result.body.stats?.["lastUpdateTime"]),
-          userCPUTime: _result.body.stats?.["userCPUTime"],
-          kernelCPUTime: _result.body.stats?.["kernelCPUTime"],
-          wallClockTime: _result.body.stats?.["wallClockTime"],
-          readIOps: _result.body.stats?.["readIOps"],
-          writeIOps: _result.body.stats?.["writeIOps"],
-          readIOGiB: _result.body.stats?.["readIOGiB"],
-          writeIOGiB: _result.body.stats?.["writeIOGiB"],
-          numSucceededTasks: _result.body.stats?.["numSucceededTasks"],
-          numFailedTasks: _result.body.stats?.["numFailedTasks"],
-          numTaskRetries: _result.body.stats?.["numTaskRetries"],
-          waitTime: _result.body.stats?.["waitTime"],
+          url: result.body.stats?.["url"],
+          startTime: new Date(result.body.stats?.["startTime"]),
+          lastUpdateTime: new Date(result.body.stats?.["lastUpdateTime"]),
+          userCPUTime: result.body.stats?.["userCPUTime"],
+          kernelCPUTime: result.body.stats?.["kernelCPUTime"],
+          wallClockTime: result.body.stats?.["wallClockTime"],
+          readIOps: result.body.stats?.["readIOps"],
+          writeIOps: result.body.stats?.["writeIOps"],
+          readIOGiB: result.body.stats?.["readIOGiB"],
+          writeIOGiB: result.body.stats?.["writeIOGiB"],
+          numSucceededTasks: result.body.stats?.["numSucceededTasks"],
+          numFailedTasks: result.body.stats?.["numFailedTasks"],
+          numTaskRetries: result.body.stats?.["numTaskRetries"],
+          waitTime: result.body.stats?.["waitTime"],
         },
   };
 }
@@ -4227,12 +4197,11 @@ export async function _listJobsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListJobs200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -5442,7 +5411,7 @@ export async function _listJobsDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -5488,12 +5457,11 @@ export async function _listJobsFromScheduleDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListJobsFromSchedule200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -6703,7 +6671,7 @@ export async function _listJobsFromScheduleDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -6753,13 +6721,11 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as ListJobPreparationAndReleaseTaskStatus200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               poolId: p["poolId"],
               nodeId: p["nodeId"],
@@ -6907,7 +6873,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -6959,21 +6925,20 @@ export async function _getJobTaskCountsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetJobTaskCounts200Response;
   return {
     taskCounts: {
-      active: _result.body.taskCounts["active"],
-      running: _result.body.taskCounts["running"],
-      completed: _result.body.taskCounts["completed"],
-      succeeded: _result.body.taskCounts["succeeded"],
-      failed: _result.body.taskCounts["failed"],
+      active: result.body.taskCounts["active"],
+      running: result.body.taskCounts["running"],
+      completed: result.body.taskCounts["completed"],
+      succeeded: result.body.taskCounts["succeeded"],
+      failed: result.body.taskCounts["failed"],
     },
     taskSlotCounts: {
-      active: _result.body.taskSlotCounts["active"],
-      running: _result.body.taskSlotCounts["running"],
-      completed: _result.body.taskSlotCounts["completed"],
-      succeeded: _result.body.taskSlotCounts["succeeded"],
-      failed: _result.body.taskSlotCounts["failed"],
+      active: result.body.taskSlotCounts["active"],
+      running: result.body.taskSlotCounts["running"],
+      completed: result.body.taskSlotCounts["completed"],
+      succeeded: result.body.taskSlotCounts["succeeded"],
+      failed: result.body.taskSlotCounts["failed"],
     },
   };
 }
@@ -7068,12 +7033,11 @@ export async function _listCertificatesDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListCertificates200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               thumbprint: p["thumbprint"],
               thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -7112,7 +7076,7 @@ export async function _listCertificatesDeserialize(
               password: p["password"],
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -7277,43 +7241,42 @@ export async function _getCertificateDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetCertificate200Response;
   return {
-    thumbprint: _result.body["thumbprint"],
-    thumbprintAlgorithm: _result.body["thumbprintAlgorithm"],
-    url: _result.body["url"],
-    state: _result.body["state"],
+    thumbprint: result.body["thumbprint"],
+    thumbprintAlgorithm: result.body["thumbprintAlgorithm"],
+    url: result.body["url"],
+    state: result.body["state"],
     stateTransitionTime:
-      _result.body["stateTransitionTime"] !== undefined
-        ? new Date(_result.body["stateTransitionTime"])
+      result.body["stateTransitionTime"] !== undefined
+        ? new Date(result.body["stateTransitionTime"])
         : undefined,
-    previousState: _result.body["previousState"],
+    previousState: result.body["previousState"],
     previousStateTransitionTime:
-      _result.body["previousStateTransitionTime"] !== undefined
-        ? new Date(_result.body["previousStateTransitionTime"])
+      result.body["previousStateTransitionTime"] !== undefined
+        ? new Date(result.body["previousStateTransitionTime"])
         : undefined,
     publicData:
-      typeof _result.body["publicData"] === "string"
-        ? stringToUint8Array(_result.body["publicData"], "base64")
-        : _result.body["publicData"],
-    deleteCertificateError: !_result.body.deleteCertificateError
+      typeof result.body["publicData"] === "string"
+        ? stringToUint8Array(result.body["publicData"], "base64")
+        : result.body["publicData"],
+    deleteCertificateError: !result.body.deleteCertificateError
       ? undefined
       : {
-          code: _result.body.deleteCertificateError?.["code"],
-          message: _result.body.deleteCertificateError?.["message"],
+          code: result.body.deleteCertificateError?.["code"],
+          message: result.body.deleteCertificateError?.["message"],
           values:
-            _result.body.deleteCertificateError?.["values"] === undefined
-              ? _result.body.deleteCertificateError?.["values"]
-              : _result.body.deleteCertificateError?.["values"].map((p) => {
+            result.body.deleteCertificateError?.["values"] === undefined
+              ? result.body.deleteCertificateError?.["values"]
+              : result.body.deleteCertificateError?.["values"].map((p) => {
                   return { name: p["name"], value: p["value"] };
                 }),
         },
     data:
-      typeof _result.body["data"] === "string"
-        ? stringToUint8Array(_result.body["data"], "base64")
-        : _result.body["data"],
-    certificateFormat: _result.body["certificateFormat"],
-    password: _result.body["password"],
+      typeof result.body["data"] === "string"
+        ? stringToUint8Array(result.body["data"], "base64")
+        : result.body["data"],
+    certificateFormat: result.body["certificateFormat"],
+    password: result.body["password"],
   };
 }
 
@@ -7487,119 +7450,115 @@ export async function _getJobScheduleDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetJobSchedule200Response;
   return {
-    id: _result.body["id"],
-    displayName: _result.body["displayName"],
-    url: _result.body["url"],
-    eTag: _result.body["eTag"],
+    id: result.body["id"],
+    displayName: result.body["displayName"],
+    url: result.body["url"],
+    eTag: result.body["eTag"],
     lastModified:
-      _result.body["lastModified"] !== undefined
-        ? new Date(_result.body["lastModified"])
+      result.body["lastModified"] !== undefined
+        ? new Date(result.body["lastModified"])
         : undefined,
     creationTime:
-      _result.body["creationTime"] !== undefined
-        ? new Date(_result.body["creationTime"])
+      result.body["creationTime"] !== undefined
+        ? new Date(result.body["creationTime"])
         : undefined,
-    state: _result.body["state"],
+    state: result.body["state"],
     stateTransitionTime:
-      _result.body["stateTransitionTime"] !== undefined
-        ? new Date(_result.body["stateTransitionTime"])
+      result.body["stateTransitionTime"] !== undefined
+        ? new Date(result.body["stateTransitionTime"])
         : undefined,
-    previousState: _result.body["previousState"],
+    previousState: result.body["previousState"],
     previousStateTransitionTime:
-      _result.body["previousStateTransitionTime"] !== undefined
-        ? new Date(_result.body["previousStateTransitionTime"])
+      result.body["previousStateTransitionTime"] !== undefined
+        ? new Date(result.body["previousStateTransitionTime"])
         : undefined,
     schedule: {
       doNotRunUntil:
-        _result.body.schedule["doNotRunUntil"] !== undefined
-          ? new Date(_result.body.schedule["doNotRunUntil"])
+        result.body.schedule["doNotRunUntil"] !== undefined
+          ? new Date(result.body.schedule["doNotRunUntil"])
           : undefined,
       doNotRunAfter:
-        _result.body.schedule["doNotRunAfter"] !== undefined
-          ? new Date(_result.body.schedule["doNotRunAfter"])
+        result.body.schedule["doNotRunAfter"] !== undefined
+          ? new Date(result.body.schedule["doNotRunAfter"])
           : undefined,
-      startWindow: _result.body.schedule["startWindow"],
-      recurrenceInterval: _result.body.schedule["recurrenceInterval"],
+      startWindow: result.body.schedule["startWindow"],
+      recurrenceInterval: result.body.schedule["recurrenceInterval"],
     },
     jobSpecification: {
-      priority: _result.body.jobSpecification["priority"],
-      allowTaskPreemption: _result.body.jobSpecification["allowTaskPreemption"],
-      maxParallelTasks: _result.body.jobSpecification["maxParallelTasks"],
-      displayName: _result.body.jobSpecification["displayName"],
+      priority: result.body.jobSpecification["priority"],
+      allowTaskPreemption: result.body.jobSpecification["allowTaskPreemption"],
+      maxParallelTasks: result.body.jobSpecification["maxParallelTasks"],
+      displayName: result.body.jobSpecification["displayName"],
       usesTaskDependencies:
-        _result.body.jobSpecification["usesTaskDependencies"],
-      onAllTasksComplete: _result.body.jobSpecification["onAllTasksComplete"],
-      onTaskFailure: _result.body.jobSpecification["onTaskFailure"],
-      networkConfiguration: !_result.body.jobSpecification.networkConfiguration
+        result.body.jobSpecification["usesTaskDependencies"],
+      onAllTasksComplete: result.body.jobSpecification["onAllTasksComplete"],
+      onTaskFailure: result.body.jobSpecification["onTaskFailure"],
+      networkConfiguration: !result.body.jobSpecification.networkConfiguration
         ? undefined
         : {
             subnetId:
-              _result.body.jobSpecification.networkConfiguration?.["subnetId"],
+              result.body.jobSpecification.networkConfiguration?.["subnetId"],
           },
-      constraints: !_result.body.jobSpecification.constraints
+      constraints: !result.body.jobSpecification.constraints
         ? undefined
         : {
             maxWallClockTime:
-              _result.body.jobSpecification.constraints?.["maxWallClockTime"],
+              result.body.jobSpecification.constraints?.["maxWallClockTime"],
             maxTaskRetryCount:
-              _result.body.jobSpecification.constraints?.["maxTaskRetryCount"],
+              result.body.jobSpecification.constraints?.["maxTaskRetryCount"],
           },
-      jobManagerTask: !_result.body.jobSpecification.jobManagerTask
+      jobManagerTask: !result.body.jobSpecification.jobManagerTask
         ? undefined
         : {
-            id: _result.body.jobSpecification.jobManagerTask?.["id"],
+            id: result.body.jobSpecification.jobManagerTask?.["id"],
             displayName:
-              _result.body.jobSpecification.jobManagerTask?.["displayName"],
+              result.body.jobSpecification.jobManagerTask?.["displayName"],
             commandLine:
-              _result.body.jobSpecification.jobManagerTask?.["commandLine"],
-            containerSettings: !_result.body.jobSpecification.jobManagerTask
+              result.body.jobSpecification.jobManagerTask?.["commandLine"],
+            containerSettings: !result.body.jobSpecification.jobManagerTask
               ?.containerSettings
               ? undefined
               : {
                   containerRunOptions:
-                    _result.body.jobSpecification.jobManagerTask
+                    result.body.jobSpecification.jobManagerTask
                       ?.containerSettings?.["containerRunOptions"],
                   imageName:
-                    _result.body.jobSpecification.jobManagerTask
+                    result.body.jobSpecification.jobManagerTask
                       ?.containerSettings?.["imageName"],
-                  registry: !_result.body.jobSpecification.jobManagerTask
+                  registry: !result.body.jobSpecification.jobManagerTask
                     ?.containerSettings?.registry
                     ? undefined
                     : {
                         username:
-                          _result.body.jobSpecification.jobManagerTask
+                          result.body.jobSpecification.jobManagerTask
                             ?.containerSettings?.registry?.["username"],
                         password:
-                          _result.body.jobSpecification.jobManagerTask
+                          result.body.jobSpecification.jobManagerTask
                             ?.containerSettings?.registry?.["password"],
                         registryServer:
-                          _result.body.jobSpecification.jobManagerTask
+                          result.body.jobSpecification.jobManagerTask
                             ?.containerSettings?.registry?.["registryServer"],
-                        identityReference: !_result.body.jobSpecification
+                        identityReference: !result.body.jobSpecification
                           .jobManagerTask?.containerSettings?.registry
                           ?.identityReference
                           ? undefined
                           : {
                               resourceId:
-                                _result.body.jobSpecification.jobManagerTask
+                                result.body.jobSpecification.jobManagerTask
                                   ?.containerSettings?.registry
                                   ?.identityReference?.["resourceId"],
                             },
                       },
                   workingDirectory:
-                    _result.body.jobSpecification.jobManagerTask
+                    result.body.jobSpecification.jobManagerTask
                       ?.containerSettings?.["workingDirectory"],
                 },
             resourceFiles:
-              _result.body.jobSpecification.jobManagerTask?.[
-                "resourceFiles"
-              ] === undefined
-                ? _result.body.jobSpecification.jobManagerTask?.[
-                    "resourceFiles"
-                  ]
-                : _result.body.jobSpecification.jobManagerTask?.[
+              result.body.jobSpecification.jobManagerTask?.["resourceFiles"] ===
+              undefined
+                ? result.body.jobSpecification.jobManagerTask?.["resourceFiles"]
+                : result.body.jobSpecification.jobManagerTask?.[
                     "resourceFiles"
                   ].map((p) => {
                     return {
@@ -7615,10 +7574,10 @@ export async function _getJobScheduleDeserialize(
                     };
                   }),
             outputFiles:
-              _result.body.jobSpecification.jobManagerTask?.["outputFiles"] ===
+              result.body.jobSpecification.jobManagerTask?.["outputFiles"] ===
               undefined
-                ? _result.body.jobSpecification.jobManagerTask?.["outputFiles"]
-                : _result.body.jobSpecification.jobManagerTask?.[
+                ? result.body.jobSpecification.jobManagerTask?.["outputFiles"]
+                : result.body.jobSpecification.jobManagerTask?.[
                     "outputFiles"
                   ].map((p) => {
                     return {
@@ -7658,69 +7617,70 @@ export async function _getJobScheduleDeserialize(
                     };
                   }),
             environmentSettings:
-              _result.body.jobSpecification.jobManagerTask?.[
+              result.body.jobSpecification.jobManagerTask?.[
                 "environmentSettings"
               ] === undefined
-                ? _result.body.jobSpecification.jobManagerTask?.[
+                ? result.body.jobSpecification.jobManagerTask?.[
                     "environmentSettings"
                   ]
-                : _result.body.jobSpecification.jobManagerTask?.[
+                : result.body.jobSpecification.jobManagerTask?.[
                     "environmentSettings"
                   ].map((p) => {
                     return { name: p["name"], value: p["value"] };
                   }),
-            constraints: !_result.body.jobSpecification.jobManagerTask
+            constraints: !result.body.jobSpecification.jobManagerTask
               ?.constraints
               ? undefined
               : {
                   maxWallClockTime:
-                    _result.body.jobSpecification.jobManagerTask?.constraints?.[
+                    result.body.jobSpecification.jobManagerTask?.constraints?.[
                       "maxWallClockTime"
                     ],
                   retentionTime:
-                    _result.body.jobSpecification.jobManagerTask?.constraints?.[
+                    result.body.jobSpecification.jobManagerTask?.constraints?.[
                       "retentionTime"
                     ],
                   maxTaskRetryCount:
-                    _result.body.jobSpecification.jobManagerTask?.constraints?.[
+                    result.body.jobSpecification.jobManagerTask?.constraints?.[
                       "maxTaskRetryCount"
                     ],
                 },
             requiredSlots:
-              _result.body.jobSpecification.jobManagerTask?.["requiredSlots"],
+              result.body.jobSpecification.jobManagerTask?.["requiredSlots"],
             killJobOnCompletion:
-              _result.body.jobSpecification.jobManagerTask?.[
+              result.body.jobSpecification.jobManagerTask?.[
                 "killJobOnCompletion"
               ],
-            userIdentity: !_result.body.jobSpecification.jobManagerTask
+            userIdentity: !result.body.jobSpecification.jobManagerTask
               ?.userIdentity
               ? undefined
               : {
                   username:
-                    _result.body.jobSpecification.jobManagerTask
-                      ?.userIdentity?.["username"],
-                  autoUser: !_result.body.jobSpecification.jobManagerTask
+                    result.body.jobSpecification.jobManagerTask?.userIdentity?.[
+                      "username"
+                    ],
+                  autoUser: !result.body.jobSpecification.jobManagerTask
                     ?.userIdentity?.autoUser
                     ? undefined
                     : {
                         scope:
-                          _result.body.jobSpecification.jobManagerTask
+                          result.body.jobSpecification.jobManagerTask
                             ?.userIdentity?.autoUser?.["scope"],
                         elevationLevel:
-                          _result.body.jobSpecification.jobManagerTask
+                          result.body.jobSpecification.jobManagerTask
                             ?.userIdentity?.autoUser?.["elevationLevel"],
                       },
                 },
             runExclusive:
-              _result.body.jobSpecification.jobManagerTask?.["runExclusive"],
+              result.body.jobSpecification.jobManagerTask?.["runExclusive"],
             applicationPackageReferences:
-              _result.body.jobSpecification.jobManagerTask?.[
+              result.body.jobSpecification.jobManagerTask?.[
                 "applicationPackageReferences"
               ] === undefined
-                ? _result.body.jobSpecification.jobManagerTask?.[
+                ? result.body.jobSpecification.jobManagerTask?.[
                     "applicationPackageReferences"
                   ]
-                : _result.body.jobSpecification.jobManagerTask?.[
+                : result.body.jobSpecification.jobManagerTask?.[
                     "applicationPackageReferences"
                   ].map((p) => {
                     return {
@@ -7728,71 +7688,71 @@ export async function _getJobScheduleDeserialize(
                       version: p["version"],
                     };
                   }),
-            authenticationTokenSettings: !_result.body.jobSpecification
+            authenticationTokenSettings: !result.body.jobSpecification
               .jobManagerTask?.authenticationTokenSettings
               ? undefined
               : {
                   access:
-                    _result.body.jobSpecification.jobManagerTask
+                    result.body.jobSpecification.jobManagerTask
                       ?.authenticationTokenSettings?.["access"],
                 },
             allowLowPriorityNode:
-              _result.body.jobSpecification.jobManagerTask?.[
+              result.body.jobSpecification.jobManagerTask?.[
                 "allowLowPriorityNode"
               ],
           },
-      jobPreparationTask: !_result.body.jobSpecification.jobPreparationTask
+      jobPreparationTask: !result.body.jobSpecification.jobPreparationTask
         ? undefined
         : {
-            id: _result.body.jobSpecification.jobPreparationTask?.["id"],
+            id: result.body.jobSpecification.jobPreparationTask?.["id"],
             commandLine:
-              _result.body.jobSpecification.jobPreparationTask?.["commandLine"],
-            containerSettings: !_result.body.jobSpecification.jobPreparationTask
+              result.body.jobSpecification.jobPreparationTask?.["commandLine"],
+            containerSettings: !result.body.jobSpecification.jobPreparationTask
               ?.containerSettings
               ? undefined
               : {
                   containerRunOptions:
-                    _result.body.jobSpecification.jobPreparationTask
+                    result.body.jobSpecification.jobPreparationTask
                       ?.containerSettings?.["containerRunOptions"],
                   imageName:
-                    _result.body.jobSpecification.jobPreparationTask
+                    result.body.jobSpecification.jobPreparationTask
                       ?.containerSettings?.["imageName"],
-                  registry: !_result.body.jobSpecification.jobPreparationTask
+                  registry: !result.body.jobSpecification.jobPreparationTask
                     ?.containerSettings?.registry
                     ? undefined
                     : {
                         username:
-                          _result.body.jobSpecification.jobPreparationTask
+                          result.body.jobSpecification.jobPreparationTask
                             ?.containerSettings?.registry?.["username"],
                         password:
-                          _result.body.jobSpecification.jobPreparationTask
+                          result.body.jobSpecification.jobPreparationTask
                             ?.containerSettings?.registry?.["password"],
                         registryServer:
-                          _result.body.jobSpecification.jobPreparationTask
+                          result.body.jobSpecification.jobPreparationTask
                             ?.containerSettings?.registry?.["registryServer"],
-                        identityReference: !_result.body.jobSpecification
+                        identityReference: !result.body.jobSpecification
                           .jobPreparationTask?.containerSettings?.registry
                           ?.identityReference
                           ? undefined
                           : {
                               resourceId:
-                                _result.body.jobSpecification.jobPreparationTask
+                                result.body.jobSpecification.jobPreparationTask
                                   ?.containerSettings?.registry
                                   ?.identityReference?.["resourceId"],
                             },
                       },
                   workingDirectory:
-                    _result.body.jobSpecification.jobPreparationTask
+                    result.body.jobSpecification.jobPreparationTask
                       ?.containerSettings?.["workingDirectory"],
                 },
             resourceFiles:
-              _result.body.jobSpecification.jobPreparationTask?.[
+              result.body.jobSpecification.jobPreparationTask?.[
                 "resourceFiles"
               ] === undefined
-                ? _result.body.jobSpecification.jobPreparationTask?.[
+                ? result.body.jobSpecification.jobPreparationTask?.[
                     "resourceFiles"
                   ]
-                : _result.body.jobSpecification.jobPreparationTask?.[
+                : result.body.jobSpecification.jobPreparationTask?.[
                     "resourceFiles"
                   ].map((p) => {
                     return {
@@ -7808,111 +7768,108 @@ export async function _getJobScheduleDeserialize(
                     };
                   }),
             environmentSettings:
-              _result.body.jobSpecification.jobPreparationTask?.[
+              result.body.jobSpecification.jobPreparationTask?.[
                 "environmentSettings"
               ] === undefined
-                ? _result.body.jobSpecification.jobPreparationTask?.[
+                ? result.body.jobSpecification.jobPreparationTask?.[
                     "environmentSettings"
                   ]
-                : _result.body.jobSpecification.jobPreparationTask?.[
+                : result.body.jobSpecification.jobPreparationTask?.[
                     "environmentSettings"
                   ].map((p) => {
                     return { name: p["name"], value: p["value"] };
                   }),
-            constraints: !_result.body.jobSpecification.jobPreparationTask
+            constraints: !result.body.jobSpecification.jobPreparationTask
               ?.constraints
               ? undefined
               : {
                   maxWallClockTime:
-                    _result.body.jobSpecification.jobPreparationTask
+                    result.body.jobSpecification.jobPreparationTask
                       ?.constraints?.["maxWallClockTime"],
                   retentionTime:
-                    _result.body.jobSpecification.jobPreparationTask
+                    result.body.jobSpecification.jobPreparationTask
                       ?.constraints?.["retentionTime"],
                   maxTaskRetryCount:
-                    _result.body.jobSpecification.jobPreparationTask
+                    result.body.jobSpecification.jobPreparationTask
                       ?.constraints?.["maxTaskRetryCount"],
                 },
             waitForSuccess:
-              _result.body.jobSpecification.jobPreparationTask?.[
+              result.body.jobSpecification.jobPreparationTask?.[
                 "waitForSuccess"
               ],
-            userIdentity: !_result.body.jobSpecification.jobPreparationTask
+            userIdentity: !result.body.jobSpecification.jobPreparationTask
               ?.userIdentity
               ? undefined
               : {
                   username:
-                    _result.body.jobSpecification.jobPreparationTask
+                    result.body.jobSpecification.jobPreparationTask
                       ?.userIdentity?.["username"],
-                  autoUser: !_result.body.jobSpecification.jobPreparationTask
+                  autoUser: !result.body.jobSpecification.jobPreparationTask
                     ?.userIdentity?.autoUser
                     ? undefined
                     : {
                         scope:
-                          _result.body.jobSpecification.jobPreparationTask
+                          result.body.jobSpecification.jobPreparationTask
                             ?.userIdentity?.autoUser?.["scope"],
                         elevationLevel:
-                          _result.body.jobSpecification.jobPreparationTask
+                          result.body.jobSpecification.jobPreparationTask
                             ?.userIdentity?.autoUser?.["elevationLevel"],
                       },
                 },
             rerunOnNodeRebootAfterSuccess:
-              _result.body.jobSpecification.jobPreparationTask?.[
+              result.body.jobSpecification.jobPreparationTask?.[
                 "rerunOnNodeRebootAfterSuccess"
               ],
           },
-      jobReleaseTask: !_result.body.jobSpecification.jobReleaseTask
+      jobReleaseTask: !result.body.jobSpecification.jobReleaseTask
         ? undefined
         : {
-            id: _result.body.jobSpecification.jobReleaseTask?.["id"],
+            id: result.body.jobSpecification.jobReleaseTask?.["id"],
             commandLine:
-              _result.body.jobSpecification.jobReleaseTask?.["commandLine"],
-            containerSettings: !_result.body.jobSpecification.jobReleaseTask
+              result.body.jobSpecification.jobReleaseTask?.["commandLine"],
+            containerSettings: !result.body.jobSpecification.jobReleaseTask
               ?.containerSettings
               ? undefined
               : {
                   containerRunOptions:
-                    _result.body.jobSpecification.jobReleaseTask
+                    result.body.jobSpecification.jobReleaseTask
                       ?.containerSettings?.["containerRunOptions"],
                   imageName:
-                    _result.body.jobSpecification.jobReleaseTask
+                    result.body.jobSpecification.jobReleaseTask
                       ?.containerSettings?.["imageName"],
-                  registry: !_result.body.jobSpecification.jobReleaseTask
+                  registry: !result.body.jobSpecification.jobReleaseTask
                     ?.containerSettings?.registry
                     ? undefined
                     : {
                         username:
-                          _result.body.jobSpecification.jobReleaseTask
+                          result.body.jobSpecification.jobReleaseTask
                             ?.containerSettings?.registry?.["username"],
                         password:
-                          _result.body.jobSpecification.jobReleaseTask
+                          result.body.jobSpecification.jobReleaseTask
                             ?.containerSettings?.registry?.["password"],
                         registryServer:
-                          _result.body.jobSpecification.jobReleaseTask
+                          result.body.jobSpecification.jobReleaseTask
                             ?.containerSettings?.registry?.["registryServer"],
-                        identityReference: !_result.body.jobSpecification
+                        identityReference: !result.body.jobSpecification
                           .jobReleaseTask?.containerSettings?.registry
                           ?.identityReference
                           ? undefined
                           : {
                               resourceId:
-                                _result.body.jobSpecification.jobReleaseTask
+                                result.body.jobSpecification.jobReleaseTask
                                   ?.containerSettings?.registry
                                   ?.identityReference?.["resourceId"],
                             },
                       },
                   workingDirectory:
-                    _result.body.jobSpecification.jobReleaseTask
+                    result.body.jobSpecification.jobReleaseTask
                       ?.containerSettings?.["workingDirectory"],
                 },
             resourceFiles:
-              _result.body.jobSpecification.jobReleaseTask?.[
-                "resourceFiles"
-              ] === undefined
-                ? _result.body.jobSpecification.jobReleaseTask?.[
-                    "resourceFiles"
-                  ]
-                : _result.body.jobSpecification.jobReleaseTask?.[
+              result.body.jobSpecification.jobReleaseTask?.["resourceFiles"] ===
+              undefined
+                ? result.body.jobSpecification.jobReleaseTask?.["resourceFiles"]
+                : result.body.jobSpecification.jobReleaseTask?.[
                     "resourceFiles"
                   ].map((p) => {
                     return {
@@ -7928,146 +7885,145 @@ export async function _getJobScheduleDeserialize(
                     };
                   }),
             environmentSettings:
-              _result.body.jobSpecification.jobReleaseTask?.[
+              result.body.jobSpecification.jobReleaseTask?.[
                 "environmentSettings"
               ] === undefined
-                ? _result.body.jobSpecification.jobReleaseTask?.[
+                ? result.body.jobSpecification.jobReleaseTask?.[
                     "environmentSettings"
                   ]
-                : _result.body.jobSpecification.jobReleaseTask?.[
+                : result.body.jobSpecification.jobReleaseTask?.[
                     "environmentSettings"
                   ].map((p) => {
                     return { name: p["name"], value: p["value"] };
                   }),
             maxWallClockTime:
-              _result.body.jobSpecification.jobReleaseTask?.[
-                "maxWallClockTime"
-              ],
+              result.body.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
             retentionTime:
-              _result.body.jobSpecification.jobReleaseTask?.["retentionTime"],
-            userIdentity: !_result.body.jobSpecification.jobReleaseTask
+              result.body.jobSpecification.jobReleaseTask?.["retentionTime"],
+            userIdentity: !result.body.jobSpecification.jobReleaseTask
               ?.userIdentity
               ? undefined
               : {
                   username:
-                    _result.body.jobSpecification.jobReleaseTask
-                      ?.userIdentity?.["username"],
-                  autoUser: !_result.body.jobSpecification.jobReleaseTask
+                    result.body.jobSpecification.jobReleaseTask?.userIdentity?.[
+                      "username"
+                    ],
+                  autoUser: !result.body.jobSpecification.jobReleaseTask
                     ?.userIdentity?.autoUser
                     ? undefined
                     : {
                         scope:
-                          _result.body.jobSpecification.jobReleaseTask
+                          result.body.jobSpecification.jobReleaseTask
                             ?.userIdentity?.autoUser?.["scope"],
                         elevationLevel:
-                          _result.body.jobSpecification.jobReleaseTask
+                          result.body.jobSpecification.jobReleaseTask
                             ?.userIdentity?.autoUser?.["elevationLevel"],
                       },
                 },
           },
       commonEnvironmentSettings:
-        _result.body.jobSpecification["commonEnvironmentSettings"] === undefined
-          ? _result.body.jobSpecification["commonEnvironmentSettings"]
-          : _result.body.jobSpecification["commonEnvironmentSettings"].map(
+        result.body.jobSpecification["commonEnvironmentSettings"] === undefined
+          ? result.body.jobSpecification["commonEnvironmentSettings"]
+          : result.body.jobSpecification["commonEnvironmentSettings"].map(
               (p) => {
                 return { name: p["name"], value: p["value"] };
               },
             ),
       poolInfo: {
-        poolId: _result.body.jobSpecification.poolInfo["poolId"],
-        autoPoolSpecification: !_result.body.jobSpecification.poolInfo
+        poolId: result.body.jobSpecification.poolInfo["poolId"],
+        autoPoolSpecification: !result.body.jobSpecification.poolInfo
           .autoPoolSpecification
           ? undefined
           : {
               autoPoolIdPrefix:
-                _result.body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                result.body.jobSpecification.poolInfo.autoPoolSpecification?.[
                   "autoPoolIdPrefix"
                 ],
               poolLifetimeOption:
-                _result.body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                result.body.jobSpecification.poolInfo.autoPoolSpecification?.[
                   "poolLifetimeOption"
                 ],
               keepAlive:
-                _result.body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                result.body.jobSpecification.poolInfo.autoPoolSpecification?.[
                   "keepAlive"
                 ],
-              pool: !_result.body.jobSpecification.poolInfo
-                .autoPoolSpecification?.pool
+              pool: !result.body.jobSpecification.poolInfo.autoPoolSpecification
+                ?.pool
                 ? undefined
                 : {
                     displayName:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["displayName"],
                     vmSize:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["vmSize"],
-                    cloudServiceConfiguration: !_result.body.jobSpecification
+                    cloudServiceConfiguration: !result.body.jobSpecification
                       .poolInfo.autoPoolSpecification?.pool
                       ?.cloudServiceConfiguration
                       ? undefined
                       : {
                           osFamily:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.cloudServiceConfiguration?.["osFamily"],
                           osVersion:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.cloudServiceConfiguration?.["osVersion"],
                         },
-                    virtualMachineConfiguration: !_result.body.jobSpecification
+                    virtualMachineConfiguration: !result.body.jobSpecification
                       .poolInfo.autoPoolSpecification?.pool
                       ?.virtualMachineConfiguration
                       ? undefined
                       : {
                           imageReference: {
                             publisher:
-                              _result.body.jobSpecification.poolInfo
+                              result.body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.imageReference[
                                 "publisher"
                               ],
                             offer:
-                              _result.body.jobSpecification.poolInfo
+                              result.body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.imageReference[
                                 "offer"
                               ],
-                            sku: _result.body.jobSpecification.poolInfo
+                            sku: result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.imageReference[
                               "sku"
                             ],
                             version:
-                              _result.body.jobSpecification.poolInfo
+                              result.body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.imageReference[
                                 "version"
                               ],
                             virtualMachineImageId:
-                              _result.body.jobSpecification.poolInfo
+                              result.body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.imageReference[
                                 "virtualMachineImageId"
                               ],
                             exactVersion:
-                              _result.body.jobSpecification.poolInfo
+                              result.body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.imageReference[
                                 "exactVersion"
                               ],
                           },
                           nodeAgentSkuId:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.["nodeAgentSKUId"],
-                          windowsConfiguration: !_result.body.jobSpecification
+                          windowsConfiguration: !result.body.jobSpecification
                             .poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.windowsConfiguration
                             ? undefined
                             : {
                                 enableAutomaticUpdates:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.windowsConfiguration?.[
@@ -8075,14 +8031,14 @@ export async function _getJobScheduleDeserialize(
                                   ],
                               },
                           dataDisks:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.["dataDisks"] ===
                             undefined
-                              ? _result.body.jobSpecification.poolInfo
+                              ? result.body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.["dataDisks"]
-                              : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                              : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                   "dataDisks"
                                 ].map((p) => {
                                   return {
@@ -8093,40 +8049,40 @@ export async function _getJobScheduleDeserialize(
                                   };
                                 }),
                           licenseType:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.["licenseType"],
-                          containerConfiguration: !_result.body.jobSpecification
+                          containerConfiguration: !result.body.jobSpecification
                             .poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration
                             ?.containerConfiguration
                             ? undefined
                             : {
-                                type: _result.body.jobSpecification.poolInfo
+                                type: result.body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration
                                   ?.containerConfiguration?.["type"],
                                 containerImageNames:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.containerConfiguration?.[
                                     "containerImageNames"
                                   ],
                                 containerRegistries:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.containerConfiguration?.[
                                     "containerRegistries"
                                   ] === undefined
-                                    ? _result.body.jobSpecification.poolInfo
+                                    ? result.body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.containerConfiguration?.[
                                         "containerRegistries"
                                       ]
-                                    : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                    : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                         "containerRegistries"
                                       ].map((p) => {
                                         return {
@@ -8145,39 +8101,39 @@ export async function _getJobScheduleDeserialize(
                                         };
                                       }),
                               },
-                          diskEncryptionConfiguration: !_result.body
+                          diskEncryptionConfiguration: !result.body
                             .jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.virtualMachineConfiguration
                             ?.diskEncryptionConfiguration
                             ? undefined
                             : {
                                 targets:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.diskEncryptionConfiguration?.["targets"],
                               },
-                          nodePlacementConfiguration: !_result.body
+                          nodePlacementConfiguration: !result.body
                             .jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.virtualMachineConfiguration
                             ?.nodePlacementConfiguration
                             ? undefined
                             : {
                                 policy:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.nodePlacementConfiguration?.["policy"],
                               },
                           extensions:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.["extensions"] ===
                             undefined
-                              ? _result.body.jobSpecification.poolInfo
+                              ? result.body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.["extensions"]
-                              : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                              : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                   "extensions"
                                 ].map((p) => {
                                   return {
@@ -8195,12 +8151,12 @@ export async function _getJobScheduleDeserialize(
                                       p["provisionAfterExtensions"],
                                   };
                                 }),
-                          osDisk: !_result.body.jobSpecification.poolInfo
+                          osDisk: !result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.osDisk
                             ? undefined
                             : {
-                                ephemeralOSDiskSettings: !_result.body
+                                ephemeralOSDiskSettings: !result.body
                                   .jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.osDisk
@@ -8208,7 +8164,7 @@ export async function _getJobScheduleDeserialize(
                                   ? undefined
                                   : {
                                       placement:
-                                        _result.body.jobSpecification.poolInfo
+                                        result.body.jobSpecification.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.virtualMachineConfiguration?.osDisk
                                           ?.ephemeralOSDiskSettings?.[
@@ -8218,67 +8174,65 @@ export async function _getJobScheduleDeserialize(
                               },
                         },
                     taskSlotsPerNode:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["taskSlotsPerNode"],
-                    taskSchedulingPolicy: !_result.body.jobSpecification
-                      .poolInfo.autoPoolSpecification?.pool
-                      ?.taskSchedulingPolicy
+                    taskSchedulingPolicy: !result.body.jobSpecification.poolInfo
+                      .autoPoolSpecification?.pool?.taskSchedulingPolicy
                       ? undefined
                       : {
                           nodeFillType:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.taskSchedulingPolicy?.["nodeFillType"],
                         },
                     resizeTimeout:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["resizeTimeout"],
                     targetDedicatedNodes:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["targetDedicatedNodes"],
                     targetLowPriorityNodes:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.[
                         "targetLowPriorityNodes"
                       ],
                     enableAutoScale:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["enableAutoScale"],
                     autoScaleFormula:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["autoScaleFormula"],
                     autoScaleEvaluationInterval:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.[
                         "autoScaleEvaluationInterval"
                       ],
                     enableInterNodeCommunication:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.[
                         "enableInterNodeCommunication"
                       ],
-                    networkConfiguration: !_result.body.jobSpecification
-                      .poolInfo.autoPoolSpecification?.pool
-                      ?.networkConfiguration
+                    networkConfiguration: !result.body.jobSpecification.poolInfo
+                      .autoPoolSpecification?.pool?.networkConfiguration
                       ? undefined
                       : {
                           subnetId:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.networkConfiguration?.["subnetId"],
                           dynamicVNetAssignmentScope:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.networkConfiguration?.[
                               "dynamicVNetAssignmentScope"
                             ],
-                          endpointConfiguration: !_result.body.jobSpecification
+                          endpointConfiguration: !result.body.jobSpecification
                             .poolInfo.autoPoolSpecification?.pool
                             ?.networkConfiguration?.endpointConfiguration
                             ? undefined
                             : {
                                 inboundNatPools:
-                                  _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                  result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                     "inboundNATPools"
                                   ].map((p) => {
                                     return {
@@ -8308,21 +8262,21 @@ export async function _getJobScheduleDeserialize(
                                     };
                                   }),
                               },
-                          publicIpAddressConfiguration: !_result.body
+                          publicIpAddressConfiguration: !result.body
                             .jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.networkConfiguration
                             ?.publicIPAddressConfiguration
                             ? undefined
                             : {
                                 ipAddressProvisioningType:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.networkConfiguration
                                     ?.publicIPAddressConfiguration?.[
                                     "provision"
                                   ],
                                 ipAddressIds:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.networkConfiguration
                                     ?.publicIPAddressConfiguration?.[
@@ -8330,57 +8284,57 @@ export async function _getJobScheduleDeserialize(
                                   ],
                               },
                           enableAcceleratedNetworking:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.networkConfiguration?.[
                               "enableAcceleratedNetworking"
                             ],
                         },
-                    startTask: !_result.body.jobSpecification.poolInfo
+                    startTask: !result.body.jobSpecification.poolInfo
                       .autoPoolSpecification?.pool?.startTask
                       ? undefined
                       : {
                           commandLine:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool?.startTask?.[
                               "commandLine"
                             ],
-                          containerSettings: !_result.body.jobSpecification
+                          containerSettings: !result.body.jobSpecification
                             .poolInfo.autoPoolSpecification?.pool?.startTask
                             ?.containerSettings
                             ? undefined
                             : {
                                 containerRunOptions:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool?.startTask
                                     ?.containerSettings?.[
                                     "containerRunOptions"
                                   ],
                                 imageName:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool?.startTask
                                     ?.containerSettings?.["imageName"],
-                                registry: !_result.body.jobSpecification
-                                  .poolInfo.autoPoolSpecification?.pool
-                                  ?.startTask?.containerSettings?.registry
+                                registry: !result.body.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool?.startTask
+                                  ?.containerSettings?.registry
                                   ? undefined
                                   : {
                                       username:
-                                        _result.body.jobSpecification.poolInfo
+                                        result.body.jobSpecification.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.containerSettings
                                           ?.registry?.["username"],
                                       password:
-                                        _result.body.jobSpecification.poolInfo
+                                        result.body.jobSpecification.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.containerSettings
                                           ?.registry?.["password"],
                                       registryServer:
-                                        _result.body.jobSpecification.poolInfo
+                                        result.body.jobSpecification.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.containerSettings
                                           ?.registry?.["registryServer"],
-                                      identityReference: !_result.body
+                                      identityReference: !result.body
                                         .jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.registry
@@ -8388,7 +8342,7 @@ export async function _getJobScheduleDeserialize(
                                         ? undefined
                                         : {
                                             resourceId:
-                                              _result.body.jobSpecification
+                                              result.body.jobSpecification
                                                 .poolInfo.autoPoolSpecification
                                                 ?.pool?.startTask
                                                 ?.containerSettings?.registry
@@ -8398,20 +8352,20 @@ export async function _getJobScheduleDeserialize(
                                           },
                                     },
                                 workingDirectory:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool?.startTask
                                     ?.containerSettings?.["workingDirectory"],
                               },
                           resourceFiles:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool?.startTask?.[
                               "resourceFiles"
                             ] === undefined
-                              ? _result.body.jobSpecification.poolInfo
+                              ? result.body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "resourceFiles"
                                 ]
-                              : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                              : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                   "resourceFiles"
                                 ].map((p) => {
                                   return {
@@ -8432,41 +8386,41 @@ export async function _getJobScheduleDeserialize(
                                   };
                                 }),
                           environmentSettings:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool?.startTask?.[
                               "environmentSettings"
                             ] === undefined
-                              ? _result.body.jobSpecification.poolInfo
+                              ? result.body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "environmentSettings"
                                 ]
-                              : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                              : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                   "environmentSettings"
                                 ].map((p) => {
                                   return { name: p["name"], value: p["value"] };
                                 }),
-                          userIdentity: !_result.body.jobSpecification.poolInfo
+                          userIdentity: !result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool?.startTask
                             ?.userIdentity
                             ? undefined
                             : {
                                 username:
-                                  _result.body.jobSpecification.poolInfo
+                                  result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool?.startTask
                                     ?.userIdentity?.["username"],
-                                autoUser: !_result.body.jobSpecification
-                                  .poolInfo.autoPoolSpecification?.pool
-                                  ?.startTask?.userIdentity?.autoUser
+                                autoUser: !result.body.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool?.startTask
+                                  ?.userIdentity?.autoUser
                                   ? undefined
                                   : {
                                       scope:
-                                        _result.body.jobSpecification.poolInfo
+                                        result.body.jobSpecification.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.userIdentity?.autoUser?.[
                                           "scope"
                                         ],
                                       elevationLevel:
-                                        _result.body.jobSpecification.poolInfo
+                                        result.body.jobSpecification.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.userIdentity?.autoUser?.[
                                           "elevationLevel"
@@ -8474,26 +8428,26 @@ export async function _getJobScheduleDeserialize(
                                     },
                               },
                           maxTaskRetryCount:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool?.startTask?.[
                               "maxTaskRetryCount"
                             ],
                           waitForSuccess:
-                            _result.body.jobSpecification.poolInfo
+                            result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool?.startTask?.[
                               "waitForSuccess"
                             ],
                         },
                     certificateReferences:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.[
                         "certificateReferences"
                       ] === undefined
-                        ? _result.body.jobSpecification.poolInfo
+                        ? result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool?.[
                             "certificateReferences"
                           ]
-                        : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                        : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "certificateReferences"
                           ].map((p) => {
                             return {
@@ -8505,15 +8459,15 @@ export async function _getJobScheduleDeserialize(
                             };
                           }),
                     applicationPackageReferences:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.[
                         "applicationPackageReferences"
                       ] === undefined
-                        ? _result.body.jobSpecification.poolInfo
+                        ? result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool?.[
                             "applicationPackageReferences"
                           ]
-                        : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                        : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "applicationPackageReferences"
                           ].map((p) => {
                             return {
@@ -8522,15 +8476,15 @@ export async function _getJobScheduleDeserialize(
                             };
                           }),
                     applicationLicenses:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["applicationLicenses"],
                     userAccounts:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["userAccounts"] ===
                       undefined
-                        ? _result.body.jobSpecification.poolInfo
+                        ? result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool?.["userAccounts"]
-                        : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                        : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "userAccounts"
                           ].map((p) => {
                             return {
@@ -8559,22 +8513,22 @@ export async function _getJobScheduleDeserialize(
                             };
                           }),
                     metadata:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["metadata"] === undefined
-                        ? _result.body.jobSpecification.poolInfo
+                        ? result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool?.["metadata"]
-                        : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                        : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "metadata"
                           ].map((p) => {
                             return { name: p["name"], value: p["value"] };
                           }),
                     mountConfiguration:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["mountConfiguration"] ===
                       undefined
-                        ? _result.body.jobSpecification.poolInfo
+                        ? result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool?.["mountConfiguration"]
-                        : _result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                        : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "mountConfiguration"
                           ].map((p) => {
                             return {
@@ -8675,7 +8629,7 @@ export async function _getJobScheduleDeserialize(
                             };
                           }),
                     targetNodeCommunicationMode:
-                      _result.body.jobSpecification.poolInfo
+                      result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.[
                         "targetNodeCommunicationMode"
                       ],
@@ -8683,53 +8637,53 @@ export async function _getJobScheduleDeserialize(
             },
       },
       metadata:
-        _result.body.jobSpecification["metadata"] === undefined
-          ? _result.body.jobSpecification["metadata"]
-          : _result.body.jobSpecification["metadata"].map((p) => {
+        result.body.jobSpecification["metadata"] === undefined
+          ? result.body.jobSpecification["metadata"]
+          : result.body.jobSpecification["metadata"].map((p) => {
               return { name: p["name"], value: p["value"] };
             }),
     },
-    executionInfo: !_result.body.executionInfo
+    executionInfo: !result.body.executionInfo
       ? undefined
       : {
           nextRunTime:
-            _result.body.executionInfo?.["nextRunTime"] !== undefined
-              ? new Date(_result.body.executionInfo?.["nextRunTime"])
+            result.body.executionInfo?.["nextRunTime"] !== undefined
+              ? new Date(result.body.executionInfo?.["nextRunTime"])
               : undefined,
-          recentJob: !_result.body.executionInfo?.recentJob
+          recentJob: !result.body.executionInfo?.recentJob
             ? undefined
             : {
-                id: _result.body.executionInfo?.recentJob?.["id"],
-                url: _result.body.executionInfo?.recentJob?.["url"],
+                id: result.body.executionInfo?.recentJob?.["id"],
+                url: result.body.executionInfo?.recentJob?.["url"],
               },
           endTime:
-            _result.body.executionInfo?.["endTime"] !== undefined
-              ? new Date(_result.body.executionInfo?.["endTime"])
+            result.body.executionInfo?.["endTime"] !== undefined
+              ? new Date(result.body.executionInfo?.["endTime"])
               : undefined,
         },
     metadata:
-      _result.body["metadata"] === undefined
-        ? _result.body["metadata"]
-        : _result.body["metadata"].map((p) => {
+      result.body["metadata"] === undefined
+        ? result.body["metadata"]
+        : result.body["metadata"].map((p) => {
             return { name: p["name"], value: p["value"] };
           }),
-    stats: !_result.body.stats
+    stats: !result.body.stats
       ? undefined
       : {
-          url: _result.body.stats?.["url"],
-          startTime: new Date(_result.body.stats?.["startTime"]),
-          lastUpdateTime: new Date(_result.body.stats?.["lastUpdateTime"]),
-          userCPUTime: _result.body.stats?.["userCPUTime"],
-          kernelCPUTime: _result.body.stats?.["kernelCPUTime"],
-          wallClockTime: _result.body.stats?.["wallClockTime"],
-          readIOps: _result.body.stats?.["readIOps"],
-          writeIOps: _result.body.stats?.["writeIOps"],
-          readIOGiB: _result.body.stats?.["readIOGiB"],
-          writeIOGiB: _result.body.stats?.["writeIOGiB"],
-          numSucceededTasks: _result.body.stats?.["numSucceededTasks"],
-          numFailedTasks: _result.body.stats?.["numFailedTasks"],
-          numTaskRetries: _result.body.stats?.["numTaskRetries"],
-          waitTime: _result.body.stats?.["waitTime"],
+          url: result.body.stats?.["url"],
+          startTime: new Date(result.body.stats?.["startTime"]),
+          lastUpdateTime: new Date(result.body.stats?.["lastUpdateTime"]),
+          userCPUTime: result.body.stats?.["userCPUTime"],
+          kernelCPUTime: result.body.stats?.["kernelCPUTime"],
+          wallClockTime: result.body.stats?.["wallClockTime"],
+          readIOps: result.body.stats?.["readIOps"],
+          writeIOps: result.body.stats?.["writeIOps"],
+          readIOGiB: result.body.stats?.["readIOGiB"],
+          writeIOGiB: result.body.stats?.["writeIOGiB"],
+          numSucceededTasks: result.body.stats?.["numSucceededTasks"],
+          numFailedTasks: result.body.stats?.["numFailedTasks"],
+          numTaskRetries: result.body.stats?.["numTaskRetries"],
+          waitTime: result.body.stats?.["waitTime"],
         },
   };
 }
@@ -9139,12 +9093,11 @@ export async function _listJobSchedulesDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListJobSchedules200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -10531,7 +10484,7 @@ export async function _listJobSchedulesDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -10670,12 +10623,11 @@ export async function _listTasksDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListTasks200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -10999,7 +10951,7 @@ export async function _listTasksDeserialize(
                 : { access: p.authenticationTokenSettings?.["access"] },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -11053,12 +11005,11 @@ export async function _createTaskCollectionDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as CreateTaskCollection200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               status: p["status"],
               taskId: p["taskId"],
@@ -11219,27 +11170,26 @@ export async function _getTaskDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetTask200Response;
   return {
-    id: _result.body["id"],
-    displayName: _result.body["displayName"],
-    url: _result.body["url"],
-    eTag: _result.body["eTag"],
+    id: result.body["id"],
+    displayName: result.body["displayName"],
+    url: result.body["url"],
+    eTag: result.body["eTag"],
     lastModified:
-      _result.body["lastModified"] !== undefined
-        ? new Date(_result.body["lastModified"])
+      result.body["lastModified"] !== undefined
+        ? new Date(result.body["lastModified"])
         : undefined,
     creationTime:
-      _result.body["creationTime"] !== undefined
-        ? new Date(_result.body["creationTime"])
+      result.body["creationTime"] !== undefined
+        ? new Date(result.body["creationTime"])
         : undefined,
-    exitConditions: !_result.body.exitConditions
+    exitConditions: !result.body.exitConditions
       ? undefined
       : {
           exitCodes:
-            _result.body.exitConditions?.["exitCodes"] === undefined
-              ? _result.body.exitConditions?.["exitCodes"]
-              : _result.body.exitConditions?.["exitCodes"].map((p) => {
+            result.body.exitConditions?.["exitCodes"] === undefined
+              ? result.body.exitConditions?.["exitCodes"]
+              : result.body.exitConditions?.["exitCodes"].map((p) => {
                   return {
                     code: p["code"],
                     exitOptions: {
@@ -11249,9 +11199,9 @@ export async function _getTaskDeserialize(
                   };
                 }),
           exitCodeRanges:
-            _result.body.exitConditions?.["exitCodeRanges"] === undefined
-              ? _result.body.exitConditions?.["exitCodeRanges"]
-              : _result.body.exitConditions?.["exitCodeRanges"].map((p) => {
+            result.body.exitConditions?.["exitCodeRanges"] === undefined
+              ? result.body.exitConditions?.["exitCodeRanges"]
+              : result.body.exitConditions?.["exitCodeRanges"].map((p) => {
                   return {
                     start: p["start"],
                     end: p["end"],
@@ -11261,78 +11211,73 @@ export async function _getTaskDeserialize(
                     },
                   };
                 }),
-          preProcessingError: !_result.body.exitConditions?.preProcessingError
+          preProcessingError: !result.body.exitConditions?.preProcessingError
             ? undefined
             : {
                 jobAction:
-                  _result.body.exitConditions?.preProcessingError?.[
-                    "jobAction"
-                  ],
+                  result.body.exitConditions?.preProcessingError?.["jobAction"],
                 dependencyAction:
-                  _result.body.exitConditions?.preProcessingError?.[
+                  result.body.exitConditions?.preProcessingError?.[
                     "dependencyAction"
                   ],
               },
-          fileUploadError: !_result.body.exitConditions?.fileUploadError
+          fileUploadError: !result.body.exitConditions?.fileUploadError
             ? undefined
             : {
                 jobAction:
-                  _result.body.exitConditions?.fileUploadError?.["jobAction"],
+                  result.body.exitConditions?.fileUploadError?.["jobAction"],
                 dependencyAction:
-                  _result.body.exitConditions?.fileUploadError?.[
+                  result.body.exitConditions?.fileUploadError?.[
                     "dependencyAction"
                   ],
               },
-          default: !_result.body.exitConditions?.default
+          default: !result.body.exitConditions?.default
             ? undefined
             : {
-                jobAction: _result.body.exitConditions?.default?.["jobAction"],
+                jobAction: result.body.exitConditions?.default?.["jobAction"],
                 dependencyAction:
-                  _result.body.exitConditions?.default?.["dependencyAction"],
+                  result.body.exitConditions?.default?.["dependencyAction"],
               },
         },
-    state: _result.body["state"],
+    state: result.body["state"],
     stateTransitionTime:
-      _result.body["stateTransitionTime"] !== undefined
-        ? new Date(_result.body["stateTransitionTime"])
+      result.body["stateTransitionTime"] !== undefined
+        ? new Date(result.body["stateTransitionTime"])
         : undefined,
-    previousState: _result.body["previousState"],
+    previousState: result.body["previousState"],
     previousStateTransitionTime:
-      _result.body["previousStateTransitionTime"] !== undefined
-        ? new Date(_result.body["previousStateTransitionTime"])
+      result.body["previousStateTransitionTime"] !== undefined
+        ? new Date(result.body["previousStateTransitionTime"])
         : undefined,
-    commandLine: _result.body["commandLine"],
-    containerSettings: !_result.body.containerSettings
+    commandLine: result.body["commandLine"],
+    containerSettings: !result.body.containerSettings
       ? undefined
       : {
           containerRunOptions:
-            _result.body.containerSettings?.["containerRunOptions"],
-          imageName: _result.body.containerSettings?.["imageName"],
-          registry: !_result.body.containerSettings?.registry
+            result.body.containerSettings?.["containerRunOptions"],
+          imageName: result.body.containerSettings?.["imageName"],
+          registry: !result.body.containerSettings?.registry
             ? undefined
             : {
-                username:
-                  _result.body.containerSettings?.registry?.["username"],
-                password:
-                  _result.body.containerSettings?.registry?.["password"],
+                username: result.body.containerSettings?.registry?.["username"],
+                password: result.body.containerSettings?.registry?.["password"],
                 registryServer:
-                  _result.body.containerSettings?.registry?.["registryServer"],
-                identityReference: !_result.body.containerSettings?.registry
+                  result.body.containerSettings?.registry?.["registryServer"],
+                identityReference: !result.body.containerSettings?.registry
                   ?.identityReference
                   ? undefined
                   : {
                       resourceId:
-                        _result.body.containerSettings?.registry
+                        result.body.containerSettings?.registry
                           ?.identityReference?.["resourceId"],
                     },
               },
-          workingDirectory:
-            _result.body.containerSettings?.["workingDirectory"],
+          workingDirectory: result.body.containerSettings?.["workingDirectory"],
         },
     resourceFiles:
-      _result.body["resourceFiles"] === undefined
-        ? _result.body["resourceFiles"]
-        : _result.body["resourceFiles"].map((p) => {
+      result.body["resourceFiles"] === undefined
+        ? result.body["resourceFiles"]
+        : result.body["resourceFiles"].map((p) => {
             return {
               autoStorageContainerName: p["autoStorageContainerName"],
               storageContainerUrl: p["storageContainerUrl"],
@@ -11346,9 +11291,9 @@ export async function _getTaskDeserialize(
             };
           }),
     outputFiles:
-      _result.body["outputFiles"] === undefined
-        ? _result.body["outputFiles"]
-        : _result.body["outputFiles"].map((p) => {
+      result.body["outputFiles"] === undefined
+        ? result.body["outputFiles"]
+        : result.body["outputFiles"].map((p) => {
             return {
               filePattern: p["filePattern"],
               destination: {
@@ -11382,104 +11327,104 @@ export async function _getTaskDeserialize(
             };
           }),
     environmentSettings:
-      _result.body["environmentSettings"] === undefined
-        ? _result.body["environmentSettings"]
-        : _result.body["environmentSettings"].map((p) => {
+      result.body["environmentSettings"] === undefined
+        ? result.body["environmentSettings"]
+        : result.body["environmentSettings"].map((p) => {
             return { name: p["name"], value: p["value"] };
           }),
-    affinityInfo: !_result.body.affinityInfo
+    affinityInfo: !result.body.affinityInfo
       ? undefined
-      : { affinityId: _result.body.affinityInfo?.["affinityId"] },
-    constraints: !_result.body.constraints
+      : { affinityId: result.body.affinityInfo?.["affinityId"] },
+    constraints: !result.body.constraints
       ? undefined
       : {
-          maxWallClockTime: _result.body.constraints?.["maxWallClockTime"],
-          retentionTime: _result.body.constraints?.["retentionTime"],
-          maxTaskRetryCount: _result.body.constraints?.["maxTaskRetryCount"],
+          maxWallClockTime: result.body.constraints?.["maxWallClockTime"],
+          retentionTime: result.body.constraints?.["retentionTime"],
+          maxTaskRetryCount: result.body.constraints?.["maxTaskRetryCount"],
         },
-    requiredSlots: _result.body["requiredSlots"],
-    userIdentity: !_result.body.userIdentity
+    requiredSlots: result.body["requiredSlots"],
+    userIdentity: !result.body.userIdentity
       ? undefined
       : {
-          username: _result.body.userIdentity?.["username"],
-          autoUser: !_result.body.userIdentity?.autoUser
+          username: result.body.userIdentity?.["username"],
+          autoUser: !result.body.userIdentity?.autoUser
             ? undefined
             : {
-                scope: _result.body.userIdentity?.autoUser?.["scope"],
+                scope: result.body.userIdentity?.autoUser?.["scope"],
                 elevationLevel:
-                  _result.body.userIdentity?.autoUser?.["elevationLevel"],
+                  result.body.userIdentity?.autoUser?.["elevationLevel"],
               },
         },
-    executionInfo: !_result.body.executionInfo
+    executionInfo: !result.body.executionInfo
       ? undefined
       : {
           startTime:
-            _result.body.executionInfo?.["startTime"] !== undefined
-              ? new Date(_result.body.executionInfo?.["startTime"])
+            result.body.executionInfo?.["startTime"] !== undefined
+              ? new Date(result.body.executionInfo?.["startTime"])
               : undefined,
           endTime:
-            _result.body.executionInfo?.["endTime"] !== undefined
-              ? new Date(_result.body.executionInfo?.["endTime"])
+            result.body.executionInfo?.["endTime"] !== undefined
+              ? new Date(result.body.executionInfo?.["endTime"])
               : undefined,
-          exitCode: _result.body.executionInfo?.["exitCode"],
-          containerInfo: !_result.body.executionInfo?.containerInfo
+          exitCode: result.body.executionInfo?.["exitCode"],
+          containerInfo: !result.body.executionInfo?.containerInfo
             ? undefined
             : {
                 containerId:
-                  _result.body.executionInfo?.containerInfo?.["containerId"],
-                state: _result.body.executionInfo?.containerInfo?.["state"],
-                error: _result.body.executionInfo?.containerInfo?.["error"],
+                  result.body.executionInfo?.containerInfo?.["containerId"],
+                state: result.body.executionInfo?.containerInfo?.["state"],
+                error: result.body.executionInfo?.containerInfo?.["error"],
               },
-          failureInfo: !_result.body.executionInfo?.failureInfo
+          failureInfo: !result.body.executionInfo?.failureInfo
             ? undefined
             : {
-                category: _result.body.executionInfo?.failureInfo?.["category"],
-                code: _result.body.executionInfo?.failureInfo?.["code"],
-                message: _result.body.executionInfo?.failureInfo?.["message"],
+                category: result.body.executionInfo?.failureInfo?.["category"],
+                code: result.body.executionInfo?.failureInfo?.["code"],
+                message: result.body.executionInfo?.failureInfo?.["message"],
                 details:
-                  _result.body.executionInfo?.failureInfo?.["details"] ===
+                  result.body.executionInfo?.failureInfo?.["details"] ===
                   undefined
-                    ? _result.body.executionInfo?.failureInfo?.["details"]
-                    : _result.body.executionInfo?.failureInfo?.["details"].map(
+                    ? result.body.executionInfo?.failureInfo?.["details"]
+                    : result.body.executionInfo?.failureInfo?.["details"].map(
                         (p) => {
                           return { name: p["name"], value: p["value"] };
                         },
                       ),
               },
-          retryCount: _result.body.executionInfo?.["retryCount"],
+          retryCount: result.body.executionInfo?.["retryCount"],
           lastRetryTime:
-            _result.body.executionInfo?.["lastRetryTime"] !== undefined
-              ? new Date(_result.body.executionInfo?.["lastRetryTime"])
+            result.body.executionInfo?.["lastRetryTime"] !== undefined
+              ? new Date(result.body.executionInfo?.["lastRetryTime"])
               : undefined,
-          requeueCount: _result.body.executionInfo?.["requeueCount"],
+          requeueCount: result.body.executionInfo?.["requeueCount"],
           lastRequeueTime:
-            _result.body.executionInfo?.["lastRequeueTime"] !== undefined
-              ? new Date(_result.body.executionInfo?.["lastRequeueTime"])
+            result.body.executionInfo?.["lastRequeueTime"] !== undefined
+              ? new Date(result.body.executionInfo?.["lastRequeueTime"])
               : undefined,
-          result: _result.body.executionInfo?.["result"],
+          result: result.body.executionInfo?.["result"],
         },
-    nodeInfo: !_result.body.nodeInfo
+    nodeInfo: !result.body.nodeInfo
       ? undefined
       : {
-          affinityId: _result.body.nodeInfo?.["affinityId"],
-          nodeUrl: _result.body.nodeInfo?.["nodeUrl"],
-          poolId: _result.body.nodeInfo?.["poolId"],
-          nodeId: _result.body.nodeInfo?.["nodeId"],
-          taskRootDirectory: _result.body.nodeInfo?.["taskRootDirectory"],
-          taskRootDirectoryUrl: _result.body.nodeInfo?.["taskRootDirectoryUrl"],
+          affinityId: result.body.nodeInfo?.["affinityId"],
+          nodeUrl: result.body.nodeInfo?.["nodeUrl"],
+          poolId: result.body.nodeInfo?.["poolId"],
+          nodeId: result.body.nodeInfo?.["nodeId"],
+          taskRootDirectory: result.body.nodeInfo?.["taskRootDirectory"],
+          taskRootDirectoryUrl: result.body.nodeInfo?.["taskRootDirectoryUrl"],
         },
-    multiInstanceSettings: !_result.body.multiInstanceSettings
+    multiInstanceSettings: !result.body.multiInstanceSettings
       ? undefined
       : {
           numberOfInstances:
-            _result.body.multiInstanceSettings?.["numberOfInstances"],
+            result.body.multiInstanceSettings?.["numberOfInstances"],
           coordinationCommandLine:
-            _result.body.multiInstanceSettings?.["coordinationCommandLine"],
+            result.body.multiInstanceSettings?.["coordinationCommandLine"],
           commonResourceFiles:
-            _result.body.multiInstanceSettings?.["commonResourceFiles"] ===
+            result.body.multiInstanceSettings?.["commonResourceFiles"] ===
             undefined
-              ? _result.body.multiInstanceSettings?.["commonResourceFiles"]
-              : _result.body.multiInstanceSettings?.["commonResourceFiles"].map(
+              ? result.body.multiInstanceSettings?.["commonResourceFiles"]
+              : result.body.multiInstanceSettings?.["commonResourceFiles"].map(
                   (p) => {
                     return {
                       autoStorageContainerName: p["autoStorageContainerName"],
@@ -11495,41 +11440,41 @@ export async function _getTaskDeserialize(
                   },
                 ),
         },
-    stats: !_result.body.stats
+    stats: !result.body.stats
       ? undefined
       : {
-          url: _result.body.stats?.["url"],
-          startTime: new Date(_result.body.stats?.["startTime"]),
-          lastUpdateTime: new Date(_result.body.stats?.["lastUpdateTime"]),
-          userCPUTime: _result.body.stats?.["userCPUTime"],
-          kernelCPUTime: _result.body.stats?.["kernelCPUTime"],
-          wallClockTime: _result.body.stats?.["wallClockTime"],
-          readIOps: _result.body.stats?.["readIOps"],
-          writeIOps: _result.body.stats?.["writeIOps"],
-          readIOGiB: _result.body.stats?.["readIOGiB"],
-          writeIOGiB: _result.body.stats?.["writeIOGiB"],
-          waitTime: _result.body.stats?.["waitTime"],
+          url: result.body.stats?.["url"],
+          startTime: new Date(result.body.stats?.["startTime"]),
+          lastUpdateTime: new Date(result.body.stats?.["lastUpdateTime"]),
+          userCPUTime: result.body.stats?.["userCPUTime"],
+          kernelCPUTime: result.body.stats?.["kernelCPUTime"],
+          wallClockTime: result.body.stats?.["wallClockTime"],
+          readIOps: result.body.stats?.["readIOps"],
+          writeIOps: result.body.stats?.["writeIOps"],
+          readIOGiB: result.body.stats?.["readIOGiB"],
+          writeIOGiB: result.body.stats?.["writeIOGiB"],
+          waitTime: result.body.stats?.["waitTime"],
         },
-    dependsOn: !_result.body.dependsOn
+    dependsOn: !result.body.dependsOn
       ? undefined
       : {
-          taskIds: _result.body.dependsOn?.["taskIds"],
+          taskIds: result.body.dependsOn?.["taskIds"],
           taskIdRanges:
-            _result.body.dependsOn?.["taskIdRanges"] === undefined
-              ? _result.body.dependsOn?.["taskIdRanges"]
-              : _result.body.dependsOn?.["taskIdRanges"].map((p) => {
+            result.body.dependsOn?.["taskIdRanges"] === undefined
+              ? result.body.dependsOn?.["taskIdRanges"]
+              : result.body.dependsOn?.["taskIdRanges"].map((p) => {
                   return { start: p["start"], end: p["end"] };
                 }),
         },
     applicationPackageReferences:
-      _result.body["applicationPackageReferences"] === undefined
-        ? _result.body["applicationPackageReferences"]
-        : _result.body["applicationPackageReferences"].map((p) => {
+      result.body["applicationPackageReferences"] === undefined
+        ? result.body["applicationPackageReferences"]
+        : result.body["applicationPackageReferences"].map((p) => {
             return { applicationId: p["applicationId"], version: p["version"] };
           }),
-    authenticationTokenSettings: !_result.body.authenticationTokenSettings
+    authenticationTokenSettings: !result.body.authenticationTokenSettings
       ? undefined
-      : { access: _result.body.authenticationTokenSettings?.["access"] },
+      : { access: result.body.authenticationTokenSettings?.["access"] },
   };
 }
 
@@ -11635,12 +11580,11 @@ export async function _listSubTasksDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListSubTasks200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               nodeInfo: !p.nodeInfo
@@ -11916,8 +11860,7 @@ export async function _getTaskFileDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetTaskFile200Response;
-  return _result.body as any;
+  return result.body as any;
 }
 
 /** Returns the content of the specified Task file. */
@@ -12028,12 +11971,11 @@ export async function _listTaskFilesDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListTaskFiles200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               name: p["name"],
               url: p["url"],
@@ -12052,7 +11994,7 @@ export async function _listTaskFilesDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -12278,35 +12220,34 @@ export async function _getNodeDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetNode200Response;
   return {
-    id: _result.body["id"],
-    url: _result.body["url"],
-    state: _result.body["state"],
-    schedulingState: _result.body["schedulingState"],
+    id: result.body["id"],
+    url: result.body["url"],
+    state: result.body["state"],
+    schedulingState: result.body["schedulingState"],
     stateTransitionTime:
-      _result.body["stateTransitionTime"] !== undefined
-        ? new Date(_result.body["stateTransitionTime"])
+      result.body["stateTransitionTime"] !== undefined
+        ? new Date(result.body["stateTransitionTime"])
         : undefined,
     lastBootTime:
-      _result.body["lastBootTime"] !== undefined
-        ? new Date(_result.body["lastBootTime"])
+      result.body["lastBootTime"] !== undefined
+        ? new Date(result.body["lastBootTime"])
         : undefined,
     allocationTime:
-      _result.body["allocationTime"] !== undefined
-        ? new Date(_result.body["allocationTime"])
+      result.body["allocationTime"] !== undefined
+        ? new Date(result.body["allocationTime"])
         : undefined,
-    ipAddress: _result.body["ipAddress"],
-    affinityId: _result.body["affinityId"],
-    vmSize: _result.body["vmSize"],
-    totalTasksRun: _result.body["totalTasksRun"],
-    runningTasksCount: _result.body["runningTasksCount"],
-    runningTaskSlotsCount: _result.body["runningTaskSlotsCount"],
-    totalTasksSucceeded: _result.body["totalTasksSucceeded"],
+    ipAddress: result.body["ipAddress"],
+    affinityId: result.body["affinityId"],
+    vmSize: result.body["vmSize"],
+    totalTasksRun: result.body["totalTasksRun"],
+    runningTasksCount: result.body["runningTasksCount"],
+    runningTaskSlotsCount: result.body["runningTaskSlotsCount"],
+    totalTasksSucceeded: result.body["totalTasksSucceeded"],
     recentTasks:
-      _result.body["recentTasks"] === undefined
-        ? _result.body["recentTasks"]
-        : _result.body["recentTasks"].map((p) => {
+      result.body["recentTasks"] === undefined
+        ? result.body["recentTasks"]
+        : result.body["recentTasks"].map((p) => {
             return {
               taskUrl: p["taskUrl"],
               jobId: p["jobId"],
@@ -12366,52 +12307,52 @@ export async function _getNodeDeserialize(
                   },
             };
           }),
-    startTask: !_result.body.startTask
+    startTask: !result.body.startTask
       ? undefined
       : {
-          commandLine: _result.body.startTask?.["commandLine"],
-          containerSettings: !_result.body.startTask?.containerSettings
+          commandLine: result.body.startTask?.["commandLine"],
+          containerSettings: !result.body.startTask?.containerSettings
             ? undefined
             : {
                 containerRunOptions:
-                  _result.body.startTask?.containerSettings?.[
+                  result.body.startTask?.containerSettings?.[
                     "containerRunOptions"
                   ],
                 imageName:
-                  _result.body.startTask?.containerSettings?.["imageName"],
-                registry: !_result.body.startTask?.containerSettings?.registry
+                  result.body.startTask?.containerSettings?.["imageName"],
+                registry: !result.body.startTask?.containerSettings?.registry
                   ? undefined
                   : {
                       username:
-                        _result.body.startTask?.containerSettings?.registry?.[
+                        result.body.startTask?.containerSettings?.registry?.[
                           "username"
                         ],
                       password:
-                        _result.body.startTask?.containerSettings?.registry?.[
+                        result.body.startTask?.containerSettings?.registry?.[
                           "password"
                         ],
                       registryServer:
-                        _result.body.startTask?.containerSettings?.registry?.[
+                        result.body.startTask?.containerSettings?.registry?.[
                           "registryServer"
                         ],
-                      identityReference: !_result.body.startTask
+                      identityReference: !result.body.startTask
                         ?.containerSettings?.registry?.identityReference
                         ? undefined
                         : {
                             resourceId:
-                              _result.body.startTask?.containerSettings
-                                ?.registry?.identityReference?.["resourceId"],
+                              result.body.startTask?.containerSettings?.registry
+                                ?.identityReference?.["resourceId"],
                           },
                     },
                 workingDirectory:
-                  _result.body.startTask?.containerSettings?.[
+                  result.body.startTask?.containerSettings?.[
                     "workingDirectory"
                   ],
               },
           resourceFiles:
-            _result.body.startTask?.["resourceFiles"] === undefined
-              ? _result.body.startTask?.["resourceFiles"]
-              : _result.body.startTask?.["resourceFiles"].map((p) => {
+            result.body.startTask?.["resourceFiles"] === undefined
+              ? result.body.startTask?.["resourceFiles"]
+              : result.body.startTask?.["resourceFiles"].map((p) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -12425,76 +12366,76 @@ export async function _getNodeDeserialize(
                   };
                 }),
           environmentSettings:
-            _result.body.startTask?.["environmentSettings"] === undefined
-              ? _result.body.startTask?.["environmentSettings"]
-              : _result.body.startTask?.["environmentSettings"].map((p) => {
+            result.body.startTask?.["environmentSettings"] === undefined
+              ? result.body.startTask?.["environmentSettings"]
+              : result.body.startTask?.["environmentSettings"].map((p) => {
                   return { name: p["name"], value: p["value"] };
                 }),
-          userIdentity: !_result.body.startTask?.userIdentity
+          userIdentity: !result.body.startTask?.userIdentity
             ? undefined
             : {
-                username: _result.body.startTask?.userIdentity?.["username"],
-                autoUser: !_result.body.startTask?.userIdentity?.autoUser
+                username: result.body.startTask?.userIdentity?.["username"],
+                autoUser: !result.body.startTask?.userIdentity?.autoUser
                   ? undefined
                   : {
                       scope:
-                        _result.body.startTask?.userIdentity?.autoUser?.[
+                        result.body.startTask?.userIdentity?.autoUser?.[
                           "scope"
                         ],
                       elevationLevel:
-                        _result.body.startTask?.userIdentity?.autoUser?.[
+                        result.body.startTask?.userIdentity?.autoUser?.[
                           "elevationLevel"
                         ],
                     },
               },
-          maxTaskRetryCount: _result.body.startTask?.["maxTaskRetryCount"],
-          waitForSuccess: _result.body.startTask?.["waitForSuccess"],
+          maxTaskRetryCount: result.body.startTask?.["maxTaskRetryCount"],
+          waitForSuccess: result.body.startTask?.["waitForSuccess"],
         },
-    startTaskInfo: !_result.body.startTaskInfo
+    startTaskInfo: !result.body.startTaskInfo
       ? undefined
       : {
-          state: _result.body.startTaskInfo?.["state"],
-          startTime: new Date(_result.body.startTaskInfo?.["startTime"]),
+          state: result.body.startTaskInfo?.["state"],
+          startTime: new Date(result.body.startTaskInfo?.["startTime"]),
           endTime:
-            _result.body.startTaskInfo?.["endTime"] !== undefined
-              ? new Date(_result.body.startTaskInfo?.["endTime"])
+            result.body.startTaskInfo?.["endTime"] !== undefined
+              ? new Date(result.body.startTaskInfo?.["endTime"])
               : undefined,
-          exitCode: _result.body.startTaskInfo?.["exitCode"],
-          containerInfo: !_result.body.startTaskInfo?.containerInfo
+          exitCode: result.body.startTaskInfo?.["exitCode"],
+          containerInfo: !result.body.startTaskInfo?.containerInfo
             ? undefined
             : {
                 containerId:
-                  _result.body.startTaskInfo?.containerInfo?.["containerId"],
-                state: _result.body.startTaskInfo?.containerInfo?.["state"],
-                error: _result.body.startTaskInfo?.containerInfo?.["error"],
+                  result.body.startTaskInfo?.containerInfo?.["containerId"],
+                state: result.body.startTaskInfo?.containerInfo?.["state"],
+                error: result.body.startTaskInfo?.containerInfo?.["error"],
               },
-          failureInfo: !_result.body.startTaskInfo?.failureInfo
+          failureInfo: !result.body.startTaskInfo?.failureInfo
             ? undefined
             : {
-                category: _result.body.startTaskInfo?.failureInfo?.["category"],
-                code: _result.body.startTaskInfo?.failureInfo?.["code"],
-                message: _result.body.startTaskInfo?.failureInfo?.["message"],
+                category: result.body.startTaskInfo?.failureInfo?.["category"],
+                code: result.body.startTaskInfo?.failureInfo?.["code"],
+                message: result.body.startTaskInfo?.failureInfo?.["message"],
                 details:
-                  _result.body.startTaskInfo?.failureInfo?.["details"] ===
+                  result.body.startTaskInfo?.failureInfo?.["details"] ===
                   undefined
-                    ? _result.body.startTaskInfo?.failureInfo?.["details"]
-                    : _result.body.startTaskInfo?.failureInfo?.["details"].map(
+                    ? result.body.startTaskInfo?.failureInfo?.["details"]
+                    : result.body.startTaskInfo?.failureInfo?.["details"].map(
                         (p) => {
                           return { name: p["name"], value: p["value"] };
                         },
                       ),
               },
-          retryCount: _result.body.startTaskInfo?.["retryCount"],
+          retryCount: result.body.startTaskInfo?.["retryCount"],
           lastRetryTime:
-            _result.body.startTaskInfo?.["lastRetryTime"] !== undefined
-              ? new Date(_result.body.startTaskInfo?.["lastRetryTime"])
+            result.body.startTaskInfo?.["lastRetryTime"] !== undefined
+              ? new Date(result.body.startTaskInfo?.["lastRetryTime"])
               : undefined,
-          result: _result.body.startTaskInfo?.["result"],
+          result: result.body.startTaskInfo?.["result"],
         },
     certificateReferences:
-      _result.body["certificateReferences"] === undefined
-        ? _result.body["certificateReferences"]
-        : _result.body["certificateReferences"].map((p) => {
+      result.body["certificateReferences"] === undefined
+        ? result.body["certificateReferences"]
+        : result.body["certificateReferences"].map((p) => {
             return {
               thumbprint: p["thumbprint"],
               thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -12504,9 +12445,9 @@ export async function _getNodeDeserialize(
             };
           }),
     errors:
-      _result.body["errors"] === undefined
-        ? _result.body["errors"]
-        : _result.body["errors"].map((p) => {
+      result.body["errors"] === undefined
+        ? result.body["errors"]
+        : result.body["errors"].map((p) => {
             return {
               code: p["code"],
               message: p["message"],
@@ -12518,11 +12459,11 @@ export async function _getNodeDeserialize(
                     }),
             };
           }),
-    isDedicated: _result.body["isDedicated"],
-    endpointConfiguration: !_result.body.endpointConfiguration
+    isDedicated: result.body["isDedicated"],
+    endpointConfiguration: !result.body.endpointConfiguration
       ? undefined
       : {
-          inboundEndpoints: _result.body.endpointConfiguration?.[
+          inboundEndpoints: result.body.endpointConfiguration?.[
             "inboundEndpoints"
           ].map((p) => {
             return {
@@ -12535,35 +12476,33 @@ export async function _getNodeDeserialize(
             };
           }),
         },
-    nodeAgentInfo: !_result.body.nodeAgentInfo
+    nodeAgentInfo: !result.body.nodeAgentInfo
       ? undefined
       : {
-          version: _result.body.nodeAgentInfo?.["version"],
+          version: result.body.nodeAgentInfo?.["version"],
           lastUpdateTime: new Date(
-            _result.body.nodeAgentInfo?.["lastUpdateTime"],
+            result.body.nodeAgentInfo?.["lastUpdateTime"],
           ),
         },
-    virtualMachineInfo: !_result.body.virtualMachineInfo
+    virtualMachineInfo: !result.body.virtualMachineInfo
       ? undefined
       : {
-          imageReference: !_result.body.virtualMachineInfo?.imageReference
+          imageReference: !result.body.virtualMachineInfo?.imageReference
             ? undefined
             : {
                 publisher:
-                  _result.body.virtualMachineInfo?.imageReference?.[
-                    "publisher"
-                  ],
+                  result.body.virtualMachineInfo?.imageReference?.["publisher"],
                 offer:
-                  _result.body.virtualMachineInfo?.imageReference?.["offer"],
-                sku: _result.body.virtualMachineInfo?.imageReference?.["sku"],
+                  result.body.virtualMachineInfo?.imageReference?.["offer"],
+                sku: result.body.virtualMachineInfo?.imageReference?.["sku"],
                 version:
-                  _result.body.virtualMachineInfo?.imageReference?.["version"],
+                  result.body.virtualMachineInfo?.imageReference?.["version"],
                 virtualMachineImageId:
-                  _result.body.virtualMachineInfo?.imageReference?.[
+                  result.body.virtualMachineInfo?.imageReference?.[
                     "virtualMachineImageId"
                   ],
                 exactVersion:
-                  _result.body.virtualMachineInfo?.imageReference?.[
+                  result.body.virtualMachineInfo?.imageReference?.[
                     "exactVersion"
                   ],
               },
@@ -12819,10 +12758,9 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetNodeRemoteLoginSettings200Response;
   return {
-    remoteLoginIpAddress: _result.body["remoteLoginIPAddress"],
-    remoteLoginPort: _result.body["remoteLoginPort"],
+    remoteLoginIpAddress: result.body["remoteLoginIPAddress"],
+    remoteLoginPort: result.body["remoteLoginPort"],
   };
 }
 
@@ -12876,10 +12814,9 @@ export async function _getNodeRemoteDesktopFileDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetNodeRemoteDesktopFile200Response;
-  return typeof _result.body === "string"
-    ? stringToUint8Array(_result.body, "base64")
-    : _result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /**
@@ -12943,10 +12880,9 @@ export async function _uploadNodeLogsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as UploadNodeLogs200Response;
   return {
-    virtualDirectoryName: _result.body["virtualDirectoryName"],
-    numberOfFilesUploaded: _result.body["numberOfFilesUploaded"],
+    virtualDirectoryName: result.body["virtualDirectoryName"],
+    numberOfFilesUploaded: result.body["numberOfFilesUploaded"],
   };
 }
 
@@ -12999,12 +12935,11 @@ export async function _listNodesDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListNodes200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               id: p["id"],
               url: p["url"],
@@ -13318,7 +13253,7 @@ export async function _listNodesDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -13369,33 +13304,32 @@ export async function _getNodeExtensionDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetNodeExtension200Response;
   return {
-    provisioningState: _result.body["provisioningState"],
-    vmExtension: !_result.body.vmExtension
+    provisioningState: result.body["provisioningState"],
+    vmExtension: !result.body.vmExtension
       ? undefined
       : {
-          name: _result.body.vmExtension?.["name"],
-          publisher: _result.body.vmExtension?.["publisher"],
-          type: _result.body.vmExtension?.["type"],
-          typeHandlerVersion: _result.body.vmExtension?.["typeHandlerVersion"],
+          name: result.body.vmExtension?.["name"],
+          publisher: result.body.vmExtension?.["publisher"],
+          type: result.body.vmExtension?.["type"],
+          typeHandlerVersion: result.body.vmExtension?.["typeHandlerVersion"],
           autoUpgradeMinorVersion:
-            _result.body.vmExtension?.["autoUpgradeMinorVersion"],
+            result.body.vmExtension?.["autoUpgradeMinorVersion"],
           enableAutomaticUpgrade:
-            _result.body.vmExtension?.["enableAutomaticUpgrade"],
-          settings: _result.body.vmExtension?.["settings"],
-          protectedSettings: _result.body.vmExtension?.["protectedSettings"],
+            result.body.vmExtension?.["enableAutomaticUpgrade"],
+          settings: result.body.vmExtension?.["settings"],
+          protectedSettings: result.body.vmExtension?.["protectedSettings"],
           provisionAfterExtensions:
-            _result.body.vmExtension?.["provisionAfterExtensions"],
+            result.body.vmExtension?.["provisionAfterExtensions"],
         },
-    instanceView: !_result.body.instanceView
+    instanceView: !result.body.instanceView
       ? undefined
       : {
-          name: _result.body.instanceView?.["name"],
+          name: result.body.instanceView?.["name"],
           statuses:
-            _result.body.instanceView?.["statuses"] === undefined
-              ? _result.body.instanceView?.["statuses"]
-              : _result.body.instanceView?.["statuses"].map((p) => {
+            result.body.instanceView?.["statuses"] === undefined
+              ? result.body.instanceView?.["statuses"]
+              : result.body.instanceView?.["statuses"].map((p) => {
                   return {
                     code: p["code"],
                     displayStatus: p["displayStatus"],
@@ -13405,9 +13339,9 @@ export async function _getNodeExtensionDeserialize(
                   };
                 }),
           subStatuses:
-            _result.body.instanceView?.["subStatuses"] === undefined
-              ? _result.body.instanceView?.["subStatuses"]
-              : _result.body.instanceView?.["subStatuses"].map((p) => {
+            result.body.instanceView?.["subStatuses"] === undefined
+              ? result.body.instanceView?.["subStatuses"]
+              : result.body.instanceView?.["subStatuses"].map((p) => {
                   return {
                     code: p["code"],
                     displayStatus: p["displayStatus"],
@@ -13465,12 +13399,11 @@ export async function _listNodeExtensionsDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListNodeExtensions200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               provisioningState: p["provisioningState"],
               vmExtension: !p.vmExtension
@@ -13520,7 +13453,7 @@ export async function _listNodeExtensionsDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -13632,10 +13565,9 @@ export async function _getNodeFileDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetNodeFile200Response;
-  return typeof _result.body === "string"
-    ? stringToUint8Array(_result.body, "base64")
-    : _result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -13746,12 +13678,11 @@ export async function _listNodeFilesDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ListNodeFiles200Response;
   return {
     value:
-      _result.body["value"] === undefined
-        ? _result.body["value"]
-        : _result.body["value"].map((p) => {
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => {
             return {
               name: p["name"],
               url: p["url"],
@@ -13770,7 +13701,7 @@ export async function _listNodeFilesDeserialize(
                   },
             };
           }),
-    "odata.nextLink": _result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 

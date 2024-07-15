@@ -38,12 +38,11 @@ export async function _getAllDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as CollectionsByteGetAll200Response;
   return {
     property:
-      _result.body["property"] === undefined
-        ? _result.body["property"]
-        : _result.body["property"].map((p) =>
+      result.body["property"] === undefined
+        ? result.body["property"]
+        : result.body["property"].map((p) =>
             typeof p === "string" ? stringToUint8Array(p, "base64") : p,
           ),
   };
@@ -74,12 +73,11 @@ export async function _getDefaultDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as CollectionsByteGetDefault200Response;
   return {
     property:
-      _result.body["property"] === undefined
-        ? _result.body["property"]
-        : _result.body["property"].map((p) =>
+      result.body["property"] === undefined
+        ? result.body["property"]
+        : result.body["property"].map((p) =>
             typeof p === "string" ? stringToUint8Array(p, "base64") : p,
           ),
   };

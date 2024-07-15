@@ -33,9 +33,8 @@ export async function _decimalGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DecimalGet200Response;
   return {
-    property: _result.body["property"],
+    property: result.body["property"],
   };
 }
 

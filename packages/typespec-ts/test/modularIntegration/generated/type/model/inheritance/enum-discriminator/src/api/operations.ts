@@ -50,8 +50,7 @@ export async function _getExtensibleModelDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetExtensibleModel200Response;
-  return _result.body as DogUnion;
+  return result.body as DogUnion;
 }
 
 /** Receive model with extensible enum discriminator type. */
@@ -116,9 +115,7 @@ export async function _getExtensibleModelMissingDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as GetExtensibleModelMissingDiscriminator200Response;
-  return _result.body as DogUnion;
+  return result.body as DogUnion;
 }
 
 /** Get a model omitting the discriminator. */
@@ -155,9 +152,7 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as GetExtensibleModelWrongDiscriminator200Response;
-  return _result.body as DogUnion;
+  return result.body as DogUnion;
 }
 
 /** Get a model containing discriminator value never defined. */
@@ -190,8 +185,7 @@ export async function _getFixedModelDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetFixedModel200Response;
-  return _result.body;
+  return result.body;
 }
 
 /** Receive model with fixed enum discriminator type. */
@@ -256,9 +250,7 @@ export async function _getFixedModelMissingDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as GetFixedModelMissingDiscriminator200Response;
-  return _result.body;
+  return result.body;
 }
 
 /** Get a model omitting the discriminator. */
@@ -292,9 +284,7 @@ export async function _getFixedModelWrongDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as GetFixedModelWrongDiscriminator200Response;
-  return _result.body;
+  return result.body;
 }
 
 /** Get a model containing discriminator value never defined. */

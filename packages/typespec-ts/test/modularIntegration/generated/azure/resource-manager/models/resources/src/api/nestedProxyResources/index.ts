@@ -75,32 +75,31 @@ export async function _nestedProxyResourcesGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as NestedProxyResourcesGet200Response;
   return {
-    id: _result.body["id"],
-    name: _result.body["name"],
-    type: _result.body["type"],
-    systemData: !_result.body.systemData
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: _result.body.systemData?.["createdBy"],
-          createdByType: _result.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            _result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(_result.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            _result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(_result.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !_result.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: _result.body.properties?.["provisioningState"],
-          description: _result.body.properties?.["description"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          description: result.body.properties?.["description"],
         },
   };
 }
@@ -428,10 +427,8 @@ export async function _nestedProxyResourcesListByTopLevelTrackedResourceDeserial
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as NestedProxyResourcesListByTopLevelTrackedResource200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -460,7 +457,7 @@ export async function _nestedProxyResourcesListByTopLevelTrackedResourceDeserial
             },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 

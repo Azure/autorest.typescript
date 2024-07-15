@@ -37,9 +37,8 @@ export async function _getAllDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DurationGetAll200Response;
   return {
-    property: _result.body["property"],
+    property: result.body["property"],
   };
 }
 
@@ -68,9 +67,8 @@ export async function _getDefaultDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DurationGetDefault200Response;
   return {
-    property: _result.body["property"],
+    property: result.body["property"],
   };
 }
 

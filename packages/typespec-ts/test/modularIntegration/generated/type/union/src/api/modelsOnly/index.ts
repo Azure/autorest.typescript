@@ -33,9 +33,8 @@ export async function _modelsOnlyGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ModelsOnlyGet200Response;
   return {
-    prop: _result.body["prop"],
+    prop: result.body["prop"],
   };
 }
 

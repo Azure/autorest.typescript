@@ -32,9 +32,8 @@ export async function _floatsOnlyGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FloatsOnlyGet200Response;
   return {
-    prop: _result.body["prop"],
+    prop: result.body["prop"],
   };
 }
 

@@ -66,16 +66,15 @@ export async function _detectUnivariateEntireSeriesDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DetectUnivariateEntireSeries200Response;
   return {
-    period: _result.body["period"],
-    expectedValues: _result.body["expectedValues"],
-    upperMargins: _result.body["upperMargins"],
-    lowerMargins: _result.body["lowerMargins"],
-    isAnomaly: _result.body["isAnomaly"],
-    isNegativeAnomaly: _result.body["isNegativeAnomaly"],
-    isPositiveAnomaly: _result.body["isPositiveAnomaly"],
-    severity: _result.body["severity"],
+    period: result.body["period"],
+    expectedValues: result.body["expectedValues"],
+    upperMargins: result.body["upperMargins"],
+    lowerMargins: result.body["lowerMargins"],
+    isAnomaly: result.body["isAnomaly"],
+    isNegativeAnomaly: result.body["isNegativeAnomaly"],
+    isPositiveAnomaly: result.body["isPositiveAnomaly"],
+    severity: result.body["severity"],
   };
 }
 
@@ -136,17 +135,16 @@ export async function _detectUnivariateLastPointDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DetectUnivariateLastPoint200Response;
   return {
-    period: _result.body["period"],
-    suggestedWindow: _result.body["suggestedWindow"],
-    expectedValue: _result.body["expectedValue"],
-    upperMargin: _result.body["upperMargin"],
-    lowerMargin: _result.body["lowerMargin"],
-    isAnomaly: _result.body["isAnomaly"],
-    isNegativeAnomaly: _result.body["isNegativeAnomaly"],
-    isPositiveAnomaly: _result.body["isPositiveAnomaly"],
-    severity: _result.body["severity"],
+    period: result.body["period"],
+    suggestedWindow: result.body["suggestedWindow"],
+    expectedValue: result.body["expectedValue"],
+    upperMargin: result.body["upperMargin"],
+    lowerMargin: result.body["lowerMargin"],
+    isAnomaly: result.body["isAnomaly"],
+    isNegativeAnomaly: result.body["isNegativeAnomaly"],
+    isPositiveAnomaly: result.body["isPositiveAnomaly"],
+    severity: result.body["severity"],
   };
 }
 
@@ -203,11 +201,10 @@ export async function _detectUnivariateChangePointDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DetectUnivariateChangePoint200Response;
   return {
-    period: _result.body["period"],
-    isChangePoint: _result.body["isChangePoint"],
-    confidenceScores: _result.body["confidenceScores"],
+    period: result.body["period"],
+    isChangePoint: result.body["isChangePoint"],
+    confidenceScores: result.body["confidenceScores"],
   };
 }
 

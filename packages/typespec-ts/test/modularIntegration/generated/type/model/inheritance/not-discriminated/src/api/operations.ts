@@ -67,11 +67,10 @@ export async function _getValidDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as GetValid200Response;
   return {
-    age: _result.body["age"],
-    name: _result.body["name"],
-    smart: _result.body["smart"],
+    age: result.body["age"],
+    name: result.body["name"],
+    smart: result.body["smart"],
   };
 }
 
@@ -103,11 +102,10 @@ export async function _putValidDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as PutValid200Response;
   return {
-    age: _result.body["age"],
-    name: _result.body["name"],
-    smart: _result.body["smart"],
+    age: result.body["age"],
+    name: result.body["name"],
+    smart: result.body["smart"],
   };
 }
 

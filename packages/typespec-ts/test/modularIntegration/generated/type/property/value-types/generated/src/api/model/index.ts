@@ -33,9 +33,8 @@ export async function _modelGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ModelGet200Response;
   return {
-    property: { property: _result.body.property["property"] },
+    property: { property: result.body.property["property"] },
   };
 }
 

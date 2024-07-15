@@ -54,32 +54,31 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DataProductsCatalogsGet200Response;
   return {
-    id: _result.body["id"],
-    name: _result.body["name"],
-    type: _result.body["type"],
-    systemData: !_result.body.systemData
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: _result.body.systemData?.["createdBy"],
-          createdByType: _result.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            _result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(_result.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            _result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(_result.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !_result.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: _result.body.properties?.["provisioningState"],
-          publishers: _result.body.properties?.["publishers"].map((p) => {
+          provisioningState: result.body.properties?.["provisioningState"],
+          publishers: result.body.properties?.["publishers"].map((p) => {
             return {
               publisherName: p["publisherName"],
               dataProducts: p["dataProducts"].map((p) => {
@@ -142,10 +141,8 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as DataProductsCatalogsListByResourceGroup200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -187,7 +184,7 @@ export async function _listByResourceGroupDeserialize(
             },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 
@@ -241,10 +238,8 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as DataProductsCatalogsListBySubscription200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -286,7 +281,7 @@ export async function _listBySubscriptionDeserialize(
             },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 

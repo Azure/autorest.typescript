@@ -51,10 +51,9 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FilesList200Response;
   return {
-    object: _result.body["object"],
-    data: _result.body["data"].map((p) => {
+    object: result.body["object"],
+    data: result.body["data"].map((p) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -101,16 +100,15 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FilesCreate200Response;
   return {
-    id: _result.body["id"],
-    object: _result.body["object"],
-    bytes: _result.body["bytes"],
-    createdAt: new Date(_result.body["createdAt"]),
-    filename: _result.body["filename"],
-    purpose: _result.body["purpose"],
-    status: _result.body["status"],
-    statusDetails: _result.body["status_details"],
+    id: result.body["id"],
+    object: result.body["object"],
+    bytes: result.body["bytes"],
+    createdAt: new Date(result.body["createdAt"]),
+    filename: result.body["filename"],
+    purpose: result.body["purpose"],
+    status: result.body["status"],
+    statusDetails: result.body["status_details"],
   };
 }
 
@@ -140,16 +138,15 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FilesRetrieve200Response;
   return {
-    id: _result.body["id"],
-    object: _result.body["object"],
-    bytes: _result.body["bytes"],
-    createdAt: new Date(_result.body["createdAt"]),
-    filename: _result.body["filename"],
-    purpose: _result.body["purpose"],
-    status: _result.body["status"],
-    statusDetails: _result.body["status_details"],
+    id: result.body["id"],
+    object: result.body["object"],
+    bytes: result.body["bytes"],
+    createdAt: new Date(result.body["createdAt"]),
+    filename: result.body["filename"],
+    purpose: result.body["purpose"],
+    status: result.body["status"],
+    statusDetails: result.body["status_details"],
   };
 }
 
@@ -179,11 +176,10 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FilesDelete200Response;
   return {
-    id: _result.body["id"],
-    object: _result.body["object"],
-    deleted: _result.body["deleted"],
+    id: result.body["id"],
+    object: result.body["object"],
+    deleted: result.body["deleted"],
   };
 }
 
@@ -218,8 +214,7 @@ export async function _downloadDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as FilesDownload200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function download(

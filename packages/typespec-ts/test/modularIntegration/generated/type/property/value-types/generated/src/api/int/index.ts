@@ -33,9 +33,8 @@ export async function _intGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as IntGet200Response;
   return {
-    property: _result.body["property"],
+    property: result.body["property"],
   };
 }
 

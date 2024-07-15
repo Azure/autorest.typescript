@@ -33,9 +33,8 @@ export async function _datetimeGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DatetimeGet200Response;
   return {
-    property: new Date(_result.body["property"]),
+    property: new Date(result.body["property"]),
   };
 }
 

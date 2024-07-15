@@ -32,8 +32,7 @@ export async function _nullableBooleanValueGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as NullableBooleanValueGet200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function nullableBooleanValueGet(

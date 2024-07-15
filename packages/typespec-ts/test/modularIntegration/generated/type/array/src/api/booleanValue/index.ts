@@ -32,8 +32,7 @@ export async function _booleanValueGetDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as BooleanValueGet200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function booleanValueGet(

@@ -187,39 +187,38 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DataTypesGet200Response;
   return {
-    id: _result.body["id"],
-    name: _result.body["name"],
-    type: _result.body["type"],
-    systemData: !_result.body.systemData
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: _result.body.systemData?.["createdBy"],
-          createdByType: _result.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            _result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(_result.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: _result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: _result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            _result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(_result.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !_result.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: _result.body.properties?.["provisioningState"],
-          state: _result.body.properties?.["state"],
-          stateReason: _result.body.properties?.["stateReason"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          state: result.body.properties?.["state"],
+          stateReason: result.body.properties?.["stateReason"],
           storageOutputRetention:
-            _result.body.properties?.["storageOutputRetention"],
+            result.body.properties?.["storageOutputRetention"],
           databaseCacheRetention:
-            _result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: _result.body.properties?.["databaseRetention"],
-          visualizationUrl: _result.body.properties?.["visualizationUrl"],
+            result.body.properties?.["databaseCacheRetention"],
+          databaseRetention: result.body.properties?.["databaseRetention"],
+          visualizationUrl: result.body.properties?.["visualizationUrl"],
         },
   };
 }
@@ -523,10 +522,8 @@ export async function _generateStorageContainerSasTokenDeserialize(
     throw createRestError(result);
   }
 
-  const _result =
-    result as unknown as DataTypesGenerateStorageContainerSasToken200Response;
   return {
-    storageContainerSasToken: _result.body["storageContainerSasToken"],
+    storageContainerSasToken: result.body["storageContainerSasToken"],
   };
 }
 
@@ -583,9 +580,8 @@ export async function _listByDataProductDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as DataTypesListByDataProduct200Response;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -619,7 +615,7 @@ export async function _listByDataProductDeserialize(
             },
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 

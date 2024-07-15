@@ -271,8 +271,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           const _result = result as unknown as DownloadFile200Response;
-           return _result.body as any;
+           return result.body as any;
          }
          export async function downloadFile(
            context: Client,
@@ -323,8 +322,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           const _result = result as unknown as DownloadFile200Response;
-           return _result.body as any;
+           return result.body as any;
          }
          export async function downloadFile(
            context: Client,
@@ -376,13 +374,12 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           const _result = result as unknown as DownloadFile200Response;
             return {
-              name: _result.body["name"],
+              name: result.body["name"],
               file:
-                typeof _result.body["file"] === "string"
-                  ? stringToUint8Array(_result.body["file"], "base64")
-                  : _result.body["file"],
+                typeof result.body["file"] === "string"
+                  ? stringToUint8Array(result.body["file"], "base64")
+                  : result.body["file"],
             };
          }
          export async function downloadFile(
@@ -437,10 +434,9 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
               throw createRestError(result);
            }
-           const _result = result as unknown as DownloadFile200Response;
             return {
-              name: _result.body["name"],
-              file: _result.body["file"].map((p) =>
+              name: result.body["name"],
+              file: result.body["file"].map((p) =>
                 typeof p === "string" ? stringToUint8Array(p, "base64") : p,
               ),
             };
@@ -496,8 +492,7 @@ describe("api operations in Modular", () => {
             throw createRestError(result);
           }
 
-          const _result = result as unknown as Test200Response;
-          return _result.body;
+          return result.body;
         }
         
         export async function test(
@@ -625,8 +620,7 @@ describe("api operations in Modular", () => {
             throw createRestError(result);
           }
 
-          const _result = result as unknown as Test200Response;
-          return _result.body;
+          return result.body;
         }
         
         export async function test(
@@ -764,8 +758,7 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-          const _result = result as unknown as Test200Response;
-          return _result.body;
+          return result.body;
         }
         
         export async function test(
@@ -792,8 +785,7 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-          const _result = result as unknown as Test1200Response;
-          return _result.body;
+          return result.body;
         }
         
         export async function test1(

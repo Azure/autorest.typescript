@@ -42,11 +42,10 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as EditsCreate200Response;
   return {
-    object: _result.body["object"],
-    created: new Date(_result.body["created"]),
-    choices: _result.body["choices"].map((p) => {
+    object: result.body["object"],
+    created: new Date(result.body["created"]),
+    choices: result.body["choices"].map((p) => {
       return {
         text: p["text"],
         index: p["index"],
@@ -54,9 +53,9 @@ export async function _createDeserialize(
       };
     }),
     usage: {
-      promptTokens: _result.body.usage["prompt_tokens"],
-      completionTokens: _result.body.usage["completion_tokens"],
-      totalTokens: _result.body.usage["total_tokens"],
+      promptTokens: result.body.usage["prompt_tokens"],
+      completionTokens: result.body.usage["completion_tokens"],
+      totalTokens: result.body.usage["total_tokens"],
     },
   };
 }

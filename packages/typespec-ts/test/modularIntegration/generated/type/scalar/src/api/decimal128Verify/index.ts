@@ -32,8 +32,7 @@ export async function _decimal128VerifyPrepareVerifyDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as Decimal128VerifyPrepareVerify200Response;
-  return _result.body;
+  return result.body;
 }
 
 export async function decimal128VerifyPrepareVerify(
