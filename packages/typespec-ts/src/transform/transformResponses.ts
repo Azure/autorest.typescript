@@ -4,6 +4,7 @@
 import {
   getLroLogicalResponseName,
   Imports,
+  ObjectSchema,
   OperationResponse,
   ResponseHeaderSchema,
   ResponseMetadata,
@@ -15,7 +16,12 @@ import {
   listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { getDoc, ignoreDiagnostics, isVoidType } from "@typespec/compiler";
+import {
+  getDoc,
+  ignoreDiagnostics,
+  isVoidType,
+  NoTarget
+} from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -36,6 +42,8 @@ import {
   isBinaryPayload,
   sortedOperationResponses
 } from "../utils/operationUtil.js";
+import { reportDiagnostic } from "../lib.js";
+import { get } from "lodash";
 
 export function transformToResponseTypes(
   client: SdkClient,
@@ -77,9 +85,11 @@ export function transformToResponseTypes(
       operationGroup: getOperationGroupName(dpgContext, route),
       operationName: getOperationName(dpgContext, route.operation),
       path: route.path,
-      isDefaultSubsetOfOthers: false,
+      isDefaultSupersetOfOthers: false,
       responses: []
     };
+    const defaultSchemas: Schema[] = [],
+      nonDefaultSchemas: Schema[] = [];
     for (const resp of sortedOperationResponses(route.responses)) {
       const statusCode = getOperationStatuscode(resp);
       const rlcResponseUnit: ResponseMetadata = {
@@ -89,12 +99,21 @@ export function transformToResponseTypes(
       // transform header
       const headers = transformHeaders(dpgContext, resp, inputImportedSet);
       // transform body
-      const body = transformBody(dpgContext, resp, inputImportedSet);
+      const [body, schemas] = transformBody(
+        dpgContext,
+        resp,
+        inputImportedSet
+      ) ?? [, []];
       rlcOperationUnit.responses.push({
         ...rlcResponseUnit,
         headers,
         body
       });
+      if (statusCode === "default") {
+        defaultSchemas.push(...schemas);
+      } else {
+        nonDefaultSchemas.push(...schemas);
+      }
     }
     const lroLogicalResponse = transformLroLogicalResponse(
       dpgContext,
@@ -105,28 +124,66 @@ export function transformToResponseTypes(
     if (lroLogicalResponse) {
       rlcOperationUnit.responses.push(lroLogicalResponse);
     }
-    rlcOperationUnit.isDefaultSubsetOfOthers = transformIsDefaultSubsetOfOthers(
-      rlcOperationUnit.responses
-    );
+    rlcOperationUnit.isDefaultSupersetOfOthers =
+      transformIsDefaultSupersetOfOthers(
+        dpgContext,
+        defaultSchemas,
+        nonDefaultSchemas,
+        `${rlcOperationUnit.operationGroup}-${rlcOperationUnit.operationName}`
+      );
     rlcResponses.push(rlcOperationUnit);
   }
   return rlcResponses;
 }
 
-function transformIsDefaultSubsetOfOthers(responses: ResponseMetadata[]) {
-  const defaultResponse = responses.find((r) => r.statusCode === "default");
-  const nonDefaultResponses = responses.filter(
-    (r) => r.statusCode !== "default"
-  );
-  if (!defaultResponse && nonDefaultResponses.length === 0) {
+function transformIsDefaultSupersetOfOthers(
+  dpgContext: SdkContext,
+  defaultSchemas: Schema[],
+  nonDefaultSchemas: Schema[],
+  operationName: string
+): boolean {
+  if (defaultSchemas.length !== 1 || nonDefaultSchemas.length === 0) {
     return false;
   }
-  const defaultSchema = defaultResponse?.body;
-  for (const response of nonDefaultResponses) {
-    if (response.body?.type !== defaultSchema) {
+  const defaultSchema = defaultSchemas[0];
+  if (
+    defaultSchema?.type !== "object" ||
+    !(defaultSchema as ObjectSchema).properties
+  ) {
+    reportDiagnostic(dpgContext.program, {
+      code: "default-response-body-type",
+      format: {
+        operationName
+      },
+      target: NoTarget
+    });
+    return false;
+  }
+  for (const schema of nonDefaultSchemas) {
+    if (
+      !schema ||
+      schema.type !== "object" ||
+      !(schema as ObjectSchema).properties
+    ) {
       return false;
     }
+    if (getTypeName(schema) === getTypeName(defaultSchema)) {
+      return true;
+    }
+    // check if any properties in default schema is existing in non-default schema
+    for (const [key, value] of Object.entries(
+      (defaultSchema as ObjectSchema).properties!
+    )) {
+      const nonDefaultSchema = (schema as ObjectSchema).properties![key];
+      if (!nonDefaultSchema) {
+        return false;
+      }
+      if (getTypeName(value) === getTypeName(nonDefaultSchema)) {
+        return true;
+      }
+    }
   }
+
   return false;
 }
 
@@ -187,7 +244,7 @@ function transformBody(
   dpgContext: SdkContext,
   response: HttpOperationResponse,
   importedModels: Set<string>
-) {
+): [Schema, Schema[]] | undefined {
   if (!response.responses.length) {
     return;
   }
@@ -196,6 +253,7 @@ function transformBody(
   const typeSet = new Set<string>();
   const descriptions = new Set<string>();
   let fromCore = false;
+  const schemas = [];
   for (const data of response.responses) {
     const body = data?.body;
     if (!body || isVoidType(body.type)) {
@@ -223,18 +281,22 @@ function transformBody(
         .forEach(importedModels.add, importedModels);
     }
     typeSet.add(bodyType);
+    schemas.push(bodySchema);
   }
 
   if (!typeSet.size) {
     return;
   }
 
-  return {
-    name: "body",
-    type: [...typeSet].join("|"),
-    description: [...descriptions].join("\n\n"),
-    fromCore
-  };
+  return [
+    {
+      name: "body",
+      type: [...typeSet].join("|"),
+      description: [...descriptions].join("\n\n"),
+      fromCore
+    },
+    schemas
+  ];
 }
 
 function transformLroLogicalResponse(

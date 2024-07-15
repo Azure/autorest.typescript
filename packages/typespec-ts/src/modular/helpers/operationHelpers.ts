@@ -78,7 +78,7 @@ function getRLCResponseType(
 function getNarrowedRLCResponse(
   response: Response,
   rlcResponse?: OperationResponse
-): string {
+): string | undefined {
   if (!rlcResponse) {
     return "any";
   }
@@ -88,7 +88,14 @@ function getNarrowedRLCResponse(
   const normalResponse = names?.filter(
     (n) => n === getRLCResponseType(`${statusCode}`, rlcResponse)
   );
-  return lroResponse?.at(0) ?? normalResponse?.at(0) ?? "any";
+  return (
+    // if the response is a LRO response, narrow to the lro logical response
+    lroResponse?.at(0) ??
+    // if the default response is a superset of all other responses, narrow to the normal response
+    (rlcResponse.isDefaultSupersetOfOthers
+      ? normalResponse?.at(0) ?? "any"
+      : undefined)
+  );
 }
 
 export function getSendPrivateFunction(
