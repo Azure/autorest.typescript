@@ -43,7 +43,6 @@ import {
   sortedOperationResponses
 } from "../utils/operationUtil.js";
 import { reportDiagnostic } from "../lib.js";
-import { get } from "lodash";
 
 export function transformToResponseTypes(
   client: SdkClient,
