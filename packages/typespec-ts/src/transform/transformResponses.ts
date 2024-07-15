@@ -102,7 +102,7 @@ export function transformToResponseTypes(
         dpgContext,
         resp,
         inputImportedSet
-      ) ?? [, []];
+      ) ?? [undefined, []];
       rlcOperationUnit.responses.push({
         ...rlcResponseUnit,
         headers,
