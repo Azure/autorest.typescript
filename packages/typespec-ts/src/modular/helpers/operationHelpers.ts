@@ -215,17 +215,27 @@ export function getDeserializePrivateFunction(
     : response.type;
   let hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
   // Narrow down the rlc response type to deserialized one
-  const responseType = getNarrowedRLCResponse(response, operation.rlcResponse);
-  statements.push(`const _result = result as unknown as ${responseType};`);
+  const isNarrowedResponse = getNarrowedRLCResponse(
+    response,
+    operation.rlcResponse
+  );
+  let deserializePrefix = "result.body";
+  if (isNarrowedResponse) {
+    statements.push(
+      `const _result = result as unknown as ${isNarrowedResponse};`
+    );
+    deserializePrefix = "_result.body";
+  }
+
   let deserializedRoot = hasLroSubPath
-    ? `_result.body.${operation?.lroMetadata?.finalResultPath}`
-    : "_result.body";
+    ? `${deserializePrefix}.${operation?.lroMetadata?.finalResultPath}`
+    : `${deserializePrefix}`;
   // TODO: Hard-coded for LRO PATCH case for now
   // https://github.com/Azure/autorest.typescript/issues/2314
   if (isLroOnly && operation.method.toLowerCase() === "patch") {
     deserializedType = response.type;
     hasLroSubPath = false;
-    deserializedRoot = "_result.body";
+    deserializedRoot = deserializePrefix;
   }
   if (isLroOnly && hasLroSubPath) {
     statements.push(
@@ -248,7 +258,7 @@ export function getDeserializePrivateFunction(
     response.isBinaryPayload
   ) {
     // TODO: Fix this any cast when implementing handling dict.
-    statements.push(`return _result.body as any`);
+    statements.push(`return ${deserializedRoot} as any`);
   } else if (
     deserializedType &&
     properties.length > 0 &&
@@ -1113,7 +1123,7 @@ export function getRequestModelMapping(
  */
 export function getResponseMapping(
   type: Type,
-  propertyPath: string = "_result.body",
+  propertyPath: string = "result.body",
   runtimeImports: RuntimeImports,
   typeStack: Type[] = []
 ) {
