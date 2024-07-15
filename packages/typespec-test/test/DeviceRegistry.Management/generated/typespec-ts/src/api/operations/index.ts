@@ -38,9 +38,8 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as undefined;
   return {
-    value: _result.body["value"].map((p) => {
+    value: result.body["value"].map((p) => {
       return {
         name: p["name"],
         isDataAction: p["isDataAction"],
@@ -56,7 +55,7 @@ export async function _listDeserialize(
         actionType: p["actionType"] as ActionType,
       };
     }),
-    nextLink: _result.body["nextLink"],
+    nextLink: result.body["nextLink"],
   };
 }
 
