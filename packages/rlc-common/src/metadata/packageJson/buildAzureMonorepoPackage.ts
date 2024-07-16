@@ -38,17 +38,20 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
   const esmDevDependencies = getEsmDevDependencies(config);
   const cjsDevDependencies = getCjsDevDependencies(config);
+  const devDependencies = {
+    ...getAzurePackageDevDependencies(config),
+    "@azure/dev-tool": "^1.0.0",
+    "@azure/eslint-plugin-azure-sdk": "^3.0.0",
+    ...esmDevDependencies,
+    ...cjsDevDependencies
+  };
+  // azure sdk relies on the vendored version of prettier from dev-tool
+  delete (devDependencies as any)["prettier"];
   return {
     dependencies: {
       ...getAzurePackageDependencies(config)
     },
-    devDependencies: {
-      ...getAzurePackageDevDependencies(config),
-      "@azure/dev-tool": "^1.0.0",
-      "@azure/eslint-plugin-azure-sdk": "^3.0.0",
-      ...esmDevDependencies,
-      ...cjsDevDependencies
-    }
+    devDependencies,
   };
 }
 
