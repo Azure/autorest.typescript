@@ -67,7 +67,11 @@ export interface ChatCompletionsOutput {
  * other consumers.
  */
 export interface CompletionsUsageOutput {
-  /** Indicates whether your capacity has been affected by the usage amount (token count) reported here. */
+  /**
+   * Indicates whether your capacity has been affected by the usage amount (token count) reported here.
+   *
+   * Possible values: "usage", "fixed"
+   */
   capacity_type: CapacityTypeOutput;
   /** The number of tokens generated across all completions emissions. */
   completion_tokens: number;
@@ -93,7 +97,11 @@ export interface ChatChoiceOutput {
 
 /** A representation of a chat message as received in a response. */
 export interface ChatResponseMessageOutput {
-  /** The chat role associated with the message. */
+  /**
+   * The chat role associated with the message.
+   *
+   * Possible values: "system", "user", "assistant", "tool"
+   */
   role: ChatRoleOutput;
   /** The content of the message. */
   content: string | null;
@@ -108,7 +116,11 @@ export interface ChatResponseMessageOutput {
 export interface ModelInfoOutput {
   /** The name of the AI model. For example: `Phi21` */
   model_name: string;
-  /** The type of the AI model. A Unique identifier for the profile. */
+  /**
+   * The type of the AI model. A Unique identifier for the profile.
+   *
+   * Possible values: "embeddings", "image_generation", "text_generation", "image_embeddings", "audio_generation", "chat"
+   */
   model_type: ModelTypeOutput;
   /** The model provider name. For example: `Microsoft Research` */
   model_provider_name: string;
@@ -143,7 +155,11 @@ export interface EmbeddingItemOutput {
 
 /** Measurement of the amount of tokens used in this request and response. */
 export interface EmbeddingsUsageOutput {
-  /** Indicates whether your capacity has been affected by the usage amount (token count) reported here. */
+  /**
+   * Indicates whether your capacity has been affected by the usage amount (token count) reported here.
+   *
+   * Possible values: "usage", "fixed"
+   */
   capacity_type: CapacityTypeOutput;
   /** Number of tokens in the request prompt. */
   input_tokens: number;

@@ -19,6 +19,8 @@ export interface GetChatCompletionsHeaders {
   /**
    * Controls what happens if unknown parameters are passed in the JSON request payload.
    * This sets the HTTP request header `unknown-parameters`.
+   *
+   * Possible values: "error", "drop", "pass_through"
    */
   "unknown-parameters"?: UnknownParams;
 }
@@ -55,6 +57,8 @@ export interface GetEmbeddingsHeaders {
   /**
    * Controls what happens if unknown parameters are passed in the JSON request payload.
    * This sets the HTTP request header `unknown-parameters`.
+   *
+   * Possible values: "error", "drop", "pass_through"
    */
   "unknown-parameters"?: UnknownParams;
 }
@@ -80,6 +84,8 @@ export interface GetImageEmbeddingsHeaders {
   /**
    * Controls what happens if unknown parameters are passed in the JSON request payload.
    * This sets the HTTP request header `unknown-parameters`.
+   *
+   * Possible values: "error", "drop", "pass_through"
    */
   "unknown-parameters"?: UnknownParams;
 }
