@@ -9,6 +9,6 @@ export {
 } from "./operations.js";
 export {
   createServiceDriven,
-  ServiceDrivenClientOptions,
+  ServiceDrivenClientOptionalParams,
   ServiceDrivenContext,
 } from "./serviceDrivenContext.js";

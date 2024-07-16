@@ -3,7 +3,7 @@
 
 export {
   ServiceDrivenClient,
-  ServiceDrivenClientOptions,
+  ServiceDrivenClientOptionalParams,
 } from "./serviceDrivenClient.js";
 export {
   Versions,
