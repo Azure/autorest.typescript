@@ -399,7 +399,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
       : undefined,
     repoURL: repoURL,
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
-    identityPackageURL: repoURL && `${repoURL}/tree/main/sdk/identity/identity`
+    identityPackageURL: repoURL && `${repoURL}/tree/main/sdk/identity/identity`,
+    addCredentials: model.options.addCredentials
   };
 }
 
