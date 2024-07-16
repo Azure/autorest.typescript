@@ -17,11 +17,11 @@ import {
   getTestProfile,
   listTestProfiles,
   createTestProfileAdministrationOperations,
-  TestProfileAdministrationOperationsClientOptions,
+  TestProfileAdministrationOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./api/index.js";
 
-export { TestProfileAdministrationOperationsClientOptions } from "./api/testProfileAdministrationOperationsContext.js";
+export { TestProfileAdministrationOperationsClientOptionalParams } from "./api/testProfileAdministrationOperationsContext.js";
 
 export class TestProfileAdministrationOperationsClient {
   private _client: LoadTestServiceContext;
@@ -31,7 +31,7 @@ export class TestProfileAdministrationOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: TestProfileAdministrationOperationsClientOptions = {},
+    options: TestProfileAdministrationOperationsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

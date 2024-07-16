@@ -679,7 +679,7 @@ export interface TestProfile {
 
 // @public (undocumented)
 export class TestProfileAdministrationOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationOperationsClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationOperationsClientOptionalParams);
     createOrUpdateTestProfile(testProfileId: string, body: TestProfileAdministrationOperationsClientTestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfileAdministrationOperationsClientTestProfile>;
     deleteTestProfile(testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
     getTestProfile(testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfileAdministrationOperationsClientTestProfile>;
@@ -1018,7 +1018,7 @@ export interface TestProfileAdministrationOperationsClientOptionalLoadTestConfig
 }
 
 // @public
-export interface TestProfileAdministrationOperationsClientOptions extends ClientOptions {
+export interface TestProfileAdministrationOperationsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -1376,7 +1376,7 @@ export interface TestProfileRun {
 
 // @public (undocumented)
 export class TestProfileRunOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileRunOperationsClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileRunOperationsClientOptionalParams);
     createOrUpdateTestProfileRun(testProfileRunId: string, body: TestProfileRunOperationsClientTestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
     deleteTestProfileRun(testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
     getTestProfileRun(testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
@@ -1716,7 +1716,7 @@ export interface TestProfileRunOperationsClientOptionalLoadTestConfig {
 }
 
 // @public
-export interface TestProfileRunOperationsClientOptions extends ClientOptions {
+export interface TestProfileRunOperationsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 

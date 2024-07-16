@@ -10,6 +10,6 @@ export {
 } from "./operations.js";
 export {
   createTestProfileRunOperations,
-  TestProfileRunOperationsClientOptions,
+  TestProfileRunOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./testProfileRunOperationsContext.js";

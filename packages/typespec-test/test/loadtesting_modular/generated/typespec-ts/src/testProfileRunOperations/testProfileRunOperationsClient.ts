@@ -19,11 +19,11 @@ import {
   listTestProfileRuns,
   stop,
   createTestProfileRunOperations,
-  TestProfileRunOperationsClientOptions,
+  TestProfileRunOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./api/index.js";
 
-export { TestProfileRunOperationsClientOptions } from "./api/testProfileRunOperationsContext.js";
+export { TestProfileRunOperationsClientOptionalParams } from "./api/testProfileRunOperationsContext.js";
 
 export class TestProfileRunOperationsClient {
   private _client: LoadTestServiceContext;
@@ -33,7 +33,7 @@ export class TestProfileRunOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: TestProfileRunOperationsClientOptions = {},
+    options: TestProfileRunOperationsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -7,7 +7,7 @@ import { LoadTestServiceContext } from "../../rest/index.js";
 import getClient from "../../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface TestProfileAdministrationOperationsClientOptions
+export interface TestProfileAdministrationOperationsClientOptionalParams
   extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
@@ -18,7 +18,7 @@ export { LoadTestServiceContext } from "../../rest/index.js";
 export function createTestProfileAdministrationOperations(
   endpointParam: string,
   credential: TokenCredential,
-  options: TestProfileAdministrationOperationsClientOptions = {},
+  options: TestProfileAdministrationOperationsClientOptionalParams = {},
 ): LoadTestServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

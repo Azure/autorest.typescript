@@ -3,7 +3,7 @@
 
 export {
   TestProfileAdministrationOperationsClient,
-  TestProfileAdministrationOperationsClientOptions,
+  TestProfileAdministrationOperationsClientOptionalParams,
 } from "./testProfileAdministrationOperationsClient.js";
 export {
   Test,

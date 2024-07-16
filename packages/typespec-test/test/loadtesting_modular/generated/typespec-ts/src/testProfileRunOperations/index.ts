@@ -3,7 +3,7 @@
 
 export {
   TestProfileRunOperationsClient,
-  TestProfileRunOperationsClientOptions,
+  TestProfileRunOperationsClientOptionalParams,
 } from "./testProfileRunOperationsClient.js";
 export {
   Test,
