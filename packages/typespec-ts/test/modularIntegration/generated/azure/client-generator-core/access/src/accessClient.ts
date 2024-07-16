@@ -47,7 +47,15 @@ export class AccessClient {
 
   /** Test for internal decorator. */
   constructor(options: AccessClientOptions = {}) {
-    this._client = createAccess(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createAccess({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

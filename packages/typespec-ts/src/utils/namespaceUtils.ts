@@ -1,8 +1,8 @@
 import { getAllModels } from "@azure-tools/typespec-client-generator-core";
 import {
-  Namespace,
   isGlobalNamespace,
   isService,
+  Namespace,
   Operation
 } from "@typespec/compiler";
 import { SdkContext } from "./interfaces.js";

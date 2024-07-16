@@ -9,28 +9,16 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
-export type AccessScope = "job";
-
 // @public
-export interface AccountListSupportedImagesResult {
-    "odata.nextLink"?: string;
-    value?: ImageInformation[];
-}
+export type AccessScope = "job";
 
 // @public
 export interface AffinityInformation {
     affinityId: string;
 }
 
-// @public (undocumented)
-export type AllocationState = "steady" | "resizing" | "stopping";
-
 // @public
-export interface ApplicationListResult {
-    "odata.nextLink"?: string;
-    value?: BatchApplication[];
-}
+export type AllocationState = "steady" | "resizing" | "stopping";
 
 // @public
 export interface ApplicationPackageReference {
@@ -65,7 +53,7 @@ export interface AutoScaleRunError {
     values?: NameValuePair[];
 }
 
-// @public (undocumented)
+// @public
 export type AutoUserScope = "task" | "pool";
 
 // @public
@@ -199,7 +187,7 @@ export class BatchClient {
     uploadNodeLogs(poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptionalParams): Promise<UploadBatchServiceLogsResult>;
 }
 
-// @public (undocumented)
+// @public
 export interface BatchClientOptions extends ClientOptions {
 }
 
@@ -272,18 +260,6 @@ export interface BatchJobDisableOptions {
 }
 
 // @public
-export interface BatchJobListPreparationAndReleaseTaskStatusResult {
-    "odata.nextLink"?: string;
-    value?: JobPreparationAndReleaseTaskExecutionInformation[];
-}
-
-// @public
-export interface BatchJobListResult {
-    "odata.nextLink"?: string;
-    value?: BatchJob[];
-}
-
-// @public
 export interface BatchJobSchedule {
     readonly creationTime?: Date;
     readonly displayName?: string;
@@ -309,12 +285,6 @@ export interface BatchJobScheduleCreateOptions {
     jobSpecification: JobSpecification;
     metadata?: MetadataItem[];
     schedule: Schedule;
-}
-
-// @public
-export interface BatchJobScheduleListResult {
-    "odata.nextLink"?: string;
-    value?: BatchJobSchedule[];
 }
 
 // @public
@@ -367,7 +337,7 @@ export interface BatchNode {
     vmSize?: string;
 }
 
-// @public (undocumented)
+// @public
 export type BatchNodeDeallocationOption = "requeue" | "terminate" | "taskcompletion" | "retaineddata";
 
 // @public
@@ -382,7 +352,7 @@ export interface BatchNodeError {
     message?: string;
 }
 
-// @public (undocumented)
+// @public
 export type BatchNodeFillType = "spread" | "pack";
 
 // @public
@@ -401,15 +371,9 @@ export interface BatchNodeInformation {
 }
 
 // @public
-export interface BatchNodeListResult {
-    "odata.nextLink"?: string;
-    value?: BatchNode[];
-}
-
-// @public (undocumented)
 export type BatchNodeRebootOption = "requeue" | "terminate" | "taskcompletion" | "retaineddata";
 
-// @public (undocumented)
+// @public
 export type BatchNodeReimageOption = "requeue" | "terminate" | "taskcompletion" | "retaineddata";
 
 // @public
@@ -418,7 +382,7 @@ export interface BatchNodeRemoteLoginSettingsResult {
     remoteLoginPort: number;
 }
 
-// @public (undocumented)
+// @public
 export type BatchNodeState = "idle" | "rebooting" | "reimaging" | "running" | "unusable" | "creating" | "starting" | "waitingforstarttask" | "starttaskfailed" | "unknown" | "leavingpool" | "offline" | "preempted";
 
 // @public
@@ -524,12 +488,6 @@ export interface BatchPoolIdentity {
 }
 
 // @public
-export interface BatchPoolListResult {
-    "odata.nextLink"?: string;
-    value?: BatchPool[];
-}
-
-// @public
 export interface BatchPoolReplaceOptions {
     applicationPackageReferences: ApplicationPackageReference[];
     certificateReferences: CertificateReference[];
@@ -612,33 +570,21 @@ export interface BatchTaskCreateOptions {
 }
 
 // @public
-export interface BatchTaskListResult {
-    "odata.nextLink"?: string;
-    value?: BatchTask[];
-}
-
-// @public
 export interface BatchTaskListSubtasksResult {
     value?: SubtaskInformation[];
 }
 
-// @public (undocumented)
+// @public
 export type CachingType = "none" | "readonly" | "readwrite";
 
-// @public (undocumented)
+// @public
 export interface CancelCertificateDeletionOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
-export type CertificateFormat = "pfx" | "cer";
-
 // @public
-export interface CertificateListResult {
-    "odata.nextLink"?: string;
-    value?: BatchCertificate[];
-}
+export type CertificateFormat = "pfx" | "cer";
 
 // @public
 export interface CertificateReference {
@@ -649,13 +595,13 @@ export interface CertificateReference {
     visibility?: CertificateVisibility[];
 }
 
-// @public (undocumented)
+// @public
 export type CertificateState = "active" | "deleting" | "deletefailed";
 
-// @public (undocumented)
+// @public
 export type CertificateStoreLocation = "currentuser" | "localmachine";
 
-// @public (undocumented)
+// @public
 export type CertificateVisibility = "starttask" | "task" | "remoteuser";
 
 // @public
@@ -688,10 +634,10 @@ export interface ContainerRegistry {
     username?: string;
 }
 
-// @public (undocumented)
+// @public
 export type ContainerType = "dockerCompatible" | "criCompatible";
 
-// @public (undocumented)
+// @public
 export type ContainerWorkingDirectory = "taskWorkingDirectory" | "containerImageDefault";
 
 // @public
@@ -699,49 +645,49 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface CreateCertificateOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateNodeUserOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreatePoolOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateTaskCollectionOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateTaskOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -763,13 +709,13 @@ export interface DeleteCertificateError {
     values?: NameValuePair[];
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteCertificateOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -779,7 +725,7 @@ export interface DeleteJobOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -789,20 +735,20 @@ export interface DeleteJobScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteNodeFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     recursive?: boolean;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteNodeUserOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DeletePoolOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -812,14 +758,14 @@ export interface DeletePoolOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTaskFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     recursive?: boolean;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteTaskOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -829,10 +775,10 @@ export interface DeleteTaskOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export type DependencyAction = "satisfy" | "block";
 
-// @public (undocumented)
+// @public
 export type DiffDiskPlacement = "cachedisk";
 
 // @public
@@ -840,13 +786,13 @@ export interface DiffDiskSettings {
     placement?: DiffDiskPlacement;
 }
 
-// @public (undocumented)
+// @public
 export type DisableBatchNodeSchedulingOption = "requeue" | "terminate" | "taskcompletion";
 
-// @public (undocumented)
+// @public
 export type DisableJobOption = "requeue" | "terminate" | "wait";
 
-// @public (undocumented)
+// @public
 export interface DisableJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -857,7 +803,7 @@ export interface DisableJobOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DisableJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -867,14 +813,14 @@ export interface DisableJobScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DisableNodeSchedulingOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface DisablePoolAutoScaleOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
@@ -885,16 +831,16 @@ export interface DiskEncryptionConfiguration {
     targets?: DiskEncryptionTarget[];
 }
 
-// @public (undocumented)
+// @public
 export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
 
-// @public (undocumented)
+// @public
 export type DynamicVNetAssignmentScope = "none" | "job";
 
-// @public (undocumented)
+// @public
 export type ElevationLevel = "nonadmin" | "admin";
 
-// @public (undocumented)
+// @public
 export interface EnableJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -904,7 +850,7 @@ export interface EnableJobOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface EnableJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -914,13 +860,13 @@ export interface EnableJobScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface EnableNodeSchedulingOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface EnablePoolAutoScaleOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -937,7 +883,7 @@ export interface EnvironmentSetting {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export type ErrorCategory = "usererror" | "servererror";
 
 // @public
@@ -946,7 +892,7 @@ export interface ErrorMessage {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EvaluatePoolAutoScaleOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -990,20 +936,20 @@ export interface FileProperties {
     lastModified: Date;
 }
 
-// @public (undocumented)
+// @public
 export interface GetApplicationOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetCertificateOptionalParams extends OperationOptions {
     $select?: string[];
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetJobOptionalParams extends OperationOptions {
     $expand?: string[];
     $select?: string[];
@@ -1015,7 +961,7 @@ export interface GetJobOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetJobScheduleOptionalParams extends OperationOptions {
     $expand?: string[];
     $select?: string[];
@@ -1027,20 +973,20 @@ export interface GetJobScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetJobTaskCountsOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetNodeExtensionOptionalParams extends OperationOptions {
     $select?: string[];
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetNodeFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifModifiedSince?: Date;
@@ -1049,7 +995,7 @@ export interface GetNodeFileOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifModifiedSince?: Date;
@@ -1057,26 +1003,26 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetNodeOptionalParams extends OperationOptions {
     $select?: string[];
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetNodeRemoteDesktopFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetPoolOptionalParams extends OperationOptions {
     $expand?: string[];
     $select?: string[];
@@ -1088,7 +1034,7 @@ export interface GetPoolOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetTaskFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifModifiedSince?: Date;
@@ -1097,7 +1043,7 @@ export interface GetTaskFileOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifModifiedSince?: Date;
@@ -1105,7 +1051,7 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetTaskOptionalParams extends OperationOptions {
     $expand?: string[];
     $select?: string[];
@@ -1153,7 +1099,7 @@ export interface InboundEndpoint {
     publicIpAddress?: string;
 }
 
-// @public (undocumented)
+// @public
 export type InboundEndpointProtocol = "tcp" | "udp";
 
 // @public
@@ -1175,10 +1121,10 @@ export interface InstanceViewStatus {
     time?: string;
 }
 
-// @public (undocumented)
+// @public
 export type IpAddressProvisioningType = "batchmanaged" | "usermanaged" | "nopublicipaddresses";
 
-// @public (undocumented)
+// @public
 export type JobAction = "none" | "disable" | "terminate";
 
 // @public
@@ -1257,7 +1203,7 @@ export interface JobPreparationTaskExecutionInformation {
     taskRootDirectoryUrl?: string;
 }
 
-// @public (undocumented)
+// @public
 export type JobPreparationTaskState = "running" | "completed";
 
 // @public
@@ -1285,7 +1231,7 @@ export interface JobReleaseTaskExecutionInformation {
     taskRootDirectoryUrl?: string;
 }
 
-// @public (undocumented)
+// @public
 export type JobReleaseTaskState = "running" | "completed";
 
 // @public
@@ -1295,7 +1241,7 @@ export interface JobScheduleExecutionInformation {
     recentJob?: RecentJob;
 }
 
-// @public (undocumented)
+// @public
 export interface JobScheduleExistsOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -1305,7 +1251,7 @@ export interface JobScheduleExistsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export type JobScheduleState = "active" | "completed" | "disabled" | "terminating" | "deleting";
 
 // @public
@@ -1353,7 +1299,7 @@ export interface JobSpecification {
     usesTaskDependencies?: boolean;
 }
 
-// @public (undocumented)
+// @public
 export type JobState = "active" | "disabling" | "disabled" | "enabling" | "terminating" | "completed" | "deleting";
 
 // @public
@@ -1381,14 +1327,14 @@ export interface LinuxUserConfiguration {
     uid?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListApplicationsOptionalParams extends OperationOptions {
     apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListCertificatesOptionalParams extends OperationOptions {
     $filter?: string;
     $select?: string[];
@@ -1397,7 +1343,7 @@ export interface ListCertificatesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends OperationOptions {
     $filter?: string;
     $select?: string[];
@@ -1405,7 +1351,7 @@ export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends Op
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListJobSchedulesOptionalParams extends OperationOptions {
     $expand?: string[];
     $filter?: string;
@@ -1415,7 +1361,7 @@ export interface ListJobSchedulesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
     $expand?: string[];
     $filter?: string;
@@ -1425,7 +1371,7 @@ export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListJobsOptionalParams extends OperationOptions {
     $expand?: string[];
     $filter?: string;
@@ -1435,14 +1381,14 @@ export interface ListJobsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListNodeExtensionsOptionalParams extends OperationOptions {
     $select?: string[];
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListNodeFilesOptionalParams extends OperationOptions {
     $filter?: string;
     apiVersion?: string;
@@ -1451,7 +1397,7 @@ export interface ListNodeFilesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListNodesOptionalParams extends OperationOptions {
     $filter?: string;
     $select?: string[];
@@ -1460,7 +1406,7 @@ export interface ListNodesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
     $filter?: string;
     apiVersion?: string;
@@ -1468,7 +1414,7 @@ export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListPoolsOptionalParams extends OperationOptions {
     $expand?: string[];
     $filter?: string;
@@ -1478,7 +1424,7 @@ export interface ListPoolsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
     $filter?: string;
     apiVersion?: string;
@@ -1488,21 +1434,21 @@ export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListSubTasksOptionalParams extends OperationOptions {
     $select?: string[];
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListSupportedImagesOptionalParams extends OperationOptions {
     $filter?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTaskFilesOptionalParams extends OperationOptions {
     $filter?: string;
     apiVersion?: string;
@@ -1511,7 +1457,7 @@ export interface ListTaskFilesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ListTasksOptionalParams extends OperationOptions {
     $expand?: string[];
     $filter?: string;
@@ -1521,7 +1467,7 @@ export interface ListTasksOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export type LoginMode = "batch" | "interactive";
 
 // @public
@@ -1568,7 +1514,7 @@ export interface NetworkSecurityGroupRule {
     sourcePortRanges?: string[];
 }
 
-// @public (undocumented)
+// @public
 export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
 
 // @public
@@ -1584,7 +1530,7 @@ export interface NodeAgentInformation {
     version: string;
 }
 
-// @public (undocumented)
+// @public
 export type NodeCommunicationMode = "default" | "classic" | "simplified";
 
 // @public
@@ -1619,17 +1565,11 @@ export interface NodeFile {
 }
 
 // @public
-export interface NodeFileListResult {
-    "odata.nextLink"?: string;
-    value?: NodeFile[];
-}
-
-// @public
 export interface NodePlacementConfiguration {
     policy?: NodePlacementPolicyType;
 }
 
-// @public (undocumented)
+// @public
 export type NodePlacementPolicyType = "regional" | "zonal";
 
 // @public
@@ -1657,15 +1597,9 @@ export interface NodeVMExtension {
 }
 
 // @public
-export interface NodeVMExtensionList {
-    "odata.nextLink"?: string;
-    value?: NodeVMExtension[];
-}
-
-// @public (undocumented)
 export type OnAllTasksComplete = "noaction" | "terminatejob";
 
-// @public (undocumented)
+// @public
 export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
 
 // @public
@@ -1673,7 +1607,7 @@ export interface OSDisk {
     ephemeralOSDiskSettings?: DiffDiskSettings;
 }
 
-// @public (undocumented)
+// @public
 export type OSType = "linux" | "windows";
 
 // @public
@@ -1696,7 +1630,7 @@ export interface OutputFileDestination {
     container?: OutputFileBlobContainerDestination;
 }
 
-// @public (undocumented)
+// @public
 export type OutputFileUploadCondition = "tasksuccess" | "taskfailure" | "taskcompletion";
 
 // @public
@@ -1721,7 +1655,7 @@ export interface PoolEndpointConfiguration {
     inboundNatPools: InboundNATPool[];
 }
 
-// @public (undocumented)
+// @public
 export interface PoolExistsOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -1731,7 +1665,7 @@ export interface PoolExistsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export type PoolIdentityType = "UserAssigned" | "None";
 
 // @public
@@ -1740,26 +1674,14 @@ export interface PoolInformation {
     poolId?: string;
 }
 
-// @public (undocumented)
-export type PoolLifetimeOption = "jobschedule" | "job";
-
 // @public
-export interface PoolListUsageMetricsResult {
-    "odata.nextLink"?: string;
-    value?: PoolUsageMetrics[];
-}
+export type PoolLifetimeOption = "jobschedule" | "job";
 
 // @public
 export interface PoolNodeCounts {
     dedicated?: NodeCounts;
     lowPriority?: NodeCounts;
     poolId: string;
-}
-
-// @public
-export interface PoolNodeCountsListResult {
-    "odata.nextLink"?: string;
-    value?: PoolNodeCounts[];
 }
 
 // @public
@@ -1788,7 +1710,7 @@ export interface PoolSpecification {
     vmSize: string;
 }
 
-// @public (undocumented)
+// @public
 export type PoolState = "active" | "deleting";
 
 // @public
@@ -1815,7 +1737,7 @@ export interface PublicIpAddressConfiguration {
     ipAddressProvisioningType?: IpAddressProvisioningType;
 }
 
-// @public (undocumented)
+// @public
 export interface ReactivateTaskOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -1825,7 +1747,7 @@ export interface ReactivateTaskOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface RebootNodeOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1838,14 +1760,14 @@ export interface RecentJob {
     url?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ReimageNodeOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface RemoveNodesOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1856,7 +1778,7 @@ export interface RemoveNodesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ReplaceJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1867,7 +1789,7 @@ export interface ReplaceJobOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ReplaceJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1878,21 +1800,21 @@ export interface ReplaceJobScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ReplaceNodeUserOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ReplacePoolPropertiesOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface ReplaceTaskOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1910,7 +1832,7 @@ export interface ResizeError {
     values?: NameValuePair[];
 }
 
-// @public (undocumented)
+// @public
 export interface ResizePoolOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1957,7 +1879,7 @@ export interface Schedule {
     startWindow?: string;
 }
 
-// @public (undocumented)
+// @public
 export type SchedulingState = "enabled" | "disabled";
 
 // @public
@@ -1984,13 +1906,13 @@ export interface StartTaskInformation {
     state: StartTaskState;
 }
 
-// @public (undocumented)
+// @public
 export type StartTaskState = "running" | "completed";
 
-// @public (undocumented)
+// @public
 export type StatusLevelTypes = "Error" | "Info" | "Warning";
 
-// @public (undocumented)
+// @public
 export interface StopPoolResizeOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -2000,7 +1922,7 @@ export interface StopPoolResizeOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export type StorageAccountType = "standard_lrs" | "premium_lrs";
 
 // @public
@@ -2019,7 +1941,7 @@ export interface SubtaskInformation {
     stateTransitionTime?: Date;
 }
 
-// @public (undocumented)
+// @public
 export type SubtaskState = "preparing" | "running" | "completed";
 
 // @public
@@ -2037,7 +1959,7 @@ export interface TaskAddResult {
     taskId: string;
 }
 
-// @public (undocumented)
+// @public
 export type TaskAddStatus = "Success" | "clienterror" | "servererror";
 
 // @public
@@ -2097,7 +2019,7 @@ export interface TaskExecutionInformation {
     startTime?: Date;
 }
 
-// @public (undocumented)
+// @public
 export type TaskExecutionResult = "success" | "failure";
 
 // @public
@@ -2138,7 +2060,7 @@ export interface TaskSlotCounts {
     succeeded: number;
 }
 
-// @public (undocumented)
+// @public
 export type TaskState = "active" | "preparing" | "running" | "completed";
 
 // @public
@@ -2156,7 +2078,7 @@ export interface TaskStatistics {
     writeIOps: number;
 }
 
-// @public (undocumented)
+// @public
 export interface TerminateJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -2167,7 +2089,7 @@ export interface TerminateJobOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface TerminateJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -2177,7 +2099,7 @@ export interface TerminateJobScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface TerminateTaskOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -2187,7 +2109,7 @@ export interface TerminateTaskOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface UpdateJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -2198,7 +2120,7 @@ export interface UpdateJobOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface UpdateJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -2209,7 +2131,7 @@ export interface UpdateJobScheduleOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface UpdatePoolOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -2234,7 +2156,7 @@ export interface UploadBatchServiceLogsResult {
     virtualDirectoryName: string;
 }
 
-// @public (undocumented)
+// @public
 export interface UploadNodeLogsOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -2270,10 +2192,10 @@ export interface UserIdentity {
     username?: string;
 }
 
-// @public (undocumented)
+// @public
 export type VerificationType = "verified" | "unverified";
 
-// @public (undocumented)
+// @public
 export type Versions = "2023-05-01.17.0";
 
 // @public

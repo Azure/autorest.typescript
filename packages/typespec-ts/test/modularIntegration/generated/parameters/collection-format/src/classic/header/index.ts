@@ -5,6 +5,7 @@ import { CollectionFormatContext } from "../../api/collectionFormatContext.js";
 import { headerCsv } from "../../api/header/index.js";
 import { HeaderCsvOptionalParams } from "../../models/options.js";
 
+/** Interface representing a Header operations. */
 export interface HeaderOperations {
   csv: (colors: string[], options?: HeaderCsvOptionalParams) => Promise<void>;
 }

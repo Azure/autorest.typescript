@@ -73,7 +73,12 @@ function transformApiVersion(
   const queryVersionDetail = getOperationQueryApiVersion(model);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
-    pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
+    queryVersionDetail || pathVersionDetail
+      ? Boolean(
+          pathVersionDetail?.isCrossedVersion ||
+            queryVersionDetail?.isCrossedVersion
+        )
+      : undefined;
   let defaultValue =
     pathVersionDetail?.defaultValue ?? queryVersionDetail?.defaultValue;
 
@@ -88,7 +93,8 @@ function transformApiVersion(
       pathVersionDetail
     ),
     isCrossedVersion,
-    defaultValue
+    defaultValue,
+    required: pathVersionDetail?.required ?? queryVersionDetail?.required
   };
 }
 
@@ -112,9 +118,10 @@ function getOperationQueryApiVersion(
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return {
-      definedPosition: "path",
+      definedPosition: "query",
       isCrossedVersion: false,
-      defaultValue: apiVersionParam.schema.value.value.toString()
+      defaultValue: apiVersionParam.schema.value.value.toString(),
+      required: apiVersionParam.required
     };
   }
 

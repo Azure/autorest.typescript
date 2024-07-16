@@ -2,14 +2,15 @@
 // Licensed under the MIT license.
 
 import {
+  userOrderSerializer,
   User,
   ListItemInputBody,
-  UserListResults,
   FirstItem,
   SecondItem,
-  PagedUser,
-  PagedFirstItem,
-  PagedSecondItem,
+  _PagedFirstItem,
+  _PagedSecondItem,
+  _PagedUser,
+  _UserListResults,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -82,10 +83,7 @@ export function _createOrUpdateSend(
         orders:
           resource["orders"] === undefined
             ? resource["orders"]
-            : resource["orders"].map((p) => ({
-                userId: p["userId"],
-                detail: p["detail"],
-              })),
+            : resource["orders"].map(userOrderSerializer),
       },
     });
 }
@@ -106,11 +104,9 @@ export async function _createOrUpdateDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+        : result.body["orders"].map((p) => {
+            return { id: p["id"], userId: p["userId"], detail: p["detail"] };
+          }),
     etag: result.body["etag"],
   };
 }
@@ -145,10 +141,7 @@ export function _createOrReplaceSend(
         orders:
           resource["orders"] === undefined
             ? resource["orders"]
-            : resource["orders"].map((p) => ({
-                userId: p["userId"],
-                detail: p["detail"],
-              })),
+            : resource["orders"].map(userOrderSerializer),
       },
     });
 }
@@ -169,11 +162,9 @@ export async function _createOrReplaceDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+        : result.body["orders"].map((p) => {
+            return { id: p["id"], userId: p["userId"], detail: p["detail"] };
+          }),
     etag: result.body["etag"],
   };
 }
@@ -212,11 +203,9 @@ export async function _getDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+        : result.body["orders"].map((p) => {
+            return { id: p["id"], userId: p["userId"], detail: p["detail"] };
+          }),
     etag: result.body["etag"],
   };
 }
@@ -262,25 +251,29 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: List200Response | ListDefaultResponse,
-): Promise<PagedUser> {
+): Promise<_PagedUser> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      orders:
-        p["orders"] === undefined
-          ? p["orders"]
-          : p["orders"].map((p) => ({
-              id: p["id"],
-              userId: p["userId"],
-              detail: p["detail"],
-            })),
-      etag: p["etag"],
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        orders:
+          p["orders"] === undefined
+            ? p["orders"]
+            : p["orders"].map((p) => {
+                return {
+                  id: p["id"],
+                  userId: p["userId"],
+                  detail: p["detail"],
+                };
+              }),
+        etag: p["etag"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -309,25 +302,29 @@ export function _listWithPageSend(
 
 export async function _listWithPageDeserialize(
   result: ListWithPage200Response | ListWithPageDefaultResponse,
-): Promise<PagedUser> {
+): Promise<_PagedUser> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      orders:
-        p["orders"] === undefined
-          ? p["orders"]
-          : p["orders"].map((p) => ({
-              id: p["id"],
-              userId: p["userId"],
-              detail: p["detail"],
-            })),
-      etag: p["etag"],
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        orders:
+          p["orders"] === undefined
+            ? p["orders"]
+            : p["orders"].map((p) => {
+                return {
+                  id: p["id"],
+                  userId: p["userId"],
+                  detail: p["detail"],
+                };
+              }),
+        etag: p["etag"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -363,25 +360,29 @@ export function _listWithParametersSend(
 
 export async function _listWithParametersDeserialize(
   result: ListWithParameters200Response | ListWithParametersDefaultResponse,
-): Promise<PagedUser> {
+): Promise<_PagedUser> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      orders:
-        p["orders"] === undefined
-          ? p["orders"]
-          : p["orders"].map((p) => ({
-              id: p["id"],
-              userId: p["userId"],
-              detail: p["detail"],
-            })),
-      etag: p["etag"],
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        orders:
+          p["orders"] === undefined
+            ? p["orders"]
+            : p["orders"].map((p) => {
+                return {
+                  id: p["id"],
+                  userId: p["userId"],
+                  detail: p["detail"],
+                };
+              }),
+        etag: p["etag"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -415,25 +416,29 @@ export async function _listWithCustomPageModelDeserialize(
   result:
     | ListWithCustomPageModel200Response
     | ListWithCustomPageModelDefaultResponse,
-): Promise<UserListResults> {
+): Promise<_UserListResults> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    items: result.body["items"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      orders:
-        p["orders"] === undefined
-          ? p["orders"]
-          : p["orders"].map((p) => ({
-              id: p["id"],
-              userId: p["userId"],
-              detail: p["detail"],
-            })),
-      etag: p["etag"],
-    })),
+    items: result.body["items"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        orders:
+          p["orders"] === undefined
+            ? p["orders"]
+            : p["orders"].map((p) => {
+                return {
+                  id: p["id"],
+                  userId: p["userId"],
+                  detail: p["detail"],
+                };
+              }),
+        etag: p["etag"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -513,11 +518,9 @@ export async function _$exportDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+        : result.body["orders"].map((p) => {
+            return { id: p["id"], userId: p["userId"], detail: p["detail"] };
+          }),
     etag: result.body["etag"],
   };
 }
@@ -549,13 +552,15 @@ export function _listFirstItemSend(
 
 export async function _listFirstItemDeserialize(
   result: ListFirstItem200Response | ListFirstItemDefaultResponse,
-): Promise<PagedFirstItem> {
+): Promise<_PagedFirstItem> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({ id: p["id"] })),
+    value: result.body["value"].map((p) => {
+      return { id: p["id"] };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -584,13 +589,15 @@ export function _listSecondItemSend(
 
 export async function _listSecondItemDeserialize(
   result: ListSecondItem200Response | ListSecondItemDefaultResponse,
-): Promise<PagedSecondItem> {
+): Promise<_PagedSecondItem> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({ name: p["name"] })),
+    value: result.body["value"].map((p) => {
+      return { name: p["name"] };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

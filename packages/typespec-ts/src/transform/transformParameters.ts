@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
+  ApiVersionInfo,
   Imports,
   ObjectSchema,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
   Schema,
-  SchemaContext,
-  ApiVersionInfo
+  SchemaContext
 } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, isVoidType, Type } from "@typespec/compiler";
 import {
@@ -19,32 +19,32 @@ import {
   HttpOperationParameters
 } from "@typespec/http";
 import {
-  getImportedModelName,
-  getTypeName,
-  getSchemaForType,
-  getFormattedPropertyDoc,
   getBodyType,
-  getSerializeTypeName
+  getFormattedPropertyDoc,
+  getImportedModelName,
+  getSchemaForType,
+  getSerializeTypeName,
+  getTypeName
 } from "../utils/modelUtils.js";
 
+import {
+  isApiVersion,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkClient
+} from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "../utils/interfaces.js";
+import {
+  extractMediaTypes,
+  hasMediaType,
+  isMediaTypeJsonMergePatch,
+  KnownMediaType
+} from "../utils/mediaTypes.js";
 import {
   getOperationGroupName,
   getOperationName,
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
-import {
-  SdkClient,
-  listOperationGroups,
-  listOperationsInOperationGroup,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
-import { SdkContext } from "../utils/interfaces.js";
-import {
-  KnownMediaType,
-  extractMediaTypes,
-  hasMediaType,
-  isMediaTypeJsonMergePatch
-} from "../utils/mediaTypes.js";
 
 export function transformToParameterTypes(
   client: SdkClient,

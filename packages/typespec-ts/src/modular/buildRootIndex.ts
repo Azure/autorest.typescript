@@ -1,7 +1,7 @@
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
-import { normalizeName, NameType } from "@azure-tools/rlc-common";
 
 export function buildRootIndex(
   client: Client,

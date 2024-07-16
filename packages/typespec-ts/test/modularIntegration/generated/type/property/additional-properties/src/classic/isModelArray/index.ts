@@ -9,10 +9,13 @@ import {
   IsModelArrayPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IsModelArray operations. */
 export interface IsModelArrayOperations {
+  /** Get call */
   get: (
     options?: IsModelArrayGetOptionalParams,
   ) => Promise<IsModelArrayAdditionalProperties>;
+  /** Put operation */
   put: (
     body: IsModelArrayAdditionalProperties,
     options?: IsModelArrayPutOptionalParams,

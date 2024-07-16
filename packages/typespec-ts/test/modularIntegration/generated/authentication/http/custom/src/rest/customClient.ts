@@ -6,6 +6,9 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { CustomContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface CustomContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `CustomContext`
  * @param credentials - uniquely identify client credential
@@ -13,11 +16,11 @@ import { CustomContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: CustomContextOptions = {},
 ): CustomContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-azure-http-custom-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-azure-http-custom/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -31,7 +34,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as CustomContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

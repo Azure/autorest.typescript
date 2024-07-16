@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { InputModel } from "./models.js";
+import { InputModel, RoundTripModel } from "./models.js";
 
 export interface InputToInputOutputBodyParam {
   body: InputModel;
@@ -11,3 +11,10 @@ export interface InputToInputOutputBodyParam {
 export type InputToInputOutputParameters = InputToInputOutputBodyParam &
   RequestParameters;
 export type OutputToInputOutputParameters = RequestParameters;
+
+export interface ModelInReadOnlyPropertyBodyParam {
+  body: RoundTripModel;
+}
+
+export type ModelInReadOnlyPropertyParameters =
+  ModelInReadOnlyPropertyBodyParam & RequestParameters;

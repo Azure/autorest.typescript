@@ -12,6 +12,7 @@ import {
   UnionEnumUnionEnumMemberNameOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a UnionEnum operations. */
 export interface UnionEnumOperations {
   unionEnumName: (
     body: ClientExtensibleEnum,

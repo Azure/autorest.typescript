@@ -9,10 +9,13 @@ import {
   ExtendsModelArrayPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ExtendsModelArray operations. */
 export interface ExtendsModelArrayOperations {
+  /** Get call */
   get: (
     options?: ExtendsModelArrayGetOptionalParams,
   ) => Promise<ExtendsModelArrayAdditionalProperties>;
+  /** Put operation */
   put: (
     body: ExtendsModelArrayAdditionalProperties,
     options?: ExtendsModelArrayPutOptionalParams,

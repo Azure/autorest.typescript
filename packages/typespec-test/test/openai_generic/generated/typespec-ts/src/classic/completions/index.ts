@@ -9,6 +9,7 @@ import {
 import { create } from "../../api/completions/index.js";
 import { CompletionsCreateOptionalParams } from "../../models/options.js";
 
+/** Interface representing a Completions operations. */
 export interface CompletionsOperations {
   create: (
     body: CreateCompletionRequest,

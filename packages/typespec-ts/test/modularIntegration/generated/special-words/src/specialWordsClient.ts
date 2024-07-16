@@ -72,7 +72,15 @@ export class SpecialWordsClient {
    * ```
    */
   constructor(options: SpecialWordsClientOptions = {}) {
-    this._client = createSpecialWords(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createSpecialWords({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.models = getModelsOperations(this._client);
     this.modelProperties = getModelPropertiesOperations(this._client);

@@ -1,6 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  User as UserRest,
+  CreateWidget as CreateWidgetRest,
+} from "../rest/index.js";
+
 /** Details about a user. */
 export interface User {
   /** The name of user. */
@@ -9,6 +14,13 @@ export interface User {
   role: string;
   /** The UUID of this widget. This is generated automatically by the service. */
   id: string;
+}
+
+export function userSerializer(item: User): UserRest {
+  return {
+    role: item["role"],
+    id: item["id"],
+  };
 }
 
 export interface Widget {
@@ -27,7 +39,7 @@ export interface WidgetError {
   message: string;
 }
 
-export interface ListWidgetsPagesResults {
+export interface _ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
   /** The URL to get the next set of results. */
@@ -41,11 +53,25 @@ export interface CreateWidget {
   color: "red" | "blue";
 }
 
+export function createWidgetSerializer(item: CreateWidget): CreateWidgetRest {
+  return {
+    weight: item["weight"],
+    color: item["color"],
+  };
+}
+
 export interface UpdateWidget {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
   /** The color of the widget. */
   color?: "red" | "blue";
+}
+
+export function updateWidgetSerializer(item: UpdateWidget) {
+  return {
+    weight: item["weight"],
+    color: item["color"],
+  };
 }
 
 export interface AnalyzeResult {
@@ -59,6 +85,12 @@ export interface NonReferencedModel {
   prop2: string;
 }
 
+export function nonReferencedModelSerializer(item: NonReferencedModel) {
+  return {
+    prop1: item["prop1"],
+    prop2: item["prop2"],
+  };
+}
+
 /** The Contoso Widget Manager service version. */
-/** */
 export type Versions = "1.0.0";

@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { CollectionFormatContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface CollectionFormatClientOptions extends ClientOptions {}
 
 export { CollectionFormatContext } from "../rest/index.js";
@@ -13,6 +14,14 @@ export { CollectionFormatContext } from "../rest/index.js";
 export function createCollectionFormat(
   options: CollectionFormatClientOptions = {},
 ): CollectionFormatContext {
-  const clientContext = getClient(options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

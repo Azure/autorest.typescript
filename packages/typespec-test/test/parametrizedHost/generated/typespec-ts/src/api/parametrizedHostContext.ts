@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { ParametrizedHostContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface ParametrizedHostClientOptions extends ClientOptions {
   host?: string;
   subdomain?: string;
@@ -19,6 +20,14 @@ export function createParametrizedHost(
   credential: TokenCredential,
   options: ParametrizedHostClientOptions = {},
 ): ParametrizedHostContext {
-  const clientContext = getClient(credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

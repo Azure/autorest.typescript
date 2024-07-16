@@ -6,6 +6,9 @@ import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { ChatProtocolContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface ChatProtocolContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `ChatProtocolContext`
  * @param endpointParam - A sequence of textual characters.
@@ -15,11 +18,10 @@ import { ChatProtocolContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {},
+  options: ChatProtocolContextOptions = {},
 ): ChatProtocolContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
-  const userAgentInfo = `azsdk-js-ai-chat-protocol-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-ai-chat-protocol/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -37,7 +39,6 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

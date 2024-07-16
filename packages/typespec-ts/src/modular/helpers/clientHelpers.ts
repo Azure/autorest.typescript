@@ -1,16 +1,21 @@
 import {
+  getImportSpecifier,
+  Imports as RuntimeImports
+} from "@azure-tools/rlc-common";
+import {
   OptionalKind,
   ParameterDeclarationStructure,
   SourceFile
 } from "ts-morph";
 import { Client } from "../modularCodeModel.js";
-import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
-import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { getType } from "./typeHelpers.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export function getClientParameters(
-  client: Client
+  client: Client,
+  dpgContext: SdkContext,
+  isClassicalClient = false
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const { parameters } = client;
   const name = getClientName(client);
@@ -38,11 +43,43 @@ export function getClientParameters(
           name: p.clientName,
           type: typeName
         };
-      }),
-    optionsParam
+      })
   ];
+  // Add promoted client-level parameters for classical clients
+  if (isClassicalClient && dpgContext.rlcOptions?.azureArm) {
+    // added subscriptionId parameter for ARM clients
+    params.push({
+      name: "subscriptionId",
+      type: `string`
+    });
+  }
+  params.push(optionsParam);
 
   return params;
+}
+
+export function getUserAgentStatements(
+  sdkUserAgentPrefix: string,
+  paramNames: string[]
+): { userAgentStatements: string; updatedParamNames: string[] } {
+  const userAgentStatements = `
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = ${
+      "prefixFromOptions ? `${prefixFromOptions} " +
+      sdkUserAgentPrefix +
+      "` : " +
+      `"${sdkUserAgentPrefix}"`
+    };
+  `;
+
+  // Update param names to spread over options
+  const updatedParamNames = paramNames.map((x) =>
+    x === "options"
+      ? "{ ...options, userAgentOptions: { userAgentPrefix } }"
+      : x
+  );
+
+  return { userAgentStatements, updatedParamNames };
 }
 
 export function importCredential(

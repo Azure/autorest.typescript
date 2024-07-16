@@ -50,6 +50,7 @@ export function generateModelFiles(
     importedModels,
     schemaContext
   );
+
   if (
     objectTypeAliases.length ||
     objectsDefinitions.length ||

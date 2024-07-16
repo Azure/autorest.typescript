@@ -1,19 +1,27 @@
+import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
+import * as path from "path";
 import {
   InterfaceDeclarationStructure,
   OptionalKind,
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { getType } from "./helpers/typeHelpers.js";
-import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
-import * as path from "path";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { buildOperationOptions } from "./buildOperations.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { getModularModelFilePath } from "./helpers/namingHelpers.js";
+import { getType } from "./helpers/typeHelpers.js";
+import {
+  Client,
+  ModularCodeModel,
+  Type as ModularType
+} from "./modularCodeModel.js";
+import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
+import { toCamelCase } from "../utils/casingUtils.js";
+import { addImportBySymbol } from "../utils/importHelper.js";
 
 // ====== UTILITIES ======
 
-function isAzureCoreErrorSdkType(t: Type) {
+function isAzureCoreErrorSdkType(t: ModularType) {
   return (
     t.name &&
     ["error", "errormodel", "innererror", "errorresponse"].includes(
@@ -23,7 +31,7 @@ function isAzureCoreErrorSdkType(t: Type) {
   );
 }
 
-function isAzureCoreLroSdkType(t: Type) {
+function isAzureCoreLroSdkType(t: ModularType) {
   return (
     t.name &&
     ["operationstate"].includes(t.name.toLowerCase()) &&
@@ -31,11 +39,11 @@ function isAzureCoreLroSdkType(t: Type) {
   );
 }
 
-function isAnonymousModel(t: Type) {
+function isAnonymousModel(t: ModularType) {
   return t.type === "model" && t.name === "";
 }
 
-export function isModelWithAdditionalProperties(t: Type) {
+export function isModelWithAdditionalProperties(t: ModularType) {
   return t.type === "dict" && t.name !== "Record";
 }
 
@@ -53,7 +61,7 @@ function getCoreLroType(name: string, coreLroTypes: Set<string>) {
 
 // ====== TYPE EXTRACTION ======
 
-function extractModels(codeModel: ModularCodeModel): Type[] {
+function extractModels(codeModel: ModularCodeModel): ModularType[] {
   const models = codeModel.types.filter(
     (t) =>
       ((t.type === "model" || t.type === "enum") &&
@@ -64,7 +72,7 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
   );
 
   for (const model of codeModel.types) {
-    if (model.type === "combined" && model.nullable) {
+    if (model.type === "combined") {
       for (const unionModel of model.types ?? []) {
         if (unionModel.type === "model") {
           models.push(unionModel);
@@ -80,7 +88,7 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
  * 1. alias from polymorphic base model, where we need to use typescript union to combine all the sub models
  * 2. alias from unions, where we also need to use typescript union to combine all the union variants
  */
-export function extractAliases(codeModel: ModularCodeModel): Type[] {
+export function extractAliases(codeModel: ModularCodeModel): ModularType[] {
   const models = codeModel.types.filter(
     (t) =>
       ((t.type === "model" || t.type === "combined") &&
@@ -92,27 +100,20 @@ export function extractAliases(codeModel: ModularCodeModel): Type[] {
 }
 // ====== TYPE BUILDERS ======
 function buildEnumModel(
-  model: Type
+  model: ModularType
 ): OptionalKind<TypeAliasDeclarationStructure> {
   const valueType = model.valueType?.type === "string" ? "string" : "number";
   return {
     name: model.name!,
     isExported: true,
-    docs: [
-      ...getDocsFromDescription(model.description),
-      // If it is a fixed enum we don't need to list the known values in the docs as the
-      // output will be a literal union which is self documenting
-      model.isFixed
-        ? ""
-        : // When we generate an "extensible" enum, the type will be "string" or "number" so we list the known values
-          // in the docs for user reference.
-          getEnumValues()
-    ],
+    docs: [...getDocsFromDescription(model.description)],
     type: buildEnumType()
   };
 
   function buildEnumType() {
-    return model.isFixed ? getEnumValues(" | ") : valueType;
+    return model.isFixed || !model.isNonExhaustive
+      ? getEnumValues(" | ")
+      : valueType;
   }
 
   function getEnumValues(separator: string = ", ") {
@@ -128,7 +129,7 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
 };
 
 export function buildModelInterface(
-  model: Type,
+  model: ModularType,
   cache: { coreClientTypes: Set<string>; coreLroTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
@@ -181,11 +182,9 @@ export function buildModels(
   if (models.length === 0 && aliases.length === 0) {
     return;
   }
-  const srcPath = codeModel.modularOptions.sourceRoot;
   const modelsFile = codeModel.project.createSourceFile(
-    path.join(`${srcPath}/`, subClient.subfolder ?? "", `models/models.ts`)
+    getModularModelFilePath(codeModel, subClient)
   );
-
   for (const model of models) {
     if (model.type === "enum") {
       if (modelsFile.getTypeAlias(model.name!)) {
@@ -193,6 +192,26 @@ export function buildModels(
         continue;
       }
       const enumAlias = buildEnumModel(model);
+
+      if (model.isNonExhaustive && model.name) {
+        modelsFile.addEnum({
+          name: `Known${model.name}`,
+          isExported: true,
+          members:
+            model.values?.map((v) => ({
+              name: v.value,
+              value: v.value,
+              docs: [v.value]
+            })) ?? [],
+          docs: [
+            `Known values of {@link ${model.name}} that the service accepts.`
+          ]
+        });
+        const description = getExtensibleEnumDescription(model);
+        if (description) {
+          enumAlias.docs = [description];
+        }
+      }
       modelsFile.addTypeAlias(enumAlias);
     } else {
       const modelInterface = buildModelInterface(model, {
@@ -210,9 +229,37 @@ export function buildModels(
           codeModel.modularOptions.compatibilityMode
         );
       }
-      modelsFile.addInterface(modelInterface);
+
+      if (!modelsFile.getInterface(modelInterface.name)) {
+        modelsFile.addInterface(modelInterface);
+      }
+
+      // Generate a serializer function next to each model
+      const serializerFunction = buildModelSerializer(
+        model,
+        codeModel.runtimeImports
+      );
+
+      if (
+        serializerFunction &&
+        !modelsFile.getFunction(toCamelCase(modelInterface.name + "Serializer"))
+      ) {
+        modelsFile.addStatements(serializerFunction);
+      }
+      addImportBySymbol("serializeRecord", modelsFile);
+      modelsFile.fixUnusedIdentifiers();
     }
   }
+
+  const projectRootFromModels = codeModel.clients.length > 1 ? "../.." : "../";
+  addImportsToFiles(codeModel.runtimeImports, modelsFile, {
+    rlcIndex: path.posix.join(projectRootFromModels, "rest", "index.js"),
+    serializerHelpers: path.posix.join(
+      projectRootFromModels,
+      "helpers",
+      "serializerHelpers.js"
+    )
+  });
 
   if (coreClientTypes.size > 0) {
     modelsFile.addImportDeclarations([
@@ -244,12 +291,42 @@ export function buildModels(
 
   aliases.forEach((alias) => {
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
+    if (!models.includes(alias)) {
+      // Generate a serializer function next to each model
+      const serializerFunction = buildModelSerializer(
+        alias,
+        codeModel.runtimeImports
+      );
+      if (serializerFunction) {
+        modelsFile.addStatements(serializerFunction);
+      }
+    }
   });
   return modelsFile;
 }
 
+function getExtensibleEnumDescription(model: ModularType): string | undefined {
+  if (!(model.isNonExhaustive && model.name && model.values)) {
+    return;
+  }
+  const valueDescriptions = model.values
+    .map((v) => `**${v.value}**${v.description ? `: ${v.description}` : ""}`)
+    .join(` \\\n`)
+    // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
+    .replace(/^\//g, "\\/")
+    .replace(/([^\\])(\/)/g, "$1\\/");
+  const enumLink = `{@link Known${model.name}} can be used interchangeably with ${model.name},\n this enum contains the known values that the service supports.`;
+
+  return [
+    `${model.description} \\`,
+    enumLink,
+    `### Known values supported by the service`,
+    valueDescriptions
+  ].join(" \n");
+}
+
 function addExtendedDictInfo(
-  model: Type,
+  model: ModularType,
   modelInterface: InterfaceStructure,
   compatibilityMode: boolean = false
 ) {
@@ -278,7 +355,7 @@ function addExtendedDictInfo(
   }
 }
 
-export function buildModelTypeAlias(model: Type) {
+export function buildModelTypeAlias(model: ModularType) {
   return {
     name: model.name!,
     isExported: true,
@@ -317,7 +394,13 @@ export function buildModelsOptions(
     }
   ]);
 
-  modelOptionsFile.fixMissingImports();
+  modelOptionsFile.fixMissingImports(
+    {},
+    {
+      importModuleSpecifierPreference: "shortest",
+      importModuleSpecifierEnding: "js"
+    }
+  );
   modelOptionsFile
     .getImportDeclarations()
     .filter((id) => {

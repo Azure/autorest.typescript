@@ -75,6 +75,7 @@ import {
   ParametersWithCancellationTokenOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Parameters operations. */
 export interface ParametersOperations {
   withAnd: (
     and: string,

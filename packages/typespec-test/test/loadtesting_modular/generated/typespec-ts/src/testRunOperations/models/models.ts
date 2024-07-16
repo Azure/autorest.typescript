@@ -1,6 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import {
+  Test as TestRest,
+  PassFailCriteria as PassFailCriteriaRest,
+  PassFailMetric as PassFailMetricRest,
+  Secret as SecretRest,
+  CertificateMetadata as CertificateMetadataRest,
+  LoadTestConfiguration as LoadTestConfigurationRest,
+  OptionalLoadTestConfig as OptionalLoadTestConfigRest,
+  TestAppComponents as TestAppComponentsRest,
+  AppComponent as AppComponentRest,
+  TestServerMetricConfig as TestServerMetricConfigRest,
+  ResourceMetric as ResourceMetricRest,
+  TestRun as TestRunRest,
+  TestRunAppComponents as TestRunAppComponentsRest,
+  TestRunServerMetricConfig as TestRunServerMetricConfigRest,
+  MetricRequestPayload as MetricRequestPayloadRest,
+  DimensionFilter as DimensionFilterRest,
+} from "../../rest/index.js";
+
 /** Load test model */
 export interface Test {
   /** Pass fail criteria for a test. */
@@ -43,10 +63,48 @@ export interface Test {
   readonly lastModifiedBy?: string;
 }
 
+export function testSerializer(item: Test): TestRest {
+  return {
+    passFailCriteria: !item.passFailCriteria
+      ? item.passFailCriteria
+      : passFailCriteriaSerializer(item.passFailCriteria),
+    secrets: !item.secrets
+      ? item.secrets
+      : (serializeRecord(item.secrets as any, secretSerializer) as any),
+    certificate: !item.certificate
+      ? item.certificate
+      : certificateMetadataSerializer(item.certificate),
+    environmentVariables: !item.environmentVariables
+      ? item.environmentVariables
+      : (serializeRecord(item.environmentVariables as any) as any),
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? item.loadTestConfiguration
+      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    description: item["description"],
+    displayName: item["displayName"],
+    subnetId: item["subnetId"],
+    keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
+    keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
+  };
+}
+
 /** Pass fail criteria for a test. */
 export interface PassFailCriteria {
   /** Map of id and pass fail metrics { id  : pass fail metrics }. */
   passFailMetrics?: Record<string, PassFailMetric>;
+}
+
+export function passFailCriteriaSerializer(
+  item: PassFailCriteria,
+): PassFailCriteriaRest {
+  return {
+    passFailMetrics: !item.passFailMetrics
+      ? item.passFailMetrics
+      : (serializeRecord(
+          item.passFailMetrics as any,
+          passFailMetricSerializer,
+        ) as any),
+  };
 }
 
 /** Pass fail metric */
@@ -77,14 +135,27 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
-/** */
+export function passFailMetricSerializer(
+  item: PassFailMetric,
+): PassFailMetricRest {
+  return {
+    clientMetric: item["clientMetric"],
+    aggregate: item["aggregate"],
+    condition: item["condition"],
+    requestName: item["requestName"],
+    value: item["value"],
+    action: item["action"],
+  };
+}
+
+/** Type of PFMetrics */
 export type PFMetrics =
   | "response_time_ms"
   | "latency"
   | "error"
   | "requests"
   | "requests_per_sec";
-/** */
+/** Type of PFAgFunc */
 export type PFAgFunc =
   | "count"
   | "percentage"
@@ -95,9 +166,9 @@ export type PFAgFunc =
   | "p99"
   | "min"
   | "max";
-/** */
+/** Type of PFAction */
 export type PFAction = "continue" | "stop";
-/** */
+/** Type of PFResult */
 export type PFResult = "passed" | "undetermined" | "failed";
 
 /** Secret */
@@ -108,7 +179,14 @@ export interface Secret {
   type?: SecretType;
 }
 
-/** */
+export function secretSerializer(item: Secret): SecretRest {
+  return {
+    value: item["value"],
+    type: item["type"],
+  };
+}
+
+/** Type of SecretType */
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
@@ -121,7 +199,17 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** */
+export function certificateMetadataSerializer(
+  item: CertificateMetadata,
+): CertificateMetadataRest {
+  return {
+    value: item["value"],
+    type: item["type"],
+    name: item["name"],
+  };
+}
+
+/** Type of CertificateType */
 export type CertificateType = "AKV_CERT_URI";
 
 /** The load test configuration. */
@@ -147,6 +235,19 @@ export interface LoadTestConfiguration {
   optionalLoadTestConfig?: OptionalLoadTestConfig;
 }
 
+export function loadTestConfigurationSerializer(
+  item: LoadTestConfiguration,
+): LoadTestConfigurationRest {
+  return {
+    engineInstances: item["engineInstances"],
+    splitAllCSVs: item["splitAllCSVs"],
+    quickStartTest: item["quickStartTest"],
+    optionalLoadTestConfig: !item.optionalLoadTestConfig
+      ? item.optionalLoadTestConfig
+      : optionalLoadTestConfigSerializer(item.optionalLoadTestConfig),
+  };
+}
+
 /** Optional load test config */
 export interface OptionalLoadTestConfig {
   /**
@@ -160,6 +261,17 @@ export interface OptionalLoadTestConfig {
   rampUpTime?: number;
   /** Test run duration */
   duration?: number;
+}
+
+export function optionalLoadTestConfigSerializer(
+  item: OptionalLoadTestConfig,
+): OptionalLoadTestConfigRest {
+  return {
+    endpointUrl: item["endpointUrl"],
+    virtualUsers: item["virtualUsers"],
+    rampUpTime: item["rampUpTime"],
+    duration: item["duration"],
+  };
 }
 
 /** The input artifacts for the test. */
@@ -192,9 +304,9 @@ export interface FileInfo {
   validationFailureDetails?: string;
 }
 
-/** */
+/** Type of FileType */
 export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
-/** */
+/** Type of FileStatus */
 export type FileStatus =
   | "NOT_VALIDATED"
   | "VALIDATION_SUCCESS"
@@ -222,6 +334,17 @@ export interface TestAppComponents {
   readonly lastModifiedBy?: string;
 }
 
+export function testAppComponentsSerializer(
+  item: TestAppComponents,
+): TestAppComponentsRest {
+  return {
+    components: serializeRecord(
+      item.components as any,
+      appComponentSerializer,
+    ) as any,
+  };
+}
+
 /**
  * An Azure resource object (Refer azure generic resource model :
  * https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)
@@ -246,6 +369,15 @@ export interface AppComponent {
   kind?: string;
 }
 
+export function appComponentSerializer(item: AppComponent): AppComponentRest {
+  return {
+    resourceName: item["resourceName"],
+    resourceType: item["resourceType"],
+    displayName: item["displayName"],
+    kind: item["kind"],
+  };
+}
+
 /** Test server metrics configuration */
 export interface TestServerMetricConfig {
   /** Test identifier */
@@ -264,6 +396,16 @@ export interface TestServerMetricConfig {
   readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testServerMetricConfigSerializer(
+  item: TestServerMetricConfig,
+): TestServerMetricConfigRest {
+  return {
+    metrics: !item.metrics
+      ? item.metrics
+      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+  };
 }
 
 /**
@@ -290,8 +432,22 @@ export interface ResourceMetric {
   resourceType: string;
 }
 
+export function resourceMetricSerializer(
+  item: ResourceMetric,
+): ResourceMetricRest {
+  return {
+    resourceId: item["resourceId"],
+    metricNamespace: item["metricNamespace"],
+    displayDescription: item["displayDescription"],
+    name: item["name"],
+    aggregation: item["aggregation"],
+    unit: item["unit"],
+    resourceType: item["resourceType"],
+  };
+}
+
 /** Collection of files. */
-export interface PagedFileInfo {
+export interface _PagedFileInfo {
   /** The FileInfo items on this page */
   value: FileInfo[];
   /** The link to the next page of items */
@@ -299,14 +455,14 @@ export interface PagedFileInfo {
 }
 
 /** Collection of tests */
-export interface PagedTest {
+export interface _PagedTest {
   /** The Test items on this page */
   value: Test[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-/** */
+/** Type of APIVersions */
 export type APIVersions = "2022-11-01";
 
 /** Load test run model */
@@ -367,6 +523,29 @@ export interface TestRun {
   readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
+}
+
+export function testRunSerializer(item: TestRun): TestRunRest {
+  return {
+    passFailCriteria: !item.passFailCriteria
+      ? item.passFailCriteria
+      : passFailCriteriaSerializer(item.passFailCriteria),
+    secrets: !item.secrets
+      ? item.secrets
+      : (serializeRecord(item.secrets as any, secretSerializer) as any),
+    certificate: !item.certificate
+      ? item.certificate
+      : certificateMetadataSerializer(item.certificate),
+    environmentVariables: !item.environmentVariables
+      ? item.environmentVariables
+      : (serializeRecord(item.environmentVariables as any) as any),
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? item.loadTestConfiguration
+      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    displayName: item["displayName"],
+    testId: item["testId"],
+    description: item["description"],
+  };
 }
 
 /** Error details if there is any failure in load test run */
@@ -437,9 +616,9 @@ export interface TestRunOutputArtifacts {
   logsFileInfo?: FileInfo;
 }
 
-/** */
+/** Type of PFTestResult */
 export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
-/** */
+/** Type of Status */
 export type Status =
   | "ACCEPTED"
   | "NOTSTARTED"
@@ -478,6 +657,17 @@ export interface TestRunAppComponents {
   readonly lastModifiedBy?: string;
 }
 
+export function testRunAppComponentsSerializer(
+  item: TestRunAppComponents,
+): TestRunAppComponentsRest {
+  return {
+    components: serializeRecord(
+      item.components as any,
+      appComponentSerializer,
+    ) as any,
+  };
+}
+
 /** Test run server metrics configuration */
 export interface TestRunServerMetricConfig {
   /** Test run identifier */
@@ -498,7 +688,17 @@ export interface TestRunServerMetricConfig {
   readonly lastModifiedBy?: string;
 }
 
-/** */
+export function testRunServerMetricConfigSerializer(
+  item: TestRunServerMetricConfig,
+): TestRunServerMetricConfigRest {
+  return {
+    metrics: !item.metrics
+      ? item.metrics
+      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+  };
+}
+
+/** Type of Interval */
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 export interface DimensionValueList {
@@ -542,7 +742,7 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** */
+/** Type of AggregationType */
 export type AggregationType =
   | "Average"
   | "Count"
@@ -551,7 +751,7 @@ export type AggregationType =
   | "Percentile90"
   | "Percentile95"
   | "Percentile99";
-/** */
+/** Type of MetricUnit */
 export type MetricUnit =
   | "NotSpecified"
   | "Percent"
@@ -571,7 +771,7 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/** */
+/** Type of TimeGrain */
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */
@@ -599,6 +799,17 @@ export interface MetricRequestPayload {
   filters?: DimensionFilter[];
 }
 
+export function metricRequestPayloadSerializer(
+  item: MetricRequestPayload,
+): MetricRequestPayloadRest {
+  return {
+    filters:
+      item["filters"] === undefined
+        ? item["filters"]
+        : item["filters"].map(dimensionFilterSerializer),
+  };
+}
+
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */
@@ -607,8 +818,17 @@ export interface DimensionFilter {
   values?: string[];
 }
 
+export function dimensionFilterSerializer(
+  item: DimensionFilter,
+): DimensionFilterRest {
+  return {
+    name: item["name"],
+    values: item["values"],
+  };
+}
+
 /** The response to a metrics query. */
-export interface PagedTimeSeriesElement {
+export interface _PagedTimeSeriesElement {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
@@ -640,7 +860,7 @@ export interface DimensionValue {
 }
 
 /** Collection of test runs */
-export interface PagedTestRun {
+export interface _PagedTestRun {
   /** The TestRun items on this page */
   value: TestRun[];
   /** The link to the next page of items */
@@ -648,7 +868,7 @@ export interface PagedTestRun {
 }
 
 /** Paged collection of DimensionValueList items */
-export interface PagedDimensionValueList {
+export interface _PagedDimensionValueList {
   /** The DimensionValueList items on this page */
   value: DimensionValueList[];
   /** The link to the next page of items */

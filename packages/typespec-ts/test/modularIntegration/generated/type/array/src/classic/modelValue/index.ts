@@ -9,6 +9,7 @@ import {
   ModelValuePutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ModelValue operations. */
 export interface ModelValueOperations {
   get: (options?: ModelValueGetOptionalParams) => Promise<InnerModel[]>;
   put: (

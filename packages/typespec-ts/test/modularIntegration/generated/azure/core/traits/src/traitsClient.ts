@@ -24,7 +24,15 @@ export class TraitsClient {
 
   /** Illustrates Azure Core operation customizations by traits */
   constructor(options: TraitsClientOptions = {}) {
-    this._client = createTraits(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createTraits({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

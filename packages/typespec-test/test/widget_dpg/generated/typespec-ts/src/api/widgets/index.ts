@@ -6,10 +6,10 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   User,
   Widget,
-  ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
+  _ListWidgetsPagesResults,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -112,11 +112,9 @@ export async function _listWidgetsDeserialize(
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => ({
-        id: p["id"],
-        weight: p["weight"],
-        color: p["color"],
-      }));
+    : result.body.map((p) => {
+        return { id: p["id"], weight: p["weight"], color: p["color"] };
+      });
 }
 
 /**
@@ -165,17 +163,15 @@ export async function _listWidgetsPagesDeserialize(
   result:
     | WidgetsListWidgetsPages200Response
     | WidgetsListWidgetsPagesDefaultResponse,
-): Promise<ListWidgetsPagesResults> {
+): Promise<_ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    results: result.body["results"].map((p) => ({
-      id: p["id"],
-      weight: p["weight"],
-      color: p["color"],
-    })),
+    results: result.body["results"].map((p) => {
+      return { id: p["id"], weight: p["weight"], color: p["color"] };
+    }),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -214,17 +210,15 @@ export async function _queryWidgetsPagesDeserialize(
   result:
     | WidgetsQueryWidgetsPages200Response
     | WidgetsQueryWidgetsPagesDefaultResponse,
-): Promise<ListWidgetsPagesResults> {
+): Promise<_ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    results: result.body["results"].map((p) => ({
-      id: p["id"],
-      weight: p["weight"],
-      color: p["color"],
-    })),
+    results: result.body["results"].map((p) => {
+      return { id: p["id"], weight: p["weight"], color: p["color"] };
+    }),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }

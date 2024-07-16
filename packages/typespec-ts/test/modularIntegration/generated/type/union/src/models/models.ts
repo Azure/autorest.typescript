@@ -1,6 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  MixedTypesCases as MixedTypesCasesRest,
+  Cat as CatRest,
+  MixedLiteralsCases as MixedLiteralsCasesRest,
+  StringAndArrayCases as StringAndArrayCasesRest,
+  EnumsOnlyCases as EnumsOnlyCasesRest,
+  Dog as DogRest,
+} from "../rest/index.js";
+
 export interface MixedTypesCases {
   /** This should be receive/send the Cat variant */
   model: Cat | "a" | number | boolean;
@@ -14,8 +23,26 @@ export interface MixedTypesCases {
   array: (Cat | "a" | number | boolean)[];
 }
 
+export function mixedTypesCasesSerializer(
+  item: MixedTypesCases,
+): MixedTypesCasesRest {
+  return {
+    model: item["model"],
+    literal: item["literal"],
+    int: item["int"],
+    boolean: item["boolean"],
+    array: item["array"],
+  };
+}
+
 export interface Cat {
   name: string;
+}
+
+export function catSerializer(item: Cat): CatRest {
+  return {
+    name: item["name"],
+  };
 }
 
 export interface MixedLiteralsCases {
@@ -29,11 +56,31 @@ export interface MixedLiteralsCases {
   booleanLiteral: "a" | 2 | 3.3 | true;
 }
 
+export function mixedLiteralsCasesSerializer(
+  item: MixedLiteralsCases,
+): MixedLiteralsCasesRest {
+  return {
+    stringLiteral: item["stringLiteral"],
+    intLiteral: item["intLiteral"],
+    floatLiteral: item["floatLiteral"],
+    booleanLiteral: item["booleanLiteral"],
+  };
+}
+
 export interface StringAndArrayCases {
   /** This should be receive/send the string variant */
   string: string | string[];
   /** This should be receive/send the array variant */
   array: string | string[];
+}
+
+export function stringAndArrayCasesSerializer(
+  item: StringAndArrayCases,
+): StringAndArrayCasesRest {
+  return {
+    string: item["string"],
+    array: item["array"],
+  };
 }
 
 export interface EnumsOnlyCases {
@@ -43,15 +90,44 @@ export interface EnumsOnlyCases {
   ud: Ud | Ud;
 }
 
-/** */
+export function enumsOnlyCasesSerializer(
+  item: EnumsOnlyCases,
+): EnumsOnlyCasesRest {
+  return {
+    lr: item["lr"],
+    ud: item["ud"],
+  };
+}
+
+/** Type of Lr */
 export type Lr = "left" | "right";
-/** */
+/** Type of Ud */
 export type Ud = "up" | "down";
 
 export interface Dog {
   bark: string;
 }
 
-/** Type of StringExtensibleNamedUnion */
-/** "b", "c" */
+export function dogSerializer(item: Dog): DogRest {
+  return {
+    bark: item["bark"],
+  };
+}
+
+/** Known values of {@link StringExtensibleNamedUnion} that the service accepts. */
+export enum KnownStringExtensibleNamedUnion {
+  /** b */
+  b = "b",
+  /** c */
+  c = "c",
+}
+
+/**
+ * Type of StringExtensibleNamedUnion \
+ * {@link KnownStringExtensibleNamedUnion} can be used interchangeably with StringExtensibleNamedUnion,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **b** \
+ * **c**
+ */
 export type StringExtensibleNamedUnion = string;

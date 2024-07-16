@@ -23,7 +23,7 @@ export interface SmokeTest {
 export interface RepeatableAction {
   /** Test for repeatable requests */
   post(
-    options?: RepeatableActionParameters,
+    options: RepeatableActionParameters,
   ): StreamableMethod<
     RepeatableAction200Response | RepeatableActionDefaultResponse
   >;

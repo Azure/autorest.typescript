@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { MultipleContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface MultipleClientOptions extends ClientOptions {
   /** Pass in v1.0 for API version. */
   apiVersion?: Versions;
@@ -17,6 +18,14 @@ export function createMultiple(
   endpointParam: string,
   options: MultipleClientOptions = {},
 ): MultipleContext {
-  const clientContext = getClient(endpointParam, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

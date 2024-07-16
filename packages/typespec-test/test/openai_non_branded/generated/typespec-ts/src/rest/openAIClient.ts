@@ -4,6 +4,9 @@ import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { OpenAIContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface OpenAIContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `OpenAIContext`
  * @param credentials - uniquely identify client credential
@@ -11,11 +14,11 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: OpenAIContextOptions = {},
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;
-  const userAgentInfo = `azsdk-js-openai-non-branded-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-openai-non-branded/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -26,7 +29,6 @@ export default function createClient(
       userAgentPrefix,
     },
   };
-
   const client = getClient(endpointUrl, options) as OpenAIContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -34,7 +36,7 @@ export default function createClient(
   client.pipeline.addPolicy({
     name: "customKeyCredentialPolicy",
     async sendRequest(request, next) {
-      request.headers.set("Authorization", "bearer " + credentials.key);
+      request.headers.set("Authorization", "Bearer " + credentials.key);
       return next(request);
     },
   });

@@ -16,6 +16,7 @@ import {
   StringPutUnknownValueOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a String operations. */
 export interface StringOperations {
   getKnownValue: (
     options?: StringGetKnownValueOptionalParams,

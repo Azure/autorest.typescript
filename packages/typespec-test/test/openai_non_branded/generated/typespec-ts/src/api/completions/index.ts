@@ -15,6 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import { CompletionsCreateOptionalParams } from "../../models/options.js";
 
 export function _createSend(
@@ -39,7 +40,9 @@ export function _createSend(
         stop: body["stop"],
         presence_penalty: body["presencePenalty"],
         frequency_penalty: body["frequencyPenalty"],
-        logit_bias: body["logitBias"],
+        logit_bias: !body.logitBias
+          ? body.logitBias
+          : (serializeRecord(body.logitBias as any) as any),
         user: body["user"],
         stream: body["stream"],
         logprobs: body["logprobs"],
@@ -61,20 +64,22 @@ export async function _createDeserialize(
     object: result.body["object"],
     created: new Date(result.body["created"]),
     model: result.body["model"],
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      text: p["text"],
-      logprobs:
-        p.logprobs === null
-          ? null
-          : {
-              tokens: p.logprobs["tokens"],
-              tokenLogprobs: p.logprobs["token_logprobs"],
-              topLogprobs: p.logprobs["top_logprobs"],
-              textOffset: p.logprobs["text_offset"],
-            },
-      finishReason: p["finish_reason"],
-    })),
+    choices: result.body["choices"].map((p) => {
+      return {
+        index: p["index"],
+        text: p["text"],
+        logprobs:
+          p.logprobs === null
+            ? null
+            : {
+                tokens: p.logprobs["tokens"],
+                tokenLogprobs: p.logprobs["token_logprobs"],
+                topLogprobs: p.logprobs["top_logprobs"],
+                textOffset: p.logprobs["text_offset"],
+              },
+        finishReason: p["finish_reason"],
+      };
+    }),
     usage: !result.body.usage
       ? undefined
       : {

@@ -8,6 +8,7 @@ import {
   BarSixOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Bar operations. */
 export interface BarOperations {
   five: (options?: BarFiveOptionalParams) => Promise<void>;
   six: (options?: BarSixOptionalParams) => Promise<void>;

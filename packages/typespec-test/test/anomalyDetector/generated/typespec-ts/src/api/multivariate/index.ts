@@ -2,13 +2,16 @@
 // Licensed under the MIT license.
 
 import {
+  multivariateAlignPolicySerializer,
+  multivariateDiagnosticsInfoSerializer,
+  multivariateVariableValuesSerializer,
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionOptions,
   MultivariateModelInfo,
   MultivariateAnomalyDetectionModel,
-  MultivariateModelList,
   MultivariateMultivariateLastDetectionOptions,
   MultivariateMultivariateLastDetectionResult,
+  _MultivariateModelList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -76,26 +79,27 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
       errors:
         result.body.summary["errors"] === undefined
           ? result.body.summary["errors"]
-          : result.body.summary["errors"].map((p) => ({
-              code: p["code"],
-              message: p["message"],
-            })),
+          : result.body.summary["errors"].map((p) => {
+              return { code: p["code"], message: p["message"] };
+            }),
       variableStates:
         result.body.summary["variableStates"] === undefined
           ? result.body.summary["variableStates"]
-          : result.body.summary["variableStates"].map((p) => ({
-              variable: p["variable"],
-              filledNARatio: p["filledNARatio"],
-              effectiveCount: p["effectiveCount"],
-              firstTimestamp:
-                p["firstTimestamp"] !== undefined
-                  ? new Date(p["firstTimestamp"])
-                  : undefined,
-              lastTimestamp:
-                p["lastTimestamp"] !== undefined
-                  ? new Date(p["lastTimestamp"])
-                  : undefined,
-            })),
+          : result.body.summary["variableStates"].map((p) => {
+              return {
+                variable: p["variable"],
+                filledNARatio: p["filledNARatio"],
+                effectiveCount: p["effectiveCount"],
+                firstTimestamp:
+                  p["firstTimestamp"] !== undefined
+                    ? new Date(p["firstTimestamp"])
+                    : undefined,
+                lastTimestamp:
+                  p["lastTimestamp"] !== undefined
+                    ? new Date(p["lastTimestamp"])
+                    : undefined,
+              };
+            }),
       setupInfo: {
         dataSource: result.body.summary.setupInfo["dataSource"],
         topContributorCount:
@@ -104,36 +108,39 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
         endTime: new Date(result.body.summary.setupInfo["endTime"]),
       },
     },
-    results: result.body["results"].map((p) => ({
-      timestamp: new Date(p["timestamp"]),
-      value: !p.value
-        ? undefined
-        : {
-            isAnomaly: p.value?.["isAnomaly"],
-            severity: p.value?.["severity"],
-            score: p.value?.["score"],
-            interpretation:
-              p.value?.["interpretation"] === undefined
-                ? p.value?.["interpretation"]
-                : p.value?.["interpretation"].map((p) => ({
-                    variable: p["variable"],
-                    contributionScore: p["contributionScore"],
-                    correlationChanges: !p.correlationChanges
-                      ? undefined
-                      : {
-                          changedVariables:
-                            p.correlationChanges?.["changedVariables"],
-                        },
-                  })),
-          },
-      errors:
-        p["errors"] === undefined
-          ? p["errors"]
-          : p["errors"].map((p) => ({
-              code: p["code"],
-              message: p["message"],
-            })),
-    })),
+    results: result.body["results"].map((p) => {
+      return {
+        timestamp: new Date(p["timestamp"]),
+        value: !p.value
+          ? undefined
+          : {
+              isAnomaly: p.value?.["isAnomaly"],
+              severity: p.value?.["severity"],
+              score: p.value?.["score"],
+              interpretation:
+                p.value?.["interpretation"] === undefined
+                  ? p.value?.["interpretation"]
+                  : p.value?.["interpretation"].map((p) => {
+                      return {
+                        variable: p["variable"],
+                        contributionScore: p["contributionScore"],
+                        correlationChanges: !p.correlationChanges
+                          ? undefined
+                          : {
+                              changedVariables:
+                                p.correlationChanges?.["changedVariables"],
+                            },
+                      };
+                    }),
+            },
+        errors:
+          p["errors"] === undefined
+            ? p["errors"]
+            : p["errors"].map((p) => {
+                return { code: p["code"], message: p["message"] };
+              }),
+      };
+    }),
   };
 }
 
@@ -177,43 +184,12 @@ export function _trainMultivariateModelSend(
         displayName: modelInfo["displayName"],
         slidingWindow: modelInfo["slidingWindow"],
         alignPolicy: !modelInfo.alignPolicy
-          ? undefined
-          : {
-              alignMode: modelInfo.alignPolicy?.["alignMode"],
-              fillNAMethod: modelInfo.alignPolicy?.["fillNAMethod"],
-              paddingValue: modelInfo.alignPolicy?.["paddingValue"],
-            },
+          ? modelInfo.alignPolicy
+          : multivariateAlignPolicySerializer(modelInfo.alignPolicy),
         status: modelInfo["status"],
         diagnosticsInfo: !modelInfo.diagnosticsInfo
-          ? undefined
-          : {
-              modelState: !modelInfo.diagnosticsInfo?.modelState
-                ? undefined
-                : {
-                    epochIds:
-                      modelInfo.diagnosticsInfo?.modelState?.["epochIds"],
-                    trainLosses:
-                      modelInfo.diagnosticsInfo?.modelState?.["trainLosses"],
-                    validationLosses:
-                      modelInfo.diagnosticsInfo?.modelState?.[
-                        "validationLosses"
-                      ],
-                    latenciesInSeconds:
-                      modelInfo.diagnosticsInfo?.modelState?.[
-                        "latenciesInSeconds"
-                      ],
-                  },
-              variableStates:
-                modelInfo.diagnosticsInfo?.["variableStates"] === undefined
-                  ? modelInfo.diagnosticsInfo?.["variableStates"]
-                  : modelInfo.diagnosticsInfo?.["variableStates"].map((p) => ({
-                      variable: p["variable"],
-                      filledNARatio: p["filledNARatio"],
-                      effectiveCount: p["effectiveCount"],
-                      firstTimestamp: p["firstTimestamp"]?.toISOString(),
-                      lastTimestamp: p["lastTimestamp"]?.toISOString(),
-                    })),
-            },
+          ? modelInfo.diagnosticsInfo
+          : multivariateDiagnosticsInfoSerializer(modelInfo.diagnosticsInfo),
       },
     });
 }
@@ -253,10 +229,9 @@ export async function _trainMultivariateModelDeserialize(
           errors:
             result.body.modelInfo?.["errors"] === undefined
               ? result.body.modelInfo?.["errors"]
-              : result.body.modelInfo?.["errors"].map((p) => ({
-                  code: p["code"],
-                  message: p["message"],
-                })),
+              : result.body.modelInfo?.["errors"].map((p) => {
+                  return { code: p["code"], message: p["message"] };
+                }),
           diagnosticsInfo: !result.body.modelInfo?.diagnosticsInfo
             ? undefined
             : {
@@ -286,19 +261,21 @@ export async function _trainMultivariateModelDeserialize(
                     ? result.body.modelInfo?.diagnosticsInfo?.["variableStates"]
                     : result.body.modelInfo?.diagnosticsInfo?.[
                         "variableStates"
-                      ].map((p) => ({
-                        variable: p["variable"],
-                        filledNARatio: p["filledNARatio"],
-                        effectiveCount: p["effectiveCount"],
-                        firstTimestamp:
-                          p["firstTimestamp"] !== undefined
-                            ? new Date(p["firstTimestamp"])
-                            : undefined,
-                        lastTimestamp:
-                          p["lastTimestamp"] !== undefined
-                            ? new Date(p["lastTimestamp"])
-                            : undefined,
-                      })),
+                      ].map((p) => {
+                        return {
+                          variable: p["variable"],
+                          filledNARatio: p["filledNARatio"],
+                          effectiveCount: p["effectiveCount"],
+                          firstTimestamp:
+                            p["firstTimestamp"] !== undefined
+                              ? new Date(p["firstTimestamp"])
+                              : undefined,
+                          lastTimestamp:
+                            p["lastTimestamp"] !== undefined
+                              ? new Date(p["lastTimestamp"])
+                              : undefined,
+                        };
+                      }),
               },
         },
   };
@@ -344,85 +321,88 @@ export async function _listMultivariateModelsDeserialize(
   result:
     | ListMultivariateModels200Response
     | ListMultivariateModelsDefaultResponse,
-): Promise<MultivariateModelList> {
+): Promise<_MultivariateModelList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    models: result.body["models"].map((p) => ({
-      modelId: p["modelId"],
-      createdTime: new Date(p["createdTime"]),
-      lastUpdatedTime: new Date(p["lastUpdatedTime"]),
-      modelInfo: !p.modelInfo
-        ? undefined
-        : {
-            dataSource: p.modelInfo?.["dataSource"],
-            dataSchema: p.modelInfo?.["dataSchema"],
-            startTime: new Date(p.modelInfo?.["startTime"]),
-            endTime: new Date(p.modelInfo?.["endTime"]),
-            displayName: p.modelInfo?.["displayName"],
-            slidingWindow: p.modelInfo?.["slidingWindow"],
-            alignPolicy: !p.modelInfo?.alignPolicy
-              ? undefined
-              : {
-                  alignMode: p.modelInfo?.alignPolicy?.["alignMode"],
-                  fillNAMethod: p.modelInfo?.alignPolicy?.["fillNAMethod"],
-                  paddingValue: p.modelInfo?.alignPolicy?.["paddingValue"],
-                },
-            status: p.modelInfo?.["status"],
-            errors:
-              p.modelInfo?.["errors"] === undefined
-                ? p.modelInfo?.["errors"]
-                : p.modelInfo?.["errors"].map((p) => ({
-                    code: p["code"],
-                    message: p["message"],
-                  })),
-            diagnosticsInfo: !p.modelInfo?.diagnosticsInfo
-              ? undefined
-              : {
-                  modelState: !p.modelInfo?.diagnosticsInfo?.modelState
-                    ? undefined
-                    : {
-                        epochIds:
-                          p.modelInfo?.diagnosticsInfo?.modelState?.[
-                            "epochIds"
-                          ],
-                        trainLosses:
-                          p.modelInfo?.diagnosticsInfo?.modelState?.[
-                            "trainLosses"
-                          ],
-                        validationLosses:
-                          p.modelInfo?.diagnosticsInfo?.modelState?.[
-                            "validationLosses"
-                          ],
-                        latenciesInSeconds:
-                          p.modelInfo?.diagnosticsInfo?.modelState?.[
-                            "latenciesInSeconds"
-                          ],
-                      },
-                  variableStates:
-                    p.modelInfo?.diagnosticsInfo?.["variableStates"] ===
-                    undefined
-                      ? p.modelInfo?.diagnosticsInfo?.["variableStates"]
-                      : p.modelInfo?.diagnosticsInfo?.["variableStates"].map(
-                          (p) => ({
-                            variable: p["variable"],
-                            filledNARatio: p["filledNARatio"],
-                            effectiveCount: p["effectiveCount"],
-                            firstTimestamp:
-                              p["firstTimestamp"] !== undefined
-                                ? new Date(p["firstTimestamp"])
-                                : undefined,
-                            lastTimestamp:
-                              p["lastTimestamp"] !== undefined
-                                ? new Date(p["lastTimestamp"])
-                                : undefined,
-                          }),
-                        ),
-                },
-          },
-    })),
+    models: result.body["models"].map((p) => {
+      return {
+        modelId: p["modelId"],
+        createdTime: new Date(p["createdTime"]),
+        lastUpdatedTime: new Date(p["lastUpdatedTime"]),
+        modelInfo: !p.modelInfo
+          ? undefined
+          : {
+              dataSource: p.modelInfo?.["dataSource"],
+              dataSchema: p.modelInfo?.["dataSchema"],
+              startTime: new Date(p.modelInfo?.["startTime"]),
+              endTime: new Date(p.modelInfo?.["endTime"]),
+              displayName: p.modelInfo?.["displayName"],
+              slidingWindow: p.modelInfo?.["slidingWindow"],
+              alignPolicy: !p.modelInfo?.alignPolicy
+                ? undefined
+                : {
+                    alignMode: p.modelInfo?.alignPolicy?.["alignMode"],
+                    fillNAMethod: p.modelInfo?.alignPolicy?.["fillNAMethod"],
+                    paddingValue: p.modelInfo?.alignPolicy?.["paddingValue"],
+                  },
+              status: p.modelInfo?.["status"],
+              errors:
+                p.modelInfo?.["errors"] === undefined
+                  ? p.modelInfo?.["errors"]
+                  : p.modelInfo?.["errors"].map((p) => {
+                      return { code: p["code"], message: p["message"] };
+                    }),
+              diagnosticsInfo: !p.modelInfo?.diagnosticsInfo
+                ? undefined
+                : {
+                    modelState: !p.modelInfo?.diagnosticsInfo?.modelState
+                      ? undefined
+                      : {
+                          epochIds:
+                            p.modelInfo?.diagnosticsInfo?.modelState?.[
+                              "epochIds"
+                            ],
+                          trainLosses:
+                            p.modelInfo?.diagnosticsInfo?.modelState?.[
+                              "trainLosses"
+                            ],
+                          validationLosses:
+                            p.modelInfo?.diagnosticsInfo?.modelState?.[
+                              "validationLosses"
+                            ],
+                          latenciesInSeconds:
+                            p.modelInfo?.diagnosticsInfo?.modelState?.[
+                              "latenciesInSeconds"
+                            ],
+                        },
+                    variableStates:
+                      p.modelInfo?.diagnosticsInfo?.["variableStates"] ===
+                      undefined
+                        ? p.modelInfo?.diagnosticsInfo?.["variableStates"]
+                        : p.modelInfo?.diagnosticsInfo?.["variableStates"].map(
+                            (p) => {
+                              return {
+                                variable: p["variable"],
+                                filledNARatio: p["filledNARatio"],
+                                effectiveCount: p["effectiveCount"],
+                                firstTimestamp:
+                                  p["firstTimestamp"] !== undefined
+                                    ? new Date(p["firstTimestamp"])
+                                    : undefined,
+                                lastTimestamp:
+                                  p["lastTimestamp"] !== undefined
+                                    ? new Date(p["lastTimestamp"])
+                                    : undefined,
+                              };
+                            },
+                          ),
+                  },
+            },
+      };
+    }),
     currentCount: result.body["currentCount"],
     maxCount: result.body["maxCount"],
     nextLink: result.body["nextLink"],
@@ -529,10 +509,9 @@ export async function _getMultivariateModelDeserialize(
           errors:
             result.body.modelInfo?.["errors"] === undefined
               ? result.body.modelInfo?.["errors"]
-              : result.body.modelInfo?.["errors"].map((p) => ({
-                  code: p["code"],
-                  message: p["message"],
-                })),
+              : result.body.modelInfo?.["errors"].map((p) => {
+                  return { code: p["code"], message: p["message"] };
+                }),
           diagnosticsInfo: !result.body.modelInfo?.diagnosticsInfo
             ? undefined
             : {
@@ -562,19 +541,21 @@ export async function _getMultivariateModelDeserialize(
                     ? result.body.modelInfo?.diagnosticsInfo?.["variableStates"]
                     : result.body.modelInfo?.diagnosticsInfo?.[
                         "variableStates"
-                      ].map((p) => ({
-                        variable: p["variable"],
-                        filledNARatio: p["filledNARatio"],
-                        effectiveCount: p["effectiveCount"],
-                        firstTimestamp:
-                          p["firstTimestamp"] !== undefined
-                            ? new Date(p["firstTimestamp"])
-                            : undefined,
-                        lastTimestamp:
-                          p["lastTimestamp"] !== undefined
-                            ? new Date(p["lastTimestamp"])
-                            : undefined,
-                      })),
+                      ].map((p) => {
+                        return {
+                          variable: p["variable"],
+                          filledNARatio: p["filledNARatio"],
+                          effectiveCount: p["effectiveCount"],
+                          firstTimestamp:
+                            p["firstTimestamp"] !== undefined
+                              ? new Date(p["firstTimestamp"])
+                              : undefined,
+                          lastTimestamp:
+                            p["lastTimestamp"] !== undefined
+                              ? new Date(p["lastTimestamp"])
+                              : undefined,
+                        };
+                      }),
               },
         },
   };
@@ -635,26 +616,27 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
       errors:
         result.body.summary["errors"] === undefined
           ? result.body.summary["errors"]
-          : result.body.summary["errors"].map((p) => ({
-              code: p["code"],
-              message: p["message"],
-            })),
+          : result.body.summary["errors"].map((p) => {
+              return { code: p["code"], message: p["message"] };
+            }),
       variableStates:
         result.body.summary["variableStates"] === undefined
           ? result.body.summary["variableStates"]
-          : result.body.summary["variableStates"].map((p) => ({
-              variable: p["variable"],
-              filledNARatio: p["filledNARatio"],
-              effectiveCount: p["effectiveCount"],
-              firstTimestamp:
-                p["firstTimestamp"] !== undefined
-                  ? new Date(p["firstTimestamp"])
-                  : undefined,
-              lastTimestamp:
-                p["lastTimestamp"] !== undefined
-                  ? new Date(p["lastTimestamp"])
-                  : undefined,
-            })),
+          : result.body.summary["variableStates"].map((p) => {
+              return {
+                variable: p["variable"],
+                filledNARatio: p["filledNARatio"],
+                effectiveCount: p["effectiveCount"],
+                firstTimestamp:
+                  p["firstTimestamp"] !== undefined
+                    ? new Date(p["firstTimestamp"])
+                    : undefined,
+                lastTimestamp:
+                  p["lastTimestamp"] !== undefined
+                    ? new Date(p["lastTimestamp"])
+                    : undefined,
+              };
+            }),
       setupInfo: {
         dataSource: result.body.summary.setupInfo["dataSource"],
         topContributorCount:
@@ -663,36 +645,39 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
         endTime: new Date(result.body.summary.setupInfo["endTime"]),
       },
     },
-    results: result.body["results"].map((p) => ({
-      timestamp: new Date(p["timestamp"]),
-      value: !p.value
-        ? undefined
-        : {
-            isAnomaly: p.value?.["isAnomaly"],
-            severity: p.value?.["severity"],
-            score: p.value?.["score"],
-            interpretation:
-              p.value?.["interpretation"] === undefined
-                ? p.value?.["interpretation"]
-                : p.value?.["interpretation"].map((p) => ({
-                    variable: p["variable"],
-                    contributionScore: p["contributionScore"],
-                    correlationChanges: !p.correlationChanges
-                      ? undefined
-                      : {
-                          changedVariables:
-                            p.correlationChanges?.["changedVariables"],
-                        },
-                  })),
-          },
-      errors:
-        p["errors"] === undefined
-          ? p["errors"]
-          : p["errors"].map((p) => ({
-              code: p["code"],
-              message: p["message"],
-            })),
-    })),
+    results: result.body["results"].map((p) => {
+      return {
+        timestamp: new Date(p["timestamp"]),
+        value: !p.value
+          ? undefined
+          : {
+              isAnomaly: p.value?.["isAnomaly"],
+              severity: p.value?.["severity"],
+              score: p.value?.["score"],
+              interpretation:
+                p.value?.["interpretation"] === undefined
+                  ? p.value?.["interpretation"]
+                  : p.value?.["interpretation"].map((p) => {
+                      return {
+                        variable: p["variable"],
+                        contributionScore: p["contributionScore"],
+                        correlationChanges: !p.correlationChanges
+                          ? undefined
+                          : {
+                              changedVariables:
+                                p.correlationChanges?.["changedVariables"],
+                            },
+                      };
+                    }),
+            },
+        errors:
+          p["errors"] === undefined
+            ? p["errors"]
+            : p["errors"].map((p) => {
+                return { code: p["code"], message: p["message"] };
+              }),
+      };
+    }),
   };
 }
 
@@ -737,11 +722,9 @@ export function _detectMultivariateLastAnomalySend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        variables: options["variables"].map((p) => ({
-          variable: p["variable"],
-          timestamps: p["timestamps"],
-          values: p["values"],
-        })),
+        variables: options["variables"].map(
+          multivariateVariableValuesSerializer,
+        ),
         topContributorCount: options["topContributorCount"],
       },
     });
@@ -760,52 +743,59 @@ export async function _detectMultivariateLastAnomalyDeserialize(
     variableStates:
       result.body["variableStates"] === undefined
         ? result.body["variableStates"]
-        : result.body["variableStates"].map((p) => ({
-            variable: p["variable"],
-            filledNARatio: p["filledNARatio"],
-            effectiveCount: p["effectiveCount"],
-            firstTimestamp:
-              p["firstTimestamp"] !== undefined
-                ? new Date(p["firstTimestamp"])
-                : undefined,
-            lastTimestamp:
-              p["lastTimestamp"] !== undefined
-                ? new Date(p["lastTimestamp"])
-                : undefined,
-          })),
+        : result.body["variableStates"].map((p) => {
+            return {
+              variable: p["variable"],
+              filledNARatio: p["filledNARatio"],
+              effectiveCount: p["effectiveCount"],
+              firstTimestamp:
+                p["firstTimestamp"] !== undefined
+                  ? new Date(p["firstTimestamp"])
+                  : undefined,
+              lastTimestamp:
+                p["lastTimestamp"] !== undefined
+                  ? new Date(p["lastTimestamp"])
+                  : undefined,
+            };
+          }),
     results:
       result.body["results"] === undefined
         ? result.body["results"]
-        : result.body["results"].map((p) => ({
-            timestamp: new Date(p["timestamp"]),
-            value: !p.value
-              ? undefined
-              : {
-                  isAnomaly: p.value?.["isAnomaly"],
-                  severity: p.value?.["severity"],
-                  score: p.value?.["score"],
-                  interpretation:
-                    p.value?.["interpretation"] === undefined
-                      ? p.value?.["interpretation"]
-                      : p.value?.["interpretation"].map((p) => ({
-                          variable: p["variable"],
-                          contributionScore: p["contributionScore"],
-                          correlationChanges: !p.correlationChanges
-                            ? undefined
-                            : {
-                                changedVariables:
-                                  p.correlationChanges?.["changedVariables"],
-                              },
-                        })),
-                },
-            errors:
-              p["errors"] === undefined
-                ? p["errors"]
-                : p["errors"].map((p) => ({
-                    code: p["code"],
-                    message: p["message"],
-                  })),
-          })),
+        : result.body["results"].map((p) => {
+            return {
+              timestamp: new Date(p["timestamp"]),
+              value: !p.value
+                ? undefined
+                : {
+                    isAnomaly: p.value?.["isAnomaly"],
+                    severity: p.value?.["severity"],
+                    score: p.value?.["score"],
+                    interpretation:
+                      p.value?.["interpretation"] === undefined
+                        ? p.value?.["interpretation"]
+                        : p.value?.["interpretation"].map((p) => {
+                            return {
+                              variable: p["variable"],
+                              contributionScore: p["contributionScore"],
+                              correlationChanges: !p.correlationChanges
+                                ? undefined
+                                : {
+                                    changedVariables:
+                                      p.correlationChanges?.[
+                                        "changedVariables"
+                                      ],
+                                  },
+                            };
+                          }),
+                  },
+              errors:
+                p["errors"] === undefined
+                  ? p["errors"]
+                  : p["errors"].map((p) => {
+                      return { code: p["code"], message: p["message"] };
+                    }),
+            };
+          }),
   };
 }
 

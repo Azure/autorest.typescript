@@ -5,6 +5,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { NotDefinedContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface NotDefinedClientOptions extends ClientOptions {}
 
 export { NotDefinedContext } from "../rest/index.js";
@@ -14,6 +15,14 @@ export function createNotDefined(
   endpoint: string,
   options: NotDefinedClientOptions = {},
 ): NotDefinedContext {
-  const clientContext = getClient(endpoint, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpoint, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

@@ -53,7 +53,15 @@ export class UnionClient {
 
   /** Describe scenarios for various combinations of unions. */
   constructor(options: UnionClientOptions = {}) {
-    this._client = createUnion(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createUnion({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.stringsOnly = getStringsOnlyOperations(this._client);
     this.stringExtensible = getStringExtensibleOperations(this._client);

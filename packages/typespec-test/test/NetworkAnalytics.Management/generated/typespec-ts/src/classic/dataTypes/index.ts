@@ -29,65 +29,73 @@ import {
   DataTypesListByDataProductOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a DataTypes operations. */
 export interface DataTypesOperations {
+  /** Create data type resource. */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
     resource: DataType,
     options?: DataTypesCreateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
+  /** Retrieve data type resource. */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
     options?: DataTypesGetOptionalParams,
   ) => Promise<DataType>;
+  /** Update data type resource. */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
     properties: DataTypeUpdate,
     options?: DataTypesUpdateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
+  /** Delete data type resource. */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
     options?: DataTypesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** Delete data for data type. */
   deleteData: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
     body: Record<string, any>,
     options?: DataTypesDeleteDataOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** Generate sas token for storage container. */
   generateStorageContainerSasToken: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
     body: ContainerSaS,
     options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
   ) => Promise<ContainerSasToken>;
+  /** List data type by parent resource. */
   listByDataProduct: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     options?: DataTypesListByDataProductOptionalParams,
   ) => PagedAsyncIterableIterator<DataType>;
 }
 
-export function getDataTypes(context: NetworkAnalyticsContext) {
+export function getDataTypes(
+  context: NetworkAnalyticsContext,
+  subscriptionId: string,
+) {
   return {
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
@@ -104,7 +112,6 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
@@ -119,7 +126,6 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
@@ -136,7 +142,6 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
@@ -151,7 +156,6 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
         options,
       ),
     deleteData: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
@@ -168,7 +172,6 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
         options,
       ),
     generateStorageContainerSasToken: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
@@ -185,7 +188,6 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
         options,
       ),
     listByDataProduct: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       options?: DataTypesListByDataProductOptionalParams,
@@ -202,8 +204,9 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
 
 export function getDataTypesOperations(
   context: NetworkAnalyticsContext,
+  subscriptionId: string,
 ): DataTypesOperations {
   return {
-    ...getDataTypes(context),
+    ...getDataTypes(context, subscriptionId),
   };
 }

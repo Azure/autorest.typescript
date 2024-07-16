@@ -5,6 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { WidgetServiceContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface WidgetServiceContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `WidgetServiceContext`
  * @param endpointParam - The parameter endpointParam
@@ -12,11 +15,10 @@ import { WidgetServiceContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: WidgetServiceContextOptions = {},
 ): WidgetServiceContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
-  const userAgentInfo = `azsdk-js-widget_dpg-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-widget_dpg/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -30,7 +32,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as WidgetServiceContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

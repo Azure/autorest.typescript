@@ -12,11 +12,17 @@ import {
   EmbeddingsOutput,
 } from "./outputModels.js";
 
+export interface GetAudioTranscriptionAsPlainText200Headers {
+  /** The content type 'text/plain' for the audio text response. */
+  "content-type": "text/plain";
+}
+
 /** The request has succeeded. */
 export interface GetAudioTranscriptionAsPlainText200Response
   extends HttpResponse {
   status: "200";
   body: string;
+  headers: RawHttpHeaders & GetAudioTranscriptionAsPlainText200Headers;
 }
 
 export interface GetAudioTranscriptionAsPlainTextDefaultHeaders {
@@ -50,11 +56,17 @@ export interface GetAudioTranscriptionAsResponseObjectDefaultResponse
   headers: RawHttpHeaders & GetAudioTranscriptionAsResponseObjectDefaultHeaders;
 }
 
+export interface GetAudioTranslationAsPlainText200Headers {
+  /** The content type 'text/plain' for the audio text response. */
+  "content-type": "text/plain";
+}
+
 /** The request has succeeded. */
 export interface GetAudioTranslationAsPlainText200Response
   extends HttpResponse {
   status: "200";
   body: string;
+  headers: RawHttpHeaders & GetAudioTranslationAsPlainText200Headers;
 }
 
 export interface GetAudioTranslationAsPlainTextDefaultHeaders {
@@ -139,11 +151,17 @@ export interface GetImageGenerationsDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetImageGenerationsDefaultHeaders;
 }
 
+export interface GetAudioSpeech200Headers {
+  /** The content type of the response. Always application/octet-stream for audio/speech responses. */
+  "content-type": "application/octet-stream";
+}
+
 /** The request has succeeded. */
 export interface GetAudioSpeech200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
+  headers: RawHttpHeaders & GetAudioSpeech200Headers;
 }
 
 export interface GetAudioSpeechDefaultHeaders {

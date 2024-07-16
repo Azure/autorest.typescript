@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { InnerModel } from "../../models/models.js";
+import { innerModelSerializer, InnerModel } from "../../models/models.js";
 import {
   ArrayContext as Client,
   ModelValueGet200Response,
@@ -35,10 +35,12 @@ export async function _modelValueGetDeserialize(
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => ({
-        property: p["property"],
-        children: !p.children ? undefined : p.children,
-      }));
+    : result.body.map((p) => {
+        return {
+          property: p["property"],
+          children: !p.children ? undefined : p.children,
+        };
+      });
 }
 
 export async function modelValueGet(
@@ -62,10 +64,7 @@ export function _modelValuePutSend(
         children:
           p["children"] === undefined
             ? p["children"]
-            : p["children"].map((p) => ({
-                property: p["property"],
-                children: !p.children ? undefined : p.children,
-              })),
+            : p["children"].map(innerModelSerializer),
       };
     }),
   });
