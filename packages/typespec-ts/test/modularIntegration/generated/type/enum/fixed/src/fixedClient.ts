@@ -6,16 +6,20 @@ import {
   getStringOperations,
   StringOperations,
 } from "./classic/string/index.js";
-import { createFixed, FixedClientOptions, FixedContext } from "./api/index.js";
+import {
+  createFixed,
+  FixedClientOptionalParams,
+  FixedContext,
+} from "./api/index.js";
 
-export { FixedClientOptions } from "./api/fixedContext.js";
+export { FixedClientOptionalParams } from "./api/fixedContext.js";
 
 export class FixedClient {
   private _client: FixedContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(options: FixedClientOptions = {}) {
+  constructor(options: FixedClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

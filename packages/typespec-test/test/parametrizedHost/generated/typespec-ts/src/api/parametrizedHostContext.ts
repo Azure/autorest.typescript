@@ -7,7 +7,7 @@ import { ParametrizedHostContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ParametrizedHostClientOptions extends ClientOptions {
+export interface ParametrizedHostClientOptionalParams extends ClientOptions {
   host?: string;
   subdomain?: string;
   sufix?: string;
@@ -18,7 +18,7 @@ export { ParametrizedHostContext } from "../rest/index.js";
 
 export function createParametrizedHost(
   credential: TokenCredential,
-  options: ParametrizedHostClientOptions = {},
+  options: ParametrizedHostClientOptionalParams = {},
 ): ParametrizedHostContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

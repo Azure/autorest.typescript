@@ -3,7 +3,7 @@
 
 export {
   createUnion,
-  UnionClientOptions,
+  UnionClientOptionalParams,
   UnionContext,
 } from "./unionContext.js";
 export { enumsOnlyGet, enumsOnlySend } from "./enumsOnly/index.js";

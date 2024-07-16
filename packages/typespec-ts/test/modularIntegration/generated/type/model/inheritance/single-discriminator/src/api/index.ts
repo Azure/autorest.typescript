@@ -12,6 +12,6 @@ export {
 } from "./operations.js";
 export {
   createSingleDiscriminator,
-  SingleDiscriminatorClientOptions,
+  SingleDiscriminatorClientOptionalParams,
   SingleDiscriminatorContext,
 } from "./singleDiscriminatorContext.js";

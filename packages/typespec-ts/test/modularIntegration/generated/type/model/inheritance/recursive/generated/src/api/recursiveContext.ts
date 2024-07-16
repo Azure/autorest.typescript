@@ -6,13 +6,13 @@ import { RecursiveContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface RecursiveClientOptions extends ClientOptions {}
+export interface RecursiveClientOptionalParams extends ClientOptions {}
 
 export { RecursiveContext } from "../rest/index.js";
 
 /** Illustrates inheritance recursion */
 export function createRecursive(
-  options: RecursiveClientOptions = {},
+  options: RecursiveClientOptionalParams = {},
 ): RecursiveContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

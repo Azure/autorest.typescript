@@ -3,7 +3,7 @@
 
 export {
   AdministrationOperationsClient,
-  AdministrationOperationsClientOptions,
+  AdministrationOperationsClientOptionalParams,
 } from "./administrationOperationsClient.js";
 export {
   Test,

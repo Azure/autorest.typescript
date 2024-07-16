@@ -15,7 +15,7 @@ import {
 } from "./models/options.js";
 import {
   createEnumDiscriminator,
-  EnumDiscriminatorClientOptions,
+  EnumDiscriminatorClientOptionalParams,
   EnumDiscriminatorContext,
   getExtensibleModel,
   putExtensibleModel,
@@ -27,7 +27,7 @@ import {
   getFixedModelWrongDiscriminator,
 } from "./api/index.js";
 
-export { EnumDiscriminatorClientOptions } from "./api/enumDiscriminatorContext.js";
+export { EnumDiscriminatorClientOptionalParams } from "./api/enumDiscriminatorContext.js";
 
 export class EnumDiscriminatorClient {
   private _client: EnumDiscriminatorContext;
@@ -35,7 +35,7 @@ export class EnumDiscriminatorClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates inheritance with enum discriminator. */
-  constructor(options: EnumDiscriminatorClientOptions = {}) {
+  constructor(options: EnumDiscriminatorClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

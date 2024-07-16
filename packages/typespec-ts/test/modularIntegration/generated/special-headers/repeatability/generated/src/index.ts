@@ -3,6 +3,6 @@
 
 export {
   RepeatabilityClient,
-  RepeatabilityClientOptions,
+  RepeatabilityClientOptionalParams,
 } from "./repeatabilityClient.js";
 export { ImmediateSuccessOptionalParams } from "./models/index.js";

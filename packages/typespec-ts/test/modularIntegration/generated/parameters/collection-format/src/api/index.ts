@@ -3,7 +3,7 @@
 
 export {
   createCollectionFormat,
-  CollectionFormatClientOptions,
+  CollectionFormatClientOptionalParams,
   CollectionFormatContext,
 } from "./collectionFormatContext.js";
 export { headerCsv } from "./header/index.js";

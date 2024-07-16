@@ -3,7 +3,7 @@
 
 export {
   ParametrizedHostClient,
-  ParametrizedHostClientOptions,
+  ParametrizedHostClientOptionalParams,
 } from "./parametrizedHostClient.js";
 export {
   Collection,

@@ -515,14 +515,14 @@ describe("api operations in Modular", () => {
         import getClient from "../rest/index.js";
         
         /** Optional parameters for the client. */
-        export interface TestingClientOptions  extends ClientOptions  {}
+        export interface TestingClientOptionalParams  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
         
         export function createTesting(
           endpoint: string,
           apiVersion: string,
-          options: TestingClientOptions  = {},
+          options: TestingClientOptionalParams  = {},
         ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
@@ -544,7 +544,7 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-        export { TestingClientOptions  } from "./api/testingContext.js";
+        export { TestingClientOptionalParams  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;
@@ -554,7 +554,7 @@ describe("api operations in Modular", () => {
           constructor(
             endpoint: string,
             apiVersion: string,
-            options: TestingClientOptions  = {},
+            options: TestingClientOptionalParams  = {},
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
@@ -646,7 +646,7 @@ describe("api operations in Modular", () => {
         import getClient from "../rest/index.js";
         
         /** Optional parameters for the client. */
-        export interface TestingClientOptions extends ClientOptions  {
+        export interface TestingClientOptionalParams extends ClientOptions  {
           apiVersion?: string;
         }
         
@@ -654,7 +654,7 @@ describe("api operations in Modular", () => {
         
         export function createTesting(
           endpoint: string,
-          options: TestingClientOptions  = {},
+          options: TestingClientOptionalParams  = {},
         ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
@@ -680,7 +680,7 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-        export { TestingClientOptions  } from "./api/testingContext.js";
+        export { TestingClientOptionalParams  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;
@@ -689,7 +689,7 @@ describe("api operations in Modular", () => {
         
           constructor(
             endpoint: string,
-            options: TestingClientOptions  = {},
+            options: TestingClientOptionalParams  = {},
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
@@ -811,13 +811,13 @@ describe("api operations in Modular", () => {
         import getClient from "../rest/index.js";
         
         /** Optional parameters for the client. */
-        export interface TestingClientOptions  extends ClientOptions  {}
+        export interface TestingClientOptionalParams  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
         
         export function createTesting(
           endpoint: string,
-          options: TestingClientOptions  = {},
+          options: TestingClientOptionalParams  = {},
           ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
@@ -839,7 +839,7 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-        export { TestingClientOptions  } from "./api/testingContext.js";
+        export { TestingClientOptionalParams  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;
@@ -848,7 +848,7 @@ describe("api operations in Modular", () => {
         
           constructor(
             endpoint: string,
-            options: TestingClientOptions  = {},
+            options: TestingClientOptionalParams  = {},
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BytesClient, BytesClientOptions } from "./bytesClient.js";
+export { BytesClient, BytesClientOptionalParams } from "./bytesClient.js";
 export {
   DefaultBytesProperty,
   Base64BytesProperty,

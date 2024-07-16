@@ -125,14 +125,14 @@ export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class WidgetServiceClient {
-    constructor(endpoint: string, options?: WidgetServiceClientOptions);
+    constructor(endpoint: string, options?: WidgetServiceClientOptionalParams);
     readonly budgets: BudgetsOperations;
     readonly pipeline: Pipeline;
     readonly widgets: WidgetsOperations;
 }
 
 // @public
-export interface WidgetServiceClientOptions extends ClientOptions {
+export interface WidgetServiceClientOptionalParams extends ClientOptions {
 }
 
 // @public

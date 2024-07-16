@@ -29,7 +29,7 @@ import {
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createContentSafety,
-  ContentSafetyClientOptions,
+  ContentSafetyClientOptionalParams,
   ContentSafetyContext,
   analyzeText,
   analyzeImage,
@@ -43,7 +43,7 @@ import {
   listTextBlocklistItems,
 } from "./api/index.js";
 
-export { ContentSafetyClientOptions } from "./api/contentSafetyContext.js";
+export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 
 export class ContentSafetyClient {
   private _client: ContentSafetyContext;
@@ -54,7 +54,7 @@ export class ContentSafetyClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: ContentSafetyClientOptions = {},
+    options: ContentSafetyClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

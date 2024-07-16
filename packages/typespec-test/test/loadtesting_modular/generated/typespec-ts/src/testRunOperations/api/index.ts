@@ -19,6 +19,6 @@ export {
 } from "./operations.js";
 export {
   createTestRunOperations,
-  TestRunOperationsClientOptions,
+  TestRunOperationsClientOptionalParams,
   AzureLoadTestingContext,
 } from "./testRunOperationsContext.js";

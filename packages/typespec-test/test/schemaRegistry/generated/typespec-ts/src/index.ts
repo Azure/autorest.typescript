@@ -3,7 +3,7 @@
 
 export {
   SchemaRegistryClient,
-  SchemaRegistryClientOptions,
+  SchemaRegistryClientOptionalParams,
 } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,

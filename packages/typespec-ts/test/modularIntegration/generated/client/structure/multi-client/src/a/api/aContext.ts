@@ -7,14 +7,14 @@ import { ServiceContext } from "../../rest/index.js";
 import getClient from "../../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface AClientOptions extends ClientOptions {}
+export interface AClientOptionalParams extends ClientOptions {}
 
 export { ServiceContext } from "../../rest/index.js";
 
 export function createA(
   endpointParam: string,
   clientParam: ClientType,
-  options: AClientOptions = {},
+  options: AClientOptionalParams = {},
 ): ServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

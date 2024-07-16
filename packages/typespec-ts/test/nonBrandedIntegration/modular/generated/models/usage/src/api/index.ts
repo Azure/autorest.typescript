@@ -3,6 +3,6 @@
 export { input, output, inputAndOutput } from "./operations.js";
 export {
   createUsage,
-  UsageClientOptions,
+  UsageClientOptionalParams,
   UsageContext,
 } from "./usageContext.js";

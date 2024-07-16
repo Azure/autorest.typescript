@@ -3,7 +3,7 @@
 
 export {
   createEventGrid,
-  EventGridClientOptions,
+  EventGridClientOptionalParams,
   EventGridContext,
 } from "./eventGridContext.js";
 export {

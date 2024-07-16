@@ -3,6 +3,6 @@
 
 export {
   XmsRequestIdClient,
-  XmsRequestIdClientOptions,
+  XmsRequestIdClientOptionalParams,
 } from "./xmsRequestIdClient.js";
 export { GetOptionalParams } from "./models/index.js";

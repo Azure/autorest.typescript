@@ -10,14 +10,14 @@ import {
 } from "./models/options.js";
 import {
   createNotDiscriminated,
-  NotDiscriminatedClientOptions,
+  NotDiscriminatedClientOptionalParams,
   NotDiscriminatedContext,
   postValid,
   getValid,
   putValid,
 } from "./api/index.js";
 
-export { NotDiscriminatedClientOptions } from "./api/notDiscriminatedContext.js";
+export { NotDiscriminatedClientOptionalParams } from "./api/notDiscriminatedContext.js";
 
 export class NotDiscriminatedClient {
   private _client: NotDiscriminatedContext;
@@ -25,7 +25,7 @@ export class NotDiscriminatedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates not-discriminated inheritance model. */
-  constructor(options: NotDiscriminatedClientOptions = {}) {
+  constructor(options: NotDiscriminatedClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

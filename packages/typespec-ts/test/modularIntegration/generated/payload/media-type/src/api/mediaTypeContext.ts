@@ -6,13 +6,13 @@ import { MediaTypeContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface MediaTypeClientOptions extends ClientOptions {}
+export interface MediaTypeClientOptionalParams extends ClientOptions {}
 
 export { MediaTypeContext } from "../rest/index.js";
 
 /** Test the payload with different media types and different types of the payload itself. */
 export function createMediaType(
-  options: MediaTypeClientOptions = {},
+  options: MediaTypeClientOptionalParams = {},
 ): MediaTypeContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
