@@ -785,6 +785,9 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
+    if (name === '"propBoolean"') {
+      prop;
+    }
     const propertyDescription = getFormattedPropertyDoc(
       program,
       prop,
@@ -1453,7 +1456,16 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
 }
 
 function getEnumStringDescription(type: any) {
-  if (type.name === "string" && type.enum && type.enum.length > 0) {
+  if (
+    (type.name === "string" ||
+      type.alias === "string" ||
+      type.name === "number" ||
+      type.alias === "number" ||
+      type.name === "boolean" ||
+      type.alias === "boolean") &&
+    type.enum &&
+    type.enum.length > 0
+  ) {
     return `Possible values: ${type.enum
       .map((e: Schema) => {
         return e.type;
