@@ -51,7 +51,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
     dependencies: {
       ...getAzurePackageDependencies(config)
     },
-    devDependencies,
+    devDependencies
   };
 }
 
