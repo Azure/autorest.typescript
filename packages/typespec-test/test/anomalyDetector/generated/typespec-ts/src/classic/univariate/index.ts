@@ -3,11 +3,11 @@
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
-  UnivariateUnivariateDetectionOptions,
-  UnivariateUnivariateEntireDetectionResult,
-  UnivariateUnivariateLastDetectionResult,
-  UnivariateUnivariateChangePointDetectionOptions,
-  UnivariateUnivariateChangePointDetectionResult,
+  UnivariateDetectionOptions,
+  UnivariateEntireDetectionResult,
+  UnivariateLastDetectionResult,
+  UnivariateChangePointDetectionOptions,
+  UnivariateChangePointDetectionResult,
 } from "../../models/models.js";
 import {
   detectUnivariateEntireSeries,
@@ -29,36 +29,36 @@ export interface UnivariateOperations {
    * user an overall status of the time series.
    */
   detectUnivariateEntireSeries: (
-    options: UnivariateUnivariateDetectionOptions,
+    options: UnivariateDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  ) => Promise<UnivariateUnivariateEntireDetectionResult>;
+  ) => Promise<UnivariateEntireDetectionResult>;
   /**
    * This operation generates a model using the points that you sent into the API,
    * and based on all data to determine whether the last point is anomalous.
    */
   detectUnivariateLastPoint: (
-    options: UnivariateUnivariateDetectionOptions,
+    options: UnivariateDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams,
-  ) => Promise<UnivariateUnivariateLastDetectionResult>;
+  ) => Promise<UnivariateLastDetectionResult>;
   /** Evaluate change point score of every series point */
   detectUnivariateChangePoint: (
-    options: UnivariateUnivariateChangePointDetectionOptions,
+    options: UnivariateChangePointDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams,
-  ) => Promise<UnivariateUnivariateChangePointDetectionResult>;
+  ) => Promise<UnivariateChangePointDetectionResult>;
 }
 
 export function getUnivariate(context: AnomalyDetectorContext) {
   return {
     detectUnivariateEntireSeries: (
-      options: UnivariateUnivariateDetectionOptions,
+      options: UnivariateDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams,
     ) => detectUnivariateEntireSeries(context, options, optionalParams),
     detectUnivariateLastPoint: (
-      options: UnivariateUnivariateDetectionOptions,
+      options: UnivariateDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams,
     ) => detectUnivariateLastPoint(context, options, optionalParams),
     detectUnivariateChangePoint: (
-      options: UnivariateUnivariateChangePointDetectionOptions,
+      options: UnivariateChangePointDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams,
     ) => detectUnivariateChangePoint(context, options, optionalParams),
   };

@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
-  univariateTimeSeriesPointSerializer,
-  UnivariateUnivariateDetectionOptions,
-  UnivariateUnivariateEntireDetectionResult,
-  UnivariateUnivariateLastDetectionResult,
-  UnivariateUnivariateChangePointDetectionOptions,
-  UnivariateUnivariateChangePointDetectionResult,
+  timeSeriesPointSerializer,
+  UnivariateDetectionOptions,
+  UnivariateEntireDetectionResult,
+  UnivariateLastDetectionResult,
+  UnivariateChangePointDetectionOptions,
+  UnivariateChangePointDetectionResult,
 } from "../../models/models.js";
 import {
   isUnexpected,
@@ -32,7 +32,7 @@ import {
 
 export function _detectUnivariateEntireSeriesSend(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: UnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
     requestOptions: {},
   },
@@ -45,7 +45,7 @@ export function _detectUnivariateEntireSeriesSend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
+        series: options["series"].map(timeSeriesPointSerializer),
         granularity: options["granularity"],
         customInterval: options["customInterval"],
         period: options["period"],
@@ -61,7 +61,7 @@ export async function _detectUnivariateEntireSeriesDeserialize(
   result:
     | DetectUnivariateEntireSeries200Response
     | DetectUnivariateEntireSeriesDefaultResponse,
-): Promise<UnivariateUnivariateEntireDetectionResult> {
+): Promise<UnivariateEntireDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -86,11 +86,11 @@ export async function _detectUnivariateEntireSeriesDeserialize(
  */
 export async function detectUnivariateEntireSeries(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: UnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateEntireDetectionResult> {
+): Promise<UnivariateEntireDetectionResult> {
   const result = await _detectUnivariateEntireSeriesSend(
     context,
     options,
@@ -101,7 +101,7 @@ export async function detectUnivariateEntireSeries(
 
 export function _detectUnivariateLastPointSend(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: UnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateLastPointOptionalParams = {
     requestOptions: {},
   },
@@ -114,7 +114,7 @@ export function _detectUnivariateLastPointSend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
+        series: options["series"].map(timeSeriesPointSerializer),
         granularity: options["granularity"],
         customInterval: options["customInterval"],
         period: options["period"],
@@ -130,7 +130,7 @@ export async function _detectUnivariateLastPointDeserialize(
   result:
     | DetectUnivariateLastPoint200Response
     | DetectUnivariateLastPointDefaultResponse,
-): Promise<UnivariateUnivariateLastDetectionResult> {
+): Promise<UnivariateLastDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -154,11 +154,11 @@ export async function _detectUnivariateLastPointDeserialize(
  */
 export async function detectUnivariateLastPoint(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: UnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateLastPointOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateLastDetectionResult> {
+): Promise<UnivariateLastDetectionResult> {
   const result = await _detectUnivariateLastPointSend(
     context,
     options,
@@ -169,7 +169,7 @@ export async function detectUnivariateLastPoint(
 
 export function _detectUnivariateChangePointSend(
   context: Client,
-  options: UnivariateUnivariateChangePointDetectionOptions,
+  options: UnivariateChangePointDetectionOptions,
   optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
     requestOptions: {},
   },
@@ -182,7 +182,7 @@ export function _detectUnivariateChangePointSend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
+        series: options["series"].map(timeSeriesPointSerializer),
         granularity: options["granularity"],
         customInterval: options["customInterval"],
         period: options["period"],
@@ -196,7 +196,7 @@ export async function _detectUnivariateChangePointDeserialize(
   result:
     | DetectUnivariateChangePoint200Response
     | DetectUnivariateChangePointDefaultResponse,
-): Promise<UnivariateUnivariateChangePointDetectionResult> {
+): Promise<UnivariateChangePointDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -211,11 +211,11 @@ export async function _detectUnivariateChangePointDeserialize(
 /** Evaluate change point score of every series point */
 export async function detectUnivariateChangePoint(
   context: Client,
-  options: UnivariateUnivariateChangePointDetectionOptions,
+  options: UnivariateChangePointDetectionOptions,
   optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateChangePointDetectionResult> {
+): Promise<UnivariateChangePointDetectionResult> {
   const result = await _detectUnivariateChangePointSend(
     context,
     options,

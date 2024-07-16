@@ -3,12 +3,12 @@
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
-  MultivariateMultivariateDetectionResult,
-  MultivariateMultivariateBatchDetectionOptions,
-  MultivariateModelInfo,
-  MultivariateAnomalyDetectionModel,
-  MultivariateMultivariateLastDetectionOptions,
-  MultivariateMultivariateLastDetectionResult,
+  MultivariateDetectionResult,
+  MultivariateBatchDetectionOptions,
+  ModelInfo,
+  AnomalyDetectionModel,
+  MultivariateLastDetectionOptions,
+  MultivariateLastDetectionResult,
 } from "../../models/models.js";
 import {
   getMultivariateBatchDetectionResult,
@@ -39,7 +39,7 @@ export interface MultivariateOperations {
   getMultivariateBatchDetectionResult: (
     resultId: string,
     options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  ) => Promise<MultivariateMultivariateDetectionResult>;
+  ) => Promise<MultivariateDetectionResult>;
   /**
    * Create and train a multivariate anomaly detection model. The request must
    * include a source parameter to indicate an externally accessible Azure blob
@@ -50,13 +50,13 @@ export interface MultivariateOperations {
    * timestamp column.
    */
   trainMultivariateModel: (
-    modelInfo: MultivariateModelInfo,
+    modelInfo: ModelInfo,
     options?: MultivariateTrainMultivariateModelOptionalParams,
-  ) => Promise<MultivariateAnomalyDetectionModel>;
+  ) => Promise<AnomalyDetectionModel>;
   /** List models of a resource. */
   listMultivariateModels: (
     options?: MultivariateListMultivariateModelsOptionalParams,
-  ) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
+  ) => PagedAsyncIterableIterator<AnomalyDetectionModel>;
   /** Delete an existing multivariate model according to the modelId */
   deleteMultivariateModel: (
     modelId: string,
@@ -69,7 +69,7 @@ export interface MultivariateOperations {
   getMultivariateModel: (
     modelId: string,
     options?: MultivariateGetMultivariateModelOptionalParams,
-  ) => Promise<MultivariateAnomalyDetectionModel>;
+  ) => Promise<AnomalyDetectionModel>;
   /**
    * Submit multivariate anomaly detection task with the modelId of trained model
    * and inference data, the input schema should be the same with the training
@@ -80,9 +80,9 @@ export interface MultivariateOperations {
    */
   detectMultivariateBatchAnomaly: (
     modelId: string,
-    options: MultivariateMultivariateBatchDetectionOptions,
+    options: MultivariateBatchDetectionOptions,
     optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  ) => Promise<MultivariateMultivariateDetectionResult>;
+  ) => Promise<MultivariateDetectionResult>;
   /**
    * Submit multivariate anomaly detection task with the modelId of trained model
    * and inference data, and the inference data should be put into request body in a
@@ -91,9 +91,9 @@ export interface MultivariateOperations {
    */
   detectMultivariateLastAnomaly: (
     modelId: string,
-    options: MultivariateMultivariateLastDetectionOptions,
+    options: MultivariateLastDetectionOptions,
     optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams,
-  ) => Promise<MultivariateMultivariateLastDetectionResult>;
+  ) => Promise<MultivariateLastDetectionResult>;
 }
 
 export function getMultivariate(context: AnomalyDetectorContext) {
@@ -103,7 +103,7 @@ export function getMultivariate(context: AnomalyDetectorContext) {
       options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams,
     ) => getMultivariateBatchDetectionResult(context, resultId, options),
     trainMultivariateModel: (
-      modelInfo: MultivariateModelInfo,
+      modelInfo: ModelInfo,
       options?: MultivariateTrainMultivariateModelOptionalParams,
     ) => trainMultivariateModel(context, modelInfo, options),
     listMultivariateModels: (
@@ -119,13 +119,13 @@ export function getMultivariate(context: AnomalyDetectorContext) {
     ) => getMultivariateModel(context, modelId, options),
     detectMultivariateBatchAnomaly: (
       modelId: string,
-      options: MultivariateMultivariateBatchDetectionOptions,
+      options: MultivariateBatchDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams,
     ) =>
       detectMultivariateBatchAnomaly(context, modelId, options, optionalParams),
     detectMultivariateLastAnomaly: (
       modelId: string,
-      options: MultivariateMultivariateLastDetectionOptions,
+      options: MultivariateLastDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams,
     ) =>
       detectMultivariateLastAnomaly(context, modelId, options, optionalParams),

@@ -587,7 +587,7 @@ export function getResolvedModelName(
     dpgContext.nameModelMap?.get(name) &&
     dpgContext.nameModelMap.get(name)!.length > 1
   ) {
-    return `${name}_${dpgContext.nameModelMap?.get(name)?.indexOf(model)}`;
+    return `${name}${dpgContext.nameModelMap?.get(name)?.indexOf(model)}`;
   }
   return name;
 }

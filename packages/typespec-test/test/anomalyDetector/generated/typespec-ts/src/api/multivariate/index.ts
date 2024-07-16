@@ -2,16 +2,16 @@
 // Licensed under the MIT license.
 
 import {
-  multivariateAlignPolicySerializer,
-  multivariateDiagnosticsInfoSerializer,
-  multivariateVariableValuesSerializer,
-  MultivariateMultivariateDetectionResult,
-  MultivariateMultivariateBatchDetectionOptions,
-  MultivariateModelInfo,
-  MultivariateAnomalyDetectionModel,
-  MultivariateMultivariateLastDetectionOptions,
-  MultivariateMultivariateLastDetectionResult,
-  _MultivariateModelList,
+  alignPolicySerializer,
+  diagnosticsInfoSerializer,
+  variableValuesSerializer,
+  MultivariateDetectionResult,
+  MultivariateBatchDetectionOptions,
+  ModelInfo,
+  AnomalyDetectionModel,
+  MultivariateLastDetectionOptions,
+  MultivariateLastDetectionResult,
+  _ModelList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -67,7 +67,7 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
   result:
     | GetMultivariateBatchDetectionResult200Response
     | GetMultivariateBatchDetectionResultDefaultResponse,
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<MultivariateDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -154,7 +154,7 @@ export async function getMultivariateBatchDetectionResult(
   options: MultivariateGetMultivariateBatchDetectionResultOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<MultivariateDetectionResult> {
   const result = await _getMultivariateBatchDetectionResultSend(
     context,
     resultId,
@@ -165,7 +165,7 @@ export async function getMultivariateBatchDetectionResult(
 
 export function _trainMultivariateModelSend(
   context: Client,
-  modelInfo: MultivariateModelInfo,
+  modelInfo: ModelInfo,
   options: MultivariateTrainMultivariateModelOptionalParams = {
     requestOptions: {},
   },
@@ -185,11 +185,11 @@ export function _trainMultivariateModelSend(
         slidingWindow: modelInfo["slidingWindow"],
         alignPolicy: !modelInfo.alignPolicy
           ? modelInfo.alignPolicy
-          : multivariateAlignPolicySerializer(modelInfo.alignPolicy),
+          : alignPolicySerializer(modelInfo.alignPolicy),
         status: modelInfo["status"],
         diagnosticsInfo: !modelInfo.diagnosticsInfo
           ? modelInfo.diagnosticsInfo
-          : multivariateDiagnosticsInfoSerializer(modelInfo.diagnosticsInfo),
+          : diagnosticsInfoSerializer(modelInfo.diagnosticsInfo),
       },
     });
 }
@@ -198,7 +198,7 @@ export async function _trainMultivariateModelDeserialize(
   result:
     | TrainMultivariateModel201Response
     | TrainMultivariateModelDefaultResponse,
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectionModel> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -292,11 +292,11 @@ export async function _trainMultivariateModelDeserialize(
  */
 export async function trainMultivariateModel(
   context: Client,
-  modelInfo: MultivariateModelInfo,
+  modelInfo: ModelInfo,
   options: MultivariateTrainMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectionModel> {
   const result = await _trainMultivariateModelSend(context, modelInfo, options);
   return _trainMultivariateModelDeserialize(result);
 }
@@ -321,7 +321,7 @@ export async function _listMultivariateModelsDeserialize(
   result:
     | ListMultivariateModels200Response
     | ListMultivariateModelsDefaultResponse,
-): Promise<_MultivariateModelList> {
+): Promise<_ModelList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -415,7 +415,7 @@ export function listMultivariateModels(
   options: MultivariateListMultivariateModelsOptionalParams = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel> {
+): PagedAsyncIterableIterator<AnomalyDetectionModel> {
   return buildPagedAsyncIterator(
     context,
     () => _listMultivariateModelsSend(context, options),
@@ -478,7 +478,7 @@ export function _getMultivariateModelSend(
 
 export async function _getMultivariateModelDeserialize(
   result: GetMultivariateModel200Response | GetMultivariateModelDefaultResponse,
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectionModel> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -571,7 +571,7 @@ export async function getMultivariateModel(
   options: MultivariateGetMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectionModel> {
   const result = await _getMultivariateModelSend(context, modelId, options);
   return _getMultivariateModelDeserialize(result);
 }
@@ -579,7 +579,7 @@ export async function getMultivariateModel(
 export function _detectMultivariateBatchAnomalySend(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateBatchDetectionOptions,
+  options: MultivariateBatchDetectionOptions,
   optionalParams: MultivariateDetectMultivariateBatchAnomalyOptionalParams = {
     requestOptions: {},
   },
@@ -604,7 +604,7 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
   result:
     | DetectMultivariateBatchAnomaly202Response
     | DetectMultivariateBatchAnomalyDefaultResponse,
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<MultivariateDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -692,11 +692,11 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
 export async function detectMultivariateBatchAnomaly(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateBatchDetectionOptions,
+  options: MultivariateBatchDetectionOptions,
   optionalParams: MultivariateDetectMultivariateBatchAnomalyOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<MultivariateDetectionResult> {
   const result = await _detectMultivariateBatchAnomalySend(
     context,
     modelId,
@@ -709,7 +709,7 @@ export async function detectMultivariateBatchAnomaly(
 export function _detectMultivariateLastAnomalySend(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateLastDetectionOptions,
+  options: MultivariateLastDetectionOptions,
   optionalParams: MultivariateDetectMultivariateLastAnomalyOptionalParams = {
     requestOptions: {},
   },
@@ -722,9 +722,7 @@ export function _detectMultivariateLastAnomalySend(
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: {
-        variables: options["variables"].map(
-          multivariateVariableValuesSerializer,
-        ),
+        variables: options["variables"].map(variableValuesSerializer),
         topContributorCount: options["topContributorCount"],
       },
     });
@@ -734,7 +732,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
   result:
     | DetectMultivariateLastAnomaly200Response
     | DetectMultivariateLastAnomalyDefaultResponse,
-): Promise<MultivariateMultivariateLastDetectionResult> {
+): Promise<MultivariateLastDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -808,11 +806,11 @@ export async function _detectMultivariateLastAnomalyDeserialize(
 export async function detectMultivariateLastAnomaly(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateLastDetectionOptions,
+  options: MultivariateLastDetectionOptions,
   optionalParams: MultivariateDetectMultivariateLastAnomalyOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateMultivariateLastDetectionResult> {
+): Promise<MultivariateLastDetectionResult> {
   const result = await _detectMultivariateLastAnomalySend(
     context,
     modelId,

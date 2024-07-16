@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { A_1 } from "../../models/models.js";
+import { A1 } from "../../models/models.js";
 import { BOp1204Response, FooContext as Client } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -12,7 +12,7 @@ import { BOp1OptionalParams } from "../options.js";
 
 export function _op1Send(
   context: Client,
-  body: A_1,
+  body: A1,
   options: BOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod<BOp1204Response> {
   return context
@@ -33,7 +33,7 @@ export async function _op1Deserialize(result: BOp1204Response): Promise<void> {
 
 export async function op1(
   context: Client,
-  body: A_1,
+  body: A1,
   options: BOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
