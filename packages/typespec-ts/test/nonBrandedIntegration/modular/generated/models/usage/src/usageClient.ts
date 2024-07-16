@@ -16,11 +16,11 @@ import {
   output,
   inputAndOutput,
   createUsage,
-  UsageClientOptions,
+  UsageClientOptionalParams,
   UsageContext,
 } from "./api/index.js";
 
-export { UsageClientOptions } from "./api/usageContext.js";
+export { UsageClientOptionalParams } from "./api/usageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;
@@ -28,7 +28,7 @@ export class UsageClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates usage of Record in different places(Operation parameters, return type or both). */
-  constructor(options: UsageClientOptions = {}) {
+  constructor(options: UsageClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
