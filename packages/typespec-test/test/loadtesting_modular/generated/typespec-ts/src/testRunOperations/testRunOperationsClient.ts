@@ -4,9 +4,8 @@
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  FileType,
-  FileStatus,
   TestRun,
+  TestRunFileInfo,
   TestRunAppComponents,
   TestRunServerMetricConfig,
   DimensionValueList,
@@ -29,7 +28,7 @@ import {
   ListMetricNamespacesOptionalParams,
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
+  StopOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -46,7 +45,7 @@ import {
   listMetricNamespaces,
   listMetrics,
   listTestRuns,
-  stopTestRun,
+  stop,
   createTestRunOperations,
   TestRunOperationsClientOptions,
   LoadTestServiceContext,
@@ -150,13 +149,7 @@ export class TestRunOperationsClient {
     testRunId: string,
     fileName: string,
     options: GetTestRunFileOptionalParams = { requestOptions: {} },
-  ): Promise<{
-    url?: string;
-    fileType?: FileType;
-    expireDateTime?: Date;
-    validationStatus?: FileStatus;
-    validationFailureDetails?: string;
-  }> {
+  ): Promise<TestRunFileInfo> {
     return getTestRunFile(this._client, testRunId, fileName, options);
   }
 
@@ -230,10 +223,10 @@ export class TestRunOperationsClient {
   }
 
   /** Stop test run by test run Id. */
-  stopTestRun(
+  stop(
     testRunId: string,
-    options: StopTestRunOptionalParams = { requestOptions: {} },
+    options: StopOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
-    return stopTestRun(this._client, testRunId, options);
+    return stop(this._client, testRunId, options);
   }
 }

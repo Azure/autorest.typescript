@@ -11,8 +11,6 @@ import {
   resourceMetricSerializer,
   Test,
   TestFileInfo,
-  FileType,
-  FileStatus,
   TestAppComponents,
   TestServerMetricConfig,
   _PagedTest,
@@ -942,18 +940,13 @@ export async function _getTestFileDeserialize(
   result:
     | LoadTestAdministrationGetTestFile200Response
     | LoadTestAdministrationGetTestFileDefaultResponse,
-): Promise<{
-  url?: string;
-  fileType?: FileType;
-  expireDateTime?: Date;
-  validationStatus?: FileStatus;
-  validationFailureDetails?: string;
-}> {
+): Promise<TestFileInfo> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
+    fileName: result.body["fileName"],
     url: result.body["url"],
     fileType: result.body["fileType"],
     expireDateTime:
@@ -971,13 +964,7 @@ export async function getTestFile(
   testId: string,
   fileName: string,
   options: GetTestFileOptionalParams = { requestOptions: {} },
-): Promise<{
-  url?: string;
-  fileType?: FileType;
-  expireDateTime?: Date;
-  validationStatus?: FileStatus;
-  validationFailureDetails?: string;
-}> {
+): Promise<TestFileInfo> {
   const result = await _getTestFileSend(context, testId, fileName, options);
   return _getTestFileDeserialize(result);
 }
@@ -1348,18 +1335,13 @@ export async function _uploadTestFileDeserialize(
   result:
     | LoadTestAdministrationUploadTestFile201Response
     | LoadTestAdministrationUploadTestFileDefaultResponse,
-): Promise<{
-  url?: string;
-  fileType?: FileType;
-  expireDateTime?: Date;
-  validationStatus?: FileStatus;
-  validationFailureDetails?: string;
-}> {
+): Promise<TestFileInfo> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
+    fileName: result.body["fileName"],
     url: result.body["url"],
     fileType: result.body["fileType"],
     expireDateTime:
@@ -1382,13 +1364,7 @@ export async function uploadTestFile(
   fileName: string,
   body: Uint8Array,
   options: UploadTestFileOptionalParams = { requestOptions: {} },
-): Promise<{
-  url?: string;
-  fileType?: FileType;
-  expireDateTime?: Date;
-  validationStatus?: FileStatus;
-  validationFailureDetails?: string;
-}> {
+): Promise<TestFileInfo> {
   const result = await _uploadTestFileSend(
     context,
     testId,

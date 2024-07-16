@@ -20,23 +20,11 @@ export class AdministrationOperationsClient {
     getAppComponents(testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
     getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
     getTest(testId: string, options?: GetTestOptionalParams): Promise<Test>;
-    getTestFile(testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<{
-        url?: string;
-        fileType?: FileType;
-        expireDateTime?: Date;
-        validationStatus?: FileStatus;
-        validationFailureDetails?: string;
-    }>;
+    getTestFile(testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
     listTestFiles(testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
     listTests(options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
     readonly pipeline: Pipeline;
-    uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<{
-        url?: string;
-        fileType?: FileType;
-        expireDateTime?: Date;
-        validationStatus?: FileStatus;
-        validationFailureDetails?: string;
-    }>;
+    uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<TestFileInfo>;
 }
 
 // @public
@@ -607,11 +595,7 @@ export type SecretType = string;
 export type Status = string;
 
 // @public
-export interface StopTestProfileRunOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface StopTestRunOptionalParams extends OperationOptions {
+export interface StopOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -1398,7 +1382,7 @@ export class TestProfileRunOperationsClient {
     getTestProfileRun(testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
     listTestProfileRuns(options?: ListTestProfileRunsOptionalParams): TestProfileRunOperationsClientPagedAsyncIterableIterator<TestProfileRunOperationsClientTestProfileRun>;
     readonly pipeline: Pipeline;
-    stopTestProfileRun(testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
+    stop(testProfileRunId: string, options?: TestProfileRunOperationsClientStopOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
 }
 
 // @public
@@ -1820,6 +1804,10 @@ export type TestProfileRunOperationsClientSecretType = string;
 export type TestProfileRunOperationsClientStatus = string;
 
 // @public
+export interface TestProfileRunOperationsClientStopOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface TestProfileRunOperationsClientTargetResourceConfigurations {
     kind: TestProfileRunOperationsClientResourceKind;
 }
@@ -2164,20 +2152,14 @@ export class TestRunOperationsClient {
     getAppComponents(testRunId: string, options?: TestRunOperationsClientGetAppComponentsOptionalParams): Promise<TestRunOperationsClientTestRunAppComponents>;
     getServerMetricsConfig(testRunId: string, options?: TestRunOperationsClientGetServerMetricsConfigOptionalParams): Promise<TestRunOperationsClientTestRunServerMetricConfig>;
     getTestRun(testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
-    getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<{
-        url?: string;
-        fileType?: TestRunOperationsClientFileType;
-        expireDateTime?: Date;
-        validationStatus?: TestRunOperationsClientFileStatus;
-        validationFailureDetails?: string;
-    }>;
+    getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunOperationsClientTestRunFileInfo>;
     listMetricDefinitions(testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<TestRunOperationsClientMetricDefinitionCollection>;
     listMetricDimensionValues(testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<TestRunOperationsClientDimensionValueList>;
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<TestRunOperationsClientMetricNamespaceCollection>;
     listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: TestRunOperationsClientMetricRequestPayload, options?: ListMetricsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
     listTestRuns(options?: ListTestRunsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
-    stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
+    stop(testRunId: string, options?: StopOptionalParams): Promise<TestRunOperationsClientTestRun>;
 }
 
 // @public

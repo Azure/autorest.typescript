@@ -35,7 +35,11 @@ export interface TestOutput {
   displayName?: string;
   /** Subnet ID on which the load test instances should run. */
   subnetId?: string;
-  /** Kind of test. */
+  /**
+   * Kind of test.
+   *
+   * Possible values: "URL", "JMX", "Locust"
+   */
   kind?: TestKindOutput;
   /** Inject load test engines without deploying public IP for outbound access */
   publicIPDisabled?: boolean;
@@ -61,13 +65,19 @@ export interface PassFailCriteriaOutput {
 
 /** Pass fail metric */
 export interface PassFailMetricOutput {
-  /** The client metric on which the criteria should be applied. */
+  /**
+   * The client metric on which the criteria should be applied.
+   *
+   * Possible values: "response_time_ms", "latency", "error", "requests", "requests_per_sec"
+   */
   clientMetric?: PFMetricsOutput;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
    * - ‘percentage’ - for error metric , ‘avg’, percentiles like ‘p50’, ‘p90’, & so on, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
+   *
+   * Possible values: "count", "percentage", "avg", "p50", "p75", "p90", "p95", "p96", "p97", "p98", "p99", "p99.9", "p99.99", "min", "max"
    */
   aggregate?: PFAgFuncOutput;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
@@ -79,11 +89,19 @@ export interface PassFailMetricOutput {
    * 100.0] unit- % ’, response_time_ms and latency : any integer value unit- ms.
    */
   value?: number;
-  /** Action taken after the threshold is met. Default is ‘continue’. */
+  /**
+   * Action taken after the threshold is met. Default is ‘continue’.
+   *
+   * Possible values: "continue", "stop"
+   */
   action?: PFActionOutput;
   /** The actual value of the client metric for the test run. */
   readonly actualValue?: number;
-  /** Outcome of the test run. */
+  /**
+   * Outcome of the test run.
+   *
+   * Possible values: "passed", "undetermined", "failed"
+   */
   readonly result?: PFResultOutput;
 }
 
@@ -101,7 +119,11 @@ export interface AutoStopCriteriaOutput {
 export interface SecretOutput {
   /** The value of the secret for the respective type */
   value?: string;
-  /** Type of secret */
+  /**
+   * Type of secret
+   *
+   * Possible values: "AKV_SECRET_URI", "SECRET_VALUE"
+   */
   type?: SecretTypeOutput;
 }
 
@@ -109,7 +131,11 @@ export interface SecretOutput {
 export interface CertificateMetadataOutput {
   /** The value of the certificate for respective type */
   value?: string;
-  /** Type of certificate */
+  /**
+   * Type of certificate
+   *
+   * Possible values: "AKV_CERT_URI"
+   */
   type?: CertificateTypeOutput;
   /** Name of the certificate. */
   name?: string;
@@ -187,11 +213,19 @@ export interface TestFileInfoOutput {
   fileName: string;
   /** File URL. */
   readonly url?: string;
-  /** File type */
+  /**
+   * File type
+   *
+   * Possible values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS", "ZIPPED_ARTIFACTS", "URL_TEST_CONFIG", "TEST_SCRIPT"
+   */
   readonly fileType?: FileTypeOutput;
   /** Expiry time of the file (RFC 3339 literal format) */
   readonly expireDateTime?: string;
-  /** Validation status of the file */
+  /**
+   * Validation status of the file
+   *
+   * Possible values: "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED"
+   */
   readonly validationStatus?: FileStatusOutput;
   /** Validation failure error details */
   readonly validationFailureDetails?: string;
@@ -317,7 +351,11 @@ export interface TestRunOutput {
   loadTestConfiguration?: LoadTestConfigurationOutput;
   /** Collection of test run artifacts */
   readonly testArtifacts?: TestRunArtifactsOutput;
-  /** Test result for pass/Fail criteria used during the test run. */
+  /**
+   * Test result for pass/Fail criteria used during the test run.
+   *
+   * Possible values: "PASSED", "NOT_APPLICABLE", "FAILED"
+   */
   readonly testResult?: PFTestResultOutput;
   /** Number of virtual users, for which test has been run. */
   readonly virtualUsers?: number;
@@ -327,7 +365,11 @@ export interface TestRunOutput {
   testId?: string;
   /** The test run description. */
   description?: string;
-  /** The test run status. */
+  /**
+   * The test run status.
+   *
+   * Possible values: "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE"
+   */
   readonly status?: StatusOutput;
   /** The test run start DateTime(RFC 3339 literal format). */
   readonly startDateTime?: string;
@@ -341,9 +383,17 @@ export interface TestRunOutput {
   readonly duration?: number;
   /** Subnet ID on which the load test instances should run. */
   readonly subnetId?: string;
-  /** Type of test. */
+  /**
+   * Type of test.
+   *
+   * Possible values: "URL", "JMX", "Locust"
+   */
   readonly kind?: TestKindOutput;
-  /** Request data collection level for test run */
+  /**
+   * Request data collection level for test run
+   *
+   * Possible values: "NONE", "ERRORS"
+   */
   requestDataLevel?: RequestDataLevelOutput;
   /** Enable or disable debug level logging. True if debug logs are enabled for the test run. False otherwise */
   debugLogsEnabled?: boolean;
@@ -439,11 +489,19 @@ export interface TestRunFileInfoOutput {
   fileName: string;
   /** File URL. */
   readonly url?: string;
-  /** File type */
+  /**
+   * File type
+   *
+   * Possible values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS", "ZIPPED_ARTIFACTS", "URL_TEST_CONFIG", "TEST_SCRIPT"
+   */
   readonly fileType?: FileTypeOutput;
   /** Expiry time of the file (RFC 3339 literal format) */
   readonly expireDateTime?: string;
-  /** Validation status of the file */
+  /**
+   * Validation status of the file
+   *
+   * Possible values: "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED"
+   */
   readonly validationStatus?: FileStatusOutput;
   /** Validation failure error details */
   readonly validationFailureDetails?: string;
@@ -499,11 +557,19 @@ export interface MetricDefinitionOutput {
   name?: string;
   /** The namespace the metric belongs to. */
   namespace?: string;
-  /** The primary aggregation type value defining how to use the values for display. */
+  /**
+   * The primary aggregation type value defining how to use the values for display.
+   *
+   * Possible values: "Average", "Count", "None", "Total", "Percentile75", "Percentile90", "Percentile95", "Percentile96", "Percentile97", "Percentile98", "Percentile99", "Percentile999", "Percentile9999"
+   */
   primaryAggregationType?: AggregationTypeOutput;
   /** The collection of what all aggregation types are supported. */
   supportedAggregationTypes?: string[];
-  /** The unit of the metric. */
+  /**
+   * The unit of the metric.
+   *
+   * Possible values: "NotSpecified", "Percent", "Count", "Seconds", "Milliseconds", "Bytes", "BytesPerSecond", "CountPerSecond"
+   */
   unit?: MetricUnitOutput;
   /**
    * Metric availability specifies the time grain (aggregation interval or
@@ -525,6 +591,8 @@ export interface MetricAvailabilityOutput {
   /**
    * The time grain specifies the aggregation interval for the metric. Expressed as
    * a duration 'PT1M', 'PT1H', etc.
+   *
+   * Possible values: "PT5S", "PT10S", "PT1M", "PT5M", "PT1H"
    */
   timeGrain?: TimeGrainOutput;
 }
@@ -649,7 +717,7 @@ export interface FunctionFlexConsumptionTargetResourceConfigurationsOutput
 
 /** Resource configuration instance for a Flex Consumption based Azure Function App. */
 export interface FunctionFlexConsumptionResourceConfigurationOutput {
-  /** Memory size of the instance. Supported values are 512, 2048, 2096. */
+  /** Memory size of the instance. Supported values are 2048, 4096. */
   instanceMemoryMB: number;
   /** HTTP Concurrency for the function app. */
   httpConcurrency: number;
@@ -669,7 +737,11 @@ export interface TestProfileRunOutput {
   readonly targetResourceId?: string;
   /** Configurations of the target resource on which the test profile ran. */
   readonly targetResourceConfigurations?: TargetResourceConfigurationsOutput;
-  /** The test profile run status. */
+  /**
+   * The test profile run status.
+   *
+   * Possible values: "ACCEPTED", "NOTSTARTED", "EXECUTING", "DONE", "CANCELLING", "CANCELLED", "FAILED"
+   */
   readonly status?: TestProfileRunStatusOutput;
   /** Error details if there is any failure in test profile run. These errors are specific to the Test Profile Run. */
   readonly errorDetails?: Array<ErrorDetailsOutput>;
@@ -698,7 +770,11 @@ export interface TestProfileRunOutput {
 
 /** Details of a particular test run for a test profile run. */
 export interface TestRunDetailOutput {
-  /** Status of the test run. */
+  /**
+   * Status of the test run.
+   *
+   * Possible values: "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE"
+   */
   status: StatusOutput;
   /** ID of the configuration on which the test ran. */
   configurationId: string;
@@ -708,7 +784,11 @@ export interface TestRunDetailOutput {
 
 /** A recommendation object that provides a list of configuration that optimizes its category. */
 export interface TestProfileRunRecommendationOutput {
-  /** Category of the recommendation. */
+  /**
+   * Category of the recommendation.
+   *
+   * Possible values: "ThroughputOptimized", "CostOptimized"
+   */
   category: RecommendationCategoryOutput;
   /** List of configurations IDs for which the recommendation is applicable. These are a subset of the provided target resource configurations. */
   configurations?: string[];

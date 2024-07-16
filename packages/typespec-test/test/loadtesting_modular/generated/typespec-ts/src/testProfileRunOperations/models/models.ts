@@ -1440,7 +1440,7 @@ export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
 
 /** Resource configuration instance for a Flex Consumption based Azure Function App. */
 export interface FunctionFlexConsumptionResourceConfiguration {
-  /** Memory size of the instance. Supported values are 512, 2048, 2096. */
+  /** Memory size of the instance. Supported values are 2048, 4096. */
   instanceMemoryMB: number;
   /** HTTP Concurrency for the function app. */
   httpConcurrency: number;

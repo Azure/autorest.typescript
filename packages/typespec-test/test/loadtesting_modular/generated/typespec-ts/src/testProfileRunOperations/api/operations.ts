@@ -29,7 +29,7 @@ import {
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
-  StopTestProfileRunOptionalParams,
+  StopOptionalParams,
 } from "../models/options.js";
 
 export function _createOrUpdateTestProfileRunSend(
@@ -354,10 +354,10 @@ export function listTestProfileRuns(
   );
 }
 
-export function _stopTestProfileRunSend(
+export function _stopSend(
   context: Client,
   testProfileRunId: string,
-  options: StopTestProfileRunOptionalParams = { requestOptions: {} },
+  options: StopOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | TestProfileRunAdministrationStop200Response
   | TestProfileRunAdministrationStopDefaultResponse
@@ -367,7 +367,7 @@ export function _stopTestProfileRunSend(
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _stopTestProfileRunDeserialize(
+export async function _stopDeserialize(
   result:
     | TestProfileRunAdministrationStop200Response
     | TestProfileRunAdministrationStopDefaultResponse,
@@ -425,15 +425,11 @@ export async function _stopTestProfileRunDeserialize(
 }
 
 /** Stop test profile run for the given test profile run Id. */
-export async function stopTestProfileRun(
+export async function stop(
   context: Client,
   testProfileRunId: string,
-  options: StopTestProfileRunOptionalParams = { requestOptions: {} },
+  options: StopOptionalParams = { requestOptions: {} },
 ): Promise<TestProfileRun> {
-  const result = await _stopTestProfileRunSend(
-    context,
-    testProfileRunId,
-    options,
-  );
-  return _stopTestProfileRunDeserialize(result);
+  const result = await _stopSend(context, testProfileRunId, options);
+  return _stopDeserialize(result);
 }

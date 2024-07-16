@@ -15,7 +15,7 @@ export {
   listMetricNamespaces,
   listMetrics,
   listTestRuns,
-  stopTestRun,
+  stop,
 } from "./operations.js";
 export {
   createTestRunOperations,

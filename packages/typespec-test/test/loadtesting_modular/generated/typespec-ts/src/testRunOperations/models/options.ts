@@ -94,4 +94,4 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface StopTestRunOptionalParams extends OperationOptions {}
+export interface StopOptionalParams extends OperationOptions {}

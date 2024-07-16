@@ -10,9 +10,8 @@ import {
   appComponentSerializer,
   resourceMetricSerializer,
   dimensionFilterSerializer,
-  FileType,
-  FileStatus,
   TestRun,
+  TestRunFileInfo,
   TestRunAppComponents,
   TestRunServerMetricConfig,
   DimensionValueList,
@@ -80,7 +79,7 @@ import {
   ListMetricNamespacesOptionalParams,
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
+  StopOptionalParams,
 } from "../models/options.js";
 
 export function _createOrUpdateTestRunSend(
@@ -1252,18 +1251,13 @@ export async function _getTestRunFileDeserialize(
   result:
     | LoadTestRunGetTestRunFile200Response
     | LoadTestRunGetTestRunFileDefaultResponse,
-): Promise<{
-  url?: string;
-  fileType?: FileType;
-  expireDateTime?: Date;
-  validationStatus?: FileStatus;
-  validationFailureDetails?: string;
-}> {
+): Promise<TestRunFileInfo> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
+    fileName: result.body["fileName"],
     url: result.body["url"],
     fileType: result.body["fileType"],
     expireDateTime:
@@ -1281,13 +1275,7 @@ export async function getTestRunFile(
   testRunId: string,
   fileName: string,
   options: GetTestRunFileOptionalParams = { requestOptions: {} },
-): Promise<{
-  url?: string;
-  fileType?: FileType;
-  expireDateTime?: Date;
-  validationStatus?: FileStatus;
-  validationFailureDetails?: string;
-}> {
+): Promise<TestRunFileInfo> {
   const result = await _getTestRunFileSend(
     context,
     testRunId,
@@ -2040,10 +2028,10 @@ export function listTestRuns(
   );
 }
 
-export function _stopTestRunSend(
+export function _stopSend(
   context: Client,
   testRunId: string,
-  options: StopTestRunOptionalParams = { requestOptions: {} },
+  options: StopOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunStop200Response | LoadTestRunStopDefaultResponse
 > {
@@ -2052,7 +2040,7 @@ export function _stopTestRunSend(
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _stopTestRunDeserialize(
+export async function _stopDeserialize(
   result: LoadTestRunStop200Response | LoadTestRunStopDefaultResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
@@ -2448,11 +2436,11 @@ export async function _stopTestRunDeserialize(
 }
 
 /** Stop test run by test run Id. */
-export async function stopTestRun(
+export async function stop(
   context: Client,
   testRunId: string,
-  options: StopTestRunOptionalParams = { requestOptions: {} },
+  options: StopOptionalParams = { requestOptions: {} },
 ): Promise<TestRun> {
-  const result = await _stopTestRunSend(context, testRunId, options);
-  return _stopTestRunDeserialize(result);
+  const result = await _stopSend(context, testRunId, options);
+  return _stopDeserialize(result);
 }

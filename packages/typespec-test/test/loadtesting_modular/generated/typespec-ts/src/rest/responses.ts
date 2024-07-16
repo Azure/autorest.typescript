@@ -6,13 +6,13 @@ import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   TestOutput,
   PagedTestOutput,
-  FileTypeOutput,
-  FileStatusOutput,
+  TestFileInfoOutput,
   PagedTestFileInfoOutput,
   TestAppComponentsOutput,
   TestServerMetricConfigOutput,
   TestRunOutput,
   PagedTestRunOutput,
+  TestRunFileInfoOutput,
   MetricNamespaceCollectionOutput,
   MetricDefinitionCollectionOutput,
   MetricsOutput,
@@ -111,13 +111,7 @@ export interface LoadTestAdministrationListTestsDefaultResponse
 export interface LoadTestAdministrationUploadTestFile201Response
   extends HttpResponse {
   status: "201";
-  body: {
-    url?: string;
-    fileType?: FileTypeOutput;
-    expireDateTime?: string;
-    validationStatus?: FileStatusOutput;
-    validationFailureDetails?: string;
-  };
+  body: TestFileInfoOutput;
 }
 
 export interface LoadTestAdministrationUploadTestFileDefaultHeaders {
@@ -136,13 +130,7 @@ export interface LoadTestAdministrationUploadTestFileDefaultResponse
 export interface LoadTestAdministrationGetTestFile200Response
   extends HttpResponse {
   status: "200";
-  body: {
-    url?: string;
-    fileType?: FileTypeOutput;
-    expireDateTime?: string;
-    validationStatus?: FileStatusOutput;
-    validationFailureDetails?: string;
-  };
+  body: TestFileInfoOutput;
 }
 
 export interface LoadTestAdministrationGetTestFileDefaultHeaders {
@@ -367,13 +355,7 @@ export interface LoadTestRunListTestRunsDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface LoadTestRunGetTestRunFile200Response extends HttpResponse {
   status: "200";
-  body: {
-    url?: string;
-    fileType?: FileTypeOutput;
-    expireDateTime?: string;
-    validationStatus?: FileStatusOutput;
-    validationFailureDetails?: string;
-  };
+  body: TestRunFileInfoOutput;
 }
 
 export interface LoadTestRunGetTestRunFileDefaultHeaders {

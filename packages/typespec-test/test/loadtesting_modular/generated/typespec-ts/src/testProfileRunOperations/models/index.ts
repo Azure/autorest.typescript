@@ -90,7 +90,7 @@ export {
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
-  StopTestProfileRunOptionalParams,
+  StopOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

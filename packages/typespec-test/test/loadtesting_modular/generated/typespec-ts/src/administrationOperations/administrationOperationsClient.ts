@@ -6,8 +6,6 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   Test,
   TestFileInfo,
-  FileType,
-  FileStatus,
   TestAppComponents,
   TestServerMetricConfig,
 } from "./models/models.js";
@@ -131,13 +129,7 @@ export class AdministrationOperationsClient {
     testId: string,
     fileName: string,
     options: GetTestFileOptionalParams = { requestOptions: {} },
-  ): Promise<{
-    url?: string;
-    fileType?: FileType;
-    expireDateTime?: Date;
-    validationStatus?: FileStatus;
-    validationFailureDetails?: string;
-  }> {
+  ): Promise<TestFileInfo> {
     return getTestFile(this._client, testId, fileName, options);
   }
 
@@ -169,13 +161,7 @@ export class AdministrationOperationsClient {
     fileName: string,
     body: Uint8Array,
     options: UploadTestFileOptionalParams = { requestOptions: {} },
-  ): Promise<{
-    url?: string;
-    fileType?: FileType;
-    expireDateTime?: Date;
-    validationStatus?: FileStatus;
-    validationFailureDetails?: string;
-  }> {
+  ): Promise<TestFileInfo> {
     return uploadTestFile(this._client, testId, fileName, body, options);
   }
 

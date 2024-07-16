@@ -77,7 +77,11 @@ export interface LoadTestAdministrationUploadTestFileBodyParam {
 }
 
 export interface LoadTestAdministrationUploadTestFileQueryParamProperties {
-  /** File type */
+  /**
+   * File type
+   *
+   * Possible values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS", "ZIPPED_ARTIFACTS", "URL_TEST_CONFIG", "TEST_SCRIPT"
+   */
   fileType?: FileType;
 }
 
@@ -228,7 +232,11 @@ export interface LoadTestRunListMetricsQueryParamProperties {
   aggregation?: string;
   /** Metric name */
   metricname: string;
-  /** The interval (i.e. timegrain) of the query. */
+  /**
+   * The interval (i.e. timegrain) of the query.
+   *
+   * Possible values: "PT5S", "PT10S", "PT1M", "PT5M", "PT1H"
+   */
   interval?: TimeGrain;
   /** Metric namespace to query metric definitions for. */
   metricNamespace: string;
@@ -248,7 +256,11 @@ export type LoadTestRunListMetricsParameters =
 export interface LoadTestRunListMetricDimensionValuesQueryParamProperties {
   /** Metric name */
   metricname: string;
-  /** The interval (i.e. timegrain) of the query. */
+  /**
+   * The interval (i.e. timegrain) of the query.
+   *
+   * Possible values: "PT5S", "PT10S", "PT1M", "PT5M", "PT1H"
+   */
   interval?: TimeGrain;
   /** Metric namespace to query metric definitions for. */
   metricNamespace: string;

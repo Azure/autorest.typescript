@@ -29,7 +29,11 @@ export interface Test {
   displayName?: string;
   /** Subnet ID on which the load test instances should run. */
   subnetId?: string;
-  /** Kind of test. */
+  /**
+   * Kind of test.
+   *
+   * Possible values: "URL", "JMX", "Locust"
+   */
   kind?: TestKind;
   /** Inject load test engines without deploying public IP for outbound access */
   publicIPDisabled?: boolean;
@@ -47,13 +51,19 @@ export interface PassFailCriteria {
 
 /** Pass fail metric */
 export interface PassFailMetric {
-  /** The client metric on which the criteria should be applied. */
+  /**
+   * The client metric on which the criteria should be applied.
+   *
+   * Possible values: "response_time_ms", "latency", "error", "requests", "requests_per_sec"
+   */
   clientMetric?: PFMetrics;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
    * - ‘percentage’ - for error metric , ‘avg’, percentiles like ‘p50’, ‘p90’, & so on, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
+   *
+   * Possible values: "count", "percentage", "avg", "p50", "p75", "p90", "p95", "p96", "p97", "p98", "p99", "p99.9", "p99.99", "min", "max"
    */
   aggregate?: PFAgFunc;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
@@ -65,7 +75,11 @@ export interface PassFailMetric {
    * 100.0] unit- % ’, response_time_ms and latency : any integer value unit- ms.
    */
   value?: number;
-  /** Action taken after the threshold is met. Default is ‘continue’. */
+  /**
+   * Action taken after the threshold is met. Default is ‘continue’.
+   *
+   * Possible values: "continue", "stop"
+   */
   action?: PFAction;
 }
 
@@ -83,7 +97,11 @@ export interface AutoStopCriteria {
 export interface Secret {
   /** The value of the secret for the respective type */
   value?: string;
-  /** Type of secret */
+  /**
+   * Type of secret
+   *
+   * Possible values: "AKV_SECRET_URI", "SECRET_VALUE"
+   */
   type?: SecretType;
 }
 
@@ -91,7 +109,11 @@ export interface Secret {
 export interface CertificateMetadata {
   /** The value of the certificate for respective type */
   value?: string;
-  /** Type of certificate */
+  /**
+   * Type of certificate
+   *
+   * Possible values: "AKV_CERT_URI"
+   */
   type?: CertificateType;
   /** Name of the certificate. */
   name?: string;
@@ -247,7 +269,11 @@ export interface TestRun {
   testId?: string;
   /** The test run description. */
   description?: string;
-  /** Request data collection level for test run */
+  /**
+   * Request data collection level for test run
+   *
+   * Possible values: "NONE", "ERRORS"
+   */
   requestDataLevel?: RequestDataLevel;
   /** Enable or disable debug level logging. True if debug logs are enabled for the test run. False otherwise */
   debugLogsEnabled?: boolean;
@@ -377,7 +403,7 @@ export interface FunctionFlexConsumptionTargetResourceConfigurations
 
 /** Resource configuration instance for a Flex Consumption based Azure Function App. */
 export interface FunctionFlexConsumptionResourceConfiguration {
-  /** Memory size of the instance. Supported values are 512, 2048, 2096. */
+  /** Memory size of the instance. Supported values are 2048, 4096. */
   instanceMemoryMB: number;
   /** HTTP Concurrency for the function app. */
   httpConcurrency: number;
@@ -395,7 +421,11 @@ export interface TestProfileRun {
 
 /** Details of a particular test run for a test profile run. */
 export interface TestRunDetail {
-  /** Status of the test run. */
+  /**
+   * Status of the test run.
+   *
+   * Possible values: "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE"
+   */
   status: Status;
   /** ID of the configuration on which the test ran. */
   configurationId: string;
@@ -405,7 +435,11 @@ export interface TestRunDetail {
 
 /** A recommendation object that provides a list of configuration that optimizes its category. */
 export interface TestProfileRunRecommendation {
-  /** Category of the recommendation. */
+  /**
+   * Category of the recommendation.
+   *
+   * Possible values: "ThroughputOptimized", "CostOptimized"
+   */
   category: RecommendationCategory;
   /** List of configurations IDs for which the recommendation is applicable. These are a subset of the provided target resource configurations. */
   configurations?: string[];

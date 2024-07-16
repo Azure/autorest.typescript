@@ -1,9 +1,7 @@
 import "./main.tsp";
 import "@azure-tools/typespec-client-generator-core";
-import "@typespec/rest";
 
 using TypeSpec.Versioning;
-using TypeSpec.Rest;
 using Azure.ClientGenerator.Core;
 using Microsoft.LoadTestService;
 
@@ -59,8 +57,8 @@ interface TestRunOperations {
   listMetrics is LoadTestRun.listMetrics;
   listTestRuns is LoadTestRun.listTestRuns;
   #suppress "@azure-tools/typespec-azure-core/no-operation-id"
-  @action("stop")
-  stopTestRun is LoadTestRun.stop;
+  @clientName("stopTestRun", "javascript,python,java,csharp,go")
+  stop is LoadTestRun.stop;
 }
 
 @client({
@@ -84,6 +82,6 @@ interface TestProfileRunOperations {
   getTestProfileRun is TestProfileRunAdministration.getTestProfileRun;
   listTestProfileRuns is TestProfileRunAdministration.listTestProfileRuns;
   #suppress "@azure-tools/typespec-azure-core/no-operation-id"
-  @action("stop")
-  stopTestProfileRun is TestProfileRunAdministration.stop;
+  @clientName("stopTestProfileRun", "javascript,python,java,csharp,go")
+  stop is TestProfileRunAdministration.stop;
 }
