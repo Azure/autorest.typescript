@@ -26,7 +26,15 @@ export class NotDiscriminatedClient {
 
   /** Illustrates not-discriminated inheritance model. */
   constructor(options: NotDiscriminatedClientOptions = {}) {
-    this._client = createNotDiscriminated(options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createNotDiscriminated({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

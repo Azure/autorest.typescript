@@ -6,6 +6,7 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { ApiKeyContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
+/** Optional parameters for the client. */
 export interface ApiKeyClientOptions extends ClientOptions {}
 
 export { ApiKeyContext } from "../rest/index.js";
@@ -15,6 +16,14 @@ export function createApiKey(
   credential: KeyCredential,
   options: ApiKeyClientOptions = {},
 ): ApiKeyContext {
-  const clientContext = getClient(credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

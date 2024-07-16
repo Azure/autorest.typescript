@@ -26,7 +26,11 @@ export interface FakedSharedModelOutput {
 export interface ResourceOperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
   status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
@@ -38,18 +42,17 @@ export interface ResourceOperationStatusOutput {
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
   status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
 }
 
-/** Enum describing allowed operation states. */
-export type OperationStateOutput =
-  | "NotStarted"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;
 /** Paged collection of Widget items */
 export type PagedWidgetOutput = Paged<WidgetOutput>;

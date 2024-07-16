@@ -6,6 +6,7 @@ import { eight } from "../../api/qux/index.js";
 import { QuxEightOptionalParams } from "../../models/options.js";
 import { QuxBarOperations, getQuxBarOperations } from "./bar/index.js";
 
+/** Interface representing a Qux operations. */
 export interface QuxOperations {
   eight: (options?: QuxEightOptionalParams) => Promise<void>;
   bar: QuxBarOperations;

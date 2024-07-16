@@ -191,7 +191,7 @@ export interface ContactDetailsOutput {
 }
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): HealthInsightsClinicalMatchingClient;
+function createClient(endpointParam: string, credentials: KeyCredential, { apiVersion, ...options }?: HealthInsightsClinicalMatchingClientOptions): HealthInsightsClinicalMatchingClient;
 export default createClient;
 
 // @public (undocumented)
@@ -350,6 +350,11 @@ export type HealthInsightsClinicalMatchingClient = Client & {
     path: Routes;
 };
 
+// @public
+export interface HealthInsightsClinicalMatchingClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
 // @public (undocumented)
 export function isUnexpected(response: GetJob200Response | GetJobDefaultResponse): response is GetJobDefaultResponse;
 
@@ -400,6 +405,7 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
     getOperationState(): TState;
     getResult(): TResult | undefined;
     isDone(): boolean;
+    // @deprecated
     isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
     poll(options?: {

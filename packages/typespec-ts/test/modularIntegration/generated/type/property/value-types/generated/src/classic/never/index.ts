@@ -9,8 +9,11 @@ import {
   NeverPutOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Never operations. */
 export interface NeverOperations {
+  /** Get call */
   get: (options?: NeverGetOptionalParams) => Promise<NeverProperty>;
+  /** Put operation */
   put: (body: NeverProperty, options?: NeverPutOptionalParams) => Promise<void>;
 }
 

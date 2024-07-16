@@ -18,6 +18,7 @@ import {
   ModelSpreadCompositeRequestMixOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Model operations. */
 export interface ModelOperations {
   spreadAsRequestBody: (
     body: BodyParameter,

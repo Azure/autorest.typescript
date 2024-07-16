@@ -26,21 +26,21 @@ export interface ParameterQueryParam {
 export type ParameterParameters = ParameterQueryParam & RequestParameters;
 
 export interface PropertyClientBodyParam {
-  body?: ClientNameModel;
+  body: ClientNameModel;
 }
 
 export type PropertyClientParameters = PropertyClientBodyParam &
   RequestParameters;
 
 export interface PropertyLanguageBodyParam {
-  body?: LanguageClientNameModel;
+  body: LanguageClientNameModel;
 }
 
 export type PropertyLanguageParameters = PropertyLanguageBodyParam &
   RequestParameters;
 
 export interface PropertyCompatibleWithEncodedNameBodyParam {
-  body?: ClientNameAndJsonEncodedNameModel;
+  body: ClientNameAndJsonEncodedNameModel;
 }
 
 export type PropertyCompatibleWithEncodedNameParameters =
@@ -59,19 +59,20 @@ export type HeaderRequestParameters = HeaderRequestHeaderParam &
 export type HeaderResponseParameters = RequestParameters;
 
 export interface ModelClientBodyParam {
-  body?: ModelWithClientClientName;
+  body: ModelWithClientClientName;
 }
 
 export type ModelClientParameters = ModelClientBodyParam & RequestParameters;
 
 export interface ModelLanguageBodyParam {
-  body?: ModelWithLanguageClientName;
+  body: ModelWithLanguageClientName;
 }
 
 export type ModelLanguageParameters = ModelLanguageBodyParam &
   RequestParameters;
 
 export interface UnionEnumUnionEnumNameBodyParam {
+  /** Possible values: "value1" */
   body: ServerExtensibleEnum;
 }
 
@@ -79,6 +80,7 @@ export type UnionEnumUnionEnumNameParameters = UnionEnumUnionEnumNameBodyParam &
   RequestParameters;
 
 export interface UnionEnumUnionEnumMemberNameBodyParam {
+  /** Possible values: "value1", "value2" */
   body: ExtensibleEnum;
 }
 

@@ -271,7 +271,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           return result.body;
+           return result.body as any;
          }
          export async function downloadFile(
            context: Client,
@@ -322,7 +322,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           return result.body;
+           return result.body as any;
          }
          export async function downloadFile(
            context: Client,
@@ -514,6 +514,7 @@ describe("api operations in Modular", () => {
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface TestingClientOptions  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
@@ -523,7 +524,15 @@ describe("api operations in Modular", () => {
           apiVersion: string,
           options: TestingClientOptions  = {},
         ): TestingContext {
-          const clientContext = getClient(endpoint, apiVersion, options);
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\${prefixFromOptions} azsdk-js-api\`
+            : "azsdk-js-api";
+        
+          const clientContext = getClient(endpoint, apiVersion, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }
         `
@@ -547,7 +556,15 @@ describe("api operations in Modular", () => {
             apiVersion: string,
             options: TestingClientOptions  = {},
           ) {
-            this._client = createTesting(endpoint, apiVersion, options);
+            const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+            const userAgentPrefix = prefixFromOptions
+              ? \`\${prefixFromOptions} azsdk-js-client\`
+              : "azsdk-js-client";
+        
+            this._client = createTesting(endpoint, apiVersion, {
+              ...options,
+              userAgentOptions: { userAgentPrefix },
+            });
             this.pipeline = this._client.pipeline;
           }
         
@@ -628,6 +645,7 @@ describe("api operations in Modular", () => {
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface TestingClientOptions extends ClientOptions  {
           apiVersion?: string;
         }
@@ -638,7 +656,15 @@ describe("api operations in Modular", () => {
           endpoint: string,
           options: TestingClientOptions  = {},
         ): TestingContext {
-          const clientContext = getClient(endpoint, options);
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\${prefixFromOptions} azsdk-js-api\`
+            : "azsdk-js-api";
+        
+          const clientContext = getClient(endpoint, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }
         `
@@ -665,7 +691,15 @@ describe("api operations in Modular", () => {
             endpoint: string,
             options: TestingClientOptions  = {},
           ) {
-            this._client = createTesting(endpoint, options);
+            const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+            const userAgentPrefix = prefixFromOptions
+              ? \`\${prefixFromOptions} azsdk-js-client\`
+              : "azsdk-js-client";
+        
+            this._client = createTesting(endpoint, {
+              ...options,
+              userAgentOptions: { userAgentPrefix },
+            });
             this.pipeline = this._client.pipeline;
           }
         
@@ -776,6 +810,7 @@ describe("api operations in Modular", () => {
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
+        /** Optional parameters for the client. */
         export interface TestingClientOptions  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
@@ -783,8 +818,16 @@ describe("api operations in Modular", () => {
         export function createTesting(
           endpoint: string,
           options: TestingClientOptions  = {},
-        ): TestingContext {
-          const clientContext = getClient(endpoint, options);
+          ): TestingContext {
+          const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+          const userAgentPrefix = prefixFromOptions
+            ? \`\${prefixFromOptions} azsdk-js-api\`
+            : "azsdk-js-api";
+        
+          const clientContext = getClient(endpoint, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+          });
           return clientContext;
         }
         `
@@ -807,7 +850,15 @@ describe("api operations in Modular", () => {
             endpoint: string,
             options: TestingClientOptions  = {},
           ) {
-            this._client = createTesting(endpoint, options);
+            const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+            const userAgentPrefix = prefixFromOptions
+              ? \`\${prefixFromOptions} azsdk-js-client\`
+              : "azsdk-js-client";
+        
+            this._client = createTesting(endpoint, {
+              ...options,
+              userAgentOptions: { userAgentPrefix },
+            });
             this.pipeline = this._client.pipeline;
           }
         

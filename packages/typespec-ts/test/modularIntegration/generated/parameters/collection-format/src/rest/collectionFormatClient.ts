@@ -5,16 +5,19 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { CollectionFormatContext } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface CollectionFormatContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `CollectionFormatContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: CollectionFormatContextOptions = {},
 ): CollectionFormatContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-azure-collection-format-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-azure-collection-format/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -28,7 +31,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as CollectionFormatContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

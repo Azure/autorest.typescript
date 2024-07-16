@@ -5,12 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { SpecialWordsClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface SpecialWordsClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SpecialWordsClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: SpecialWordsClientOptions = {},
 ): SpecialWordsClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -28,7 +31,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as SpecialWordsClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

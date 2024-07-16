@@ -22,26 +22,47 @@ import {
 import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 function getClientOptionsInterface(
+  model: RLCModel,
   clientName: string,
   optionalUrlParameters?: PathParameter[]
 ): OptionalKind<InterfaceDeclarationStructure> | undefined {
-  if (!optionalUrlParameters || optionalUrlParameters.length === 0) {
+  if (
+    (!optionalUrlParameters || optionalUrlParameters.length === 0) &&
+    !model.apiVersionInfo
+  ) {
     return undefined;
   }
 
-  const properties = optionalUrlParameters.map((param) => {
-    return {
-      name: param.name,
-      type: param.type,
-      hasQuestionToken: true
-    };
-  });
+  const properties =
+    optionalUrlParameters?.map((param) => {
+      return {
+        name: param.name,
+        type: param.type,
+        hasQuestionToken: true,
+        docs: [
+          param.description ?? "client level optional parameter " + param.name
+        ]
+      };
+    }) ?? [];
 
+  if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
+    (model.apiVersionInfo.defaultValue || !model.apiVersionInfo?.required)
+  ) {
+    properties.push({
+      name: "apiVersion",
+      type: "string",
+      hasQuestionToken: true,
+      docs: ["The api version option of the client"]
+    });
+  }
   return {
     name: `${clientName}Options`,
     extends: ["ClientOptions"],
     isExported: true,
-    properties
+    properties,
+    docs: ["The optional parameters for the client"]
   };
 }
 
@@ -69,6 +90,7 @@ export function buildClient(model: RLCModel): File | undefined {
   );
 
   const clientOptionsInterface = getClientOptionsInterface(
+    model,
     clientInterfaceName,
     optionalUrlParameters
   );
@@ -113,10 +135,30 @@ export function buildClient(model: RLCModel): File | undefined {
         ])
   ];
 
+  let apiVersionStatement: string = "";
+  // Set the default api-version when we have a default AND its position is query
+  if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !!model.apiVersionInfo?.defaultValue
+  ) {
+    apiVersionStatement = `
+    apiVersion = "${model.apiVersionInfo?.defaultValue}"`;
+  } else if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !model.apiVersionInfo.required
+  ) {
+    apiVersionStatement = `
+    apiVersion`;
+  }
+
   const allClientParams = [
     ...commonClientParams,
     {
-      name: "options",
+      name:
+        apiVersionStatement === ""
+          ? "options"
+          : `{${apiVersionStatement}, ...options}`,
+      documentName: "options",
       type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
       description: "the parameter for all optional parameters"
     }
@@ -128,10 +170,10 @@ export function buildClient(model: RLCModel): File | undefined {
     docs: [
       {
         description:
-          `Initialize a new instance of \`${clientInterfaceName}\` \n` +
+          `Initialize a new instance of \`${clientInterfaceName}\`\n` +
           allClientParams
             .map((param) => {
-              return `@param ${param.name} - ${
+              return `@param ${param.documentName ?? param.name} - ${
                 param.description ?? "The parameter " + param.name
               }`;
             })
@@ -277,11 +319,14 @@ export function getClientFactoryBody(
   const optionalUrlParameters: string[] = [];
 
   for (const param of urlParameters ?? []) {
+    if (param.name === "apiVersion") {
+      continue;
+    }
     if (param.value) {
       const value =
         typeof param.value === "string" ? `"${param.value}"` : param.value;
       optionalUrlParameters.push(
-        `const ${param.name} = options.${param.name} ?? ${value}`
+        `const ${param.name} = options.${param.name} ?? ${value};`
       );
     }
   }
@@ -301,19 +346,10 @@ export function getClientFactoryBody(
     endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
   }
 
-  let apiVersionStatement: string = "";
-  // Set the default api-version when we have a default AND its position is query
-  if (
-    model.apiVersionInfo?.definedPosition === "query" &&
-    !!model.apiVersionInfo?.defaultValue
-  ) {
-    apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
-  } else if (model.apiVersionInfo?.definedPosition === "query") {
-    apiVersionStatement = `options.apiVersion = options.apiVersion ?? apiVersion`;
+  if (!model.options.isModularLibrary && !clientPackageName.endsWith("-rest")) {
+    clientPackageName += "-rest";
   }
-  if (!clientPackageName.endsWith("-rest")) {
-    clientPackageName = clientPackageName + "-rest";
-  }
+
   const userAgentInfoStatement =
     "const userAgentInfo = `azsdk-js-" +
     clientPackageName +
@@ -376,8 +412,7 @@ export function getClientFactoryBody(
         userAgentOptions: {
           userAgentPrefix
         }${loggerOptions}${customHeaderOptions}${credentialsOptions}
-      }`;
-
+      };`;
   const getClient = `const client = getClient(
         endpointUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
@@ -391,7 +426,7 @@ export function getClientFactoryBody(
         client.pipeline.addPolicy({
           name: "customKeyCredentialPolicy",
           async sendRequest(request, next) {
-            request.headers.set("Authorization", "bearer " + credentials.key);
+            request.headers.set("Authorization", "Bearer " + credentials.key);
             return next(request);
           },
         });
@@ -408,15 +443,42 @@ export function getClientFactoryBody(
     }
   }
 
-  let apiVersionPolicyStatement = "";
-  if (model.apiVersionInfo?.definedPosition !== "query") {
-    apiVersionPolicyStatement = `client.pipeline.removePolicy({name: 'ApiVersionPolicy'});`;
-    if (flavor === "azure") {
-      apiVersionPolicyStatement += `
+  let apiVersionPolicyStatement = `client.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
+  if (flavor === "azure" && model.apiVersionInfo?.isCrossedVersion !== false) {
+    apiVersionPolicyStatement += `
       if (options.apiVersion) {
         logger.warning("This client does not support client api-version, please change it at the operation level");
       }`;
-    }
+  } else if (
+    flavor === "azure" &&
+    !model.apiVersionInfo?.defaultValue &&
+    model.apiVersionInfo?.required
+  ) {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        logger.warning("This client does not support to set api-version in options, please change it at positional argument");
+      }`;
+  }
+  if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    model.apiVersionInfo?.definedPosition === "query"
+  ) {
+    apiVersionPolicyStatement += `
+      client.pipeline.addPolicy({
+        name: 'ClientApiVersionPolicy',
+        sendRequest: (req, next) => {
+          // Use the apiVersion defined in request url directly
+          // Append one if there is no apiVersion and we have one at client options
+          const url = new URL(req.url);
+          if (!url.searchParams.get("api-version") && apiVersion) {
+            req.url = \`\${req.url}\${
+              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+            }api-version=\${apiVersion}\`;
+          }
+    
+          return next(req);
+        },
+      });`;
   }
   let returnStatement = `return client;`;
 
@@ -438,7 +500,6 @@ export function getClientFactoryBody(
   return [
     ...optionalUrlParameters,
     endpointUrlStatement,
-    apiVersionStatement,
     userAgentInfoStatement,
     userAgentStatement,
     overrideOptionsStatement,

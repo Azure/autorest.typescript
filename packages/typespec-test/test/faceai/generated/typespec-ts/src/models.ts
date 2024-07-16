@@ -3,7 +3,11 @@
 
 /** Request for creating liveness session. */
 export interface LivenessSessionCreationContent {
-  /** Type of liveness mode the client should follow. */
+  /**
+   * Type of liveness mode the client should follow.
+   *
+   * Possible values: "Passive"
+   */
   livenessOperationMode: LivenessOperationMode;
   /** Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented. */
   sendResultsToClient?: boolean;
@@ -34,7 +38,11 @@ export interface LivenessSessionWithVerifyImageCreationContentVerifyImagePartDes
 
 /** Dedicated parameter model for multipart/form-data. */
 export interface LivenessSessionCreationContentForMultipart {
-  /** Type of liveness mode the client should follow. */
+  /**
+   * Type of liveness mode the client should follow.
+   *
+   * Possible values: "Passive"
+   */
   livenessOperationMode: LivenessOperationMode;
   /** Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented. */
   sendResultsToClient?: boolean;
@@ -47,38 +55,15 @@ export interface LivenessSessionCreationContentForMultipart {
 }
 
 /** Alias for FaceAttributeType */
-export type FaceAttributeType =
-  | string
-  | "headPose"
-  | "glasses"
-  | "occlusion"
-  | "accessories"
-  | "blur"
-  | "exposure"
-  | "noise"
-  | "mask"
-  | "qualityForRecognition"
-  | "age"
-  | "smile"
-  | "facialHair"
-  | "hair";
+export type FaceAttributeType = string;
 /** Alias for RecognitionModel */
-export type RecognitionModel =
-  | string
-  | "recognition_01"
-  | "recognition_02"
-  | "recognition_03"
-  | "recognition_04";
+export type RecognitionModel = string;
 /** Alias for DetectionModel */
-export type DetectionModel =
-  | string
-  | "detection_01"
-  | "detection_02"
-  | "detection_03";
+export type DetectionModel = string;
 /** Alias for FindSimilarMatchMode */
-export type FindSimilarMatchMode = string | "matchPerson" | "matchFace";
+export type FindSimilarMatchMode = string;
 /** Alias for LivenessOperationMode */
-export type LivenessOperationMode = string | "Passive";
+export type LivenessOperationMode = string;
 /** Request of liveness with verify session creation. */
 export type LivenessSessionWithVerifyImageCreationContent =
   | FormData

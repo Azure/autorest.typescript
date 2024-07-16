@@ -76,7 +76,9 @@ describe("ARM template", () => {
       true
     );
     assert.ok(response);
-    await assertEqualContent(response!.content, `
+    await assertEqualContent(
+      response!.content,
+      `
       import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
       import { OnboardResponseOutput, ErrorResponseOutput } from "./outputModels.js";
@@ -109,6 +111,7 @@ describe("ARM template", () => {
       export interface UploadLogicalResponse extends HttpResponse {
           status: "200";
           body: OnboardResponseOutput;
-      }`);
+      }`
+    );
   });
 });

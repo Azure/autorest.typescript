@@ -8,6 +8,7 @@ import {
   FooFourOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Foo operations. */
 export interface FooOperations {
   three: (options?: FooThreeOptionalParams) => Promise<void>;
   four: (options?: FooFourOptionalParams) => Promise<void>;

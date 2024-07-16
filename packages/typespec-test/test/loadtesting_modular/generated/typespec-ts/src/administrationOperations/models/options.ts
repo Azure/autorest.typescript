@@ -4,31 +4,40 @@
 import { OperationOptions } from "@azure-rest/core-client";
 import { FileType } from "./models.js";
 
+/** Optional parameters. */
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface CreateOrUpdateAppComponentsOptionalParams
   extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface CreateOrUpdateServerMetricsConfigOptionalParams
   extends OperationOptions {
   contentType?: string;
 }
 
+/** Optional parameters. */
 export interface GetAppComponentsOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetServerMetricsConfigOptionalParams
   extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetTestOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface GetTestFileOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface ListTestFilesOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface ListTestsOptionalParams extends OperationOptions {
   /**
    * Sort on the supported fields in (field asc/desc) format. eg:
@@ -55,12 +64,15 @@ export interface ListTestsOptionalParams extends OperationOptions {
   maxpagesize?: number;
 }
 
+/** Optional parameters. */
 export interface UploadTestFileOptionalParams extends OperationOptions {
   contentType?: string;
   /** File type */
   fileType?: FileType;
 }
 
+/** Optional parameters. */
 export interface DeleteTestFileOptionalParams extends OperationOptions {}
 
+/** Optional parameters. */
 export interface DeleteTestOptionalParams extends OperationOptions {}

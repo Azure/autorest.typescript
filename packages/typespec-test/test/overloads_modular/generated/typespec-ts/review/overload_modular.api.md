@@ -10,27 +10,25 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
+// @public
 export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FooOperationsOperations {
-    // (undocumented)
     getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) => Promise<void>;
-    // (undocumented)
     getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "2022-08-30";
 
 // @public (undocumented)
@@ -40,7 +38,7 @@ export class WidgetManagerClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetManagerClientOptions extends ClientOptions {
     apiVersion?: string;
 }

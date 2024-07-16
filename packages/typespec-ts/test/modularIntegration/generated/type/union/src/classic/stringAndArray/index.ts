@@ -12,6 +12,7 @@ import {
   StringAndArraySendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a StringAndArray operations. */
 export interface StringAndArrayOperations {
   get: (
     options?: StringAndArrayGetOptionalParams,

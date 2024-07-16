@@ -5,7 +5,6 @@ export { RpcClient, RpcClientOptions } from "./rpcClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   GenerationOptions,
-  GenerationResponse,
   GenerationResult,
   Versions,
   LongRunningRpcOptionalParams,

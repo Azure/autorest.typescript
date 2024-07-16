@@ -262,6 +262,14 @@ export const rlcTsps = [
   {
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
+  },
+  {
+    outputPath: "azure/resource-manager/models/resources",
+    inputPath: "azure/resource-manager/models/resources"
   }
 ];
 
@@ -273,6 +281,10 @@ export const nonBrandedRlcTsps = [
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "azure/resource-manager/models/resources",
+    inputPath: "azure/resource-manager/models/resources"
+  },
   { outputPath: "azure/core/lro/rpc", inputPath: "azure/core/lro/rpc" },
   {
     outputPath: "azure/core/lro/standard",
@@ -321,6 +333,18 @@ export const modularTsps = [
   {
     outputPath: "azure/core/basic",
     inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "type/dictionary",
+    inputPath: "type/dictionary"
+  },
+  {
+    outputPath: "type/property/nullable",
+    inputPath: "type/property/nullable"
+  },
+  {
+    outputPath: "type/property/optionality",
+    inputPath: "type/property/optionality"
   },
   {
     outputPath: "type/model/inheritance/nested-discriminator",
@@ -486,6 +510,10 @@ export const modularTsps = [
   {
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "type/model/flatten",
+    inputPath: "type/model/flatten"
   }
 ];
 

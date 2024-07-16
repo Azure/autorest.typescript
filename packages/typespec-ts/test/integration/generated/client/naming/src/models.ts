@@ -27,6 +27,6 @@ export interface ModelWithLanguageClientName {
 }
 
 /** Alias for ServerExtensibleEnum */
-export type ServerExtensibleEnum = string | "value1";
+export type ServerExtensibleEnum = string;
 /** Alias for ExtensibleEnum */
-export type ExtensibleEnum = string | "value1" | "value2";
+export type ExtensibleEnum = string;

@@ -5,11 +5,16 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { BytesClient } from "./clientDefinitions.js";
 
+/** The optional parameters for the client */
+export interface BytesClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `BytesClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): BytesClient {
+export default function createClient(
+  options: BytesClientOptions = {},
+): BytesClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-encode-bytes-rest/1.0.0-beta.1`;
@@ -26,7 +31,6 @@ export default function createClient(options: ClientOptions = {}): BytesClient {
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as BytesClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

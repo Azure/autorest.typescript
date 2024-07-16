@@ -37,7 +37,11 @@ export interface ProjectSettingsOutput extends Record<string, string> {}
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
   status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
@@ -118,13 +122,8 @@ export type ProjectKindOutput =
   | "CustomSingleLabelClassification"
   | "CustomMultiLabelClassification"
   | "CustomEntityRecognition";
-/** Enum describing allowed operation states. */
-export type OperationStateOutput =
-  | "NotStarted"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;
 /** Paged collection of Project items */
 export type PagedProjectOutput = Paged<ProjectOutput>;
 /** Paged collection of Deployment items */

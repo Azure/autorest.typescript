@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import {
+  chatMessageSerializer,
   StreamingChatCompletionOptionsRecord,
   ChatCompletionChunkRecord,
   ChatCompletionOptionsRecord,
@@ -17,6 +18,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   CreateStreamingOptionalParams,
   CreateOptionalParams,
@@ -32,14 +34,12 @@ export function _createStreamingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body["messages"].map((p) => ({
-          content: p["content"],
-          role: p["role"],
-          session_state: p["sessionState"],
-        })),
+        messages: body["messages"].map(chatMessageSerializer),
         stream: body["stream"],
         session_state: body["sessionState"],
-        context: body["context"],
+        context: !body.context
+          ? body.context
+          : (serializeRecord(body.context as any) as any),
       },
     }) as StreamableMethod<CreateStreaming200Response>;
 }
@@ -52,17 +52,19 @@ export async function _createStreamingDeserialize(
   }
 
   return {
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      delta: {
-        content: p.delta["content"],
-        role: p.delta["role"],
-        sessionState: p.delta["session_state"],
-      },
-      sessionState: p["session_state"],
-      context: p["context"],
-      finishReason: p["finish_reason"],
-    })),
+    choices: result.body["choices"].map((p) => {
+      return {
+        index: p["index"],
+        delta: {
+          content: p.delta["content"],
+          role: p.delta["role"],
+          sessionState: p.delta["session_state"],
+        },
+        sessionState: p["session_state"],
+        context: p["context"],
+        finishReason: p["finish_reason"],
+      };
+    }),
   };
 }
 
@@ -86,14 +88,12 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body["messages"].map((p) => ({
-          content: p["content"],
-          role: p["role"],
-          session_state: p["sessionState"],
-        })),
+        messages: body["messages"].map(chatMessageSerializer),
         stream: body["stream"],
         session_state: body["sessionState"],
-        context: body["context"],
+        context: !body.context
+          ? body.context
+          : (serializeRecord(body.context as any) as any),
       },
     }) as StreamableMethod<Create200Response>;
 }
@@ -106,17 +106,19 @@ export async function _createDeserialize(
   }
 
   return {
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      message: {
-        content: p.message["content"],
-        role: p.message["role"],
-        sessionState: p.message["session_state"],
-      },
-      sessionState: p["session_state"],
-      context: p["context"],
-      finishReason: p["finish_reason"],
-    })),
+    choices: result.body["choices"].map((p) => {
+      return {
+        index: p["index"],
+        message: {
+          content: p.message["content"],
+          role: p.message["role"],
+          sessionState: p.message["session_state"],
+        },
+        sessionState: p["session_state"],
+        context: p["context"],
+        finishReason: p["finish_reason"],
+      };
+    }),
   };
 }
 

@@ -11,6 +11,7 @@ import {
   Decimal128VerifyVerifyOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Decimal128Verify operations. */
 export interface Decimal128VerifyOperations {
   prepareVerify: (
     options?: Decimal128VerifyPrepareVerifyOptionalParams,

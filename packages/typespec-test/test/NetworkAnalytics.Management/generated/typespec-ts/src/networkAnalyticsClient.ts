@@ -34,14 +34,26 @@ export class NetworkAnalyticsClient {
 
   constructor(
     credential: TokenCredential,
+    subscriptionId: string,
     options: NetworkAnalyticsClientOptions = {},
   ) {
-    this._client = createNetworkAnalytics(credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createNetworkAnalytics(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.operations = getOperationsOperations(this._client);
-    this.dataProductsCatalogs = getDataProductsCatalogsOperations(this._client);
-    this.dataTypes = getDataTypesOperations(this._client);
-    this.dataProducts = getDataProductsOperations(this._client);
+    this.dataProductsCatalogs = getDataProductsCatalogsOperations(
+      this._client,
+      subscriptionId,
+    );
+    this.dataTypes = getDataTypesOperations(this._client, subscriptionId);
+    this.dataProducts = getDataProductsOperations(this._client, subscriptionId);
   }
 
   /** The operation groups for Operations */

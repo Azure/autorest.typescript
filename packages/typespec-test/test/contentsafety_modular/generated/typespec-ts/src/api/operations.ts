@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 import {
+  textBlockItemInfoSerializer,
+  imageDataSerializer,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
@@ -11,8 +13,8 @@ import {
   AnalyzeImageResult,
   AnalyzeTextOptions,
   AnalyzeTextResult,
-  PagedTextBlocklist,
-  PagedTextBlockItem,
+  _PagedTextBlockItem,
+  _PagedTextBlocklist,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -46,7 +48,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
@@ -90,15 +91,16 @@ export async function _analyzeTextDeserialize(
     blocklistsMatchResults:
       result.body["blocklistsMatchResults"] === undefined
         ? result.body["blocklistsMatchResults"]
-        : result.body["blocklistsMatchResults"].map((p) => ({
-            blocklistName: p["blocklistName"],
-            blockItemId: p["blockItemId"],
-            blockItemText: p["blockItemText"],
-          })),
-    analyzeResults: result.body["analyzeResults"].map((p) => ({
-      category: p["category"],
-      severity: p["severity"],
-    })),
+        : result.body["blocklistsMatchResults"].map((p) => {
+            return {
+              blocklistName: p["blocklistName"],
+              blockItemId: p["blockItemId"],
+              blockItemText: p["blockItemText"],
+            };
+          }),
+    analyzeResults: result.body["analyzeResults"].map((p) => {
+      return { category: p["category"], severity: p["severity"] };
+    }),
   };
 }
 
@@ -122,13 +124,7 @@ export function _analyzeImageSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        image: {
-          content:
-            body.image["content"] !== undefined
-              ? uint8ArrayToString(body.image["content"], "base64")
-              : undefined,
-          blobUrl: body.image["blobUrl"],
-        },
+        image: imageDataSerializer(body.image),
         categories: body["categories"],
         outputType: body["outputType"],
       },
@@ -143,10 +139,9 @@ export async function _analyzeImageDeserialize(
   }
 
   return {
-    analyzeResults: result.body["analyzeResults"].map((p) => ({
-      category: p["category"],
-      severity: p["severity"],
-    })),
+    analyzeResults: result.body["analyzeResults"].map((p) => {
+      return { category: p["category"], severity: p["severity"] };
+    }),
   };
 }
 
@@ -299,16 +294,18 @@ export function _listTextBlocklistsSend(
 
 export async function _listTextBlocklistsDeserialize(
   result: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse,
-): Promise<PagedTextBlocklist> {
+): Promise<_PagedTextBlocklist> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      blocklistName: p["blocklistName"],
-      description: p["description"],
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        blocklistName: p["blocklistName"],
+        description: p["description"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -341,12 +338,7 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        blockItems: body["blockItems"].map((p) => ({
-          description: p["description"],
-          text: p["text"],
-        })),
-      },
+      body: { blockItems: body["blockItems"].map(textBlockItemInfoSerializer) },
     });
 }
 
@@ -363,11 +355,13 @@ export async function _addOrUpdateBlockItemsDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => ({
-            blockItemId: p["blockItemId"],
-            description: p["description"],
-            text: p["text"],
-          })),
+        : result.body["value"].map((p) => {
+            return {
+              blockItemId: p["blockItemId"],
+              description: p["description"],
+              text: p["text"],
+            };
+          }),
   };
 }
 
@@ -499,17 +493,19 @@ export async function _listTextBlocklistItemsDeserialize(
   result:
     | ListTextBlocklistItems200Response
     | ListTextBlocklistItemsDefaultResponse,
-): Promise<PagedTextBlockItem> {
+): Promise<_PagedTextBlockItem> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      blockItemId: p["blockItemId"],
-      description: p["description"],
-      text: p["text"],
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        blockItemId: p["blockItemId"],
+        description: p["description"],
+        text: p["text"],
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }

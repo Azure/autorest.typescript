@@ -6,6 +6,9 @@ import { logger } from "../logger.js";
 import { ServiceContext } from "./clientDefinitions.js";
 import { ClientType } from "./models.js";
 
+/** The optional parameters for the client */
+export interface ServiceContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `ServiceContext`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
@@ -15,14 +18,13 @@ import { ClientType } from "./models.js";
 export default function createClient(
   endpointParam: string,
   clientParam: ClientType,
-  options: ClientOptions = {},
+  options: ServiceContextOptions = {},
 ): ServiceContext {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/client/structure/${clientParam}`;
-
-  const userAgentInfo = `azsdk-js-client-structure-renamed-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-client-structure-renamed/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -36,7 +38,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as ServiceContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

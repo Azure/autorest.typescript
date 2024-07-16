@@ -247,7 +247,7 @@ describe("ModelPropertyAdditional Client", () => {
       assert.deepEqual(result, {
         name: "ExtendsUnknownAdditionalProperties",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"
@@ -262,7 +262,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.extendsUnknownDerived.put({
         name: "ExtendsUnknownAdditionalProperties",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"
@@ -280,7 +280,7 @@ describe("ModelPropertyAdditional Client", () => {
         kind: "derived",
         name: "Derived",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"
@@ -296,7 +296,7 @@ describe("ModelPropertyAdditional Client", () => {
         kind: "derived",
         name: "Derived",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"
@@ -437,7 +437,7 @@ describe("ModelPropertyAdditional Client", () => {
       assert.deepEqual(result, {
         name: "IsUnknownAdditionalProperties",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"
@@ -452,7 +452,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.isUnknownDerived.put({
         name: "IsUnknownAdditionalProperties",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"
@@ -470,7 +470,7 @@ describe("ModelPropertyAdditional Client", () => {
         kind: "derived",
         name: "Derived",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"
@@ -486,7 +486,7 @@ describe("ModelPropertyAdditional Client", () => {
         kind: "derived",
         name: "Derived",
         index: 314,
-        age: 2.71828,
+        age: 2.71875,
         prop1: 32,
         prop2: true,
         prop3: "abc"

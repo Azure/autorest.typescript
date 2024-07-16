@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { defineConfig } from "vitest/config";
+import { relativeRecordingsPath } from "@azure-tools/test-recorder";
 
 export default defineConfig({
   test: {
@@ -27,5 +28,6 @@ export default defineConfig({
       reporter: ["text", "json", "html"],
       reportsDirectory: "coverage",
     },
+    testTimeout: 1200000,
   },
 });

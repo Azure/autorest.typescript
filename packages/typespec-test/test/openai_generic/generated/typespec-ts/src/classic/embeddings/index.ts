@@ -9,6 +9,7 @@ import {
 import { create } from "../../api/embeddings/index.js";
 import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
 
+/** Interface representing a Embeddings operations. */
 export interface EmbeddingsOperations {
   create: (
     embedding: CreateEmbeddingRequest,

@@ -46,7 +46,9 @@ export type ImportType =
   | "azureDevTool"
   | "azureAbortController"
   | "azureCoreLro"
-  | "azureCorePaging";
+  | "azureCorePaging"
+  /**Internal helper imports */
+  | "serializerHelpers";
 
 export interface ImportMetadata {
   type: ImportType;
@@ -109,6 +111,7 @@ export interface ApiVersionInfo {
   definedPosition?: ApiVersionPosition;
   defaultValue?: string;
   isCrossedVersion?: boolean;
+  required?: boolean;
 }
 
 export type ApiVersionPosition =
@@ -168,6 +171,7 @@ export type Paths = Record<string, PathMetadata>;
 export type PathParameter = {
   oriName?: string;
   name: string;
+  documentName?: string;
   type: string;
   description?: string;
   value?: string | number | boolean;
@@ -241,6 +245,7 @@ export interface RLCOptions {
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
   compatibilityMode?: boolean;
+  experimentalExtensibleEnums?: boolean;
 }
 
 export interface ServiceInfo {

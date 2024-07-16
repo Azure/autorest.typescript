@@ -9,6 +9,7 @@ import {
   ModelsOnlySendOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ModelsOnly operations. */
 export interface ModelsOnlyOperations {
   get: (options?: ModelsOnlyGetOptionalParams) => Promise<{ prop: Cat | Dog }>;
   send: (
