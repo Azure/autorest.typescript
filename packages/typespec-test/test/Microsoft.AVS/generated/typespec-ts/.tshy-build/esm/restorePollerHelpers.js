@@ -27,13 +27,13 @@ import { _createOrUpdateDeserialize as _createOrUpdateDeserializeIscsiPaths, _$d
  */
 export function restorePoller(client, serializedState, sourceOperation, options) {
     const pollerConfig = deserializeState(serializedState).config;
-    const { initialUrl, requestMethod, metadata } = pollerConfig;
-    if (!initialUrl || !requestMethod) {
+    const { initialRequestUrl, requestMethod, metadata } = pollerConfig;
+    if (!initialRequestUrl || !requestMethod) {
         throw new Error(`Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`);
     }
     const resourceLocationConfig = metadata?.["resourceLocationConfig"];
     const deserializeHelper = options?.processResponseBody ??
-        getDeserializationHelper(initialUrl, requestMethod);
+        getDeserializationHelper(initialRequestUrl, requestMethod);
     if (!deserializeHelper) {
         throw new Error(`Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`);
     }
@@ -42,7 +42,7 @@ export function restorePoller(client, serializedState, sourceOperation, options)
         abortSignal: options?.abortSignal,
         resourceLocationConfig,
         restoreFrom: serializedState,
-        initialUrl,
+        initialRequestUrl,
     });
 }
 const deserializeMap = {

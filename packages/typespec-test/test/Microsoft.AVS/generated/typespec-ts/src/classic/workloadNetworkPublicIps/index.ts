@@ -18,22 +18,23 @@ import {
   WorkloadNetworkPublicIpsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkPublicIps operations. */
 export interface WorkloadNetworkPublicIpsOperations {
+  /** List WorkloadNetworkPublicIP resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkPublicIpsListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkPublicIP>;
+  /** Get a WorkloadNetworkPublicIP */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     publicIPId: string,
     options?: WorkloadNetworkPublicIpsGetOptionalParams,
   ) => Promise<WorkloadNetworkPublicIP>;
+  /** Create a WorkloadNetworkPublicIP */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     publicIPId: string,
@@ -43,8 +44,13 @@ export interface WorkloadNetworkPublicIpsOperations {
     OperationState<WorkloadNetworkPublicIP>,
     WorkloadNetworkPublicIP
   >;
+  /** Delete a WorkloadNetworkPublicIP */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     publicIPId: string,
     privateCloudName: string,
@@ -52,10 +58,12 @@ export interface WorkloadNetworkPublicIpsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getWorkloadNetworkPublicIps(context: AVSContext) {
+export function getWorkloadNetworkPublicIps(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkPublicIpsListByWorkloadNetworkOptionalParams,
@@ -68,7 +76,6 @@ export function getWorkloadNetworkPublicIps(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       publicIPId: string,
@@ -83,7 +90,6 @@ export function getWorkloadNetworkPublicIps(context: AVSContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       publicIPId: string,
@@ -100,7 +106,6 @@ export function getWorkloadNetworkPublicIps(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       publicIPId: string,
       privateCloudName: string,
@@ -119,8 +124,9 @@ export function getWorkloadNetworkPublicIps(context: AVSContext) {
 
 export function getWorkloadNetworkPublicIpsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkPublicIpsOperations {
   return {
-    ...getWorkloadNetworkPublicIps(context),
+    ...getWorkloadNetworkPublicIps(context, subscriptionId),
   };
 }

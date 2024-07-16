@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
+import { hcxEnterpriseSitePropertiesSerializer, } from "../../models/models.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { isUnexpected, } from "../../rest/index.js";
 import { operationOptionsToRequestParameters, createRestError, } from "@azure-rest/core-client";
@@ -15,32 +16,34 @@ export async function _listByPrivateCloudDeserialize(result) {
         throw createRestError(result);
     }
     return {
-        value: result.body["value"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            type: p["type"],
-            systemData: !p.systemData
-                ? undefined
-                : {
-                    createdBy: p.systemData?.["createdBy"],
-                    createdByType: p.systemData?.["createdByType"],
-                    createdAt: p.systemData?.["createdAt"] !== undefined
-                        ? new Date(p.systemData?.["createdAt"])
-                        : undefined,
-                    lastModifiedBy: p.systemData?.["lastModifiedBy"],
-                    lastModifiedByType: p.systemData?.["lastModifiedByType"],
-                    lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
-                        ? new Date(p.systemData?.["lastModifiedAt"])
-                        : undefined,
-                },
-            properties: !p.properties
-                ? undefined
-                : {
-                    provisioningState: p.properties?.["provisioningState"],
-                    activationKey: p.properties?.["activationKey"],
-                    status: p.properties?.["status"],
-                },
-        })),
+        value: result.body["value"].map((p) => {
+            return {
+                id: p["id"],
+                name: p["name"],
+                type: p["type"],
+                systemData: !p.systemData
+                    ? undefined
+                    : {
+                        createdBy: p.systemData?.["createdBy"],
+                        createdByType: p.systemData?.["createdByType"],
+                        createdAt: p.systemData?.["createdAt"] !== undefined
+                            ? new Date(p.systemData?.["createdAt"])
+                            : undefined,
+                        lastModifiedBy: p.systemData?.["lastModifiedBy"],
+                        lastModifiedByType: p.systemData?.["lastModifiedByType"],
+                        lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
+                            ? new Date(p.systemData?.["lastModifiedAt"])
+                            : undefined,
+                    },
+                properties: !p.properties
+                    ? undefined
+                    : {
+                        provisioningState: p.properties?.["provisioningState"],
+                        activationKey: p.properties?.["activationKey"],
+                        status: p.properties?.["status"],
+                    },
+            };
+        }),
         nextLink: result.body["nextLink"],
     };
 }
@@ -98,7 +101,11 @@ export function _createOrUpdateSend(context, subscriptionId, resourceGroupName, 
         .path("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}", subscriptionId, resourceGroupName, privateCloudName, hcxEnterpriseSiteName)
         .put({
         ...operationOptionsToRequestParameters(options),
-        body: { properties: !hcxEnterpriseSite.properties ? undefined : {} },
+        body: {
+            properties: !hcxEnterpriseSite.properties
+                ? hcxEnterpriseSite.properties
+                : hcxEnterpriseSitePropertiesSerializer(hcxEnterpriseSite.properties),
+        },
     });
 }
 export async function _createOrUpdateDeserialize(result) {

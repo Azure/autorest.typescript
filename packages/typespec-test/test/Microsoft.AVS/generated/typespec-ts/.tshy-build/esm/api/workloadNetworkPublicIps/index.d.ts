@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { WorkloadNetworkPublicIPListResult, WorkloadNetworkPublicIP } from "../../models/models.js";
+import { WorkloadNetworkPublicIP, _WorkloadNetworkPublicIPsList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, WorkloadNetworkPublicIpsCreate200Response, WorkloadNetworkPublicIpsCreate201Response, WorkloadNetworkPublicIpsCreateDefaultResponse, WorkloadNetworkPublicIpsCreateLogicalResponse, WorkloadNetworkPublicIpsDelete200Response, WorkloadNetworkPublicIpsDelete202Response, WorkloadNetworkPublicIpsDelete204Response, WorkloadNetworkPublicIpsDeleteDefaultResponse, WorkloadNetworkPublicIpsDeleteLogicalResponse, WorkloadNetworkPublicIpsGet200Response, WorkloadNetworkPublicIpsGetDefaultResponse, WorkloadNetworkPublicIpsListByWorkloadNetwork200Response, WorkloadNetworkPublicIpsListByWorkloadNetworkDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { WorkloadNetworkPublicIpsListByWorkloadNetworkOptionalParams, WorkloadNetworkPublicIpsGetOptionalParams, WorkloadNetworkPublicIpsCreateOptionalParams, WorkloadNetworkPublicIpsDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByWorkloadNetworkSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: WorkloadNetworkPublicIpsListByWorkloadNetworkOptionalParams): StreamableMethod<WorkloadNetworkPublicIpsListByWorkloadNetwork200Response | WorkloadNetworkPublicIpsListByWorkloadNetworkDefaultResponse>;
-export declare function _listByWorkloadNetworkDeserialize(result: WorkloadNetworkPublicIpsListByWorkloadNetwork200Response | WorkloadNetworkPublicIpsListByWorkloadNetworkDefaultResponse): Promise<WorkloadNetworkPublicIPListResult>;
+export declare function _listByWorkloadNetworkDeserialize(result: WorkloadNetworkPublicIpsListByWorkloadNetwork200Response | WorkloadNetworkPublicIpsListByWorkloadNetworkDefaultResponse): Promise<_WorkloadNetworkPublicIPsList>;
 /** List WorkloadNetworkPublicIP resources by WorkloadNetwork */
 export declare function listByWorkloadNetwork(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: WorkloadNetworkPublicIpsListByWorkloadNetworkOptionalParams): PagedAsyncIterableIterator<WorkloadNetworkPublicIP>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, publicIPId: string, options?: WorkloadNetworkPublicIpsGetOptionalParams): StreamableMethod<WorkloadNetworkPublicIpsGet200Response | WorkloadNetworkPublicIpsGetDefaultResponse>;

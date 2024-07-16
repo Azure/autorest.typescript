@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { AVSContext } from "../../api/aVSContext.js";
-import {
-  WorkloadNetworkSegment,
-  WorkloadNetworkSegmentUpdate,
-} from "../../models/models.js";
+import { WorkloadNetworkSegment } from "../../models/models.js";
 import {
   listByWorkloadNetwork,
   get,
@@ -23,22 +20,23 @@ import {
   WorkloadNetworkSegmentsDeleteSegmentOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkSegments operations. */
 export interface WorkloadNetworkSegmentsOperations {
+  /** List WorkloadNetworkSegment resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkSegmentsListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkSegment>;
+  /** Get a WorkloadNetworkSegment */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     segmentId: string,
     options?: WorkloadNetworkSegmentsGetOptionalParams,
   ) => Promise<WorkloadNetworkSegment>;
+  /** Create a WorkloadNetworkSegment */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     segmentId: string,
@@ -48,19 +46,19 @@ export interface WorkloadNetworkSegmentsOperations {
     OperationState<WorkloadNetworkSegment>,
     WorkloadNetworkSegment
   >;
+  /** Update a WorkloadNetworkSegment */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     segmentId: string,
-    properties: WorkloadNetworkSegmentUpdate,
+    properties: WorkloadNetworkSegment,
     options?: WorkloadNetworkSegmentsUpdateOptionalParams,
   ) => PollerLike<
     OperationState<WorkloadNetworkSegment>,
     WorkloadNetworkSegment
   >;
+  /** Delete a WorkloadNetworkSegment */
   deleteSegment: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     segmentId: string,
@@ -68,10 +66,12 @@ export interface WorkloadNetworkSegmentsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getWorkloadNetworkSegments(context: AVSContext) {
+export function getWorkloadNetworkSegments(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkSegmentsListByWorkloadNetworkOptionalParams,
@@ -84,7 +84,6 @@ export function getWorkloadNetworkSegments(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       segmentId: string,
@@ -99,7 +98,6 @@ export function getWorkloadNetworkSegments(context: AVSContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       segmentId: string,
@@ -116,11 +114,10 @@ export function getWorkloadNetworkSegments(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       segmentId: string,
-      properties: WorkloadNetworkSegmentUpdate,
+      properties: WorkloadNetworkSegment,
       options?: WorkloadNetworkSegmentsUpdateOptionalParams,
     ) =>
       update(
@@ -133,7 +130,6 @@ export function getWorkloadNetworkSegments(context: AVSContext) {
         options,
       ),
     deleteSegment: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       segmentId: string,
@@ -152,8 +148,9 @@ export function getWorkloadNetworkSegments(context: AVSContext) {
 
 export function getWorkloadNetworkSegmentsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkSegmentsOperations {
   return {
-    ...getWorkloadNetworkSegments(context),
+    ...getWorkloadNetworkSegments(context, subscriptionId),
   };
 }

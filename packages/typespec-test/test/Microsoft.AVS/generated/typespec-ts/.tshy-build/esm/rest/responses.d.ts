@@ -1,10 +1,10 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
-import { PagedOperationOutput, ErrorResponseOutput, TrialOutput, QuotaOutput, PrivateCloudListResultOutput, PrivateCloudOutput, AdminCredentialsOutput, ClusterListResultOutput, ClusterOutput, ClusterZoneListOutput, DatastoreListResultOutput, DatastoreOutput, HcxEnterpriseSiteListResultOutput, HcxEnterpriseSiteOutput, ExpressRouteAuthorizationListResultOutput, ExpressRouteAuthorizationOutput, GlobalReachConnectionListResultOutput, GlobalReachConnectionOutput, WorkloadNetworkOutput, WorkloadNetworkListResultOutput, WorkloadNetworkSegmentListResultOutput, WorkloadNetworkSegmentOutput, WorkloadNetworkDhcpListResultOutput, WorkloadNetworkDhcpOutput, WorkloadNetworkGatewayListResultOutput, WorkloadNetworkGatewayOutput, WorkloadNetworkPortMirroringListResultOutput, WorkloadNetworkPortMirroringOutput, WorkloadNetworkVMGroupListResultOutput, WorkloadNetworkVMGroupOutput, WorkloadNetworkVirtualMachineListResultOutput, WorkloadNetworkVirtualMachineOutput, WorkloadNetworkDnsServiceListResultOutput, WorkloadNetworkDnsServiceOutput, WorkloadNetworkDnsZoneListResultOutput, WorkloadNetworkDnsZoneOutput, WorkloadNetworkPublicIPListResultOutput, WorkloadNetworkPublicIPOutput, CloudLinkListResultOutput, CloudLinkOutput, AddonListResultOutput, AddonOutput, VirtualMachineListResultOutput, VirtualMachineOutput, PlacementPolicyListResultOutput, PlacementPolicyOutput, ScriptPackageListResultOutput, ScriptPackageOutput, ScriptCmdletListResultOutput, ScriptCmdletOutput, ScriptExecutionListResultOutput, ScriptExecutionOutput, IscsiPathListResultOutput, IscsiPathOutput } from "./outputModels.js";
+import { OperationListResultOutput, ErrorResponseOutput, TrialOutput, QuotaOutput, PrivateCloudListOutput, PrivateCloudOutput, AdminCredentialsOutput, ClusterListOutput, ClusterOutput, ClusterZoneListOutput, DatastoreListOutput, DatastoreOutput, HcxEnterpriseSiteListOutput, HcxEnterpriseSiteOutput, ExpressRouteAuthorizationListOutput, ExpressRouteAuthorizationOutput, GlobalReachConnectionListOutput, GlobalReachConnectionOutput, WorkloadNetworkOutput, WorkloadNetworkListOutput, WorkloadNetworkSegmentsListOutput, WorkloadNetworkSegmentOutput, WorkloadNetworkDhcpListOutput, WorkloadNetworkDhcpOutput, WorkloadNetworkGatewayListOutput, WorkloadNetworkGatewayOutput, WorkloadNetworkPortMirroringListOutput, WorkloadNetworkPortMirroringOutput, WorkloadNetworkVMGroupsListOutput, WorkloadNetworkVMGroupOutput, WorkloadNetworkVirtualMachinesListOutput, WorkloadNetworkVirtualMachineOutput, WorkloadNetworkDnsServicesListOutput, WorkloadNetworkDnsServiceOutput, WorkloadNetworkDnsZonesListOutput, WorkloadNetworkDnsZoneOutput, WorkloadNetworkPublicIPsListOutput, WorkloadNetworkPublicIPOutput, CloudLinkListOutput, CloudLinkOutput, AddonListOutput, AddonOutput, VirtualMachinesListOutput, VirtualMachineOutput, PlacementPoliciesListOutput, PlacementPolicyOutput, ScriptPackagesListOutput, ScriptPackageOutput, ScriptCmdletsListOutput, ScriptCmdletOutput, ScriptExecutionsListOutput, ScriptExecutionOutput, IscsiPathListResultOutput, IscsiPathOutput } from "./outputModels.js";
 /** Azure operation completed successfully. */
 export interface OperationsList200Response extends HttpResponse {
     status: "200";
-    body: PagedOperationOutput;
+    body: OperationListResultOutput;
 }
 export interface OperationsListDefaultResponse extends HttpResponse {
     status: string;
@@ -31,7 +31,7 @@ export interface LocationsCheckQuotaAvailabilityDefaultResponse extends HttpResp
 /** Azure operation completed successfully. */
 export interface PrivateCloudsListByResourceGroup200Response extends HttpResponse {
     status: "200";
-    body: PrivateCloudListResultOutput;
+    body: PrivateCloudListOutput;
 }
 export interface PrivateCloudsListByResourceGroupDefaultResponse extends HttpResponse {
     status: string;
@@ -40,7 +40,7 @@ export interface PrivateCloudsListByResourceGroupDefaultResponse extends HttpRes
 /** Azure operation completed successfully. */
 export interface PrivateCloudsListInSubscription200Response extends HttpResponse {
     status: "200";
-    body: PrivateCloudListResultOutput;
+    body: PrivateCloudListOutput;
 }
 export interface PrivateCloudsListInSubscriptionDefaultResponse extends HttpResponse {
     status: string;
@@ -185,7 +185,7 @@ export interface PrivateCloudsListAdminCredentialsDefaultResponse extends HttpRe
 /** Azure operation completed successfully. */
 export interface ClustersListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: ClusterListResultOutput;
+    body: ClusterListOutput;
 }
 export interface ClustersListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -284,7 +284,7 @@ export interface ClustersListZonesDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface DatastoresListByCluster200Response extends HttpResponse {
     status: "200";
-    body: DatastoreListResultOutput;
+    body: DatastoreListOutput;
 }
 export interface DatastoresListByClusterDefaultResponse extends HttpResponse {
     status: string;
@@ -353,7 +353,7 @@ export interface DatastoresDeleteLogicalResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface HcxEnterpriseSitesListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: HcxEnterpriseSiteListResultOutput;
+    body: HcxEnterpriseSiteListOutput;
 }
 export interface HcxEnterpriseSitesListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -397,7 +397,7 @@ export interface HcxEnterpriseSitesDeleteDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface AuthorizationsListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: ExpressRouteAuthorizationListResultOutput;
+    body: ExpressRouteAuthorizationListOutput;
 }
 export interface AuthorizationsListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -466,7 +466,7 @@ export interface AuthorizationsDeleteLogicalResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface GlobalReachConnectionsListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: GlobalReachConnectionListResultOutput;
+    body: GlobalReachConnectionListOutput;
 }
 export interface GlobalReachConnectionsListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -544,7 +544,7 @@ export interface WorkloadNetworksGetDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface WorkloadNetworksListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkListResultOutput;
+    body: WorkloadNetworkListOutput;
 }
 export interface WorkloadNetworksListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -553,7 +553,7 @@ export interface WorkloadNetworksListByPrivateCloudDefaultResponse extends HttpR
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkSegmentsListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkSegmentListResultOutput;
+    body: WorkloadNetworkSegmentsListOutput;
 }
 export interface WorkloadNetworkSegmentsListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -647,7 +647,7 @@ export interface WorkloadNetworkSegmentsDeleteSegmentLogicalResponse extends Htt
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkDhcpConfigurationsListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkDhcpListResultOutput;
+    body: WorkloadNetworkDhcpListOutput;
 }
 export interface WorkloadNetworkDhcpConfigurationsListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -741,7 +741,7 @@ export interface WorkloadNetworkDhcpConfigurationsDeleteLogicalResponse extends 
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkGatewaysListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkGatewayListResultOutput;
+    body: WorkloadNetworkGatewayListOutput;
 }
 export interface WorkloadNetworkGatewaysListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -759,7 +759,7 @@ export interface WorkloadNetworkGatewaysGetDefaultResponse extends HttpResponse 
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkPortMirroringProfilesListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkPortMirroringListResultOutput;
+    body: WorkloadNetworkPortMirroringListOutput;
 }
 export interface WorkloadNetworkPortMirroringProfilesListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -853,7 +853,7 @@ export interface WorkloadNetworkPortMirroringProfilesDeleteLogicalResponse exten
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkVmGroupsListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkVMGroupListResultOutput;
+    body: WorkloadNetworkVMGroupsListOutput;
 }
 export interface WorkloadNetworkVmGroupsListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -947,7 +947,7 @@ export interface WorkloadNetworkVmGroupsDeleteLogicalResponse extends HttpRespon
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkVirtualMachinesListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkVirtualMachineListResultOutput;
+    body: WorkloadNetworkVirtualMachinesListOutput;
 }
 export interface WorkloadNetworkVirtualMachinesListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -965,7 +965,7 @@ export interface WorkloadNetworkVirtualMachinesGetDefaultResponse extends HttpRe
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkDnsServicesListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkDnsServiceListResultOutput;
+    body: WorkloadNetworkDnsServicesListOutput;
 }
 export interface WorkloadNetworkDnsServicesListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -1059,7 +1059,7 @@ export interface WorkloadNetworkDnsServicesDeleteLogicalResponse extends HttpRes
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkDnsZonesListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkDnsZoneListResultOutput;
+    body: WorkloadNetworkDnsZonesListOutput;
 }
 export interface WorkloadNetworkDnsZonesListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -1153,7 +1153,7 @@ export interface WorkloadNetworkDnsZonesDeleteLogicalResponse extends HttpRespon
 /** Azure operation completed successfully. */
 export interface WorkloadNetworkPublicIpsListByWorkloadNetwork200Response extends HttpResponse {
     status: "200";
-    body: WorkloadNetworkPublicIPListResultOutput;
+    body: WorkloadNetworkPublicIPsListOutput;
 }
 export interface WorkloadNetworkPublicIpsListByWorkloadNetworkDefaultResponse extends HttpResponse {
     status: string;
@@ -1222,7 +1222,7 @@ export interface WorkloadNetworkPublicIpsDeleteLogicalResponse extends HttpRespo
 /** Azure operation completed successfully. */
 export interface CloudLinksListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: CloudLinkListResultOutput;
+    body: CloudLinkListOutput;
 }
 export interface CloudLinksListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -1291,7 +1291,7 @@ export interface CloudLinksDeleteLogicalResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface AddonsListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: AddonListResultOutput;
+    body: AddonListOutput;
 }
 export interface AddonsListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -1360,7 +1360,7 @@ export interface AddonsDeleteLogicalResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface VirtualMachinesListByCluster200Response extends HttpResponse {
     status: "200";
-    body: VirtualMachineListResultOutput;
+    body: VirtualMachinesListOutput;
 }
 export interface VirtualMachinesListByClusterDefaultResponse extends HttpResponse {
     status: string;
@@ -1397,7 +1397,7 @@ export interface VirtualMachinesRestrictMovementLogicalResponse extends HttpResp
 /** Azure operation completed successfully. */
 export interface PlacementPoliciesListByCluster200Response extends HttpResponse {
     status: "200";
-    body: PlacementPolicyListResultOutput;
+    body: PlacementPoliciesListOutput;
 }
 export interface PlacementPoliciesListByClusterDefaultResponse extends HttpResponse {
     status: string;
@@ -1487,7 +1487,7 @@ export interface PlacementPoliciesDeleteLogicalResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface ScriptPackagesListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: ScriptPackageListResultOutput;
+    body: ScriptPackagesListOutput;
 }
 export interface ScriptPackagesListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;
@@ -1505,7 +1505,7 @@ export interface ScriptPackagesGetDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface ScriptCmdletsListByScriptPackage200Response extends HttpResponse {
     status: "200";
-    body: ScriptCmdletListResultOutput;
+    body: ScriptCmdletsListOutput;
 }
 export interface ScriptCmdletsListByScriptPackageDefaultResponse extends HttpResponse {
     status: string;
@@ -1523,7 +1523,7 @@ export interface ScriptCmdletsGetDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface ScriptExecutionsListByPrivateCloud200Response extends HttpResponse {
     status: "200";
-    body: ScriptExecutionListResultOutput;
+    body: ScriptExecutionsListOutput;
 }
 export interface ScriptExecutionsListByPrivateCloudDefaultResponse extends HttpResponse {
     status: string;

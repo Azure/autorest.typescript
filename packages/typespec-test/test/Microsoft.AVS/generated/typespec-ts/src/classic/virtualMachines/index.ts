@@ -19,24 +19,25 @@ import {
   VirtualMachinesRestrictMovementOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a VirtualMachines operations. */
 export interface VirtualMachinesOperations {
+  /** List VirtualMachine resources by Cluster */
   listByCluster: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     options?: VirtualMachinesListByClusterOptionalParams,
   ) => PagedAsyncIterableIterator<VirtualMachine>;
+  /** Get a VirtualMachine */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     virtualMachineId: string,
     options?: VirtualMachinesGetOptionalParams,
   ) => Promise<VirtualMachine>;
+  /** Enable or disable DRS-driven VM movement restriction */
   restrictMovement: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
@@ -46,10 +47,12 @@ export interface VirtualMachinesOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getVirtualMachines(context: AVSContext) {
+export function getVirtualMachines(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByCluster: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -64,7 +67,6 @@ export function getVirtualMachines(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -81,7 +83,6 @@ export function getVirtualMachines(context: AVSContext) {
         options,
       ),
     restrictMovement: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -104,8 +105,9 @@ export function getVirtualMachines(context: AVSContext) {
 
 export function getVirtualMachinesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): VirtualMachinesOperations {
   return {
-    ...getVirtualMachines(context),
+    ...getVirtualMachines(context, subscriptionId),
   };
 }

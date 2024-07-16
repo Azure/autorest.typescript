@@ -18,30 +18,36 @@ import {
   GlobalReachConnectionsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a GlobalReachConnections operations. */
 export interface GlobalReachConnectionsOperations {
+  /** List GlobalReachConnection resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: GlobalReachConnectionsListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<GlobalReachConnection>;
+  /** Get a GlobalReachConnection */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     globalReachConnectionName: string,
     options?: GlobalReachConnectionsGetOptionalParams,
   ) => Promise<GlobalReachConnection>;
+  /** Create a GlobalReachConnection */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     globalReachConnectionName: string,
     globalReachConnection: GlobalReachConnection,
     options?: GlobalReachConnectionsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<GlobalReachConnection>, GlobalReachConnection>;
+  /** Delete a GlobalReachConnection */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     globalReachConnectionName: string,
@@ -49,10 +55,12 @@ export interface GlobalReachConnectionsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getGlobalReachConnections(context: AVSContext) {
+export function getGlobalReachConnections(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: GlobalReachConnectionsListByPrivateCloudOptionalParams,
@@ -65,7 +73,6 @@ export function getGlobalReachConnections(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       globalReachConnectionName: string,
@@ -80,7 +87,6 @@ export function getGlobalReachConnections(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       globalReachConnectionName: string,
@@ -97,7 +103,6 @@ export function getGlobalReachConnections(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       globalReachConnectionName: string,
@@ -116,8 +121,9 @@ export function getGlobalReachConnections(context: AVSContext) {
 
 export function getGlobalReachConnectionsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): GlobalReachConnectionsOperations {
   return {
-    ...getGlobalReachConnections(context),
+    ...getGlobalReachConnections(context, subscriptionId),
   };
 }

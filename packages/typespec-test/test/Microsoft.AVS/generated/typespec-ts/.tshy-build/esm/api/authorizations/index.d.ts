@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { ExpressRouteAuthorizationListResult, ExpressRouteAuthorization } from "../../models/models.js";
+import { ExpressRouteAuthorization, _ExpressRouteAuthorizationList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, AuthorizationsCreateOrUpdate200Response, AuthorizationsCreateOrUpdate201Response, AuthorizationsCreateOrUpdateDefaultResponse, AuthorizationsCreateOrUpdateLogicalResponse, AuthorizationsDelete200Response, AuthorizationsDelete202Response, AuthorizationsDelete204Response, AuthorizationsDeleteDefaultResponse, AuthorizationsDeleteLogicalResponse, AuthorizationsGet200Response, AuthorizationsGetDefaultResponse, AuthorizationsListByPrivateCloud200Response, AuthorizationsListByPrivateCloudDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { AuthorizationsListByPrivateCloudOptionalParams, AuthorizationsGetOptionalParams, AuthorizationsCreateOrUpdateOptionalParams, AuthorizationsDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: AuthorizationsListByPrivateCloudOptionalParams): StreamableMethod<AuthorizationsListByPrivateCloud200Response | AuthorizationsListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: AuthorizationsListByPrivateCloud200Response | AuthorizationsListByPrivateCloudDefaultResponse): Promise<ExpressRouteAuthorizationListResult>;
+export declare function _listByPrivateCloudDeserialize(result: AuthorizationsListByPrivateCloud200Response | AuthorizationsListByPrivateCloudDefaultResponse): Promise<_ExpressRouteAuthorizationList>;
 /** List ExpressRouteAuthorization resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: AuthorizationsListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<ExpressRouteAuthorization>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, authorizationName: string, options?: AuthorizationsGetOptionalParams): StreamableMethod<AuthorizationsGet200Response | AuthorizationsGetDefaultResponse>;

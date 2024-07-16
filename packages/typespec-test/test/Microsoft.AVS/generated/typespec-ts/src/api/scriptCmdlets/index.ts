@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ScriptCmdletListResult, ScriptCmdlet } from "../../models/models.js";
+import {
+  CreatedByType,
+  ScriptCmdlet,
+  ScriptCmdletAudience,
+  ScriptParameterTypes,
+  VisibilityParameterEnum,
+  OptionalParamEnum,
+  _ScriptCmdletsList,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -50,51 +58,57 @@ export async function _listByScriptPackageDeserialize(
   result:
     | ScriptCmdletsListByScriptPackage200Response
     | ScriptCmdletsListByScriptPackageDefaultResponse,
-): Promise<ScriptCmdletListResult> {
+): Promise<_ScriptCmdletsList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            description: p.properties?.["description"],
-            timeout: p.properties?.["timeout"],
-            audience: p.properties?.["audience"],
-            parameters:
-              p.properties?.["parameters"] === undefined
-                ? p.properties?.["parameters"]
-                : p.properties?.["parameters"].map((p) => ({
-                    type: p["type"],
-                    name: p["name"],
-                    description: p["description"],
-                    visibility: p["visibility"],
-                    optional: p["optional"],
-                  })),
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"] as any,
+              description: p.properties?.["description"],
+              timeout: p.properties?.["timeout"],
+              audience: p.properties?.["audience"] as ScriptCmdletAudience,
+              parameters:
+                p.properties?.["parameters"] === undefined
+                  ? p.properties?.["parameters"]
+                  : p.properties?.["parameters"].map((p) => {
+                      return {
+                        type: p["type"] as ScriptParameterTypes,
+                        name: p["name"],
+                        description: p["description"],
+                        visibility: p["visibility"] as VisibilityParameterEnum,
+                        optional: p["optional"] as OptionalParamEnum,
+                      };
+                    }),
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -164,13 +178,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -179,20 +197,26 @@ export async function _getDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           description: result.body.properties?.["description"],
           timeout: result.body.properties?.["timeout"],
-          audience: result.body.properties?.["audience"],
+          audience: result.body.properties?.[
+            "audience"
+          ] as ScriptCmdletAudience,
           parameters:
             result.body.properties?.["parameters"] === undefined
               ? result.body.properties?.["parameters"]
-              : result.body.properties?.["parameters"].map((p) => ({
-                  type: p["type"],
-                  name: p["name"],
-                  description: p["description"],
-                  visibility: p["visibility"],
-                  optional: p["optional"],
-                })),
+              : result.body.properties?.["parameters"].map((p) => {
+                  return {
+                    type: p["type"] as ScriptParameterTypes,
+                    name: p["name"],
+                    description: p["description"],
+                    visibility: p["visibility"] as VisibilityParameterEnum,
+                    optional: p["optional"] as OptionalParamEnum,
+                  };
+                }),
         },
   };
 }

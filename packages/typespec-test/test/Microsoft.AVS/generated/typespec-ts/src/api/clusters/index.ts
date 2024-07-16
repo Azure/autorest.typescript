@@ -4,10 +4,14 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  ClusterListResult,
+  clusterPropertiesSerializer,
+  skuSerializer,
+  clusterUpdatePropertiesSerializer,
+  CreatedByType,
   Cluster,
   ClusterUpdate,
   ClusterZoneList,
+  _ClusterList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -71,49 +75,53 @@ export async function _listByPrivateCloudDeserialize(
   result:
     | ClustersListByPrivateCloud200Response
     | ClustersListByPrivateCloudDefaultResponse,
-): Promise<ClusterListResult> {
+): Promise<_ClusterList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            clusterSize: p.properties?.["clusterSize"],
-            provisioningState: p.properties?.["provisioningState"],
-            clusterId: p.properties?.["clusterId"],
-            hosts: p.properties?.["hosts"],
-            vsanDatastoreName: p.properties?.["vsanDatastoreName"],
-          },
-      sku: {
-        name: p.sku["name"],
-        tier: p.sku["tier"],
-        size: p.sku["size"],
-        family: p.sku["family"],
-        capacity: p.sku["capacity"],
-      },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              clusterSize: p.properties?.["clusterSize"],
+              provisioningState: p.properties?.["provisioningState"] as any,
+              clusterId: p.properties?.["clusterId"],
+              hosts: p.properties?.["hosts"],
+              vsanDatastoreName: p.properties?.["vsanDatastoreName"],
+            },
+        sku: {
+          name: p.sku["name"],
+          tier: p.sku["tier"],
+          size: p.sku["size"],
+          family: p.sku["family"],
+          capacity: p.sku["capacity"],
+        },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -175,13 +183,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -191,7 +203,9 @@ export async function _getDeserialize(
       ? undefined
       : {
           clusterSize: result.body.properties?.["clusterSize"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           clusterId: result.body.properties?.["clusterId"],
           hosts: result.body.properties?.["hosts"],
           vsanDatastoreName: result.body.properties?.["vsanDatastoreName"],
@@ -252,19 +266,9 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !cluster.properties
-          ? undefined
-          : {
-              clusterSize: cluster.properties?.["clusterSize"],
-              hosts: cluster.properties?.["hosts"],
-              vsanDatastoreName: cluster.properties?.["vsanDatastoreName"],
-            },
-        sku: {
-          name: cluster.sku["name"],
-          tier: cluster.sku["tier"],
-          size: cluster.sku["size"],
-          family: cluster.sku["family"],
-          capacity: cluster.sku["capacity"],
-        },
+          ? cluster.properties
+          : clusterPropertiesSerializer(cluster.properties),
+        sku: skuSerializer(cluster.sku),
       },
     });
 }
@@ -289,13 +293,17 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -305,7 +313,9 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           clusterSize: result.body.properties?.["clusterSize"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           clusterId: result.body.properties?.["clusterId"],
           hosts: result.body.properties?.["hosts"],
           vsanDatastoreName: result.body.properties?.["vsanDatastoreName"],
@@ -371,20 +381,11 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         sku: !clusterUpdate.sku
-          ? undefined
-          : {
-              name: clusterUpdate.sku?.["name"],
-              tier: clusterUpdate.sku?.["tier"],
-              size: clusterUpdate.sku?.["size"],
-              family: clusterUpdate.sku?.["family"],
-              capacity: clusterUpdate.sku?.["capacity"],
-            },
+          ? clusterUpdate.sku
+          : skuSerializer(clusterUpdate.sku),
         properties: !clusterUpdate.properties
-          ? undefined
-          : {
-              clusterSize: clusterUpdate.properties?.["clusterSize"],
-              hosts: clusterUpdate.properties?.["hosts"],
-            },
+          ? clusterUpdate.properties
+          : clusterUpdatePropertiesSerializer(clusterUpdate.properties),
       },
     });
 }
@@ -407,13 +408,17 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -423,7 +428,9 @@ export async function _updateDeserialize(
       ? undefined
       : {
           clusterSize: result.body.properties?.["clusterSize"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           clusterId: result.body.properties?.["clusterId"],
           hosts: result.body.properties?.["hosts"],
           vsanDatastoreName: result.body.properties?.["vsanDatastoreName"],
@@ -562,10 +569,9 @@ export async function _listZonesDeserialize(
     zones:
       result.body["zones"] === undefined
         ? result.body["zones"]
-        : result.body["zones"].map((p) => ({
-            hosts: p["hosts"],
-            zone: p["zone"],
-          })),
+        : result.body["zones"].map((p) => {
+            return { hosts: p["hosts"], zone: p["zone"] };
+          }),
   };
 }
 

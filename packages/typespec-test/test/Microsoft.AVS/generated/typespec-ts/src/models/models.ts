@@ -1,15 +1,85 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import {
+  IscsiPath as IscsiPathRest,
+  IscsiPathProperties as IscsiPathPropertiesRest,
+  ScriptExecution as ScriptExecutionRest,
+  ScriptExecutionProperties as ScriptExecutionPropertiesRest,
+  ScriptExecutionParameter as ScriptExecutionParameterRest,
+  ScriptSecureStringExecutionParameter as ScriptSecureStringExecutionParameterRest,
+  ScriptStringExecutionParameter as ScriptStringExecutionParameterRest,
+  PSCredentialExecutionParameter as PSCredentialExecutionParameterRest,
+  PlacementPolicy as PlacementPolicyRest,
+  PlacementPolicyProperties as PlacementPolicyPropertiesRest,
+  VmVmPlacementPolicyProperties as VmVmPlacementPolicyPropertiesRest,
+  VmHostPlacementPolicyProperties as VmHostPlacementPolicyPropertiesRest,
+  PlacementPolicyUpdate as PlacementPolicyUpdateRest,
+  PlacementPolicyUpdateProperties as PlacementPolicyUpdatePropertiesRest,
+  VirtualMachineRestrictMovement as VirtualMachineRestrictMovementRest,
+  Addon as AddonRest,
+  AddonProperties as AddonPropertiesRest,
+  AddonSrmProperties as AddonSrmPropertiesRest,
+  AddonVrProperties as AddonVrPropertiesRest,
+  AddonHcxProperties as AddonHcxPropertiesRest,
+  AddonArcProperties as AddonArcPropertiesRest,
+  CloudLink as CloudLinkRest,
+  CloudLinkProperties as CloudLinkPropertiesRest,
+  WorkloadNetworkPublicIP as WorkloadNetworkPublicIPRest,
+  WorkloadNetworkPublicIPProperties as WorkloadNetworkPublicIPPropertiesRest,
+  WorkloadNetworkDnsZone as WorkloadNetworkDnsZoneRest,
+  WorkloadNetworkDnsZoneProperties as WorkloadNetworkDnsZonePropertiesRest,
+  WorkloadNetworkDnsService as WorkloadNetworkDnsServiceRest,
+  WorkloadNetworkDnsServiceProperties as WorkloadNetworkDnsServicePropertiesRest,
+  WorkloadNetworkVMGroup as WorkloadNetworkVMGroupRest,
+  WorkloadNetworkVMGroupProperties as WorkloadNetworkVMGroupPropertiesRest,
+  WorkloadNetworkPortMirroring as WorkloadNetworkPortMirroringRest,
+  WorkloadNetworkPortMirroringProperties as WorkloadNetworkPortMirroringPropertiesRest,
+  WorkloadNetworkDhcp as WorkloadNetworkDhcpRest,
+  WorkloadNetworkDhcpEntity as WorkloadNetworkDhcpEntityRest,
+  WorkloadNetworkDhcpServer as WorkloadNetworkDhcpServerRest,
+  WorkloadNetworkDhcpRelay as WorkloadNetworkDhcpRelayRest,
+  WorkloadNetworkSegment as WorkloadNetworkSegmentRest,
+  WorkloadNetworkSegmentProperties as WorkloadNetworkSegmentPropertiesRest,
+  WorkloadNetworkSegmentSubnet as WorkloadNetworkSegmentSubnetRest,
+  GlobalReachConnection as GlobalReachConnectionRest,
+  GlobalReachConnectionProperties as GlobalReachConnectionPropertiesRest,
+  ExpressRouteAuthorization as ExpressRouteAuthorizationRest,
+  ExpressRouteAuthorizationProperties as ExpressRouteAuthorizationPropertiesRest,
+  HcxEnterpriseSite as HcxEnterpriseSiteRest,
+  Datastore as DatastoreRest,
+  DatastoreProperties as DatastorePropertiesRest,
+  NetAppVolume as NetAppVolumeRest,
+  DiskPoolVolume as DiskPoolVolumeRest,
+  ElasticSanVolume as ElasticSanVolumeRest,
+  Cluster as ClusterRest,
+  ClusterProperties as ClusterPropertiesRest,
+  Sku as SkuRest,
+  ClusterUpdate as ClusterUpdateRest,
+  ClusterUpdateProperties as ClusterUpdatePropertiesRest,
+  TrackedResource as TrackedResourceRest,
+  PrivateCloud as PrivateCloudRest,
+  PrivateCloudProperties as PrivateCloudPropertiesRest,
+  ManagementCluster as ManagementClusterRest,
+  IdentitySource as IdentitySourceRest,
+  AvailabilityProperties as AvailabilityPropertiesRest,
+  Encryption as EncryptionRest,
+  EncryptionKeyVaultProperties as EncryptionKeyVaultPropertiesRest,
+  SystemAssignedServiceIdentity as SystemAssignedServiceIdentityRest,
+  PrivateCloudUpdate as PrivateCloudUpdateRest,
+  PrivateCloudUpdateProperties as PrivateCloudUpdatePropertiesRest,
+} from "../rest/index.js";
+
 /** The response of a IscsiPath list operation. */
-export interface IscsiPathListResult {
+export interface _IscsiPathListResult {
   /** The IscsiPath items on this page */
   value: IscsiPath[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-/** Common properties for all Azure Resource Manager resources. */
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   readonly id?: string;
@@ -21,33 +91,48 @@ export interface Resource {
   readonly systemData?: SystemData;
 }
 
+export function resourceSerializer(item: Resource) {
+  return item as any;
+}
+
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
-  readonly createdBy?: string;
+  createdBy?: string;
   /** The type of identity that created the resource. */
-  readonly createdByType?: CreatedByType;
-  /** The type of identity that created the resource. */
-  readonly createdAt?: Date;
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
   /** The identity that last modified the resource. */
-  readonly lastModifiedBy?: string;
+  lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  readonly lastModifiedByType?: CreatedByType;
+  lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
-  readonly lastModifiedAt?: Date;
+  lastModifiedAt?: Date;
 }
 
 /** The kind of entity that created the resource. */
-/** "User", "Application", "ManagedIdentity", "Key" */
-export type CreatedByType = string;
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
-/** The base proxy resource. */
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
+
+export function proxyResourceSerializer(item: ProxyResource) {
+  return item as any;
+}
 
 /** An iSCSI path resource */
 export interface IscsiPath extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: IscsiPathProperties;
+}
+
+export function iscsiPathSerializer(item: IscsiPath): IscsiPathRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : iscsiPathPropertiesSerializer(item.properties),
+  };
 }
 
 /** The properties of an iSCSI path resource */
@@ -58,9 +143,16 @@ export interface IscsiPathProperties {
   networkBlock: string;
 }
 
+export function iscsiPathPropertiesSerializer(
+  item: IscsiPathProperties,
+): IscsiPathPropertiesRest {
+  return {
+    networkBlock: item["networkBlock"],
+  };
+}
+
 /** The provisioning state of a resource type. */
-/** "Succeeded", "Failed", "Canceled" */
-export type ResourceProvisioningState = string;
+export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
@@ -90,24 +182,8 @@ export interface ErrorAdditionalInfo {
   readonly info?: Record<string, any>;
 }
 
-/** Standard Azure Resource Manager operation status response */
-export interface ArmOperationStatus {
-  /** The operation status */
-  status: ResourceProvisioningState;
-  /** The name of the  operationStatus resource */
-  readonly name?: string;
-  /** Operation start time */
-  readonly startTime?: Date;
-  /** Operation complete time */
-  readonly endTime?: Date;
-  /** The progress made toward completing the operation */
-  readonly percentComplete?: number;
-  /** Errors that occurred if the operation ended with Canceled or Failed status */
-  readonly error?: ErrorDetail;
-}
-
 /** The response of a ScriptExecution list operation. */
-export interface ScriptExecutionListResult {
+export interface _ScriptExecutionsList {
   /** The ScriptExecution items on this page */
   value: ScriptExecution[];
   /** The link to the next page of items */
@@ -118,6 +194,16 @@ export interface ScriptExecutionListResult {
 export interface ScriptExecution extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: ScriptExecutionProperties;
+}
+
+export function scriptExecutionSerializer(
+  item: ScriptExecution,
+): ScriptExecutionRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : scriptExecutionPropertiesSerializer(item.properties),
+  };
 }
 
 /** Properties of a user-invoked script */
@@ -160,12 +246,62 @@ export interface ScriptExecutionProperties {
   readonly errors?: string[];
 }
 
+export function scriptExecutionPropertiesSerializer(
+  item: ScriptExecutionProperties,
+): ScriptExecutionPropertiesRest {
+  return {
+    scriptCmdletId: item["scriptCmdletId"],
+    parameters: item["parameters"],
+    hiddenParameters: item["hiddenParameters"],
+    failureReason: item["failureReason"],
+    timeout: item["timeout"],
+    retention: item["retention"],
+    output: item["output"],
+    namedOutputs: !item.namedOutputs
+      ? item.namedOutputs
+      : (serializeRecord(item.namedOutputs as any) as any),
+  };
+}
+
 /** The arguments passed in to the execution */
 export interface ScriptExecutionParameter {
   /** the discriminator possible values: SecureValue, Value, Credential */
   type: ScriptExecutionParameterType;
   /** The parameter name */
   name: string;
+}
+
+export function scriptExecutionParameterUnionSerializer(
+  item: ScriptExecutionParameterUnion,
+) {
+  switch (item.type) {
+    case "SecureValue":
+      return scriptSecureStringExecutionParameterSerializer(
+        item as ScriptSecureStringExecutionParameter,
+      );
+
+    case "Value":
+      return scriptStringExecutionParameterSerializer(
+        item as ScriptStringExecutionParameter,
+      );
+
+    case "Credential":
+      return pSCredentialExecutionParameterSerializer(
+        item as PSCredentialExecutionParameter,
+      );
+
+    default:
+      return scriptExecutionParameterSerializer(item);
+  }
+}
+
+export function scriptExecutionParameterSerializer(
+  item: ScriptExecutionParameterUnion,
+): ScriptExecutionParameterRest {
+  return {
+    type: item["type"],
+    name: item["name"],
+  };
 }
 
 /** a plain text value execution parameter */
@@ -177,6 +313,16 @@ export interface ScriptSecureStringExecutionParameter
   type: "SecureValue";
 }
 
+export function scriptSecureStringExecutionParameterSerializer(
+  item: ScriptSecureStringExecutionParameter,
+): ScriptSecureStringExecutionParameterRest {
+  return {
+    type: item["type"],
+    name: item["name"],
+    secureValue: item["secureValue"],
+  };
+}
+
 /** a plain text value execution parameter */
 export interface ScriptStringExecutionParameter
   extends ScriptExecutionParameter {
@@ -184,6 +330,16 @@ export interface ScriptStringExecutionParameter
   value?: string;
   /** The type of execution parameter */
   type: "Value";
+}
+
+export function scriptStringExecutionParameterSerializer(
+  item: ScriptStringExecutionParameter,
+): ScriptStringExecutionParameterRest {
+  return {
+    type: item["type"],
+    name: item["name"],
+    value: item["value"],
+  };
 }
 
 /** a powershell credential object */
@@ -197,15 +353,31 @@ export interface PSCredentialExecutionParameter
   type: "Credential";
 }
 
+export function pSCredentialExecutionParameterSerializer(
+  item: PSCredentialExecutionParameter,
+): PSCredentialExecutionParameterRest {
+  return {
+    type: item["type"],
+    name: item["name"],
+    username: item["username"],
+    password: item["password"],
+  };
+}
+
 /** script execution parameter type */
-/** "Value", "SecureValue", "Credential" */
-export type ScriptExecutionParameterType = string;
+export type ScriptExecutionParameterType =
+  | "Value"
+  | "SecureValue"
+  | "Credential";
 /** Script Output Stream type */
-/** "Information", "Warning", "Output", "Error" */
-export type ScriptOutputStreamType = string;
+export type ScriptOutputStreamType =
+  | "Information"
+  | "Warning"
+  | "Output"
+  | "Error";
 
 /** The response of a ScriptCmdlet list operation. */
-export interface ScriptCmdletListResult {
+export interface _ScriptCmdletsList {
   /** The ScriptCmdlet items on this page */
   value: ScriptCmdlet[];
   /** The link to the next page of items */
@@ -233,8 +405,7 @@ export interface ScriptCmdletProperties {
 }
 
 /** Specifies whether a script cmdlet is intended to be invoked only through automation or visible to customers */
-/** "Automation", "Any" */
-export type ScriptCmdletAudience = string;
+export type ScriptCmdletAudience = "Automation" | "Any";
 
 /** An parameter that the script will accept */
 export interface ScriptParameter {
@@ -257,17 +428,20 @@ export interface ScriptParameter {
 }
 
 /** Script Parameter types */
-/** "String", "SecureString", "Credential", "Int", "Bool", "Float" */
-export type ScriptParameterTypes = string;
+export type ScriptParameterTypes =
+  | "String"
+  | "SecureString"
+  | "Credential"
+  | "Int"
+  | "Bool"
+  | "Float";
 /** Visibility Parameter */
-/** "Visible", "Hidden" */
-export type VisibilityParameterEnum = string;
+export type VisibilityParameterEnum = "Visible" | "Hidden";
 /** Optional Param */
-/** "Optional", "Required" */
-export type OptionalParamEnum = string;
+export type OptionalParamEnum = "Optional" | "Required";
 
 /** The response of a ScriptPackage list operation. */
-export interface ScriptPackageListResult {
+export interface _ScriptPackagesList {
   /** The ScriptPackage items on this page */
   value: ScriptPackage[];
   /** The link to the next page of items */
@@ -295,7 +469,7 @@ export interface ScriptPackageProperties {
 }
 
 /** The response of a PlacementPolicy list operation. */
-export interface PlacementPolicyListResult {
+export interface _PlacementPoliciesList {
   /** The PlacementPolicy items on this page */
   value: PlacementPolicy[];
   /** The link to the next page of items */
@@ -306,6 +480,16 @@ export interface PlacementPolicyListResult {
 export interface PlacementPolicy extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: PlacementPolicyPropertiesUnion;
+}
+
+export function placementPolicySerializer(
+  item: PlacementPolicy,
+): PlacementPolicyRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : placementPolicyPropertiesUnionSerializer(item.properties),
+  };
 }
 
 /** Abstract placement policy properties */
@@ -320,6 +504,33 @@ export interface PlacementPolicyProperties {
   readonly provisioningState?: PlacementPolicyProvisioningState;
 }
 
+export function placementPolicyPropertiesUnionSerializer(
+  item: PlacementPolicyPropertiesUnion,
+) {
+  switch (item.type) {
+    case "VmVm":
+      return vmVmPlacementPolicyPropertiesSerializer(
+        item as VmVmPlacementPolicyProperties,
+      );
+
+    case "VmHost":
+      return vmHostPlacementPolicyPropertiesSerializer(
+        item as VmHostPlacementPolicyProperties,
+      );
+
+    default:
+      return placementPolicyPropertiesSerializer(item);
+  }
+}
+
+export function placementPolicyPropertiesSerializer(
+  item: PlacementPolicyPropertiesUnion,
+): PlacementPolicyPropertiesRest {
+  return {
+    ...placementPolicyPropertiesUnionSerializer(item),
+  };
+}
+
 /** VM-VM placement policy properties */
 export interface VmVmPlacementPolicyProperties
   extends PlacementPolicyProperties {
@@ -331,9 +542,20 @@ export interface VmVmPlacementPolicyProperties
   type: "VmVm";
 }
 
+export function vmVmPlacementPolicyPropertiesSerializer(
+  item: VmVmPlacementPolicyProperties,
+): VmVmPlacementPolicyPropertiesRest {
+  return {
+    type: item["type"],
+    state: item["state"],
+    displayName: item["displayName"],
+    vmMembers: item["vmMembers"],
+    affinityType: item["affinityType"],
+  };
+}
+
 /** Affinity type */
-/** "Affinity", "AntiAffinity" */
-export type AffinityType = string;
+export type AffinityType = "Affinity" | "AntiAffinity";
 
 /** VM-Host placement policy properties */
 export interface VmHostPlacementPolicyProperties
@@ -352,23 +574,44 @@ export interface VmHostPlacementPolicyProperties
   type: "VmHost";
 }
 
+export function vmHostPlacementPolicyPropertiesSerializer(
+  item: VmHostPlacementPolicyProperties,
+): VmHostPlacementPolicyPropertiesRest {
+  return {
+    type: item["type"],
+    state: item["state"],
+    displayName: item["displayName"],
+    vmMembers: item["vmMembers"],
+    hostMembers: item["hostMembers"],
+    affinityType: item["affinityType"],
+    affinityStrength: item["affinityStrength"],
+    azureHybridBenefitType: item["azureHybridBenefitType"],
+  };
+}
+
 /** Affinity Strength */
-/** "Should", "Must" */
-export type AffinityStrength = string;
+export type AffinityStrength = "Should" | "Must";
 /** Azure Hybrid Benefit type */
-/** "SqlHost", "None" */
-export type AzureHybridBenefitType = string;
+export type AzureHybridBenefitType = "SqlHost" | "None";
 /** Placement Policy type */
-/** "VmVm", "VmHost" */
-export type PlacementPolicyType = string;
+export type PlacementPolicyType = "VmVm" | "VmHost";
 /** Placement Policy state */
-/** "Enabled", "Disabled" */
-export type PlacementPolicyState = string;
+export type PlacementPolicyState = "Enabled" | "Disabled";
 
 /** An update of a DRS placement policy resource */
 export interface PlacementPolicyUpdate {
   /** The properties of a placement policy resource that may be updated */
   properties?: PlacementPolicyUpdateProperties;
+}
+
+export function placementPolicyUpdateSerializer(
+  item: PlacementPolicyUpdate,
+): PlacementPolicyUpdateRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : placementPolicyUpdatePropertiesSerializer(item.properties),
+  };
 }
 
 /** The properties of a placement policy resource that may be updated */
@@ -385,8 +628,20 @@ export interface PlacementPolicyUpdateProperties {
   azureHybridBenefitType?: AzureHybridBenefitType;
 }
 
+export function placementPolicyUpdatePropertiesSerializer(
+  item: PlacementPolicyUpdateProperties,
+): PlacementPolicyUpdatePropertiesRest {
+  return {
+    state: item["state"],
+    vmMembers: item["vmMembers"],
+    hostMembers: item["hostMembers"],
+    affinityStrength: item["affinityStrength"],
+    azureHybridBenefitType: item["azureHybridBenefitType"],
+  };
+}
+
 /** The response of a VirtualMachine list operation. */
-export interface VirtualMachineListResult {
+export interface _VirtualMachinesList {
   /** The VirtualMachine items on this page */
   value: VirtualMachine[];
   /** The link to the next page of items */
@@ -414,8 +669,7 @@ export interface VirtualMachineProperties {
 }
 
 /** Virtual Machine Restrict Movement state */
-/** "Enabled", "Disabled" */
-export type VirtualMachineRestrictMovementState = string;
+export type VirtualMachineRestrictMovementState = "Enabled" | "Disabled";
 
 /** Set VM DRS-driven movement to restricted (enabled) or not (disabled) */
 export interface VirtualMachineRestrictMovement {
@@ -423,8 +677,16 @@ export interface VirtualMachineRestrictMovement {
   restrictMovement?: VirtualMachineRestrictMovementState;
 }
 
+export function virtualMachineRestrictMovementSerializer(
+  item: VirtualMachineRestrictMovement,
+): VirtualMachineRestrictMovementRest {
+  return {
+    restrictMovement: item["restrictMovement"],
+  };
+}
+
 /** The response of a Addon list operation. */
-export interface AddonListResult {
+export interface _AddonList {
   /** The Addon items on this page */
   value: Addon[];
   /** The link to the next page of items */
@@ -437,12 +699,47 @@ export interface Addon extends ProxyResource {
   properties?: AddonPropertiesUnion;
 }
 
+export function addonSerializer(item: Addon): AddonRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : addonPropertiesUnionSerializer(item.properties),
+  };
+}
+
 /** The properties of an addon */
 export interface AddonProperties {
   /** the discriminator possible values: SRM, VR, HCX, Arc */
   addonType: AddonType;
   /** The state of the addon provisioning */
   readonly provisioningState?: AddonProvisioningState;
+}
+
+export function addonPropertiesUnionSerializer(item: AddonPropertiesUnion) {
+  switch (item.addonType) {
+    case "SRM":
+      return addonSrmPropertiesSerializer(item as AddonSrmProperties);
+
+    case "VR":
+      return addonVrPropertiesSerializer(item as AddonVrProperties);
+
+    case "HCX":
+      return addonHcxPropertiesSerializer(item as AddonHcxProperties);
+
+    case "Arc":
+      return addonArcPropertiesSerializer(item as AddonArcProperties);
+
+    default:
+      return addonPropertiesSerializer(item);
+  }
+}
+
+export function addonPropertiesSerializer(
+  item: AddonPropertiesUnion,
+): AddonPropertiesRest {
+  return {
+    addonType: item["addonType"],
+  };
 }
 
 /** The properties of a Site Recovery Manager (SRM) addon */
@@ -453,12 +750,30 @@ export interface AddonSrmProperties extends AddonProperties {
   addonType: "SRM";
 }
 
+export function addonSrmPropertiesSerializer(
+  item: AddonSrmProperties,
+): AddonSrmPropertiesRest {
+  return {
+    addonType: item["addonType"],
+    licenseKey: item["licenseKey"],
+  };
+}
+
 /** The properties of a vSphere Replication (VR) addon */
 export interface AddonVrProperties extends AddonProperties {
   /** The vSphere Replication Server (VRS) count */
   vrsCount: number;
   /** The type of private cloud addon */
   addonType: "VR";
+}
+
+export function addonVrPropertiesSerializer(
+  item: AddonVrProperties,
+): AddonVrPropertiesRest {
+  return {
+    addonType: item["addonType"],
+    vrsCount: item["vrsCount"],
+  };
 }
 
 /** The properties of an HCX addon */
@@ -469,6 +784,15 @@ export interface AddonHcxProperties extends AddonProperties {
   addonType: "HCX";
 }
 
+export function addonHcxPropertiesSerializer(
+  item: AddonHcxProperties,
+): AddonHcxPropertiesRest {
+  return {
+    addonType: item["addonType"],
+    offer: item["offer"],
+  };
+}
+
 /** The properties of an Arc addon */
 export interface AddonArcProperties extends AddonProperties {
   /** The VMware vCenter resource ID */
@@ -477,12 +801,20 @@ export interface AddonArcProperties extends AddonProperties {
   addonType: "Arc";
 }
 
+export function addonArcPropertiesSerializer(
+  item: AddonArcProperties,
+): AddonArcPropertiesRest {
+  return {
+    addonType: item["addonType"],
+    vCenter: item["vCenter"],
+  };
+}
+
 /** Addon type */
-/** "SRM", "VR", "HCX", "Arc" */
-export type AddonType = string;
+export type AddonType = "SRM" | "VR" | "HCX" | "Arc";
 
 /** The response of a CloudLink list operation. */
-export interface CloudLinkListResult {
+export interface _CloudLinkList {
   /** The CloudLink items on this page */
   value: CloudLink[];
   /** The link to the next page of items */
@@ -495,6 +827,14 @@ export interface CloudLink extends ProxyResource {
   properties?: CloudLinkProperties;
 }
 
+export function cloudLinkSerializer(item: CloudLink): CloudLinkRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : cloudLinkPropertiesSerializer(item.properties),
+  };
+}
+
 /** The properties of a cloud link. */
 export interface CloudLinkProperties {
   /** The provisioning state of the resource. */
@@ -505,12 +845,24 @@ export interface CloudLinkProperties {
   linkedCloud?: string;
 }
 
+export function cloudLinkPropertiesSerializer(
+  item: CloudLinkProperties,
+): CloudLinkPropertiesRest {
+  return {
+    linkedCloud: item["linkedCloud"],
+  };
+}
+
 /** Cloud Link status */
-/** "Active", "Building", "Deleting", "Failed", "Disconnected" */
-export type CloudLinkStatus = string;
+export type CloudLinkStatus =
+  | "Active"
+  | "Building"
+  | "Deleting"
+  | "Failed"
+  | "Disconnected";
 
 /** The response of a WorkloadNetworkPublicIP list operation. */
-export interface WorkloadNetworkPublicIPListResult {
+export interface _WorkloadNetworkPublicIPsList {
   /** The WorkloadNetworkPublicIP items on this page */
   value: WorkloadNetworkPublicIP[];
   /** The link to the next page of items */
@@ -521,6 +873,16 @@ export interface WorkloadNetworkPublicIPListResult {
 export interface WorkloadNetworkPublicIP extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkPublicIPProperties;
+}
+
+export function workloadNetworkPublicIPSerializer(
+  item: WorkloadNetworkPublicIP,
+): WorkloadNetworkPublicIPRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : workloadNetworkPublicIPPropertiesSerializer(item.properties),
+  };
 }
 
 /** NSX Public IP Block Properties */
@@ -535,8 +897,17 @@ export interface WorkloadNetworkPublicIPProperties {
   readonly provisioningState?: WorkloadNetworkPublicIPProvisioningState;
 }
 
+export function workloadNetworkPublicIPPropertiesSerializer(
+  item: WorkloadNetworkPublicIPProperties,
+): WorkloadNetworkPublicIPPropertiesRest {
+  return {
+    displayName: item["displayName"],
+    numberOfPublicIPs: item["numberOfPublicIPs"],
+  };
+}
+
 /** The response of a WorkloadNetworkDnsZone list operation. */
-export interface WorkloadNetworkDnsZoneListResult {
+export interface _WorkloadNetworkDnsZonesList {
   /** The WorkloadNetworkDnsZone items on this page */
   value: WorkloadNetworkDnsZone[];
   /** The link to the next page of items */
@@ -547,6 +918,16 @@ export interface WorkloadNetworkDnsZoneListResult {
 export interface WorkloadNetworkDnsZone extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDnsZoneProperties;
+}
+
+export function workloadNetworkDnsZoneSerializer(
+  item: WorkloadNetworkDnsZone,
+): WorkloadNetworkDnsZoneRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : workloadNetworkDnsZonePropertiesSerializer(item.properties),
+  };
 }
 
 /** NSX DNS Zone Properties */
@@ -567,14 +948,21 @@ export interface WorkloadNetworkDnsZoneProperties {
   revision?: number;
 }
 
-/** NSX DNS Zone update */
-export interface WorkloadNetworkDnsZoneUpdate {
-  /** The updatable properties of a DNS Zone update */
-  properties?: WorkloadNetworkDnsZoneProperties;
+export function workloadNetworkDnsZonePropertiesSerializer(
+  item: WorkloadNetworkDnsZoneProperties,
+): WorkloadNetworkDnsZonePropertiesRest {
+  return {
+    displayName: item["displayName"],
+    domain: item["domain"],
+    dnsServerIps: item["dnsServerIps"],
+    sourceIp: item["sourceIp"],
+    dnsServices: item["dnsServices"],
+    revision: item["revision"],
+  };
 }
 
 /** The response of a WorkloadNetworkDnsService list operation. */
-export interface WorkloadNetworkDnsServiceListResult {
+export interface _WorkloadNetworkDnsServicesList {
   /** The WorkloadNetworkDnsService items on this page */
   value: WorkloadNetworkDnsService[];
   /** The link to the next page of items */
@@ -585,6 +973,16 @@ export interface WorkloadNetworkDnsServiceListResult {
 export interface WorkloadNetworkDnsService extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDnsServiceProperties;
+}
+
+export function workloadNetworkDnsServiceSerializer(
+  item: WorkloadNetworkDnsService,
+): WorkloadNetworkDnsServiceRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : workloadNetworkDnsServicePropertiesSerializer(item.properties),
+  };
 }
 
 /** NSX DNS Service Properties */
@@ -607,21 +1005,31 @@ export interface WorkloadNetworkDnsServiceProperties {
   revision?: number;
 }
 
-/** DNS service log level */
-/** "DEBUG", "INFO", "WARNING", "ERROR", "FATAL" */
-export type DnsServiceLogLevelEnum = string;
-/** DNS service status */
-/** "SUCCESS", "FAILURE" */
-export type DnsServiceStatusEnum = string;
-
-/** NSX DNS Service update */
-export interface WorkloadNetworkDnsServiceUpdate {
-  /** The updatable properties of a DNS Service update */
-  properties?: WorkloadNetworkDnsServiceProperties;
+export function workloadNetworkDnsServicePropertiesSerializer(
+  item: WorkloadNetworkDnsServiceProperties,
+): WorkloadNetworkDnsServicePropertiesRest {
+  return {
+    displayName: item["displayName"],
+    dnsServiceIp: item["dnsServiceIp"],
+    defaultDnsZone: item["defaultDnsZone"],
+    fqdnZones: item["fqdnZones"],
+    logLevel: item["logLevel"],
+    revision: item["revision"],
+  };
 }
 
+/** DNS service log level */
+export type DnsServiceLogLevelEnum =
+  | "DEBUG"
+  | "INFO"
+  | "WARNING"
+  | "ERROR"
+  | "FATAL";
+/** DNS service status */
+export type DnsServiceStatusEnum = "SUCCESS" | "FAILURE";
+
 /** The response of a WorkloadNetworkVirtualMachine list operation. */
-export interface WorkloadNetworkVirtualMachineListResult {
+export interface _WorkloadNetworkVirtualMachinesList {
   /** The WorkloadNetworkVirtualMachine items on this page */
   value: WorkloadNetworkVirtualMachine[];
   /** The link to the next page of items */
@@ -645,11 +1053,10 @@ export interface WorkloadNetworkVirtualMachineProperties {
 }
 
 /** VM type */
-/** "REGULAR", "EDGE", "SERVICE" */
-export type VMTypeEnum = string;
+export type VMTypeEnum = "REGULAR" | "EDGE" | "SERVICE";
 
 /** The response of a WorkloadNetworkVMGroup list operation. */
-export interface WorkloadNetworkVMGroupListResult {
+export interface _WorkloadNetworkVMGroupsList {
   /** The WorkloadNetworkVMGroup items on this page */
   value: WorkloadNetworkVMGroup[];
   /** The link to the next page of items */
@@ -660,6 +1067,16 @@ export interface WorkloadNetworkVMGroupListResult {
 export interface WorkloadNetworkVMGroup extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkVMGroupProperties;
+}
+
+export function workloadNetworkVMGroupSerializer(
+  item: WorkloadNetworkVMGroup,
+): WorkloadNetworkVMGroupRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : workloadNetworkVMGroupPropertiesSerializer(item.properties),
+  };
 }
 
 /** NSX VM Group Properties */
@@ -676,18 +1093,21 @@ export interface WorkloadNetworkVMGroupProperties {
   revision?: number;
 }
 
-/** VM group status */
-/** "SUCCESS", "FAILURE" */
-export type VMGroupStatusEnum = string;
-
-/** NSX VM Group update */
-export interface WorkloadNetworkVMGroupUpdate {
-  /** The updatable properties of a VM Group update */
-  properties?: WorkloadNetworkVMGroupProperties;
+export function workloadNetworkVMGroupPropertiesSerializer(
+  item: WorkloadNetworkVMGroupProperties,
+): WorkloadNetworkVMGroupPropertiesRest {
+  return {
+    displayName: item["displayName"],
+    members: item["members"],
+    revision: item["revision"],
+  };
 }
 
+/** VM group status */
+export type VMGroupStatusEnum = "SUCCESS" | "FAILURE";
+
 /** The response of a WorkloadNetworkPortMirroring list operation. */
-export interface WorkloadNetworkPortMirroringListResult {
+export interface _WorkloadNetworkPortMirroringList {
   /** The WorkloadNetworkPortMirroring items on this page */
   value: WorkloadNetworkPortMirroring[];
   /** The link to the next page of items */
@@ -698,6 +1118,16 @@ export interface WorkloadNetworkPortMirroringListResult {
 export interface WorkloadNetworkPortMirroring extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkPortMirroringProperties;
+}
+
+export function workloadNetworkPortMirroringSerializer(
+  item: WorkloadNetworkPortMirroring,
+): WorkloadNetworkPortMirroringRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : workloadNetworkPortMirroringPropertiesSerializer(item.properties),
+  };
 }
 
 /** NSX Port Mirroring Properties */
@@ -718,21 +1148,25 @@ export interface WorkloadNetworkPortMirroringProperties {
   revision?: number;
 }
 
-/** Port Mirroring Direction */
-/** "INGRESS", "EGRESS", "BIDIRECTIONAL" */
-export type PortMirroringDirectionEnum = string;
-/** Port Mirroring status */
-/** "SUCCESS", "FAILURE" */
-export type PortMirroringStatusEnum = string;
-
-/** NSX Port Mirroring update */
-export interface WorkloadNetworkPortMirroringUpdate {
-  /** The updatable properties of a Port Mirroring update */
-  properties?: WorkloadNetworkPortMirroringProperties;
+export function workloadNetworkPortMirroringPropertiesSerializer(
+  item: WorkloadNetworkPortMirroringProperties,
+): WorkloadNetworkPortMirroringPropertiesRest {
+  return {
+    displayName: item["displayName"],
+    direction: item["direction"],
+    source: item["source"],
+    destination: item["destination"],
+    revision: item["revision"],
+  };
 }
 
+/** Port Mirroring Direction */
+export type PortMirroringDirectionEnum = "INGRESS" | "EGRESS" | "BIDIRECTIONAL";
+/** Port Mirroring status */
+export type PortMirroringStatusEnum = "SUCCESS" | "FAILURE";
+
 /** The response of a WorkloadNetworkGateway list operation. */
-export interface WorkloadNetworkGatewayListResult {
+export interface _WorkloadNetworkGatewayList {
   /** The WorkloadNetworkGateway items on this page */
   value: WorkloadNetworkGateway[];
   /** The link to the next page of items */
@@ -756,7 +1190,7 @@ export interface WorkloadNetworkGatewayProperties {
 }
 
 /** The response of a WorkloadNetworkDhcp list operation. */
-export interface WorkloadNetworkDhcpListResult {
+export interface _WorkloadNetworkDhcpList {
   /** The WorkloadNetworkDhcp items on this page */
   value: WorkloadNetworkDhcp[];
   /** The link to the next page of items */
@@ -767,6 +1201,16 @@ export interface WorkloadNetworkDhcpListResult {
 export interface WorkloadNetworkDhcp extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDhcpEntityUnion;
+}
+
+export function workloadNetworkDhcpSerializer(
+  item: WorkloadNetworkDhcp,
+): WorkloadNetworkDhcpRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : workloadNetworkDhcpEntityUnionSerializer(item.properties),
+  };
 }
 
 /**
@@ -786,6 +1230,35 @@ export interface WorkloadNetworkDhcpEntity {
   revision?: number;
 }
 
+export function workloadNetworkDhcpEntityUnionSerializer(
+  item: WorkloadNetworkDhcpEntityUnion,
+) {
+  switch (item.dhcpType) {
+    case "SERVER":
+      return workloadNetworkDhcpServerSerializer(
+        item as WorkloadNetworkDhcpServer,
+      );
+
+    case "RELAY":
+      return workloadNetworkDhcpRelaySerializer(
+        item as WorkloadNetworkDhcpRelay,
+      );
+
+    default:
+      return workloadNetworkDhcpEntitySerializer(item);
+  }
+}
+
+export function workloadNetworkDhcpEntitySerializer(
+  item: WorkloadNetworkDhcpEntityUnion,
+): WorkloadNetworkDhcpEntityRest {
+  return {
+    dhcpType: item["dhcpType"],
+    displayName: item["displayName"],
+    revision: item["revision"],
+  };
+}
+
 /** NSX DHCP Server */
 export interface WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
   /** DHCP Server Address. */
@@ -796,6 +1269,18 @@ export interface WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
   dhcpType: "SERVER";
 }
 
+export function workloadNetworkDhcpServerSerializer(
+  item: WorkloadNetworkDhcpServer,
+): WorkloadNetworkDhcpServerRest {
+  return {
+    dhcpType: item["dhcpType"],
+    displayName: item["displayName"],
+    revision: item["revision"],
+    serverAddress: item["serverAddress"],
+    leaseTime: item["leaseTime"],
+  };
+}
+
 /** NSX DHCP Relay */
 export interface WorkloadNetworkDhcpRelay extends WorkloadNetworkDhcpEntity {
   /** DHCP Relay Addresses. Max 3. */
@@ -804,18 +1289,22 @@ export interface WorkloadNetworkDhcpRelay extends WorkloadNetworkDhcpEntity {
   dhcpType: "RELAY";
 }
 
-/** Type of DHCP: SERVER or RELAY. */
-/** "SERVER", "RELAY" */
-export type DhcpTypeEnum = string;
-
-/** NSX DHCP update */
-export interface WorkloadNetworkDhcpUpdate {
-  /** The updatable properties of a DHCP update */
-  properties?: WorkloadNetworkDhcpEntityUnion;
+export function workloadNetworkDhcpRelaySerializer(
+  item: WorkloadNetworkDhcpRelay,
+): WorkloadNetworkDhcpRelayRest {
+  return {
+    dhcpType: item["dhcpType"],
+    displayName: item["displayName"],
+    revision: item["revision"],
+    serverAddresses: item["serverAddresses"],
+  };
 }
 
+/** Type of DHCP: SERVER or RELAY. */
+export type DhcpTypeEnum = "SERVER" | "RELAY";
+
 /** The response of a WorkloadNetworkSegment list operation. */
-export interface WorkloadNetworkSegmentListResult {
+export interface _WorkloadNetworkSegmentsList {
   /** The WorkloadNetworkSegment items on this page */
   value: WorkloadNetworkSegment[];
   /** The link to the next page of items */
@@ -826,6 +1315,16 @@ export interface WorkloadNetworkSegmentListResult {
 export interface WorkloadNetworkSegment extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkSegmentProperties;
+}
+
+export function workloadNetworkSegmentSerializer(
+  item: WorkloadNetworkSegment,
+): WorkloadNetworkSegmentRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : workloadNetworkSegmentPropertiesSerializer(item.properties),
+  };
 }
 
 /** NSX Segment Properties */
@@ -846,12 +1345,34 @@ export interface WorkloadNetworkSegmentProperties {
   revision?: number;
 }
 
+export function workloadNetworkSegmentPropertiesSerializer(
+  item: WorkloadNetworkSegmentProperties,
+): WorkloadNetworkSegmentPropertiesRest {
+  return {
+    displayName: item["displayName"],
+    connectedGateway: item["connectedGateway"],
+    subnet: !item.subnet
+      ? item.subnet
+      : workloadNetworkSegmentSubnetSerializer(item.subnet),
+    revision: item["revision"],
+  };
+}
+
 /** Subnet configuration for segment */
 export interface WorkloadNetworkSegmentSubnet {
   /** DHCP Range assigned for subnet. */
   dhcpRanges?: string[];
   /** Gateway address. */
   gatewayAddress?: string;
+}
+
+export function workloadNetworkSegmentSubnetSerializer(
+  item: WorkloadNetworkSegmentSubnet,
+): WorkloadNetworkSegmentSubnetRest {
+  return {
+    dhcpRanges: item["dhcpRanges"],
+    gatewayAddress: item["gatewayAddress"],
+  };
 }
 
 /** Ports and any VIF attached to segment. */
@@ -861,14 +1382,7 @@ export interface WorkloadNetworkSegmentPortVif {
 }
 
 /** Segment status */
-/** "SUCCESS", "FAILURE" */
-export type SegmentStatusEnum = string;
-
-/** NSX Segment update */
-export interface WorkloadNetworkSegmentUpdate {
-  /** The updatable properties of a Segment update */
-  properties?: WorkloadNetworkSegmentProperties;
-}
+export type SegmentStatusEnum = "SUCCESS" | "FAILURE";
 
 /** Workload Network */
 export interface WorkloadNetwork extends ProxyResource {
@@ -883,7 +1397,7 @@ export interface WorkloadNetworkProperties {
 }
 
 /** The response of a WorkloadNetwork list operation. */
-export interface WorkloadNetworkListResult {
+export interface _WorkloadNetworkList {
   /** The WorkloadNetwork items on this page */
   value: WorkloadNetwork[];
   /** The link to the next page of items */
@@ -891,7 +1405,7 @@ export interface WorkloadNetworkListResult {
 }
 
 /** The response of a GlobalReachConnection list operation. */
-export interface GlobalReachConnectionListResult {
+export interface _GlobalReachConnectionList {
   /** The GlobalReachConnection items on this page */
   value: GlobalReachConnection[];
   /** The link to the next page of items */
@@ -902,6 +1416,16 @@ export interface GlobalReachConnectionListResult {
 export interface GlobalReachConnection extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: GlobalReachConnectionProperties;
+}
+
+export function globalReachConnectionSerializer(
+  item: GlobalReachConnection,
+): GlobalReachConnectionRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : globalReachConnectionPropertiesSerializer(item.properties),
+  };
 }
 
 /** The properties of a global reach connection */
@@ -932,12 +1456,24 @@ export interface GlobalReachConnectionProperties {
   expressRouteId?: string;
 }
 
+export function globalReachConnectionPropertiesSerializer(
+  item: GlobalReachConnectionProperties,
+): GlobalReachConnectionPropertiesRest {
+  return {
+    authorizationKey: item["authorizationKey"],
+    peerExpressRouteCircuit: item["peerExpressRouteCircuit"],
+    expressRouteId: item["expressRouteId"],
+  };
+}
+
 /** Global Reach Connection status */
-/** "Connected", "Connecting", "Disconnected" */
-export type GlobalReachConnectionStatus = string;
+export type GlobalReachConnectionStatus =
+  | "Connected"
+  | "Connecting"
+  | "Disconnected";
 
 /** The response of a ExpressRouteAuthorization list operation. */
-export interface ExpressRouteAuthorizationListResult {
+export interface _ExpressRouteAuthorizationList {
   /** The ExpressRouteAuthorization items on this page */
   value: ExpressRouteAuthorization[];
   /** The link to the next page of items */
@@ -948,6 +1484,16 @@ export interface ExpressRouteAuthorizationListResult {
 export interface ExpressRouteAuthorization extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: ExpressRouteAuthorizationProperties;
+}
+
+export function expressRouteAuthorizationSerializer(
+  item: ExpressRouteAuthorization,
+): ExpressRouteAuthorizationRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : expressRouteAuthorizationPropertiesSerializer(item.properties),
+  };
 }
 
 /** The properties of an ExpressRoute Circuit Authorization resource */
@@ -962,8 +1508,16 @@ export interface ExpressRouteAuthorizationProperties {
   expressRouteId?: string;
 }
 
+export function expressRouteAuthorizationPropertiesSerializer(
+  item: ExpressRouteAuthorizationProperties,
+): ExpressRouteAuthorizationPropertiesRest {
+  return {
+    expressRouteId: item["expressRouteId"],
+  };
+}
+
 /** The response of a HcxEnterpriseSite list operation. */
-export interface HcxEnterpriseSiteListResult {
+export interface _HcxEnterpriseSiteList {
   /** The HcxEnterpriseSite items on this page */
   value: HcxEnterpriseSite[];
   /** The link to the next page of items */
@@ -976,6 +1530,16 @@ export interface HcxEnterpriseSite extends ProxyResource {
   properties?: HcxEnterpriseSiteProperties;
 }
 
+export function hcxEnterpriseSiteSerializer(
+  item: HcxEnterpriseSite,
+): HcxEnterpriseSiteRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : hcxEnterpriseSitePropertiesSerializer(item.properties),
+  };
+}
+
 /** The properties of an HCX Enterprise Site */
 export interface HcxEnterpriseSiteProperties {
   /** The provisioning state of the resource. */
@@ -986,12 +1550,21 @@ export interface HcxEnterpriseSiteProperties {
   readonly status?: HcxEnterpriseSiteStatus;
 }
 
+export function hcxEnterpriseSitePropertiesSerializer(
+  item: HcxEnterpriseSiteProperties,
+) {
+  return item as any;
+}
+
 /** HCX Enterprise Site status */
-/** "Available", "Consumed", "Deactivated", "Deleted" */
-export type HcxEnterpriseSiteStatus = string;
+export type HcxEnterpriseSiteStatus =
+  | "Available"
+  | "Consumed"
+  | "Deactivated"
+  | "Deleted";
 
 /** The response of a Datastore list operation. */
-export interface DatastoreListResult {
+export interface _DatastoreList {
   /** The Datastore items on this page */
   value: Datastore[];
   /** The link to the next page of items */
@@ -1002,6 +1575,14 @@ export interface DatastoreListResult {
 export interface Datastore extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: DatastoreProperties;
+}
+
+export function datastoreSerializer(item: Datastore): DatastoreRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : datastorePropertiesSerializer(item.properties),
+  };
 }
 
 /** The properties of a datastore */
@@ -1018,10 +1599,32 @@ export interface DatastoreProperties {
   readonly status?: DatastoreStatus;
 }
 
+export function datastorePropertiesSerializer(
+  item: DatastoreProperties,
+): DatastorePropertiesRest {
+  return {
+    netAppVolume: !item.netAppVolume
+      ? item.netAppVolume
+      : netAppVolumeSerializer(item.netAppVolume),
+    diskPoolVolume: !item.diskPoolVolume
+      ? item.diskPoolVolume
+      : diskPoolVolumeSerializer(item.diskPoolVolume),
+    elasticSanVolume: !item.elasticSanVolume
+      ? item.elasticSanVolume
+      : elasticSanVolumeSerializer(item.elasticSanVolume),
+  };
+}
+
 /** An Azure NetApp Files volume from Microsoft.NetApp provider */
 export interface NetAppVolume {
   /** Azure resource ID of the NetApp volume */
   id: string;
+}
+
+export function netAppVolumeSerializer(item: NetAppVolume): NetAppVolumeRest {
+  return {
+    id: item["id"],
+  };
 }
 
 /** An iSCSI volume from Microsoft.StoragePool provider */
@@ -1039,9 +1642,18 @@ export interface DiskPoolVolume {
   readonly path?: string;
 }
 
+export function diskPoolVolumeSerializer(
+  item: DiskPoolVolume,
+): DiskPoolVolumeRest {
+  return {
+    targetId: item["targetId"],
+    lunName: item["lunName"],
+    mountOption: item["mountOption"],
+  };
+}
+
 /** mount option */
-/** "MOUNT", "ATTACH" */
-export type MountOptionEnum = string;
+export type MountOptionEnum = "MOUNT" | "ATTACH";
 
 /** An Elastic SAN volume from Microsoft.ElasticSan provider */
 export interface ElasticSanVolume {
@@ -1049,12 +1661,26 @@ export interface ElasticSanVolume {
   targetId: string;
 }
 
+export function elasticSanVolumeSerializer(
+  item: ElasticSanVolume,
+): ElasticSanVolumeRest {
+  return {
+    targetId: item["targetId"],
+  };
+}
+
 /** datastore status */
-/** "Unknown", "Accessible", "Inaccessible", "Attached", "Detached", "LostCommunication", "DeadOrError" */
-export type DatastoreStatus = string;
+export type DatastoreStatus =
+  | "Unknown"
+  | "Accessible"
+  | "Inaccessible"
+  | "Attached"
+  | "Detached"
+  | "LostCommunication"
+  | "DeadOrError";
 
 /** The response of a Cluster list operation. */
-export interface ClusterListResult {
+export interface _ClusterList {
   /** The Cluster items on this page */
   value: Cluster[];
   /** The link to the next page of items */
@@ -1067,6 +1693,15 @@ export interface Cluster extends ProxyResource {
   properties?: ClusterProperties;
   /** The SKU (Stock Keeping Unit) assigned to this resource. */
   sku: Sku;
+}
+
+export function clusterSerializer(item: Cluster): ClusterRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : clusterPropertiesSerializer(item.properties),
+    sku: skuSerializer(item.sku),
+  };
 }
 
 /** The properties of a cluster */
@@ -1083,9 +1718,19 @@ export interface ClusterProperties {
   vsanDatastoreName?: string;
 }
 
-/** The SKU (Stock Keeping Unit) assigned to this resource. */
+export function clusterPropertiesSerializer(
+  item: ClusterProperties,
+): ClusterPropertiesRest {
+  return {
+    clusterSize: item["clusterSize"],
+    hosts: item["hosts"],
+    vsanDatastoreName: item["vsanDatastoreName"],
+  };
+}
+
+/** The resource model definition representing SKU */
 export interface Sku {
-  /** The name of the SKU, usually a combination of letters and numbers, for example, 'P3' */
+  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
   name: string;
   /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
   tier?: SkuTier;
@@ -1097,8 +1742,17 @@ export interface Sku {
   capacity?: number;
 }
 
-/** Available service tiers for the SKU. */
-/** */
+export function skuSerializer(item: Sku): SkuRest {
+  return {
+    name: item["name"],
+    tier: item["tier"],
+    size: item["size"],
+    family: item["family"],
+    capacity: item["capacity"],
+  };
+}
+
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
 
 /** An update of a cluster resource */
@@ -1109,12 +1763,32 @@ export interface ClusterUpdate {
   properties?: ClusterUpdateProperties;
 }
 
+export function clusterUpdateSerializer(
+  item: ClusterUpdate,
+): ClusterUpdateRest {
+  return {
+    sku: !item.sku ? item.sku : skuSerializer(item.sku),
+    properties: !item.properties
+      ? item.properties
+      : clusterUpdatePropertiesSerializer(item.properties),
+  };
+}
+
 /** The properties of a cluster that may be updated */
 export interface ClusterUpdateProperties {
   /** The cluster size */
   clusterSize?: number;
   /** The hosts */
   hosts?: string[];
+}
+
+export function clusterUpdatePropertiesSerializer(
+  item: ClusterUpdateProperties,
+): ClusterUpdatePropertiesRest {
+  return {
+    clusterSize: item["clusterSize"],
+    hosts: item["hosts"],
+  };
 }
 
 /** List of all zones and associated hosts for a cluster */
@@ -1132,7 +1806,7 @@ export interface ClusterZone {
 }
 
 /** The response of a PrivateCloud list operation. */
-export interface PrivateCloudListResult {
+export interface _PrivateCloudList {
   /** The PrivateCloud items on this page */
   value: PrivateCloud[];
   /** The link to the next page of items */
@@ -1141,10 +1815,19 @@ export interface PrivateCloudListResult {
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
-  /** The geo-location where the resource lives */
-  location: string;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
+}
+
+export function trackedResourceSerializer(
+  item: TrackedResource,
+): TrackedResourceRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+  };
 }
 
 /** A private cloud resource */
@@ -1155,6 +1838,20 @@ export interface PrivateCloud extends TrackedResource {
   sku: Sku;
   /** The managed service identities assigned to this resource. */
   identity?: SystemAssignedServiceIdentity;
+}
+
+export function privateCloudSerializer(item: PrivateCloud): PrivateCloudRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+    properties: !item.properties
+      ? item.properties
+      : privateCloudPropertiesSerializer(item.properties),
+    sku: skuSerializer(item.sku),
+    identity: !item.identity
+      ? item.identity
+      : systemAssignedServiceIdentitySerializer(item.identity),
+  };
 }
 
 /** The properties of a private cloud resource */
@@ -1220,6 +1917,35 @@ export interface PrivateCloudProperties {
   dnsZoneType?: DnsZoneType;
 }
 
+export function privateCloudPropertiesSerializer(
+  item: PrivateCloudProperties,
+): PrivateCloudPropertiesRest {
+  return {
+    managementCluster: managementClusterSerializer(item.managementCluster),
+    internet: item["internet"],
+    identitySources:
+      item["identitySources"] === undefined
+        ? item["identitySources"]
+        : item["identitySources"].map(identitySourceSerializer),
+    availability: !item.availability
+      ? item.availability
+      : availabilityPropertiesSerializer(item.availability),
+    encryption: !item.encryption
+      ? item.encryption
+      : encryptionSerializer(item.encryption),
+    extendedNetworkBlocks: item["extendedNetworkBlocks"],
+    circuit: !item.circuit ? item.circuit : circuitSerializer(item.circuit),
+    networkBlock: item["networkBlock"],
+    vcenterPassword: item["vcenterPassword"],
+    nsxtPassword: item["nsxtPassword"],
+    secondaryCircuit: !item.secondaryCircuit
+      ? item.secondaryCircuit
+      : circuitSerializer(item.secondaryCircuit),
+    virtualNetworkId: item["virtualNetworkId"],
+    dnsZoneType: item["dnsZoneType"],
+  };
+}
+
 /** The properties of a management cluster */
 export interface ManagementCluster {
   /** The cluster size */
@@ -1234,9 +1960,18 @@ export interface ManagementCluster {
   vsanDatastoreName?: string;
 }
 
+export function managementClusterSerializer(
+  item: ManagementCluster,
+): ManagementClusterRest {
+  return {
+    clusterSize: item["clusterSize"],
+    hosts: item["hosts"],
+    vsanDatastoreName: item["vsanDatastoreName"],
+  };
+}
+
 /** Whether internet is enabled or disabled */
-/** "Enabled", "Disabled" */
-export type InternetEnum = string;
+export type InternetEnum = "Enabled" | "Disabled";
 
 /** vCenter Single Sign On Identity Source */
 export interface IdentitySource {
@@ -1268,9 +2003,25 @@ export interface IdentitySource {
   password?: string;
 }
 
+export function identitySourceSerializer(
+  item: IdentitySource,
+): IdentitySourceRest {
+  return {
+    name: item["name"],
+    alias: item["alias"],
+    domain: item["domain"],
+    baseUserDN: item["baseUserDN"],
+    baseGroupDN: item["baseGroupDN"],
+    primaryServer: item["primaryServer"],
+    secondaryServer: item["secondaryServer"],
+    ssl: item["ssl"],
+    username: item["username"],
+    password: item["password"],
+  };
+}
+
 /** Whether SSL is enabled or disabled */
-/** "Enabled", "Disabled" */
-export type SslEnum = string;
+export type SslEnum = "Enabled" | "Disabled";
 
 /** The properties describing private cloud availability zone distribution */
 export interface AvailabilityProperties {
@@ -1282,9 +2033,18 @@ export interface AvailabilityProperties {
   secondaryZone?: number;
 }
 
+export function availabilityPropertiesSerializer(
+  item: AvailabilityProperties,
+): AvailabilityPropertiesRest {
+  return {
+    strategy: item["strategy"],
+    zone: item["zone"],
+    secondaryZone: item["secondaryZone"],
+  };
+}
+
 /** Whether the private clouds is available in a single zone or two zones */
-/** "SingleZone", "DualZone" */
-export type AvailabilityStrategy = string;
+export type AvailabilityStrategy = "SingleZone" | "DualZone";
 
 /** The properties of customer managed encryption key */
 export interface Encryption {
@@ -1294,9 +2054,17 @@ export interface Encryption {
   keyVaultProperties?: EncryptionKeyVaultProperties;
 }
 
+export function encryptionSerializer(item: Encryption): EncryptionRest {
+  return {
+    status: item["status"],
+    keyVaultProperties: !item.keyVaultProperties
+      ? item.keyVaultProperties
+      : encryptionKeyVaultPropertiesSerializer(item.keyVaultProperties),
+  };
+}
+
 /** Whether encryption is enabled or disabled */
-/** "Enabled", "Disabled" */
-export type EncryptionState = string;
+export type EncryptionState = "Enabled" | "Disabled";
 
 /** An Encryption Key */
 export interface EncryptionKeyVaultProperties {
@@ -1314,12 +2082,20 @@ export interface EncryptionKeyVaultProperties {
   readonly versionType?: EncryptionVersionType;
 }
 
+export function encryptionKeyVaultPropertiesSerializer(
+  item: EncryptionKeyVaultProperties,
+): EncryptionKeyVaultPropertiesRest {
+  return {
+    keyName: item["keyName"],
+    keyVersion: item["keyVersion"],
+    keyVaultUrl: item["keyVaultUrl"],
+  };
+}
+
 /** Whether the the encryption key is connected or access denied */
-/** "Connected", "AccessDenied" */
-export type EncryptionKeyStatus = string;
+export type EncryptionKeyStatus = "Connected" | "AccessDenied";
 /** Whether the encryption version is fixed or auto-detected */
-/** "Fixed", "AutoDetected" */
-export type EncryptionVersionType = string;
+export type EncryptionVersionType = "Fixed" | "AutoDetected";
 
 /** An ExpressRoute Circuit */
 export interface Circuit {
@@ -1331,6 +2107,10 @@ export interface Circuit {
   readonly expressRouteID?: string;
   /** ExpressRoute Circuit private peering identifier */
   readonly expressRoutePrivatePeeringID?: string;
+}
+
+export function circuitSerializer(item: Circuit) {
+  return item as any;
 }
 
 /** Endpoint addresses */
@@ -1350,25 +2130,30 @@ export interface Endpoints {
 }
 
 /** NSX public IP quota raised */
-/** "Enabled", "Disabled" */
-export type NsxPublicIpQuotaRaisedEnum = string;
+export type NsxPublicIpQuotaRaisedEnum = "Enabled" | "Disabled";
 /** The type of DNS zone. */
-/** "Public", "Private" */
-export type DnsZoneType = string;
+export type DnsZoneType = "Public" | "Private";
 
-/** The properties of the service-assigned identity associated with this resource. */
+/** Managed service identity (either system assigned, or none) */
 export interface SystemAssignedServiceIdentity {
-  /** The Active Directory tenant id of the principal. */
-  readonly tenantId?: string;
-  /** The active directory identifier of this principal. */
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  readonly tenantId?: string;
   /** The type of managed identity assigned to this resource. */
   type: SystemAssignedServiceIdentityType;
 }
 
-/** The kind of managemed identity assigned to this resource. */
-/** "None", "SystemAssigned" */
-export type SystemAssignedServiceIdentityType = string;
+export function systemAssignedServiceIdentitySerializer(
+  item: SystemAssignedServiceIdentity,
+): SystemAssignedServiceIdentityRest {
+  return {
+    type: item["type"],
+  };
+}
+
+/** Type of managed service identity (either system assigned, or none). */
+export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
 
 /** An update to a private cloud resource */
 export interface PrivateCloudUpdate {
@@ -1380,6 +2165,21 @@ export interface PrivateCloudUpdate {
   identity?: SystemAssignedServiceIdentity;
   /** The updatable properties of a private cloud resource */
   properties?: PrivateCloudUpdateProperties;
+}
+
+export function privateCloudUpdateSerializer(
+  item: PrivateCloudUpdate,
+): PrivateCloudUpdateRest {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    sku: !item.sku ? item.sku : skuSerializer(item.sku),
+    identity: !item.identity
+      ? item.identity
+      : systemAssignedServiceIdentitySerializer(item.identity),
+    properties: !item.properties
+      ? item.properties
+      : privateCloudUpdatePropertiesSerializer(item.properties),
+  };
 }
 
 /** The properties of a private cloud resource that may be updated */
@@ -1405,6 +2205,29 @@ export interface PrivateCloudUpdateProperties {
   dnsZoneType?: DnsZoneType;
 }
 
+export function privateCloudUpdatePropertiesSerializer(
+  item: PrivateCloudUpdateProperties,
+): PrivateCloudUpdatePropertiesRest {
+  return {
+    managementCluster: !item.managementCluster
+      ? item.managementCluster
+      : managementClusterSerializer(item.managementCluster),
+    internet: item["internet"],
+    identitySources:
+      item["identitySources"] === undefined
+        ? item["identitySources"]
+        : item["identitySources"].map(identitySourceSerializer),
+    availability: !item.availability
+      ? item.availability
+      : availabilityPropertiesSerializer(item.availability),
+    encryption: !item.encryption
+      ? item.encryption
+      : encryptionSerializer(item.encryption),
+    extendedNetworkBlocks: item["extendedNetworkBlocks"],
+    dnsZoneType: item["dnsZoneType"],
+  };
+}
+
 /** Administrative credentials for accessing vCenter and NSX-T */
 export interface AdminCredentials {
   /** NSX-T Manager username */
@@ -1426,8 +2249,7 @@ export interface Trial {
 }
 
 /** trial status */
-/** "TrialAvailable", "TrialUsed", "TrialDisabled" */
-export type TrialStatus = string;
+export type TrialStatus = "TrialAvailable" | "TrialUsed" | "TrialDisabled";
 
 /** Subscription quotas */
 export interface Quota {
@@ -1438,11 +2260,10 @@ export interface Quota {
 }
 
 /** quota enabled */
-/** "Enabled", "Disabled" */
-export type QuotaEnabled = string;
+export type QuotaEnabled = "Enabled" | "Disabled";
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
-export interface PagedOperation {
+export interface _OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
@@ -1476,13 +2297,10 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** "user", "system", "user,system" */
-export type Origin = string;
+export type Origin = "user" | "system" | "user,system";
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** "Internal" */
-export type ActionType = string;
+export type ActionType = "Internal";
 /** Azure VMware Solution API versions. */
-/** */
 export type Versions = "2023-09-01";
 /** Alias for IscsiPathProvisioningState */
 export type IscsiPathProvisioningState =

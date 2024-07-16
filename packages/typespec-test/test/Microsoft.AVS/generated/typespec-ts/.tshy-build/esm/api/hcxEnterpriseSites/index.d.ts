@@ -1,10 +1,10 @@
-import { HcxEnterpriseSiteListResult, HcxEnterpriseSite } from "../../models/models.js";
+import { HcxEnterpriseSite, _HcxEnterpriseSiteList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, HcxEnterpriseSitesCreateOrUpdate200Response, HcxEnterpriseSitesCreateOrUpdate201Response, HcxEnterpriseSitesCreateOrUpdateDefaultResponse, HcxEnterpriseSitesDelete200Response, HcxEnterpriseSitesDelete204Response, HcxEnterpriseSitesDeleteDefaultResponse, HcxEnterpriseSitesGet200Response, HcxEnterpriseSitesGetDefaultResponse, HcxEnterpriseSitesListByPrivateCloud200Response, HcxEnterpriseSitesListByPrivateCloudDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { HcxEnterpriseSitesListByPrivateCloudOptionalParams, HcxEnterpriseSitesGetOptionalParams, HcxEnterpriseSitesCreateOrUpdateOptionalParams, HcxEnterpriseSitesDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: HcxEnterpriseSitesListByPrivateCloudOptionalParams): StreamableMethod<HcxEnterpriseSitesListByPrivateCloud200Response | HcxEnterpriseSitesListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: HcxEnterpriseSitesListByPrivateCloud200Response | HcxEnterpriseSitesListByPrivateCloudDefaultResponse): Promise<HcxEnterpriseSiteListResult>;
+export declare function _listByPrivateCloudDeserialize(result: HcxEnterpriseSitesListByPrivateCloud200Response | HcxEnterpriseSitesListByPrivateCloudDefaultResponse): Promise<_HcxEnterpriseSiteList>;
 /** List HcxEnterpriseSite resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: HcxEnterpriseSitesListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<HcxEnterpriseSite>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, hcxEnterpriseSiteName: string, options?: HcxEnterpriseSitesGetOptionalParams): StreamableMethod<HcxEnterpriseSitesGet200Response | HcxEnterpriseSitesGetDefaultResponse>;

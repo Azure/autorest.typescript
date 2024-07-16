@@ -13,17 +13,11 @@ import {
   ExpressRouteAuthorization,
   GlobalReachConnection,
   WorkloadNetworkSegment,
-  WorkloadNetworkSegmentUpdate,
   WorkloadNetworkDhcp,
-  WorkloadNetworkDhcpUpdate,
   WorkloadNetworkPortMirroring,
-  WorkloadNetworkPortMirroringUpdate,
   WorkloadNetworkVMGroup,
-  WorkloadNetworkVMGroupUpdate,
   WorkloadNetworkDnsService,
-  WorkloadNetworkDnsServiceUpdate,
   WorkloadNetworkDnsZone,
-  WorkloadNetworkDnsZoneUpdate,
   WorkloadNetworkPublicIP,
   CloudLink,
   Addon,
@@ -149,7 +143,7 @@ export type WorkloadNetworkSegmentsCreateParameters =
 
 export interface WorkloadNetworkSegmentsUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: WorkloadNetworkSegmentUpdate;
+  body: WorkloadNetworkSegment;
 }
 
 export type WorkloadNetworkSegmentsUpdateParameters =
@@ -169,7 +163,7 @@ export type WorkloadNetworkDhcpConfigurationsCreateParameters =
 
 export interface WorkloadNetworkDhcpConfigurationsUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: WorkloadNetworkDhcpUpdate;
+  body: WorkloadNetworkDhcp;
 }
 
 export type WorkloadNetworkDhcpConfigurationsUpdateParameters =
@@ -194,7 +188,7 @@ export type WorkloadNetworkPortMirroringProfilesCreateParameters =
 
 export interface WorkloadNetworkPortMirroringProfilesUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: WorkloadNetworkPortMirroringUpdate;
+  body: WorkloadNetworkPortMirroring;
 }
 
 export type WorkloadNetworkPortMirroringProfilesUpdateParameters =
@@ -215,7 +209,7 @@ export type WorkloadNetworkVmGroupsCreateParameters =
 
 export interface WorkloadNetworkVmGroupsUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: WorkloadNetworkVMGroupUpdate;
+  body: WorkloadNetworkVMGroup;
 }
 
 export type WorkloadNetworkVmGroupsUpdateParameters =
@@ -238,7 +232,7 @@ export type WorkloadNetworkDnsServicesCreateParameters =
 
 export interface WorkloadNetworkDnsServicesUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: WorkloadNetworkDnsServiceUpdate;
+  body: WorkloadNetworkDnsService;
 }
 
 export type WorkloadNetworkDnsServicesUpdateParameters =
@@ -258,7 +252,7 @@ export type WorkloadNetworkDnsZonesCreateParameters =
 
 export interface WorkloadNetworkDnsZonesUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: WorkloadNetworkDnsZoneUpdate;
+  body: WorkloadNetworkDnsZone;
 }
 
 export type WorkloadNetworkDnsZonesUpdateParameters =

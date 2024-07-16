@@ -18,30 +18,36 @@ import {
   CloudLinksDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a CloudLinks operations. */
 export interface CloudLinksOperations {
+  /** List CloudLink resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: CloudLinksListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<CloudLink>;
+  /** Get a CloudLink */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     cloudLinkName: string,
     options?: CloudLinksGetOptionalParams,
   ) => Promise<CloudLink>;
+  /** Create a CloudLink */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     cloudLinkName: string,
     cloudLink: CloudLink,
     options?: CloudLinksCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<CloudLink>, CloudLink>;
+  /** Delete a CloudLink */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     cloudLinkName: string,
@@ -49,10 +55,9 @@ export interface CloudLinksOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getCloudLinks(context: AVSContext) {
+export function getCloudLinks(context: AVSContext, subscriptionId: string) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: CloudLinksListByPrivateCloudOptionalParams,
@@ -65,7 +70,6 @@ export function getCloudLinks(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       cloudLinkName: string,
@@ -80,7 +84,6 @@ export function getCloudLinks(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       cloudLinkName: string,
@@ -97,7 +100,6 @@ export function getCloudLinks(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       cloudLinkName: string,
@@ -116,8 +118,9 @@ export function getCloudLinks(context: AVSContext) {
 
 export function getCloudLinksOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): CloudLinksOperations {
   return {
-    ...getCloudLinks(context),
+    ...getCloudLinks(context, subscriptionId),
   };
 }

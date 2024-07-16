@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { CloudLinkListResult, CloudLink } from "../../models/models.js";
+import { CloudLink, _CloudLinkList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, CloudLinksCreateOrUpdate200Response, CloudLinksCreateOrUpdate201Response, CloudLinksCreateOrUpdateDefaultResponse, CloudLinksCreateOrUpdateLogicalResponse, CloudLinksDelete200Response, CloudLinksDelete202Response, CloudLinksDelete204Response, CloudLinksDeleteDefaultResponse, CloudLinksDeleteLogicalResponse, CloudLinksGet200Response, CloudLinksGetDefaultResponse, CloudLinksListByPrivateCloud200Response, CloudLinksListByPrivateCloudDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { CloudLinksListByPrivateCloudOptionalParams, CloudLinksGetOptionalParams, CloudLinksCreateOrUpdateOptionalParams, CloudLinksDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: CloudLinksListByPrivateCloudOptionalParams): StreamableMethod<CloudLinksListByPrivateCloud200Response | CloudLinksListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: CloudLinksListByPrivateCloud200Response | CloudLinksListByPrivateCloudDefaultResponse): Promise<CloudLinkListResult>;
+export declare function _listByPrivateCloudDeserialize(result: CloudLinksListByPrivateCloud200Response | CloudLinksListByPrivateCloudDefaultResponse): Promise<_CloudLinkList>;
 /** List CloudLink resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: CloudLinksListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<CloudLink>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, cloudLinkName: string, options?: CloudLinksGetOptionalParams): StreamableMethod<CloudLinksGet200Response | CloudLinksGetDefaultResponse>;

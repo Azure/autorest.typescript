@@ -32,38 +32,45 @@ export class AVSClient {
     /** The pipeline used by this client to make requests */
     pipeline;
     /** Azure VMware Solution API */
-    constructor(credential, options = {}) {
-        this._client = createAVS(credential, options);
+    constructor(credential, subscriptionId, options = {}) {
+        const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+        const userAgentPrefix = prefixFromOptions
+            ? `${prefixFromOptions} azsdk-js-client`
+            : "azsdk-js-client";
+        this._client = createAVS(credential, {
+            ...options,
+            userAgentOptions: { userAgentPrefix },
+        });
         this.pipeline = this._client.pipeline;
         this.operations = getOperationsOperations(this._client);
-        this.locations = getLocationsOperations(this._client);
-        this.privateClouds = getPrivateCloudsOperations(this._client);
-        this.clusters = getClustersOperations(this._client);
-        this.datastores = getDatastoresOperations(this._client);
-        this.hcxEnterpriseSites = getHcxEnterpriseSitesOperations(this._client);
-        this.authorizations = getAuthorizationsOperations(this._client);
-        this.globalReachConnections = getGlobalReachConnectionsOperations(this._client);
-        this.workloadNetworks = getWorkloadNetworksOperations(this._client);
-        this.workloadNetworkSegments = getWorkloadNetworkSegmentsOperations(this._client);
+        this.locations = getLocationsOperations(this._client, subscriptionId);
+        this.privateClouds = getPrivateCloudsOperations(this._client, subscriptionId);
+        this.clusters = getClustersOperations(this._client, subscriptionId);
+        this.datastores = getDatastoresOperations(this._client, subscriptionId);
+        this.hcxEnterpriseSites = getHcxEnterpriseSitesOperations(this._client, subscriptionId);
+        this.authorizations = getAuthorizationsOperations(this._client, subscriptionId);
+        this.globalReachConnections = getGlobalReachConnectionsOperations(this._client, subscriptionId);
+        this.workloadNetworks = getWorkloadNetworksOperations(this._client, subscriptionId);
+        this.workloadNetworkSegments = getWorkloadNetworkSegmentsOperations(this._client, subscriptionId);
         this.workloadNetworkDhcpConfigurations =
-            getWorkloadNetworkDhcpConfigurationsOperations(this._client);
-        this.workloadNetworkGateways = getWorkloadNetworkGatewaysOperations(this._client);
+            getWorkloadNetworkDhcpConfigurationsOperations(this._client, subscriptionId);
+        this.workloadNetworkGateways = getWorkloadNetworkGatewaysOperations(this._client, subscriptionId);
         this.workloadNetworkPortMirroringProfiles =
-            getWorkloadNetworkPortMirroringProfilesOperations(this._client);
-        this.workloadNetworkVmGroups = getWorkloadNetworkVmGroupsOperations(this._client);
+            getWorkloadNetworkPortMirroringProfilesOperations(this._client, subscriptionId);
+        this.workloadNetworkVmGroups = getWorkloadNetworkVmGroupsOperations(this._client, subscriptionId);
         this.workloadNetworkVirtualMachines =
-            getWorkloadNetworkVirtualMachinesOperations(this._client);
-        this.workloadNetworkDnsServices = getWorkloadNetworkDnsServicesOperations(this._client);
-        this.workloadNetworkDnsZones = getWorkloadNetworkDnsZonesOperations(this._client);
-        this.workloadNetworkPublicIps = getWorkloadNetworkPublicIpsOperations(this._client);
-        this.cloudLinks = getCloudLinksOperations(this._client);
-        this.addons = getAddonsOperations(this._client);
-        this.virtualMachines = getVirtualMachinesOperations(this._client);
-        this.placementPolicies = getPlacementPoliciesOperations(this._client);
-        this.scriptPackages = getScriptPackagesOperations(this._client);
-        this.scriptCmdlets = getScriptCmdletsOperations(this._client);
-        this.scriptExecutions = getScriptExecutionsOperations(this._client);
-        this.iscsiPaths = getIscsiPathsOperations(this._client);
+            getWorkloadNetworkVirtualMachinesOperations(this._client, subscriptionId);
+        this.workloadNetworkDnsServices = getWorkloadNetworkDnsServicesOperations(this._client, subscriptionId);
+        this.workloadNetworkDnsZones = getWorkloadNetworkDnsZonesOperations(this._client, subscriptionId);
+        this.workloadNetworkPublicIps = getWorkloadNetworkPublicIpsOperations(this._client, subscriptionId);
+        this.cloudLinks = getCloudLinksOperations(this._client, subscriptionId);
+        this.addons = getAddonsOperations(this._client, subscriptionId);
+        this.virtualMachines = getVirtualMachinesOperations(this._client, subscriptionId);
+        this.placementPolicies = getPlacementPoliciesOperations(this._client, subscriptionId);
+        this.scriptPackages = getScriptPackagesOperations(this._client, subscriptionId);
+        this.scriptCmdlets = getScriptCmdletsOperations(this._client, subscriptionId);
+        this.scriptExecutions = getScriptExecutionsOperations(this._client, subscriptionId);
+        this.iscsiPaths = getIscsiPathsOperations(this._client, subscriptionId);
     }
     /** The operation groups for Operations */
     operations;

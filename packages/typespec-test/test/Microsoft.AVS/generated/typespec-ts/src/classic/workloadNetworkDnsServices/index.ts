@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { AVSContext } from "../../api/aVSContext.js";
-import {
-  WorkloadNetworkDnsService,
-  WorkloadNetworkDnsServiceUpdate,
-} from "../../models/models.js";
+import { WorkloadNetworkDnsService } from "../../models/models.js";
 import {
   listByWorkloadNetwork,
   get,
@@ -23,22 +20,23 @@ import {
   WorkloadNetworkDnsServicesDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkDnsServices operations. */
 export interface WorkloadNetworkDnsServicesOperations {
+  /** List WorkloadNetworkDnsService resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkDnsServicesListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkDnsService>;
+  /** Get a WorkloadNetworkDnsService */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dnsServiceId: string,
     options?: WorkloadNetworkDnsServicesGetOptionalParams,
   ) => Promise<WorkloadNetworkDnsService>;
+  /** Create a WorkloadNetworkDnsService */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dnsServiceId: string,
@@ -48,19 +46,24 @@ export interface WorkloadNetworkDnsServicesOperations {
     OperationState<WorkloadNetworkDnsService>,
     WorkloadNetworkDnsService
   >;
+  /** Update a WorkloadNetworkDnsService */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dnsServiceId: string,
-    workloadNetworkDnsService: WorkloadNetworkDnsServiceUpdate,
+    workloadNetworkDnsService: WorkloadNetworkDnsService,
     options?: WorkloadNetworkDnsServicesUpdateOptionalParams,
   ) => PollerLike<
     OperationState<WorkloadNetworkDnsService>,
     WorkloadNetworkDnsService
   >;
+  /** Delete a WorkloadNetworkDnsService */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     dnsServiceId: string,
     privateCloudName: string,
@@ -68,10 +71,12 @@ export interface WorkloadNetworkDnsServicesOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getWorkloadNetworkDnsServices(context: AVSContext) {
+export function getWorkloadNetworkDnsServices(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkDnsServicesListByWorkloadNetworkOptionalParams,
@@ -84,7 +89,6 @@ export function getWorkloadNetworkDnsServices(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dnsServiceId: string,
@@ -99,7 +103,6 @@ export function getWorkloadNetworkDnsServices(context: AVSContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dnsServiceId: string,
@@ -116,11 +119,10 @@ export function getWorkloadNetworkDnsServices(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dnsServiceId: string,
-      workloadNetworkDnsService: WorkloadNetworkDnsServiceUpdate,
+      workloadNetworkDnsService: WorkloadNetworkDnsService,
       options?: WorkloadNetworkDnsServicesUpdateOptionalParams,
     ) =>
       update(
@@ -133,7 +135,6 @@ export function getWorkloadNetworkDnsServices(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       dnsServiceId: string,
       privateCloudName: string,
@@ -152,8 +153,9 @@ export function getWorkloadNetworkDnsServices(context: AVSContext) {
 
 export function getWorkloadNetworkDnsServicesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkDnsServicesOperations {
   return {
-    ...getWorkloadNetworkDnsServices(context),
+    ...getWorkloadNetworkDnsServices(context, subscriptionId),
   };
 }

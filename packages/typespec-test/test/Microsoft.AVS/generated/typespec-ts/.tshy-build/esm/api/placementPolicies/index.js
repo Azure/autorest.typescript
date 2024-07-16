@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 import { getLongRunningPoller } from "../pollingHelpers.js";
+import { placementPolicyPropertiesUnionSerializer, placementPolicyUpdatePropertiesSerializer, } from "../../models/models.js";
+import { deserializePlacementPolicyPropertiesUnion } from "../../utils/deserializeUtil.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { isUnexpected, } from "../../rest/index.js";
 import { operationOptionsToRequestParameters, createRestError, } from "@azure-rest/core-client";
@@ -16,33 +18,30 @@ export async function _listByClusterDeserialize(result) {
         throw createRestError(result);
     }
     return {
-        value: result.body["value"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            type: p["type"],
-            systemData: !p.systemData
-                ? undefined
-                : {
-                    createdBy: p.systemData?.["createdBy"],
-                    createdByType: p.systemData?.["createdByType"],
-                    createdAt: p.systemData?.["createdAt"] !== undefined
-                        ? new Date(p.systemData?.["createdAt"])
-                        : undefined,
-                    lastModifiedBy: p.systemData?.["lastModifiedBy"],
-                    lastModifiedByType: p.systemData?.["lastModifiedByType"],
-                    lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
-                        ? new Date(p.systemData?.["lastModifiedAt"])
-                        : undefined,
-                },
-            properties: !p.properties
-                ? undefined
-                : {
-                    type: p.properties?.["type"],
-                    state: p.properties?.["state"],
-                    displayName: p.properties?.["displayName"],
-                    provisioningState: p.properties?.["provisioningState"],
-                },
-        })),
+        value: result.body["value"].map((p) => {
+            return {
+                id: p["id"],
+                name: p["name"],
+                type: p["type"],
+                systemData: !p.systemData
+                    ? undefined
+                    : {
+                        createdBy: p.systemData?.["createdBy"],
+                        createdByType: p.systemData?.["createdByType"],
+                        createdAt: p.systemData?.["createdAt"] !== undefined
+                            ? new Date(p.systemData?.["createdAt"])
+                            : undefined,
+                        lastModifiedBy: p.systemData?.["lastModifiedBy"],
+                        lastModifiedByType: p.systemData?.["lastModifiedByType"],
+                        lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
+                            ? new Date(p.systemData?.["lastModifiedAt"])
+                            : undefined,
+                    },
+                properties: !p.properties
+                    ? p.properties
+                    : deserializePlacementPolicyPropertiesUnion(p.properties),
+            };
+        }),
         nextLink: result.body["nextLink"],
     };
 }
@@ -80,13 +79,8 @@ export async function _getDeserialize(result) {
                     : undefined,
             },
         properties: !result.body.properties
-            ? undefined
-            : {
-                type: result.body.properties?.["type"],
-                state: result.body.properties?.["state"],
-                displayName: result.body.properties?.["displayName"],
-                provisioningState: result.body.properties?.["provisioningState"],
-            },
+            ? result.body.properties
+            : deserializePlacementPolicyPropertiesUnion(result.body.properties),
     };
 }
 /** Get a PlacementPolicy */
@@ -103,12 +97,8 @@ export function _createOrUpdateSend(context, subscriptionId, resourceGroupName, 
         ...operationOptionsToRequestParameters(options),
         body: {
             properties: !placementPolicy.properties
-                ? undefined
-                : {
-                    type: placementPolicy.properties?.["type"],
-                    state: placementPolicy.properties?.["state"],
-                    displayName: placementPolicy.properties?.["displayName"],
-                },
+                ? placementPolicy.properties
+                : placementPolicyPropertiesUnionSerializer(placementPolicy.properties),
         },
     });
 }
@@ -136,13 +126,8 @@ export async function _createOrUpdateDeserialize(result) {
                     : undefined,
             },
         properties: !result.body.properties
-            ? undefined
-            : {
-                type: result.body.properties?.["type"],
-                state: result.body.properties?.["state"],
-                displayName: result.body.properties?.["displayName"],
-                provisioningState: result.body.properties?.["provisioningState"],
-            },
+            ? result.body.properties
+            : deserializePlacementPolicyPropertiesUnion(result.body.properties),
     };
 }
 /** Create a PlacementPolicy */
@@ -162,14 +147,8 @@ export function _updateSend(context, subscriptionId, resourceGroupName, privateC
         ...operationOptionsToRequestParameters(options),
         body: {
             properties: !placementPolicyUpdate.properties
-                ? undefined
-                : {
-                    state: placementPolicyUpdate.properties?.["state"],
-                    vmMembers: placementPolicyUpdate.properties?.["vmMembers"],
-                    hostMembers: placementPolicyUpdate.properties?.["hostMembers"],
-                    affinityStrength: placementPolicyUpdate.properties?.["affinityStrength"],
-                    azureHybridBenefitType: placementPolicyUpdate.properties?.["azureHybridBenefitType"],
-                },
+                ? placementPolicyUpdate.properties
+                : placementPolicyUpdatePropertiesSerializer(placementPolicyUpdate.properties),
         },
     });
 }
@@ -196,13 +175,8 @@ export async function _updateDeserialize(result) {
                     : undefined,
             },
         properties: !result.body.properties
-            ? undefined
-            : {
-                type: result.body.properties?.["type"],
-                state: result.body.properties?.["state"],
-                displayName: result.body.properties?.["displayName"],
-                provisioningState: result.body.properties?.["provisioningState"],
-            },
+            ? result.body.properties
+            : deserializePlacementPolicyPropertiesUnion(result.body.properties),
     };
 }
 /** Update a PlacementPolicy */

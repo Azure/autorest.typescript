@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { IscsiPathListResult, IscsiPath } from "../../models/models.js";
+import { IscsiPath, _IscsiPathListResult } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, IscsiPathsCreateOrUpdate200Response, IscsiPathsCreateOrUpdate201Response, IscsiPathsCreateOrUpdateDefaultResponse, IscsiPathsCreateOrUpdateLogicalResponse, IscsiPathsDelete200Response, IscsiPathsDelete202Response, IscsiPathsDelete204Response, IscsiPathsDeleteDefaultResponse, IscsiPathsDeleteLogicalResponse, IscsiPathsGet200Response, IscsiPathsGetDefaultResponse, IscsiPathsListByPrivateCloud200Response, IscsiPathsListByPrivateCloudDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { IscsiPathsListByPrivateCloudOptionalParams, IscsiPathsGetOptionalParams, IscsiPathsCreateOrUpdateOptionalParams, IscsiPathsDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: IscsiPathsListByPrivateCloudOptionalParams): StreamableMethod<IscsiPathsListByPrivateCloud200Response | IscsiPathsListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: IscsiPathsListByPrivateCloud200Response | IscsiPathsListByPrivateCloudDefaultResponse): Promise<IscsiPathListResult>;
+export declare function _listByPrivateCloudDeserialize(result: IscsiPathsListByPrivateCloud200Response | IscsiPathsListByPrivateCloudDefaultResponse): Promise<_IscsiPathListResult>;
 /** List IscsiPath resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: IscsiPathsListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<IscsiPath>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: IscsiPathsGetOptionalParams): StreamableMethod<IscsiPathsGet200Response | IscsiPathsGetDefaultResponse>;

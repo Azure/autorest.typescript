@@ -26,14 +26,14 @@ import { ScriptPackagesOperations } from "./classic/scriptPackages/index.js";
 import { ScriptCmdletsOperations } from "./classic/scriptCmdlets/index.js";
 import { ScriptExecutionsOperations } from "./classic/scriptExecutions/index.js";
 import { IscsiPathsOperations } from "./classic/iscsiPaths/index.js";
-import { AVSClientOptions } from "./api/index.js";
-export { AVSClientOptions } from "./api/avsContext.js";
+import { AVSClientOptionalParams } from "./api/index.js";
+export { AVSClientOptionalParams } from "./api/avsContext.js";
 export declare class AVSClient {
     private _client;
     /** The pipeline used by this client to make requests */
     readonly pipeline: Pipeline;
     /** Azure VMware Solution API */
-    constructor(credential: TokenCredential, options?: AVSClientOptions);
+    constructor(credential: TokenCredential, subscriptionId: string, options?: AVSClientOptionalParams);
     /** The operation groups for Operations */
     readonly operations: OperationsOperations;
     /** The operation groups for Locations */

@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { AVSContext } from "../../api/aVSContext.js";
-import {
-  WorkloadNetworkPortMirroring,
-  WorkloadNetworkPortMirroringUpdate,
-} from "../../models/models.js";
+import { WorkloadNetworkPortMirroring } from "../../models/models.js";
 import {
   listByWorkloadNetwork,
   get,
@@ -23,22 +20,23 @@ import {
   WorkloadNetworkPortMirroringProfilesDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkPortMirroringProfiles operations. */
 export interface WorkloadNetworkPortMirroringProfilesOperations {
+  /** List WorkloadNetworkPortMirroring resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkPortMirroringProfilesListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkPortMirroring>;
+  /** Get a WorkloadNetworkPortMirroring */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     portMirroringId: string,
     options?: WorkloadNetworkPortMirroringProfilesGetOptionalParams,
   ) => Promise<WorkloadNetworkPortMirroring>;
+  /** Create a WorkloadNetworkPortMirroring */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     portMirroringId: string,
@@ -48,19 +46,24 @@ export interface WorkloadNetworkPortMirroringProfilesOperations {
     OperationState<WorkloadNetworkPortMirroring>,
     WorkloadNetworkPortMirroring
   >;
+  /** Update a WorkloadNetworkPortMirroring */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     portMirroringId: string,
-    workloadNetworkPortMirroring: WorkloadNetworkPortMirroringUpdate,
+    workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
     options?: WorkloadNetworkPortMirroringProfilesUpdateOptionalParams,
   ) => PollerLike<
     OperationState<WorkloadNetworkPortMirroring>,
     WorkloadNetworkPortMirroring
   >;
+  /** Delete a WorkloadNetworkPortMirroring */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     portMirroringId: string,
     privateCloudName: string,
@@ -68,10 +71,12 @@ export interface WorkloadNetworkPortMirroringProfilesOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getWorkloadNetworkPortMirroringProfiles(context: AVSContext) {
+export function getWorkloadNetworkPortMirroringProfiles(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkPortMirroringProfilesListByWorkloadNetworkOptionalParams,
@@ -84,7 +89,6 @@ export function getWorkloadNetworkPortMirroringProfiles(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       portMirroringId: string,
@@ -99,7 +103,6 @@ export function getWorkloadNetworkPortMirroringProfiles(context: AVSContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       portMirroringId: string,
@@ -116,11 +119,10 @@ export function getWorkloadNetworkPortMirroringProfiles(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       portMirroringId: string,
-      workloadNetworkPortMirroring: WorkloadNetworkPortMirroringUpdate,
+      workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
       options?: WorkloadNetworkPortMirroringProfilesUpdateOptionalParams,
     ) =>
       update(
@@ -133,7 +135,6 @@ export function getWorkloadNetworkPortMirroringProfiles(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       portMirroringId: string,
       privateCloudName: string,
@@ -152,8 +153,9 @@ export function getWorkloadNetworkPortMirroringProfiles(context: AVSContext) {
 
 export function getWorkloadNetworkPortMirroringProfilesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkPortMirroringProfilesOperations {
   return {
-    ...getWorkloadNetworkPortMirroringProfiles(context),
+    ...getWorkloadNetworkPortMirroringProfiles(context, subscriptionId),
   };
 }

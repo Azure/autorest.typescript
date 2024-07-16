@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { PlacementPolicyListResult, PlacementPolicy, PlacementPolicyUpdate } from "../../models/models.js";
+import { PlacementPolicy, PlacementPolicyUpdate, _PlacementPoliciesList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, PlacementPoliciesCreateOrUpdate200Response, PlacementPoliciesCreateOrUpdate201Response, PlacementPoliciesCreateOrUpdateDefaultResponse, PlacementPoliciesCreateOrUpdateLogicalResponse, PlacementPoliciesDelete200Response, PlacementPoliciesDelete202Response, PlacementPoliciesDelete204Response, PlacementPoliciesDeleteDefaultResponse, PlacementPoliciesDeleteLogicalResponse, PlacementPoliciesGet200Response, PlacementPoliciesGetDefaultResponse, PlacementPoliciesListByCluster200Response, PlacementPoliciesListByClusterDefaultResponse, PlacementPoliciesUpdate200Response, PlacementPoliciesUpdate202Response, PlacementPoliciesUpdateDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { PlacementPoliciesListByClusterOptionalParams, PlacementPoliciesGetOptionalParams, PlacementPoliciesCreateOrUpdateOptionalParams, PlacementPoliciesUpdateOptionalParams, PlacementPoliciesDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByClusterSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, options?: PlacementPoliciesListByClusterOptionalParams): StreamableMethod<PlacementPoliciesListByCluster200Response | PlacementPoliciesListByClusterDefaultResponse>;
-export declare function _listByClusterDeserialize(result: PlacementPoliciesListByCluster200Response | PlacementPoliciesListByClusterDefaultResponse): Promise<PlacementPolicyListResult>;
+export declare function _listByClusterDeserialize(result: PlacementPoliciesListByCluster200Response | PlacementPoliciesListByClusterDefaultResponse): Promise<_PlacementPoliciesList>;
 /** List PlacementPolicy resources by Cluster */
 export declare function listByCluster(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, options?: PlacementPoliciesListByClusterOptionalParams): PagedAsyncIterableIterator<PlacementPolicy>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, placementPolicyName: string, options?: PlacementPoliciesGetOptionalParams): StreamableMethod<PlacementPoliciesGet200Response | PlacementPoliciesGetDefaultResponse>;

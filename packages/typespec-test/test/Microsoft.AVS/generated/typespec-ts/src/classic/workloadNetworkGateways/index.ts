@@ -13,15 +13,16 @@ import {
   WorkloadNetworkGatewaysGetOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkGateways operations. */
 export interface WorkloadNetworkGatewaysOperations {
+  /** List WorkloadNetworkGateway resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkGatewaysListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkGateway>;
+  /** Get a WorkloadNetworkGateway */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     gatewayId: string,
@@ -29,10 +30,12 @@ export interface WorkloadNetworkGatewaysOperations {
   ) => Promise<WorkloadNetworkGateway>;
 }
 
-export function getWorkloadNetworkGateways(context: AVSContext) {
+export function getWorkloadNetworkGateways(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkGatewaysListByWorkloadNetworkOptionalParams,
@@ -45,7 +48,6 @@ export function getWorkloadNetworkGateways(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       gatewayId: string,
@@ -64,8 +66,9 @@ export function getWorkloadNetworkGateways(context: AVSContext) {
 
 export function getWorkloadNetworkGatewaysOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkGatewaysOperations {
   return {
-    ...getWorkloadNetworkGateways(context),
+    ...getWorkloadNetworkGateways(context, subscriptionId),
   };
 }

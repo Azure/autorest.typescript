@@ -4,8 +4,11 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  GlobalReachConnectionListResult,
+  globalReachConnectionPropertiesSerializer,
+  CreatedByType,
   GlobalReachConnection,
+  GlobalReachConnectionStatus,
+  _GlobalReachConnectionList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -64,43 +67,50 @@ export async function _listByPrivateCloudDeserialize(
   result:
     | GlobalReachConnectionsListByPrivateCloud200Response
     | GlobalReachConnectionsListByPrivateCloudDefaultResponse,
-): Promise<GlobalReachConnectionListResult> {
+): Promise<_GlobalReachConnectionList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            addressPrefix: p.properties?.["addressPrefix"],
-            authorizationKey: p.properties?.["authorizationKey"],
-            circuitConnectionStatus: p.properties?.["circuitConnectionStatus"],
-            peerExpressRouteCircuit: p.properties?.["peerExpressRouteCircuit"],
-            expressRouteId: p.properties?.["expressRouteId"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"] as any,
+              addressPrefix: p.properties?.["addressPrefix"],
+              authorizationKey: p.properties?.["authorizationKey"],
+              circuitConnectionStatus: p.properties?.[
+                "circuitConnectionStatus"
+              ] as GlobalReachConnectionStatus,
+              peerExpressRouteCircuit:
+                p.properties?.["peerExpressRouteCircuit"],
+              expressRouteId: p.properties?.["expressRouteId"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -169,13 +179,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -184,11 +198,14 @@ export async function _getDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           addressPrefix: result.body.properties?.["addressPrefix"],
           authorizationKey: result.body.properties?.["authorizationKey"],
-          circuitConnectionStatus:
-            result.body.properties?.["circuitConnectionStatus"],
+          circuitConnectionStatus: result.body.properties?.[
+            "circuitConnectionStatus"
+          ] as GlobalReachConnectionStatus,
           peerExpressRouteCircuit:
             result.body.properties?.["peerExpressRouteCircuit"],
           expressRouteId: result.body.properties?.["expressRouteId"],
@@ -244,15 +261,10 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !globalReachConnection.properties
-          ? undefined
-          : {
-              authorizationKey:
-                globalReachConnection.properties?.["authorizationKey"],
-              peerExpressRouteCircuit:
-                globalReachConnection.properties?.["peerExpressRouteCircuit"],
-              expressRouteId:
-                globalReachConnection.properties?.["expressRouteId"],
-            },
+          ? globalReachConnection.properties
+          : globalReachConnectionPropertiesSerializer(
+              globalReachConnection.properties,
+            ),
       },
     });
 }
@@ -277,13 +289,17 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -292,11 +308,14 @@ export async function _createOrUpdateDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           addressPrefix: result.body.properties?.["addressPrefix"],
           authorizationKey: result.body.properties?.["authorizationKey"],
-          circuitConnectionStatus:
-            result.body.properties?.["circuitConnectionStatus"],
+          circuitConnectionStatus: result.body.properties?.[
+            "circuitConnectionStatus"
+          ] as GlobalReachConnectionStatus,
           peerExpressRouteCircuit:
             result.body.properties?.["peerExpressRouteCircuit"],
           expressRouteId: result.body.properties?.["expressRouteId"],

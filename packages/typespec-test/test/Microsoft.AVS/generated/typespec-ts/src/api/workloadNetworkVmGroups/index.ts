@@ -4,9 +4,11 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  WorkloadNetworkVMGroupListResult,
+  workloadNetworkVMGroupPropertiesSerializer,
+  CreatedByType,
   WorkloadNetworkVMGroup,
-  WorkloadNetworkVMGroupUpdate,
+  VMGroupStatusEnum,
+  _WorkloadNetworkVMGroupsList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -70,42 +72,46 @@ export async function _listByWorkloadNetworkDeserialize(
   result:
     | WorkloadNetworkVmGroupsListByWorkloadNetwork200Response
     | WorkloadNetworkVmGroupsListByWorkloadNetworkDefaultResponse,
-): Promise<WorkloadNetworkVMGroupListResult> {
+): Promise<_WorkloadNetworkVMGroupsList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            displayName: p.properties?.["displayName"],
-            members: p.properties?.["members"],
-            status: p.properties?.["status"],
-            provisioningState: p.properties?.["provisioningState"],
-            revision: p.properties?.["revision"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              displayName: p.properties?.["displayName"],
+              members: p.properties?.["members"],
+              status: p.properties?.["status"] as VMGroupStatusEnum,
+              provisioningState: p.properties?.["provisioningState"] as any,
+              revision: p.properties?.["revision"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -174,13 +180,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -191,8 +201,10 @@ export async function _getDeserialize(
       : {
           displayName: result.body.properties?.["displayName"],
           members: result.body.properties?.["members"],
-          status: result.body.properties?.["status"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          status: result.body.properties?.["status"] as VMGroupStatusEnum,
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           revision: result.body.properties?.["revision"],
         },
   };
@@ -244,12 +256,8 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !resource.properties
-          ? undefined
-          : {
-              displayName: resource.properties?.["displayName"],
-              members: resource.properties?.["members"],
-              revision: resource.properties?.["revision"],
-            },
+          ? resource.properties
+          : workloadNetworkVMGroupPropertiesSerializer(resource.properties),
       },
     });
 }
@@ -274,13 +282,17 @@ export async function _createDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -291,8 +303,10 @@ export async function _createDeserialize(
       : {
           displayName: result.body.properties?.["displayName"],
           members: result.body.properties?.["members"],
-          status: result.body.properties?.["status"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          status: result.body.properties?.["status"] as VMGroupStatusEnum,
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           revision: result.body.properties?.["revision"],
         },
   };
@@ -333,7 +347,7 @@ export function _updateSend(
   resourceGroupName: string,
   privateCloudName: string,
   vmGroupId: string,
-  workloadNetworkVMGroup: WorkloadNetworkVMGroupUpdate,
+  workloadNetworkVMGroup: WorkloadNetworkVMGroup,
   options: WorkloadNetworkVmGroupsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | WorkloadNetworkVmGroupsUpdate200Response
@@ -353,12 +367,10 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !workloadNetworkVMGroup.properties
-          ? undefined
-          : {
-              displayName: workloadNetworkVMGroup.properties?.["displayName"],
-              members: workloadNetworkVMGroup.properties?.["members"],
-              revision: workloadNetworkVMGroup.properties?.["revision"],
-            },
+          ? workloadNetworkVMGroup.properties
+          : workloadNetworkVMGroupPropertiesSerializer(
+              workloadNetworkVMGroup.properties,
+            ),
       },
     });
 }
@@ -383,13 +395,17 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -400,8 +416,10 @@ export async function _updateDeserialize(
       : {
           displayName: result.body.properties?.["displayName"],
           members: result.body.properties?.["members"],
-          status: result.body.properties?.["status"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          status: result.body.properties?.["status"] as VMGroupStatusEnum,
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           revision: result.body.properties?.["revision"],
         },
   };
@@ -414,7 +432,7 @@ export function update(
   resourceGroupName: string,
   privateCloudName: string,
   vmGroupId: string,
-  workloadNetworkVMGroup: WorkloadNetworkVMGroupUpdate,
+  workloadNetworkVMGroup: WorkloadNetworkVMGroup,
   options: WorkloadNetworkVmGroupsUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<WorkloadNetworkVMGroup>, WorkloadNetworkVMGroup> {
   return getLongRunningPoller(context, _updateDeserialize, {

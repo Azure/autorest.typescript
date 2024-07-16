@@ -1,2 +1,2 @@
-export { createAVS, AVSClientOptions, AVSContext } from "./avsContext.js";
+export { createAVS, AVSClientOptionalParams, AVSContext, } from "./avsContext.js";
 //# sourceMappingURL=index.d.ts.map

@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { AVSContext } from "../../api/aVSContext.js";
-import {
-  WorkloadNetworkDnsZone,
-  WorkloadNetworkDnsZoneUpdate,
-} from "../../models/models.js";
+import { WorkloadNetworkDnsZone } from "../../models/models.js";
 import {
   listByWorkloadNetwork,
   get,
@@ -23,22 +20,23 @@ import {
   WorkloadNetworkDnsZonesDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkDnsZones operations. */
 export interface WorkloadNetworkDnsZonesOperations {
+  /** List WorkloadNetworkDnsZone resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkDnsZonesListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkDnsZone>;
+  /** Get a WorkloadNetworkDnsZone */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dnsZoneId: string,
     options?: WorkloadNetworkDnsZonesGetOptionalParams,
   ) => Promise<WorkloadNetworkDnsZone>;
+  /** Create a WorkloadNetworkDnsZone */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dnsZoneId: string,
@@ -48,19 +46,24 @@ export interface WorkloadNetworkDnsZonesOperations {
     OperationState<WorkloadNetworkDnsZone>,
     WorkloadNetworkDnsZone
   >;
+  /** Update a WorkloadNetworkDnsZone */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dnsZoneId: string,
-    workloadNetworkDnsZone: WorkloadNetworkDnsZoneUpdate,
+    workloadNetworkDnsZone: WorkloadNetworkDnsZone,
     options?: WorkloadNetworkDnsZonesUpdateOptionalParams,
   ) => PollerLike<
     OperationState<WorkloadNetworkDnsZone>,
     WorkloadNetworkDnsZone
   >;
+  /** Delete a WorkloadNetworkDnsZone */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     dnsZoneId: string,
     privateCloudName: string,
@@ -68,10 +71,12 @@ export interface WorkloadNetworkDnsZonesOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getWorkloadNetworkDnsZones(context: AVSContext) {
+export function getWorkloadNetworkDnsZones(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkDnsZonesListByWorkloadNetworkOptionalParams,
@@ -84,7 +89,6 @@ export function getWorkloadNetworkDnsZones(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dnsZoneId: string,
@@ -99,7 +103,6 @@ export function getWorkloadNetworkDnsZones(context: AVSContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dnsZoneId: string,
@@ -116,11 +119,10 @@ export function getWorkloadNetworkDnsZones(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dnsZoneId: string,
-      workloadNetworkDnsZone: WorkloadNetworkDnsZoneUpdate,
+      workloadNetworkDnsZone: WorkloadNetworkDnsZone,
       options?: WorkloadNetworkDnsZonesUpdateOptionalParams,
     ) =>
       update(
@@ -133,7 +135,6 @@ export function getWorkloadNetworkDnsZones(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       dnsZoneId: string,
       privateCloudName: string,
@@ -152,8 +153,9 @@ export function getWorkloadNetworkDnsZones(context: AVSContext) {
 
 export function getWorkloadNetworkDnsZonesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkDnsZonesOperations {
   return {
-    ...getWorkloadNetworkDnsZones(context),
+    ...getWorkloadNetworkDnsZones(context, subscriptionId),
   };
 }

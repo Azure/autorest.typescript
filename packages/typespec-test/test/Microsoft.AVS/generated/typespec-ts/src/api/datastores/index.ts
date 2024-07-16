@@ -3,7 +3,14 @@
 
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { DatastoreListResult, Datastore } from "../../models/models.js";
+import {
+  datastorePropertiesSerializer,
+  CreatedByType,
+  Datastore,
+  MountOptionEnum,
+  DatastoreStatus,
+  _DatastoreList,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -60,53 +67,59 @@ export async function _listByClusterDeserialize(
   result:
     | DatastoresListByCluster200Response
     | DatastoresListByClusterDefaultResponse,
-): Promise<DatastoreListResult> {
+): Promise<_DatastoreList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            netAppVolume: !p.properties?.netAppVolume
-              ? undefined
-              : { id: p.properties?.netAppVolume?.["id"] },
-            diskPoolVolume: !p.properties?.diskPoolVolume
-              ? undefined
-              : {
-                  targetId: p.properties?.diskPoolVolume?.["targetId"],
-                  lunName: p.properties?.diskPoolVolume?.["lunName"],
-                  mountOption: p.properties?.diskPoolVolume?.["mountOption"],
-                  path: p.properties?.diskPoolVolume?.["path"],
-                },
-            elasticSanVolume: !p.properties?.elasticSanVolume
-              ? undefined
-              : { targetId: p.properties?.elasticSanVolume?.["targetId"] },
-            status: p.properties?.["status"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"] as any,
+              netAppVolume: !p.properties?.netAppVolume
+                ? undefined
+                : { id: p.properties?.netAppVolume?.["id"] },
+              diskPoolVolume: !p.properties?.diskPoolVolume
+                ? undefined
+                : {
+                    targetId: p.properties?.diskPoolVolume?.["targetId"],
+                    lunName: p.properties?.diskPoolVolume?.["lunName"],
+                    mountOption: p.properties?.diskPoolVolume?.[
+                      "mountOption"
+                    ] as MountOptionEnum,
+                    path: p.properties?.diskPoolVolume?.["path"],
+                  },
+              elasticSanVolume: !p.properties?.elasticSanVolume
+                ? undefined
+                : { targetId: p.properties?.elasticSanVolume?.["targetId"] },
+              status: p.properties?.["status"] as DatastoreStatus,
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -172,13 +185,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -187,7 +204,9 @@ export async function _getDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           netAppVolume: !result.body.properties?.netAppVolume
             ? undefined
             : { id: result.body.properties?.netAppVolume?.["id"] },
@@ -196,8 +215,9 @@ export async function _getDeserialize(
             : {
                 targetId: result.body.properties?.diskPoolVolume?.["targetId"],
                 lunName: result.body.properties?.diskPoolVolume?.["lunName"],
-                mountOption:
-                  result.body.properties?.diskPoolVolume?.["mountOption"],
+                mountOption: result.body.properties?.diskPoolVolume?.[
+                  "mountOption"
+                ] as MountOptionEnum,
                 path: result.body.properties?.diskPoolVolume?.["path"],
               },
           elasticSanVolume: !result.body.properties?.elasticSanVolume
@@ -206,7 +226,7 @@ export async function _getDeserialize(
                 targetId:
                   result.body.properties?.elasticSanVolume?.["targetId"],
               },
-          status: result.body.properties?.["status"],
+          status: result.body.properties?.["status"] as DatastoreStatus,
         },
   };
 }
@@ -261,27 +281,8 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !datastore.properties
-          ? undefined
-          : {
-              netAppVolume: !datastore.properties?.netAppVolume
-                ? undefined
-                : { id: datastore.properties?.netAppVolume?.["id"] },
-              diskPoolVolume: !datastore.properties?.diskPoolVolume
-                ? undefined
-                : {
-                    targetId:
-                      datastore.properties?.diskPoolVolume?.["targetId"],
-                    lunName: datastore.properties?.diskPoolVolume?.["lunName"],
-                    mountOption:
-                      datastore.properties?.diskPoolVolume?.["mountOption"],
-                  },
-              elasticSanVolume: !datastore.properties?.elasticSanVolume
-                ? undefined
-                : {
-                    targetId:
-                      datastore.properties?.elasticSanVolume?.["targetId"],
-                  },
-            },
+          ? datastore.properties
+          : datastorePropertiesSerializer(datastore.properties),
       },
     });
 }
@@ -306,13 +307,17 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -321,7 +326,9 @@ export async function _createOrUpdateDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           netAppVolume: !result.body.properties?.netAppVolume
             ? undefined
             : { id: result.body.properties?.netAppVolume?.["id"] },
@@ -330,8 +337,9 @@ export async function _createOrUpdateDeserialize(
             : {
                 targetId: result.body.properties?.diskPoolVolume?.["targetId"],
                 lunName: result.body.properties?.diskPoolVolume?.["lunName"],
-                mountOption:
-                  result.body.properties?.diskPoolVolume?.["mountOption"],
+                mountOption: result.body.properties?.diskPoolVolume?.[
+                  "mountOption"
+                ] as MountOptionEnum,
                 path: result.body.properties?.diskPoolVolume?.["path"],
               },
           elasticSanVolume: !result.body.properties?.elasticSanVolume
@@ -340,7 +348,7 @@ export async function _createOrUpdateDeserialize(
                 targetId:
                   result.body.properties?.elasticSanVolume?.["targetId"],
               },
-          status: result.body.properties?.["status"],
+          status: result.body.properties?.["status"] as DatastoreStatus,
         },
   };
 }

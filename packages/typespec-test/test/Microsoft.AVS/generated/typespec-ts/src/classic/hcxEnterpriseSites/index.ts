@@ -17,30 +17,36 @@ import {
   HcxEnterpriseSitesDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a HcxEnterpriseSites operations. */
 export interface HcxEnterpriseSitesOperations {
+  /** List HcxEnterpriseSite resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: HcxEnterpriseSitesListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<HcxEnterpriseSite>;
+  /** Get a HcxEnterpriseSite */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     hcxEnterpriseSiteName: string,
     options?: HcxEnterpriseSitesGetOptionalParams,
   ) => Promise<HcxEnterpriseSite>;
+  /** Create a HcxEnterpriseSite */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     hcxEnterpriseSiteName: string,
     hcxEnterpriseSite: HcxEnterpriseSite,
     options?: HcxEnterpriseSitesCreateOrUpdateOptionalParams,
   ) => Promise<HcxEnterpriseSite>;
+  /** Delete a HcxEnterpriseSite */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     hcxEnterpriseSiteName: string,
@@ -48,10 +54,12 @@ export interface HcxEnterpriseSitesOperations {
   ) => Promise<void>;
 }
 
-export function getHcxEnterpriseSites(context: AVSContext) {
+export function getHcxEnterpriseSites(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: HcxEnterpriseSitesListByPrivateCloudOptionalParams,
@@ -64,7 +72,6 @@ export function getHcxEnterpriseSites(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       hcxEnterpriseSiteName: string,
@@ -79,7 +86,6 @@ export function getHcxEnterpriseSites(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       hcxEnterpriseSiteName: string,
@@ -96,7 +102,6 @@ export function getHcxEnterpriseSites(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       hcxEnterpriseSiteName: string,
@@ -115,8 +120,9 @@ export function getHcxEnterpriseSites(context: AVSContext) {
 
 export function getHcxEnterpriseSitesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): HcxEnterpriseSitesOperations {
   return {
-    ...getHcxEnterpriseSites(context),
+    ...getHcxEnterpriseSites(context, subscriptionId),
   };
 }

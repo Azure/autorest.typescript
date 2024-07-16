@@ -1,5 +1,4 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { AVSContext } from "./api/avsContext.js";
 import { AVSClient } from "./aVSClient.js";
 import { PathUncheckedResponse, OperationOptions } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
@@ -11,12 +10,12 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
      */
     abortSignal?: AbortSignalLike;
     /** Deserialization function for raw response body */
-    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    processResponseBody?: (result: TResponse) => Promise<TResult>;
 }
 /**
  * Creates a poller from the serialized state of another poller. This can be
  * useful when you want to create pollers on a different host or a poller
  * needs to be constructed after the original one is not in scope.
  */
-export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AVSContext | AVSClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AVSClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 //# sourceMappingURL=restorePollerHelpers.d.ts.map

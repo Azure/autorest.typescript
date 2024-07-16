@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { ScriptExecutionListResult, ScriptExecution, ScriptOutputStreamType } from "../../models/models.js";
+import { ScriptExecution, ScriptOutputStreamType, _ScriptExecutionsList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, ScriptExecutionsCreateOrUpdate200Response, ScriptExecutionsCreateOrUpdate201Response, ScriptExecutionsCreateOrUpdateDefaultResponse, ScriptExecutionsCreateOrUpdateLogicalResponse, ScriptExecutionsDelete200Response, ScriptExecutionsDelete202Response, ScriptExecutionsDelete204Response, ScriptExecutionsDeleteDefaultResponse, ScriptExecutionsDeleteLogicalResponse, ScriptExecutionsGet200Response, ScriptExecutionsGetDefaultResponse, ScriptExecutionsGetExecutionLogs200Response, ScriptExecutionsGetExecutionLogsDefaultResponse, ScriptExecutionsListByPrivateCloud200Response, ScriptExecutionsListByPrivateCloudDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { ScriptExecutionsListByPrivateCloudOptionalParams, ScriptExecutionsGetOptionalParams, ScriptExecutionsCreateOrUpdateOptionalParams, ScriptExecutionsDeleteOptionalParams, ScriptExecutionsGetExecutionLogsOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: ScriptExecutionsListByPrivateCloudOptionalParams): StreamableMethod<ScriptExecutionsListByPrivateCloud200Response | ScriptExecutionsListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: ScriptExecutionsListByPrivateCloud200Response | ScriptExecutionsListByPrivateCloudDefaultResponse): Promise<ScriptExecutionListResult>;
+export declare function _listByPrivateCloudDeserialize(result: ScriptExecutionsListByPrivateCloud200Response | ScriptExecutionsListByPrivateCloudDefaultResponse): Promise<_ScriptExecutionsList>;
 /** List ScriptExecution resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: ScriptExecutionsListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<ScriptExecution>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, scriptExecutionName: string, options?: ScriptExecutionsGetOptionalParams): StreamableMethod<ScriptExecutionsGet200Response | ScriptExecutionsGetDefaultResponse>;

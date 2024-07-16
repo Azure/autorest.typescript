@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { AVSContext } from "../../api/aVSContext.js";
-import {
-  WorkloadNetworkDhcp,
-  WorkloadNetworkDhcpUpdate,
-} from "../../models/models.js";
+import { WorkloadNetworkDhcp } from "../../models/models.js";
 import {
   listByWorkloadNetwork,
   get,
@@ -23,38 +20,44 @@ import {
   WorkloadNetworkDhcpConfigurationsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkDhcpConfigurations operations. */
 export interface WorkloadNetworkDhcpConfigurationsOperations {
+  /** List WorkloadNetworkDhcp resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkDhcpConfigurationsListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkDhcp>;
+  /** Get a WorkloadNetworkDhcp */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     dhcpId: string,
     privateCloudName: string,
     options?: WorkloadNetworkDhcpConfigurationsGetOptionalParams,
   ) => Promise<WorkloadNetworkDhcp>;
+  /** Create a WorkloadNetworkDhcp */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dhcpId: string,
     workloadNetworkDhcp: WorkloadNetworkDhcp,
     options?: WorkloadNetworkDhcpConfigurationsCreateOptionalParams,
   ) => PollerLike<OperationState<WorkloadNetworkDhcp>, WorkloadNetworkDhcp>;
+  /** Update a WorkloadNetworkDhcp */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dhcpId: string,
-    workloadNetworkDhcp: WorkloadNetworkDhcpUpdate,
+    workloadNetworkDhcp: WorkloadNetworkDhcp,
     options?: WorkloadNetworkDhcpConfigurationsUpdateOptionalParams,
   ) => PollerLike<OperationState<WorkloadNetworkDhcp>, WorkloadNetworkDhcp>;
+  /** Delete a WorkloadNetworkDhcp */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     dhcpId: string,
@@ -62,10 +65,12 @@ export interface WorkloadNetworkDhcpConfigurationsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getWorkloadNetworkDhcpConfigurations(context: AVSContext) {
+export function getWorkloadNetworkDhcpConfigurations(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkDhcpConfigurationsListByWorkloadNetworkOptionalParams,
@@ -78,7 +83,6 @@ export function getWorkloadNetworkDhcpConfigurations(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       dhcpId: string,
       privateCloudName: string,
@@ -93,7 +97,6 @@ export function getWorkloadNetworkDhcpConfigurations(context: AVSContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dhcpId: string,
@@ -110,11 +113,10 @@ export function getWorkloadNetworkDhcpConfigurations(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dhcpId: string,
-      workloadNetworkDhcp: WorkloadNetworkDhcpUpdate,
+      workloadNetworkDhcp: WorkloadNetworkDhcp,
       options?: WorkloadNetworkDhcpConfigurationsUpdateOptionalParams,
     ) =>
       update(
@@ -127,7 +129,6 @@ export function getWorkloadNetworkDhcpConfigurations(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       dhcpId: string,
@@ -146,8 +147,9 @@ export function getWorkloadNetworkDhcpConfigurations(context: AVSContext) {
 
 export function getWorkloadNetworkDhcpConfigurationsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkDhcpConfigurationsOperations {
   return {
-    ...getWorkloadNetworkDhcpConfigurations(context),
+    ...getWorkloadNetworkDhcpConfigurations(context, subscriptionId),
   };
 }

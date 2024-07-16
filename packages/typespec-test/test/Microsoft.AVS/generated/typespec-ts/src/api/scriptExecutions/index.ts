@@ -4,9 +4,11 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  ScriptExecutionListResult,
+  scriptExecutionPropertiesSerializer,
+  CreatedByType,
   ScriptExecution,
   ScriptOutputStreamType,
+  _ScriptExecutionsList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -68,67 +70,71 @@ export async function _listByPrivateCloudDeserialize(
   result:
     | ScriptExecutionsListByPrivateCloud200Response
     | ScriptExecutionsListByPrivateCloudDefaultResponse,
-): Promise<ScriptExecutionListResult> {
+): Promise<_ScriptExecutionsList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            scriptCmdletId: p.properties?.["scriptCmdletId"],
-            parameters:
-              p.properties?.["parameters"] === undefined
-                ? p.properties?.["parameters"]
-                : p.properties?.["parameters"],
-            hiddenParameters:
-              p.properties?.["hiddenParameters"] === undefined
-                ? p.properties?.["hiddenParameters"]
-                : p.properties?.["hiddenParameters"],
-            failureReason: p.properties?.["failureReason"],
-            timeout: p.properties?.["timeout"],
-            retention: p.properties?.["retention"],
-            submittedAt:
-              p.properties?.["submittedAt"] !== undefined
-                ? new Date(p.properties?.["submittedAt"])
-                : undefined,
-            startedAt:
-              p.properties?.["startedAt"] !== undefined
-                ? new Date(p.properties?.["startedAt"])
-                : undefined,
-            finishedAt:
-              p.properties?.["finishedAt"] !== undefined
-                ? new Date(p.properties?.["finishedAt"])
-                : undefined,
-            provisioningState: p.properties?.["provisioningState"],
-            output: p.properties?.["output"],
-            namedOutputs: p.properties?.["namedOutputs"],
-            information: p.properties?.["information"],
-            warnings: p.properties?.["warnings"],
-            errors: p.properties?.["errors"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              scriptCmdletId: p.properties?.["scriptCmdletId"],
+              parameters:
+                p.properties?.["parameters"] === undefined
+                  ? p.properties?.["parameters"]
+                  : p.properties?.["parameters"],
+              hiddenParameters:
+                p.properties?.["hiddenParameters"] === undefined
+                  ? p.properties?.["hiddenParameters"]
+                  : p.properties?.["hiddenParameters"],
+              failureReason: p.properties?.["failureReason"],
+              timeout: p.properties?.["timeout"],
+              retention: p.properties?.["retention"],
+              submittedAt:
+                p.properties?.["submittedAt"] !== undefined
+                  ? new Date(p.properties?.["submittedAt"])
+                  : undefined,
+              startedAt:
+                p.properties?.["startedAt"] !== undefined
+                  ? new Date(p.properties?.["startedAt"])
+                  : undefined,
+              finishedAt:
+                p.properties?.["finishedAt"] !== undefined
+                  ? new Date(p.properties?.["finishedAt"])
+                  : undefined,
+              provisioningState: p.properties?.["provisioningState"] as any,
+              output: p.properties?.["output"],
+              namedOutputs: p.properties?.["namedOutputs"],
+              information: p.properties?.["information"],
+              warnings: p.properties?.["warnings"],
+              errors: p.properties?.["errors"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -194,13 +200,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -233,7 +243,9 @@ export async function _getDeserialize(
             result.body.properties?.["finishedAt"] !== undefined
               ? new Date(result.body.properties?.["finishedAt"])
               : undefined,
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           output: result.body.properties?.["output"],
           namedOutputs: result.body.properties?.["namedOutputs"],
           information: result.body.properties?.["information"],
@@ -291,18 +303,8 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !scriptExecution.properties
-          ? undefined
-          : {
-              scriptCmdletId: scriptExecution.properties?.["scriptCmdletId"],
-              parameters: scriptExecution.properties?.["parameters"],
-              hiddenParameters:
-                scriptExecution.properties?.["hiddenParameters"],
-              failureReason: scriptExecution.properties?.["failureReason"],
-              timeout: scriptExecution.properties?.["timeout"],
-              retention: scriptExecution.properties?.["retention"],
-              output: scriptExecution.properties?.["output"],
-              namedOutputs: scriptExecution.properties?.["namedOutputs"],
-            },
+          ? scriptExecution.properties
+          : scriptExecutionPropertiesSerializer(scriptExecution.properties),
       },
     });
 }
@@ -327,13 +329,17 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -366,7 +372,9 @@ export async function _createOrUpdateDeserialize(
             result.body.properties?.["finishedAt"] !== undefined
               ? new Date(result.body.properties?.["finishedAt"])
               : undefined,
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           output: result.body.properties?.["output"],
           namedOutputs: result.body.properties?.["namedOutputs"],
           information: result.body.properties?.["information"],
@@ -519,13 +527,17 @@ export async function _getExecutionLogsDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -558,7 +570,9 @@ export async function _getExecutionLogsDeserialize(
             result.body.properties?.["finishedAt"] !== undefined
               ? new Date(result.body.properties?.["finishedAt"])
               : undefined,
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           output: result.body.properties?.["output"],
           namedOutputs: result.body.properties?.["namedOutputs"],
           information: result.body.properties?.["information"],

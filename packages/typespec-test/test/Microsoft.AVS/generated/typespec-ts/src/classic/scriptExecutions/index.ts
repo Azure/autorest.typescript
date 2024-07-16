@@ -23,37 +23,43 @@ import {
   ScriptExecutionsGetExecutionLogsOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ScriptExecutions operations. */
 export interface ScriptExecutionsOperations {
+  /** List ScriptExecution resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: ScriptExecutionsListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<ScriptExecution>;
+  /** Get a ScriptExecution */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     scriptExecutionName: string,
     options?: ScriptExecutionsGetOptionalParams,
   ) => Promise<ScriptExecution>;
+  /** Create a ScriptExecution */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     scriptExecutionName: string,
     scriptExecution: ScriptExecution,
     options?: ScriptExecutionsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<ScriptExecution>, ScriptExecution>;
+  /** Delete a ScriptExecution */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     scriptExecutionName: string,
     options?: ScriptExecutionsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** Return the logs for a script execution resource */
   getExecutionLogs: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     scriptExecutionName: string,
@@ -62,10 +68,12 @@ export interface ScriptExecutionsOperations {
   ) => Promise<ScriptExecution>;
 }
 
-export function getScriptExecutions(context: AVSContext) {
+export function getScriptExecutions(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: ScriptExecutionsListByPrivateCloudOptionalParams,
@@ -78,7 +86,6 @@ export function getScriptExecutions(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       scriptExecutionName: string,
@@ -93,7 +100,6 @@ export function getScriptExecutions(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       scriptExecutionName: string,
@@ -110,7 +116,6 @@ export function getScriptExecutions(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       scriptExecutionName: string,
@@ -125,7 +130,6 @@ export function getScriptExecutions(context: AVSContext) {
         options,
       ),
     getExecutionLogs: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       scriptExecutionName: string,
@@ -146,8 +150,9 @@ export function getScriptExecutions(context: AVSContext) {
 
 export function getScriptExecutionsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): ScriptExecutionsOperations {
   return {
-    ...getScriptExecutions(context),
+    ...getScriptExecutions(context, subscriptionId),
   };
 }

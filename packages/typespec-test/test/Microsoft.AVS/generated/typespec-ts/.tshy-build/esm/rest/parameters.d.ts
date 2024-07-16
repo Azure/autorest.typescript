@@ -1,5 +1,5 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import { Sku, PrivateCloud, PrivateCloudUpdate, Cluster, ClusterUpdate, Datastore, HcxEnterpriseSite, ExpressRouteAuthorization, GlobalReachConnection, WorkloadNetworkSegment, WorkloadNetworkSegmentUpdate, WorkloadNetworkDhcp, WorkloadNetworkDhcpUpdate, WorkloadNetworkPortMirroring, WorkloadNetworkPortMirroringUpdate, WorkloadNetworkVMGroup, WorkloadNetworkVMGroupUpdate, WorkloadNetworkDnsService, WorkloadNetworkDnsServiceUpdate, WorkloadNetworkDnsZone, WorkloadNetworkDnsZoneUpdate, WorkloadNetworkPublicIP, CloudLink, Addon, VirtualMachineRestrictMovement, PlacementPolicy, PlacementPolicyUpdate, ScriptExecution, ScriptOutputStreamType, IscsiPath } from "./models.js";
+import { Sku, PrivateCloud, PrivateCloudUpdate, Cluster, ClusterUpdate, Datastore, HcxEnterpriseSite, ExpressRouteAuthorization, GlobalReachConnection, WorkloadNetworkSegment, WorkloadNetworkDhcp, WorkloadNetworkPortMirroring, WorkloadNetworkVMGroup, WorkloadNetworkDnsService, WorkloadNetworkDnsZone, WorkloadNetworkPublicIP, CloudLink, Addon, VirtualMachineRestrictMovement, PlacementPolicy, PlacementPolicyUpdate, ScriptExecution, ScriptOutputStreamType, IscsiPath } from "./models.js";
 export type OperationsListParameters = RequestParameters;
 export interface LocationsCheckTrialAvailabilityBodyParam {
     /** Optionally, check for a specific SKU */
@@ -81,7 +81,7 @@ export interface WorkloadNetworkSegmentsCreateBodyParam {
 export type WorkloadNetworkSegmentsCreateParameters = WorkloadNetworkSegmentsCreateBodyParam & RequestParameters;
 export interface WorkloadNetworkSegmentsUpdateBodyParam {
     /** The resource properties to be updated. */
-    body: WorkloadNetworkSegmentUpdate;
+    body: WorkloadNetworkSegment;
 }
 export type WorkloadNetworkSegmentsUpdateParameters = WorkloadNetworkSegmentsUpdateBodyParam & RequestParameters;
 export type WorkloadNetworkSegmentsDeleteSegmentParameters = RequestParameters;
@@ -94,7 +94,7 @@ export interface WorkloadNetworkDhcpConfigurationsCreateBodyParam {
 export type WorkloadNetworkDhcpConfigurationsCreateParameters = WorkloadNetworkDhcpConfigurationsCreateBodyParam & RequestParameters;
 export interface WorkloadNetworkDhcpConfigurationsUpdateBodyParam {
     /** The resource properties to be updated. */
-    body: WorkloadNetworkDhcpUpdate;
+    body: WorkloadNetworkDhcp;
 }
 export type WorkloadNetworkDhcpConfigurationsUpdateParameters = WorkloadNetworkDhcpConfigurationsUpdateBodyParam & RequestParameters;
 export type WorkloadNetworkDhcpConfigurationsDeleteParameters = RequestParameters;
@@ -109,7 +109,7 @@ export interface WorkloadNetworkPortMirroringProfilesCreateBodyParam {
 export type WorkloadNetworkPortMirroringProfilesCreateParameters = WorkloadNetworkPortMirroringProfilesCreateBodyParam & RequestParameters;
 export interface WorkloadNetworkPortMirroringProfilesUpdateBodyParam {
     /** The resource properties to be updated. */
-    body: WorkloadNetworkPortMirroringUpdate;
+    body: WorkloadNetworkPortMirroring;
 }
 export type WorkloadNetworkPortMirroringProfilesUpdateParameters = WorkloadNetworkPortMirroringProfilesUpdateBodyParam & RequestParameters;
 export type WorkloadNetworkPortMirroringProfilesDeleteParameters = RequestParameters;
@@ -122,7 +122,7 @@ export interface WorkloadNetworkVmGroupsCreateBodyParam {
 export type WorkloadNetworkVmGroupsCreateParameters = WorkloadNetworkVmGroupsCreateBodyParam & RequestParameters;
 export interface WorkloadNetworkVmGroupsUpdateBodyParam {
     /** The resource properties to be updated. */
-    body: WorkloadNetworkVMGroupUpdate;
+    body: WorkloadNetworkVMGroup;
 }
 export type WorkloadNetworkVmGroupsUpdateParameters = WorkloadNetworkVmGroupsUpdateBodyParam & RequestParameters;
 export type WorkloadNetworkVmGroupsDeleteParameters = RequestParameters;
@@ -137,7 +137,7 @@ export interface WorkloadNetworkDnsServicesCreateBodyParam {
 export type WorkloadNetworkDnsServicesCreateParameters = WorkloadNetworkDnsServicesCreateBodyParam & RequestParameters;
 export interface WorkloadNetworkDnsServicesUpdateBodyParam {
     /** The resource properties to be updated. */
-    body: WorkloadNetworkDnsServiceUpdate;
+    body: WorkloadNetworkDnsService;
 }
 export type WorkloadNetworkDnsServicesUpdateParameters = WorkloadNetworkDnsServicesUpdateBodyParam & RequestParameters;
 export type WorkloadNetworkDnsServicesDeleteParameters = RequestParameters;
@@ -150,7 +150,7 @@ export interface WorkloadNetworkDnsZonesCreateBodyParam {
 export type WorkloadNetworkDnsZonesCreateParameters = WorkloadNetworkDnsZonesCreateBodyParam & RequestParameters;
 export interface WorkloadNetworkDnsZonesUpdateBodyParam {
     /** The resource properties to be updated. */
-    body: WorkloadNetworkDnsZoneUpdate;
+    body: WorkloadNetworkDnsZone;
 }
 export type WorkloadNetworkDnsZonesUpdateParameters = WorkloadNetworkDnsZonesUpdateBodyParam & RequestParameters;
 export type WorkloadNetworkDnsZonesDeleteParameters = RequestParameters;

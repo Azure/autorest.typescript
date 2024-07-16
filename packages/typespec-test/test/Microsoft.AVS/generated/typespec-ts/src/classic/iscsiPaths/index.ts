@@ -18,38 +18,43 @@ import {
   IscsiPathsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a IscsiPaths operations. */
 export interface IscsiPathsOperations {
+  /** List IscsiPath resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: IscsiPathsListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<IscsiPath>;
+  /** Get a IscsiPath */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: IscsiPathsGetOptionalParams,
   ) => Promise<IscsiPath>;
+  /** Create a IscsiPath */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     resource: IscsiPath,
     options?: IscsiPathsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<IscsiPath>, IscsiPath>;
+  /** Delete a IscsiPath */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: IscsiPathsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getIscsiPaths(context: AVSContext) {
+export function getIscsiPaths(context: AVSContext, subscriptionId: string) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: IscsiPathsListByPrivateCloudOptionalParams,
@@ -62,7 +67,6 @@ export function getIscsiPaths(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: IscsiPathsGetOptionalParams,
@@ -75,7 +79,6 @@ export function getIscsiPaths(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       resource: IscsiPath,
@@ -90,7 +93,6 @@ export function getIscsiPaths(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: IscsiPathsDeleteOptionalParams,
@@ -107,8 +109,9 @@ export function getIscsiPaths(context: AVSContext) {
 
 export function getIscsiPathsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): IscsiPathsOperations {
   return {
-    ...getIscsiPaths(context),
+    ...getIscsiPaths(context, subscriptionId),
   };
 }

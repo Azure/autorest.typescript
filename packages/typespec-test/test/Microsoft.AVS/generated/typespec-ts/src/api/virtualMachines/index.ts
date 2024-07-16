@@ -4,9 +4,11 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  VirtualMachineListResult,
+  CreatedByType,
   VirtualMachine,
+  VirtualMachineRestrictMovementState,
   VirtualMachineRestrictMovement,
+  _VirtualMachinesList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -58,42 +60,48 @@ export async function _listByClusterDeserialize(
   result:
     | VirtualMachinesListByCluster200Response
     | VirtualMachinesListByClusterDefaultResponse,
-): Promise<VirtualMachineListResult> {
+): Promise<_VirtualMachinesList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            provisioningState: p.properties?.["provisioningState"],
-            displayName: p.properties?.["displayName"],
-            moRefId: p.properties?.["moRefId"],
-            folderPath: p.properties?.["folderPath"],
-            restrictMovement: p.properties?.["restrictMovement"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              provisioningState: p.properties?.["provisioningState"] as any,
+              displayName: p.properties?.["displayName"],
+              moRefId: p.properties?.["moRefId"],
+              folderPath: p.properties?.["folderPath"],
+              restrictMovement: p.properties?.[
+                "restrictMovement"
+              ] as VirtualMachineRestrictMovementState,
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -161,13 +169,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -176,11 +188,15 @@ export async function _getDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           displayName: result.body.properties?.["displayName"],
           moRefId: result.body.properties?.["moRefId"],
           folderPath: result.body.properties?.["folderPath"],
-          restrictMovement: result.body.properties?.["restrictMovement"],
+          restrictMovement: result.body.properties?.[
+            "restrictMovement"
+          ] as VirtualMachineRestrictMovementState,
         },
   };
 }

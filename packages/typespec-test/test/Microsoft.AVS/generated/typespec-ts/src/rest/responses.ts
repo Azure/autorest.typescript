@@ -4,57 +4,57 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
-  PagedOperationOutput,
+  OperationListResultOutput,
   ErrorResponseOutput,
   TrialOutput,
   QuotaOutput,
-  PrivateCloudListResultOutput,
+  PrivateCloudListOutput,
   PrivateCloudOutput,
   AdminCredentialsOutput,
-  ClusterListResultOutput,
+  ClusterListOutput,
   ClusterOutput,
   ClusterZoneListOutput,
-  DatastoreListResultOutput,
+  DatastoreListOutput,
   DatastoreOutput,
-  HcxEnterpriseSiteListResultOutput,
+  HcxEnterpriseSiteListOutput,
   HcxEnterpriseSiteOutput,
-  ExpressRouteAuthorizationListResultOutput,
+  ExpressRouteAuthorizationListOutput,
   ExpressRouteAuthorizationOutput,
-  GlobalReachConnectionListResultOutput,
+  GlobalReachConnectionListOutput,
   GlobalReachConnectionOutput,
   WorkloadNetworkOutput,
-  WorkloadNetworkListResultOutput,
-  WorkloadNetworkSegmentListResultOutput,
+  WorkloadNetworkListOutput,
+  WorkloadNetworkSegmentsListOutput,
   WorkloadNetworkSegmentOutput,
-  WorkloadNetworkDhcpListResultOutput,
+  WorkloadNetworkDhcpListOutput,
   WorkloadNetworkDhcpOutput,
-  WorkloadNetworkGatewayListResultOutput,
+  WorkloadNetworkGatewayListOutput,
   WorkloadNetworkGatewayOutput,
-  WorkloadNetworkPortMirroringListResultOutput,
+  WorkloadNetworkPortMirroringListOutput,
   WorkloadNetworkPortMirroringOutput,
-  WorkloadNetworkVMGroupListResultOutput,
+  WorkloadNetworkVMGroupsListOutput,
   WorkloadNetworkVMGroupOutput,
-  WorkloadNetworkVirtualMachineListResultOutput,
+  WorkloadNetworkVirtualMachinesListOutput,
   WorkloadNetworkVirtualMachineOutput,
-  WorkloadNetworkDnsServiceListResultOutput,
+  WorkloadNetworkDnsServicesListOutput,
   WorkloadNetworkDnsServiceOutput,
-  WorkloadNetworkDnsZoneListResultOutput,
+  WorkloadNetworkDnsZonesListOutput,
   WorkloadNetworkDnsZoneOutput,
-  WorkloadNetworkPublicIPListResultOutput,
+  WorkloadNetworkPublicIPsListOutput,
   WorkloadNetworkPublicIPOutput,
-  CloudLinkListResultOutput,
+  CloudLinkListOutput,
   CloudLinkOutput,
-  AddonListResultOutput,
+  AddonListOutput,
   AddonOutput,
-  VirtualMachineListResultOutput,
+  VirtualMachinesListOutput,
   VirtualMachineOutput,
-  PlacementPolicyListResultOutput,
+  PlacementPoliciesListOutput,
   PlacementPolicyOutput,
-  ScriptPackageListResultOutput,
+  ScriptPackagesListOutput,
   ScriptPackageOutput,
-  ScriptCmdletListResultOutput,
+  ScriptCmdletsListOutput,
   ScriptCmdletOutput,
-  ScriptExecutionListResultOutput,
+  ScriptExecutionsListOutput,
   ScriptExecutionOutput,
   IscsiPathListResultOutput,
   IscsiPathOutput,
@@ -63,7 +63,7 @@ import {
 /** Azure operation completed successfully. */
 export interface OperationsList200Response extends HttpResponse {
   status: "200";
-  body: PagedOperationOutput;
+  body: OperationListResultOutput;
 }
 
 export interface OperationsListDefaultResponse extends HttpResponse {
@@ -101,7 +101,7 @@ export interface LocationsCheckQuotaAvailabilityDefaultResponse
 export interface PrivateCloudsListByResourceGroup200Response
   extends HttpResponse {
   status: "200";
-  body: PrivateCloudListResultOutput;
+  body: PrivateCloudListOutput;
 }
 
 export interface PrivateCloudsListByResourceGroupDefaultResponse
@@ -114,7 +114,7 @@ export interface PrivateCloudsListByResourceGroupDefaultResponse
 export interface PrivateCloudsListInSubscription200Response
   extends HttpResponse {
   status: "200";
-  body: PrivateCloudListResultOutput;
+  body: PrivateCloudListOutput;
 }
 
 export interface PrivateCloudsListInSubscriptionDefaultResponse
@@ -303,7 +303,7 @@ export interface PrivateCloudsListAdminCredentialsDefaultResponse
 /** Azure operation completed successfully. */
 export interface ClustersListByPrivateCloud200Response extends HttpResponse {
   status: "200";
-  body: ClusterListResultOutput;
+  body: ClusterListOutput;
 }
 
 export interface ClustersListByPrivateCloudDefaultResponse
@@ -424,7 +424,7 @@ export interface ClustersListZonesDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface DatastoresListByCluster200Response extends HttpResponse {
   status: "200";
-  body: DatastoreListResultOutput;
+  body: DatastoreListOutput;
 }
 
 export interface DatastoresListByClusterDefaultResponse extends HttpResponse {
@@ -509,7 +509,7 @@ export interface DatastoresDeleteLogicalResponse extends HttpResponse {
 export interface HcxEnterpriseSitesListByPrivateCloud200Response
   extends HttpResponse {
   status: "200";
-  body: HcxEnterpriseSiteListResultOutput;
+  body: HcxEnterpriseSiteListOutput;
 }
 
 export interface HcxEnterpriseSitesListByPrivateCloudDefaultResponse
@@ -568,7 +568,7 @@ export interface HcxEnterpriseSitesDeleteDefaultResponse extends HttpResponse {
 export interface AuthorizationsListByPrivateCloud200Response
   extends HttpResponse {
   status: "200";
-  body: ExpressRouteAuthorizationListResultOutput;
+  body: ExpressRouteAuthorizationListOutput;
 }
 
 export interface AuthorizationsListByPrivateCloudDefaultResponse
@@ -656,7 +656,7 @@ export interface AuthorizationsDeleteLogicalResponse extends HttpResponse {
 export interface GlobalReachConnectionsListByPrivateCloud200Response
   extends HttpResponse {
   status: "200";
-  body: GlobalReachConnectionListResultOutput;
+  body: GlobalReachConnectionListOutput;
 }
 
 export interface GlobalReachConnectionsListByPrivateCloudDefaultResponse
@@ -759,7 +759,7 @@ export interface WorkloadNetworksGetDefaultResponse extends HttpResponse {
 export interface WorkloadNetworksListByPrivateCloud200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkListResultOutput;
+  body: WorkloadNetworkListOutput;
 }
 
 export interface WorkloadNetworksListByPrivateCloudDefaultResponse
@@ -772,7 +772,7 @@ export interface WorkloadNetworksListByPrivateCloudDefaultResponse
 export interface WorkloadNetworkSegmentsListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkSegmentListResultOutput;
+  body: WorkloadNetworkSegmentsListOutput;
 }
 
 export interface WorkloadNetworkSegmentsListByWorkloadNetworkDefaultResponse
@@ -898,7 +898,7 @@ export interface WorkloadNetworkSegmentsDeleteSegmentLogicalResponse
 export interface WorkloadNetworkDhcpConfigurationsListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkDhcpListResultOutput;
+  body: WorkloadNetworkDhcpListOutput;
 }
 
 export interface WorkloadNetworkDhcpConfigurationsListByWorkloadNetworkDefaultResponse
@@ -1029,7 +1029,7 @@ export interface WorkloadNetworkDhcpConfigurationsDeleteLogicalResponse
 export interface WorkloadNetworkGatewaysListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkGatewayListResultOutput;
+  body: WorkloadNetworkGatewayListOutput;
 }
 
 export interface WorkloadNetworkGatewaysListByWorkloadNetworkDefaultResponse
@@ -1054,7 +1054,7 @@ export interface WorkloadNetworkGatewaysGetDefaultResponse
 export interface WorkloadNetworkPortMirroringProfilesListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkPortMirroringListResultOutput;
+  body: WorkloadNetworkPortMirroringListOutput;
 }
 
 export interface WorkloadNetworkPortMirroringProfilesListByWorkloadNetworkDefaultResponse
@@ -1188,7 +1188,7 @@ export interface WorkloadNetworkPortMirroringProfilesDeleteLogicalResponse
 export interface WorkloadNetworkVmGroupsListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkVMGroupListResultOutput;
+  body: WorkloadNetworkVMGroupsListOutput;
 }
 
 export interface WorkloadNetworkVmGroupsListByWorkloadNetworkDefaultResponse
@@ -1311,7 +1311,7 @@ export interface WorkloadNetworkVmGroupsDeleteLogicalResponse
 export interface WorkloadNetworkVirtualMachinesListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkVirtualMachineListResultOutput;
+  body: WorkloadNetworkVirtualMachinesListOutput;
 }
 
 export interface WorkloadNetworkVirtualMachinesListByWorkloadNetworkDefaultResponse
@@ -1337,7 +1337,7 @@ export interface WorkloadNetworkVirtualMachinesGetDefaultResponse
 export interface WorkloadNetworkDnsServicesListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkDnsServiceListResultOutput;
+  body: WorkloadNetworkDnsServicesListOutput;
 }
 
 export interface WorkloadNetworkDnsServicesListByWorkloadNetworkDefaultResponse
@@ -1467,7 +1467,7 @@ export interface WorkloadNetworkDnsServicesDeleteLogicalResponse
 export interface WorkloadNetworkDnsZonesListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkDnsZoneListResultOutput;
+  body: WorkloadNetworkDnsZonesListOutput;
 }
 
 export interface WorkloadNetworkDnsZonesListByWorkloadNetworkDefaultResponse
@@ -1590,7 +1590,7 @@ export interface WorkloadNetworkDnsZonesDeleteLogicalResponse
 export interface WorkloadNetworkPublicIpsListByWorkloadNetwork200Response
   extends HttpResponse {
   status: "200";
-  body: WorkloadNetworkPublicIPListResultOutput;
+  body: WorkloadNetworkPublicIPsListOutput;
 }
 
 export interface WorkloadNetworkPublicIpsListByWorkloadNetworkDefaultResponse
@@ -1685,7 +1685,7 @@ export interface WorkloadNetworkPublicIpsDeleteLogicalResponse
 /** Azure operation completed successfully. */
 export interface CloudLinksListByPrivateCloud200Response extends HttpResponse {
   status: "200";
-  body: CloudLinkListResultOutput;
+  body: CloudLinkListOutput;
 }
 
 export interface CloudLinksListByPrivateCloudDefaultResponse
@@ -1770,7 +1770,7 @@ export interface CloudLinksDeleteLogicalResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface AddonsListByPrivateCloud200Response extends HttpResponse {
   status: "200";
-  body: AddonListResultOutput;
+  body: AddonListOutput;
 }
 
 export interface AddonsListByPrivateCloudDefaultResponse extends HttpResponse {
@@ -1854,7 +1854,7 @@ export interface AddonsDeleteLogicalResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface VirtualMachinesListByCluster200Response extends HttpResponse {
   status: "200";
-  body: VirtualMachineListResultOutput;
+  body: VirtualMachinesListOutput;
 }
 
 export interface VirtualMachinesListByClusterDefaultResponse
@@ -1904,7 +1904,7 @@ export interface VirtualMachinesRestrictMovementLogicalResponse
 export interface PlacementPoliciesListByCluster200Response
   extends HttpResponse {
   status: "200";
-  body: PlacementPolicyListResultOutput;
+  body: PlacementPoliciesListOutput;
 }
 
 export interface PlacementPoliciesListByClusterDefaultResponse
@@ -2019,7 +2019,7 @@ export interface PlacementPoliciesDeleteLogicalResponse extends HttpResponse {
 export interface ScriptPackagesListByPrivateCloud200Response
   extends HttpResponse {
   status: "200";
-  body: ScriptPackageListResultOutput;
+  body: ScriptPackagesListOutput;
 }
 
 export interface ScriptPackagesListByPrivateCloudDefaultResponse
@@ -2043,7 +2043,7 @@ export interface ScriptPackagesGetDefaultResponse extends HttpResponse {
 export interface ScriptCmdletsListByScriptPackage200Response
   extends HttpResponse {
   status: "200";
-  body: ScriptCmdletListResultOutput;
+  body: ScriptCmdletsListOutput;
 }
 
 export interface ScriptCmdletsListByScriptPackageDefaultResponse
@@ -2067,7 +2067,7 @@ export interface ScriptCmdletsGetDefaultResponse extends HttpResponse {
 export interface ScriptExecutionsListByPrivateCloud200Response
   extends HttpResponse {
   status: "200";
-  body: ScriptExecutionListResultOutput;
+  body: ScriptExecutionsListOutput;
 }
 
 export interface ScriptExecutionsListByPrivateCloudDefaultResponse

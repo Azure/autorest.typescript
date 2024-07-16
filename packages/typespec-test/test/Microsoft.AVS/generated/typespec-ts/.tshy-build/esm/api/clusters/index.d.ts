@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { ClusterListResult, Cluster, ClusterUpdate, ClusterZoneList } from "../../models/models.js";
+import { Cluster, ClusterUpdate, ClusterZoneList, _ClusterList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, ClustersCreateOrUpdate200Response, ClustersCreateOrUpdate201Response, ClustersCreateOrUpdateDefaultResponse, ClustersCreateOrUpdateLogicalResponse, ClustersDelete200Response, ClustersDelete202Response, ClustersDelete204Response, ClustersDeleteDefaultResponse, ClustersDeleteLogicalResponse, ClustersGet200Response, ClustersGetDefaultResponse, ClustersListByPrivateCloud200Response, ClustersListByPrivateCloudDefaultResponse, ClustersListZones200Response, ClustersListZonesDefaultResponse, ClustersUpdate200Response, ClustersUpdate201Response, ClustersUpdateDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { ClustersListByPrivateCloudOptionalParams, ClustersGetOptionalParams, ClustersCreateOrUpdateOptionalParams, ClustersUpdateOptionalParams, ClustersDeleteOptionalParams, ClustersListZonesOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: ClustersListByPrivateCloudOptionalParams): StreamableMethod<ClustersListByPrivateCloud200Response | ClustersListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: ClustersListByPrivateCloud200Response | ClustersListByPrivateCloudDefaultResponse): Promise<ClusterListResult>;
+export declare function _listByPrivateCloudDeserialize(result: ClustersListByPrivateCloud200Response | ClustersListByPrivateCloudDefaultResponse): Promise<_ClusterList>;
 /** List Cluster resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: ClustersListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<Cluster>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, options?: ClustersGetOptionalParams): StreamableMethod<ClustersGet200Response | ClustersGetDefaultResponse>;

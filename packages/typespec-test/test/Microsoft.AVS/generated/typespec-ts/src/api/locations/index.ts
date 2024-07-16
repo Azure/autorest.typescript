@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Sku, Trial, Quota } from "../../models/models.js";
+import {
+  Sku,
+  Trial,
+  TrialStatus,
+  Quota,
+  QuotaEnabled,
+} from "../../models/models.js";
 import {
   isUnexpected,
   AVSContext as Client,
@@ -63,7 +69,7 @@ export async function _checkTrialAvailabilityDeserialize(
   }
 
   return {
-    status: result.body["status"],
+    status: result.body["status"] as TrialStatus,
     availableHosts: result.body["availableHosts"],
   };
 }
@@ -119,7 +125,7 @@ export async function _checkQuotaAvailabilityDeserialize(
 
   return {
     hostsRemaining: result.body["hostsRemaining"],
-    quotaEnabled: result.body["quotaEnabled"],
+    quotaEnabled: result.body["quotaEnabled"] as QuotaEnabled,
   };
 }
 

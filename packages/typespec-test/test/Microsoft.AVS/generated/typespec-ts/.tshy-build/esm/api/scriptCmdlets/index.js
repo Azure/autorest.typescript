@@ -15,42 +15,46 @@ export async function _listByScriptPackageDeserialize(result) {
         throw createRestError(result);
     }
     return {
-        value: result.body["value"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            type: p["type"],
-            systemData: !p.systemData
-                ? undefined
-                : {
-                    createdBy: p.systemData?.["createdBy"],
-                    createdByType: p.systemData?.["createdByType"],
-                    createdAt: p.systemData?.["createdAt"] !== undefined
-                        ? new Date(p.systemData?.["createdAt"])
-                        : undefined,
-                    lastModifiedBy: p.systemData?.["lastModifiedBy"],
-                    lastModifiedByType: p.systemData?.["lastModifiedByType"],
-                    lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
-                        ? new Date(p.systemData?.["lastModifiedAt"])
-                        : undefined,
-                },
-            properties: !p.properties
-                ? undefined
-                : {
-                    provisioningState: p.properties?.["provisioningState"],
-                    description: p.properties?.["description"],
-                    timeout: p.properties?.["timeout"],
-                    audience: p.properties?.["audience"],
-                    parameters: p.properties?.["parameters"] === undefined
-                        ? p.properties?.["parameters"]
-                        : p.properties?.["parameters"].map((p) => ({
-                            type: p["type"],
-                            name: p["name"],
-                            description: p["description"],
-                            visibility: p["visibility"],
-                            optional: p["optional"],
-                        })),
-                },
-        })),
+        value: result.body["value"].map((p) => {
+            return {
+                id: p["id"],
+                name: p["name"],
+                type: p["type"],
+                systemData: !p.systemData
+                    ? undefined
+                    : {
+                        createdBy: p.systemData?.["createdBy"],
+                        createdByType: p.systemData?.["createdByType"],
+                        createdAt: p.systemData?.["createdAt"] !== undefined
+                            ? new Date(p.systemData?.["createdAt"])
+                            : undefined,
+                        lastModifiedBy: p.systemData?.["lastModifiedBy"],
+                        lastModifiedByType: p.systemData?.["lastModifiedByType"],
+                        lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
+                            ? new Date(p.systemData?.["lastModifiedAt"])
+                            : undefined,
+                    },
+                properties: !p.properties
+                    ? undefined
+                    : {
+                        provisioningState: p.properties?.["provisioningState"],
+                        description: p.properties?.["description"],
+                        timeout: p.properties?.["timeout"],
+                        audience: p.properties?.["audience"],
+                        parameters: p.properties?.["parameters"] === undefined
+                            ? p.properties?.["parameters"]
+                            : p.properties?.["parameters"].map((p) => {
+                                return {
+                                    type: p["type"],
+                                    name: p["name"],
+                                    description: p["description"],
+                                    visibility: p["visibility"],
+                                    optional: p["optional"],
+                                };
+                            }),
+                    },
+            };
+        }),
         nextLink: result.body["nextLink"],
     };
 }
@@ -96,13 +100,15 @@ export async function _getDeserialize(result) {
                 audience: result.body.properties?.["audience"],
                 parameters: result.body.properties?.["parameters"] === undefined
                     ? result.body.properties?.["parameters"]
-                    : result.body.properties?.["parameters"].map((p) => ({
-                        type: p["type"],
-                        name: p["name"],
-                        description: p["description"],
-                        visibility: p["visibility"],
-                        optional: p["optional"],
-                    })),
+                    : result.body.properties?.["parameters"].map((p) => {
+                        return {
+                            type: p["type"],
+                            name: p["name"],
+                            description: p["description"],
+                            visibility: p["visibility"],
+                            optional: p["optional"],
+                        };
+                    }),
             },
     };
 }

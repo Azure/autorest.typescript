@@ -46,9 +46,9 @@ export function getLongRunningPoller(client, processResponseBody, options) {
                 options.abortSignal?.removeEventListener("abort", abortListener);
                 pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
             }
-            if (options.initialUrl || initialResponse) {
+            if (options.initialRequestUrl || initialResponse) {
                 response.headers["x-ms-original-url"] =
-                    options.initialUrl ?? initialResponse.request.url;
+                    options.initialRequestUrl ?? initialResponse.request.url;
             }
             return getLroResponse(response);
         },

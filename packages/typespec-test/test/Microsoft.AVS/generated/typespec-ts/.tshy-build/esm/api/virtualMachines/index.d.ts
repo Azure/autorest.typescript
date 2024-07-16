@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { VirtualMachineListResult, VirtualMachine, VirtualMachineRestrictMovement } from "../../models/models.js";
+import { VirtualMachine, VirtualMachineRestrictMovement, _VirtualMachinesList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, VirtualMachinesGet200Response, VirtualMachinesGetDefaultResponse, VirtualMachinesListByCluster200Response, VirtualMachinesListByClusterDefaultResponse, VirtualMachinesRestrictMovement202Response, VirtualMachinesRestrictMovementDefaultResponse, VirtualMachinesRestrictMovementLogicalResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { VirtualMachinesListByClusterOptionalParams, VirtualMachinesGetOptionalParams, VirtualMachinesRestrictMovementOptionalParams } from "../../models/options.js";
 export declare function _listByClusterSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, options?: VirtualMachinesListByClusterOptionalParams): StreamableMethod<VirtualMachinesListByCluster200Response | VirtualMachinesListByClusterDefaultResponse>;
-export declare function _listByClusterDeserialize(result: VirtualMachinesListByCluster200Response | VirtualMachinesListByClusterDefaultResponse): Promise<VirtualMachineListResult>;
+export declare function _listByClusterDeserialize(result: VirtualMachinesListByCluster200Response | VirtualMachinesListByClusterDefaultResponse): Promise<_VirtualMachinesList>;
 /** List VirtualMachine resources by Cluster */
 export declare function listByCluster(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, options?: VirtualMachinesListByClusterOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, virtualMachineId: string, options?: VirtualMachinesGetOptionalParams): StreamableMethod<VirtualMachinesGet200Response | VirtualMachinesGetDefaultResponse>;

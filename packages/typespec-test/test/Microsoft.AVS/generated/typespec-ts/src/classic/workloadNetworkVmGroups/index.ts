@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { AVSContext } from "../../api/aVSContext.js";
-import {
-  WorkloadNetworkVMGroup,
-  WorkloadNetworkVMGroupUpdate,
-} from "../../models/models.js";
+import { WorkloadNetworkVMGroup } from "../../models/models.js";
 import {
   listByWorkloadNetwork,
   get,
@@ -23,22 +20,23 @@ import {
   WorkloadNetworkVmGroupsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkVmGroups operations. */
 export interface WorkloadNetworkVmGroupsOperations {
+  /** List WorkloadNetworkVMGroup resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkVmGroupsListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkVMGroup>;
+  /** Get a WorkloadNetworkVMGroup */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     vmGroupId: string,
     options?: WorkloadNetworkVmGroupsGetOptionalParams,
   ) => Promise<WorkloadNetworkVMGroup>;
+  /** Create a WorkloadNetworkVMGroup */
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     vmGroupId: string,
@@ -48,19 +46,24 @@ export interface WorkloadNetworkVmGroupsOperations {
     OperationState<WorkloadNetworkVMGroup>,
     WorkloadNetworkVMGroup
   >;
+  /** Update a WorkloadNetworkVMGroup */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     vmGroupId: string,
-    workloadNetworkVMGroup: WorkloadNetworkVMGroupUpdate,
+    workloadNetworkVMGroup: WorkloadNetworkVMGroup,
     options?: WorkloadNetworkVmGroupsUpdateOptionalParams,
   ) => PollerLike<
     OperationState<WorkloadNetworkVMGroup>,
     WorkloadNetworkVMGroup
   >;
+  /** Delete a WorkloadNetworkVMGroup */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     vmGroupId: string,
     privateCloudName: string,
@@ -68,10 +71,12 @@ export interface WorkloadNetworkVmGroupsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getWorkloadNetworkVmGroups(context: AVSContext) {
+export function getWorkloadNetworkVmGroups(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkVmGroupsListByWorkloadNetworkOptionalParams,
@@ -84,7 +89,6 @@ export function getWorkloadNetworkVmGroups(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       vmGroupId: string,
@@ -99,7 +103,6 @@ export function getWorkloadNetworkVmGroups(context: AVSContext) {
         options,
       ),
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       vmGroupId: string,
@@ -116,11 +119,10 @@ export function getWorkloadNetworkVmGroups(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       vmGroupId: string,
-      workloadNetworkVMGroup: WorkloadNetworkVMGroupUpdate,
+      workloadNetworkVMGroup: WorkloadNetworkVMGroup,
       options?: WorkloadNetworkVmGroupsUpdateOptionalParams,
     ) =>
       update(
@@ -133,7 +135,6 @@ export function getWorkloadNetworkVmGroups(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       vmGroupId: string,
       privateCloudName: string,
@@ -152,8 +153,9 @@ export function getWorkloadNetworkVmGroups(context: AVSContext) {
 
 export function getWorkloadNetworkVmGroupsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkVmGroupsOperations {
   return {
-    ...getWorkloadNetworkVmGroups(context),
+    ...getWorkloadNetworkVmGroups(context, subscriptionId),
   };
 }

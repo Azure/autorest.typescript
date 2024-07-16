@@ -18,24 +18,25 @@ import {
   DatastoresDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Datastores operations. */
 export interface DatastoresOperations {
+  /** List Datastore resources by Cluster */
   listByCluster: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     options?: DatastoresListByClusterOptionalParams,
   ) => PagedAsyncIterableIterator<Datastore>;
+  /** Get a Datastore */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     datastoreName: string,
     options?: DatastoresGetOptionalParams,
   ) => Promise<Datastore>;
+  /** Create a Datastore */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
@@ -43,8 +44,13 @@ export interface DatastoresOperations {
     datastore: Datastore,
     options?: DatastoresCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<Datastore>, Datastore>;
+  /** Delete a Datastore */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
@@ -53,10 +59,9 @@ export interface DatastoresOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getDatastores(context: AVSContext) {
+export function getDatastores(context: AVSContext, subscriptionId: string) {
   return {
     listByCluster: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -71,7 +76,6 @@ export function getDatastores(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -88,7 +92,6 @@ export function getDatastores(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -107,7 +110,6 @@ export function getDatastores(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -128,8 +130,9 @@ export function getDatastores(context: AVSContext) {
 
 export function getDatastoresOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): DatastoresOperations {
   return {
-    ...getDatastores(context),
+    ...getDatastores(context, subscriptionId),
   };
 }

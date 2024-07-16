@@ -1,6 +1,6 @@
-/** The SKU (Stock Keeping Unit) assigned to this resource. */
+/** The resource model definition representing SKU */
 export interface Sku {
-    /** The name of the SKU, usually a combination of letters and numbers, for example, 'P3' */
+    /** The name of the SKU. Ex - P3. It is typically a letter+number code */
     name: string;
     /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
     tier?: SkuTier;
@@ -24,7 +24,11 @@ export interface PrivateCloud extends TrackedResource {
 export interface PrivateCloudProperties {
     /** The default cluster used for management */
     managementCluster: ManagementCluster;
-    /** Connectivity to internet is enabled or disabled */
+    /**
+     * Connectivity to internet is enabled or disabled
+     *
+     * Possible values: "Enabled", "Disabled"
+     */
     internet?: InternetEnum;
     /** vCenter Single Sign On Identity Sources */
     identitySources?: Array<IdentitySource>;
@@ -58,7 +62,11 @@ export interface PrivateCloudProperties {
     secondaryCircuit?: Circuit;
     /** Azure resource ID of the virtual network */
     virtualNetworkId?: string;
-    /** The type of DNS zone to use. */
+    /**
+     * The type of DNS zone to use.
+     *
+     * Possible values: "Public", "Private"
+     */
     dnsZoneType?: DnsZoneType;
 }
 /** The properties of a management cluster */
@@ -86,7 +94,11 @@ export interface IdentitySource {
     primaryServer?: string;
     /** Secondary server URL */
     secondaryServer?: string;
-    /** Protect LDAP communication using SSL certificate (LDAPS) */
+    /**
+     * Protect LDAP communication using SSL certificate (LDAPS)
+     *
+     * Possible values: "Enabled", "Disabled"
+     */
     ssl?: SslEnum;
     /**
      * The ID of an Active Directory user with a minimum of read-only access to Base
@@ -101,7 +113,11 @@ export interface IdentitySource {
 }
 /** The properties describing private cloud availability zone distribution */
 export interface AvailabilityProperties {
-    /** The availability strategy for the private cloud */
+    /**
+     * The availability strategy for the private cloud
+     *
+     * Possible values: "SingleZone", "DualZone"
+     */
     strategy?: AvailabilityStrategy;
     /** The primary availability zone for the private cloud */
     zone?: number;
@@ -110,7 +126,11 @@ export interface AvailabilityProperties {
 }
 /** The properties of customer managed encryption key */
 export interface Encryption {
-    /** Status of customer managed encryption key */
+    /**
+     * Status of customer managed encryption key
+     *
+     * Possible values: "Enabled", "Disabled"
+     */
     status?: EncryptionState;
     /** The key vault where the encryption key is stored */
     keyVaultProperties?: EncryptionKeyVaultProperties;
@@ -130,63 +150,50 @@ export interface Circuit {
 /** Endpoint addresses */
 export interface Endpoints {
 }
-/** The properties of the service-assigned identity associated with this resource. */
+/** Managed service identity (either system assigned, or none) */
 export interface SystemAssignedServiceIdentity {
-    /** The type of managed identity assigned to this resource. */
+    /**
+     * The type of managed identity assigned to this resource.
+     *
+     * Possible values: "None", "SystemAssigned"
+     */
     type: SystemAssignedServiceIdentityType;
 }
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
-    /** The geo-location where the resource lives */
-    location: string;
     /** Resource tags. */
     tags?: Record<string, string>;
+    /** The geo-location where the resource lives */
+    location: string;
 }
-/** Common properties for all Azure Resource Manager resources. */
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
 }
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
+    /** The identity that created the resource. */
+    createdBy?: string;
+    /**
+     * The type of identity that created the resource.
+     *
+     * Possible values: "User", "Application", "ManagedIdentity", "Key"
+     */
+    createdByType?: CreatedByType;
+    /** The timestamp of resource creation (UTC). */
+    createdAt?: Date | string;
+    /** The identity that last modified the resource. */
+    lastModifiedBy?: string;
+    /**
+     * The type of identity that last modified the resource.
+     *
+     * Possible values: "User", "Application", "ManagedIdentity", "Key"
+     */
+    lastModifiedByType?: CreatedByType;
+    /** The timestamp of resource last modification (UTC) */
+    lastModifiedAt?: Date | string;
 }
-/** The base proxy resource. */
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {
-}
-/** The private endpoint connection resource */
-export interface PrivateEndpointConnection extends ProxyResource {
-    /** The private endpoint connection properties */
-    properties?: PrivateEndpointConnectionProperties;
-}
-/** Properties of he private endpoint connection resource */
-export interface PrivateEndpointConnectionProperties {
-    /** The private endpoint resource */
-    privateEndpoint?: PrivateEndpoint;
-    /** A collection of information about the state of the connection between service consumer and provider. */
-    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-    /** The provisioning state of the private endpoint connection resource. */
-    provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-/** The private endpoint resource */
-export interface PrivateEndpoint {
-    /** The resource identifier for private endpoint */
-    id?: string;
-}
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateLinkServiceConnectionState {
-    /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-    status?: PrivateEndpointServiceConnectionStatus;
-    /** The reason for approval/rejection of the connection. */
-    description?: string;
-    /** A message indicating if changes on the service provider require any updates on the consumer. */
-    actionsRequired?: string;
-}
-export interface PrivateLinkResource extends ProxyResource {
-    /** Properties of the private link resource. */
-    properties?: PrivateLinkResourceProperties;
-}
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-    /** The private link resource private link DNS zone name. */
-    requiredZoneNames?: string[];
 }
 /** A location resource */
 export interface Location extends ProxyResource {
@@ -240,6 +247,8 @@ export interface DiskPoolVolume {
     /**
      * Mode that describes whether the LUN has to be mounted as a datastore or
      * attached as a LUN
+     *
+     * Possible values: "MOUNT", "ATTACH"
      */
     mountOption?: MountOptionEnum;
 }
@@ -376,7 +385,11 @@ export interface WorkloadNetworkPortMirroring extends ProxyResource {
 export interface WorkloadNetworkPortMirroringProperties {
     /** Display name of the port mirroring profile. */
     displayName?: string;
-    /** Direction of port mirroring profile. */
+    /**
+     * Direction of port mirroring profile.
+     *
+     * Possible values: "INGRESS", "EGRESS", "BIDIRECTIONAL"
+     */
     direction?: PortMirroringDirectionEnum;
     /** Source VM Group. */
     source?: string;
@@ -424,7 +437,11 @@ export interface WorkloadNetworkDnsServiceProperties {
     defaultDnsZone?: string;
     /** FQDN zones of the DNS Service. */
     fqdnZones?: string[];
-    /** DNS Service log level. */
+    /**
+     * DNS Service log level.
+     *
+     * Possible values: "DEBUG", "INFO", "WARNING", "ERROR", "FATAL"
+     */
     logLevel?: DnsServiceLogLevelEnum;
     /** NSX revision number. */
     revision?: number;
@@ -523,7 +540,11 @@ export interface PlacementPolicy extends ProxyResource {
 }
 /** Abstract placement policy properties */
 export interface PlacementPolicyPropertiesParent {
-    /** Whether the placement policy is enabled or disabled */
+    /**
+     * Whether the placement policy is enabled or disabled
+     *
+     * Possible values: "Enabled", "Disabled"
+     */
     state?: PlacementPolicyState;
     /** Display name of the placement policy */
     displayName?: string;
@@ -533,7 +554,11 @@ export interface PlacementPolicyPropertiesParent {
 export interface VmVmPlacementPolicyProperties extends PlacementPolicyPropertiesParent {
     /** Virtual machine members list */
     vmMembers: string[];
-    /** placement policy affinity type */
+    /**
+     * placement policy affinity type
+     *
+     * Possible values: "Affinity", "AntiAffinity"
+     */
     affinityType: AffinityType;
     /** placement policy type */
     type: "VmVm";
@@ -544,11 +569,23 @@ export interface VmHostPlacementPolicyProperties extends PlacementPolicyProperti
     vmMembers: string[];
     /** Host members list */
     hostMembers: string[];
-    /** placement policy affinity type */
+    /**
+     * placement policy affinity type
+     *
+     * Possible values: "Affinity", "AntiAffinity"
+     */
     affinityType: AffinityType;
-    /** vm-host placement policy affinity strength (should/must) */
+    /**
+     * vm-host placement policy affinity strength (should/must)
+     *
+     * Possible values: "Should", "Must"
+     */
     affinityStrength?: AffinityStrength;
-    /** placement policy azure hybrid benefit opt-in type */
+    /**
+     * placement policy azure hybrid benefit opt-in type
+     *
+     * Possible values: "SqlHost", "None"
+     */
     azureHybridBenefitType?: AzureHybridBenefitType;
     /** placement policy type */
     type: "VmHost";
@@ -649,6 +686,84 @@ export interface ExtensionResource extends Resource {
 /** The resource model definition for an Azure Resource Manager resource with an etag. */
 export interface AzureEntityResource extends Resource {
 }
+/** A private link resource. */
+export interface PrivateLinkResource extends Resource {
+    /** Resource properties. */
+    properties?: PrivateLinkResourceProperties;
+}
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+    /** The private link resource private link DNS zone name. */
+    requiredZoneNames?: string[];
+}
+/** The private endpoint connection resource */
+export interface PrivateEndpointConnection extends Resource {
+    /** The private endpoint connection properties */
+    properties?: PrivateEndpointConnectionProperties;
+}
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionProperties {
+    /** The private endpoint resource. */
+    privateEndpoint?: PrivateEndpoint;
+    /** A collection of information about the state of the connection between service consumer and provider. */
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+/** The Private Endpoint resource. */
+export interface PrivateEndpoint {
+}
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateLinkServiceConnectionState {
+    /**
+     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+     *
+     * Possible values: "Pending", "Approved", "Rejected"
+     */
+    status?: PrivateEndpointServiceConnectionStatus;
+    /** The reason for approval/rejection of the connection. */
+    description?: string;
+    /** A message indicating if changes on the service provider require any updates on the consumer. */
+    actionsRequired?: string;
+}
+/** The resource model definition containing the full set of allowed properties for a resource. Except properties bag, there cannot be a top level property outside of this set. */
+export interface ResourceModelWithAllowedPropertySet extends TrackedResource {
+    /**
+     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource.
+     * If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource.
+     */
+    managedBy?: string;
+    /**
+     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.
+     * If supported, the resource provider must validate and persist this value.
+     */
+    kind?: string;
+    /**
+     * The etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal etag convention.
+     * Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19),
+     * If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
+     */
+    eTag?: string;
+    identity?: Identity;
+    sku?: Sku;
+    plan?: Plan;
+}
+/** Identity for the resource. */
+export interface Identity {
+    /** The identity type. */
+    type?: ResourceIdentityType;
+}
+/** Plan for the resource. */
+export interface Plan {
+    /** A user defined name of the 3rd Party Artifact that is being procured. */
+    name: string;
+    /** The publisher of the 3rd Party Artifact that is being bought. E.g. NewRelic */
+    publisher: string;
+    /** The 3rd Party artifact that is being procured. E.g. NewRelic. Product maps to the OfferID specified for the artifact at the time of Data Market onboarding. */
+    product: string;
+    /** A publisher provided promotion code as provisioned in Data Market for the said product/artifact. */
+    promotionCode?: string;
+    /** The version of the desired product/artifact. */
+    version?: string;
+}
 /** An update to a private cloud resource */
 export interface PrivateCloudUpdate {
     /** Resource tags. */
@@ -664,7 +779,11 @@ export interface PrivateCloudUpdate {
 export interface PrivateCloudUpdateProperties {
     /** The default cluster used for management */
     managementCluster?: ManagementCluster;
-    /** Connectivity to internet is enabled or disabled */
+    /**
+     * Connectivity to internet is enabled or disabled
+     *
+     * Possible values: "Enabled", "Disabled"
+     */
     internet?: InternetEnum;
     /** vCenter Single Sign On Identity Sources */
     identitySources?: Array<IdentitySource>;
@@ -679,7 +798,11 @@ export interface PrivateCloudUpdateProperties {
      * (A.B.C.D/X).
      */
     extendedNetworkBlocks?: string[];
-    /** The type of DNS zone to use. */
+    /**
+     * The type of DNS zone to use.
+     *
+     * Possible values: "Public", "Private"
+     */
     dnsZoneType?: DnsZoneType;
 }
 /** An update of a cluster resource */
@@ -696,39 +819,13 @@ export interface ClusterUpdateProperties {
     /** The hosts */
     hosts?: string[];
 }
-/** NSX Segment update */
-export interface WorkloadNetworkSegmentUpdate {
-    /** The updatable properties of a Segment update */
-    properties?: WorkloadNetworkSegmentProperties;
-}
-/** NSX DHCP update */
-export interface WorkloadNetworkDhcpUpdate {
-    /** The updatable properties of a DHCP update */
-    properties?: WorkloadNetworkDhcpEntity;
-}
-/** NSX Port Mirroring update */
-export interface WorkloadNetworkPortMirroringUpdate {
-    /** The updatable properties of a Port Mirroring update */
-    properties?: WorkloadNetworkPortMirroringProperties;
-}
-/** NSX VM Group update */
-export interface WorkloadNetworkVMGroupUpdate {
-    /** The updatable properties of a VM Group update */
-    properties?: WorkloadNetworkVMGroupProperties;
-}
-/** NSX DNS Service update */
-export interface WorkloadNetworkDnsServiceUpdate {
-    /** The updatable properties of a DNS Service update */
-    properties?: WorkloadNetworkDnsServiceProperties;
-}
-/** NSX DNS Zone update */
-export interface WorkloadNetworkDnsZoneUpdate {
-    /** The updatable properties of a DNS Zone update */
-    properties?: WorkloadNetworkDnsZoneProperties;
-}
 /** Set VM DRS-driven movement to restricted (enabled) or not (disabled) */
 export interface VirtualMachineRestrictMovement {
-    /** Whether VM DRS-driven movement is restricted (enabled) or not (disabled) */
+    /**
+     * Whether VM DRS-driven movement is restricted (enabled) or not (disabled)
+     *
+     * Possible values: "Enabled", "Disabled"
+     */
     restrictMovement?: VirtualMachineRestrictMovementState;
 }
 /** An update of a DRS placement policy resource */
@@ -738,15 +835,27 @@ export interface PlacementPolicyUpdate {
 }
 /** The properties of a placement policy resource that may be updated */
 export interface PlacementPolicyUpdateProperties {
-    /** Whether the placement policy is enabled or disabled */
+    /**
+     * Whether the placement policy is enabled or disabled
+     *
+     * Possible values: "Enabled", "Disabled"
+     */
     state?: PlacementPolicyState;
     /** Virtual machine members list */
     vmMembers?: string[];
     /** Host members list */
     hostMembers?: string[];
-    /** vm-host placement policy affinity strength (should/must) */
+    /**
+     * vm-host placement policy affinity strength (should/must)
+     *
+     * Possible values: "Should", "Must"
+     */
     affinityStrength?: AffinityStrength;
-    /** placement policy azure hybrid benefit opt-in type */
+    /**
+     * placement policy azure hybrid benefit opt-in type
+     *
+     * Possible values: "SqlHost", "None"
+     */
     azureHybridBenefitType?: AzureHybridBenefitType;
 }
 /**
@@ -760,130 +869,104 @@ export type AddonProperties = AddonPropertiesParent | AddonSrmProperties | Addon
 export type PlacementPolicyProperties = PlacementPolicyPropertiesParent | VmVmPlacementPolicyProperties | VmHostPlacementPolicyProperties;
 /** The arguments passed in to the execution */
 export type ScriptExecutionParameter = ScriptExecutionParameterParent | ScriptSecureStringExecutionParameter | ScriptStringExecutionParameter | PSCredentialExecutionParameter;
-/** Available service tiers for the SKU. */
+/** Alias for SkuTier */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
 /** Alias for ResourceProvisioningState */
-export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled" | string;
+export type ResourceProvisioningState = string;
 /** Alias for ClusterProvisioningState */
-export type ClusterProvisioningState = string | ResourceProvisioningState | "Cancelled" | "Deleting" | "Updating";
+export type ClusterProvisioningState = string;
 /** Alias for InternetEnum */
-export type InternetEnum = string | "Enabled" | "Disabled";
+export type InternetEnum = string;
 /** Alias for SslEnum */
-export type SslEnum = string | "Enabled" | "Disabled";
+export type SslEnum = string;
 /** Alias for AvailabilityStrategy */
-export type AvailabilityStrategy = string | "SingleZone" | "DualZone";
+export type AvailabilityStrategy = string;
 /** Alias for EncryptionState */
-export type EncryptionState = string | "Enabled" | "Disabled";
+export type EncryptionState = string;
 /** Alias for EncryptionKeyStatus */
-export type EncryptionKeyStatus = string | "Connected" | "AccessDenied";
+export type EncryptionKeyStatus = string;
 /** Alias for EncryptionVersionType */
-export type EncryptionVersionType = string | "Fixed" | "AutoDetected";
+export type EncryptionVersionType = string;
 /** Alias for PrivateCloudProvisioningState */
-export type PrivateCloudProvisioningState = string | ResourceProvisioningState | "Cancelled" | "Pending" | "Building" | "Deleting" | "Updating";
+export type PrivateCloudProvisioningState = string;
 /** Alias for NsxPublicIpQuotaRaisedEnum */
-export type NsxPublicIpQuotaRaisedEnum = string | "Enabled" | "Disabled";
+export type NsxPublicIpQuotaRaisedEnum = string;
 /** Alias for DnsZoneType */
-export type DnsZoneType = string | "Public" | "Private";
+export type DnsZoneType = string;
 /** Alias for SystemAssignedServiceIdentityType */
-export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned" | string;
+export type SystemAssignedServiceIdentityType = string;
 /** Alias for CreatedByType */
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key" | string;
-/** Alias for PrivateEndpointServiceConnectionStatus */
-export type PrivateEndpointServiceConnectionStatus = "Pending" | "Approved" | "Rejected" | string;
-/** Alias for PrivateEndpointConnectionProvisioningState */
-export type PrivateEndpointConnectionProvisioningState = ResourceProvisioningState | "Creating" | "Deleting";
-/** Alias for LocationProvisioningState */
-export type LocationProvisioningState = string | ResourceProvisioningState;
+export type CreatedByType = string;
 /** Alias for DatastoreProvisioningState */
-export type DatastoreProvisioningState = string | ResourceProvisioningState | "Cancelled" | "Pending" | "Creating" | "Updating" | "Deleting";
+export type DatastoreProvisioningState = string;
 /** Alias for MountOptionEnum */
-export type MountOptionEnum = string | "MOUNT" | "ATTACH";
+export type MountOptionEnum = string;
 /** Alias for DatastoreStatus */
-export type DatastoreStatus = string | "Unknown" | "Accessible" | "Inaccessible" | "Attached" | "Detached" | "LostCommunication" | "DeadOrError";
-/** Alias for HcxEnterpriseSiteProvisioningState */
-export type HcxEnterpriseSiteProvisioningState = string | ResourceProvisioningState;
+export type DatastoreStatus = string;
 /** Alias for HcxEnterpriseSiteStatus */
-export type HcxEnterpriseSiteStatus = string | "Available" | "Consumed" | "Deactivated" | "Deleted";
+export type HcxEnterpriseSiteStatus = string;
 /** Alias for ExpressRouteAuthorizationProvisioningState */
-export type ExpressRouteAuthorizationProvisioningState = string | ResourceProvisioningState | "Updating";
+export type ExpressRouteAuthorizationProvisioningState = string;
 /** Alias for GlobalReachConnectionProvisioningState */
-export type GlobalReachConnectionProvisioningState = string | ResourceProvisioningState | "Updating";
+export type GlobalReachConnectionProvisioningState = string;
 /** Alias for GlobalReachConnectionStatus */
-export type GlobalReachConnectionStatus = string | "Connected" | "Connecting" | "Disconnected";
+export type GlobalReachConnectionStatus = string;
 /** Alias for WorkloadNetworkProvisioningState */
-export type WorkloadNetworkProvisioningState = string | ResourceProvisioningState | "Building" | "Deleting" | "Updating";
+export type WorkloadNetworkProvisioningState = string;
 /** Alias for SegmentStatusEnum */
-export type SegmentStatusEnum = string | "SUCCESS" | "FAILURE";
-/** Alias for WorkloadNetworkSegmentProvisioningState */
-export type WorkloadNetworkSegmentProvisioningState = string | WorkloadNetworkProvisioningState;
+export type SegmentStatusEnum = string;
 /** Alias for DhcpTypeEnum */
-export type DhcpTypeEnum = "SERVER" | "RELAY" | string;
-/** Alias for WorkloadNetworkDhcpProvisioningState */
-export type WorkloadNetworkDhcpProvisioningState = string | WorkloadNetworkProvisioningState;
+export type DhcpTypeEnum = string;
 /** Alias for PortMirroringDirectionEnum */
-export type PortMirroringDirectionEnum = string | "INGRESS" | "EGRESS" | "BIDIRECTIONAL";
+export type PortMirroringDirectionEnum = string;
 /** Alias for PortMirroringStatusEnum */
-export type PortMirroringStatusEnum = string | "SUCCESS" | "FAILURE";
-/** Alias for WorkloadNetworkPortMirroringProvisioningState */
-export type WorkloadNetworkPortMirroringProvisioningState = string | WorkloadNetworkProvisioningState;
+export type PortMirroringStatusEnum = string;
 /** Alias for VMGroupStatusEnum */
-export type VMGroupStatusEnum = string | "SUCCESS" | "FAILURE";
-/** Alias for WorkloadNetworkVMGroupProvisioningState */
-export type WorkloadNetworkVMGroupProvisioningState = string | WorkloadNetworkProvisioningState;
+export type VMGroupStatusEnum = string;
 /** Alias for VMTypeEnum */
-export type VMTypeEnum = string | "REGULAR" | "EDGE" | "SERVICE";
+export type VMTypeEnum = string;
 /** Alias for DnsServiceLogLevelEnum */
-export type DnsServiceLogLevelEnum = string | "DEBUG" | "INFO" | "WARNING" | "ERROR" | "FATAL";
+export type DnsServiceLogLevelEnum = string;
 /** Alias for DnsServiceStatusEnum */
-export type DnsServiceStatusEnum = string | "SUCCESS" | "FAILURE";
-/** Alias for WorkloadNetworkDnsServiceProvisioningState */
-export type WorkloadNetworkDnsServiceProvisioningState = string | WorkloadNetworkProvisioningState;
-/** Alias for WorkloadNetworkDnsZoneProvisioningState */
-export type WorkloadNetworkDnsZoneProvisioningState = string | WorkloadNetworkProvisioningState;
-/** Alias for WorkloadNetworkPublicIPProvisioningState */
-export type WorkloadNetworkPublicIPProvisioningState = string | WorkloadNetworkProvisioningState;
-/** Alias for CloudLinkProvisioningState */
-export type CloudLinkProvisioningState = string | ResourceProvisioningState;
+export type DnsServiceStatusEnum = string;
 /** Alias for CloudLinkStatus */
-export type CloudLinkStatus = string | "Active" | "Building" | "Deleting" | "Failed" | "Disconnected";
+export type CloudLinkStatus = string;
 /** Alias for AddonType */
-export type AddonType = "SRM" | "VR" | "HCX" | "Arc" | string;
+export type AddonType = string;
 /** Alias for AddonProvisioningState */
-export type AddonProvisioningState = string | ResourceProvisioningState | "Cancelled" | "Building" | "Deleting" | "Updating";
-/** Alias for VirtualMachineProvisioningState */
-export type VirtualMachineProvisioningState = string | ResourceProvisioningState;
+export type AddonProvisioningState = string;
 /** Alias for VirtualMachineRestrictMovementState */
-export type VirtualMachineRestrictMovementState = string | "Enabled" | "Disabled";
+export type VirtualMachineRestrictMovementState = string;
 /** Alias for PlacementPolicyType */
-export type PlacementPolicyType = "VmVm" | "VmHost" | string;
+export type PlacementPolicyType = string;
 /** Alias for PlacementPolicyState */
-export type PlacementPolicyState = string | "Enabled" | "Disabled";
-/** Alias for PlacementPolicyProvisioningState */
-export type PlacementPolicyProvisioningState = string | WorkloadNetworkProvisioningState;
+export type PlacementPolicyState = string;
 /** Alias for AffinityType */
-export type AffinityType = string | "Affinity" | "AntiAffinity";
+export type AffinityType = string;
 /** Alias for AffinityStrength */
-export type AffinityStrength = string | "Should" | "Must";
+export type AffinityStrength = string;
 /** Alias for AzureHybridBenefitType */
-export type AzureHybridBenefitType = string | "SqlHost" | "None";
-/** Alias for ScriptPackageProvisioningState */
-export type ScriptPackageProvisioningState = string | ResourceProvisioningState;
-/** Alias for ScriptCmdletProvisioningState */
-export type ScriptCmdletProvisioningState = string | ResourceProvisioningState;
+export type AzureHybridBenefitType = string;
 /** Alias for ScriptCmdletAudience */
-export type ScriptCmdletAudience = string | "Automation" | "Any";
+export type ScriptCmdletAudience = string;
 /** Alias for ScriptParameterTypes */
-export type ScriptParameterTypes = string | "String" | "SecureString" | "Credential" | "Int" | "Bool" | "Float";
+export type ScriptParameterTypes = string;
 /** Alias for VisibilityParameterEnum */
-export type VisibilityParameterEnum = string | "Visible" | "Hidden";
+export type VisibilityParameterEnum = string;
 /** Alias for OptionalParamEnum */
-export type OptionalParamEnum = string | "Optional" | "Required";
+export type OptionalParamEnum = string;
 /** Alias for ScriptExecutionParameterType */
-export type ScriptExecutionParameterType = "Value" | "SecureValue" | "Credential" | string;
+export type ScriptExecutionParameterType = string;
 /** Alias for ScriptExecutionProvisioningState */
-export type ScriptExecutionProvisioningState = string | ResourceProvisioningState | "Pending" | "Running" | "Cancelling" | "Cancelled" | "Deleting";
+export type ScriptExecutionProvisioningState = string;
 /** Alias for IscsiPathProvisioningState */
-export type IscsiPathProvisioningState = string | ResourceProvisioningState | "Pending" | "Building" | "Deleting" | "Updating";
+export type IscsiPathProvisioningState = string;
+/** Alias for PrivateEndpointServiceConnectionStatus */
+export type PrivateEndpointServiceConnectionStatus = string;
+/** Alias for PrivateEndpointConnectionProvisioningState */
+export type PrivateEndpointConnectionProvisioningState = string;
+/** Alias for ResourceIdentityType */
+export type ResourceIdentityType = "SystemAssigned";
 /** Alias for ScriptOutputStreamType */
-export type ScriptOutputStreamType = string | "Information" | "Warning" | "Output" | "Error";
+export type ScriptOutputStreamType = string;
 //# sourceMappingURL=models.d.ts.map

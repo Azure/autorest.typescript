@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { AddonListResult, Addon } from "../../models/models.js";
+import { Addon, _AddonList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, AddonsCreateOrUpdate200Response, AddonsCreateOrUpdate201Response, AddonsCreateOrUpdateDefaultResponse, AddonsCreateOrUpdateLogicalResponse, AddonsDelete200Response, AddonsDelete202Response, AddonsDelete204Response, AddonsDeleteDefaultResponse, AddonsDeleteLogicalResponse, AddonsGet200Response, AddonsGetDefaultResponse, AddonsListByPrivateCloud200Response, AddonsListByPrivateCloudDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { AddonsListByPrivateCloudOptionalParams, AddonsGetOptionalParams, AddonsCreateOrUpdateOptionalParams, AddonsDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: AddonsListByPrivateCloudOptionalParams): StreamableMethod<AddonsListByPrivateCloud200Response | AddonsListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: AddonsListByPrivateCloud200Response | AddonsListByPrivateCloudDefaultResponse): Promise<AddonListResult>;
+export declare function _listByPrivateCloudDeserialize(result: AddonsListByPrivateCloud200Response | AddonsListByPrivateCloudDefaultResponse): Promise<_AddonList>;
 /** List Addon resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: AddonsListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<Addon>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, addonName: string, options?: AddonsGetOptionalParams): StreamableMethod<AddonsGet200Response | AddonsGetDefaultResponse>;

@@ -4,10 +4,24 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  PrivateCloudListResult,
+  skuSerializer,
+  privateCloudPropertiesSerializer,
+  systemAssignedServiceIdentitySerializer,
+  privateCloudUpdatePropertiesSerializer,
+  CreatedByType,
   PrivateCloud,
+  InternetEnum,
+  SslEnum,
+  AvailabilityStrategy,
+  EncryptionState,
+  EncryptionKeyStatus,
+  EncryptionVersionType,
+  NsxPublicIpQuotaRaisedEnum,
+  DnsZoneType,
+  SystemAssignedServiceIdentityType,
   PrivateCloudUpdate,
   AdminCredentials,
+  _PrivateCloudList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -48,6 +62,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   PrivateCloudsListByResourceGroupOptionalParams,
   PrivateCloudsListInSubscriptionOptionalParams,
@@ -84,169 +99,184 @@ export async function _listByResourceGroupDeserialize(
   result:
     | PrivateCloudsListByResourceGroup200Response
     | PrivateCloudsListByResourceGroupDefaultResponse,
-): Promise<PrivateCloudListResult> {
+): Promise<_PrivateCloudList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      location: p["location"],
-      tags: p["tags"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            managementCluster: {
-              clusterSize: p.properties?.managementCluster["clusterSize"],
-              provisioningState:
-                p.properties?.managementCluster["provisioningState"],
-              clusterId: p.properties?.managementCluster["clusterId"],
-              hosts: p.properties?.managementCluster["hosts"],
-              vsanDatastoreName:
-                p.properties?.managementCluster["vsanDatastoreName"],
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
             },
-            internet: p.properties?.["internet"],
-            identitySources:
-              p.properties?.["identitySources"] === undefined
-                ? p.properties?.["identitySources"]
-                : p.properties?.["identitySources"].map((p) => ({
-                    name: p["name"],
-                    alias: p["alias"],
-                    domain: p["domain"],
-                    baseUserDN: p["baseUserDN"],
-                    baseGroupDN: p["baseGroupDN"],
-                    primaryServer: p["primaryServer"],
-                    secondaryServer: p["secondaryServer"],
-                    ssl: p["ssl"],
-                    username: p["username"],
-                    password: p["password"],
-                  })),
-            availability: !p.properties?.availability
-              ? undefined
-              : {
-                  strategy: p.properties?.availability?.["strategy"],
-                  zone: p.properties?.availability?.["zone"],
-                  secondaryZone: p.properties?.availability?.["secondaryZone"],
-                },
-            encryption: !p.properties?.encryption
-              ? undefined
-              : {
-                  status: p.properties?.encryption?.["status"],
-                  keyVaultProperties: !p.properties?.encryption
-                    ?.keyVaultProperties
-                    ? undefined
-                    : {
-                        keyName:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "keyName"
-                          ],
-                        keyVersion:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "keyVersion"
-                          ],
-                        autoDetectedKeyVersion:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "autoDetectedKeyVersion"
-                          ],
-                        keyVaultUrl:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "keyVaultUrl"
-                          ],
-                        keyState:
-                          p.properties?.encryption?.keyVaultProperties?.[
+        properties: !p.properties
+          ? undefined
+          : {
+              managementCluster: {
+                clusterSize: p.properties?.managementCluster["clusterSize"],
+                provisioningState: p.properties?.managementCluster[
+                  "provisioningState"
+                ] as any,
+                clusterId: p.properties?.managementCluster["clusterId"],
+                hosts: p.properties?.managementCluster["hosts"],
+                vsanDatastoreName:
+                  p.properties?.managementCluster["vsanDatastoreName"],
+              },
+              internet: p.properties?.["internet"] as InternetEnum,
+              identitySources:
+                p.properties?.["identitySources"] === undefined
+                  ? p.properties?.["identitySources"]
+                  : p.properties?.["identitySources"].map((p) => {
+                      return {
+                        name: p["name"],
+                        alias: p["alias"],
+                        domain: p["domain"],
+                        baseUserDN: p["baseUserDN"],
+                        baseGroupDN: p["baseGroupDN"],
+                        primaryServer: p["primaryServer"],
+                        secondaryServer: p["secondaryServer"],
+                        ssl: p["ssl"] as SslEnum,
+                        username: p["username"],
+                        password: p["password"],
+                      };
+                    }),
+              availability: !p.properties?.availability
+                ? undefined
+                : {
+                    strategy: p.properties?.availability?.[
+                      "strategy"
+                    ] as AvailabilityStrategy,
+                    zone: p.properties?.availability?.["zone"],
+                    secondaryZone:
+                      p.properties?.availability?.["secondaryZone"],
+                  },
+              encryption: !p.properties?.encryption
+                ? undefined
+                : {
+                    status: p.properties?.encryption?.[
+                      "status"
+                    ] as EncryptionState,
+                    keyVaultProperties: !p.properties?.encryption
+                      ?.keyVaultProperties
+                      ? undefined
+                      : {
+                          keyName:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "keyName"
+                            ],
+                          keyVersion:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "keyVersion"
+                            ],
+                          autoDetectedKeyVersion:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "autoDetectedKeyVersion"
+                            ],
+                          keyVaultUrl:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "keyVaultUrl"
+                            ],
+                          keyState: p.properties?.encryption
+                            ?.keyVaultProperties?.[
                             "keyState"
-                          ],
-                        versionType:
-                          p.properties?.encryption?.keyVaultProperties?.[
+                          ] as EncryptionKeyStatus,
+                          versionType: p.properties?.encryption
+                            ?.keyVaultProperties?.[
                             "versionType"
-                          ],
-                      },
-                },
-            extendedNetworkBlocks: p.properties?.["extendedNetworkBlocks"],
-            provisioningState: p.properties?.["provisioningState"],
-            circuit: !p.properties?.circuit
-              ? undefined
-              : {
-                  primarySubnet: p.properties?.circuit?.["primarySubnet"],
-                  secondarySubnet: p.properties?.circuit?.["secondarySubnet"],
-                  expressRouteID: p.properties?.circuit?.["expressRouteID"],
-                  expressRoutePrivatePeeringID:
-                    p.properties?.circuit?.["expressRoutePrivatePeeringID"],
-                },
-            endpoints: !p.properties?.endpoints
-              ? undefined
-              : {
-                  nsxtManager: p.properties?.endpoints?.["nsxtManager"],
-                  vcsa: p.properties?.endpoints?.["vcsa"],
-                  hcxCloudManager: p.properties?.endpoints?.["hcxCloudManager"],
-                  nsxtManagerIp: p.properties?.endpoints?.["nsxtManagerIp"],
-                  vcenterIp: p.properties?.endpoints?.["vcenterIp"],
-                  hcxCloudManagerIp:
-                    p.properties?.endpoints?.["hcxCloudManagerIp"],
-                },
-            networkBlock: p.properties?.["networkBlock"],
-            managementNetwork: p.properties?.["managementNetwork"],
-            provisioningNetwork: p.properties?.["provisioningNetwork"],
-            vmotionNetwork: p.properties?.["vmotionNetwork"],
-            vcenterPassword: p.properties?.["vcenterPassword"],
-            nsxtPassword: p.properties?.["nsxtPassword"],
-            vcenterCertificateThumbprint:
-              p.properties?.["vcenterCertificateThumbprint"],
-            nsxtCertificateThumbprint:
-              p.properties?.["nsxtCertificateThumbprint"],
-            externalCloudLinks: p.properties?.["externalCloudLinks"],
-            secondaryCircuit: !p.properties?.secondaryCircuit
-              ? undefined
-              : {
-                  primarySubnet:
-                    p.properties?.secondaryCircuit?.["primarySubnet"],
-                  secondarySubnet:
-                    p.properties?.secondaryCircuit?.["secondarySubnet"],
-                  expressRouteID:
-                    p.properties?.secondaryCircuit?.["expressRouteID"],
-                  expressRoutePrivatePeeringID:
-                    p.properties?.secondaryCircuit?.[
-                      "expressRoutePrivatePeeringID"
-                    ],
-                },
-            nsxPublicIpQuotaRaised: p.properties?.["nsxPublicIpQuotaRaised"],
-            virtualNetworkId: p.properties?.["virtualNetworkId"],
-            dnsZoneType: p.properties?.["dnsZoneType"],
-          },
-      sku: {
-        name: p.sku["name"],
-        tier: p.sku["tier"],
-        size: p.sku["size"],
-        family: p.sku["family"],
-        capacity: p.sku["capacity"],
-      },
-      identity: !p.identity
-        ? undefined
-        : {
-            tenantId: p.identity?.["tenantId"],
-            principalId: p.identity?.["principalId"],
-            type: p.identity?.["type"],
-          },
-    })),
+                          ] as EncryptionVersionType,
+                        },
+                  },
+              extendedNetworkBlocks: p.properties?.["extendedNetworkBlocks"],
+              provisioningState: p.properties?.["provisioningState"] as any,
+              circuit: !p.properties?.circuit
+                ? undefined
+                : {
+                    primarySubnet: p.properties?.circuit?.["primarySubnet"],
+                    secondarySubnet: p.properties?.circuit?.["secondarySubnet"],
+                    expressRouteID: p.properties?.circuit?.["expressRouteID"],
+                    expressRoutePrivatePeeringID:
+                      p.properties?.circuit?.["expressRoutePrivatePeeringID"],
+                  },
+              endpoints: !p.properties?.endpoints
+                ? undefined
+                : {
+                    nsxtManager: p.properties?.endpoints?.["nsxtManager"],
+                    vcsa: p.properties?.endpoints?.["vcsa"],
+                    hcxCloudManager:
+                      p.properties?.endpoints?.["hcxCloudManager"],
+                    nsxtManagerIp: p.properties?.endpoints?.["nsxtManagerIp"],
+                    vcenterIp: p.properties?.endpoints?.["vcenterIp"],
+                    hcxCloudManagerIp:
+                      p.properties?.endpoints?.["hcxCloudManagerIp"],
+                  },
+              networkBlock: p.properties?.["networkBlock"],
+              managementNetwork: p.properties?.["managementNetwork"],
+              provisioningNetwork: p.properties?.["provisioningNetwork"],
+              vmotionNetwork: p.properties?.["vmotionNetwork"],
+              vcenterPassword: p.properties?.["vcenterPassword"],
+              nsxtPassword: p.properties?.["nsxtPassword"],
+              vcenterCertificateThumbprint:
+                p.properties?.["vcenterCertificateThumbprint"],
+              nsxtCertificateThumbprint:
+                p.properties?.["nsxtCertificateThumbprint"],
+              externalCloudLinks: p.properties?.["externalCloudLinks"],
+              secondaryCircuit: !p.properties?.secondaryCircuit
+                ? undefined
+                : {
+                    primarySubnet:
+                      p.properties?.secondaryCircuit?.["primarySubnet"],
+                    secondarySubnet:
+                      p.properties?.secondaryCircuit?.["secondarySubnet"],
+                    expressRouteID:
+                      p.properties?.secondaryCircuit?.["expressRouteID"],
+                    expressRoutePrivatePeeringID:
+                      p.properties?.secondaryCircuit?.[
+                        "expressRoutePrivatePeeringID"
+                      ],
+                  },
+              nsxPublicIpQuotaRaised: p.properties?.[
+                "nsxPublicIpQuotaRaised"
+              ] as NsxPublicIpQuotaRaisedEnum,
+              virtualNetworkId: p.properties?.["virtualNetworkId"],
+              dnsZoneType: p.properties?.["dnsZoneType"] as DnsZoneType,
+            },
+        sku: {
+          name: p.sku["name"],
+          tier: p.sku["tier"],
+          size: p.sku["size"],
+          family: p.sku["family"],
+          capacity: p.sku["capacity"],
+        },
+        identity: !p.identity
+          ? undefined
+          : {
+              principalId: p.identity?.["principalId"],
+              tenantId: p.identity?.["tenantId"],
+              type: p.identity?.["type"] as SystemAssignedServiceIdentityType,
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -296,169 +326,184 @@ export async function _listInSubscriptionDeserialize(
   result:
     | PrivateCloudsListInSubscription200Response
     | PrivateCloudsListInSubscriptionDefaultResponse,
-): Promise<PrivateCloudListResult> {
+): Promise<_PrivateCloudList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      location: p["location"],
-      tags: p["tags"],
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            managementCluster: {
-              clusterSize: p.properties?.managementCluster["clusterSize"],
-              provisioningState:
-                p.properties?.managementCluster["provisioningState"],
-              clusterId: p.properties?.managementCluster["clusterId"],
-              hosts: p.properties?.managementCluster["hosts"],
-              vsanDatastoreName:
-                p.properties?.managementCluster["vsanDatastoreName"],
+    value: result.body["value"].map((p) => {
+      return {
+        tags: p["tags"],
+        location: p["location"],
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
             },
-            internet: p.properties?.["internet"],
-            identitySources:
-              p.properties?.["identitySources"] === undefined
-                ? p.properties?.["identitySources"]
-                : p.properties?.["identitySources"].map((p) => ({
-                    name: p["name"],
-                    alias: p["alias"],
-                    domain: p["domain"],
-                    baseUserDN: p["baseUserDN"],
-                    baseGroupDN: p["baseGroupDN"],
-                    primaryServer: p["primaryServer"],
-                    secondaryServer: p["secondaryServer"],
-                    ssl: p["ssl"],
-                    username: p["username"],
-                    password: p["password"],
-                  })),
-            availability: !p.properties?.availability
-              ? undefined
-              : {
-                  strategy: p.properties?.availability?.["strategy"],
-                  zone: p.properties?.availability?.["zone"],
-                  secondaryZone: p.properties?.availability?.["secondaryZone"],
-                },
-            encryption: !p.properties?.encryption
-              ? undefined
-              : {
-                  status: p.properties?.encryption?.["status"],
-                  keyVaultProperties: !p.properties?.encryption
-                    ?.keyVaultProperties
-                    ? undefined
-                    : {
-                        keyName:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "keyName"
-                          ],
-                        keyVersion:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "keyVersion"
-                          ],
-                        autoDetectedKeyVersion:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "autoDetectedKeyVersion"
-                          ],
-                        keyVaultUrl:
-                          p.properties?.encryption?.keyVaultProperties?.[
-                            "keyVaultUrl"
-                          ],
-                        keyState:
-                          p.properties?.encryption?.keyVaultProperties?.[
+        properties: !p.properties
+          ? undefined
+          : {
+              managementCluster: {
+                clusterSize: p.properties?.managementCluster["clusterSize"],
+                provisioningState: p.properties?.managementCluster[
+                  "provisioningState"
+                ] as any,
+                clusterId: p.properties?.managementCluster["clusterId"],
+                hosts: p.properties?.managementCluster["hosts"],
+                vsanDatastoreName:
+                  p.properties?.managementCluster["vsanDatastoreName"],
+              },
+              internet: p.properties?.["internet"] as InternetEnum,
+              identitySources:
+                p.properties?.["identitySources"] === undefined
+                  ? p.properties?.["identitySources"]
+                  : p.properties?.["identitySources"].map((p) => {
+                      return {
+                        name: p["name"],
+                        alias: p["alias"],
+                        domain: p["domain"],
+                        baseUserDN: p["baseUserDN"],
+                        baseGroupDN: p["baseGroupDN"],
+                        primaryServer: p["primaryServer"],
+                        secondaryServer: p["secondaryServer"],
+                        ssl: p["ssl"] as SslEnum,
+                        username: p["username"],
+                        password: p["password"],
+                      };
+                    }),
+              availability: !p.properties?.availability
+                ? undefined
+                : {
+                    strategy: p.properties?.availability?.[
+                      "strategy"
+                    ] as AvailabilityStrategy,
+                    zone: p.properties?.availability?.["zone"],
+                    secondaryZone:
+                      p.properties?.availability?.["secondaryZone"],
+                  },
+              encryption: !p.properties?.encryption
+                ? undefined
+                : {
+                    status: p.properties?.encryption?.[
+                      "status"
+                    ] as EncryptionState,
+                    keyVaultProperties: !p.properties?.encryption
+                      ?.keyVaultProperties
+                      ? undefined
+                      : {
+                          keyName:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "keyName"
+                            ],
+                          keyVersion:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "keyVersion"
+                            ],
+                          autoDetectedKeyVersion:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "autoDetectedKeyVersion"
+                            ],
+                          keyVaultUrl:
+                            p.properties?.encryption?.keyVaultProperties?.[
+                              "keyVaultUrl"
+                            ],
+                          keyState: p.properties?.encryption
+                            ?.keyVaultProperties?.[
                             "keyState"
-                          ],
-                        versionType:
-                          p.properties?.encryption?.keyVaultProperties?.[
+                          ] as EncryptionKeyStatus,
+                          versionType: p.properties?.encryption
+                            ?.keyVaultProperties?.[
                             "versionType"
-                          ],
-                      },
-                },
-            extendedNetworkBlocks: p.properties?.["extendedNetworkBlocks"],
-            provisioningState: p.properties?.["provisioningState"],
-            circuit: !p.properties?.circuit
-              ? undefined
-              : {
-                  primarySubnet: p.properties?.circuit?.["primarySubnet"],
-                  secondarySubnet: p.properties?.circuit?.["secondarySubnet"],
-                  expressRouteID: p.properties?.circuit?.["expressRouteID"],
-                  expressRoutePrivatePeeringID:
-                    p.properties?.circuit?.["expressRoutePrivatePeeringID"],
-                },
-            endpoints: !p.properties?.endpoints
-              ? undefined
-              : {
-                  nsxtManager: p.properties?.endpoints?.["nsxtManager"],
-                  vcsa: p.properties?.endpoints?.["vcsa"],
-                  hcxCloudManager: p.properties?.endpoints?.["hcxCloudManager"],
-                  nsxtManagerIp: p.properties?.endpoints?.["nsxtManagerIp"],
-                  vcenterIp: p.properties?.endpoints?.["vcenterIp"],
-                  hcxCloudManagerIp:
-                    p.properties?.endpoints?.["hcxCloudManagerIp"],
-                },
-            networkBlock: p.properties?.["networkBlock"],
-            managementNetwork: p.properties?.["managementNetwork"],
-            provisioningNetwork: p.properties?.["provisioningNetwork"],
-            vmotionNetwork: p.properties?.["vmotionNetwork"],
-            vcenterPassword: p.properties?.["vcenterPassword"],
-            nsxtPassword: p.properties?.["nsxtPassword"],
-            vcenterCertificateThumbprint:
-              p.properties?.["vcenterCertificateThumbprint"],
-            nsxtCertificateThumbprint:
-              p.properties?.["nsxtCertificateThumbprint"],
-            externalCloudLinks: p.properties?.["externalCloudLinks"],
-            secondaryCircuit: !p.properties?.secondaryCircuit
-              ? undefined
-              : {
-                  primarySubnet:
-                    p.properties?.secondaryCircuit?.["primarySubnet"],
-                  secondarySubnet:
-                    p.properties?.secondaryCircuit?.["secondarySubnet"],
-                  expressRouteID:
-                    p.properties?.secondaryCircuit?.["expressRouteID"],
-                  expressRoutePrivatePeeringID:
-                    p.properties?.secondaryCircuit?.[
-                      "expressRoutePrivatePeeringID"
-                    ],
-                },
-            nsxPublicIpQuotaRaised: p.properties?.["nsxPublicIpQuotaRaised"],
-            virtualNetworkId: p.properties?.["virtualNetworkId"],
-            dnsZoneType: p.properties?.["dnsZoneType"],
-          },
-      sku: {
-        name: p.sku["name"],
-        tier: p.sku["tier"],
-        size: p.sku["size"],
-        family: p.sku["family"],
-        capacity: p.sku["capacity"],
-      },
-      identity: !p.identity
-        ? undefined
-        : {
-            tenantId: p.identity?.["tenantId"],
-            principalId: p.identity?.["principalId"],
-            type: p.identity?.["type"],
-          },
-    })),
+                          ] as EncryptionVersionType,
+                        },
+                  },
+              extendedNetworkBlocks: p.properties?.["extendedNetworkBlocks"],
+              provisioningState: p.properties?.["provisioningState"] as any,
+              circuit: !p.properties?.circuit
+                ? undefined
+                : {
+                    primarySubnet: p.properties?.circuit?.["primarySubnet"],
+                    secondarySubnet: p.properties?.circuit?.["secondarySubnet"],
+                    expressRouteID: p.properties?.circuit?.["expressRouteID"],
+                    expressRoutePrivatePeeringID:
+                      p.properties?.circuit?.["expressRoutePrivatePeeringID"],
+                  },
+              endpoints: !p.properties?.endpoints
+                ? undefined
+                : {
+                    nsxtManager: p.properties?.endpoints?.["nsxtManager"],
+                    vcsa: p.properties?.endpoints?.["vcsa"],
+                    hcxCloudManager:
+                      p.properties?.endpoints?.["hcxCloudManager"],
+                    nsxtManagerIp: p.properties?.endpoints?.["nsxtManagerIp"],
+                    vcenterIp: p.properties?.endpoints?.["vcenterIp"],
+                    hcxCloudManagerIp:
+                      p.properties?.endpoints?.["hcxCloudManagerIp"],
+                  },
+              networkBlock: p.properties?.["networkBlock"],
+              managementNetwork: p.properties?.["managementNetwork"],
+              provisioningNetwork: p.properties?.["provisioningNetwork"],
+              vmotionNetwork: p.properties?.["vmotionNetwork"],
+              vcenterPassword: p.properties?.["vcenterPassword"],
+              nsxtPassword: p.properties?.["nsxtPassword"],
+              vcenterCertificateThumbprint:
+                p.properties?.["vcenterCertificateThumbprint"],
+              nsxtCertificateThumbprint:
+                p.properties?.["nsxtCertificateThumbprint"],
+              externalCloudLinks: p.properties?.["externalCloudLinks"],
+              secondaryCircuit: !p.properties?.secondaryCircuit
+                ? undefined
+                : {
+                    primarySubnet:
+                      p.properties?.secondaryCircuit?.["primarySubnet"],
+                    secondarySubnet:
+                      p.properties?.secondaryCircuit?.["secondarySubnet"],
+                    expressRouteID:
+                      p.properties?.secondaryCircuit?.["expressRouteID"],
+                    expressRoutePrivatePeeringID:
+                      p.properties?.secondaryCircuit?.[
+                        "expressRoutePrivatePeeringID"
+                      ],
+                  },
+              nsxPublicIpQuotaRaised: p.properties?.[
+                "nsxPublicIpQuotaRaised"
+              ] as NsxPublicIpQuotaRaisedEnum,
+              virtualNetworkId: p.properties?.["virtualNetworkId"],
+              dnsZoneType: p.properties?.["dnsZoneType"] as DnsZoneType,
+            },
+        sku: {
+          name: p.sku["name"],
+          tier: p.sku["tier"],
+          size: p.sku["size"],
+          family: p.sku["family"],
+          capacity: p.sku["capacity"],
+        },
+        identity: !p.identity
+          ? undefined
+          : {
+              principalId: p.identity?.["principalId"],
+              tenantId: p.identity?.["tenantId"],
+              type: p.identity?.["type"] as SystemAssignedServiceIdentityType,
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -506,8 +551,8 @@ export async function _getDeserialize(
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -515,13 +560,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -533,33 +582,38 @@ export async function _getDeserialize(
           managementCluster: {
             clusterSize:
               result.body.properties?.managementCluster["clusterSize"],
-            provisioningState:
-              result.body.properties?.managementCluster["provisioningState"],
+            provisioningState: result.body.properties?.managementCluster[
+              "provisioningState"
+            ] as any,
             clusterId: result.body.properties?.managementCluster["clusterId"],
             hosts: result.body.properties?.managementCluster["hosts"],
             vsanDatastoreName:
               result.body.properties?.managementCluster["vsanDatastoreName"],
           },
-          internet: result.body.properties?.["internet"],
+          internet: result.body.properties?.["internet"] as InternetEnum,
           identitySources:
             result.body.properties?.["identitySources"] === undefined
               ? result.body.properties?.["identitySources"]
-              : result.body.properties?.["identitySources"].map((p) => ({
-                  name: p["name"],
-                  alias: p["alias"],
-                  domain: p["domain"],
-                  baseUserDN: p["baseUserDN"],
-                  baseGroupDN: p["baseGroupDN"],
-                  primaryServer: p["primaryServer"],
-                  secondaryServer: p["secondaryServer"],
-                  ssl: p["ssl"],
-                  username: p["username"],
-                  password: p["password"],
-                })),
+              : result.body.properties?.["identitySources"].map((p) => {
+                  return {
+                    name: p["name"],
+                    alias: p["alias"],
+                    domain: p["domain"],
+                    baseUserDN: p["baseUserDN"],
+                    baseGroupDN: p["baseGroupDN"],
+                    primaryServer: p["primaryServer"],
+                    secondaryServer: p["secondaryServer"],
+                    ssl: p["ssl"] as SslEnum,
+                    username: p["username"],
+                    password: p["password"],
+                  };
+                }),
           availability: !result.body.properties?.availability
             ? undefined
             : {
-                strategy: result.body.properties?.availability?.["strategy"],
+                strategy: result.body.properties?.availability?.[
+                  "strategy"
+                ] as AvailabilityStrategy,
                 zone: result.body.properties?.availability?.["zone"],
                 secondaryZone:
                   result.body.properties?.availability?.["secondaryZone"],
@@ -567,7 +621,9 @@ export async function _getDeserialize(
           encryption: !result.body.properties?.encryption
             ? undefined
             : {
-                status: result.body.properties?.encryption?.["status"],
+                status: result.body.properties?.encryption?.[
+                  "status"
+                ] as EncryptionState,
                 keyVaultProperties: !result.body.properties?.encryption
                   ?.keyVaultProperties
                   ? undefined
@@ -584,17 +640,21 @@ export async function _getDeserialize(
                       keyVaultUrl:
                         result.body.properties?.encryption
                           ?.keyVaultProperties?.["keyVaultUrl"],
-                      keyState:
-                        result.body.properties?.encryption
-                          ?.keyVaultProperties?.["keyState"],
-                      versionType:
-                        result.body.properties?.encryption
-                          ?.keyVaultProperties?.["versionType"],
+                      keyState: result.body.properties?.encryption
+                        ?.keyVaultProperties?.[
+                        "keyState"
+                      ] as EncryptionKeyStatus,
+                      versionType: result.body.properties?.encryption
+                        ?.keyVaultProperties?.[
+                        "versionType"
+                      ] as EncryptionVersionType,
                     },
               },
           extendedNetworkBlocks:
             result.body.properties?.["extendedNetworkBlocks"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           circuit: !result.body.properties?.circuit
             ? undefined
             : {
@@ -647,10 +707,11 @@ export async function _getDeserialize(
                     "expressRoutePrivatePeeringID"
                   ],
               },
-          nsxPublicIpQuotaRaised:
-            result.body.properties?.["nsxPublicIpQuotaRaised"],
+          nsxPublicIpQuotaRaised: result.body.properties?.[
+            "nsxPublicIpQuotaRaised"
+          ] as NsxPublicIpQuotaRaisedEnum,
           virtualNetworkId: result.body.properties?.["virtualNetworkId"],
-          dnsZoneType: result.body.properties?.["dnsZoneType"],
+          dnsZoneType: result.body.properties?.["dnsZoneType"] as DnsZoneType,
         },
     sku: {
       name: result.body.sku["name"],
@@ -662,9 +723,11 @@ export async function _getDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          tenantId: result.body.identity?.["tenantId"],
+          type: result.body.identity?.[
+            "type"
+          ] as SystemAssignedServiceIdentityType,
         },
   };
 }
@@ -710,86 +773,17 @@ export function _createOrUpdateSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
+        tags: !privateCloud.tags
+          ? privateCloud.tags
+          : (serializeRecord(privateCloud.tags as any) as any),
         location: privateCloud["location"],
-        tags: privateCloud["tags"],
         properties: !privateCloud.properties
-          ? undefined
-          : {
-              managementCluster: {
-                clusterSize:
-                  privateCloud.properties?.managementCluster["clusterSize"],
-                hosts: privateCloud.properties?.managementCluster["hosts"],
-                vsanDatastoreName:
-                  privateCloud.properties?.managementCluster[
-                    "vsanDatastoreName"
-                  ],
-              },
-              internet: privateCloud.properties?.["internet"],
-              identitySources:
-                privateCloud.properties?.["identitySources"] === undefined
-                  ? privateCloud.properties?.["identitySources"]
-                  : privateCloud.properties?.["identitySources"].map((p) => ({
-                      name: p["name"],
-                      alias: p["alias"],
-                      domain: p["domain"],
-                      baseUserDN: p["baseUserDN"],
-                      baseGroupDN: p["baseGroupDN"],
-                      primaryServer: p["primaryServer"],
-                      secondaryServer: p["secondaryServer"],
-                      ssl: p["ssl"],
-                      username: p["username"],
-                      password: p["password"],
-                    })),
-              availability: !privateCloud.properties?.availability
-                ? undefined
-                : {
-                    strategy:
-                      privateCloud.properties?.availability?.["strategy"],
-                    zone: privateCloud.properties?.availability?.["zone"],
-                    secondaryZone:
-                      privateCloud.properties?.availability?.["secondaryZone"],
-                  },
-              encryption: !privateCloud.properties?.encryption
-                ? undefined
-                : {
-                    status: privateCloud.properties?.encryption?.["status"],
-                    keyVaultProperties: !privateCloud.properties?.encryption
-                      ?.keyVaultProperties
-                      ? undefined
-                      : {
-                          keyName:
-                            privateCloud.properties?.encryption
-                              ?.keyVaultProperties?.["keyName"],
-                          keyVersion:
-                            privateCloud.properties?.encryption
-                              ?.keyVaultProperties?.["keyVersion"],
-                          keyVaultUrl:
-                            privateCloud.properties?.encryption
-                              ?.keyVaultProperties?.["keyVaultUrl"],
-                        },
-                  },
-              extendedNetworkBlocks:
-                privateCloud.properties?.["extendedNetworkBlocks"],
-              circuit: !privateCloud.properties?.circuit ? undefined : {},
-              networkBlock: privateCloud.properties?.["networkBlock"],
-              vcenterPassword: privateCloud.properties?.["vcenterPassword"],
-              nsxtPassword: privateCloud.properties?.["nsxtPassword"],
-              secondaryCircuit: !privateCloud.properties?.secondaryCircuit
-                ? undefined
-                : {},
-              virtualNetworkId: privateCloud.properties?.["virtualNetworkId"],
-              dnsZoneType: privateCloud.properties?.["dnsZoneType"],
-            },
-        sku: {
-          name: privateCloud.sku["name"],
-          tier: privateCloud.sku["tier"],
-          size: privateCloud.sku["size"],
-          family: privateCloud.sku["family"],
-          capacity: privateCloud.sku["capacity"],
-        },
+          ? privateCloud.properties
+          : privateCloudPropertiesSerializer(privateCloud.properties),
+        sku: skuSerializer(privateCloud.sku),
         identity: !privateCloud.identity
-          ? undefined
-          : { type: privateCloud.identity?.["type"] },
+          ? privateCloud.identity
+          : systemAssignedServiceIdentitySerializer(privateCloud.identity),
       },
     });
 }
@@ -807,8 +801,8 @@ export async function _createOrUpdateDeserialize(
 
   result = result as PrivateCloudsCreateOrUpdateLogicalResponse;
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -816,13 +810,17 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -834,33 +832,38 @@ export async function _createOrUpdateDeserialize(
           managementCluster: {
             clusterSize:
               result.body.properties?.managementCluster["clusterSize"],
-            provisioningState:
-              result.body.properties?.managementCluster["provisioningState"],
+            provisioningState: result.body.properties?.managementCluster[
+              "provisioningState"
+            ] as any,
             clusterId: result.body.properties?.managementCluster["clusterId"],
             hosts: result.body.properties?.managementCluster["hosts"],
             vsanDatastoreName:
               result.body.properties?.managementCluster["vsanDatastoreName"],
           },
-          internet: result.body.properties?.["internet"],
+          internet: result.body.properties?.["internet"] as InternetEnum,
           identitySources:
             result.body.properties?.["identitySources"] === undefined
               ? result.body.properties?.["identitySources"]
-              : result.body.properties?.["identitySources"].map((p) => ({
-                  name: p["name"],
-                  alias: p["alias"],
-                  domain: p["domain"],
-                  baseUserDN: p["baseUserDN"],
-                  baseGroupDN: p["baseGroupDN"],
-                  primaryServer: p["primaryServer"],
-                  secondaryServer: p["secondaryServer"],
-                  ssl: p["ssl"],
-                  username: p["username"],
-                  password: p["password"],
-                })),
+              : result.body.properties?.["identitySources"].map((p) => {
+                  return {
+                    name: p["name"],
+                    alias: p["alias"],
+                    domain: p["domain"],
+                    baseUserDN: p["baseUserDN"],
+                    baseGroupDN: p["baseGroupDN"],
+                    primaryServer: p["primaryServer"],
+                    secondaryServer: p["secondaryServer"],
+                    ssl: p["ssl"] as SslEnum,
+                    username: p["username"],
+                    password: p["password"],
+                  };
+                }),
           availability: !result.body.properties?.availability
             ? undefined
             : {
-                strategy: result.body.properties?.availability?.["strategy"],
+                strategy: result.body.properties?.availability?.[
+                  "strategy"
+                ] as AvailabilityStrategy,
                 zone: result.body.properties?.availability?.["zone"],
                 secondaryZone:
                   result.body.properties?.availability?.["secondaryZone"],
@@ -868,7 +871,9 @@ export async function _createOrUpdateDeserialize(
           encryption: !result.body.properties?.encryption
             ? undefined
             : {
-                status: result.body.properties?.encryption?.["status"],
+                status: result.body.properties?.encryption?.[
+                  "status"
+                ] as EncryptionState,
                 keyVaultProperties: !result.body.properties?.encryption
                   ?.keyVaultProperties
                   ? undefined
@@ -885,17 +890,21 @@ export async function _createOrUpdateDeserialize(
                       keyVaultUrl:
                         result.body.properties?.encryption
                           ?.keyVaultProperties?.["keyVaultUrl"],
-                      keyState:
-                        result.body.properties?.encryption
-                          ?.keyVaultProperties?.["keyState"],
-                      versionType:
-                        result.body.properties?.encryption
-                          ?.keyVaultProperties?.["versionType"],
+                      keyState: result.body.properties?.encryption
+                        ?.keyVaultProperties?.[
+                        "keyState"
+                      ] as EncryptionKeyStatus,
+                      versionType: result.body.properties?.encryption
+                        ?.keyVaultProperties?.[
+                        "versionType"
+                      ] as EncryptionVersionType,
                     },
               },
           extendedNetworkBlocks:
             result.body.properties?.["extendedNetworkBlocks"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           circuit: !result.body.properties?.circuit
             ? undefined
             : {
@@ -948,10 +957,11 @@ export async function _createOrUpdateDeserialize(
                     "expressRoutePrivatePeeringID"
                   ],
               },
-          nsxPublicIpQuotaRaised:
-            result.body.properties?.["nsxPublicIpQuotaRaised"],
+          nsxPublicIpQuotaRaised: result.body.properties?.[
+            "nsxPublicIpQuotaRaised"
+          ] as NsxPublicIpQuotaRaisedEnum,
           virtualNetworkId: result.body.properties?.["virtualNetworkId"],
-          dnsZoneType: result.body.properties?.["dnsZoneType"],
+          dnsZoneType: result.body.properties?.["dnsZoneType"] as DnsZoneType,
         },
     sku: {
       name: result.body.sku["name"],
@@ -963,9 +973,11 @@ export async function _createOrUpdateDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          tenantId: result.body.identity?.["tenantId"],
+          type: result.body.identity?.[
+            "type"
+          ] as SystemAssignedServiceIdentityType,
         },
   };
 }
@@ -1016,92 +1028,22 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       body: {
-        tags: privateCloudUpdate["tags"],
+        tags: !privateCloudUpdate.tags
+          ? privateCloudUpdate.tags
+          : (serializeRecord(privateCloudUpdate.tags as any) as any),
         sku: !privateCloudUpdate.sku
-          ? undefined
-          : {
-              name: privateCloudUpdate.sku?.["name"],
-              tier: privateCloudUpdate.sku?.["tier"],
-              size: privateCloudUpdate.sku?.["size"],
-              family: privateCloudUpdate.sku?.["family"],
-              capacity: privateCloudUpdate.sku?.["capacity"],
-            },
+          ? privateCloudUpdate.sku
+          : skuSerializer(privateCloudUpdate.sku),
         identity: !privateCloudUpdate.identity
-          ? undefined
-          : { type: privateCloudUpdate.identity?.["type"] },
+          ? privateCloudUpdate.identity
+          : systemAssignedServiceIdentitySerializer(
+              privateCloudUpdate.identity,
+            ),
         properties: !privateCloudUpdate.properties
-          ? undefined
-          : {
-              managementCluster: !privateCloudUpdate.properties
-                ?.managementCluster
-                ? undefined
-                : {
-                    clusterSize:
-                      privateCloudUpdate.properties?.managementCluster?.[
-                        "clusterSize"
-                      ],
-                    hosts:
-                      privateCloudUpdate.properties?.managementCluster?.[
-                        "hosts"
-                      ],
-                    vsanDatastoreName:
-                      privateCloudUpdate.properties?.managementCluster?.[
-                        "vsanDatastoreName"
-                      ],
-                  },
-              internet: privateCloudUpdate.properties?.["internet"],
-              identitySources:
-                privateCloudUpdate.properties?.["identitySources"] === undefined
-                  ? privateCloudUpdate.properties?.["identitySources"]
-                  : privateCloudUpdate.properties?.["identitySources"].map(
-                      (p) => ({
-                        name: p["name"],
-                        alias: p["alias"],
-                        domain: p["domain"],
-                        baseUserDN: p["baseUserDN"],
-                        baseGroupDN: p["baseGroupDN"],
-                        primaryServer: p["primaryServer"],
-                        secondaryServer: p["secondaryServer"],
-                        ssl: p["ssl"],
-                        username: p["username"],
-                        password: p["password"],
-                      }),
-                    ),
-              availability: !privateCloudUpdate.properties?.availability
-                ? undefined
-                : {
-                    strategy:
-                      privateCloudUpdate.properties?.availability?.["strategy"],
-                    zone: privateCloudUpdate.properties?.availability?.["zone"],
-                    secondaryZone:
-                      privateCloudUpdate.properties?.availability?.[
-                        "secondaryZone"
-                      ],
-                  },
-              encryption: !privateCloudUpdate.properties?.encryption
-                ? undefined
-                : {
-                    status:
-                      privateCloudUpdate.properties?.encryption?.["status"],
-                    keyVaultProperties: !privateCloudUpdate.properties
-                      ?.encryption?.keyVaultProperties
-                      ? undefined
-                      : {
-                          keyName:
-                            privateCloudUpdate.properties?.encryption
-                              ?.keyVaultProperties?.["keyName"],
-                          keyVersion:
-                            privateCloudUpdate.properties?.encryption
-                              ?.keyVaultProperties?.["keyVersion"],
-                          keyVaultUrl:
-                            privateCloudUpdate.properties?.encryption
-                              ?.keyVaultProperties?.["keyVaultUrl"],
-                        },
-                  },
-              extendedNetworkBlocks:
-                privateCloudUpdate.properties?.["extendedNetworkBlocks"],
-              dnsZoneType: privateCloudUpdate.properties?.["dnsZoneType"],
-            },
+          ? privateCloudUpdate.properties
+          : privateCloudUpdatePropertiesSerializer(
+              privateCloudUpdate.properties,
+            ),
       },
     });
 }
@@ -1117,8 +1059,8 @@ export async function _updateDeserialize(
   }
 
   return {
-    location: result.body["location"],
     tags: result.body["tags"],
+    location: result.body["location"],
     id: result.body["id"],
     name: result.body["name"],
     type: result.body["type"],
@@ -1126,13 +1068,17 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -1144,33 +1090,38 @@ export async function _updateDeserialize(
           managementCluster: {
             clusterSize:
               result.body.properties?.managementCluster["clusterSize"],
-            provisioningState:
-              result.body.properties?.managementCluster["provisioningState"],
+            provisioningState: result.body.properties?.managementCluster[
+              "provisioningState"
+            ] as any,
             clusterId: result.body.properties?.managementCluster["clusterId"],
             hosts: result.body.properties?.managementCluster["hosts"],
             vsanDatastoreName:
               result.body.properties?.managementCluster["vsanDatastoreName"],
           },
-          internet: result.body.properties?.["internet"],
+          internet: result.body.properties?.["internet"] as InternetEnum,
           identitySources:
             result.body.properties?.["identitySources"] === undefined
               ? result.body.properties?.["identitySources"]
-              : result.body.properties?.["identitySources"].map((p) => ({
-                  name: p["name"],
-                  alias: p["alias"],
-                  domain: p["domain"],
-                  baseUserDN: p["baseUserDN"],
-                  baseGroupDN: p["baseGroupDN"],
-                  primaryServer: p["primaryServer"],
-                  secondaryServer: p["secondaryServer"],
-                  ssl: p["ssl"],
-                  username: p["username"],
-                  password: p["password"],
-                })),
+              : result.body.properties?.["identitySources"].map((p) => {
+                  return {
+                    name: p["name"],
+                    alias: p["alias"],
+                    domain: p["domain"],
+                    baseUserDN: p["baseUserDN"],
+                    baseGroupDN: p["baseGroupDN"],
+                    primaryServer: p["primaryServer"],
+                    secondaryServer: p["secondaryServer"],
+                    ssl: p["ssl"] as SslEnum,
+                    username: p["username"],
+                    password: p["password"],
+                  };
+                }),
           availability: !result.body.properties?.availability
             ? undefined
             : {
-                strategy: result.body.properties?.availability?.["strategy"],
+                strategy: result.body.properties?.availability?.[
+                  "strategy"
+                ] as AvailabilityStrategy,
                 zone: result.body.properties?.availability?.["zone"],
                 secondaryZone:
                   result.body.properties?.availability?.["secondaryZone"],
@@ -1178,7 +1129,9 @@ export async function _updateDeserialize(
           encryption: !result.body.properties?.encryption
             ? undefined
             : {
-                status: result.body.properties?.encryption?.["status"],
+                status: result.body.properties?.encryption?.[
+                  "status"
+                ] as EncryptionState,
                 keyVaultProperties: !result.body.properties?.encryption
                   ?.keyVaultProperties
                   ? undefined
@@ -1195,17 +1148,21 @@ export async function _updateDeserialize(
                       keyVaultUrl:
                         result.body.properties?.encryption
                           ?.keyVaultProperties?.["keyVaultUrl"],
-                      keyState:
-                        result.body.properties?.encryption
-                          ?.keyVaultProperties?.["keyState"],
-                      versionType:
-                        result.body.properties?.encryption
-                          ?.keyVaultProperties?.["versionType"],
+                      keyState: result.body.properties?.encryption
+                        ?.keyVaultProperties?.[
+                        "keyState"
+                      ] as EncryptionKeyStatus,
+                      versionType: result.body.properties?.encryption
+                        ?.keyVaultProperties?.[
+                        "versionType"
+                      ] as EncryptionVersionType,
                     },
               },
           extendedNetworkBlocks:
             result.body.properties?.["extendedNetworkBlocks"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           circuit: !result.body.properties?.circuit
             ? undefined
             : {
@@ -1258,10 +1215,11 @@ export async function _updateDeserialize(
                     "expressRoutePrivatePeeringID"
                   ],
               },
-          nsxPublicIpQuotaRaised:
-            result.body.properties?.["nsxPublicIpQuotaRaised"],
+          nsxPublicIpQuotaRaised: result.body.properties?.[
+            "nsxPublicIpQuotaRaised"
+          ] as NsxPublicIpQuotaRaisedEnum,
           virtualNetworkId: result.body.properties?.["virtualNetworkId"],
-          dnsZoneType: result.body.properties?.["dnsZoneType"],
+          dnsZoneType: result.body.properties?.["dnsZoneType"] as DnsZoneType,
         },
     sku: {
       name: result.body.sku["name"],
@@ -1273,9 +1231,11 @@ export async function _updateDeserialize(
     identity: !result.body.identity
       ? undefined
       : {
-          tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          tenantId: result.body.identity?.["tenantId"],
+          type: result.body.identity?.[
+            "type"
+          ] as SystemAssignedServiceIdentityType,
         },
   };
 }

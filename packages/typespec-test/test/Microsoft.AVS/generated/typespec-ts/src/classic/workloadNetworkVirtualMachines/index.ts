@@ -13,15 +13,16 @@ import {
   WorkloadNetworkVirtualMachinesGetOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworkVirtualMachines operations. */
 export interface WorkloadNetworkVirtualMachinesOperations {
+  /** List WorkloadNetworkVirtualMachine resources by WorkloadNetwork */
   listByWorkloadNetwork: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworkVirtualMachinesListByWorkloadNetworkOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetworkVirtualMachine>;
+  /** Get a WorkloadNetworkVirtualMachine */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     virtualMachineId: string,
@@ -29,10 +30,12 @@ export interface WorkloadNetworkVirtualMachinesOperations {
   ) => Promise<WorkloadNetworkVirtualMachine>;
 }
 
-export function getWorkloadNetworkVirtualMachines(context: AVSContext) {
+export function getWorkloadNetworkVirtualMachines(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByWorkloadNetwork: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworkVirtualMachinesListByWorkloadNetworkOptionalParams,
@@ -45,7 +48,6 @@ export function getWorkloadNetworkVirtualMachines(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       virtualMachineId: string,
@@ -64,8 +66,9 @@ export function getWorkloadNetworkVirtualMachines(context: AVSContext) {
 
 export function getWorkloadNetworkVirtualMachinesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworkVirtualMachinesOperations {
   return {
-    ...getWorkloadNetworkVirtualMachines(context),
+    ...getWorkloadNetworkVirtualMachines(context, subscriptionId),
   };
 }

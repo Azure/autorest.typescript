@@ -10,25 +10,28 @@ import {
   WorkloadNetworksListByPrivateCloudOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a WorkloadNetworks operations. */
 export interface WorkloadNetworksOperations {
+  /** Get a WorkloadNetwork */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworksGetOptionalParams,
   ) => Promise<WorkloadNetwork>;
+  /** List WorkloadNetwork resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: WorkloadNetworksListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<WorkloadNetwork>;
 }
 
-export function getWorkloadNetworks(context: AVSContext) {
+export function getWorkloadNetworks(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworksGetOptionalParams,
@@ -41,7 +44,6 @@ export function getWorkloadNetworks(context: AVSContext) {
         options,
       ),
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: WorkloadNetworksListByPrivateCloudOptionalParams,
@@ -58,8 +60,9 @@ export function getWorkloadNetworks(context: AVSContext) {
 
 export function getWorkloadNetworksOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): WorkloadNetworksOperations {
   return {
-    ...getWorkloadNetworks(context),
+    ...getWorkloadNetworks(context, subscriptionId),
   };
 }

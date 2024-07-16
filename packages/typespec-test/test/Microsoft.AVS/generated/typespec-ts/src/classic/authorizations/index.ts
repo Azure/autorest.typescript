@@ -18,22 +18,23 @@ import {
   AuthorizationsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Authorizations operations. */
 export interface AuthorizationsOperations {
+  /** List ExpressRouteAuthorization resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: AuthorizationsListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<ExpressRouteAuthorization>;
+  /** Get a ExpressRouteAuthorization */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     authorizationName: string,
     options?: AuthorizationsGetOptionalParams,
   ) => Promise<ExpressRouteAuthorization>;
+  /** Create a ExpressRouteAuthorization */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     authorizationName: string,
@@ -43,8 +44,13 @@ export interface AuthorizationsOperations {
     OperationState<ExpressRouteAuthorization>,
     ExpressRouteAuthorization
   >;
+  /** Delete a ExpressRouteAuthorization */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     authorizationName: string,
@@ -52,10 +58,9 @@ export interface AuthorizationsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getAuthorizations(context: AVSContext) {
+export function getAuthorizations(context: AVSContext, subscriptionId: string) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: AuthorizationsListByPrivateCloudOptionalParams,
@@ -68,7 +73,6 @@ export function getAuthorizations(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       authorizationName: string,
@@ -83,7 +87,6 @@ export function getAuthorizations(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       authorizationName: string,
@@ -100,7 +103,6 @@ export function getAuthorizations(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       authorizationName: string,
@@ -119,8 +121,9 @@ export function getAuthorizations(context: AVSContext) {
 
 export function getAuthorizationsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): AuthorizationsOperations {
   return {
-    ...getAuthorizations(context),
+    ...getAuthorizations(context, subscriptionId),
   };
 }

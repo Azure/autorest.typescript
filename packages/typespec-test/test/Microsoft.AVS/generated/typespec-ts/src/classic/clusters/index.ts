@@ -26,45 +26,51 @@ import {
   ClustersListZonesOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Clusters operations. */
 export interface ClustersOperations {
+  /** List Cluster resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: ClustersListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<Cluster>;
+  /** Get a Cluster */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     options?: ClustersGetOptionalParams,
   ) => Promise<Cluster>;
+  /** Create a Cluster */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     cluster: Cluster,
     options?: ClustersCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<Cluster>, Cluster>;
+  /** Update a Cluster */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     clusterUpdate: ClusterUpdate,
     options?: ClustersUpdateOptionalParams,
   ) => Promise<Cluster>;
+  /** Delete a Cluster */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     options?: ClustersDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** List hosts by zone in a cluster */
   listZones: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
@@ -72,10 +78,9 @@ export interface ClustersOperations {
   ) => Promise<ClusterZoneList>;
 }
 
-export function getClusters(context: AVSContext) {
+export function getClusters(context: AVSContext, subscriptionId: string) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: ClustersListByPrivateCloudOptionalParams,
@@ -88,7 +93,6 @@ export function getClusters(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -103,7 +107,6 @@ export function getClusters(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -120,7 +123,6 @@ export function getClusters(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -137,7 +139,6 @@ export function getClusters(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -152,7 +153,6 @@ export function getClusters(context: AVSContext) {
         options,
       ),
     listZones: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -169,8 +169,11 @@ export function getClusters(context: AVSContext) {
   };
 }
 
-export function getClustersOperations(context: AVSContext): ClustersOperations {
+export function getClustersOperations(
+  context: AVSContext,
+  subscriptionId: string,
+): ClustersOperations {
   return {
-    ...getClusters(context),
+    ...getClusters(context, subscriptionId),
   };
 }

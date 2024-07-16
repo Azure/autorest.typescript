@@ -12,31 +12,30 @@ import {
   LocationsCheckQuotaAvailabilityOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Locations operations. */
 export interface LocationsOperations {
+  /** Return trial status for subscription by region */
   checkTrialAvailability: (
-    subscriptionId: string,
     location: string,
     sku?: Sku,
     options?: LocationsCheckTrialAvailabilityOptionalParams,
   ) => Promise<Trial>;
+  /** Return quota for subscription by region */
   checkQuotaAvailability: (
-    subscriptionId: string,
     location: string,
     options?: LocationsCheckQuotaAvailabilityOptionalParams,
   ) => Promise<Quota>;
 }
 
-export function getLocations(context: AVSContext) {
+export function getLocations(context: AVSContext, subscriptionId: string) {
   return {
     checkTrialAvailability: (
-      subscriptionId: string,
       location: string,
       sku?: Sku,
       options?: LocationsCheckTrialAvailabilityOptionalParams,
     ) =>
       checkTrialAvailability(context, subscriptionId, location, sku, options),
     checkQuotaAvailability: (
-      subscriptionId: string,
       location: string,
       options?: LocationsCheckQuotaAvailabilityOptionalParams,
     ) => checkQuotaAvailability(context, subscriptionId, location, options),
@@ -45,8 +44,9 @@ export function getLocations(context: AVSContext) {
 
 export function getLocationsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): LocationsOperations {
   return {
-    ...getLocations(context),
+    ...getLocations(context, subscriptionId),
   };
 }

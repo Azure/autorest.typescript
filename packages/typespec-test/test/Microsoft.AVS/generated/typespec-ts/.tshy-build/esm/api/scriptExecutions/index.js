@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 import { getLongRunningPoller } from "../pollingHelpers.js";
+import { scriptExecutionPropertiesSerializer, } from "../../models/models.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { isUnexpected, } from "../../rest/index.js";
 import { operationOptionsToRequestParameters, createRestError, } from "@azure-rest/core-client";
@@ -16,54 +17,56 @@ export async function _listByPrivateCloudDeserialize(result) {
         throw createRestError(result);
     }
     return {
-        value: result.body["value"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            type: p["type"],
-            systemData: !p.systemData
-                ? undefined
-                : {
-                    createdBy: p.systemData?.["createdBy"],
-                    createdByType: p.systemData?.["createdByType"],
-                    createdAt: p.systemData?.["createdAt"] !== undefined
-                        ? new Date(p.systemData?.["createdAt"])
-                        : undefined,
-                    lastModifiedBy: p.systemData?.["lastModifiedBy"],
-                    lastModifiedByType: p.systemData?.["lastModifiedByType"],
-                    lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
-                        ? new Date(p.systemData?.["lastModifiedAt"])
-                        : undefined,
-                },
-            properties: !p.properties
-                ? undefined
-                : {
-                    scriptCmdletId: p.properties?.["scriptCmdletId"],
-                    parameters: p.properties?.["parameters"] === undefined
-                        ? p.properties?.["parameters"]
-                        : p.properties?.["parameters"],
-                    hiddenParameters: p.properties?.["hiddenParameters"] === undefined
-                        ? p.properties?.["hiddenParameters"]
-                        : p.properties?.["hiddenParameters"],
-                    failureReason: p.properties?.["failureReason"],
-                    timeout: p.properties?.["timeout"],
-                    retention: p.properties?.["retention"],
-                    submittedAt: p.properties?.["submittedAt"] !== undefined
-                        ? new Date(p.properties?.["submittedAt"])
-                        : undefined,
-                    startedAt: p.properties?.["startedAt"] !== undefined
-                        ? new Date(p.properties?.["startedAt"])
-                        : undefined,
-                    finishedAt: p.properties?.["finishedAt"] !== undefined
-                        ? new Date(p.properties?.["finishedAt"])
-                        : undefined,
-                    provisioningState: p.properties?.["provisioningState"],
-                    output: p.properties?.["output"],
-                    namedOutputs: p.properties?.["namedOutputs"],
-                    information: p.properties?.["information"],
-                    warnings: p.properties?.["warnings"],
-                    errors: p.properties?.["errors"],
-                },
-        })),
+        value: result.body["value"].map((p) => {
+            return {
+                id: p["id"],
+                name: p["name"],
+                type: p["type"],
+                systemData: !p.systemData
+                    ? undefined
+                    : {
+                        createdBy: p.systemData?.["createdBy"],
+                        createdByType: p.systemData?.["createdByType"],
+                        createdAt: p.systemData?.["createdAt"] !== undefined
+                            ? new Date(p.systemData?.["createdAt"])
+                            : undefined,
+                        lastModifiedBy: p.systemData?.["lastModifiedBy"],
+                        lastModifiedByType: p.systemData?.["lastModifiedByType"],
+                        lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
+                            ? new Date(p.systemData?.["lastModifiedAt"])
+                            : undefined,
+                    },
+                properties: !p.properties
+                    ? undefined
+                    : {
+                        scriptCmdletId: p.properties?.["scriptCmdletId"],
+                        parameters: p.properties?.["parameters"] === undefined
+                            ? p.properties?.["parameters"]
+                            : p.properties?.["parameters"],
+                        hiddenParameters: p.properties?.["hiddenParameters"] === undefined
+                            ? p.properties?.["hiddenParameters"]
+                            : p.properties?.["hiddenParameters"],
+                        failureReason: p.properties?.["failureReason"],
+                        timeout: p.properties?.["timeout"],
+                        retention: p.properties?.["retention"],
+                        submittedAt: p.properties?.["submittedAt"] !== undefined
+                            ? new Date(p.properties?.["submittedAt"])
+                            : undefined,
+                        startedAt: p.properties?.["startedAt"] !== undefined
+                            ? new Date(p.properties?.["startedAt"])
+                            : undefined,
+                        finishedAt: p.properties?.["finishedAt"] !== undefined
+                            ? new Date(p.properties?.["finishedAt"])
+                            : undefined,
+                        provisioningState: p.properties?.["provisioningState"],
+                        output: p.properties?.["output"],
+                        namedOutputs: p.properties?.["namedOutputs"],
+                        information: p.properties?.["information"],
+                        warnings: p.properties?.["warnings"],
+                        errors: p.properties?.["errors"],
+                    },
+            };
+        }),
         nextLink: result.body["nextLink"],
     };
 }
@@ -145,17 +148,8 @@ export function _createOrUpdateSend(context, subscriptionId, resourceGroupName, 
         ...operationOptionsToRequestParameters(options),
         body: {
             properties: !scriptExecution.properties
-                ? undefined
-                : {
-                    scriptCmdletId: scriptExecution.properties?.["scriptCmdletId"],
-                    parameters: scriptExecution.properties?.["parameters"],
-                    hiddenParameters: scriptExecution.properties?.["hiddenParameters"],
-                    failureReason: scriptExecution.properties?.["failureReason"],
-                    timeout: scriptExecution.properties?.["timeout"],
-                    retention: scriptExecution.properties?.["retention"],
-                    output: scriptExecution.properties?.["output"],
-                    namedOutputs: scriptExecution.properties?.["namedOutputs"],
-                },
+                ? scriptExecution.properties
+                : scriptExecutionPropertiesSerializer(scriptExecution.properties),
         },
     });
 }

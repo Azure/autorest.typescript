@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 import { getLongRunningPoller } from "../pollingHelpers.js";
+import { iscsiPathPropertiesSerializer, } from "../../models/models.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { isUnexpected, } from "../../rest/index.js";
 import { operationOptionsToRequestParameters, createRestError, } from "@azure-rest/core-client";
@@ -14,31 +15,33 @@ export async function _listByPrivateCloudDeserialize(result) {
         throw createRestError(result);
     }
     return {
-        value: result.body["value"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            type: p["type"],
-            systemData: !p.systemData
-                ? undefined
-                : {
-                    createdBy: p.systemData?.["createdBy"],
-                    createdByType: p.systemData?.["createdByType"],
-                    createdAt: p.systemData?.["createdAt"] !== undefined
-                        ? new Date(p.systemData?.["createdAt"])
-                        : undefined,
-                    lastModifiedBy: p.systemData?.["lastModifiedBy"],
-                    lastModifiedByType: p.systemData?.["lastModifiedByType"],
-                    lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
-                        ? new Date(p.systemData?.["lastModifiedAt"])
-                        : undefined,
-                },
-            properties: !p.properties
-                ? undefined
-                : {
-                    provisioningState: p.properties?.["provisioningState"],
-                    networkBlock: p.properties?.["networkBlock"],
-                },
-        })),
+        value: result.body["value"].map((p) => {
+            return {
+                id: p["id"],
+                name: p["name"],
+                type: p["type"],
+                systemData: !p.systemData
+                    ? undefined
+                    : {
+                        createdBy: p.systemData?.["createdBy"],
+                        createdByType: p.systemData?.["createdByType"],
+                        createdAt: p.systemData?.["createdAt"] !== undefined
+                            ? new Date(p.systemData?.["createdAt"])
+                            : undefined,
+                        lastModifiedBy: p.systemData?.["lastModifiedBy"],
+                        lastModifiedByType: p.systemData?.["lastModifiedByType"],
+                        lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
+                            ? new Date(p.systemData?.["lastModifiedAt"])
+                            : undefined,
+                    },
+                properties: !p.properties
+                    ? undefined
+                    : {
+                        provisioningState: p.properties?.["provisioningState"],
+                        networkBlock: p.properties?.["networkBlock"],
+                    },
+            };
+        }),
         nextLink: result.body["nextLink"],
     };
 }
@@ -93,8 +96,8 @@ export function _createOrUpdateSend(context, subscriptionId, resourceGroupName, 
         ...operationOptionsToRequestParameters(options),
         body: {
             properties: !resource.properties
-                ? undefined
-                : { networkBlock: resource.properties?.["networkBlock"] },
+                ? resource.properties
+                : iscsiPathPropertiesSerializer(resource.properties),
         },
     });
 }

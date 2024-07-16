@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { DatastoreListResult, Datastore } from "../../models/models.js";
+import { Datastore, _DatastoreList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, DatastoresCreateOrUpdate200Response, DatastoresCreateOrUpdate201Response, DatastoresCreateOrUpdateDefaultResponse, DatastoresCreateOrUpdateLogicalResponse, DatastoresDelete200Response, DatastoresDelete202Response, DatastoresDelete204Response, DatastoresDeleteDefaultResponse, DatastoresDeleteLogicalResponse, DatastoresGet200Response, DatastoresGetDefaultResponse, DatastoresListByCluster200Response, DatastoresListByClusterDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { DatastoresListByClusterOptionalParams, DatastoresGetOptionalParams, DatastoresCreateOrUpdateOptionalParams, DatastoresDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByClusterSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, options?: DatastoresListByClusterOptionalParams): StreamableMethod<DatastoresListByCluster200Response | DatastoresListByClusterDefaultResponse>;
-export declare function _listByClusterDeserialize(result: DatastoresListByCluster200Response | DatastoresListByClusterDefaultResponse): Promise<DatastoreListResult>;
+export declare function _listByClusterDeserialize(result: DatastoresListByCluster200Response | DatastoresListByClusterDefaultResponse): Promise<_DatastoreList>;
 /** List Datastore resources by Cluster */
 export declare function listByCluster(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, options?: DatastoresListByClusterOptionalParams): PagedAsyncIterableIterator<Datastore>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, clusterName: string, datastoreName: string, options?: DatastoresGetOptionalParams): StreamableMethod<DatastoresGet200Response | DatastoresGetDefaultResponse>;

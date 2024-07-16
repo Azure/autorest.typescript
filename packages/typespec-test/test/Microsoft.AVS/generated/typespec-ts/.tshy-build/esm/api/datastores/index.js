@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 import { getLongRunningPoller } from "../pollingHelpers.js";
+import { datastorePropertiesSerializer, } from "../../models/models.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { isUnexpected, } from "../../rest/index.js";
 import { operationOptionsToRequestParameters, createRestError, } from "@azure-rest/core-client";
@@ -14,45 +15,47 @@ export async function _listByClusterDeserialize(result) {
         throw createRestError(result);
     }
     return {
-        value: result.body["value"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            type: p["type"],
-            systemData: !p.systemData
-                ? undefined
-                : {
-                    createdBy: p.systemData?.["createdBy"],
-                    createdByType: p.systemData?.["createdByType"],
-                    createdAt: p.systemData?.["createdAt"] !== undefined
-                        ? new Date(p.systemData?.["createdAt"])
-                        : undefined,
-                    lastModifiedBy: p.systemData?.["lastModifiedBy"],
-                    lastModifiedByType: p.systemData?.["lastModifiedByType"],
-                    lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
-                        ? new Date(p.systemData?.["lastModifiedAt"])
-                        : undefined,
-                },
-            properties: !p.properties
-                ? undefined
-                : {
-                    provisioningState: p.properties?.["provisioningState"],
-                    netAppVolume: !p.properties?.netAppVolume
-                        ? undefined
-                        : { id: p.properties?.netAppVolume?.["id"] },
-                    diskPoolVolume: !p.properties?.diskPoolVolume
-                        ? undefined
-                        : {
-                            targetId: p.properties?.diskPoolVolume?.["targetId"],
-                            lunName: p.properties?.diskPoolVolume?.["lunName"],
-                            mountOption: p.properties?.diskPoolVolume?.["mountOption"],
-                            path: p.properties?.diskPoolVolume?.["path"],
-                        },
-                    elasticSanVolume: !p.properties?.elasticSanVolume
-                        ? undefined
-                        : { targetId: p.properties?.elasticSanVolume?.["targetId"] },
-                    status: p.properties?.["status"],
-                },
-        })),
+        value: result.body["value"].map((p) => {
+            return {
+                id: p["id"],
+                name: p["name"],
+                type: p["type"],
+                systemData: !p.systemData
+                    ? undefined
+                    : {
+                        createdBy: p.systemData?.["createdBy"],
+                        createdByType: p.systemData?.["createdByType"],
+                        createdAt: p.systemData?.["createdAt"] !== undefined
+                            ? new Date(p.systemData?.["createdAt"])
+                            : undefined,
+                        lastModifiedBy: p.systemData?.["lastModifiedBy"],
+                        lastModifiedByType: p.systemData?.["lastModifiedByType"],
+                        lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
+                            ? new Date(p.systemData?.["lastModifiedAt"])
+                            : undefined,
+                    },
+                properties: !p.properties
+                    ? undefined
+                    : {
+                        provisioningState: p.properties?.["provisioningState"],
+                        netAppVolume: !p.properties?.netAppVolume
+                            ? undefined
+                            : { id: p.properties?.netAppVolume?.["id"] },
+                        diskPoolVolume: !p.properties?.diskPoolVolume
+                            ? undefined
+                            : {
+                                targetId: p.properties?.diskPoolVolume?.["targetId"],
+                                lunName: p.properties?.diskPoolVolume?.["lunName"],
+                                mountOption: p.properties?.diskPoolVolume?.["mountOption"],
+                                path: p.properties?.diskPoolVolume?.["path"],
+                            },
+                        elasticSanVolume: !p.properties?.elasticSanVolume
+                            ? undefined
+                            : { targetId: p.properties?.elasticSanVolume?.["targetId"] },
+                        status: p.properties?.["status"],
+                    },
+            };
+        }),
         nextLink: result.body["nextLink"],
     };
 }
@@ -123,24 +126,8 @@ export function _createOrUpdateSend(context, subscriptionId, resourceGroupName, 
         ...operationOptionsToRequestParameters(options),
         body: {
             properties: !datastore.properties
-                ? undefined
-                : {
-                    netAppVolume: !datastore.properties?.netAppVolume
-                        ? undefined
-                        : { id: datastore.properties?.netAppVolume?.["id"] },
-                    diskPoolVolume: !datastore.properties?.diskPoolVolume
-                        ? undefined
-                        : {
-                            targetId: datastore.properties?.diskPoolVolume?.["targetId"],
-                            lunName: datastore.properties?.diskPoolVolume?.["lunName"],
-                            mountOption: datastore.properties?.diskPoolVolume?.["mountOption"],
-                        },
-                    elasticSanVolume: !datastore.properties?.elasticSanVolume
-                        ? undefined
-                        : {
-                            targetId: datastore.properties?.elasticSanVolume?.["targetId"],
-                        },
-                },
+                ? datastore.properties
+                : datastorePropertiesSerializer(datastore.properties),
         },
     });
 }

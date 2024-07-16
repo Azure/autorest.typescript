@@ -32,76 +32,79 @@ import {
   PrivateCloudsListAdminCredentialsOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a PrivateClouds operations. */
 export interface PrivateCloudsOperations {
+  /** List PrivateCloud resources by resource group */
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
     options?: PrivateCloudsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<PrivateCloud>;
+  /** List PrivateCloud resources by subscription ID */
   listInSubscription: (
-    subscriptionId: string,
     options?: PrivateCloudsListInSubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<PrivateCloud>;
+  /** Get a PrivateCloud */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: PrivateCloudsGetOptionalParams,
   ) => Promise<PrivateCloud>;
+  /** Create a PrivateCloud */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     privateCloud: PrivateCloud,
     options?: PrivateCloudsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<PrivateCloud>, PrivateCloud>;
+  /** Update a PrivateCloud */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     privateCloudUpdate: PrivateCloudUpdate,
     options?: PrivateCloudsUpdateOptionalParams,
   ) => Promise<PrivateCloud>;
+  /** Delete a PrivateCloud */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: PrivateCloudsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** Rotate the vCenter password */
   rotateVcenterPassword: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: PrivateCloudsRotateVcenterPasswordOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** Rotate the NSX-T Manager password */
   rotateNsxtPassword: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: PrivateCloudsRotateNsxtPasswordOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** List the admin credentials for the private cloud */
   listAdminCredentials: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: PrivateCloudsListAdminCredentialsOptionalParams,
   ) => Promise<AdminCredentials>;
 }
 
-export function getPrivateClouds(context: AVSContext) {
+export function getPrivateClouds(context: AVSContext, subscriptionId: string) {
   return {
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
       options?: PrivateCloudsListByResourceGroupOptionalParams,
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listInSubscription: (
-      subscriptionId: string,
       options?: PrivateCloudsListInSubscriptionOptionalParams,
     ) => listInSubscription(context, subscriptionId, options),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: PrivateCloudsGetOptionalParams,
@@ -114,7 +117,6 @@ export function getPrivateClouds(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       privateCloud: PrivateCloud,
@@ -129,7 +131,6 @@ export function getPrivateClouds(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       privateCloudUpdate: PrivateCloudUpdate,
@@ -144,7 +145,6 @@ export function getPrivateClouds(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: PrivateCloudsDeleteOptionalParams,
@@ -157,7 +157,6 @@ export function getPrivateClouds(context: AVSContext) {
         options,
       ),
     rotateVcenterPassword: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: PrivateCloudsRotateVcenterPasswordOptionalParams,
@@ -170,7 +169,6 @@ export function getPrivateClouds(context: AVSContext) {
         options,
       ),
     rotateNsxtPassword: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: PrivateCloudsRotateNsxtPasswordOptionalParams,
@@ -183,7 +181,6 @@ export function getPrivateClouds(context: AVSContext) {
         options,
       ),
     listAdminCredentials: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: PrivateCloudsListAdminCredentialsOptionalParams,
@@ -200,8 +197,9 @@ export function getPrivateClouds(context: AVSContext) {
 
 export function getPrivateCloudsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): PrivateCloudsOperations {
   return {
-    ...getPrivateClouds(context),
+    ...getPrivateClouds(context, subscriptionId),
   };
 }

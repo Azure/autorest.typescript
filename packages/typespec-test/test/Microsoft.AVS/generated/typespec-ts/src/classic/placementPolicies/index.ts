@@ -20,24 +20,25 @@ import {
   PlacementPoliciesDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a PlacementPolicies operations. */
 export interface PlacementPoliciesOperations {
+  /** List PlacementPolicy resources by Cluster */
   listByCluster: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     options?: PlacementPoliciesListByClusterOptionalParams,
   ) => PagedAsyncIterableIterator<PlacementPolicy>;
+  /** Get a PlacementPolicy */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
     placementPolicyName: string,
     options?: PlacementPoliciesGetOptionalParams,
   ) => Promise<PlacementPolicy>;
+  /** Create a PlacementPolicy */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
@@ -45,8 +46,8 @@ export interface PlacementPoliciesOperations {
     placementPolicy: PlacementPolicy,
     options?: PlacementPoliciesCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<PlacementPolicy>, PlacementPolicy>;
+  /** Update a PlacementPolicy */
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
@@ -54,8 +55,13 @@ export interface PlacementPoliciesOperations {
     placementPolicyUpdate: PlacementPolicyUpdate,
     options?: PlacementPoliciesUpdateOptionalParams,
   ) => Promise<PlacementPolicy>;
+  /** Delete a PlacementPolicy */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     clusterName: string,
@@ -64,10 +70,12 @@ export interface PlacementPoliciesOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getPlacementPolicies(context: AVSContext) {
+export function getPlacementPolicies(
+  context: AVSContext,
+  subscriptionId: string,
+) {
   return {
     listByCluster: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -82,7 +90,6 @@ export function getPlacementPolicies(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -99,7 +106,6 @@ export function getPlacementPolicies(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -118,7 +124,6 @@ export function getPlacementPolicies(context: AVSContext) {
         options,
       ),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -137,7 +142,6 @@ export function getPlacementPolicies(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       clusterName: string,
@@ -158,8 +162,9 @@ export function getPlacementPolicies(context: AVSContext) {
 
 export function getPlacementPoliciesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): PlacementPoliciesOperations {
   return {
-    ...getPlacementPolicies(context),
+    ...getPlacementPolicies(context, subscriptionId),
   };
 }

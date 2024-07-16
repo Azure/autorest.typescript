@@ -4,10 +4,14 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  PlacementPolicyListResult,
+  placementPolicyPropertiesUnionSerializer,
+  placementPolicyUpdatePropertiesSerializer,
+  CreatedByType,
   PlacementPolicy,
   PlacementPolicyUpdate,
+  _PlacementPoliciesList,
 } from "../../models/models.js";
+import { deserializePlacementPolicyPropertiesUnion } from "../../utils/deserializeUtil.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -71,41 +75,40 @@ export async function _listByClusterDeserialize(
   result:
     | PlacementPoliciesListByCluster200Response
     | PlacementPoliciesListByClusterDefaultResponse,
-): Promise<PlacementPolicyListResult> {
+): Promise<_PlacementPoliciesList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            type: p.properties?.["type"],
-            state: p.properties?.["state"],
-            displayName: p.properties?.["displayName"],
-            provisioningState: p.properties?.["provisioningState"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? p.properties
+          : deserializePlacementPolicyPropertiesUnion(p.properties),
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -175,26 +178,25 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
     properties: !result.body.properties
-      ? undefined
-      : {
-          type: result.body.properties?.["type"],
-          state: result.body.properties?.["state"],
-          displayName: result.body.properties?.["displayName"],
-          provisioningState: result.body.properties?.["provisioningState"],
-        },
+      ? result.body.properties
+      : deserializePlacementPolicyPropertiesUnion(result.body.properties),
   };
 }
 
@@ -250,12 +252,10 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !placementPolicy.properties
-          ? undefined
-          : {
-              type: placementPolicy.properties?.["type"],
-              state: placementPolicy.properties?.["state"],
-              displayName: placementPolicy.properties?.["displayName"],
-            },
+          ? placementPolicy.properties
+          : placementPolicyPropertiesUnionSerializer(
+              placementPolicy.properties,
+            ),
       },
     });
 }
@@ -280,26 +280,25 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
     properties: !result.body.properties
-      ? undefined
-      : {
-          type: result.body.properties?.["type"],
-          state: result.body.properties?.["state"],
-          displayName: result.body.properties?.["displayName"],
-          provisioningState: result.body.properties?.["provisioningState"],
-        },
+      ? result.body.properties
+      : deserializePlacementPolicyPropertiesUnion(result.body.properties),
   };
 }
 
@@ -360,16 +359,10 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !placementPolicyUpdate.properties
-          ? undefined
-          : {
-              state: placementPolicyUpdate.properties?.["state"],
-              vmMembers: placementPolicyUpdate.properties?.["vmMembers"],
-              hostMembers: placementPolicyUpdate.properties?.["hostMembers"],
-              affinityStrength:
-                placementPolicyUpdate.properties?.["affinityStrength"],
-              azureHybridBenefitType:
-                placementPolicyUpdate.properties?.["azureHybridBenefitType"],
-            },
+          ? placementPolicyUpdate.properties
+          : placementPolicyUpdatePropertiesSerializer(
+              placementPolicyUpdate.properties,
+            ),
       },
     });
 }
@@ -392,26 +385,25 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
     properties: !result.body.properties
-      ? undefined
-      : {
-          type: result.body.properties?.["type"],
-          state: result.body.properties?.["state"],
-          displayName: result.body.properties?.["displayName"],
-          provisioningState: result.body.properties?.["provisioningState"],
-        },
+      ? result.body.properties
+      : deserializePlacementPolicyPropertiesUnion(result.body.properties),
   };
 }
 

@@ -18,30 +18,36 @@ import {
   AddonsDeleteOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a Addons operations. */
 export interface AddonsOperations {
+  /** List Addon resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: AddonsListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<Addon>;
+  /** Get a Addon */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     addonName: string,
     options?: AddonsGetOptionalParams,
   ) => Promise<Addon>;
+  /** Create a Addon */
   createOrUpdate: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     addonName: string,
     addon: Addon,
     options?: AddonsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<Addon>, Addon>;
+  /** Delete a Addon */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     addonName: string,
@@ -49,10 +55,9 @@ export interface AddonsOperations {
   ) => PollerLike<OperationState<void>, void>;
 }
 
-export function getAddons(context: AVSContext) {
+export function getAddons(context: AVSContext, subscriptionId: string) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: AddonsListByPrivateCloudOptionalParams,
@@ -65,7 +70,6 @@ export function getAddons(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       addonName: string,
@@ -80,7 +84,6 @@ export function getAddons(context: AVSContext) {
         options,
       ),
     createOrUpdate: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       addonName: string,
@@ -97,7 +100,6 @@ export function getAddons(context: AVSContext) {
         options,
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       addonName: string,
@@ -114,8 +116,11 @@ export function getAddons(context: AVSContext) {
   };
 }
 
-export function getAddonsOperations(context: AVSContext): AddonsOperations {
+export function getAddonsOperations(
+  context: AVSContext,
+  subscriptionId: string,
+): AddonsOperations {
   return {
-    ...getAddons(context),
+    ...getAddons(context, subscriptionId),
   };
 }

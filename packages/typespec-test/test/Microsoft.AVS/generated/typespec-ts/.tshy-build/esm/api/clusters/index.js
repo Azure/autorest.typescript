@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 import { getLongRunningPoller } from "../pollingHelpers.js";
+import { clusterPropertiesSerializer, skuSerializer, clusterUpdatePropertiesSerializer, } from "../../models/models.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { isUnexpected, } from "../../rest/index.js";
 import { operationOptionsToRequestParameters, createRestError, } from "@azure-rest/core-client";
@@ -14,41 +15,43 @@ export async function _listByPrivateCloudDeserialize(result) {
         throw createRestError(result);
     }
     return {
-        value: result.body["value"].map((p) => ({
-            id: p["id"],
-            name: p["name"],
-            type: p["type"],
-            systemData: !p.systemData
-                ? undefined
-                : {
-                    createdBy: p.systemData?.["createdBy"],
-                    createdByType: p.systemData?.["createdByType"],
-                    createdAt: p.systemData?.["createdAt"] !== undefined
-                        ? new Date(p.systemData?.["createdAt"])
-                        : undefined,
-                    lastModifiedBy: p.systemData?.["lastModifiedBy"],
-                    lastModifiedByType: p.systemData?.["lastModifiedByType"],
-                    lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
-                        ? new Date(p.systemData?.["lastModifiedAt"])
-                        : undefined,
+        value: result.body["value"].map((p) => {
+            return {
+                id: p["id"],
+                name: p["name"],
+                type: p["type"],
+                systemData: !p.systemData
+                    ? undefined
+                    : {
+                        createdBy: p.systemData?.["createdBy"],
+                        createdByType: p.systemData?.["createdByType"],
+                        createdAt: p.systemData?.["createdAt"] !== undefined
+                            ? new Date(p.systemData?.["createdAt"])
+                            : undefined,
+                        lastModifiedBy: p.systemData?.["lastModifiedBy"],
+                        lastModifiedByType: p.systemData?.["lastModifiedByType"],
+                        lastModifiedAt: p.systemData?.["lastModifiedAt"] !== undefined
+                            ? new Date(p.systemData?.["lastModifiedAt"])
+                            : undefined,
+                    },
+                properties: !p.properties
+                    ? undefined
+                    : {
+                        clusterSize: p.properties?.["clusterSize"],
+                        provisioningState: p.properties?.["provisioningState"],
+                        clusterId: p.properties?.["clusterId"],
+                        hosts: p.properties?.["hosts"],
+                        vsanDatastoreName: p.properties?.["vsanDatastoreName"],
+                    },
+                sku: {
+                    name: p.sku["name"],
+                    tier: p.sku["tier"],
+                    size: p.sku["size"],
+                    family: p.sku["family"],
+                    capacity: p.sku["capacity"],
                 },
-            properties: !p.properties
-                ? undefined
-                : {
-                    clusterSize: p.properties?.["clusterSize"],
-                    provisioningState: p.properties?.["provisioningState"],
-                    clusterId: p.properties?.["clusterId"],
-                    hosts: p.properties?.["hosts"],
-                    vsanDatastoreName: p.properties?.["vsanDatastoreName"],
-                },
-            sku: {
-                name: p.sku["name"],
-                tier: p.sku["tier"],
-                size: p.sku["size"],
-                family: p.sku["family"],
-                capacity: p.sku["capacity"],
-            },
-        })),
+            };
+        }),
         nextLink: result.body["nextLink"],
     };
 }
@@ -113,19 +116,9 @@ export function _createOrUpdateSend(context, subscriptionId, resourceGroupName, 
         ...operationOptionsToRequestParameters(options),
         body: {
             properties: !cluster.properties
-                ? undefined
-                : {
-                    clusterSize: cluster.properties?.["clusterSize"],
-                    hosts: cluster.properties?.["hosts"],
-                    vsanDatastoreName: cluster.properties?.["vsanDatastoreName"],
-                },
-            sku: {
-                name: cluster.sku["name"],
-                tier: cluster.sku["tier"],
-                size: cluster.sku["size"],
-                family: cluster.sku["family"],
-                capacity: cluster.sku["capacity"],
-            },
+                ? cluster.properties
+                : clusterPropertiesSerializer(cluster.properties),
+            sku: skuSerializer(cluster.sku),
         },
     });
 }
@@ -185,20 +178,11 @@ export function _updateSend(context, subscriptionId, resourceGroupName, privateC
         ...operationOptionsToRequestParameters(options),
         body: {
             sku: !clusterUpdate.sku
-                ? undefined
-                : {
-                    name: clusterUpdate.sku?.["name"],
-                    tier: clusterUpdate.sku?.["tier"],
-                    size: clusterUpdate.sku?.["size"],
-                    family: clusterUpdate.sku?.["family"],
-                    capacity: clusterUpdate.sku?.["capacity"],
-                },
+                ? clusterUpdate.sku
+                : skuSerializer(clusterUpdate.sku),
             properties: !clusterUpdate.properties
-                ? undefined
-                : {
-                    clusterSize: clusterUpdate.properties?.["clusterSize"],
-                    hosts: clusterUpdate.properties?.["hosts"],
-                },
+                ? clusterUpdate.properties
+                : clusterUpdatePropertiesSerializer(clusterUpdate.properties),
         },
     });
 }
@@ -284,10 +268,9 @@ export async function _listZonesDeserialize(result) {
     return {
         zones: result.body["zones"] === undefined
             ? result.body["zones"]
-            : result.body["zones"].map((p) => ({
-                hosts: p["hosts"],
-                zone: p["zone"],
-            })),
+            : result.body["zones"].map((p) => {
+                return { hosts: p["hosts"], zone: p["zone"] };
+            }),
     };
 }
 /** List hosts by zone in a cluster */

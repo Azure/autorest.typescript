@@ -1,11 +1,11 @@
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { GlobalReachConnectionListResult, GlobalReachConnection } from "../../models/models.js";
+import { GlobalReachConnection, _GlobalReachConnectionList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, GlobalReachConnectionsCreateOrUpdate200Response, GlobalReachConnectionsCreateOrUpdate201Response, GlobalReachConnectionsCreateOrUpdateDefaultResponse, GlobalReachConnectionsCreateOrUpdateLogicalResponse, GlobalReachConnectionsDelete200Response, GlobalReachConnectionsDelete202Response, GlobalReachConnectionsDelete204Response, GlobalReachConnectionsDeleteDefaultResponse, GlobalReachConnectionsDeleteLogicalResponse, GlobalReachConnectionsGet200Response, GlobalReachConnectionsGetDefaultResponse, GlobalReachConnectionsListByPrivateCloud200Response, GlobalReachConnectionsListByPrivateCloudDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { GlobalReachConnectionsListByPrivateCloudOptionalParams, GlobalReachConnectionsGetOptionalParams, GlobalReachConnectionsCreateOrUpdateOptionalParams, GlobalReachConnectionsDeleteOptionalParams } from "../../models/options.js";
 export declare function _listByPrivateCloudSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: GlobalReachConnectionsListByPrivateCloudOptionalParams): StreamableMethod<GlobalReachConnectionsListByPrivateCloud200Response | GlobalReachConnectionsListByPrivateCloudDefaultResponse>;
-export declare function _listByPrivateCloudDeserialize(result: GlobalReachConnectionsListByPrivateCloud200Response | GlobalReachConnectionsListByPrivateCloudDefaultResponse): Promise<GlobalReachConnectionListResult>;
+export declare function _listByPrivateCloudDeserialize(result: GlobalReachConnectionsListByPrivateCloud200Response | GlobalReachConnectionsListByPrivateCloudDefaultResponse): Promise<_GlobalReachConnectionList>;
 /** List GlobalReachConnection resources by PrivateCloud */
 export declare function listByPrivateCloud(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: GlobalReachConnectionsListByPrivateCloudOptionalParams): PagedAsyncIterableIterator<GlobalReachConnection>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, globalReachConnectionName: string, options?: GlobalReachConnectionsGetOptionalParams): StreamableMethod<GlobalReachConnectionsGet200Response | GlobalReachConnectionsGetDefaultResponse>;

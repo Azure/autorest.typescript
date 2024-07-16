@@ -10,16 +10,17 @@ import {
   ScriptCmdletsGetOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ScriptCmdlets operations. */
 export interface ScriptCmdletsOperations {
+  /** List ScriptCmdlet resources by ScriptPackage */
   listByScriptPackage: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     scriptPackageName: string,
     options?: ScriptCmdletsListByScriptPackageOptionalParams,
   ) => PagedAsyncIterableIterator<ScriptCmdlet>;
+  /** Get a ScriptCmdlet */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     scriptPackageName: string,
@@ -28,10 +29,9 @@ export interface ScriptCmdletsOperations {
   ) => Promise<ScriptCmdlet>;
 }
 
-export function getScriptCmdlets(context: AVSContext) {
+export function getScriptCmdlets(context: AVSContext, subscriptionId: string) {
   return {
     listByScriptPackage: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       scriptPackageName: string,
@@ -46,7 +46,6 @@ export function getScriptCmdlets(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       scriptPackageName: string,
@@ -67,8 +66,9 @@ export function getScriptCmdlets(context: AVSContext) {
 
 export function getScriptCmdletsOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): ScriptCmdletsOperations {
   return {
-    ...getScriptCmdlets(context),
+    ...getScriptCmdlets(context, subscriptionId),
   };
 }

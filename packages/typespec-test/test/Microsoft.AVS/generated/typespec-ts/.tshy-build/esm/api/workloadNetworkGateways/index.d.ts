@@ -1,10 +1,10 @@
-import { WorkloadNetworkGatewayListResult, WorkloadNetworkGateway } from "../../models/models.js";
+import { WorkloadNetworkGateway, _WorkloadNetworkGatewayList } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { AVSContext as Client, WorkloadNetworkGatewaysGet200Response, WorkloadNetworkGatewaysGetDefaultResponse, WorkloadNetworkGatewaysListByWorkloadNetwork200Response, WorkloadNetworkGatewaysListByWorkloadNetworkDefaultResponse } from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { WorkloadNetworkGatewaysListByWorkloadNetworkOptionalParams, WorkloadNetworkGatewaysGetOptionalParams } from "../../models/options.js";
 export declare function _listByWorkloadNetworkSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: WorkloadNetworkGatewaysListByWorkloadNetworkOptionalParams): StreamableMethod<WorkloadNetworkGatewaysListByWorkloadNetwork200Response | WorkloadNetworkGatewaysListByWorkloadNetworkDefaultResponse>;
-export declare function _listByWorkloadNetworkDeserialize(result: WorkloadNetworkGatewaysListByWorkloadNetwork200Response | WorkloadNetworkGatewaysListByWorkloadNetworkDefaultResponse): Promise<WorkloadNetworkGatewayListResult>;
+export declare function _listByWorkloadNetworkDeserialize(result: WorkloadNetworkGatewaysListByWorkloadNetwork200Response | WorkloadNetworkGatewaysListByWorkloadNetworkDefaultResponse): Promise<_WorkloadNetworkGatewayList>;
 /** List WorkloadNetworkGateway resources by WorkloadNetwork */
 export declare function listByWorkloadNetwork(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: WorkloadNetworkGatewaysListByWorkloadNetworkOptionalParams): PagedAsyncIterableIterator<WorkloadNetworkGateway>;
 export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, gatewayId: string, options?: WorkloadNetworkGatewaysGetOptionalParams): StreamableMethod<WorkloadNetworkGatewaysGet200Response | WorkloadNetworkGatewaysGetDefaultResponse>;

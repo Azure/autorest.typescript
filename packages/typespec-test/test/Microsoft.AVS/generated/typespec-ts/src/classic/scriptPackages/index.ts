@@ -10,15 +10,16 @@ import {
   ScriptPackagesGetOptionalParams,
 } from "../../models/options.js";
 
+/** Interface representing a ScriptPackages operations. */
 export interface ScriptPackagesOperations {
+  /** List ScriptPackage resources by PrivateCloud */
   listByPrivateCloud: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     options?: ScriptPackagesListByPrivateCloudOptionalParams,
   ) => PagedAsyncIterableIterator<ScriptPackage>;
+  /** Get a ScriptPackage */
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     privateCloudName: string,
     scriptPackageName: string,
@@ -26,10 +27,9 @@ export interface ScriptPackagesOperations {
   ) => Promise<ScriptPackage>;
 }
 
-export function getScriptPackages(context: AVSContext) {
+export function getScriptPackages(context: AVSContext, subscriptionId: string) {
   return {
     listByPrivateCloud: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       options?: ScriptPackagesListByPrivateCloudOptionalParams,
@@ -42,7 +42,6 @@ export function getScriptPackages(context: AVSContext) {
         options,
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       privateCloudName: string,
       scriptPackageName: string,
@@ -61,8 +60,9 @@ export function getScriptPackages(context: AVSContext) {
 
 export function getScriptPackagesOperations(
   context: AVSContext,
+  subscriptionId: string,
 ): ScriptPackagesOperations {
   return {
-    ...getScriptPackages(context),
+    ...getScriptPackages(context, subscriptionId),
   };
 }

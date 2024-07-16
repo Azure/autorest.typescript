@@ -4,9 +4,12 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  WorkloadNetworkPortMirroringListResult,
+  workloadNetworkPortMirroringPropertiesSerializer,
+  CreatedByType,
   WorkloadNetworkPortMirroring,
-  WorkloadNetworkPortMirroringUpdate,
+  PortMirroringDirectionEnum,
+  PortMirroringStatusEnum,
+  _WorkloadNetworkPortMirroringList,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
@@ -70,44 +73,50 @@ export async function _listByWorkloadNetworkDeserialize(
   result:
     | WorkloadNetworkPortMirroringProfilesListByWorkloadNetwork200Response
     | WorkloadNetworkPortMirroringProfilesListByWorkloadNetworkDefaultResponse,
-): Promise<WorkloadNetworkPortMirroringListResult> {
+): Promise<_WorkloadNetworkPortMirroringList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      type: p["type"],
-      systemData: !p.systemData
-        ? undefined
-        : {
-            createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
-            createdAt:
-              p.systemData?.["createdAt"] !== undefined
-                ? new Date(p.systemData?.["createdAt"])
-                : undefined,
-            lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
-            lastModifiedAt:
-              p.systemData?.["lastModifiedAt"] !== undefined
-                ? new Date(p.systemData?.["lastModifiedAt"])
-                : undefined,
-          },
-      properties: !p.properties
-        ? undefined
-        : {
-            displayName: p.properties?.["displayName"],
-            direction: p.properties?.["direction"],
-            source: p.properties?.["source"],
-            destination: p.properties?.["destination"],
-            status: p.properties?.["status"],
-            provisioningState: p.properties?.["provisioningState"],
-            revision: p.properties?.["revision"],
-          },
-    })),
+    value: result.body["value"].map((p) => {
+      return {
+        id: p["id"],
+        name: p["name"],
+        type: p["type"],
+        systemData: !p.systemData
+          ? undefined
+          : {
+              createdBy: p.systemData?.["createdBy"],
+              createdByType: p.systemData?.["createdByType"] as CreatedByType,
+              createdAt:
+                p.systemData?.["createdAt"] !== undefined
+                  ? new Date(p.systemData?.["createdAt"])
+                  : undefined,
+              lastModifiedBy: p.systemData?.["lastModifiedBy"],
+              lastModifiedByType: p.systemData?.[
+                "lastModifiedByType"
+              ] as CreatedByType,
+              lastModifiedAt:
+                p.systemData?.["lastModifiedAt"] !== undefined
+                  ? new Date(p.systemData?.["lastModifiedAt"])
+                  : undefined,
+            },
+        properties: !p.properties
+          ? undefined
+          : {
+              displayName: p.properties?.["displayName"],
+              direction: p.properties?.[
+                "direction"
+              ] as PortMirroringDirectionEnum,
+              source: p.properties?.["source"],
+              destination: p.properties?.["destination"],
+              status: p.properties?.["status"] as PortMirroringStatusEnum,
+              provisioningState: p.properties?.["provisioningState"] as any,
+              revision: p.properties?.["revision"],
+            },
+      };
+    }),
     nextLink: result.body["nextLink"],
   };
 }
@@ -178,13 +187,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -194,11 +207,15 @@ export async function _getDeserialize(
       ? undefined
       : {
           displayName: result.body.properties?.["displayName"],
-          direction: result.body.properties?.["direction"],
+          direction: result.body.properties?.[
+            "direction"
+          ] as PortMirroringDirectionEnum,
           source: result.body.properties?.["source"],
           destination: result.body.properties?.["destination"],
-          status: result.body.properties?.["status"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          status: result.body.properties?.["status"] as PortMirroringStatusEnum,
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           revision: result.body.properties?.["revision"],
         },
   };
@@ -254,16 +271,10 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !workloadNetworkPortMirroring.properties
-          ? undefined
-          : {
-              displayName:
-                workloadNetworkPortMirroring.properties?.["displayName"],
-              direction: workloadNetworkPortMirroring.properties?.["direction"],
-              source: workloadNetworkPortMirroring.properties?.["source"],
-              destination:
-                workloadNetworkPortMirroring.properties?.["destination"],
-              revision: workloadNetworkPortMirroring.properties?.["revision"],
-            },
+          ? workloadNetworkPortMirroring.properties
+          : workloadNetworkPortMirroringPropertiesSerializer(
+              workloadNetworkPortMirroring.properties,
+            ),
       },
     });
 }
@@ -288,13 +299,17 @@ export async function _createDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -304,11 +319,15 @@ export async function _createDeserialize(
       ? undefined
       : {
           displayName: result.body.properties?.["displayName"],
-          direction: result.body.properties?.["direction"],
+          direction: result.body.properties?.[
+            "direction"
+          ] as PortMirroringDirectionEnum,
           source: result.body.properties?.["source"],
           destination: result.body.properties?.["destination"],
-          status: result.body.properties?.["status"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          status: result.body.properties?.["status"] as PortMirroringStatusEnum,
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           revision: result.body.properties?.["revision"],
         },
   };
@@ -354,7 +373,7 @@ export function _updateSend(
   resourceGroupName: string,
   privateCloudName: string,
   portMirroringId: string,
-  workloadNetworkPortMirroring: WorkloadNetworkPortMirroringUpdate,
+  workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
   options: WorkloadNetworkPortMirroringProfilesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -376,16 +395,10 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         properties: !workloadNetworkPortMirroring.properties
-          ? undefined
-          : {
-              displayName:
-                workloadNetworkPortMirroring.properties?.["displayName"],
-              direction: workloadNetworkPortMirroring.properties?.["direction"],
-              source: workloadNetworkPortMirroring.properties?.["source"],
-              destination:
-                workloadNetworkPortMirroring.properties?.["destination"],
-              revision: workloadNetworkPortMirroring.properties?.["revision"],
-            },
+          ? workloadNetworkPortMirroring.properties
+          : workloadNetworkPortMirroringPropertiesSerializer(
+              workloadNetworkPortMirroring.properties,
+            ),
       },
     });
 }
@@ -410,13 +423,17 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -426,11 +443,15 @@ export async function _updateDeserialize(
       ? undefined
       : {
           displayName: result.body.properties?.["displayName"],
-          direction: result.body.properties?.["direction"],
+          direction: result.body.properties?.[
+            "direction"
+          ] as PortMirroringDirectionEnum,
           source: result.body.properties?.["source"],
           destination: result.body.properties?.["destination"],
-          status: result.body.properties?.["status"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          status: result.body.properties?.["status"] as PortMirroringStatusEnum,
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as any,
           revision: result.body.properties?.["revision"],
         },
   };
@@ -443,7 +464,7 @@ export function update(
   resourceGroupName: string,
   privateCloudName: string,
   portMirroringId: string,
-  workloadNetworkPortMirroring: WorkloadNetworkPortMirroringUpdate,
+  workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
   options: WorkloadNetworkPortMirroringProfilesUpdateOptionalParams = {
     requestOptions: {},
   },
