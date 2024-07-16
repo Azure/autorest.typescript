@@ -6,21 +6,18 @@ import { FileType } from "./models.js";
 
 /** Optional parameters. */
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
-  /** This request has a JSON Merge Patch body. */
   contentType?: string;
 }
 
 /** Optional parameters. */
 export interface CreateOrUpdateAppComponentsOptionalParams
   extends OperationOptions {
-  /** Content type. */
   contentType?: string;
 }
 
 /** Optional parameters. */
 export interface CreateOrUpdateServerMetricsConfigOptionalParams
   extends OperationOptions {
-  /** Content type. */
   contentType?: string;
 }
 
@@ -53,17 +50,22 @@ export interface ListTestsOptionalParams extends OperationOptions {
    * the search parameter can be Login.
    */
   search?: string;
-  /** Start DateTime(RFC 3339 literal format) of the last updated time range to filter tests. */
-  lastModifiedStartTime?: Date;
-  /** End DateTime(RFC 3339 literal format) of the last updated time range to filter tests. */
-  lastModifiedEndTime?: Date;
+  /**
+   * Start DateTime(ISO 8601 literal format) of the last updated time range to
+   * filter tests.
+   */
+  lastModifiedStartTime?: string;
+  /**
+   * End DateTime(ISO 8601 literal format) of the last updated time range to filter
+   * tests.
+   */
+  lastModifiedEndTime?: string;
   /** Number of results in response. */
   maxpagesize?: number;
 }
 
 /** Optional parameters. */
 export interface UploadTestFileOptionalParams extends OperationOptions {
-  /** Content type. */
   contentType?: string;
   /** File type */
   fileType?: FileType;

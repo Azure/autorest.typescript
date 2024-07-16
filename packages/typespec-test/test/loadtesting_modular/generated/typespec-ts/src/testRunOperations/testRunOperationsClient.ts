@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
+  FileInfo,
   TestRun,
-  TestRunFileInfo,
   TestRunAppComponents,
   TestRunServerMetricConfig,
   DimensionValueList,
@@ -15,7 +16,7 @@ import {
   TimeSeriesElement,
 } from "./models/models.js";
 import {
-  CreateOrUpdateTestRunOptionalParams,
+  TestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
   DeleteTestRunOptionalParams,
@@ -28,11 +29,11 @@ import {
   ListMetricNamespacesOptionalParams,
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
-  StopOptionalParams,
+  StopTestRunOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
-  createOrUpdateTestRun,
+  testRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
   deleteTestRun,
@@ -45,23 +46,23 @@ import {
   listMetricNamespaces,
   listMetrics,
   listTestRuns,
-  stop,
+  stopTestRun,
   createTestRunOperations,
-  TestRunOperationsClientOptions,
-  LoadTestServiceContext,
+  TestRunOperationsClientOptionalParams,
+  AzureLoadTestingContext,
 } from "./api/index.js";
 
-export { TestRunOperationsClientOptions } from "./api/testRunOperationsContext.js";
+export { TestRunOperationsClientOptionalParams } from "./api/testRunOperationsContext.js";
 
 export class TestRunOperationsClient {
-  private _client: LoadTestServiceContext;
+  private _client: AzureLoadTestingContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: TestRunOperationsClientOptions = {},
+    options: TestRunOperationsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
@@ -75,16 +76,16 @@ export class TestRunOperationsClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Create and start a new test run with the given test run Id. */
-  createOrUpdateTestRun(
+  /** Create and start a new test run with the given name. */
+  testRun(
     testRunId: string,
-    body: TestRun,
-    options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
-  ): Promise<TestRun> {
-    return createOrUpdateTestRun(this._client, testRunId, body, options);
+    resource: TestRun,
+    options: TestRunOptionalParams = { requestOptions: {} },
+  ): PollerLike<OperationState<TestRun>, TestRun> {
+    return testRun(this._client, testRunId, resource, options);
   }
 
-  /** Add an app component to a test run by providing the resource Id, name and type. */
+  /** Associate an app component (collection of azure resources) to a test run */
   createOrUpdateAppComponents(
     testRunId: string,
     body: TestRunAppComponents,
@@ -109,7 +110,7 @@ export class TestRunOperationsClient {
     );
   }
 
-  /** Delete an existing load test run by providing the testRunId. */
+  /** Delete a test run by its name. */
   deleteTestRun(
     testRunId: string,
     options: DeleteTestRunOptionalParams = { requestOptions: {} },
@@ -128,7 +129,7 @@ export class TestRunOperationsClient {
     return getAppComponents(this._client, testRunId, options);
   }
 
-  /** Get associated server metrics configuration for the given test run. */
+  /** List server metrics configuration for the given test run. */
   getServerMetricsConfig(
     testRunId: string,
     options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
@@ -136,7 +137,7 @@ export class TestRunOperationsClient {
     return getServerMetricsConfig(this._client, testRunId, options);
   }
 
-  /** Get test run details by test run Id. */
+  /** Get test run details by name. */
   getTestRun(
     testRunId: string,
     options: GetTestRunOptionalParams = { requestOptions: {} },
@@ -149,7 +150,7 @@ export class TestRunOperationsClient {
     testRunId: string,
     fileName: string,
     options: GetTestRunFileOptionalParams = { requestOptions: {} },
-  ): Promise<TestRunFileInfo> {
+  ): Promise<FileInfo> {
     return getTestRunFile(this._client, testRunId, fileName, options);
   }
 
@@ -157,18 +158,14 @@ export class TestRunOperationsClient {
   listMetricDimensionValues(
     testRunId: string,
     name: string,
-    metricname: string,
     metricNamespace: string,
-    timespan: string,
     options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} },
-  ): Promise<DimensionValueList> {
+  ): PagedAsyncIterableIterator<DimensionValueList> {
     return listMetricDimensionValues(
       this._client,
       testRunId,
       name,
-      metricname,
       metricNamespace,
-      timespan,
       options,
     );
   }
@@ -176,15 +173,9 @@ export class TestRunOperationsClient {
   /** List the metric definitions for a load test run. */
   listMetricDefinitions(
     testRunId: string,
-    metricNamespace: string,
     options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
   ): Promise<MetricDefinitionCollection> {
-    return listMetricDefinitions(
-      this._client,
-      testRunId,
-      metricNamespace,
-      options,
-    );
+    return listMetricDefinitions(this._client, testRunId, options);
   }
 
   /** List the metric namespaces for a load test run. */
@@ -198,35 +189,24 @@ export class TestRunOperationsClient {
   /** List the metric values for a load test run. */
   listMetrics(
     testRunId: string,
-    metricname: string,
-    metricNamespace: string,
-    timespan: string,
-    body?: MetricRequestPayload,
+    body: MetricRequestPayload,
     options: ListMetricsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TimeSeriesElement> {
-    return listMetrics(
-      this._client,
-      testRunId,
-      metricname,
-      metricNamespace,
-      timespan,
-      body,
-      options,
-    );
+    return listMetrics(this._client, testRunId, body, options);
   }
 
-  /** Get all test runs for the given filters. */
+  /** Get all test runs with given filters */
   listTestRuns(
     options: ListTestRunsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TestRun> {
     return listTestRuns(this._client, options);
   }
 
-  /** Stop test run by test run Id. */
-  stop(
+  /** Stop test run by name. */
+  stopTestRun(
     testRunId: string,
-    options: StopOptionalParams = { requestOptions: {} },
+    options: StopTestRunOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
-    return stop(this._client, testRunId, options);
+    return stopTestRun(this._client, testRunId, options);
   }
 }

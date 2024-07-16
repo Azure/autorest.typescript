@@ -2,10 +2,12 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { TimeGrain } from "./models.js";
+import { Interval } from "./models.js";
 
 /** Optional parameters. */
-export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
+export interface TestRunOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
   /**
@@ -20,14 +22,12 @@ export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
 /** Optional parameters. */
 export interface CreateOrUpdateAppComponentsOptionalParams
   extends OperationOptions {
-  /** Content type. */
   contentType?: string;
 }
 
 /** Optional parameters. */
 export interface CreateOrUpdateServerMetricsConfigOptionalParams
   extends OperationOptions {
-  /** Content type. */
   contentType?: string;
 }
 
@@ -51,11 +51,21 @@ export interface GetTestRunFileOptionalParams extends OperationOptions {}
 export interface ListMetricDimensionValuesOptionalParams
   extends OperationOptions {
   /** The interval (i.e. timegrain) of the query. */
-  interval?: TimeGrain;
+  interval?: Interval;
+  /** Metric name */
+  metricName?: string;
+  /**
+   * The timespan of the query. It is a string with the following format
+   * 'startDateTime_ISO/endDateTime_ISO'.
+   */
+  timespan?: string;
 }
 
 /** Optional parameters. */
-export interface ListMetricDefinitionsOptionalParams extends OperationOptions {}
+export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
+  /** Metric namespace to query metric definitions for. */
+  metricNamespace?: string;
+}
 
 /** Optional parameters. */
 export interface ListMetricNamespacesOptionalParams extends OperationOptions {}
@@ -65,7 +75,16 @@ export interface ListMetricsOptionalParams extends OperationOptions {
   /** The aggregation */
   aggregation?: string;
   /** The interval (i.e. timegrain) of the query. */
-  interval?: TimeGrain;
+  interval?: Interval;
+  /** Metric name */
+  metricName?: string;
+  /** Metric namespace to query metric definitions for. */
+  metricNamespace?: string;
+  /**
+   * The timespan of the query. It is a string with the following format
+   * 'startDateTime_ISO/endDateTime_ISO'.
+   */
+  timespan?: string;
 }
 
 /** Optional parameters. */
@@ -83,10 +102,10 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
   search?: string;
   /** Unique name of an existing load test. */
   testId?: string;
-  /** Start DateTime(RFC 3339 literal format) of test-run execution time filter range. */
-  executionFrom?: Date;
-  /** End DateTime(RFC 3339 literal format) of test-run execution time filter range. */
-  executionTo?: Date;
+  /** Start DateTime(ISO 8601 literal format) of test-run execution time filter range. */
+  executionFrom?: string;
+  /** End DateTime(ISO 8601 literal format) of test-run execution time filter range. */
+  executionTo?: string;
   /** Comma separated list of test run status. */
   status?: string;
   /** Number of results in response. */
@@ -94,4 +113,4 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface StopOptionalParams extends OperationOptions {}
+export interface StopTestRunOptionalParams extends OperationOptions {}
