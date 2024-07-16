@@ -17,7 +17,9 @@ async function getJobSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureHealthInsightsClient(endpointParam, credential);
   const id = "{Your id}";
-  const result = await client.path("/radiology-insights/jobs/{id}", id).get();
+  const result = await client
+    .path("/radiology-insights/jobs/{id}", id)
+    .get({ queryParameters: { expand: "{Your expand}" } });
   console.log(result);
 }
 

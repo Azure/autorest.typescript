@@ -3,7 +3,7 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
-import { KeyCredential } from "@azure/core-auth";
+import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { AzureHealthInsightsClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
@@ -20,9 +20,9 @@ export interface AzureHealthInsightsClientOptions extends ClientOptions {
  */
 export default function createClient(
   endpointParam: string,
-  credentials: KeyCredential,
+  credentials: TokenCredential | KeyCredential,
   {
-    apiVersion = "2023-09-01-preview",
+    apiVersion = "2024-04-01",
     ...options
   }: AzureHealthInsightsClientOptions = {},
 ): AzureHealthInsightsClient {
@@ -42,6 +42,9 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://cognitiveservices.azure.com/.default",
+      ],
       apiKeyHeaderName:
         options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },

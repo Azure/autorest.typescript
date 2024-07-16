@@ -4,15 +4,15 @@
 import {
   GetJob200Response,
   GetJobDefaultResponse,
-  CreateJob202Response,
+  CreateJob200Response,
+  CreateJob201Response,
   CreateJobLogicalResponse,
   CreateJobDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /radiology-insights/jobs/{id}": ["200"],
-  "GET /radiology-insights/jobs": ["200", "202"],
-  "POST /radiology-insights/jobs": ["202"],
+  "PUT /radiology-insights/jobs/{id}": ["200", "201"],
 };
 
 export function isUnexpected(
@@ -20,7 +20,8 @@ export function isUnexpected(
 ): response is GetJobDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateJob202Response
+    | CreateJob200Response
+    | CreateJob201Response
     | CreateJobLogicalResponse
     | CreateJobDefaultResponse,
 ): response is CreateJobDefaultResponse;
@@ -28,7 +29,8 @@ export function isUnexpected(
   response:
     | GetJob200Response
     | GetJobDefaultResponse
-    | CreateJob202Response
+    | CreateJob200Response
+    | CreateJob201Response
     | CreateJobLogicalResponse
     | CreateJobDefaultResponse,
 ): response is GetJobDefaultResponse | CreateJobDefaultResponse {
