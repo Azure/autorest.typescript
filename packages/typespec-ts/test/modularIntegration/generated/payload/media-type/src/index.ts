@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { MediaTypeClient, MediaTypeClientOptions } from "./mediaTypeClient.js";
+export {
+  MediaTypeClient,
+  MediaTypeClientOptionalParams,
+} from "./mediaTypeClient.js";
 export {
   StringBodySendAsTextOptionalParams,
   StringBodyGetAsTextOptionalParams,

@@ -13,11 +13,11 @@ import {
 } from "./classic/header/index.js";
 import {
   createDuration,
-  DurationClientOptions,
+  DurationClientOptionalParams,
   DurationContext,
 } from "./api/index.js";
 
-export { DurationClientOptions } from "./api/durationContext.js";
+export { DurationClientOptionalParams } from "./api/durationContext.js";
 
 export class DurationClient {
   private _client: DurationContext;
@@ -25,7 +25,7 @@ export class DurationClient {
   public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on duration. */
-  constructor(options: DurationClientOptions = {}) {
+  constructor(options: DurationClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

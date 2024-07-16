@@ -6,13 +6,13 @@ import { EnumDiscriminatorContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface EnumDiscriminatorClientOptions extends ClientOptions {}
+export interface EnumDiscriminatorClientOptionalParams extends ClientOptions {}
 
 export { EnumDiscriminatorContext } from "../rest/index.js";
 
 /** Illustrates inheritance with enum discriminator. */
 export function createEnumDiscriminator(
-  options: EnumDiscriminatorClientOptions = {},
+  options: EnumDiscriminatorClientOptionalParams = {},
 ): EnumDiscriminatorContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

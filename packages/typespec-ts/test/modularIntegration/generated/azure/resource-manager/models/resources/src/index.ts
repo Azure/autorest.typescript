@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ResourcesClient, ResourcesClientOptions } from "./resourcesClient.js";
+export {
+  ResourcesClient,
+  ResourcesClientOptionalParams,
+} from "./resourcesClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Resource,

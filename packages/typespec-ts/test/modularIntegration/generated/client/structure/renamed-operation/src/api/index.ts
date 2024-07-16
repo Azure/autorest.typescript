@@ -4,6 +4,6 @@
 export { renamedOne, renamedThree, renamedFive } from "./operations.js";
 export {
   createRenamedOperation,
-  RenamedOperationClientOptions,
+  RenamedOperationClientOptionalParams,
   ServiceContext,
 } from "./renamedOperationContext.js";

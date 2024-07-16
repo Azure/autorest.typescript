@@ -3,7 +3,7 @@
 
 export {
   ChatProtocolClient,
-  ChatProtocolClientOptions,
+  ChatProtocolClientOptionalParams,
 } from "./chatProtocolClient.js";
 export {
   ChatMessage,

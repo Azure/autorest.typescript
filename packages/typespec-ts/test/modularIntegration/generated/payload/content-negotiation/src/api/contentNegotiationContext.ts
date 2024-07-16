@@ -6,13 +6,13 @@ import { ContentNegotiationContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ContentNegotiationClientOptions extends ClientOptions {}
+export interface ContentNegotiationClientOptionalParams extends ClientOptions {}
 
 export { ContentNegotiationContext } from "../rest/index.js";
 
 /** Test describing optionality of the request body. */
 export function createContentNegotiation(
-  options: ContentNegotiationClientOptions = {},
+  options: ContentNegotiationClientOptionalParams = {},
 ): ContentNegotiationContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

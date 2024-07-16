@@ -4,6 +4,6 @@
 export { put, get } from "./operations.js";
 export {
   createRecursive,
-  RecursiveClientOptions,
+  RecursiveClientOptionalParams,
   RecursiveContext,
 } from "./recursiveContext.js";

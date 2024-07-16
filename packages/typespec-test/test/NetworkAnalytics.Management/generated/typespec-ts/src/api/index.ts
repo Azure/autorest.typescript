@@ -3,6 +3,6 @@
 
 export {
   createNetworkAnalytics,
-  NetworkAnalyticsClientOptions,
+  NetworkAnalyticsClientOptionalParams,
   NetworkAnalyticsContext,
 } from "./networkAnalyticsContext.js";

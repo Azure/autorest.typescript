@@ -3,7 +3,7 @@
 
 export {
   createResources,
-  ResourcesClientOptions,
+  ResourcesClientOptionalParams,
   ResourcesContext,
 } from "./resourcesContext.js";
 export {

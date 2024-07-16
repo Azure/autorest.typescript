@@ -7,7 +7,7 @@ import { WidgetManagerContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface WidgetManagerClientOptions extends ClientOptions {
+export interface WidgetManagerClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -17,7 +17,7 @@ export { WidgetManagerContext } from "../rest/index.js";
 export function createWidgetManager(
   endpointParam: string,
   credential: KeyCredential | TokenCredential,
-  options: WidgetManagerClientOptions = {},
+  options: WidgetManagerClientOptionalParams = {},
 ): WidgetManagerContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
