@@ -3,7 +3,7 @@
 
 export {
   AdministrationOperationsClient,
-  AdministrationOperationsClientOptions,
+  AdministrationOperationsClientOptionalParams,
 } from "./administrationOperations/administrationOperationsClient.js";
 export {
   Test,
@@ -72,7 +72,7 @@ export {
 } from "./administrationOperations/models/index.js";
 export {
   TestRunOperationsClient,
-  TestRunOperationsClientOptions,
+  TestRunOperationsClientOptionalParams,
 } from "./testRunOperations/testRunOperationsClient.js";
 export {
   restorePoller,

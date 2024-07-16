@@ -48,11 +48,11 @@ import {
   listTestRuns,
   stopTestRun,
   createTestRunOperations,
-  TestRunOperationsClientOptions,
+  TestRunOperationsClientOptionalParams,
   AzureLoadTestingContext,
 } from "./api/index.js";
 
-export { TestRunOperationsClientOptions } from "./api/testRunOperationsContext.js";
+export { TestRunOperationsClientOptionalParams } from "./api/testRunOperationsContext.js";
 
 export class TestRunOperationsClient {
   private _client: AzureLoadTestingContext;
@@ -62,7 +62,7 @@ export class TestRunOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: TestRunOperationsClientOptions = {},
+    options: TestRunOperationsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -7,7 +7,8 @@ import { AzureLoadTestingContext } from "../../rest/index.js";
 import getClient from "../../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface AdministrationOperationsClientOptions extends ClientOptions {
+export interface AdministrationOperationsClientOptionalParams
+  extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -17,7 +18,7 @@ export { AzureLoadTestingContext } from "../../rest/index.js";
 export function createAdministrationOperations(
   endpointParam: string,
   credential: TokenCredential,
-  options: AdministrationOperationsClientOptions = {},
+  options: AdministrationOperationsClientOptionalParams = {},
 ): AzureLoadTestingContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

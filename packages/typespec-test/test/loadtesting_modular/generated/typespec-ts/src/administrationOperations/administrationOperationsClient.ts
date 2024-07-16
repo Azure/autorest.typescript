@@ -26,7 +26,7 @@ import {
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createAdministrationOperations,
-  AdministrationOperationsClientOptions,
+  AdministrationOperationsClientOptionalParams,
   AzureLoadTestingContext,
   createOrUpdateTest,
   createOrUpdateAppComponents,
@@ -42,7 +42,7 @@ import {
   deleteTest,
 } from "./api/index.js";
 
-export { AdministrationOperationsClientOptions } from "./api/administrationOperationsContext.js";
+export { AdministrationOperationsClientOptionalParams } from "./api/administrationOperationsContext.js";
 
 export class AdministrationOperationsClient {
   private _client: AzureLoadTestingContext;
@@ -52,7 +52,7 @@ export class AdministrationOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: AdministrationOperationsClientOptions = {},
+    options: AdministrationOperationsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

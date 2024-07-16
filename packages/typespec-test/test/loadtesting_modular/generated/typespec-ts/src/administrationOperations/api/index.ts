@@ -3,7 +3,7 @@
 
 export {
   createAdministrationOperations,
-  AdministrationOperationsClientOptions,
+  AdministrationOperationsClientOptionalParams,
   AzureLoadTestingContext,
 } from "./administrationOperationsContext.js";
 export {

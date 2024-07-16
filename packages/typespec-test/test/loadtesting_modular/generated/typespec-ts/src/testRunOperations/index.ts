@@ -3,7 +3,7 @@
 
 export {
   TestRunOperationsClient,
-  TestRunOperationsClientOptions,
+  TestRunOperationsClientOptionalParams,
 } from "./testRunOperationsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {

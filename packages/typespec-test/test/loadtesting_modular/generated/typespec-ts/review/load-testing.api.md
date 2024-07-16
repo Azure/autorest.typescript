@@ -15,7 +15,7 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export class AdministrationOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: AdministrationOperationsClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: AdministrationOperationsClientOptionalParams);
     createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
     createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
     createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
@@ -32,7 +32,7 @@ export class AdministrationOperationsClient {
 }
 
 // @public
-export interface AdministrationOperationsClientOptions extends ClientOptions {
+export interface AdministrationOperationsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -459,7 +459,7 @@ export interface TestRunInputArtifacts {
 
 // @public (undocumented)
 export class TestRunOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: TestRunOperationsClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: TestRunOperationsClientOptionalParams);
     createOrUpdateAppComponents(testRunId: string, body: TestRunOperationsClientTestRunAppComponents, options?: TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunOperationsClientTestRunAppComponents>;
     createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunOperationsClientTestRunServerMetricConfig, options?: TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunOperationsClientTestRunServerMetricConfig>;
     deleteTestRun(testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
@@ -641,7 +641,7 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
 }
 
 // @public
-export interface TestRunOperationsClientOptions extends ClientOptions {
+export interface TestRunOperationsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
