@@ -14,11 +14,11 @@ import {
   fromOneRequired,
   fromOneOptional,
   createServiceDriven,
-  ServiceDrivenClientOptions,
+  ServiceDrivenClientOptionalParams,
   ServiceDrivenContext,
 } from "./api/index.js";
 
-export { ServiceDrivenClientOptions } from "./api/serviceDrivenContext.js";
+export { ServiceDrivenClientOptionalParams } from "./api/serviceDrivenContext.js";
 
 export class ServiceDrivenClient {
   private _client: ServiceDrivenContext;
@@ -40,7 +40,7 @@ export class ServiceDrivenClient {
   constructor(
     endpointParam: string,
     serviceDeploymentVersion: string,
-    options: ServiceDrivenClientOptions = {},
+    options: ServiceDrivenClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -6,7 +6,7 @@ import { ServiceDrivenContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ServiceDrivenClientOptions extends ClientOptions {
+export interface ServiceDrivenClientOptionalParams extends ClientOptions {
   /** Pass in either 'v1' or 'v2'. This represents the API version of a service. */
   apiVersion?: string;
 }
@@ -28,7 +28,7 @@ export { ServiceDrivenContext } from "../rest/index.js";
 export function createServiceDriven(
   endpointParam: string,
   serviceDeploymentVersion: string,
-  options: ServiceDrivenClientOptions = {},
+  options: ServiceDrivenClientOptionalParams = {},
 ): ServiceDrivenContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

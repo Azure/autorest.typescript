@@ -49,13 +49,3 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
-
-/** Optional parameters. */
-export interface BudgetsCreateOrUpdateOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** The API version to use for this operation. */
-  apiVersion?: string;
-  /** This request has a JSON Merge Patch body. */
-  contentType?: string;
-}
