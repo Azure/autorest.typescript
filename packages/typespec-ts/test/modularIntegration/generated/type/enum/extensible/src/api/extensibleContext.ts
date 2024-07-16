@@ -6,12 +6,12 @@ import { ExtensibleContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ExtensibleClientOptions extends ClientOptions {}
+export interface ExtensibleClientOptionalParams extends ClientOptions {}
 
 export { ExtensibleContext } from "../rest/index.js";
 
 export function createExtensible(
-  options: ExtensibleClientOptions = {},
+  options: ExtensibleClientOptionalParams = {},
 ): ExtensibleContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

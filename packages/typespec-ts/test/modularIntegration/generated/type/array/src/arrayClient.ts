@@ -58,9 +58,13 @@ import {
   getNullableModelValueOperations,
   NullableModelValueOperations,
 } from "./classic/nullableModelValue/index.js";
-import { createArray, ArrayClientOptions, ArrayContext } from "./api/index.js";
+import {
+  createArray,
+  ArrayClientOptionalParams,
+  ArrayContext,
+} from "./api/index.js";
 
-export { ArrayClientOptions } from "./api/arrayContext.js";
+export { ArrayClientOptionalParams } from "./api/arrayContext.js";
 
 export class ArrayClient {
   private _client: ArrayContext;
@@ -68,7 +72,7 @@ export class ArrayClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates various types of arrays. */
-  constructor(options: ArrayClientOptions = {}) {
+  constructor(options: ArrayClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

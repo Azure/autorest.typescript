@@ -6,13 +6,13 @@ import { XmsRequestIdClientContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface XmsRequestIdClientOptions extends ClientOptions {}
+export interface XmsRequestIdClientOptionalParams extends ClientOptions {}
 
 export { XmsRequestIdClientContext } from "../rest/index.js";
 
 /** Azure client request id header configurations. */
 export function createXmsRequestId(
-  options: XmsRequestIdClientOptions = {},
+  options: XmsRequestIdClientOptionalParams = {},
 ): XmsRequestIdClientContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

@@ -57,11 +57,11 @@ import {
 } from "./classic/requiredAndOptional/index.js";
 import {
   createOptional,
-  OptionalClientOptions,
+  OptionalClientOptionalParams,
   OptionalContext,
 } from "./api/index.js";
 
-export { OptionalClientOptions } from "./api/optionalContext.js";
+export { OptionalClientOptionalParams } from "./api/optionalContext.js";
 
 export class OptionalClient {
   private _client: OptionalContext;
@@ -69,7 +69,7 @@ export class OptionalClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates models with optional properties. */
-  constructor(options: OptionalClientOptions = {}) {
+  constructor(options: OptionalClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

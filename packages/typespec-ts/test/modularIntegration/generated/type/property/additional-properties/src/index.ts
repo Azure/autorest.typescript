@@ -3,7 +3,7 @@
 
 export {
   AdditionalPropertiesClient,
-  AdditionalPropertiesClientOptions,
+  AdditionalPropertiesClientOptionalParams,
 } from "./additionalPropertiesClient.js";
 export {
   WidgetData2,

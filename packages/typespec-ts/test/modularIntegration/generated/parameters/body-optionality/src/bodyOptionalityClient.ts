@@ -13,13 +13,13 @@ import {
 } from "./classic/optionalExplicit/index.js";
 import {
   createBodyOptionality,
-  BodyOptionalityClientOptions,
+  BodyOptionalityClientOptionalParams,
   BodyOptionalityContext,
   requiredExplicit,
   requiredImplicit,
 } from "./api/index.js";
 
-export { BodyOptionalityClientOptions } from "./api/bodyOptionalityContext.js";
+export { BodyOptionalityClientOptionalParams } from "./api/bodyOptionalityContext.js";
 
 export class BodyOptionalityClient {
   private _client: BodyOptionalityContext;
@@ -27,7 +27,7 @@ export class BodyOptionalityClient {
   public readonly pipeline: Pipeline;
 
   /** Test describing optionality of the request body. */
-  constructor(options: BodyOptionalityClientOptions = {}) {
+  constructor(options: BodyOptionalityClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

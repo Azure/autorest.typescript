@@ -6,13 +6,13 @@ import { OptionalContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface OptionalClientOptions extends ClientOptions {}
+export interface OptionalClientOptionalParams extends ClientOptions {}
 
 export { OptionalContext } from "../rest/index.js";
 
 /** Illustrates models with optional properties. */
 export function createOptional(
-  options: OptionalClientOptions = {},
+  options: OptionalClientOptionalParams = {},
 ): OptionalContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

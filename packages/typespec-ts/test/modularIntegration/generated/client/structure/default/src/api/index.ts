@@ -4,6 +4,6 @@
 export { one, two } from "./operations.js";
 export {
   createService,
-  ServiceClientOptions,
+  ServiceClientOptionalParams,
   ServiceContext,
 } from "./serviceContext.js";

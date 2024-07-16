@@ -8,11 +8,11 @@ import {
   put,
   get,
   createRecursive,
-  RecursiveClientOptions,
+  RecursiveClientOptionalParams,
   RecursiveContext,
 } from "./api/index.js";
 
-export { RecursiveClientOptions } from "./api/recursiveContext.js";
+export { RecursiveClientOptionalParams } from "./api/recursiveContext.js";
 
 export class RecursiveClient {
   private _client: RecursiveContext;
@@ -20,7 +20,7 @@ export class RecursiveClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates inheritance recursion */
-  constructor(options: RecursiveClientOptions = {}) {
+  constructor(options: RecursiveClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

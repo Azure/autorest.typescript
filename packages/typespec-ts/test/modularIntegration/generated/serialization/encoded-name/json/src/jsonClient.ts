@@ -6,13 +6,13 @@ import { JsonEncodedNameModel } from "./models/models.js";
 import { SendOptionalParams, GetOptionalParams } from "./models/options.js";
 import {
   createJson,
-  JsonClientOptions,
+  JsonClientOptionalParams,
   JsonContext,
   send,
   get,
 } from "./api/index.js";
 
-export { JsonClientOptions } from "./api/jsonContext.js";
+export { JsonClientOptionalParams } from "./api/jsonContext.js";
 
 export class JsonClient {
   private _client: JsonContext;
@@ -20,7 +20,7 @@ export class JsonClient {
   public readonly pipeline: Pipeline;
 
   /** Projection */
-  constructor(options: JsonClientOptions = {}) {
+  constructor(options: JsonClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

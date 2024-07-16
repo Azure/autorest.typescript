@@ -3,7 +3,7 @@
 
 export {
   TwoOperationGroupClient,
-  TwoOperationGroupClientOptions,
+  TwoOperationGroupClientOptionalParams,
 } from "./twoOperationGroupClient.js";
 export {
   ClientType,

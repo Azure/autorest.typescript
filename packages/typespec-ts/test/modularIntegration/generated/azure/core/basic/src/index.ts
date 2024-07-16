@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BasicClient, BasicClientOptions } from "./basicClient.js";
+export { BasicClient, BasicClientOptionalParams } from "./basicClient.js";
 export {
   User,
   UserOrder,

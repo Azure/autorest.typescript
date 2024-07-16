@@ -21,11 +21,11 @@ import {
 } from "./classic/dataProducts/index.js";
 import {
   createNetworkAnalytics,
-  NetworkAnalyticsClientOptions,
+  NetworkAnalyticsClientOptionalParams,
   NetworkAnalyticsContext,
 } from "./api/index.js";
 
-export { NetworkAnalyticsClientOptions } from "./api/networkAnalyticsContext.js";
+export { NetworkAnalyticsClientOptionalParams } from "./api/networkAnalyticsContext.js";
 
 export class NetworkAnalyticsClient {
   private _client: NetworkAnalyticsContext;
@@ -35,7 +35,7 @@ export class NetworkAnalyticsClient {
   constructor(
     credential: TokenCredential,
     subscriptionId: string,
-    options: NetworkAnalyticsClientOptions = {},
+    options: NetworkAnalyticsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

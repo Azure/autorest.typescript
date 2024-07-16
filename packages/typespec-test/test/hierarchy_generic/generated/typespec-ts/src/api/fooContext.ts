@@ -6,13 +6,13 @@ import { FooContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface FooClientOptions extends ClientOptions {}
+export interface FooClientOptionalParams extends ClientOptions {}
 
 export { FooContext } from "../rest/index.js";
 
 export function createFoo(
   endpoint: string,
-  options: FooClientOptions = {},
+  options: FooClientOptionalParams = {},
 ): FooContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

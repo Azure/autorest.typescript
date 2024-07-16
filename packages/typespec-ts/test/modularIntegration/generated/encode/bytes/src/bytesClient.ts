@@ -19,9 +19,13 @@ import {
   getResponseBodyOperations,
   ResponseBodyOperations,
 } from "./classic/responseBody/index.js";
-import { createBytes, BytesClientOptions, BytesContext } from "./api/index.js";
+import {
+  createBytes,
+  BytesClientOptionalParams,
+  BytesContext,
+} from "./api/index.js";
 
-export { BytesClientOptions } from "./api/bytesContext.js";
+export { BytesClientOptionalParams } from "./api/bytesContext.js";
 
 export class BytesClient {
   private _client: BytesContext;
@@ -29,7 +33,7 @@ export class BytesClient {
   public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on bytes. */
-  constructor(options: BytesClientOptions = {}) {
+  constructor(options: BytesClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
