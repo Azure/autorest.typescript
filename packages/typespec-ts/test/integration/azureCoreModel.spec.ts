@@ -32,7 +32,7 @@ describe("Azure Core Traits Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it.only("should post core model embeddingVector", async () => {
+  it("should post core model embeddingVector", async () => {
     const responseBody = { embedding: [5, 6, 7, 8, 9] };
     const result = await client
       .path("/azure/core/model/embeddingVector")
