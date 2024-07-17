@@ -65,13 +65,11 @@ import {
   isType
 } from "@typespec/compiler";
 import {
-  createMetadataInfo,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
   HttpOperation,
-  isStatusCode,
-  Visibility
+  isStatusCode
 } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
@@ -154,7 +152,7 @@ export function getSchemaForType(
 ) {
   const program = dpgContext.program;
   const { usage } = options ?? {};
-  const type = getEffectiveModelFromType(program, typeInput);
+  const type = getEffectiveModelFromType(dpgContext, typeInput);
 
   const builtinType = getSchemaForLiteral(type);
   if (builtinType !== undefined) {
@@ -243,14 +241,17 @@ export function getSchemaForType(
   });
   return undefined;
 }
-export function getEffectiveModelFromType(program: Program, type: Type): Type {
+export function getEffectiveModelFromType(
+  context: SdkContext,
+  type: Type
+): Type {
   /**
    * If type is an anonymous model, tries to find a named model that has the same
    * set of properties when non-schema properties are excluded.
    */
   if (type.kind === "Model" && type.name === "") {
-    const effective = getEffectiveModelType(program, type, (property) =>
-      isSchemaProperty(program, property)
+    const effective = getEffectiveModelType(context.program, type, (property) =>
+      isSchemaProperty(context.program, property)
     );
     if (effective.name) {
       return effective;
@@ -1507,19 +1508,8 @@ export function getFormattedPropertyDoc(
   return propertyDoc ?? enhancedDocFromType;
 }
 
-export function getBodyType(
-  program: Program,
-  route: HttpOperation
-): Type | undefined {
+export function getBodyType(route: HttpOperation): Type | undefined {
   const bodyModel = route.parameters.body?.type;
-  if (bodyModel) {
-    const metadataInfo = createMetadataInfo(program);
-    const payloadType = metadataInfo.getEffectivePayloadType(
-      bodyModel,
-      Visibility.All
-    );
-    return payloadType;
-  }
   return bodyModel;
 }
 

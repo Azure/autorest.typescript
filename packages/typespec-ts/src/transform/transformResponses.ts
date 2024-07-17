@@ -11,16 +11,13 @@ import {
   SchemaContext
 } from "@azure-tools/rlc-common";
 import {
+  getHttpOperationWithCache,
   listOperationGroups,
   listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { getDoc, ignoreDiagnostics, isVoidType } from "@typespec/compiler";
-import {
-  getHttpOperation,
-  HttpOperation,
-  HttpOperationResponse
-} from "@typespec/http";
+import { getDoc, isVoidType } from "@typespec/compiler";
+import { HttpOperation, HttpOperationResponse } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   getBinaryType,
@@ -42,12 +39,11 @@ export function transformToResponseTypes(
   dpgContext: SdkContext,
   importDetails: Imports
 ): OperationResponse[] {
-  const program = dpgContext.program;
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -61,7 +57,7 @@ export function transformToResponseTypes(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;

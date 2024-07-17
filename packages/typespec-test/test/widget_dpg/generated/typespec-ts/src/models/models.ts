@@ -4,6 +4,7 @@
 import {
   User as UserRest,
   CreateWidget as CreateWidgetRest,
+  UpdateWidget as UpdateWidgetRest,
 } from "../rest/index.js";
 
 /** Details about a user. */
@@ -67,7 +68,7 @@ export interface UpdateWidget {
   color?: "red" | "blue";
 }
 
-export function updateWidgetSerializer(item: UpdateWidget) {
+export function updateWidgetSerializer(item: UpdateWidget): UpdateWidgetRest {
   return {
     weight: item["weight"],
     color: item["color"],

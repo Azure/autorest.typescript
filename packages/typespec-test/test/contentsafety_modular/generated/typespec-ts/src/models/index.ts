@@ -3,8 +3,8 @@
 
 export {
   TextBlocklist,
-  TextBlockItemInfo,
   AddOrUpdateBlockItemsOptions,
+  TextBlockItemInfo,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,

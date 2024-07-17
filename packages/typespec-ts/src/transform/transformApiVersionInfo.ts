@@ -7,13 +7,12 @@ import {
   UrlInfo
 } from "@azure-tools/rlc-common";
 import {
+  getHttpOperationWithCache,
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { ignoreDiagnostics } from "@typespec/compiler";
-import { getHttpOperation } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   getDefaultApiVersionString,
@@ -71,9 +70,7 @@ export function getOperationApiVersion(
   let hasApiVersionInOperation = true;
   for (const clientOp of clientOperations) {
     hasApiVersionInOperation = false;
-    const route = ignoreDiagnostics(
-      getHttpOperation(dpgContext.program, clientOp)
-    );
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -113,7 +110,7 @@ export function getOperationApiVersion(
     );
     for (const op of operations) {
       hasApiVersionInOperation = false;
-      const route = ignoreDiagnostics(getHttpOperation(dpgContext.program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;

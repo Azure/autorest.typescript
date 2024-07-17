@@ -49,10 +49,10 @@ export class BodyOptionalityClient {
   }
 
   requiredImplicit(
-    body: BodyModel,
+    name: string,
     options: RequiredImplicitOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return requiredImplicit(this._client, body, options);
+    return requiredImplicit(this._client, name, options);
   }
 
   /** The operation groups for OptionalExplicit */
