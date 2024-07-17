@@ -31,7 +31,10 @@ class BinderImp implements Binder {
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
 
   trackDeclaration(refkey: unknown, name: string, sourceFile: SourceFile) {
-    const uniqueName = this.generateLocallyUniqueName(name, sourceFile);
+    const uniqueName = this.generateLocallyUniqueDeclarationName(
+      name,
+      sourceFile
+    );
     const declarationInfo = { name: uniqueName, sourceFile };
     this.declarations.set(refkey, declarationInfo);
 
@@ -44,14 +47,32 @@ class BinderImp implements Binder {
     return declarationInfo;
   }
 
-  private generateLocallyUniqueName(name: string, sourceFile: SourceFile) {
+  private generateLocallyUniqueDeclarationName(
+    name: string,
+    sourceFile: SourceFile
+  ) {
     const existingNamesInFile =
       this.symbolsBySourceFile.get(sourceFile) ?? new Set<string>();
 
+    return this.generateLocallyUniqueName(name, existingNamesInFile);
+  }
+
+  private generateLocallyUniqueImportName(
+    name: string,
+    sourceFile: SourceFile
+  ) {
+    const existingImports = (this.imports.get(sourceFile) ?? [])
+      .flatMap((i) => i.namedImports as ImportSpecifierStructure[])
+      .map((i) => i.alias ?? i.name);
+
+    return this.generateLocallyUniqueName(name, new Set(existingImports));
+  }
+
+  private generateLocallyUniqueName(name: string, existingNames: Set<string>) {
     let uniqueName = name;
     let counter = 1;
 
-    while (existingNamesInFile.has(uniqueName)) {
+    while (existingNames.has(uniqueName)) {
       uniqueName = `${name}_${counter}`;
       counter++;
     }
@@ -66,15 +87,22 @@ class BinderImp implements Binder {
     const declarationInfo = this.declarations.get(refkey);
     if (!declarationInfo) return undefined;
 
+    let importSpecifier: ImportSpecifierStructure | undefined;
+
     if (declarationInfo.sourceFile !== currentSourceFile) {
-      this.addImport(
+      importSpecifier = this.addImport(
         currentSourceFile,
         declarationInfo.sourceFile,
         declarationInfo.name
       );
     }
 
-    return declarationInfo;
+    return importSpecifier
+      ? {
+          ...declarationInfo,
+          name: importSpecifier.alias ?? importSpecifier.name
+        }
+      : declarationInfo;
   }
 
   private addImport(
@@ -82,6 +110,11 @@ class BinderImp implements Binder {
     targetSourceFile: SourceFile,
     name: string
   ): ImportSpecifierStructure {
+    const importAlias = this.generateLocallyUniqueImportName(
+      name,
+      currentSourceFile
+    );
+
     // Calculate the path for the import
     const relativePath =
       currentSourceFile.getRelativePathAsModuleSpecifierTo(targetSourceFile);
@@ -107,13 +140,15 @@ class BinderImp implements Binder {
     // Add the named import if it doesn't exist to avoid double imports
     const namedImports =
       importStructure.namedImports as ImportSpecifierStructure[];
-    let importSpecifier = namedImports.find((n) => n.name === name);
+    let importSpecifier = namedImports.find((n) => n.name === importAlias);
     if (!importSpecifier) {
-      importSpecifier = { name, kind: StructureKind.ImportSpecifier };
+      importSpecifier = {
+        name: name,
+        alias: importAlias,
+        kind: StructureKind.ImportSpecifier
+      };
       namedImports.push(importSpecifier);
     }
-
-    // TODO: Handle coflict resolution
 
     importStructure.namedImports = namedImports; // Reassign to ensure the changes are applied
     this.imports.set(currentSourceFile, importStructures);
