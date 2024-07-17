@@ -10,21 +10,21 @@ import {
 } from "./models/options.js";
 import {
   createModel,
-  ModelClientOptions,
+  ModelClientOptionalParams,
   ModelContext,
   get,
   put,
   post,
 } from "./api/index.js";
 
-export { ModelClientOptions } from "./api/modelContext.js";
+export { ModelClientOptionalParams } from "./api/modelContext.js";
 
 export class ModelClient {
   private _client: ModelContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(options: ModelClientOptions = {}) {
+  constructor(options: ModelClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

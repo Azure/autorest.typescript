@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ModelClient, ModelClientOptions } from "./modelClient.js";
+export { ModelClient, ModelClientOptionalParams } from "./modelClient.js";
 export {
   AzureEmbeddingModel,
   Versions,
