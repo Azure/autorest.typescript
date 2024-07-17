@@ -24,6 +24,6 @@ describe("Traits Client", () => {
   it("should post core model embeddingVector", async () => {
     const responseBody = { embedding: [5, 6, 7, 8, 9] };
     const result = await client.post({ embedding: [0, 1, 2, 3, 4] });
-    assert.deepEqual(result, responseBody);
+    assert.deepStrictEqual(result, responseBody);
   });
 });
