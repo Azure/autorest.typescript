@@ -26,6 +26,10 @@ export interface Binder {
 }
 
 class BinderImp implements Binder {
+  private referencedDeclarations = new Map<
+    SourceFile,
+    Map<unknown, DeclarationInfo>
+  >();
   private declarations = new Map<unknown, DeclarationInfo>();
   private imports = new Map<SourceFile, ImportDeclarationStructure[]>();
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
@@ -90,25 +94,39 @@ class BinderImp implements Binder {
     refkey: unknown,
     currentSourceFile: SourceFile
   ): DeclarationInfo | undefined {
-    const referencedDeclarationInfo = this.declarations.get(refkey);
-    if (!referencedDeclarationInfo) return undefined;
+    if (!this.referencedDeclarations.has(currentSourceFile)) {
+      this.referencedDeclarations.set(currentSourceFile, new Map());
+    }
+
+    if (this.referencedDeclarations.get(currentSourceFile)!.has(refkey)) {
+      return this.referencedDeclarations.get(currentSourceFile)!.get(refkey)!;
+    }
+
+    const declarationInfo = this.declarations.get(refkey);
+    if (!declarationInfo) return undefined;
 
     let importSpecifier: ImportSpecifierStructure | undefined;
 
-    if (referencedDeclarationInfo.sourceFile !== currentSourceFile) {
+    if (declarationInfo.sourceFile !== currentSourceFile) {
       importSpecifier = this.addImport(
         currentSourceFile,
-        referencedDeclarationInfo.sourceFile,
-        referencedDeclarationInfo.name
+        declarationInfo.sourceFile,
+        declarationInfo.name
       );
     }
 
-    return importSpecifier
-      ? {
-          ...referencedDeclarationInfo,
-          alias: importSpecifier.alias ?? importSpecifier.name
-        }
-      : referencedDeclarationInfo;
+    const referencedDeclaration = { ...declarationInfo };
+
+    if (importSpecifier) {
+      referencedDeclaration.alias =
+        importSpecifier.alias ?? importSpecifier.name;
+    }
+
+    this.referencedDeclarations
+      .get(currentSourceFile)!
+      .set(refkey, referencedDeclaration);
+
+    return referencedDeclaration;
   }
 
   private addImport(
