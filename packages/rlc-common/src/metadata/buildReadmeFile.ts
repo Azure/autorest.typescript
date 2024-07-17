@@ -218,9 +218,6 @@ If you'd like to contribute to this library, please read the [contributing guide
 
 - [{{ projectName }}]({{ repoURL }})
 
-{{#if impressionURL}}![Impressions]({{ impressionURL }})
-{{/if}}
-
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
 {{#if identityPackageURL}}[azure_identity]: {{ identityPackageURL }}
@@ -392,11 +389,6 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     azureArm: Boolean(model.options.azureArm),
     azure: azureHuh,
     isReleasablePackage: !isTypeSpecTest,
-    impressionURL: azureHuh
-      ? packageParentDirectoryName &&
-        packageDirectoryName &&
-        `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
-      : undefined,
     repoURL: repoURL,
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     identityPackageURL: repoURL && `${repoURL}/tree/main/sdk/identity/identity`,
