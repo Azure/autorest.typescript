@@ -10,14 +10,14 @@ import {
 } from "./models/options.js";
 import {
   createEmpty,
-  EmptyClientOptions,
+  EmptyClientOptionalParams,
   EmptyContext,
   putEmpty,
   getEmpty,
   postRoundTripEmpty,
 } from "./api/index.js";
 
-export { EmptyClientOptions } from "./api/emptyContext.js";
+export { EmptyClientOptionalParams } from "./api/emptyContext.js";
 
 export class EmptyClient {
   private _client: EmptyContext;
@@ -25,7 +25,7 @@ export class EmptyClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates usage of empty model used in operation's parameters and responses. */
-  constructor(options: EmptyClientOptions = {}) {
+  constructor(options: EmptyClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

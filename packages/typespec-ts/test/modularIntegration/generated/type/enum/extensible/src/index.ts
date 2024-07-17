@@ -3,7 +3,7 @@
 
 export {
   ExtensibleClient,
-  ExtensibleClientOptions,
+  ExtensibleClientOptionalParams,
 } from "./extensibleClient.js";
 export {
   DaysOfWeekExtensibleEnum,

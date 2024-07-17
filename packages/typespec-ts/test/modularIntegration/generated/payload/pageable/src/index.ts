@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { PageableClient, PageableClientOptions } from "./pageableClient.js";
+export {
+  PageableClient,
+  PageableClientOptionalParams,
+} from "./pageableClient.js";
 export {
   User,
   ListOptionalParams,

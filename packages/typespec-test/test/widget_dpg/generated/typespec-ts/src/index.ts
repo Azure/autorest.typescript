@@ -3,7 +3,7 @@
 
 export {
   WidgetServiceClient,
-  WidgetServiceClientOptions,
+  WidgetServiceClientOptionalParams,
 } from "./widgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
@@ -25,7 +25,6 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  BudgetsCreateOrUpdateOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

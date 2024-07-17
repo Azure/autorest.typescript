@@ -7,7 +7,7 @@ import {
   validKey,
   validToken,
   createUnion,
-  UnionClientOptions,
+  UnionClientOptionalParams,
   UnionContext,
 } from "./api/index.js";
 import {
@@ -15,7 +15,7 @@ import {
   ValidTokenOptionalParams,
 } from "./models/options.js";
 
-export { UnionClientOptions } from "./api/unionContext.js";
+export { UnionClientOptionalParams } from "./api/unionContext.js";
 
 export class UnionClient {
   private _client: UnionContext;
@@ -25,7 +25,7 @@ export class UnionClient {
   /** Illustrates clients generated with ApiKey and OAuth2 authentication. */
   constructor(
     credential: KeyCredential | TokenCredential,
-    options: UnionClientOptions = {},
+    options: UnionClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

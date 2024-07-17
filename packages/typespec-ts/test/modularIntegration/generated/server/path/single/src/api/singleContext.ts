@@ -6,14 +6,14 @@ import { SingleContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface SingleClientOptions extends ClientOptions {}
+export interface SingleClientOptionalParams extends ClientOptions {}
 
 export { SingleContext } from "../rest/index.js";
 
 /** Illustrates server with a single path parameter @server */
 export function createSingle(
   endpointParam: string,
-  options: SingleClientOptions = {},
+  options: SingleClientOptionalParams = {},
 ): SingleContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

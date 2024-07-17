@@ -3,7 +3,7 @@
 
 export {
   createSpread,
-  SpreadClientOptions,
+  SpreadClientOptionalParams,
   SpreadContext,
 } from "./spreadContext.js";
 export {

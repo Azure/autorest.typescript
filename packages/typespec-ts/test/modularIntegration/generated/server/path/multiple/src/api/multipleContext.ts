@@ -7,7 +7,7 @@ import { MultipleContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface MultipleClientOptions extends ClientOptions {
+export interface MultipleClientOptionalParams extends ClientOptions {
   /** Pass in v1.0 for API version. */
   apiVersion?: Versions;
 }
@@ -16,7 +16,7 @@ export { MultipleContext } from "../rest/index.js";
 
 export function createMultiple(
   endpointParam: string,
-  options: MultipleClientOptions = {},
+  options: MultipleClientOptionalParams = {},
 ): MultipleContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

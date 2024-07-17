@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
+export { OpenAIClient, OpenAIClientOptionalParams } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
@@ -37,11 +37,11 @@ export {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
+  CreateChatCompletionRequest,
   ChatCompletionRequestMessage,
   ChatCompletionFunctions,
   ChatCompletionFunctionParameters,
   ChatCompletionFunctionCallOption,
-  CreateChatCompletionRequest,
   CreateChatCompletionResponse,
   ChatCompletionResponseMessage,
   CreateTranslationRequest,

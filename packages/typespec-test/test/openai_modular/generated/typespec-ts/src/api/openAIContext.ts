@@ -7,7 +7,7 @@ import { OpenAIContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface OpenAIClientOptions extends ClientOptions {
+export interface OpenAIClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -17,7 +17,7 @@ export { OpenAIContext } from "../rest/index.js";
 export function createOpenAI(
   endpointParam: string,
   credential: KeyCredential | TokenCredential,
-  options: OpenAIClientOptions = {},
+  options: OpenAIClientOptionalParams = {},
 ): OpenAIContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

@@ -3,7 +3,7 @@
 
 export {
   createContentSafety,
-  ContentSafetyClientOptions,
+  ContentSafetyClientOptionalParams,
   ContentSafetyContext,
 } from "./contentSafetyContext.js";
 export {

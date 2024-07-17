@@ -7,14 +7,14 @@ import { OAuth2Context } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface OAuth2ClientOptions extends ClientOptions {}
+export interface OAuth2ClientOptionalParams extends ClientOptions {}
 
 export { OAuth2Context } from "../rest/index.js";
 
 /** Illustrates clients generated with OAuth2 authentication. */
 export function createOAuth2(
   credential: TokenCredential,
-  options: OAuth2ClientOptions = {},
+  options: OAuth2ClientOptionalParams = {},
 ): OAuth2Context {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

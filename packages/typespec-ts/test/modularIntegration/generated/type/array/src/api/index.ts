@@ -3,7 +3,7 @@
 
 export {
   createArray,
-  ArrayClientOptions,
+  ArrayClientOptionalParams,
   ArrayContext,
 } from "./arrayContext.js";
 export { booleanValueGet, booleanValuePut } from "./booleanValue/index.js";

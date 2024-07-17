@@ -4,6 +4,6 @@
 export { get, put, post, header, query } from "./operations.js";
 export {
   createScalar,
-  ScalarClientOptions,
+  ScalarClientOptionalParams,
   ScalarContext,
 } from "./scalarContext.js";

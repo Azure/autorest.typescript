@@ -3,7 +3,7 @@
 
 export {
   AnomalyDetectorClient,
-  AnomalyDetectorClientOptions,
+  AnomalyDetectorClientOptionalParams,
 } from "./anomalyDetectorClient.js";
 export {
   MultivariateMultivariateDetectionResult,

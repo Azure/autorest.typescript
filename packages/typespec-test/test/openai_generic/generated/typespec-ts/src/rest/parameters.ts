@@ -45,7 +45,7 @@ export type AudioTranslationsCreateParameters =
     RequestParameters;
 
 export interface ChatCompletionsCreateBodyParam {
-  body?: CreateChatCompletionRequest;
+  body: CreateChatCompletionRequest;
 }
 
 export type ChatCompletionsCreateParameters = ChatCompletionsCreateBodyParam &
@@ -89,7 +89,7 @@ export type FineTuningJobsListEventsParameters =
 export type FineTuningJobsCancelParameters = RequestParameters;
 
 export interface CompletionsCreateBodyParam {
-  body?: CreateCompletionRequest;
+  body: CreateCompletionRequest;
 }
 
 export type CompletionsCreateParameters = CompletionsCreateBodyParam &

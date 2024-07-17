@@ -1,0 +1,14 @@
+emit:
+  - "@azure-tools/typespec-ts"
+  - "@typespec/openapi3"
+options:
+  "@azure-tools/typespec-ts":
+    isModularLibrary: true
+    generateMetadata: true
+    azureSdkForJs: false
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@msinternal/spread"
+  "@typespec/openapi3":
+    "emitter-output-dir": "{project-root}/generated/openapi"
+    "file-type": "json"

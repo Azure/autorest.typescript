@@ -6,13 +6,14 @@ import { AdditionalPropertiesContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface AdditionalPropertiesClientOptions extends ClientOptions {}
+export interface AdditionalPropertiesClientOptionalParams
+  extends ClientOptions {}
 
 export { AdditionalPropertiesContext } from "../rest/index.js";
 
 /** Tests for additional properties of models */
 export function createAdditionalProperties(
-  options: AdditionalPropertiesClientOptions = {},
+  options: AdditionalPropertiesClientOptionalParams = {},
 ): AdditionalPropertiesContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

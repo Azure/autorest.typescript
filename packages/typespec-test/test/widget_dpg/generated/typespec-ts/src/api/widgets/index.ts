@@ -6,8 +6,6 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   User,
   Widget,
-  CreateWidget,
-  UpdateWidget,
   AnalyzeResult,
   _ListWidgetsPagesResults,
 } from "../../models/models.js";
@@ -275,7 +273,8 @@ export async function getWidget(
 
 export function _createWidgetSend(
   context: Client,
-  body: CreateWidget,
+  weight: number,
+  color: "red" | "blue",
   options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   WidgetsCreateWidget201Response | WidgetsCreateWidgetDefaultResponse
@@ -284,7 +283,7 @@ export function _createWidgetSend(
     .path("/widgets")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { weight: body["weight"], color: body["color"] },
+      body: { weight: weight, color: color },
     });
 }
 
@@ -310,10 +309,11 @@ export async function _createWidgetDeserialize(
  */
 export async function createWidget(
   context: Client,
-  body: CreateWidget,
+  weight: number,
+  color: "red" | "blue",
   options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
-  const result = await _createWidgetSend(context, body, options);
+  const result = await _createWidgetSend(context, weight, color, options);
   return _createWidgetDeserialize(result);
 }
 
@@ -374,7 +374,6 @@ export function createOrReplace(
 export function _updateWidgetSend(
   context: Client,
   id: string,
-  body: UpdateWidget,
   options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   WidgetsUpdateWidget200Response | WidgetsUpdateWidgetDefaultResponse
@@ -383,7 +382,7 @@ export function _updateWidgetSend(
     .path("/widgets/{id}", id)
     .patch({
       ...operationOptionsToRequestParameters(options),
-      body: { weight: body["weight"], color: body["color"] },
+      body: { weight: options?.weight, color: options?.color },
     });
 }
 
@@ -408,10 +407,9 @@ export async function _updateWidgetDeserialize(
 export async function updateWidget(
   context: Client,
   id: string,
-  body: UpdateWidget,
   options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
-  const result = await _updateWidgetSend(context, id, body, options);
+  const result = await _updateWidgetSend(context, id, options);
   return _updateWidgetDeserialize(result);
 }
 

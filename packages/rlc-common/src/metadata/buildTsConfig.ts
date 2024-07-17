@@ -9,7 +9,7 @@ const restLevelTsConfigInAzureSdkForJs: (
 ) => Record<string, any> = function (model: RLCModel) {
   if (model.options?.moduleKind === "esm") {
     return {
-      extends: "../../../tsconfig.package",
+      extends: "../../../tsconfig",
       compilerOptions: {
         module: "NodeNext",
         moduleResolution: "NodeNext",
@@ -25,7 +25,7 @@ const restLevelTsConfigInAzureSdkForJs: (
   }
 
   return {
-    extends: "../../../tsconfig.package",
+    extends: "../../../tsconfig",
     compilerOptions: {
       outDir: "./dist-esm",
       declarationDir: "./types"

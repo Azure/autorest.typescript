@@ -13,11 +13,11 @@ import {
 } from "./classic/multivariate/index.js";
 import {
   createAnomalyDetector,
-  AnomalyDetectorClientOptions,
+  AnomalyDetectorClientOptionalParams,
   AnomalyDetectorContext,
 } from "./api/index.js";
 
-export { AnomalyDetectorClientOptions } from "./api/anomalyDetectorContext.js";
+export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
 
 export class AnomalyDetectorClient {
   private _client: AnomalyDetectorContext;
@@ -45,7 +45,7 @@ export class AnomalyDetectorClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential,
-    options: AnomalyDetectorClientOptions = {},
+    options: AnomalyDetectorClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -3,7 +3,7 @@
 
 export {
   createSpecialWords,
-  SpecialWordsClientOptions,
+  SpecialWordsClientOptionalParams,
   SpecialWordsContext,
 } from "./specialWordsContext.js";
 export { modelPropertiesSameAsModel } from "./modelProperties/index.js";
