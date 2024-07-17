@@ -45,14 +45,14 @@ export type DeleteTextBlocklistParameters = RequestParameters;
 export type ListTextBlocklistsParameters = RequestParameters;
 
 export interface AddOrUpdateBlockItemsBodyParam {
-  body?: AddOrUpdateBlockItemsOptions;
+  body: AddOrUpdateBlockItemsOptions;
 }
 
 export type AddOrUpdateBlockItemsParameters = AddOrUpdateBlockItemsBodyParam &
   RequestParameters;
 
 export interface RemoveBlockItemsBodyParam {
-  body?: RemoveBlockItemsOptions;
+  body: RemoveBlockItemsOptions;
 }
 
 export type RemoveBlockItemsParameters = RemoveBlockItemsBodyParam &

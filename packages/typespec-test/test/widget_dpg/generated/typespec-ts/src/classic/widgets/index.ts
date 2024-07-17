@@ -2,13 +2,7 @@
 // Licensed under the MIT license.
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
-import {
-  User,
-  Widget,
-  CreateWidget,
-  UpdateWidget,
-  AnalyzeResult,
-} from "../../models/models.js";
+import { User, Widget, AnalyzeResult } from "../../models/models.js";
 import {
   listWidgets,
   listWidgetsPages,
@@ -71,7 +65,8 @@ export interface WidgetsOperations {
    * result in an error.
    */
   createWidget: (
-    body: CreateWidget,
+    weight: number,
+    color: "red" | "blue",
     options?: WidgetsCreateWidgetOptionalParams,
   ) => Promise<Widget>;
   /** Long-running resource create or replace operation template. */
@@ -86,7 +81,6 @@ export interface WidgetsOperations {
    */
   updateWidget: (
     id: string,
-    body: UpdateWidget,
     options?: WidgetsUpdateWidgetOptionalParams,
   ) => Promise<Widget>;
   /** Delete a widget by ID. */
@@ -133,19 +127,17 @@ export function getWidgets(context: WidgetServiceContext) {
     getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) =>
       getWidget(context, id, options),
     createWidget: (
-      body: CreateWidget,
+      weight: number,
+      color: "red" | "blue",
       options?: WidgetsCreateWidgetOptionalParams,
-    ) => createWidget(context, body, options),
+    ) => createWidget(context, weight, color, options),
     createOrReplace: (
       name: string,
       resource: User,
       options?: WidgetsCreateOrReplaceOptionalParams,
     ) => createOrReplace(context, name, resource, options),
-    updateWidget: (
-      id: string,
-      body: UpdateWidget,
-      options?: WidgetsUpdateWidgetOptionalParams,
-    ) => updateWidget(context, id, body, options),
+    updateWidget: (id: string, options?: WidgetsUpdateWidgetOptionalParams) =>
+      updateWidget(context, id, options),
     deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) =>
       deleteWidget(context, id, options),
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) =>

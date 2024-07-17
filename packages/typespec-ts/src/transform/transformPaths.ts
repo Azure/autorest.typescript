@@ -11,17 +11,14 @@ import {
   SchemaContext
 } from "@azure-tools/rlc-common";
 import {
+  getHttpOperationWithCache,
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
-import {
-  getHttpOperation,
-  HttpOperation,
-  HttpOperationParameters
-} from "@typespec/http";
+import { getDoc } from "@typespec/compiler";
+import { HttpOperation, HttpOperationParameters } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   getImportedModelName,
@@ -44,12 +41,11 @@ export function transformPaths(
   dpgContext: SdkContext,
   importDetails: Imports
 ): Paths {
-  const program = dpgContext.program;
   const pathParamsImportedSet = new Set<string>();
   const paths: Paths = {};
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -63,7 +59,7 @@ export function transformPaths(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
