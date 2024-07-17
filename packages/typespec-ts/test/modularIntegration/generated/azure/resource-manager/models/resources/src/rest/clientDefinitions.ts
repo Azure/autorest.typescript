@@ -12,7 +12,7 @@ import {
   NestedProxyResourcesCreateOrReplaceParameters,
   NestedProxyResourcesUpdateParameters,
   NestedProxyResourcesDeleteParameters,
-  NestedProxyResourcesListByTopLevelTrackedResourceParameters,
+  NestedProxyResourcesListByParentParameters,
 } from "./parameters.js";
 import {
   TopLevelTrackedResourcesGet200Response,
@@ -41,8 +41,8 @@ import {
   NestedProxyResourcesDelete202Response,
   NestedProxyResourcesDelete204Response,
   NestedProxyResourcesDeleteDefaultResponse,
-  NestedProxyResourcesListByTopLevelTrackedResource200Response,
-  NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
+  NestedProxyResourcesListByParent200Response,
+  NestedProxyResourcesListByParentDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -133,13 +133,13 @@ export interface NestedProxyResourcesGet {
   >;
 }
 
-export interface NestedProxyResourcesListByTopLevelTrackedResource {
+export interface NestedProxyResourcesListByParent {
   /** List NestedProxyResource resources by TopLevelTrackedResource */
   get(
-    options?: NestedProxyResourcesListByTopLevelTrackedResourceParameters,
+    options?: NestedProxyResourcesListByParentParameters,
   ): StreamableMethod<
-    | NestedProxyResourcesListByTopLevelTrackedResource200Response
-    | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse
+    | NestedProxyResourcesListByParent200Response
+    | NestedProxyResourcesListByParentDefaultResponse
   >;
 }
 
@@ -176,7 +176,7 @@ export interface Routes {
     subscriptionId: string,
     resourceGroupName: string,
     topLevelTrackedResourceName: string,
-  ): NestedProxyResourcesListByTopLevelTrackedResource;
+  ): NestedProxyResourcesListByParent;
 }
 
 export type ResourcesContext = Client & {

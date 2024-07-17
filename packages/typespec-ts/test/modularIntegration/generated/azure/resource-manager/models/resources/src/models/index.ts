@@ -14,13 +14,9 @@ export {
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
-  NestedProxyResourceUpdate,
-  NestedProxyResourceUpdateProperties,
   TrackedResource,
   TopLevelTrackedResource,
   TopLevelTrackedResourceProperties,
-  TopLevelTrackedResourceUpdate,
-  TopLevelTrackedResourceUpdateProperties,
   Versions,
   ProvisioningState,
 } from "./models.js";
@@ -35,7 +31,7 @@ export {
   NestedProxyResourcesCreateOrReplaceOptionalParams,
   NestedProxyResourcesUpdateOptionalParams,
   NestedProxyResourcesDeleteOptionalParams,
-  NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
+  NestedProxyResourcesListByParentOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

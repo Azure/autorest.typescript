@@ -259,13 +259,13 @@ export interface NestedProxyResourcesDeleteLogicalResponse
 }
 
 /** Azure operation completed successfully. */
-export interface NestedProxyResourcesListByTopLevelTrackedResource200Response
+export interface NestedProxyResourcesListByParent200Response
   extends HttpResponse {
   status: "200";
   body: NestedProxyResourceListResultOutput;
 }
 
-export interface NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse
+export interface NestedProxyResourcesListByParentDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;

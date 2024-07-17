@@ -34,8 +34,8 @@ import {
   NestedProxyResourcesDelete204Response,
   NestedProxyResourcesDeleteLogicalResponse,
   NestedProxyResourcesDeleteDefaultResponse,
-  NestedProxyResourcesListByTopLevelTrackedResource200Response,
-  NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
+  NestedProxyResourcesListByParent200Response,
+  NestedProxyResourcesListByParentDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -127,9 +127,9 @@ export function isUnexpected(
 ): response is NestedProxyResourcesDeleteDefaultResponse;
 export function isUnexpected(
   response:
-    | NestedProxyResourcesListByTopLevelTrackedResource200Response
-    | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
-): response is NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse;
+    | NestedProxyResourcesListByParent200Response
+    | NestedProxyResourcesListByParentDefaultResponse,
+): response is NestedProxyResourcesListByParentDefaultResponse;
 export function isUnexpected(
   response:
     | TopLevelTrackedResourcesGet200Response
@@ -164,8 +164,8 @@ export function isUnexpected(
     | NestedProxyResourcesDelete204Response
     | NestedProxyResourcesDeleteLogicalResponse
     | NestedProxyResourcesDeleteDefaultResponse
-    | NestedProxyResourcesListByTopLevelTrackedResource200Response
-    | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
+    | NestedProxyResourcesListByParent200Response
+    | NestedProxyResourcesListByParentDefaultResponse,
 ): response is
   | TopLevelTrackedResourcesGetDefaultResponse
   | TopLevelTrackedResourcesCreateOrReplaceDefaultResponse
@@ -177,7 +177,7 @@ export function isUnexpected(
   | NestedProxyResourcesCreateOrReplaceDefaultResponse
   | NestedProxyResourcesUpdateDefaultResponse
   | NestedProxyResourcesDeleteDefaultResponse
-  | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse {
+  | NestedProxyResourcesListByParentDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

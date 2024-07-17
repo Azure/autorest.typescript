@@ -2,16 +2,13 @@
 // Licensed under the MIT license.
 
 import { ResourcesContext } from "../../api/resourcesContext.js";
-import {
-  NestedProxyResource,
-  NestedProxyResourceUpdate,
-} from "../../models/models.js";
+import { NestedProxyResource } from "../../models/models.js";
 import {
   nestedProxyResourcesGet,
   nestedProxyResourcesCreateOrReplace,
   nestedProxyResourcesUpdate,
   nestedProxyResourcesDelete,
-  nestedProxyResourcesListByTopLevelTrackedResource,
+  nestedProxyResourcesListByParent,
 } from "../../api/nestedProxyResources/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -20,7 +17,7 @@ import {
   NestedProxyResourcesCreateOrReplaceOptionalParams,
   NestedProxyResourcesUpdateOptionalParams,
   NestedProxyResourcesDeleteOptionalParams,
-  NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
+  NestedProxyResourcesListByParentOptionalParams,
 } from "../../models/options.js";
 
 /** Interface representing a NestedProxyResources operations. */
@@ -45,7 +42,7 @@ export interface NestedProxyResourcesOperations {
     resourceGroupName: string,
     topLevelTrackedResourceName: string,
     nextedProxyResourceName: string,
-    properties: NestedProxyResourceUpdate,
+    properties: NestedProxyResource,
     options?: NestedProxyResourcesUpdateOptionalParams,
   ) => PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
   /** Delete a NestedProxyResource */
@@ -56,10 +53,10 @@ export interface NestedProxyResourcesOperations {
     options?: NestedProxyResourcesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   /** List NestedProxyResource resources by TopLevelTrackedResource */
-  listByTopLevelTrackedResource: (
+  listByParent: (
     resourceGroupName: string,
     topLevelTrackedResourceName: string,
-    options?: NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
+    options?: NestedProxyResourcesListByParentOptionalParams,
   ) => PagedAsyncIterableIterator<NestedProxyResource>;
 }
 
@@ -102,7 +99,7 @@ export function getNestedProxyResources(
       resourceGroupName: string,
       topLevelTrackedResourceName: string,
       nextedProxyResourceName: string,
-      properties: NestedProxyResourceUpdate,
+      properties: NestedProxyResource,
       options?: NestedProxyResourcesUpdateOptionalParams,
     ) =>
       nestedProxyResourcesUpdate(
@@ -128,12 +125,12 @@ export function getNestedProxyResources(
         nextedProxyResourceName,
         options,
       ),
-    listByTopLevelTrackedResource: (
+    listByParent: (
       resourceGroupName: string,
       topLevelTrackedResourceName: string,
-      options?: NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
+      options?: NestedProxyResourcesListByParentOptionalParams,
     ) =>
-      nestedProxyResourcesListByTopLevelTrackedResource(
+      nestedProxyResourcesListByParent(
         context,
         subscriptionId,
         resourceGroupName,

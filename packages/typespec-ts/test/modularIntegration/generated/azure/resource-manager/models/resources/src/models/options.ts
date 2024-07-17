@@ -62,5 +62,5 @@ export interface NestedProxyResourcesDeleteOptionalParams
 }
 
 /** Optional parameters. */
-export interface NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams
+export interface NestedProxyResourcesListByParentOptionalParams
   extends OperationOptions {}

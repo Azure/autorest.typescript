@@ -11,7 +11,7 @@ export {
   nestedProxyResourcesCreateOrReplace,
   nestedProxyResourcesUpdate,
   nestedProxyResourcesDelete,
-  nestedProxyResourcesListByTopLevelTrackedResource,
+  nestedProxyResourcesListByParent,
 } from "./nestedProxyResources/index.js";
 export {
   topLevelTrackedResourcesGet,

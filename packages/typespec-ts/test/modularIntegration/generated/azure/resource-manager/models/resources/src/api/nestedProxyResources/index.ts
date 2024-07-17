@@ -5,9 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   nestedProxyResourcePropertiesSerializer,
-  nestedProxyResourceUpdatePropertiesSerializer,
   NestedProxyResource,
-  NestedProxyResourceUpdate,
   _NestedProxyResourceListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
@@ -24,8 +22,8 @@ import {
   NestedProxyResourcesDeleteLogicalResponse,
   NestedProxyResourcesGet200Response,
   NestedProxyResourcesGetDefaultResponse,
-  NestedProxyResourcesListByTopLevelTrackedResource200Response,
-  NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
+  NestedProxyResourcesListByParent200Response,
+  NestedProxyResourcesListByParentDefaultResponse,
   NestedProxyResourcesUpdate200Response,
   NestedProxyResourcesUpdate202Response,
   NestedProxyResourcesUpdateDefaultResponse,
@@ -42,7 +40,7 @@ import {
   NestedProxyResourcesCreateOrReplaceOptionalParams,
   NestedProxyResourcesUpdateOptionalParams,
   NestedProxyResourcesDeleteOptionalParams,
-  NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
+  NestedProxyResourcesListByParentOptionalParams,
 } from "../../models/options.js";
 
 export function _nestedProxyResourcesGetSend(
@@ -237,7 +235,7 @@ export function _nestedProxyResourcesUpdateSend(
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
-  properties: NestedProxyResourceUpdate,
+  properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | NestedProxyResourcesUpdate200Response
@@ -258,9 +256,7 @@ export function _nestedProxyResourcesUpdateSend(
       body: {
         properties: !properties.properties
           ? properties.properties
-          : nestedProxyResourceUpdatePropertiesSerializer(
-              properties.properties,
-            ),
+          : nestedProxyResourcePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -313,7 +309,7 @@ export function nestedProxyResourcesUpdate(
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
-  properties: NestedProxyResourceUpdate,
+  properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<NestedProxyResource>, NestedProxyResource> {
   return getLongRunningPoller(context, _nestedProxyResourcesUpdateDeserialize, {
@@ -395,17 +391,17 @@ export function nestedProxyResourcesDelete(
   }) as PollerLike<OperationState<void>, void>;
 }
 
-export function _nestedProxyResourcesListByTopLevelTrackedResourceSend(
+export function _nestedProxyResourcesListByParentSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
-  options: NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams = {
+  options: NestedProxyResourcesListByParentOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod<
-  | NestedProxyResourcesListByTopLevelTrackedResource200Response
-  | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse
+  | NestedProxyResourcesListByParent200Response
+  | NestedProxyResourcesListByParentDefaultResponse
 > {
   return context
     .path(
@@ -417,10 +413,10 @@ export function _nestedProxyResourcesListByTopLevelTrackedResourceSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _nestedProxyResourcesListByTopLevelTrackedResourceDeserialize(
+export async function _nestedProxyResourcesListByParentDeserialize(
   result:
-    | NestedProxyResourcesListByTopLevelTrackedResource200Response
-    | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
+    | NestedProxyResourcesListByParent200Response
+    | NestedProxyResourcesListByParentDefaultResponse,
 ): Promise<_NestedProxyResourceListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -461,26 +457,26 @@ export async function _nestedProxyResourcesListByTopLevelTrackedResourceDeserial
 }
 
 /** List NestedProxyResource resources by TopLevelTrackedResource */
-export function nestedProxyResourcesListByTopLevelTrackedResource(
+export function nestedProxyResourcesListByParent(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
-  options: NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams = {
+  options: NestedProxyResourcesListByParentOptionalParams = {
     requestOptions: {},
   },
 ): PagedAsyncIterableIterator<NestedProxyResource> {
   return buildPagedAsyncIterator(
     context,
     () =>
-      _nestedProxyResourcesListByTopLevelTrackedResourceSend(
+      _nestedProxyResourcesListByParentSend(
         context,
         subscriptionId,
         resourceGroupName,
         topLevelTrackedResourceName,
         options,
       ),
-    _nestedProxyResourcesListByTopLevelTrackedResourceDeserialize,
+    _nestedProxyResourcesListByParentDeserialize,
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
