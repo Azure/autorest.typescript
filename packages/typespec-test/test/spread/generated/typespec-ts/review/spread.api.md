@@ -40,13 +40,13 @@ export interface ATest4OptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class DemoServiceClient {
-    constructor(endpoint: string, options?: DemoServiceClientOptions);
+    constructor(endpoint: string, options?: DemoServiceClientOptionalParams);
     readonly a: AOperations;
     readonly pipeline: Pipeline;
 }
 
 // @public
-export interface DemoServiceClientOptions extends ClientOptions {
+export interface DemoServiceClientOptionalParams extends ClientOptions {
 }
 
 // @public (undocumented)
