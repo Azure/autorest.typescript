@@ -595,7 +595,11 @@ export type SecretType = string;
 export type Status = string;
 
 // @public
-export interface StopOptionalParams extends OperationOptions {
+export interface StopTestProfileRunOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface StopTestRunOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -1382,7 +1386,7 @@ export class TestProfileRunOperationsClient {
     getTestProfileRun(testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
     listTestProfileRuns(options?: ListTestProfileRunsOptionalParams): TestProfileRunOperationsClientPagedAsyncIterableIterator<TestProfileRunOperationsClientTestProfileRun>;
     readonly pipeline: Pipeline;
-    stop(testProfileRunId: string, options?: TestProfileRunOperationsClientStopOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
+    stopTestProfileRun(testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
 }
 
 // @public
@@ -1804,10 +1808,6 @@ export type TestProfileRunOperationsClientSecretType = string;
 export type TestProfileRunOperationsClientStatus = string;
 
 // @public
-export interface TestProfileRunOperationsClientStopOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface TestProfileRunOperationsClientTargetResourceConfigurations {
     kind: TestProfileRunOperationsClientResourceKind;
 }
@@ -2159,7 +2159,7 @@ export class TestRunOperationsClient {
     listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: TestRunOperationsClientMetricRequestPayload, options?: ListMetricsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
     listTestRuns(options?: ListTestRunsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
-    stop(testRunId: string, options?: StopOptionalParams): Promise<TestRunOperationsClientTestRun>;
+    stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
 }
 
 // @public
