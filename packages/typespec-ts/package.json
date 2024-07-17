@@ -72,7 +72,7 @@
     "@azure-tools/typespec-client-generator-core": ">=0.43.2 <1.0.0",
     "@azure/abort-controller": "^2.1.2",
     "@azure/core-auth": "^1.6.0",
-    "@azure/core-lro": "3.0.0",
+    "@azure/core-lro": "^3.0.0",
     "@azure/core-paging": "^1.5.0",
     "@azure/core-rest-pipeline": "^1.14.0",
     "@azure/core-util": "^1.4.0",

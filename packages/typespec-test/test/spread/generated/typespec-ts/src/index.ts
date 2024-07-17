@@ -3,7 +3,7 @@
 
 export {
   DemoServiceClient,
-  DemoServiceClientOptions,
+  DemoServiceClientOptionalParams,
 } from "./demoServiceClient.js";
 export {
   Test,
