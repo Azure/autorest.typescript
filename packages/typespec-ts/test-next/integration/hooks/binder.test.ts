@@ -225,7 +225,11 @@ describe("Binder", () => {
           .map((mi) => mi.getAliasNode()?.getText() ?? mi.getName())
       );
 
-    // expect(imports).toEqual(["TestModel", "TestModel_1"]);
+    const lastModel = sourceFile3.getInterface("LastModel");
+    const baz3Prop = lastModel?.getProperty("baz3");
+
+    expect(baz3Prop?.getType().getText()).toBe("TestModel_1");
+    expect(imports).toEqual(["TestModel", "TestModel_1"]);
     console.log("// test1.ts");
     console.log(sourceFile.getFullText());
     console.log("// test2.ts");
