@@ -117,13 +117,28 @@ describe("Binder", () => {
       properties: [{ name: "foo", type: "string" }]
     };
 
+    const modelB = {
+      name: "TestModelB",
+      properties: [{ name: "foo", type: model }]
+    };
+
     const interfaceDeclaration: InterfaceDeclarationStructure = {
       kind: StructureKind.Interface,
       name: model.name,
       properties: model.properties.map((p) => ({ name: p.name, type: p.type }))
     };
 
+    const interfaceDeclarationB: InterfaceDeclarationStructure = {
+      kind: StructureKind.Interface,
+      name: modelB.name,
+      properties: modelB.properties.map((p) => ({
+        name: p.name,
+        type: resolveReference(p.type, sourceFile)
+      }))
+    };
+
     addDeclaration(sourceFile, interfaceDeclaration, model);
+    addDeclaration(sourceFile, interfaceDeclarationB, modelB);
 
     const sourceFile2 = project.createSourceFile("test2.ts", "", {
       overwrite: true
@@ -154,13 +169,18 @@ describe("Binder", () => {
     expect(bazTypeName).toBe(model.name);
   });
 
-  it.only("should handle import conflicts", () => {
+  it("should handle import conflicts", () => {
     const sourceFile = project.createSourceFile("test1.ts", "", {
       overwrite: true
     });
     const model = {
       name: "TestModel",
       properties: [{ name: "foo", type: "string" }]
+    };
+
+    const modelB = {
+      name: "TestModelB",
+      properties: [{ name: "foo", type: model }]
     };
 
     const interfaceDeclaration: InterfaceDeclarationStructure = {
@@ -170,6 +190,17 @@ describe("Binder", () => {
     };
 
     addDeclaration(sourceFile, interfaceDeclaration, model);
+
+    const interfaceDeclarationB: InterfaceDeclarationStructure = {
+      kind: StructureKind.Interface,
+      name: modelB.name,
+      properties: modelB.properties.map((p) => ({
+        name: p.name,
+        type: resolveReference(p.type, sourceFile)
+      }))
+    };
+
+    addDeclaration(sourceFile, interfaceDeclarationB, modelB);
 
     const sourceFile2 = project.createSourceFile("test2.ts", "", {
       overwrite: true

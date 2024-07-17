@@ -2,7 +2,9 @@ import {
   SourceFile,
   ImportDeclarationStructure,
   StructureKind,
-  ImportSpecifierStructure
+  ImportSpecifierStructure,
+  SyntaxKind,
+  InterfaceDeclaration
 } from "ts-morph";
 import { provideContext, useContext } from "../../contextManager.js";
 
@@ -25,6 +27,8 @@ export interface Binder {
   applyImports(): void;
 }
 
+type PlacehoderResolver = (alias: string) => void;
+
 class BinderImp implements Binder {
   private referencedDeclarations = new Map<
     SourceFile,
@@ -33,6 +37,7 @@ class BinderImp implements Binder {
   private declarations = new Map<unknown, DeclarationInfo>();
   private imports = new Map<SourceFile, ImportDeclarationStructure[]>();
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
+  private placeholders = new Map<SourceFile, Map<string, PlacehoderResolver>>();
 
   trackDeclaration(refkey: unknown, name: string, sourceFile: SourceFile) {
     const uniqueName = this.generateLocallyUniqueDeclarationName(
@@ -103,23 +108,31 @@ class BinderImp implements Binder {
     }
 
     const declarationInfo = this.declarations.get(refkey);
+
+    // Reference Doesn't Exist Yet. Need to handle this.
     if (!declarationInfo) return undefined;
-
-    let importSpecifier: ImportSpecifierStructure | undefined;
-
-    if (declarationInfo.sourceFile !== currentSourceFile) {
-      importSpecifier = this.addImport(
-        currentSourceFile,
-        declarationInfo.sourceFile,
-        declarationInfo.name
-      );
-    }
 
     const referencedDeclaration = { ...declarationInfo };
 
-    if (importSpecifier) {
-      referencedDeclaration.alias =
-        importSpecifier.alias ?? importSpecifier.name;
+    if (declarationInfo.sourceFile !== currentSourceFile) {
+      // Add placeholder
+      const placeholderKey = `${declarationInfo.sourceFile.getFilePath()}:${
+        declarationInfo.name
+      }`;
+
+      if (!this.placeholders.has(currentSourceFile)) {
+        this.placeholders.set(currentSourceFile, new Map());
+      }
+
+      const currentPlaceholders = this.placeholders.get(currentSourceFile)!;
+      if (!currentPlaceholders.has(placeholderKey)) {
+        currentPlaceholders.set(placeholderKey, (alias: string) => {
+          console.log("I want to replace a placeholder with ", alias);
+          referencedDeclaration.alias = alias;
+        });
+      }
+
+      referencedDeclaration.alias = JSON.stringify(placeholderKey);
     }
 
     this.referencedDeclarations
@@ -180,6 +193,18 @@ class BinderImp implements Binder {
   }
 
   applyImports() {
+    for (const [sourceFile, placeholdersInFile] of this.placeholders) {
+      for (const [key, resolver] of placeholdersInFile) {
+        const [filePath, name] = key.split(":");
+        const targetSourceFile = sourceFile
+          .getProject()
+          .getSourceFile(filePath!);
+        if (!targetSourceFile) return;
+
+        const importDec = this.addImport(sourceFile, targetSourceFile, name!);
+        replacePlaceholder(sourceFile, key, importDec.alias!);
+      }
+    }
     this.imports.forEach((importStructures, sourceFile) => {
       importStructures.forEach((importStructure) => {
         sourceFile.addImportDeclaration(importStructure);
@@ -192,4 +217,26 @@ provideContext("binder", new BinderImp());
 
 export function useBinder(): Binder {
   return useContext("binder");
+}
+
+function replacePlaceholder(
+  sourceFile: SourceFile,
+  placeholder: string,
+  value: string
+) {
+  // Find and replace the placeholder in the interface
+  sourceFile.forEachDescendant((node) => {
+    if (node.getKind() === SyntaxKind.InterfaceDeclaration) {
+      const interfaceDecl = node as InterfaceDeclaration;
+      interfaceDecl.getProperties().forEach((property) => {
+        const typeNode = property.getTypeNode();
+        if (typeNode && typeNode.getText().includes(placeholder)) {
+          const updatedType = typeNode
+            .getText()
+            .replace(JSON.stringify(placeholder), value);
+          typeNode.replaceWithText(updatedType);
+        }
+      });
+    }
+  });
 }
