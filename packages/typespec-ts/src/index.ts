@@ -8,7 +8,6 @@ import {
   buildEsLintConfig,
   buildIndexFile,
   buildIsUnexpectedHelper,
-  buildKarmaConfigFile,
   buildLogger,
   buildPackageFile,
   buildPaginateHelper as buildRLCPaginateHelper,
@@ -328,7 +327,7 @@ export async function $onEmit(context: EmitContext) {
     if (option.generateTest && isAzureFlavor) {
       await emitContentByBuilder(
         program,
-        [buildKarmaConfigFile, buildRecordedClientFile, buildSampleTest],
+        [buildRecordedClientFile, buildSampleTest],
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
