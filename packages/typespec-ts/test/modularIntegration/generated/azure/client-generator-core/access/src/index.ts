@@ -17,7 +17,7 @@ export {
   AbstractModelUnion,
 } from "./models/index.js";
 export {
-  AccessClientOptions,
+  AccessClientOptionalParams,
   NoDecoratorInPublicOptionalParams,
   PublicDecoratorInPublicOptionalParams,
   NoDecoratorInInternalOptionalParams,

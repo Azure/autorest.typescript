@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { FishUnion } from "./models/models.js";
 import {
   createNestedDiscriminator,
-  NestedDiscriminatorClientOptions,
+  NestedDiscriminatorClientOptionalParams,
   NestedDiscriminatorContext,
   getModel,
   putModel,
@@ -27,7 +27,7 @@ export class NestedDiscriminatorClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates multiple level inheritance with multiple discriminators. */
-  constructor(options: NestedDiscriminatorClientOptions = {}) {
+  constructor(options: NestedDiscriminatorClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

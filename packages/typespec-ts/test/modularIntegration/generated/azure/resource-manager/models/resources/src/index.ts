@@ -41,7 +41,7 @@ export {
   NestedProxyResourcesUpdateOptionalParams,
   NestedProxyResourcesDeleteOptionalParams,
   NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
-  ResourcesClientOptions,
+  ResourcesClientOptionalParams,
 } from "./api/index.js";
 export {
   NestedProxyResourcesOperations,

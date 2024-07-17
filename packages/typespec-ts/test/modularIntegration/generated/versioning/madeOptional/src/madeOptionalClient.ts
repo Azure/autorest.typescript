@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { TestModel, Versions } from "./models/models.js";
 import {
   createMadeOptional,
-  MadeOptionalClientOptions,
+  MadeOptionalClientOptionalParams,
   MadeOptionalContext,
   test,
   TestOptionalParams,
@@ -20,7 +20,7 @@ export class MadeOptionalClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: MadeOptionalClientOptions = {},
+    options: MadeOptionalClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

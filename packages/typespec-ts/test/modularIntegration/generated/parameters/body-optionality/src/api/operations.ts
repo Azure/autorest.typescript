@@ -51,14 +51,14 @@ export async function requiredExplicit(
 
 export function _requiredImplicitSend(
   context: Client,
-  body: BodyModel,
+  name: string,
   options: RequiredImplicitOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequiredImplicit204Response> {
   return context
     .path("/parameters/body-optionality/required-implicit")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { name: body["name"] },
+      body: { name: name },
     });
 }
 
@@ -74,9 +74,9 @@ export async function _requiredImplicitDeserialize(
 
 export async function requiredImplicit(
   context: Client,
-  body: BodyModel,
+  name: string,
   options: RequiredImplicitOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _requiredImplicitSend(context, body, options);
+  const result = await _requiredImplicitSend(context, name, options);
   return _requiredImplicitDeserialize(result);
 }

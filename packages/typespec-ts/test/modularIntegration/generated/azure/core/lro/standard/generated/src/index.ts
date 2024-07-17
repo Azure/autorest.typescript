@@ -8,5 +8,5 @@ export {
   CreateOrReplaceOptionalParams,
   DeleteOptionalParams,
   ExportOptionalParams,
-  StandardClientOptions,
+  StandardClientOptionalParams,
 } from "./api/index.js";

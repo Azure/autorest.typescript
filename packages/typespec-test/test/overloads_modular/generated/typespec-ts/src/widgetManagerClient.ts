@@ -9,7 +9,7 @@ import {
 } from "./classic/fooOperations/index.js";
 import {
   createWidgetManager,
-  WidgetManagerClientOptions,
+  WidgetManagerClientOptionalParams,
   WidgetManagerContext,
 } from "./api/index.js";
 
@@ -21,7 +21,7 @@ export class WidgetManagerClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: WidgetManagerClientOptions = {},
+    options: WidgetManagerClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

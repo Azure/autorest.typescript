@@ -5,6 +5,6 @@ export { list } from "./operations.js";
 export { ListOptionalParams } from "./options.js";
 export {
   createPageable,
-  PageableClientOptions,
+  PageableClientOptionalParams,
   PageableContext,
 } from "./pageableContext.js";

@@ -10,6 +10,6 @@ export {
   GroupRenamedTwoOptionalParams,
   GroupRenamedFourOptionalParams,
   GroupRenamedSixOptionalParams,
-  RenamedOperationClientOptions,
+  RenamedOperationClientOptionalParams,
 } from "./api/index.js";
 export { GroupOperations } from "./classic/index.js";

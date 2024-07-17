@@ -42,19 +42,19 @@ export {
   ChatCompletionsNamedToolSelectionUnion,
 } from "./models/index.js";
 export {
-  ChatCompletionsClientOptions,
+  ChatCompletionsClientOptionalParams,
   CompleteOptionalParams,
   GetModelInfoOptionalParams,
 } from "./chatCompletions/api/index.js";
 export { EmbeddingsClient } from "./embeddings/embeddingsClient.js";
 export {
-  EmbeddingsClientOptions,
+  EmbeddingsClientOptionalParams,
   EmbedOptionalParams,
   GetModelInfoOptionalParams as EmbeddingsClientGetModelInfoOptionalParams,
 } from "./embeddings/api/index.js";
 export { ImageEmbeddingsClient } from "./imageEmbeddings/imageEmbeddingsClient.js";
 export {
-  ImageEmbeddingsClientOptions,
+  ImageEmbeddingsClientOptionalParams,
   EmbedOptionalParams as ImageEmbeddingsClientEmbedOptionalParams,
   GetModelInfoOptionalParams as ImageEmbeddingsClientGetModelInfoOptionalParams,
 } from "./imageEmbeddings/api/index.js";

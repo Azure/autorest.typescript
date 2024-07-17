@@ -3,8 +3,8 @@
 
 export {
   SchemaGroup,
-  SchemaVersion,
   SchemaContentTypeValues,
+  SchemaVersion,
   SchemaProperties,
   SchemaFormat,
   Schema,

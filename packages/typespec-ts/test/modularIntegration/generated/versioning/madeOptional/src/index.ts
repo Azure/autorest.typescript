@@ -3,4 +3,7 @@
 
 export { MadeOptionalClient } from "./madeOptionalClient.js";
 export { TestModel, Versions } from "./models/index.js";
-export { MadeOptionalClientOptions, TestOptionalParams } from "./api/index.js";
+export {
+  MadeOptionalClientOptionalParams,
+  TestOptionalParams,
+} from "./api/index.js";

@@ -3,7 +3,7 @@
 
 export {
   createAccess,
-  AccessClientOptions,
+  AccessClientOptionalParams,
   AccessContext,
 } from "./accessContext.js";
 export {

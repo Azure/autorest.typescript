@@ -6,5 +6,5 @@ export { Element, Extension } from "./models/index.js";
 export {
   PutOptionalParams,
   GetOptionalParams,
-  RecursiveClientOptions,
+  RecursiveClientOptionalParams,
 } from "./api/index.js";

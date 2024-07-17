@@ -2,7 +2,7 @@
 
 export {
   createOpenAI,
-  OpenAIClientOptions,
+  OpenAIClientOptionalParams,
   OpenAIContext,
 } from "./openAIContext.js";
 export {

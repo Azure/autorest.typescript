@@ -3,7 +3,7 @@
 
 export {
   createExtensible,
-  ExtensibleClientOptions,
+  ExtensibleClientOptionalParams,
   ExtensibleContext,
 } from "./extensibleContext.js";
 export {

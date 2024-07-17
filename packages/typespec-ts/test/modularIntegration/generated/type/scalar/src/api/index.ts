@@ -21,7 +21,7 @@ export {
 } from "./options.js";
 export {
   createScalar,
-  ScalarClientOptions,
+  ScalarClientOptionalParams,
   ScalarContext,
 } from "./scalarContext.js";
 export { booleanGet, booleanPut } from "./boolean/index.js";

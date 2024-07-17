@@ -4,7 +4,7 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createMultiple,
-  MultipleClientOptions,
+  MultipleClientOptionalParams,
   MultipleContext,
   noOperationParams,
   withOperationPathParam,
@@ -17,7 +17,10 @@ export class MultipleClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpointParam: string, options: MultipleClientOptions = {}) {
+  constructor(
+    endpointParam: string,
+    options: MultipleClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

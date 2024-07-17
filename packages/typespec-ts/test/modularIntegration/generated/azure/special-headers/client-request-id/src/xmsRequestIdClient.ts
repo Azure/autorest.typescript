@@ -6,7 +6,7 @@ import {
   get,
   GetOptionalParams,
   createXmsRequestId,
-  XmsRequestIdClientOptions,
+  XmsRequestIdClientOptionalParams,
   XmsRequestIdClientContext,
 } from "./api/index.js";
 
@@ -16,7 +16,7 @@ export class XmsRequestIdClient {
   public readonly pipeline: Pipeline;
 
   /** Azure client request id header configurations. */
-  constructor(options: XmsRequestIdClientOptions = {}) {
+  constructor(options: XmsRequestIdClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -12,10 +12,9 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  BudgetsCreateOrUpdateOptionalParams,
 } from "./options.js";
 export {
   createWidgetService,
-  WidgetServiceClientOptions,
+  WidgetServiceClientOptionalParams,
   WidgetServiceContext,
 } from "./widgetServiceContext.js";

@@ -13,7 +13,7 @@ import {
 } from "./classic/group2/index.js";
 import {
   createTwoOperationGroup,
-  TwoOperationGroupClientOptions,
+  TwoOperationGroupClientOptionalParams,
   ServiceContext,
 } from "./api/index.js";
 
@@ -25,7 +25,7 @@ export class TwoOperationGroupClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: TwoOperationGroupClientOptions = {},
+    options: TwoOperationGroupClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -41,7 +41,7 @@ export {
   PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
-  AnomalyDetectorClientOptions,
+  AnomalyDetectorClientOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateChangePointOptionalParams,

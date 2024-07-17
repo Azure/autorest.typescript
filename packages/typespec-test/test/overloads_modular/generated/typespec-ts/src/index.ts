@@ -6,6 +6,6 @@ export { Versions } from "./models/index.js";
 export {
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,
-  WidgetManagerClientOptions,
+  WidgetManagerClientOptionalParams,
 } from "./api/index.js";
 export { FooOperationsOperations } from "./classic/index.js";

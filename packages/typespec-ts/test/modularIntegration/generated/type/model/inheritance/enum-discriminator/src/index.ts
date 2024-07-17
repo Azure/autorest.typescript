@@ -13,7 +13,7 @@ export {
   SnakeUnion,
 } from "./models/index.js";
 export {
-  EnumDiscriminatorClientOptions,
+  EnumDiscriminatorClientOptionalParams,
   GetExtensibleModelOptionalParams,
   PutExtensibleModelOptionalParams,
   GetExtensibleModelMissingDiscriminatorOptionalParams,

@@ -3,7 +3,7 @@
 
 export {
   createMultiple,
-  MultipleClientOptions,
+  MultipleClientOptionalParams,
   MultipleContext,
 } from "./multipleContext.js";
 export { noOperationParams, withOperationPathParam } from "./operations.js";

@@ -11,6 +11,6 @@ export {
 } from "./options.js";
 export {
   createTwoOperationGroup,
-  TwoOperationGroupClientOptions,
+  TwoOperationGroupClientOptionalParams,
   ServiceContext,
 } from "./twoOperationGroupContext.js";

@@ -13,7 +13,7 @@ export {
 } from "./options.js";
 export {
   createSpread,
-  SpreadClientOptions,
+  SpreadClientOptionalParams,
   SpreadContext,
 } from "./spreadContext.js";
 export {

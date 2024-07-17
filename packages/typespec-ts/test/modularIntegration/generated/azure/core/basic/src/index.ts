@@ -15,7 +15,7 @@ export {
   PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
-  BasicClientOptions,
+  BasicClientOptionalParams,
   CreateOrUpdateOptionalParams,
   CreateOrReplaceOptionalParams,
   GetOptionalParams,

@@ -10,7 +10,7 @@ import {
 } from "./../models/models.js";
 import {
   createChatCompletions,
-  ChatCompletionsClientOptions,
+  ChatCompletionsClientOptionalParams,
   ModelClientContext,
   complete,
   getModelInfo,
@@ -26,7 +26,7 @@ export class ChatCompletionsClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
-    options: ChatCompletionsClientOptions = {},
+    options: ChatCompletionsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

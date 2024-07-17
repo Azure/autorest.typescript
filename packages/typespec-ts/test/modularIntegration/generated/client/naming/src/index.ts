@@ -12,7 +12,7 @@ export {
   TSModel,
 } from "./models/index.js";
 export {
-  NamingClientOptions,
+  NamingClientOptionalParams,
   ClientNameOptionalParams,
   ParameterOptionalParams,
   ClientOptionalParams,

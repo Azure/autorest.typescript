@@ -16,7 +16,7 @@ export {
 } from "./options.js";
 export {
   createResources,
-  ResourcesClientOptions,
+  ResourcesClientOptionalParams,
   ResourcesContext,
 } from "./resourcesContext.js";
 export {

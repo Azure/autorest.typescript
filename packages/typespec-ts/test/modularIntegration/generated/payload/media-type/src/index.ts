@@ -3,7 +3,7 @@
 
 export { MediaTypeClient } from "./mediaTypeClient.js";
 export {
-  MediaTypeClientOptions,
+  MediaTypeClientOptionalParams,
   StringBodySendAsTextOptionalParams,
   StringBodyGetAsTextOptionalParams,
   StringBodySendAsJsonOptionalParams,

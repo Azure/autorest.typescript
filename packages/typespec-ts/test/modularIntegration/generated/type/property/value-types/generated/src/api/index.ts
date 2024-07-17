@@ -63,7 +63,7 @@ export {
 } from "./options.js";
 export {
   createValueTypes,
-  ValueTypesClientOptions,
+  ValueTypesClientOptionalParams,
   ValueTypesContext,
 } from "./valueTypesContext.js";
 export { booleanGet, booleanPut } from "./boolean/index.js";

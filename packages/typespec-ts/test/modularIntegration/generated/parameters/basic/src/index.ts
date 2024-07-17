@@ -4,7 +4,7 @@
 export { BasicClient } from "./basicClient.js";
 export { User } from "./models/index.js";
 export {
-  BasicClientOptions,
+  BasicClientOptionalParams,
   ExplicitBodySimpleOptionalParams,
   ImplicitBodySimpleOptionalParams,
 } from "./api/index.js";

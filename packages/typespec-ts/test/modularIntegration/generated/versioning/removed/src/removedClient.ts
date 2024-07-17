@@ -7,7 +7,7 @@ import {
   v2,
   V2OptionalParams,
   createRemoved,
-  RemovedClientOptions,
+  RemovedClientOptionalParams,
   RemovedContext,
 } from "./api/index.js";
 
@@ -20,7 +20,7 @@ export class RemovedClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: RemovedClientOptions = {},
+    options: RemovedClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

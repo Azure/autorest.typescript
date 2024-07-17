@@ -42,7 +42,7 @@ export {
   ChatCompletionsNamedToolSelectionUnion,
 } from "../models/index.js";
 export {
-  ChatCompletionsClientOptions,
+  ChatCompletionsClientOptionalParams,
   CompleteOptionalParams,
   GetModelInfoOptionalParams,
 } from "./api/index.js";

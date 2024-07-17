@@ -5,7 +5,7 @@ import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createCustom,
-  CustomClientOptions,
+  CustomClientOptionalParams,
   CustomContext,
   valid,
   invalid,
@@ -19,7 +19,10 @@ export class CustomClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with generic HTTP auth. */
-  constructor(credential: KeyCredential, options: CustomClientOptions = {}) {
+  constructor(
+    credential: KeyCredential,
+    options: CustomClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

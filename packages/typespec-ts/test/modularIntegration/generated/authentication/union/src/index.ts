@@ -5,5 +5,5 @@ export { UnionClient } from "./unionClient.js";
 export {
   ValidKeyOptionalParams,
   ValidTokenOptionalParams,
-  UnionClientOptions,
+  UnionClientOptionalParams,
 } from "./api/index.js";

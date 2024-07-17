@@ -3,7 +3,7 @@
 
 export {
   createDatetime,
-  DatetimeClientOptions,
+  DatetimeClientOptionalParams,
   DatetimeContext,
 } from "./datetimeContext.js";
 export {

@@ -5,7 +5,7 @@ import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createApiKey,
-  ApiKeyClientOptions,
+  ApiKeyClientOptionalParams,
   ApiKeyContext,
   valid,
   invalid,
@@ -19,7 +19,10 @@ export class ApiKeyClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with ApiKey authentication. */
-  constructor(credential: KeyCredential, options: ApiKeyClientOptions = {}) {
+  constructor(
+    credential: KeyCredential,
+    options: ApiKeyClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

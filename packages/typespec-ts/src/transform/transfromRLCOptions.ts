@@ -8,16 +8,12 @@ import {
   ServiceInfo
 } from "@azure-tools/rlc-common";
 import {
+  getHttpOperationWithCache,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import {
-  getDoc,
-  ignoreDiagnostics,
-  NoTarget,
-  Program
-} from "@typespec/compiler";
-import { getAuthentication, getHttpOperation } from "@typespec/http";
+import { getDoc, NoTarget, Program } from "@typespec/compiler";
+import { getAuthentication } from "@typespec/http";
 import { EmitterOptions, reportDiagnostic } from "../lib.js";
 import { getRLCClients } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
@@ -201,13 +197,12 @@ function getHierarchyClient(emitterOptions: EmitterOptions) {
 
 function detectIfNameConflicts(dpgContext: SdkContext) {
   const clients = getRLCClients(dpgContext);
-  const program = dpgContext.program;
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client
     const nameSet = new Set<string>();
     const clientOperations = listOperationsInOperationGroup(dpgContext, client);
     for (const clientOp of clientOperations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+      const route = getHttpOperationWithCache(dpgContext, clientOp);
       const name = getOperationName(dpgContext, route.operation);
       if (nameSet.has(name)) {
         return true;
@@ -222,7 +217,7 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
         operationGroup
       );
       for (const op of operations) {
-        const route = ignoreDiagnostics(getHttpOperation(program, op));
+        const route = getHttpOperationWithCache(dpgContext, op);
         const name = getOperationName(dpgContext, route.operation);
         if (nameSet.has(name)) {
           return true;

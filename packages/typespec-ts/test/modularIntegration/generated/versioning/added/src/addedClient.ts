@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { ModelV1, ModelV2, Versions } from "./models/models.js";
 import {
   createAdded,
-  AddedClientOptions,
+  AddedClientOptionalParams,
   AddedContext,
   v1,
   v2,
@@ -24,7 +24,7 @@ export class AddedClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: AddedClientOptions = {},
+    options: AddedClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

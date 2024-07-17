@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./../models/models.js";
 import {
   createB,
-  BClientOptions,
+  BClientOptionalParams,
   ServiceContext,
   renamedTwo,
   renamedFour,
@@ -23,7 +23,7 @@ export class BClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: BClientOptions = {},
+    options: BClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -5,6 +5,6 @@ export { get } from "./operations.js";
 export { GetOptionalParams } from "./options.js";
 export {
   createXmsRequestId,
-  XmsRequestIdClientOptions,
+  XmsRequestIdClientOptionalParams,
   XmsRequestIdClientContext,
 } from "./xmsRequestIdContext.js";

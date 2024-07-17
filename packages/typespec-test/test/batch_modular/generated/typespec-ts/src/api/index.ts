@@ -3,7 +3,7 @@
 
 export {
   createBatch,
-  BatchClientOptions,
+  BatchClientOptionalParams,
   BatchContext,
 } from "./batchContext.js";
 export {

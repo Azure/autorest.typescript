@@ -4,7 +4,7 @@
 export { CustomClient } from "./customClient.js";
 export { InvalidAuth } from "./models/index.js";
 export {
-  CustomClientOptions,
+  CustomClientOptionalParams,
   ValidOptionalParams,
   InvalidOptionalParams,
 } from "./api/index.js";

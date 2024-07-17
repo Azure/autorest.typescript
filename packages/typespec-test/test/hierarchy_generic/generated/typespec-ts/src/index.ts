@@ -4,7 +4,7 @@
 export { FooClient } from "./fooClient.js";
 export { A0, A1, A2 } from "./models/index.js";
 export {
-  FooClientOptions,
+  FooClientOptionalParams,
   Op1OptionalParams,
   BOp1OptionalParams,
   BECOp1OptionalParams,

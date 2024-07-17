@@ -13,7 +13,7 @@ export {
   StringProperty,
 } from "./models/index.js";
 export {
-  NullableClientOptions,
+  NullableClientOptionalParams,
   StringGetNonNullOptionalParams,
   StringGetNullOptionalParams,
   StringPatchNonNullOptionalParams,

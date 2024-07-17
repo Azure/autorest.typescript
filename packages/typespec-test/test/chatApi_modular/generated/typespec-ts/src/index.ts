@@ -3,9 +3,9 @@
 
 export { ChatProtocolClient } from "./chatProtocolClient.js";
 export {
+  StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
-  StreamingChatCompletionOptionsRecord,
   ChatCompletionChunkRecord,
   ChoiceDeltaRecord,
   ChatMessageDelta,
@@ -16,7 +16,7 @@ export {
   APIVersion,
 } from "./models/index.js";
 export {
-  ChatProtocolClientOptions,
+  ChatProtocolClientOptionalParams,
   CreateStreamingOptionalParams,
   CreateOptionalParams,
 } from "./api/index.js";

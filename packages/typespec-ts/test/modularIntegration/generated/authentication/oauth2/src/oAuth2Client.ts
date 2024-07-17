@@ -5,7 +5,7 @@ import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createOAuth2,
-  OAuth2ClientOptions,
+  OAuth2ClientOptionalParams,
   OAuth2Context,
   valid,
   invalid,
@@ -19,7 +19,10 @@ export class OAuth2Client {
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with OAuth2 authentication. */
-  constructor(credential: TokenCredential, options: OAuth2ClientOptions = {}) {
+  constructor(
+    credential: TokenCredential,
+    options: OAuth2ClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

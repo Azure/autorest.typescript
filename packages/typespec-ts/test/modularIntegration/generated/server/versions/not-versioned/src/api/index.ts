@@ -3,7 +3,7 @@
 
 export {
   createNotVersioned,
-  NotVersionedClientOptions,
+  NotVersionedClientOptionalParams,
   NotVersionedContext,
 } from "./notVersionedContext.js";
 export {

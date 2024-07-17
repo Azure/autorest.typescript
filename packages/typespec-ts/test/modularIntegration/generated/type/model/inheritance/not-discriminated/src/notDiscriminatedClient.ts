@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { Siamese } from "./models/models.js";
 import {
   createNotDiscriminated,
-  NotDiscriminatedClientOptions,
+  NotDiscriminatedClientOptionalParams,
   NotDiscriminatedContext,
   postValid,
   getValid,
@@ -21,7 +21,7 @@ export class NotDiscriminatedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates not-discriminated inheritance model. */
-  constructor(options: NotDiscriminatedClientOptions = {}) {
+  constructor(options: NotDiscriminatedClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

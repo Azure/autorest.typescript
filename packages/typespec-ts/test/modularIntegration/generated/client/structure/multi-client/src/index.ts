@@ -4,14 +4,14 @@
 export { AClient } from "./a/aClient.js";
 export { ClientType } from "./models/index.js";
 export {
-  AClientOptions,
+  AClientOptionalParams,
   RenamedOneOptionalParams,
   RenamedThreeOptionalParams,
   RenamedFiveOptionalParams,
 } from "./a/api/index.js";
 export { BClient } from "./b/bClient.js";
 export {
-  BClientOptions,
+  BClientOptionalParams,
   RenamedTwoOptionalParams,
   RenamedFourOptionalParams,
   RenamedSixOptionalParams,

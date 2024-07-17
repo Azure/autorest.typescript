@@ -3,7 +3,7 @@
 
 export {
   createAnomalyDetector,
-  AnomalyDetectorClientOptions,
+  AnomalyDetectorClientOptionalParams,
   AnomalyDetectorContext,
 } from "./anomalyDetectorContext.js";
 export {

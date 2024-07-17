@@ -3,7 +3,7 @@
 
 export {
   createDuration,
-  DurationClientOptions,
+  DurationClientOptionalParams,
   DurationContext,
 } from "./durationContext.js";
 export {

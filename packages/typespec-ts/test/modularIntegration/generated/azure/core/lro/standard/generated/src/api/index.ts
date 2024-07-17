@@ -9,6 +9,6 @@ export {
 } from "./options.js";
 export {
   createStandard,
-  StandardClientOptions,
+  StandardClientOptionalParams,
   StandardContext,
 } from "./standardContext.js";

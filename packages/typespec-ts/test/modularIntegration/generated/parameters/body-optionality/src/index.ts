@@ -4,7 +4,7 @@
 export { BodyOptionalityClient } from "./bodyOptionalityClient.js";
 export { BodyModel } from "./models/index.js";
 export {
-  BodyOptionalityClientOptions,
+  BodyOptionalityClientOptionalParams,
   RequiredExplicitOptionalParams,
   RequiredImplicitOptionalParams,
   OptionalExplicitSetOptionalParams,

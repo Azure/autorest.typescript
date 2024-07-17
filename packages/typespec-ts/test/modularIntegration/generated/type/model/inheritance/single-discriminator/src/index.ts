@@ -21,5 +21,5 @@ export {
   GetMissingDiscriminatorOptionalParams,
   GetWrongDiscriminatorOptionalParams,
   GetLegacyModelOptionalParams,
-  SingleDiscriminatorClientOptions,
+  SingleDiscriminatorClientOptionalParams,
 } from "./api/index.js";

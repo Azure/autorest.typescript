@@ -5,5 +5,5 @@ export { ReturnTypeChangedFromClient } from "./returnTypeChangedFromClient.js";
 export { Versions } from "./models/index.js";
 export {
   TestOptionalParams,
-  ReturnTypeChangedFromClientOptions,
+  ReturnTypeChangedFromClientOptionalParams,
 } from "./api/index.js";

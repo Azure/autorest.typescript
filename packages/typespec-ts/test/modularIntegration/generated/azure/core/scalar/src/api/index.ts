@@ -11,6 +11,6 @@ export {
 } from "./options.js";
 export {
   createScalar,
-  ScalarClientOptions,
+  ScalarClientOptionalParams,
   ScalarContext,
 } from "./scalarContext.js";

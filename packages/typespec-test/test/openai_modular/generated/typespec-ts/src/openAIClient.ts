@@ -20,7 +20,7 @@ import {
 } from "./models/models.js";
 import {
   createOpenAI,
-  OpenAIClientOptions,
+  OpenAIClientOptionalParams,
   OpenAIContext,
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,
@@ -50,7 +50,7 @@ export class OpenAIClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: OpenAIClientOptions = {},
+    options: OpenAIClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

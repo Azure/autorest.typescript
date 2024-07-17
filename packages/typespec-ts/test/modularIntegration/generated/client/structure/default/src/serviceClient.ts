@@ -13,7 +13,7 @@ import {
   OneOptionalParams,
   TwoOptionalParams,
   createService,
-  ServiceClientOptions,
+  ServiceClientOptionalParams,
   ServiceContext,
 } from "./api/index.js";
 
@@ -34,7 +34,7 @@ export class ServiceClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: ServiceClientOptions = {},
+    options: ServiceClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

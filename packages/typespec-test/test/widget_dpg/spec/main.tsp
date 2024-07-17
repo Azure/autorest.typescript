@@ -176,8 +176,4 @@ interface Budgets {
     // the same name as Widgets.createOrReplace
     @route("/widgets/createOrReplace")
     op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
-
-    // the patch case for lro
-    @route("/widgets/createOrUpdate")
-    op createOrUpdate is ResourceOperations.LongRunningResourceCreateOrUpdate<User>;
 }

@@ -7,7 +7,7 @@ import {
   list,
   ListOptionalParams,
   createPageable,
-  PageableClientOptions,
+  PageableClientOptionalParams,
   PageableContext,
 } from "./api/index.js";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
@@ -18,7 +18,7 @@ export class PageableClient {
   public readonly pipeline: Pipeline;
 
   /** Test describing pageable. */
-  constructor(options: PageableClientOptions = {}) {
+  constructor(options: PageableClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

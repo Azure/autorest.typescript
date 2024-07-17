@@ -9,5 +9,5 @@ export {
   PostOptionalParams,
   HeaderOptionalParams,
   QueryOptionalParams,
-  ScalarClientOptions,
+  ScalarClientOptionalParams,
 } from "./api/index.js";

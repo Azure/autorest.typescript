@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { JsonEncodedNameModel } from "./models/models.js";
 import {
   createJson,
-  JsonClientOptions,
+  JsonClientOptionalParams,
   JsonContext,
   send,
   get,
@@ -19,7 +19,7 @@ export class JsonClient {
   public readonly pipeline: Pipeline;
 
   /** Projection */
-  constructor(options: JsonClientOptions = {}) {
+  constructor(options: JsonClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

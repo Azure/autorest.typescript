@@ -13,5 +13,5 @@ export {
   InputToInputOutputOptionalParams,
   OutputToInputOutputOptionalParams,
   ModelInReadOnlyPropertyOptionalParams,
-  UsageClientOptions,
+  UsageClientOptionalParams,
 } from "./api/index.js";

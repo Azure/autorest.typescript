@@ -5,6 +5,6 @@ export { put, get } from "./operations.js";
 export { PutOptionalParams, GetOptionalParams } from "./options.js";
 export {
   createRecursive,
-  RecursiveClientOptions,
+  RecursiveClientOptionalParams,
   RecursiveContext,
 } from "./recursiveContext.js";

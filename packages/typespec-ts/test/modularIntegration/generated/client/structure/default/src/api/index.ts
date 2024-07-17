@@ -15,6 +15,6 @@ export {
 } from "./options.js";
 export {
   createService,
-  ServiceClientOptions,
+  ServiceClientOptionalParams,
   ServiceContext,
 } from "./serviceContext.js";

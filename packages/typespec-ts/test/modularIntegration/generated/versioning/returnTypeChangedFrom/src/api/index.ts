@@ -5,6 +5,6 @@ export { test } from "./operations.js";
 export { TestOptionalParams } from "./options.js";
 export {
   createReturnTypeChangedFrom,
-  ReturnTypeChangedFromClientOptions,
+  ReturnTypeChangedFromClientOptionalParams,
   ReturnTypeChangedFromContext,
 } from "./returnTypeChangedFromContext.js";

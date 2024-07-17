@@ -12,6 +12,6 @@ export {
   AliasSpreadAsRequestBodyOptionalParams,
   AliasSpreadAsRequestParameterOptionalParams,
   AliasSpreadWithMultipleParametersOptionalParams,
-  SpreadClientOptions,
+  SpreadClientOptionalParams,
 } from "./api/index.js";
 export { AliasOperations, ModelOperations } from "./classic/index.js";

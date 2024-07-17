@@ -4,7 +4,7 @@
 export { ExtensibleClient } from "./extensibleClient.js";
 export { DaysOfWeekExtensibleEnum } from "./models/index.js";
 export {
-  ExtensibleClientOptions,
+  ExtensibleClientOptionalParams,
   StringGetKnownValueOptionalParams,
   StringGetUnknownValueOptionalParams,
   StringPutKnownValueOptionalParams,

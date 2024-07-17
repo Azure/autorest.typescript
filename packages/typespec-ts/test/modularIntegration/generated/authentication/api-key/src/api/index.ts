@@ -3,7 +3,7 @@
 
 export {
   createApiKey,
-  ApiKeyClientOptions,
+  ApiKeyClientOptionalParams,
   ApiKeyContext,
 } from "./apiKeyContext.js";
 export { valid, invalid } from "./operations.js";

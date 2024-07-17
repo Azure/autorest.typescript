@@ -10,6 +10,6 @@ export {
   Group2TwoOptionalParams,
   Group2FiveOptionalParams,
   Group2SixOptionalParams,
-  TwoOperationGroupClientOptions,
+  TwoOperationGroupClientOptionalParams,
 } from "./api/index.js";
 export { Group1Operations, Group2Operations } from "./classic/index.js";

@@ -47,7 +47,7 @@ import {
 } from "./models/models.js";
 import {
   createBatch,
-  BatchClientOptions,
+  BatchClientOptionalParams,
   BatchContext,
   listApplications,
   getApplication,
@@ -213,7 +213,7 @@ export class BatchClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: BatchClientOptions = {},
+    options: BatchClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

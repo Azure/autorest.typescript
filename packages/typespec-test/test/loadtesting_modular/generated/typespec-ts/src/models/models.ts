@@ -6,10 +6,12 @@ import {
   Test as TestRest,
   PassFailCriteria as PassFailCriteriaRest,
   PassFailMetric as PassFailMetricRest,
+  AutoStopCriteria as AutoStopCriteriaRest,
   Secret as SecretRest,
   CertificateMetadata as CertificateMetadataRest,
   LoadTestConfiguration as LoadTestConfigurationRest,
   OptionalLoadTestConfig as OptionalLoadTestConfigRest,
+  RegionalConfiguration as RegionalConfigurationRest,
   TestAppComponents as TestAppComponentsRest,
   AppComponent as AppComponentRest,
   TestServerMetricConfig as TestServerMetricConfigRest,
@@ -19,12 +21,19 @@ import {
   TestRunServerMetricConfig as TestRunServerMetricConfigRest,
   MetricRequestPayload as MetricRequestPayloadRest,
   DimensionFilter as DimensionFilterRest,
+  TestProfile as TestProfileRest,
+  TargetResourceConfigurations as TargetResourceConfigurationsRest,
+  FunctionFlexConsumptionTargetResourceConfigurations as FunctionFlexConsumptionTargetResourceConfigurationsRest,
+  FunctionFlexConsumptionResourceConfiguration as FunctionFlexConsumptionResourceConfigurationRest,
+  TestProfileRun as TestProfileRunRest,
 } from "../rest/index.js";
 
-/** Load test model */
+/** Load test model. */
 export interface Test {
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
+  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
+  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -33,32 +42,38 @@ export interface Test {
    * SECRET_VALUE.
    */
   secrets?: Record<string, Secret>;
-  /** Certificates metadata */
+  /** Certificates metadata. */
   certificate?: CertificateMetadata;
   /** Environment variables which are defined as a set of <name,value> pairs. */
   environmentVariables?: Record<string, string>;
   /** The load test configuration. */
   loadTestConfiguration?: LoadTestConfiguration;
+  /** Id of the test run to be marked as baseline to view trends of client-side metrics from recent test runs */
+  baselineTestRunId?: string;
   /** The input artifacts for the test. */
   readonly inputArtifacts?: TestInputArtifacts;
-  /** Unique test name as identifier. */
-  readonly testId?: string;
+  /** Unique test identifier for the load test, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
+  readonly testId: string;
   /** The test description. */
   description?: string;
   /** Display name of a test. */
   displayName?: string;
   /** Subnet ID on which the load test instances should run. */
   subnetId?: string;
+  /** Kind of test. */
+  kind?: TestKind;
+  /** Inject load test engines without deploying public IP for outbound access */
+  publicIPDisabled?: boolean;
   /** Type of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityType?: string;
   /** Resource Id of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -68,6 +83,9 @@ export function testSerializer(item: Test): TestRest {
     passFailCriteria: !item.passFailCriteria
       ? item.passFailCriteria
       : passFailCriteriaSerializer(item.passFailCriteria),
+    autoStopCriteria: !item.autoStopCriteria
+      ? item.autoStopCriteria
+      : autoStopCriteriaSerializer(item.autoStopCriteria),
     secrets: !item.secrets
       ? item.secrets
       : (serializeRecord(item.secrets as any, secretSerializer) as any),
@@ -80,9 +98,12 @@ export function testSerializer(item: Test): TestRest {
     loadTestConfiguration: !item.loadTestConfiguration
       ? item.loadTestConfiguration
       : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    baselineTestRunId: item["baselineTestRunId"],
     description: item["description"],
     displayName: item["displayName"],
     subnetId: item["subnetId"],
+    kind: item["kind"],
+    publicIPDisabled: item["publicIPDisabled"],
     keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
     keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
   };
@@ -113,7 +134,7 @@ export interface PassFailMetric {
   clientMetric?: PFMetrics;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
-   * - ‘percentage’ - for error metric , ‘avg’, ‘p50’, ‘p90’, ‘p95’, ‘p99’, ‘min’,
+   * - ‘percentage’ - for error metric , ‘avg’, percentiles like ‘p50’, ‘p90’, & so on, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
    */
@@ -148,28 +169,148 @@ export function passFailMetricSerializer(
   };
 }
 
-/** Type of PFMetrics */
-export type PFMetrics =
-  | "response_time_ms"
-  | "latency"
-  | "error"
-  | "requests"
-  | "requests_per_sec";
-/** Type of PFAgFunc */
-export type PFAgFunc =
-  | "count"
-  | "percentage"
-  | "avg"
-  | "p50"
-  | "p90"
-  | "p95"
-  | "p99"
-  | "min"
-  | "max";
-/** Type of PFAction */
-export type PFAction = "continue" | "stop";
-/** Type of PFResult */
-export type PFResult = "passed" | "undetermined" | "failed";
+/** Known values of {@link PFMetrics} that the service accepts. */
+export enum KnownPFMetrics {
+  /** response_time_ms */
+  response_time_ms = "response_time_ms",
+  /** latency */
+  latency = "latency",
+  /** error */
+  error = "error",
+  /** requests */
+  requests = "requests",
+  /** requests_per_sec */
+  requests_per_sec = "requests_per_sec",
+}
+
+/**
+ * Metrics for pass/fail criteria. \
+ * {@link KnownPFMetrics} can be used interchangeably with PFMetrics,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **response_time_ms** \
+ * **latency** \
+ * **error** \
+ * **requests** \
+ * **requests_per_sec**
+ */
+export type PFMetrics = string;
+
+/** Known values of {@link PFAgFunc} that the service accepts. */
+export enum KnownPFAgFunc {
+  /** count */
+  count = "count",
+  /** percentage */
+  percentage = "percentage",
+  /** avg */
+  avg = "avg",
+  /** p50 */
+  p50 = "p50",
+  /** p75 */
+  p75 = "p75",
+  /** p90 */
+  p90 = "p90",
+  /** p95 */
+  p95 = "p95",
+  /** p96 */
+  p96 = "p96",
+  /** p97 */
+  p97 = "p97",
+  /** p98 */
+  p98 = "p98",
+  /** p99 */
+  p99 = "p99",
+  /** p99.9 */
+  "p99.9" = "p99.9",
+  /** p99.99 */
+  "p99.99" = "p99.99",
+  /** min */
+  min = "min",
+  /** max */
+  max = "max",
+}
+
+/**
+ * Aggregation functions for pass/fail criteria. \
+ * {@link KnownPFAgFunc} can be used interchangeably with PFAgFunc,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **count** \
+ * **percentage** \
+ * **avg** \
+ * **p50** \
+ * **p75** \
+ * **p90** \
+ * **p95** \
+ * **p96** \
+ * **p97** \
+ * **p98** \
+ * **p99** \
+ * **p99.9** \
+ * **p99.99** \
+ * **min** \
+ * **max**
+ */
+export type PFAgFunc = string;
+
+/** Known values of {@link PFAction} that the service accepts. */
+export enum KnownPFAction {
+  /** continue */
+  "continue" = "continue",
+  /** stop */
+  stop = "stop",
+}
+
+/**
+ * Action to take on failure of pass/fail criteria. \
+ * {@link KnownPFAction} can be used interchangeably with PFAction,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **continue** \
+ * **stop**
+ */
+export type PFAction = string;
+
+/** Known values of {@link PFResult} that the service accepts. */
+export enum KnownPFResult {
+  /** passed */
+  passed = "passed",
+  /** undetermined */
+  undetermined = "undetermined",
+  /** failed */
+  failed = "failed",
+}
+
+/**
+ * Pass/fail criteria result. \
+ * {@link KnownPFResult} can be used interchangeably with PFResult,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **passed** \
+ * **undetermined** \
+ * **failed**
+ */
+export type PFResult = string;
+
+/** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
+export interface AutoStopCriteria {
+  /** Whether auto-stop should be disabled. The default value is false. */
+  autoStopDisabled?: boolean;
+  /** Threshold percentage of errors on which test run should be automatically stopped. Allowed values are in range of 0.0-100.0 */
+  errorRate?: number;
+  /** Time window during which the error percentage should be evaluated in seconds. */
+  errorRateTimeWindowInSeconds?: number;
+}
+
+export function autoStopCriteriaSerializer(
+  item: AutoStopCriteria,
+): AutoStopCriteriaRest {
+  return {
+    autoStopDisabled: item["autoStopDisabled"],
+    errorRate: item["errorRate"],
+    errorRateTimeWindowInSeconds: item["errorRateTimeWindowInSeconds"],
+  };
+}
 
 /** Secret */
 export interface Secret {
@@ -186,8 +327,23 @@ export function secretSerializer(item: Secret): SecretRest {
   };
 }
 
-/** Type of SecretType */
-export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
+/** Known values of {@link SecretType} that the service accepts. */
+export enum KnownSecretType {
+  /** AKV_SECRET_URI */
+  AKV_SECRET_URI = "AKV_SECRET_URI",
+  /** SECRET_VALUE */
+  SECRET_VALUE = "SECRET_VALUE",
+}
+
+/**
+ * Types of secrets supported. \
+ * {@link KnownSecretType} can be used interchangeably with SecretType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **AKV_SECRET_URI** \
+ * **SECRET_VALUE**
+ */
+export type SecretType = string;
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -209,15 +365,24 @@ export function certificateMetadataSerializer(
   };
 }
 
-/** Type of CertificateType */
-export type CertificateType = "AKV_CERT_URI";
+/** Known values of {@link CertificateType} that the service accepts. */
+export enum KnownCertificateType {
+  /** AKV_CERT_URI */
+  AKV_CERT_URI = "AKV_CERT_URI",
+}
 
-/** The load test configuration. */
+/**
+ * Types of certificates supported. \
+ * {@link KnownCertificateType} can be used interchangeably with CertificateType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **AKV_CERT_URI**
+ */
+export type CertificateType = string;
+
+/** Configurations for the load test. */
 export interface LoadTestConfiguration {
-  /**
-   * The number of engine instances to execute load test. Supported values are in
-   * range of 1-45. Required for creating a new test.
-   */
+  /** The number of engine instances to execute load test. Supported values are in range of 1-400. Required for creating a new test. */
   engineInstances?: number;
   /**
    * If false, Azure Load Testing copies and processes your input files unmodified
@@ -231,8 +396,10 @@ export interface LoadTestConfiguration {
    * not required to upload.
    */
   quickStartTest?: boolean;
-  /** Optional load test config */
+  /** Configuration for quick load test */
   optionalLoadTestConfig?: OptionalLoadTestConfig;
+  /** Region distribution configuration for the load test. */
+  regionalLoadTestConfig?: RegionalConfiguration[];
 }
 
 export function loadTestConfigurationSerializer(
@@ -245,21 +412,26 @@ export function loadTestConfigurationSerializer(
     optionalLoadTestConfig: !item.optionalLoadTestConfig
       ? item.optionalLoadTestConfig
       : optionalLoadTestConfigSerializer(item.optionalLoadTestConfig),
+    regionalLoadTestConfig:
+      item["regionalLoadTestConfig"] === undefined
+        ? item["regionalLoadTestConfig"]
+        : item["regionalLoadTestConfig"].map(regionalConfigurationSerializer),
   };
 }
 
-/** Optional load test config */
+/** Configuration for quick load test */
 export interface OptionalLoadTestConfig {
-  /**
-   * Test URL. Provide the complete HTTP URL. For example,
-   * http://contoso-app.azurewebsites.net/login
-   */
+  /** Test URL. Provide the complete HTTP URL. For example, https://contoso-app.azurewebsites.net/login */
   endpointUrl?: string;
-  /** No of concurrent virtual users */
+  /** Target throughput (requests per second). This may not be necessarily achieved. The actual throughput will be lower if the application is not capable of handling it. */
+  requestsPerSecond?: number;
+  /** Maximum response time in milliseconds of the API/endpoint. */
+  maxResponseTimeInMs?: number;
+  /** No of concurrent virtual users. */
   virtualUsers?: number;
-  /** Ramp up time */
+  /** Ramp up time in seconds. */
   rampUpTime?: number;
-  /** Test run duration */
+  /** Test run duration in seconds. */
   duration?: number;
 }
 
@@ -268,53 +440,146 @@ export function optionalLoadTestConfigSerializer(
 ): OptionalLoadTestConfigRest {
   return {
     endpointUrl: item["endpointUrl"],
+    requestsPerSecond: item["requestsPerSecond"],
+    maxResponseTimeInMs: item["maxResponseTimeInMs"],
     virtualUsers: item["virtualUsers"],
     rampUpTime: item["rampUpTime"],
     duration: item["duration"],
   };
 }
 
+/** Region distribution configuration for the load test. */
+export interface RegionalConfiguration {
+  /**   The number of engine instances to execute load test in specified region. Supported values are in range of 1-400. */
+  engineInstances: number;
+  /**
+   * Azure region name.
+   * The region name should of format accepted by ARM, and should be a region supported by Azure Load Testing. For example, East US should be passed as "eastus".
+   * The region name must match one of the strings in the "Name" column returned from running the "az account list-locations -o table" Azure CLI command.
+   */
+  region: string;
+}
+
+export function regionalConfigurationSerializer(
+  item: RegionalConfiguration,
+): RegionalConfigurationRest {
+  return {
+    engineInstances: item["engineInstances"],
+    region: item["region"],
+  };
+}
+
 /** The input artifacts for the test. */
 export interface TestInputArtifacts {
   /** File info */
-  configFileInfo?: FileInfo;
+  configFileInfo?: TestFileInfo;
   /** File info */
-  testScriptFileInfo?: FileInfo;
+  testScriptFileInfo?: TestFileInfo;
   /** File info */
-  userPropFileInfo?: FileInfo;
+  userPropFileInfo?: TestFileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: FileInfo;
+  inputArtifactsZipFileInfo?: TestFileInfo;
+  /** The config json file for url based test */
+  urlTestConfigFileInfo?: TestFileInfo;
   /** Additional supported files for the test run */
-  readonly additionalFileInfo?: FileInfo[];
+  readonly additionalFileInfo?: TestFileInfo[];
 }
 
-/** File info */
-export interface FileInfo {
-  /** File URL. */
-  url?: string;
+/** Test file info. */
+export interface TestFileInfo {
   /** Name of the file. */
-  fileName?: string;
+  fileName: string;
+  /** File URL. */
+  readonly url?: string;
   /** File type */
-  fileType?: FileType;
-  /** Expiry time of the file (ISO 8601 literal format) */
-  expireDateTime?: string;
+  readonly fileType?: FileType;
+  /** Expiry time of the file (RFC 3339 literal format) */
+  readonly expireDateTime?: Date;
   /** Validation status of the file */
-  validationStatus?: FileStatus;
+  readonly validationStatus?: FileStatus;
   /** Validation failure error details */
-  validationFailureDetails?: string;
+  readonly validationFailureDetails?: string;
 }
 
-/** Type of FileType */
-export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
-/** Type of FileStatus */
-export type FileStatus =
-  | "NOT_VALIDATED"
-  | "VALIDATION_SUCCESS"
-  | "VALIDATION_FAILURE"
-  | "VALIDATION_INITIATED"
-  | "VALIDATION_NOT_REQUIRED";
+/** Known values of {@link FileType} that the service accepts. */
+export enum KnownFileType {
+  /** JMX_FILE */
+  JMX_FILE = "JMX_FILE",
+  /** USER_PROPERTIES */
+  USER_PROPERTIES = "USER_PROPERTIES",
+  /** ADDITIONAL_ARTIFACTS */
+  ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+  /** ZIPPED_ARTIFACTS */
+  ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS",
+  /** URL_TEST_CONFIG */
+  URL_TEST_CONFIG = "URL_TEST_CONFIG",
+  /** TEST_SCRIPT */
+  TEST_SCRIPT = "TEST_SCRIPT",
+}
 
-/** Test app component */
+/**
+ * Types of file supported. \
+ * {@link KnownFileType} can be used interchangeably with FileType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **JMX_FILE** \
+ * **USER_PROPERTIES** \
+ * **ADDITIONAL_ARTIFACTS** \
+ * **ZIPPED_ARTIFACTS** \
+ * **URL_TEST_CONFIG** \
+ * **TEST_SCRIPT**
+ */
+export type FileType = string;
+
+/** Known values of {@link FileStatus} that the service accepts. */
+export enum KnownFileStatus {
+  /** NOT_VALIDATED */
+  NOT_VALIDATED = "NOT_VALIDATED",
+  /** VALIDATION_SUCCESS */
+  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
+  /** VALIDATION_FAILURE */
+  VALIDATION_FAILURE = "VALIDATION_FAILURE",
+  /** VALIDATION_INITIATED */
+  VALIDATION_INITIATED = "VALIDATION_INITIATED",
+  /** VALIDATION_NOT_REQUIRED */
+  VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+}
+
+/**
+ * File status. \
+ * {@link KnownFileStatus} can be used interchangeably with FileStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **NOT_VALIDATED** \
+ * **VALIDATION_SUCCESS** \
+ * **VALIDATION_FAILURE** \
+ * **VALIDATION_INITIATED** \
+ * **VALIDATION_NOT_REQUIRED**
+ */
+export type FileStatus = string;
+
+/** Known values of {@link TestKind} that the service accepts. */
+export enum KnownTestKind {
+  /** URL */
+  URL = "URL",
+  /** JMX */
+  JMX = "JMX",
+  /** Locust */
+  Locust = "Locust",
+}
+
+/**
+ * Test kind \
+ * {@link KnownTestKind} can be used interchangeably with TestKind,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **URL** \
+ * **JMX** \
+ * **Locust**
+ */
+export type TestKind = string;
+
+/** Test app components */
 export interface TestAppComponents {
   /**
    * Azure resource collection { resource id (fully qualified resource Id e.g
@@ -324,12 +589,12 @@ export interface TestAppComponents {
   components: Record<string, AppComponent>;
   /** Test identifier */
   readonly testId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -345,20 +610,14 @@ export function testAppComponentsSerializer(
   };
 }
 
-/**
- * An Azure resource object (Refer azure generic resource model :
- * https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)
- */
+/** An Azure resource object (Refer azure generic resource model :https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource) */
 export interface AppComponent {
-  /**
-   * fully qualified resource Id e.g
-   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}
-   */
-  readonly resourceId?: string;
+  /** fully qualified resource Id e.g subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} */
+  readonly resourceId: string;
   /** Azure resource name, required while creating the app component. */
-  resourceName?: string;
+  resourceName: string;
   /** Azure resource type, required while creating the app component. */
-  resourceType?: string;
+  resourceType: string;
   /** Azure resource display name */
   displayName?: string;
   /** Resource group name of the Azure resource */
@@ -387,13 +646,13 @@ export interface TestServerMetricConfig {
    * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
    * for metric id).
    */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  metrics: Record<string, ResourceMetric>;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -402,9 +661,10 @@ export function testServerMetricConfigSerializer(
   item: TestServerMetricConfig,
 ): TestServerMetricConfigRest {
   return {
-    metrics: !item.metrics
-      ? item.metrics
-      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+    metrics: serializeRecord(
+      item.metrics as any,
+      resourceMetricSerializer,
+    ) as any,
   };
 }
 
@@ -446,31 +706,21 @@ export function resourceMetricSerializer(
   };
 }
 
-/** Collection of files. */
-export interface _PagedFileInfo {
-  /** The FileInfo items on this page */
-  value: FileInfo[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Collection of tests */
-export interface _PagedTest {
-  /** The Test items on this page */
-  value: Test[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Type of APIVersions */
-export type APIVersions = "2022-11-01";
+/** Azure Load Testing API versions. */
+export type APIVersions =
+  | "2022-11-01"
+  | "2023-04-01-preview"
+  | "2024-03-01-preview"
+  | "2024-05-01-preview";
 
 /** Load test run model */
 export interface TestRun {
-  /** Unique test run name as identifier */
+  /** Unique test run identifier for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
   readonly testRunId: string;
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
+  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
+  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -485,8 +735,18 @@ export interface TestRun {
   environmentVariables?: Record<string, string>;
   /** Error details if there is any failure in load test run */
   readonly errorDetails?: ErrorDetails[];
-  /** Test run statistics. */
+  /**
+   * Test run statistics. Key is the sampler name and value is the set of statistics for performance metrics like response time, throughput, etc. from the load test run.
+   * The sampler name is the same as the name mentioned in the test script.
+   * Sampler name "Total" represents the aggregated statistics of all the samplers.
+   */
   readonly testRunStatistics?: Record<string, TestRunStatistics>;
+  /**
+   * Regional statistics. Key is the Azure region name and value is the test run statistics.
+   * The region name should of format accepted by ARM, and should be a region supported by Azure Load Testing. For example, East US should be passed as "eastus".
+   * The region name must match one of the strings in the "Name" column returned from running the "az account list-locations -o table" Azure CLI command.
+   */
+  readonly regionalStatistics?: Record<string, TestRunStatistics>;
   /** The load test configuration. */
   loadTestConfiguration?: LoadTestConfiguration;
   /** Collection of test run artifacts */
@@ -503,24 +763,32 @@ export interface TestRun {
   description?: string;
   /** The test run status. */
   readonly status?: Status;
-  /** The test run start DateTime(ISO 8601 literal format). */
-  readonly startDateTime?: string;
-  /** The test run end DateTime(ISO 8601 literal format). */
-  readonly endDateTime?: string;
+  /** The test run start DateTime(RFC 3339 literal format). */
+  readonly startDateTime?: Date;
+  /** The test run end DateTime(RFC 3339 literal format). */
+  readonly endDateTime?: Date;
   /** Test run initiated time. */
-  readonly executedDateTime?: string;
+  readonly executedDateTime?: Date;
   /** Portal url. */
   readonly portalUrl?: string;
   /** Test run duration in milliseconds. */
   readonly duration?: number;
   /** Subnet ID on which the load test instances should run. */
   readonly subnetId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** Type of test. */
+  readonly kind?: TestKind;
+  /** Request data collection level for test run */
+  requestDataLevel?: RequestDataLevel;
+  /** Enable or disable debug level logging. True if debug logs are enabled for the test run. False otherwise */
+  debugLogsEnabled?: boolean;
+  /** Inject load test engines without deploying public IP for outbound access */
+  readonly publicIPDisabled?: boolean;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -530,6 +798,9 @@ export function testRunSerializer(item: TestRun): TestRunRest {
     passFailCriteria: !item.passFailCriteria
       ? item.passFailCriteria
       : passFailCriteriaSerializer(item.passFailCriteria),
+    autoStopCriteria: !item.autoStopCriteria
+      ? item.autoStopCriteria
+      : autoStopCriteriaSerializer(item.autoStopCriteria),
     secrets: !item.secrets
       ? item.secrets
       : (serializeRecord(item.secrets as any, secretSerializer) as any),
@@ -545,6 +816,8 @@ export function testRunSerializer(item: TestRun): TestRunRest {
     displayName: item["displayName"],
     testId: item["testId"],
     description: item["description"],
+    requestDataLevel: item["requestDataLevel"],
+    debugLogsEnabled: item["debugLogsEnabled"],
   };
 }
 
@@ -578,6 +851,18 @@ export interface TestRunStatistics {
   readonly pct2ResTime?: number;
   /** 99 percentile response time. */
   readonly pct3ResTime?: number;
+  /** 75 percentile response time. */
+  readonly pct75ResTime?: number;
+  /** 96 percentile response time. */
+  readonly pct96ResTime?: number;
+  /** 97 percentile response time. */
+  readonly pct97ResTime?: number;
+  /** 98 percentile response time. */
+  readonly pct98ResTime?: number;
+  /** 99.9 percentile response time. */
+  readonly pct999ResTime?: number;
+  /** 99.99 percentile response time. */
+  readonly pct9999ResTime?: number;
   /** Throughput. */
   readonly throughput?: number;
   /** Received network bytes. */
@@ -597,45 +882,153 @@ export interface TestRunArtifacts {
 /** The input artifacts for the test run. */
 export interface TestRunInputArtifacts {
   /** File info */
-  configFileInfo?: FileInfo;
+  configFileInfo?: TestRunFileInfo;
   /** File info */
-  testScriptFileInfo?: FileInfo;
+  testScriptFileInfo?: TestRunFileInfo;
   /** File info */
-  userPropFileInfo?: FileInfo;
+  userPropFileInfo?: TestRunFileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: FileInfo;
+  inputArtifactsZipFileInfo?: TestRunFileInfo;
+  /** The config json file for url based test */
+  urlTestConfigFileInfo?: TestRunFileInfo;
   /** Additional supported files for the test run */
-  readonly additionalFileInfo?: FileInfo[];
+  readonly additionalFileInfo?: TestRunFileInfo[];
+}
+
+/** Test run file info. */
+export interface TestRunFileInfo {
+  /** Name of the file. */
+  fileName: string;
+  /** File URL. */
+  readonly url?: string;
+  /** File type */
+  readonly fileType?: FileType;
+  /** Expiry time of the file (RFC 3339 literal format) */
+  readonly expireDateTime?: Date;
+  /** Validation status of the file */
+  readonly validationStatus?: FileStatus;
+  /** Validation failure error details */
+  readonly validationFailureDetails?: string;
 }
 
 /** The output artifacts for the test run. */
 export interface TestRunOutputArtifacts {
   /** File info */
-  resultFileInfo?: FileInfo;
+  resultFileInfo?: TestRunFileInfo;
   /** File info */
-  logsFileInfo?: FileInfo;
+  logsFileInfo?: TestRunFileInfo;
+  /** The container for test run artifacts. */
+  artifactsContainerInfo?: ArtifactsContainerInfo;
+  /** The report file for the test run. */
+  reportFileInfo?: TestRunFileInfo;
 }
 
-/** Type of PFTestResult */
-export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
-/** Type of Status */
-export type Status =
-  | "ACCEPTED"
-  | "NOTSTARTED"
-  | "PROVISIONING"
-  | "PROVISIONED"
-  | "CONFIGURING"
-  | "CONFIGURED"
-  | "EXECUTING"
-  | "EXECUTED"
-  | "DEPROVISIONING"
-  | "DEPROVISIONED"
-  | "DONE"
-  | "CANCELLING"
-  | "CANCELLED"
-  | "FAILED"
-  | "VALIDATION_SUCCESS"
-  | "VALIDATION_FAILURE";
+/** Artifacts container info. */
+export interface ArtifactsContainerInfo {
+  /** This is a SAS URI to an Azure Storage Container that contains the test run artifacts. */
+  url?: string;
+  /** Expiry time of the container (RFC 3339 literal format) */
+  expireDateTime?: Date;
+}
+
+/** Known values of {@link PFTestResult} that the service accepts. */
+export enum KnownPFTestResult {
+  /** PASSED */
+  PASSED = "PASSED",
+  /** NOT_APPLICABLE */
+  NOT_APPLICABLE = "NOT_APPLICABLE",
+  /** FAILED */
+  FAILED = "FAILED",
+}
+
+/**
+ * Test result based on pass/fail criteria. \
+ * {@link KnownPFTestResult} can be used interchangeably with PFTestResult,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **PASSED** \
+ * **NOT_APPLICABLE** \
+ * **FAILED**
+ */
+export type PFTestResult = string;
+
+/** Known values of {@link Status} that the service accepts. */
+export enum KnownStatus {
+  /** ACCEPTED */
+  ACCEPTED = "ACCEPTED",
+  /** NOTSTARTED */
+  NOTSTARTED = "NOTSTARTED",
+  /** PROVISIONING */
+  PROVISIONING = "PROVISIONING",
+  /** PROVISIONED */
+  PROVISIONED = "PROVISIONED",
+  /** CONFIGURING */
+  CONFIGURING = "CONFIGURING",
+  /** CONFIGURED */
+  CONFIGURED = "CONFIGURED",
+  /** EXECUTING */
+  EXECUTING = "EXECUTING",
+  /** EXECUTED */
+  EXECUTED = "EXECUTED",
+  /** DEPROVISIONING */
+  DEPROVISIONING = "DEPROVISIONING",
+  /** DEPROVISIONED */
+  DEPROVISIONED = "DEPROVISIONED",
+  /** DONE */
+  DONE = "DONE",
+  /** CANCELLING */
+  CANCELLING = "CANCELLING",
+  /** CANCELLED */
+  CANCELLED = "CANCELLED",
+  /** FAILED */
+  FAILED = "FAILED",
+  /** VALIDATION_SUCCESS */
+  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
+  /** VALIDATION_FAILURE */
+  VALIDATION_FAILURE = "VALIDATION_FAILURE",
+}
+
+/**
+ * Test run status. \
+ * {@link KnownStatus} can be used interchangeably with Status,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **ACCEPTED** \
+ * **NOTSTARTED** \
+ * **PROVISIONING** \
+ * **PROVISIONED** \
+ * **CONFIGURING** \
+ * **CONFIGURED** \
+ * **EXECUTING** \
+ * **EXECUTED** \
+ * **DEPROVISIONING** \
+ * **DEPROVISIONED** \
+ * **DONE** \
+ * **CANCELLING** \
+ * **CANCELLED** \
+ * **FAILED** \
+ * **VALIDATION_SUCCESS** \
+ * **VALIDATION_FAILURE**
+ */
+export type Status = string;
+
+/** Known values of {@link RequestDataLevel} that the service accepts. */
+export enum KnownRequestDataLevel {
+  /** NONE */
+  NONE = "NONE",
+  /** ERRORS */
+  ERRORS = "ERRORS",
+}
+
+/**
+ * Request data collection level for test run \
+ * {@link KnownRequestDataLevel} can be used interchangeably with RequestDataLevel,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **NONE** \
+ * **ERRORS**
+ */
+export type RequestDataLevel = string;
 
 /** Test run app component */
 export interface TestRunAppComponents {
@@ -647,12 +1040,12 @@ export interface TestRunAppComponents {
   components: Record<string, AppComponent>;
   /** Test run identifier */
   readonly testRunId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -678,12 +1071,12 @@ export interface TestRunServerMetricConfig {
    * for metric id).
    */
   metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -698,11 +1091,41 @@ export function testRunServerMetricConfigSerializer(
   };
 }
 
-/** Type of Interval */
-export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+/** Known values of {@link TimeGrain} that the service accepts. */
+export enum KnownTimeGrain {
+  /** PT5S */
+  PT5S = "PT5S",
+  /** PT10S */
+  PT10S = "PT10S",
+  /** PT1M */
+  PT1M = "PT1M",
+  /** PT5M */
+  PT5M = "PT5M",
+  /** PT1H */
+  PT1H = "PT1H",
+}
 
+/**
+ * Time Grain \
+ * {@link KnownTimeGrain} can be used interchangeably with TimeGrain,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **PT5S** \
+ * **PT10S** \
+ * **PT1M** \
+ * **PT5M** \
+ * **PT1H**
+ */
+export type TimeGrain = string;
+
+/** Metrics dimension values. */
 export interface DimensionValueList {
-  value: string[];
+  /** The dimension name */
+  readonly name?: string;
+  /** The dimension value */
+  value?: string[];
+  /** Link for the next set of values in case of paginated results, if applicable. */
+  nextLink?: string;
 }
 
 /** Represents collection of metric definitions. */
@@ -742,25 +1165,92 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** Type of AggregationType */
-export type AggregationType =
-  | "Average"
-  | "Count"
-  | "None"
-  | "Total"
-  | "Percentile90"
-  | "Percentile95"
-  | "Percentile99";
-/** Type of MetricUnit */
-export type MetricUnit =
-  | "NotSpecified"
-  | "Percent"
-  | "Count"
-  | "Seconds"
-  | "Milliseconds"
-  | "Bytes"
-  | "BytesPerSecond"
-  | "CountPerSecond";
+/** Known values of {@link AggregationType} that the service accepts. */
+export enum KnownAggregationType {
+  /** Average */
+  Average = "Average",
+  /** Count */
+  Count = "Count",
+  /** None */
+  None = "None",
+  /** Total */
+  Total = "Total",
+  /** Percentile75 */
+  Percentile75 = "Percentile75",
+  /** Percentile90 */
+  Percentile90 = "Percentile90",
+  /** Percentile95 */
+  Percentile95 = "Percentile95",
+  /** Percentile96 */
+  Percentile96 = "Percentile96",
+  /** Percentile97 */
+  Percentile97 = "Percentile97",
+  /** Percentile98 */
+  Percentile98 = "Percentile98",
+  /** Percentile99 */
+  Percentile99 = "Percentile99",
+  /** Percentile999 */
+  Percentile999 = "Percentile999",
+  /** Percentile9999 */
+  Percentile9999 = "Percentile9999",
+}
+
+/**
+ * Aggregation type. \
+ * {@link KnownAggregationType} can be used interchangeably with AggregationType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Average** \
+ * **Count** \
+ * **None** \
+ * **Total** \
+ * **Percentile75** \
+ * **Percentile90** \
+ * **Percentile95** \
+ * **Percentile96** \
+ * **Percentile97** \
+ * **Percentile98** \
+ * **Percentile99** \
+ * **Percentile999** \
+ * **Percentile9999**
+ */
+export type AggregationType = string;
+
+/** Known values of {@link MetricUnit} that the service accepts. */
+export enum KnownMetricUnit {
+  /** NotSpecified */
+  NotSpecified = "NotSpecified",
+  /** Percent */
+  Percent = "Percent",
+  /** Count */
+  Count = "Count",
+  /** Seconds */
+  Seconds = "Seconds",
+  /** Milliseconds */
+  Milliseconds = "Milliseconds",
+  /** Bytes */
+  Bytes = "Bytes",
+  /** BytesPerSecond */
+  BytesPerSecond = "BytesPerSecond",
+  /** CountPerSecond */
+  CountPerSecond = "CountPerSecond",
+}
+
+/**
+ * Metric unit. \
+ * {@link KnownMetricUnit} can be used interchangeably with MetricUnit,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **NotSpecified** \
+ * **Percent** \
+ * **Count** \
+ * **Seconds** \
+ * **Milliseconds** \
+ * **Bytes** \
+ * **BytesPerSecond** \
+ * **CountPerSecond**
+ */
+export type MetricUnit = string;
 
 /** Metric availability specifies the time grain (aggregation interval or frequency) */
 export interface MetricAvailability {
@@ -770,9 +1260,6 @@ export interface MetricAvailability {
    */
   timeGrain?: TimeGrain;
 }
-
-/** Type of TimeGrain */
-export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
@@ -788,7 +1275,7 @@ export interface MetricNamespace {
   name?: string;
 }
 
-/** Filters to fetch the set of metric */
+/** Filters to fetch the set of metric. */
 export interface MetricRequestPayload {
   /**
    * Get metrics for specific dimension values. Example: Metric contains dimension
@@ -828,7 +1315,7 @@ export function dimensionFilterSerializer(
 }
 
 /** The response to a metrics query. */
-export interface _PagedTimeSeriesElement {
+export interface _Metrics {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
@@ -845,8 +1332,8 @@ export interface TimeSeriesElement {
 
 /** Represents a metric value. */
 export interface MetricValue {
-  /** The timestamp for the metric value in ISO 8601 format. */
-  timestamp?: string;
+  /** The timestamp for the metric value in RFC 3339 format. */
+  timestamp?: Date;
   /** The metric value. */
   value?: number;
 }
@@ -859,7 +1346,267 @@ export interface DimensionValue {
   value?: string;
 }
 
-/** Collection of test runs */
+/** The Test Profile Model. A Test Profile resource enables you to set up a test profile which contains various configurations for a supported resource type and a load test to execute on that resource. */
+export interface TestProfile {
+  /** Unique identifier for the test profile, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
+  readonly testProfileId: string;
+  /** Display name of the test profile. */
+  displayName?: string;
+  /** Description for the test profile. */
+  description?: string;
+  /** Associated test ID for the test profile. This property is required for creating a Test Profile and it's not allowed to be updated. */
+  testId?: string;
+  /** Target resource ID on which the test profile is created. This property is required for creating a Test Profile and it's not allowed to be updated. */
+  targetResourceId?: string;
+  /** Configurations of the target resource on which testing would be done. */
+  targetResourceConfigurations?: TargetResourceConfigurationsUnion;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
+
+export function testProfileSerializer(item: TestProfile): TestProfileRest {
+  return {
+    displayName: item["displayName"],
+    description: item["description"],
+    testId: item["testId"],
+    targetResourceId: item["targetResourceId"],
+    targetResourceConfigurations: !item.targetResourceConfigurations
+      ? item.targetResourceConfigurations
+      : targetResourceConfigurationsUnionSerializer(
+          item.targetResourceConfigurations,
+        ),
+  };
+}
+
+/** Configurations of a target resource. This varies with the kind of resource. */
+export interface TargetResourceConfigurations {
+  /** the discriminator possible values: FunctionsFlexConsumption */
+  kind: ResourceKind;
+}
+
+export function targetResourceConfigurationsUnionSerializer(
+  item: TargetResourceConfigurationsUnion,
+) {
+  switch (item.kind) {
+    case "FunctionsFlexConsumption":
+      return functionFlexConsumptionTargetResourceConfigurationsSerializer(
+        item as FunctionFlexConsumptionTargetResourceConfigurations,
+      );
+
+    default:
+      return targetResourceConfigurationsSerializer(item);
+  }
+}
+
+export function targetResourceConfigurationsSerializer(
+  item: TargetResourceConfigurationsUnion,
+): TargetResourceConfigurationsRest {
+  return {
+    kind: item["kind"],
+  };
+}
+
+/** Configurations for a Function App using Flex Consumption Plan. */
+export interface FunctionFlexConsumptionTargetResourceConfigurations
+  extends TargetResourceConfigurations {
+  /**
+   * The kind value to use when providing configuration.
+   * This should typically be not changed from its value.
+   */
+  kind: "FunctionsFlexConsumption";
+  /** A map of configurations for a Function app using Flex Consumption Plan. */
+  configurations?: Record<string, FunctionFlexConsumptionResourceConfiguration>;
+}
+
+export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
+  item: FunctionFlexConsumptionTargetResourceConfigurations,
+): FunctionFlexConsumptionTargetResourceConfigurationsRest {
+  return {
+    kind: item["kind"],
+    configurations: !item.configurations
+      ? item.configurations
+      : (serializeRecord(
+          item.configurations as any,
+          functionFlexConsumptionResourceConfigurationSerializer,
+        ) as any),
+  };
+}
+
+/** Resource configuration instance for a Flex Consumption based Azure Function App. */
+export interface FunctionFlexConsumptionResourceConfiguration {
+  /** Memory size of the instance. Supported values are 2048, 4096. */
+  instanceMemoryMB: number;
+  /** HTTP Concurrency for the function app. */
+  httpConcurrency: number;
+}
+
+export function functionFlexConsumptionResourceConfigurationSerializer(
+  item: FunctionFlexConsumptionResourceConfiguration,
+): FunctionFlexConsumptionResourceConfigurationRest {
+  return {
+    instanceMemoryMB: item["instanceMemoryMB"],
+    httpConcurrency: item["httpConcurrency"],
+  };
+}
+
+/** Known values of {@link ResourceKind} that the service accepts. */
+export enum KnownResourceKind {
+  /** FunctionsFlexConsumption */
+  FunctionsFlexConsumption = "FunctionsFlexConsumption",
+}
+
+/**
+ * Kind of the resource on which test profile is created. \
+ * {@link KnownResourceKind} can be used interchangeably with ResourceKind,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **FunctionsFlexConsumption**
+ */
+export type ResourceKind = string;
+
+/** The Test Profile Run Model. Test Profile Run resource enables you to instantiate an already created test profile and run load tests to get recommendations on the optimal configuration for the target resource. */
+export interface TestProfileRun {
+  /** Unique identifier for the test profile run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
+  readonly testProfileRunId: string;
+  /** Display name for the test profile run. */
+  displayName?: string;
+  /** The test profile run description */
+  description?: string;
+  /** Associated test profile ID for the test profile run. This is required to create a test profile run and can't be updated. */
+  testProfileId?: string;
+  /** Target resource ID on which the test profile run is created */
+  readonly targetResourceId?: string;
+  /** Configurations of the target resource on which the test profile ran. */
+  readonly targetResourceConfigurations?: TargetResourceConfigurationsUnion;
+  /** The test profile run status. */
+  readonly status?: TestProfileRunStatus;
+  /** Error details if there is any failure in test profile run. These errors are specific to the Test Profile Run. */
+  readonly errorDetails?: ErrorDetails[];
+  /** The test profile run start DateTime(RFC 3339 literal format). */
+  readonly startDateTime?: Date;
+  /** The test profile run end DateTime(RFC 3339 literal format). */
+  readonly endDateTime?: Date;
+  /** Test profile run duration in seconds. */
+  readonly durationInSeconds?: number;
+  /**
+   * Details of the test runs ran as part of the test profile run.
+   * Key is the testRunId of the corresponding testRun.
+   */
+  readonly testRunDetails?: Record<string, TestRunDetail>;
+  /** Recommendations provided based on a successful test profile run. */
+  readonly recommendations?: TestProfileRunRecommendation[];
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
+
+export function testProfileRunSerializer(
+  item: TestProfileRun,
+): TestProfileRunRest {
+  return {
+    displayName: item["displayName"],
+    description: item["description"],
+    testProfileId: item["testProfileId"],
+  };
+}
+
+/** Known values of {@link TestProfileRunStatus} that the service accepts. */
+export enum KnownTestProfileRunStatus {
+  /** ACCEPTED */
+  ACCEPTED = "ACCEPTED",
+  /** NOTSTARTED */
+  NOTSTARTED = "NOTSTARTED",
+  /** EXECUTING */
+  EXECUTING = "EXECUTING",
+  /** DONE */
+  DONE = "DONE",
+  /** CANCELLING */
+  CANCELLING = "CANCELLING",
+  /** CANCELLED */
+  CANCELLED = "CANCELLED",
+  /** FAILED */
+  FAILED = "FAILED",
+}
+
+/**
+ * Test profile run status. \
+ * {@link KnownTestProfileRunStatus} can be used interchangeably with TestProfileRunStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **ACCEPTED** \
+ * **NOTSTARTED** \
+ * **EXECUTING** \
+ * **DONE** \
+ * **CANCELLING** \
+ * **CANCELLED** \
+ * **FAILED**
+ */
+export type TestProfileRunStatus = string;
+
+/** Details of a particular test run for a test profile run. */
+export interface TestRunDetail {
+  /** Status of the test run. */
+  status: Status;
+  /** ID of the configuration on which the test ran. */
+  configurationId: string;
+  /** Key value pair of extra properties associated with the test run. */
+  properties: Record<string, string>;
+}
+
+/** A recommendation object that provides a list of configuration that optimizes its category. */
+export interface TestProfileRunRecommendation {
+  /** Category of the recommendation. */
+  category: RecommendationCategory;
+  /** List of configurations IDs for which the recommendation is applicable. These are a subset of the provided target resource configurations. */
+  configurations?: string[];
+}
+
+/** Known values of {@link RecommendationCategory} that the service accepts. */
+export enum KnownRecommendationCategory {
+  /** ThroughputOptimized */
+  ThroughputOptimized = "ThroughputOptimized",
+  /** CostOptimized */
+  CostOptimized = "CostOptimized",
+}
+
+/**
+ * Category of Recommendation. \
+ * {@link KnownRecommendationCategory} can be used interchangeably with RecommendationCategory,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **ThroughputOptimized** \
+ * **CostOptimized**
+ */
+export type RecommendationCategory = string;
+
+/** Paged collection of TestFileInfo items */
+export interface _PagedTestFileInfo {
+  /** The TestFileInfo items on this page */
+  value: TestFileInfo[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Paged collection of Test items */
+export interface _PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Paged collection of TestRun items */
 export interface _PagedTestRun {
   /** The TestRun items on this page */
   value: TestRun[];
@@ -867,10 +1614,23 @@ export interface _PagedTestRun {
   nextLink?: string;
 }
 
-/** Paged collection of DimensionValueList items */
-export interface _PagedDimensionValueList {
-  /** The DimensionValueList items on this page */
-  value: DimensionValueList[];
+/** Paged collection of TestProfile items */
+export interface _PagedTestProfile {
+  /** The TestProfile items on this page */
+  value: TestProfile[];
   /** The link to the next page of items */
   nextLink?: string;
 }
+
+/** Paged collection of TestProfileRun items */
+export interface _PagedTestProfileRun {
+  /** The TestProfileRun items on this page */
+  value: TestProfileRun[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Alias for TargetResourceConfigurationsUnion */
+export type TargetResourceConfigurationsUnion =
+  | FunctionFlexConsumptionTargetResourceConfigurations
+  | TargetResourceConfigurations;

@@ -4,7 +4,7 @@
 export { ContentNegotiationClient } from "./contentNegotiationClient.js";
 export { PngImageAsJson } from "./models/index.js";
 export {
-  ContentNegotiationClientOptions,
+  ContentNegotiationClientOptionalParams,
   SameBodyGetAvatarAsPngOptionalParams,
   SameBodyGetAvatarAsJpegOptionalParams,
   DifferentBodyGetAvatarAsPngOptionalParams,

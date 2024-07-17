@@ -3,7 +3,7 @@
 
 export {
   createEmbeddings,
-  EmbeddingsClientOptions,
+  EmbeddingsClientOptionalParams,
   ModelClientContext,
 } from "./embeddingsContext.js";
 export { embed, getModelInfo } from "./operations.js";

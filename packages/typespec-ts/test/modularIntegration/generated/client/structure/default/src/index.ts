@@ -13,7 +13,7 @@ export {
   FooFourOptionalParams,
   BarFiveOptionalParams,
   BarSixOptionalParams,
-  ServiceClientOptions,
+  ServiceClientOptionalParams,
 } from "./api/index.js";
 export {
   BarOperations,

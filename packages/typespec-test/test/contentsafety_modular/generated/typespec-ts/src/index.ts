@@ -4,8 +4,8 @@
 export { ContentSafetyClient } from "./contentSafetyClient.js";
 export {
   TextBlocklist,
-  TextBlockItemInfo,
   AddOrUpdateBlockItemsOptions,
+  TextBlockItemInfo,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
@@ -27,7 +27,7 @@ export {
   PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
-  ContentSafetyClientOptions,
+  ContentSafetyClientOptionalParams,
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
   GetTextBlocklistOptionalParams,

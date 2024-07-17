@@ -17,7 +17,7 @@ import {
 } from "./classic/unionEnum/index.js";
 import {
   createNaming,
-  NamingClientOptions,
+  NamingClientOptionalParams,
   NamingContext,
   clientName,
   parameter,
@@ -41,7 +41,7 @@ export class NamingClient {
   public readonly pipeline: Pipeline;
 
   /** Describe changing names of types in a client with `@clientName` */
-  constructor(options: NamingClientOptions = {}) {
+  constructor(options: NamingClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

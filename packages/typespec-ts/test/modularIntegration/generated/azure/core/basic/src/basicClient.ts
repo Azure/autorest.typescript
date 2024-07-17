@@ -10,7 +10,7 @@ import {
 } from "./models/models.js";
 import {
   createBasic,
-  BasicClientOptions,
+  BasicClientOptionalParams,
   BasicContext,
   createOrUpdate,
   createOrReplace,
@@ -43,7 +43,7 @@ export class BasicClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates bodies templated with Azure Core */
-  constructor(options: BasicClientOptions = {}) {
+  constructor(options: BasicClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

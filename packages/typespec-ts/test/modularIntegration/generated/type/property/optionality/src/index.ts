@@ -19,7 +19,7 @@ export {
   BytesProperty,
 } from "./models/index.js";
 export {
-  OptionalClientOptions,
+  OptionalClientOptionalParams,
   StringGetAllOptionalParams,
   StringGetDefaultOptionalParams,
   StringPutAllOptionalParams,

@@ -78,7 +78,7 @@ export interface DOperations {
 
 // @public (undocumented)
 export class FooClient {
-    constructor(endpoint: string, options?: FooClientOptions);
+    constructor(endpoint: string, options?: FooClientOptionalParams);
     readonly b: BOperations;
     readonly d: DOperations;
     // (undocumented)
@@ -87,7 +87,7 @@ export class FooClient {
 }
 
 // @public
-export interface FooClientOptions extends ClientOptions {
+export interface FooClientOptionalParams extends ClientOptions {
 }
 
 // @public

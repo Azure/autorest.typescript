@@ -8,4 +8,7 @@ export {
   GenerationResult,
   Versions,
 } from "./models/index.js";
-export { LongRunningRpcOptionalParams, RpcClientOptions } from "./api/index.js";
+export {
+  LongRunningRpcOptionalParams,
+  RpcClientOptionalParams,
+} from "./api/index.js";

@@ -23,7 +23,7 @@ provided prompt data.
 @action("completions") //@convenientAPI(true)
 op getCompletions is Azure.Core.ResourceAction<
   Deployment,
-  CompletionsOptions,
+  { @body body: CompletionsOptions },
   Completions
 >;
 
@@ -37,6 +37,6 @@ provided prompt data.
 @action("chat/completions") //@convenientAPI(true)
 op getChatCompletions is ResourceAction<
   Deployment,
-  ChatCompletionsOptions,
+  { @body body: ChatCompletionsOptions},
   ChatCompletions
 >;

@@ -96,7 +96,7 @@ export {
   UnionFloatLiteralPutOptionalParams,
   UnionEnumValueGetOptionalParams,
   UnionEnumValuePutOptionalParams,
-  ValueTypesClientOptions,
+  ValueTypesClientOptionalParams,
 } from "./api/index.js";
 export {
   BooleanOperations,

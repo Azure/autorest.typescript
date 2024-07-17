@@ -6,7 +6,7 @@ import {
   myOp,
   MyOpOptionalParams,
   createSingle,
-  SingleClientOptions,
+  SingleClientOptionalParams,
   SingleContext,
 } from "./api/index.js";
 
@@ -16,7 +16,7 @@ export class SingleClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates server with a single path parameter @server */
-  constructor(endpointParam: string, options: SingleClientOptions = {}) {
+  constructor(endpointParam: string, options: SingleClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

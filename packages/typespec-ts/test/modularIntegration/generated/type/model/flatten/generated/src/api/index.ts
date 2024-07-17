@@ -3,7 +3,7 @@
 
 export {
   createFlatten,
-  FlattenClientOptions,
+  FlattenClientOptionalParams,
   FlattenContext,
 } from "./flattenContext.js";
 export { putFlattenModel, putNestedFlattenModel } from "./operations.js";

@@ -4,7 +4,7 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createNotVersioned,
-  NotVersionedClientOptions,
+  NotVersionedClientOptionalParams,
   NotVersionedContext,
   withoutApiVersion,
   withQueryApiVersion,
@@ -20,7 +20,10 @@ export class NotVersionedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates not-versioned server. */
-  constructor(endpointParam: string, options: NotVersionedClientOptions = {}) {
+  constructor(
+    endpointParam: string,
+    options: NotVersionedClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

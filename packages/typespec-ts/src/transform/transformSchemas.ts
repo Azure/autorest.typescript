@@ -3,12 +3,13 @@
 
 import { SchemaContext } from "@azure-tools/rlc-common";
 import {
+  getHttpOperationWithCache,
   listOperationGroups,
   listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { ignoreDiagnostics, Model, Type } from "@typespec/compiler";
-import { getHttpOperation, getServers, HttpOperation } from "@typespec/http";
+import { Model, Type } from "@typespec/compiler";
+import { getServers, HttpOperation } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import { extractMediaTypes, KnownMediaType } from "../utils/mediaTypes.js";
 import {
@@ -33,7 +34,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   const contentTypeMap = new Map<Type, KnownMediaType[]>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -47,7 +48,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -61,7 +62,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
         getGeneratedModels(param.param, SchemaContext.Input);
       }
     }
-    const bodyModel = getBodyType(program, route);
+    const bodyModel = getBodyType(route);
     if (
       bodyModel &&
       (bodyModel.kind === "Model" ||

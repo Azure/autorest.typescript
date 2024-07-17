@@ -12,5 +12,5 @@ export {
 export {
   SmokeTestOptionalParams,
   RepeatableActionOptionalParams,
-  TraitsClientOptions,
+  TraitsClientOptionalParams,
 } from "./api/index.js";

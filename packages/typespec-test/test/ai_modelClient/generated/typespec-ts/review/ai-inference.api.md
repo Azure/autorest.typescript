@@ -31,14 +31,14 @@ export interface ChatCompletions {
 
 // @public (undocumented)
 export class ChatCompletionsClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ChatCompletionsClientOptions);
+    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ChatCompletionsClientOptionalParams);
     complete(messages: ChatRequestMessageUnion[], options?: CompleteOptionalParams): Promise<ChatCompletions>;
     getModelInfo(options?: GetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
 }
 
 // @public
-export interface ChatCompletionsClientOptions extends ClientOptions {
+export interface ChatCompletionsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -187,7 +187,7 @@ export interface EmbeddingItem {
 
 // @public (undocumented)
 export class EmbeddingsClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: EmbeddingsClientOptions);
+    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: EmbeddingsClientOptionalParams);
     embed(input: string[], options?: EmbedOptionalParams): Promise<EmbeddingsResult>;
     getModelInfo(options?: EmbeddingsClientGetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
@@ -198,7 +198,7 @@ export interface EmbeddingsClientGetModelInfoOptionalParams extends OperationOpt
 }
 
 // @public
-export interface EmbeddingsClientOptions extends ClientOptions {
+export interface EmbeddingsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -245,7 +245,7 @@ export interface GetModelInfoOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class ImageEmbeddingsClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ImageEmbeddingsClientOptions);
+    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ImageEmbeddingsClientOptionalParams);
     embed(input: EmbeddingInput[], options?: ImageEmbeddingsClientEmbedOptionalParams): Promise<EmbeddingsResult>;
     getModelInfo(options?: ImageEmbeddingsClientGetModelInfoOptionalParams): Promise<ModelInfo>;
     readonly pipeline: Pipeline;
@@ -264,7 +264,7 @@ export interface ImageEmbeddingsClientGetModelInfoOptionalParams extends Operati
 }
 
 // @public
-export interface ImageEmbeddingsClientOptions extends ClientOptions {
+export interface ImageEmbeddingsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 

@@ -37,11 +37,11 @@ export {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
+  CreateChatCompletionRequest,
   ChatCompletionRequestMessage,
   ChatCompletionFunctions,
   ChatCompletionFunctionParameters,
   ChatCompletionFunctionCallOption,
-  CreateChatCompletionRequest,
   CreateChatCompletionResponse,
   ChatCompletionResponseMessage,
   CreateTranslationRequest,
@@ -52,7 +52,7 @@ export {
   Stop,
 } from "./models/index.js";
 export {
-  OpenAIClientOptions,
+  OpenAIClientOptionalParams,
   AudioTranscriptionsCreateOptionalParams,
   AudioTranslationsCreateOptionalParams,
   ChatCompletionsCreateOptionalParams,

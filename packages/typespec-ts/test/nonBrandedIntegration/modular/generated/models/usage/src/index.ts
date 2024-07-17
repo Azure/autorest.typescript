@@ -10,5 +10,5 @@ export {
   InputOptionalParams,
   OutputOptionalParams,
   InputAndOutputOptionalParams,
-  UsageClientOptions,
+  UsageClientOptionalParams,
 } from "./api/index.js";

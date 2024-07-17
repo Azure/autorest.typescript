@@ -6,7 +6,7 @@ import {
   immediateSuccess,
   ImmediateSuccessOptionalParams,
   createRepeatability,
-  RepeatabilityClientOptions,
+  RepeatabilityClientOptionalParams,
   RepeatabilityContext,
 } from "./api/index.js";
 
@@ -16,7 +16,7 @@ export class RepeatabilityClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates OASIS repeatability headers */
-  constructor(options: RepeatabilityClientOptions = {}) {
+  constructor(options: RepeatabilityClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

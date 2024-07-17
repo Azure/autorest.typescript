@@ -10,7 +10,7 @@ export {
   UnixTimestampArrayDatetimeProperty,
 } from "./models/index.js";
 export {
-  DatetimeClientOptions,
+  DatetimeClientOptionalParams,
   QueryDefaultOptionalParams,
   QueryRfc3339OptionalParams,
   QueryRfc7231OptionalParams,

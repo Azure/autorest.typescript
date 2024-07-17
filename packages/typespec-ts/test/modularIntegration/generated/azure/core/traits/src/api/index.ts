@@ -8,6 +8,6 @@ export {
 } from "./options.js";
 export {
   createTraits,
-  TraitsClientOptions,
+  TraitsClientOptionalParams,
   TraitsContext,
 } from "./traitsContext.js";

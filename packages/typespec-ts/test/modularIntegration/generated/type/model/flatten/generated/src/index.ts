@@ -9,7 +9,7 @@ export {
   ChildFlattenModel,
 } from "./models/index.js";
 export {
-  FlattenClientOptions,
+  FlattenClientOptionalParams,
   PutFlattenModelOptionalParams,
   PutNestedFlattenModelOptionalParams,
 } from "./api/index.js";

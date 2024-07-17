@@ -11,6 +11,6 @@ export {
 } from "./options.js";
 export {
   createSchemaRegistry,
-  SchemaRegistryClientOptions,
+  SchemaRegistryClientOptionalParams,
   SchemaRegistryContext,
 } from "./schemaRegistryContext.js";

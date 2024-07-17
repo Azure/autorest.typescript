@@ -48,7 +48,7 @@ import {
 } from "./classic/nullableFloatValue/index.js";
 import {
   createDictionary,
-  DictionaryClientOptions,
+  DictionaryClientOptionalParams,
   DictionaryContext,
 } from "./api/index.js";
 
@@ -58,7 +58,7 @@ export class DictionaryClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates various of dictionaries. */
-  constructor(options: DictionaryClientOptions = {}) {
+  constructor(options: DictionaryClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

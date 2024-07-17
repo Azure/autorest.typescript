@@ -7,7 +7,7 @@ import {
   test,
   TestOptionalParams,
   createTypeChangedFrom,
-  TypeChangedFromClientOptions,
+  TypeChangedFromClientOptionalParams,
   TypeChangedFromContext,
 } from "./api/index.js";
 
@@ -20,7 +20,7 @@ export class TypeChangedFromClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: TypeChangedFromClientOptions = {},
+    options: TypeChangedFromClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -15,6 +15,6 @@ export {
 } from "./options.js";
 export {
   createVersioned,
-  VersionedClientOptions,
+  VersionedClientOptionalParams,
   VersionedContext,
 } from "./versionedContext.js";

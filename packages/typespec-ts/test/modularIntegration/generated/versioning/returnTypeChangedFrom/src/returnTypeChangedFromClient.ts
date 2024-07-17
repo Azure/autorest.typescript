@@ -7,7 +7,7 @@ import {
   test,
   TestOptionalParams,
   createReturnTypeChangedFrom,
-  ReturnTypeChangedFromClientOptions,
+  ReturnTypeChangedFromClientOptionalParams,
   ReturnTypeChangedFromContext,
 } from "./api/index.js";
 
@@ -20,7 +20,7 @@ export class ReturnTypeChangedFromClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: ReturnTypeChangedFromClientOptions = {},
+    options: ReturnTypeChangedFromClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

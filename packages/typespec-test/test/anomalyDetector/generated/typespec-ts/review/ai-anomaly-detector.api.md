@@ -29,14 +29,14 @@ export interface AnomalyDetectionModel {
 
 // @public (undocumented)
 export class AnomalyDetectorClient {
-    constructor(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptionalParams);
     readonly multivariate: MultivariateOperations;
     readonly pipeline: Pipeline;
     readonly univariate: UnivariateOperations;
 }
 
 // @public
-export interface AnomalyDetectorClientOptions extends ClientOptions {
+export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 

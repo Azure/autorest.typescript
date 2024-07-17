@@ -66,7 +66,7 @@ export {
   PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
-  NetworkAnalyticsClientOptions,
+  NetworkAnalyticsClientOptionalParams,
   OperationsListOptionalParams,
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,

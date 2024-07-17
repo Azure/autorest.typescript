@@ -27,7 +27,6 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  BudgetsCreateOrUpdateOptionalParams,
-  WidgetServiceClientOptions,
+  WidgetServiceClientOptionalParams,
 } from "./api/index.js";
 export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";

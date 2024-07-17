@@ -1,0 +1,133 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Widget Service",
+    "version": "0.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/test1": {
+      "post": {
+        "operationId": "A_test1",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "string"
+                  },
+                  "b": {
+                    "type": "string"
+                  },
+                  "c": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "a",
+                  "b",
+                  "c"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test2": {
+      "post": {
+        "operationId": "A_test2",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Test"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test3": {
+      "post": {
+        "operationId": "A_test3",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prop": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "prop"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test4": {
+      "post": {
+        "operationId": "A_test4",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Test"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Test": {
+        "type": "object",
+        "required": [
+          "prop"
+        ],
+        "properties": {
+          "prop": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

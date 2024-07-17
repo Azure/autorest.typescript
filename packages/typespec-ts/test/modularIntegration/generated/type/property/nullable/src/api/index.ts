@@ -3,7 +3,7 @@
 
 export {
   createNullable,
-  NullableClientOptions,
+  NullableClientOptionalParams,
   NullableContext,
 } from "./nullableContext.js";
 export {

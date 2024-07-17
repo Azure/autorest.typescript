@@ -11,7 +11,7 @@ export {
   FloatSecondsDurationArrayProperty,
 } from "./models/index.js";
 export {
-  DurationClientOptions,
+  DurationClientOptionalParams,
   QueryDefaultOptionalParams,
   QueryIso8601OptionalParams,
   QueryInt32SecondsOptionalParams,

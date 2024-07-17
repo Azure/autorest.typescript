@@ -3,7 +3,7 @@
 
 export {
   createEnumDiscriminator,
-  EnumDiscriminatorClientOptions,
+  EnumDiscriminatorClientOptionalParams,
   EnumDiscriminatorContext,
 } from "./enumDiscriminatorContext.js";
 export {

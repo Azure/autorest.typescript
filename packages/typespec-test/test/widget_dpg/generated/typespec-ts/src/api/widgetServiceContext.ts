@@ -6,13 +6,13 @@ import { WidgetServiceContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface WidgetServiceClientOptions extends ClientOptions {}
+export interface WidgetServiceClientOptionalParams extends ClientOptions {}
 
 export { WidgetServiceContext } from "../rest/index.js";
 
 export function createWidgetService(
   endpoint: string,
-  options: WidgetServiceClientOptions = {},
+  options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

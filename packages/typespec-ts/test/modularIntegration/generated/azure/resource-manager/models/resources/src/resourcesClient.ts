@@ -12,7 +12,7 @@ import {
 } from "./classic/nestedProxyResources/index.js";
 import {
   createResources,
-  ResourcesClientOptions,
+  ResourcesClientOptionalParams,
   ResourcesContext,
 } from "./api/index.js";
 
@@ -22,7 +22,10 @@ export class ResourcesClient {
   public readonly pipeline: Pipeline;
 
   /** Arm Resource Provider management API. */
-  constructor(subscriptionId: string, options: ResourcesClientOptions = {}) {
+  constructor(
+    subscriptionId: string,
+    options: ResourcesClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -42,7 +42,7 @@ export {
   ChatCompletionsNamedToolSelectionUnion,
 } from "../models/index.js";
 export {
-  ImageEmbeddingsClientOptions,
+  ImageEmbeddingsClientOptionalParams,
   EmbedOptionalParams,
   GetModelInfoOptionalParams,
 } from "./api/index.js";

@@ -18,7 +18,7 @@ export {
   ServiceApiVersions,
 } from "./models/index.js";
 export {
-  EventGridClientOptions,
+  EventGridClientOptionalParams,
   PublishCloudEventOptionalParams,
   PublishCloudEventsOptionalParams,
   ReceiveCloudEventsOptionalParams,

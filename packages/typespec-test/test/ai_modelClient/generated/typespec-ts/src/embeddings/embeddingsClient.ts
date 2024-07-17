@@ -6,7 +6,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { ModelInfo, EmbeddingsResult } from "./../models/models.js";
 import {
   createEmbeddings,
-  EmbeddingsClientOptions,
+  EmbeddingsClientOptionalParams,
   ModelClientContext,
   embed,
   getModelInfo,
@@ -22,7 +22,7 @@ export class EmbeddingsClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
-    options: EmbeddingsClientOptions = {},
+    options: EmbeddingsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

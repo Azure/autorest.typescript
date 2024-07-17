@@ -46,7 +46,7 @@ export {
   ExtendsUnknownAdditionalPropertiesDiscriminatedUnion,
 } from "./models/index.js";
 export {
-  AdditionalPropertiesClientOptions,
+  AdditionalPropertiesClientOptionalParams,
   ExtendsUnknownGetOptionalParams,
   ExtendsUnknownPutOptionalParams,
   ExtendsUnknownDerivedGetOptionalParams,

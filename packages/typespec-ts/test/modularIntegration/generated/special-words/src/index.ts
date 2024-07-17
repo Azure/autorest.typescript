@@ -140,7 +140,7 @@ export {
   ParametersWithWithOptionalParams,
   ParametersWithYieldOptionalParams,
   ParametersWithCancellationTokenOptionalParams,
-  SpecialWordsClientOptions,
+  SpecialWordsClientOptionalParams,
 } from "./api/index.js";
 export {
   ModelPropertiesOperations,

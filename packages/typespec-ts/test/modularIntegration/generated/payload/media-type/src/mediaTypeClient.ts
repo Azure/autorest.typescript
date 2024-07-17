@@ -8,7 +8,7 @@ import {
 } from "./classic/stringBody/index.js";
 import {
   createMediaType,
-  MediaTypeClientOptions,
+  MediaTypeClientOptionalParams,
   MediaTypeContext,
 } from "./api/index.js";
 
@@ -18,7 +18,7 @@ export class MediaTypeClient {
   public readonly pipeline: Pipeline;
 
   /** Test the payload with different media types and different types of the payload itself. */
-  constructor(options: MediaTypeClientOptions = {}) {
+  constructor(options: MediaTypeClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

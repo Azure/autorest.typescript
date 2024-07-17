@@ -200,7 +200,7 @@ export {
   PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
-  BatchClientOptions,
+  BatchClientOptionalParams,
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,
   ListPoolUsageMetricsOptionalParams,

@@ -35,7 +35,7 @@ export {
   MixedLiteralsSendOptionalParams,
   MixedTypesGetOptionalParams,
   MixedTypesSendOptionalParams,
-  UnionClientOptions,
+  UnionClientOptionalParams,
 } from "./api/index.js";
 export {
   EnumsOnlyOperations,

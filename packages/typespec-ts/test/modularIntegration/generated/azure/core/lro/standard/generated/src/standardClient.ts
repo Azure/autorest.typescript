@@ -12,7 +12,7 @@ import {
   DeleteOptionalParams,
   ExportOptionalParams,
   createStandard,
-  StandardClientOptions,
+  StandardClientOptionalParams,
   StandardContext,
 } from "./api/index.js";
 
@@ -22,7 +22,7 @@ export class StandardClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates bodies templated with Azure Core with long-running operation */
-  constructor(options: StandardClientOptions = {}) {
+  constructor(options: StandardClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

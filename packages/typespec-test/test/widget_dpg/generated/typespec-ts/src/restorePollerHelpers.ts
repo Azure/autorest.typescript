@@ -10,10 +10,7 @@ import {
 import { WidgetServiceClient } from "./widgetServiceClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
-import {
-  _createOrReplaceDeserialize as _createOrReplaceDeserializeBudgets,
-  _createOrUpdateDeserialize,
-} from "./api/budgets/index.js";
+import { _createOrReplaceDeserialize as _createOrReplaceDeserializeBudgets } from "./api/budgets/index.js";
 import {
   PathUncheckedResponse,
   OperationOptions,
@@ -83,8 +80,6 @@ const deserializeMap: Record<string, Function> = {
     _createOrReplaceDeserialize,
   "PUT /budgets/widgets/createOrReplace/users/{name}":
     _createOrReplaceDeserializeBudgets,
-  "PATCH /budgets/widgets/createOrUpdate/users/{name}":
-    _createOrUpdateDeserialize,
 };
 
 function getDeserializationHelper(

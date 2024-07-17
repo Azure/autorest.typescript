@@ -6,5 +6,5 @@ export { NewModel, NewEnum, Versions, NewUnion } from "./models/index.js";
 export {
   NewOpOptionalParams,
   NewOpInNewInterfaceOptionalParams,
-  RenamedFromClientOptions,
+  RenamedFromClientOptionalParams,
 } from "./api/index.js";

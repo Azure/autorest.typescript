@@ -4,5 +4,5 @@
 export { RepeatabilityClient } from "./repeatabilityClient.js";
 export {
   ImmediateSuccessOptionalParams,
-  RepeatabilityClientOptions,
+  RepeatabilityClientOptionalParams,
 } from "./api/index.js";

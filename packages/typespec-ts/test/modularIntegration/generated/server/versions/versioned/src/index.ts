@@ -8,5 +8,5 @@ export {
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
   WithQueryOldApiVersionOptionalParams,
-  VersionedClientOptions,
+  VersionedClientOptionalParams,
 } from "./api/index.js";

@@ -4,7 +4,7 @@
 export { DictionaryClient } from "./dictionaryClient.js";
 export { InnerModel } from "./models/index.js";
 export {
-  DictionaryClientOptions,
+  DictionaryClientOptionalParams,
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,
   Int64ValueGetOptionalParams,

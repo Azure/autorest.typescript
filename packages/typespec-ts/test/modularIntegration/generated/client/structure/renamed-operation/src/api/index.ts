@@ -12,6 +12,6 @@ export {
 } from "./options.js";
 export {
   createRenamedOperation,
-  RenamedOperationClientOptions,
+  RenamedOperationClientOptionalParams,
   ServiceContext,
 } from "./renamedOperationContext.js";

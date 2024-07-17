@@ -49,7 +49,7 @@ export function buildClientContext(
   });
 
   clientContextFile.addInterface({
-    name: `${name}ClientOptions`,
+    name: `${name}ClientOptionalParams`,
     isExported: true,
     extends: ["ClientOptions"],
     properties: client.parameters

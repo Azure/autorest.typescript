@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export {
-  testRun,
+  createOrUpdateTestRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
   deleteTestRun,
@@ -18,7 +18,7 @@ export {
   stopTestRun,
 } from "./operations.js";
 export {
-  TestRunOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
   DeleteTestRunOptionalParams,
@@ -35,6 +35,6 @@ export {
 } from "./options.js";
 export {
   createTestRunOperations,
-  TestRunOperationsClientOptions,
-  AzureLoadTestingContext,
+  TestRunOperationsClientOptionalParams,
+  LoadTestServiceContext,
 } from "./testRunOperationsContext.js";

@@ -12,7 +12,7 @@ export {
   UnionV2,
 } from "./models/index.js";
 export {
-  AddedClientOptions,
+  AddedClientOptionalParams,
   V1OptionalParams,
   V2OptionalParams,
   V2InInterfaceOptionalParams,

@@ -2,4 +2,4 @@
 // Licensed under the MIT license.
 
 export { SingleClient } from "./singleClient.js";
-export { MyOpOptionalParams, SingleClientOptions } from "./api/index.js";
+export { MyOpOptionalParams, SingleClientOptionalParams } from "./api/index.js";

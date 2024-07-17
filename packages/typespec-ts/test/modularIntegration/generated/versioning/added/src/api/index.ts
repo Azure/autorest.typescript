@@ -3,7 +3,7 @@
 
 export {
   createAdded,
-  AddedClientOptions,
+  AddedClientOptionalParams,
   AddedContext,
 } from "./addedContext.js";
 export { v1, v2, v2InInterface } from "./operations.js";

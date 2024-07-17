@@ -4,7 +4,7 @@
 export { JsonClient } from "./jsonClient.js";
 export { JsonEncodedNameModel } from "./models/index.js";
 export {
-  JsonClientOptions,
+  JsonClientOptionalParams,
   SendOptionalParams,
   GetOptionalParams,
 } from "./api/index.js";

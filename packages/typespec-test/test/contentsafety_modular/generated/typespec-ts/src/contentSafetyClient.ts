@@ -16,7 +16,7 @@ import {
 } from "./models/models.js";
 import {
   createContentSafety,
-  ContentSafetyClientOptions,
+  ContentSafetyClientOptionalParams,
   ContentSafetyContext,
   analyzeText,
   analyzeImage,
@@ -50,7 +50,7 @@ export class ContentSafetyClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: ContentSafetyClientOptions = {},
+    options: ContentSafetyClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -7,7 +7,7 @@ import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
   createFoo,
-  FooClientOptions,
+  FooClientOptionalParams,
   FooContext,
   op1,
   Op1OptionalParams,
@@ -18,7 +18,7 @@ export class FooClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpoint: string, options: FooClientOptions = {}) {
+  constructor(endpoint: string, options: FooClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

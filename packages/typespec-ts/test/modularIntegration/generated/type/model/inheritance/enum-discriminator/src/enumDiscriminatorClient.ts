@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { DogUnion, SnakeUnion } from "./models/models.js";
 import {
   createEnumDiscriminator,
-  EnumDiscriminatorClientOptions,
+  EnumDiscriminatorClientOptionalParams,
   EnumDiscriminatorContext,
   getExtensibleModel,
   putExtensibleModel,
@@ -31,7 +31,7 @@ export class EnumDiscriminatorClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates inheritance with enum discriminator. */
-  constructor(options: EnumDiscriminatorClientOptions = {}) {
+  constructor(options: EnumDiscriminatorClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

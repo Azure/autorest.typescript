@@ -7,7 +7,7 @@ import { ModelClientContext } from "../../rest/index.js";
 import getClient from "../../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ImageEmbeddingsClientOptions extends ClientOptions {
+export interface ImageEmbeddingsClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -17,7 +17,7 @@ export { ModelClientContext } from "../../rest/index.js";
 export function createImageEmbeddings(
   endpoint: string,
   credential: KeyCredential | TokenCredential,
-  options: ImageEmbeddingsClientOptions = {},
+  options: ImageEmbeddingsClientOptionalParams = {},
 ): ModelClientContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

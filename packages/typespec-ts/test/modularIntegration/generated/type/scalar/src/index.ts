@@ -19,7 +19,7 @@ export {
   DecimalVerifyVerifyOptionalParams,
   Decimal128VerifyPrepareVerifyOptionalParams,
   Decimal128VerifyVerifyOptionalParams,
-  ScalarClientOptions,
+  ScalarClientOptionalParams,
 } from "./api/index.js";
 export {
   BooleanOperations,

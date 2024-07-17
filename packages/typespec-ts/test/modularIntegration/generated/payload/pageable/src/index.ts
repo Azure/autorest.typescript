@@ -8,4 +8,7 @@ export {
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
-export { ListOptionalParams, PageableClientOptions } from "./api/index.js";
+export {
+  ListOptionalParams,
+  PageableClientOptionalParams,
+} from "./api/index.js";

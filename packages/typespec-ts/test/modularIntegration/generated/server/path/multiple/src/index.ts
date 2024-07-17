@@ -4,7 +4,7 @@
 export { MultipleClient } from "./multipleClient.js";
 export { Versions } from "./models/index.js";
 export {
-  MultipleClientOptions,
+  MultipleClientOptionalParams,
   NoOperationParamsOptionalParams,
   WithOperationPathParamOptionalParams,
 } from "./api/index.js";

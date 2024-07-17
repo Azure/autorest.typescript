@@ -10,7 +10,7 @@ import {
 } from "./../models/models.js";
 import {
   createImageEmbeddings,
-  ImageEmbeddingsClientOptions,
+  ImageEmbeddingsClientOptionalParams,
   ModelClientContext,
   embed,
   getModelInfo,
@@ -26,7 +26,7 @@ export class ImageEmbeddingsClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
-    options: ImageEmbeddingsClientOptions = {},
+    options: ImageEmbeddingsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

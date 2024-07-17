@@ -19,7 +19,7 @@ import {
   GetWrongDiscriminatorOptionalParams,
   GetLegacyModelOptionalParams,
   createSingleDiscriminator,
-  SingleDiscriminatorClientOptions,
+  SingleDiscriminatorClientOptionalParams,
   SingleDiscriminatorContext,
 } from "./api/index.js";
 
@@ -29,7 +29,7 @@ export class SingleDiscriminatorClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates inheritance with single discriminator. */
-  constructor(options: SingleDiscriminatorClientOptions = {}) {
+  constructor(options: SingleDiscriminatorClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

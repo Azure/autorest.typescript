@@ -7,7 +7,7 @@ import { ModelClientContext } from "../../rest/index.js";
 import getClient from "../../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface EmbeddingsClientOptions extends ClientOptions {
+export interface EmbeddingsClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -17,7 +17,7 @@ export { ModelClientContext } from "../../rest/index.js";
 export function createEmbeddings(
   endpoint: string,
   credential: KeyCredential | TokenCredential,
-  options: EmbeddingsClientOptions = {},
+  options: EmbeddingsClientOptionalParams = {},
 ): ModelClientContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

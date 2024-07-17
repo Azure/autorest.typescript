@@ -11,7 +11,7 @@ import {
 } from "./models/models.js";
 import {
   createChatProtocol,
-  ChatProtocolClientOptions,
+  ChatProtocolClientOptionalParams,
   ChatProtocolContext,
   createStreaming,
   create,
@@ -28,7 +28,7 @@ export class ChatProtocolClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: ChatProtocolClientOptions = {},
+    options: ChatProtocolClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

@@ -4,8 +4,8 @@
 export { SchemaRegistryClient } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
-  SchemaVersion,
   SchemaContentTypeValues,
+  SchemaVersion,
   SchemaProperties,
   SchemaFormat,
   Schema,
@@ -22,6 +22,6 @@ export {
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-  SchemaRegistryClientOptions,
+  SchemaRegistryClientOptionalParams,
 } from "./api/index.js";
 export { SchemaOperationsOperations } from "./classic/index.js";

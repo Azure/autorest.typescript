@@ -9,7 +9,7 @@ import {
 } from "./classic/optionalExplicit/index.js";
 import {
   createBodyOptionality,
-  BodyOptionalityClientOptions,
+  BodyOptionalityClientOptionalParams,
   BodyOptionalityContext,
   requiredExplicit,
   requiredImplicit,
@@ -23,7 +23,7 @@ export class BodyOptionalityClient {
   public readonly pipeline: Pipeline;
 
   /** Test describing optionality of the request body. */
-  constructor(options: BodyOptionalityClientOptions = {}) {
+  constructor(options: BodyOptionalityClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
@@ -45,10 +45,10 @@ export class BodyOptionalityClient {
   }
 
   requiredImplicit(
-    body: BodyModel,
+    name: string,
     options: RequiredImplicitOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return requiredImplicit(this._client, body, options);
+    return requiredImplicit(this._client, name, options);
   }
 
   /** The operation groups for OptionalExplicit */

@@ -3,7 +3,7 @@
 
 export {
   createFixed,
-  FixedClientOptions,
+  FixedClientOptionalParams,
   FixedContext,
 } from "./fixedContext.js";
 export {

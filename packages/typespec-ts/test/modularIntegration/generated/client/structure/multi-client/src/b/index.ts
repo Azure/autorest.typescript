@@ -4,7 +4,7 @@
 export { BClient } from "./bClient.js";
 export { ClientType } from "../models/index.js";
 export {
-  BClientOptions,
+  BClientOptionalParams,
   RenamedTwoOptionalParams,
   RenamedFourOptionalParams,
   RenamedSixOptionalParams,

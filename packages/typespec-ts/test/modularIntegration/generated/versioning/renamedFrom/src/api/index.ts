@@ -8,6 +8,6 @@ export {
 } from "./options.js";
 export {
   createRenamedFrom,
-  RenamedFromClientOptions,
+  RenamedFromClientOptionalParams,
   RenamedFromContext,
 } from "./renamedFromContext.js";

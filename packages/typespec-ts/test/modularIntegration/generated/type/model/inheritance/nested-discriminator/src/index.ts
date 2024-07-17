@@ -12,7 +12,7 @@ export {
   SharkUnion,
 } from "./models/index.js";
 export {
-  NestedDiscriminatorClientOptions,
+  NestedDiscriminatorClientOptionalParams,
   GetModelOptionalParams,
   PutModelOptionalParams,
   GetRecursiveModelOptionalParams,

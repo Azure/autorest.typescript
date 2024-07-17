@@ -9,7 +9,7 @@ import {
   SmokeTestOptionalParams,
   RepeatableActionOptionalParams,
   createTraits,
-  TraitsClientOptions,
+  TraitsClientOptionalParams,
   TraitsContext,
 } from "./api/index.js";
 
@@ -19,7 +19,7 @@ export class TraitsClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates Azure Core operation customizations by traits */
-  constructor(options: TraitsClientOptions = {}) {
+  constructor(options: TraitsClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

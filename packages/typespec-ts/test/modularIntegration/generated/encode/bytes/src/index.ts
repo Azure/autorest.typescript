@@ -9,7 +9,7 @@ export {
   Base64urlArrayBytesProperty,
 } from "./models/index.js";
 export {
-  BytesClientOptions,
+  BytesClientOptionalParams,
   QueryDefaultOptionalParams,
   QueryBase64OptionalParams,
   QueryBase64urlOptionalParams,

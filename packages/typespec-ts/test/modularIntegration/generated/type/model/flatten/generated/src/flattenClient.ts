@@ -5,7 +5,7 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { FlattenModel, NestedFlattenModel } from "./models/models.js";
 import {
   createFlatten,
-  FlattenClientOptions,
+  FlattenClientOptionalParams,
   FlattenContext,
   putFlattenModel,
   putNestedFlattenModel,
@@ -19,7 +19,7 @@ export class FlattenClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates the model flatten cases. */
-  constructor(options: FlattenClientOptions = {}) {
+  constructor(options: FlattenClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -5,6 +5,6 @@ export { immediateSuccess } from "./operations.js";
 export { ImmediateSuccessOptionalParams } from "./options.js";
 export {
   createRepeatability,
-  RepeatabilityClientOptions,
+  RepeatabilityClientOptionalParams,
   RepeatabilityContext,
 } from "./repeatabilityContext.js";

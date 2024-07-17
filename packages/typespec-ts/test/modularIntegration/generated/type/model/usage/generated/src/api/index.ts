@@ -9,6 +9,6 @@ export {
 } from "./options.js";
 export {
   createUsage,
-  UsageClientOptions,
+  UsageClientOptionalParams,
   UsageContext,
 } from "./usageContext.js";
