@@ -13,7 +13,7 @@ import {
   TypeAliasDeclaration
 } from "ts-morph";
 import { useBinder } from "./hooks/binder.js";
-
+import { refkey as getRefKey } from "./refkey.js";
 export type DeclarationStructures =
   | ClassDeclarationStructure
   | EnumDeclarationStructure
@@ -70,8 +70,10 @@ export function addDeclaration(
     );
   }
 
+  const stringRefkey = typeof refkey === "string" ? refkey : getRefKey(refkey);
+
   const declarationInfo = binder.trackDeclaration(
-    refkey,
+    stringRefkey,
     declaration.name,
     sourceFile
   );

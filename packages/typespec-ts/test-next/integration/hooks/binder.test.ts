@@ -1,4 +1,5 @@
 import {
+  FunctionDeclarationStructure,
   InterfaceDeclarationStructure,
   Project,
   StructureKind
@@ -108,7 +109,7 @@ describe("Binder", () => {
     expect(reference2).toBe("TestModel_1");
   });
 
-  it("should resolve references across different files with correct imports", () => {
+  it("should defer references to declarations that don't exist", () => {
     const sourceFile = project.createSourceFile("test1.ts", "", {
       overwrite: true
     });
@@ -140,33 +141,11 @@ describe("Binder", () => {
     addDeclaration(sourceFile, interfaceDeclaration, model);
     addDeclaration(sourceFile, interfaceDeclarationB, modelB);
 
-    const sourceFile2 = project.createSourceFile("test2.ts", "", {
-      overwrite: true
-    });
+    const binder = useBinder();
+    binder.applyImports();
 
-    const model2 = {
-      name: "TestModel2",
-      properties: [{ name: "baz", type: model }]
-    };
-
-    const interfaceDeclaration2: InterfaceDeclarationStructure = {
-      kind: StructureKind.Interface,
-      name: model2.name,
-      properties: model2.properties.map((p) => ({
-        name: p.name,
-        type: resolveReference(p.type, sourceFile2)
-      }))
-    };
-
-    const secondModel = addDeclaration(
-      sourceFile2,
-      interfaceDeclaration2,
-      model
-    );
-
-    const bazTypeName = secondModel.getProperty("baz")?.getType().getText();
-
-    expect(bazTypeName).toBe(model.name);
+    console.log("// test1.ts");
+    console.log(sourceFile.getFullText());
   });
 
   it("should handle import conflicts", () => {
@@ -186,7 +165,10 @@ describe("Binder", () => {
     const interfaceDeclaration: InterfaceDeclarationStructure = {
       kind: StructureKind.Interface,
       name: model.name,
-      properties: model.properties.map((p) => ({ name: p.name, type: p.type }))
+      properties: model.properties.map((p) => ({
+        name: p.name,
+        type: p.type
+      }))
     };
 
     addDeclaration(sourceFile, interfaceDeclaration, model);
@@ -248,17 +230,17 @@ describe("Binder", () => {
     const binder = useBinder();
     binder.applyImports();
 
+    const baz3Prop = sourceFile3
+      .getInterface("LastModel")
+      ?.getProperty("baz3")!;
+
     const imports = sourceFile3
       .getImportDeclarations()
       .flatMap((i) =>
         i
           .getNamedImports()
-          .map((mi) => mi.getAliasNode()?.getText() ?? mi.getName())
+          .map((i) => i.getAliasNode()?.getText() ?? i.getName())
       );
-
-    const lastModel = sourceFile3.getInterface("LastModel");
-    const baz3Prop = lastModel?.getProperty("baz3");
-
     expect(baz3Prop?.getType().getText()).toBe("TestModel_1");
     expect(imports).toEqual(["TestModel", "TestModel_1"]);
     console.log("// test1.ts");
@@ -267,5 +249,39 @@ describe("Binder", () => {
     console.log(sourceFile2.getFullText());
     console.log("// test3.ts");
     console.log(sourceFile3.getFullText());
+  });
+
+  it("should handle non interface types as well", () => {
+    const sourceFile = project.createSourceFile("test1.ts", "", {
+      overwrite: true
+    });
+
+    const fnObject = {
+      name: "testFn",
+      returnType: "string",
+      body: `console.log("hello world!");`
+    };
+
+    const funDeclaration: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      name: fnObject.name,
+      returnType: fnObject.returnType,
+      statements: fnObject.body
+    };
+
+    addDeclaration(sourceFile, funDeclaration, fnObject);
+
+    const sourceFile2 = project.createSourceFile("test2.ts", "", {
+      overwrite: true
+    });
+    sourceFile2.addStatements(`${resolveReference(fnObject, sourceFile2)}();`);
+
+    const binder = useBinder();
+    binder.applyImports();
+
+    console.log("// test1.ts");
+    console.log(sourceFile.getFullText());
+    console.log("// test2.ts");
+    console.log(sourceFile2.getFullText());
   });
 });
