@@ -3,7 +3,11 @@
 
 /** Request for creating liveness session. */
 export interface LivenessSessionCreationContent {
-  /** Type of liveness mode the client should follow. */
+  /**
+   * Type of liveness mode the client should follow.
+   *
+   * Possible values: "Passive"
+   */
   livenessOperationMode: LivenessOperationMode;
   /** Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented. */
   sendResultsToClient?: boolean;
@@ -34,7 +38,11 @@ export interface LivenessSessionWithVerifyImageCreationContentVerifyImagePartDes
 
 /** Dedicated parameter model for multipart/form-data. */
 export interface LivenessSessionCreationContentForMultipart {
-  /** Type of liveness mode the client should follow. */
+  /**
+   * Type of liveness mode the client should follow.
+   *
+   * Possible values: "Passive"
+   */
   livenessOperationMode: LivenessOperationMode;
   /** Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented. */
   sendResultsToClient?: boolean;

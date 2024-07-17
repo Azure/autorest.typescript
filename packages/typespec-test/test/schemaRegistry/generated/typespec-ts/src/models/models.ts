@@ -7,18 +7,18 @@ export interface SchemaGroup {
   readonly groupName: string;
 }
 
-/** Schema versions resource. */
-export interface SchemaVersion {
-  /** Version number of specific schema. */
-  readonly schemaVersion: number;
-}
-
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf";
+
+/** Schema versions resource. */
+export interface SchemaVersion {
+  /** Version number of specific schema. */
+  readonly schemaVersion: number;
+}
 
 /** Meta properties of a schema. */
 export interface SchemaProperties {

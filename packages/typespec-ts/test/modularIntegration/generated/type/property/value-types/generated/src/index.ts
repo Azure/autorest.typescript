@@ -3,7 +3,7 @@
 
 export {
   ValueTypesClient,
-  ValueTypesClientOptions,
+  ValueTypesClientOptionalParams,
 } from "./valueTypesClient.js";
 export {
   UnionEnumValueProperty,

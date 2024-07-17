@@ -7,7 +7,7 @@ import { ContentSafetyContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ContentSafetyClientOptions extends ClientOptions {
+export interface ContentSafetyClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -18,7 +18,7 @@ export { ContentSafetyContext } from "../rest/index.js";
 export function createContentSafety(
   endpointParam: string,
   credential: KeyCredential | TokenCredential,
-  options: ContentSafetyClientOptions = {},
+  options: ContentSafetyClientOptionalParams = {},
 ): ContentSafetyContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

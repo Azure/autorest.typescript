@@ -28,13 +28,21 @@ export interface Resource {}
 export interface SystemData {
   /** The identity that created the resource. */
   createdBy?: string;
-  /** The type of identity that created the resource. */
+  /**
+   * The type of identity that created the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   createdByType?: CreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: Date | string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
+  /**
+   * The type of identity that last modified the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: Date | string;
@@ -92,7 +100,11 @@ export interface PrivateEndpoint {}
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  /**
+   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+   *
+   * Possible values: "Pending", "Approved", "Rejected"
+   */
   status?: PrivateEndpointServiceConnectionStatus;
   /** The reason for approval/rejection of the connection. */
   description?: string;

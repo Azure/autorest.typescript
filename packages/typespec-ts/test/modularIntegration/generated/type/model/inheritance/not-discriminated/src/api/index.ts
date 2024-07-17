@@ -3,7 +3,7 @@
 
 export {
   createNotDiscriminated,
-  NotDiscriminatedClientOptions,
+  NotDiscriminatedClientOptionalParams,
   NotDiscriminatedContext,
 } from "./notDiscriminatedContext.js";
 export { postValid, getValid, putValid } from "./operations.js";

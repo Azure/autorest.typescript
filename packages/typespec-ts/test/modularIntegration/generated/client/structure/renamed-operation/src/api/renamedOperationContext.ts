@@ -7,14 +7,14 @@ import { ServiceContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface RenamedOperationClientOptions extends ClientOptions {}
+export interface RenamedOperationClientOptionalParams extends ClientOptions {}
 
 export { ServiceContext } from "../rest/index.js";
 
 export function createRenamedOperation(
   endpointParam: string,
   clientParam: ClientType,
-  options: RenamedOperationClientOptions = {},
+  options: RenamedOperationClientOptionalParams = {},
 ): ServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

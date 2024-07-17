@@ -3,6 +3,6 @@
 
 export {
   createOptional,
-  OptionalClientOptions,
+  OptionalClientOptionalParams,
   OptionalContext,
 } from "./optionalContext.js";

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OAuth2Client, OAuth2ClientOptions } from "./oAuth2Client.js";
+export { OAuth2Client, OAuth2ClientOptionalParams } from "./oAuth2Client.js";
 export {
   InvalidAuth,
   ValidOptionalParams,

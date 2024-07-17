@@ -3,7 +3,7 @@
 
 export {
   createBasic,
-  BasicClientOptions,
+  BasicClientOptionalParams,
   BasicContext,
 } from "./basicContext.js";
 export { explicitBodySimple } from "./explicitBody/index.js";

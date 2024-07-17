@@ -6,13 +6,13 @@ import { CollectionFormatContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface CollectionFormatClientOptions extends ClientOptions {}
+export interface CollectionFormatClientOptionalParams extends ClientOptions {}
 
 export { CollectionFormatContext } from "../rest/index.js";
 
 /** Test for collectionFormat. */
 export function createCollectionFormat(
-  options: CollectionFormatClientOptions = {},
+  options: CollectionFormatClientOptionalParams = {},
 ): CollectionFormatContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

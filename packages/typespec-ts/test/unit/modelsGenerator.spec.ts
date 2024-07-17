@@ -520,7 +520,7 @@ describe("Input/output model type", () => {
           true // throw exception for diagnostics
         );
       } catch (err: any) {
-        assert.strictEqual(err.length, 1);
+        assert.strictEqual(err.length, 2);
         assert.strictEqual(
           err[0].code,
           "@azure-tools/typespec-ts/decimal-to-number"
@@ -3179,7 +3179,7 @@ describe("Input/output model type", () => {
         @action("validate")
         validateDataConnection is Operations.ResourceCollectionAction<
           DataConnection,
-          DataConnectionData,
+          { @body body: DataConnectionData },
           ValidateResult
         >;
       }
@@ -3369,7 +3369,7 @@ describe("Input/output model type", () => {
         @put
         createOrReplaceDataConnection is Foundations.ResourceOperation<
           DataConnection,
-          DataConnectionData,
+          { @body body: DataConnectionData },
           DataConnection
         >;
       }
@@ -3630,6 +3630,142 @@ describe("Input/output model type", () => {
         export interface Get204Response extends HttpResponse {
           status: "204";
           headers: RawHttpHeaders & Get204Headers;
+        }
+        `
+      );
+    });
+
+    it("named union with string/number/boolean literals being used in properties", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      union EnumNumber {
+        1,
+        3,
+        5,
+        int32,
+      }
+      
+      union EnumBoolean {
+        true,
+        false,
+        boolean,
+      }
+
+      union EnumString {
+        "foo",
+        "bar",
+        string
+      }
+      
+      model EnumBody {
+        propString: EnumString;
+        propNumber: EnumNumber;
+        propBoolean: EnumBoolean;  
+      }
+    
+      op get(
+        @body body: EnumBody,
+      ): { @body body: EnumBody; @statusCode _: 204; };
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile?.content);
+      assert.ok(outputModelFile?.content);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+         export interface EnumBody {
+           /** Possible values: "foo", "bar" */
+           propString: EnumString;
+           /** Possible values: 1, 3, 5 */
+           propNumber: EnumNumber;
+           propBoolean: EnumBoolean;
+         }
+         
+         /** Alias for EnumString */
+         export type EnumString = string;
+         /** Alias for EnumNumber */
+         export type EnumNumber = number;
+         /** Alias for EnumBoolean */
+         export type EnumBoolean = true | false | boolean;
+        `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+         export interface EnumBodyOutput {
+           /** Possible values: "foo", "bar" */
+           propString: EnumStringOutput;
+           /** Possible values: 1, 3, 5 */
+           propNumber: EnumNumberOutput;
+           propBoolean: EnumBooleanOutput;
+         }
+
+         /** Alias for EnumStringOutput */
+         export type EnumStringOutput = string;
+         /** Alias for EnumNumberOutput */
+         export type EnumNumberOutput = number;
+         /** Alias for EnumBooleanOutput */
+         export type EnumBooleanOutput = true | false | boolean;
+        `
+      );
+
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        true
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { EnumBody } from "./models.js";
+        
+        export interface GetBodyParam {
+          body: EnumBody;
+        }
+        
+        export type GetParameters = GetBodyParam & RequestParameters;
+        `
+      );
+      const responseOutput = await emitResponsesFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(responseOutput);
+      assert.strictEqual(responseOutput?.path, "responses.ts");
+      await assertEqualContent(
+        responseOutput?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+        import { EnumBodyOutput } from "./outputModels.js";
+        
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Get204Response extends HttpResponse {
+          status: "204";
+          body: EnumBodyOutput;
         }
         `
       );

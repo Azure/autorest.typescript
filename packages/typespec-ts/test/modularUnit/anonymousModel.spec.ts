@@ -378,7 +378,7 @@ describe("anonymous model", () => {
         prop1: string;
         prop2: int64;
       }
-      op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
+      op read(@path pathParam: string, @query queryParam: string, @body body: Foo): OkResponse;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
@@ -590,8 +590,7 @@ describe("anonymous model", () => {
           context: Client,
           pathParam: string,
           queryParam: string,
-          prop1: string,
-          prop2: Bar,
+          test: { prop1: string; prop2: Bar },
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
@@ -599,10 +598,7 @@ describe("anonymous model", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               queryParameters: { queryParam: queryParam },
-              body: {
-                prop1: prop1,
-                prop2: { prop1: prop2["prop1"], prop2: prop2["prop2"] },
-              },
+              body: { prop1: test["prop1"], prop2: barSerializer(test.prop2) },
             });
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
@@ -615,16 +611,14 @@ describe("anonymous model", () => {
           context: Client,
           pathParam: string,
           queryParam: string,
-          prop1: string,
-          prop2: Bar,
+          test: { prop1: string; prop2: Bar },
           options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(
             context,
             pathParam,
             queryParam,
-            prop1,
-            prop2,
+            test,
             options
           );
           return _readDeserialize(result);

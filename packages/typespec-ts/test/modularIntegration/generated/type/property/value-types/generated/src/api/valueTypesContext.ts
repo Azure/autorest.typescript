@@ -6,13 +6,13 @@ import { ValueTypesContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ValueTypesClientOptions extends ClientOptions {}
+export interface ValueTypesClientOptionalParams extends ClientOptions {}
 
 export { ValueTypesContext } from "../rest/index.js";
 
 /** Illustrates various property types for models */
 export function createValueTypes(
-  options: ValueTypesClientOptions = {},
+  options: ValueTypesClientOptionalParams = {},
 ): ValueTypesContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

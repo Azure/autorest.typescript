@@ -15,7 +15,11 @@ export interface UserOutput {
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
   status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
@@ -25,7 +29,11 @@ export interface OperationStatusOutput {
 export interface ResourceOperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
   status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OptionalClient, OptionalClientOptions } from "./optionalClient.js";
+export {
+  OptionalClient,
+  OptionalClientOptionalParams,
+} from "./optionalClient.js";
 export {
   RequiredAndOptionalProperty,
   UnionFloatLiteralProperty,

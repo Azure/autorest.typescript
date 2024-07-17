@@ -12,11 +12,11 @@ import {
   one,
   two,
   createService,
-  ServiceClientOptions,
+  ServiceClientOptionalParams,
   ServiceContext,
 } from "./api/index.js";
 
-export { ServiceClientOptions } from "./api/serviceContext.js";
+export { ServiceClientOptionalParams } from "./api/serviceContext.js";
 
 export class ServiceClient {
   private _client: ServiceContext;
@@ -35,7 +35,7 @@ export class ServiceClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: ServiceClientOptions = {},
+    options: ServiceClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

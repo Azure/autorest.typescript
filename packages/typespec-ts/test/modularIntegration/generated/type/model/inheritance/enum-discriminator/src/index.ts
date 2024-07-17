@@ -3,7 +3,7 @@
 
 export {
   EnumDiscriminatorClient,
-  EnumDiscriminatorClientOptions,
+  EnumDiscriminatorClientOptionalParams,
 } from "./enumDiscriminatorClient.js";
 export {
   Dog,

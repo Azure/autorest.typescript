@@ -10,14 +10,14 @@ import {
 } from "./models/options.js";
 import {
   createAdded,
-  AddedClientOptions,
+  AddedClientOptionalParams,
   AddedContext,
   v1,
   v2,
   v2InInterface,
 } from "./api/index.js";
 
-export { AddedClientOptions } from "./api/addedContext.js";
+export { AddedClientOptionalParams } from "./api/addedContext.js";
 
 export class AddedClient {
   private _client: AddedContext;
@@ -28,7 +28,7 @@ export class AddedClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: AddedClientOptions = {},
+    options: AddedClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

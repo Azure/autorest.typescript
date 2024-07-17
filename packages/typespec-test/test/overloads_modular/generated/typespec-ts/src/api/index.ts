@@ -3,6 +3,6 @@
 
 export {
   createWidgetManager,
-  WidgetManagerClientOptions,
+  WidgetManagerClientOptionalParams,
   WidgetManagerContext,
 } from "./widgetManagerContext.js";

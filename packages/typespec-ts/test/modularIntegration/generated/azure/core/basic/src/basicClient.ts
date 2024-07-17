@@ -24,7 +24,7 @@ import {
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBasic,
-  BasicClientOptions,
+  BasicClientOptionalParams,
   BasicContext,
   createOrUpdate,
   createOrReplace,
@@ -39,7 +39,7 @@ import {
   listSecondItem,
 } from "./api/index.js";
 
-export { BasicClientOptions } from "./api/basicContext.js";
+export { BasicClientOptionalParams } from "./api/basicContext.js";
 
 export class BasicClient {
   private _client: BasicContext;
@@ -47,7 +47,7 @@ export class BasicClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates bodies templated with Azure Core */
-  constructor(options: BasicClientOptions = {}) {
+  constructor(options: BasicClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

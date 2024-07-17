@@ -3,7 +3,7 @@
 
 export {
   createNestedDiscriminator,
-  NestedDiscriminatorClientOptions,
+  NestedDiscriminatorClientOptionalParams,
   NestedDiscriminatorContext,
 } from "./nestedDiscriminatorContext.js";
 export {

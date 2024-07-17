@@ -3,6 +3,6 @@
 
 export {
   createWidgetService,
-  WidgetServiceClientOptions,
+  WidgetServiceClientOptionalParams,
   WidgetServiceContext,
 } from "./widgetServiceContext.js";
