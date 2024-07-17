@@ -27,7 +27,7 @@ Gets English language transcribed text and associated metadata from provided spo
 @sharedRoute
 op getAudioTranslationAsPlainText is Azure.Core.ResourceAction<
   Deployment,
-  AudioTranslationOptions,  // response_format must be one of: text, srt, vtt
+  { @body body: AudioTranslationOptions },  // response_format must be one of: text, srt, vtt
   AudioTextResponse,
   MultipartFormDataRequestHeadersTraits & TextPlainResponseHeadersTraits
 >;
@@ -42,7 +42,7 @@ Gets English language transcribed text and associated metadata from provided spo
 @sharedRoute
 op getAudioTranslationAsResponseObject is Azure.Core.ResourceAction<
   Deployment,
-  AudioTranslationOptions,  // response_format must be unspecified (json) or one of: json, verbose_json
+  { @body body: AudioTranslationOptions },  // response_format must be unspecified (json) or one of: json, verbose_json
   AudioTranslation,
   MultipartFormDataRequestHeadersTraits
 >;

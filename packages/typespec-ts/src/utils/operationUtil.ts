@@ -19,20 +19,14 @@ import {
   PagedResultMetadata
 } from "@azure-tools/typespec-azure-core";
 import {
+  getHttpOperationWithCache,
   getWireName,
   listOperationGroups,
   listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
+import { Model, Operation, Program, Type } from "@typespec/compiler";
 import {
-  ignoreDiagnostics,
-  Model,
-  Operation,
-  Program,
-  Type
-} from "@typespec/compiler";
-import {
-  getHttpOperation,
   HttpOperation,
   HttpOperationParameter,
   HttpOperationResponse,
@@ -310,7 +304,7 @@ export function hasPollingOperations(
   const program = dpgContext.program;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -326,7 +320,7 @@ export function hasPollingOperations(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -353,7 +347,7 @@ export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -369,7 +363,7 @@ export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
