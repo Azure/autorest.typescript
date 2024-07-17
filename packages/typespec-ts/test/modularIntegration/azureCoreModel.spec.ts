@@ -13,7 +13,7 @@ describe("Traits Client", () => {
 
   it("should get core model embeddingVector", async () => {
     const result = await client.get();
-    assert.strictEqual(JSON.stringify(result), JSON.stringify([0, 1, 2, 3, 4]));
+    assert.deepStrictEqual(result, [0, 1, 2, 3, 4]);
   });
 
   it("should put core model embeddingVector", async () => {
