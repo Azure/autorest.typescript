@@ -65,7 +65,13 @@ class BinderImp implements Binder {
       .flatMap((i) => i.namedImports as ImportSpecifierStructure[])
       .map((i) => i.alias ?? i.name);
 
-    return this.generateLocallyUniqueName(name, new Set(existingImports));
+    const existingDeclarations =
+      this.symbolsBySourceFile.get(sourceFile) ?? new Set<string>();
+
+    return this.generateLocallyUniqueName(
+      name,
+      new Set([...existingImports, ...existingDeclarations])
+    );
   }
 
   private generateLocallyUniqueName(name: string, existingNames: Set<string>) {
