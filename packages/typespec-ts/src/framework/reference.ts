@@ -7,6 +7,6 @@ export function resolveReference(
 ): string | undefined {
   const binder = useBinder();
 
-  const declarationInfo = binder.resolveReference(refkey, currentSourceFile);
-  return declarationInfo!.name;
+  const declarationInfo = binder.resolveReference(refkey, currentSourceFile)!;
+  return declarationInfo.alias ?? declarationInfo.name;
 }

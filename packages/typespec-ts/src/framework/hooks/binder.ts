@@ -90,25 +90,25 @@ class BinderImp implements Binder {
     refkey: unknown,
     currentSourceFile: SourceFile
   ): DeclarationInfo | undefined {
-    const declarationInfo = this.declarations.get(refkey);
-    if (!declarationInfo) return undefined;
+    const referencedDeclarationInfo = this.declarations.get(refkey);
+    if (!referencedDeclarationInfo) return undefined;
 
     let importSpecifier: ImportSpecifierStructure | undefined;
 
-    if (declarationInfo.sourceFile !== currentSourceFile) {
+    if (referencedDeclarationInfo.sourceFile !== currentSourceFile) {
       importSpecifier = this.addImport(
         currentSourceFile,
-        declarationInfo.sourceFile,
-        declarationInfo.name
+        referencedDeclarationInfo.sourceFile,
+        referencedDeclarationInfo.name
       );
     }
 
     return importSpecifier
       ? {
-          ...declarationInfo,
-          name: importSpecifier.alias ?? importSpecifier.name
+          ...referencedDeclarationInfo,
+          alias: importSpecifier.alias ?? importSpecifier.name
         }
-      : declarationInfo;
+      : referencedDeclarationInfo;
   }
 
   private addImport(
