@@ -547,11 +547,6 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-<<<<<<< HEAD
-=======
-        export { TestingClientOptionalParams  } from "./api/testingContext.js";
-        
->>>>>>> main
         export class TestingClient {
           private _client: TestingContext;
           /** The pipeline used by this client to make requests */
@@ -686,11 +681,6 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-<<<<<<< HEAD
-=======
-        export { TestingClientOptionalParams  } from "./api/testingContext.js";
-        
->>>>>>> main
         export class TestingClient {
           private _client: TestingContext;
           /** The pipeline used by this client to make requests */
@@ -848,11 +838,6 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-<<<<<<< HEAD
-=======
-        export { TestingClientOptionalParams  } from "./api/testingContext.js";
-        
->>>>>>> main
         export class TestingClient {
           private _client: TestingContext;
           /** The pipeline used by this client to make requests */
