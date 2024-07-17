@@ -90,7 +90,7 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
-  provideSdkTypes(dpgContext.sdkPackage);
+  provideSdkTypes(dpgContext.experimental_sdkPackage);
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
