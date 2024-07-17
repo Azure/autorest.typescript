@@ -514,10 +514,6 @@ export const modularTsps = [
   {
     outputPath: "type/model/flatten",
     inputPath: "type/model/flatten"
-  },
-  {
-    outputPath: "type/model/visibility",
-    inputPath: "type/model/visibility"
   }
 ];
 
