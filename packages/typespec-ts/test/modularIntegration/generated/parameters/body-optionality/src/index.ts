@@ -3,7 +3,7 @@
 
 export {
   BodyOptionalityClient,
-  BodyOptionalityClientOptions,
+  BodyOptionalityClientOptionalParams,
 } from "./bodyOptionalityClient.js";
 export {
   BodyModel,

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { NullableClient, NullableClientOptions } from "./nullableClient.js";
+export {
+  NullableClient,
+  NullableClientOptionalParams,
+} from "./nullableClient.js";
 export {
   CollectionsStringProperty,
   CollectionsModelProperty,

@@ -2,8 +2,7 @@
 
 This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AzureLoadTesting client.
 
-These APIs allow end users to create, view and run load tests using Azure Load
-Test Service.
+These APIs allow end users to create, view and run load tests using Azure Load Test Service.
 
 [Package (NPM)](https://www.npmjs.com/package/@azure/load-testing) |
 [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/load-testing) |
@@ -29,7 +28,7 @@ Install the AzureLoadTesting client library for JavaScript with `npm`:
 npm install @azure/load-testing
 ```
 
-### Create and authenticate a `AzureLoadTestingClient`
+### Create and authenticate a `LoadTestServiceClient`
 
 To create a client object to access the AzureLoadTesting API, you will need the `endpoint` of your AzureLoadTesting resource and a `credential`. The AzureLoadTesting client can use Azure Active Directory credentials to authenticate.
 You can find the endpoint for your AzureLoadTesting resource in the [Azure Portal][azure_portal].

@@ -14,11 +14,11 @@ import {
   renamedThree,
   renamedFive,
   createRenamedOperation,
-  RenamedOperationClientOptions,
+  RenamedOperationClientOptionalParams,
   ServiceContext,
 } from "./api/index.js";
 
-export { RenamedOperationClientOptions } from "./api/renamedOperationContext.js";
+export { RenamedOperationClientOptionalParams } from "./api/renamedOperationContext.js";
 
 export class RenamedOperationClient {
   private _client: ServiceContext;
@@ -28,7 +28,7 @@ export class RenamedOperationClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: RenamedOperationClientOptions = {},
+    options: RenamedOperationClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

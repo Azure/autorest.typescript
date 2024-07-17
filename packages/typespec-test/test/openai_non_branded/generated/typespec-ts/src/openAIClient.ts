@@ -36,11 +36,11 @@ import {
 } from "./classic/moderations/index.js";
 import {
   createOpenAI,
-  OpenAIClientOptions,
+  OpenAIClientOptionalParams,
   OpenAIContext,
 } from "./api/index.js";
 
-export { OpenAIClientOptions } from "./api/openAIContext.js";
+export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;
@@ -48,7 +48,10 @@ export class OpenAIClient {
   public readonly pipeline: Pipeline;
 
   /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
-  constructor(credential: KeyCredential, options: OpenAIClientOptions = {}) {
+  constructor(
+    credential: KeyCredential,
+    options: OpenAIClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

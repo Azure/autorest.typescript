@@ -3,7 +3,7 @@
 
 export {
   DictionaryClient,
-  DictionaryClientOptions,
+  DictionaryClientOptionalParams,
 } from "./dictionaryClient.js";
 export {
   InnerModel,

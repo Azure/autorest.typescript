@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { DurationClient, DurationClientOptions } from "./durationClient.js";
+export {
+  DurationClient,
+  DurationClientOptionalParams,
+} from "./durationClient.js";
 export {
   DefaultDurationProperty,
   ISO8601DurationProperty,

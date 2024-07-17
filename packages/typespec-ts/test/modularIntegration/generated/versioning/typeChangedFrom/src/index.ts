@@ -3,6 +3,6 @@
 
 export {
   TypeChangedFromClient,
-  TypeChangedFromClientOptions,
+  TypeChangedFromClientOptionalParams,
 } from "./typeChangedFromClient.js";
 export { TestModel, Versions, TestOptionalParams } from "./models/index.js";

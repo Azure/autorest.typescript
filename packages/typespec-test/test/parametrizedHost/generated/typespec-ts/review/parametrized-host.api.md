@@ -26,13 +26,13 @@ export interface ConfidentialLedgerOperations {
 
 // @public (undocumented)
 export class ParametrizedHostClient {
-    constructor(credential: TokenCredential, options?: ParametrizedHostClientOptions);
+    constructor(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams);
     readonly confidentialLedger: ConfidentialLedgerOperations;
     readonly pipeline: Pipeline;
 }
 
 // @public
-export interface ParametrizedHostClientOptions extends ClientOptions {
+export interface ParametrizedHostClientOptionalParams extends ClientOptions {
     // (undocumented)
     apiVersion?: string;
     // (undocumented)

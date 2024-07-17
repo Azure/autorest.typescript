@@ -21,7 +21,7 @@ export function getClientParameters(
   const name = getClientName(client);
   const optionsParam = {
     name: "options",
-    type: `${name}ClientOptions`,
+    type: `${name}ClientOptionalParams`,
     initializer: "{}"
   };
 

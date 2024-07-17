@@ -3,7 +3,7 @@
 
 export {
   RenamedOperationClient,
-  RenamedOperationClientOptions,
+  RenamedOperationClientOptionalParams,
 } from "./renamedOperationClient.js";
 export {
   ClientType,

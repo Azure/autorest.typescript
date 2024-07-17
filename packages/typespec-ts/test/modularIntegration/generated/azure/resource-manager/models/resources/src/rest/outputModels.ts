@@ -11,7 +11,11 @@ export interface TopLevelTrackedResourceOutput extends TrackedResourceOutput {
 
 /** Top Level Arm Resource Properties. */
 export interface TopLevelTrackedResourcePropertiesOutput {
-  /** The status of the last operation. */
+  /**
+   * The status of the last operation.
+   *
+   * Possible values: "Provisioning", "Updating", "Deleting", "Accepted"
+   */
   readonly provisioningState?: ProvisioningStateOutput;
   /** The description of the resource. */
   description?: string;
@@ -41,13 +45,21 @@ export interface ResourceOutput {
 export interface SystemDataOutput {
   /** The identity that created the resource. */
   createdBy?: string;
-  /** The type of identity that created the resource. */
+  /**
+   * The type of identity that created the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   createdByType?: CreatedByTypeOutput;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
+  /**
+   * The type of identity that last modified the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   lastModifiedByType?: CreatedByTypeOutput;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
@@ -64,7 +76,11 @@ export interface NestedProxyResourceOutput extends ProxyResourceOutput {
 
 /** Nested Proxy Resource Properties. */
 export interface NestedProxyResourcePropertiesOutput {
-  /** Provisioning State of the nested child Resource */
+  /**
+   * Provisioning State of the nested child Resource
+   *
+   * Possible values: "Provisioning", "Updating", "Deleting", "Accepted"
+   */
   readonly provisioningState?: ProvisioningStateOutput;
   /** Nested resource description. */
   description?: string;
@@ -109,7 +125,11 @@ export interface PrivateEndpointConnectionPropertiesOutput {
   privateEndpoint?: PrivateEndpointOutput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
-  /** The provisioning state of the private endpoint connection resource. */
+  /**
+   * The provisioning state of the private endpoint connection resource.
+   *
+   * Possible values: "Succeeded", "Creating", "Deleting", "Failed"
+   */
   readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
 }
 
@@ -121,7 +141,11 @@ export interface PrivateEndpointOutput {
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionStateOutput {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  /**
+   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+   *
+   * Possible values: "Pending", "Approved", "Rejected"
+   */
   status?: PrivateEndpointServiceConnectionStatusOutput;
   /** The reason for approval/rejection of the connection. */
   description?: string;

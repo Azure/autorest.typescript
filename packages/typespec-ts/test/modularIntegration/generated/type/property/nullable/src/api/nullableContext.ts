@@ -6,13 +6,13 @@ import { NullableContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface NullableClientOptions extends ClientOptions {}
+export interface NullableClientOptionalParams extends ClientOptions {}
 
 export { NullableContext } from "../rest/index.js";
 
 /** Illustrates models with nullable properties. */
 export function createNullable(
-  options: NullableClientOptions = {},
+  options: NullableClientOptionalParams = {},
 ): NullableContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

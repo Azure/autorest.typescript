@@ -47,13 +47,21 @@ export interface Resource {}
 export interface SystemData {
   /** The identity that created the resource. */
   createdBy?: string;
-  /** The type of identity that created the resource. */
+  /**
+   * The type of identity that created the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   createdByType?: CreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: Date | string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
+  /**
+   * The type of identity that last modified the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: Date | string;
@@ -85,17 +93,33 @@ export interface DataProductProperties {
   majorVersion: string;
   /** List of name or email associated with data product resource deployment. */
   owners?: string[];
-  /** Flag to enable or disable redundancy for data product. */
+  /**
+   * Flag to enable or disable redundancy for data product.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   redundancy?: ControlState;
   /** Purview account url for data product to connect to. */
   purviewAccount?: string;
   /** Purview collection url for data product to connect to. */
   purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
+  /**
+   * Flag to enable or disable private link for data product resource.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   privateLinksEnabled?: ControlState;
-  /** Flag to enable or disable public access of data product resource. */
+  /**
+   * Flag to enable or disable public access of data product resource.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   publicNetworkAccess?: ControlState;
-  /** Flag to enable customer managed key encryption for data product. */
+  /**
+   * Flag to enable customer managed key encryption for data product.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   customerManagedKeyEncryptionEnabled?: ControlState;
   /** Customer managed encryption key details for data product. */
   customerEncryptionKey?: EncryptionKeyDetails;
@@ -125,7 +149,11 @@ export interface DataProductNetworkAcls {
   ipRules: Array<IPRules>;
   /** The list of query ips in the format of CIDR allowed to connect to query/visualization endpoint. */
   allowedQueryIpRangeList: string[];
-  /** Default Action */
+  /**
+   * Default Action
+   *
+   * Possible values: "Allow", "Deny"
+   */
   defaultAction: DefaultAction;
 }
 
@@ -160,7 +188,11 @@ export interface ConsumptionEndpointsProperties {}
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentity {
-  /** The type of managed identity assigned to this resource. */
+  /**
+   * The type of managed identity assigned to this resource.
+   *
+   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned,UserAssigned"
+   */
   type: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
   userAssignedIdentities?: Record<string, UserAssignedIdentity>;
@@ -263,7 +295,11 @@ export interface PrivateEndpoint {}
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  /**
+   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+   *
+   * Possible values: "Pending", "Approved", "Rejected"
+   */
   status?: PrivateEndpointServiceConnectionStatus;
   /** The reason for approval/rejection of the connection. */
   description?: string;
@@ -279,7 +315,11 @@ export interface DataType extends ProxyResource {
 
 /** The data type properties */
 export interface DataTypeProperties {
-  /** State of data type. */
+  /**
+   * State of data type.
+   *
+   * Possible values: "Stopped", "Running"
+   */
   state?: DataTypeState;
   /** Field for storage output retention in days. */
   storageOutputRetention?: number;
@@ -296,7 +336,11 @@ export interface DataTypeUpdate {
 
 /** The updatable properties of the DataType. */
 export interface DataTypeUpdateProperties {
-  /** State of data type. */
+  /**
+   * State of data type.
+   *
+   * Possible values: "Stopped", "Running"
+   */
   state?: DataTypeState;
   /** Field for storage output retention in days. */
   storageOutputRetention?: number;
@@ -333,7 +377,11 @@ export interface DataProductUpdateProperties {
   purviewAccount?: string;
   /** Purview collection url for data product to connect to. */
   purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
+  /**
+   * Flag to enable or disable private link for data product resource.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   privateLinksEnabled?: ControlState;
   /** Current configured minor version of the data product resource. */
   currentMinorVersion?: string;
@@ -367,7 +415,11 @@ export interface RoleAssignmentCommonProperties {
   dataTypeScope: string[];
   /** Type of the principal Id: User, Group or ServicePrincipal */
   principalType: string;
-  /** Data Product role to be assigned to a user. */
+  /**
+   * Data Product role to be assigned to a user.
+   *
+   * Possible values: "Reader", "SensitiveReader"
+   */
   role: DataProductUserRole;
 }
 
@@ -383,7 +435,11 @@ export interface RoleAssignmentDetail {
   dataTypeScope: string[];
   /** Type of the principal Id: User, Group or ServicePrincipal */
   principalType: string;
-  /** Data Product role to be assigned to a user. */
+  /**
+   * Data Product role to be assigned to a user.
+   *
+   * Possible values: "Reader", "SensitiveReader"
+   */
   role: DataProductUserRole;
   /** Id of role assignment request */
   roleAssignmentId: string;
