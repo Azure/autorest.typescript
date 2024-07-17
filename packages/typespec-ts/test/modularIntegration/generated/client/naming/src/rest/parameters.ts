@@ -72,6 +72,7 @@ export type ModelLanguageParameters = ModelLanguageBodyParam &
   RequestParameters;
 
 export interface UnionEnumUnionEnumNameBodyParam {
+  /** Possible values: "value1" */
   body: ServerExtensibleEnum;
 }
 
@@ -79,6 +80,7 @@ export type UnionEnumUnionEnumNameParameters = UnionEnumUnionEnumNameBodyParam &
   RequestParameters;
 
 export interface UnionEnumUnionEnumMemberNameBodyParam {
+  /** Possible values: "value1", "value2" */
   body: ExtensibleEnum;
 }
 

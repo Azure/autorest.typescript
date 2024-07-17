@@ -6,12 +6,14 @@ import { UnionContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface UnionClientOptions extends ClientOptions {}
+export interface UnionClientOptionalParams extends ClientOptions {}
 
 export { UnionContext } from "../rest/index.js";
 
 /** Describe scenarios for various combinations of unions. */
-export function createUnion(options: UnionClientOptions = {}): UnionContext {
+export function createUnion(
+  options: UnionClientOptionalParams = {},
+): UnionContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`

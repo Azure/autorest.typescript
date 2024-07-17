@@ -81,7 +81,11 @@ export interface EnumPropertyOutput {
 
 /** Model with extensible enum properties */
 export interface ExtensibleEnumPropertyOutput {
-  /** Property */
+  /**
+   * Property
+   *
+   * Possible values: "ValueOne", "ValueTwo"
+   */
   property: InnerEnumOutput;
 }
 

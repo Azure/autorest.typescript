@@ -3,7 +3,7 @@
 
 export {
   NetworkAnalyticsClient,
-  NetworkAnalyticsClientOptions,
+  NetworkAnalyticsClientOptionalParams,
 } from "./networkAnalyticsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {

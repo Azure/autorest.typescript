@@ -91,13 +91,13 @@ export interface SchemaProperties {
 
 // @public (undocumented)
 export class SchemaRegistryClient {
-    constructor(fullyQualifiedNamespace: string, credential: TokenCredential, options?: SchemaRegistryClientOptions);
+    constructor(fullyQualifiedNamespace: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams);
     readonly pipeline: Pipeline;
     readonly schemaOperations: SchemaOperationsOperations;
 }
 
 // @public
-export interface SchemaRegistryClientOptions extends ClientOptions {
+export interface SchemaRegistryClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 

@@ -3,7 +3,7 @@
 
 export {
   CollectionFormatClient,
-  CollectionFormatClientOptions,
+  CollectionFormatClientOptionalParams,
 } from "./collectionFormatClient.js";
 export {
   QueryMultiOptionalParams,

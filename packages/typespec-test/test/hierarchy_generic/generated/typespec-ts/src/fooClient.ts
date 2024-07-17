@@ -6,16 +6,21 @@ import { A } from "./models/models.js";
 import { Op1OptionalParams } from "./models/options.js";
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
-import { createFoo, FooClientOptions, FooContext, op1 } from "./api/index.js";
+import {
+  createFoo,
+  FooClientOptionalParams,
+  FooContext,
+  op1,
+} from "./api/index.js";
 
-export { FooClientOptions } from "./api/fooContext.js";
+export { FooClientOptionalParams } from "./api/fooContext.js";
 
 export class FooClient {
   private _client: FooContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpoint: string, options: FooClientOptions = {}) {
+  constructor(endpoint: string, options: FooClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

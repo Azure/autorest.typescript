@@ -5,12 +5,12 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   get,
   createXmsRequestId,
-  XmsRequestIdClientOptions,
+  XmsRequestIdClientOptionalParams,
   XmsRequestIdClientContext,
 } from "./api/index.js";
 import { GetOptionalParams } from "./models/options.js";
 
-export { XmsRequestIdClientOptions } from "./api/xmsRequestIdContext.js";
+export { XmsRequestIdClientOptionalParams } from "./api/xmsRequestIdContext.js";
 
 export class XmsRequestIdClient {
   private _client: XmsRequestIdClientContext;
@@ -18,7 +18,7 @@ export class XmsRequestIdClient {
   public readonly pipeline: Pipeline;
 
   /** Azure client request id header configurations. */
-  constructor(options: XmsRequestIdClientOptions = {}) {
+  constructor(options: XmsRequestIdClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

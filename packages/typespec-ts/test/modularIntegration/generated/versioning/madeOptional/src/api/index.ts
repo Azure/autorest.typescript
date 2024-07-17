@@ -3,7 +3,7 @@
 
 export {
   createMadeOptional,
-  MadeOptionalClientOptions,
+  MadeOptionalClientOptionalParams,
   MadeOptionalContext,
 } from "./madeOptionalContext.js";
 export { test } from "./operations.js";

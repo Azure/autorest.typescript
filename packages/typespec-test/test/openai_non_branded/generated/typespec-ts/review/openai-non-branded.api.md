@@ -748,7 +748,7 @@ export interface ModerationsOperations {
 
 // @public (undocumented)
 export class OpenAIClient {
-    constructor(credential: KeyCredential, options?: OpenAIClientOptions);
+    constructor(credential: KeyCredential, options?: OpenAIClientOptionalParams);
     readonly audio: AudioOperations;
     readonly chat: ChatOperations;
     readonly completions: CompletionsOperations;
@@ -764,7 +764,7 @@ export class OpenAIClient {
 }
 
 // @public
-export interface OpenAIClientOptions extends ClientOptions {
+export interface OpenAIClientOptionalParams extends ClientOptions {
 }
 
 // @public

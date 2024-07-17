@@ -12,11 +12,11 @@ import {
 } from "./classic/differentBody/index.js";
 import {
   createContentNegotiation,
-  ContentNegotiationClientOptions,
+  ContentNegotiationClientOptionalParams,
   ContentNegotiationContext,
 } from "./api/index.js";
 
-export { ContentNegotiationClientOptions } from "./api/contentNegotiationContext.js";
+export { ContentNegotiationClientOptionalParams } from "./api/contentNegotiationContext.js";
 
 export class ContentNegotiationClient {
   private _client: ContentNegotiationContext;
@@ -24,7 +24,7 @@ export class ContentNegotiationClient {
   public readonly pipeline: Pipeline;
 
   /** Test describing optionality of the request body. */
-  constructor(options: ContentNegotiationClientOptions = {}) {
+  constructor(options: ContentNegotiationClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -4,6 +4,6 @@
 export { myOp } from "./operations.js";
 export {
   createSingle,
-  SingleClientOptions,
+  SingleClientOptionalParams,
   SingleContext,
 } from "./singleContext.js";

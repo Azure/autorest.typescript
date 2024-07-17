@@ -3,7 +3,7 @@
 
 export {
   NotDiscriminatedClient,
-  NotDiscriminatedClientOptions,
+  NotDiscriminatedClientOptionalParams,
 } from "./notDiscriminatedClient.js";
 export {
   Pet,

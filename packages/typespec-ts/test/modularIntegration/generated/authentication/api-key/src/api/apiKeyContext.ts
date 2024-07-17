@@ -7,14 +7,14 @@ import { ApiKeyContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ApiKeyClientOptions extends ClientOptions {}
+export interface ApiKeyClientOptionalParams extends ClientOptions {}
 
 export { ApiKeyContext } from "../rest/index.js";
 
 /** Illustrates clients generated with ApiKey authentication. */
 export function createApiKey(
   credential: KeyCredential,
-  options: ApiKeyClientOptions = {},
+  options: ApiKeyClientOptionalParams = {},
 ): ApiKeyContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

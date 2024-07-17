@@ -4,6 +4,6 @@
 export { v2 } from "./operations.js";
 export {
   createRemoved,
-  RemovedClientOptions,
+  RemovedClientOptionalParams,
   RemovedContext,
 } from "./removedContext.js";

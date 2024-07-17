@@ -428,7 +428,7 @@ export type ManagedServiceIdentityType = string;
 
 // @public (undocumented)
 export class NetworkAnalyticsClient {
-    constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsClientOptions);
+    constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsClientOptionalParams);
     readonly dataProducts: DataProductsOperations;
     readonly dataProductsCatalogs: DataProductsCatalogsOperations;
     readonly dataTypes: DataTypesOperations;
@@ -437,7 +437,7 @@ export class NetworkAnalyticsClient {
 }
 
 // @public
-export interface NetworkAnalyticsClientOptions extends ClientOptions {
+export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 

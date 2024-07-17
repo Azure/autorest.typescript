@@ -1,6 +1,6 @@
 // Licensed under the MIT license.
 
-export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
+export { OpenAIClient, OpenAIClientOptionalParams } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,

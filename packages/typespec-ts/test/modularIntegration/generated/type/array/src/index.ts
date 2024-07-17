@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ArrayClient, ArrayClientOptions } from "./arrayClient.js";
+export { ArrayClient, ArrayClientOptionalParams } from "./arrayClient.js";
 export {
   InnerModel,
   Int32ValueGetOptionalParams,

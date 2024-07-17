@@ -3,7 +3,7 @@
 
 export {
   createBytes,
-  BytesClientOptions,
+  BytesClientOptionalParams,
   BytesContext,
 } from "./bytesContext.js";
 export {

@@ -3,7 +3,7 @@
 
 export {
   SingleDiscriminatorClient,
-  SingleDiscriminatorClientOptions,
+  SingleDiscriminatorClientOptionalParams,
 } from "./singleDiscriminatorClient.js";
 export {
   Bird,

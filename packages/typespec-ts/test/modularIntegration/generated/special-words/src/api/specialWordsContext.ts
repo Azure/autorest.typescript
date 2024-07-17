@@ -6,7 +6,7 @@ import { SpecialWordsContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface SpecialWordsClientOptions extends ClientOptions {}
+export interface SpecialWordsClientOptionalParams extends ClientOptions {}
 
 export { SpecialWordsContext } from "../rest/index.js";
 
@@ -51,7 +51,7 @@ export { SpecialWordsContext } from "../rest/index.js";
  * ```
  */
 export function createSpecialWords(
-  options: SpecialWordsClientOptions = {},
+  options: SpecialWordsClientOptionalParams = {},
 ): SpecialWordsContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

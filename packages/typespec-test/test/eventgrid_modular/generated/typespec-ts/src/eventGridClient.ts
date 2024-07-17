@@ -24,7 +24,7 @@ import {
 } from "./models/options.js";
 import {
   createEventGrid,
-  EventGridClientOptions,
+  EventGridClientOptionalParams,
   EventGridContext,
   publishCloudEvent,
   publishCloudEvents,
@@ -34,7 +34,7 @@ import {
   rejectCloudEvents,
 } from "./api/index.js";
 
-export { EventGridClientOptions } from "./api/eventGridContext.js";
+export { EventGridClientOptionalParams } from "./api/eventGridContext.js";
 
 export class EventGridClient {
   private _client: EventGridContext;
@@ -45,7 +45,7 @@ export class EventGridClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential,
-    options: EventGridClientOptions = {},
+    options: EventGridClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

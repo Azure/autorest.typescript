@@ -3,7 +3,7 @@
 
 export {
   ContentSafetyClient,
-  ContentSafetyClientOptions,
+  ContentSafetyClientOptionalParams,
 } from "./contentSafetyClient.js";
 export {
   TextBlocklist,

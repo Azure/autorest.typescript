@@ -6,12 +6,14 @@ import { ArrayContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ArrayClientOptions extends ClientOptions {}
+export interface ArrayClientOptionalParams extends ClientOptions {}
 
 export { ArrayContext } from "../rest/index.js";
 
 /** Illustrates various types of arrays. */
-export function createArray(options: ArrayClientOptions = {}): ArrayContext {
+export function createArray(
+  options: ArrayClientOptionalParams = {},
+): ArrayContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`

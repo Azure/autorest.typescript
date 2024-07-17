@@ -3,6 +3,6 @@
 
 export {
   MadeOptionalClient,
-  MadeOptionalClientOptions,
+  MadeOptionalClientOptionalParams,
 } from "./madeOptionalClient.js";
 export { TestModel, Versions, TestOptionalParams } from "./models/index.js";
