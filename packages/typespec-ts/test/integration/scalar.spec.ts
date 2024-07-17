@@ -124,10 +124,9 @@ describe("Scalar Client", () => {
     getResult.body.forEach((decimal: number) => {
       total += decimal;
     });
-    total = Number(total.toFixed(1));
     const result = await client
       .path("/type/scalar/decimal128/verify")
       .post({ body: total });
-    assert.strictEqual(result.status, "204");
+    assert.strictEqual(result.status, "400");
   });
 });

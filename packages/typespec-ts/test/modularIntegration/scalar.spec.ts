@@ -109,13 +109,16 @@ describe("Scalar Client", () => {
   });
 
   it("should fail to post decimal128 verify", async () => {
-    const getResult = await client.decimal128Verify.prepareVerify();
-    let total = 0;
-    getResult.forEach((decimal: number) => {
-      total += decimal;
-    });
-    total = Number(total.toFixed(1));
-    const result = await client.decimal128Verify.verify(total);
-    assert.isUndefined(result);
+    try {
+      const getResult = await client.decimal128Verify.prepareVerify();
+      let total = 0;
+      getResult.forEach((decimal: number) => {
+        total += decimal;
+      });
+      await client.decimal128Verify.verify(total);
+      assert.fail("Expected an exception to be thrown.");
+    } catch (err) {
+      assert.strictEqual(JSON.parse(JSON.stringify(err)).statusCode, 400);
+    }
   });
 });
