@@ -364,8 +364,7 @@ describe("anonymous model", () => {
         );
       });
 
-      // TODO: Re-enable when related work is merged
-      it.skip("should not flatten model if spread in the payload with required parameters", async () => {
+      it("should not flatten model if spread in the payload with required parameters", async () => {
         const tspContent = `
       model Foo {
         prop1: string;
