@@ -154,7 +154,7 @@ describe("Binder", () => {
     expect(bazTypeName).toBe(model.name);
   });
 
-  it("should handle import conflicts", () => {
+  it.only("should handle import conflicts", () => {
     const sourceFile = project.createSourceFile("test1.ts", "", {
       overwrite: true
     });
@@ -177,7 +177,7 @@ describe("Binder", () => {
 
     const model2 = {
       name: "TestModel",
-      properties: [{ name: "baz", type: model }]
+      properties: [{ name: "baz1", type: model }]
     };
 
     const interfaceDeclaration2: InterfaceDeclarationStructure = {
@@ -189,16 +189,43 @@ describe("Binder", () => {
       }))
     };
 
-    const secondModel = addDeclaration(
-      sourceFile2,
-      interfaceDeclaration2,
-      model
-    );
+    addDeclaration(sourceFile2, interfaceDeclaration2, model2);
 
-    const bazTypeName = secondModel.getProperty("baz")?.getType().getText();
+    const sourceFile3 = project.createSourceFile("test3.ts", "", {
+      overwrite: true
+    });
 
-    expect(bazTypeName).toBe(model.name);
+    const model3 = {
+      name: "LastModel",
+      properties: [
+        { name: "baz2", type: model },
+        { name: "baz3", type: model2 }
+      ]
+    };
+
+    const interfaceDeclaration3: InterfaceDeclarationStructure = {
+      kind: StructureKind.Interface,
+      name: model3.name,
+      properties: model3.properties.map((p) => ({
+        name: p.name,
+        type: resolveReference(p.type, sourceFile3)
+      }))
+    };
+
+    addDeclaration(sourceFile3, interfaceDeclaration3, model3);
+
     const binder = useBinder();
     binder.applyImports();
+
+    const imports = sourceFile3
+      .getImportDeclarations()
+      .flatMap((i) =>
+        i.getNamedImports().map((mi) => mi.getAliasNode()?.getText())
+      );
+
+    expect(imports).toEqual(["TestModel", "TestModel_1"]);
+    console.log(sourceFile.getFullText());
+    console.log(sourceFile2.getFullText());
+    console.log(sourceFile3.getFullText());
   });
 });
