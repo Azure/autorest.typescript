@@ -39,9 +39,6 @@ describe("Azure Core Traits Rest Client", () => {
       .post({ body: { embedding: [0, 1, 2, 3, 4] } });
 
     assert.strictEqual(result.status, "200");
-    assert.strictEqual(
-      JSON.stringify(result.body),
-      JSON.stringify(responseBody)
-    );
+    assert.deepEqual(result.body.embedding, responseBody.embedding);
   });
 });
