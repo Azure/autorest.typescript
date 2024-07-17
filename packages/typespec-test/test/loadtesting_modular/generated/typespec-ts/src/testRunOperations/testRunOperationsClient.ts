@@ -28,7 +28,7 @@ import {
   ListMetricNamespacesOptionalParams,
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
-  StopOptionalParams,
+  StopTestRunOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -45,7 +45,7 @@ import {
   listMetricNamespaces,
   listMetrics,
   listTestRuns,
-  stop,
+  stopTestRun,
   createTestRunOperations,
   TestRunOperationsClientOptionalParams,
   LoadTestServiceContext,
@@ -223,10 +223,10 @@ export class TestRunOperationsClient {
   }
 
   /** Stop test run by test run Id. */
-  stop(
+  stopTestRun(
     testRunId: string,
-    options: StopOptionalParams = { requestOptions: {} },
+    options: StopTestRunOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
-    return stop(this._client, testRunId, options);
+    return stopTestRun(this._client, testRunId, options);
   }
 }

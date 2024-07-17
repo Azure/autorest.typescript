@@ -6,13 +6,13 @@ import { DemoServiceContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface DemoServiceClientOptions extends ClientOptions {}
+export interface DemoServiceClientOptionalParams extends ClientOptions {}
 
 export { DemoServiceContext } from "../rest/index.js";
 
 export function createDemoService(
   endpoint: string,
-  options: DemoServiceClientOptions = {},
+  options: DemoServiceClientOptionalParams = {},
 ): DemoServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
