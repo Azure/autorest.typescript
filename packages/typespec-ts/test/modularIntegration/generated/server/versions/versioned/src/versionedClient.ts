@@ -14,11 +14,11 @@ import {
   withPathApiVersion,
   withQueryOldApiVersion,
   createVersioned,
-  VersionedClientOptions,
+  VersionedClientOptionalParams,
   VersionedContext,
 } from "./api/index.js";
 
-export { VersionedClientOptions } from "./api/versionedContext.js";
+export { VersionedClientOptionalParams } from "./api/versionedContext.js";
 
 export class VersionedClient {
   private _client: VersionedContext;
@@ -26,7 +26,10 @@ export class VersionedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates versioned server. */
-  constructor(endpointParam: string, options: VersionedClientOptions = {}) {
+  constructor(
+    endpointParam: string,
+    options: VersionedClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -64,7 +64,11 @@ export interface ListWithParametersBodyParam {
 }
 
 export interface ListWithParametersQueryParamProperties {
-  /** Another query parameter. */
+  /**
+   * Another query parameter.
+   *
+   * Possible values: "First", "Second"
+   */
   another?: ListItemInputExtensibleEnum;
 }
 

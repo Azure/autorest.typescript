@@ -20,6 +20,6 @@ namespace Azure.OpenAI;
 @actionSeparator("/")
 op getAudioSpeech is ResourceAction<
   Deployment,
-  AudioSpeechOptions,
+  { @body body: AudioSpeechOptions },
   AudioSpeechResponse
 >;

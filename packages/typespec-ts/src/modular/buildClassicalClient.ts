@@ -49,7 +49,7 @@ export function buildClassicalClient(
   );
 
   clientFile.addExportDeclaration({
-    namedExports: [`${classicalClientName}Options`],
+    namedExports: [`${classicalClientName}OptionalParams`],
     moduleSpecifier: `./api/${normalizeName(
       modularClientName,
       NameType.File

@@ -522,6 +522,14 @@ export const modularTsps = [
   {
     outputPath: "type/model/flatten",
     inputPath: "type/model/flatten"
+  },
+  {
+    outputPath: "resiliency/srv-driven-old",
+    inputPath: "resiliency/srv-driven/old.tsp"
+  },
+  {
+    outputPath: "resiliency/srv-driven-main",
+    inputPath: "resiliency/srv-driven/main.tsp"
   }
 ];
 

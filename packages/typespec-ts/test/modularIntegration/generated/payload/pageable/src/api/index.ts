@@ -4,6 +4,6 @@
 export { list } from "./operations.js";
 export {
   createPageable,
-  PageableClientOptions,
+  PageableClientOptionalParams,
   PageableContext,
 } from "./pageableContext.js";

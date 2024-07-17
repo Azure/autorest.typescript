@@ -24,11 +24,19 @@ export interface DetectFromUrlQueryParamProperties {
   returnFaceLandmarks?: boolean;
   /** Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. */
   returnFaceAttributes?: FaceAttributeType[];
-  /** The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. */
+  /**
+   * The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.
+   *
+   * Possible values: "recognition_01", "recognition_02", "recognition_03", "recognition_04"
+   */
   recognitionModel?: RecognitionModel;
   /** Return 'recognitionModel' or not. The default value is false. */
   returnRecognitionModel?: boolean;
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). */
   faceIdTimeToLive?: number;
@@ -68,11 +76,19 @@ export interface DetectQueryParamProperties {
   returnFaceLandmarks?: boolean;
   /** Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. */
   returnFaceAttributes?: FaceAttributeType[];
-  /** The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. */
+  /**
+   * The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'.
+   *
+   * Possible values: "recognition_01", "recognition_02", "recognition_03", "recognition_04"
+   */
   recognitionModel?: RecognitionModel;
   /** Return 'recognitionModel' or not. The default value is false. */
   returnRecognitionModel?: boolean;
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). */
   faceIdTimeToLive?: number;
@@ -257,7 +273,11 @@ export interface AddFaceListFaceFromUrlBodyParam {
 export interface AddFaceListFaceFromUrlQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -288,7 +308,11 @@ export interface AddFaceListFaceBodyParam {
 export interface AddFaceListFaceQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -365,7 +389,11 @@ export interface AddLargeFaceListFaceFromUrlBodyParam {
 export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -396,7 +424,11 @@ export interface AddLargeFaceListFaceBodyParam {
 export interface AddLargeFaceListFaceQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -525,7 +557,11 @@ export interface AddPersonGroupPersonFaceFromUrlBodyParam {
 export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -556,7 +592,11 @@ export interface AddPersonGroupPersonFaceBodyParam {
 export interface AddPersonGroupPersonFaceQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -672,7 +712,11 @@ export interface AddLargePersonGroupPersonFaceFromUrlBodyParam {
 export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -703,7 +747,11 @@ export interface AddLargePersonGroupPersonFaceBodyParam {
 export interface AddLargePersonGroupPersonFaceQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -790,7 +838,11 @@ export interface AddPersonFaceBodyParam {
 export interface AddPersonFaceQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;
@@ -817,7 +869,11 @@ export interface AddPersonFaceFromUrlBodyParam {
 export interface AddPersonFaceFromUrlQueryParamProperties {
   /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  /**
+   * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
+   *
+   * Possible values: "detection_01", "detection_02", "detection_03"
+   */
   detectionModel?: DetectionModel;
   /** User-provided data attached to the face. The size limit is 1K. */
   userData?: string;

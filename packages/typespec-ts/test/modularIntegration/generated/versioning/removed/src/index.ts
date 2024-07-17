@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { RemovedClient, RemovedClientOptions } from "./removedClient.js";
+export { RemovedClient, RemovedClientOptionalParams } from "./removedClient.js";
 export {
   ModelV2,
   EnumV2,

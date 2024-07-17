@@ -6,13 +6,13 @@ import { DictionaryContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface DictionaryClientOptions extends ClientOptions {}
+export interface DictionaryClientOptionalParams extends ClientOptions {}
 
 export { DictionaryContext } from "../rest/index.js";
 
 /** Illustrates various of dictionaries. */
 export function createDictionary(
-  options: DictionaryClientOptions = {},
+  options: DictionaryClientOptionalParams = {},
 ): DictionaryContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

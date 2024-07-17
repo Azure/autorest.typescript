@@ -6,12 +6,14 @@ import { EmptyContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface EmptyClientOptions extends ClientOptions {}
+export interface EmptyClientOptionalParams extends ClientOptions {}
 
 export { EmptyContext } from "../rest/index.js";
 
 /** Illustrates usage of empty model used in operation's parameters and responses. */
-export function createEmpty(options: EmptyClientOptions = {}): EmptyContext {
+export function createEmpty(
+  options: EmptyClientOptionalParams = {},
+): EmptyContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`

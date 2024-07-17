@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
+export { OpenAIClient, OpenAIClientOptionalParams } from "./openAIClient.js";
 export {
-  AudioTranscriptionFormat,
   AudioTranscriptionOptions,
+  AudioTranscriptionFormat,
   AudioTranscription,
   AudioTaskLabel,
   AudioTranscriptionSegment,
-  AudioTranslationFormat,
   AudioTranslationOptions,
+  AudioTranslationFormat,
   AudioTranslation,
   AudioTranslationSegment,
   CompletionsOptions,
@@ -26,6 +26,7 @@ export {
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
+  ChatCompletionsOptions,
   ChatRequestMessage,
   ChatRequestSystemMessage,
   ChatRequestUserMessage,
@@ -88,7 +89,6 @@ export {
   ChatCompletionsNamedToolSelection,
   ChatCompletionsNamedFunctionToolSelection,
   ChatCompletionsFunctionToolSelection,
-  ChatCompletionsOptions,
   ChatCompletions,
   ChatChoice,
   ChatResponseMessage,
@@ -105,16 +105,16 @@ export {
   AzureGroundingEnhancementLine,
   AzureGroundingEnhancementLineSpan,
   AzureGroundingEnhancementCoordinatePoint,
+  ImageGenerationOptions,
   ImageSize,
   ImageGenerationResponseFormat,
   ImageGenerationQuality,
   ImageGenerationStyle,
-  ImageGenerationOptions,
   ImageGenerations,
   ImageGenerationData,
+  AudioSpeechOptions,
   AudioSpeechVoice,
   AudioSpeechOutputFormat,
-  AudioSpeechOptions,
   EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,

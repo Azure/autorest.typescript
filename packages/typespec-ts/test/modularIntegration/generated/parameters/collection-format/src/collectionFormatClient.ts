@@ -9,11 +9,11 @@ import {
 } from "./classic/header/index.js";
 import {
   createCollectionFormat,
-  CollectionFormatClientOptions,
+  CollectionFormatClientOptionalParams,
   CollectionFormatContext,
 } from "./api/index.js";
 
-export { CollectionFormatClientOptions } from "./api/collectionFormatContext.js";
+export { CollectionFormatClientOptionalParams } from "./api/collectionFormatContext.js";
 
 export class CollectionFormatClient {
   private _client: CollectionFormatContext;
@@ -21,7 +21,7 @@ export class CollectionFormatClient {
   public readonly pipeline: Pipeline;
 
   /** Test for collectionFormat. */
-  constructor(options: CollectionFormatClientOptions = {}) {
+  constructor(options: CollectionFormatClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
