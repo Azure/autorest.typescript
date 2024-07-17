@@ -3,22 +3,18 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  AddOperationOptionalParams,
-  FromNoneOptionalParams,
-  FromOneRequiredOptionalParams,
-  FromOneOptionalOptionalParams,
-} from "./models/options.js";
-import {
   addOperation,
   fromNone,
   fromOneRequired,
   fromOneOptional,
+  AddOperationOptionalParams,
+  FromNoneOptionalParams,
+  FromOneRequiredOptionalParams,
+  FromOneOptionalOptionalParams,
   createServiceDriven,
   ServiceDrivenClientOptionalParams,
   ServiceDrivenContext,
 } from "./api/index.js";
-
-export { ServiceDrivenClientOptionalParams } from "./api/serviceDrivenContext.js";
 
 export class ServiceDrivenClient {
   private _client: ServiceDrivenContext;

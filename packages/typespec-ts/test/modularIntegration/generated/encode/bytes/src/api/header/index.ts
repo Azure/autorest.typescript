@@ -20,7 +20,7 @@ import {
   HeaderBase64OptionalParams,
   HeaderBase64urlOptionalParams,
   HeaderBase64urlArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _headerDefaultSend(
   context: Client,

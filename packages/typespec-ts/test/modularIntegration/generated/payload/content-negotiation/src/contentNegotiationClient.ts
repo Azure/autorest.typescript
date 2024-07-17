@@ -16,8 +16,6 @@ import {
   ContentNegotiationContext,
 } from "./api/index.js";
 
-export { ContentNegotiationClientOptionalParams } from "./api/contentNegotiationContext.js";
-
 export class ContentNegotiationClient {
   private _client: ContentNegotiationContext;
   /** The pipeline used by this client to make requests */

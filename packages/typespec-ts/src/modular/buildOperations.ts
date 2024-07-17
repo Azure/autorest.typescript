@@ -70,8 +70,9 @@ export function buildOperationFiles(
       srcPath,
       operationGroupFile,
       codeModel.project,
-      subfolder,
-      operationGroup.namespaceHierarchies.length
+      subfolder !== ""
+        ? operationGroup.namespaceHierarchies.length + 1
+        : operationGroup.namespaceHierarchies.length
     );
 
     // Import the deserializeUtils
@@ -183,17 +184,12 @@ export function importModels(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,
-  subfolder: string = "",
   importLayer: number = 0
 ) {
   const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
     return i.getModuleSpecifierValue().endsWith(`models/models.js`);
   });
-  const modelsFile = project.getSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }models/models.ts`
-  );
+  const modelsFile = project.getSourceFile(`${srcPath}/models/models.ts`);
   const models: string[] = [];
 
   for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {

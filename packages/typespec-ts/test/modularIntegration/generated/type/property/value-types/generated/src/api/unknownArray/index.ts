@@ -15,7 +15,7 @@ import {
 import {
   UnknownArrayGetOptionalParams,
   UnknownArrayPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _unknownArrayGetSend(
   context: Client,

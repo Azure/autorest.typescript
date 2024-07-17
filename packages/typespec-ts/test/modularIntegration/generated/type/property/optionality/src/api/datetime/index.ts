@@ -19,7 +19,7 @@ import {
   DatetimeGetDefaultOptionalParams,
   DatetimePutAllOptionalParams,
   DatetimePutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getAllSend(
   context: Client,

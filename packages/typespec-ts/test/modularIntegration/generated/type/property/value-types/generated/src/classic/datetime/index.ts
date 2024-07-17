@@ -7,7 +7,7 @@ import { datetimeGet, datetimePut } from "../../api/datetime/index.js";
 import {
   DatetimeGetOptionalParams,
   DatetimePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Datetime operations. */
 export interface DatetimeOperations {

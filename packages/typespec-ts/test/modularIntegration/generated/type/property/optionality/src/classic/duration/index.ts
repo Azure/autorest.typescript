@@ -14,7 +14,7 @@ import {
   DurationGetDefaultOptionalParams,
   DurationPutAllOptionalParams,
   DurationPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Duration operations. */
 export interface DurationOperations {

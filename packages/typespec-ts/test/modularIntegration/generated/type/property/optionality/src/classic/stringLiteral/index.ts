@@ -14,7 +14,7 @@ import {
   StringLiteralGetDefaultOptionalParams,
   StringLiteralPutAllOptionalParams,
   StringLiteralPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a StringLiteral operations. */
 export interface StringLiteralOperations {

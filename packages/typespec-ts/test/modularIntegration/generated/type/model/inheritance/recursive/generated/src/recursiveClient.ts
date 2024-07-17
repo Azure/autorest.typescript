@@ -3,16 +3,15 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { Extension } from "./models/models.js";
-import { PutOptionalParams, GetOptionalParams } from "./models/options.js";
 import {
   put,
   get,
+  PutOptionalParams,
+  GetOptionalParams,
   createRecursive,
   RecursiveClientOptionalParams,
   RecursiveContext,
 } from "./api/index.js";
-
-export { RecursiveClientOptionalParams } from "./api/recursiveContext.js";
 
 export class RecursiveClient {
   private _client: RecursiveContext;

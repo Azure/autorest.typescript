@@ -7,10 +7,8 @@ import {
   NotDefinedClientOptionalParams,
   NotDefinedContext,
   valid,
+  ValidOptionalParams,
 } from "./api/index.js";
-import { ValidOptionalParams } from "./models/options.js";
-
-export { NotDefinedClientOptionalParams } from "./api/notDefinedContext.js";
 
 export class NotDefinedClient {
   private _client: NotDefinedContext;

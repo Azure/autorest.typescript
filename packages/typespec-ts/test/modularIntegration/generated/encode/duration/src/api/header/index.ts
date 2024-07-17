@@ -23,7 +23,7 @@ import {
   HeaderInt32SecondsOptionalParams,
   HeaderFloatSecondsOptionalParams,
   HeaderFloat64SecondsOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _headerDefaultSend(
   context: Client,

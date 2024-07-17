@@ -242,7 +242,7 @@ export interface RLCOptions {
   moduleKind?: "esm" | "cjs";
   enableOperationGroup?: boolean;
   flavor?: PackageFlavor;
-  enableModelNamespace?: boolean;
+  autoResolveModelConflict?: boolean;
   hierarchyClient?: boolean;
   compatibilityMode?: boolean;
   experimentalExtensibleEnums?: boolean;

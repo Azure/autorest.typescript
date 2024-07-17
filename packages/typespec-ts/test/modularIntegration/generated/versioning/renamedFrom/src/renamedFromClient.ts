@@ -4,18 +4,14 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { NewModel, Versions } from "./models/models.js";
 import {
-  NewOpOptionalParams,
-  NewOpInNewInterfaceOptionalParams,
-} from "./models/options.js";
-import {
   newOp,
   newOpInNewInterface,
+  NewOpOptionalParams,
+  NewOpInNewInterfaceOptionalParams,
   createRenamedFrom,
   RenamedFromClientOptionalParams,
   RenamedFromContext,
 } from "./api/index.js";
-
-export { RenamedFromClientOptionalParams } from "./api/renamedFromContext.js";
 
 export class RenamedFromClient {
   private _client: RenamedFromContext;

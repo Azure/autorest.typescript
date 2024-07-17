@@ -29,7 +29,7 @@ import {
   GetMissingDiscriminatorOptionalParams,
   GetWrongDiscriminatorOptionalParams,
   GetLegacyModelOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _getModelSend(
   context: Client,

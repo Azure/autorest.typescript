@@ -6,7 +6,7 @@ import { get, put } from "../../api/durationValue/index.js";
 import {
   DurationValueGetOptionalParams,
   DurationValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a DurationValue operations. */
 export interface DurationValueOperations {

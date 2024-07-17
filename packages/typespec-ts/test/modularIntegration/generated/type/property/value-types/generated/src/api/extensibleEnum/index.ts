@@ -15,7 +15,7 @@ import {
 import {
   ExtensibleEnumGetOptionalParams,
   ExtensibleEnumPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _extensibleEnumGetSend(
   context: Client,

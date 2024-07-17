@@ -7,3 +7,4 @@ export {
   MadeOptionalContext,
 } from "./madeOptionalContext.js";
 export { test } from "./operations.js";
+export { TestOptionalParams } from "./options.js";

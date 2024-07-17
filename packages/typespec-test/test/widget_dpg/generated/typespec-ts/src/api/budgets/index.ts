@@ -17,7 +17,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
+import { BudgetsCreateOrReplaceOptionalParams } from "../options.js";
 
 export function _createOrReplaceSend(
   context: Client,

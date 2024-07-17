@@ -19,7 +19,7 @@ import {
   StringGetDefaultOptionalParams,
   StringPutAllOptionalParams,
   StringPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getAllSend(
   context: Client,

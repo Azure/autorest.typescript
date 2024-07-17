@@ -106,7 +106,7 @@ import {
   ModelsWithWhileOptionalParams,
   ModelsWithWithOptionalParams,
   ModelsWithYieldOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Models operations. */
 export interface ModelsOperations {

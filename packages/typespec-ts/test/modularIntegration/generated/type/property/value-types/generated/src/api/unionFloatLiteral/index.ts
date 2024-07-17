@@ -15,7 +15,7 @@ import {
 import {
   UnionFloatLiteralGetOptionalParams,
   UnionFloatLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _unionFloatLiteralGetSend(
   context: Client,

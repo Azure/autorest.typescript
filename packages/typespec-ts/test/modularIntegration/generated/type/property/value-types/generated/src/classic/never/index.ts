@@ -7,7 +7,7 @@ import { neverGet, neverPut } from "../../api/never/index.js";
 import {
   NeverGetOptionalParams,
   NeverPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Never operations. */
 export interface NeverOperations {

@@ -7,7 +7,7 @@ import { get, put } from "../../api/multipleSpread/index.js";
 import {
   MultipleSpreadGetOptionalParams,
   MultipleSpreadPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a MultipleSpread operations. */
 export interface MultipleSpreadOperations {

@@ -7,7 +7,7 @@ import { get, put } from "../../api/spreadDifferentModel/index.js";
 import {
   SpreadDifferentModelGetOptionalParams,
   SpreadDifferentModelPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadDifferentModel operations. */
 export interface SpreadDifferentModelOperations {

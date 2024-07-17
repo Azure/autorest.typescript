@@ -4,18 +4,14 @@
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  ValidOptionalParams,
-  InvalidOptionalParams,
-} from "./models/options.js";
-import {
   createOAuth2,
   OAuth2ClientOptionalParams,
   OAuth2Context,
   valid,
   invalid,
+  ValidOptionalParams,
+  InvalidOptionalParams,
 } from "./api/index.js";
-
-export { OAuth2ClientOptionalParams } from "./api/oAuth2Context.js";
 
 export class OAuth2Client {
   private _client: OAuth2Context;

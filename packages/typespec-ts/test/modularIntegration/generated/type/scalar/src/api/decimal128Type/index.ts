@@ -16,7 +16,7 @@ import {
   Decimal128TypeResponseBodyOptionalParams,
   Decimal128TypeRequestBodyOptionalParams,
   Decimal128TypeRequestParameterOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _decimal128TypeResponseBodySend(
   context: Client,

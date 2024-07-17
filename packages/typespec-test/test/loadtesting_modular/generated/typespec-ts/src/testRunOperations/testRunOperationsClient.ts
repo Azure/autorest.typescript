@@ -13,24 +13,7 @@ import {
   MetricNamespaceCollection,
   MetricRequestPayload,
   TimeSeriesElement,
-} from "./models/models.js";
-import {
-  CreateOrUpdateTestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
+} from "./../models/models.js";
 import {
   createOrUpdateTestRun,
   createOrUpdateAppComponents,
@@ -46,12 +29,25 @@ import {
   listMetrics,
   listTestRuns,
   stopTestRun,
+  CreateOrUpdateTestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
   createTestRunOperations,
   TestRunOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./api/index.js";
-
-export { TestRunOperationsClientOptionalParams } from "./api/testRunOperationsContext.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 
 export class TestRunOperationsClient {
   private _client: LoadTestServiceContext;

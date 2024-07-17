@@ -6,7 +6,7 @@ import { get, put } from "../../api/booleanValue/index.js";
 import {
   BooleanValueGetOptionalParams,
   BooleanValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a BooleanValue operations. */
 export interface BooleanValueOperations {

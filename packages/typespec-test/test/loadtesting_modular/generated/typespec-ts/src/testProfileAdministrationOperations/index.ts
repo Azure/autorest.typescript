@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  TestProfileAdministrationOperationsClient,
-  TestProfileAdministrationOperationsClientOptionalParams,
-} from "./testProfileAdministrationOperationsClient.js";
+export { TestProfileAdministrationOperationsClient } from "./testProfileAdministrationOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -88,11 +85,14 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "../models/index.js";
+export {
   CreateOrUpdateTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+  TestProfileAdministrationOperationsClientOptionalParams,
+} from "./api/index.js";

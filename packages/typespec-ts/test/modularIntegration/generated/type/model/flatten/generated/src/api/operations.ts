@@ -20,7 +20,7 @@ import {
 import {
   PutFlattenModelOptionalParams,
   PutNestedFlattenModelOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _putFlattenModelSend(
   context: Client,

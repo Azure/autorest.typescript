@@ -19,7 +19,7 @@ import {
   PropertyBase64OptionalParams,
   PropertyBase64urlOptionalParams,
   PropertyBase64urlArrayOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Property operations. */
 export interface PropertyOperations {

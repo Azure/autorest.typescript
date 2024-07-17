@@ -47,7 +47,7 @@ import {
   TopLevelTrackedResourcesDeleteOptionalParams,
   TopLevelTrackedResourcesListByResourceGroupOptionalParams,
   TopLevelTrackedResourcesListBySubscriptionOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _topLevelTrackedResourcesGetSend(
   context: Client,

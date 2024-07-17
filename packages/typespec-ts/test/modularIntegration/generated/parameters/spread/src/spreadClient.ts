@@ -10,8 +10,6 @@ import {
   SpreadContext,
 } from "./api/index.js";
 
-export { SpreadClientOptionalParams } from "./api/spreadContext.js";
-
 export class SpreadClient {
   private _client: SpreadContext;
   /** The pipeline used by this client to make requests */

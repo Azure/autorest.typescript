@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  ContentSafetyClient,
-  ContentSafetyClientOptionalParams,
-} from "./contentSafetyClient.js";
+export { ContentSafetyClient } from "./contentSafetyClient.js";
 export {
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
@@ -25,6 +22,12 @@ export {
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
   Versions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./models/index.js";
+export {
+  ContentSafetyClientOptionalParams,
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
   GetTextBlocklistOptionalParams,
@@ -35,7 +38,4 @@ export {
   RemoveBlockItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   ListTextBlocklistItemsOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+} from "./api/index.js";

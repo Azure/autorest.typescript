@@ -4,20 +4,16 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { InputModel, OutputModel, RoundTripModel } from "./models/models.js";
 import {
-  InputToInputOutputOptionalParams,
-  OutputToInputOutputOptionalParams,
-  ModelInReadOnlyPropertyOptionalParams,
-} from "./models/options.js";
-import {
   inputToInputOutput,
   outputToInputOutput,
   modelInReadOnlyProperty,
+  InputToInputOutputOptionalParams,
+  OutputToInputOutputOptionalParams,
+  ModelInReadOnlyPropertyOptionalParams,
   createUsage,
   UsageClientOptionalParams,
   UsageContext,
 } from "./api/index.js";
-
-export { UsageClientOptionalParams } from "./api/usageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;

@@ -13,7 +13,7 @@ import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,
   ImagesCreateVariationOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Images operations. */
 export interface ImagesOperations {

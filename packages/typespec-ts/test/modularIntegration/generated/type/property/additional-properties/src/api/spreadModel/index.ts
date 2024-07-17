@@ -19,7 +19,7 @@ import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   SpreadModelGetOptionalParams,
   SpreadModelPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getSend(
   context: Client,

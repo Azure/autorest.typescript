@@ -4,13 +4,11 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   myOp,
+  MyOpOptionalParams,
   createSingle,
   SingleClientOptionalParams,
   SingleContext,
 } from "./api/index.js";
-import { MyOpOptionalParams } from "./models/options.js";
-
-export { SingleClientOptionalParams } from "./api/singleContext.js";
 
 export class SingleClient {
   private _client: SingleContext;

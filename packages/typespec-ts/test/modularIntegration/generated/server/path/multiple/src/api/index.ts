@@ -7,3 +7,7 @@ export {
   MultipleContext,
 } from "./multipleContext.js";
 export { noOperationParams, withOperationPathParam } from "./operations.js";
+export {
+  NoOperationParamsOptionalParams,
+  WithOperationPathParamOptionalParams,
+} from "./options.js";

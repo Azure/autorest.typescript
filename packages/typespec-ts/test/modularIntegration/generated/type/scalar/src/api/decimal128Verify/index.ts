@@ -14,7 +14,7 @@ import {
 import {
   Decimal128VerifyPrepareVerifyOptionalParams,
   Decimal128VerifyVerifyOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _decimal128VerifyPrepareVerifySend(
   context: Client,

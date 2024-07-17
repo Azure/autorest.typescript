@@ -10,7 +10,7 @@ import {
 import {
   UnionFloatLiteralGetOptionalParams,
   UnionFloatLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a UnionFloatLiteral operations. */
 export interface UnionFloatLiteralOperations {

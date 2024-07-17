@@ -13,17 +13,6 @@ import {
   AbstractModelUnion,
 } from "./models/models.js";
 import {
-  NoDecoratorInPublicOptionalParams,
-  PublicDecoratorInPublicOptionalParams,
-  NoDecoratorInInternalOptionalParams,
-  InternalDecoratorInInternalOptionalParams,
-  PublicDecoratorInInternalOptionalParams,
-  PublicOptionalParams,
-  InternalOptionalParams,
-  OperationOptionalParams,
-  DiscriminatorOptionalParams,
-} from "./models/options.js";
-import {
   createAccess,
   AccessClientOptionalParams,
   AccessContext,
@@ -36,9 +25,16 @@ import {
   internal,
   operation,
   discriminator,
+  NoDecoratorInPublicOptionalParams,
+  PublicDecoratorInPublicOptionalParams,
+  NoDecoratorInInternalOptionalParams,
+  InternalDecoratorInInternalOptionalParams,
+  PublicDecoratorInInternalOptionalParams,
+  PublicOptionalParams,
+  InternalOptionalParams,
+  OperationOptionalParams,
+  DiscriminatorOptionalParams,
 } from "./api/index.js";
-
-export { AccessClientOptionalParams } from "./api/accessContext.js";
 
 export class AccessClient {
   private _client: AccessContext;

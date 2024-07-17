@@ -12,7 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { EditsCreateOptionalParams } from "../../models/options.js";
+import { EditsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

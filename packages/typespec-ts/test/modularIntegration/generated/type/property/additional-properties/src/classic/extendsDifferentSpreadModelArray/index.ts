@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsDifferentSpreadModelArray/index.js";
 import {
   ExtendsDifferentSpreadModelArrayGetOptionalParams,
   ExtendsDifferentSpreadModelArrayPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsDifferentSpreadModelArray operations. */
 export interface ExtendsDifferentSpreadModelArrayOperations {

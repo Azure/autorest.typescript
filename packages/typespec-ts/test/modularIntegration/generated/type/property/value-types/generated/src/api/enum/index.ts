@@ -12,10 +12,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  EnumGetOptionalParams,
-  EnumPutOptionalParams,
-} from "../../models/options.js";
+import { EnumGetOptionalParams, EnumPutOptionalParams } from "../options.js";
 
 export function _enumGetSend(
   context: Client,

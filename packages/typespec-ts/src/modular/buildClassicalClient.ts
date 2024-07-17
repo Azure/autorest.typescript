@@ -48,14 +48,6 @@ export function buildClassicalClient(
     )}.ts`
   );
 
-  clientFile.addExportDeclaration({
-    namedExports: [`${classicalClientName}OptionalParams`],
-    moduleSpecifier: `./api/${normalizeName(
-      modularClientName,
-      NameType.File
-    )}Context.js`
-  });
-
   const clientClass = clientFile.addClass({
     isExported: true,
     name: `${classicalClientName}`
@@ -141,9 +133,7 @@ function importAllModels(
   subfolder: string
 ) {
   const project = clientFile.getProject();
-  const apiModels = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
-  );
+  const apiModels = project.getSourceFile(`${srcPath}/models/models.ts`);
 
   if (!apiModels) {
     return;
@@ -157,7 +147,7 @@ function importAllModels(
 
   if (exported.length > 0) {
     clientFile.addImportDeclaration({
-      moduleSpecifier: `./models/models.js`,
+      moduleSpecifier: `./${subfolder !== "" ? "../" : ""}models/models.js`,
       namedImports: exported
     });
   }

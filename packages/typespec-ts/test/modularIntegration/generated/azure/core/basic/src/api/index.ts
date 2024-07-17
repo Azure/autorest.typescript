@@ -19,3 +19,16 @@ export {
   listFirstItem,
   listSecondItem,
 } from "./operations.js";
+export {
+  CreateOrUpdateOptionalParams,
+  CreateOrReplaceOptionalParams,
+  GetOptionalParams,
+  ListOptionalParams,
+  ListWithPageOptionalParams,
+  ListWithParametersOptionalParams,
+  ListWithCustomPageModelOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
+  ListFirstItemOptionalParams,
+  ListSecondItemOptionalParams,
+} from "./options.js";

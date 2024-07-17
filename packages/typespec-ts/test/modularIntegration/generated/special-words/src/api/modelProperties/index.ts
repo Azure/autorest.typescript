@@ -11,7 +11,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ModelPropertiesSameAsModelOptionalParams } from "../../models/options.js";
+import { ModelPropertiesSameAsModelOptionalParams } from "../options.js";
 
 export function _modelPropertiesSameAsModelSend(
   context: Client,

@@ -7,7 +7,7 @@ import { enumsOnlyGet, enumsOnlySend } from "../../api/enumsOnly/index.js";
 import {
   EnumsOnlyGetOptionalParams,
   EnumsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a EnumsOnly operations. */
 export interface EnumsOnlyOperations {

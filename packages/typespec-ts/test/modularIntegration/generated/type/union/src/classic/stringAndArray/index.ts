@@ -10,7 +10,7 @@ import {
 import {
   StringAndArrayGetOptionalParams,
   StringAndArraySendOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a StringAndArray operations. */
 export interface StringAndArrayOperations {

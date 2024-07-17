@@ -7,7 +7,7 @@ import {
   CreateTranslationResponse,
 } from "../../../models/models.js";
 import { create } from "../../../api/audio/translations/index.js";
-import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
+import { AudioTranslationsCreateOptionalParams } from "../../../api/options.js";
 
 /** Interface representing a AudioTranslations operations. */
 export interface AudioTranslationsOperations {

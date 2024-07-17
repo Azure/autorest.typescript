@@ -9,8 +9,6 @@ import {
   DemoServiceContext,
 } from "./api/index.js";
 
-export { DemoServiceClientOptionalParams } from "./api/demoServiceContext.js";
-
 export class DemoServiceClient {
   private _client: DemoServiceContext;
   /** The pipeline used by this client to make requests */

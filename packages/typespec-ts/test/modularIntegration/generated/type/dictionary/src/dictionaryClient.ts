@@ -52,8 +52,6 @@ import {
   DictionaryContext,
 } from "./api/index.js";
 
-export { DictionaryClientOptionalParams } from "./api/dictionaryContext.js";
-
 export class DictionaryClient {
   private _client: DictionaryContext;
   /** The pipeline used by this client to make requests */

@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { MediaTypeClient } from "./mediaTypeClient.js";
 export {
-  MediaTypeClient,
   MediaTypeClientOptionalParams,
-} from "./mediaTypeClient.js";
-export {
   StringBodySendAsTextOptionalParams,
   StringBodyGetAsTextOptionalParams,
   StringBodySendAsJsonOptionalParams,
   StringBodyGetAsJsonOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export { StringBodyOperations } from "./classic/index.js";

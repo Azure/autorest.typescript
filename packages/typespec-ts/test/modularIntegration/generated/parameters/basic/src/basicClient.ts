@@ -16,8 +16,6 @@ import {
   BasicContext,
 } from "./api/index.js";
 
-export { BasicClientOptionalParams } from "./api/basicContext.js";
-
 export class BasicClient {
   private _client: BasicContext;
   /** The pipeline used by this client to make requests */

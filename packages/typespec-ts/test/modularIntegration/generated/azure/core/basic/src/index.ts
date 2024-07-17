@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BasicClient, BasicClientOptionalParams } from "./basicClient.js";
+export { BasicClient } from "./basicClient.js";
 export {
   User,
   UserOrder,
@@ -10,6 +10,12 @@ export {
   FirstItem,
   SecondItem,
   Versions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./models/index.js";
+export {
+  BasicClientOptionalParams,
   CreateOrUpdateOptionalParams,
   CreateOrReplaceOptionalParams,
   GetOptionalParams,
@@ -21,7 +27,4 @@ export {
   ExportOptionalParams,
   ListFirstItemOptionalParams,
   ListSecondItemOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+} from "./api/index.js";

@@ -3,7 +3,7 @@
 
 import { BasicContext } from "../../api/basicContext.js";
 import { implicitBodySimple } from "../../api/implicitBody/index.js";
-import { ImplicitBodySimpleOptionalParams } from "../../models/options.js";
+import { ImplicitBodySimpleOptionalParams } from "../../api/options.js";
 
 /** Interface representing a ImplicitBody operations. */
 export interface ImplicitBodyOperations {

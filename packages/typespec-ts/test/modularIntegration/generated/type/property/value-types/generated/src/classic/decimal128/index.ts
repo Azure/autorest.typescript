@@ -7,7 +7,7 @@ import { decimal128Get, decimal128Put } from "../../api/decimal128/index.js";
 import {
   Decimal128GetOptionalParams,
   Decimal128PutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Decimal128 operations. */
 export interface Decimal128Operations {

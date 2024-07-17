@@ -7,7 +7,7 @@ import { bytesGet, bytesPut } from "../../api/bytes/index.js";
 import {
   BytesGetOptionalParams,
   BytesPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Bytes operations. */
 export interface BytesOperations {

@@ -4,24 +4,20 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { AzureLocationModel } from "./models/models.js";
 import {
-  GetOptionalParams,
-  PutOptionalParams,
-  PostOptionalParams,
-  HeaderOptionalParams,
-  QueryOptionalParams,
-} from "./models/options.js";
-import {
   get,
   put,
   post,
   header,
   query,
+  GetOptionalParams,
+  PutOptionalParams,
+  PostOptionalParams,
+  HeaderOptionalParams,
+  QueryOptionalParams,
   createScalar,
   ScalarClientOptionalParams,
   ScalarContext,
 } from "./api/index.js";
-
-export { ScalarClientOptionalParams } from "./api/scalarContext.js";
 
 export class ScalarClient {
   private _client: ScalarContext;

@@ -14,7 +14,7 @@ import {
   UnionIntLiteralGetDefaultOptionalParams,
   UnionIntLiteralPutAllOptionalParams,
   UnionIntLiteralPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a UnionIntLiteral operations. */
 export interface UnionIntLiteralOperations {

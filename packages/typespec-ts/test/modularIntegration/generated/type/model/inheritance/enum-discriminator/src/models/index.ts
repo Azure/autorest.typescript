@@ -11,13 +11,3 @@ export {
   DogUnion,
   SnakeUnion,
 } from "./models.js";
-export {
-  GetExtensibleModelOptionalParams,
-  PutExtensibleModelOptionalParams,
-  GetExtensibleModelMissingDiscriminatorOptionalParams,
-  GetExtensibleModelWrongDiscriminatorOptionalParams,
-  GetFixedModelOptionalParams,
-  PutFixedModelOptionalParams,
-  GetFixedModelMissingDiscriminatorOptionalParams,
-  GetFixedModelWrongDiscriminatorOptionalParams,
-} from "./options.js";

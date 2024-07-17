@@ -5,7 +5,7 @@ import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import { User } from "../../models/models.js";
 import { createOrReplace } from "../../api/budgets/index.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
+import { BudgetsCreateOrReplaceOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Budgets operations. */
 export interface BudgetsOperations {

@@ -15,7 +15,7 @@ import {
 import {
   MixedTypesGetOptionalParams,
   MixedTypesSendOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _mixedTypesGetSend(
   context: Client,

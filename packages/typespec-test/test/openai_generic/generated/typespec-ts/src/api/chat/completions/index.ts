@@ -19,7 +19,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../../helpers/serializerHelpers.js";
-import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
+import { ChatCompletionsCreateOptionalParams } from "../../options.js";
 
 export function _createSend(
   context: Client,

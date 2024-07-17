@@ -11,10 +11,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  ValidKeyOptionalParams,
-  ValidTokenOptionalParams,
-} from "../models/options.js";
+import { ValidKeyOptionalParams, ValidTokenOptionalParams } from "./options.js";
 
 export function _validKeySend(
   context: Client,

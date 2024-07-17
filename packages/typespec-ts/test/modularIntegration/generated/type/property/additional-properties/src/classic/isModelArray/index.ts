@@ -7,7 +7,7 @@ import { get, put } from "../../api/isModelArray/index.js";
 import {
   IsModelArrayGetOptionalParams,
   IsModelArrayPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a IsModelArray operations. */
 export interface IsModelArrayOperations {

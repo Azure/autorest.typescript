@@ -17,3 +17,14 @@ export {
   getAudioSpeech,
   getEmbeddings,
 } from "./operations.js";
+export {
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetCompletionsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetAudioSpeechOptionalParams,
+  GetEmbeddingsOptionalParams,
+} from "./options.js";

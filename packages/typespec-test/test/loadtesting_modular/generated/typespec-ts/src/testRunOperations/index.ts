@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  TestRunOperationsClient,
-  TestRunOperationsClientOptionalParams,
-} from "./testRunOperationsClient.js";
+export { TestRunOperationsClient } from "./testRunOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -88,6 +85,11 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "../models/index.js";
+export {
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -102,7 +104,5 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+  TestRunOperationsClientOptionalParams,
+} from "./api/index.js";

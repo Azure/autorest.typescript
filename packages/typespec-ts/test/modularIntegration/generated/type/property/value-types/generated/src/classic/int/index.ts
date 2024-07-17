@@ -7,7 +7,7 @@ import { intGet, intPut } from "../../api/int/index.js";
 import {
   IntGetOptionalParams,
   IntPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Int operations. */
 export interface IntOperations {

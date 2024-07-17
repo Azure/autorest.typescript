@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  AdditionalPropertiesClient,
-  AdditionalPropertiesClientOptionalParams,
-} from "./additionalPropertiesClient.js";
+export { AdditionalPropertiesClient } from "./additionalPropertiesClient.js";
 export {
   WidgetData2,
   WidgetData1,
@@ -47,6 +44,9 @@ export {
   WidgetData,
   IsUnknownAdditionalPropertiesDiscriminatedUnion,
   ExtendsUnknownAdditionalPropertiesDiscriminatedUnion,
+} from "./models/index.js";
+export {
+  AdditionalPropertiesClientOptionalParams,
   ExtendsUnknownGetOptionalParams,
   ExtendsUnknownPutOptionalParams,
   ExtendsUnknownDerivedGetOptionalParams,
@@ -111,7 +111,7 @@ export {
   SpreadRecordNonDiscriminatedUnion2PutOptionalParams,
   SpreadRecordNonDiscriminatedUnion3GetOptionalParams,
   SpreadRecordNonDiscriminatedUnion3PutOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   ExtendsDifferentSpreadFloatOperations,
   ExtendsDifferentSpreadModelOperations,

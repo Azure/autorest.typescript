@@ -14,7 +14,7 @@ import {
 import {
   NoOperationParamsOptionalParams,
   WithOperationPathParamOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _noOperationParamsSend(
   context: Client,

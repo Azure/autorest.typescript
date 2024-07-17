@@ -16,7 +16,7 @@ import {
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _withoutApiVersionSend(
   context: Client,

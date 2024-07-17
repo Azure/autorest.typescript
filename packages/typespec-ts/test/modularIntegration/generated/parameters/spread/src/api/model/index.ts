@@ -21,7 +21,7 @@ import {
   ModelSpreadCompositeRequestWithoutBodyOptionalParams,
   ModelSpreadCompositeRequestOptionalParams,
   ModelSpreadCompositeRequestMixOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _modelSpreadAsRequestBodySend(
   context: Client,

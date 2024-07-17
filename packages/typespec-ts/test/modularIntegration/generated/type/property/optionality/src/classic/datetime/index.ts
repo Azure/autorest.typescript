@@ -14,7 +14,7 @@ import {
   DatetimeGetDefaultOptionalParams,
   DatetimePutAllOptionalParams,
   DatetimePutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Datetime operations. */
 export interface DatetimeOperations {

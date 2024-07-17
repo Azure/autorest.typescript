@@ -17,7 +17,7 @@ import {
   HeaderInt32SecondsOptionalParams,
   HeaderFloatSecondsOptionalParams,
   HeaderFloat64SecondsOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Header operations. */
 export interface HeaderOperations {

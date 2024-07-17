@@ -11,7 +11,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { HeaderCsvOptionalParams } from "../../models/options.js";
+import { HeaderCsvOptionalParams } from "../options.js";
 
 export function _headerCsvSend(
   context: Client,

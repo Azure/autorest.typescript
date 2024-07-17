@@ -17,7 +17,7 @@ import {
   QueryFloatSecondsOptionalParams,
   QueryFloat64SecondsOptionalParams,
   QueryInt32SecondsArrayOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Query operations. */
 export interface QueryOperations {

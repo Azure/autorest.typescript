@@ -4,18 +4,14 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { FlattenModel, NestedFlattenModel } from "./models/models.js";
 import {
-  PutFlattenModelOptionalParams,
-  PutNestedFlattenModelOptionalParams,
-} from "./models/options.js";
-import {
   createFlatten,
   FlattenClientOptionalParams,
   FlattenContext,
   putFlattenModel,
   putNestedFlattenModel,
+  PutFlattenModelOptionalParams,
+  PutNestedFlattenModelOptionalParams,
 } from "./api/index.js";
-
-export { FlattenClientOptionalParams } from "./api/flattenContext.js";
 
 export class FlattenClient {
   private _client: FlattenContext;

@@ -43,7 +43,7 @@ import {
   NestedProxyResourcesUpdateOptionalParams,
   NestedProxyResourcesDeleteOptionalParams,
   NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _nestedProxyResourcesGetSend(
   context: Client,

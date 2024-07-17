@@ -25,7 +25,7 @@ import {
   PropertyBase64OptionalParams,
   PropertyBase64urlOptionalParams,
   PropertyBase64urlArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _propertyDefaultSend(
   context: Client,

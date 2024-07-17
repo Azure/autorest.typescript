@@ -39,7 +39,7 @@ import {
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _listSchemaGroupsSend(
   context: Client,

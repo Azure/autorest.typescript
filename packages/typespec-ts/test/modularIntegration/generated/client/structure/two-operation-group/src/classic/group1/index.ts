@@ -7,7 +7,7 @@ import {
   Group1OneOptionalParams,
   Group1ThreeOptionalParams,
   Group1FourOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Group1 operations. */
 export interface Group1Operations {

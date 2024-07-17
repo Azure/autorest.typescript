@@ -19,7 +19,7 @@ import {
   DatetimeGetNullOptionalParams,
   DatetimePatchNonNullOptionalParams,
   DatetimePatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getNonNullSend(
   context: Client,

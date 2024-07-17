@@ -15,7 +15,7 @@ import {
 import {
   NewOpOptionalParams,
   NewOpInNewInterfaceOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _newOpSend(
   context: Client,

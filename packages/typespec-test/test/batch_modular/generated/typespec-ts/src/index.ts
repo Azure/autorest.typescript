@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BatchClient, BatchClientOptionalParams } from "./batchClient.js";
+export { BatchClient } from "./batchClient.js";
 export {
   BatchNodeUserCreateOptions,
   BatchError,
@@ -195,6 +195,12 @@ export {
   NodeRemoveOptions,
   BatchApplication,
   Versions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./models/index.js";
+export {
+  BatchClientOptionalParams,
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,
   ListPoolUsageMetricsOptionalParams,
@@ -271,7 +277,4 @@ export {
   GetNodeFileOptionalParams,
   GetNodeFilePropertiesOptionalParams,
   ListNodeFilesOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+} from "./api/index.js";

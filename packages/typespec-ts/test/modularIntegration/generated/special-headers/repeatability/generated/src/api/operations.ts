@@ -10,7 +10,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ImmediateSuccessOptionalParams } from "../models/options.js";
+import { ImmediateSuccessOptionalParams } from "./options.js";
 
 export function _immediateSuccessSend(
   context: Client,

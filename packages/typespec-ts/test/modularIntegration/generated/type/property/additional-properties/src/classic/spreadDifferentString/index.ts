@@ -7,7 +7,7 @@ import { get, put } from "../../api/spreadDifferentString/index.js";
 import {
   SpreadDifferentStringGetOptionalParams,
   SpreadDifferentStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadDifferentString operations. */
 export interface SpreadDifferentStringOperations {

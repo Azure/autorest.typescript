@@ -6,7 +6,7 @@ import {
   CreateModerationResponse,
 } from "../../models/models.js";
 import { create } from "../../api/moderations/index.js";
-import { ModerationsCreateOptionalParams } from "../../models/options.js";
+import { ModerationsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Moderations operations. */
 export interface ModerationsOperations {

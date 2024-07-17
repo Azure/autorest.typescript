@@ -7,7 +7,7 @@ import { intLiteralGet, intLiteralPut } from "../../api/intLiteral/index.js";
 import {
   IntLiteralGetOptionalParams,
   IntLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a IntLiteral operations. */
 export interface IntLiteralOperations {

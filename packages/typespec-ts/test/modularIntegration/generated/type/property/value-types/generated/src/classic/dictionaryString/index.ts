@@ -10,7 +10,7 @@ import {
 import {
   DictionaryStringGetOptionalParams,
   DictionaryStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a DictionaryString operations. */
 export interface DictionaryStringOperations {

@@ -15,7 +15,7 @@ import {
 import {
   StringExtensibleNamedGetOptionalParams,
   StringExtensibleNamedSendOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _stringExtensibleNamedGetSend(
   context: Client,

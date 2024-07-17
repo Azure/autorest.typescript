@@ -71,7 +71,7 @@ import {
   OperationsWhileOptionalParams,
   OperationsWithOptionalParams,
   OperationsYieldOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Operations operations. */
 export interface OperationsOperations {

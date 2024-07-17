@@ -10,7 +10,7 @@ import {
 import {
   StringExtensibleNamedGetOptionalParams,
   StringExtensibleNamedSendOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a StringExtensibleNamed operations. */
 export interface StringExtensibleNamedOperations {

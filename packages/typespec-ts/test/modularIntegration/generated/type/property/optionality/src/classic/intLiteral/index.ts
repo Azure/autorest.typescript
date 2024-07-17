@@ -14,7 +14,7 @@ import {
   IntLiteralGetDefaultOptionalParams,
   IntLiteralPutAllOptionalParams,
   IntLiteralPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a IntLiteral operations. */
 export interface IntLiteralOperations {

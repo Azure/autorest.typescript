@@ -5,20 +5,16 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User, ExportedUser } from "./models/models.js";
 import {
-  CreateOrReplaceOptionalParams,
-  DeleteOptionalParams,
-  ExportOptionalParams,
-} from "./models/options.js";
-import {
   createOrReplace,
   $delete,
   $export,
+  CreateOrReplaceOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
   createStandard,
   StandardClientOptionalParams,
   StandardContext,
 } from "./api/index.js";
-
-export { StandardClientOptionalParams } from "./api/standardContext.js";
 
 export class StandardClient {
   private _client: StandardContext;

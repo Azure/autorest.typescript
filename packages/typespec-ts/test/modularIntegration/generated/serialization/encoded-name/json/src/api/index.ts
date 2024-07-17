@@ -7,3 +7,4 @@ export {
   JsonContext,
 } from "./jsonContext.js";
 export { send, get } from "./operations.js";
+export { SendOptionalParams, GetOptionalParams } from "./options.js";

@@ -16,7 +16,7 @@ import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   DictionaryStringGetOptionalParams,
   DictionaryStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _dictionaryStringGetSend(
   context: Client,

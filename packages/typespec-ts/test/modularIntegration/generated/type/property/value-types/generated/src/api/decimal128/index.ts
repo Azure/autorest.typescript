@@ -15,7 +15,7 @@ import {
 import {
   Decimal128GetOptionalParams,
   Decimal128PutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _decimal128GetSend(
   context: Client,

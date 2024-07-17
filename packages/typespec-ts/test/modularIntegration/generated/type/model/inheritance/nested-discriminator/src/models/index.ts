@@ -10,11 +10,3 @@ export {
   FishUnion,
   SharkUnion,
 } from "./models.js";
-export {
-  GetModelOptionalParams,
-  PutModelOptionalParams,
-  GetRecursiveModelOptionalParams,
-  PutRecursiveModelOptionalParams,
-  GetMissingDiscriminatorOptionalParams,
-  GetWrongDiscriminatorOptionalParams,
-} from "./options.js";

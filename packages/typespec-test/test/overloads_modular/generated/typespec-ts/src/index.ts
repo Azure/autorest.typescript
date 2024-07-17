@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { WidgetManagerClient } from "./widgetManagerClient.js";
+export { Versions } from "./models/index.js";
 export {
-  WidgetManagerClient,
-  WidgetManagerClientOptionalParams,
-} from "./widgetManagerClient.js";
-export {
-  Versions,
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,
-} from "./models/index.js";
+  WidgetManagerClientOptionalParams,
+} from "./api/index.js";
 export { FooOperationsOperations } from "./classic/index.js";

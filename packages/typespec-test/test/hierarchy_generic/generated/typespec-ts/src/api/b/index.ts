@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BA } from "../../models/models.js";
+import { A1 } from "../../models/models.js";
 import { BOp1204Response, FooContext as Client } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { BOp1OptionalParams } from "../../models/options.js";
+import { BOp1OptionalParams } from "../options.js";
 
 export function _op1Send(
   context: Client,
-  body: BA,
+  body: A1,
   options: BOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod<BOp1204Response> {
   return context
@@ -33,7 +33,7 @@ export async function _op1Deserialize(result: BOp1204Response): Promise<void> {
 
 export async function op1(
   context: Client,
-  body: BA,
+  body: A1,
   options: BOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);

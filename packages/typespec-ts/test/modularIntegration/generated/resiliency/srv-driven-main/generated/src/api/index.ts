@@ -8,6 +8,12 @@ export {
   fromOneOptional,
 } from "./operations.js";
 export {
+  AddOperationOptionalParams,
+  FromNoneOptionalParams,
+  FromOneRequiredOptionalParams,
+  FromOneOptionalOptionalParams,
+} from "./options.js";
+export {
   createServiceDriven,
   ServiceDrivenClientOptionalParams,
   ServiceDrivenContext,

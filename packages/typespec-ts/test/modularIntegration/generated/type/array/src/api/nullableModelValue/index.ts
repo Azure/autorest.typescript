@@ -15,7 +15,7 @@ import {
 import {
   NullableModelValueGetOptionalParams,
   NullableModelValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _nullableModelValueGetSend(
   context: Client,

@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { TestProfileRun, _PagedTestProfileRun } from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
+import { TestProfileRun, _PagedTestProfileRun } from "../../models/models.js";
 import {
   isUnexpected,
   LoadTestServiceContext as Client,
@@ -24,13 +22,15 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   CreateOrUpdateTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 
 export function _createOrUpdateTestProfileRunSend(
   context: Client,

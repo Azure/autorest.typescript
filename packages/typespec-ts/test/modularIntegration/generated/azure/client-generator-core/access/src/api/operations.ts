@@ -38,7 +38,7 @@ import {
   InternalOptionalParams,
   OperationOptionalParams,
   DiscriminatorOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _noDecoratorInPublicSend(
   context: Client,

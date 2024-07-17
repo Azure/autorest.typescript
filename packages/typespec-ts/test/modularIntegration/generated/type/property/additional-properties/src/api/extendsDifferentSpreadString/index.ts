@@ -18,7 +18,7 @@ import {
 import {
   ExtendsDifferentSpreadStringGetOptionalParams,
   ExtendsDifferentSpreadStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getSend(
   context: Client,

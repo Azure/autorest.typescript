@@ -25,19 +25,6 @@ export {
   ProvisioningState,
 } from "./models.js";
 export {
-  TopLevelTrackedResourcesGetOptionalParams,
-  TopLevelTrackedResourcesCreateOrReplaceOptionalParams,
-  TopLevelTrackedResourcesUpdateOptionalParams,
-  TopLevelTrackedResourcesDeleteOptionalParams,
-  TopLevelTrackedResourcesListByResourceGroupOptionalParams,
-  TopLevelTrackedResourcesListBySubscriptionOptionalParams,
-  NestedProxyResourcesGetOptionalParams,
-  NestedProxyResourcesCreateOrReplaceOptionalParams,
-  NestedProxyResourcesUpdateOptionalParams,
-  NestedProxyResourcesDeleteOptionalParams,
-  NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams,
-} from "./options.js";
-export {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

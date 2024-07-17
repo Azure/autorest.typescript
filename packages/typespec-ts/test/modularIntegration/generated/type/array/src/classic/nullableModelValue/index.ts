@@ -10,7 +10,7 @@ import {
 import {
   NullableModelValueGetOptionalParams,
   NullableModelValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a NullableModelValue operations. */
 export interface NullableModelValueOperations {

@@ -14,7 +14,7 @@ import {
 import {
   NullableInt32ValueGetOptionalParams,
   NullableInt32ValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _nullableInt32ValueGetSend(
   context: Client,

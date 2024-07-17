@@ -3,7 +3,7 @@
 
 import { ServiceContext } from "../../api/serviceContext.js";
 import { eight } from "../../api/qux/index.js";
-import { QuxEightOptionalParams } from "../../models/options.js";
+import { QuxEightOptionalParams } from "../../api/options.js";
 import { QuxBarOperations, getQuxBarOperations } from "./bar/index.js";
 
 /** Interface representing a Qux operations. */

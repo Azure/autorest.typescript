@@ -14,7 +14,7 @@ import {
   UnionFloatLiteralGetDefaultOptionalParams,
   UnionFloatLiteralPutAllOptionalParams,
   UnionFloatLiteralPutDefaultOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a UnionFloatLiteral operations. */
 export interface UnionFloatLiteralOperations {

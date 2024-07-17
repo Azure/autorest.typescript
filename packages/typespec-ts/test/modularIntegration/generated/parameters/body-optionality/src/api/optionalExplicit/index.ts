@@ -15,7 +15,7 @@ import {
 import {
   OptionalExplicitSetOptionalParams,
   OptionalExplicitOmitOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _setSend(
   context: Client,

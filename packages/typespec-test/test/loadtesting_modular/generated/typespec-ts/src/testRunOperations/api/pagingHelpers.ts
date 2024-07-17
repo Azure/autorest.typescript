@@ -13,7 +13,7 @@ import {
   PageSettings,
   PagedAsyncIterableIterator,
   PagedResult,
-} from "../models/pagingTypes.js";
+} from "../../models/pagingTypes.js";
 import { isUnexpected } from "../../rest/index.js";
 
 /**

@@ -15,7 +15,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
+import { EmbeddingsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

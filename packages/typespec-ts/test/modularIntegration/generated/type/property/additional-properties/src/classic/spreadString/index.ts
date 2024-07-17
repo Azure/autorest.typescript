@@ -7,7 +7,7 @@ import { get, put } from "../../api/spreadString/index.js";
 import {
   SpreadStringGetOptionalParams,
   SpreadStringPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadString operations. */
 export interface SpreadStringOperations {

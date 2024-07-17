@@ -3,25 +3,21 @@
 
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { TestProfile } from "./models/models.js";
-import {
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
-  ListTestProfilesOptionalParams,
-} from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
+import { TestProfile } from "./../models/models.js";
 import {
   createOrUpdateTestProfile,
   deleteTestProfile,
   getTestProfile,
   listTestProfiles,
+  CreateOrUpdateTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  GetTestProfileOptionalParams,
+  ListTestProfilesOptionalParams,
   createTestProfileAdministrationOperations,
   TestProfileAdministrationOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./api/index.js";
-
-export { TestProfileAdministrationOperationsClientOptionalParams } from "./api/testProfileAdministrationOperationsContext.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 
 export class TestProfileAdministrationOperationsClient {
   private _client: LoadTestServiceContext;

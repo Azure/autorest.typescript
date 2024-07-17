@@ -12,7 +12,7 @@ import {
   StringGetKnownValueOptionalParams,
   StringPutKnownValueOptionalParams,
   StringPutUnknownValueOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a String operations. */
 export interface StringOperations {

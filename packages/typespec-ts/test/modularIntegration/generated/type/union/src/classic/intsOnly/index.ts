@@ -6,7 +6,7 @@ import { intsOnlyGet, intsOnlySend } from "../../api/intsOnly/index.js";
 import {
   IntsOnlyGetOptionalParams,
   IntsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a IntsOnly operations. */
 export interface IntsOnlyOperations {

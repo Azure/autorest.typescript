@@ -25,8 +25,6 @@ import {
   BytesContext,
 } from "./api/index.js";
 
-export { BytesClientOptionalParams } from "./api/bytesContext.js";
-
 export class BytesClient {
   private _client: BytesContext;
   /** The pipeline used by this client to make requests */

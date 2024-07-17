@@ -18,7 +18,7 @@ import {
   FromNoneOptionalParams,
   FromOneRequiredOptionalParams,
   FromOneOptionalOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _addOperationSend(
   context: Client,

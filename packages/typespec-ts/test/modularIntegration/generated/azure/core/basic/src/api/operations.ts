@@ -60,7 +60,7 @@ import {
   ExportOptionalParams,
   ListFirstItemOptionalParams,
   ListSecondItemOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _createOrUpdateSend(
   context: Client,

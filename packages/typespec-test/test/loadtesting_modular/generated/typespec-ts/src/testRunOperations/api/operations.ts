@@ -21,9 +21,7 @@ import {
   TimeSeriesElement,
   _Metrics,
   _PagedTestRun,
-} from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
+} from "../../models/models.js";
 import {
   isUnexpected,
   LoadTestRunCreateOrUpdateAppComponents200Response,
@@ -65,6 +63,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -80,7 +79,8 @@ import {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 
 export function _createOrUpdateTestRunSend(
   context: Client,

@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { JsonClient, JsonClientOptionalParams } from "./jsonClient.js";
+export { JsonClient } from "./jsonClient.js";
+export { JsonEncodedNameModel } from "./models/index.js";
 export {
-  JsonEncodedNameModel,
+  JsonClientOptionalParams,
   SendOptionalParams,
   GetOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

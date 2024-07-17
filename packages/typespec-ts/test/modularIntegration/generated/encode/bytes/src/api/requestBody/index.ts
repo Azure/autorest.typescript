@@ -21,7 +21,7 @@ import {
   RequestBodyCustomContentTypeOptionalParams,
   RequestBodyBase64OptionalParams,
   RequestBodyBase64urlOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _requestBodyDefaultSend(
   context: Client,

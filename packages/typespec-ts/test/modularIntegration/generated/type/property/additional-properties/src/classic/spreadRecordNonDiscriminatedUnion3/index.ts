@@ -10,7 +10,7 @@ import {
 import {
   SpreadRecordNonDiscriminatedUnion3GetOptionalParams,
   SpreadRecordNonDiscriminatedUnion3PutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SpreadRecordNonDiscriminatedUnion3 operations. */
 export interface SpreadRecordNonDiscriminatedUnion3Operations {

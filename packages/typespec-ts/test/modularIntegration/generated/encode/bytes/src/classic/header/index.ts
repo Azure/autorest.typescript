@@ -13,7 +13,7 @@ import {
   HeaderBase64OptionalParams,
   HeaderBase64urlOptionalParams,
   HeaderBase64urlArrayOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Header operations. */
 export interface HeaderOperations {

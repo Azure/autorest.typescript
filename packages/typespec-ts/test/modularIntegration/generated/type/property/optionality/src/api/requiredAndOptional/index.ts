@@ -19,7 +19,7 @@ import {
   RequiredAndOptionalGetRequiredOnlyOptionalParams,
   RequiredAndOptionalPutAllOptionalParams,
   RequiredAndOptionalPutRequiredOnlyOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getAllSend(
   context: Client,

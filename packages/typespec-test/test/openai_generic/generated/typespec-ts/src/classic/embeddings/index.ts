@@ -7,7 +7,7 @@ import {
   CreateEmbeddingResponse,
 } from "../../models/models.js";
 import { create } from "../../api/embeddings/index.js";
-import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
+import { EmbeddingsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Embeddings operations. */
 export interface EmbeddingsOperations {

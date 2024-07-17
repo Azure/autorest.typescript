@@ -9,7 +9,7 @@ import {
 import {
   NullableFloatValueGetOptionalParams,
   NullableFloatValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a NullableFloatValue operations. */
 export interface NullableFloatValueOperations {

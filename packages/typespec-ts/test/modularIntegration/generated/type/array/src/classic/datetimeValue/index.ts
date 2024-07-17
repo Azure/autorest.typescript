@@ -9,7 +9,7 @@ import {
 import {
   DatetimeValueGetOptionalParams,
   DatetimeValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a DatetimeValue operations. */
 export interface DatetimeValueOperations {

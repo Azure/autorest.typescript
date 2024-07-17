@@ -16,7 +16,7 @@ import { stringToUint8Array } from "@azure/core-util";
 import {
   DifferentBodyGetAvatarAsPngOptionalParams,
   DifferentBodyGetAvatarAsJsonOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getAvatarAsPngSend(
   context: Client,

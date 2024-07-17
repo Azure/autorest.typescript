@@ -18,7 +18,7 @@ import {
 import {
   ExtendsUnknownDiscriminatedGetOptionalParams,
   ExtendsUnknownDiscriminatedPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getSend(
   context: Client,

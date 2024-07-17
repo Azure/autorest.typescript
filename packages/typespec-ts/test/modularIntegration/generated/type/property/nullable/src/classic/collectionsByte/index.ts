@@ -14,7 +14,7 @@ import {
   CollectionsByteGetNullOptionalParams,
   CollectionsBytePatchNonNullOptionalParams,
   CollectionsBytePatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a CollectionsByte operations. */
 export interface CollectionsByteOperations {

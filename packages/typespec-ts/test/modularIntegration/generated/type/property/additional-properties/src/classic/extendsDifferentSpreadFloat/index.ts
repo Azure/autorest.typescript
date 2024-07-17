@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsDifferentSpreadFloat/index.js";
 import {
   ExtendsDifferentSpreadFloatGetOptionalParams,
   ExtendsDifferentSpreadFloatPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsDifferentSpreadFloat operations. */
 export interface ExtendsDifferentSpreadFloatOperations {

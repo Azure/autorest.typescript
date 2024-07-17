@@ -3,18 +3,14 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  NoOperationParamsOptionalParams,
-  WithOperationPathParamOptionalParams,
-} from "./models/options.js";
-import {
   createMultiple,
   MultipleClientOptionalParams,
   MultipleContext,
   noOperationParams,
   withOperationPathParam,
+  NoOperationParamsOptionalParams,
+  WithOperationPathParamOptionalParams,
 } from "./api/index.js";
-
-export { MultipleClientOptionalParams } from "./api/multipleContext.js";
 
 export class MultipleClient {
   private _client: MultipleContext;

@@ -14,7 +14,7 @@ import {
 import {
   BooleanValueGetOptionalParams,
   BooleanValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _booleanValueGetSend(
   context: Client,

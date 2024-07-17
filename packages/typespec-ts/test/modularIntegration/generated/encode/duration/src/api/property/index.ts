@@ -30,7 +30,7 @@ import {
   PropertyFloatSecondsOptionalParams,
   PropertyFloat64SecondsOptionalParams,
   PropertyFloatSecondsArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _propertyDefaultSend(
   context: Client,

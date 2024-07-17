@@ -9,7 +9,7 @@ import {
 import {
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a FooOperations operations. */
 export interface FooOperationsOperations {

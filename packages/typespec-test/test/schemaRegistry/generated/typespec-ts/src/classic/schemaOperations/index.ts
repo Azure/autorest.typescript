@@ -23,7 +23,7 @@ import {
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SchemaOperations operations. */
 export interface SchemaOperationsOperations {

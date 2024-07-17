@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsUnknownDiscriminated/index.js";
 import {
   ExtendsUnknownDiscriminatedGetOptionalParams,
   ExtendsUnknownDiscriminatedPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsUnknownDiscriminated operations. */
 export interface ExtendsUnknownDiscriminatedOperations {

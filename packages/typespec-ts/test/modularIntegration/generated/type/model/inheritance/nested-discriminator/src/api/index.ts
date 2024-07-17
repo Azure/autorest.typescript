@@ -14,3 +14,11 @@ export {
   getMissingDiscriminator,
   getWrongDiscriminator,
 } from "./operations.js";
+export {
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
+} from "./options.js";

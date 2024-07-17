@@ -7,7 +7,7 @@ import { get, put } from "../../api/modelValue/index.js";
 import {
   ModelValueGetOptionalParams,
   ModelValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ModelValue operations. */
 export interface ModelValueOperations {

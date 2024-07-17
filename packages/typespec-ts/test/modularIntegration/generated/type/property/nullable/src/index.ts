@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  NullableClient,
-  NullableClientOptionalParams,
-} from "./nullableClient.js";
+export { NullableClient } from "./nullableClient.js";
 export {
   CollectionsStringProperty,
   CollectionsModelProperty,
@@ -14,6 +11,9 @@ export {
   DatetimeProperty,
   BytesProperty,
   StringProperty,
+} from "./models/index.js";
+export {
+  NullableClientOptionalParams,
   StringGetNonNullOptionalParams,
   StringGetNullOptionalParams,
   StringPatchNonNullOptionalParams,
@@ -42,7 +42,7 @@ export {
   CollectionsStringGetNullOptionalParams,
   CollectionsStringPatchNonNullOptionalParams,
   CollectionsStringPatchNullOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   BytesOperations,
   CollectionsByteOperations,

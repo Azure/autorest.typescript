@@ -10,7 +10,7 @@ import {
 import {
   FloatLiteralGetOptionalParams,
   FloatLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a FloatLiteral operations. */
 export interface FloatLiteralOperations {

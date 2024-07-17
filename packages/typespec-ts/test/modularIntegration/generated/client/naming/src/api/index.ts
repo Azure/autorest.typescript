@@ -15,3 +15,16 @@ export {
   request,
   response,
 } from "./operations.js";
+export {
+  ClientNameOptionalParams,
+  ParameterOptionalParams,
+  ClientOptionalParams,
+  LanguageOptionalParams,
+  CompatibleWithEncodedNameOptionalParams,
+  RequestOptionalParams,
+  ResponseOptionalParams,
+  ClientModelClientOptionalParams,
+  ClientModelLanguageOptionalParams,
+  UnionEnumUnionEnumNameOptionalParams,
+  UnionEnumUnionEnumMemberNameOptionalParams,
+} from "./options.js";

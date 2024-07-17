@@ -15,7 +15,7 @@ import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   UnknownValueGetOptionalParams,
   UnknownValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getSend(
   context: Client,

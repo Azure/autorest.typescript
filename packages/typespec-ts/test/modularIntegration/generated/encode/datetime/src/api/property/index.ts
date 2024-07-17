@@ -27,7 +27,7 @@ import {
   PropertyRfc7231OptionalParams,
   PropertyUnixTimestampOptionalParams,
   PropertyUnixTimestampArrayOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _propertyDefaultSend(
   context: Client,

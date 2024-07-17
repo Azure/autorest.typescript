@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsModel/index.js";
 import {
   ExtendsModelGetOptionalParams,
   ExtendsModelPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsModel operations. */
 export interface ExtendsModelOperations {

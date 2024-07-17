@@ -15,7 +15,7 @@ import {
 import {
   DecimalGetOptionalParams,
   DecimalPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _decimalGetSend(
   context: Client,

@@ -12,8 +12,6 @@ import {
   MediaTypeContext,
 } from "./api/index.js";
 
-export { MediaTypeClientOptionalParams } from "./api/mediaTypeContext.js";
-
 export class MediaTypeClient {
   private _client: MediaTypeContext;
   /** The pipeline used by this client to make requests */

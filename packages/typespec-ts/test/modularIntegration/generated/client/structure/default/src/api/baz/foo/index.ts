@@ -10,7 +10,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { BazFooSevenOptionalParams } from "../../../models/options.js";
+import { BazFooSevenOptionalParams } from "../../options.js";
 
 export function _sevenSend(
   context: Client,

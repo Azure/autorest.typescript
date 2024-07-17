@@ -15,7 +15,7 @@ import {
 import {
   UnknownDictGetOptionalParams,
   UnknownDictPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _unknownDictGetSend(
   context: Client,

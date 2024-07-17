@@ -13,7 +13,7 @@ import {
   QueryBase64OptionalParams,
   QueryBase64urlOptionalParams,
   QueryBase64urlArrayOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Query operations. */
 export interface QueryOperations {

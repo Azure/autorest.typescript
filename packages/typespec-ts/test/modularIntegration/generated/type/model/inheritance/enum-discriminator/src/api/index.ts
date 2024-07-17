@@ -16,3 +16,13 @@ export {
   getFixedModelMissingDiscriminator,
   getFixedModelWrongDiscriminator,
 } from "./operations.js";
+export {
+  GetExtensibleModelOptionalParams,
+  PutExtensibleModelOptionalParams,
+  GetExtensibleModelMissingDiscriminatorOptionalParams,
+  GetExtensibleModelWrongDiscriminatorOptionalParams,
+  GetFixedModelOptionalParams,
+  PutFixedModelOptionalParams,
+  GetFixedModelMissingDiscriminatorOptionalParams,
+  GetFixedModelWrongDiscriminatorOptionalParams,
+} from "./options.js";

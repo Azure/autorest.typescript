@@ -64,8 +64,6 @@ import {
   ArrayContext,
 } from "./api/index.js";
 
-export { ArrayClientOptionalParams } from "./api/arrayContext.js";
-
 export class ArrayClient {
   private _client: ArrayContext;
   /** The pipeline used by this client to make requests */

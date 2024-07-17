@@ -7,7 +7,7 @@ import { get, put } from "../../api/isFloat/index.js";
 import {
   IsFloatGetOptionalParams,
   IsFloatPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a IsFloat operations. */
 export interface IsFloatOperations {

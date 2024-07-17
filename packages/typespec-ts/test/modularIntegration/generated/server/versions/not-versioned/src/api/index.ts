@@ -11,3 +11,8 @@ export {
   withQueryApiVersion,
   withPathApiVersion,
 } from "./operations.js";
+export {
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
+} from "./options.js";

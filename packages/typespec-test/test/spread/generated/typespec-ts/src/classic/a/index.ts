@@ -9,7 +9,7 @@ import {
   ATest2OptionalParams,
   ATest3OptionalParams,
   ATest4OptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a A operations. */
 export interface AOperations {

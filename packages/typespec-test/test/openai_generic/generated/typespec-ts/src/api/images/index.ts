@@ -27,7 +27,7 @@ import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,
   ImagesCreateVariationOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _createSend(
   context: Client,

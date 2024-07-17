@@ -15,7 +15,7 @@ import {
 import {
   CollectionsIntGetOptionalParams,
   CollectionsIntPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _collectionsIntGetSend(
   context: Client,

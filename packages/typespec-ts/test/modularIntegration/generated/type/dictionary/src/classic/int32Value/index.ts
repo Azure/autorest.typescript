@@ -6,7 +6,7 @@ import { get, put } from "../../api/int32Value/index.js";
 import {
   Int32ValueGetOptionalParams,
   Int32ValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Int32Value operations. */
 export interface Int32ValueOperations {

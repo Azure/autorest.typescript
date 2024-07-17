@@ -5,13 +5,12 @@ import {
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
-export function buildPagingTypes(client: Client, codeModel: ModularCodeModel) {
-  if (!hasPagingOnlyOperation(client)) {
+export function buildPagingTypes(codeModel: ModularCodeModel) {
+  if (!codeModel.clients.some((client) => hasPagingOnlyOperation(client))) {
     return;
   }
   const filePath = path.join(
     codeModel.modularOptions.sourceRoot,
-    client.subfolder ?? "",
     `models/pagingTypes.ts`
   );
   const fileContent = codeModel.project.createSourceFile(filePath, undefined, {
@@ -155,7 +154,9 @@ export function buildPagingHelpers(
         isMultiClients ? "../" : ""
       }../rest/index.js";`
     : "";
-  const pagingTypesPath = `../models/pagingTypes.js`;
+  const pagingTypesPath = `${
+    client.subfolder && client.subfolder !== "" ? "../" : ""
+  }../models/pagingTypes.js`;
   const filePath = path.join(
     codeModel.modularOptions.sourceRoot,
     client.subfolder ?? "",

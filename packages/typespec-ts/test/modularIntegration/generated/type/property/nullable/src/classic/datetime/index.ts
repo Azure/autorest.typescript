@@ -14,7 +14,7 @@ import {
   DatetimeGetNullOptionalParams,
   DatetimePatchNonNullOptionalParams,
   DatetimePatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Datetime operations. */
 export interface DatetimeOperations {

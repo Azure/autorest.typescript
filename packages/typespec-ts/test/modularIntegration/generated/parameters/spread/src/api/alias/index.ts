@@ -16,7 +16,7 @@ import {
   AliasSpreadAsRequestBodyOptionalParams,
   AliasSpreadAsRequestParameterOptionalParams,
   AliasSpreadWithMultipleParametersOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _aliasSpreadAsRequestBodySend(
   context: Client,

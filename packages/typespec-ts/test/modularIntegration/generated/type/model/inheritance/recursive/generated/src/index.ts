@@ -1,13 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { RecursiveClient } from "./recursiveClient.js";
+export { Element, Extension } from "./models/index.js";
 export {
-  RecursiveClient,
-  RecursiveClientOptionalParams,
-} from "./recursiveClient.js";
-export {
-  Element,
-  Extension,
   PutOptionalParams,
   GetOptionalParams,
-} from "./models/index.js";
+  RecursiveClientOptionalParams,
+} from "./api/index.js";

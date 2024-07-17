@@ -7,7 +7,7 @@ import { durationGet, durationPut } from "../../api/duration/index.js";
 import {
   DurationGetOptionalParams,
   DurationPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Duration operations. */
 export interface DurationOperations {

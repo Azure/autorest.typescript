@@ -7,7 +7,7 @@ import { unknownDictGet, unknownDictPut } from "../../api/unknownDict/index.js";
 import {
   UnknownDictGetOptionalParams,
   UnknownDictPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a UnknownDict operations. */
 export interface UnknownDictOperations {

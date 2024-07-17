@@ -4,18 +4,14 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User, UserActionParam, UserActionResponse } from "./models/models.js";
 import {
-  SmokeTestOptionalParams,
-  RepeatableActionOptionalParams,
-} from "./models/options.js";
-import {
   smokeTest,
   repeatableAction,
+  SmokeTestOptionalParams,
+  RepeatableActionOptionalParams,
   createTraits,
   TraitsClientOptionalParams,
   TraitsContext,
 } from "./api/index.js";
-
-export { TraitsClientOptionalParams } from "./api/traitsContext.js";
 
 export class TraitsClient {
   private _client: TraitsContext;

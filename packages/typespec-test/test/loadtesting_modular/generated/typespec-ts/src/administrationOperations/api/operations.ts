@@ -15,9 +15,7 @@ import {
   TestServerMetricConfig,
   _PagedTest,
   _PagedTestFileInfo,
-} from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
+} from "../../models/models.js";
 import {
   isUnexpected,
   LoadTestAdministrationCreateOrUpdateAppComponents200Response,
@@ -55,6 +53,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -68,7 +67,8 @@ import {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 
 export function _createOrUpdateTestSend(
   context: Client,

@@ -11,18 +11,15 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
+      "./models": "./src/models/index.ts",
       "./administrationOperations": "./src/administrationOperations/index.ts",
       "./administrationOperations/api": "./src/administrationOperations/api/index.ts",
-      "./administrationOperations/models": "./src/administrationOperations/models/index.ts",
       "./testRunOperations": "./src/testRunOperations/index.ts",
       "./testRunOperations/api": "./src/testRunOperations/api/index.ts",
-      "./testRunOperations/models": "./src/testRunOperations/models/index.ts",
       "./testProfileAdministrationOperations": "./src/testProfileAdministrationOperations/index.ts",
       "./testProfileAdministrationOperations/api": "./src/testProfileAdministrationOperations/api/index.ts",
-      "./testProfileAdministrationOperations/models": "./src/testProfileAdministrationOperations/models/index.ts",
       "./testProfileRunOperations": "./src/testProfileRunOperations/index.ts",
-      "./testProfileRunOperations/api": "./src/testProfileRunOperations/api/index.ts",
-      "./testProfileRunOperations/models": "./src/testProfileRunOperations/models/index.ts"
+      "./testProfileRunOperations/api": "./src/testProfileRunOperations/api/index.ts"
     },
     "dialects": [
       "esm",
@@ -117,6 +114,24 @@
         "default": "./dist/commonjs/index.js"
       }
     },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
+      }
+    },
     "./administrationOperations": {
       "browser": {
         "types": "./dist/browser/administrationOperations/index.d.ts",
@@ -151,24 +166,6 @@
       "require": {
         "types": "./dist/commonjs/administrationOperations/api/index.d.ts",
         "default": "./dist/commonjs/administrationOperations/api/index.js"
-      }
-    },
-    "./administrationOperations/models": {
-      "browser": {
-        "types": "./dist/browser/administrationOperations/models/index.d.ts",
-        "default": "./dist/browser/administrationOperations/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/administrationOperations/models/index.d.ts",
-        "default": "./dist/react-native/administrationOperations/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/administrationOperations/models/index.d.ts",
-        "default": "./dist/esm/administrationOperations/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/administrationOperations/models/index.d.ts",
-        "default": "./dist/commonjs/administrationOperations/models/index.js"
       }
     },
     "./testRunOperations": {
@@ -207,24 +204,6 @@
         "default": "./dist/commonjs/testRunOperations/api/index.js"
       }
     },
-    "./testRunOperations/models": {
-      "browser": {
-        "types": "./dist/browser/testRunOperations/models/index.d.ts",
-        "default": "./dist/browser/testRunOperations/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/testRunOperations/models/index.d.ts",
-        "default": "./dist/react-native/testRunOperations/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/testRunOperations/models/index.d.ts",
-        "default": "./dist/esm/testRunOperations/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/testRunOperations/models/index.d.ts",
-        "default": "./dist/commonjs/testRunOperations/models/index.js"
-      }
-    },
     "./testProfileAdministrationOperations": {
       "browser": {
         "types": "./dist/browser/testProfileAdministrationOperations/index.d.ts",
@@ -261,24 +240,6 @@
         "default": "./dist/commonjs/testProfileAdministrationOperations/api/index.js"
       }
     },
-    "./testProfileAdministrationOperations/models": {
-      "browser": {
-        "types": "./dist/browser/testProfileAdministrationOperations/models/index.d.ts",
-        "default": "./dist/browser/testProfileAdministrationOperations/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/testProfileAdministrationOperations/models/index.d.ts",
-        "default": "./dist/react-native/testProfileAdministrationOperations/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/testProfileAdministrationOperations/models/index.d.ts",
-        "default": "./dist/esm/testProfileAdministrationOperations/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/testProfileAdministrationOperations/models/index.d.ts",
-        "default": "./dist/commonjs/testProfileAdministrationOperations/models/index.js"
-      }
-    },
     "./testProfileRunOperations": {
       "browser": {
         "types": "./dist/browser/testProfileRunOperations/index.d.ts",
@@ -313,24 +274,6 @@
       "require": {
         "types": "./dist/commonjs/testProfileRunOperations/api/index.d.ts",
         "default": "./dist/commonjs/testProfileRunOperations/api/index.js"
-      }
-    },
-    "./testProfileRunOperations/models": {
-      "browser": {
-        "types": "./dist/browser/testProfileRunOperations/models/index.d.ts",
-        "default": "./dist/browser/testProfileRunOperations/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/testProfileRunOperations/models/index.d.ts",
-        "default": "./dist/react-native/testProfileRunOperations/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/testProfileRunOperations/models/index.d.ts",
-        "default": "./dist/esm/testProfileRunOperations/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/testProfileRunOperations/models/index.d.ts",
-        "default": "./dist/commonjs/testProfileRunOperations/models/index.js"
       }
     }
   },

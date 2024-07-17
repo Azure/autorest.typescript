@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { FixedClient, FixedClientOptionalParams } from "./fixedClient.js";
+export { FixedClient } from "./fixedClient.js";
+export { DaysOfWeekEnum } from "./models/index.js";
 export {
-  DaysOfWeekEnum,
+  FixedClientOptionalParams,
   StringGetKnownValueOptionalParams,
   StringPutKnownValueOptionalParams,
   StringPutUnknownValueOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export { StringOperations } from "./classic/index.js";

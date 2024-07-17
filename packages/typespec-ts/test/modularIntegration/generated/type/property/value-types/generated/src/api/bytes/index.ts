@@ -13,10 +13,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
-import {
-  BytesGetOptionalParams,
-  BytesPutOptionalParams,
-} from "../../models/options.js";
+import { BytesGetOptionalParams, BytesPutOptionalParams } from "../options.js";
 
 export function _bytesGetSend(
   context: Client,

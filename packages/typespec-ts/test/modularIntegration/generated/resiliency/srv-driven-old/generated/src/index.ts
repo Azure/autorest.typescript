@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { ServiceDrivenClient } from "./serviceDrivenClient.js";
+export { Versions } from "./models/index.js";
 export {
-  ServiceDrivenClient,
-  ServiceDrivenClientOptionalParams,
-} from "./serviceDrivenClient.js";
-export {
-  Versions,
   FromNoneOptionalParams,
   FromOneRequiredOptionalParams,
   FromOneOptionalOptionalParams,
-} from "./models/index.js";
+  ServiceDrivenClientOptionalParams,
+} from "./api/index.js";

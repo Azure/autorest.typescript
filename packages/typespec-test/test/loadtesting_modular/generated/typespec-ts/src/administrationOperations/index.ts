@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  AdministrationOperationsClient,
-  AdministrationOperationsClientOptionalParams,
-} from "./administrationOperationsClient.js";
+export { AdministrationOperationsClient } from "./administrationOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -88,6 +85,12 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "../models/index.js";
+export {
+  AdministrationOperationsClientOptionalParams,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -100,7 +103,4 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+} from "./api/index.js";

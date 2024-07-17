@@ -14,7 +14,7 @@ import {
   CollectionsModelGetNullOptionalParams,
   CollectionsModelPatchNonNullOptionalParams,
   CollectionsModelPatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a CollectionsModel operations. */
 export interface CollectionsModelOperations {

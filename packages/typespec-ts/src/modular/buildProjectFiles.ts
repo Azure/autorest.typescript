@@ -8,7 +8,6 @@ function buildExportsForMultiClient(
 ) {
   if (codeModel.clients.length > 1) {
     delete packageInfo.exports["./api"];
-    delete packageInfo.exports["./models"];
     for (const client of codeModel.clients) {
       const subfolder = normalizeName(
         client.name.replace("Client", ""),
@@ -18,8 +17,6 @@ function buildExportsForMultiClient(
 
       packageInfo.exports[`./${subfolder}/api`] =
         `./src/${subfolder}/api/index.ts`;
-      packageInfo.exports[`./${subfolder}/models`] =
-        `./src/${subfolder}/models/index.ts`;
     }
   }
   if (codeModel.options.hierarchyClient) {

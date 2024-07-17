@@ -10,7 +10,7 @@ import {
 import {
   StringLiteralGetOptionalParams,
   StringLiteralPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a StringLiteral operations. */
 export interface StringLiteralOperations {

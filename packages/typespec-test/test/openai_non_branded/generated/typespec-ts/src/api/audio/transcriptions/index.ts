@@ -16,7 +16,7 @@ import {
   uint8ArrayToString,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
+import { AudioTranscriptionsCreateOptionalParams } from "../../options.js";
 
 export function _createSend(
   context: Client,

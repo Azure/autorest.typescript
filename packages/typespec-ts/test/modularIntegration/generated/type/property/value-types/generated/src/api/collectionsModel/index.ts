@@ -18,7 +18,7 @@ import {
 import {
   CollectionsModelGetOptionalParams,
   CollectionsModelPutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _collectionsModelGetSend(
   context: Client,

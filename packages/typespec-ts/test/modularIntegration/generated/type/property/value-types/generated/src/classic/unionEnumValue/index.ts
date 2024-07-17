@@ -10,7 +10,7 @@ import {
 import {
   UnionEnumValueGetOptionalParams,
   UnionEnumValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a UnionEnumValue operations. */
 export interface UnionEnumValueOperations {

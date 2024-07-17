@@ -19,7 +19,7 @@ import {
   ATest2OptionalParams,
   ATest3OptionalParams,
   ATest4OptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _test1Send(
   context: Client,

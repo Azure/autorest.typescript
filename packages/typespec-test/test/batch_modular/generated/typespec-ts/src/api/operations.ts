@@ -330,7 +330,7 @@ import {
   GetNodeFileOptionalParams,
   GetNodeFilePropertiesOptionalParams,
   ListNodeFilesOptionalParams,
-} from "../models/options.js";
+} from "./options.js";
 
 export function _listApplicationsSend(
   context: Client,

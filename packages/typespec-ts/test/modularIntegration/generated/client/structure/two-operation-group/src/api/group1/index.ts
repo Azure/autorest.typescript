@@ -16,7 +16,7 @@ import {
   Group1OneOptionalParams,
   Group1ThreeOptionalParams,
   Group1FourOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _oneSend(
   context: Client,

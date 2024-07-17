@@ -20,7 +20,7 @@ import {
   CollectionsByteGetNullOptionalParams,
   CollectionsBytePatchNonNullOptionalParams,
   CollectionsBytePatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getNonNullSend(
   context: Client,

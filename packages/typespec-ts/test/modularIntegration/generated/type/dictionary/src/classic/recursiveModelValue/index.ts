@@ -7,7 +7,7 @@ import { get, put } from "../../api/recursiveModelValue/index.js";
 import {
   RecursiveModelValueGetOptionalParams,
   RecursiveModelValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a RecursiveModelValue operations. */
 export interface RecursiveModelValueOperations {

@@ -11,19 +11,6 @@ export {
   Versions,
 } from "./models.js";
 export {
-  CreateOrUpdateOptionalParams,
-  CreateOrReplaceOptionalParams,
-  GetOptionalParams,
-  ListOptionalParams,
-  ListWithPageOptionalParams,
-  ListWithParametersOptionalParams,
-  ListWithCustomPageModelOptionalParams,
-  DeleteOptionalParams,
-  ExportOptionalParams,
-  ListFirstItemOptionalParams,
-  ListSecondItemOptionalParams,
-} from "./options.js";
-export {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

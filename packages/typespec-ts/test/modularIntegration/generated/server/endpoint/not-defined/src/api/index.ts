@@ -7,3 +7,4 @@ export {
   NotDefinedContext,
 } from "./notDefinedContext.js";
 export { valid } from "./operations.js";
+export { ValidOptionalParams } from "./options.js";

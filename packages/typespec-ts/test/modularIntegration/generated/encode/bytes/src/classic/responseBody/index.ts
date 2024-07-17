@@ -15,7 +15,7 @@ import {
   ResponseBodyCustomContentTypeOptionalParams,
   ResponseBodyBase64OptionalParams,
   ResponseBodyBase64urlOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ResponseBody operations. */
 export interface ResponseBodyOperations {

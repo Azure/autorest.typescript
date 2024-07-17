@@ -7,7 +7,7 @@ import { modelGet, modelPut } from "../../api/model/index.js";
 import {
   ModelGetOptionalParams,
   ModelPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Model operations. */
 export interface ModelOperations {

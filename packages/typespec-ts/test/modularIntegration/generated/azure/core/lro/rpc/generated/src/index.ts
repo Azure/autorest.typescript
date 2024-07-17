@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { RpcClient, RpcClientOptionalParams } from "./rpcClient.js";
+export { RpcClient } from "./rpcClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   GenerationOptions,
   GenerationResult,
   Versions,
-  LongRunningRpcOptionalParams,
 } from "./models/index.js";
+export {
+  LongRunningRpcOptionalParams,
+  RpcClientOptionalParams,
+} from "./api/index.js";

@@ -17,7 +17,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
+import { AudioTranslationsCreateOptionalParams } from "../../options.js";
 
 export function _createSend(
   context: Client,

@@ -6,7 +6,7 @@ import {
   CreateCompletionResponse,
 } from "../../models/models.js";
 import { create } from "../../api/completions/index.js";
-import { CompletionsCreateOptionalParams } from "../../models/options.js";
+import { CompletionsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Completions operations. */
 export interface CompletionsOperations {

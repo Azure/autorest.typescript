@@ -8,22 +8,7 @@ import {
   TestFileInfo,
   TestAppComponents,
   TestServerMetricConfig,
-} from "./models/models.js";
-import {
-  CreateOrUpdateTestOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestOptionalParams,
-  GetTestFileOptionalParams,
-  ListTestFilesOptionalParams,
-  ListTestsOptionalParams,
-  UploadTestFileOptionalParams,
-  DeleteTestFileOptionalParams,
-  DeleteTestOptionalParams,
-} from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
+} from "./../models/models.js";
 import {
   createAdministrationOperations,
   AdministrationOperationsClientOptionalParams,
@@ -40,9 +25,20 @@ import {
   uploadTestFile,
   deleteTestFile,
   deleteTest,
+  CreateOrUpdateTestOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestOptionalParams,
+  GetTestFileOptionalParams,
+  ListTestFilesOptionalParams,
+  ListTestsOptionalParams,
+  UploadTestFileOptionalParams,
+  DeleteTestFileOptionalParams,
+  DeleteTestOptionalParams,
 } from "./api/index.js";
-
-export { AdministrationOperationsClientOptionalParams } from "./api/administrationOperationsContext.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 
 export class AdministrationOperationsClient {
   private _client: LoadTestServiceContext;

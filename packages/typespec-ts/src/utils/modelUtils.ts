@@ -78,7 +78,6 @@ import {
   isMediaTypeMultipartFormData,
   KnownMediaType
 } from "./mediaTypes.js";
-import { getModelNamespaceName } from "./namespaceUtils.js";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export const BINARY_TYPE_UNION =
@@ -183,11 +182,11 @@ export function getSchemaForType(
       } else {
         // Handle non-empty anonymous model as inline model
         if (usage && usage.includes(SchemaContext.Output)) {
-          schema.outputTypeName = getModelInlineSigniture(schema, {
+          schema.outputTypeName = getModelInlineSignature(schema, {
             usage: [SchemaContext.Output]
           });
         }
-        schema.typeName = getModelInlineSigniture(schema, {
+        schema.typeName = getModelInlineSignature(schema, {
           usage: [SchemaContext.Input],
           multipart:
             options?.isRequestBody &&
@@ -395,7 +394,7 @@ function getSchemaForUnion(
       getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
     );
   }
-  if (asEnum?.open) {
+  if (asEnum?.open && asEnum?.members.size > 0) {
     values = [];
     for (const [_, member] of asEnum.members.entries()) {
       values.push(
@@ -580,6 +579,20 @@ function validateDiscriminator(
   return retVals.every((v) => v);
 }
 
+export function getResolvedModelName(
+  dpgContext: SdkContext,
+  name: string,
+  model: Model
+) {
+  if (
+    dpgContext.nameModelMap?.get(name) &&
+    dpgContext.nameModelMap.get(name)!.length > 1
+  ) {
+    return `${name}${dpgContext.nameModelMap?.get(name)?.indexOf(model)}`;
+  }
+  return name;
+}
+
 function getSchemaForModel(
   dpgContext: SdkContext,
   model: Model,
@@ -598,12 +611,6 @@ function getSchemaForModel(
   const program = dpgContext.program;
   const overridedModelName =
     getFriendlyName(program, model) ?? getWireName(dpgContext, model);
-  const fullNamespaceName =
-    getModelNamespaceName(dpgContext, model.namespace!)
-      .map((nsName) => {
-        return normalizeName(nsName, NameType.Interface);
-      })
-      .join("") + model.name;
   let name = model.name;
   if (
     !overridedModelName &&
@@ -638,8 +645,8 @@ function getSchemaForModel(
       ? name
       : overridedModelName !== name
         ? overridedModelName
-        : dpgContext.rlcOptions?.enableModelNamespace
-          ? fullNamespaceName
+        : dpgContext.rlcOptions?.autoResolveModelConflict
+          ? getResolvedModelName(dpgContext, name, model)
           : name,
     type: "object",
     isMultipartBody,
@@ -1666,7 +1673,7 @@ export function isAnonymousModelType(type: Type) {
  * @param options other optional parameters
  * @returns
  */
-export function getModelInlineSigniture(
+export function getModelInlineSignature(
   schema: ObjectSchema,
   options: {
     importedModels?: Set<string>;

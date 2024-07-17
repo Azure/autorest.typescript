@@ -19,7 +19,7 @@ import {
   StringGetUnknownValueOptionalParams,
   StringPutKnownValueOptionalParams,
   StringPutUnknownValueOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getKnownValueSend(
   context: Client,

@@ -18,7 +18,7 @@ import {
   ResponseHeaderRfc3339OptionalParams,
   ResponseHeaderRfc7231OptionalParams,
   ResponseHeaderUnixTimestampOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _responseHeaderDefaultSend(
   context: Client,

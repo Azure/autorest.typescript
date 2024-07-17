@@ -11,10 +11,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  BarFiveOptionalParams,
-  BarSixOptionalParams,
-} from "../../models/options.js";
+import { BarFiveOptionalParams, BarSixOptionalParams } from "../options.js";
 
 export function _fiveSend(
   context: Client,

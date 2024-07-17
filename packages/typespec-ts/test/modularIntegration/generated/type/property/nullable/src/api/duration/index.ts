@@ -19,7 +19,7 @@ import {
   DurationGetNullOptionalParams,
   DurationPatchNonNullOptionalParams,
   DurationPatchNullOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _getNonNullSend(
   context: Client,

@@ -7,7 +7,7 @@ import { get, put } from "../../api/extendsFloat/index.js";
 import {
   ExtendsFloatGetOptionalParams,
   ExtendsFloatPutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ExtendsFloat operations. */
 export interface ExtendsFloatOperations {

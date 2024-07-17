@@ -20,7 +20,7 @@ import {
   FineTunesRetrieveOptionalParams,
   FineTunesListEventsOptionalParams,
   FineTunesCancelOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a FineTunes operations. */
 export interface FineTunesOperations {

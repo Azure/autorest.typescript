@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { TraitsClient, TraitsClientOptionalParams } from "./traitsClient.js";
+export { TraitsClient } from "./traitsClient.js";
 export {
   User,
   UserActionParam,
   UserActionResponse,
   Versions,
   RepeatabilityResult,
+} from "./models/index.js";
+export {
   SmokeTestOptionalParams,
   RepeatableActionOptionalParams,
-} from "./models/index.js";
+  TraitsClientOptionalParams,
+} from "./api/index.js";

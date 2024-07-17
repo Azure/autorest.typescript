@@ -7,7 +7,7 @@ import { modelsOnlyGet, modelsOnlySend } from "../../api/modelsOnly/index.js";
 import {
   ModelsOnlyGetOptionalParams,
   ModelsOnlySendOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a ModelsOnly operations. */
 export interface ModelsOnlyOperations {

@@ -11,12 +11,11 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
+      "./models": "./src/models/index.ts",
       "./a": "./src/a/index.ts",
       "./a/api": "./src/a/api/index.ts",
-      "./a/models": "./src/a/models/index.ts",
       "./b": "./src/b/index.ts",
-      "./b/api": "./src/b/api/index.ts",
-      "./b/models": "./src/b/models/index.ts"
+      "./b/api": "./src/b/api/index.ts"
     },
     "dialects": ["esm", "commonjs"],
     "esmDialects": ["browser", "react-native"],

@@ -6,7 +6,7 @@ import { get, put } from "../../api/float32Value/index.js";
 import {
   Float32ValueGetOptionalParams,
   Float32ValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a Float32Value operations. */
 export interface Float32ValueOperations {

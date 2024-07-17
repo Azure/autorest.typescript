@@ -2,8 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { A } from "./models/models.js";
-import { Op1OptionalParams } from "./models/options.js";
+import { A0 } from "./models/models.js";
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
@@ -11,9 +10,8 @@ import {
   FooClientOptionalParams,
   FooContext,
   op1,
+  Op1OptionalParams,
 } from "./api/index.js";
-
-export { FooClientOptionalParams } from "./api/fooContext.js";
 
 export class FooClient {
   private _client: FooContext;
@@ -36,7 +34,7 @@ export class FooClient {
   }
 
   op1(
-    body: A,
+    body: A0,
     options: Op1OptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return op1(this._client, body, options);

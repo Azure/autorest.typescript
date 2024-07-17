@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  SchemaRegistryClient,
-  SchemaRegistryClientOptionalParams,
-} from "./schemaRegistryClient.js";
+export { SchemaRegistryClient } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
   SchemaContentTypeValues,
@@ -14,14 +11,17 @@ export {
   Schema,
   ContentTypeEnum,
   ServiceApiVersions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./models/index.js";
+export {
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./models/index.js";
+  SchemaRegistryClientOptionalParams,
+} from "./api/index.js";
 export { SchemaOperationsOperations } from "./classic/index.js";

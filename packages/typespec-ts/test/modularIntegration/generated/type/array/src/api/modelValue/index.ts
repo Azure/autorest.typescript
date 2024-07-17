@@ -15,7 +15,7 @@ import {
 import {
   ModelValueGetOptionalParams,
   ModelValuePutOptionalParams,
-} from "../../models/options.js";
+} from "../options.js";
 
 export function _modelValueGetSend(
   context: Client,

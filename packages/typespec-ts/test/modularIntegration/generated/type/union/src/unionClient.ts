@@ -48,8 +48,6 @@ import {
   UnionContext,
 } from "./api/index.js";
 
-export { UnionClientOptionalParams } from "./api/unionContext.js";
-
 export class UnionClient {
   private _client: UnionContext;
   /** The pipeline used by this client to make requests */
