@@ -359,9 +359,6 @@ function createMetadata(model: RLCModel): Metadata | undefined {
   const clientPackageName = packageDetails?.name;
   const clientClassName = getClientName(model);
   const serviceName = getServiceName(model);
-  const names = relativePackageSourcePath?.split("/").slice(1);
-  const packageParentDirectoryName = names?.[0];
-  const packageDirectoryName = names?.[1];
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
   if (packageDetails?.version.includes("beta")) {
