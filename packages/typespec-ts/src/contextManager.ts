@@ -2,7 +2,7 @@ import { Project, SourceFile } from "ts-morph";
 import { ModularMetaTree, RlcMetaTree } from "./metaTree.js";
 import { EmitContext } from "@typespec/compiler";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
-import { SdkTypeContext } from "./context/sdkTypes.js";
+import { SdkTypeContext } from "./framework/hooks/sdkTypes.js";
 
 /**
  * Contexts Object Guidelines

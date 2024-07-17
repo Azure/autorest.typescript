@@ -16,7 +16,7 @@ import { prettierTypeScriptOptions } from "../../src/lib.js";
 import { createContextWithDefaultOptions } from "../../src/index.js";
 import { provideContext } from "../../src/contextManager.js";
 import { Project } from "ts-morph";
-import { provideSdkTypes } from "../../src/context/sdkTypes.js";
+import { provideSdkTypes } from "../../src/framework/hooks/sdkTypes.js";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -115,7 +115,7 @@ export function createDpgContextTestHelper(
     tcgcContext: sdkContext
   });
 
-  provideSdkTypes(context.experimental_sdkPackage);
+  provideSdkTypes(context.sdkPackage);
 
   return sdkContext;
 }

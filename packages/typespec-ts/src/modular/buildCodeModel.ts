@@ -115,7 +115,6 @@ import {
   Type as HrlcType
 } from "./modularCodeModel.js";
 import { useContext } from "../contextManager.js";
-import { useSdkTypes } from "../context/sdkTypes.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -755,7 +754,6 @@ function emitBasicOperation(
   rlcModels: RLCModel,
   hierarchies: string[]
 ): HrlcOperation {
-  const getSdkType = useSdkTypes()!;
   // Set up parameters for operation
   const parameters: any[] = [];
   if (endpointPathParameters) {
@@ -843,8 +841,6 @@ function emitBasicOperation(
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
     // Flatten the body parameter if it is an anonymous model
-    const sdkOperation = getSdkType(operation);
-    console.log(`Found ${sdkOperation.name} from TypeSpec Operation type`);
     if (
       bodyParameter.type.type === "model" &&
       bodyParameter.type.name === "" &&

@@ -61,7 +61,6 @@ import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
-import { buildSerializers } from "./modular/serialization/index.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -69,7 +68,7 @@ import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
-import { provideSdkTypes } from "./context/sdkTypes.js";
+import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 
 export * from "./lib.js";
 
@@ -91,7 +90,7 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
-  provideSdkTypes(dpgContext.experimental_sdkPackage);
+  provideSdkTypes(dpgContext.sdkPackage);
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
@@ -223,15 +222,11 @@ export async function $onEmit(context: EmitContext) {
           isMultiClients
         );
         // build operation files
-        const serializerMap = env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]
-          ? buildSerializers(dpgContext, modularCodeModel, subClient)
-          : undefined;
         buildOperationFiles(
           subClient,
           dpgContext,
           modularCodeModel,
-          hasClientUnexpectedHelper,
-          serializerMap
+          hasClientUnexpectedHelper
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
         buildSubpathIndexFile(subClient, modularCodeModel, "models");
