@@ -2,9 +2,7 @@ import {
   SourceFile,
   ImportDeclarationStructure,
   StructureKind,
-  ImportSpecifierStructure,
-  SyntaxKind,
-  InterfaceDeclaration
+  ImportSpecifierStructure
 } from "ts-morph";
 import { provideContext, useContext } from "../../contextManager.js";
 
@@ -27,8 +25,6 @@ export interface Binder {
   applyImports(): void;
 }
 
-type PlacehoderResolver = (alias: string) => void;
-
 class BinderImp implements Binder {
   private referencedDeclarations = new Map<
     SourceFile,
@@ -37,7 +33,7 @@ class BinderImp implements Binder {
   private declarations = new Map<unknown, DeclarationInfo>();
   private imports = new Map<SourceFile, ImportDeclarationStructure[]>();
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
-  private placeholders = new Map<SourceFile, Map<string, PlacehoderResolver>>();
+  private placeholders = new Map<unknown, Map<string, Set<SourceFile>>>();
 
   trackDeclaration(refkey: unknown, name: string, sourceFile: SourceFile) {
     const uniqueName = this.generateLocallyUniqueDeclarationName(
@@ -108,31 +104,38 @@ class BinderImp implements Binder {
     }
 
     const declarationInfo = this.declarations.get(refkey);
+    const placeholderKey = `PLACEHOLDER:${refkey}`;
+
+    if (!this.placeholders.has(refkey)) {
+      this.placeholders.set(refkey, new Map());
+    }
 
     // Reference Doesn't Exist Yet. Need to handle this.
-    if (!declarationInfo) return undefined;
+    if (!declarationInfo) {
+      if (!this.placeholders.get(refkey)!.has(placeholderKey)) {
+        this.placeholders.get(refkey)!.set(placeholderKey, new Set());
+      }
+
+      this.placeholders
+        .get(refkey)!
+        .get(placeholderKey)!
+        .add(currentSourceFile);
+
+      return { alias: placeholderKey } as any;
+    }
 
     const referencedDeclaration = { ...declarationInfo };
 
     if (declarationInfo.sourceFile !== currentSourceFile) {
-      // Add placeholder
-      const placeholderKey = `${declarationInfo.sourceFile.getFilePath()}:${
-        declarationInfo.name
-      }`;
-
-      if (!this.placeholders.has(currentSourceFile)) {
-        this.placeholders.set(currentSourceFile, new Map());
+      if (!this.placeholders.get(refkey)!.has(placeholderKey)) {
+        this.placeholders.get(refkey)!.set(placeholderKey, new Set());
       }
+      this.placeholders
+        .get(refkey)!
+        .get(placeholderKey)!
+        .add(currentSourceFile);
 
-      const currentPlaceholders = this.placeholders.get(currentSourceFile)!;
-      if (!currentPlaceholders.has(placeholderKey)) {
-        currentPlaceholders.set(placeholderKey, (alias: string) => {
-          console.log("I want to replace a placeholder with ", alias);
-          referencedDeclaration.alias = alias;
-        });
-      }
-
-      referencedDeclaration.alias = JSON.stringify(placeholderKey);
+      referencedDeclaration.alias = placeholderKey;
     }
 
     this.referencedDeclarations
@@ -143,21 +146,23 @@ class BinderImp implements Binder {
   }
 
   private addImport(
-    currentSourceFile: SourceFile,
-    targetSourceFile: SourceFile,
+    fileWhereImportIsAdded: SourceFile,
+    fileWhereImportPointsto: SourceFile,
     name: string
   ): ImportSpecifierStructure {
     const importAlias = this.generateLocallyUniqueImportName(
       name,
-      currentSourceFile
+      fileWhereImportIsAdded
     );
 
     // Calculate the path for the import
     const relativePath =
-      currentSourceFile.getRelativePathAsModuleSpecifierTo(targetSourceFile);
+      fileWhereImportIsAdded.getRelativePathAsModuleSpecifierTo(
+        fileWhereImportPointsto
+      );
 
     // Gather the currently tracked imports
-    const importStructures = this.imports.get(currentSourceFile) || [];
+    const importStructures = this.imports.get(fileWhereImportIsAdded) || [];
 
     // Check if an import for the current path already exists in the file
     let importStructure = importStructures.find(
@@ -181,28 +186,42 @@ class BinderImp implements Binder {
     if (!importSpecifier) {
       importSpecifier = {
         name: name,
-        alias: importAlias,
+        alias: name === importAlias ? undefined : importAlias,
         kind: StructureKind.ImportSpecifier
       };
       namedImports.push(importSpecifier);
     }
 
     importStructure.namedImports = namedImports; // Reassign to ensure the changes are applied
-    this.imports.set(currentSourceFile, importStructures);
+    this.imports.set(fileWhereImportIsAdded, importStructures);
     return importSpecifier;
   }
 
   applyImports() {
-    for (const [sourceFile, placeholdersInFile] of this.placeholders) {
-      for (const [key, resolver] of placeholdersInFile) {
-        const [filePath, name] = key.split(":");
-        const targetSourceFile = sourceFile
-          .getProject()
-          .getSourceFile(filePath!);
-        if (!targetSourceFile) return;
+    for (const [refkey, placeholder] of this.placeholders) {
+      const declaration = this.declarations.get(refkey);
+      if (!declaration) {
+        throw new Error(`Declaration not found for ${placeholder}`);
+      }
 
-        const importDec = this.addImport(sourceFile, targetSourceFile, name!);
-        replacePlaceholder(sourceFile, key, importDec.alias!);
+      const { sourceFile: fileWhereDeclarationIs } = declaration;
+
+      for (const [
+        placeholderKey,
+        filesWhereImportIsAdded
+      ] of placeholder.entries()) {
+        for (const fileWhereImportIsAdded of filesWhereImportIsAdded) {
+          let name = declaration.alias ?? declaration.name;
+          if (fileWhereDeclarationIs !== fileWhereImportIsAdded) {
+            const importDec = this.addImport(
+              fileWhereImportIsAdded,
+              fileWhereDeclarationIs,
+              declaration.name
+            );
+            name = importDec.alias ?? declaration.name;
+          }
+          replacePlaceholder(fileWhereImportIsAdded, placeholderKey, name);
+        }
       }
     }
     this.imports.forEach((importStructures, sourceFile) => {
@@ -225,18 +244,8 @@ function replacePlaceholder(
   value: string
 ) {
   // Find and replace the placeholder in the interface
-  sourceFile.forEachDescendant((node) => {
-    if (node.getKind() === SyntaxKind.InterfaceDeclaration) {
-      const interfaceDecl = node as InterfaceDeclaration;
-      interfaceDecl.getProperties().forEach((property) => {
-        const typeNode = property.getTypeNode();
-        if (typeNode && typeNode.getText().includes(placeholder)) {
-          const updatedType = typeNode
-            .getText()
-            .replace(JSON.stringify(placeholder), value);
-          typeNode.replaceWithText(updatedType);
-        }
-      });
-    }
-  });
+  const fileText = sourceFile.getFullText();
+  const regex = new RegExp(placeholder, "g");
+  const updatedText = fileText.replace(regex, value);
+  sourceFile.replaceWithText(updatedText);
 }
