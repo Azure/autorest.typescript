@@ -26,4 +26,5 @@ dist-esm
 dist
 /artifacts
 .tshy-build
+vitest.config.ts.timestamp*
 .tshy

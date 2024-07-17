@@ -19,7 +19,7 @@
     "test-next:coverage": "vitest run ./test-next --coverage",
     "clean": "rimraf ./dist ./typespec-output",
     "build": "tsc -p .",
-    "test": "npm run unit-test && npm run integration-test-ci",
+    "test": "npm run test-next && npm run unit-test && npm run integration-test-ci",
     "lint": "eslint src --ext .ts --max-warnings=0",
     "lint:fix": "eslint src --fix --ext .ts",
     "format": "npm run -s prettier -- --write",
