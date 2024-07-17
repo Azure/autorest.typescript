@@ -79,7 +79,7 @@ import {
   ListMetricNamespacesOptionalParams,
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
-  StopOptionalParams,
+  StopTestRunOptionalParams,
 } from "../models/options.js";
 
 export function _createOrUpdateTestRunSend(
@@ -2028,10 +2028,10 @@ export function listTestRuns(
   );
 }
 
-export function _stopSend(
+export function _stopTestRunSend(
   context: Client,
   testRunId: string,
-  options: StopOptionalParams = { requestOptions: {} },
+  options: StopTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunStop200Response | LoadTestRunStopDefaultResponse
 > {
@@ -2040,7 +2040,7 @@ export function _stopSend(
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _stopDeserialize(
+export async function _stopTestRunDeserialize(
   result: LoadTestRunStop200Response | LoadTestRunStopDefaultResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
@@ -2436,11 +2436,11 @@ export async function _stopDeserialize(
 }
 
 /** Stop test run by test run Id. */
-export async function stop(
+export async function stopTestRun(
   context: Client,
   testRunId: string,
-  options: StopOptionalParams = { requestOptions: {} },
+  options: StopTestRunOptionalParams = { requestOptions: {} },
 ): Promise<TestRun> {
-  const result = await _stopSend(context, testRunId, options);
-  return _stopDeserialize(result);
+  const result = await _stopTestRunSend(context, testRunId, options);
+  return _stopTestRunDeserialize(result);
 }

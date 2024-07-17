@@ -99,7 +99,7 @@ export {
   ListMetricNamespacesOptionalParams,
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
-  StopOptionalParams,
+  StopTestRunOptionalParams,
 } from "./options.js";
 export {
   PageSettings,
