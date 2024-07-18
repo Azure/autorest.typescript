@@ -4,17 +4,30 @@ import {
   Project,
   StructureKind
 } from "ts-morph";
-import { describe, it, expect, beforeEach } from "vitest";
-import { useBinder } from "../../../src/framework/hooks/binder.js";
+import { describe, it, expect, beforeEach, assert } from "vitest";
+import {
+  useBinder,
+  provideBinder,
+  Binder
+} from "../../../src/framework/hooks/binder.js";
 
 import { addDeclaration } from "../../../src/framework/declaration.js";
 import { resolveReference } from "../../../src/framework/reference.js";
+import {
+  assertGetFunctionDeclaration,
+  assertGetInterfaceDeclaration,
+  assertGetInterfaceProperty,
+  assertGeVariableDeclaration
+} from "../../utils/tsmorph-utils.js";
 
 describe("Binder", () => {
   let project: Project;
+  let binder: Binder;
 
   beforeEach(() => {
     project = new Project();
+    provideBinder(project);
+    binder = useBinder();
   });
 
   it("should track declarations correctly", () => {
@@ -33,9 +46,10 @@ describe("Binder", () => {
     };
 
     addDeclaration(sourceFile, interfaceDeclaration, model);
-    const reference = resolveReference(model, sourceFile);
+    binder.applyImports();
 
-    expect(reference).toBe("TestModel");
+    assertGetInterfaceDeclaration(sourceFile, "TestModel");
+
     console.log("// test1.ts");
     console.log(sourceFile.getFullText());
     // test1.ts
@@ -71,12 +85,10 @@ describe("Binder", () => {
 
     addDeclaration(sourceFile, interfaceDeclaration1, model1);
     addDeclaration(sourceFile, interfaceDeclaration2, model2);
+    binder.applyImports();
 
-    const reference1 = resolveReference(model1, sourceFile);
-    const reference2 = resolveReference(model2, sourceFile);
-
-    expect(reference1).toBe("TestModel");
-    expect(reference2).toBe("TestModel_1");
+    assertGetInterfaceDeclaration(sourceFile, "TestModel");
+    assertGetInterfaceDeclaration(sourceFile, "TestModel_1");
 
     console.log("// test1.ts");
     console.log(sourceFile.getFullText());
@@ -115,21 +127,23 @@ describe("Binder", () => {
       name: modelB.name,
       properties: modelB.properties.map((p) => ({
         name: p.name,
-        type: resolveReference(p.type, sourceFile)
+        type: resolveReference(p.type)
       }))
     };
 
     addDeclaration(sourceFile, interfaceDeclarationA, modelA);
     addDeclaration(sourceFile, interfaceDeclarationB, modelB);
-
-    const binder = useBinder();
     binder.applyImports();
 
-    const referenceA = resolveReference(modelA, sourceFile);
-    const referenceB = resolveReference(modelB, sourceFile);
+    assertGetInterfaceDeclaration(sourceFile, "TestModelA");
+    const modelBInterface = assertGetInterfaceDeclaration(
+      sourceFile,
+      "TestModelB"
+    );
 
-    expect(referenceA).toBe("TestModelA");
-    expect(referenceB).toBe("TestModelB");
+    const fooProp = assertGetInterfaceProperty(modelBInterface, "foo");
+
+    assert.equal(fooProp.getText(), "foo: TestModelA;");
 
     console.log("// test1.ts");
     console.log(sourceFile.getFullText());
@@ -181,7 +195,7 @@ describe("Binder", () => {
       name: model2.name,
       properties: model2.properties.map((p) => ({
         name: p.name,
-        type: resolveReference(p.type, sourceFile2)
+        type: resolveReference(p.type)
       }))
     };
 
@@ -190,7 +204,7 @@ describe("Binder", () => {
       name: model3.name,
       properties: model3.properties.map((p) => ({
         name: p.name,
-        type: resolveReference(p.type, sourceFile3)
+        type: resolveReference(p.type)
       }))
     };
 
@@ -198,11 +212,15 @@ describe("Binder", () => {
     addDeclaration(sourceFile2, interfaceDeclaration2, model2);
     addDeclaration(sourceFile3, interfaceDeclaration3, model3);
 
-    const binder = useBinder();
     binder.applyImports();
 
-    const bazProp = sourceFile3.getInterface("LastModel")?.getProperty("baz");
-    const quxProp = sourceFile3.getInterface("LastModel")?.getProperty("qux");
+    const lasModelInterface = assertGetInterfaceDeclaration(
+      sourceFile3,
+      "LastModel"
+    );
+
+    const bazProp = assertGetInterfaceProperty(lasModelInterface, "baz");
+    const quxProp = assertGetInterfaceProperty(lasModelInterface, "qux");
 
     expect(bazProp?.getType().getText()).toBe("TestModel");
     expect(quxProp?.getType().getText()).toBe("TestModelB");
@@ -267,7 +285,7 @@ describe("Binder", () => {
     const sourceFile2 = project.createSourceFile("test2.ts", "", {
       overwrite: true
     });
-    sourceFile2.addStatements(`${resolveReference(fnObject, sourceFile2)}();`);
+    sourceFile2.addStatements(`${resolveReference(fnObject)}();`);
 
     const binder = useBinder();
     binder.applyImports();
@@ -317,13 +335,13 @@ describe("Binder", () => {
     addDeclaration(sourceFile, interfaceDeclaration, model);
     addDeclaration(sourceFile, functionDeclaration, functionModel);
 
-    const reference1 = resolveReference(model, sourceFile);
-    const reference2 = resolveReference(functionModel, sourceFile);
+    binder.applyImports();
 
-    expect(reference1).toBe("TestModel");
-    expect(reference2).toBe("TestFunction");
+    assertGetInterfaceDeclaration(sourceFile, "TestModel");
+    assertGetFunctionDeclaration(sourceFile, "TestFunction");
     console.log("// test1.ts");
     console.log(sourceFile.getFullText());
+
     // test1.ts
     // interface TestModel {
     //   foo: string;
@@ -352,7 +370,7 @@ describe("Binder", () => {
       name: modelA.name,
       properties: modelA.properties.map((p) => ({
         name: p.name,
-        type: resolveReference(modelB, sourceFile)
+        type: resolveReference(modelB)
       }))
     };
 
@@ -361,7 +379,7 @@ describe("Binder", () => {
       name: modelB.name,
       properties: modelB.properties.map((p) => ({
         name: p.name,
-        type: resolveReference(modelA, sourceFile)
+        type: resolveReference(modelA)
       }))
     };
 
@@ -426,15 +444,19 @@ describe("Binder", () => {
     const sourceFile2 = project.createSourceFile("test2.ts", "", {
       overwrite: true
     });
+    sourceFile2.addStatements(`${resolveReference(functionModel)}();`);
     sourceFile2.addStatements(
-      `${resolveReference(functionModel, sourceFile2)}();`
-    );
-    sourceFile2.addStatements(
-      `let obj: ${resolveReference(interfaceModel, sourceFile2)} = { id: 1 };`
+      `let obj: ${resolveReference(interfaceModel)} = { id: 1 };`
     );
 
     const binder = useBinder();
     binder.applyImports();
+
+    const variableDeclaration = assertGeVariableDeclaration(sourceFile2, "obj");
+    assert.equal(
+      variableDeclaration.getText(),
+      "let obj: MyInterface = { id: 1 };"
+    );
 
     console.log("// test1.ts");
     console.log(sourceFile.getFullText());
@@ -481,7 +503,7 @@ describe("Binder", () => {
       name: modelB.name,
       properties: modelB.properties.map((p) => ({
         name: p.name,
-        type: resolveReference(p.type, sourceFile)
+        type: resolveReference(p.type)
       }))
     };
 
@@ -490,6 +512,16 @@ describe("Binder", () => {
 
     const binder = useBinder();
     binder.applyImports();
+
+    assertGetInterfaceDeclaration(sourceFile, "TestModel");
+    const modelBInterface = assertGetInterfaceDeclaration(
+      sourceFile,
+      "TestModelB"
+    );
+
+    const fooProp = assertGetInterfaceProperty(modelBInterface, "foo");
+
+    assert.equal(fooProp.getText(), "foo: TestModel;");
 
     console.log("// test1.ts");
     console.log(sourceFile.getFullText());
