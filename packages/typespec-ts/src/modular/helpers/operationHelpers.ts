@@ -148,11 +148,10 @@ export function getDeserializePrivateFunction(
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
-  const rlcResponseTypes = getRLCResponseTypes(operation.rlcResponse);
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: rlcResponseTypes
+      type: getRLCResponseTypes(operation.rlcResponse)
     }
   ];
   // TODO: Support LRO + paging operation
