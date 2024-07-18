@@ -28,9 +28,8 @@ type Contexts = {
     compilerContext: EmitContext;
     tcgcContext: SdkContext;
   };
-  binder: Binder
+  binder: Binder;
 };
-
 
 type ContextKey = keyof Contexts;
 
