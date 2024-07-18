@@ -209,10 +209,10 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  let deserializedType = isLroOnly
+  const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response.type;
-  let hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+  const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
   // Narrow down the rlc response type to deserialized one
   const isNarrowedResponse = getNarrowedRLCResponse(
     response,
@@ -224,16 +224,9 @@ export function getDeserializePrivateFunction(
     deserializePrefix = "res.body";
   }
 
-  let deserializedRoot = hasLroSubPath
+  const deserializedRoot = hasLroSubPath
     ? `${deserializePrefix}.${operation?.lroMetadata?.finalResultPath}`
     : `${deserializePrefix}`;
-  // TODO: Hard-coded for LRO PATCH case for now
-  // https://github.com/Azure/autorest.typescript/issues/2314
-  if (isLroOnly && operation.method.toLowerCase() === "patch") {
-    deserializedType = response.type;
-    hasLroSubPath = false;
-    deserializedRoot = deserializePrefix;
-  }
   if (isLroOnly && hasLroSubPath) {
     statements.push(
       `if(${deserializedRoot.split(".").join("?.")} === undefined) {
