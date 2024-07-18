@@ -2,7 +2,8 @@ import {
   SourceFile,
   ImportDeclarationStructure,
   StructureKind,
-  ImportSpecifierStructure
+  ImportSpecifierStructure,
+  Project
 } from "ts-morph";
 import { provideContext, useContext } from "../../contextManager.js";
 
@@ -25,22 +26,19 @@ export interface Binder {
     name: string,
     sourceFile: SourceFile
   ): DeclarationInfo;
-  resolveReference(
-    refkey: unknown,
-    currentSourceFile: SourceFile
-  ): DeclarationInfo | undefined;
+  resolveReference(refkey: unknown): string;
   applyImports(): void;
 }
 
 class BinderImp implements Binder {
-  private referencedDeclarations = new Map<
-    SourceFile,
-    Map<unknown, DeclarationInfo>
-  >();
   private declarations = new Map<unknown, DeclarationInfo>();
   private imports = new Map<SourceFile, ImportDeclarationStructure[]>();
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
-  private placeholders = new Map<unknown, Map<string, Set<SourceFile>>>();
+  private project: Project;
+
+  constructor(project?: Project) {
+    this.project = project ?? new Project();
+  }
 
   trackDeclaration(
     refkey: unknown,
@@ -127,52 +125,8 @@ class BinderImp implements Binder {
    * @param currentSourceFile - The current source file where the reference is being resolved.
    * @returns The declaration information if resolved, or a placeholder if not found.
    */
-  resolveReference(
-    refkey: unknown,
-    currentSourceFile: SourceFile
-  ): DeclarationInfo | undefined {
-    if (!this.referencedDeclarations.has(currentSourceFile)) {
-      this.referencedDeclarations.set(currentSourceFile, new Map());
-    }
-
-    if (this.referencedDeclarations.get(currentSourceFile)!.has(refkey)) {
-      return this.referencedDeclarations.get(currentSourceFile)!.get(refkey);
-    }
-
-    const declarationInfo = this.declarations.get(refkey);
-    if (!declarationInfo) {
-      this.addPlaceholder(refkey, currentSourceFile);
-      return { alias: this.serializePlaceholder(refkey) } as any;
-    }
-
-    const referencedDeclaration = { ...declarationInfo };
-
-    if (declarationInfo.sourceFile !== currentSourceFile) {
-      this.addPlaceholder(refkey, currentSourceFile);
-      referencedDeclaration.alias = this.serializePlaceholder(refkey);
-    }
-
-    this.referencedDeclarations
-      .get(currentSourceFile)!
-      .set(refkey, referencedDeclaration);
-    return referencedDeclaration;
-  }
-
-  /**
-   * Adds a placeholder for a reference key in a source file.
-   * Placeholders are used when a declaration is not ready yet.
-   * @param refkey - The reference key.
-   * @param sourceFile - The source file where the placeholder is added.
-   */
-  private addPlaceholder(refkey: unknown, sourceFile: SourceFile): void {
-    const placeholderKey = this.serializePlaceholder(refkey);
-    if (!this.placeholders.has(refkey)) {
-      this.placeholders.set(refkey, new Map());
-    }
-    if (!this.placeholders.get(refkey)!.has(placeholderKey)) {
-      this.placeholders.get(refkey)!.set(placeholderKey, new Set());
-    }
-    this.placeholders.get(refkey)!.get(placeholderKey)!.add(sourceFile);
+  resolveReference(refkey: unknown): string {
+    return this.serializePlaceholder(refkey);
   }
 
   /**
@@ -241,27 +195,19 @@ class BinderImp implements Binder {
    * Applies all tracked imports to their respective source files.
    */
   applyImports(): void {
-    for (const [refkey, placeholder] of this.placeholders) {
-      const declaration = this.declarations.get(refkey);
-      if (!declaration) {
-        throw new Error(`Declaration not found for ${refkey}`);
-      }
-
-      const { sourceFile: fileWhereDeclarationIs } = declaration;
-
-      for (const [placeholderKey, filesWhereImportIsAdded] of placeholder) {
-        for (const fileWhereImportIsAdded of filesWhereImportIsAdded) {
-          let name = declaration.alias ?? declaration.name;
-          if (fileWhereDeclarationIs !== fileWhereImportIsAdded) {
-            const importDec = this.addImport(
-              fileWhereImportIsAdded,
-              fileWhereDeclarationIs,
-              declaration.name
-            );
-            name = importDec.alias ?? declaration.name;
-          }
-          replacePlaceholder(fileWhereImportIsAdded, placeholderKey, name);
+    for (const file of this.project.getSourceFiles()) {
+      for (const [declarationKey, declaration] of this.declarations) {
+        const placeholderKey = this.serializePlaceholder(declarationKey);
+        let name = declaration.name;
+        if (file !== declaration.sourceFile) {
+          const importDec = this.addImport(
+            file,
+            declaration.sourceFile,
+            declaration.name
+          );
+          name = importDec.alias ?? declaration.name;
         }
+        replacePlaceholder(file, placeholderKey, name);
       }
     }
 
@@ -274,7 +220,9 @@ class BinderImp implements Binder {
 }
 
 // Provide the binder context to be used globally
-provideContext("binder", new BinderImp());
+export function provideBinder(project?: Project): void {
+  return provideContext("binder", new BinderImp(project));
+}
 
 /**
  * Hook to use the binder context.
