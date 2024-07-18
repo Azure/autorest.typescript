@@ -52,6 +52,30 @@ export interface DurationPutAllOptionalParams extends OperationOptions {}
 export interface DurationPutDefaultOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
+export interface PlainDateGetAllOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface PlainDateGetDefaultOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface PlainDatePutAllOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface PlainDatePutDefaultOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface PlainTimeGetAllOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface PlainTimeGetDefaultOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface PlainTimePutAllOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface PlainTimePutDefaultOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
 export interface CollectionsByteGetAllOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */

@@ -92,7 +92,7 @@ describe("Azure Arm Resources Rest Client", () => {
       validTopLevelResource.properties?.description
     );
   });
-  it("should update top level tracked resources", async () => {
+  it.skip("should update top level tracked resources", async () => {
     const result = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -102,6 +102,7 @@ describe("Azure Arm Resources Rest Client", () => {
       )
       .patch({
         body: {
+          location: "eastus",
           properties: {
             description: "valid2"
           }

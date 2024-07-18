@@ -12,3 +12,6 @@ export interface VisibilityModel {
   /** Required bool, illustrating a delete property. */
   deleteProp: boolean;
 }
+
+/** RoundTrip model with readonly optional properties. */
+export interface ReadOnlyModel {}

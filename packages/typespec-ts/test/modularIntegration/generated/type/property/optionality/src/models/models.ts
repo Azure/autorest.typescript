@@ -14,6 +14,8 @@ import {
   CollectionsModelProperty as CollectionsModelPropertyRest,
   StringProperty as StringPropertyRest,
   CollectionsByteProperty as CollectionsBytePropertyRest,
+  PlainTimeProperty as PlainTimePropertyRest,
+  PlainDateProperty as PlainDatePropertyRest,
   DurationProperty as DurationPropertyRest,
   DatetimeProperty as DatetimePropertyRest,
   BytesProperty as BytesPropertyRest,
@@ -179,6 +181,34 @@ export function collectionsBytePropertySerializer(
       item["property"] === undefined
         ? item["property"]
         : item["property"].map((p) => uint8ArrayToString(p, "base64")),
+  };
+}
+
+/** Model with a plainTime property */
+export interface PlainTimeProperty {
+  /** Property */
+  property?: Date;
+}
+
+export function plainTimePropertySerializer(
+  item: PlainTimeProperty,
+): PlainTimePropertyRest {
+  return {
+    property: item["property"]?.toTimeString(),
+  };
+}
+
+/** Model with a plainDate property */
+export interface PlainDateProperty {
+  /** Property */
+  property?: Date;
+}
+
+export function plainDatePropertySerializer(
+  item: PlainDateProperty,
+): PlainDatePropertyRest {
+  return {
+    property: item["property"]?.toDateString(),
   };
 }
 
