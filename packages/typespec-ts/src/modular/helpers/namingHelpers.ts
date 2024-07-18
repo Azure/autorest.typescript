@@ -13,7 +13,6 @@ import {
   Operation,
   OperationGroup
 } from "../modularCodeModel.js";
-import { isDefined } from "../serialization/util.js";
 
 export function getClientName(client: Client) {
   return client.name.replace(/Client$/, "");
@@ -75,6 +74,10 @@ export function getClassicalLayerPrefix(
     );
   }
   return prefix.join(separator);
+}
+
+export function isDefined<T>(thing: T | undefined | null): thing is T {
+  return typeof thing !== "undefined" && thing !== null;
 }
 
 export function getRLCIndexFilePath(
