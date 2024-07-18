@@ -5,7 +5,9 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   dataTypePropertiesSerializer,
+  dataTypeUpdatePropertiesSerializer,
   DataType,
+  DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
   _DataTypeListResult,
@@ -29,8 +31,8 @@ import {
   DataTypesGenerateStorageContainerSasTokenDefaultResponse,
   DataTypesGet200Response,
   DataTypesGetDefaultResponse,
-  DataTypesListByDataType200Response,
-  DataTypesListByDataTypeDefaultResponse,
+  DataTypesListByDataProduct200Response,
+  DataTypesListByDataProductDefaultResponse,
   DataTypesUpdate200Response,
   DataTypesUpdate202Response,
   DataTypesUpdateDefaultResponse,
@@ -50,7 +52,7 @@ import {
   DataTypesDeleteOptionalParams,
   DataTypesDeleteDataOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByDataTypeOptionalParams,
+  DataTypesListByDataProductOptionalParams,
 } from "../../models/options.js";
 
 export function _createSend(
@@ -247,7 +249,7 @@ export function _updateSend(
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  properties: DataType,
+  properties: DataTypeUpdate,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | DataTypesUpdate200Response
@@ -268,7 +270,7 @@ export function _updateSend(
       body: {
         properties: !properties.properties
           ? properties.properties
-          : dataTypePropertiesSerializer(properties.properties),
+          : dataTypeUpdatePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -328,7 +330,7 @@ export function update(
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  properties: DataType,
+  properties: DataTypeUpdate,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataType>, DataType> {
   return getLongRunningPoller(context, _updateDeserialize, {
@@ -551,14 +553,15 @@ export async function generateStorageContainerSasToken(
   return _generateStorageContainerSasTokenDeserialize(result);
 }
 
-export function _listByDataTypeSend(
+export function _listByDataProductSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByDataTypeOptionalParams = { requestOptions: {} },
+  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  DataTypesListByDataType200Response | DataTypesListByDataTypeDefaultResponse
+  | DataTypesListByDataProduct200Response
+  | DataTypesListByDataProductDefaultResponse
 > {
   return context
     .path(
@@ -570,10 +573,10 @@ export function _listByDataTypeSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _listByDataTypeDeserialize(
+export async function _listByDataProductDeserialize(
   result:
-    | DataTypesListByDataType200Response
-    | DataTypesListByDataTypeDefaultResponse,
+    | DataTypesListByDataProduct200Response
+    | DataTypesListByDataProductDefaultResponse,
 ): Promise<_DataTypeListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -619,24 +622,24 @@ export async function _listByDataTypeDeserialize(
 }
 
 /** List data type by parent resource. */
-export function listByDataType(
+export function listByDataProduct(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByDataTypeOptionalParams = { requestOptions: {} },
+  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<DataType> {
   return buildPagedAsyncIterator(
     context,
     () =>
-      _listByDataTypeSend(
+      _listByDataProductSend(
         context,
         subscriptionId,
         resourceGroupName,
         dataProductName,
         options,
       ),
-    _listByDataTypeDeserialize,
+    _listByDataProductDeserialize,
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

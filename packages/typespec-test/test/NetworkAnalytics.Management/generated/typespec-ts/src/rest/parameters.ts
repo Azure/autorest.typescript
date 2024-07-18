@@ -4,8 +4,10 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import {
   DataType,
+  DataTypeUpdate,
   ContainerSaS,
   DataProduct,
+  DataProductUpdate,
   AccountSas,
   KeyVaultInfo,
   RoleAssignmentCommonProperties,
@@ -30,7 +32,7 @@ export type DataTypesGetParameters = RequestParameters;
 
 export interface DataTypesUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: DataType;
+  body: DataTypeUpdate;
 }
 
 export type DataTypesUpdateParameters = DataTypesUpdateBodyParam &
@@ -52,7 +54,7 @@ export interface DataTypesGenerateStorageContainerSasTokenBodyParam {
 
 export type DataTypesGenerateStorageContainerSasTokenParameters =
   DataTypesGenerateStorageContainerSasTokenBodyParam & RequestParameters;
-export type DataTypesListByDataTypeParameters = RequestParameters;
+export type DataTypesListByDataProductParameters = RequestParameters;
 
 export interface DataProductsCreateBodyParam {
   /** Resource create parameters. */
@@ -65,7 +67,7 @@ export type DataProductsGetParameters = RequestParameters;
 
 export interface DataProductsUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: DataProduct;
+  body: DataProductUpdate;
 }
 
 export type DataProductsUpdateParameters = DataProductsUpdateBodyParam &

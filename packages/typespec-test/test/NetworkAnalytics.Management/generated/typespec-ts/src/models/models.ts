@@ -11,13 +11,17 @@ import {
   VirtualNetworkRule as VirtualNetworkRuleRest,
   IPRules as IPRulesRest,
   ManagedResourceGroupConfiguration as ManagedResourceGroupConfigurationRest,
-  ManagedServiceIdentity as ManagedServiceIdentityRest,
+  ManagedServiceIdentityV4 as ManagedServiceIdentityV4Rest,
+  DataProductUpdate as DataProductUpdateRest,
+  DataProductUpdateProperties as DataProductUpdatePropertiesRest,
   AccountSas as AccountSasRest,
   KeyVaultInfo as KeyVaultInfoRest,
   RoleAssignmentCommonProperties as RoleAssignmentCommonPropertiesRest,
   RoleAssignmentDetail as RoleAssignmentDetailRest,
   DataType as DataTypeRest,
   DataTypeProperties as DataTypePropertiesRest,
+  DataTypeUpdate as DataTypeUpdateRest,
+  DataTypeUpdateProperties as DataTypeUpdatePropertiesRest,
   ContainerSaS as ContainerSaSRest,
 } from "../rest/index.js";
 
@@ -99,7 +103,7 @@ export interface DataProduct extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductProperties;
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentity;
+  identity?: ManagedServiceIdentityV4;
 }
 
 export function dataProductSerializer(item: DataProduct): DataProductRest {
@@ -111,7 +115,7 @@ export function dataProductSerializer(item: DataProduct): DataProductRest {
       : dataProductPropertiesSerializer(item.properties),
     identity: !item.identity
       ? item.identity
-      : managedServiceIdentitySerializer(item.identity),
+      : managedServiceIdentityV4Serializer(item.identity),
   };
 }
 
@@ -372,7 +376,7 @@ export interface ConsumptionEndpointsProperties {
 }
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedServiceIdentity {
+export interface ManagedServiceIdentityV4 {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -383,9 +387,9 @@ export interface ManagedServiceIdentity {
   userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
-export function managedServiceIdentitySerializer(
-  item: ManagedServiceIdentity,
-): ManagedServiceIdentityRest {
+export function managedServiceIdentityV4Serializer(
+  item: ManagedServiceIdentityV4,
+): ManagedServiceIdentityV4Rest {
   return {
     type: item["type"],
     userAssignedIdentities: !item.userAssignedIdentities
@@ -405,8 +409,8 @@ export enum KnownManagedServiceIdentityType {
   SystemAssigned = "SystemAssigned",
   /** UserAssigned */
   UserAssigned = "UserAssigned",
-  /** SystemAssigned,UserAssigned */
-  "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
+  /** SystemAssigned, UserAssigned */
+  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
 }
 
 /**
@@ -417,7 +421,7 @@ export enum KnownManagedServiceIdentityType {
  * **None** \
  * **SystemAssigned** \
  * **UserAssigned** \
- * **SystemAssigned,UserAssigned**
+ * **SystemAssigned, UserAssigned**
  */
 export type ManagedServiceIdentityType = string;
 
@@ -459,6 +463,56 @@ export interface ErrorAdditionalInfo {
   readonly type?: string;
   /** The additional info. */
   readonly info?: Record<string, any>;
+}
+
+/** The type used for update operations of the DataProduct. */
+export interface DataProductUpdate {
+  /** The managed service identities assigned to this resource. */
+  identity?: ManagedServiceIdentityV4;
+  /** Resource tags. */
+  tags?: Record<string, string>;
+  /** The resource-specific properties for this resource. */
+  properties?: DataProductUpdateProperties;
+}
+
+export function dataProductUpdateSerializer(
+  item: DataProductUpdate,
+): DataProductUpdateRest {
+  return {
+    identity: !item.identity
+      ? item.identity
+      : managedServiceIdentityV4Serializer(item.identity),
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    properties: !item.properties
+      ? item.properties
+      : dataProductUpdatePropertiesSerializer(item.properties),
+  };
+}
+
+/** The updatable properties of the DataProduct. */
+export interface DataProductUpdateProperties {
+  /** List of name or email associated with data product resource deployment. */
+  owners?: string[];
+  /** Purview account url for data product to connect to. */
+  purviewAccount?: string;
+  /** Purview collection url for data product to connect to. */
+  purviewCollection?: string;
+  /** Flag to enable or disable private link for data product resource. */
+  privateLinksEnabled?: ControlState;
+  /** Current configured minor version of the data product resource. */
+  currentMinorVersion?: string;
+}
+
+export function dataProductUpdatePropertiesSerializer(
+  item: DataProductUpdateProperties,
+): DataProductUpdatePropertiesRest {
+  return {
+    owners: item["owners"],
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: item["privateLinksEnabled"],
+    currentMinorVersion: item["currentMinorVersion"],
+  };
 }
 
 /** The details for storage account sas creation. */
@@ -659,6 +713,45 @@ export enum KnownDataTypeState {
  * **Running**
  */
 export type DataTypeState = string;
+
+/** The type used for update operations of the DataType. */
+export interface DataTypeUpdate {
+  /** The resource-specific properties for this resource. */
+  properties?: DataTypeUpdateProperties;
+}
+
+export function dataTypeUpdateSerializer(
+  item: DataTypeUpdate,
+): DataTypeUpdateRest {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : dataTypeUpdatePropertiesSerializer(item.properties),
+  };
+}
+
+/** The updatable properties of the DataType. */
+export interface DataTypeUpdateProperties {
+  /** State of data type. */
+  state?: DataTypeState;
+  /** Field for storage output retention in days. */
+  storageOutputRetention?: number;
+  /** Field for database cache retention in days. */
+  databaseCacheRetention?: number;
+  /** Field for database data retention in days. */
+  databaseRetention?: number;
+}
+
+export function dataTypeUpdatePropertiesSerializer(
+  item: DataTypeUpdateProperties,
+): DataTypeUpdatePropertiesRest {
+  return {
+    state: item["state"],
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+  };
+}
 
 /** The details for container sas creation. */
 export interface ContainerSaS {

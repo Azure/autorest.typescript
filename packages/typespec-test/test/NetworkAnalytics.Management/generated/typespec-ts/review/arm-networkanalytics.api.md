@@ -63,7 +63,7 @@ export type CreatedByType = string;
 
 // @public
 export interface DataProduct extends TrackedResource {
-    identity?: ManagedServiceIdentity;
+    identity?: ManagedServiceIdentityV4;
     properties?: DataProductProperties;
 }
 
@@ -182,7 +182,7 @@ export interface DataProductsOperations {
     listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
     removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
     rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
-    update: (resourceGroupName: string, dataProductName: string, properties: DataProduct, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
 // @public
@@ -196,6 +196,22 @@ export interface DataProductsRotateKeyOptionalParams extends OperationOptions {
 // @public
 export interface DataProductsUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+}
+
+// @public
+export interface DataProductUpdate {
+    identity?: ManagedServiceIdentityV4;
+    properties?: DataProductUpdateProperties;
+    tags?: Record<string, string>;
+}
+
+// @public
+export interface DataProductUpdateProperties {
+    currentMinorVersion?: string;
+    owners?: string[];
+    privateLinksEnabled?: ControlState;
+    purviewAccount?: string;
+    purviewCollection?: string;
 }
 
 // @public
@@ -246,7 +262,7 @@ export interface DataTypesGetOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface DataTypesListByDataTypeOptionalParams extends OperationOptions {
+export interface DataTypesListByDataProductOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -256,8 +272,8 @@ export interface DataTypesOperations {
     deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
     generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
     get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
-    listByDataType: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataTypeOptionalParams) => PagedAsyncIterableIterator<DataType>;
-    update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataType, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
+    listByDataProduct: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
+    update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
 // @public
@@ -266,6 +282,19 @@ export type DataTypeState = string;
 // @public
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+}
+
+// @public
+export interface DataTypeUpdate {
+    properties?: DataTypeUpdateProperties;
+}
+
+// @public
+export interface DataTypeUpdateProperties {
+    databaseCacheRetention?: number;
+    databaseRetention?: number;
+    state?: DataTypeState;
+    storageOutputRetention?: number;
 }
 
 // @public
@@ -348,7 +377,7 @@ export enum KnownDefaultAction {
 
 // @public
 export enum KnownManagedServiceIdentityType {
-    "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
+    "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
     None = "None",
     SystemAssigned = "SystemAssigned",
     UserAssigned = "UserAssigned"
@@ -385,15 +414,15 @@ export interface ManagedResourceGroupConfiguration {
 }
 
 // @public
-export interface ManagedServiceIdentity {
+export type ManagedServiceIdentityType = string;
+
+// @public
+export interface ManagedServiceIdentityV4 {
     readonly principalId?: string;
     readonly tenantId?: string;
     type: ManagedServiceIdentityType;
     userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
-
-// @public
-export type ManagedServiceIdentityType = string;
 
 // @public (undocumented)
 export class NetworkAnalyticsClient {

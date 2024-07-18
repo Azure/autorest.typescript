@@ -12,7 +12,7 @@ import {
   DataTypesDeleteParameters,
   DataTypesDeleteDataParameters,
   DataTypesGenerateStorageContainerSasTokenParameters,
-  DataTypesListByDataTypeParameters,
+  DataTypesListByDataProductParameters,
   DataProductsCreateParameters,
   DataProductsGetParameters,
   DataProductsUpdateParameters,
@@ -50,8 +50,8 @@ import {
   DataTypesDeleteDataDefaultResponse,
   DataTypesGenerateStorageContainerSasToken200Response,
   DataTypesGenerateStorageContainerSasTokenDefaultResponse,
-  DataTypesListByDataType200Response,
-  DataTypesListByDataTypeDefaultResponse,
+  DataTypesListByDataProduct200Response,
+  DataTypesListByDataProductDefaultResponse,
   DataProductsCreate200Response,
   DataProductsCreate201Response,
   DataProductsCreateDefaultResponse,
@@ -170,12 +170,13 @@ export interface DataTypesGenerateStorageContainerSasToken {
   >;
 }
 
-export interface DataTypesListByDataType {
+export interface DataTypesListByDataProduct {
   /** List data type by parent resource. */
   get(
-    options?: DataTypesListByDataTypeParameters,
+    options?: DataTypesListByDataProductParameters,
   ): StreamableMethod<
-    DataTypesListByDataType200Response | DataTypesListByDataTypeDefaultResponse
+    | DataTypesListByDataProduct200Response
+    | DataTypesListByDataProductDefaultResponse
   >;
 }
 
@@ -330,7 +331,7 @@ export interface Routes {
     subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
-  ): DataTypesListByDataType;
+  ): DataTypesListByDataProduct;
   /** Resource for '/subscriptions/\{subscriptionId\}/resourceGroups/\{resourceGroupName\}/providers/Microsoft.NetworkAnalytics/dataProducts/\{dataProductName\}' has methods for the following verbs: put, get, patch, delete */
   (
     path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",

@@ -5,8 +5,10 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   dataProductPropertiesSerializer,
-  managedServiceIdentitySerializer,
+  managedServiceIdentityV4Serializer,
+  dataProductUpdatePropertiesSerializer,
   DataProduct,
+  DataProductUpdate,
   AccountSas,
   AccountSasToken,
   KeyVaultInfo,
@@ -101,7 +103,7 @@ export function _createSend(
           : dataProductPropertiesSerializer(resource.properties),
         identity: !resource.identity
           ? resource.identity
-          : managedServiceIdentitySerializer(resource.identity),
+          : managedServiceIdentityV4Serializer(resource.identity),
       },
     });
 }
@@ -449,7 +451,7 @@ export function _updateSend(
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  properties: DataProduct,
+  properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | DataProductsUpdate200Response
@@ -467,16 +469,15 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       body: {
+        identity: !properties.identity
+          ? properties.identity
+          : managedServiceIdentityV4Serializer(properties.identity),
         tags: !properties.tags
           ? properties.tags
           : (serializeRecord(properties.tags as any) as any),
-        location: properties["location"],
         properties: !properties.properties
           ? properties.properties
-          : dataProductPropertiesSerializer(properties.properties),
-        identity: !properties.identity
-          ? properties.identity
-          : managedServiceIdentitySerializer(properties.identity),
+          : dataProductUpdatePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -628,7 +629,7 @@ export function update(
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  properties: DataProduct,
+  properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataProduct>, DataProduct> {
   return getLongRunningPoller(context, _updateDeserialize, {

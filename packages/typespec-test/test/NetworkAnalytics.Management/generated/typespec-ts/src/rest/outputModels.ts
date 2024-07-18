@@ -159,7 +159,7 @@ export interface DataProductOutput extends TrackedResourceOutput {
   /** The resource-specific properties for this resource. */
   properties?: DataProductPropertiesOutput;
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentityOutput;
+  identity?: ManagedServiceIdentityV4Output;
 }
 
 /** The data product properties. */
@@ -295,7 +295,7 @@ export interface ConsumptionEndpointsPropertiesOutput {
 }
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedServiceIdentityOutput {
+export interface ManagedServiceIdentityV4Output {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -303,7 +303,7 @@ export interface ManagedServiceIdentityOutput {
   /**
    * The type of managed identity assigned to this resource.
    *
-   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned,UserAssigned"
+   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned"
    */
   type: ManagedServiceIdentityTypeOutput;
   /** The identities assigned to this resource by the user. */

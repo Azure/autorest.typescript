@@ -73,8 +73,6 @@ export interface DataTypesCreate200Response extends HttpResponse {
 }
 
 export interface DataTypesCreate201Headers {
-  /** A link to the status monitor */
-  "azure-asyncoperation"?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
 }
@@ -208,12 +206,13 @@ export interface DataTypesGenerateStorageContainerSasTokenDefaultResponse
 }
 
 /** Azure operation completed successfully. */
-export interface DataTypesListByDataType200Response extends HttpResponse {
+export interface DataTypesListByDataProduct200Response extends HttpResponse {
   status: "200";
   body: DataTypeListResultOutput;
 }
 
-export interface DataTypesListByDataTypeDefaultResponse extends HttpResponse {
+export interface DataTypesListByDataProductDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -225,8 +224,6 @@ export interface DataProductsCreate200Response extends HttpResponse {
 }
 
 export interface DataProductsCreate201Headers {
-  /** A link to the status monitor */
-  "azure-asyncoperation"?: string;
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
 }
