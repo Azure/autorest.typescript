@@ -29,8 +29,8 @@ import {
   DataTypesGenerateStorageContainerSasTokenDefaultResponse,
   DataTypesGet200Response,
   DataTypesGetDefaultResponse,
-  DataTypesListByParent200Response,
-  DataTypesListByParentDefaultResponse,
+  DataTypesListByDataType200Response,
+  DataTypesListByDataTypeDefaultResponse,
   DataTypesUpdate200Response,
   DataTypesUpdate202Response,
   DataTypesUpdateDefaultResponse,
@@ -50,7 +50,7 @@ import {
   DataTypesDeleteOptionalParams,
   DataTypesDeleteDataOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByParentOptionalParams,
+  DataTypesListByDataTypeOptionalParams,
 } from "../../models/options.js";
 
 export function _createSend(
@@ -551,14 +551,14 @@ export async function generateStorageContainerSasToken(
   return _generateStorageContainerSasTokenDeserialize(result);
 }
 
-export function _listByParentSend(
+export function _listByDataTypeSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByParentOptionalParams = { requestOptions: {} },
+  options: DataTypesListByDataTypeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  DataTypesListByParent200Response | DataTypesListByParentDefaultResponse
+  DataTypesListByDataType200Response | DataTypesListByDataTypeDefaultResponse
 > {
   return context
     .path(
@@ -570,10 +570,10 @@ export function _listByParentSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _listByParentDeserialize(
+export async function _listByDataTypeDeserialize(
   result:
-    | DataTypesListByParent200Response
-    | DataTypesListByParentDefaultResponse,
+    | DataTypesListByDataType200Response
+    | DataTypesListByDataTypeDefaultResponse,
 ): Promise<_DataTypeListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -619,24 +619,24 @@ export async function _listByParentDeserialize(
 }
 
 /** List data type by parent resource. */
-export function listByParent(
+export function listByDataType(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByParentOptionalParams = { requestOptions: {} },
+  options: DataTypesListByDataTypeOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<DataType> {
   return buildPagedAsyncIterator(
     context,
     () =>
-      _listByParentSend(
+      _listByDataTypeSend(
         context,
         subscriptionId,
         resourceGroupName,
         dataProductName,
         options,
       ),
-    _listByParentDeserialize,
+    _listByDataTypeDeserialize,
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

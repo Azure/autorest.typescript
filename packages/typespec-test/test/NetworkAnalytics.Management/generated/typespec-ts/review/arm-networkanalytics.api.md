@@ -246,7 +246,7 @@ export interface DataTypesGetOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface DataTypesListByParentOptionalParams extends OperationOptions {
+export interface DataTypesListByDataTypeOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -256,7 +256,7 @@ export interface DataTypesOperations {
     deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
     generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
     get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
-    listByParent: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByParentOptionalParams) => PagedAsyncIterableIterator<DataType>;
+    listByDataType: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataTypeOptionalParams) => PagedAsyncIterableIterator<DataType>;
     update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataType, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 

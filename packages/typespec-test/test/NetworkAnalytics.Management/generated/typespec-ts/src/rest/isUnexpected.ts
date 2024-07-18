@@ -30,8 +30,8 @@ import {
   DataTypesDeleteDataDefaultResponse,
   DataTypesGenerateStorageContainerSasToken200Response,
   DataTypesGenerateStorageContainerSasTokenDefaultResponse,
-  DataTypesListByParent200Response,
-  DataTypesListByParentDefaultResponse,
+  DataTypesListByDataType200Response,
+  DataTypesListByDataTypeDefaultResponse,
   DataProductsCreate200Response,
   DataProductsCreate201Response,
   DataProductsCreateLogicalResponse,
@@ -166,9 +166,9 @@ export function isUnexpected(
 ): response is DataTypesGenerateStorageContainerSasTokenDefaultResponse;
 export function isUnexpected(
   response:
-    | DataTypesListByParent200Response
-    | DataTypesListByParentDefaultResponse,
-): response is DataTypesListByParentDefaultResponse;
+    | DataTypesListByDataType200Response
+    | DataTypesListByDataTypeDefaultResponse,
+): response is DataTypesListByDataTypeDefaultResponse;
 export function isUnexpected(
   response:
     | DataProductsCreate200Response
@@ -258,8 +258,8 @@ export function isUnexpected(
     | DataTypesDeleteDataDefaultResponse
     | DataTypesGenerateStorageContainerSasToken200Response
     | DataTypesGenerateStorageContainerSasTokenDefaultResponse
-    | DataTypesListByParent200Response
-    | DataTypesListByParentDefaultResponse
+    | DataTypesListByDataType200Response
+    | DataTypesListByDataTypeDefaultResponse
     | DataProductsCreate200Response
     | DataProductsCreate201Response
     | DataProductsCreateLogicalResponse
@@ -299,7 +299,7 @@ export function isUnexpected(
   | DataTypesDeleteDefaultResponse
   | DataTypesDeleteDataDefaultResponse
   | DataTypesGenerateStorageContainerSasTokenDefaultResponse
-  | DataTypesListByParentDefaultResponse
+  | DataTypesListByDataTypeDefaultResponse
   | DataProductsCreateDefaultResponse
   | DataProductsGetDefaultResponse
   | DataProductsUpdateDefaultResponse

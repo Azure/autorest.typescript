@@ -555,7 +555,7 @@ interface DataTypes {
   >;
 
   @doc("List data type by parent resource.")
-  listByParent is ArmResourceListByParent<DataType>;
+  listByDataType is ArmResourceListByParent<DataType>;
 }
 
 @doc("Operations on data product resource.")

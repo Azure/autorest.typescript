@@ -14,7 +14,7 @@ import {
   $delete,
   deleteData,
   generateStorageContainerSasToken,
-  listByParent,
+  listByDataType,
 } from "../../api/dataTypes/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -25,7 +25,7 @@ import {
   DataTypesDeleteOptionalParams,
   DataTypesDeleteDataOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByParentOptionalParams,
+  DataTypesListByDataTypeOptionalParams,
 } from "../../models/options.js";
 
 /** Interface representing a DataTypes operations. */
@@ -82,10 +82,10 @@ export interface DataTypesOperations {
     options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
   ) => Promise<ContainerSasToken>;
   /** List data type by parent resource. */
-  listByParent: (
+  listByDataType: (
     resourceGroupName: string,
     dataProductName: string,
-    options?: DataTypesListByParentOptionalParams,
+    options?: DataTypesListByDataTypeOptionalParams,
   ) => PagedAsyncIterableIterator<DataType>;
 }
 
@@ -186,12 +186,12 @@ export function getDataTypes(
         body,
         options,
       ),
-    listByParent: (
+    listByDataType: (
       resourceGroupName: string,
       dataProductName: string,
-      options?: DataTypesListByParentOptionalParams,
+      options?: DataTypesListByDataTypeOptionalParams,
     ) =>
-      listByParent(
+      listByDataType(
         context,
         subscriptionId,
         resourceGroupName,

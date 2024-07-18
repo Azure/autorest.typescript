@@ -52,7 +52,7 @@ export interface DataTypesGenerateStorageContainerSasTokenBodyParam {
 
 export type DataTypesGenerateStorageContainerSasTokenParameters =
   DataTypesGenerateStorageContainerSasTokenBodyParam & RequestParameters;
-export type DataTypesListByParentParameters = RequestParameters;
+export type DataTypesListByDataTypeParameters = RequestParameters;
 
 export interface DataProductsCreateBodyParam {
   /** Resource create parameters. */

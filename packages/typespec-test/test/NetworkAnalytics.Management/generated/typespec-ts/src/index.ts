@@ -70,7 +70,7 @@ export {
   DataTypesDeleteOptionalParams,
   DataTypesDeleteDataOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByParentOptionalParams,
+  DataTypesListByDataTypeOptionalParams,
   DataProductsCreateOptionalParams,
   DataProductsGetOptionalParams,
   DataProductsUpdateOptionalParams,
