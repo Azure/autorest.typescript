@@ -17,7 +17,7 @@ import {
   listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { getDoc, isVoidType } from "@typespec/compiler";
+import { getDoc, isVoidType, NoTarget } from "@typespec/compiler";
 import { HttpOperation, HttpOperationResponse } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {

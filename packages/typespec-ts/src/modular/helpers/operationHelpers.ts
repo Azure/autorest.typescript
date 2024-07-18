@@ -210,24 +210,40 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  const deserializedType = isLroOnly
+  let deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response.type;
-  const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
-  const deserializedRoot = hasLroSubPath
-    ? `result.body.${operation?.lroMetadata?.finalResultPath}`
-    : "result.body";
-  if (isLroOnly) {
-    const lroLogicalResponse = getRLCLroLogicalResponse(operation.rlcResponse);
-    statements.push(`result = result as ${lroLogicalResponse};`);
-    if (hasLroSubPath) {
-      statements.push(
-        `if(${deserializedRoot.split(".").join("?.")} === undefined) {
-          throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
-        }
-        `
-      );
-    }
+  let hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+  // Narrow down the rlc response type to deserialized one
+  const isNarrowedResponse = getNarrowedRLCResponse(
+    response,
+    operation.rlcResponse
+  );
+  let deserializePrefix = "result.body";
+  if (isNarrowedResponse) {
+    statements.push(
+      `const _result = result as unknown as ${isNarrowedResponse};`
+    );
+    deserializePrefix = "_result.body";
+  }
+
+  let deserializedRoot = hasLroSubPath
+    ? `${deserializePrefix}.${operation?.lroMetadata?.finalResultPath}`
+    : `${deserializePrefix}`;
+  // TODO: Hard-coded for LRO PATCH case for now
+  // https://github.com/Azure/autorest.typescript/issues/2314
+  if (isLroOnly && operation.method.toLowerCase() === "patch") {
+    deserializedType = response.type;
+    hasLroSubPath = false;
+    deserializedRoot = deserializePrefix;
+  }
+  if (isLroOnly && hasLroSubPath) {
+    statements.push(
+      `if(${deserializedRoot.split(".").join("?.")} === undefined) {
+        throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+      }
+      `
+    );
   }
 
   const allParents = deserializedType ? getAllAncestors(deserializedType) : [];
