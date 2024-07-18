@@ -120,7 +120,7 @@ export function transformToResponseTypes(
         dpgContext,
         defaultSchemas,
         nonDefaultSchemas,
-        `${rlcOperationUnit.operationGroup}-${rlcOperationUnit.operationName}`
+        getOperationName(dpgContext, route.operation)
       );
     rlcResponses.push(rlcOperationUnit);
   }
