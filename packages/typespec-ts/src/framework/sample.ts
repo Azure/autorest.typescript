@@ -60,8 +60,8 @@ const sourceFile2 = project.createSourceFile("test2.ts", "", {
 });
 
 // Add statements referencing the tracked declarations
-const functionReference = resolveReference(functionType, sourceFile2);
-const modelReference = resolveReference(modelType, sourceFile2);
+const functionReference = resolveReference(functionType);
+const modelReference = resolveReference(modelType);
 
 sourceFile2.addStatements(`${functionReference}();`);
 sourceFile2.addStatements(`let obj: ${modelReference} = { id: 1 };`);
