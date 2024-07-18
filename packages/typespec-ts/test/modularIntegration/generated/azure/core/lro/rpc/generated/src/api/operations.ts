@@ -45,16 +45,16 @@ export async function _longRunningRpcDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as LongRunningRpcLogicalResponse;
-  if (_result?.body?.result === undefined) {
+  const res = result as unknown as LongRunningRpcLogicalResponse;
+  if (res?.body?.result === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "_result.body.result"`,
+      `Expected a result in the response at position "res.body.result"`,
       result,
     );
   }
 
   return {
-    data: _result.body.result["data"],
+    data: res.body.result["data"],
   };
 }
 
