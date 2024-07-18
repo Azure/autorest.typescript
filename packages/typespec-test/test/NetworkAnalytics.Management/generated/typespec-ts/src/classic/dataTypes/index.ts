@@ -4,7 +4,6 @@
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import {
   DataType,
-  DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
 } from "../../models/models.js";
@@ -15,7 +14,7 @@ import {
   $delete,
   deleteData,
   generateStorageContainerSasToken,
-  listByDataProduct,
+  listByParent,
 } from "../../api/dataTypes/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -26,7 +25,7 @@ import {
   DataTypesDeleteOptionalParams,
   DataTypesDeleteDataOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByDataProductOptionalParams,
+  DataTypesListByParentOptionalParams,
 } from "../../models/options.js";
 
 /** Interface representing a DataTypes operations. */
@@ -51,7 +50,7 @@ export interface DataTypesOperations {
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    properties: DataTypeUpdate,
+    properties: DataType,
     options?: DataTypesUpdateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
   /** Delete data type resource. */
@@ -83,10 +82,10 @@ export interface DataTypesOperations {
     options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
   ) => Promise<ContainerSasToken>;
   /** List data type by parent resource. */
-  listByDataProduct: (
+  listByParent: (
     resourceGroupName: string,
     dataProductName: string,
-    options?: DataTypesListByDataProductOptionalParams,
+    options?: DataTypesListByParentOptionalParams,
   ) => PagedAsyncIterableIterator<DataType>;
 }
 
@@ -129,7 +128,7 @@ export function getDataTypes(
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      properties: DataTypeUpdate,
+      properties: DataType,
       options?: DataTypesUpdateOptionalParams,
     ) =>
       update(
@@ -187,12 +186,12 @@ export function getDataTypes(
         body,
         options,
       ),
-    listByDataProduct: (
+    listByParent: (
       resourceGroupName: string,
       dataProductName: string,
-      options?: DataTypesListByDataProductOptionalParams,
+      options?: DataTypesListByParentOptionalParams,
     ) =>
-      listByDataProduct(
+      listByParent(
         context,
         subscriptionId,
         resourceGroupName,

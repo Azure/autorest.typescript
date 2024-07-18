@@ -4,7 +4,6 @@
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import {
   DataProduct,
-  DataProductUpdate,
   AccountSas,
   AccountSasToken,
   KeyVaultInfo,
@@ -60,7 +59,7 @@ export interface DataProductsOperations {
   update: (
     resourceGroupName: string,
     dataProductName: string,
-    properties: DataProductUpdate,
+    properties: DataProduct,
     options?: DataProductsUpdateOptionalParams,
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
   /** Delete data product resource. */
@@ -148,7 +147,7 @@ export function getDataProducts(
     update: (
       resourceGroupName: string,
       dataProductName: string,
-      properties: DataProductUpdate,
+      properties: DataProduct,
       options?: DataProductsUpdateOptionalParams,
     ) =>
       update(

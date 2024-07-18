@@ -5,9 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   dataTypePropertiesSerializer,
-  dataTypeUpdatePropertiesSerializer,
   DataType,
-  DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
   _DataTypeListResult,
@@ -31,8 +29,8 @@ import {
   DataTypesGenerateStorageContainerSasTokenDefaultResponse,
   DataTypesGet200Response,
   DataTypesGetDefaultResponse,
-  DataTypesListByDataProduct200Response,
-  DataTypesListByDataProductDefaultResponse,
+  DataTypesListByParent200Response,
+  DataTypesListByParentDefaultResponse,
   DataTypesUpdate200Response,
   DataTypesUpdate202Response,
   DataTypesUpdateDefaultResponse,
@@ -52,7 +50,7 @@ import {
   DataTypesDeleteOptionalParams,
   DataTypesDeleteDataOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByDataProductOptionalParams,
+  DataTypesListByParentOptionalParams,
 } from "../../models/options.js";
 
 export function _createSend(
@@ -249,7 +247,7 @@ export function _updateSend(
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  properties: DataTypeUpdate,
+  properties: DataType,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | DataTypesUpdate200Response
@@ -270,7 +268,7 @@ export function _updateSend(
       body: {
         properties: !properties.properties
           ? properties.properties
-          : dataTypeUpdatePropertiesSerializer(properties.properties),
+          : dataTypePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -330,7 +328,7 @@ export function update(
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  properties: DataTypeUpdate,
+  properties: DataType,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataType>, DataType> {
   return getLongRunningPoller(context, _updateDeserialize, {
@@ -553,15 +551,14 @@ export async function generateStorageContainerSasToken(
   return _generateStorageContainerSasTokenDeserialize(result);
 }
 
-export function _listByDataProductSend(
+export function _listByParentSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
+  options: DataTypesListByParentOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | DataTypesListByDataProduct200Response
-  | DataTypesListByDataProductDefaultResponse
+  DataTypesListByParent200Response | DataTypesListByParentDefaultResponse
 > {
   return context
     .path(
@@ -573,10 +570,10 @@ export function _listByDataProductSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _listByDataProductDeserialize(
+export async function _listByParentDeserialize(
   result:
-    | DataTypesListByDataProduct200Response
-    | DataTypesListByDataProductDefaultResponse,
+    | DataTypesListByParent200Response
+    | DataTypesListByParentDefaultResponse,
 ): Promise<_DataTypeListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -622,24 +619,24 @@ export async function _listByDataProductDeserialize(
 }
 
 /** List data type by parent resource. */
-export function listByDataProduct(
+export function listByParent(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
+  options: DataTypesListByParentOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<DataType> {
   return buildPagedAsyncIterator(
     context,
     () =>
-      _listByDataProductSend(
+      _listByParentSend(
         context,
         subscriptionId,
         resourceGroupName,
         dataProductName,
         options,
       ),
-    _listByDataProductDeserialize,
+    _listByParentDeserialize,
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

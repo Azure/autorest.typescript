@@ -12,16 +12,12 @@ import {
   IPRules as IPRulesRest,
   ManagedResourceGroupConfiguration as ManagedResourceGroupConfigurationRest,
   ManagedServiceIdentity as ManagedServiceIdentityRest,
-  DataProductUpdate as DataProductUpdateRest,
-  DataProductUpdateProperties as DataProductUpdatePropertiesRest,
   AccountSas as AccountSasRest,
   KeyVaultInfo as KeyVaultInfoRest,
   RoleAssignmentCommonProperties as RoleAssignmentCommonPropertiesRest,
   RoleAssignmentDetail as RoleAssignmentDetailRest,
   DataType as DataTypeRest,
   DataTypeProperties as DataTypePropertiesRest,
-  DataTypeUpdate as DataTypeUpdateRest,
-  DataTypeUpdateProperties as DataTypeUpdatePropertiesRest,
   ContainerSaS as ContainerSaSRest,
 } from "../rest/index.js";
 
@@ -465,55 +461,6 @@ export interface ErrorAdditionalInfo {
   readonly info?: Record<string, any>;
 }
 
-/** The type used for update operations of the DataProduct. */
-export interface DataProductUpdate {
-  /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentity;
-  /** Resource tags. */
-  tags?: Record<string, string>;
-  properties?: DataProductUpdateProperties;
-}
-
-export function dataProductUpdateSerializer(
-  item: DataProductUpdate,
-): DataProductUpdateRest {
-  return {
-    identity: !item.identity
-      ? item.identity
-      : managedServiceIdentitySerializer(item.identity),
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
-    properties: !item.properties
-      ? item.properties
-      : dataProductUpdatePropertiesSerializer(item.properties),
-  };
-}
-
-/** The updatable properties of the DataProduct. */
-export interface DataProductUpdateProperties {
-  /** List of name or email associated with data product resource deployment. */
-  owners?: string[];
-  /** Purview account url for data product to connect to. */
-  purviewAccount?: string;
-  /** Purview collection url for data product to connect to. */
-  purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
-  privateLinksEnabled?: ControlState;
-  /** Current configured minor version of the data product resource. */
-  currentMinorVersion?: string;
-}
-
-export function dataProductUpdatePropertiesSerializer(
-  item: DataProductUpdateProperties,
-): DataProductUpdatePropertiesRest {
-  return {
-    owners: item["owners"],
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    currentMinorVersion: item["currentMinorVersion"],
-  };
-}
-
 /** The details for storage account sas creation. */
 export interface AccountSas {
   /** Sas token start timestamp. */
@@ -713,44 +660,6 @@ export enum KnownDataTypeState {
  */
 export type DataTypeState = string;
 
-/** The type used for update operations of the DataType. */
-export interface DataTypeUpdate {
-  properties?: DataTypeUpdateProperties;
-}
-
-export function dataTypeUpdateSerializer(
-  item: DataTypeUpdate,
-): DataTypeUpdateRest {
-  return {
-    properties: !item.properties
-      ? item.properties
-      : dataTypeUpdatePropertiesSerializer(item.properties),
-  };
-}
-
-/** The updatable properties of the DataType. */
-export interface DataTypeUpdateProperties {
-  /** State of data type. */
-  state?: DataTypeState;
-  /** Field for storage output retention in days. */
-  storageOutputRetention?: number;
-  /** Field for database cache retention in days. */
-  databaseCacheRetention?: number;
-  /** Field for database data retention in days. */
-  databaseRetention?: number;
-}
-
-export function dataTypeUpdatePropertiesSerializer(
-  item: DataTypeUpdateProperties,
-): DataTypeUpdatePropertiesRest {
-  return {
-    state: item["state"],
-    storageOutputRetention: item["storageOutputRetention"],
-    databaseCacheRetention: item["databaseCacheRetention"],
-    databaseRetention: item["databaseRetention"],
-  };
-}
-
 /** The details for container sas creation. */
 export interface ContainerSaS {
   /** Sas token start timestamp. */
@@ -844,7 +753,7 @@ export interface Operation {
   /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for Azure Resource Manager/control-plane operations. */
   readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
+  readonly display?: OperationDisplay;
   /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
   readonly origin?: Origin;
   /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
@@ -854,13 +763,13 @@ export interface Operation {
 /** Localized display information for and operation. */
 export interface OperationDisplay {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
+  readonly provider?: string;
   /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
+  readonly resource?: string;
   /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
+  readonly operation?: string;
   /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
+  readonly description?: string;
 }
 
 /** Known values of {@link Origin} that the service accepts. */

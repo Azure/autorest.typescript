@@ -208,13 +208,12 @@ export interface DataTypesGenerateStorageContainerSasTokenDefaultResponse
 }
 
 /** Azure operation completed successfully. */
-export interface DataTypesListByDataProduct200Response extends HttpResponse {
+export interface DataTypesListByParent200Response extends HttpResponse {
   status: "200";
   body: DataTypeListResultOutput;
 }
 
-export interface DataTypesListByDataProductDefaultResponse
-  extends HttpResponse {
+export interface DataTypesListByParentDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

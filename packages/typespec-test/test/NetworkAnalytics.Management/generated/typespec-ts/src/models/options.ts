@@ -50,8 +50,7 @@ export interface DataTypesGenerateStorageContainerSasTokenOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataTypesListByDataProductOptionalParams
-  extends OperationOptions {}
+export interface DataTypesListByParentOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface DataProductsCreateOptionalParams extends OperationOptions {

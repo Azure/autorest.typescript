@@ -329,27 +329,6 @@ export interface DataTypeProperties {
   databaseRetention?: number;
 }
 
-/** The type used for update operations of the DataType. */
-export interface DataTypeUpdate {
-  properties?: DataTypeUpdateProperties;
-}
-
-/** The updatable properties of the DataType. */
-export interface DataTypeUpdateProperties {
-  /**
-   * State of data type.
-   *
-   * Possible values: "Stopped", "Running"
-   */
-  state?: DataTypeState;
-  /** Field for storage output retention in days. */
-  storageOutputRetention?: number;
-  /** Field for database cache retention in days. */
-  databaseCacheRetention?: number;
-  /** Field for database data retention in days. */
-  databaseRetention?: number;
-}
-
 /** The details for container sas creation. */
 export interface ContainerSaS {
   /** Sas token start timestamp. */
@@ -358,33 +337,6 @@ export interface ContainerSaS {
   expiryTimeStamp: Date | string;
   /** Ip Address */
   ipAddress: string;
-}
-
-/** The type used for update operations of the DataProduct. */
-export interface DataProductUpdate {
-  /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentity;
-  /** Resource tags. */
-  tags?: Record<string, string>;
-  properties?: DataProductUpdateProperties;
-}
-
-/** The updatable properties of the DataProduct. */
-export interface DataProductUpdateProperties {
-  /** List of name or email associated with data product resource deployment. */
-  owners?: string[];
-  /** Purview account url for data product to connect to. */
-  purviewAccount?: string;
-  /** Purview collection url for data product to connect to. */
-  purviewCollection?: string;
-  /**
-   * Flag to enable or disable private link for data product resource.
-   *
-   * Possible values: "Enabled", "Disabled"
-   */
-  privateLinksEnabled?: ControlState;
-  /** Current configured minor version of the data product resource. */
-  currentMinorVersion?: string;
 }
 
 /** The details for storage account sas creation. */

@@ -182,7 +182,7 @@ export interface DataProductsOperations {
     listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
     removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
     rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
-    update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    update: (resourceGroupName: string, dataProductName: string, properties: DataProduct, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
 // @public
@@ -196,23 +196,6 @@ export interface DataProductsRotateKeyOptionalParams extends OperationOptions {
 // @public
 export interface DataProductsUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
-}
-
-// @public
-export interface DataProductUpdate {
-    identity?: ManagedServiceIdentity;
-    // (undocumented)
-    properties?: DataProductUpdateProperties;
-    tags?: Record<string, string>;
-}
-
-// @public
-export interface DataProductUpdateProperties {
-    currentMinorVersion?: string;
-    owners?: string[];
-    privateLinksEnabled?: ControlState;
-    purviewAccount?: string;
-    purviewCollection?: string;
 }
 
 // @public
@@ -263,7 +246,7 @@ export interface DataTypesGetOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface DataTypesListByDataProductOptionalParams extends OperationOptions {
+export interface DataTypesListByParentOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -273,8 +256,8 @@ export interface DataTypesOperations {
     deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
     generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
     get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
-    listByDataProduct: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
-    update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
+    listByParent: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByParentOptionalParams) => PagedAsyncIterableIterator<DataType>;
+    update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataType, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
 // @public
@@ -283,20 +266,6 @@ export type DataTypeState = string;
 // @public
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
-}
-
-// @public
-export interface DataTypeUpdate {
-    // (undocumented)
-    properties?: DataTypeUpdateProperties;
-}
-
-// @public
-export interface DataTypeUpdateProperties {
-    databaseCacheRetention?: number;
-    databaseRetention?: number;
-    state?: DataTypeState;
-    storageOutputRetention?: number;
 }
 
 // @public
@@ -444,7 +413,7 @@ export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
 // @public
 export interface Operation {
     actionType?: ActionType;
-    display?: OperationDisplay;
+    readonly display?: OperationDisplay;
     readonly isDataAction?: boolean;
     readonly name?: string;
     readonly origin?: Origin;
@@ -452,10 +421,10 @@ export interface Operation {
 
 // @public
 export interface OperationDisplay {
-    description?: string;
-    operation?: string;
-    provider?: string;
-    resource?: string;
+    readonly description?: string;
+    readonly operation?: string;
+    readonly provider?: string;
+    readonly resource?: string;
 }
 
 // @public
