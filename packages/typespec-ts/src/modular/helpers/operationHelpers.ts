@@ -80,7 +80,7 @@ function getNarrowedRLCResponse(
   rlcResponse?: OperationResponse
 ): string | undefined {
   if (!rlcResponse) {
-    return "any";
+    return;
   }
   const statusCode = response.statusCodes;
   const names = getRLCResponseTypes(rlcResponse)?.split(" | ");
@@ -221,10 +221,8 @@ export function getDeserializePrivateFunction(
   );
   let deserializePrefix = "result.body";
   if (isNarrowedResponse) {
-    statements.push(
-      `const _result = result as unknown as ${isNarrowedResponse};`
-    );
-    deserializePrefix = "_result.body";
+    statements.push(`const res = result as unknown as ${isNarrowedResponse};`);
+    deserializePrefix = "res.body";
   }
 
   let deserializedRoot = hasLroSubPath
