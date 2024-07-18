@@ -4,6 +4,7 @@
 import {
   getLroLogicalResponseName,
   Imports,
+  isObjectSchema,
   ObjectSchema,
   OperationResponse,
   ResponseHeaderSchema,
@@ -135,11 +136,7 @@ function transformIsDefaultSupersetOfOthers(
   if (defaultSchemas.length !== 1 || nonDefaultSchemas.length === 0) {
     return false;
   }
-  const defaultSchema = defaultSchemas[0];
-  if (
-    defaultSchema?.type !== "object" ||
-    !(defaultSchema as ObjectSchema).properties
-  ) {
+  if (!isObjectSchema(defaultSchemas[0]!)) {
     reportDiagnostic(dpgContext.program, {
       code: "default-response-body-type",
       format: {
@@ -149,32 +146,35 @@ function transformIsDefaultSupersetOfOthers(
     });
     return false;
   }
+  const [typeName, properties] = getNameAndPropertyMap(defaultSchemas[0]!);
   for (const schema of nonDefaultSchemas) {
-    if (
-      !schema ||
-      schema.type !== "object" ||
-      !(schema as ObjectSchema).properties
-    ) {
+    if (!isObjectSchema(schema)) {
       return false;
     }
-    if (getTypeName(schema) === getTypeName(defaultSchema)) {
+    const [nonDefaultTypeName, nonDefaultProperties] =
+      getNameAndPropertyMap(schema);
+    if (typeName === nonDefaultTypeName) {
       return true;
     }
     // check if any properties in default schema is existing in non-default schema
-    for (const [key, value] of Object.entries(
-      (defaultSchema as ObjectSchema).properties!
-    )) {
-      const nonDefaultSchema = (schema as ObjectSchema).properties![key];
-      if (!nonDefaultSchema) {
-        return false;
-      }
-      if (getTypeName(value) === getTypeName(nonDefaultSchema)) {
+    for (const [propName, propTypeName] of properties) {
+      if (propTypeName === nonDefaultProperties.get(propName)) {
         return true;
       }
     }
   }
 
   return false;
+}
+
+function getNameAndPropertyMap(
+  schema: ObjectSchema
+): [string, Map<string, string>] {
+  const map = new Map<string, string>();
+  for (const [key, value] of Object.entries(schema.properties!)) {
+    map.set(key, getTypeName(value));
+  }
+  return [getTypeName(schema), map];
 }
 
 /**
