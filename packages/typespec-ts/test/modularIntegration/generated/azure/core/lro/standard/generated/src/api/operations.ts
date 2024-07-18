@@ -59,10 +59,10 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as CreateOrReplaceLogicalResponse;
+  const res = result as unknown as CreateOrReplaceLogicalResponse;
   return {
-    name: _result.body["name"],
-    role: _result.body["role"],
+    name: res.body["name"],
+    role: res.body["role"],
   };
 }
 
@@ -144,17 +144,17 @@ export async function _$exportDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as ExportLogicalResponse;
-  if (_result?.body?.result === undefined) {
+  const res = result as unknown as ExportLogicalResponse;
+  if (res?.body?.result === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "_result.body.result"`,
+      `Expected a result in the response at position "res.body.result"`,
       result,
     );
   }
 
   return {
-    name: _result.body.result["name"],
-    resourceUri: _result.body.result["resourceUri"],
+    name: res.body.result["name"],
+    resourceUri: res.body.result["resourceUri"],
   };
 }
 

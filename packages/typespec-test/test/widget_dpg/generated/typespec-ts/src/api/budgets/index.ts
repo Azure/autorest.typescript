@@ -50,11 +50,11 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  const _result = result as unknown as BudgetsCreateOrReplaceLogicalResponse;
+  const res = result as unknown as BudgetsCreateOrReplaceLogicalResponse;
   return {
-    name: _result.body["name"],
-    role: _result.body["role"],
-    id: _result.body["id"],
+    name: res.body["name"],
+    role: res.body["role"],
+    id: res.body["id"],
   };
 }
 
