@@ -86,49 +86,52 @@ export function _createOrUpdateTestRunSend(
   context: Client,
   testRunId: string,
   body: TestRun,
-  options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} }
+  options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunCreateOrUpdateTestRun200Response
   | LoadTestRunCreateOrUpdateTestRun201Response
   | LoadTestRunCreateOrUpdateTestRunDefaultResponse
 > {
-  return context.path("/test-runs/{testRunId}", testRunId).patch({
-    ...operationOptionsToRequestParameters(options),
-    contentType: (options.contentType as any) ?? "application/merge-patch+json",
-    queryParameters: { oldTestRunId: options?.oldTestRunId },
-    body: {
-      passFailCriteria: !body.passFailCriteria
-        ? body.passFailCriteria
-        : passFailCriteriaSerializer(body.passFailCriteria),
-      autoStopCriteria: !body.autoStopCriteria
-        ? body.autoStopCriteria
-        : autoStopCriteriaSerializer(body.autoStopCriteria),
-      secrets: !body.secrets
-        ? body.secrets
-        : (serializeRecord(body.secrets as any, secretSerializer) as any),
-      certificate: !body.certificate
-        ? body.certificate
-        : certificateMetadataSerializer(body.certificate),
-      environmentVariables: !body.environmentVariables
-        ? body.environmentVariables
-        : (serializeRecord(body.environmentVariables as any) as any),
-      loadTestConfiguration: !body.loadTestConfiguration
-        ? body.loadTestConfiguration
-        : loadTestConfigurationSerializer(body.loadTestConfiguration),
-      displayName: body["displayName"],
-      testId: body["testId"],
-      description: body["description"],
-      requestDataLevel: body["requestDataLevel"],
-      debugLogsEnabled: body["debugLogsEnabled"],
-    },
-  });
+  return context
+    .path("/test-runs/{testRunId}", testRunId)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType:
+        (options.contentType as any) ?? "application/merge-patch+json",
+      queryParameters: { oldTestRunId: options?.oldTestRunId },
+      body: {
+        passFailCriteria: !body.passFailCriteria
+          ? body.passFailCriteria
+          : passFailCriteriaSerializer(body.passFailCriteria),
+        autoStopCriteria: !body.autoStopCriteria
+          ? body.autoStopCriteria
+          : autoStopCriteriaSerializer(body.autoStopCriteria),
+        secrets: !body.secrets
+          ? body.secrets
+          : (serializeRecord(body.secrets as any, secretSerializer) as any),
+        certificate: !body.certificate
+          ? body.certificate
+          : certificateMetadataSerializer(body.certificate),
+        environmentVariables: !body.environmentVariables
+          ? body.environmentVariables
+          : (serializeRecord(body.environmentVariables as any) as any),
+        loadTestConfiguration: !body.loadTestConfiguration
+          ? body.loadTestConfiguration
+          : loadTestConfigurationSerializer(body.loadTestConfiguration),
+        displayName: body["displayName"],
+        testId: body["testId"],
+        description: body["description"],
+        requestDataLevel: body["requestDataLevel"],
+        debugLogsEnabled: body["debugLogsEnabled"],
+      },
+    });
 }
 
 export async function _createOrUpdateTestRunDeserialize(
   result:
     | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRun201Response
-    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -235,9 +238,8 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.configFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.configFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -263,9 +265,8 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.testScriptFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -291,9 +292,8 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.userPropFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -320,9 +320,8 @@ export async function _createOrUpdateTestRunDeserialize(
                           ?.inputArtifactsZipFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.inputArtifactsZipFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -351,9 +350,8 @@ export async function _createOrUpdateTestRunDeserialize(
                           ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.urlTestConfigFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -406,9 +404,8 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.resultFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.resultFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -434,9 +431,8 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.logsFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.logsFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -457,9 +453,8 @@ export async function _createOrUpdateTestRunDeserialize(
                           ?.artifactsContainerInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.artifactsContainerInfo?.["expireDateTime"],
                             )
                           : undefined,
                     },
@@ -479,9 +474,8 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.reportFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.reportFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.reportFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -536,13 +530,13 @@ export async function createOrUpdateTestRun(
   context: Client,
   testRunId: string,
   body: TestRun,
-  options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} }
+  options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
 ): Promise<TestRun> {
   const result = await _createOrUpdateTestRunSend(
     context,
     testRunId,
     body,
-    options
+    options,
   );
   return _createOrUpdateTestRunDeserialize(result);
 }
@@ -551,7 +545,7 @@ export function _createOrUpdateAppComponentsSend(
   context: Client,
   testRunId: string,
   body: TestRunAppComponents,
-  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} }
+  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunCreateOrUpdateAppComponents200Response
   | LoadTestRunCreateOrUpdateAppComponents201Response
@@ -566,7 +560,7 @@ export function _createOrUpdateAppComponentsSend(
       body: {
         components: serializeRecord(
           body.components as any,
-          appComponentSerializer
+          appComponentSerializer,
         ) as any,
       },
     });
@@ -576,7 +570,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
   result:
     | LoadTestRunCreateOrUpdateAppComponents200Response
     | LoadTestRunCreateOrUpdateAppComponents201Response
-    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -603,13 +597,13 @@ export async function createOrUpdateAppComponents(
   context: Client,
   testRunId: string,
   body: TestRunAppComponents,
-  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} }
+  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
 ): Promise<TestRunAppComponents> {
   const result = await _createOrUpdateAppComponentsSend(
     context,
     testRunId,
     body,
-    options
+    options,
   );
   return _createOrUpdateAppComponentsDeserialize(result);
 }
@@ -620,7 +614,7 @@ export function _createOrUpdateServerMetricsConfigSend(
   body: TestRunServerMetricConfig,
   options: CreateOrUpdateServerMetricsConfigOptionalParams = {
     requestOptions: {},
-  }
+  },
 ): StreamableMethod<
   | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
   | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
@@ -637,7 +631,7 @@ export function _createOrUpdateServerMetricsConfigSend(
           ? body.metrics
           : (serializeRecord(
               body.metrics as any,
-              resourceMetricSerializer
+              resourceMetricSerializer,
             ) as any),
       },
     });
@@ -647,7 +641,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
   result:
     | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
-    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -676,13 +670,13 @@ export async function createOrUpdateServerMetricsConfig(
   body: TestRunServerMetricConfig,
   options: CreateOrUpdateServerMetricsConfigOptionalParams = {
     requestOptions: {},
-  }
+  },
 ): Promise<TestRunServerMetricConfig> {
   const result = await _createOrUpdateServerMetricsConfigSend(
     context,
     testRunId,
     body,
-    options
+    options,
   );
   return _createOrUpdateServerMetricsConfigDeserialize(result);
 }
@@ -690,7 +684,7 @@ export async function createOrUpdateServerMetricsConfig(
 export function _deleteTestRunSend(
   context: Client,
   testRunId: string,
-  options: DeleteTestRunOptionalParams = { requestOptions: {} }
+  options: DeleteTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse
 > {
@@ -702,7 +696,7 @@ export function _deleteTestRunSend(
 export async function _deleteTestRunDeserialize(
   result:
     | LoadTestRunDeleteTestRun204Response
-    | LoadTestRunDeleteTestRunDefaultResponse
+    | LoadTestRunDeleteTestRunDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -715,7 +709,7 @@ export async function _deleteTestRunDeserialize(
 export async function deleteTestRun(
   context: Client,
   testRunId: string,
-  options: DeleteTestRunOptionalParams = { requestOptions: {} }
+  options: DeleteTestRunOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTestRunSend(context, testRunId, options);
   return _deleteTestRunDeserialize(result);
@@ -724,7 +718,7 @@ export async function deleteTestRun(
 export function _getAppComponentsSend(
   context: Client,
   testRunId: string,
-  options: GetAppComponentsOptionalParams = { requestOptions: {} }
+  options: GetAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunGetAppComponents200Response
   | LoadTestRunGetAppComponentsDefaultResponse
@@ -737,7 +731,7 @@ export function _getAppComponentsSend(
 export async function _getAppComponentsDeserialize(
   result:
     | LoadTestRunGetAppComponents200Response
-    | LoadTestRunGetAppComponentsDefaultResponse
+    | LoadTestRunGetAppComponentsDefaultResponse,
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -766,7 +760,7 @@ export async function _getAppComponentsDeserialize(
 export async function getAppComponents(
   context: Client,
   testRunId: string,
-  options: GetAppComponentsOptionalParams = { requestOptions: {} }
+  options: GetAppComponentsOptionalParams = { requestOptions: {} },
 ): Promise<TestRunAppComponents> {
   const result = await _getAppComponentsSend(context, testRunId, options);
   return _getAppComponentsDeserialize(result);
@@ -775,7 +769,7 @@ export async function getAppComponents(
 export function _getServerMetricsConfigSend(
   context: Client,
   testRunId: string,
-  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} }
+  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunGetServerMetricsConfig200Response
   | LoadTestRunGetServerMetricsConfigDefaultResponse
@@ -788,7 +782,7 @@ export function _getServerMetricsConfigSend(
 export async function _getServerMetricsConfigDeserialize(
   result:
     | LoadTestRunGetServerMetricsConfig200Response
-    | LoadTestRunGetServerMetricsConfigDefaultResponse
+    | LoadTestRunGetServerMetricsConfigDefaultResponse,
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -814,7 +808,7 @@ export async function _getServerMetricsConfigDeserialize(
 export async function getServerMetricsConfig(
   context: Client,
   testRunId: string,
-  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} }
+  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): Promise<TestRunServerMetricConfig> {
   const result = await _getServerMetricsConfigSend(context, testRunId, options);
   return _getServerMetricsConfigDeserialize(result);
@@ -823,7 +817,7 @@ export async function getServerMetricsConfig(
 export function _getTestRunSend(
   context: Client,
   testRunId: string,
-  options: GetTestRunOptionalParams = { requestOptions: {} }
+  options: GetTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse
 > {
@@ -835,7 +829,7 @@ export function _getTestRunSend(
 export async function _getTestRunDeserialize(
   result:
     | LoadTestRunGetTestRun200Response
-    | LoadTestRunGetTestRunDefaultResponse
+    | LoadTestRunGetTestRunDefaultResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -942,9 +936,8 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.configFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.configFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -970,9 +963,8 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.testScriptFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -998,9 +990,8 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.userPropFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -1027,9 +1018,8 @@ export async function _getTestRunDeserialize(
                           ?.inputArtifactsZipFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.inputArtifactsZipFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -1058,9 +1048,8 @@ export async function _getTestRunDeserialize(
                           ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.urlTestConfigFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -1113,9 +1102,8 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.resultFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.resultFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -1141,9 +1129,8 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.logsFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.logsFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -1164,9 +1151,8 @@ export async function _getTestRunDeserialize(
                           ?.artifactsContainerInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.artifactsContainerInfo?.["expireDateTime"],
                             )
                           : undefined,
                     },
@@ -1186,9 +1172,8 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.reportFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.reportFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.reportFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -1242,7 +1227,7 @@ export async function _getTestRunDeserialize(
 export async function getTestRun(
   context: Client,
   testRunId: string,
-  options: GetTestRunOptionalParams = { requestOptions: {} }
+  options: GetTestRunOptionalParams = { requestOptions: {} },
 ): Promise<TestRun> {
   const result = await _getTestRunSend(context, testRunId, options);
   return _getTestRunDeserialize(result);
@@ -1252,7 +1237,7 @@ export function _getTestRunFileSend(
   context: Client,
   testRunId: string,
   fileName: string,
-  options: GetTestRunFileOptionalParams = { requestOptions: {} }
+  options: GetTestRunFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunGetTestRunFile200Response
   | LoadTestRunGetTestRunFileDefaultResponse
@@ -1265,7 +1250,7 @@ export function _getTestRunFileSend(
 export async function _getTestRunFileDeserialize(
   result:
     | LoadTestRunGetTestRunFile200Response
-    | LoadTestRunGetTestRunFileDefaultResponse
+    | LoadTestRunGetTestRunFileDefaultResponse,
 ): Promise<TestRunFileInfo> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1289,13 +1274,13 @@ export async function getTestRunFile(
   context: Client,
   testRunId: string,
   fileName: string,
-  options: GetTestRunFileOptionalParams = { requestOptions: {} }
+  options: GetTestRunFileOptionalParams = { requestOptions: {} },
 ): Promise<TestRunFileInfo> {
   const result = await _getTestRunFileSend(
     context,
     testRunId,
     fileName,
-    options
+    options,
   );
   return _getTestRunFileDeserialize(result);
 }
@@ -1307,7 +1292,7 @@ export function _listMetricDimensionValuesSend(
   metricname: string,
   metricNamespace: string,
   timespan: string,
-  options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} }
+  options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunListMetricDimensionValues200Response
   | LoadTestRunListMetricDimensionValuesDefaultResponse
@@ -1316,7 +1301,7 @@ export function _listMetricDimensionValuesSend(
     .path(
       "/test-runs/{testRunId}/metric-dimensions/{name}/values",
       testRunId,
-      name
+      name,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -1332,7 +1317,7 @@ export function _listMetricDimensionValuesSend(
 export async function _listMetricDimensionValuesDeserialize(
   result:
     | LoadTestRunListMetricDimensionValues200Response
-    | LoadTestRunListMetricDimensionValuesDefaultResponse
+    | LoadTestRunListMetricDimensionValuesDefaultResponse,
 ): Promise<DimensionValueList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1353,7 +1338,7 @@ export async function listMetricDimensionValues(
   metricname: string,
   metricNamespace: string,
   timespan: string,
-  options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} }
+  options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} },
 ): Promise<DimensionValueList> {
   const result = await _listMetricDimensionValuesSend(
     context,
@@ -1362,7 +1347,7 @@ export async function listMetricDimensionValues(
     metricname,
     metricNamespace,
     timespan,
-    options
+    options,
   );
   return _listMetricDimensionValuesDeserialize(result);
 }
@@ -1371,7 +1356,7 @@ export function _listMetricDefinitionsSend(
   context: Client,
   testRunId: string,
   metricNamespace: string,
-  options: ListMetricDefinitionsOptionalParams = { requestOptions: {} }
+  options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunListMetricDefinitions200Response
   | LoadTestRunListMetricDefinitionsDefaultResponse
@@ -1387,7 +1372,7 @@ export function _listMetricDefinitionsSend(
 export async function _listMetricDefinitionsDeserialize(
   result:
     | LoadTestRunListMetricDefinitions200Response
-    | LoadTestRunListMetricDefinitionsDefaultResponse
+    | LoadTestRunListMetricDefinitionsDefaultResponse,
 ): Promise<MetricDefinitionCollection> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1424,13 +1409,13 @@ export async function listMetricDefinitions(
   context: Client,
   testRunId: string,
   metricNamespace: string,
-  options: ListMetricDefinitionsOptionalParams = { requestOptions: {} }
+  options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
 ): Promise<MetricDefinitionCollection> {
   const result = await _listMetricDefinitionsSend(
     context,
     testRunId,
     metricNamespace,
-    options
+    options,
   );
   return _listMetricDefinitionsDeserialize(result);
 }
@@ -1438,7 +1423,7 @@ export async function listMetricDefinitions(
 export function _listMetricNamespacesSend(
   context: Client,
   testRunId: string,
-  options: ListMetricNamespacesOptionalParams = { requestOptions: {} }
+  options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunListMetricNamespaces200Response
   | LoadTestRunListMetricNamespacesDefaultResponse
@@ -1451,7 +1436,7 @@ export function _listMetricNamespacesSend(
 export async function _listMetricNamespacesDeserialize(
   result:
     | LoadTestRunListMetricNamespaces200Response
-    | LoadTestRunListMetricNamespacesDefaultResponse
+    | LoadTestRunListMetricNamespacesDefaultResponse,
 ): Promise<MetricNamespaceCollection> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1468,7 +1453,7 @@ export async function _listMetricNamespacesDeserialize(
 export async function listMetricNamespaces(
   context: Client,
   testRunId: string,
-  options: ListMetricNamespacesOptionalParams = { requestOptions: {} }
+  options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
 ): Promise<MetricNamespaceCollection> {
   const result = await _listMetricNamespacesSend(context, testRunId, options);
   return _listMetricNamespacesDeserialize(result);
@@ -1481,35 +1466,37 @@ export function _listMetricsSend(
   metricNamespace: string,
   timespan: string,
   body?: MetricRequestPayload,
-  options: ListMetricsOptionalParams = { requestOptions: {} }
+  options: ListMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunListMetrics200Response | LoadTestRunListMetricsDefaultResponse
 > {
-  return context.path("/test-runs/{testRunId}/metrics", testRunId).post({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
-      aggregation: options?.aggregation,
-      metricname: metricname,
-      interval: options?.interval,
-      metricNamespace: metricNamespace,
-      timespan: timespan,
-    },
-    body:
-      body === undefined
-        ? body
-        : {
-            filters:
-              body["filters"] === undefined
-                ? body["filters"]
-                : body["filters"].map(dimensionFilterSerializer),
-          },
-  });
+  return context
+    .path("/test-runs/{testRunId}/metrics", testRunId)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: {
+        aggregation: options?.aggregation,
+        metricname: metricname,
+        interval: options?.interval,
+        metricNamespace: metricNamespace,
+        timespan: timespan,
+      },
+      body:
+        body === undefined
+          ? body
+          : {
+              filters:
+                body["filters"] === undefined
+                  ? body["filters"]
+                  : body["filters"].map(dimensionFilterSerializer),
+            },
+    });
 }
 
 export async function _listMetricsDeserialize(
   result:
     | LoadTestRunListMetrics200Response
-    | LoadTestRunListMetricsDefaultResponse
+    | LoadTestRunListMetricsDefaultResponse,
 ): Promise<_Metrics> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1550,7 +1537,7 @@ export function listMetrics(
   metricNamespace: string,
   timespan: string,
   body?: MetricRequestPayload,
-  options: ListMetricsOptionalParams = { requestOptions: {} }
+  options: ListMetricsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<TimeSeriesElement> {
   return buildPagedAsyncIterator(
     context,
@@ -1562,37 +1549,39 @@ export function listMetrics(
         metricNamespace,
         timespan,
         body,
-        options
+        options,
       ),
     _listMetricsDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" }
+    { itemName: "value", nextLinkName: "nextLink" },
   );
 }
 
 export function _listTestRunsSend(
   context: Client,
-  options: ListTestRunsOptionalParams = { requestOptions: {} }
+  options: ListTestRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunListTestRuns200Response | LoadTestRunListTestRunsDefaultResponse
 > {
-  return context.path("/test-runs").get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
-      orderby: options?.orderby,
-      search: options?.search,
-      testId: options?.testId,
-      executionFrom: options?.executionFrom?.toISOString(),
-      executionTo: options?.executionTo?.toISOString(),
-      status: options?.status,
-      maxpagesize: options?.maxpagesize,
-    },
-  });
+  return context
+    .path("/test-runs")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: {
+        orderby: options?.orderby,
+        search: options?.search,
+        testId: options?.testId,
+        executionFrom: options?.executionFrom?.toISOString(),
+        executionTo: options?.executionTo?.toISOString(),
+        status: options?.status,
+        maxpagesize: options?.maxpagesize,
+      },
+    });
 }
 
 export async function _listTestRunsDeserialize(
   result:
     | LoadTestRunListTestRuns200Response
-    | LoadTestRunListTestRunsDefaultResponse
+    | LoadTestRunListTestRunsDefaultResponse,
 ): Promise<_PagedTestRun> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1675,7 +1664,7 @@ export async function _listTestRunsDeserialize(
                           engineInstances: p["engineInstances"],
                           region: p["region"],
                         };
-                      }
+                      },
                     ),
             },
         testArtifacts: !p.testArtifacts
@@ -1703,9 +1692,8 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts?.configFileInfo?.[
-                                    "expireDateTime"
-                                  ]
+                                  p.testArtifacts?.inputArtifacts
+                                    ?.configFileInfo?.["expireDateTime"],
                                 )
                               : undefined,
                           validationStatus:
@@ -1734,9 +1722,8 @@ export async function _listTestRunsDeserialize(
                               ?.testScriptFileInfo?.["expireDateTime"] !==
                             undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
-                                    "expireDateTime"
-                                  ]
+                                  p.testArtifacts?.inputArtifacts
+                                    ?.testScriptFileInfo?.["expireDateTime"],
                                 )
                               : undefined,
                           validationStatus:
@@ -1767,9 +1754,8 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
-                                    "expireDateTime"
-                                  ]
+                                  p.testArtifacts?.inputArtifacts
+                                    ?.userPropFileInfo?.["expireDateTime"],
                                 )
                               : undefined,
                           validationStatus:
@@ -1799,9 +1785,10 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
+                                  p.testArtifacts?.inputArtifacts
+                                    ?.inputArtifactsZipFileInfo?.[
                                     "expireDateTime"
-                                  ]
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -1830,9 +1817,8 @@ export async function _listTestRunsDeserialize(
                               ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                             undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
-                                    "expireDateTime"
-                                  ]
+                                  p.testArtifacts?.inputArtifacts
+                                    ?.urlTestConfigFileInfo?.["expireDateTime"],
                                 )
                               : undefined,
                           validationStatus:
@@ -1890,9 +1876,8 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
-                                    "expireDateTime"
-                                  ]
+                                  p.testArtifacts?.outputArtifacts
+                                    ?.resultFileInfo?.["expireDateTime"],
                                 )
                               : undefined,
                           validationStatus:
@@ -1924,9 +1909,8 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
-                                    "expireDateTime"
-                                  ]
+                                  p.testArtifacts?.outputArtifacts
+                                    ?.logsFileInfo?.["expireDateTime"],
                                 )
                               : undefined,
                           validationStatus:
@@ -1949,9 +1933,10 @@ export async function _listTestRunsDeserialize(
                               ?.artifactsContainerInfo?.["expireDateTime"] !==
                             undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
+                                  p.testArtifacts?.outputArtifacts
+                                    ?.artifactsContainerInfo?.[
                                     "expireDateTime"
-                                  ]
+                                  ],
                                 )
                               : undefined,
                         },
@@ -1974,9 +1959,8 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts?.reportFileInfo?.[
-                                    "expireDateTime"
-                                  ]
+                                  p.testArtifacts?.outputArtifacts
+                                    ?.reportFileInfo?.["expireDateTime"],
                                 )
                               : undefined,
                           validationStatus:
@@ -2034,20 +2018,20 @@ export async function _listTestRunsDeserialize(
 /** Get all test runs for the given filters. */
 export function listTestRuns(
   context: Client,
-  options: ListTestRunsOptionalParams = { requestOptions: {} }
+  options: ListTestRunsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<TestRun> {
   return buildPagedAsyncIterator(
     context,
     () => _listTestRunsSend(context, options),
     _listTestRunsDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" }
+    { itemName: "value", nextLinkName: "nextLink" },
   );
 }
 
 export function _stopTestRunSend(
   context: Client,
   testRunId: string,
-  options: StopTestRunOptionalParams = { requestOptions: {} }
+  options: StopTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunStop200Response | LoadTestRunStopDefaultResponse
 > {
@@ -2057,7 +2041,7 @@ export function _stopTestRunSend(
 }
 
 export async function _stopTestRunDeserialize(
-  result: LoadTestRunStop200Response | LoadTestRunStopDefaultResponse
+  result: LoadTestRunStop200Response | LoadTestRunStopDefaultResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2164,9 +2148,8 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.configFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.configFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2192,9 +2175,8 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.testScriptFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2220,9 +2202,8 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.userPropFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2249,9 +2230,8 @@ export async function _stopTestRunDeserialize(
                           ?.inputArtifactsZipFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.inputArtifactsZipFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2280,9 +2260,8 @@ export async function _stopTestRunDeserialize(
                           ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.inputArtifacts
+                                ?.urlTestConfigFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2335,9 +2314,8 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.resultFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.resultFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2363,9 +2341,8 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.logsFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.logsFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2386,9 +2363,8 @@ export async function _stopTestRunDeserialize(
                           ?.artifactsContainerInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.artifactsContainerInfo?.["expireDateTime"],
                             )
                           : undefined,
                     },
@@ -2408,9 +2384,8 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.reportFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts?.reportFileInfo?.[
-                                "expireDateTime"
-                              ]
+                              result.body.testArtifacts?.outputArtifacts
+                                ?.reportFileInfo?.["expireDateTime"],
                             )
                           : undefined,
                       validationStatus:
@@ -2464,7 +2439,7 @@ export async function _stopTestRunDeserialize(
 export async function stopTestRun(
   context: Client,
   testRunId: string,
-  options: StopTestRunOptionalParams = { requestOptions: {} }
+  options: StopTestRunOptionalParams = { requestOptions: {} },
 ): Promise<TestRun> {
   const result = await _stopTestRunSend(context, testRunId, options);
   return _stopTestRunDeserialize(result);

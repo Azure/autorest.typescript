@@ -23,7 +23,7 @@ export function _createOrReplaceSend(
   context: Client,
   name: string,
   resource: User,
-  options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} }
+  options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | BudgetsCreateOrReplace200Response
   | BudgetsCreateOrReplace201Response
@@ -44,7 +44,7 @@ export async function _createOrReplaceDeserialize(
     | BudgetsCreateOrReplace200Response
     | BudgetsCreateOrReplace201Response
     | BudgetsCreateOrReplaceDefaultResponse
-    | BudgetsCreateOrReplaceLogicalResponse
+    | BudgetsCreateOrReplaceLogicalResponse,
 ): Promise<User> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -63,7 +63,7 @@ export function createOrReplace(
   context: Client,
   name: string,
   resource: User,
-  options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} }
+  options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
