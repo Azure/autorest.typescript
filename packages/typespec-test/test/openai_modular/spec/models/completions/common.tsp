@@ -1,15 +1,17 @@
 import "@typespec/versioning";
+import "@typespec/http";
 import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Versioning;
+using Http;
 
 namespace Azure.OpenAI;
 
 @doc("""
-Representation of the token counts processed for a completions request.
-Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
-other consumers.
-""")
+  Representation of the token counts processed for a completions request.
+  Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
+  other consumers.
+  """)
 model CompletionsUsage {
   @doc("The number of tokens generated across all completions emissions.")
   @encodedName("application/json", "completion_tokens")
@@ -25,9 +27,11 @@ model CompletionsUsage {
 }
 
 @doc("""
-Representation of the manner in which a completions response concluded.
-""")
-enum CompletionsFinishReason {
+  Representation of the manner in which a completions response concluded.
+  """)
+union CompletionsFinishReason {
+  string,
+
   @doc("Completions ended normally and reached its end of token generation.")
   stopped: "stop",
 
@@ -50,7 +54,9 @@ enum CompletionsFinishReason {
 }
 
 @doc("A description of the intended purpose of a message within a chat completions interaction.")
-enum ChatRole {
+union ChatRole {
+  string,
+
   @doc("The role that instructs or sets the behavior of the assistant.")
   system: "system",
 

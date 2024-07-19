@@ -8,11 +8,12 @@ import {
   CompletionsOptions,
   ChatCompletionsOptions,
   ImageGenerationOptions,
-  AudioSpeechOptions,
+  SpeechGenerationOptions,
   EmbeddingsOptions,
 } from "./models.js";
 
 export interface GetAudioTranscriptionAsPlainTextBodyParam {
+  /** The configuration information for an audio transcription request. */
   body: AudioTranscriptionOptions;
 }
 
@@ -27,6 +28,7 @@ export type GetAudioTranscriptionAsPlainTextParameters =
     RequestParameters;
 
 export interface GetAudioTranscriptionAsResponseObjectBodyParam {
+  /** The configuration information for an audio transcription request. */
   body: AudioTranscriptionOptions;
 }
 
@@ -41,6 +43,7 @@ export type GetAudioTranscriptionAsResponseObjectParameters =
     RequestParameters;
 
 export interface GetAudioTranslationAsPlainTextBodyParam {
+  /** The configuration information for an audio translation request. */
   body: AudioTranslationOptions;
 }
 
@@ -55,6 +58,7 @@ export type GetAudioTranslationAsPlainTextParameters =
     RequestParameters;
 
 export interface GetAudioTranslationAsResponseObjectBodyParam {
+  /** The configuration information for an audio translation request. */
   body: AudioTranslationOptions;
 }
 
@@ -69,6 +73,11 @@ export type GetAudioTranslationAsResponseObjectParameters =
     RequestParameters;
 
 export interface GetCompletionsBodyParam {
+  /**
+   * The configuration information for a completions request.
+   * Completions support a wide variety of tasks and generate text that continues from or "completes"
+   * provided prompt data.
+   */
   body: CompletionsOptions;
 }
 
@@ -76,6 +85,11 @@ export type GetCompletionsParameters = GetCompletionsBodyParam &
   RequestParameters;
 
 export interface GetChatCompletionsBodyParam {
+  /**
+   * The configuration information for a chat completions request.
+   * Completions support a wide variety of tasks and generate text that continues from or "completes"
+   * provided prompt data.
+   */
   body: ChatCompletionsOptions;
 }
 
@@ -83,20 +97,27 @@ export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
   RequestParameters;
 
 export interface GetImageGenerationsBodyParam {
+  /** Represents the request data used to generate images. */
   body: ImageGenerationOptions;
 }
 
 export type GetImageGenerationsParameters = GetImageGenerationsBodyParam &
   RequestParameters;
 
-export interface GetAudioSpeechBodyParam {
-  body: AudioSpeechOptions;
+export interface GenerateSpeechFromTextBodyParam {
+  /** A representation of the request options that control the behavior of a text-to-speech operation. */
+  body: SpeechGenerationOptions;
 }
 
-export type GetAudioSpeechParameters = GetAudioSpeechBodyParam &
+export type GenerateSpeechFromTextParameters = GenerateSpeechFromTextBodyParam &
   RequestParameters;
 
 export interface GetEmbeddingsBodyParam {
+  /**
+   * The configuration information for an embeddings request.
+   * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
+   * recommendations, and other similar scenarios.
+   */
   body: EmbeddingsOptions;
 }
 

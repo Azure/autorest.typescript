@@ -22,7 +22,7 @@ export interface OpenAIContextOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  { apiVersion = "2024-02-15-preview", ...options }: OpenAIContextOptions = {},
+  { apiVersion = "2024-06-01", ...options }: OpenAIContextOptions = {},
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/openai`;

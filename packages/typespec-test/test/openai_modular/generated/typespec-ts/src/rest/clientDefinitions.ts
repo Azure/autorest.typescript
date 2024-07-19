@@ -9,7 +9,7 @@ import {
   GetCompletionsParameters,
   GetChatCompletionsParameters,
   GetImageGenerationsParameters,
-  GetAudioSpeechParameters,
+  GenerateSpeechFromTextParameters,
   GetEmbeddingsParameters,
 } from "./parameters.js";
 import {
@@ -27,8 +27,8 @@ import {
   GetChatCompletionsDefaultResponse,
   GetImageGenerations200Response,
   GetImageGenerationsDefaultResponse,
-  GetAudioSpeech200Response,
-  GetAudioSpeechDefaultResponse,
+  GenerateSpeechFromText200Response,
+  GenerateSpeechFromTextDefaultResponse,
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
 } from "./responses.js";
@@ -109,12 +109,12 @@ export interface GetImageGenerations {
   >;
 }
 
-export interface GetAudioSpeech {
+export interface GenerateSpeechFromText {
   /** Generates text-to-speech audio from the input text. */
   post(
-    options: GetAudioSpeechParameters,
+    options: GenerateSpeechFromTextParameters,
   ): StreamableMethod<
-    GetAudioSpeech200Response | GetAudioSpeechDefaultResponse
+    GenerateSpeechFromText200Response | GenerateSpeechFromTextDefaultResponse
   >;
 }
 
@@ -155,7 +155,7 @@ export interface Routes {
   (
     path: "/deployments/{deploymentId}/audio/speech",
     deploymentId: string,
-  ): GetAudioSpeech;
+  ): GenerateSpeechFromText;
   /** Resource for '/deployments/\{deploymentId\}/embeddings' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/embeddings",
