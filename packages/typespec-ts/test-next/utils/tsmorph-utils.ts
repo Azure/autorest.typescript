@@ -28,7 +28,7 @@ export function assertGetInterfaceProperty(
   return property;
 }
 
-export function assertGeVariableDeclaration(
+export function assertGetVariableDeclaration(
   sourceFile: SourceFile,
   name: string
 ) {
