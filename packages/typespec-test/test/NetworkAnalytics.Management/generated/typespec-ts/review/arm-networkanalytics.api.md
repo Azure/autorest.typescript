@@ -63,7 +63,7 @@ export type CreatedByType = string;
 
 // @public
 export interface DataProduct extends TrackedResource {
-    identity?: ManagedServiceIdentity;
+    identity?: ManagedServiceIdentityV4;
     properties?: DataProductProperties;
 }
 
@@ -200,8 +200,7 @@ export interface DataProductsUpdateOptionalParams extends OperationOptions {
 
 // @public
 export interface DataProductUpdate {
-    identity?: ManagedServiceIdentity;
-    // (undocumented)
+    identity?: ManagedServiceIdentityV4;
     properties?: DataProductUpdateProperties;
     tags?: Record<string, string>;
 }
@@ -287,7 +286,6 @@ export interface DataTypesUpdateOptionalParams extends OperationOptions {
 
 // @public
 export interface DataTypeUpdate {
-    // (undocumented)
     properties?: DataTypeUpdateProperties;
 }
 
@@ -379,7 +377,7 @@ export enum KnownDefaultAction {
 
 // @public
 export enum KnownManagedServiceIdentityType {
-    "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
+    "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
     None = "None",
     SystemAssigned = "SystemAssigned",
     UserAssigned = "UserAssigned"
@@ -416,15 +414,15 @@ export interface ManagedResourceGroupConfiguration {
 }
 
 // @public
-export interface ManagedServiceIdentity {
+export type ManagedServiceIdentityType = string;
+
+// @public
+export interface ManagedServiceIdentityV4 {
     readonly principalId?: string;
     readonly tenantId?: string;
     type: ManagedServiceIdentityType;
     userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
-
-// @public
-export type ManagedServiceIdentityType = string;
 
 // @public (undocumented)
 export class NetworkAnalyticsClient {
@@ -444,7 +442,7 @@ export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
 // @public
 export interface Operation {
     actionType?: ActionType;
-    display?: OperationDisplay;
+    readonly display?: OperationDisplay;
     readonly isDataAction?: boolean;
     readonly name?: string;
     readonly origin?: Origin;
@@ -452,10 +450,10 @@ export interface Operation {
 
 // @public
 export interface OperationDisplay {
-    description?: string;
-    operation?: string;
-    provider?: string;
-    resource?: string;
+    readonly description?: string;
+    readonly operation?: string;
+    readonly provider?: string;
+    readonly resource?: string;
 }
 
 // @public

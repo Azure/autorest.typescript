@@ -11,8 +11,8 @@ export interface Get {
 }
 
 export interface Routes {
-  /** Resource for '/azure/special-headers/x-ms-client-request-id' has methods for the following verbs: get */
-  (path: "/azure/special-headers/x-ms-client-request-id"): Get;
+  /** Resource for '/azure/special-headers/x-ms-client-request-id/' has methods for the following verbs: get */
+  (path: "/azure/special-headers/x-ms-client-request-id/"): Get;
 }
 
 export type XmsRequestIdClientContext = Client & {

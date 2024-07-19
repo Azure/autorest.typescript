@@ -10,7 +10,7 @@ export interface OperationOutput {
   /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for Azure Resource Manager/control-plane operations. */
   readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
-  display?: OperationDisplayOutput;
+  readonly display?: OperationDisplayOutput;
   /**
    * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system"
    *
@@ -28,13 +28,13 @@ export interface OperationOutput {
 /** Localized display information for and operation. */
 export interface OperationDisplayOutput {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
+  readonly provider?: string;
   /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
+  readonly resource?: string;
   /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
+  readonly operation?: string;
   /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
+  readonly description?: string;
 }
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
@@ -159,7 +159,7 @@ export interface DataProductOutput extends TrackedResourceOutput {
   /** The resource-specific properties for this resource. */
   properties?: DataProductPropertiesOutput;
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentityOutput;
+  identity?: ManagedServiceIdentityV4Output;
 }
 
 /** The data product properties. */
@@ -295,7 +295,7 @@ export interface ConsumptionEndpointsPropertiesOutput {
 }
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedServiceIdentityOutput {
+export interface ManagedServiceIdentityV4Output {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -303,7 +303,7 @@ export interface ManagedServiceIdentityOutput {
   /**
    * The type of managed identity assigned to this resource.
    *
-   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned,UserAssigned"
+   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned"
    */
   type: ManagedServiceIdentityTypeOutput;
   /** The identities assigned to this resource by the user. */

@@ -115,7 +115,7 @@ export function createDpgContextTestHelper(
     tcgcContext: sdkContext
   });
 
-  provideSdkTypes(context.experimental_sdkPackage);
+  provideSdkTypes(context.sdkPackage);
 
   return sdkContext;
 }
