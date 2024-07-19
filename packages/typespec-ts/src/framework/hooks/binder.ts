@@ -19,13 +19,13 @@ export interface Binder {
    * @param refkey - A unique reference key for the declaration.
    * @param name - The name of the declaration.
    * @param sourceFile - The source file where the declaration is made.
-   * @returns The tracked declaration information.
+   * @returns The tracked declaration name.
    */
   trackDeclaration(
     refkey: unknown,
     name: string,
     sourceFile: SourceFile
-  ): DeclarationInfo;
+  ): string;
   resolveReference(refkey: unknown): string;
   applyImports(): void;
 }
@@ -44,7 +44,7 @@ class BinderImp implements Binder {
     refkey: unknown,
     name: string,
     sourceFile: SourceFile
-  ): DeclarationInfo {
+  ): string {
     const uniqueName = this.generateLocallyUniqueDeclarationName(
       name,
       sourceFile
@@ -58,7 +58,7 @@ class BinderImp implements Binder {
     }
     this.symbolsBySourceFile.get(sourceFile)!.add(uniqueName);
 
-    return declarationInfo;
+    return uniqueName;
   }
 
   /**

@@ -72,29 +72,29 @@ export function addDeclaration(
 
   const stringRefkey = typeof refkey === "string" ? refkey : getRefKey(refkey);
 
-  const declarationInfo = binder.trackDeclaration(
+  const trackedDeclarationName = binder.trackDeclaration(
     stringRefkey,
     declaration.name,
     sourceFile
   );
 
   // Update the declaration name to be unique
-  declaration.name = declarationInfo.name;
+  const trackedDeclaration = { ...declaration, name: trackedDeclarationName };
 
-  switch (declaration.kind) {
+  switch (trackedDeclaration.kind) {
     case StructureKind.Class:
-      return sourceFile.addClass(declaration);
+      return sourceFile.addClass(trackedDeclaration);
     case StructureKind.Enum:
-      return sourceFile.addEnum(declaration);
+      return sourceFile.addEnum(trackedDeclaration);
     case StructureKind.Function:
-      return sourceFile.addFunction(declaration);
+      return sourceFile.addFunction(trackedDeclaration);
     case StructureKind.Interface:
-      return sourceFile.addInterface(declaration);
+      return sourceFile.addInterface(trackedDeclaration);
     case StructureKind.TypeAlias:
-      return sourceFile.addTypeAlias(declaration);
+      return sourceFile.addTypeAlias(trackedDeclaration);
     default:
       throw new Error(
-        `Unsupported declaration kind ${(declaration as any).kind}`
+        `Unsupported declaration kind ${(trackedDeclaration as any).kind}`
       );
   }
 }
