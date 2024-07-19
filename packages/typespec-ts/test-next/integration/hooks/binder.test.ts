@@ -17,7 +17,7 @@ import {
   assertGetFunctionDeclaration,
   assertGetInterfaceDeclaration,
   assertGetInterfaceProperty,
-  assertGeVariableDeclaration
+  assertGetVariableDeclaration
 } from "../../utils/tsmorph-utils.js";
 
 describe("Binder", () => {
@@ -452,7 +452,10 @@ describe("Binder", () => {
     const binder = useBinder();
     binder.applyImports();
 
-    const variableDeclaration = assertGeVariableDeclaration(sourceFile2, "obj");
+    const variableDeclaration = assertGetVariableDeclaration(
+      sourceFile2,
+      "obj"
+    );
     assert.equal(
       variableDeclaration.getText(),
       "let obj: MyInterface = { id: 1 };"
