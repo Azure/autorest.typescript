@@ -7,6 +7,10 @@ schedules:
         - main
 pr: none
 
+pool:
+  name: azsdk-pool-mms-ubuntu-2004-general
+  vmImage: ubuntu-20.04
+
 stages:
   - stage: NightlyCI
     jobs:
@@ -23,9 +27,6 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Run all unit test cases"
       - job: SmokeTest
-        pool:
-          name: azsdk-pool-mms-ubuntu-2004-general
-          vmImage: ubuntu-20.04
         steps:
           - template: nightly-prepare.yml
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
