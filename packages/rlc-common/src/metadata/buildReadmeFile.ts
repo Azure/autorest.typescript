@@ -307,6 +307,8 @@ interface Metadata {
   isReleasablePackage?: boolean;
   /** The URL for impression */
   impressionURL?: string;
+  /** The link to the contributing guide in the repository */
+  contributingGuideURL?: string;
 }
 
 export function buildReadmeFile(model: RLCModel) {
@@ -389,7 +391,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     repoURL: repoURL,
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     identityPackageURL: repoURL && `${repoURL}/tree/main/sdk/identity/identity`,
-    addCredentials: model.options.addCredentials
+    addCredentials: model.options.addCredentials,
+    contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
   };
 }
 
