@@ -25,7 +25,7 @@ interface TrialMatcher {
   @doc("Creates a Trial Matcher job with the given request body.")
   @pollingOperation(TrialMatcher.getJob)
   @route("/trialmatcher/jobs")
-  @example(
+  @Autorest.example(
     "./examples/SuccessfulTrialMatcherRequest.json",
     "SuccessfulTrialMatcherAnalyzeRequest"
   )

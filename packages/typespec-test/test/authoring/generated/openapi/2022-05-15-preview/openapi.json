@@ -815,7 +815,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "$ref": "#/definitions/PagedSupportedLanguage"
+              "$ref": "#/definitions/SupportedLanguages"
             }
           },
           "default": {
@@ -858,7 +858,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "$ref": "#/definitions/PagedTrainingConfigVersion"
+              "$ref": "#/definitions/TrainingConfigVersions"
             }
           },
           "default": {
@@ -1197,50 +1197,6 @@
         "value"
       ]
     },
-    "PagedSupportedLanguage": {
-      "type": "object",
-      "description": "A collection of SupportedLanguage resources.",
-      "properties": {
-        "value": {
-          "type": "array",
-          "description": "The SupportedLanguage items on this page",
-          "items": {
-            "$ref": "#/definitions/SupportedLanguage"
-          },
-          "x-ms-identifiers": []
-        },
-        "nextLink": {
-          "type": "string",
-          "format": "uri",
-          "description": "The link to the next page of items"
-        }
-      },
-      "required": [
-        "value"
-      ]
-    },
-    "PagedTrainingConfigVersion": {
-      "type": "object",
-      "description": "A collection of TrainingConfigVersion resources.",
-      "properties": {
-        "value": {
-          "type": "array",
-          "description": "The TrainingConfigVersion items on this page",
-          "items": {
-            "$ref": "#/definitions/TrainingConfigVersion"
-          },
-          "x-ms-identifiers": []
-        },
-        "nextLink": {
-          "type": "string",
-          "format": "uri",
-          "description": "The link to the next page of items"
-        }
-      },
-      "required": [
-        "value"
-      ]
-    },
     "Project": {
       "type": "object",
       "description": "The details of a project.",
@@ -1395,6 +1351,28 @@
         "languageCode"
       ]
     },
+    "SupportedLanguages": {
+      "type": "object",
+      "description": "A collection of SupportedLanguage resources.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "description": "The SupportedLanguage items on this page",
+          "items": {
+            "$ref": "#/definitions/SupportedLanguage"
+          },
+          "x-ms-identifiers": []
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
     "SwapDeploymentsJob": {
       "type": "object",
       "description": "The details of a swap deployments job.",
@@ -1489,6 +1467,28 @@
       "required": [
         "trainingConfigVersion",
         "modelExpirationDate"
+      ]
+    },
+    "TrainingConfigVersions": {
+      "type": "object",
+      "description": "A collection of TrainingConfigVersion resources.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "description": "The TrainingConfigVersion items on this page",
+          "items": {
+            "$ref": "#/definitions/TrainingConfigVersion"
+          },
+          "x-ms-identifiers": []
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items"
+        }
+      },
+      "required": [
+        "value"
       ]
     },
     "TrainingJobOptions": {

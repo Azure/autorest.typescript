@@ -11,7 +11,7 @@ import {
   VirtualNetworkRule as VirtualNetworkRuleRest,
   IPRules as IPRulesRest,
   ManagedResourceGroupConfiguration as ManagedResourceGroupConfigurationRest,
-  ManagedServiceIdentity as ManagedServiceIdentityRest,
+  ManagedServiceIdentityV4 as ManagedServiceIdentityV4Rest,
   DataProductUpdate as DataProductUpdateRest,
   DataProductUpdateProperties as DataProductUpdatePropertiesRest,
   AccountSas as AccountSasRest,
@@ -103,7 +103,7 @@ export interface DataProduct extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductProperties;
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentity;
+  identity?: ManagedServiceIdentityV4;
 }
 
 export function dataProductSerializer(item: DataProduct): DataProductRest {
@@ -115,7 +115,7 @@ export function dataProductSerializer(item: DataProduct): DataProductRest {
       : dataProductPropertiesSerializer(item.properties),
     identity: !item.identity
       ? item.identity
-      : managedServiceIdentitySerializer(item.identity),
+      : managedServiceIdentityV4Serializer(item.identity),
   };
 }
 
@@ -376,7 +376,7 @@ export interface ConsumptionEndpointsProperties {
 }
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedServiceIdentity {
+export interface ManagedServiceIdentityV4 {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -387,9 +387,9 @@ export interface ManagedServiceIdentity {
   userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
-export function managedServiceIdentitySerializer(
-  item: ManagedServiceIdentity,
-): ManagedServiceIdentityRest {
+export function managedServiceIdentityV4Serializer(
+  item: ManagedServiceIdentityV4,
+): ManagedServiceIdentityV4Rest {
   return {
     type: item["type"],
     userAssignedIdentities: !item.userAssignedIdentities
@@ -409,8 +409,8 @@ export enum KnownManagedServiceIdentityType {
   SystemAssigned = "SystemAssigned",
   /** UserAssigned */
   UserAssigned = "UserAssigned",
-  /** SystemAssigned,UserAssigned */
-  "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned",
+  /** SystemAssigned, UserAssigned */
+  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
 }
 
 /**
@@ -421,7 +421,7 @@ export enum KnownManagedServiceIdentityType {
  * **None** \
  * **SystemAssigned** \
  * **UserAssigned** \
- * **SystemAssigned,UserAssigned**
+ * **SystemAssigned, UserAssigned**
  */
 export type ManagedServiceIdentityType = string;
 
@@ -468,9 +468,10 @@ export interface ErrorAdditionalInfo {
 /** The type used for update operations of the DataProduct. */
 export interface DataProductUpdate {
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentity;
+  identity?: ManagedServiceIdentityV4;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The resource-specific properties for this resource. */
   properties?: DataProductUpdateProperties;
 }
 
@@ -480,7 +481,7 @@ export function dataProductUpdateSerializer(
   return {
     identity: !item.identity
       ? item.identity
-      : managedServiceIdentitySerializer(item.identity),
+      : managedServiceIdentityV4Serializer(item.identity),
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     properties: !item.properties
       ? item.properties
@@ -715,6 +716,7 @@ export type DataTypeState = string;
 
 /** The type used for update operations of the DataType. */
 export interface DataTypeUpdate {
+  /** The resource-specific properties for this resource. */
   properties?: DataTypeUpdateProperties;
 }
 
@@ -844,7 +846,7 @@ export interface Operation {
   /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for Azure Resource Manager/control-plane operations. */
   readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
+  readonly display?: OperationDisplay;
   /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
   readonly origin?: Origin;
   /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
@@ -854,13 +856,13 @@ export interface Operation {
 /** Localized display information for and operation. */
 export interface OperationDisplay {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
+  readonly provider?: string;
   /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
+  readonly resource?: string;
   /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
+  readonly operation?: string;
   /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
+  readonly description?: string;
 }
 
 /** Known values of {@link Origin} that the service accepts. */

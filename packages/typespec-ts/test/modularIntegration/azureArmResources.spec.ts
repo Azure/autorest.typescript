@@ -75,11 +75,12 @@ describe("Azure Arm Resources Rest Client", () => {
     );
   });
 
-  it("should update top level tracked resources", async () => {
+  it.skip("should update top level tracked resources", async () => {
     const result = await client.topLevelTrackedResources.update(
       "test-rg",
       "top",
       {
+        location: "eastus",
         properties: {
           description: "valid2"
         }

@@ -2793,19 +2793,19 @@ describe("Input/output model type", () => {
       model X is Templated<Base>{};
       `;
       const tspType = "X";
-      const inputModelName = "TemplatedBase";
+      const inputModelName = "X";
       await verifyPropertyType(tspType, inputModelName, {
         additionalTypeSpecDefinition: tspDefinition,
-        outputType: `TemplatedBaseOutput`,
+        outputType: `XOutput`,
         additionalInputContent: `
-        export interface TemplatedBase {
+        export interface X {
            prop: BaseModel;
         }
 
         export interface BaseModel {}
         `,
         additionalOutputContent: `
-        export interface TemplatedBaseOutput {
+        export interface XOutput {
           prop: BaseModelOutput;
         }
 
