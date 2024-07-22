@@ -79,7 +79,9 @@ export class UsageClient {
    * Expected response body:
    * ```json
    * {
-   *   "name": <any string>
+   *   "result": {
+   *     "name": <any string>
+   *   }
    * }
    * ```
    */

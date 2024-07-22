@@ -14,13 +14,9 @@ export {
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
-  NestedProxyResourceUpdate,
-  NestedProxyResourceUpdateProperties,
   TrackedResource,
   TopLevelTrackedResource,
   TopLevelTrackedResourceProperties,
-  TopLevelTrackedResourceUpdate,
-  TopLevelTrackedResourceUpdateProperties,
   Versions,
   ProvisioningState,
 } from "./models.js";
