@@ -767,9 +767,6 @@ function getSchemaForModel(
   }
   for (const [propName, prop] of model.properties) {
     const restApiName = getWireName(dpgContext, prop);
-    if (restApiName === "finish_reason") {
-      prop;
-    }
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
