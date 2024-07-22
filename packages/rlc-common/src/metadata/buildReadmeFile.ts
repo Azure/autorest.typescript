@@ -305,8 +305,6 @@ interface Metadata {
   azure: boolean;
   /** Indicates if the package is a test/releasable package. */
   isReleasablePackage?: boolean;
-  /** The URL for impression */
-  impressionURL?: string;
   /** The link to the contributing guide in the repository */
   contributingGuideURL?: string;
 }
