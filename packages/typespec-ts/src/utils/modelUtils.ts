@@ -395,7 +395,7 @@ function getSchemaForUnion(
       getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
     );
   }
-  if (asEnum?.open) {
+  if (asEnum?.open && asEnum.members.size > 0) {
     values = [];
     for (const [_, member] of asEnum.members.entries()) {
       values.push(
@@ -410,7 +410,7 @@ function getSchemaForUnion(
   if (values.length > 0) {
     schema.enum = values;
     const unionAlias =
-      asEnum?.open && asEnum?.kind
+      asEnum?.open && asEnum?.kind && !asEnum.nullable
         ? asEnum.kind
         : values
             .map(
@@ -418,7 +418,7 @@ function getSchemaForUnion(
             )
             .join(" | ");
     const outputUnionAlias =
-      asEnum?.open && asEnum?.kind
+      asEnum?.open && asEnum?.kind && !asEnum.nullable
         ? asEnum.kind
         : values
             .map(

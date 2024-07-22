@@ -258,7 +258,7 @@ export interface ChoiceOutput {
   /** The log probabilities model for tokens associated with this completions choice. */
   logprobs: CompletionsLogProbabilityModelOutput | null;
   /** Reason for finishing */
-  finish_reason;
+  finish_reason: CompletionsFinishReasonOutput | null;
 }
 
 /** Information about content filtering evaluated against generated model output. */
@@ -424,7 +424,7 @@ export interface ChatChoiceOutput {
   /** The ordered index associated with this chat completions choice. */
   index: number;
   /** The reason that this chat completions choice completed its generated. */
-  finish_reason;
+  finish_reason: CompletionsFinishReasonOutput | null;
   /**
    * The reason the model stopped generating tokens, together with any applicable details.
    * This structured representation replaces 'finish_reason' for some models.
