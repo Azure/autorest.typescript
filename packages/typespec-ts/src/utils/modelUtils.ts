@@ -388,29 +388,37 @@ function getSchemaForUnion(
   const variants = Array.from(union.variants.values());
 
   let values = [];
-
+  let namedUnionMember = false;
   for (const variant of variants) {
     // We already know it's not a model type
-    values.push(
-      getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
-    );
+    const variantType = getSchemaForType(dpgContext, variant.type, {
+      ...options,
+      needRef: false
+    });
+    values.push(variantType);
+    if (variantType.typeName) {
+      namedUnionMember = true;
+    }
   }
   if (asEnum?.open && asEnum.members.size > 0) {
+    namedUnionMember = false;
     values = [];
     for (const [_, member] of asEnum.members.entries()) {
-      values.push(
-        getSchemaForType(dpgContext, member.type, {
-          ...options,
-          needRef: false
-        })
-      );
+      const memberType = getSchemaForType(dpgContext, member.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(memberType);
+      if (memberType.name) {
+        namedUnionMember = true;
+      }
     }
   }
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
     const unionAlias =
-      asEnum?.open && asEnum?.kind && !asEnum.nullable
+      asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind
         : values
             .map(
@@ -418,7 +426,7 @@ function getSchemaForUnion(
             )
             .join(" | ");
     const outputUnionAlias =
-      asEnum?.open && asEnum?.kind && !asEnum.nullable
+      asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind
         : values
             .map(
@@ -759,6 +767,9 @@ function getSchemaForModel(
   }
   for (const [propName, prop] of model.properties) {
     const restApiName = getWireName(dpgContext, prop);
+    if (restApiName === "finish_reason") {
+      prop;
+    }
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
