@@ -736,7 +736,9 @@ function deserializeUnionTypesFunction(
         type.discriminatorValue
       }": return ${serializeType}${functionName}(obj${
         isPolymorphicBaseModel
-          ? " as " + (type.name ?? type.elementType?.name + "[]")
+          ? " as " +
+            (type.alias ?? type.name) +
+            (serializeType === "serialize" ? "Rest" : "Output")
           : ""
       }); `
     );
