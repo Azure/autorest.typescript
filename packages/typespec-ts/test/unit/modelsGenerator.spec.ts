@@ -2466,6 +2466,7 @@ describe("Input/output model type", () => {
         propOptional?: ExtensibleStringEnum;
         propNullableRequired: ExtensibleStringEnum | null;
         propNullableOptional?: ExtensibleStringEnum | null;
+        propNullableFlattened: string | "a" | "b" | null;
         propArrayElement: ExtensibleStringEnum[];
         propArrayElementNullable: (ExtensibleStringEnum | null)[];
         propRecord: Record<ExtensibleStringEnum>;
@@ -2491,6 +2492,7 @@ describe("Input/output model type", () => {
          propOptional?: ExtensibleStringEnum;
          propNullableRequired: ExtensibleStringEnum | null;
          propNullableOptional?: ExtensibleStringEnum | null;
+         propNullableFlattened: string | null;
          propArrayElement: ExtensibleStringEnum[];
          propArrayElementNullable: (ExtensibleStringEnum | null)[];
          propRecord: Record<string, ExtensibleStringEnum>;
@@ -2511,6 +2513,7 @@ describe("Input/output model type", () => {
          propOptional?: ExtensibleStringEnumOutput;
          propNullableRequired: ExtensibleStringEnumOutput | null;
          propNullableOptional?: ExtensibleStringEnumOutput | null;
+         propNullableFlattened: string | null;
          propArrayElement: ExtensibleStringEnumOutput[];
          propArrayElementNullable: (ExtensibleStringEnumOutput | null)[];
          propRecord: Record<string, ExtensibleStringEnumOutput>;

@@ -419,7 +419,7 @@ function getSchemaForUnion(
     schema.enum = values;
     const unionAlias =
       asEnum?.open && asEnum?.kind && !namedUnionMember
-        ? asEnum.kind
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
             .map(
               (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
@@ -427,7 +427,7 @@ function getSchemaForUnion(
             .join(" | ");
     const outputUnionAlias =
       asEnum?.open && asEnum?.kind && !namedUnionMember
-        ? asEnum.kind
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
             .map(
               (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
