@@ -23,10 +23,10 @@ describe("Azure ClientGeneratorCore Usage Client", () => {
     assert.strictEqual(result.name, "Madge");
   });
 
-  it.skip("should put usage model in operation", async () => {
+  it("should put usage model in operation", async () => {
     const result = await client.modelInReadOnlyProperty({
       result: { name: "Madge" }
     });
-    assert.strictEqual((result as any).name, "Madge");
+    assert.strictEqual(result.result.name, "Madge");
   });
 });
