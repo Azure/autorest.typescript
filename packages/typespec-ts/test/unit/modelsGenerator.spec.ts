@@ -2453,6 +2453,77 @@ describe("Input/output model type", () => {
     });
   });
 
+  describe("extensible union", () => {
+    it("extensible union string as enum", async () => {
+      const tspDefinition = `
+      union ExtensibleStringEnum {
+        string;
+        "a";
+        "b";
+      }
+      model SimpleModel {
+        propRequired: ExtensibleStringEnum;
+        propOptional?: ExtensibleStringEnum;
+        propNullableRequired: ExtensibleStringEnum | null;
+        propNullableOptional?: ExtensibleStringEnum | null;
+        propArrayElement: ExtensibleStringEnum[];
+        propArrayElementNullable: (ExtensibleStringEnum | null)[];
+        propRecord: Record<ExtensibleStringEnum>;
+        propRecordNullable: Record<ExtensibleStringEnum | null>;
+      }
+
+      @route("/models")
+      @put
+      op putModel(@body input: SimpleModel): SimpleModel;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile?.content);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+       export interface SimpleModel {
+         /** Possible values: "a", "b" */
+         propRequired: ExtensibleStringEnum;
+         /** Possible values: "a", "b" */
+         propOptional?: ExtensibleStringEnum;
+         propNullableRequired: ExtensibleStringEnum | null;
+         propNullableOptional?: ExtensibleStringEnum | null;
+         propArrayElement: ExtensibleStringEnum[];
+         propArrayElementNullable: (ExtensibleStringEnum | null)[];
+         propRecord: Record<string, ExtensibleStringEnum>;
+         propRecordNullable: Record<string, ExtensibleStringEnum | null>;
+       }
+       
+       /** Alias for ExtensibleStringEnum */
+       export type ExtensibleStringEnum = string;
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+       export interface SimpleModelOutput {
+         /** Possible values: "a", "b" */
+         propRequired: ExtensibleStringEnumOutput;
+         /** Possible values: "a", "b" */
+         propOptional?: ExtensibleStringEnumOutput;
+         propNullableRequired: ExtensibleStringEnumOutput | null;
+         propNullableOptional?: ExtensibleStringEnumOutput | null;
+         propArrayElement: ExtensibleStringEnumOutput[];
+         propArrayElementNullable: (ExtensibleStringEnumOutput | null)[];
+         propRecord: Record<string, ExtensibleStringEnumOutput>;
+         propRecordNullable: Record<string, ExtensibleStringEnumOutput | null>;
+       }
+       
+       /** Alias for ExtensibleStringEnumOutput */
+       export type ExtensibleStringEnumOutput = string;
+      `
+      );
+    });
+  });
+
   describe("'is' keyword generation", () => {
     it("should handle A is B, only A is referenced", async () => {
       const tspDefinition = `
