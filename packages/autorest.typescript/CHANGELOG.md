@@ -1,3 +1,22 @@
+## 6.0.25 (2024-07-23)
+
+- [Feature] Set user agent prefix at different layer for modular. Please refer to [#2616](https://github.com/Azure/autorest.typescript/pull/2616).
+- [Feature] Spread is spread support. Please refer to [#2653](https://github.com/Azure/autorest.typescript/pull/2653).
+- [Feature] Upgrade TypeSpec compiler version to 0.58.x. Please refer to [#2679](https://github.com/Azure/autorest.typescript/pull/2679).
+- [Feature] Support Modular readme.md generation. Please refer to [#2655](https://github.com/Azure/autorest.typescript/pull/2655). 
+- [Feature] Engineering system related improvements.
+    - Bump typescript version to ~5.5.3, please refer to [#2646](https://github.com/Azure/autorest.typescript/pull/2646); 
+    - vitest timeout config, please refer to [#2632](https://github.com/Azure/autorest.typescript/pull/2632); 
+    - recorded client for esm package improve, please refer to [#2632](https://github.com/Azure/autorest.typescript/pull/2632);
+    - skip sample validation if generateSample is false, please refer to [#2650](https://github.com/Azure/autorest.typescript/pull/2650); 
+    - remove unused configuration files, please refer to [#2655](https://github.com/Azure/autorest.typescript/pull/2655); 
+    - add and refine document for generated code, please refer to [#2661](https://github.com/Azure/autorest.typescript/pull/2661) and [#2621](https://github.com/Azure/autorest.typescript/pull/2621).
+- [Bugfix] Fix the isUnexpected narrowing issue in Modular. Please refer to [#2654](https://github.com/Azure/autorest.typescript/pull/2654).
+- [Bugfix] Fix the extensible enum with null union generation failure in RLC. Please refer to [#2682](https://github.com/Azure/autorest.typescript/pull/2682).
+- [Bugfix] Remove hard code for lro in patch operation. Please refer to [#2583](https://github.com/Azure/autorest.typescript/pull/2583).
+- [Bugfix] Fix client option interface name inconsistent issue. Please refer to [#2671](https://github.com/Azure/autorest.typescript/pull/2671).
+- [Bugfix] Fix nullable dictionaries and array element nullable serialization issues. Please refer to [#2631](https://github.com/Azure/autorest.typescript/pull/2631) and [#2643](https://github.com/Azure/autorest.typescript/pull/2643).
+
 ## 6.0.24 (2024-06-28)
 
 - [Feature] Support non-exhaustive enum. Please refer to [#2584](https://github.com/Azure/autorest.typescript/pull/2584).
