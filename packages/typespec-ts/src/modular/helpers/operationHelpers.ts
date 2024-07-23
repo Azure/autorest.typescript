@@ -37,6 +37,7 @@ import {
   Operation,
   Parameter,
   Property,
+  Response,
   Type
 } from "../modularCodeModel.js";
 import {
@@ -46,30 +47,55 @@ import {
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { buildType, isTypeNullable } from "./typeHelpers.js";
 
-function getRLCResponseType(rlcResponse?: OperationResponse) {
+function getRLCResponseTypes(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
     return;
   }
   return rlcResponse?.responses
-    .map((resp) => {
-      const baseResponseName = getResponseBaseName(
-        rlcResponse.operationGroup,
-        rlcResponse.operationName,
-        resp.statusCode
-      );
-      // Get the information to build the Response Interface
-      return resp.predefinedName ?? getResponseTypeName(baseResponseName);
-    })
+    .map(
+      (resp) =>
+        resp.predefinedName ?? getRLCResponseType(resp.statusCode, rlcResponse)
+    )
     .join(" | ");
 }
 
-function getRLCLroLogicalResponse(rlcResponse?: OperationResponse) {
-  const logicalResponse = (rlcResponse?.responses ?? []).filter(
-    (r) => r.predefinedName && r.predefinedName.endsWith(`LogicalResponse`)
+function getRLCResponseType(
+  statusCode: string,
+  operationInfo?: OperationResponse
+) {
+  if (!operationInfo) {
+    return;
+  }
+  const baseResponseName = getResponseBaseName(
+    operationInfo.operationGroup,
+    operationInfo.operationName,
+    statusCode
   );
-  return logicalResponse.length > 0
-    ? logicalResponse[0]!.predefinedName!
-    : "any";
+  // Get the information to build the Response Interface
+  return getResponseTypeName(baseResponseName);
+}
+
+function getNarrowedRLCResponse(
+  response: Response,
+  rlcResponse?: OperationResponse
+): string | undefined {
+  if (!rlcResponse) {
+    return;
+  }
+  const statusCode = response.statusCodes;
+  const names = getRLCResponseTypes(rlcResponse)?.split(" | ");
+  const lroResponse = names?.filter((n) => n.endsWith(`LogicalResponse`));
+  const normalResponse = names?.filter(
+    (n) => n === getRLCResponseType(`${statusCode}`, rlcResponse)
+  );
+  return (
+    // if the response is a LRO response, narrow to the lro logical response
+    lroResponse?.at(0) ??
+    // if the default response is a superset of one of other responses, narrow to the normal response
+    (rlcResponse.isDefaultSupersetOfOthers
+      ? normalResponse?.at(0) ?? "any"
+      : undefined)
+  );
 }
 
 export function getSendPrivateFunction(
@@ -80,7 +106,7 @@ export function getSendPrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
-  const returnType = `StreamableMethod<${getRLCResponseType(
+  const returnType = `StreamableMethod<${getRLCResponseTypes(
     operation.rlcResponse
   )}>`;
 
@@ -125,7 +151,7 @@ export function getDeserializePrivateFunction(
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: getRLCResponseType(operation.rlcResponse)
+      type: getRLCResponseTypes(operation.rlcResponse)
     }
   ];
   // TODO: Support LRO + paging operation
@@ -187,20 +213,27 @@ export function getDeserializePrivateFunction(
     ? operation?.lroMetadata?.finalResult
     : response.type;
   const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+  // Narrow down the rlc response type to deserialized one
+  const isNarrowedResponse = getNarrowedRLCResponse(
+    response,
+    operation.rlcResponse
+  );
+  let deserializePrefix = "result.body";
+  if (isNarrowedResponse) {
+    statements.push(`const res = result as unknown as ${isNarrowedResponse};`);
+    deserializePrefix = "res.body";
+  }
+
   const deserializedRoot = hasLroSubPath
-    ? `result.body.${operation?.lroMetadata?.finalResultPath}`
-    : "result.body";
-  if (isLroOnly) {
-    const lroLogicalResponse = getRLCLroLogicalResponse(operation.rlcResponse);
-    statements.push(`result = result as ${lroLogicalResponse};`);
-    if (hasLroSubPath) {
-      statements.push(
-        `if(${deserializedRoot.split(".").join("?.")} === undefined) {
-          throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
-        }
-        `
-      );
-    }
+    ? `${deserializePrefix}.${operation?.lroMetadata?.finalResultPath}`
+    : `${deserializePrefix}`;
+  if (isLroOnly && hasLroSubPath) {
+    statements.push(
+      `if(${deserializedRoot.split(".").join("?.")} === undefined) {
+        throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+      }
+      `
+    );
   }
 
   const allParents = deserializedType ? getAllAncestors(deserializedType) : [];
@@ -215,7 +248,7 @@ export function getDeserializePrivateFunction(
     response.isBinaryPayload
   ) {
     // TODO: Fix this any cast when implementing handling dict.
-    statements.push(`return result.body as any`);
+    statements.push(`return ${deserializedRoot} as any`);
   } else if (
     deserializedType &&
     properties.length > 0 &&

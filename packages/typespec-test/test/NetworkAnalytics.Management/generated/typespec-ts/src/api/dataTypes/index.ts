@@ -98,39 +98,39 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DataTypesCreateLogicalResponse;
+  const res = result as unknown as DataTypesCreateLogicalResponse;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          state: res.body.properties?.["state"],
+          stateReason: res.body.properties?.["stateReason"],
           storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
+            res.body.properties?.["storageOutputRetention"],
           databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
+            res.body.properties?.["databaseCacheRetention"],
+          databaseRetention: res.body.properties?.["databaseRetention"],
+          visualizationUrl: res.body.properties?.["visualizationUrl"],
         },
   };
 }
@@ -286,39 +286,39 @@ export async function _updateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DataTypesUpdateLogicalResponse;
+  const res = result as unknown as DataTypesUpdateLogicalResponse;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          state: res.body.properties?.["state"],
+          stateReason: res.body.properties?.["stateReason"],
           storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
+            res.body.properties?.["storageOutputRetention"],
           databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
+            res.body.properties?.["databaseCacheRetention"],
+          databaseRetention: res.body.properties?.["databaseRetention"],
+          visualizationUrl: res.body.properties?.["visualizationUrl"],
         },
   };
 }
@@ -384,7 +384,6 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DataTypesDeleteLogicalResponse;
   return;
 }
 
@@ -453,7 +452,6 @@ export async function _deleteDataDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DataTypesDeleteDataLogicalResponse;
   return;
 }
 

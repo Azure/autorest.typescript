@@ -31,7 +31,7 @@ export function isDictionarySchema(
   return false;
 }
 
-export function isObjectSchema(schema: Schema) {
+export function isObjectSchema(schema: Schema): schema is ObjectSchema {
   if (schema.type === "object") {
     return true;
   }

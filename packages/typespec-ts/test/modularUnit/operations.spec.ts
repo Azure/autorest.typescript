@@ -631,7 +631,6 @@ describe("operations", () => {
             if(result.status !== "200"){
               throw createRestError(result);
             }
-
             return {
               "lists": result.body["lists"]
             }
@@ -699,7 +698,6 @@ describe("operations", () => {
             if(result.status !== "200"){
             throw createRestError(result);
             }
-
             return {
             "lists": result.body["lists"]
             }

@@ -1054,7 +1054,7 @@ describe("anonymous model", () => {
             if (result.status !== "200") {
               throw createRestError(result);
             }
-          
+
             return {
               baz: {
                 foo: result.body.baz["foo"],
