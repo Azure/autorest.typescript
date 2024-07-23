@@ -50,6 +50,22 @@ const testedTypes: TypeDetail[] = [
   {
     type: "nullable-float",
     defaultValue: [1.25, null, 3.0]
+  },
+  {
+    type: "nullable-boolean",
+    defaultValue: [true, null, false]
+  },
+  {
+    type: "nullable-int32",
+    defaultValue: [1, null, 3]
+  },
+  {
+    type: "nullable-string",
+    defaultValue: ["hello", null, "world"]
+  },
+  {
+    type: "nullable-model",
+    defaultValue: [{ property: "hello" }, null, { property: "world" }]
   }
 ];
 describe("Array Item-Types Client", () => {
