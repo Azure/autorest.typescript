@@ -16,8 +16,8 @@ import {
   GetChatCompletionsDefaultResponse,
   GetImageGenerations200Response,
   GetImageGenerationsDefaultResponse,
-  GetAudioSpeech200Response,
-  GetAudioSpeechDefaultResponse,
+  GenerateSpeechFromText200Response,
+  GenerateSpeechFromTextDefaultResponse,
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
 } from "./responses.js";
@@ -62,8 +62,10 @@ export function isUnexpected(
   response: GetImageGenerations200Response | GetImageGenerationsDefaultResponse,
 ): response is GetImageGenerationsDefaultResponse;
 export function isUnexpected(
-  response: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
-): response is GetAudioSpeechDefaultResponse;
+  response:
+    | GenerateSpeechFromText200Response
+    | GenerateSpeechFromTextDefaultResponse,
+): response is GenerateSpeechFromTextDefaultResponse;
 export function isUnexpected(
   response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
 ): response is GetEmbeddingsDefaultResponse;
@@ -83,8 +85,8 @@ export function isUnexpected(
     | GetChatCompletionsDefaultResponse
     | GetImageGenerations200Response
     | GetImageGenerationsDefaultResponse
-    | GetAudioSpeech200Response
-    | GetAudioSpeechDefaultResponse
+    | GenerateSpeechFromText200Response
+    | GenerateSpeechFromTextDefaultResponse
     | GetEmbeddings200Response
     | GetEmbeddingsDefaultResponse,
 ): response is
@@ -95,7 +97,7 @@ export function isUnexpected(
   | GetCompletionsDefaultResponse
   | GetChatCompletionsDefaultResponse
   | GetImageGenerationsDefaultResponse
-  | GetAudioSpeechDefaultResponse
+  | GenerateSpeechFromTextDefaultResponse
   | GetEmbeddingsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);

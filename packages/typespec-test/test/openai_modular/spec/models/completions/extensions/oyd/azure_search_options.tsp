@@ -2,58 +2,67 @@ import "@typespec/versioning";
 import "@azure-tools/typespec-client-generator-core";
 import "./../../azure_chat_extensions.tsp";
 import "./common_options.tsp";
+import "./vector_search.tsp";
 
 namespace Azure.OpenAI;
 
 using TypeSpec.Versioning;
 using Azure.ClientGenerator.Core;
 
-@added(ServiceApiVersions.v2024_02_15_Preview)
 @doc("""
-  A specific representation of configurable options for Elasticsearch when using it as an Azure OpenAI chat
+  A specific representation of configurable options for Azure Search when using it as an Azure OpenAI chat
   extension.
   """)
-model ElasticsearchChatExtensionConfiguration
+@added(ServiceApiVersions.v2024_02_15_Preview)
+model AzureSearchChatExtensionConfiguration
   extends AzureChatExtensionConfiguration {
   @doc("""
     The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
-    default value for Elasticsearch®.
+    default value for Azure Cognitive Search.
     """)
-  type: AzureChatExtensionType.elasticsearch;
+  type: AzureChatExtensionType.azureSearch;
 
-  @doc("The parameters to use when configuring Elasticsearch®.")
-  parameters: ElasticsearchChatExtensionParameters;
+  @doc("The parameters to use when configuring Azure Search.")
+  parameters: AzureSearchChatExtensionParameters;
 }
 
 @added(ServiceApiVersions.v2024_02_15_Preview)
-@doc("Parameters to use when configuring Elasticsearch® as an Azure OpenAI chat extension. The supported authentication types are KeyAndKeyId and EncodedAPIKey.")
-model ElasticsearchChatExtensionParameters {
+@doc("Parameters for Azure Cognitive Search when used as an Azure OpenAI chat extension. The supported authentication types are APIKey, SystemAssignedManagedIdentity and UserAssignedManagedIdentity.")
+model AzureSearchChatExtensionParameters {
   ...OnYourDataCommonChatExtensionConfiguration;
 
-  @doc("The endpoint of Elasticsearch®.")
+  @doc("The absolute endpoint path for the Azure Cognitive Search resource to use.")
+  @clientName("SearchEndpoint", "csharp")
   endpoint: url;
 
-  @doc("The index name of Elasticsearch®.")
+  @doc("The name of the index to use as available in the referenced Azure Cognitive Search resource.")
   @encodedName("application/json", "index_name")
   indexName: string;
 
-  @doc("The index field mapping options of Elasticsearch®.")
+  @doc("Customized field mapping behavior to use when interacting with the search index.")
   @clientName("FieldMappingOptions", "csharp")
   @encodedName("application/json", "fields_mapping")
-  fieldsMapping?: ElasticsearchIndexFieldMappingOptions;
+  fieldsMapping?: AzureSearchIndexFieldMappingOptions;
 
-  @doc("The query type of Elasticsearch®.")
+  @doc("The query type to use with Azure Cognitive Search.")
   @encodedName("application/json", "query_type")
-  queryType?: ElasticsearchQueryType;
+  queryType?: AzureSearchQueryType;
+
+  @doc("The additional semantic configuration for the query.")
+  @encodedName("application/json", "semantic_configuration")
+  semanticConfiguration?: string;
+
+  @doc("Search filter.")
+  filter?: string;
 
   @doc("The embedding dependency for vector search.")
   @encodedName("application/json", "embedding_dependency")
   embeddingDependency?: OnYourDataVectorizationSource;
 }
 
-@doc("Optional settings to control how fields are processed when using a configured Elasticsearch® resource.")
+@doc("Optional settings to control how fields are processed when using a configured Azure Search resource.")
 @added(ServiceApiVersions.v2024_02_15_Preview)
-model ElasticsearchIndexFieldMappingOptions {
+model AzureSearchIndexFieldMappingOptions {
   @doc("The name of the index field to use as a title.")
   @clientName("TitleFieldName", "csharp")
   @encodedName("application/json", "title_field")
@@ -83,18 +92,32 @@ model ElasticsearchIndexFieldMappingOptions {
   @clientName("VectorFieldNames", "csharp")
   @encodedName("application/json", "vector_fields")
   vectorFields?: string[];
+
+  @doc("The names of fields that represent image vector data.")
+  @clientName("ImageVectorFieldNames", "csharp")
+  @encodedName("application/json", "image_vector_fields")
+  imageVectorFields?: string[];
 }
 
 @doc("""
-  The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension.
+  The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension.
   """)
 @added(ServiceApiVersions.v2024_02_15_Preview)
-union ElasticsearchQueryType {
+union AzureSearchQueryType {
   string,
 
   @doc("Represents the default, simple query parser.")
   simple: "simple",
 
+  @doc("Represents the semantic query parser for advanced semantic modeling.")
+  semantic: "semantic",
+
   @doc("Represents vector search over computed data.")
   vector: "vector",
+
+  @doc("Represents a combination of the simple query strategy with vector data.")
+  vectorSimpleHybrid: "vector_simple_hybrid",
+
+  @doc("Represents a combination of semantic search and vector data querying.")
+  vectorSemanticHybrid: "vector_semantic_hybrid",
 }

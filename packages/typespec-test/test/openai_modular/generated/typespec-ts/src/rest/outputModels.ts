@@ -7,7 +7,11 @@ import { ErrorModel } from "@azure-rest/core-client";
 export interface AudioTranscriptionOutput {
   /** The transcribed text for the provided audio data. */
   text: string;
-  /** The label that describes which operation type generated the accompanying response data. */
+  /**
+   * The label that describes which operation type generated the accompanying response data.
+   *
+   * Possible values: "transcribe", "translate"
+   */
   task?: AudioTaskLabelOutput;
   /**
    * The spoken language that was detected in the transcribed audio data.
@@ -18,6 +22,8 @@ export interface AudioTranscriptionOutput {
   duration?: number;
   /** A collection of information about the timing, probabilities, and other detail of each processed audio segment. */
   segments?: Array<AudioTranscriptionSegmentOutput>;
+  /** A collection of information about the timing of each processed word. */
+  words?: Array<AudioTranscriptionWordOutput>;
 }
 
 /**
@@ -54,11 +60,25 @@ export interface AudioTranscriptionSegmentOutput {
   seek: number;
 }
 
+/** Extended information about a single transcribed word, as provided on responses when the 'word' timestamp granularity is provided. */
+export interface AudioTranscriptionWordOutput {
+  /** The textual content of the word. */
+  word: string;
+  /** The start time of the word relative to the beginning of the audio, expressed in seconds. */
+  start: number;
+  /** The end time of the word relative to the beginning of the audio, expressed in seconds. */
+  end: number;
+}
+
 /** Result information for an operation that translated spoken audio into written text. */
 export interface AudioTranslationOutput {
   /** The translated text for the provided audio data. */
   text: string;
-  /** The label that describes which operation type generated the accompanying response data. */
+  /**
+   * The label that describes which operation type generated the accompanying response data.
+   *
+   * Possible values: "transcribe", "translate"
+   */
   task?: AudioTaskLabelOutput;
   /**
    * The spoken language that was detected in the translated audio data.
@@ -171,7 +191,7 @@ export interface ContentFilterResultDetailsForPromptOutput {
   /** Describes whether profanity was detected. */
   profanity?: ContentFilterDetectionResultOutput;
   /** Describes detection results against configured custom blocklists. */
-  custom_blocklists?: Array<ContentFilterBlocklistIdResultOutput>;
+  custom_blocklists?: ContentFilterDetailedResultsOutput;
   /**
    * Describes an error returned if the content filtering system is
    * down or otherwise unable to complete the operation in time.
@@ -179,14 +199,20 @@ export interface ContentFilterResultDetailsForPromptOutput {
   error?: ErrorModel;
   /** Whether a jailbreak attempt was detected in the prompt. */
   jailbreak?: ContentFilterDetectionResultOutput;
+  /** Whether an indirect attack was detected in the prompt. */
+  indirect_attack?: ContentFilterDetectionResultOutput;
 }
 
 /** Information about filtered content severity level and if it has been filtered or not. */
 export interface ContentFilterResultOutput {
-  /** Ratings for the intensity and risk level of filtered content. */
-  severity: ContentFilterSeverityOutput;
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
+  /**
+   * Ratings for the intensity and risk level of filtered content.
+   *
+   * Possible values: "safe", "low", "medium", "high"
+   */
+  severity: ContentFilterSeverityOutput;
 }
 
 /** Represents the outcome of a detection operation performed by content filtering. */
@@ -197,12 +223,20 @@ export interface ContentFilterDetectionResultOutput {
   detected: boolean;
 }
 
-/** Represents the outcome of an evaluation against a custom blocklist as performed by content filtering. */
-export interface ContentFilterBlocklistIdResultOutput {
-  /** The ID of the custom blocklist evaluated. */
-  id: string;
+/** Represents a structured collection of result details for content filtering. */
+export interface ContentFilterDetailedResultsOutput {
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
+  /** The collection of detailed blocklist result information. */
+  details: Array<ContentFilterBlocklistIdResultOutput>;
+}
+
+/** Represents the outcome of an evaluation against a custom blocklist as performed by content filtering. */
+export interface ContentFilterBlocklistIdResultOutput {
+  /** A value indicating whether or not the content has been filtered. */
+  filtered: boolean;
+  /** The ID of the custom blocklist evaluated. */
+  id: string;
 }
 
 /**
@@ -257,7 +291,7 @@ export interface ContentFilterResultsForChoiceOutput {
   /** Describes whether profanity was detected. */
   profanity?: ContentFilterDetectionResultOutput;
   /** Describes detection results against configured custom blocklists. */
-  custom_blocklists?: Array<ContentFilterBlocklistIdResultOutput>;
+  custom_blocklists?: ContentFilterDetailedResultsOutput;
   /**
    * Describes an error returned if the content filtering system is
    * down or otherwise unable to complete the operation in time.
@@ -361,6 +395,8 @@ export interface ChatCompletionsOutput {
    * Token limits and other settings may limit the number of choices generated.
    */
   choices: Array<ChatChoiceOutput>;
+  /** The model name used for this completions request. */
+  model?: string;
   /**
    * Content filtering results for zero or more prompts in the request. In a streaming request,
    * results for different prompts may arrive at different times or in different orders.
@@ -412,7 +448,11 @@ export interface ChatChoiceOutput {
 
 /** A representation of a chat message as received in a response. */
 export interface ChatResponseMessageOutput {
-  /** The chat role associated with the message. */
+  /**
+   * The chat role associated with the message.
+   *
+   * Possible values: "system", "assistant", "user", "function", "tool"
+   */
   role: ChatRoleOutput;
   /** The content of the message. */
   content: string | null;
@@ -448,6 +488,8 @@ export interface AzureChatExtensionsMessageContextOutput {
   citations?: Array<AzureChatExtensionDataSourceResponseCitationOutput>;
   /** The detected intent from the chat history, used to pass to the next turn to carry over the context. */
   intent?: string;
+  /** All the retrieved documents. */
+  all_retrieved_documents?: Array<AzureChatExtensionRetrievedDocumentOutput>;
 }
 
 /**
@@ -466,6 +508,33 @@ export interface AzureChatExtensionDataSourceResponseCitationOutput {
   filepath?: string;
   /** The chunk ID of the citation. */
   chunk_id?: string;
+}
+
+/** The retrieved document. */
+export interface AzureChatExtensionRetrievedDocumentOutput {
+  /** The content of the citation. */
+  content: string;
+  /** The title of the citation. */
+  title?: string;
+  /** The URL of the citation. */
+  url?: string;
+  /** The file path of the citation. */
+  filepath?: string;
+  /** The chunk ID of the citation. */
+  chunk_id?: string;
+  /** The search queries used to retrieve the document. */
+  search_queries: string[];
+  /** The index of the data source. */
+  data_source_index: number;
+  /** The original search score of the retrieved document. */
+  original_search_score?: number;
+  /** The rerank score of the retrieved document. */
+  rerank_score?: number;
+  /**
+   * Represents the rationale for filtering the document. If the document does not undergo filtering,
+   * this field will remain unset.
+   */
+  filter_reason?: AzureChatExtensionRetrieveDocumentFilterReasonOutput;
 }
 
 /** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
@@ -585,11 +654,86 @@ export interface ImageGenerationDataOutput {
   url?: string;
   /** The complete data for an image, represented as a base64-encoded string. */
   b64_json?: string;
+  /** Information about the content filtering results. */
+  content_filter_results?: ImageGenerationContentFilterResultsOutput;
   /**
    * The final prompt used by the model to generate the image.
    * Only provided with dall-3-models and only when revisions were made to the prompt.
    */
   revised_prompt?: string;
+  /**
+   * Information about the content filtering category (hate, sexual, violence, self_harm), if
+   * it has been detected, as well as the severity level (very_low, low, medium, high-scale
+   * that determines the intensity and risk level of harmful content) and if it has been
+   * filtered or not. Information about jailbreak content and profanity, if it has been detected,
+   * and if it has been filtered or not. And information about customer block list, if it has
+   * been filtered and its id.
+   */
+  prompt_filter_results?: ImageGenerationPromptFilterResultsOutput;
+}
+
+/** Describes the content filtering result for the image generation request. */
+export interface ImageGenerationContentFilterResultsOutput {
+  /**
+   * Describes language related to anatomical organs and genitals, romantic relationships,
+   *  acts portrayed in erotic or affectionate terms, physical sexual acts, including
+   *  those portrayed as an assault or a forced sexual violent act against one’s will,
+   *  prostitution, pornography, and abuse.
+   */
+  sexual?: ContentFilterResultOutput;
+  /**
+   * Describes language related to physical actions intended to hurt, injure, damage, or
+   * kill someone or something; describes weapons, etc.
+   */
+  violence?: ContentFilterResultOutput;
+  /**
+   * Describes language attacks or uses that include pejorative or discriminatory language
+   * with reference to a person or identity group on the basis of certain differentiating
+   * attributes of these groups including but not limited to race, ethnicity, nationality,
+   * gender identity and expression, sexual orientation, religion, immigration status, ability
+   * status, personal appearance, and body size.
+   */
+  hate?: ContentFilterResultOutput;
+  /**
+   * Describes language related to physical actions intended to purposely hurt, injure,
+   * or damage one’s body, or kill oneself.
+   */
+  self_harm?: ContentFilterResultOutput;
+}
+
+/** Describes the content filtering results for the prompt of a image generation request. */
+export interface ImageGenerationPromptFilterResultsOutput {
+  /**
+   * Describes language related to anatomical organs and genitals, romantic relationships,
+   *  acts portrayed in erotic or affectionate terms, physical sexual acts, including
+   *  those portrayed as an assault or a forced sexual violent act against one’s will,
+   *  prostitution, pornography, and abuse.
+   */
+  sexual?: ContentFilterResultOutput;
+  /**
+   * Describes language related to physical actions intended to hurt, injure, damage, or
+   * kill someone or something; describes weapons, etc.
+   */
+  violence?: ContentFilterResultOutput;
+  /**
+   * Describes language attacks or uses that include pejorative or discriminatory language
+   * with reference to a person or identity group on the basis of certain differentiating
+   * attributes of these groups including but not limited to race, ethnicity, nationality,
+   * gender identity and expression, sexual orientation, religion, immigration status, ability
+   * status, personal appearance, and body size.
+   */
+  hate?: ContentFilterResultOutput;
+  /**
+   * Describes language related to physical actions intended to purposely hurt, injure,
+   * or damage one’s body, or kill oneself.
+   */
+  self_harm?: ContentFilterResultOutput;
+  /** Describes whether profanity was detected. */
+  profanity?: ContentFilterDetectionResultOutput;
+  /** Whether a jailbreak attempt was detected in the prompt. */
+  jailbreak?: ContentFilterDetectionResultOutput;
+  /** Information about customer block lists and if something was detected the associated list ID. */
+  custom_blocklists?: ContentFilterDetailedResultsOutput;
 }
 
 /**
@@ -635,21 +779,15 @@ export type ChatFinishDetailsOutput =
   | ChatFinishDetailsOutputParent
   | StopFinishDetailsOutput
   | MaxTokensFinishDetailsOutput;
-/** Defines the possible descriptors for available audio operation responses. */
-export type AudioTaskLabelOutput = "transcribe" | "translate";
-/** Ratings for the intensity and risk level of harmful content. */
-export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
-/** Representation of the manner in which a completions response concluded. */
-export type CompletionsFinishReasonOutput =
-  | "stop"
-  | "length"
-  | "content_filter"
-  | "function_call"
-  | "tool_calls";
-/** A description of the intended purpose of a message within a chat completions interaction. */
-export type ChatRoleOutput =
-  | "system"
-  | "assistant"
-  | "user"
-  | "function"
-  | "tool";
+/** Alias for AudioTaskLabelOutput */
+export type AudioTaskLabelOutput = string;
+/** Alias for ContentFilterSeverityOutput */
+export type ContentFilterSeverityOutput = string;
+/** Alias for CompletionsFinishReasonOutput */
+export type CompletionsFinishReasonOutput = string;
+/** Alias for ChatRoleOutput */
+export type ChatRoleOutput = string;
+/** Alias for AzureChatExtensionRetrieveDocumentFilterReasonOutput */
+export type AzureChatExtensionRetrieveDocumentFilterReasonOutput =
+  | "score"
+  | "rerank";
