@@ -128,7 +128,7 @@ describe("Package file generation", () => {
         constantPaths: [
           {
             path: "src/msinternal/test.ts",
-            prefix: "package-version"
+            prefix: "userAgentInfo"
           }
         ]
       };
@@ -151,7 +151,7 @@ describe("Package file generation", () => {
           },
           {
             path: "src/msinternal/test.ts",
-            prefix: "package-version"
+            prefix: "userAgentInfo"
           }
         ]
       };

@@ -35,7 +35,7 @@
       },
       {
         "path": "src/securityKeyRestClient.ts",
-        "prefix": "package-version"
+        "prefix": "userAgentInfo"
       }
     ]
   },
