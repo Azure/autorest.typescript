@@ -18,6 +18,14 @@ import {
   DurationPutAllParameters,
   DurationGetDefaultParameters,
   DurationPutDefaultParameters,
+  PlainDateGetAllParameters,
+  PlainDatePutAllParameters,
+  PlainDateGetDefaultParameters,
+  PlainDatePutDefaultParameters,
+  PlainTimeGetAllParameters,
+  PlainTimePutAllParameters,
+  PlainTimeGetDefaultParameters,
+  PlainTimePutDefaultParameters,
   CollectionsByteGetAllParameters,
   CollectionsBytePutAllParameters,
   CollectionsByteGetDefaultParameters,
@@ -76,6 +84,14 @@ import {
   DurationPutAll204Response,
   DurationGetDefault200Response,
   DurationPutDefault204Response,
+  PlainDateGetAll200Response,
+  PlainDatePutAll204Response,
+  PlainDateGetDefault200Response,
+  PlainDatePutDefault204Response,
+  PlainTimeGetAll200Response,
+  PlainTimePutAll204Response,
+  PlainTimeGetDefault200Response,
+  PlainTimePutDefault204Response,
   CollectionsByteGetAll200Response,
   CollectionsBytePutAll204Response,
   CollectionsByteGetDefault200Response,
@@ -203,6 +219,50 @@ export interface DurationGetDefault {
   put(
     options: DurationPutDefaultParameters,
   ): StreamableMethod<DurationPutDefault204Response>;
+}
+
+export interface PlainDateGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: PlainDateGetAllParameters,
+  ): StreamableMethod<PlainDateGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: PlainDatePutAllParameters,
+  ): StreamableMethod<PlainDatePutAll204Response>;
+}
+
+export interface PlainDateGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: PlainDateGetDefaultParameters,
+  ): StreamableMethod<PlainDateGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: PlainDatePutDefaultParameters,
+  ): StreamableMethod<PlainDatePutDefault204Response>;
+}
+
+export interface PlainTimeGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: PlainTimeGetAllParameters,
+  ): StreamableMethod<PlainTimeGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: PlainTimePutAllParameters,
+  ): StreamableMethod<PlainTimePutAll204Response>;
+}
+
+export interface PlainTimeGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: PlainTimeGetDefaultParameters,
+  ): StreamableMethod<PlainTimeGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: PlainTimePutDefaultParameters,
+  ): StreamableMethod<PlainTimePutDefault204Response>;
 }
 
 export interface CollectionsByteGetAll {
@@ -442,6 +502,14 @@ export interface Routes {
   (path: "/type/property/optional/duration/all"): DurationGetAll;
   /** Resource for '/type/property/optional/duration/default' has methods for the following verbs: get, put */
   (path: "/type/property/optional/duration/default"): DurationGetDefault;
+  /** Resource for '/type/property/optional/plainDate/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/plainDate/all"): PlainDateGetAll;
+  /** Resource for '/type/property/optional/plainDate/default' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/plainDate/default"): PlainDateGetDefault;
+  /** Resource for '/type/property/optional/plainTime/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/plainTime/all"): PlainTimeGetAll;
+  /** Resource for '/type/property/optional/plainTime/default' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/plainTime/default"): PlainTimeGetDefault;
   /** Resource for '/type/property/optional/collections/bytes/all' has methods for the following verbs: get, put */
   (
     path: "/type/property/optional/collections/bytes/all",

@@ -17,6 +17,8 @@
       "./api/bytes": "src/api/bytes/index.ts",
       "./api/datetime": "src/api/datetime/index.ts",
       "./api/duration": "src/api/duration/index.ts",
+      "./api/plainDate": "src/api/plainDate/index.ts",
+      "./api/plainTime": "src/api/plainTime/index.ts",
       "./api/collectionsByte": "src/api/collectionsByte/index.ts",
       "./api/collectionsModel": "src/api/collectionsModel/index.ts",
       "./api/stringLiteral": "src/api/stringLiteral/index.ts",

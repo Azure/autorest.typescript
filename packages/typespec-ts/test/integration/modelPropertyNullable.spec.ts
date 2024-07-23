@@ -34,6 +34,10 @@ const testedTypes: TypeDetail[] = [
   {
     type: "collections/model",
     defaultValue: [{ property: "hello" }, { property: "world" }]
+  },
+  {
+    type: "collections/string",
+    defaultValue: ["hello", "world"]
   }
 ];
 describe("ModelsPropertyNullableClient Rest Client", () => {

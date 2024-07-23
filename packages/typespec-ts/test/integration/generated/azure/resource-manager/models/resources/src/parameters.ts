@@ -2,12 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import {
-  TopLevelTrackedResource,
-  TopLevelTrackedResourceUpdate,
-  NestedProxyResource,
-  NestedProxyResourceUpdate,
-} from "./models.js";
+import { TopLevelTrackedResource, NestedProxyResource } from "./models.js";
 
 export type TopLevelTrackedResourcesGetParameters = RequestParameters;
 
@@ -21,7 +16,7 @@ export type TopLevelTrackedResourcesCreateOrReplaceParameters =
 
 export interface TopLevelTrackedResourcesUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: TopLevelTrackedResourceUpdate;
+  body: TopLevelTrackedResource;
 }
 
 export type TopLevelTrackedResourcesUpdateParameters =
@@ -43,7 +38,7 @@ export type NestedProxyResourcesCreateOrReplaceParameters =
 
 export interface NestedProxyResourcesUpdateBodyParam {
   /** The resource properties to be updated. */
-  body: NestedProxyResourceUpdate;
+  body: NestedProxyResource;
 }
 
 export type NestedProxyResourcesUpdateParameters =

@@ -5,9 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   nestedProxyResourcePropertiesSerializer,
-  nestedProxyResourceUpdatePropertiesSerializer,
   NestedProxyResource,
-  NestedProxyResourceUpdate,
   _NestedProxyResourceListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
@@ -238,7 +236,7 @@ export function _nestedProxyResourcesUpdateSend(
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
-  properties: NestedProxyResourceUpdate,
+  properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | NestedProxyResourcesUpdate200Response
@@ -259,9 +257,7 @@ export function _nestedProxyResourcesUpdateSend(
       body: {
         properties: !properties.properties
           ? properties.properties
-          : nestedProxyResourceUpdatePropertiesSerializer(
-              properties.properties,
-            ),
+          : nestedProxyResourcePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -314,7 +310,7 @@ export function nestedProxyResourcesUpdate(
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
-  properties: NestedProxyResourceUpdate,
+  properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<NestedProxyResource>, NestedProxyResource> {
   return getLongRunningPoller(context, _nestedProxyResourcesUpdateDeserialize, {

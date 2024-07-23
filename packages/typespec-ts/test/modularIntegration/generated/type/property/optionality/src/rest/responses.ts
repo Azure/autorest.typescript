@@ -7,6 +7,8 @@ import {
   BytesPropertyOutput,
   DatetimePropertyOutput,
   DurationPropertyOutput,
+  PlainDatePropertyOutput,
+  PlainTimePropertyOutput,
   CollectionsBytePropertyOutput,
   CollectionsModelPropertyOutput,
   StringLiteralPropertyOutput,
@@ -104,6 +106,50 @@ export interface DurationPutAll204Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface DurationPutDefault204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface PlainDateGetAll200Response extends HttpResponse {
+  status: "200";
+  body: PlainDatePropertyOutput;
+}
+
+/** The request has succeeded. */
+export interface PlainDateGetDefault200Response extends HttpResponse {
+  status: "200";
+  body: PlainDatePropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface PlainDatePutAll204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface PlainDatePutDefault204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface PlainTimeGetAll200Response extends HttpResponse {
+  status: "200";
+  body: PlainTimePropertyOutput;
+}
+
+/** The request has succeeded. */
+export interface PlainTimeGetDefault200Response extends HttpResponse {
+  status: "200";
+  body: PlainTimePropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface PlainTimePutAll204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface PlainTimePutDefault204Response extends HttpResponse {
   status: "204";
 }
 

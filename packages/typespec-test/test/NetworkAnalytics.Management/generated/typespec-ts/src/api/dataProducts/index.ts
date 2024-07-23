@@ -5,7 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   dataProductPropertiesSerializer,
-  managedServiceIdentitySerializer,
+  managedServiceIdentityV4Serializer,
   dataProductUpdatePropertiesSerializer,
   DataProduct,
   DataProductUpdate,
@@ -103,7 +103,7 @@ export function _createSend(
           : dataProductPropertiesSerializer(resource.properties),
         identity: !resource.identity
           ? resource.identity
-          : managedServiceIdentitySerializer(resource.identity),
+          : managedServiceIdentityV4Serializer(resource.identity),
       },
     });
 }
@@ -463,7 +463,7 @@ export function _updateSend(
       body: {
         identity: !properties.identity
           ? properties.identity
-          : managedServiceIdentitySerializer(properties.identity),
+          : managedServiceIdentityV4Serializer(properties.identity),
         tags: !properties.tags
           ? properties.tags
           : (serializeRecord(properties.tags as any) as any),

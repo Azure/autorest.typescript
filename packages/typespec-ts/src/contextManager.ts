@@ -3,6 +3,7 @@ import { ModularMetaTree, RlcMetaTree } from "./metaTree.js";
 import { EmitContext } from "@typespec/compiler";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { SdkTypeContext } from "./framework/hooks/sdkTypes.js";
+import { Binder } from "./framework/hooks/binder.js";
 
 /**
  * Contexts Object Guidelines
@@ -27,6 +28,7 @@ type Contexts = {
     compilerContext: EmitContext;
     tcgcContext: SdkContext;
   };
+  binder: Binder;
 };
 
 type ContextKey = keyof Contexts;

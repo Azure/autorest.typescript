@@ -7,6 +7,10 @@ schedules:
         - main
 pr: none
 
+pool:
+  name: azsdk-pool-mms-ubuntu-2004-general
+  vmImage: ubuntu-20.04
+
 stages:
   - stage: NightlyCI
     jobs:

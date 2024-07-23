@@ -16,6 +16,14 @@ import {
   DurationOperations,
 } from "./classic/duration/index.js";
 import {
+  getPlainDateOperations,
+  PlainDateOperations,
+} from "./classic/plainDate/index.js";
+import {
+  getPlainTimeOperations,
+  PlainTimeOperations,
+} from "./classic/plainTime/index.js";
+import {
   getCollectionsByteOperations,
   CollectionsByteOperations,
 } from "./classic/collectionsByte/index.js";
@@ -84,6 +92,8 @@ export class OptionalClient {
     this.bytes = getBytesOperations(this._client);
     this.datetime = getDatetimeOperations(this._client);
     this.duration = getDurationOperations(this._client);
+    this.plainDate = getPlainDateOperations(this._client);
+    this.plainTime = getPlainTimeOperations(this._client);
     this.collectionsByte = getCollectionsByteOperations(this._client);
     this.collectionsModel = getCollectionsModelOperations(this._client);
     this.stringLiteral = getStringLiteralOperations(this._client);
@@ -104,6 +114,10 @@ export class OptionalClient {
   public readonly datetime: DatetimeOperations;
   /** The operation groups for Duration */
   public readonly duration: DurationOperations;
+  /** The operation groups for PlainDate */
+  public readonly plainDate: PlainDateOperations;
+  /** The operation groups for PlainTime */
+  public readonly plainTime: PlainTimeOperations;
   /** The operation groups for CollectionsByte */
   public readonly collectionsByte: CollectionsByteOperations;
   /** The operation groups for CollectionsModel */
