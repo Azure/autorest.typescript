@@ -231,6 +231,12 @@ const libDef = {
       messages: {
         default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
       }
+    },
+    "default-response-body-type": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note the body type of default response for operation - ${"operationName"} is not a model type.`
+      }
     }
   },
   emitter: {
