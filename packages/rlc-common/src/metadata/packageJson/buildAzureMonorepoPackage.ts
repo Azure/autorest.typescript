@@ -66,7 +66,7 @@ export function getAzureMonorepoPackageInfo(
   for (const clientFilePath of config.clientFilePaths) {
     metadata.constantPaths.push({
       path: clientFilePath,
-      prefix: "package-version"
+      prefix: "userAgentInfo"
     });
   }
 
