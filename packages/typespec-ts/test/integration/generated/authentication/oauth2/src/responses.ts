@@ -14,7 +14,7 @@ export interface Invalid204Response extends HttpResponse {
   status: "204";
 }
 
-/** Access is forbidden */
+/** Access is forbidden. */
 export interface Invalid403Response extends HttpResponse {
   status: "403";
   body: InvalidAuthOutput;

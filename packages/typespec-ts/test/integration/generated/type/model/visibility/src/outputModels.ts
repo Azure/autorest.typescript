@@ -14,3 +14,11 @@ export interface VisibilityModelOutput {
   /** Required bool, illustrating a delete property. */
   deleteProp: boolean;
 }
+
+/** RoundTrip model with readonly optional properties. */
+export interface ReadOnlyModelOutput {
+  /** Optional readonly nullable int list. */
+  readonly optionalNullableIntList?: number[] | null;
+  /** Optional readonly string dictionary. */
+  readonly optionalStringRecord?: Record<string, string>;
+}

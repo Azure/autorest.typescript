@@ -5,9 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   topLevelTrackedResourcePropertiesSerializer,
-  topLevelTrackedResourceUpdatePropertiesSerializer,
   TopLevelTrackedResource,
-  TopLevelTrackedResourceUpdate,
   _TopLevelTrackedResourceListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
@@ -247,7 +245,7 @@ export function _topLevelTrackedResourcesUpdateSend(
   subscriptionId: string,
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
-  properties: TopLevelTrackedResourceUpdate,
+  properties: TopLevelTrackedResource,
   options: TopLevelTrackedResourcesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -270,11 +268,10 @@ export function _topLevelTrackedResourcesUpdateSend(
         tags: !properties.tags
           ? properties.tags
           : (serializeRecord(properties.tags as any) as any),
+        location: properties["location"],
         properties: !properties.properties
           ? properties.properties
-          : topLevelTrackedResourceUpdatePropertiesSerializer(
-              properties.properties,
-            ),
+          : topLevelTrackedResourcePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -328,7 +325,7 @@ export function topLevelTrackedResourcesUpdate(
   subscriptionId: string,
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
-  properties: TopLevelTrackedResourceUpdate,
+  properties: TopLevelTrackedResource,
   options: TopLevelTrackedResourcesUpdateOptionalParams = {
     requestOptions: {},
   },

@@ -17,7 +17,7 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get204Response> {
   return context
-    .path("/azure/special-headers/x-ms-client-request-id")
+    .path("/azure/special-headers/x-ms-client-request-id/")
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {

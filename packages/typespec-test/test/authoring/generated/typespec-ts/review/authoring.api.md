@@ -456,7 +456,7 @@ export interface GetSupportedLanguages {
 // @public
 export interface GetSupportedLanguages200Response extends HttpResponse {
     // (undocumented)
-    body: PagedSupportedLanguageOutput;
+    body: SupportedLanguagesOutput;
     // (undocumented)
     status: "200";
 }
@@ -692,7 +692,7 @@ export interface ListTrainingConfigVersions {
 // @public
 export interface ListTrainingConfigVersions200Response extends HttpResponse {
     // (undocumented)
-    body: PagedTrainingConfigVersionOutput;
+    body: TrainingConfigVersionsOutput;
     // (undocumented)
     status: "200";
 }
@@ -743,12 +743,6 @@ export type PagedDeploymentOutput = Paged<DeploymentOutput>;
 
 // @public
 export type PagedProjectOutput = Paged<ProjectOutput>;
-
-// @public
-export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
-
-// @public
-export type PagedTrainingConfigVersionOutput = Paged<TrainingConfigVersionOutput>;
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -850,6 +844,9 @@ export interface SupportedLanguageOutput {
     languageCode: string;
     languageName: string;
 }
+
+// @public
+export type SupportedLanguagesOutput = Paged<SupportedLanguageOutput>;
 
 // @public (undocumented)
 export interface SwapDeployments {
@@ -959,6 +956,9 @@ export interface TrainingConfigVersionOutput {
     modelExpirationDate: string;
     trainingConfigVersion: string;
 }
+
+// @public
+export type TrainingConfigVersionsOutput = Paged<TrainingConfigVersionOutput>;
 
 // @public
 export interface TrainingJobOptions {
