@@ -494,7 +494,7 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
+
           return result.body;
         }
         
@@ -622,7 +622,7 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
+
           return result.body;
         }
         
@@ -761,7 +761,6 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
           return result.body;
         }
         
@@ -789,7 +788,6 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
           return result.body;
         }
         

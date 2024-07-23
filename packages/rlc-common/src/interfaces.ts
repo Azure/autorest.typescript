@@ -366,6 +366,8 @@ export interface OperationResponse {
   operationName: string;
   path: string;
   responses: ResponseMetadata[];
+  // Check if the default response is one of superset of non-default responses
+  isDefaultSupersetOfOthers?: boolean;
 }
 export interface ResponseMetadata {
   statusCode: string;
