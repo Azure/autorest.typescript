@@ -461,7 +461,7 @@ export interface CreateFineTuneRequest {
    * "davinci", or a fine-tuned model created after 2022-04-21 and before 2023-08-22. To learn more
    * about these models, see the [Models](/docs/models) documentation.
    */
-  model?: string;
+  model?: string | null;
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
