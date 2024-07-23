@@ -387,22 +387,10 @@ function getSchemaForUnion(
   const [asEnum, _] = getUnionAsEnum(union);
   const variants = Array.from(union.variants.values());
 
-  let values = [];
+  const values = [];
   let namedUnionMember = false;
-  for (const variant of variants) {
-    // We already know it's not a model type
-    const variantType = getSchemaForType(dpgContext, variant.type, {
-      ...options,
-      needRef: false
-    });
-    values.push(variantType);
-    if (variantType.typeName) {
-      namedUnionMember = true;
-    }
-  }
+
   if (asEnum?.open && asEnum.members.size > 0) {
-    namedUnionMember = false;
-    values = [];
     for (const [_, member] of asEnum.members.entries()) {
       const memberType = getSchemaForType(dpgContext, member.type, {
         ...options,
@@ -410,6 +398,18 @@ function getSchemaForUnion(
       });
       values.push(memberType);
       if (memberType.name) {
+        namedUnionMember = true;
+      }
+    }
+  } else {
+    for (const variant of variants) {
+      // We already know it's not a model type
+      const variantType = getSchemaForType(dpgContext, variant.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(variantType);
+      if (variantType.typeName) {
         namedUnionMember = true;
       }
     }
