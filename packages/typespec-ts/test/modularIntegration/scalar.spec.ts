@@ -14,98 +14,149 @@ describe("Scalar Client", () => {
   });
 
   it("should get string value", async () => {
-    const result = await client.string.get({
-      requestOptions: {
-        headers: {
-          accept: "text/plain"
+    try {
+      const result = await client.string.get({
+        requestOptions: {
+          headers: {
+            accept: "text/plain"
+          }
         }
-      }
-    });
-    assert.strictEqual(result, "test");
+      });
+      assert.strictEqual(result, "test");
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should put string value", async () => {
-    const result = await client.string.put("test", {
-      requestOptions: {
-        headers: {
-          "content-type": "text/plain"
+    try {
+      const result = await client.string.put("test", {
+        requestOptions: {
+          headers: {
+            "content-type": "text/plain"
+          }
         }
-      }
-    });
-    assert.isUndefined(result);
+      });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should get boolean value", async () => {
-    const result = await client.boolean.get();
-    assert.strictEqual(result, true);
+    try {
+      const result = await client.boolean.get();
+      assert.strictEqual(result, true);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should put boolean value", async () => {
-    const result = await client.boolean.put(true);
-    assert.isUndefined(result);
+    try {
+      const result = await client.boolean.put(true);
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should get unknown value", async () => {
-    const result = await client.unknown.get({
-      requestOptions: {
-        headers: {
-          accept: "text/plain"
+    try {
+      const result = await client.unknown.get({
+        requestOptions: {
+          headers: {
+            accept: "text/plain"
+          }
         }
-      }
-    });
-    assert.strictEqual(result, "test");
+      });
+      assert.strictEqual(result, "test");
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should put unknown value", async () => {
-    const result = await client.unknown.put("test", {
-      requestOptions: {
-        headers: {
-          "content-type": "text/plain"
+    try {
+      const result = await client.unknown.put("test", {
+        requestOptions: {
+          headers: {
+            "content-type": "text/plain"
+          }
         }
-      }
-    });
-    assert.isUndefined(result);
+      });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should get decimal response body", async () => {
-    const result = await client.decimalType.responseBody();
-    assert.strictEqual(result, 0.33333);
+    try {
+      const result = await client.decimalType.responseBody();
+      assert.strictEqual(result, 0.33333);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should put decimal request body", async () => {
-    const result = await client.decimalType.requestBody(0.33333);
-    assert.isUndefined(result);
+    try {
+      const result = await client.decimalType.requestBody(0.33333);
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should get decimal request parameter", async () => {
-    const result = await client.decimalType.requestParameter(0.33333);
-    assert.isUndefined(result);
+    try {
+      const result = await client.decimalType.requestParameter(0.33333);
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should get decimal128 response body", async () => {
-    const result = await client.decimal128Type.responseBody();
-    assert.strictEqual(result, 0.33333);
+    try {
+      const result = await client.decimal128Type.responseBody();
+      assert.strictEqual(result, 0.33333);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should put decimal128 request body", async () => {
-    const result = await client.decimal128Type.requestBody(0.33333);
-    assert.isUndefined(result);
+    try {
+      const result = await client.decimal128Type.requestBody(0.33333);
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should get decimal128 request parameter", async () => {
-    const result = await client.decimal128Type.requestParameter(0.33333);
-    assert.isUndefined(result);
+    try {
+      const result = await client.decimal128Type.requestParameter(0.33333);
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should fail to post decimal verify", async () => {
-    const getResult = await client.decimalVerify.prepareVerify();
-    let total = 0;
-    getResult.forEach((decimal: number) => {
-      total += decimal;
-    });
-    total = Number(total.toFixed(1));
-    const result = await client.decimalVerify.verify(total);
-    assert.isUndefined(result);
+    try {
+      const getResult = await client.decimalVerify.prepareVerify();
+      let total = 0;
+      getResult.forEach((decimal: number) => {
+        total += decimal;
+      });
+      await client.decimalVerify.verify(total);
+      assert.fail("Expected an exception to be thrown.");
+    } catch (err) {
+      assert.strictEqual(JSON.parse(JSON.stringify(err)).statusCode, 400);
+    }
   });
 
   it("should fail to post decimal128 verify", async () => {
