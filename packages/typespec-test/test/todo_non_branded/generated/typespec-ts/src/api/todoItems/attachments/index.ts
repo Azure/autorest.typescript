@@ -44,7 +44,7 @@ export async function _listDeserialize(
     | TodoItemsAttachmentsList404Response
     | TodoItemsAttachmentsList500Response,
 ): Promise<TodoAttachment[]> {
-  if (result.status !== "200" && result.status !== "404") {
+  if (result.status !== "404") {
     throw createRestError(result);
   }
 
@@ -93,7 +93,7 @@ export async function _createAttachmentDeserialize(
     | TodoItemsAttachmentsCreateAttachment404Response
     | TodoItemsAttachmentsCreateAttachment500Response,
 ): Promise<void> {
-  if (result.status !== "204" && result.status !== "404") {
+  if (result.status !== "404") {
     throw createRestError(result);
   }
 

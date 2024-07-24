@@ -12,7 +12,6 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  createRestError,
 } from "@typespec/ts-http-runtime";
 import { UsersCreateOptionalParams } from "../../models/options.js";
 
@@ -48,10 +47,6 @@ export async function _createDeserialize(
     | UsersCreate422Response
     | UsersCreate500Response,
 ): Promise<{ id: number; username: string; email: string; token: string }> {
-  if (result.status !== "200") {
-    throw createRestError(result);
-  }
-
   return {
     id: result.body["id"],
     username: result.body["username"],

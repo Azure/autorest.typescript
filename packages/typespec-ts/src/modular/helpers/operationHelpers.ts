@@ -194,6 +194,8 @@ export function getDeserializePrivateFunction(
         operation.responses
           .flatMap((r) => r.statusCodes)
           .filter((s) => s !== "default")
+          // filter out non-2xx status codes
+          .filter((s) => typeof s === "number" && s > 299)
       )
     ];
 
