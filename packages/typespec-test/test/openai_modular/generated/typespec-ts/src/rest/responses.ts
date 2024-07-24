@@ -151,28 +151,28 @@ export interface GetImageGenerationsDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetImageGenerationsDefaultHeaders;
 }
 
-export interface GetAudioSpeech200Headers {
+export interface GenerateSpeechFromText200Headers {
   /** The content type of the response. Always application/octet-stream for audio/speech responses. */
   "content-type": "application/octet-stream";
 }
 
 /** The request has succeeded. */
-export interface GetAudioSpeech200Response extends HttpResponse {
+export interface GenerateSpeechFromText200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
-  headers: RawHttpHeaders & GetAudioSpeech200Headers;
+  headers: RawHttpHeaders & GenerateSpeechFromText200Headers;
 }
 
-export interface GetAudioSpeechDefaultHeaders {
+export interface GenerateSpeechFromTextDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface GetAudioSpeechDefaultResponse extends HttpResponse {
+export interface GenerateSpeechFromTextDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & GetAudioSpeechDefaultHeaders;
+  headers: RawHttpHeaders & GenerateSpeechFromTextDefaultHeaders;
 }
 
 /** The request has succeeded. */

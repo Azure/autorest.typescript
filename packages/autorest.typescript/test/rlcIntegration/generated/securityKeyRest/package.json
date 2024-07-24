@@ -19,7 +19,8 @@
     "types/security-key-rest.d.ts",
     "README.md",
     "LICENSE",
-    "review/*"
+    "review/*",
+    "CHANGELOG.md"
   ],
   "sdk-type": "mgmt",
   "repository": "github:Azure/azure-sdk-for-js",
@@ -35,7 +36,7 @@
       },
       {
         "path": "src/securityKeyRestClient.ts",
-        "prefix": "package-version"
+        "prefix": "userAgentInfo"
       }
     ]
   },

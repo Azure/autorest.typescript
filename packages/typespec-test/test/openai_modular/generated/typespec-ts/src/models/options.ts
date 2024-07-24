@@ -41,7 +41,8 @@ export interface GetChatCompletionsOptionalParams extends OperationOptions {}
 export interface GetImageGenerationsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetAudioSpeechOptionalParams extends OperationOptions {}
+export interface GenerateSpeechFromTextOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface GetEmbeddingsOptionalParams extends OperationOptions {}

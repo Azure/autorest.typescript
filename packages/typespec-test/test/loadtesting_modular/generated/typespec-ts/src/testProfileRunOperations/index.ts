@@ -92,7 +92,7 @@ export {
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
-  StopOptionalParams,
+  StopTestProfileRunOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

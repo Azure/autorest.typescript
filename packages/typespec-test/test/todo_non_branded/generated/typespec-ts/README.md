@@ -14,7 +14,7 @@ Key links:
 
 ### Install the `@notabrand/todo-non-branded` package
 
-Install the Todo REST client REST client library for JavaScript with `npm`:
+Install the Todo REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @notabrand/todo-non-branded

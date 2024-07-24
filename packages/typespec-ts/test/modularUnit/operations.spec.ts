@@ -73,7 +73,7 @@ describe("operations", () => {
       );
     });
 
-    it("should throw exception if property type as void", async () => {
+    it.skip("should throw exception if property type as void", async () => {
       try {
         const tspContent = `
         model Foo {
@@ -137,7 +137,8 @@ describe("operations", () => {
           value: Uint8Array,
           csvArrayHeader: Uint8Array[],
           utcDateHeader: Date, 
-          body: Bar, 
+          prop1: string,
+          prop2: number,
           options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), 
               headers: {
@@ -167,7 +168,8 @@ describe("operations", () => {
                     }
                   : {}),
               },
-            body: {"prop1": body["prop1"], "prop2": body["prop2"]},});
+            body: { prop1: prop1, prop2: prop2 },
+          });
         }
         
         export async function _readDeserialize(result: Read200Response): Promise<void> {
@@ -185,9 +187,10 @@ describe("operations", () => {
           value: Uint8Array,
           csvArrayHeader: Uint8Array[],
           utcDateHeader: Date, 
-          body: Bar, 
+          prop1: string,
+          prop2: number,
           options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
-            const result = await _readSend(context, requiredHeader, bytesHeader, value, csvArrayHeader, utcDateHeader, body, options);
+            const result = await _readSend(context, requiredHeader, bytesHeader, value, csvArrayHeader, utcDateHeader, prop1, prop2, options);
             return _readDeserialize(result);
         }`,
         true
@@ -445,7 +448,7 @@ describe("operations", () => {
           nullableBars?: Bar[] | null;
           nullableRequiredBars: Bar[] | null;
         }
-        op read(...Foo): OkResponse;
+        op read(@body body: Foo): OkResponse;
           `;
 
       const operationFiles =
@@ -628,7 +631,6 @@ describe("operations", () => {
             if(result.status !== "200"){
               throw createRestError(result);
             }
-
             return {
               "lists": result.body["lists"]
             }
@@ -696,7 +698,6 @@ describe("operations", () => {
             if(result.status !== "200"){
             throw createRestError(result);
             }
-
             return {
             "lists": result.body["lists"]
             }

@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import {
+  cloudEventSerializer,
   CloudEvent,
   PublishResult,
   ReceiveResult,
@@ -46,7 +47,7 @@ import {
 export function _publishCloudEventSend(
   context: Client,
   topicName: string,
-  event: CloudEvent,
+  event: { event: CloudEvent },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   PublishCloudEvent200Response | PublishCloudEventDefaultResponse
@@ -58,23 +59,7 @@ export function _publishCloudEventSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
-      body: {
-        event: {
-          id: event["id"],
-          source: event["source"],
-          data: event["data"],
-          data_base64:
-            event["dataBase64"] !== undefined
-              ? uint8ArrayToString(event["dataBase64"], "base64")
-              : undefined,
-          type: event["type"],
-          time: event["time"]?.toISOString(),
-          specversion: event["specversion"],
-          dataschema: event["dataschema"],
-          datacontenttype: event["datacontenttype"],
-          subject: event["subject"],
-        },
-      },
+      body: { event: cloudEventSerializer(event.event) },
     }) as StreamableMethod<
     PublishCloudEvent200Response | PublishCloudEventDefaultResponse
   >;
@@ -94,7 +79,7 @@ export async function _publishCloudEventDeserialize(
 export async function publishCloudEvent(
   context: Client,
   topicName: string,
-  event: CloudEvent,
+  event: { event: CloudEvent },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): Promise<PublishResult> {
   const result = await _publishCloudEventSend(

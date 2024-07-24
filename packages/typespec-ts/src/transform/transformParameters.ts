@@ -11,9 +11,8 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, isVoidType, Type } from "@typespec/compiler";
+import { isVoidType, Type } from "@typespec/compiler";
 import {
-  getHttpOperation,
   HttpOperation,
   HttpOperationParameter,
   HttpOperationParameters
@@ -28,6 +27,7 @@ import {
 } from "../utils/modelUtils.js";
 
 import {
+  getHttpOperationWithCache,
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup,
@@ -52,12 +52,11 @@ export function transformToParameterTypes(
   importDetails: Imports,
   apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
-  const program = dpgContext.program;
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -71,7 +70,7 @@ export function transformToParameterTypes(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -106,7 +105,7 @@ export function transformToParameterTypes(
       outputImportedSet
     );
     // transform body
-    const bodyType = getBodyType(program, route);
+    const bodyType = getBodyType(route);
     let bodyParameter = undefined;
     if (bodyType) {
       bodyParameter = transformBodyParameters(

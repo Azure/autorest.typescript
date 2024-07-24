@@ -7,8 +7,8 @@ export {
 } from "./contentSafetyClient.js";
 export {
   TextBlocklist,
-  TextBlockItemInfo,
   AddOrUpdateBlockItemsOptions,
+  TextBlockItemInfo,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,

@@ -7,6 +7,8 @@ import {
   BytesProperty,
   DatetimeProperty,
   DurationProperty,
+  PlainDateProperty,
+  PlainTimeProperty,
   CollectionsByteProperty,
   CollectionsModelProperty,
   StringLiteralProperty,
@@ -81,6 +83,38 @@ export interface DurationPutDefaultBodyParam {
 }
 
 export type DurationPutDefaultParameters = DurationPutDefaultBodyParam &
+  RequestParameters;
+export type PlainDateGetAllParameters = RequestParameters;
+export type PlainDateGetDefaultParameters = RequestParameters;
+
+export interface PlainDatePutAllBodyParam {
+  body: PlainDateProperty;
+}
+
+export type PlainDatePutAllParameters = PlainDatePutAllBodyParam &
+  RequestParameters;
+
+export interface PlainDatePutDefaultBodyParam {
+  body: PlainDateProperty;
+}
+
+export type PlainDatePutDefaultParameters = PlainDatePutDefaultBodyParam &
+  RequestParameters;
+export type PlainTimeGetAllParameters = RequestParameters;
+export type PlainTimeGetDefaultParameters = RequestParameters;
+
+export interface PlainTimePutAllBodyParam {
+  body: PlainTimeProperty;
+}
+
+export type PlainTimePutAllParameters = PlainTimePutAllBodyParam &
+  RequestParameters;
+
+export interface PlainTimePutDefaultBodyParam {
+  body: PlainTimeProperty;
+}
+
+export type PlainTimePutDefaultParameters = PlainTimePutDefaultBodyParam &
   RequestParameters;
 export type CollectionsByteGetAllParameters = RequestParameters;
 export type CollectionsByteGetDefaultParameters = RequestParameters;

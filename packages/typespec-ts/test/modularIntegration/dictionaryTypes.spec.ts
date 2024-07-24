@@ -15,63 +15,39 @@ describe("DictionaryClient Modular Client", () => {
   });
 
   it("should get a dictionary of boolean", async () => {
-    try {
-      const result = await client.booleanValue.get();
-      assert.deepEqual(result, { k1: true, k2: false });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.booleanValue.get();
+    assert.deepEqual(result, { k1: true, k2: false });
   });
 
   it("should send a dictionary of boolean", async () => {
-    try {
-      await client.booleanValue.put({ k1: true, k2: false });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.booleanValue.put({ k1: true, k2: false });
+    assert.isUndefined(result);
   });
 
-  // Fix deserialization
   it.skip("should get a dictionary of datetime", async () => {
-    try {
-      const result = await client.datetimeValue.get();
-      assert.deepEqual(result, {
-        k1: new Date("2022-08-26T18:38:00Z")
-      });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.datetimeValue.get();
+    assert.equal(result["k1"]?.toUTCString(), "2022-08-26T18:38:00Z");
   });
 
   it("should send a dictionary of datetime", async () => {
-    try {
-      await client.datetimeValue.put({
-        k1: new Date("2022-08-26T18:38:00Z")
-      });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.datetimeValue.put({
+      k1: new Date("2022-08-26T18:38:00Z")
+    });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of durations", async () => {
-    try {
-      const result = await client.durationValue.get();
-      assert.deepEqual(result, {
-        k1: "P123DT22H14M12.011S"
-      });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.durationValue.get();
+    assert.deepEqual(result, {
+      k1: "P123DT22H14M12.011S"
+    });
   });
 
   it("should send a dictionary of durations", async () => {
-    try {
-      await client.durationValue.put({
-        k1: "P123DT22H14M12.011S"
-      });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.durationValue.put({
+      k1: "P123DT22H14M12.011S"
+    });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of float", async () => {
@@ -80,7 +56,8 @@ describe("DictionaryClient Modular Client", () => {
   });
 
   it("should send a dictionary of float", async () => {
-    await client.float32Value.put({ k1: 43.125 });
+    const result = await client.float32Value.put({ k1: 43.125 });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of integer", async () => {
@@ -89,7 +66,8 @@ describe("DictionaryClient Modular Client", () => {
   });
 
   it("should send a dictionary of integer", async () => {
-    await client.int32Value.put({ k1: 1, k2: 2 });
+    const result = await client.int32Value.put({ k1: 1, k2: 2 });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of int64", async () => {
@@ -102,7 +80,11 @@ describe("DictionaryClient Modular Client", () => {
   it("should send a dictionary of int64", async () => {
     const maxSafeInteger = Math.pow(2, 53) - 1;
     const minSafeInteger = -Math.pow(2, 53) + 1;
-    await client.int64Value.put({ k1: maxSafeInteger, k2: minSafeInteger });
+    const result = await client.int64Value.put({
+      k1: maxSafeInteger,
+      k2: minSafeInteger
+    });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of model", async () => {
@@ -118,7 +100,7 @@ describe("DictionaryClient Modular Client", () => {
   });
 
   it("should send a dictionary of model", async () => {
-    await client.modelValue.put({
+    const result = await client.modelValue.put({
       k1: {
         property: "hello"
       },
@@ -126,6 +108,7 @@ describe("DictionaryClient Modular Client", () => {
         property: "world"
       }
     });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of nullable numbers", async () => {
@@ -134,7 +117,12 @@ describe("DictionaryClient Modular Client", () => {
   });
 
   it("should send a dictionary of nullable numbers", async () => {
-    await client.nullableFloatValue.put({ k1: 1.25, k2: 0.5, k3: null });
+    const result = await client.nullableFloatValue.put({
+      k1: 1.25,
+      k2: 0.5,
+      k3: null
+    });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of recursive model", async () => {
@@ -154,7 +142,8 @@ describe("DictionaryClient Modular Client", () => {
   });
 
   it("should send a dictionary of string value", async () => {
-    await client.stringValue.put({ k1: "hello", k2: "" });
+    const result = await client.stringValue.put({ k1: "hello", k2: "" });
+    assert.isUndefined(result);
   });
 
   it("should get a dictionary of an unknown value", async () => {

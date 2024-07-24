@@ -548,9 +548,9 @@ export type FileStatusOutput =
   | "VALIDATION_INITIATED"
   | "VALIDATION_NOT_REQUIRED";
 /** Collection of tests */
-export type PagedTestOutput = Paged<TestOutput>;
+export type TestsListOutput = Paged<TestOutput>;
 /** Collection of files. */
-export type PagedFileInfoOutput = Paged<FileInfoOutput>;
+export type FileInfoListOutput = Paged<FileInfoOutput>;
 /** Alias for PFTestResultOutput */
 export type PFTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 /** Alias for StatusOutput */
@@ -572,7 +572,7 @@ export type StatusOutput =
   | "VALIDATION_SUCCESS"
   | "VALIDATION_FAILURE";
 /** Collection of test runs */
-export type PagedTestRunOutput = Paged<TestRunOutput>;
+export type TestRunsListOutput = Paged<TestRunOutput>;
 /** Alias for AggregationTypeOutput */
 export type AggregationTypeOutput =
   | "Average"
@@ -595,6 +595,6 @@ export type MetricUnitOutput =
 /** Alias for TimeGrainOutput */
 export type TimeGrainOutput = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 /** The response to a metrics query. */
-export type PagedTimeSeriesElementOutput = Paged<TimeSeriesElementOutput>;
+export type MetricsOutput = Paged<TimeSeriesElementOutput>;
 /** Paged collection of DimensionValueList items */
 export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;

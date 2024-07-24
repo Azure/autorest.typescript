@@ -5,9 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   nestedProxyResourcePropertiesSerializer,
-  nestedProxyResourceUpdatePropertiesSerializer,
   NestedProxyResource,
-  NestedProxyResourceUpdate,
   _NestedProxyResourceListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
@@ -169,32 +167,33 @@ export async function _nestedProxyResourcesCreateOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as NestedProxyResourcesCreateOrReplaceLogicalResponse;
+  const res =
+    result as unknown as NestedProxyResourcesCreateOrReplaceLogicalResponse;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          description: result.body.properties?.["description"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          description: res.body.properties?.["description"],
         },
   };
 }
@@ -237,7 +236,7 @@ export function _nestedProxyResourcesUpdateSend(
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
-  properties: NestedProxyResourceUpdate,
+  properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | NestedProxyResourcesUpdate200Response
@@ -258,9 +257,7 @@ export function _nestedProxyResourcesUpdateSend(
       body: {
         properties: !properties.properties
           ? properties.properties
-          : nestedProxyResourceUpdatePropertiesSerializer(
-              properties.properties,
-            ),
+          : nestedProxyResourcePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -276,32 +273,32 @@ export async function _nestedProxyResourcesUpdateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as NestedProxyResourcesUpdateLogicalResponse;
+  const res = result as unknown as NestedProxyResourcesUpdateLogicalResponse;
   return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          description: result.body.properties?.["description"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          description: res.body.properties?.["description"],
         },
   };
 }
@@ -313,7 +310,7 @@ export function nestedProxyResourcesUpdate(
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
-  properties: NestedProxyResourceUpdate,
+  properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<NestedProxyResource>, NestedProxyResource> {
   return getLongRunningPoller(context, _nestedProxyResourcesUpdateDeserialize, {
@@ -367,7 +364,6 @@ export async function _nestedProxyResourcesDeleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as NestedProxyResourcesDeleteLogicalResponse;
   return;
 }
 

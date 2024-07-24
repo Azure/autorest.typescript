@@ -21,7 +21,7 @@ export {
   DefaultAction,
   ManagedResourceGroupConfiguration,
   ConsumptionEndpointsProperties,
-  ManagedServiceIdentity,
+  ManagedServiceIdentityV4,
   KnownManagedServiceIdentityType,
   ManagedServiceIdentityType,
   UserAssignedIdentity,

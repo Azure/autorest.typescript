@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { ResourcesContext } from "../../api/resourcesContext.js";
-import {
-  NestedProxyResource,
-  NestedProxyResourceUpdate,
-} from "../../models/models.js";
+import { NestedProxyResource } from "../../models/models.js";
 import {
   nestedProxyResourcesGet,
   nestedProxyResourcesCreateOrReplace,
@@ -45,7 +42,7 @@ export interface NestedProxyResourcesOperations {
     resourceGroupName: string,
     topLevelTrackedResourceName: string,
     nextedProxyResourceName: string,
-    properties: NestedProxyResourceUpdate,
+    properties: NestedProxyResource,
     options?: NestedProxyResourcesUpdateOptionalParams,
   ) => PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
   /** Delete a NestedProxyResource */
@@ -102,7 +99,7 @@ export function getNestedProxyResources(
       resourceGroupName: string,
       topLevelTrackedResourceName: string,
       nextedProxyResourceName: string,
-      properties: NestedProxyResourceUpdate,
+      properties: NestedProxyResource,
       options?: NestedProxyResourcesUpdateOptionalParams,
     ) =>
       nestedProxyResourcesUpdate(

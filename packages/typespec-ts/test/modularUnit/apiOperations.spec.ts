@@ -143,8 +143,7 @@ describe("api operations in Modular", () => {
          import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFileSend(
            context: Client,
-           name: string,
-           file: Uint8Array,
+           body: { name: string; file: Uint8Array },
            options: UploadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod<UploadFile204Response> {
            return context
@@ -152,7 +151,10 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { name: name, file: uint8ArrayToString(file, "base64") },
+               body: {
+                 name: body["name"],
+                 file: uint8ArrayToString(body["file"], "base64"),
+               },
              });
          }
          export async function _uploadFileDeserialize(
@@ -165,11 +167,10 @@ describe("api operations in Modular", () => {
          }
          export async function uploadFile(
            context: Client,
-           name: string,
-           file: Uint8Array,
+           body: { name: string; file: Uint8Array },
            options: UploadFileOptionalParams = { requestOptions: {} }
          ): Promise<void> {
-           const result = await _uploadFileSend(context, name, file, options);
+           const result = await _uploadFileSend(context, body, options);
            return _uploadFileDeserialize(result);
          }`,
         true
@@ -203,7 +204,7 @@ describe("api operations in Modular", () => {
          import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFilesSend(
            context: Client,
-           files: Uint8Array[],
+           body: { files: Uint8Array[] },
            options: UploadFilesOptionalParams = { requestOptions: {} }
          ): StreamableMethod<UploadFiles204Response> {
            return context
@@ -211,7 +212,9 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { files: files.map((p) => uint8ArrayToString(p, "base64")) },
+               body:  {
+                 files: body["files"].map((p) => uint8ArrayToString(p, "base64")),
+               },
              });
          }
          export async function _uploadFilesDeserialize(
@@ -224,10 +227,10 @@ describe("api operations in Modular", () => {
          }
          export async function uploadFiles(
            context: Client,
-           files: Uint8Array[],
+           body: { files: Uint8Array[] },
            options: UploadFilesOptionalParams = { requestOptions: {} }
          ): Promise<void> {
-           const result = await _uploadFilesSend(context, files, options);
+           const result = await _uploadFilesSend(context, body, options);
            return _uploadFilesDeserialize(result);
          }`,
         true
@@ -491,7 +494,7 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
+
           return result.body;
         }
         
@@ -619,7 +622,7 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
+
           return result.body;
         }
         
@@ -758,7 +761,6 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
           return result.body;
         }
         
@@ -786,7 +788,6 @@ describe("api operations in Modular", () => {
           if (result.status !== "200") {
             throw createRestError(result);
           }
-        
           return result.body;
         }
         
