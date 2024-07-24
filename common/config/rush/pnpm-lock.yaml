@@ -231,7 +231,7 @@ importers:
       '@azure-rest/core-client': ^2.1.0
       '@azure-tools/cadl-ranch': ^0.13.4
       '@azure-tools/cadl-ranch-expect': ^0.14.1
-      '@azure-tools/cadl-ranch-specs': ^0.34.7
+      '@azure-tools/cadl-ranch-specs': ^0.34.9
       '@azure-tools/rlc-common': workspace:^0.31.0
       '@azure-tools/typespec-autorest': '>=0.44.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.44.0 <1.0.0'
@@ -287,7 +287,7 @@ importers:
       '@azure-rest/core-client': 2.1.0
       '@azure-tools/cadl-ranch': 0.13.4_erzegljlzqjfevgnc7y3ko52aq
       '@azure-tools/cadl-ranch-expect': 0.14.1_xh3ux2bdr4ico2ttepwgig7vam
-      '@azure-tools/cadl-ranch-specs': 0.34.7_psfe3gh3g46dy4q5vvlmtrffdu
+      '@azure-tools/cadl-ranch-specs': 0.34.9_psfe3gh3g46dy4q5vvlmtrffdu
       '@azure-tools/typespec-autorest': 0.44.0_timngmzobtudd6hqmfxz372sfm
       '@azure-tools/typespec-azure-core': 0.44.0_y4fdrj4fubdsawzpd3lzclh3gu
       '@azure-tools/typespec-azure-resource-manager': 0.44.0_6vgvco73pbyzlhtjupx3yiv7nu
@@ -421,6 +421,26 @@ packages:
       - '@types/express'
     dev: true
 
+  /@azure-tools/cadl-ranch-api/0.4.4:
+    resolution: {integrity: sha512-7kDw5HveR6SZrzhEef9j7vBH2YUi5IWYWIbNVSsSanPAa5zlcThaklcMHDVLz0+N3mk1s9PfVD6ODnsxomSOkw==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      body-parser: 1.20.2
+      deep-equal: 2.2.2
+      express: 4.19.2
+      express-promise-router: 4.1.1_express@4.19.2
+      glob: 10.3.9
+      morgan: 1.10.0
+      multer: 1.4.5-lts.1
+      picocolors: 1.0.1
+      winston: 3.10.0
+      xml-formatter: 3.6.3
+      xml2js: 0.5.0
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@types/express'
+    dev: true
+
   /@azure-tools/cadl-ranch-coverage-sdk/0.8.2:
     resolution: {integrity: sha512-Os5tVUfuL2MmtYMbmYmCM0vFClH3Ik3i3BDz6yCaPlccx/TzgOXL0o9hRYxpmUhmV1VciE+Rpv5IwYVsfZBxnw==}
     engines: {node: '>=16.0.0'}
@@ -448,8 +468,8 @@ packages:
       '@typespec/versioning': 0.58.0_@typespec+compiler@0.58.1
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.34.7_psfe3gh3g46dy4q5vvlmtrffdu:
-    resolution: {integrity: sha512-fXM84xn4KZy1HrfWtIIjCMHJwoa131I+G6V6wyfPtCrX+ktgxQ7LggW4IIFz5BSnP6sOypzGIzXmLQe6FP46mg==}
+  /@azure-tools/cadl-ranch-specs/0.34.9_psfe3gh3g46dy4q5vvlmtrffdu:
+    resolution: {integrity: sha512-eRW3o0xHVb62t2KELp3MSHGcSjknYFmTuGoys6ZEME3HmBXfpnfC1cIAIE+sCR+8o/oCJIpn77fpC7U4nVzstw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.14.1
@@ -460,7 +480,7 @@ packages:
       '@typespec/versioning': ~0.58.0
     dependencies:
       '@azure-tools/cadl-ranch': 0.13.4_erzegljlzqjfevgnc7y3ko52aq
-      '@azure-tools/cadl-ranch-api': 0.4.3
+      '@azure-tools/cadl-ranch-api': 0.4.4
       '@azure-tools/cadl-ranch-expect': 0.14.1_xh3ux2bdr4ico2ttepwgig7vam
       '@azure-tools/typespec-azure-core': 0.44.0_y4fdrj4fubdsawzpd3lzclh3gu
       '@typespec/compiler': 0.58.1
@@ -7843,6 +7863,18 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+    dev: true
+
+  /xml-formatter/3.6.3:
+    resolution: {integrity: sha512-++x1TlRO1FRlQ82AZ4WnoCSufaI/PT/sycn4K8nRl4gnrNC1uYY2VV/67aALZ2m0Q4Q/BLj/L69K360Itw9NNg==}
+    engines: {node: '>= 16'}
+    dependencies:
+      xml-parser-xo: 4.1.2
+    dev: true
+
+  /xml-parser-xo/4.1.2:
+    resolution: {integrity: sha512-Z/DRB0ZAKj5vAQg++XsfQQKfT73Vfj5n5lKIVXobBDQEva6NHWUTxOA6OohJmEcpoy8AEqBmSGkXXAnFwt5qAA==}
+    engines: {node: '>= 16'}
     dev: true
 
   /xml2js/0.5.0:
