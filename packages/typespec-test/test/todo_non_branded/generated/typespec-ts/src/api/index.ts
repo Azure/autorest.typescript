@@ -1,3 +1,7 @@
 // Licensed under the MIT license.
 
-export { createTodo, TodoClientOptions, TodoContext } from "./todoContext.js";
+export {
+  createTodo,
+  TodoClientOptionalParams,
+  TodoContext,
+} from "./todoContext.js";

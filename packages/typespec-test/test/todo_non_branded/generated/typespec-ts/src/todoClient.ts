@@ -7,9 +7,13 @@ import {
   getTodoItemsOperations,
   TodoItemsOperations,
 } from "./classic/todoItems/index.js";
-import { createTodo, TodoClientOptions, TodoContext } from "./api/index.js";
+import {
+  createTodo,
+  TodoClientOptionalParams,
+  TodoContext,
+} from "./api/index.js";
 
-export { TodoClientOptions } from "./api/todoContext.js";
+export { TodoClientOptionalParams } from "./api/todoContext.js";
 
 export class TodoClient {
   private _client: TodoContext;
@@ -19,9 +23,17 @@ export class TodoClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | KeyCredential,
-    options: TodoClientOptions = {},
+    options: TodoClientOptionalParams = {},
   ) {
-    this._client = createTodo(endpoint, credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createTodo(endpoint, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.users = getUsersOperations(this._client);
     this.todoItems = getTodoItemsOperations(this._client);

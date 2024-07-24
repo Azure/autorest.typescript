@@ -1,6 +1,6 @@
 // Licensed under the MIT license.
 
-export { TodoClient, TodoClientOptions } from "./todoClient.js";
+export { TodoClient, TodoClientOptionalParams } from "./todoClient.js";
 export {
   TodoPage,
   TodoItem,

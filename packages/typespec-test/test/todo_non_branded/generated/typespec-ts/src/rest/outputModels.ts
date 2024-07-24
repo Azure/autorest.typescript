@@ -1,9 +1,7 @@
 // Licensed under the MIT license.
 
-/** The user already exists */
-export interface UserExistsResponseOutput extends ApiErrorOutput {
-  code: "user-exists";
-}
+/** Something is wrong with you. */
+export interface Standard4XXResponseOutput extends ApiErrorOutput {}
 
 export interface ApiErrorOutput {
   /** A machine readable error code */
@@ -12,11 +10,13 @@ export interface ApiErrorOutput {
   message: string;
 }
 
-/** Something is wrong with you. */
-export interface Standard4XXResponseOutput extends ApiErrorOutput {}
-
 /** Something is wrong with me. */
 export interface Standard5XXResponseOutput extends ApiErrorOutput {}
+
+/** The user already exists */
+export interface UserExistsResponseOutput extends ApiErrorOutput {
+  code: "user-exists";
+}
 
 /** The user is invalid (e.g. forgot to enter email address) */
 export interface InvalidUserResponseOutput extends ApiErrorOutput {

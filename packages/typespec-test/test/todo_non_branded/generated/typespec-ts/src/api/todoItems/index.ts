@@ -38,23 +38,21 @@ import {
 
 export function _listSend(
   context: Client,
-  options: TodoItemsListOptionalParams = { requestOptions: {} },
+  options: TodoItemsListOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   TodoItemsList200Response | TodoItemsList400Response | TodoItemsList500Response
 > {
-  return context
-    .path("/items")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { limit: options?.limit, offset: options?.offset },
-    });
+  return context.path("/items").get({
+    ...operationOptionsToRequestParameters(options),
+    queryParameters: { limit: options?.limit, offset: options?.offset },
+  });
 }
 
 export async function _listDeserialize(
   result:
     | TodoItemsList200Response
     | TodoItemsList400Response
-    | TodoItemsList500Response,
+    | TodoItemsList500Response
 ): Promise<TodoPage> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -90,7 +88,7 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: TodoItemsListOptionalParams = { requestOptions: {} },
+  options: TodoItemsListOptionalParams = { requestOptions: {} }
 ): Promise<TodoPage> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -99,30 +97,28 @@ export async function list(
 export function _createSend(
   context: Client,
   item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   | TodoItemsCreate200Response
   | TodoItemsCreate400Response
   | TodoItemsCreate422Response
   | TodoItemsCreate500Response
 > {
-  return context
-    .path("/items")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      body: {
-        item: {
-          title: item["title"],
-          assignedTo: item["assignedTo"],
-          description: item["description"],
-          status: item["status"],
-          labels: item["labels"],
-          _dummy: item["dummy"],
-        },
-        attachments: options?.attachments,
+  return context.path("/items").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: (options.contentType as any) ?? "application/json",
+    body: {
+      item: {
+        title: item["title"],
+        assignedTo: item["assignedTo"],
+        description: item["description"],
+        status: item["status"],
+        labels: item["labels"],
+        _dummy: item["dummy"],
       },
-    });
+      attachments: options?.attachments,
+    },
+  });
 }
 
 export async function _createDeserialize(
@@ -130,7 +126,7 @@ export async function _createDeserialize(
     | TodoItemsCreate200Response
     | TodoItemsCreate400Response
     | TodoItemsCreate422Response
-    | TodoItemsCreate500Response,
+    | TodoItemsCreate500Response
 ): Promise<{
   id: number;
   title: string;
@@ -167,7 +163,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateOptionalParams = { requestOptions: {} }
 ): Promise<{
   id: number;
   title: string;
@@ -187,7 +183,7 @@ export async function create(
 export function _getSend(
   context: Client,
   id: number,
-  options: TodoItemsGetOptionalParams = { requestOptions: {} },
+  options: TodoItemsGetOptionalParams = { requestOptions: {} }
 ): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response> {
   return context
     .path("/items/{id}", id)
@@ -195,7 +191,7 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result: TodoItemsGet200Response | TodoItemsGet404Response,
+  result: TodoItemsGet200Response | TodoItemsGet404Response
 ): Promise<{
   id: number;
   title: string;
@@ -208,7 +204,7 @@ export async function _getDeserialize(
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
-  if (result.status !== "200" && result.status !== "404") {
+  if (result.status !== "200") {
     throw createRestError(result);
   }
 
@@ -232,7 +228,7 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   id: number,
-  options: TodoItemsGetOptionalParams = { requestOptions: {} },
+  options: TodoItemsGetOptionalParams = { requestOptions: {} }
 ): Promise<{
   id: number;
   title: string;
@@ -253,25 +249,22 @@ export function _updateSend(
   context: Client,
   id: number,
   patch: TodoItemPatch,
-  options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
+  options: TodoItemsUpdateOptionalParams = { requestOptions: {} }
 ): StreamableMethod<TodoItemsUpdate200Response> {
-  return context
-    .path("/items/{id}", id)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        title: patch["title"],
-        assignedTo: patch["assignedTo"],
-        description: patch["description"],
-        status: patch["status"],
-      },
-    });
+  return context.path("/items/{id}", id).patch({
+    ...operationOptionsToRequestParameters(options),
+    contentType: (options.contentType as any) ?? "application/merge-patch+json",
+    body: {
+      title: patch["title"],
+      assignedTo: patch["assignedTo"],
+      description: patch["description"],
+      status: patch["status"],
+    },
+  });
 }
 
 export async function _updateDeserialize(
-  result: TodoItemsUpdate200Response,
+  result: TodoItemsUpdate200Response
 ): Promise<{
   id: number;
   title: string;
@@ -309,7 +302,7 @@ export async function update(
   context: Client,
   id: number,
   patch: TodoItemPatch,
-  options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
+  options: TodoItemsUpdateOptionalParams = { requestOptions: {} }
 ): Promise<{
   id: number;
   title: string;
@@ -329,7 +322,7 @@ export async function update(
 export function _$deleteSend(
   context: Client,
   id: number,
-  options: TodoItemsDeleteOptionalParams = { requestOptions: {} },
+  options: TodoItemsDeleteOptionalParams = { requestOptions: {} }
 ): StreamableMethod<
   | TodoItemsDelete204Response
   | TodoItemsDelete400Response
@@ -346,7 +339,7 @@ export async function _$deleteDeserialize(
     | TodoItemsDelete204Response
     | TodoItemsDelete400Response
     | TodoItemsDelete404Response
-    | TodoItemsDelete500Response,
+    | TodoItemsDelete500Response
 ): Promise<void> {
   if (result.status !== "204" && result.status !== "404") {
     throw createRestError(result);
@@ -363,7 +356,7 @@ export async function _$deleteDeserialize(
 export async function $delete(
   context: Client,
   id: number,
-  options: TodoItemsDeleteOptionalParams = { requestOptions: {} },
+  options: TodoItemsDeleteOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _$deleteSend(context, id, options);
   return _$deleteDeserialize(result);
