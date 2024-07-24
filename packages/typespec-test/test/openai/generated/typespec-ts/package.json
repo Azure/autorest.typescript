@@ -37,7 +37,8 @@
     "dist",
     "README.md",
     "LICENSE",
-    "review/*"
+    "review/*",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "@azure-rest/core-client": "^2.1.0",
