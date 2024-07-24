@@ -33,7 +33,7 @@
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "author": "Microsoft Corporation",
   "license": "MIT",
-  "files": ["dist", "README.md", "LICENSE", "review/*"],
+  "files": ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
   "dependencies": {
     "@azure-rest/core-client": "^2.1.0",
     "@azure/core-auth": "^1.6.0",
