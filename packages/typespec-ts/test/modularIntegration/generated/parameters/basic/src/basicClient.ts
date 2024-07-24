@@ -10,9 +10,13 @@ import {
   getImplicitBodyOperations,
   ImplicitBodyOperations,
 } from "./classic/implicitBody/index.js";
-import { createBasic, BasicClientOptions, BasicContext } from "./api/index.js";
+import {
+  createBasic,
+  BasicClientOptionalParams,
+  BasicContext,
+} from "./api/index.js";
 
-export { BasicClientOptions } from "./api/basicContext.js";
+export { BasicClientOptionalParams } from "./api/basicContext.js";
 
 export class BasicClient {
   private _client: BasicContext;
@@ -20,8 +24,16 @@ export class BasicClient {
   public readonly pipeline: Pipeline;
 
   /** Test for basic parameters cases. */
-  constructor(options: BasicClientOptions = {}) {
-    this._client = createBasic(options);
+  constructor(options: BasicClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createBasic({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.explicitBody = getExplicitBodyOperations(this._client);
     this.implicitBody = getImplicitBodyOperations(this._client);

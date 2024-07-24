@@ -9,11 +9,11 @@ import {
 } from "./classic/fooOperations/index.js";
 import {
   createWidgetManager,
-  WidgetManagerClientOptions,
+  WidgetManagerClientOptionalParams,
   WidgetManagerContext,
 } from "./api/index.js";
 
-export { WidgetManagerClientOptions } from "./api/widgetManagerContext.js";
+export { WidgetManagerClientOptionalParams } from "./api/widgetManagerContext.js";
 
 export class WidgetManagerClient {
   private _client: WidgetManagerContext;
@@ -23,9 +23,17 @@ export class WidgetManagerClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: WidgetManagerClientOptions = {},
+    options: WidgetManagerClientOptionalParams = {},
   ) {
-    this._client = createWidgetManager(endpointParam, credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createWidgetManager(endpointParam, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.fooOperations = getFooOperationsOperations(this._client);
   }

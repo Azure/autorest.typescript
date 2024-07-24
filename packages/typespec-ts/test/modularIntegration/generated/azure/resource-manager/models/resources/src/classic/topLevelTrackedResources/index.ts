@@ -2,10 +2,7 @@
 // Licensed under the MIT license.
 
 import { ResourcesContext } from "../../api/resourcesContext.js";
-import {
-  TopLevelTrackedResource,
-  TopLevelTrackedResourceUpdate,
-} from "../../models/models.js";
+import { TopLevelTrackedResource } from "../../models/models.js";
 import {
   topLevelTrackedResourcesGet,
   topLevelTrackedResourcesCreateOrReplace,
@@ -47,7 +44,7 @@ export interface TopLevelTrackedResourcesOperations {
   update: (
     resourceGroupName: string,
     topLevelTrackedResourceName: string,
-    properties: TopLevelTrackedResourceUpdate,
+    properties: TopLevelTrackedResource,
     options?: TopLevelTrackedResourcesUpdateOptionalParams,
   ) => PollerLike<
     OperationState<TopLevelTrackedResource>,
@@ -104,7 +101,7 @@ export function getTopLevelTrackedResources(
     update: (
       resourceGroupName: string,
       topLevelTrackedResourceName: string,
-      properties: TopLevelTrackedResourceUpdate,
+      properties: TopLevelTrackedResource,
       options?: TopLevelTrackedResourcesUpdateOptionalParams,
     ) =>
       topLevelTrackedResourcesUpdate(

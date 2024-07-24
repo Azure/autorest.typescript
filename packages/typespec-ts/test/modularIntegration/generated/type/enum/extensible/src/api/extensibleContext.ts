@@ -6,13 +6,21 @@ import { ExtensibleContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ExtensibleClientOptions extends ClientOptions {}
+export interface ExtensibleClientOptionalParams extends ClientOptions {}
 
 export { ExtensibleContext } from "../rest/index.js";
 
 export function createExtensible(
-  options: ExtensibleClientOptions = {},
+  options: ExtensibleClientOptionalParams = {},
 ): ExtensibleContext {
-  const clientContext = getClient(options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

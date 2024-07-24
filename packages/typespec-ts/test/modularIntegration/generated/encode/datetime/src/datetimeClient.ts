@@ -17,11 +17,11 @@ import {
 } from "./classic/responseHeader/index.js";
 import {
   createDatetime,
-  DatetimeClientOptions,
+  DatetimeClientOptionalParams,
   DatetimeContext,
 } from "./api/index.js";
 
-export { DatetimeClientOptions } from "./api/datetimeContext.js";
+export { DatetimeClientOptionalParams } from "./api/datetimeContext.js";
 
 export class DatetimeClient {
   private _client: DatetimeContext;
@@ -29,8 +29,16 @@ export class DatetimeClient {
   public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on datetime. */
-  constructor(options: DatetimeClientOptions = {}) {
-    this._client = createDatetime(options);
+  constructor(options: DatetimeClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createDatetime({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.query = getQueryOperations(this._client);
     this.property = getPropertyOperations(this._client);

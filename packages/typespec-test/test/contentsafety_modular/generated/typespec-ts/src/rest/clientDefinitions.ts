@@ -87,7 +87,7 @@ export interface ListTextBlocklists {
 export interface AddOrUpdateBlockItems {
   /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
   post(
-    options?: AddOrUpdateBlockItemsParameters,
+    options: AddOrUpdateBlockItemsParameters,
   ): StreamableMethod<
     AddOrUpdateBlockItems200Response | AddOrUpdateBlockItemsDefaultResponse
   >;
@@ -96,7 +96,7 @@ export interface AddOrUpdateBlockItems {
 export interface RemoveBlockItems {
   /** Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request. */
   post(
-    options?: RemoveBlockItemsParameters,
+    options: RemoveBlockItemsParameters,
   ): StreamableMethod<
     RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
   >;

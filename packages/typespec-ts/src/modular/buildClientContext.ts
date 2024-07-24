@@ -8,6 +8,7 @@ import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { importModels } from "./buildOperations.js";
 import {
+  getUserAgentStatements,
   getClientParameters,
   importCredential
 } from "./helpers/clientHelpers.js";
@@ -43,7 +44,7 @@ export function buildClientContext(
   });
 
   clientContextFile.addInterface({
-    name: `${name}ClientOptions`,
+    name: `${name}ClientOptionalParams`,
     isExported: true,
     extends: ["ClientOptions"],
     properties: client.parameters
@@ -105,11 +106,16 @@ export function buildClientContext(
   }
 
   const paramNames = params.map((p) => p.name);
-  const getClientStatement = `const clientContext = getClient(${paramNames.join(
-    ","
-  )})`;
+  const { userAgentStatements, updatedParamNames } = getUserAgentStatements(
+    "azsdk-js-api",
+    paramNames
+  );
 
-  factoryFunction.addStatements([getClientStatement, "return clientContext;"]);
+  factoryFunction.addStatements([
+    userAgentStatements,
+    `const clientContext = getClient(${updatedParamNames});`,
+    `return clientContext;`
+  ]);
 
   if (isRLCMultiEndpoint(dpgContext)) {
     clientContextFile.addImportDeclarations([

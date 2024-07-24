@@ -20,11 +20,11 @@ import {
 } from "./classic/parameters/index.js";
 import {
   createSpecialWords,
-  SpecialWordsClientOptions,
+  SpecialWordsClientOptionalParams,
   SpecialWordsContext,
 } from "./api/index.js";
 
-export { SpecialWordsClientOptions } from "./api/specialWordsContext.js";
+export { SpecialWordsClientOptionalParams } from "./api/specialWordsContext.js";
 
 export class SpecialWordsClient {
   private _client: SpecialWordsContext;
@@ -71,8 +71,16 @@ export class SpecialWordsClient {
    * yield
    * ```
    */
-  constructor(options: SpecialWordsClientOptions = {}) {
-    this._client = createSpecialWords(options);
+  constructor(options: SpecialWordsClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createSpecialWords({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.models = getModelsOperations(this._client);
     this.modelProperties = getModelPropertiesOperations(this._client);

@@ -25,6 +25,18 @@ export interface DurationPropertyOutput {
   property?: string;
 }
 
+/** Model with a plainDate property */
+export interface PlainDatePropertyOutput {
+  /** Property */
+  property?: string;
+}
+
+/** Model with a plainTime property */
+export interface PlainTimePropertyOutput {
+  /** Property */
+  property?: string;
+}
+
 /** Model with collection bytes properties */
 export interface CollectionsBytePropertyOutput {
   /** Property */

@@ -6,14 +6,23 @@ import { AdditionalPropertiesContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface AdditionalPropertiesClientOptions extends ClientOptions {}
+export interface AdditionalPropertiesClientOptionalParams
+  extends ClientOptions {}
 
 export { AdditionalPropertiesContext } from "../rest/index.js";
 
 /** Tests for additional properties of models */
 export function createAdditionalProperties(
-  options: AdditionalPropertiesClientOptions = {},
+  options: AdditionalPropertiesClientOptionalParams = {},
 ): AdditionalPropertiesContext {
-  const clientContext = getClient(options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

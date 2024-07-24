@@ -9,13 +9,13 @@ import {
 } from "./models/options.js";
 import {
   createOAuth2,
-  OAuth2ClientOptions,
+  OAuth2ClientOptionalParams,
   OAuth2Context,
   valid,
   invalid,
 } from "./api/index.js";
 
-export { OAuth2ClientOptions } from "./api/oAuth2Context.js";
+export { OAuth2ClientOptionalParams } from "./api/oAuth2Context.js";
 
 export class OAuth2Client {
   private _client: OAuth2Context;
@@ -23,8 +23,19 @@ export class OAuth2Client {
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with OAuth2 authentication. */
-  constructor(credential: TokenCredential, options: OAuth2ClientOptions = {}) {
-    this._client = createOAuth2(credential, options);
+  constructor(
+    credential: TokenCredential,
+    options: OAuth2ClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createOAuth2(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

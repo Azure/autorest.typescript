@@ -7,7 +7,7 @@ import { ContentSafetyContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ContentSafetyClientOptions extends ClientOptions {
+export interface ContentSafetyClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -18,8 +18,16 @@ export { ContentSafetyContext } from "../rest/index.js";
 export function createContentSafety(
   endpointParam: string,
   credential: KeyCredential | TokenCredential,
-  options: ContentSafetyClientOptions = {},
+  options: ContentSafetyClientOptionalParams = {},
 ): ContentSafetyContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

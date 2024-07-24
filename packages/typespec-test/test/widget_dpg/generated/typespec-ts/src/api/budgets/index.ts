@@ -9,10 +9,6 @@ import {
   BudgetsCreateOrReplace201Response,
   BudgetsCreateOrReplaceDefaultResponse,
   BudgetsCreateOrReplaceLogicalResponse,
-  BudgetsCreateOrUpdate200Response,
-  BudgetsCreateOrUpdate201Response,
-  BudgetsCreateOrUpdateDefaultResponse,
-  BudgetsCreateOrUpdateLogicalResponse,
   isUnexpected,
   WidgetServiceContext as Client,
 } from "../../rest/index.js";
@@ -21,10 +17,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  BudgetsCreateOrReplaceOptionalParams,
-  BudgetsCreateOrUpdateOptionalParams,
-} from "../../models/options.js";
+import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
 
 export function _createOrReplaceSend(
   context: Client,
@@ -57,11 +50,11 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as BudgetsCreateOrReplaceLogicalResponse;
+  const res = result as unknown as BudgetsCreateOrReplaceLogicalResponse;
   return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
+    name: res.body["name"],
+    role: res.body["role"],
+    id: res.body["id"],
   };
 }
 
@@ -77,61 +70,5 @@ export function createOrReplace(
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _createOrReplaceSend(context, name, resource, options),
-  }) as PollerLike<OperationState<User>, User>;
-}
-
-export function _createOrUpdateSend(
-  context: Client,
-  name: string,
-  resource: User,
-  options: BudgetsCreateOrUpdateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | BudgetsCreateOrUpdate200Response
-  | BudgetsCreateOrUpdate201Response
-  | BudgetsCreateOrUpdateDefaultResponse
-  | BudgetsCreateOrUpdateLogicalResponse
-> {
-  return context
-    .path("/budgets/widgets/createOrUpdate/users/{name}", name)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ?? "application/merge-patch+json",
-      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
-      body: { role: resource["role"], id: resource["id"] },
-    });
-}
-
-export async function _createOrUpdateDeserialize(
-  result:
-    | BudgetsCreateOrUpdate200Response
-    | BudgetsCreateOrUpdate201Response
-    | BudgetsCreateOrUpdateDefaultResponse
-    | BudgetsCreateOrUpdateLogicalResponse,
-): Promise<User> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  result = result as BudgetsCreateOrUpdateLogicalResponse;
-  return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
-  };
-}
-
-/** Long-running resource create or update operation template. */
-export function createOrUpdate(
-  context: Client,
-  name: string,
-  resource: User,
-  options: BudgetsCreateOrUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(context, _createOrUpdateDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createOrUpdateSend(context, name, resource, options),
   }) as PollerLike<OperationState<User>, User>;
 }

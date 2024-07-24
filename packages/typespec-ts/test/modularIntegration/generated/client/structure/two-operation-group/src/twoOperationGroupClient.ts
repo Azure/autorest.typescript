@@ -13,11 +13,11 @@ import {
 } from "./classic/group2/index.js";
 import {
   createTwoOperationGroup,
-  TwoOperationGroupClientOptions,
+  TwoOperationGroupClientOptionalParams,
   ServiceContext,
 } from "./api/index.js";
 
-export { TwoOperationGroupClientOptions } from "./api/twoOperationGroupContext.js";
+export { TwoOperationGroupClientOptionalParams } from "./api/twoOperationGroupContext.js";
 
 export class TwoOperationGroupClient {
   private _client: ServiceContext;
@@ -27,9 +27,17 @@ export class TwoOperationGroupClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: TwoOperationGroupClientOptions = {},
+    options: TwoOperationGroupClientOptionalParams = {},
   ) {
-    this._client = createTwoOperationGroup(endpointParam, clientParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createTwoOperationGroup(endpointParam, clientParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.group1 = getGroup1Operations(this._client);
     this.group2 = getGroup2Operations(this._client);

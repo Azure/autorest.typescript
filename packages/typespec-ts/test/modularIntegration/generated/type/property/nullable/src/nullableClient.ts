@@ -29,11 +29,11 @@ import {
 } from "./classic/collectionsString/index.js";
 import {
   createNullable,
-  NullableClientOptions,
+  NullableClientOptionalParams,
   NullableContext,
 } from "./api/index.js";
 
-export { NullableClientOptions } from "./api/nullableContext.js";
+export { NullableClientOptionalParams } from "./api/nullableContext.js";
 
 export class NullableClient {
   private _client: NullableContext;
@@ -41,8 +41,16 @@ export class NullableClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates models with nullable properties. */
-  constructor(options: NullableClientOptions = {}) {
-    this._client = createNullable(options);
+  constructor(options: NullableClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createNullable({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.string = getStringOperations(this._client);
     this.bytes = getBytesOperations(this._client);

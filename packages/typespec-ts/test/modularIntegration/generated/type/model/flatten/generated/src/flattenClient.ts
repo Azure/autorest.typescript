@@ -9,13 +9,13 @@ import {
 } from "./models/options.js";
 import {
   createFlatten,
-  FlattenClientOptions,
+  FlattenClientOptionalParams,
   FlattenContext,
   putFlattenModel,
   putNestedFlattenModel,
 } from "./api/index.js";
 
-export { FlattenClientOptions } from "./api/flattenContext.js";
+export { FlattenClientOptionalParams } from "./api/flattenContext.js";
 
 export class FlattenClient {
   private _client: FlattenContext;
@@ -23,8 +23,16 @@ export class FlattenClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates the model flatten cases. */
-  constructor(options: FlattenClientOptions = {}) {
-    this._client = createFlatten(options);
+  constructor(options: FlattenClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createFlatten({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { SpreadContext } from "../../api/spreadContext.js";
-import { BodyParameter, CompositeRequestMix } from "../../models/models.js";
+import { BodyParameter } from "../../models/models.js";
 import {
   modelSpreadAsRequestBody,
   modelSpreadCompositeRequestOnlyWithBody,
@@ -21,7 +21,7 @@ import {
 /** Interface representing a Model operations. */
 export interface ModelOperations {
   spreadAsRequestBody: (
-    body: BodyParameter,
+    name: string,
     options?: ModelSpreadAsRequestBodyOptionalParams,
   ) => Promise<void>;
   spreadCompositeRequestOnlyWithBody: (
@@ -42,7 +42,7 @@ export interface ModelOperations {
   spreadCompositeRequestMix: (
     name: string,
     testHeader: string,
-    body: CompositeRequestMix,
+    prop: string,
     options?: ModelSpreadCompositeRequestMixOptionalParams,
   ) => Promise<void>;
 }
@@ -50,9 +50,9 @@ export interface ModelOperations {
 export function getModel(context: SpreadContext) {
   return {
     spreadAsRequestBody: (
-      body: BodyParameter,
+      name: string,
       options?: ModelSpreadAsRequestBodyOptionalParams,
-    ) => modelSpreadAsRequestBody(context, body, options),
+    ) => modelSpreadAsRequestBody(context, name, options),
     spreadCompositeRequestOnlyWithBody: (
       body: BodyParameter,
       options?: ModelSpreadCompositeRequestOnlyWithBodyOptionalParams,
@@ -77,10 +77,10 @@ export function getModel(context: SpreadContext) {
     spreadCompositeRequestMix: (
       name: string,
       testHeader: string,
-      body: CompositeRequestMix,
+      prop: string,
       options?: ModelSpreadCompositeRequestMixOptionalParams,
     ) =>
-      modelSpreadCompositeRequestMix(context, name, testHeader, body, options),
+      modelSpreadCompositeRequestMix(context, name, testHeader, prop, options),
   };
 }
 

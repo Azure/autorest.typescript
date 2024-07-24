@@ -12,19 +12,30 @@ import {
 } from "./classic/budgets/index.js";
 import {
   createWidgetService,
-  WidgetServiceClientOptions,
+  WidgetServiceClientOptionalParams,
   WidgetServiceContext,
 } from "./api/index.js";
 
-export { WidgetServiceClientOptions } from "./api/widgetServiceContext.js";
+export { WidgetServiceClientOptionalParams } from "./api/widgetServiceContext.js";
 
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpoint: string, options: WidgetServiceClientOptions = {}) {
-    this._client = createWidgetService(endpoint, options);
+  constructor(
+    endpoint: string,
+    options: WidgetServiceClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createWidgetService(endpoint, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.widgets = getWidgetsOperations(this._client);
     this.budgets = getBudgetsOperations(this._client);

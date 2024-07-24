@@ -21,7 +21,7 @@ export function getClientParameters(
   const name = getClientName(client);
   const optionsParam = {
     name: "options",
-    type: `${name}ClientOptions`,
+    type: `${name}ClientOptionalParams`,
     initializer: "{}"
   };
 
@@ -56,6 +56,30 @@ export function getClientParameters(
   params.push(optionsParam);
 
   return params;
+}
+
+export function getUserAgentStatements(
+  sdkUserAgentPrefix: string,
+  paramNames: string[]
+): { userAgentStatements: string; updatedParamNames: string[] } {
+  const userAgentStatements = `
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = ${
+      "prefixFromOptions ? `${prefixFromOptions} " +
+      sdkUserAgentPrefix +
+      "` : " +
+      `"${sdkUserAgentPrefix}"`
+    };
+  `;
+
+  // Update param names to spread over options
+  const updatedParamNames = paramNames.map((x) =>
+    x === "options"
+      ? "{ ...options, userAgentOptions: { userAgentPrefix } }"
+      : x
+  );
+
+  return { userAgentStatements, updatedParamNames };
 }
 
 export function importCredential(

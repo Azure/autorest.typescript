@@ -10,23 +10,31 @@ export interface OperationOutput {
   /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for Azure Resource Manager/control-plane operations. */
   readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
-  display?: OperationDisplayOutput;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  readonly display?: OperationDisplayOutput;
+  /**
+   * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system"
+   *
+   * Possible values: "user", "system", "user,system"
+   */
   readonly origin?: OriginOutput;
-  /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  /**
+   * Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs.
+   *
+   * Possible values: "Internal"
+   */
   actionType?: ActionTypeOutput;
 }
 
 /** Localized display information for and operation. */
 export interface OperationDisplayOutput {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
+  readonly provider?: string;
   /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
+  readonly resource?: string;
   /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
+  readonly operation?: string;
   /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
+  readonly description?: string;
 }
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
@@ -65,7 +73,11 @@ export interface DataProductsCatalogOutput extends ProxyResourceOutput {
 
 /** Details for data catalog properties. */
 export interface DataProductsCatalogPropertiesOutput {
-  /** The data catalog provisioning state. */
+  /**
+   * The data catalog provisioning state.
+   *
+   * Possible values: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", "Accepted"
+   */
   readonly provisioningState?: ProvisioningStateOutput;
   /** The data product publisher information. */
   publishers: Array<PublisherInformationOutput>;
@@ -114,13 +126,21 @@ export interface ResourceOutput {
 export interface SystemDataOutput {
   /** The identity that created the resource. */
   createdBy?: string;
-  /** The type of identity that created the resource. */
+  /**
+   * The type of identity that created the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   createdByType?: CreatedByTypeOutput;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
+  /**
+   * The type of identity that last modified the resource.
+   *
+   * Possible values: "User", "Application", "ManagedIdentity", "Key"
+   */
   lastModifiedByType?: CreatedByTypeOutput;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
@@ -139,14 +159,18 @@ export interface DataProductOutput extends TrackedResourceOutput {
   /** The resource-specific properties for this resource. */
   properties?: DataProductPropertiesOutput;
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentityOutput;
+  identity?: ManagedServiceIdentityV4Output;
 }
 
 /** The data product properties. */
 export interface DataProductPropertiesOutput {
   /** The resource GUID property of the data product resource. */
   readonly resourceGuid?: string;
-  /** Latest provisioning state  of data product. */
+  /**
+   * Latest provisioning state  of data product.
+   *
+   * Possible values: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", "Accepted"
+   */
   readonly provisioningState?: ProvisioningStateOutput;
   /** Data product publisher name. */
   publisher: string;
@@ -156,17 +180,33 @@ export interface DataProductPropertiesOutput {
   majorVersion: string;
   /** List of name or email associated with data product resource deployment. */
   owners?: string[];
-  /** Flag to enable or disable redundancy for data product. */
+  /**
+   * Flag to enable or disable redundancy for data product.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   redundancy?: ControlStateOutput;
   /** Purview account url for data product to connect to. */
   purviewAccount?: string;
   /** Purview collection url for data product to connect to. */
   purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
+  /**
+   * Flag to enable or disable private link for data product resource.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   privateLinksEnabled?: ControlStateOutput;
-  /** Flag to enable or disable public access of data product resource. */
+  /**
+   * Flag to enable or disable public access of data product resource.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   publicNetworkAccess?: ControlStateOutput;
-  /** Flag to enable customer managed key encryption for data product. */
+  /**
+   * Flag to enable customer managed key encryption for data product.
+   *
+   * Possible values: "Enabled", "Disabled"
+   */
   customerManagedKeyEncryptionEnabled?: ControlStateOutput;
   /** Customer managed encryption key details for data product. */
   customerEncryptionKey?: EncryptionKeyDetailsOutput;
@@ -204,7 +244,11 @@ export interface DataProductNetworkAclsOutput {
   ipRules: Array<IPRulesOutput>;
   /** The list of query ips in the format of CIDR allowed to connect to query/visualization endpoint. */
   allowedQueryIpRangeList: string[];
-  /** Default Action */
+  /**
+   * Default Action
+   *
+   * Possible values: "Allow", "Deny"
+   */
   defaultAction: DefaultActionOutput;
 }
 
@@ -251,12 +295,16 @@ export interface ConsumptionEndpointsPropertiesOutput {
 }
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedServiceIdentityOutput {
+export interface ManagedServiceIdentityV4Output {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly tenantId?: string;
-  /** The type of managed identity assigned to this resource. */
+  /**
+   * The type of managed identity assigned to this resource.
+   *
+   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned"
+   */
   type: ManagedServiceIdentityTypeOutput;
   /** The identities assigned to this resource by the user. */
   userAssignedIdentities?: Record<string, UserAssignedIdentityOutput>;
@@ -369,7 +417,11 @@ export interface PrivateEndpointConnectionPropertiesOutput {
   privateEndpoint?: PrivateEndpointOutput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
-  /** The provisioning state of the private endpoint connection resource. */
+  /**
+   * The provisioning state of the private endpoint connection resource.
+   *
+   * Possible values: "Succeeded", "Creating", "Deleting", "Failed"
+   */
   readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
 }
 
@@ -381,7 +433,11 @@ export interface PrivateEndpointOutput {
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionStateOutput {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  /**
+   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+   *
+   * Possible values: "Pending", "Approved", "Rejected"
+   */
   status?: PrivateEndpointServiceConnectionStatusOutput;
   /** The reason for approval/rejection of the connection. */
   description?: string;
@@ -397,9 +453,17 @@ export interface DataTypeOutput extends ProxyResourceOutput {
 
 /** The data type properties */
 export interface DataTypePropertiesOutput {
-  /** Latest provisioning state  of data product. */
+  /**
+   * Latest provisioning state  of data product.
+   *
+   * Possible values: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", "Accepted"
+   */
   readonly provisioningState?: ProvisioningStateOutput;
-  /** State of data type. */
+  /**
+   * State of data type.
+   *
+   * Possible values: "Stopped", "Running"
+   */
   state?: DataTypeStateOutput;
   /** Reason for the state of data type. */
   readonly stateReason?: string;
@@ -437,7 +501,11 @@ export interface RoleAssignmentDetailOutput {
   dataTypeScope: string[];
   /** Type of the principal Id: User, Group or ServicePrincipal */
   principalType: string;
-  /** Data Product role to be assigned to a user. */
+  /**
+   * Data Product role to be assigned to a user.
+   *
+   * Possible values: "Reader", "SensitiveReader"
+   */
   role: DataProductUserRoleOutput;
   /** Id of role assignment request */
   roleAssignmentId: string;

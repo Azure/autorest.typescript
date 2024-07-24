@@ -5,12 +5,12 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   immediateSuccess,
   createRepeatability,
-  RepeatabilityClientOptions,
+  RepeatabilityClientOptionalParams,
   RepeatabilityContext,
 } from "./api/index.js";
 import { ImmediateSuccessOptionalParams } from "./models/options.js";
 
-export { RepeatabilityClientOptions } from "./api/repeatabilityContext.js";
+export { RepeatabilityClientOptionalParams } from "./api/repeatabilityContext.js";
 
 export class RepeatabilityClient {
   private _client: RepeatabilityContext;
@@ -18,8 +18,16 @@ export class RepeatabilityClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates OASIS repeatability headers */
-  constructor(options: RepeatabilityClientOptions = {}) {
-    this._client = createRepeatability(options);
+  constructor(options: RepeatabilityClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createRepeatability({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

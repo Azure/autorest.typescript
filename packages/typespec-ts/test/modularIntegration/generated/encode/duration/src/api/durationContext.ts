@@ -6,14 +6,22 @@ import { DurationContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface DurationClientOptions extends ClientOptions {}
+export interface DurationClientOptionalParams extends ClientOptions {}
 
 export { DurationContext } from "../rest/index.js";
 
 /** Test for encode decorator on duration. */
 export function createDuration(
-  options: DurationClientOptions = {},
+  options: DurationClientOptionalParams = {},
 ): DurationContext {
-  const clientContext = getClient(options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

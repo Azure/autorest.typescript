@@ -13,7 +13,7 @@ import {
 } from "./models/options.js";
 import {
   createNestedDiscriminator,
-  NestedDiscriminatorClientOptions,
+  NestedDiscriminatorClientOptionalParams,
   NestedDiscriminatorContext,
   getModel,
   putModel,
@@ -23,7 +23,7 @@ import {
   getWrongDiscriminator,
 } from "./api/index.js";
 
-export { NestedDiscriminatorClientOptions } from "./api/nestedDiscriminatorContext.js";
+export { NestedDiscriminatorClientOptionalParams } from "./api/nestedDiscriminatorContext.js";
 
 export class NestedDiscriminatorClient {
   private _client: NestedDiscriminatorContext;
@@ -31,8 +31,16 @@ export class NestedDiscriminatorClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates multiple level inheritance with multiple discriminators. */
-  constructor(options: NestedDiscriminatorClientOptions = {}) {
-    this._client = createNestedDiscriminator(options);
+  constructor(options: NestedDiscriminatorClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createNestedDiscriminator({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

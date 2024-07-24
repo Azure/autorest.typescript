@@ -15,13 +15,13 @@ import {
 } from "./models/options.js";
 import {
   createChatProtocol,
-  ChatProtocolClientOptions,
+  ChatProtocolClientOptionalParams,
   ChatProtocolContext,
   createStreaming,
   create,
 } from "./api/index.js";
 
-export { ChatProtocolClientOptions } from "./api/chatProtocolContext.js";
+export { ChatProtocolClientOptionalParams } from "./api/chatProtocolContext.js";
 
 export class ChatProtocolClient {
   private _client: ChatProtocolContext;
@@ -32,9 +32,17 @@ export class ChatProtocolClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: ChatProtocolClientOptions = {},
+    options: ChatProtocolClientOptionalParams = {},
   ) {
-    this._client = createChatProtocol(endpointParam, credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createChatProtocol(endpointParam, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

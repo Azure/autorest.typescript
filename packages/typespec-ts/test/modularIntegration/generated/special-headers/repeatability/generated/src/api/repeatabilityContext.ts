@@ -6,14 +6,22 @@ import { RepeatabilityContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface RepeatabilityClientOptions extends ClientOptions {}
+export interface RepeatabilityClientOptionalParams extends ClientOptions {}
 
 export { RepeatabilityContext } from "../rest/index.js";
 
 /** Illustrates OASIS repeatability headers */
 export function createRepeatability(
-  options: RepeatabilityClientOptions = {},
+  options: RepeatabilityClientOptionalParams = {},
 ): RepeatabilityContext {
-  const clientContext = getClient(options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

@@ -8,11 +8,11 @@ import {
 } from "./classic/stringBody/index.js";
 import {
   createMediaType,
-  MediaTypeClientOptions,
+  MediaTypeClientOptionalParams,
   MediaTypeContext,
 } from "./api/index.js";
 
-export { MediaTypeClientOptions } from "./api/mediaTypeContext.js";
+export { MediaTypeClientOptionalParams } from "./api/mediaTypeContext.js";
 
 export class MediaTypeClient {
   private _client: MediaTypeContext;
@@ -20,8 +20,16 @@ export class MediaTypeClient {
   public readonly pipeline: Pipeline;
 
   /** Test the payload with different media types and different types of the payload itself. */
-  constructor(options: MediaTypeClientOptions = {}) {
-    this._client = createMediaType(options);
+  constructor(options: MediaTypeClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createMediaType({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.stringBody = getStringBodyOperations(this._client);
   }

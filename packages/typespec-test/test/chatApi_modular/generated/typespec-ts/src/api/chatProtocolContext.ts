@@ -7,7 +7,7 @@ import { ChatProtocolContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface ChatProtocolClientOptions extends ClientOptions {}
+export interface ChatProtocolClientOptionalParams extends ClientOptions {}
 
 export { ChatProtocolContext } from "../rest/index.js";
 
@@ -15,8 +15,16 @@ export { ChatProtocolContext } from "../rest/index.js";
 export function createChatProtocol(
   endpointParam: string,
   credential: KeyCredential | TokenCredential,
-  options: ChatProtocolClientOptions = {},
+  options: ChatProtocolClientOptionalParams = {},
 ): ChatProtocolContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

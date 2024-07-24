@@ -67,7 +67,7 @@ export interface AnalyzeTextResult {
 
 // @public (undocumented)
 export class ContentSafetyClient {
-    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptionalParams);
     addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsOptionalParams): Promise<AddOrUpdateBlockItemsResult>;
     analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageOptionalParams): Promise<AnalyzeImageResult>;
     analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextOptionalParams): Promise<AnalyzeTextResult>;
@@ -82,7 +82,7 @@ export class ContentSafetyClient {
 }
 
 // @public
-export interface ContentSafetyClientOptions extends ClientOptions {
+export interface ContentSafetyClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 

@@ -5,7 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   dataProductPropertiesSerializer,
-  managedServiceIdentitySerializer,
+  managedServiceIdentityV4Serializer,
   dataProductUpdatePropertiesSerializer,
   DataProduct,
   DataProductUpdate,
@@ -103,7 +103,7 @@ export function _createSend(
           : dataProductPropertiesSerializer(resource.properties),
         identity: !resource.identity
           ? resource.identity
-          : managedServiceIdentitySerializer(resource.identity),
+          : managedServiceIdentityV4Serializer(resource.identity),
       },
     });
 }
@@ -119,61 +119,59 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DataProductsCreateLogicalResponse;
+  const res = result as unknown as DataProductsCreateLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: res.body["tags"],
+    location: res.body["location"],
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          resourceGuid: result.body.properties?.["resourceGuid"],
-          provisioningState: result.body.properties?.["provisioningState"],
-          publisher: result.body.properties?.["publisher"],
-          product: result.body.properties?.["product"],
-          majorVersion: result.body.properties?.["majorVersion"],
-          owners: result.body.properties?.["owners"],
-          redundancy: result.body.properties?.["redundancy"],
-          purviewAccount: result.body.properties?.["purviewAccount"],
-          purviewCollection: result.body.properties?.["purviewCollection"],
-          privateLinksEnabled: result.body.properties?.["privateLinksEnabled"],
-          publicNetworkAccess: result.body.properties?.["publicNetworkAccess"],
+          resourceGuid: res.body.properties?.["resourceGuid"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          publisher: res.body.properties?.["publisher"],
+          product: res.body.properties?.["product"],
+          majorVersion: res.body.properties?.["majorVersion"],
+          owners: res.body.properties?.["owners"],
+          redundancy: res.body.properties?.["redundancy"],
+          purviewAccount: res.body.properties?.["purviewAccount"],
+          purviewCollection: res.body.properties?.["purviewCollection"],
+          privateLinksEnabled: res.body.properties?.["privateLinksEnabled"],
+          publicNetworkAccess: res.body.properties?.["publicNetworkAccess"],
           customerManagedKeyEncryptionEnabled:
-            result.body.properties?.["customerManagedKeyEncryptionEnabled"],
-          customerEncryptionKey: !result.body.properties?.customerEncryptionKey
+            res.body.properties?.["customerManagedKeyEncryptionEnabled"],
+          customerEncryptionKey: !res.body.properties?.customerEncryptionKey
             ? undefined
             : {
                 keyVaultUri:
-                  result.body.properties?.customerEncryptionKey?.[
-                    "keyVaultUri"
-                  ],
+                  res.body.properties?.customerEncryptionKey?.["keyVaultUri"],
                 keyName:
-                  result.body.properties?.customerEncryptionKey?.["keyName"],
+                  res.body.properties?.customerEncryptionKey?.["keyName"],
                 keyVersion:
-                  result.body.properties?.customerEncryptionKey?.["keyVersion"],
+                  res.body.properties?.customerEncryptionKey?.["keyVersion"],
               },
-          networkacls: !result.body.properties?.networkacls
+          networkacls: !res.body.properties?.networkacls
             ? undefined
             : {
-                virtualNetworkRule: result.body.properties?.networkacls?.[
+                virtualNetworkRule: res.body.properties?.networkacls?.[
                   "virtualNetworkRule"
                 ].map((p) => {
                   return {
@@ -182,69 +180,63 @@ export async function _createDeserialize(
                     state: p["state"],
                   };
                 }),
-                ipRules: result.body.properties?.networkacls?.["ipRules"].map(
+                ipRules: res.body.properties?.networkacls?.["ipRules"].map(
                   (p) => {
                     return { value: p["value"], action: p["action"] };
                   },
                 ),
                 allowedQueryIpRangeList:
-                  result.body.properties?.networkacls?.[
-                    "allowedQueryIpRangeList"
-                  ],
+                  res.body.properties?.networkacls?.["allowedQueryIpRangeList"],
                 defaultAction:
-                  result.body.properties?.networkacls?.["defaultAction"],
+                  res.body.properties?.networkacls?.["defaultAction"],
               },
-          managedResourceGroupConfiguration: !result.body.properties
+          managedResourceGroupConfiguration: !res.body.properties
             ?.managedResourceGroupConfiguration
             ? undefined
             : {
-                name: result.body.properties
-                  ?.managedResourceGroupConfiguration?.["name"],
+                name: res.body.properties?.managedResourceGroupConfiguration?.[
+                  "name"
+                ],
                 location:
-                  result.body.properties?.managedResourceGroupConfiguration?.[
+                  res.body.properties?.managedResourceGroupConfiguration?.[
                     "location"
                   ],
               },
           availableMinorVersions:
-            result.body.properties?.["availableMinorVersions"],
-          currentMinorVersion: result.body.properties?.["currentMinorVersion"],
-          documentation: result.body.properties?.["documentation"],
-          consumptionEndpoints: !result.body.properties?.consumptionEndpoints
+            res.body.properties?.["availableMinorVersions"],
+          currentMinorVersion: res.body.properties?.["currentMinorVersion"],
+          documentation: res.body.properties?.["documentation"],
+          consumptionEndpoints: !res.body.properties?.consumptionEndpoints
             ? undefined
             : {
                 ingestionUrl:
-                  result.body.properties?.consumptionEndpoints?.[
-                    "ingestionUrl"
-                  ],
+                  res.body.properties?.consumptionEndpoints?.["ingestionUrl"],
                 ingestionResourceId:
-                  result.body.properties?.consumptionEndpoints?.[
+                  res.body.properties?.consumptionEndpoints?.[
                     "ingestionResourceId"
                   ],
                 fileAccessUrl:
-                  result.body.properties?.consumptionEndpoints?.[
-                    "fileAccessUrl"
-                  ],
+                  res.body.properties?.consumptionEndpoints?.["fileAccessUrl"],
                 fileAccessResourceId:
-                  result.body.properties?.consumptionEndpoints?.[
+                  res.body.properties?.consumptionEndpoints?.[
                     "fileAccessResourceId"
                   ],
                 queryUrl:
-                  result.body.properties?.consumptionEndpoints?.["queryUrl"],
+                  res.body.properties?.consumptionEndpoints?.["queryUrl"],
                 queryResourceId:
-                  result.body.properties?.consumptionEndpoints?.[
+                  res.body.properties?.consumptionEndpoints?.[
                     "queryResourceId"
                   ],
               },
-          keyVaultUrl: result.body.properties?.["keyVaultUrl"],
+          keyVaultUrl: res.body.properties?.["keyVaultUrl"],
         },
-    identity: !result.body.identity
+    identity: !res.body.identity
       ? undefined
       : {
-          principalId: result.body.identity?.["principalId"],
-          tenantId: result.body.identity?.["tenantId"],
-          type: result.body.identity?.["type"],
-          userAssignedIdentities:
-            result.body.identity?.["userAssignedIdentities"],
+          principalId: res.body.identity?.["principalId"],
+          tenantId: res.body.identity?.["tenantId"],
+          type: res.body.identity?.["type"],
+          userAssignedIdentities: res.body.identity?.["userAssignedIdentities"],
         },
   };
 }
@@ -471,7 +463,7 @@ export function _updateSend(
       body: {
         identity: !properties.identity
           ? properties.identity
-          : managedServiceIdentitySerializer(properties.identity),
+          : managedServiceIdentityV4Serializer(properties.identity),
         tags: !properties.tags
           ? properties.tags
           : (serializeRecord(properties.tags as any) as any),
@@ -493,61 +485,59 @@ export async function _updateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DataProductsUpdateLogicalResponse;
+  const res = result as unknown as DataProductsUpdateLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: res.body["tags"],
+    location: res.body["location"],
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          resourceGuid: result.body.properties?.["resourceGuid"],
-          provisioningState: result.body.properties?.["provisioningState"],
-          publisher: result.body.properties?.["publisher"],
-          product: result.body.properties?.["product"],
-          majorVersion: result.body.properties?.["majorVersion"],
-          owners: result.body.properties?.["owners"],
-          redundancy: result.body.properties?.["redundancy"],
-          purviewAccount: result.body.properties?.["purviewAccount"],
-          purviewCollection: result.body.properties?.["purviewCollection"],
-          privateLinksEnabled: result.body.properties?.["privateLinksEnabled"],
-          publicNetworkAccess: result.body.properties?.["publicNetworkAccess"],
+          resourceGuid: res.body.properties?.["resourceGuid"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          publisher: res.body.properties?.["publisher"],
+          product: res.body.properties?.["product"],
+          majorVersion: res.body.properties?.["majorVersion"],
+          owners: res.body.properties?.["owners"],
+          redundancy: res.body.properties?.["redundancy"],
+          purviewAccount: res.body.properties?.["purviewAccount"],
+          purviewCollection: res.body.properties?.["purviewCollection"],
+          privateLinksEnabled: res.body.properties?.["privateLinksEnabled"],
+          publicNetworkAccess: res.body.properties?.["publicNetworkAccess"],
           customerManagedKeyEncryptionEnabled:
-            result.body.properties?.["customerManagedKeyEncryptionEnabled"],
-          customerEncryptionKey: !result.body.properties?.customerEncryptionKey
+            res.body.properties?.["customerManagedKeyEncryptionEnabled"],
+          customerEncryptionKey: !res.body.properties?.customerEncryptionKey
             ? undefined
             : {
                 keyVaultUri:
-                  result.body.properties?.customerEncryptionKey?.[
-                    "keyVaultUri"
-                  ],
+                  res.body.properties?.customerEncryptionKey?.["keyVaultUri"],
                 keyName:
-                  result.body.properties?.customerEncryptionKey?.["keyName"],
+                  res.body.properties?.customerEncryptionKey?.["keyName"],
                 keyVersion:
-                  result.body.properties?.customerEncryptionKey?.["keyVersion"],
+                  res.body.properties?.customerEncryptionKey?.["keyVersion"],
               },
-          networkacls: !result.body.properties?.networkacls
+          networkacls: !res.body.properties?.networkacls
             ? undefined
             : {
-                virtualNetworkRule: result.body.properties?.networkacls?.[
+                virtualNetworkRule: res.body.properties?.networkacls?.[
                   "virtualNetworkRule"
                 ].map((p) => {
                   return {
@@ -556,69 +546,63 @@ export async function _updateDeserialize(
                     state: p["state"],
                   };
                 }),
-                ipRules: result.body.properties?.networkacls?.["ipRules"].map(
+                ipRules: res.body.properties?.networkacls?.["ipRules"].map(
                   (p) => {
                     return { value: p["value"], action: p["action"] };
                   },
                 ),
                 allowedQueryIpRangeList:
-                  result.body.properties?.networkacls?.[
-                    "allowedQueryIpRangeList"
-                  ],
+                  res.body.properties?.networkacls?.["allowedQueryIpRangeList"],
                 defaultAction:
-                  result.body.properties?.networkacls?.["defaultAction"],
+                  res.body.properties?.networkacls?.["defaultAction"],
               },
-          managedResourceGroupConfiguration: !result.body.properties
+          managedResourceGroupConfiguration: !res.body.properties
             ?.managedResourceGroupConfiguration
             ? undefined
             : {
-                name: result.body.properties
-                  ?.managedResourceGroupConfiguration?.["name"],
+                name: res.body.properties?.managedResourceGroupConfiguration?.[
+                  "name"
+                ],
                 location:
-                  result.body.properties?.managedResourceGroupConfiguration?.[
+                  res.body.properties?.managedResourceGroupConfiguration?.[
                     "location"
                   ],
               },
           availableMinorVersions:
-            result.body.properties?.["availableMinorVersions"],
-          currentMinorVersion: result.body.properties?.["currentMinorVersion"],
-          documentation: result.body.properties?.["documentation"],
-          consumptionEndpoints: !result.body.properties?.consumptionEndpoints
+            res.body.properties?.["availableMinorVersions"],
+          currentMinorVersion: res.body.properties?.["currentMinorVersion"],
+          documentation: res.body.properties?.["documentation"],
+          consumptionEndpoints: !res.body.properties?.consumptionEndpoints
             ? undefined
             : {
                 ingestionUrl:
-                  result.body.properties?.consumptionEndpoints?.[
-                    "ingestionUrl"
-                  ],
+                  res.body.properties?.consumptionEndpoints?.["ingestionUrl"],
                 ingestionResourceId:
-                  result.body.properties?.consumptionEndpoints?.[
+                  res.body.properties?.consumptionEndpoints?.[
                     "ingestionResourceId"
                   ],
                 fileAccessUrl:
-                  result.body.properties?.consumptionEndpoints?.[
-                    "fileAccessUrl"
-                  ],
+                  res.body.properties?.consumptionEndpoints?.["fileAccessUrl"],
                 fileAccessResourceId:
-                  result.body.properties?.consumptionEndpoints?.[
+                  res.body.properties?.consumptionEndpoints?.[
                     "fileAccessResourceId"
                   ],
                 queryUrl:
-                  result.body.properties?.consumptionEndpoints?.["queryUrl"],
+                  res.body.properties?.consumptionEndpoints?.["queryUrl"],
                 queryResourceId:
-                  result.body.properties?.consumptionEndpoints?.[
+                  res.body.properties?.consumptionEndpoints?.[
                     "queryResourceId"
                   ],
               },
-          keyVaultUrl: result.body.properties?.["keyVaultUrl"],
+          keyVaultUrl: res.body.properties?.["keyVaultUrl"],
         },
-    identity: !result.body.identity
+    identity: !res.body.identity
       ? undefined
       : {
-          principalId: result.body.identity?.["principalId"],
-          tenantId: result.body.identity?.["tenantId"],
-          type: result.body.identity?.["type"],
-          userAssignedIdentities:
-            result.body.identity?.["userAssignedIdentities"],
+          principalId: res.body.identity?.["principalId"],
+          tenantId: res.body.identity?.["tenantId"],
+          type: res.body.identity?.["type"],
+          userAssignedIdentities: res.body.identity?.["userAssignedIdentities"],
         },
   };
 }
@@ -680,7 +664,6 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DataProductsDeleteLogicalResponse;
   return;
 }
 

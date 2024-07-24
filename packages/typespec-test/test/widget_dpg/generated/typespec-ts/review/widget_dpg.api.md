@@ -25,16 +25,8 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface BudgetsCreateOrUpdateOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
-    updateIntervalInMs?: number;
-}
-
-// @public
 export interface BudgetsOperations {
     createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
-    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptionalParams) => PollerLike<OperationState<User>, User>;
 }
 
 // @public
@@ -125,14 +117,14 @@ export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class WidgetServiceClient {
-    constructor(endpoint: string, options?: WidgetServiceClientOptions);
+    constructor(endpoint: string, options?: WidgetServiceClientOptionalParams);
     readonly budgets: BudgetsOperations;
     readonly pipeline: Pipeline;
     readonly widgets: WidgetsOperations;
 }
 
 // @public
-export interface WidgetServiceClientOptions extends ClientOptions {
+export interface WidgetServiceClientOptionalParams extends ClientOptions {
 }
 
 // @public
@@ -159,7 +151,7 @@ export interface WidgetsListWidgetsPagesOptionalParams extends OperationOptions 
 export interface WidgetsOperations {
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) => Promise<AnalyzeResult>;
     createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
-    createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptionalParams) => Promise<Widget>;
+    createWidget: (weight: number, color: "red" | "blue", options?: WidgetsCreateWidgetOptionalParams) => Promise<Widget>;
     deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) => Promise<void>;
     getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) => Promise<Widget>;
     listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptionalParams) => Promise<Widget[]>;
@@ -167,7 +159,7 @@ export interface WidgetsOperations {
     listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
     queryWidgetsPages: (page: number, pageSize: number, options?: WidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
-    updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
+    updateWidget: (id: string, options?: WidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
 }
 
 // @public
@@ -176,6 +168,8 @@ export interface WidgetsQueryWidgetsPagesOptionalParams extends OperationOptions
 
 // @public
 export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
+    color?: "red" | "blue";
+    weight?: number;
 }
 
 // (No @packageDocumentation comment for this package)

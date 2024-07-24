@@ -13,13 +13,13 @@ import {
 } from "./classic/optionalExplicit/index.js";
 import {
   createBodyOptionality,
-  BodyOptionalityClientOptions,
+  BodyOptionalityClientOptionalParams,
   BodyOptionalityContext,
   requiredExplicit,
   requiredImplicit,
 } from "./api/index.js";
 
-export { BodyOptionalityClientOptions } from "./api/bodyOptionalityContext.js";
+export { BodyOptionalityClientOptionalParams } from "./api/bodyOptionalityContext.js";
 
 export class BodyOptionalityClient {
   private _client: BodyOptionalityContext;
@@ -27,8 +27,16 @@ export class BodyOptionalityClient {
   public readonly pipeline: Pipeline;
 
   /** Test describing optionality of the request body. */
-  constructor(options: BodyOptionalityClientOptions = {}) {
-    this._client = createBodyOptionality(options);
+  constructor(options: BodyOptionalityClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createBodyOptionality({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.optionalExplicit = getOptionalExplicitOperations(this._client);
   }
@@ -41,10 +49,10 @@ export class BodyOptionalityClient {
   }
 
   requiredImplicit(
-    body: BodyModel,
+    name: string,
     options: RequiredImplicitOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return requiredImplicit(this._client, body, options);
+    return requiredImplicit(this._client, name, options);
   }
 
   /** The operation groups for OptionalExplicit */

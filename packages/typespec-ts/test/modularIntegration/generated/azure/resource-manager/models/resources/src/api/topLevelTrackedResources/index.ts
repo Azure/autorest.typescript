@@ -5,9 +5,7 @@ import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   topLevelTrackedResourcePropertiesSerializer,
-  topLevelTrackedResourceUpdatePropertiesSerializer,
   TopLevelTrackedResource,
-  TopLevelTrackedResourceUpdate,
   _TopLevelTrackedResourceListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
@@ -174,34 +172,35 @@ export async function _topLevelTrackedResourcesCreateOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as TopLevelTrackedResourcesCreateOrReplaceLogicalResponse;
+  const res =
+    result as unknown as TopLevelTrackedResourcesCreateOrReplaceLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: res.body["tags"],
+    location: res.body["location"],
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          description: result.body.properties?.["description"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          description: res.body.properties?.["description"],
         },
   };
 }
@@ -247,7 +246,7 @@ export function _topLevelTrackedResourcesUpdateSend(
   subscriptionId: string,
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
-  properties: TopLevelTrackedResourceUpdate,
+  properties: TopLevelTrackedResource,
   options: TopLevelTrackedResourcesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -270,11 +269,10 @@ export function _topLevelTrackedResourcesUpdateSend(
         tags: !properties.tags
           ? properties.tags
           : (serializeRecord(properties.tags as any) as any),
+        location: properties["location"],
         properties: !properties.properties
           ? properties.properties
-          : topLevelTrackedResourceUpdatePropertiesSerializer(
-              properties.properties,
-            ),
+          : topLevelTrackedResourcePropertiesSerializer(properties.properties),
       },
     });
 }
@@ -290,34 +288,35 @@ export async function _topLevelTrackedResourcesUpdateDeserialize(
     throw createRestError(result);
   }
 
-  result = result as TopLevelTrackedResourcesUpdateLogicalResponse;
+  const res =
+    result as unknown as TopLevelTrackedResourcesUpdateLogicalResponse;
   return {
-    tags: result.body["tags"],
-    location: result.body["location"],
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
+    tags: res.body["tags"],
+    location: res.body["location"],
+    id: res.body["id"],
+    name: res.body["name"],
+    type: res.body["type"],
+    systemData: !res.body.systemData
       ? undefined
       : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdBy: res.body.systemData?.["createdBy"],
+          createdByType: res.body.systemData?.["createdByType"],
           createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
+            res.body.systemData?.["createdAt"] !== undefined
+              ? new Date(res.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
+            res.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(res.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !result.body.properties
+    properties: !res.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          description: result.body.properties?.["description"],
+          provisioningState: res.body.properties?.["provisioningState"],
+          description: res.body.properties?.["description"],
         },
   };
 }
@@ -328,7 +327,7 @@ export function topLevelTrackedResourcesUpdate(
   subscriptionId: string,
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
-  properties: TopLevelTrackedResourceUpdate,
+  properties: TopLevelTrackedResource,
   options: TopLevelTrackedResourcesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -393,7 +392,6 @@ export async function _topLevelTrackedResourcesDeleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as TopLevelTrackedResourcesDeleteLogicalResponse;
   return;
 }
 

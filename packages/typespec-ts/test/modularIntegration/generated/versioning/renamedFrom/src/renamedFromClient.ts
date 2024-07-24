@@ -11,11 +11,11 @@ import {
   newOp,
   newOpInNewInterface,
   createRenamedFrom,
-  RenamedFromClientOptions,
+  RenamedFromClientOptionalParams,
   RenamedFromContext,
 } from "./api/index.js";
 
-export { RenamedFromClientOptions } from "./api/renamedFromContext.js";
+export { RenamedFromClientOptionalParams } from "./api/renamedFromContext.js";
 
 export class RenamedFromClient {
   private _client: RenamedFromContext;
@@ -26,9 +26,17 @@ export class RenamedFromClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: RenamedFromClientOptions = {},
+    options: RenamedFromClientOptionalParams = {},
   ) {
-    this._client = createRenamedFrom(endpointParam, version, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createRenamedFrom(endpointParam, version, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

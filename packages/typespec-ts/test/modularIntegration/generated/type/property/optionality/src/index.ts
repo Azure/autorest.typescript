@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OptionalClient, OptionalClientOptions } from "./optionalClient.js";
+export {
+  OptionalClient,
+  OptionalClientOptionalParams,
+} from "./optionalClient.js";
 export {
   RequiredAndOptionalProperty,
   UnionFloatLiteralProperty,
@@ -14,6 +17,8 @@ export {
   CollectionsModelProperty,
   StringProperty,
   CollectionsByteProperty,
+  PlainTimeProperty,
+  PlainDateProperty,
   DurationProperty,
   DatetimeProperty,
   BytesProperty,
@@ -33,6 +38,14 @@ export {
   DurationGetDefaultOptionalParams,
   DurationPutAllOptionalParams,
   DurationPutDefaultOptionalParams,
+  PlainDateGetAllOptionalParams,
+  PlainDateGetDefaultOptionalParams,
+  PlainDatePutAllOptionalParams,
+  PlainDatePutDefaultOptionalParams,
+  PlainTimeGetAllOptionalParams,
+  PlainTimeGetDefaultOptionalParams,
+  PlainTimePutAllOptionalParams,
+  PlainTimePutDefaultOptionalParams,
   CollectionsByteGetAllOptionalParams,
   CollectionsByteGetDefaultOptionalParams,
   CollectionsBytePutAllOptionalParams,
@@ -83,6 +96,8 @@ export {
   DurationOperations,
   FloatLiteralOperations,
   IntLiteralOperations,
+  PlainDateOperations,
+  PlainTimeOperations,
   RequiredAndOptionalOperations,
   StringOperations,
   StringLiteralOperations,

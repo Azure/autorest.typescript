@@ -107,7 +107,7 @@ export interface BatchCertificate {
 
 // @public (undocumented)
 export class BatchClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: BatchClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: BatchClientOptionalParams);
     cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptionalParams): Promise<void>;
     createCertificate(body: BatchCertificate, options?: CreateCertificateOptionalParams): Promise<void>;
     createJob(body: BatchJobCreateOptions, options?: CreateJobOptionalParams): Promise<void>;
@@ -188,7 +188,7 @@ export class BatchClient {
 }
 
 // @public
-export interface BatchClientOptions extends ClientOptions {
+export interface BatchClientOptionalParams extends ClientOptions {
 }
 
 // @public

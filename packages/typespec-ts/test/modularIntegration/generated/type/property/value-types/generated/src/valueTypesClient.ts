@@ -102,11 +102,11 @@ import {
 } from "./classic/unionEnumValue/index.js";
 import {
   createValueTypes,
-  ValueTypesClientOptions,
+  ValueTypesClientOptionalParams,
   ValueTypesContext,
 } from "./api/index.js";
 
-export { ValueTypesClientOptions } from "./api/valueTypesContext.js";
+export { ValueTypesClientOptionalParams } from "./api/valueTypesContext.js";
 
 export class ValueTypesClient {
   private _client: ValueTypesContext;
@@ -114,8 +114,16 @@ export class ValueTypesClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates various property types for models */
-  constructor(options: ValueTypesClientOptions = {}) {
-    this._client = createValueTypes(options);
+  constructor(options: ValueTypesClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createValueTypes({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.boolean = getBooleanOperations(this._client);
     this.string = getStringOperations(this._client);

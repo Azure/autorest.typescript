@@ -9,13 +9,13 @@ import {
 } from "./models/options.js";
 import {
   createCustom,
-  CustomClientOptions,
+  CustomClientOptionalParams,
   CustomContext,
   valid,
   invalid,
 } from "./api/index.js";
 
-export { CustomClientOptions } from "./api/customContext.js";
+export { CustomClientOptionalParams } from "./api/customContext.js";
 
 export class CustomClient {
   private _client: CustomContext;
@@ -23,8 +23,19 @@ export class CustomClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with generic HTTP auth. */
-  constructor(credential: KeyCredential, options: CustomClientOptions = {}) {
-    this._client = createCustom(credential, options);
+  constructor(
+    credential: KeyCredential,
+    options: CustomClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createCustom(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -6,12 +6,22 @@ import { JsonContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface JsonClientOptions extends ClientOptions {}
+export interface JsonClientOptionalParams extends ClientOptions {}
 
 export { JsonContext } from "../rest/index.js";
 
 /** Projection */
-export function createJson(options: JsonClientOptions = {}): JsonContext {
-  const clientContext = getClient(options);
+export function createJson(
+  options: JsonClientOptionalParams = {},
+): JsonContext {
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient({
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

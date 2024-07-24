@@ -7,7 +7,7 @@ import { SchemaRegistryContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface SchemaRegistryClientOptions extends ClientOptions {
+export interface SchemaRegistryClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
@@ -18,8 +18,16 @@ export { SchemaRegistryContext } from "../rest/index.js";
 export function createSchemaRegistry(
   fullyQualifiedNamespace: string,
   credential: TokenCredential,
-  options: SchemaRegistryClientOptions = {},
+  options: SchemaRegistryClientOptionalParams = {},
 ): SchemaRegistryContext {
-  const clientContext = getClient(fullyQualifiedNamespace, credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(fullyQualifiedNamespace, credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

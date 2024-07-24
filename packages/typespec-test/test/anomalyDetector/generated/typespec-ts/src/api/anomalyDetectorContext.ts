@@ -7,7 +7,7 @@ import { AnomalyDetectorContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface AnomalyDetectorClientOptions extends ClientOptions {
+export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
   /** Api Version */
   apiVersion?: string;
 }
@@ -35,8 +35,16 @@ export { AnomalyDetectorContext } from "../rest/index.js";
 export function createAnomalyDetector(
   endpointParam: string,
   credential: KeyCredential,
-  options: AnomalyDetectorClientOptions = {},
+  options: AnomalyDetectorClientOptionalParams = {},
 ): AnomalyDetectorContext {
-  const clientContext = getClient(endpointParam, credential, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, credential, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

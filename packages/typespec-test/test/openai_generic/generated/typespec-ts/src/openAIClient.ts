@@ -37,11 +37,11 @@ import {
 } from "./classic/moderations/index.js";
 import {
   createOpenAI,
-  OpenAIClientOptions,
+  OpenAIClientOptionalParams,
   OpenAIContext,
 } from "./api/index.js";
 
-export { OpenAIClientOptions } from "./api/openAIContext.js";
+export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;
@@ -49,8 +49,19 @@ export class OpenAIClient {
   public readonly pipeline: Pipeline;
 
   /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
-  constructor(credential: KeyCredential, options: OpenAIClientOptions = {}) {
-    this._client = createOpenAI(credential, options);
+  constructor(
+    credential: KeyCredential,
+    options: OpenAIClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createOpenAI(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.audio = getAudioOperations(this._client);
     this.chat = getChatOperations(this._client);

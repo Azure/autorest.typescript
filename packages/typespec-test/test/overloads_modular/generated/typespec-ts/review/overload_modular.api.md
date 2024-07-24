@@ -33,13 +33,13 @@ export type Versions = "2022-08-30";
 
 // @public (undocumented)
 export class WidgetManagerClient {
-    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptionalParams);
     readonly fooOperations: FooOperationsOperations;
     readonly pipeline: Pipeline;
 }
 
 // @public
-export interface WidgetManagerClientOptions extends ClientOptions {
+export interface WidgetManagerClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 

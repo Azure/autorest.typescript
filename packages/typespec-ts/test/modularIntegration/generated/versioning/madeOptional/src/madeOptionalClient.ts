@@ -6,12 +6,12 @@ import { TestModel, Versions } from "./models/models.js";
 import { TestOptionalParams } from "./models/options.js";
 import {
   createMadeOptional,
-  MadeOptionalClientOptions,
+  MadeOptionalClientOptionalParams,
   MadeOptionalContext,
   test,
 } from "./api/index.js";
 
-export { MadeOptionalClientOptions } from "./api/madeOptionalContext.js";
+export { MadeOptionalClientOptionalParams } from "./api/madeOptionalContext.js";
 
 export class MadeOptionalClient {
   private _client: MadeOptionalContext;
@@ -22,9 +22,17 @@ export class MadeOptionalClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: MadeOptionalClientOptions = {},
+    options: MadeOptionalClientOptionalParams = {},
   ) {
-    this._client = createMadeOptional(endpointParam, version, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createMadeOptional(endpointParam, version, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

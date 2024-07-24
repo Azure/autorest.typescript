@@ -7,11 +7,11 @@ import { TestOptionalParams } from "./models/options.js";
 import {
   test,
   createTypeChangedFrom,
-  TypeChangedFromClientOptions,
+  TypeChangedFromClientOptionalParams,
   TypeChangedFromContext,
 } from "./api/index.js";
 
-export { TypeChangedFromClientOptions } from "./api/typeChangedFromContext.js";
+export { TypeChangedFromClientOptionalParams } from "./api/typeChangedFromContext.js";
 
 export class TypeChangedFromClient {
   private _client: TypeChangedFromContext;
@@ -22,9 +22,17 @@ export class TypeChangedFromClient {
   constructor(
     endpointParam: string,
     version: Versions,
-    options: TypeChangedFromClientOptions = {},
+    options: TypeChangedFromClientOptionalParams = {},
   ) {
-    this._client = createTypeChangedFrom(endpointParam, version, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createTypeChangedFrom(endpointParam, version, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -13,11 +13,11 @@ import {
   outputToInputOutput,
   modelInReadOnlyProperty,
   createUsage,
-  UsageClientOptions,
+  UsageClientOptionalParams,
   UsageContext,
 } from "./api/index.js";
 
-export { UsageClientOptions } from "./api/usageContext.js";
+export { UsageClientOptionalParams } from "./api/usageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;
@@ -25,8 +25,16 @@ export class UsageClient {
   public readonly pipeline: Pipeline;
 
   /** Test for internal decorator. */
-  constructor(options: UsageClientOptions = {}) {
-    this._client = createUsage(options);
+  constructor(options: UsageClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createUsage({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 
@@ -71,7 +79,9 @@ export class UsageClient {
    * Expected response body:
    * ```json
    * {
-   *   "name": <any string>
+   *   "result": {
+   *     "name": <any string>
+   *   }
    * }
    * ```
    */

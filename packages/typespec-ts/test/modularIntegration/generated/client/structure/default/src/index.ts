@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ServiceClient, ServiceClientOptions } from "./serviceClient.js";
+export { ServiceClient, ServiceClientOptionalParams } from "./serviceClient.js";
 export {
   ClientType,
   OneOptionalParams,

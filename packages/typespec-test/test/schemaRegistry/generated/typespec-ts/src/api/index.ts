@@ -3,6 +3,6 @@
 
 export {
   createSchemaRegistry,
-  SchemaRegistryClientOptions,
+  SchemaRegistryClientOptionalParams,
   SchemaRegistryContext,
 } from "./schemaRegistryContext.js";

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { VisibilityModel } from "./models.js";
+import { VisibilityModel, ReadOnlyModel } from "./models.js";
 
 export interface GetModelBodyParam {
   body: VisibilityModel;
@@ -39,3 +39,10 @@ export interface DeleteModelBodyParam {
 }
 
 export type DeleteModelParameters = DeleteModelBodyParam & RequestParameters;
+
+export interface PutReadOnlyModelBodyParam {
+  body: ReadOnlyModel;
+}
+
+export type PutReadOnlyModelParameters = PutReadOnlyModelBodyParam &
+  RequestParameters;

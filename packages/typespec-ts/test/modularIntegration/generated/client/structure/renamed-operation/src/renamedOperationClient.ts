@@ -14,11 +14,11 @@ import {
   renamedThree,
   renamedFive,
   createRenamedOperation,
-  RenamedOperationClientOptions,
+  RenamedOperationClientOptionalParams,
   ServiceContext,
 } from "./api/index.js";
 
-export { RenamedOperationClientOptions } from "./api/renamedOperationContext.js";
+export { RenamedOperationClientOptionalParams } from "./api/renamedOperationContext.js";
 
 export class RenamedOperationClient {
   private _client: ServiceContext;
@@ -28,9 +28,17 @@ export class RenamedOperationClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: RenamedOperationClientOptions = {},
+    options: RenamedOperationClientOptionalParams = {},
   ) {
-    this._client = createRenamedOperation(endpointParam, clientParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createRenamedOperation(endpointParam, clientParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.group = getGroupOperations(this._client);
   }

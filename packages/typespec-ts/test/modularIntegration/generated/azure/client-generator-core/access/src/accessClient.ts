@@ -25,7 +25,7 @@ import {
 } from "./models/options.js";
 import {
   createAccess,
-  AccessClientOptions,
+  AccessClientOptionalParams,
   AccessContext,
   noDecoratorInPublic,
   publicDecoratorInPublic,
@@ -38,7 +38,7 @@ import {
   discriminator,
 } from "./api/index.js";
 
-export { AccessClientOptions } from "./api/accessContext.js";
+export { AccessClientOptionalParams } from "./api/accessContext.js";
 
 export class AccessClient {
   private _client: AccessContext;
@@ -46,8 +46,16 @@ export class AccessClient {
   public readonly pipeline: Pipeline;
 
   /** Test for internal decorator. */
-  constructor(options: AccessClientOptions = {}) {
-    this._client = createAccess(options);
+  constructor(options: AccessClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createAccess({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

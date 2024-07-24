@@ -8,21 +8,32 @@ import {
 } from "./models/options.js";
 import {
   createMultiple,
-  MultipleClientOptions,
+  MultipleClientOptionalParams,
   MultipleContext,
   noOperationParams,
   withOperationPathParam,
 } from "./api/index.js";
 
-export { MultipleClientOptions } from "./api/multipleContext.js";
+export { MultipleClientOptionalParams } from "./api/multipleContext.js";
 
 export class MultipleClient {
   private _client: MultipleContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpointParam: string, options: MultipleClientOptions = {}) {
-    this._client = createMultiple(endpointParam, options);
+  constructor(
+    endpointParam: string,
+    options: MultipleClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createMultiple(endpointParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

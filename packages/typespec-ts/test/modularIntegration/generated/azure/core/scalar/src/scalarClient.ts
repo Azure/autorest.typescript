@@ -17,19 +17,27 @@ import {
   header,
   query,
   createScalar,
-  ScalarClientOptions,
+  ScalarClientOptionalParams,
   ScalarContext,
 } from "./api/index.js";
 
-export { ScalarClientOptions } from "./api/scalarContext.js";
+export { ScalarClientOptionalParams } from "./api/scalarContext.js";
 
 export class ScalarClient {
   private _client: ScalarContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(options: ScalarClientOptions = {}) {
-    this._client = createScalar(options);
+  constructor(options: ScalarClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createScalar({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

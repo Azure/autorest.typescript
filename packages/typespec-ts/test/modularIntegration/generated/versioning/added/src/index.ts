@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { AddedClient, AddedClientOptions } from "./addedClient.js";
+export { AddedClient, AddedClientOptionalParams } from "./addedClient.js";
 export {
   ModelV1,
   EnumV1,

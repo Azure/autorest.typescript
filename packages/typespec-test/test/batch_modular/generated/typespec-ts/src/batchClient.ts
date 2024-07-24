@@ -126,7 +126,7 @@ import {
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBatch,
-  BatchClientOptions,
+  BatchClientOptionalParams,
   BatchContext,
   listApplications,
   getApplication,
@@ -206,7 +206,7 @@ import {
   listNodeFiles,
 } from "./api/index.js";
 
-export { BatchClientOptions } from "./api/batchContext.js";
+export { BatchClientOptionalParams } from "./api/batchContext.js";
 
 export class BatchClient {
   private _client: BatchContext;
@@ -217,9 +217,17 @@ export class BatchClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: BatchClientOptions = {},
+    options: BatchClientOptionalParams = {},
   ) {
-    this._client = createBatch(endpointParam, credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createBatch(endpointParam, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

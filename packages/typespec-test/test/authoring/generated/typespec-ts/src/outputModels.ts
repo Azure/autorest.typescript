@@ -37,7 +37,11 @@ export interface ProjectSettingsOutput extends Record<string, string> {}
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
   status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
@@ -134,7 +138,6 @@ export type JobStatusOutput =
   | "cancelling"
   | "partiallyCompleted";
 /** A collection of SupportedLanguage resources. */
-export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
+export type SupportedLanguagesOutput = Paged<SupportedLanguageOutput>;
 /** A collection of TrainingConfigVersion resources. */
-export type PagedTrainingConfigVersionOutput =
-  Paged<TrainingConfigVersionOutput>;
+export type TrainingConfigVersionsOutput = Paged<TrainingConfigVersionOutput>;

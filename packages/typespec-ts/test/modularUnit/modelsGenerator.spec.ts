@@ -182,7 +182,6 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1: new Date(result.body["prop1"]),
           prop2: new Date(result.body["prop2"]),
@@ -321,7 +320,6 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1: new Date(result.body["prop1"]),
           prop2: result.body["prop2"],
@@ -406,7 +404,6 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1: new Date(result.body["prop1"]),
           prop2: result.body["prop2"],
@@ -486,7 +483,6 @@ describe("modular encode test for property type datetime", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1: new Date(result.body["prop1"]),
         };
@@ -554,7 +550,6 @@ describe("modular encode test for property type duration", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1: result.body["prop1"],
         };
@@ -621,7 +616,6 @@ describe("modular encode test for property type duration", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1: result.body["prop1"],
         };
@@ -692,7 +686,6 @@ describe("modular encode test for property type duration", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1: result.body["prop1"],
           prop2: result.body["prop2"],
@@ -774,7 +767,6 @@ describe("modular encode test for property type bytes", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1:
             typeof result.body["prop1"] === "string"
@@ -845,7 +837,6 @@ describe("modular encode test for property type bytes", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1:
             typeof result.body["prop1"] === "string"
@@ -916,7 +907,6 @@ describe("modular encode test for property type bytes", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
         return {
           prop1:
             typeof result.body["prop1"] === "string"
@@ -1033,7 +1023,7 @@ describe("inheritance & polymorphism", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
+        
         return {
           name: result.body["name"],
           weight: result.body["weight"],
@@ -1201,7 +1191,7 @@ describe("inheritance & polymorphism", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
+
         return {
           kind: result.body["kind"],
           name: result.body["name"],
@@ -1290,7 +1280,7 @@ describe("inheritance & polymorphism", () => {
         if (result.status !== "200") {
           throw createRestError(result);
         }
-      
+
         return result.body;
       }
       

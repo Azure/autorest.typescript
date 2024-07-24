@@ -65,13 +65,11 @@ import {
   isType
 } from "@typespec/compiler";
 import {
-  createMetadataInfo,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
   HttpOperation,
-  isStatusCode,
-  Visibility
+  isStatusCode
 } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
@@ -154,7 +152,7 @@ export function getSchemaForType(
 ) {
   const program = dpgContext.program;
   const { usage } = options ?? {};
-  const type = getEffectiveModelFromType(program, typeInput);
+  const type = getEffectiveModelFromType(dpgContext, typeInput);
 
   const builtinType = getSchemaForLiteral(type);
   if (builtinType !== undefined) {
@@ -243,14 +241,17 @@ export function getSchemaForType(
   });
   return undefined;
 }
-export function getEffectiveModelFromType(program: Program, type: Type): Type {
+export function getEffectiveModelFromType(
+  context: SdkContext,
+  type: Type
+): Type {
   /**
    * If type is an anonymous model, tries to find a named model that has the same
    * set of properties when non-schema properties are excluded.
    */
   if (type.kind === "Model" && type.name === "") {
-    const effective = getEffectiveModelType(program, type, (property) =>
-      isSchemaProperty(program, property)
+    const effective = getEffectiveModelType(context.program, type, (property) =>
+      isSchemaProperty(context.program, property)
     );
     if (effective.name) {
       return effective;
@@ -386,39 +387,47 @@ function getSchemaForUnion(
   const [asEnum, _] = getUnionAsEnum(union);
   const variants = Array.from(union.variants.values());
 
-  let values = [];
+  const values = [];
+  let namedUnionMember = false;
 
-  for (const variant of variants) {
-    // We already know it's not a model type
-    values.push(
-      getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
-    );
-  }
-  if (asEnum?.open) {
-    values = [];
+  if (asEnum?.open && asEnum.members.size > 0) {
     for (const [_, member] of asEnum.members.entries()) {
-      values.push(
-        getSchemaForType(dpgContext, member.type, {
-          ...options,
-          needRef: false
-        })
-      );
+      const memberType = getSchemaForType(dpgContext, member.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(memberType);
+      if (memberType.name) {
+        namedUnionMember = true;
+      }
+    }
+  } else {
+    for (const variant of variants) {
+      // We already know it's not a model type
+      const variantType = getSchemaForType(dpgContext, variant.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(variantType);
+      if (variantType.typeName) {
+        namedUnionMember = true;
+      }
     }
   }
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
     const unionAlias =
-      asEnum?.open && asEnum?.kind
-        ? asEnum.kind
+      asEnum?.open && asEnum?.kind && !namedUnionMember
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
             .map(
               (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
             )
             .join(" | ");
     const outputUnionAlias =
-      asEnum?.open && asEnum?.kind
-        ? asEnum.kind
+      asEnum?.open && asEnum?.kind && !namedUnionMember
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
             .map(
               (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
@@ -777,6 +786,9 @@ function getSchemaForModel(
     }
     if (!prop.optional) {
       propSchema.required = true;
+    }
+    if (name === '"propBoolean"') {
+      prop;
     }
     const propertyDescription = getFormattedPropertyDoc(
       program,
@@ -1446,7 +1458,16 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
 }
 
 function getEnumStringDescription(type: any) {
-  if (type.name === "string" && type.enum && type.enum.length > 0) {
+  if (
+    (type.name === "string" ||
+      type.alias === "string" ||
+      type.name === "number" ||
+      type.alias === "number" ||
+      type.name === "boolean" ||
+      type.alias === "boolean") &&
+    type.enum &&
+    type.enum.length > 0
+  ) {
     return `Possible values: ${type.enum
       .map((e: Schema) => {
         return e.type;
@@ -1495,19 +1516,8 @@ export function getFormattedPropertyDoc(
   return propertyDoc ?? enhancedDocFromType;
 }
 
-export function getBodyType(
-  program: Program,
-  route: HttpOperation
-): Type | undefined {
+export function getBodyType(route: HttpOperation): Type | undefined {
   const bodyModel = route.parameters.body?.type;
-  if (bodyModel) {
-    const metadataInfo = createMetadataInfo(program);
-    const payloadType = metadataInfo.getEffectivePayloadType(
-      bodyModel,
-      Visibility.All
-    );
-    return payloadType;
-  }
   return bodyModel;
 }
 

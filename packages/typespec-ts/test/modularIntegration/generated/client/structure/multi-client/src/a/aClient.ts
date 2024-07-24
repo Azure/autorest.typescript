@@ -10,14 +10,14 @@ import {
 } from "./models/options.js";
 import {
   createA,
-  AClientOptions,
+  AClientOptionalParams,
   ServiceContext,
   renamedOne,
   renamedThree,
   renamedFive,
 } from "./api/index.js";
 
-export { AClientOptions } from "./api/aContext.js";
+export { AClientOptionalParams } from "./api/aContext.js";
 
 export class AClient {
   private _client: ServiceContext;
@@ -27,9 +27,17 @@ export class AClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: AClientOptions = {},
+    options: AClientOptionalParams = {},
   ) {
-    this._client = createA(endpointParam, clientParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createA(endpointParam, clientParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

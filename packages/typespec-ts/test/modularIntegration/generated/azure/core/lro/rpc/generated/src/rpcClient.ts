@@ -8,11 +8,11 @@ import { LongRunningRpcOptionalParams } from "./models/options.js";
 import {
   longRunningRpc,
   createRpc,
-  RpcClientOptions,
+  RpcClientOptionalParams,
   RpcContext,
 } from "./api/index.js";
 
-export { RpcClientOptions } from "./api/rpcContext.js";
+export { RpcClientOptionalParams } from "./api/rpcContext.js";
 
 export class RpcClient {
   private _client: RpcContext;
@@ -20,8 +20,16 @@ export class RpcClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates bodies templated with Azure Core with long-running RPC operation */
-  constructor(options: RpcClientOptions = {}) {
-    this._client = createRpc(options);
+  constructor(options: RpcClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createRpc({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

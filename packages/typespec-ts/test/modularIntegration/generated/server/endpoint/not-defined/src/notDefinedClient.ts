@@ -4,13 +4,13 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createNotDefined,
-  NotDefinedClientOptions,
+  NotDefinedClientOptionalParams,
   NotDefinedContext,
   valid,
 } from "./api/index.js";
 import { ValidOptionalParams } from "./models/options.js";
 
-export { NotDefinedClientOptions } from "./api/notDefinedContext.js";
+export { NotDefinedClientOptionalParams } from "./api/notDefinedContext.js";
 
 export class NotDefinedClient {
   private _client: NotDefinedContext;
@@ -18,8 +18,16 @@ export class NotDefinedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates server doesn't define endpoint. Client should automatically add an endpoint to let user pass in. */
-  constructor(endpoint: string, options: NotDefinedClientOptions = {}) {
-    this._client = createNotDefined(endpoint, options);
+  constructor(endpoint: string, options: NotDefinedClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createNotDefined(endpoint, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

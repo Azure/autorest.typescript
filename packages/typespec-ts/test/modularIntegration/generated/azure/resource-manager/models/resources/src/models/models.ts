@@ -5,13 +5,9 @@ import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   NestedProxyResource as NestedProxyResourceRest,
   NestedProxyResourceProperties as NestedProxyResourcePropertiesRest,
-  NestedProxyResourceUpdate as NestedProxyResourceUpdateRest,
-  NestedProxyResourceUpdateProperties as NestedProxyResourceUpdatePropertiesRest,
   TrackedResource as TrackedResourceRest,
   TopLevelTrackedResource as TopLevelTrackedResourceRest,
   TopLevelTrackedResourceProperties as TopLevelTrackedResourcePropertiesRest,
-  TopLevelTrackedResourceUpdate as TopLevelTrackedResourceUpdateRest,
-  TopLevelTrackedResourceUpdateProperties as TopLevelTrackedResourceUpdatePropertiesRest,
 } from "../rest/index.js";
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
@@ -158,35 +154,6 @@ export interface ErrorAdditionalInfo {
   readonly info?: Record<string, any>;
 }
 
-/** The type used for update operations of the NestedProxyResource. */
-export interface NestedProxyResourceUpdate {
-  properties?: NestedProxyResourceUpdateProperties;
-}
-
-export function nestedProxyResourceUpdateSerializer(
-  item: NestedProxyResourceUpdate,
-): NestedProxyResourceUpdateRest {
-  return {
-    properties: !item.properties
-      ? item.properties
-      : nestedProxyResourceUpdatePropertiesSerializer(item.properties),
-  };
-}
-
-/** The updatable properties of the NestedProxyResource. */
-export interface NestedProxyResourceUpdateProperties {
-  /** Nested resource description. */
-  description?: string;
-}
-
-export function nestedProxyResourceUpdatePropertiesSerializer(
-  item: NestedProxyResourceUpdateProperties,
-): NestedProxyResourceUpdatePropertiesRest {
-  return {
-    description: item["description"],
-  };
-}
-
 /** The response of a NestedProxyResource list operation. */
 export interface _NestedProxyResourceListResult {
   /** The NestedProxyResource items on this page */
@@ -241,38 +208,6 @@ export interface TopLevelTrackedResourceProperties {
 export function topLevelTrackedResourcePropertiesSerializer(
   item: TopLevelTrackedResourceProperties,
 ): TopLevelTrackedResourcePropertiesRest {
-  return {
-    description: item["description"],
-  };
-}
-
-/** The type used for update operations of the TopLevelTrackedResource. */
-export interface TopLevelTrackedResourceUpdate {
-  /** Resource tags. */
-  tags?: Record<string, string>;
-  properties?: TopLevelTrackedResourceUpdateProperties;
-}
-
-export function topLevelTrackedResourceUpdateSerializer(
-  item: TopLevelTrackedResourceUpdate,
-): TopLevelTrackedResourceUpdateRest {
-  return {
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
-    properties: !item.properties
-      ? item.properties
-      : topLevelTrackedResourceUpdatePropertiesSerializer(item.properties),
-  };
-}
-
-/** The updatable properties of the TopLevelTrackedResource. */
-export interface TopLevelTrackedResourceUpdateProperties {
-  /** The description of the resource. */
-  description?: string;
-}
-
-export function topLevelTrackedResourceUpdatePropertiesSerializer(
-  item: TopLevelTrackedResourceUpdateProperties,
-): TopLevelTrackedResourceUpdatePropertiesRest {
   return {
     description: item["description"],
   };

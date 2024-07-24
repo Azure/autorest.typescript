@@ -10,14 +10,14 @@ import {
 } from "./models/options.js";
 import {
   createB,
-  BClientOptions,
+  BClientOptionalParams,
   ServiceContext,
   renamedTwo,
   renamedFour,
   renamedSix,
 } from "./api/index.js";
 
-export { BClientOptions } from "./api/bContext.js";
+export { BClientOptionalParams } from "./api/bContext.js";
 
 export class BClient {
   private _client: ServiceContext;
@@ -27,9 +27,17 @@ export class BClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: BClientOptions = {},
+    options: BClientOptionalParams = {},
   ) {
-    this._client = createB(endpointParam, clientParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createB(endpointParam, clientParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

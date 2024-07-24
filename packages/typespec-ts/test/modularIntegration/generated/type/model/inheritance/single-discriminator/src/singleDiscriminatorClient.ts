@@ -21,11 +21,11 @@ import {
   getWrongDiscriminator,
   getLegacyModel,
   createSingleDiscriminator,
-  SingleDiscriminatorClientOptions,
+  SingleDiscriminatorClientOptionalParams,
   SingleDiscriminatorContext,
 } from "./api/index.js";
 
-export { SingleDiscriminatorClientOptions } from "./api/singleDiscriminatorContext.js";
+export { SingleDiscriminatorClientOptionalParams } from "./api/singleDiscriminatorContext.js";
 
 export class SingleDiscriminatorClient {
   private _client: SingleDiscriminatorContext;
@@ -33,8 +33,16 @@ export class SingleDiscriminatorClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates inheritance with single discriminator. */
-  constructor(options: SingleDiscriminatorClientOptions = {}) {
-    this._client = createSingleDiscriminator(options);
+  constructor(options: SingleDiscriminatorClientOptionalParams = {}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createSingleDiscriminator({
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

@@ -9,11 +9,11 @@ import {
 } from "./classic/confidentialLedger/index.js";
 import {
   createParametrizedHost,
-  ParametrizedHostClientOptions,
+  ParametrizedHostClientOptionalParams,
   ParametrizedHostContext,
 } from "./api/index.js";
 
-export { ParametrizedHostClientOptions } from "./api/parametrizedHostContext.js";
+export { ParametrizedHostClientOptionalParams } from "./api/parametrizedHostContext.js";
 
 export class ParametrizedHostClient {
   private _client: ParametrizedHostContext;
@@ -22,9 +22,17 @@ export class ParametrizedHostClient {
 
   constructor(
     credential: TokenCredential,
-    options: ParametrizedHostClientOptions = {},
+    options: ParametrizedHostClientOptionalParams = {},
   ) {
-    this._client = createParametrizedHost(credential, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createParametrizedHost(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.confidentialLedger = getConfidentialLedgerOperations(this._client);
   }

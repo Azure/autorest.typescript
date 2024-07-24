@@ -12,11 +12,11 @@ import {
   one,
   two,
   createService,
-  ServiceClientOptions,
+  ServiceClientOptionalParams,
   ServiceContext,
 } from "./api/index.js";
 
-export { ServiceClientOptions } from "./api/serviceContext.js";
+export { ServiceClientOptionalParams } from "./api/serviceContext.js";
 
 export class ServiceClient {
   private _client: ServiceContext;
@@ -35,9 +35,17 @@ export class ServiceClient {
   constructor(
     endpointParam: string,
     clientParam: ClientType,
-    options: ServiceClientOptions = {},
+    options: ServiceClientOptionalParams = {},
   ) {
-    this._client = createService(endpointParam, clientParam, options);
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createService(endpointParam, clientParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.baz = getBazOperations(this._client);
     this.qux = getQuxOperations(this._client);

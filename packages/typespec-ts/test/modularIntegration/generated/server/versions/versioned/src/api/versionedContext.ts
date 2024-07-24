@@ -6,15 +6,23 @@ import { VersionedContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface VersionedClientOptions extends ClientOptions {}
+export interface VersionedClientOptionalParams extends ClientOptions {}
 
 export { VersionedContext } from "../rest/index.js";
 
 /** Illustrates versioned server. */
 export function createVersioned(
   endpointParam: string,
-  options: VersionedClientOptions = {},
+  options: VersionedClientOptionalParams = {},
 ): VersionedContext {
-  const clientContext = getClient(endpointParam, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpointParam, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

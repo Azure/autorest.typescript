@@ -3,8 +3,8 @@
 
 import {
   SchemaGroup,
-  SchemaVersion,
   SchemaContentTypeValues,
+  SchemaVersion,
   _PagedSchemaGroup,
   _PagedVersion,
 } from "../../models/models.js";

@@ -3,7 +3,7 @@
 
 export {
   NetworkAnalyticsClient,
-  NetworkAnalyticsClientOptions,
+  NetworkAnalyticsClientOptionalParams,
 } from "./networkAnalyticsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
@@ -26,7 +26,7 @@ export {
   DefaultAction,
   ManagedResourceGroupConfiguration,
   ConsumptionEndpointsProperties,
-  ManagedServiceIdentity,
+  ManagedServiceIdentityV4,
   KnownManagedServiceIdentityType,
   ManagedServiceIdentityType,
   UserAssignedIdentity,

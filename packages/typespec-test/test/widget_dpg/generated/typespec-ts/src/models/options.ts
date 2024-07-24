@@ -34,7 +34,12 @@ export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {}
+export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
+  /** The weight of the widget. This is an int32, but must be greater than zero. */
+  weight?: number;
+  /** The color of the widget. */
+  color?: "red" | "blue";
+}
 
 /** Optional parameters. */
 export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {}
@@ -48,14 +53,4 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
   updateIntervalInMs?: number;
   /** The API version to use for this operation. */
   apiVersion?: string;
-}
-
-/** Optional parameters. */
-export interface BudgetsCreateOrUpdateOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** The API version to use for this operation. */
-  apiVersion?: string;
-  /** This request has a JSON Merge Patch body. */
-  contentType?: string;
 }

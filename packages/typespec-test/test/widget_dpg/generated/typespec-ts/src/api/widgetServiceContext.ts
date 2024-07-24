@@ -6,14 +6,22 @@ import { WidgetServiceContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface WidgetServiceClientOptions extends ClientOptions {}
+export interface WidgetServiceClientOptionalParams extends ClientOptions {}
 
 export { WidgetServiceContext } from "../rest/index.js";
 
 export function createWidgetService(
   endpoint: string,
-  options: WidgetServiceClientOptions = {},
+  options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
-  const clientContext = getClient(endpoint, options);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : "azsdk-js-api";
+
+  const clientContext = getClient(endpoint, {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  });
   return clientContext;
 }

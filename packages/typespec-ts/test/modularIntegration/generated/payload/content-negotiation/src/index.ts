@@ -3,7 +3,7 @@
 
 export {
   ContentNegotiationClient,
-  ContentNegotiationClientOptions,
+  ContentNegotiationClientOptionalParams,
 } from "./contentNegotiationClient.js";
 export {
   PngImageAsJson,

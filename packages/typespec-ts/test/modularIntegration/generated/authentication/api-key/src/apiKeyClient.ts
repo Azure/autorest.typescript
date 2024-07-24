@@ -9,13 +9,13 @@ import {
 } from "./models/options.js";
 import {
   createApiKey,
-  ApiKeyClientOptions,
+  ApiKeyClientOptionalParams,
   ApiKeyContext,
   valid,
   invalid,
 } from "./api/index.js";
 
-export { ApiKeyClientOptions } from "./api/apiKeyContext.js";
+export { ApiKeyClientOptionalParams } from "./api/apiKeyContext.js";
 
 export class ApiKeyClient {
   private _client: ApiKeyContext;
@@ -23,8 +23,19 @@ export class ApiKeyClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with ApiKey authentication. */
-  constructor(credential: KeyCredential, options: ApiKeyClientOptions = {}) {
-    this._client = createApiKey(credential, options);
+  constructor(
+    credential: KeyCredential,
+    options: ApiKeyClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : "azsdk-js-client";
+
+    this._client = createApiKey(credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 
