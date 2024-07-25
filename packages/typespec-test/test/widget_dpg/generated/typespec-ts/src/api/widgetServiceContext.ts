@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { KeyCredential } from "@azure/core-auth";
 import { ClientOptions } from "@azure-rest/core-client";
 import { WidgetServiceContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
@@ -12,6 +13,7 @@ export { WidgetServiceContext } from "../rest/index.js";
 
 export function createWidgetService(
   endpoint: string,
+  credential: KeyCredential,
   options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -19,7 +21,7 @@ export function createWidgetService(
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
 
-  const clientContext = getClient(endpoint, {
+  const clientContext = getClient(endpoint, credential, {
     ...options,
     userAgentOptions: { userAgentPrefix },
   });
