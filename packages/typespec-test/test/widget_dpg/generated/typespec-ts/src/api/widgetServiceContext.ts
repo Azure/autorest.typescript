@@ -13,7 +13,7 @@ export { WidgetServiceContext } from "../rest/index.js";
 
 export function createWidgetService(
   endpoint: string,
-  credential: KeyCredential | KeyCredential,
+  credential: KeyCredential,
   options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;

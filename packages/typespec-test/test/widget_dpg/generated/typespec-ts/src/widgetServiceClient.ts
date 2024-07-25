@@ -26,7 +26,7 @@ export class WidgetServiceClient {
 
   constructor(
     endpoint: string,
-    credential: KeyCredential | KeyCredential,
+    credential: KeyCredential,
     options: WidgetServiceClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
