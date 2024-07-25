@@ -27,7 +27,7 @@ export interface Binder {
     sourceFile: SourceFile
   ): string;
   resolveReference(refkey: unknown): string;
-  applyImports(): void;
+  resolveAllReferences(): void;
 }
 
 class BinderImp implements Binder {
@@ -36,8 +36,8 @@ class BinderImp implements Binder {
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
   private project: Project;
 
-  constructor(project?: Project) {
-    this.project = project ?? new Project();
+  constructor(project: Project) {
+    this.project = project;
   }
 
   trackDeclaration(
@@ -194,7 +194,7 @@ class BinderImp implements Binder {
   /**
    * Applies all tracked imports to their respective source files.
    */
-  applyImports(): void {
+  resolveAllReferences(): void {
     for (const file of this.project.getSourceFiles()) {
       for (const [declarationKey, declaration] of this.declarations) {
         const placeholderKey = this.serializePlaceholder(declarationKey);
@@ -220,7 +220,7 @@ class BinderImp implements Binder {
 }
 
 // Provide the binder context to be used globally
-export function provideBinder(project?: Project): void {
+export function provideBinder(project: Project): void {
   return provideContext("binder", new BinderImp(project));
 }
 
