@@ -7,11 +7,8 @@ import {
   getTodoItemsOperations,
   TodoItemsOperations,
 } from "./classic/todoItems/index.js";
-import {
-  createTodo,
-  TodoClientOptionalParams,
-  TodoContext,
-} from "./api/index.js";
+import { createTodo, TodoClientOptionalParams } from "./api/index.js";
+import { TodoContext } from "./api/todoContext.js";
 
 export { TodoClientOptionalParams } from "./api/todoContext.js";
 
@@ -22,7 +19,7 @@ export class TodoClient {
 
   constructor(
     endpoint: string,
-    credential: KeyCredential | KeyCredential,
+    credential: KeyCredential,
     options: TodoClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;

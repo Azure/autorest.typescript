@@ -4,19 +4,21 @@ import { TodoContext } from "../../api/todoContext.js";
 import {
   TodoPage,
   TodoItem,
+  TodoUrlAttachment,
   TodoItemPatch,
-  TodoLabels,
 } from "../../models/models.js";
 import {
   list,
-  create,
+  createJson,
+  createForm,
   get,
   update,
   $delete,
 } from "../../api/todoItems/index.js";
 import {
   TodoItemsListOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsCreateFormOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
@@ -28,53 +30,26 @@ import {
 
 /** Interface representing a TodoItems operations. */
 export interface TodoItemsOperations {
-  list: (options?: TodoItemsListOptionalParams) => Promise<TodoPage>;
-  create: (
+  list: (
+    limit: number,
+    offset: number,
+    options?: TodoItemsListOptionalParams,
+  ) => Promise<TodoPage>;
+  createJson: (
     item: TodoItem,
-    options?: TodoItemsCreateOptionalParams,
-  ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
-  get: (
-    id: number,
-    options?: TodoItemsGetOptionalParams,
-  ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
+    attachments: TodoUrlAttachment[],
+    options?: TodoItemsCreateJsonOptionalParams,
+  ) => Promise<TodoItem>;
+  createForm: (
+    item: TodoItem,
+    options?: TodoItemsCreateFormOptionalParams,
+  ) => Promise<TodoItem>;
+  get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<TodoItem>;
   update: (
     id: number,
     patch: TodoItemPatch,
     options?: TodoItemsUpdateOptionalParams,
-  ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
+  ) => Promise<TodoItem>;
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
@@ -89,9 +64,18 @@ export interface TodoItemsOperations {
 
 export function getTodoItems(context: TodoContext) {
   return {
-    list: (options?: TodoItemsListOptionalParams) => list(context, options),
-    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) =>
-      create(context, item, options),
+    list: (
+      limit: number,
+      offset: number,
+      options?: TodoItemsListOptionalParams,
+    ) => list(context, limit, offset, options),
+    createJson: (
+      item: TodoItem,
+      attachments: TodoUrlAttachment[],
+      options?: TodoItemsCreateJsonOptionalParams,
+    ) => createJson(context, item, attachments, options),
+    createForm: (item: TodoItem, options?: TodoItemsCreateFormOptionalParams) =>
+      createForm(context, item, options),
     get: (id: number, options?: TodoItemsGetOptionalParams) =>
       get(context, id, options),
     update: (

@@ -6,6 +6,40 @@
   },
   "tags": [],
   "paths": {
+    "/forgot-password": {
+      "post": {
+        "operationId": "Users_forgotPassword",
+        "description": "Sends a reset token to the user's email address",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded."
+          },
+          "404": {
+            "description": "The server cannot find the requested resource."
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address"
+                  }
+                },
+                "required": [
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/items": {
       "get": {
         "operationId": "TodoItems_list",
@@ -27,31 +61,11 @@
                 }
               }
             }
-          },
-          "4XX": {
-            "description": "Client error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard4XXResponse"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard5XXResponse"
-                }
-              }
-            }
           }
         }
       },
       "post": {
-        "operationId": "TodoItems_create",
+        "operationId": "TodoItems_createJson_TodoItems_createForm",
         "parameters": [],
         "responses": {
           "200": {
@@ -73,42 +87,49 @@
                 }
               }
             }
-          },
-          "4XX": {
-            "description": "Client error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard4XXResponse"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard5XXResponse"
-                }
-              }
-            }
           }
         },
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "item": {
-                    "$ref": "#/components/schemas/TodoItemCreate"
+                    "$ref": "#/components/schemas/TodoItem"
                   },
                   "attachments": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/TodoAttachment"
+                      "$ref": "#/components/schemas/TodoUrlAttachment"
+                    }
+                  }
+                },
+                "required": [
+                  "item",
+                  "attachments"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "item": {
+                    "$ref": "#/components/schemas/TodoItem"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/TodoUrlAttachment"
+                        },
+                        {
+                          "type": "string",
+                          "format": "byte"
+                        }
+                      ]
                     }
                   }
                 },
@@ -131,8 +152,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64",
-              "readOnly": true
+              "format": "int64"
             }
           }
         ],
@@ -161,8 +181,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64",
-              "readOnly": true
+              "format": "int64"
             }
           }
         ],
@@ -183,7 +202,12 @@
           "content": {
             "application/merge-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/TodoItems.TodoItemPatch"
+                "type": "object",
+                "properties": {
+                  "patch": {
+                    "$ref": "#/components/schemas/TodoItems.TodoItemPatch"
+                  }
+                }
               }
             }
           }
@@ -198,37 +222,16 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64",
-              "readOnly": true
+              "format": "int64"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "There is no content to send for this request, but the headers may be useful."
+          "200": {
+            "description": "The request has succeeded."
           },
           "404": {
             "description": "The server cannot find the requested resource."
-          },
-          "4XX": {
-            "description": "Client error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard4XXResponse"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard5XXResponse"
-                }
-              }
-            }
           }
         }
       }
@@ -243,8 +246,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64",
-              "readOnly": true
+              "format": "int64"
             }
           }
         ],
@@ -264,31 +266,11 @@
           },
           "404": {
             "description": "The server cannot find the requested resource."
-          },
-          "4XX": {
-            "description": "Client error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard4XXResponse"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard5XXResponse"
-                }
-              }
-            }
           }
         }
       },
       "post": {
-        "operationId": "Attachments_createAttachment",
+        "operationId": "Attachments_createUrlAttachment_Attachments_createFileAttachment",
         "parameters": [
           {
             "name": "itemId",
@@ -296,37 +278,61 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64",
-              "readOnly": true
+              "format": "int64"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "There is no content to send for this request, but the headers may be useful."
+          "200": {
+            "description": "The request has succeeded."
           },
           "404": {
             "description": "The server cannot find the requested resource."
-          },
-          "4XX": {
-            "description": "Client error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard4XXResponse"
-                }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contents": {
+                    "$ref": "#/components/schemas/TodoUrlAttachment"
+                  }
+                },
+                "required": [
+                  "contents"
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contents": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "contents"
+                ]
               }
             }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "operationId": "Users_login",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded."
           },
-          "5XX": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard5XXResponse"
-                }
-              }
-            }
+          "401": {
+            "description": "Access is unauthorized."
           }
         },
         "requestBody": {
@@ -334,9 +340,58 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TodoAttachment"
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "The user's username"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The user's password, provided when creating a user\nbut is otherwise not visible (and hashed by the backend)"
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
               }
             }
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "operationId": "Users_logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded."
+          }
+        }
+      }
+    },
+    "/reset-password": {
+      "get": {
+        "operationId": "Users_resetPassword",
+        "parameters": [
+          {
+            "name": "resetToken",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded."
+          },
+          "404": {
+            "description": "The server cannot find the requested resource."
           }
         }
       }
@@ -375,26 +430,6 @@
                 }
               }
             }
-          },
-          "4XX": {
-            "description": "Client error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard4XXResponse"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard5XXResponse"
-                }
-              }
-            }
           }
         },
         "requestBody": {
@@ -402,23 +437,55 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "required": [
+                  "user"
+                ]
               }
             }
           }
-        },
-        "security": [
-          {}
-        ]
+        }
+      }
+    },
+    "/validate": {
+      "get": {
+        "operationId": "Users_validate",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded."
+          },
+          "422": {
+            "description": "Client error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users.InvalidUserResponse"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "security": [
     {
       "BearerAuth": []
-    },
-    {
-      "ApiKeyAuth": []
     }
   ],
   "components": {
@@ -426,7 +493,7 @@
       "TodoItems.PaginationControls.limit": {
         "name": "limit",
         "in": "query",
-        "required": false,
+        "required": true,
         "description": "The limit to the number of items",
         "schema": {
           "type": "integer",
@@ -437,7 +504,7 @@
       "TodoItems.PaginationControls.offset": {
         "name": "offset",
         "in": "query",
-        "required": false,
+        "required": true,
         "description": "The offset to start paginating at",
         "schema": {
           "type": "integer",
@@ -447,7 +514,7 @@
       }
     },
     "schemas": {
-      "ApiError": {
+      "Error": {
         "type": "object",
         "required": [
           "code",
@@ -460,28 +527,9 @@
           },
           "message": {
             "type": "string",
-            "description": "A human readable message",
-            "x-ms-primary-error-message": true
+            "description": "A human readable message"
           }
         }
-      },
-      "Standard4XXResponse": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ApiError"
-          }
-        ],
-        "description": "Something is wrong with you."
-      },
-      "Standard5XXResponse": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ApiError"
-          }
-        ],
-        "description": "Something is wrong with me."
       },
       "TodoAttachment": {
         "anyOf": [
@@ -496,11 +544,17 @@
       "TodoFileAttachment": {
         "type": "object",
         "required": [
+          "todoItemId",
           "filename",
           "mediaType",
-          "contents"
+          "url"
         ],
         "properties": {
+          "todoItemId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The todo item this is attached to"
+          },
           "filename": {
             "type": "string",
             "maxLength": 255,
@@ -510,10 +564,10 @@
             "type": "string",
             "description": "The media type of the attachment"
           },
-          "contents": {
+          "url": {
             "type": "string",
-            "format": "byte",
-            "description": "The contents of the file"
+            "format": "uri",
+            "description": "The url where the attachment can be downloaded from"
           }
         }
       },
@@ -523,16 +577,19 @@
           "id",
           "title",
           "createdBy",
+          "ownedBy",
+          "description",
           "status",
           "createdAt",
-          "updatedAt"
+          "updatedAt",
+          "completedAt",
+          "labels"
         ],
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64",
-            "description": "The item's unique id",
-            "readOnly": true
+            "description": "The item's unique id"
           },
           "title": {
             "type": "string",
@@ -545,7 +602,7 @@
             "description": "User that created the todo",
             "readOnly": true
           },
-          "assignedTo": {
+          "ownedBy": {
             "type": "integer",
             "format": "int64",
             "description": "User that the todo is assigned to",
@@ -583,46 +640,10 @@
             "readOnly": true
           },
           "labels": {
-            "$ref": "#/components/schemas/TodoLabels"
-          }
-        }
-      },
-      "TodoItemCreate": {
-        "type": "object",
-        "required": [
-          "title",
-          "status"
-        ],
-        "properties": {
-          "title": {
-            "type": "string",
-            "maxLength": 255,
-            "description": "The item's title"
-          },
-          "assignedTo": {
-            "type": "integer",
-            "format": "int64",
-            "description": "User that the todo is assigned to",
-            "readOnly": true
-          },
-          "description": {
-            "type": "string",
-            "description": "A longer description of the todo item in markdown format"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "NotStarted",
-              "InProgress",
-              "Completed"
-            ],
-            "description": "The status of the todo item"
-          },
-          "labels": {
-            "$ref": "#/components/schemas/TodoLabels"
-          },
-          "_dummy": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TodoLabel"
+            }
           }
         }
       },
@@ -630,7 +651,7 @@
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/ApiError"
+            "$ref": "#/components/schemas/Error"
           }
         ]
       },
@@ -642,17 +663,15 @@
             "maxLength": 255,
             "description": "The item's title"
           },
-          "assignedTo": {
+          "ownedBy": {
             "type": "integer",
             "format": "int64",
             "description": "User that the todo is assigned to",
-            "readOnly": true,
-            "nullable": true
+            "readOnly": true
           },
           "description": {
             "type": "string",
-            "description": "A longer description of the todo item in markdown format",
-            "nullable": true
+            "description": "A longer description of the todo item in markdown format"
           },
           "status": {
             "type": "string",
@@ -717,27 +736,14 @@
             },
             "required": [
               "pageSize",
-              "totalSize"
+              "totalSize",
+              "limit",
+              "offset"
             ]
           }
         }
       },
-      "TodoLabelRecord": {
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "color": {
-            "type": "string",
-            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-          }
-        }
-      },
-      "TodoLabels": {
+      "TodoLabel": {
         "anyOf": [
           {
             "type": "string"
@@ -758,6 +764,20 @@
             }
           }
         ]
+      },
+      "TodoLabelRecord": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        }
       },
       "TodoUrlAttachment": {
         "type": "object",
@@ -787,7 +807,6 @@
         "properties": {
           "username": {
             "type": "string",
-            "minLength": 2,
             "maxLength": 50,
             "description": "The user's username"
           },
@@ -803,20 +822,9 @@
       },
       "Users.InvalidUserResponse": {
         "type": "object",
-        "required": [
-          "code"
-        ],
-        "properties": {
-          "code": {
-            "type": "string",
-            "enum": [
-              "invalid-user"
-            ]
-          }
-        },
         "allOf": [
           {
-            "$ref": "#/components/schemas/ApiError"
+            "$ref": "#/components/schemas/Error"
           }
         ],
         "description": "The user is invalid (e.g. forgot to enter email address)"
@@ -838,7 +846,6 @@
           },
           "username": {
             "type": "string",
-            "minLength": 2,
             "maxLength": 50,
             "description": "The user's username"
           },
@@ -854,20 +861,9 @@
       },
       "Users.UserExistsResponse": {
         "type": "object",
-        "required": [
-          "code"
-        ],
-        "properties": {
-          "code": {
-            "type": "string",
-            "enum": [
-              "user-exists"
-            ]
-          }
-        },
         "allOf": [
           {
-            "$ref": "#/components/schemas/ApiError"
+            "$ref": "#/components/schemas/Error"
           }
         ],
         "description": "The user already exists"
@@ -877,11 +873,6 @@
       "BearerAuth": {
         "type": "http",
         "scheme": "bearer"
-      },
-      "ApiKeyAuth": {
-        "type": "apiKey",
-        "in": "cookie",
-        "name": "session-id"
       }
     }
   }

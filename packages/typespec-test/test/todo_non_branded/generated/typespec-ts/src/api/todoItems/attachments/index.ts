@@ -1,25 +1,17 @@
 // Licensed under the MIT license.
 
-import { TodoAttachment } from "../../../models/models.js";
-import {
-  TodoContext as Client,
-  TodoItemsAttachmentsCreateAttachment204Response,
-  TodoItemsAttachmentsCreateAttachment400Response,
-  TodoItemsAttachmentsCreateAttachment404Response,
-  TodoItemsAttachmentsCreateAttachment500Response,
-  TodoItemsAttachmentsList200Response,
-  TodoItemsAttachmentsList400Response,
-  TodoItemsAttachmentsList404Response,
-  TodoItemsAttachmentsList500Response,
-} from "../../../rest/index.js";
+import { TodoUrlAttachment, TodoAttachment } from "../../../models/models.js";
+import { TodoContext as Client } from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   createRestError,
+  uint8ArrayToString,
 } from "@typespec/ts-http-runtime";
 import {
   TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
 } from "../../../models/options.js";
 
 export function _listSend(
@@ -27,10 +19,7 @@ export function _listSend(
   itemId: number,
   options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | TodoItemsAttachmentsList200Response
-  | TodoItemsAttachmentsList400Response
-  | TodoItemsAttachmentsList404Response
-  | TodoItemsAttachmentsList500Response
+  TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList404Response
 > {
   return context
     .path("/items/{itemId}/attachments", itemId)
@@ -40,11 +29,9 @@ export function _listSend(
 export async function _listDeserialize(
   result:
     | TodoItemsAttachmentsList200Response
-    | TodoItemsAttachmentsList400Response
-    | TodoItemsAttachmentsList404Response
-    | TodoItemsAttachmentsList500Response,
+    | TodoItemsAttachmentsList404Response,
 ): Promise<TodoAttachment[]> {
-  if (result.status !== "404") {
+  if (result.status !== "200") {
     throw createRestError(result);
   }
 
@@ -60,59 +47,111 @@ export async function list(
   return _listDeserialize(result);
 }
 
-export function _createAttachmentSend(
+export function _createUrlAttachmentSend(
   context: Client,
   itemId: number,
-  contents: TodoAttachment,
-  options: TodoItemsAttachmentsCreateAttachmentOptionalParams = {
+  contents: TodoUrlAttachment,
+  options: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod<
-  | TodoItemsAttachmentsCreateAttachment204Response
-  | TodoItemsAttachmentsCreateAttachment400Response
-  | TodoItemsAttachmentsCreateAttachment404Response
-  | TodoItemsAttachmentsCreateAttachment500Response
+  | TodoItemsAttachmentsCreateUrlAttachment200Response
+  | TodoItemsAttachmentsCreateUrlAttachment404Response
 > {
   return context
     .path("/items/{itemId}/attachments", itemId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: contents,
+      contentType: (options.contentType as any) ?? "application/json",
+      body: {
+        contents: {
+          description: contents["description"],
+          url: contents["url"],
+        },
+      },
     }) as StreamableMethod<
-    | TodoItemsAttachmentsCreateAttachment204Response
-    | TodoItemsAttachmentsCreateAttachment400Response
-    | TodoItemsAttachmentsCreateAttachment404Response
-    | TodoItemsAttachmentsCreateAttachment500Response
+    | TodoItemsAttachmentsCreateUrlAttachment200Response
+    | TodoItemsAttachmentsCreateUrlAttachment404Response
   >;
 }
 
-export async function _createAttachmentDeserialize(
+export async function _createUrlAttachmentDeserialize(
   result:
-    | TodoItemsAttachmentsCreateAttachment204Response
-    | TodoItemsAttachmentsCreateAttachment400Response
-    | TodoItemsAttachmentsCreateAttachment404Response
-    | TodoItemsAttachmentsCreateAttachment500Response,
+    | TodoItemsAttachmentsCreateUrlAttachment200Response
+    | TodoItemsAttachmentsCreateUrlAttachment404Response,
 ): Promise<void> {
-  if (result.status !== "404") {
+  if (result.status !== "200") {
     throw createRestError(result);
   }
 
   return;
 }
 
-export async function createAttachment(
+export async function createUrlAttachment(
   context: Client,
   itemId: number,
-  contents: TodoAttachment,
-  options: TodoItemsAttachmentsCreateAttachmentOptionalParams = {
+  contents: TodoUrlAttachment,
+  options: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams = {
     requestOptions: {},
   },
 ): Promise<void> {
-  const result = await _createAttachmentSend(
+  const result = await _createUrlAttachmentSend(
     context,
     itemId,
     contents,
     options,
   );
-  return _createAttachmentDeserialize(result);
+  return _createUrlAttachmentDeserialize(result);
+}
+
+export function _createFileAttachmentSend(
+  context: Client,
+  itemId: number,
+  contents: Uint8Array,
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod<
+  | TodoItemsAttachmentsCreateFileAttachment200Response
+  | TodoItemsAttachmentsCreateFileAttachment404Response
+> {
+  return context
+    .path("/items/{itemId}/attachments", itemId)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "multipart/form-data",
+      body: { contents: uint8ArrayToString(contents, "base64") },
+    }) as StreamableMethod<
+    | TodoItemsAttachmentsCreateFileAttachment200Response
+    | TodoItemsAttachmentsCreateFileAttachment404Response
+  >;
+}
+
+export async function _createFileAttachmentDeserialize(
+  result:
+    | TodoItemsAttachmentsCreateFileAttachment200Response
+    | TodoItemsAttachmentsCreateFileAttachment404Response,
+): Promise<void> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function createFileAttachment(
+  context: Client,
+  itemId: number,
+  contents: Uint8Array,
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<void> {
+  const result = await _createFileAttachmentSend(
+    context,
+    itemId,
+    contents,
+    options,
+  );
+  return _createFileAttachmentDeserialize(result);
 }

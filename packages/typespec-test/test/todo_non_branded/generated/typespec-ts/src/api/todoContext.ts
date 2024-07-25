@@ -12,7 +12,7 @@ export { TodoContext } from "../rest/index.js";
 
 export function createTodo(
   endpoint: string,
-  credential: KeyCredential | KeyCredential,
+  credential: KeyCredential,
   options: TodoClientOptionalParams = {},
 ): TodoContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;

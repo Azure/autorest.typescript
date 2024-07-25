@@ -10,35 +10,25 @@ export interface User {
    * but is otherwise not visible (and hashed by the backend)
    */
   password: string;
-  /** Whether the user is validated. Never visible to the API. */
-  validated: boolean;
 }
 
 export interface TodoItem {
+  /** The item's unique id */
+  id: number;
   /** The item's title */
   title: string;
   /** User that the todo is assigned to */
-  assignedTo?: number;
+  ownedBy: number;
   /** A longer description of the todo item in markdown format */
-  description?: string;
+  description: string;
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
-  labels?: TodoLabels;
-  _dummy?: string;
+  labels: TodoLabel[];
 }
 
 export interface TodoLabelRecord {
   name: string;
   color?: string;
-}
-
-export interface TodoFileAttachment {
-  /** The file name of the attachment */
-  filename: string;
-  /** The media type of the attachment */
-  mediaType: string;
-  /** The contents of the file */
-  contents: string;
 }
 
 export interface TodoUrlAttachment {
@@ -52,18 +42,16 @@ export interface TodoItemPatch {
   /** The item's title */
   title?: string;
   /** User that the todo is assigned to */
-  assignedTo?: number | null;
+  ownedBy?: number;
   /** A longer description of the todo item in markdown format */
-  description?: string | null;
+  description?: string;
   /** The status of the todo item */
   status?: "NotStarted" | "InProgress" | "Completed";
 }
 
-/** Alias for TodoLabels */
-export type TodoLabels =
+/** Alias for TodoLabel */
+export type TodoLabel =
   | string
   | string[]
   | TodoLabelRecord
   | Array<TodoLabelRecord>;
-/** Alias for TodoAttachment */
-export type TodoAttachment = TodoFileAttachment | TodoUrlAttachment;

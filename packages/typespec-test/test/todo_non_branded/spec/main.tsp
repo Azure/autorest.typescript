@@ -1,13 +1,13 @@
 import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
-import "@typespec/openapi";
+
 using Http;
 
 @service({
   title: "Todo App",
 })
-@useAuth(BearerAuth | ApiKeyAuth<ApiKeyLocation.cookie, "session-id">)
+@useAuth(BearerAuth)
 namespace Todo;
 
 model User {
@@ -17,12 +17,11 @@ model User {
   id: safeint;
 
   /** The user's username */
-  @minLength(2)
   @maxLength(50)
   username: string;
 
   /** The user's email address */
-  // @format("email") - crashes emitters for now
+  //@format("email")
   email: string;
 
   /**
@@ -31,14 +30,11 @@ model User {
    */
   @visibility("create")
   password: string;
-
-  /** Whether the user is validated. Never visible to the API. */
-  @visibility("none") validated: boolean;
 }
 
 model TodoItem {
   /** The item's unique id */
-  @visibility("read") @key id: safeint;
+  @key id: safeint;
 
   /** The item's title */
   @maxLength(255)
@@ -48,10 +44,10 @@ model TodoItem {
   @visibility("read") createdBy: User.id;
 
   /** User that the todo is assigned to */
-  assignedTo?: User.id;
+  ownedBy: User.id;
 
   /** A longer description of the todo item in markdown format */
-  description?: string;
+  description: string;
 
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
@@ -63,18 +59,14 @@ model TodoItem {
   @visibility("read") updatedAt: utcDateTime;
 
   /** When the todo item was makred as completed */
-  @visibility("read") completedAt?: utcDateTime;
+  @visibility("read") completedAt: utcDateTime;
 
   // Want the read form to be normalized to TodoLabelRecord[], but can't
   // https://github.com/microsoft/typespec/issues/2926
-  labels?: TodoLabels;
-
-  // hack to get a different schema for create
-  // (fastify glue doesn't support readonly)
-  @visibility("create") _dummy?: string;
+  labels: TodoLabel[];
 }
 
-union TodoLabels {
+union TodoLabel {
   string,
   string[],
   TodoLabelRecord,
@@ -84,7 +76,7 @@ union TodoLabels {
 model TodoLabelRecord {
   name: string;
 
-  @pattern("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")
+  //@format("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")
   color?: string;
 }
 
@@ -102,6 +94,9 @@ model TodoUrlAttachment {
 }
 
 model TodoFileAttachment {
+  /** The todo item this is attached to */
+  todoItemId: TodoItem.id;
+
   /** The file name of the attachment */
   @maxLength(255)
   filename: string;
@@ -109,44 +104,19 @@ model TodoFileAttachment {
   /** The media type of the attachment */
   mediaType: string;
 
-  /** The contents of the file */
-  contents: bytes;
+  /** The url where the attachment can be downloaded from */
+  url: url;
 }
 
 @error
-model ApiError {
+model Error {
   /** A machine readable error code */
   code: string;
 
   /** A human readable message */
-  // https://github.com/microsoft/OpenAPI/blob/main/extensions/x-ms-primary-error-message.md
-  @OpenAPI.extension("x-ms-primary-error-message", true)
   message: string;
 }
 
-/**
- * Something is wrong with you.
- */
-model Standard4XXResponse extends ApiError {
-  @minValue(400)
-  @maxValue(499)
-  @statusCode
-  statusCode: int32;
-}
-
-/**
- * Something is wrong with me.
- */
-model Standard5XXResponse extends ApiError {
-  @minValue(500)
-  @maxValue(599)
-  @statusCode
-  statusCode: int32;
-}
-
-alias WithStandardErrors<T> = T | Standard4XXResponse | Standard5XXResponse;
-
-@useAuth(NoAuth)
 namespace Users {
   // would prefer to extend
   // https://github.com/microsoft/typespec/issues/2922
@@ -160,32 +130,54 @@ namespace Users {
   }
 
   /** The user already exists */
-  model UserExistsResponse extends ApiError {
+  model UserExistsResponse extends Error {
     ...ConflictResponse;
-    code: "user-exists";
   }
 
   /** The user is invalid (e.g. forgot to enter email address) */
-  model InvalidUserResponse extends ApiError {
+  model InvalidUserResponse extends Error {
     @statusCode statusCode: 422;
-    code: "invalid-user";
   }
 
   @route("/users")
   @post
   op create(
-    @body user: User,
-  ): WithStandardErrors<UserCreatedResponse | UserExistsResponse | InvalidUserResponse>;
+    user: User,
+  ): { @bodyRoot _ : UserCreatedResponse; } | UserExistsResponse | InvalidUserResponse;
+
+  @route("validate")
+  @get
+  op validate(@query token: string): OkResponse | InvalidUserResponse;
+
+  @route("login")
+  @post
+  op login(
+    username: User.username,
+    password: User.password,
+  ): OkResponse | UnauthorizedResponse;
+
+  @route("logout")
+  @get
+  op logout(): OkResponse;
+
+  /** Sends a reset token to the user's email address */
+  @route("forgot-password")
+  @post
+  op forgotPassword(email: User.email): OkResponse | NotFoundResponse;
+
+  @route("reset-password")
+  @get
+  op resetPassword(@query resetToken: string): OkResponse | NotFoundResponse;
 }
 
 @route("items")
 namespace TodoItems {
   model PaginationControls {
     /** The limit to the number of items */
-    @query limit?: int32 = 50;
+    @query limit: int32 = 50;
 
     /** The offset to start paginating at */
-    @query offset?: int32 = 0;
+    @query offset: int32 = 0;
   }
 
   model TodoPage {
@@ -215,49 +207,68 @@ namespace TodoItems {
     title?: TodoItem.title;
 
     /** User that the todo is assigned to */
-    assignedTo?: TodoItem.assignedTo | null;
+    ownedBy?: TodoItem.ownedBy;
 
     /** A longer description of the todo item in markdown format */
-    description?: TodoItem.description | null;
+    description?: TodoItem.description;
 
     /** The status of the todo item */
     status?: "NotStarted" | "InProgress" | "Completed";
   }
 
-  model InvalidTodoItem extends ApiError {
+  model InvalidTodoItem extends Error {
     @statusCode statusCode: 422;
   }
 
-  @list op list(...PaginationControls): WithStandardErrors<TodoPage>;
+  @list op list(...PaginationControls): TodoPage;
 
+  @sharedRoute
   @post
-  op create(
+  op createJson(
     @header contentType: "application/json",
     item: TodoItem,
-    attachments?: TodoAttachment[],
-  ): WithStandardErrors<TodoItem | InvalidTodoItem>;
+    attachments: TodoUrlAttachment[],
+  ): TodoItem | InvalidTodoItem;
+
+  @sharedRoute
+  @post
+  op createForm(
+    @header contentType: "multipart/form-data",
+    item: TodoItem,
+    attachments?: (TodoUrlAttachment | bytes)[],
+  ): TodoItem | InvalidTodoItem;
 
   @get op get(@path id: TodoItem.id): TodoItem | NotFoundResponse;
   @patch op update(
     @header contentType: "application/merge-patch+json",
     @path id: TodoItem.id,
-    @body patch: TodoItemPatch,
+    patch: TodoItemPatch,
   ): TodoItem;
-  @delete op delete(
-    @path id: TodoItem.id,
-  ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
+  @delete op delete(@path id: TodoItem.id): OkResponse | NotFoundResponse;
 
   @route("{itemId}/attachments")
   namespace Attachments {
     @list op list(
       @path itemId: TodoItem.id,
-    ): WithStandardErrors<TodoAttachment[] | NotFoundResponse>;
+    ): TodoAttachment[] | NotFoundResponse;
 
     @sharedRoute
     @post
-    op createAttachment(
+    op createUrlAttachment(
+      @header contentType: "application/json",
       @path itemId: TodoItem.id,
-      @body contents: TodoAttachment,
-    ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
+      contents: TodoUrlAttachment,
+    ): OkResponse | NotFoundResponse;
+
+    @sharedRoute
+    @post
+    op createFileAttachment(
+      @header contentType: "multipart/form-data",
+      @path itemId: TodoItem.id,
+      contents: bytes,
+    ): OkResponse | NotFoundResponse;
+
+    // disabled: https://github.com/microsoft/typespec/issues/2925
+    // @delete op delete(@path itemId: TodoItem.id): OkResponse | NotFoundResponse;
   }
 }

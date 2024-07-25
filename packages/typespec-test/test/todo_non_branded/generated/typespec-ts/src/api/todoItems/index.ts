@@ -1,28 +1,13 @@
 // Licensed under the MIT license.
 
 import {
+  todoUrlAttachmentSerializer,
   TodoPage,
   TodoItem,
+  TodoUrlAttachment,
   TodoItemPatch,
-  TodoLabels,
 } from "../../models/models.js";
-import {
-  TodoContext as Client,
-  TodoItemsCreate200Response,
-  TodoItemsCreate400Response,
-  TodoItemsCreate422Response,
-  TodoItemsCreate500Response,
-  TodoItemsDelete204Response,
-  TodoItemsDelete400Response,
-  TodoItemsDelete404Response,
-  TodoItemsDelete500Response,
-  TodoItemsGet200Response,
-  TodoItemsGet404Response,
-  TodoItemsList200Response,
-  TodoItemsList400Response,
-  TodoItemsList500Response,
-  TodoItemsUpdate200Response,
-} from "../../rest/index.js";
+import { TodoContext as Client } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -30,7 +15,8 @@ import {
 } from "@typespec/ts-http-runtime";
 import {
   TodoItemsListOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsCreateFormOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
@@ -38,41 +24,38 @@ import {
 
 export function _listSend(
   context: Client,
+  limit: number,
+  offset: number,
   options: TodoItemsListOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  TodoItemsList200Response | TodoItemsList400Response | TodoItemsList500Response
-> {
+): StreamableMethod<TodoItemsList200Response> {
   return context
     .path("/items")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { limit: options?.limit, offset: options?.offset },
+      queryParameters: { limit: limit, offset: offset },
     });
 }
 
 export async function _listDeserialize(
-  result:
-    | TodoItemsList200Response
-    | TodoItemsList400Response
-    | TodoItemsList500Response,
+  result: TodoItemsList200Response,
 ): Promise<TodoPage> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
   return {
     items: result.body["items"].map((p) => {
       return {
         id: p["id"],
         title: p["title"],
         createdBy: p["createdBy"],
-        assignedTo: p["assignedTo"],
+        ownedBy: p["ownedBy"],
         description: p["description"],
         status: p["status"],
         createdAt: new Date(p["createdAt"]),
         updatedAt: new Date(p["updatedAt"]),
-        completedAt:
-          p["completedAt"] !== undefined
-            ? new Date(p["completedAt"])
-            : undefined,
+        completedAt: new Date(p["completedAt"]),
         labels: p["labels"],
-        dummy: p["_dummy"],
       };
     }),
     pagination: {
@@ -86,21 +69,21 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
+  limit: number,
+  offset: number,
   options: TodoItemsListOptionalParams = { requestOptions: {} },
 ): Promise<TodoPage> {
-  const result = await _listSend(context, options);
+  const result = await _listSend(context, limit, offset, options);
   return _listDeserialize(result);
 }
 
-export function _createSend(
+export function _createJsonSend(
   context: Client,
   item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
+  attachments: TodoUrlAttachment[],
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | TodoItemsCreate200Response
-  | TodoItemsCreate400Response
-  | TodoItemsCreate422Response
-  | TodoItemsCreate500Response
+  TodoItemsCreateJson200Response | TodoItemsCreateJson422Response
 > {
   return context
     .path("/items")
@@ -109,71 +92,107 @@ export function _createSend(
       contentType: (options.contentType as any) ?? "application/json",
       body: {
         item: {
+          id: item["id"],
           title: item["title"],
-          assignedTo: item["assignedTo"],
+          ownedBy: item["ownedBy"],
           description: item["description"],
           status: item["status"],
           labels: item["labels"],
-          _dummy: item["dummy"],
         },
-        attachments: options?.attachments,
+        attachments: attachments.map(todoUrlAttachmentSerializer),
       },
-    });
+    }) as StreamableMethod<
+    TodoItemsCreateJson200Response | TodoItemsCreateJson422Response
+  >;
 }
 
-export async function _createDeserialize(
-  result:
-    | TodoItemsCreate200Response
-    | TodoItemsCreate400Response
-    | TodoItemsCreate422Response
-    | TodoItemsCreate500Response,
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+export async function _createJsonDeserialize(
+  result: TodoItemsCreateJson200Response | TodoItemsCreateJson422Response,
+): Promise<TodoItem> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
   return {
     id: result.body["id"],
     title: result.body["title"],
     createdBy: result.body["createdBy"],
-    assignedTo: result.body["assignedTo"],
+    ownedBy: result.body["ownedBy"],
     description: result.body["description"],
     status: result.body["status"],
     createdAt: new Date(result.body["createdAt"]),
     updatedAt: new Date(result.body["updatedAt"]),
-    completedAt:
-      result.body["completedAt"] !== undefined
-        ? new Date(result.body["completedAt"])
-        : undefined,
+    completedAt: new Date(result.body["completedAt"]),
     labels: result.body["labels"],
   };
 }
 
-export async function create(
+export async function createJson(
   context: Client,
   item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
-  const result = await _createSend(context, item, options);
-  return _createDeserialize(result);
+  attachments: TodoUrlAttachment[],
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
+): Promise<TodoItem> {
+  const result = await _createJsonSend(context, item, attachments, options);
+  return _createJsonDeserialize(result);
+}
+
+export function _createFormSend(
+  context: Client,
+  item: TodoItem,
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
+): StreamableMethod<
+  TodoItemsCreateForm200Response | TodoItemsCreateForm422Response
+> {
+  return context
+    .path("/items")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "multipart/form-data",
+      body: {
+        item: {
+          id: item["id"],
+          title: item["title"],
+          ownedBy: item["ownedBy"],
+          description: item["description"],
+          status: item["status"],
+          labels: item["labels"],
+        },
+        attachments: options?.attachments,
+      },
+    }) as StreamableMethod<
+    TodoItemsCreateForm200Response | TodoItemsCreateForm422Response
+  >;
+}
+
+export async function _createFormDeserialize(
+  result: TodoItemsCreateForm200Response | TodoItemsCreateForm422Response,
+): Promise<TodoItem> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
+  return {
+    id: result.body["id"],
+    title: result.body["title"],
+    createdBy: result.body["createdBy"],
+    ownedBy: result.body["ownedBy"],
+    description: result.body["description"],
+    status: result.body["status"],
+    createdAt: new Date(result.body["createdAt"]),
+    updatedAt: new Date(result.body["updatedAt"]),
+    completedAt: new Date(result.body["completedAt"]),
+    labels: result.body["labels"],
+  };
+}
+
+export async function createForm(
+  context: Client,
+  item: TodoItem,
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
+): Promise<TodoItem> {
+  const result = await _createFormSend(context, item, options);
+  return _createFormDeserialize(result);
 }
 
 export function _getSend(
@@ -188,19 +207,8 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: TodoItemsGet200Response | TodoItemsGet404Response,
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
-  if (result.status !== "404") {
+): Promise<TodoItem> {
+  if (result.status !== "200") {
     throw createRestError(result);
   }
 
@@ -208,15 +216,12 @@ export async function _getDeserialize(
     id: result.body["id"],
     title: result.body["title"],
     createdBy: result.body["createdBy"],
-    assignedTo: result.body["assignedTo"],
+    ownedBy: result.body["ownedBy"],
     description: result.body["description"],
     status: result.body["status"],
     createdAt: new Date(result.body["createdAt"]),
     updatedAt: new Date(result.body["updatedAt"]),
-    completedAt:
-      result.body["completedAt"] !== undefined
-        ? new Date(result.body["completedAt"])
-        : undefined,
+    completedAt: new Date(result.body["completedAt"]),
     labels: result.body["labels"],
   };
 }
@@ -225,18 +230,7 @@ export async function get(
   context: Client,
   id: number,
   options: TodoItemsGetOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const result = await _getSend(context, id, options);
   return _getDeserialize(result);
 }
@@ -254,41 +248,33 @@ export function _updateSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
-        title: patch["title"],
-        assignedTo: patch["assignedTo"],
-        description: patch["description"],
-        status: patch["status"],
+        patch: {
+          title: patch["title"],
+          ownedBy: patch["ownedBy"],
+          description: patch["description"],
+          status: patch["status"],
+        },
       },
     });
 }
 
 export async function _updateDeserialize(
   result: TodoItemsUpdate200Response,
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
   return {
     id: result.body["id"],
     title: result.body["title"],
     createdBy: result.body["createdBy"],
-    assignedTo: result.body["assignedTo"],
+    ownedBy: result.body["ownedBy"],
     description: result.body["description"],
     status: result.body["status"],
     createdAt: new Date(result.body["createdAt"]),
     updatedAt: new Date(result.body["updatedAt"]),
-    completedAt:
-      result.body["completedAt"] !== undefined
-        ? new Date(result.body["completedAt"])
-        : undefined,
+    completedAt: new Date(result.body["completedAt"]),
     labels: result.body["labels"],
   };
 }
@@ -298,18 +284,7 @@ export async function update(
   id: number,
   patch: TodoItemPatch,
   options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const result = await _updateSend(context, id, patch, options);
   return _updateDeserialize(result);
 }
@@ -318,25 +293,16 @@ export function _$deleteSend(
   context: Client,
   id: number,
   options: TodoItemsDeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TodoItemsDelete204Response
-  | TodoItemsDelete400Response
-  | TodoItemsDelete404Response
-  | TodoItemsDelete500Response
-> {
+): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response> {
   return context
     .path("/items/{id}", id)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _$deleteDeserialize(
-  result:
-    | TodoItemsDelete204Response
-    | TodoItemsDelete400Response
-    | TodoItemsDelete404Response
-    | TodoItemsDelete500Response,
+  result: TodoItemsDelete200Response | TodoItemsDelete404Response,
 ): Promise<void> {
-  if (result.status !== "404") {
+  if (result.status !== "200") {
     throw createRestError(result);
   }
 
