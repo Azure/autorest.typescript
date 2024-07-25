@@ -41,6 +41,12 @@ export interface CreateWidget {
     weight: number;
 }
 
+// @public (undocumented)
+export interface NonReferencedModel {
+    prop1: number;
+    prop2: string;
+}
+
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;

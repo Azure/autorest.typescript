@@ -13,6 +13,7 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
+  NonReferencedModel,
   Versions,
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
