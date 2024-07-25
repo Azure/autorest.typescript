@@ -8,7 +8,6 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  NonReferencedModel,
   Versions,
 } from "./models.js";
 export {

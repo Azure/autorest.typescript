@@ -237,6 +237,12 @@ const libDef = {
       messages: {
         default: paramMessage`Please note the body type of default response for operation - ${"operationName"} is not a model type.`
       }
+    },
+    "un-supported-credential": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The defined authentication - ${"credentialType"} is not supported yet and it may require customizations.`
+      }
     }
   },
   emitter: {

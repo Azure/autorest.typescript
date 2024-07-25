@@ -114,6 +114,7 @@ import {
   Type as HrlcType
 } from "./modularCodeModel.js";
 import { useContext } from "../contextManager.js";
+import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -1706,15 +1707,14 @@ function emitCredentialParam(
   const auth = getAuthentication(context.program, namespace);
   if (auth) {
     const credential_types: CredentialType[] = [];
-    for (const option of auth.options) {
-      for (const scheme of option.schemes) {
-        const type: CredentialType = {
-          kind: "Credential",
-          scheme: scheme
-        };
-        credential_types.push(type);
-      }
+    for (const scheme of getSupportedHttpAuth(context.program, auth)) {
+      const type: CredentialType = {
+        kind: "Credential",
+        scheme: scheme
+      };
+      credential_types.push(type);
     }
+
     if (
       credential_types.length > 0 &&
       context.rlcOptions?.addCredentials !== false
