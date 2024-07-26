@@ -297,9 +297,7 @@ function countPlaceholderOccurrences(
   sourceFile: SourceFile,
   placeholder: string
 ): number {
-  const fileText = sourceFile.getFullText();
-  const regex = new RegExp(escapeRegExp(placeholder), "g");
-  return fileText.match(regex)?.length ?? 0;
+  return sourceFile.getFullText().split(placeholder).length - 1;
 }
 
 /**
@@ -311,9 +309,6 @@ function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-const placeholderPattern = new RegExp(/<PLACEHOLDER:\w+>/);
-
 function hasAnyPlaceholders(sourceFile: SourceFile): boolean {
-  const content = sourceFile.getFullText();
-  return placeholderPattern.test(content);
+  return sourceFile.getFullText().includes(`<PLACEHOLDER:`);
 }
