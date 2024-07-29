@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  Eight204Response,
   ServiceContext as Client,
+  Eight204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

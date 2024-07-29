@@ -7,13 +7,13 @@ import {
 } from "../../models/models.js";
 import {
   isUnexpected,
+  OpenAIContext as Client,
   ModelsDelete200Response,
   ModelsDeleteDefaultResponse,
   ModelsList200Response,
   ModelsListDefaultResponse,
   ModelsRetrieve200Response,
   ModelsRetrieveDefaultResponse,
-  OpenAIContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

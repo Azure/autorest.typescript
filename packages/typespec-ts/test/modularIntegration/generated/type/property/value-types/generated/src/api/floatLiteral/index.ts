@@ -3,9 +3,9 @@
 
 import { FloatLiteralProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   FloatLiteralGet200Response,
   FloatLiteralPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

@@ -7,10 +7,10 @@ import {
   InputOutputRecord,
 } from "../models/models.js";
 import {
+  UsageContext as Client,
   Input204Response,
   InputAndOutput200Response,
   Output200Response,
-  UsageContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

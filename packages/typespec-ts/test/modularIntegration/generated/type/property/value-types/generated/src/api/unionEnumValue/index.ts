@@ -3,9 +3,9 @@
 
 import { UnionEnumValueProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   UnionEnumValueGet200Response,
   UnionEnumValuePut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

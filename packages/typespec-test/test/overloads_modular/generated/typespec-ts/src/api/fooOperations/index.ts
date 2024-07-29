@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
+  isUnexpected,
+  WidgetManagerContext as Client,
   GetAvatarAsJpeg204Response,
   GetAvatarAsJpegDefaultResponse,
   GetAvatarAsPng204Response,
   GetAvatarAsPngDefaultResponse,
-  isUnexpected,
-  WidgetManagerContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

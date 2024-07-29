@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
+  ScalarContext as Client,
   Decimal128TypeRequestBody204Response,
   Decimal128TypeRequestParameter204Response,
   Decimal128TypeResponseBody200Response,
-  ScalarContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

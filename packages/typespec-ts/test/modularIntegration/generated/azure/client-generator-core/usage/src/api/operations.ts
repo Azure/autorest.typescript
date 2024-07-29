@@ -3,10 +3,10 @@
 
 import { InputModel, OutputModel, RoundTripModel } from "../models/models.js";
 import {
+  UsageContext as Client,
   InputToInputOutput204Response,
   ModelInReadOnlyProperty200Response,
   OutputToInputOutput200Response,
-  UsageContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

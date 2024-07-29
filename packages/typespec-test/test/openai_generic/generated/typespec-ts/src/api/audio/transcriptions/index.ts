@@ -6,10 +6,10 @@ import {
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
 import {
-  AudioTranscriptionsCreate200Response,
-  AudioTranscriptionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
+  AudioTranscriptionsCreate200Response,
+  AudioTranscriptionsCreateDefaultResponse,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,

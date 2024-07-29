@@ -3,11 +3,11 @@
 
 import { CollectionsByteProperty } from "../../models/models.js";
 import {
+  OptionalContext as Client,
   CollectionsByteGetAll200Response,
   CollectionsByteGetDefault200Response,
   CollectionsBytePutAll204Response,
   CollectionsBytePutDefault204Response,
-  OptionalContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
