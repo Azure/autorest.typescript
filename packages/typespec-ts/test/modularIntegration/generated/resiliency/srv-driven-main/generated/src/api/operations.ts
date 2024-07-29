@@ -3,10 +3,10 @@
 
 import {
   AddOperation204Response,
+  ServiceDrivenContext as Client,
   FromNone204Response,
   FromOneOptional204Response,
   FromOneRequired204Response,
-  ServiceDrivenContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

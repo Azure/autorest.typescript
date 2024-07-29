@@ -3,11 +3,11 @@
 
 import { DurationProperty } from "../../models/models.js";
 import {
+  OptionalContext as Client,
   DurationGetAll200Response,
   DurationGetDefault200Response,
   DurationPutAll204Response,
   DurationPutDefault204Response,
-  OptionalContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

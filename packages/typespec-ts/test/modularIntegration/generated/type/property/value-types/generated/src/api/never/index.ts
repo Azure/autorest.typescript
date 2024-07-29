@@ -3,9 +3,9 @@
 
 import { NeverProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   NeverGet200Response,
   NeverPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

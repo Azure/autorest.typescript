@@ -11,20 +11,20 @@ import {
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
+  isUnexpected,
+  SchemaRegistryContext as Client,
   GetSchemaById200Response,
   GetSchemaByIdDefaultResponse,
   GetSchemaByVersion200Response,
   GetSchemaByVersionDefaultResponse,
   GetSchemaIdByContent204Response,
   GetSchemaIdByContentDefaultResponse,
-  isUnexpected,
   ListSchemaGroups200Response,
   ListSchemaGroupsDefaultResponse,
   ListSchemaVersions200Response,
   ListSchemaVersionsDefaultResponse,
   RegisterSchema204Response,
   RegisterSchemaDefaultResponse,
-  SchemaRegistryContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
