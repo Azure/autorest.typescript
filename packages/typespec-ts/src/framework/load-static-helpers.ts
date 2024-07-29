@@ -8,10 +8,11 @@ import {
   SourceFile,
   TypeAliasDeclaration
 } from "ts-morph";
+import { refkey } from "./refkey.js";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
-const SourceFileSymbol = Symbol("SourceFile");
+export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
   kind: "function" | "interface" | "typeAlias" | "class";
@@ -19,19 +20,28 @@ export interface StaticHelperMetadata {
   [SourceFileSymbol]?: SourceFile;
 }
 
-export interface ExtendedStaticHelperSymbol extends StaticHelperMetadata {
-  sourceFile: SourceFile;
+export function isStaticHelperMetadata(
+  metadata: any
+): metadata is StaticHelperMetadata {
+  return Boolean(
+    metadata &&
+      metadata.name &&
+      metadata.kind &&
+      metadata.location &&
+      metadata[SourceFileSymbol]
+  );
 }
 
 export type StaticHelpers = Record<string, StaticHelperMetadata>;
 
 const DEFAULT_STATIC_HELPERS_PATH = path.resolve(
   __dirname,
-  "src/assets/static-helpers"
+  "../modular/static-helpers"
 );
 
 export interface LoadStaticHelpersOptions {
   helpersAssetDirectory?: string;
+  sourcesDir?: string;
 }
 
 export async function loadStaticHelpers(
@@ -39,16 +49,18 @@ export async function loadStaticHelpers(
   helpers: StaticHelpers,
   options: LoadStaticHelpersOptions = {}
 ): Promise<Map<string, StaticHelperMetadata>> {
+  const sourcesDir = options.sourcesDir ?? "src";
   const helpersMap = new Map<string, StaticHelperMetadata>();
   const files = await traverseDirectory(
     options.helpersAssetDirectory ?? DEFAULT_STATIC_HELPERS_PATH
   );
 
   for (const file of files) {
+    const targetPath = path.resolve(sourcesDir, file.target);
     const contents = await readFile(file.source, "utf-8");
-    const addedFile = project.createSourceFile(file.target, contents);
+    const addedFile = project.createSourceFile(targetPath, contents);
 
-    for (const [key, entry] of Object.entries(helpers)) {
+    for (const entry of Object.values(helpers)) {
       if (!addedFile.getFilePath().endsWith(entry.location)) {
         continue;
       }
@@ -63,7 +75,7 @@ export async function loadStaticHelpers(
       }
 
       entry[SourceFileSymbol] = addedFile;
-      helpersMap.set(key, entry);
+      helpersMap.set(refkey(entry), entry);
     }
   }
 
@@ -118,7 +130,7 @@ function getDeclarationByMetadata(
   }
 }
 
-const _targetStaticHelpersBaseDir = path.join("src", "static-files");
+const _targetStaticHelpersBaseDir = "static-helpers";
 async function traverseDirectory(
   directory: string,
   result: { source: string; target: string }[] = [],

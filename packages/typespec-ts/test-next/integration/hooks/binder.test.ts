@@ -2,7 +2,8 @@ import {
   FunctionDeclarationStructure,
   InterfaceDeclarationStructure,
   Project,
-  StructureKind
+  StructureKind,
+  TypeAliasDeclarationStructure
 } from "ts-morph";
 import { describe, it, expect, beforeEach, assert } from "vitest";
 import {
@@ -15,13 +16,24 @@ import { addDeclaration } from "../../../src/framework/declaration.js";
 import { resolveReference } from "../../../src/framework/reference.js";
 import {
   assertGetFunctionDeclaration,
+  assertGetFunctionParameter,
+  assertGetFunctionReturnType,
   assertGetImportStatements,
   assertGetInterfaceDeclaration,
   assertGetInterfaceProperty,
+  assertGetStatement,
+  assertGetTypealiasDeclaration,
   assertGetVariableDeclaration
 } from "../../utils/tsmorph-utils.js";
 import { useDependencies } from "../../../src/framework/hooks/useDependencies.js";
 import { ExternalDependencies } from "../../../src/framework/dependency.js";
+import {
+  loadStaticHelpers,
+  StaticHelpers
+} from "../../../src/framework/load-static-helpers.js";
+import path from "path";
+import { AzurePollingDependencies } from "../../../src/modular/external-dependencies.js";
+import { format } from "prettier";
 
 describe("Binder", () => {
   let project: Project;
@@ -30,9 +42,356 @@ describe("Binder", () => {
 
   beforeEach(() => {
     project = new Project();
-    provideBinder(project);
-    binder = useBinder();
+    binder = provideBinder(project);
     Dependencies = useDependencies();
+  });
+
+  describe("References", () => {
+    it("should handle interface property reference", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "string" }]
+      };
+
+      const interfaceWithReference: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestModel",
+        properties: [{ name: "bar", type: resolveReference("TestInterface") }]
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, interfaceWithReference, "TestModel");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      assertGetInterfaceDeclaration(sourceFile, "TestModel");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // interface TestModel {
+      //    bar: TestInterface;
+      // }
+    });
+
+    it("should handle interface property reference where referenced has type parameters", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "T" }],
+        typeParameters: ["T"]
+      };
+
+      const interfaceWithReference: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestModel",
+        properties: [
+          { name: "bar", type: `${resolveReference("TestInterface")}<string>` }
+        ]
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, interfaceWithReference, "TestModel");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      assertGetInterfaceDeclaration(sourceFile, "TestModel");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // interface TestModel {
+      //    bar: TestInterface;
+      // }
+    });
+
+    it("should handle function parameter with reference", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "string" }]
+      };
+
+      const functionDeclaration: FunctionDeclarationStructure = {
+        kind: StructureKind.Function,
+        name: "testFunction",
+        parameters: [{ name: "param", type: resolveReference("TestInterface") }]
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, functionDeclaration, "testFunction");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      const functionDec = assertGetFunctionDeclaration(
+        sourceFile,
+        "testFunction"
+      );
+      const param = assertGetFunctionParameter(functionDec, "param");
+      expect(param.getType().getText(), "TestInterface");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // function testFunction(param: TestInterface) {
+      // }
+    });
+
+    it("should handle function parameter with reference where referenced has type parameters", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "T" }],
+        typeParameters: ["T"]
+      };
+
+      const functionDeclaration: FunctionDeclarationStructure = {
+        kind: StructureKind.Function,
+        name: "testFunction",
+        parameters: [
+          {
+            name: "param",
+            type: `${resolveReference("TestInterface")}<string>`
+          }
+        ]
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, functionDeclaration, "testFunction");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      const functionDec = assertGetFunctionDeclaration(
+        sourceFile,
+        "testFunction"
+      );
+      const param = assertGetFunctionParameter(functionDec, "param");
+      expect(param.getType().getText(), "TestInterface");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // function testFunction(param: TestInterface<string>) {
+      // }
+    });
+
+    it("should handle function return type with reference", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "string" }]
+      };
+
+      const functionDeclaration: FunctionDeclarationStructure = {
+        kind: StructureKind.Function,
+        name: "testFunction",
+        returnType: resolveReference("TestInterface")
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, functionDeclaration, "testFunction");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      const fnDeclaration = assertGetFunctionDeclaration(
+        sourceFile,
+        "testFunction"
+      );
+      assertGetFunctionReturnType(fnDeclaration, "TestInterface");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // function testFunction(): TestInterface {
+      // }
+    });
+
+    it("should handle function return type with reference with type params", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "T" }],
+        typeParameters: ["T"]
+      };
+
+      const functionDeclaration: FunctionDeclarationStructure = {
+        kind: StructureKind.Function,
+        name: "testFunction",
+        returnType: `${resolveReference("TestInterface")}<string>`
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, functionDeclaration, "testFunction");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      const fnDeclaration = assertGetFunctionDeclaration(
+        sourceFile,
+        "testFunction"
+      );
+      assertGetFunctionReturnType(fnDeclaration, "TestInterface<string>");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // function testFunction(): TestInterface<string> {
+      // }
+    });
+
+    it("should handle a type alias", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "string" }]
+      };
+
+      const typeDeclaration: TypeAliasDeclarationStructure = {
+        kind: StructureKind.TypeAlias,
+        name: "TestType",
+        type: resolveReference("TestInterface")
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, typeDeclaration, "TestType");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      assertGetTypealiasDeclaration(sourceFile, "TestType");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // function testFunction(): TestInterface {
+      // }
+    });
+
+    it("should handle a type alias with interface and type parameters", () => {
+      const sourceFile = project.createSourceFile("test1.ts", "", {
+        overwrite: true
+      });
+
+      const interfaceDeclaration: InterfaceDeclarationStructure = {
+        kind: StructureKind.Interface,
+        name: "TestInterface",
+        properties: [{ name: "foo", type: "T" }],
+        typeParameters: ["T"]
+      };
+
+      const typeDeclaration: TypeAliasDeclarationStructure = {
+        kind: StructureKind.TypeAlias,
+        name: "TestType",
+        type: `${resolveReference("TestInterface")}<string>`
+      };
+
+      addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
+      addDeclaration(sourceFile, typeDeclaration, "TestType");
+      binder.resolveAllReferences();
+
+      assertGetInterfaceDeclaration(sourceFile, "TestInterface");
+      assertGetTypealiasDeclaration(sourceFile, "TestType");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // interface TestInterface {
+      //   foo: string;
+      // }
+      // function testFunction(): TestInterface {
+      // }
+    });
+  });
+
+  describe("Static Helpers", () => {
+    let staticHelpers: StaticHelpers;
+    let helpersDirectory: string;
+
+    beforeEach(async () => {
+      const __dirname = path.dirname(new URL(import.meta.url).pathname);
+      helpersDirectory = path.resolve(__dirname, "../assets/static-helpers");
+      staticHelpers = {
+        buildCsvCollection: {
+          kind: "function",
+          name: "buildCsvCollection",
+          location: "utils.ts"
+        }
+      };
+      const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {
+        helpersAssetDirectory: helpersDirectory
+      });
+      binder = provideBinder(project, { staticHelpers: staticHelperMap });
+    });
+
+    it("should resolve reference to static helper", () => {
+      const sourceFile = project.createSourceFile("src/test1.ts", "", {
+        overwrite: true
+      });
+
+      sourceFile.addStatements(
+        `${resolveReference(staticHelpers.buildCsvCollection)}();`
+      );
+
+      binder.resolveAllReferences();
+
+      assertGetImportStatements(sourceFile, "./static-helpers/utils.js");
+      assertGetStatement(sourceFile, "buildCsvCollection();");
+
+      console.log("// test1.ts");
+      console.log(sourceFile.getFullText());
+      // test1.ts
+      // import { buildCsvCollection } from "./static-helpers/utils.js";
+      //
+      // buildCsvCollection();
+    });
   });
 
   describe("External Dependencies Override", () => {
@@ -42,7 +401,8 @@ describe("Binder", () => {
           kind: "externalDependency",
           name: "ClientOptions",
           module: "@azure-rest/core-client"
-        }
+        },
+        ...AzurePollingDependencies
       };
       provideBinder(project, { dependencies: customDependencies });
       binder = useBinder();

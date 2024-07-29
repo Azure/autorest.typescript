@@ -46,6 +46,9 @@ import {
 } from "./docsHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { buildType, isTypeNullable } from "./typeHelpers.js";
+import { resolveReference } from "../../framework/reference.js";
+import { PagingHelpers, PollingHellpers } from "../static-helpers-metadata.js";
+import { AzurePollingDependencies } from "../external-dependencies.js";
 
 function getRLCResponseTypes(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -404,18 +407,28 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `PollerLike<OperationState<${returnType.type}>, ${returnType.type}>`
+    returnType: `${resolveReference(
+      AzurePollingDependencies.PollerLike
+    )}<${resolveReference(AzurePollingDependencies.OperationState)}<${
+      returnType.type
+    }>, ${returnType.type}>`
   };
 
   const statements: string[] = [];
   statements.push(`
-  return getLongRunningPoller(context, _${name}Deserialize, {
+  return ${resolveReference(
+    PollingHellpers.GetLongRunningPoller
+  )}(context, _${name}Deserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")})
-  }) as PollerLike<OperationState<${returnType.type}>, ${returnType.type}>;
+  }) as ${resolveReference(
+    AzurePollingDependencies.PollerLike
+  )}<${resolveReference(AzurePollingDependencies.OperationState)}<${
+    returnType.type
+  }>, ${returnType.type}>;
   `);
 
   return {
@@ -460,7 +473,9 @@ function getPagingOnlyOperationFunction(
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `PagedAsyncIterableIterator<${returnType.type}>`
+    returnType: `${resolveReference(
+      PagingHelpers.PagedAsyncIterableIterator
+    )}<${returnType.type}>`
   };
 
   const statements: string[] = [];
@@ -472,7 +487,7 @@ function getPagingOnlyOperationFunction(
     options.push(`nextLinkName: "${operation.continuationTokenName}"`);
   }
   statements.push(
-    `return buildPagedAsyncIterator(
+    `return ${resolveReference(PagingHelpers.BuildPagedAsyncIterator)}(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,

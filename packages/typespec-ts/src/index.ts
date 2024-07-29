@@ -42,15 +42,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
-import {
-  buildGetPollerHelper,
-  buildRestorePollerHelper
-} from "./modular/buildLroFiles.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
-import {
-  buildPagingHelpers as buildModularPagingHelpers,
-  buildPagingTypes
-} from "./modular/buildPagingFiles.js";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
   buildRootIndex,
@@ -68,14 +60,28 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
+import { provideBinder } from "./framework/hooks/binder.js";
+import { loadStaticHelpers } from "./framework/load-static-helpers.js";
+import {
+  PagingHelpers,
+  PollingHellpers,
+  Utilities
+} from "./modular/static-helpers-metadata.js";
+import { AzurePollingDependencies } from "./modular/external-dependencies.js";
 
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
+  const outputProject = new Project();
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = createContextWithDefaultOptions(context);
+  const rlcOptions: RLCOptions = transformRLCOptions(
+    emitterOptions,
+    dpgContext
+  );
+
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -84,12 +90,30 @@ export async function $onEmit(context: EmitContext) {
   provideContext("rlcMetaTree", new Map());
   provideContext("symbolMap", new Map());
   provideContext("modularMetaTree", new Map());
-  provideContext("outputProject", new Project());
+  provideContext("outputProject", outputProject);
   provideContext("emitContext", {
     compilerContext: context,
     tcgcContext: dpgContext
   });
   provideSdkTypes(dpgContext.sdkPackage);
+  const { modularSourcesDir } = await calculateGenerationDir();
+  const staticHelpers = await loadStaticHelpers(
+    outputProject,
+    {
+      ...Utilities,
+      ...PagingHelpers,
+      ...PollingHellpers
+    },
+    { sourcesDir: modularSourcesDir }
+  );
+  const extraDependencies =
+    rlcOptions?.flavor === "azure" ? { ...AzurePollingDependencies } : {};
+  const binder = provideBinder(outputProject, {
+    staticHelpers,
+    dependencies: {
+      ...extraDependencies
+    }
+  });
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
@@ -108,16 +132,15 @@ export async function $onEmit(context: EmitContext) {
     const generationPathDetail: GenerationDirDetail =
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
-    const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
     );
-    options.generateTest =
-      options.generateTest === true ||
-      (options.generateTest === undefined &&
+    rlcOptions.generateTest =
+      rlcOptions.generateTest === true ||
+      (rlcOptions.generateTest === undefined &&
         !hasTestFolder &&
-        options.flavor === "azure");
-    dpgContext.rlcOptions = options;
+        rlcOptions.flavor === "azure");
+    dpgContext.rlcOptions = rlcOptions;
   }
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
@@ -212,14 +235,6 @@ export async function $onEmit(context: EmitContext) {
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
           buildSerializeUtils(modularCodeModel);
-        // build paging files
-        buildPagingTypes(subClient, modularCodeModel);
-        buildModularPagingHelpers(
-          subClient,
-          modularCodeModel,
-          hasClientUnexpectedHelper,
-          isMultiClients
-        );
         // build operation files
         buildOperationFiles(
           subClient,
@@ -229,14 +244,6 @@ export async function $onEmit(context: EmitContext) {
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
         buildSubpathIndexFile(subClient, modularCodeModel, "models");
-        // build lro files
-        buildGetPollerHelper(
-          modularCodeModel,
-          subClient,
-          hasClientUnexpectedHelper,
-          isMultiClients
-        );
-        buildRestorePollerHelper(modularCodeModel, subClient);
         if (dpgContext.rlcOptions?.hierarchyClient) {
           buildSubpathIndexFile(subClient, modularCodeModel, "api");
         } else {
@@ -256,6 +263,8 @@ export async function $onEmit(context: EmitContext) {
         }
         buildRootIndex(subClient, modularCodeModel, rootIndexFile);
       }
+
+      binder.resolveAllReferences();
 
       for (const file of project.getSourceFiles()) {
         await emitContentByBuilder(

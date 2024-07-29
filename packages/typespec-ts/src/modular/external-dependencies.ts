@@ -58,6 +58,19 @@ export const DefaultCoreDependencies: CoreDependencies = {
   }
 } as const;
 
+export const AzurePollingDependencies = {
+  PollerLike: {
+    kind: "externalDependency",
+    module: "@azure/core-lro",
+    name: "PollerLike"
+  },
+  OperationState: {
+    kind: "externalDependency",
+    module: "@azure/core-lro",
+    name: "OperationState"
+  }
+};
+
 export const AzureCoreDependencies: CoreDependencies = {
   Client: {
     kind: "externalDependency",

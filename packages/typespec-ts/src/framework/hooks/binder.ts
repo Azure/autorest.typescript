@@ -9,6 +9,11 @@ import { provideContext, useContext } from "../../contextManager.js";
 import { ReferenceableSymbol } from "../dependency.js";
 import { provideDependencies, useDependencies } from "./useDependencies.js";
 import { refkey } from "../refkey.js";
+import {
+  isStaticHelperMetadata,
+  SourceFileSymbol,
+  StaticHelperMetadata
+} from "../load-static-helpers.js";
 
 export interface DeclarationInfo {
   name: string;
@@ -17,6 +22,7 @@ export interface DeclarationInfo {
 }
 
 export interface BinderOptions {
+  staticHelpers?: Map<string, StaticHelperMetadata>;
   dependencies?: Record<string, ReferenceableSymbol>;
 }
 
@@ -43,11 +49,13 @@ class BinderImp implements Binder {
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
   private project: Project;
   private dependencies: Record<string, ReferenceableSymbol>;
+  private staticHelpers: Map<string, StaticHelperMetadata>;
 
   constructor(project: Project, options: BinderOptions = {}) {
     this.project = project;
 
     provideDependencies(options.dependencies);
+    this.staticHelpers = options.staticHelpers ?? new Map();
     this.dependencies = useDependencies();
   }
 
@@ -146,7 +154,7 @@ class BinderImp implements Binder {
    * @returns The serialized placeholder string.
    */
   private serializePlaceholder(refkey: unknown): string {
-    return `"<PLACEHOLDER:${String(refkey)}>"`;
+    return `_PLACEHOLDER_${String(refkey)}`;
   }
 
   /**
@@ -172,7 +180,7 @@ class BinderImp implements Binder {
       moduleSpecifier =
         fileWhereImportIsAdded.getRelativePathAsModuleSpecifierTo(
           fileWhereImportPointsTo
-        );
+        ) + ".js";
     }
 
     const importStructures = this.imports.get(fileWhereImportIsAdded) || [];
@@ -244,16 +252,31 @@ class BinderImp implements Binder {
     if (!hasAnyPlaceholders(file)) {
       return;
     }
-    for (const [declarationKey, declaration] of this.declarations) {
+
+    for (const [declarationKey, declaration] of [
+      ...this.declarations,
+      ...this.staticHelpers
+    ]) {
       const placeholderKey = this.serializePlaceholder(declarationKey);
+      if (
+        isStaticHelperMetadata(declaration) &&
+        !countPlaceholderOccurrences(file, placeholderKey)
+      ) {
+        continue;
+      }
+
       let name = declaration.name;
-      if (file !== declaration.sourceFile) {
-        const importDec = this.addImport(
-          file,
-          declaration.sourceFile,
-          declaration.name
-        );
-        name = importDec.alias ?? declaration.name;
+      let declarationSourceFile: SourceFile;
+
+      if ("sourceFile" in declaration) {
+        declarationSourceFile = declaration.sourceFile;
+      } else {
+        declarationSourceFile = declaration[SourceFileSymbol]!;
+      }
+
+      if (file !== declarationSourceFile) {
+        const importDec = this.addImport(file, declarationSourceFile, name);
+        name = importDec.alias ?? name;
       }
       replacePlaceholder(file, placeholderKey, name);
     }
@@ -264,8 +287,10 @@ class BinderImp implements Binder {
 export function provideBinder(
   project: Project,
   options: BinderOptions = {}
-): void {
-  return provideContext("binder", new BinderImp(project, options));
+): Binder {
+  const binder = new BinderImp(project, options);
+  provideContext("binder", binder);
+  return binder;
 }
 
 /**
@@ -310,5 +335,5 @@ function escapeRegExp(string: string): string {
 }
 
 function hasAnyPlaceholders(sourceFile: SourceFile): boolean {
-  return sourceFile.getFullText().includes(`<PLACEHOLDER:`);
+  return sourceFile.getFullText().includes(`_PLACEHOLDER_`);
 }

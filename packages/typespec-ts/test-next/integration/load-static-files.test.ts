@@ -2,6 +2,7 @@ import { describe, it, beforeEach, expect, assert } from "vitest";
 import { loadStaticHelpers } from "../../src/framework/load-static-helpers.js";
 import { Project } from "ts-morph";
 import path from "path";
+import { refkey } from "../../src/framework/refkey.js";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -25,8 +26,9 @@ describe("loadStaticHelpers", () => {
       helpersAssetDirectory
     });
     expect(project.getSourceFiles()).to.toHaveLength(1);
-    const buildCsvCollectionDeclaration =
-      helperDeclarations.get("buildCsvCollection");
+    const buildCsvCollectionDeclaration = helperDeclarations.get(
+      refkey(helpers.buildCsvCollection)
+    );
     expect(buildCsvCollectionDeclaration).toEqual(helpers.buildCsvCollection);
   });
 

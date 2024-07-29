@@ -2,6 +2,7 @@ export interface ReferenceableSymbol {
   kind: string;
   name: string;
   module: string;
+  visibility?: "internal" | "public";
 }
 
 export type ExternalDependencies = CoreDependencies &

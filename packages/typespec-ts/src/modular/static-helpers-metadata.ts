@@ -4,7 +4,7 @@ export const Utilities = {
     name: "buildCsvCollection",
     location: "utilities.ts"
   }
-};
+} as const;
 
 export const PagingHelpers = {
   PageSettings: {
@@ -28,7 +28,7 @@ export const PagingHelpers = {
     location: "pagingHelpers.ts"
   },
   BuildPagedAsyncIteratorOptions: {
-    kind: "function",
+    kind: "interface",
     name: "BuildPagedAsyncIteratorOptions",
     location: "pagingHelpers.ts"
   },
@@ -37,7 +37,7 @@ export const PagingHelpers = {
     name: "buildPagedAsyncIterator",
     location: "pagingHelpers.ts"
   }
-};
+} as const;
 
 export const PollingHellpers = {
   GetLongRunningPollerOptions: {
@@ -47,6 +47,7 @@ export const PollingHellpers = {
   },
   GetLongRunningPoller: {
     kind: "function",
-    name: "pollingHelpers.ts"
+    name: "getLongRunningPoller",
+    location: "pollingHelpers.ts"
   }
-};
+} as const;
