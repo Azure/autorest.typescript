@@ -150,7 +150,11 @@ async function traverseDirectory(
             result,
             path.join(relativePath, file)
           );
-        } else if (fileStat.isFile() && file.endsWith(".ts")) {
+        } else if (
+          fileStat.isFile() &&
+          !file.endsWith(".d.ts") &&
+          file.endsWith(".ts")
+        ) {
           const target = path.join(
             _targetStaticHelpersBaseDir,
             relativePath,
