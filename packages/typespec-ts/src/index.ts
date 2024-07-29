@@ -68,6 +68,7 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
+import { buildSamples as buildModularSamples } from "./next/buildSamples.js";
 
 export * from "./lib.js";
 
@@ -181,6 +182,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
+    buildModularSamples(dpgContext);
     if (emitterOptions.isModularLibrary) {
       // TODO: Emit modular parts of the library
       const modularSourcesRoot =
