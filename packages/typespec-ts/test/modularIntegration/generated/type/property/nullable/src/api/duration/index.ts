@@ -3,11 +3,11 @@
 
 import { DurationProperty } from "../../models/models.js";
 import {
+  NullableContext as Client,
   DurationGetNonNull200Response,
   DurationGetNull200Response,
   DurationPatchNonNull204Response,
   DurationPatchNull204Response,
-  NullableContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

@@ -6,10 +6,10 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import { GenerationOptions, GenerationResult } from "../models/models.js";
 import {
   isUnexpected,
+  RpcContext as Client,
   LongRunningRpc202Response,
   LongRunningRpcDefaultResponse,
   LongRunningRpcLogicalResponse,
-  RpcContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

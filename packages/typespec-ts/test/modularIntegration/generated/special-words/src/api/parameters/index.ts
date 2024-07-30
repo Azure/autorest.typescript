@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import {
+  SpecialWordsContext as Client,
   ParametersWithAnd204Response,
   ParametersWithAs204Response,
   ParametersWithAssert204Response,
@@ -36,7 +37,6 @@ import {
   ParametersWithWhile204Response,
   ParametersWithWith204Response,
   ParametersWithYield204Response,
-  SpecialWordsContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

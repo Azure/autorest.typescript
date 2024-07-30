@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
+  DictionaryContext as Client,
   DatetimeValueGet200Response,
   DatetimeValuePut204Response,
-  DictionaryContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

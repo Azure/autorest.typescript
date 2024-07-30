@@ -37,6 +37,7 @@ import {
   Yield,
 } from "../../models/models.js";
 import {
+  SpecialWordsContext as Client,
   ModelsWithAnd204Response,
   ModelsWithAs204Response,
   ModelsWithAssert204Response,
@@ -70,7 +71,6 @@ import {
   ModelsWithWhile204Response,
   ModelsWithWith204Response,
   ModelsWithYield204Response,
-  SpecialWordsContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

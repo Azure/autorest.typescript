@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { A } from "../../models/models.js";
-import { DOp1204Response, FooContext as Client } from "../../rest/index.js";
+import { FooContext as Client, DOp1204Response } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,

@@ -7,6 +7,7 @@ import {
   DinosaurUnion,
 } from "../models/models.js";
 import {
+  SingleDiscriminatorContext as Client,
   GetLegacyModel200Response,
   GetMissingDiscriminator200Response,
   GetModel200Response,
@@ -14,7 +15,6 @@ import {
   GetWrongDiscriminator200Response,
   PutModel204Response,
   PutRecursiveModel204Response,
-  SingleDiscriminatorContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

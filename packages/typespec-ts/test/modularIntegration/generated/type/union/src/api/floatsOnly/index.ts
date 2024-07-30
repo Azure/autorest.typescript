@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
+  UnionContext as Client,
   FloatsOnlyGet200Response,
   FloatsOnlySend204Response,
-  UnionContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

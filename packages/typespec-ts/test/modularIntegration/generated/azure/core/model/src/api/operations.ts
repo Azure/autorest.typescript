@@ -3,8 +3,8 @@
 
 import { AzureEmbeddingModel } from "../models/models.js";
 import {
-  Get200Response,
   ModelContext as Client,
+  Get200Response,
   Post200Response,
   Put204Response,
 } from "../rest/index.js";

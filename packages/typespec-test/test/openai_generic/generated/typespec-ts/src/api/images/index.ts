@@ -8,14 +8,14 @@ import {
   CreateImageVariationRequest,
 } from "../../models/models.js";
 import {
+  isUnexpected,
+  OpenAIContext as Client,
   ImagesCreate200Response,
   ImagesCreateDefaultResponse,
   ImagesCreateEdit200Response,
   ImagesCreateEditDefaultResponse,
   ImagesCreateVariation200Response,
   ImagesCreateVariationDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
