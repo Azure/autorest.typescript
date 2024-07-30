@@ -376,7 +376,11 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     serviceDocURL: productDocLink,
     packageSourceURL: packageSourceURL,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
-    samplesURL: packageSourceURL && `${packageSourceURL}/samples`,
+    samplesURL: packageSourceURL
+      ? model.options.generateSample
+        ? `${packageSourceURL}/samples`
+        : undefined
+      : undefined,
     apiRefURL: azureHuh
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
