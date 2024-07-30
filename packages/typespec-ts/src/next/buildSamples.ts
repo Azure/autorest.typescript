@@ -12,6 +12,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { emitCredential } from "./emitCredential.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { useDependencies } from "../framework/hooks/useDependencies.js";
 
 function getFirstOperation(dpgContext: SdkContext) {
   const client = dpgContext.sdkPackage
@@ -24,6 +25,14 @@ function getFirstOperation(dpgContext: SdkContext) {
 }
 
 export function buildSamples(dpgContext: SdkContext) {
+  const customDependencies = {
+    DefaultAzureCredential: {
+      kind: "externalDependency",
+      name: "DefaultAzureCredential",
+      module: "@azure/identity"
+    }
+  };
+
   const [client, operationGroup, operation] = getFirstOperation(dpgContext)!;
   const initialization = (client as SdkClientType<SdkServiceOperation>)
     .initialization;
@@ -43,7 +52,8 @@ export function buildSamples(dpgContext: SdkContext) {
     overwrite: true
   });
 
-  provideBinder(project);
+  provideBinder(project, { dependencies: customDependencies });
+  const Dependencies = useDependencies();
   // Initialize the binder
   const binder = useBinder();
 
@@ -51,7 +61,11 @@ export function buildSamples(dpgContext: SdkContext) {
   const functionBody = [];
   const clientParams = [];
   if (credentialParam) {
-    functionBody.push(`const credential = new ${credentialParam}();`);
+    functionBody.push(
+      `const credential = new ${resolveReference(
+        Dependencies.DefaultAzureCredential
+      )}();`
+    );
     clientParams.push("credential");
   }
   if (subscriptionIdParam) {

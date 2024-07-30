@@ -50,6 +50,11 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
     name: "uint8ArrayToString";
     module: string;
   };
+  DefaultAzureCredential: {
+    kind: "externalDependency";
+    name: "DefaultAzureCredential";
+    module: string;
+  };
 }
 
 const _CoreDependencies: CoreDependencies = {
@@ -107,6 +112,11 @@ const _CoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     name: "uint8ArrayToString",
     module: "@typespec/ts-http-runtime"
+  },
+  DefaultAzureCredential: {
+    kind: "externalDependency",
+    name: "DefaultAzureCredential",
+    module: "@azure/identity"
   }
 } as const;
 
