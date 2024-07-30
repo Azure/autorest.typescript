@@ -105,7 +105,8 @@
     "typescript": "~5.5.3",
     "vitest": "~1.6.0",
     "@vitest/coverage-v8": "~1.6.0",
-    "@vitest/coverage-istanbul": "~1.6.0"
+    "@vitest/coverage-istanbul": "~1.6.0",
+    "@microsoft/api-extractor": "^7.47.4"
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.44.0 <1.0.0",
