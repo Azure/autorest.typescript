@@ -7,9 +7,9 @@ import {
 } from "../../models/models.js";
 import {
   isUnexpected,
+  OpenAIContext as Client,
   ModerationsCreate200Response,
   ModerationsCreateDefaultResponse,
-  OpenAIContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

@@ -26,6 +26,8 @@ import {
   Embeddings,
 } from "../models/models.js";
 import {
+  isUnexpected,
+  OpenAIContext as Client,
   GenerateSpeechFromText200Response,
   GenerateSpeechFromTextDefaultResponse,
   GetAudioTranscriptionAsPlainText200Response,
@@ -44,8 +46,6 @@ import {
   GetEmbeddingsDefaultResponse,
   GetImageGenerations200Response,
   GetImageGenerationsDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

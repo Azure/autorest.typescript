@@ -3,11 +3,11 @@
 
 import { DatetimeProperty } from "../../models/models.js";
 import {
+  NullableContext as Client,
   DatetimeGetNonNull200Response,
   DatetimeGetNull200Response,
   DatetimePatchNonNull204Response,
   DatetimePatchNull204Response,
-  NullableContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

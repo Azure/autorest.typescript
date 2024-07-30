@@ -8,14 +8,14 @@ import {
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
+  isUnexpected,
+  NetworkAnalyticsContext as Client,
   DataProductsCatalogsGet200Response,
   DataProductsCatalogsGetDefaultResponse,
   DataProductsCatalogsListByResourceGroup200Response,
   DataProductsCatalogsListByResourceGroupDefaultResponse,
   DataProductsCatalogsListBySubscription200Response,
   DataProductsCatalogsListBySubscriptionDefaultResponse,
-  isUnexpected,
-  NetworkAnalyticsContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

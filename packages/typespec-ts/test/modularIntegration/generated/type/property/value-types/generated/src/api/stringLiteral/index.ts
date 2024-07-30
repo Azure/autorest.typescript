@@ -3,9 +3,9 @@
 
 import { StringLiteralProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   StringLiteralGet200Response,
   StringLiteralPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  ImmediateSuccess204Response,
   RepeatabilityContext as Client,
+  ImmediateSuccess204Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
