@@ -75,7 +75,7 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
-  const dpgContext = createContextWithDefaultOptions(context);
+  const dpgContext = await createContextWithDefaultOptions(context);
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -335,9 +335,9 @@ export async function $onEmit(context: EmitContext) {
   }
 }
 
-export function createContextWithDefaultOptions(
+export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
-): SdkContext {
+): Promise<SdkContext> {
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
@@ -354,5 +354,5 @@ export function createContextWithDefaultOptions(
     ...tcgcSettings
   };
 
-  return createSdkContext(context) as SdkContext;
+  return (await createSdkContext(context)) as SdkContext;
 }

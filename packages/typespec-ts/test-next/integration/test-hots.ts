@@ -3,11 +3,15 @@ import {
   SdkEmitterOptions,
   SdkHttpOperation,
   SdkServiceOperation,
-  createSdkContext,
+  createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
 import { EmitContext, Program } from "@typespec/compiler";
-import { createTestHost, createTestWrapper, TypeSpecTestLibrary } from "@typespec/compiler/testing";
+import {
+  createTestHost,
+  createTestWrapper,
+  TypeSpecTestLibrary
+} from "@typespec/compiler/testing";
 import { HttpTestLibrary } from "@typespec/http/testing";
 
 export async function createMyTestHost() {
@@ -23,29 +27,31 @@ export interface CreateSdkTestRunnerOptions extends SdkEmitterOptions {
   packageName?: string;
 }
 
-export async function createSdkContextFromTypespec(code: string, options: CreateSdkTestRunnerOptions = {}): Promise<SdkContext<CreateSdkTestRunnerOptions, SdkHttpOperation>>{
+export async function createSdkContextFromTypespec(
+  code: string,
+  options: CreateSdkTestRunnerOptions = {}
+): Promise<SdkContext<CreateSdkTestRunnerOptions, SdkHttpOperation>> {
   const runner = await createMyTestRunner();
   await runner.compile(code);
 
-  return createSdkContextTestHelper(runner.program, options);
+  return await createSdkContextTestHelper(runner.program, options);
 }
 
-
-export function createSdkContextTestHelper<
+export async function createSdkContextTestHelper<
   TOptions extends Record<string, any> = CreateSdkTestRunnerOptions,
-  TServiceOperation extends SdkServiceOperation = SdkHttpOperation,
+  TServiceOperation extends SdkServiceOperation = SdkHttpOperation
 >(
   program: Program,
   options: TOptions,
   sdkContextOption?: any
-): SdkContext<TOptions, TServiceOperation> {
+): Promise<SdkContext<TOptions, TServiceOperation>> {
   const emitContext: EmitContext<TOptions> = {
     program: program,
     emitterOutputDir: "dummy",
     options: options,
-    getAssetEmitter: null as any,
+    getAssetEmitter: null as any
   };
-  return createSdkContext(
+  return await createSdkContext(
     emitContext,
     options.emitterName ?? "@azure-tools/typespec-csharp",
     sdkContextOption
