@@ -16,7 +16,6 @@ import {
   getDefaultApiVersion,
   getHttpOperationWithCache,
   getLibraryName,
-  getSdkBuiltInType,
   getSdkUnion,
   getWireName,
   isApiVersion,
@@ -45,7 +44,6 @@ import {
   getSummary,
   getVisibility,
   IntrinsicScalarName,
-  IntrinsicType,
   isErrorModel,
   isNeverType,
   isNullType,
@@ -1418,7 +1416,7 @@ function emitUnion(
       description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
-      valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
+      valueType: emitSimpleType(sdkType.valueType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
       isNonExhaustive: context.rlcOptions?.experimentalExtensibleEnums ?? false,
@@ -1458,20 +1456,10 @@ function emitEnumMember(context: SdkContext, member: any): Record<string, any> {
   };
 }
 
-function emitSimpleType(
-  context: SdkContext,
-  type: Scalar | IntrinsicType | SdkBuiltInType
-): Record<string, any> {
-  let sdkType: SdkBuiltInType;
-  if (type.kind === "Scalar" || type.kind === "Intrinsic") {
-    sdkType = getSdkBuiltInType(context, type);
-  } else {
-    sdkType = type;
-  }
-
+function emitSimpleType(type: SdkBuiltInType): Record<string, any> {
   return {
-    nullable: isNullType(sdkType.__raw!),
-    type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
+    nullable: isNullType(type.__raw!),
+    type: type.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
     sdkDefaultValue: undefined,
