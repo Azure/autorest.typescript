@@ -15,6 +15,8 @@ import {
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
+  isUnexpected,
+  NetworkAnalyticsContext as Client,
   DataTypesCreate200Response,
   DataTypesCreate201Response,
   DataTypesCreateDefaultResponse,
@@ -37,8 +39,6 @@ import {
   DataTypesUpdate202Response,
   DataTypesUpdateDefaultResponse,
   DataTypesUpdateLogicalResponse,
-  isUnexpected,
-  NetworkAnalyticsContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

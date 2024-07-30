@@ -3,8 +3,8 @@
 
 import { Siamese } from "../models/models.js";
 import {
-  GetValid200Response,
   NotDiscriminatedContext as Client,
+  GetValid200Response,
   PostValid204Response,
   PutValid200Response,
 } from "../rest/index.js";

@@ -3,9 +3,9 @@
 
 import { CollectionsStringProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   CollectionsStringGet200Response,
   CollectionsStringPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

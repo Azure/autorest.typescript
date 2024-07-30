@@ -3,12 +3,12 @@
 
 import { BodyParameter } from "../../models/models.js";
 import {
+  SpreadContext as Client,
   ModelSpreadAsRequestBody204Response,
   ModelSpreadCompositeRequest204Response,
   ModelSpreadCompositeRequestMix204Response,
   ModelSpreadCompositeRequestOnlyWithBody204Response,
   ModelSpreadCompositeRequestWithoutBody204Response,
-  SpreadContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
