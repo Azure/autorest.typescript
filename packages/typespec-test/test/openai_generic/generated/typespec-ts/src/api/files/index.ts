@@ -8,6 +8,8 @@ import {
   DeleteFileResponse,
 } from "../../models/models.js";
 import {
+  isUnexpected,
+  OpenAIContext as Client,
   FilesCreate200Response,
   FilesCreateDefaultResponse,
   FilesDelete200Response,
@@ -18,8 +20,6 @@ import {
   FilesListDefaultResponse,
   FilesRetrieve200Response,
   FilesRetrieveDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

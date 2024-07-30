@@ -3,9 +3,9 @@
 
 import { StringAndArrayCases } from "../../models/models.js";
 import {
+  UnionContext as Client,
   StringAndArrayGet200Response,
   StringAndArraySend204Response,
-  UnionContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

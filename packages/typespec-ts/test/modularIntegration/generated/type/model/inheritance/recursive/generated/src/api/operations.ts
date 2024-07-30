@@ -3,9 +3,9 @@
 
 import { extensionSerializer, Extension } from "../models/models.js";
 import {
+  RecursiveContext as Client,
   Get200Response,
   Put204Response,
-  RecursiveContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

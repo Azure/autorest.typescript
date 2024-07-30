@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import {
+  SpecialWordsContext as Client,
   OperationsAnd204Response,
   OperationsAs204Response,
   OperationsAssert204Response,
@@ -35,7 +36,6 @@ import {
   OperationsWhile204Response,
   OperationsWith204Response,
   OperationsYield204Response,
-  SpecialWordsContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

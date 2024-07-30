@@ -20,6 +20,7 @@ import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
+  LoadTestServiceContext as Client,
   LoadTestAdministrationCreateOrUpdateAppComponents200Response,
   LoadTestAdministrationCreateOrUpdateAppComponents201Response,
   LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse,
@@ -47,7 +48,6 @@ import {
   LoadTestAdministrationListTestsDefaultResponse,
   LoadTestAdministrationUploadTestFile201Response,
   LoadTestAdministrationUploadTestFileDefaultResponse,
-  LoadTestServiceContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

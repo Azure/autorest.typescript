@@ -19,7 +19,8 @@
     "types/anomaly-detector-mv-rest.d.ts",
     "README.md",
     "LICENSE",
-    "review/*"
+    "review/*",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "@azure-rest/core-client": "^1.4.0",

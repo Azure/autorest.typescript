@@ -3,9 +3,9 @@
 
 import { UnknownStringProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   UnknownStringGet200Response,
   UnknownStringPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

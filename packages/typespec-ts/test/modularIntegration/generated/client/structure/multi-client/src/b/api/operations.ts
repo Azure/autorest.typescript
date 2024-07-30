@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  Four204Response,
   ServiceContext as Client,
+  Four204Response,
   Six204Response,
   Two204Response,
 } from "../../rest/index.js";

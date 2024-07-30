@@ -3,9 +3,9 @@
 
 import { EnumsOnlyCases } from "../../models/models.js";
 import {
+  UnionContext as Client,
   EnumsOnlyGet200Response,
   EnumsOnlySend204Response,
-  UnionContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

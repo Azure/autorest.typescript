@@ -77,7 +77,8 @@ function getAzureCjsCommonInfo({
       `types/${nameWithoutScope ?? name}.d.ts`,
       "README.md",
       "LICENSE",
-      "review/*"
+      "review/*",
+      "CHANGELOG.md"
     ]
   };
 }
@@ -87,7 +88,7 @@ function getAzureEsmCommonInfo({ moduleKind }: AzurePackageInfoConfig) {
     return {};
   }
   return {
-    files: ["dist", "README.md", "LICENSE", "review/*"]
+    files: ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"]
   };
 }
 

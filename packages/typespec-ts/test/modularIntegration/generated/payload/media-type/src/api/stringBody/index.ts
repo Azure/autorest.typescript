@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
+  MediaTypeContext as Client,
   GetAsJson200Response,
   GetAsText200Response,
-  MediaTypeContext as Client,
   SendAsJson200Response,
   SendAsText200Response,
 } from "../../rest/index.js";
