@@ -14,7 +14,7 @@ import {
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
-  AudioSpeechOptions,
+  SpeechGenerationOptions,
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
@@ -26,12 +26,12 @@ import {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./models/options.js";
 import {
   createOpenAI,
-  OpenAIClientOptions,
+  OpenAIClientOptionalParams,
   OpenAIContext,
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,
@@ -40,11 +40,11 @@ import {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
-  getAudioSpeech,
+  generateSpeechFromText,
   getEmbeddings,
 } from "./api/index.js";
 
-export { OpenAIClientOptions } from "./api/openAIContext.js";
+export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;
@@ -54,7 +54,7 @@ export class OpenAIClient {
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
-    options: OpenAIClientOptions = {},
+    options: OpenAIClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
@@ -174,12 +174,12 @@ export class OpenAIClient {
   }
 
   /** Generates text-to-speech audio from the input text. */
-  getAudioSpeech(
+  generateSpeechFromText(
     deploymentId: string,
-    body: AudioSpeechOptions,
-    options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+    body: SpeechGenerationOptions,
+    options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
   ): Promise<Uint8Array> {
-    return getAudioSpeech(this._client, deploymentId, body, options);
+    return generateSpeechFromText(this._client, deploymentId, body, options);
   }
 
   /** Return the embeddings for a given prompt. */

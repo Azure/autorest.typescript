@@ -7,14 +7,14 @@ import { CustomContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface CustomClientOptions extends ClientOptions {}
+export interface CustomClientOptionalParams extends ClientOptions {}
 
 export { CustomContext } from "../rest/index.js";
 
 /** Illustrates clients generated with generic HTTP auth. */
 export function createCustom(
   credential: KeyCredential,
-  options: CustomClientOptions = {},
+  options: CustomClientOptionalParams = {},
 ): CustomContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

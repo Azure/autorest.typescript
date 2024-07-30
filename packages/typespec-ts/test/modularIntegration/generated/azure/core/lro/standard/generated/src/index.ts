@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { StandardClient, StandardClientOptions } from "./standardClient.js";
+export {
+  StandardClient,
+  StandardClientOptionalParams,
+} from "./standardClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,

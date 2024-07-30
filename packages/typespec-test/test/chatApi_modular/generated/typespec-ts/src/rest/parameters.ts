@@ -8,14 +8,14 @@ import {
 } from "./models.js";
 
 export interface CreateStreamingBodyParam {
-  body?: StreamingChatCompletionOptions;
+  body: StreamingChatCompletionOptions;
 }
 
 export type CreateStreamingParameters = CreateStreamingBodyParam &
   RequestParameters;
 
 export interface CreateBodyParam {
-  body?: ChatCompletionOptions;
+  body: ChatCompletionOptions;
 }
 
 export type CreateParameters = CreateBodyParam & RequestParameters;

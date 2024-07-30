@@ -6,10 +6,10 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import { GenerationOptions, GenerationResult } from "../models/models.js";
 import {
   isUnexpected,
+  RpcContext as Client,
   LongRunningRpc202Response,
   LongRunningRpcDefaultResponse,
   LongRunningRpcLogicalResponse,
-  RpcContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -45,16 +45,16 @@ export async function _longRunningRpcDeserialize(
     throw createRestError(result);
   }
 
-  result = result as LongRunningRpcLogicalResponse;
-  if (result?.body?.result === undefined) {
+  const res = result as unknown as LongRunningRpcLogicalResponse;
+  if (res?.body?.result === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
+      `Expected a result in the response at position "res.body.result"`,
       result,
     );
   }
 
   return {
-    data: result.body.result["data"],
+    data: res.body.result["data"],
   };
 }
 

@@ -3,7 +3,7 @@
 
 export {
   RenamedFromClient,
-  RenamedFromClientOptions,
+  RenamedFromClientOptionalParams,
 } from "./renamedFromClient.js";
 export {
   NewModel,

@@ -6,10 +6,10 @@ import {
   CreateCompletionResponse,
 } from "../../models/models.js";
 import {
-  CompletionsCreate200Response,
-  CompletionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
+  CompletionsCreate200Response,
+  CompletionsCreateDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

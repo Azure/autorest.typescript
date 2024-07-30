@@ -3,9 +3,9 @@
 
 import { MixedLiteralsCases } from "../../models/models.js";
 import {
+  UnionContext as Client,
   MixedLiteralsGet200Response,
   MixedLiteralsSend204Response,
-  UnionContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

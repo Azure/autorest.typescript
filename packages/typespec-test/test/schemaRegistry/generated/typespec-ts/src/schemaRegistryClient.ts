@@ -9,11 +9,11 @@ import {
 } from "./classic/schemaOperations/index.js";
 import {
   createSchemaRegistry,
-  SchemaRegistryClientOptions,
+  SchemaRegistryClientOptionalParams,
   SchemaRegistryContext,
 } from "./api/index.js";
 
-export { SchemaRegistryClientOptions } from "./api/schemaRegistryContext.js";
+export { SchemaRegistryClientOptionalParams } from "./api/schemaRegistryContext.js";
 
 export class SchemaRegistryClient {
   private _client: SchemaRegistryContext;
@@ -24,7 +24,7 @@ export class SchemaRegistryClient {
   constructor(
     fullyQualifiedNamespace: string,
     credential: TokenCredential,
-    options: SchemaRegistryClientOptions = {},
+    options: SchemaRegistryClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions

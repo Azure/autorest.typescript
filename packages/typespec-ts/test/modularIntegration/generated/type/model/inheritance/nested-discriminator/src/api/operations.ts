@@ -3,11 +3,11 @@
 
 import { fishUnionSerializer, FishUnion } from "../models/models.js";
 import {
+  NestedDiscriminatorContext as Client,
   GetMissingDiscriminator200Response,
   GetModel200Response,
   GetRecursiveModel200Response,
   GetWrongDiscriminator200Response,
-  NestedDiscriminatorContext as Client,
   PutModel204Response,
   PutRecursiveModel204Response,
 } from "../rest/index.js";

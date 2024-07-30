@@ -44,7 +44,7 @@ export function getAzurePackageDependencies({
   if (hasLro) {
     dependencies = {
       ...dependencies,
-      "@azure/core-lro": "3.0.0",
+      "@azure/core-lro": "^3.0.0",
       "@azure/abort-controller": "^2.1.2"
     };
   }
@@ -77,7 +77,8 @@ function getAzureCjsCommonInfo({
       `types/${nameWithoutScope ?? name}.d.ts`,
       "README.md",
       "LICENSE",
-      "review/*"
+      "review/*",
+      "CHANGELOG.md"
     ]
   };
 }
@@ -87,7 +88,7 @@ function getAzureEsmCommonInfo({ moduleKind }: AzurePackageInfoConfig) {
     return {};
   }
   return {
-    files: ["dist", "README.md", "LICENSE", "review/*"]
+    files: ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"]
   };
 }
 

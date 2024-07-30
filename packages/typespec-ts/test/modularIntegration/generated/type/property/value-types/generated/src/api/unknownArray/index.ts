@@ -3,9 +3,9 @@
 
 import { UnknownArrayProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   UnknownArrayGet200Response,
   UnknownArrayPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

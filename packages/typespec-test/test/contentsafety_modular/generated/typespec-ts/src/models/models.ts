@@ -4,8 +4,8 @@
 import { uint8ArrayToString } from "@azure/core-util";
 import {
   TextBlocklist as TextBlocklistRest,
-  TextBlockItemInfo as TextBlockItemInfoRest,
   AddOrUpdateBlockItemsOptions as AddOrUpdateBlockItemsOptionsRest,
+  TextBlockItemInfo as TextBlockItemInfoRest,
   RemoveBlockItemsOptions as RemoveBlockItemsOptionsRest,
   AnalyzeImageOptions as AnalyzeImageOptionsRest,
   ImageData as ImageDataRest,
@@ -29,6 +29,20 @@ export function textBlocklistSerializer(
   };
 }
 
+/** The request of adding blockItems to text blocklist. */
+export interface AddOrUpdateBlockItemsOptions {
+  /** Array of blockItemInfo to add. */
+  blockItems: TextBlockItemInfo[];
+}
+
+export function addOrUpdateBlockItemsOptionsSerializer(
+  item: AddOrUpdateBlockItemsOptions,
+): AddOrUpdateBlockItemsOptionsRest {
+  return {
+    blockItems: item["blockItems"].map(textBlockItemInfoSerializer),
+  };
+}
+
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
@@ -43,20 +57,6 @@ export function textBlockItemInfoSerializer(
   return {
     description: item["description"],
     text: item["text"],
-  };
-}
-
-/** The request of adding blockItems to text blocklist. */
-export interface AddOrUpdateBlockItemsOptions {
-  /** Array of blockItemInfo to add. */
-  blockItems: TextBlockItemInfo[];
-}
-
-export function addOrUpdateBlockItemsOptionsSerializer(
-  item: AddOrUpdateBlockItemsOptions,
-): AddOrUpdateBlockItemsOptionsRest {
-  return {
-    blockItems: item["blockItems"].map(textBlockItemInfoSerializer),
   };
 }
 

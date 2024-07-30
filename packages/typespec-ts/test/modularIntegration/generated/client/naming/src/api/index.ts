@@ -3,7 +3,7 @@
 
 export {
   createNaming,
-  NamingClientOptions,
+  NamingClientOptionalParams,
   NamingContext,
 } from "./namingContext.js";
 export {

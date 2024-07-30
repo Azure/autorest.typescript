@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BodyParameter, CompositeRequestMix } from "../../models/models.js";
+import { BodyParameter } from "../../models/models.js";
 import {
+  SpreadContext as Client,
   ModelSpreadAsRequestBody204Response,
   ModelSpreadCompositeRequest204Response,
   ModelSpreadCompositeRequestMix204Response,
   ModelSpreadCompositeRequestOnlyWithBody204Response,
   ModelSpreadCompositeRequestWithoutBody204Response,
-  SpreadContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -25,14 +25,14 @@ import {
 
 export function _modelSpreadAsRequestBodySend(
   context: Client,
-  body: BodyParameter,
+  name: string,
   options: ModelSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ModelSpreadAsRequestBody204Response> {
   return context
     .path("/parameters/spread/model/request-body")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { name: body["name"] },
+      body: { name: name },
     });
 }
 
@@ -48,10 +48,10 @@ export async function _modelSpreadAsRequestBodyDeserialize(
 
 export async function modelSpreadAsRequestBody(
   context: Client,
-  body: BodyParameter,
+  name: string,
   options: ModelSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _modelSpreadAsRequestBodySend(context, body, options);
+  const result = await _modelSpreadAsRequestBodySend(context, name, options);
   return _modelSpreadAsRequestBodyDeserialize(result);
 }
 
@@ -188,7 +188,7 @@ export function _modelSpreadCompositeRequestMixSend(
   context: Client,
   name: string,
   testHeader: string,
-  body: CompositeRequestMix,
+  prop: string,
   options: ModelSpreadCompositeRequestMixOptionalParams = {
     requestOptions: {},
   },
@@ -198,7 +198,7 @@ export function _modelSpreadCompositeRequestMixSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       headers: { "test-header": testHeader },
-      body: { prop: body["prop"] },
+      body: { prop: prop },
     });
 }
 
@@ -216,7 +216,7 @@ export async function modelSpreadCompositeRequestMix(
   context: Client,
   name: string,
   testHeader: string,
-  body: CompositeRequestMix,
+  prop: string,
   options: ModelSpreadCompositeRequestMixOptionalParams = {
     requestOptions: {},
   },
@@ -225,7 +225,7 @@ export async function modelSpreadCompositeRequestMix(
     context,
     name,
     testHeader,
-    body,
+    prop,
     options,
   );
   return _modelSpreadCompositeRequestMixDeserialize(result);

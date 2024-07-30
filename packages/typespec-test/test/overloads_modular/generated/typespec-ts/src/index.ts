@@ -3,7 +3,7 @@
 
 export {
   WidgetManagerClient,
-  WidgetManagerClientOptions,
+  WidgetManagerClientOptionalParams,
 } from "./widgetManagerClient.js";
 export {
   Versions,

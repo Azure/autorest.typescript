@@ -270,6 +270,14 @@ export const rlcTsps = [
   {
     outputPath: "azure/resource-manager/models/resources",
     inputPath: "azure/resource-manager/models/resources"
+  },
+  {
+    outputPath: "azure/core/model",
+    inputPath: "azure/core/model"
+  },
+  {
+    outputPath: "azure/resource-manager/models/common-types/managed-identity",
+    inputPath: "azure/resource-manager/models/common-types/managed-identity"
   }
 ];
 
@@ -281,6 +289,10 @@ export const nonBrandedRlcTsps = [
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "azure/core/model",
+    inputPath: "azure/core/model"
+  },
   {
     outputPath: "azure/resource-manager/models/resources",
     inputPath: "azure/resource-manager/models/resources"
@@ -514,6 +526,18 @@ export const modularTsps = [
   {
     outputPath: "type/model/flatten",
     inputPath: "type/model/flatten"
+  },
+  {
+    outputPath: "resiliency/srv-driven-old",
+    inputPath: "resiliency/srv-driven/old.tsp"
+  },
+  {
+    outputPath: "resiliency/srv-driven-main",
+    inputPath: "resiliency/srv-driven/main.tsp"
+  },
+  {
+    outputPath: "azure/resource-manager/models/common-types/managed-identity",
+    inputPath: "azure/resource-manager/models/common-types/managed-identity"
   }
 ];
 

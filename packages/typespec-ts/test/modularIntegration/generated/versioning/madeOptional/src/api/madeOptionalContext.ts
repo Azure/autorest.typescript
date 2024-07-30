@@ -7,7 +7,7 @@ import { MadeOptionalContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface MadeOptionalClientOptions extends ClientOptions {}
+export interface MadeOptionalClientOptionalParams extends ClientOptions {}
 
 export { MadeOptionalContext } from "../rest/index.js";
 
@@ -15,7 +15,7 @@ export { MadeOptionalContext } from "../rest/index.js";
 export function createMadeOptional(
   endpointParam: string,
   version: Versions,
-  options: MadeOptionalClientOptions = {},
+  options: MadeOptionalClientOptionalParams = {},
 ): MadeOptionalContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

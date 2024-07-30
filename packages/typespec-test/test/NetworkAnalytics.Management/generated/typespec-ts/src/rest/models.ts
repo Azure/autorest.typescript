@@ -80,7 +80,7 @@ export interface DataProduct extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductProperties;
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentity;
+  identity?: ManagedServiceIdentityV4;
 }
 
 /** The data product properties. */
@@ -187,11 +187,11 @@ export interface ManagedResourceGroupConfiguration {
 export interface ConsumptionEndpointsProperties {}
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedServiceIdentity {
+export interface ManagedServiceIdentityV4 {
   /**
    * The type of managed identity assigned to this resource.
    *
-   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned,UserAssigned"
+   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned"
    */
   type: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
@@ -331,6 +331,7 @@ export interface DataTypeProperties {
 
 /** The type used for update operations of the DataType. */
 export interface DataTypeUpdate {
+  /** The resource-specific properties for this resource. */
   properties?: DataTypeUpdateProperties;
 }
 
@@ -363,9 +364,10 @@ export interface ContainerSaS {
 /** The type used for update operations of the DataProduct. */
 export interface DataProductUpdate {
   /** The managed service identities assigned to this resource. */
-  identity?: ManagedServiceIdentity;
+  identity?: ManagedServiceIdentityV4;
   /** Resource tags. */
   tags?: Record<string, string>;
+  /** The resource-specific properties for this resource. */
   properties?: DataProductUpdateProperties;
 }
 

@@ -1,4 +1,4 @@
-# OpenAI REST client library for JavaScript
+# OpenAI client library for JavaScript
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
@@ -14,7 +14,7 @@ Key links:
 
 ### Install the `@msinternal/openai-non-branded` package
 
-Install the OpenAI REST client REST client library for JavaScript with `npm`:
+Install the OpenAI client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/openai-non-branded

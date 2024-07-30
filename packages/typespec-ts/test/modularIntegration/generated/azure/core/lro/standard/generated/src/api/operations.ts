@@ -5,6 +5,8 @@ import { getLongRunningPoller } from "./pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import { User, ExportedUser } from "../models/models.js";
 import {
+  isUnexpected,
+  StandardContext as Client,
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
@@ -15,8 +17,6 @@ import {
   Export202Response,
   ExportDefaultResponse,
   ExportLogicalResponse,
-  isUnexpected,
-  StandardContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -59,10 +59,10 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  result = result as CreateOrReplaceLogicalResponse;
+  const res = result as unknown as CreateOrReplaceLogicalResponse;
   return {
-    name: result.body["name"],
-    role: result.body["role"],
+    name: res.body["name"],
+    role: res.body["role"],
   };
 }
 
@@ -100,7 +100,6 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  result = result as DeleteLogicalResponse;
   return;
 }
 
@@ -145,17 +144,17 @@ export async function _$exportDeserialize(
     throw createRestError(result);
   }
 
-  result = result as ExportLogicalResponse;
-  if (result?.body?.result === undefined) {
+  const res = result as unknown as ExportLogicalResponse;
+  if (res?.body?.result === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
+      `Expected a result in the response at position "res.body.result"`,
       result,
     );
   }
 
   return {
-    name: result.body.result["name"],
-    resourceUri: result.body.result["resourceUri"],
+    name: res.body.result["name"],
+    resourceUri: res.body.result["resourceUri"],
   };
 }
 

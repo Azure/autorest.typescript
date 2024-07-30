@@ -3,12 +3,12 @@
 
 export {
   ChatProtocolClient,
-  ChatProtocolClientOptions,
+  ChatProtocolClientOptionalParams,
 } from "./chatProtocolClient.js";
 export {
+  StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
-  StreamingChatCompletionOptionsRecord,
   ChatCompletionChunkRecord,
   ChoiceDeltaRecord,
   ChatMessageDelta,

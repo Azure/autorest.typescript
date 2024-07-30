@@ -33,4 +33,4 @@ alias TextPlainResponseHeadersTraits = Azure.Core.Traits.ResponseHeadersTrait<{
   @doc("The content type 'text/plain' for the audio text response.")
   @header("content-type")
   contentType: "text/plain";
-}>; 
+}>;

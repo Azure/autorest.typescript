@@ -4,9 +4,9 @@
 import { Collection } from "../../models/models.js";
 import {
   isUnexpected,
+  ParametrizedHostContext as Client,
   ListCollections200Response,
   ListCollectionsDefaultResponse,
-  ParametrizedHostContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

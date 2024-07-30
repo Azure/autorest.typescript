@@ -38,7 +38,33 @@ interface OpenAIClient {
 
   getImageGenerations is Azure.OpenAI.getImageGenerations;
 
-  getAudioSpeech is Azure.OpenAI.getAudioSpeech;
+  generateSpeechFromText is Azure.OpenAI.generateSpeechFromText;
 
   getEmbeddings is Azure.OpenAI.getEmbeddings;
 }
+
+@@clientName(Azure.OpenAI.GenerateSpeechFromTextBody.body,
+  "speechGenerationOptions",
+  "java"
+);
+@@clientName(Azure.OpenAI.GetAudioTranscriptionBody.body,
+  "audioTranscriptionOptions",
+  "java"
+);
+@@clientName(Azure.OpenAI.GetAudioTranslationBody.body,
+  "audioTranslationOptions",
+  "java"
+);
+@@clientName(Azure.OpenAI.GetChatCompletionsBody.body,
+  "chatCompletionsOptions",
+  "java"
+);
+@@clientName(Azure.OpenAI.GetCompletionsBody.body,
+  "completionsOptions",
+  "java"
+);
+@@clientName(Azure.OpenAI.GetEmbeddingsBody.body, "embeddingsOptions", "java");
+@@clientName(Azure.OpenAI.GetImageGenerationsBody.body,
+  "imageGenerationOptions",
+  "java"
+);

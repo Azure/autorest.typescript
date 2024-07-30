@@ -9,7 +9,7 @@ import {
   GetCompletionsParameters,
   GetChatCompletionsParameters,
   GetImageGenerationsParameters,
-  GetAudioSpeechParameters,
+  GenerateSpeechFromTextParameters,
   GetEmbeddingsParameters,
 } from "./parameters.js";
 import {
@@ -27,8 +27,8 @@ import {
   GetChatCompletionsDefaultResponse,
   GetImageGenerations200Response,
   GetImageGenerationsDefaultResponse,
-  GetAudioSpeech200Response,
-  GetAudioSpeechDefaultResponse,
+  GenerateSpeechFromText200Response,
+  GenerateSpeechFromTextDefaultResponse,
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
 } from "./responses.js";
@@ -81,7 +81,7 @@ export interface GetCompletions {
    * provided prompt data.
    */
   post(
-    options?: GetCompletionsParameters,
+    options: GetCompletionsParameters,
   ): StreamableMethod<
     GetCompletions200Response | GetCompletionsDefaultResponse
   >;
@@ -94,7 +94,7 @@ export interface GetChatCompletions {
    * provided prompt data.
    */
   post(
-    options?: GetChatCompletionsParameters,
+    options: GetChatCompletionsParameters,
   ): StreamableMethod<
     GetChatCompletions200Response | GetChatCompletionsDefaultResponse
   >;
@@ -103,25 +103,25 @@ export interface GetChatCompletions {
 export interface GetImageGenerations {
   /** Creates an image given a prompt. */
   post(
-    options?: GetImageGenerationsParameters,
+    options: GetImageGenerationsParameters,
   ): StreamableMethod<
     GetImageGenerations200Response | GetImageGenerationsDefaultResponse
   >;
 }
 
-export interface GetAudioSpeech {
+export interface GenerateSpeechFromText {
   /** Generates text-to-speech audio from the input text. */
   post(
-    options?: GetAudioSpeechParameters,
+    options: GenerateSpeechFromTextParameters,
   ): StreamableMethod<
-    GetAudioSpeech200Response | GetAudioSpeechDefaultResponse
+    GenerateSpeechFromText200Response | GenerateSpeechFromTextDefaultResponse
   >;
 }
 
 export interface GetEmbeddings {
   /** Return the embeddings for a given prompt. */
   post(
-    options?: GetEmbeddingsParameters,
+    options: GetEmbeddingsParameters,
   ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
 }
 
@@ -155,7 +155,7 @@ export interface Routes {
   (
     path: "/deployments/{deploymentId}/audio/speech",
     deploymentId: string,
-  ): GetAudioSpeech;
+  ): GenerateSpeechFromText;
   /** Resource for '/deployments/\{deploymentId\}/embeddings' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/embeddings",

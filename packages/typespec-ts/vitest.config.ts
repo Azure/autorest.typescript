@@ -6,7 +6,7 @@ export default defineConfig({
       provider: "istanbul",
       reporter: ["text", "json", "html"],
       all: true,
-      include: ["src/modular/serialization/**/*.ts"],
+      include: ["src/modular/serialization/**/*.ts", "src/framework/**/*.ts"],
       exclude: ["**/*.spec.ts", "**/*.spec.tsx", ".next/*"]
     }
   }

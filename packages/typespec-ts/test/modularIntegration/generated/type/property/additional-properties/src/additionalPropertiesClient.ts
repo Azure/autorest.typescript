@@ -132,11 +132,11 @@ import {
 } from "./classic/spreadRecordNonDiscriminatedUnion3/index.js";
 import {
   createAdditionalProperties,
-  AdditionalPropertiesClientOptions,
+  AdditionalPropertiesClientOptionalParams,
   AdditionalPropertiesContext,
 } from "./api/index.js";
 
-export { AdditionalPropertiesClientOptions } from "./api/additionalPropertiesContext.js";
+export { AdditionalPropertiesClientOptionalParams } from "./api/additionalPropertiesContext.js";
 
 export class AdditionalPropertiesClient {
   private _client: AdditionalPropertiesContext;
@@ -144,7 +144,7 @@ export class AdditionalPropertiesClient {
   public readonly pipeline: Pipeline;
 
   /** Tests for additional properties of models */
-  constructor(options: AdditionalPropertiesClientOptions = {}) {
+  constructor(options: AdditionalPropertiesClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -42,9 +42,13 @@ import {
   getMixedTypesOperations,
   MixedTypesOperations,
 } from "./classic/mixedTypes/index.js";
-import { createUnion, UnionClientOptions, UnionContext } from "./api/index.js";
+import {
+  createUnion,
+  UnionClientOptionalParams,
+  UnionContext,
+} from "./api/index.js";
 
-export { UnionClientOptions } from "./api/unionContext.js";
+export { UnionClientOptionalParams } from "./api/unionContext.js";
 
 export class UnionClient {
   private _client: UnionContext;
@@ -52,7 +56,7 @@ export class UnionClient {
   public readonly pipeline: Pipeline;
 
   /** Describe scenarios for various combinations of unions. */
-  constructor(options: UnionClientOptions = {}) {
+  constructor(options: UnionClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

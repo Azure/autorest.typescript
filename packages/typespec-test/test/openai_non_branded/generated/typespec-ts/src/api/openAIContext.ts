@@ -6,14 +6,14 @@ import { OpenAIContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
 /** Optional parameters for the client. */
-export interface OpenAIClientOptions extends ClientOptions {}
+export interface OpenAIClientOptionalParams extends ClientOptions {}
 
 export { OpenAIContext } from "../rest/index.js";
 
 /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
 export function createOpenAI(
   credential: KeyCredential,
-  options: OpenAIClientOptions = {},
+  options: OpenAIClientOptionalParams = {},
 ): OpenAIContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

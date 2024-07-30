@@ -28,6 +28,7 @@ async function topLevelTrackedResourcesUpdateSample() {
     .patch({
       body: {
         tags: { key: "{Your tags}" },
+        location: "{Your location}",
         properties: { description: "{Your description}" },
       },
     });

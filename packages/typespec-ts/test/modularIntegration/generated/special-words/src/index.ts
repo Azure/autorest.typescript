@@ -3,7 +3,7 @@
 
 export {
   SpecialWordsClient,
-  SpecialWordsClientOptions,
+  SpecialWordsClientOptionalParams,
 } from "./specialWordsClient.js";
 export {
   SameAsModel,

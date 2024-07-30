@@ -7,6 +7,7 @@ import {
   AudioTranscriptionOptions as AudioTranscriptionOptionsRest,
   AudioTranslationOptions as AudioTranslationOptionsRest,
   CompletionsOptions as CompletionsOptionsRest,
+  ChatCompletionsOptions as ChatCompletionsOptionsRest,
   ChatRequestMessage as ChatRequestMessageRest,
   ChatRequestSystemMessage as ChatRequestSystemMessageRest,
   ChatRequestUserMessage as ChatRequestUserMessageRest,
@@ -36,6 +37,9 @@ import {
   AzureSearchIndexFieldMappingOptions as AzureSearchIndexFieldMappingOptionsRest,
   OnYourDataVectorizationSource as OnYourDataVectorizationSourceRest,
   OnYourDataEndpointVectorizationSource as OnYourDataEndpointVectorizationSourceRest,
+  OnYourDataVectorSearchAuthenticationOptions as OnYourDataVectorSearchAuthenticationOptionsRest,
+  OnYourDataVectorSearchApiKeyAuthenticationOptions as OnYourDataVectorSearchApiKeyAuthenticationOptionsRest,
+  OnYourDataVectorSearchAccessTokenAuthenticationOptions as OnYourDataVectorSearchAccessTokenAuthenticationOptionsRest,
   OnYourDataDeploymentNameVectorizationSource as OnYourDataDeploymentNameVectorizationSourceRest,
   OnYourDataModelIdVectorizationSource as OnYourDataModelIdVectorizationSourceRest,
   AzureMachineLearningIndexChatExtensionConfiguration as AzureMachineLearningIndexChatExtensionConfigurationRest,
@@ -60,20 +64,11 @@ import {
   ChatCompletionsNamedToolSelection as ChatCompletionsNamedToolSelectionRest,
   ChatCompletionsNamedFunctionToolSelection as ChatCompletionsNamedFunctionToolSelectionRest,
   ChatCompletionsFunctionToolSelection as ChatCompletionsFunctionToolSelectionRest,
-  ChatCompletionsOptions as ChatCompletionsOptionsRest,
   ImageGenerationOptions as ImageGenerationOptionsRest,
-  AudioSpeechOptions as AudioSpeechOptionsRest,
+  SpeechGenerationOptions as SpeechGenerationOptionsRest,
   EmbeddingsOptions as EmbeddingsOptionsRest,
 } from "../rest/index.js";
 import { ErrorModel } from "@azure-rest/core-client";
-
-/** Defines available options for the underlying response format of output transcription information. */
-export type AudioTranscriptionFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
 
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
@@ -103,6 +98,13 @@ export interface AudioTranscriptionOptions {
    * If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
    */
   temperature?: number;
+  /**
+   * The timestamp granularities to populate for this transcription.
+   * `response_format` must be set `verbose_json` to use timestamp granularities.
+   * Either or both of these options are supported: `word`, or `segment`.
+   * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.
+   */
+  timestampGranularities?: AudioTranscriptionTimestampGranularity[];
   /** The model to use for this transcription request. */
   model?: string;
 }
@@ -117,9 +119,20 @@ export function audioTranscriptionOptionsSerializer(
     language: item["language"],
     prompt: item["prompt"],
     temperature: item["temperature"],
+    timestamp_granularities: item["timestampGranularities"],
     model: item["model"],
   };
 }
+
+/** Defines available options for the underlying response format of output transcription information. */
+export type AudioTranscriptionFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
+/** Defines the timestamp granularities that can be requested on a verbose transcription response. */
+export type AudioTranscriptionTimestampGranularity = "word" | "segment";
 
 /** Result information for an operation that transcribed spoken audio into written text. */
 export interface AudioTranscription {
@@ -136,6 +149,8 @@ export interface AudioTranscription {
   duration?: number;
   /** A collection of information about the timing, probabilities, and other detail of each processed audio segment. */
   segments?: AudioTranscriptionSegment[];
+  /** A collection of information about the timing of each processed word. */
+  words?: AudioTranscriptionWord[];
 }
 
 /** Defines the possible descriptors for available audio operation responses. */
@@ -175,13 +190,15 @@ export interface AudioTranscriptionSegment {
   seek: number;
 }
 
-/** Defines available options for the underlying response format of output translation information. */
-export type AudioTranslationFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
+/** Extended information about a single transcribed word, as provided on responses when the 'word' timestamp granularity is provided. */
+export interface AudioTranscriptionWord {
+  /** The textual content of the word. */
+  word: string;
+  /** The start time of the word relative to the beginning of the audio, expressed in seconds. */
+  start: number;
+  /** The end time of the word relative to the beginning of the audio, expressed in seconds. */
+  end: number;
+}
 
 /** The configuration information for an audio translation request. */
 export interface AudioTranslationOptions {
@@ -221,6 +238,14 @@ export function audioTranslationOptionsSerializer(
     model: item["model"],
   };
 }
+
+/** Defines available options for the underlying response format of output translation information. */
+export type AudioTranslationFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
 
 /** Result information for an operation that translated spoken audio into written text. */
 export interface AudioTranslation {
@@ -325,6 +350,8 @@ export interface CompletionsOptions {
    * tokens within a completions response.
    */
   logprobs?: number;
+  /** The suffix that comes after a completion of inserted text */
+  suffix?: string;
   /**
    * A value specifying whether completions responses should include input prompts as prefixes to
    * their generated output.
@@ -379,6 +406,7 @@ export function completionsOptionsSerializer(
     user: item["user"],
     n: item["n"],
     logprobs: item["logprobs"],
+    suffix: item["suffix"],
     echo: item["echo"],
     stop: item["stop"],
     presence_penalty: item["presencePenalty"],
@@ -455,7 +483,7 @@ export interface ContentFilterResultDetailsForPrompt {
   /** Describes whether profanity was detected. */
   profanity?: ContentFilterDetectionResult;
   /** Describes detection results against configured custom blocklists. */
-  customBlocklists?: ContentFilterBlocklistIdResult[];
+  customBlocklists?: ContentFilterDetailedResults;
   /**
    * Describes an error returned if the content filtering system is
    * down or otherwise unable to complete the operation in time.
@@ -463,14 +491,16 @@ export interface ContentFilterResultDetailsForPrompt {
   error?: ErrorModel;
   /** Whether a jailbreak attempt was detected in the prompt. */
   jailbreak?: ContentFilterDetectionResult;
+  /** Whether an indirect attack was detected in the prompt. */
+  indirectAttack?: ContentFilterDetectionResult;
 }
 
 /** Information about filtered content severity level and if it has been filtered or not. */
 export interface ContentFilterResult {
-  /** Ratings for the intensity and risk level of filtered content. */
-  severity: ContentFilterSeverity;
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
+  /** Ratings for the intensity and risk level of filtered content. */
+  severity: ContentFilterSeverity;
 }
 
 /** Ratings for the intensity and risk level of harmful content. */
@@ -484,12 +514,20 @@ export interface ContentFilterDetectionResult {
   detected: boolean;
 }
 
-/** Represents the outcome of an evaluation against a custom blocklist as performed by content filtering. */
-export interface ContentFilterBlocklistIdResult {
-  /** The ID of the custom blocklist evaluated. */
-  id: string;
+/** Represents a structured collection of result details for content filtering. */
+export interface ContentFilterDetailedResults {
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
+  /** The collection of detailed blocklist result information. */
+  details: ContentFilterBlocklistIdResult[];
+}
+
+/** Represents the outcome of an evaluation against a custom blocklist as performed by content filtering. */
+export interface ContentFilterBlocklistIdResult {
+  /** A value indicating whether or not the content has been filtered. */
+  filtered: boolean;
+  /** The ID of the custom blocklist evaluated. */
+  id: string;
 }
 
 /**
@@ -544,7 +582,7 @@ export interface ContentFilterResultsForChoice {
   /** Describes whether profanity was detected. */
   profanity?: ContentFilterDetectionResult;
   /** Describes detection results against configured custom blocklists. */
-  customBlocklists?: ContentFilterBlocklistIdResult[];
+  customBlocklists?: ContentFilterDetailedResults;
   /**
    * Describes an error returned if the content filtering system is
    * down or otherwise unable to complete the operation in time.
@@ -600,6 +638,161 @@ export interface CompletionsUsage {
   promptTokens: number;
   /** The total number of tokens processed for the completions request and response. */
   totalTokens: number;
+}
+
+/**
+ * The configuration information for a chat completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export interface ChatCompletionsOptions {
+  /**
+   * The collection of context messages associated with this chat completions request.
+   * Typical usage begins with a chat message for the System role that provides instructions for
+   * the behavior of the assistant, followed by alternating messages between the User and
+   * Assistant roles.
+   */
+  messages: ChatRequestMessageUnion[];
+  /** A list of functions the model may generate JSON inputs for. */
+  functions?: FunctionDefinition[];
+  /**
+   * Controls how the model responds to function calls. "none" means the model does not call a function,
+   * and responds to the end-user. "auto" means the model can pick between an end-user or calling a function.
+   *  Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.
+   *  "none" is the default when no functions are present. "auto" is the default if functions are present.
+   */
+  functionCall?: FunctionCallPreset | FunctionName;
+  /** The maximum number of tokens to generate. */
+  maxTokens?: number;
+  /**
+   * The sampling temperature to use that controls the apparent creativity of generated completions.
+   * Higher values will make output more random while lower values will make results more focused
+   * and deterministic.
+   * It is not recommended to modify temperature and top_p for the same completions request as the
+   * interaction of these two settings is difficult to predict.
+   */
+  temperature?: number;
+  /**
+   * An alternative to sampling with temperature called nucleus sampling. This value causes the
+   * model to consider the results of tokens with the provided probability mass. As an example, a
+   * value of 0.15 will cause only the tokens comprising the top 15% of probability mass to be
+   * considered.
+   * It is not recommended to modify temperature and top_p for the same completions request as the
+   * interaction of these two settings is difficult to predict.
+   */
+  topP?: number;
+  /**
+   * A map between GPT token IDs and bias scores that influences the probability of specific tokens
+   * appearing in a completions response. Token IDs are computed via external tokenizer tools, while
+   * bias scores reside in the range of -100 to 100 with minimum and maximum values corresponding to
+   * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
+   * score varies by model.
+   */
+  logitBias?: Record<string, number>;
+  /**
+   * An identifier for the caller or end user of the operation. This may be used for tracking
+   * or rate-limiting purposes.
+   */
+  user?: string;
+  /**
+   * The number of chat completions choices that should be generated for a chat completions
+   * response.
+   * Because this setting can generate many completions, it may quickly consume your token quota.
+   * Use carefully and ensure reasonable settings for max_tokens and stop.
+   */
+  n?: number;
+  /** A collection of textual sequences that will end completions generation. */
+  stop?: string[];
+  /**
+   * A value that influences the probability of generated tokens appearing based on their existing
+   * presence in generated text.
+   * Positive values will make tokens less likely to appear when they already exist and increase the
+   * model's likelihood to output new topics.
+   */
+  presencePenalty?: number;
+  /**
+   * A value that influences the probability of generated tokens appearing based on their cumulative
+   * frequency in generated text.
+   * Positive values will make tokens less likely to appear as their frequency increases and
+   * decrease the likelihood of the model repeating the same statements verbatim.
+   */
+  frequencyPenalty?: number;
+  /** A value indicating whether chat completions should be streamed for this request. */
+  stream?: boolean;
+  /**
+   * The model name to provide as part of this completions request.
+   * Not applicable to Azure OpenAI, where deployment information should be included in the Azure
+   * resource URI that's connected to.
+   */
+  model?: string;
+  /**
+   *   The configuration entries for Azure OpenAI chat extensions that use them.
+   *   This additional specification is only compatible with Azure OpenAI.
+   */
+  dataSources?: AzureChatExtensionConfigurationUnion[];
+  /** If provided, the configuration options for available Azure OpenAI chat enhancements. */
+  enhancements?: AzureChatEnhancementConfiguration;
+  /**
+   * If specified, the system will make a best effort to sample deterministically such that repeated requests with the
+   * same seed and parameters should return the same result. Determinism is not guaranteed, and you should refer to the
+   * system_fingerprint response parameter to monitor changes in the backend."
+   */
+  seed?: number;
+  /** Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. This option is currently not available on the `gpt-4-vision-preview` model. */
+  logprobs?: boolean | null;
+  /** An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. */
+  topLogprobs?: number | null;
+  /** An object specifying the format that the model must output. Used to enable JSON mode. */
+  responseFormat?: ChatCompletionsResponseFormatUnion;
+  /** The available tool definitions that the chat completions request can use, including caller-defined functions. */
+  tools?: ChatCompletionsToolDefinitionUnion[];
+  /** If specified, the model will configure which of the provided tools it can use for the chat completions response. */
+  toolChoice?:
+    | ChatCompletionsToolSelectionPreset
+    | ChatCompletionsNamedToolSelectionUnion;
+}
+
+export function chatCompletionsOptionsSerializer(
+  item: ChatCompletionsOptions,
+): ChatCompletionsOptionsRest {
+  return {
+    messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
+    functions:
+      item["functions"] === undefined
+        ? item["functions"]
+        : item["functions"].map(functionDefinitionSerializer),
+    function_call: item["functionCall"] as any,
+    max_tokens: item["maxTokens"],
+    temperature: item["temperature"],
+    top_p: item["topP"],
+    logit_bias: !item.logitBias
+      ? item.logitBias
+      : (serializeRecord(item.logitBias as any) as any),
+    user: item["user"],
+    n: item["n"],
+    stop: item["stop"],
+    presence_penalty: item["presencePenalty"],
+    frequency_penalty: item["frequencyPenalty"],
+    stream: item["stream"],
+    model: item["model"],
+    data_sources:
+      item["dataSources"] === undefined
+        ? item["dataSources"]
+        : item["dataSources"].map((p) =>
+            azureChatExtensionConfigurationUnionSerializer(p),
+          ),
+    enhancements: !item.enhancements
+      ? item.enhancements
+      : azureChatEnhancementConfigurationSerializer(item.enhancements),
+    seed: item["seed"],
+    logprobs: item["logprobs"],
+    top_logprobs: item["topLogprobs"],
+    response_format: !item.responseFormat
+      ? item.responseFormat
+      : chatCompletionsResponseFormatUnionSerializer(item.responseFormat),
+    tools: item["tools"],
+    tool_choice: item["toolChoice"] as any,
+  };
 }
 
 /** An abstract representation of a chat message as provided in a request. */
@@ -982,7 +1175,7 @@ export function functionNameSerializer(item: FunctionName): FunctionNameRest {
  *   The use of this configuration is compatible only with Azure OpenAI.
  */
 export interface AzureChatExtensionConfiguration {
-  /** the discriminator possible values: azure_search, azure_ml_index, azure_cosmos_db, elasticsearch, Pinecone */
+  /** the discriminator possible values: azure_search, azure_ml_index, azure_cosmos_db, elasticsearch, pinecone */
   type: AzureChatExtensionType;
 }
 
@@ -1010,7 +1203,7 @@ export function azureChatExtensionConfigurationUnionSerializer(
         item as ElasticsearchChatExtensionConfiguration,
       );
 
-    case "Pinecone":
+    case "pinecone":
       return pineconeChatExtensionConfigurationSerializer(
         item as PineconeChatExtensionConfiguration,
       );
@@ -1070,6 +1263,18 @@ export interface AzureSearchChatExtensionParameters {
   strictness?: number;
   /** Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality and tell it how to format responses. There's a 100 token limit for it, and it counts against the overall token limit. */
   roleInformation?: string;
+  /**
+   * The max number of rewritten queries should be send to search provider for one user message. If not specified,
+   * the system will decide the number of queries to send.
+   */
+  maxSearchQueries?: number;
+  /**
+   * If specified as true, the system will allow partial search results to be used and the request fails if all the queries fail.
+   * If not specified, or specified as false, the request will fail if any search query fails.
+   */
+  allowPartialResult?: boolean;
+  /** The included properties of the output context. If not specified, the default value is `citations` and `intent`. */
+  includeContexts?: OnYourDataContextProperty[];
   /** The absolute endpoint path for the Azure Cognitive Search resource to use. */
   endpoint: string;
   /** The name of the index to use as available in the referenced Azure Cognitive Search resource. */
@@ -1097,6 +1302,9 @@ export function azureSearchChatExtensionParametersSerializer(
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
     endpoint: item["endpoint"],
     index_name: item["indexName"],
     fields_mapping: !item.fieldsMapping
@@ -1304,6 +1512,11 @@ export type OnYourDataAuthenticationType =
   | "access_token"
   | "system_assigned_managed_identity"
   | "user_assigned_managed_identity";
+/** The context property. */
+export type OnYourDataContextProperty =
+  | "citations"
+  | "intent"
+  | "all_retrieved_documents";
 
 /** Optional settings to control how fields are processed when using a configured Azure Search resource. */
 export interface AzureSearchIndexFieldMappingOptions {
@@ -1394,7 +1607,7 @@ export interface OnYourDataEndpointVectorizationSource
   /** Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings. The api-version query parameter is not allowed. */
   endpoint: string;
   /** Specifies the authentication options to use when retrieving embeddings from the specified endpoint. */
-  authentication: OnYourDataAuthenticationOptionsUnion;
+  authentication: OnYourDataVectorSearchAuthenticationOptionsUnion;
 }
 
 export function onYourDataEndpointVectorizationSourceSerializer(
@@ -1403,11 +1616,85 @@ export function onYourDataEndpointVectorizationSourceSerializer(
   return {
     type: item["type"],
     endpoint: item["endpoint"],
-    authentication: onYourDataAuthenticationOptionsUnionSerializer(
+    authentication: onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
       item.authentication,
     ),
   };
 }
+
+/** The authentication options for Azure OpenAI On Your Data vector search. */
+export interface OnYourDataVectorSearchAuthenticationOptions {
+  /** the discriminator possible values: api_key, access_token */
+  type: OnYourDataVectorSearchAuthenticationType;
+}
+
+export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
+  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
+) {
+  switch (item.type) {
+    case "api_key":
+      return onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
+        item as OnYourDataVectorSearchApiKeyAuthenticationOptions,
+      );
+
+    case "access_token":
+      return onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer(
+        item as OnYourDataVectorSearchAccessTokenAuthenticationOptions,
+      );
+
+    default:
+      return onYourDataVectorSearchAuthenticationOptionsSerializer(item);
+  }
+}
+
+export function onYourDataVectorSearchAuthenticationOptionsSerializer(
+  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
+): OnYourDataVectorSearchAuthenticationOptionsRest {
+  return {
+    ...onYourDataVectorSearchAuthenticationOptionsUnionSerializer(item),
+  };
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using an API key. */
+export interface OnYourDataVectorSearchApiKeyAuthenticationOptions
+  extends OnYourDataVectorSearchAuthenticationOptions {
+  /** The authentication type of API key. */
+  type: "api_key";
+  /** The API key to use for authentication. */
+  key: string;
+}
+
+export function onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
+  item: OnYourDataVectorSearchApiKeyAuthenticationOptions,
+): OnYourDataVectorSearchApiKeyAuthenticationOptionsRest {
+  return {
+    type: item["type"],
+    key: item["key"],
+  };
+}
+
+/** The authentication options for Azure OpenAI On Your Data vector search when using access token. */
+export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions
+  extends OnYourDataVectorSearchAuthenticationOptions {
+  /** The authentication type of access token. */
+  type: "access_token";
+  /** The access token to use for authentication. */
+  accessToken: string;
+}
+
+export function onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer(
+  item: OnYourDataVectorSearchAccessTokenAuthenticationOptions,
+): OnYourDataVectorSearchAccessTokenAuthenticationOptionsRest {
+  return {
+    type: item["type"],
+    access_token: item["accessToken"],
+  };
+}
+
+/** The authentication types supported with Azure OpenAI On Your Data vector search. */
+export type OnYourDataVectorSearchAuthenticationType =
+  | "api_key"
+  | "access_token";
 
 /**
  * The details of a a vectorization source, used by Azure OpenAI On Your Data when applying vector search, that is based
@@ -1419,6 +1706,8 @@ export interface OnYourDataDeploymentNameVectorizationSource
   type: "deployment_name";
   /** The embedding model deployment name within the same Azure OpenAI resource. This enables you to use vector search without Azure OpenAI api-key and without Azure OpenAI public network access. */
   deploymentName: string;
+  /** The number of dimensions the embeddings should have. Only supported in `text-embedding-3` and later models. */
+  dimensions?: number;
 }
 
 export function onYourDataDeploymentNameVectorizationSourceSerializer(
@@ -1427,6 +1716,7 @@ export function onYourDataDeploymentNameVectorizationSourceSerializer(
   return {
     type: item["type"],
     deployment_name: item["deploymentName"],
+    dimensions: item["dimensions"],
   };
 }
 
@@ -1504,6 +1794,18 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
   strictness?: number;
   /** Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality and tell it how to format responses. There's a 100 token limit for it, and it counts against the overall token limit. */
   roleInformation?: string;
+  /**
+   * The max number of rewritten queries should be send to search provider for one user message. If not specified,
+   * the system will decide the number of queries to send.
+   */
+  maxSearchQueries?: number;
+  /**
+   * If specified as true, the system will allow partial search results to be used and the request fails if all the queries fail.
+   * If not specified, or specified as false, the request will fail if any search query fails.
+   */
+  allowPartialResult?: boolean;
+  /** The included properties of the output context. If not specified, the default value is `citations` and `intent`. */
+  includeContexts?: OnYourDataContextProperty[];
   /** The resource ID of the Azure Machine Learning project. */
   projectResourceId: string;
   /** The Azure Machine Learning vector index name. */
@@ -1525,6 +1827,9 @@ export function azureMachineLearningIndexChatExtensionParametersSerializer(
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
     project_resource_id: item["projectResourceId"],
     name: item["name"],
     version: item["version"],
@@ -1577,6 +1882,18 @@ export interface AzureCosmosDBChatExtensionParameters {
   strictness?: number;
   /** Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality and tell it how to format responses. There's a 100 token limit for it, and it counts against the overall token limit. */
   roleInformation?: string;
+  /**
+   * The max number of rewritten queries should be send to search provider for one user message. If not specified,
+   * the system will decide the number of queries to send.
+   */
+  maxSearchQueries?: number;
+  /**
+   * If specified as true, the system will allow partial search results to be used and the request fails if all the queries fail.
+   * If not specified, or specified as false, the request will fail if any search query fails.
+   */
+  allowPartialResult?: boolean;
+  /** The included properties of the output context. If not specified, the default value is `citations` and `intent`. */
+  includeContexts?: OnYourDataContextProperty[];
   /** The MongoDB vCore database name to use with Azure Cosmos DB. */
   databaseName: string;
   /** The name of the Azure Cosmos DB resource container. */
@@ -1600,6 +1917,9 @@ export function azureCosmosDBChatExtensionParametersSerializer(
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
     database_name: item["databaseName"],
     container_name: item["containerName"],
     index_name: item["indexName"],
@@ -1683,6 +2003,18 @@ export interface ElasticsearchChatExtensionParameters {
   strictness?: number;
   /** Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality and tell it how to format responses. There's a 100 token limit for it, and it counts against the overall token limit. */
   roleInformation?: string;
+  /**
+   * The max number of rewritten queries should be send to search provider for one user message. If not specified,
+   * the system will decide the number of queries to send.
+   */
+  maxSearchQueries?: number;
+  /**
+   * If specified as true, the system will allow partial search results to be used and the request fails if all the queries fail.
+   * If not specified, or specified as false, the request will fail if any search query fails.
+   */
+  allowPartialResult?: boolean;
+  /** The included properties of the output context. If not specified, the default value is `citations` and `intent`. */
+  includeContexts?: OnYourDataContextProperty[];
   /** The endpoint of Elasticsearch®. */
   endpoint: string;
   /** The index name of Elasticsearch®. */
@@ -1706,6 +2038,9 @@ export function elasticsearchChatExtensionParametersSerializer(
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
     endpoint: item["endpoint"],
     index_name: item["indexName"],
     fields_mapping: !item.fieldsMapping
@@ -1760,7 +2095,7 @@ export interface PineconeChatExtensionConfiguration
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
    * default value for Pinecone.
    */
-  type: "Pinecone";
+  type: "pinecone";
   /** The parameters to use when configuring Azure OpenAI chat extensions. */
   parameters: PineconeChatExtensionParameters;
 }
@@ -1792,6 +2127,18 @@ export interface PineconeChatExtensionParameters {
   strictness?: number;
   /** Give the model instructions about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality and tell it how to format responses. There's a 100 token limit for it, and it counts against the overall token limit. */
   roleInformation?: string;
+  /**
+   * The max number of rewritten queries should be send to search provider for one user message. If not specified,
+   * the system will decide the number of queries to send.
+   */
+  maxSearchQueries?: number;
+  /**
+   * If specified as true, the system will allow partial search results to be used and the request fails if all the queries fail.
+   * If not specified, or specified as false, the request will fail if any search query fails.
+   */
+  allowPartialResult?: boolean;
+  /** The included properties of the output context. If not specified, the default value is `citations` and `intent`. */
+  includeContexts?: OnYourDataContextProperty[];
   /** The environment name of Pinecone. */
   environment: string;
   /** The name of the Pinecone database index. */
@@ -1813,6 +2160,9 @@ export function pineconeChatExtensionParametersSerializer(
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
     environment: item["environment"],
     index_name: item["indexName"],
     fields_mapping: pineconeFieldMappingOptionsSerializer(item.fieldsMapping),
@@ -1858,7 +2208,7 @@ export type AzureChatExtensionType =
   | "azure_ml_index"
   | "azure_cosmos_db"
   | "elasticsearch"
-  | "Pinecone";
+  | "pinecone";
 
 /** A representation of the available Azure OpenAI enhancement configurations. */
 export interface AzureChatEnhancementConfiguration {
@@ -2088,161 +2438,6 @@ export function chatCompletionsFunctionToolSelectionSerializer(
 }
 
 /**
- * The configuration information for a chat completions request.
- * Completions support a wide variety of tasks and generate text that continues from or "completes"
- * provided prompt data.
- */
-export interface ChatCompletionsOptions {
-  /**
-   * The collection of context messages associated with this chat completions request.
-   * Typical usage begins with a chat message for the System role that provides instructions for
-   * the behavior of the assistant, followed by alternating messages between the User and
-   * Assistant roles.
-   */
-  messages: ChatRequestMessageUnion[];
-  /** A list of functions the model may generate JSON inputs for. */
-  functions?: FunctionDefinition[];
-  /**
-   * Controls how the model responds to function calls. "none" means the model does not call a function,
-   * and responds to the end-user. "auto" means the model can pick between an end-user or calling a function.
-   *  Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.
-   *  "none" is the default when no functions are present. "auto" is the default if functions are present.
-   */
-  functionCall?: FunctionCallPreset | FunctionName;
-  /** The maximum number of tokens to generate. */
-  maxTokens?: number;
-  /**
-   * The sampling temperature to use that controls the apparent creativity of generated completions.
-   * Higher values will make output more random while lower values will make results more focused
-   * and deterministic.
-   * It is not recommended to modify temperature and top_p for the same completions request as the
-   * interaction of these two settings is difficult to predict.
-   */
-  temperature?: number;
-  /**
-   * An alternative to sampling with temperature called nucleus sampling. This value causes the
-   * model to consider the results of tokens with the provided probability mass. As an example, a
-   * value of 0.15 will cause only the tokens comprising the top 15% of probability mass to be
-   * considered.
-   * It is not recommended to modify temperature and top_p for the same completions request as the
-   * interaction of these two settings is difficult to predict.
-   */
-  topP?: number;
-  /**
-   * A map between GPT token IDs and bias scores that influences the probability of specific tokens
-   * appearing in a completions response. Token IDs are computed via external tokenizer tools, while
-   * bias scores reside in the range of -100 to 100 with minimum and maximum values corresponding to
-   * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
-   * score varies by model.
-   */
-  logitBias?: Record<string, number>;
-  /**
-   * An identifier for the caller or end user of the operation. This may be used for tracking
-   * or rate-limiting purposes.
-   */
-  user?: string;
-  /**
-   * The number of chat completions choices that should be generated for a chat completions
-   * response.
-   * Because this setting can generate many completions, it may quickly consume your token quota.
-   * Use carefully and ensure reasonable settings for max_tokens and stop.
-   */
-  n?: number;
-  /** A collection of textual sequences that will end completions generation. */
-  stop?: string[];
-  /**
-   * A value that influences the probability of generated tokens appearing based on their existing
-   * presence in generated text.
-   * Positive values will make tokens less likely to appear when they already exist and increase the
-   * model's likelihood to output new topics.
-   */
-  presencePenalty?: number;
-  /**
-   * A value that influences the probability of generated tokens appearing based on their cumulative
-   * frequency in generated text.
-   * Positive values will make tokens less likely to appear as their frequency increases and
-   * decrease the likelihood of the model repeating the same statements verbatim.
-   */
-  frequencyPenalty?: number;
-  /** A value indicating whether chat completions should be streamed for this request. */
-  stream?: boolean;
-  /**
-   * The model name to provide as part of this completions request.
-   * Not applicable to Azure OpenAI, where deployment information should be included in the Azure
-   * resource URI that's connected to.
-   */
-  model?: string;
-  /**
-   *   The configuration entries for Azure OpenAI chat extensions that use them.
-   *   This additional specification is only compatible with Azure OpenAI.
-   */
-  dataSources?: AzureChatExtensionConfigurationUnion[];
-  /** If provided, the configuration options for available Azure OpenAI chat enhancements. */
-  enhancements?: AzureChatEnhancementConfiguration;
-  /**
-   * If specified, the system will make a best effort to sample deterministically such that repeated requests with the
-   * same seed and parameters should return the same result. Determinism is not guaranteed, and you should refer to the
-   * system_fingerprint response parameter to monitor changes in the backend."
-   */
-  seed?: number;
-  /** Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. This option is currently not available on the `gpt-4-vision-preview` model. */
-  logprobs?: boolean | null;
-  /** An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. */
-  topLogprobs?: number | null;
-  /** An object specifying the format that the model must output. Used to enable JSON mode. */
-  responseFormat?: ChatCompletionsResponseFormatUnion;
-  /** The available tool definitions that the chat completions request can use, including caller-defined functions. */
-  tools?: ChatCompletionsToolDefinitionUnion[];
-  /** If specified, the model will configure which of the provided tools it can use for the chat completions response. */
-  toolChoice?:
-    | ChatCompletionsToolSelectionPreset
-    | ChatCompletionsNamedToolSelectionUnion;
-}
-
-export function chatCompletionsOptionsSerializer(
-  item: ChatCompletionsOptions,
-): ChatCompletionsOptionsRest {
-  return {
-    messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
-    functions:
-      item["functions"] === undefined
-        ? item["functions"]
-        : item["functions"].map(functionDefinitionSerializer),
-    function_call: item["functionCall"],
-    max_tokens: item["maxTokens"],
-    temperature: item["temperature"],
-    top_p: item["topP"],
-    logit_bias: !item.logitBias
-      ? item.logitBias
-      : (serializeRecord(item.logitBias as any) as any),
-    user: item["user"],
-    n: item["n"],
-    stop: item["stop"],
-    presence_penalty: item["presencePenalty"],
-    frequency_penalty: item["frequencyPenalty"],
-    stream: item["stream"],
-    model: item["model"],
-    data_sources:
-      item["dataSources"] === undefined
-        ? item["dataSources"]
-        : item["dataSources"].map((p) =>
-            azureChatExtensionConfigurationUnionSerializer(p),
-          ),
-    enhancements: !item.enhancements
-      ? item.enhancements
-      : azureChatEnhancementConfigurationSerializer(item.enhancements),
-    seed: item["seed"],
-    logprobs: item["logprobs"],
-    top_logprobs: item["topLogprobs"],
-    response_format: !item.responseFormat
-      ? item.responseFormat
-      : chatCompletionsResponseFormatUnionSerializer(item.responseFormat),
-    tools: item["tools"],
-    tool_choice: item["toolChoice"],
-  };
-}
-
-/**
  * Representation of the response data from a chat completions request.
  * Completions support a wide variety of tasks and generate text that continues from or "completes"
  * provided prompt data.
@@ -2261,6 +2456,8 @@ export interface ChatCompletions {
    * Token limits and other settings may limit the number of choices generated.
    */
   choices: ChatChoice[];
+  /** The model name used for this completions request. */
+  model?: string;
   /**
    * Content filtering results for zero or more prompts in the request. In a streaming request,
    * results for different prompts may arrive at different times or in different orders.
@@ -2348,6 +2545,8 @@ export interface AzureChatExtensionsMessageContext {
   citations?: AzureChatExtensionDataSourceResponseCitation[];
   /** The detected intent from the chat history, used to pass to the next turn to carry over the context. */
   intent?: string;
+  /** All the retrieved documents. */
+  allRetrievedDocuments?: AzureChatExtensionRetrievedDocument[];
 }
 
 /**
@@ -2367,6 +2566,36 @@ export interface AzureChatExtensionDataSourceResponseCitation {
   /** The chunk ID of the citation. */
   chunkId?: string;
 }
+
+/** The retrieved document. */
+export interface AzureChatExtensionRetrievedDocument {
+  /** The content of the citation. */
+  content: string;
+  /** The title of the citation. */
+  title?: string;
+  /** The URL of the citation. */
+  url?: string;
+  /** The file path of the citation. */
+  filepath?: string;
+  /** The chunk ID of the citation. */
+  chunkId?: string;
+  /** The search queries used to retrieve the document. */
+  searchQueries: string[];
+  /** The index of the data source. */
+  dataSourceIndex: number;
+  /** The original search score of the retrieved document. */
+  originalSearchScore?: number;
+  /** The rerank score of the retrieved document. */
+  rerankScore?: number;
+  /**
+   * Represents the rationale for filtering the document. If the document does not undergo filtering,
+   * this field will remain unset.
+   */
+  filterReason?: AzureChatExtensionRetrieveDocumentFilterReason;
+}
+
+/** The reason for filtering the retrieved document. */
+export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
 
 /** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
 export interface ChatChoiceLogProbabilityInfo {
@@ -2465,26 +2694,6 @@ export interface AzureGroundingEnhancementCoordinatePoint {
   y: number;
 }
 
-/** The desired size of generated images. */
-export type ImageSize =
-  | "256x256"
-  | "512x512"
-  | "1024x1024"
-  | "1792x1024"
-  | "1024x1792";
-/** The format in which the generated images are returned. */
-export type ImageGenerationResponseFormat = "url" | "b64_json";
-/**
- * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationQuality = "standard" | "hd";
-/**
- * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationStyle = "natural" | "vivid";
-
 /** Represents the request data used to generate images. */
 export interface ImageGenerationOptions {
   /**
@@ -2537,6 +2746,26 @@ export function imageGenerationOptionsSerializer(
   };
 }
 
+/** The desired size of generated images. */
+export type ImageSize =
+  | "256x256"
+  | "512x512"
+  | "1024x1024"
+  | "1792x1024"
+  | "1024x1792";
+/** The format in which the generated images are returned. */
+export type ImageGenerationResponseFormat = "url" | "b64_json";
+/**
+ * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationQuality = "standard" | "hd";
+/**
+ * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationStyle = "natural" | "vivid";
+
 /** The result of a successful image generation operation. */
 export interface ImageGenerations {
   /**
@@ -2548,13 +2777,6 @@ export interface ImageGenerations {
   data: ImageGenerationData[];
 }
 
-export function imageGenerationsSerializer(item: ImageGenerations) {
-  return {
-    created: item["created"].getTime(),
-    data: item["data"].map(imageGenerationDataSerializer),
-  };
-}
-
 /**
  * A representation of a single generated image, provided as either base64-encoded data or as a URL from which the image
  * may be retrieved.
@@ -2564,23 +2786,116 @@ export interface ImageGenerationData {
   url?: string;
   /** The complete data for an image, represented as a base64-encoded string. */
   base64Data?: string;
+  /** Information about the content filtering results. */
+  contentFilterResults?: ImageGenerationContentFilterResults;
   /**
    * The final prompt used by the model to generate the image.
    * Only provided with dall-3-models and only when revisions were made to the prompt.
    */
   revisedPrompt?: string;
+  /**
+   * Information about the content filtering category (hate, sexual, violence, self_harm), if
+   * it has been detected, as well as the severity level (very_low, low, medium, high-scale
+   * that determines the intensity and risk level of harmful content) and if it has been
+   * filtered or not. Information about jailbreak content and profanity, if it has been detected,
+   * and if it has been filtered or not. And information about customer block list, if it has
+   * been filtered and its id.
+   */
+  promptFilterResults?: ImageGenerationPromptFilterResults;
 }
 
-export function imageGenerationDataSerializer(item: ImageGenerationData) {
+/** Describes the content filtering result for the image generation request. */
+export interface ImageGenerationContentFilterResults {
+  /**
+   * Describes language related to anatomical organs and genitals, romantic relationships,
+   *  acts portrayed in erotic or affectionate terms, physical sexual acts, including
+   *  those portrayed as an assault or a forced sexual violent act against one’s will,
+   *  prostitution, pornography, and abuse.
+   */
+  sexual?: ContentFilterResult;
+  /**
+   * Describes language related to physical actions intended to hurt, injure, damage, or
+   * kill someone or something; describes weapons, etc.
+   */
+  violence?: ContentFilterResult;
+  /**
+   * Describes language attacks or uses that include pejorative or discriminatory language
+   * with reference to a person or identity group on the basis of certain differentiating
+   * attributes of these groups including but not limited to race, ethnicity, nationality,
+   * gender identity and expression, sexual orientation, religion, immigration status, ability
+   * status, personal appearance, and body size.
+   */
+  hate?: ContentFilterResult;
+  /**
+   * Describes language related to physical actions intended to purposely hurt, injure,
+   * or damage one’s body, or kill oneself.
+   */
+  selfHarm?: ContentFilterResult;
+}
+
+/** Describes the content filtering results for the prompt of a image generation request. */
+export interface ImageGenerationPromptFilterResults {
+  /**
+   * Describes language related to anatomical organs and genitals, romantic relationships,
+   *  acts portrayed in erotic or affectionate terms, physical sexual acts, including
+   *  those portrayed as an assault or a forced sexual violent act against one’s will,
+   *  prostitution, pornography, and abuse.
+   */
+  sexual?: ContentFilterResult;
+  /**
+   * Describes language related to physical actions intended to hurt, injure, damage, or
+   * kill someone or something; describes weapons, etc.
+   */
+  violence?: ContentFilterResult;
+  /**
+   * Describes language attacks or uses that include pejorative or discriminatory language
+   * with reference to a person or identity group on the basis of certain differentiating
+   * attributes of these groups including but not limited to race, ethnicity, nationality,
+   * gender identity and expression, sexual orientation, religion, immigration status, ability
+   * status, personal appearance, and body size.
+   */
+  hate?: ContentFilterResult;
+  /**
+   * Describes language related to physical actions intended to purposely hurt, injure,
+   * or damage one’s body, or kill oneself.
+   */
+  selfHarm?: ContentFilterResult;
+  /** Describes whether profanity was detected. */
+  profanity?: ContentFilterDetectionResult;
+  /** Whether a jailbreak attempt was detected in the prompt. */
+  jailbreak?: ContentFilterDetectionResult;
+  /** Information about customer block lists and if something was detected the associated list ID. */
+  customBlocklists?: ContentFilterDetailedResults;
+}
+
+/** A representation of the request options that control the behavior of a text-to-speech operation. */
+export interface SpeechGenerationOptions {
+  /** The text to generate audio for. The maximum length is 4096 characters. */
+  input: string;
+  /** The voice to use for text-to-speech. */
+  voice: SpeechVoice;
+  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
+  responseFormat?: SpeechGenerationResponseFormat;
+  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
+  speed?: number;
+  /** The model to use for this text-to-speech request. */
+  model?: string;
+}
+
+export function speechGenerationOptionsSerializer(
+  item: SpeechGenerationOptions,
+): SpeechGenerationOptionsRest {
   return {
-    url: item["url"],
-    b64_json: item["base64Data"],
-    revised_prompt: item["revisedPrompt"],
+    input: item["input"],
+    voice: item["voice"],
+    response_format: item["responseFormat"],
+    speed: item["speed"],
+    model: item["model"],
   };
 }
 
 /** The available voices for text-to-speech. */
-export type AudioSpeechVoice =
+export type SpeechVoice =
   | "alloy"
   | "echo"
   | "fable"
@@ -2588,30 +2903,13 @@ export type AudioSpeechVoice =
   | "nova"
   | "shimmer";
 /** The supported audio output formats for text-to-speech. */
-export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
-
-/** A representation of the request options that control the behavior of a text-to-speech operation. */
-export interface AudioSpeechOptions {
-  /** The text to generate audio for. The maximum length is 4096 characters. */
-  input: string;
-  /** The voice to use for text-to-speech. */
-  voice: AudioSpeechVoice;
-  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
-  responseFormat?: AudioSpeechOutputFormat;
-  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
-  speed?: number;
-}
-
-export function audioSpeechOptionsSerializer(
-  item: AudioSpeechOptions,
-): AudioSpeechOptionsRest {
-  return {
-    input: item["input"],
-    voice: item["voice"],
-    response_format: item["responseFormat"],
-    speed: item["speed"],
-  };
-}
+export type SpeechGenerationResponseFormat =
+  | "mp3"
+  | "opus"
+  | "aac"
+  | "flac"
+  | "wav"
+  | "pcm";
 
 /**
  * The configuration information for an embeddings request.
@@ -2638,6 +2936,10 @@ export interface EmbeddingsOptions {
    * as we have observed inferior results when newlines are present.
    */
   input: string[];
+  /** The response encoding format to use for embedding data. */
+  encodingFormat?: EmbeddingEncodingFormat;
+  /** The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. */
+  dimensions?: number;
   /** When using Azure OpenAI, specifies the input type to use for embedding search. */
   inputType?: string;
 }
@@ -2649,9 +2951,14 @@ export function embeddingsOptionsSerializer(
     user: item["user"],
     model: item["model"],
     input: item["input"],
+    encoding_format: item["encodingFormat"],
+    dimensions: item["dimensions"],
     input_type: item["inputType"],
   };
 }
+
+/** Represents the available formats for embeddings data on responses. */
+export type EmbeddingEncodingFormat = "float" | "base64";
 
 /**
  * Representation of the response data from an embeddings request.
@@ -2690,7 +2997,12 @@ export type ServiceApiVersions =
   | "2023-05-15"
   | "2023-06-01-preview"
   | "2023-07-01-preview"
-  | "2024-02-15-preview";
+  | "2024-02-01"
+  | "2024-02-15-preview"
+  | "2024-03-01-preview"
+  | "2024-04-01-preview"
+  | "2024-05-01-preview"
+  | "2024-06-01";
 /** Alias for ChatRequestMessageUnion */
 export type ChatRequestMessageUnion =
   | ChatRequestSystemMessage
@@ -2732,6 +3044,11 @@ export type OnYourDataVectorizationSourceUnion =
   | OnYourDataDeploymentNameVectorizationSource
   | OnYourDataModelIdVectorizationSource
   | OnYourDataVectorizationSource;
+/** Alias for OnYourDataVectorSearchAuthenticationOptionsUnion */
+export type OnYourDataVectorSearchAuthenticationOptionsUnion =
+  | OnYourDataVectorSearchApiKeyAuthenticationOptions
+  | OnYourDataVectorSearchAccessTokenAuthenticationOptions
+  | OnYourDataVectorSearchAuthenticationOptions;
 /** Alias for ChatCompletionsResponseFormatUnion */
 export type ChatCompletionsResponseFormatUnion =
   | ChatCompletionsTextResponseFormat

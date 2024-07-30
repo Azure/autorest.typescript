@@ -5,12 +5,12 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   myOp,
   createSingle,
-  SingleClientOptions,
+  SingleClientOptionalParams,
   SingleContext,
 } from "./api/index.js";
 import { MyOpOptionalParams } from "./models/options.js";
 
-export { SingleClientOptions } from "./api/singleContext.js";
+export { SingleClientOptionalParams } from "./api/singleContext.js";
 
 export class SingleClient {
   private _client: SingleContext;
@@ -18,7 +18,7 @@ export class SingleClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates server with a single path parameter @server */
-  constructor(endpointParam: string, options: SingleClientOptions = {}) {
+  constructor(endpointParam: string, options: SingleClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

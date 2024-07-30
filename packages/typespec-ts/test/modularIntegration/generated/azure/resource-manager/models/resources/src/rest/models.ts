@@ -169,30 +169,6 @@ export interface Plan {
   version?: string;
 }
 
-/** The type used for update operations of the TopLevelTrackedResource. */
-export interface TopLevelTrackedResourceUpdate {
-  /** Resource tags. */
-  tags?: Record<string, string>;
-  properties?: TopLevelTrackedResourceUpdateProperties;
-}
-
-/** The updatable properties of the TopLevelTrackedResource. */
-export interface TopLevelTrackedResourceUpdateProperties {
-  /** The description of the resource. */
-  description?: string;
-}
-
-/** The type used for update operations of the NestedProxyResource. */
-export interface NestedProxyResourceUpdate {
-  properties?: NestedProxyResourceUpdateProperties;
-}
-
-/** The updatable properties of the NestedProxyResource. */
-export interface NestedProxyResourceUpdateProperties {
-  /** Nested resource description. */
-  description?: string;
-}
-
 /** Alias for ResourceProvisioningState */
 export type ResourceProvisioningState = string;
 /** Alias for ProvisioningState */

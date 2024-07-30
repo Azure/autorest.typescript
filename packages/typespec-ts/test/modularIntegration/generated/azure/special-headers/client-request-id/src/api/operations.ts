@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  Get204Response,
   XmsRequestIdClientContext as Client,
+  Get204Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -17,7 +17,7 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get204Response> {
   return context
-    .path("/azure/special-headers/x-ms-client-request-id")
+    .path("/azure/special-headers/x-ms-client-request-id/")
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {

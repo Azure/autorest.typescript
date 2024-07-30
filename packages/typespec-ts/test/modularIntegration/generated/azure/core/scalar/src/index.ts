@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ScalarClient, ScalarClientOptions } from "./scalarClient.js";
+export { ScalarClient, ScalarClientOptionalParams } from "./scalarClient.js";
 export {
   AzureLocationModel,
   Versions,

@@ -6,11 +6,11 @@ import { getModelOperations, ModelOperations } from "./classic/model/index.js";
 import { getAliasOperations, AliasOperations } from "./classic/alias/index.js";
 import {
   createSpread,
-  SpreadClientOptions,
+  SpreadClientOptionalParams,
   SpreadContext,
 } from "./api/index.js";
 
-export { SpreadClientOptions } from "./api/spreadContext.js";
+export { SpreadClientOptionalParams } from "./api/spreadContext.js";
 
 export class SpreadClient {
   private _client: SpreadContext;
@@ -18,7 +18,7 @@ export class SpreadClient {
   public readonly pipeline: Pipeline;
 
   /** Test for the spread operator. */
-  constructor(options: SpreadClientOptions = {}) {
+  constructor(options: SpreadClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -3,12 +3,12 @@
 
 export {
   SchemaRegistryClient,
-  SchemaRegistryClientOptions,
+  SchemaRegistryClientOptionalParams,
 } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
-  SchemaVersion,
   SchemaContentTypeValues,
+  SchemaVersion,
   SchemaProperties,
   SchemaFormat,
   Schema,

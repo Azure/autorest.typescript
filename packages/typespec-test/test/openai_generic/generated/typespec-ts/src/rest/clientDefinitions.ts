@@ -110,7 +110,7 @@ export interface AudioTranslationsCreate {
 
 export interface ChatCompletionsCreate {
   post(
-    options?: ChatCompletionsCreateParameters,
+    options: ChatCompletionsCreateParameters,
   ): StreamableMethod<
     ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
   >;
@@ -164,7 +164,7 @@ export interface FineTuningJobsCancel {
 
 export interface CompletionsCreate {
   post(
-    options?: CompletionsCreateParameters,
+    options: CompletionsCreateParameters,
   ): StreamableMethod<
     CompletionsCreate200Response | CompletionsCreateDefaultResponse
   >;
