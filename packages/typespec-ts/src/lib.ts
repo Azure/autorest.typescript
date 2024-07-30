@@ -241,7 +241,7 @@ const libDef = {
     "un-supported-credential": {
       severity: "warning",
       messages: {
-        default: paramMessage`The defined authentication - ${"credentialType"} is not supported yet and it may require customizations.`
+        default: paramMessage`Authentication type ${"credentialType"} is not supported.`
       }
     }
   },
