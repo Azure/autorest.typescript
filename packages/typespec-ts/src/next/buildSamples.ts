@@ -1,26 +1,41 @@
-import {
-  Project,
-  StructureKind,
-  InterfaceDeclarationStructure,
-  FunctionDeclarationStructure
-} from "ts-morph";
-import { useBinder } from "../framework/hooks/binder.js";
+import { Project, StructureKind, FunctionDeclarationStructure } from "ts-morph";
+import { provideBinder, useBinder } from "../framework/hooks/binder.js";
 import { addDeclaration } from "../framework/declaration.js";
 import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { SdkHttpOperationExample } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkBasicServiceMethod,
+  SdkClientAccessor,
+  SdkClientType,
+  SdkInitializationType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { emitCredential } from "./emitCredential.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
-// async function getASingleSubscription() {
-//   const subscriptionId = "291bba3f-e0a5-47bc-a099-3bdcb2a50a05";
-//   const credential = new DefaultAzureCredential();
-//   const client = new SubscriptionClient(credential);
-//   const result = await client.subscriptions.get(subscriptionId);
-//   console.log(result);
-// }
+function getFirstOperation(dpgContext: SdkContext) {
+  const client = dpgContext.sdkPackage
+    .clients[0]! as SdkClientType<SdkServiceOperation>;
+  const operationGroup = client
+    .methods[0]! as SdkClientAccessor<SdkServiceOperation>;
+  const operation = operationGroup.response
+    .methods[0]! as SdkBasicServiceMethod<SdkServiceOperation>;
+  return [client, operationGroup, operation];
+}
 
 export function buildSamples(dpgContext: SdkContext) {
-  const example = dpgContext.__httpOperationExamples?.entries().next()
-    .value as SdkHttpOperationExample[];
+  const [client, operationGroup, operation] = getFirstOperation(dpgContext)!;
+  const initialization = (client as SdkClientType<SdkServiceOperation>)
+    .initialization;
+  const example = (operation as any).operation!.examples[0]!;
+  const credentialParam = getCredentialType(initialization);
+  const subscriptionIdParam = getSubscriptionId(initialization);
+  const operationGroupName = getOperationGroupName(
+    operationGroup as SdkClientAccessor<SdkServiceOperation>
+  );
+  const methodName = (operation as SdkBasicServiceMethod<SdkServiceOperation>)
+    .name;
+  const exampleName = normalizeName(example.name, NameType.Method);
   // Create a new ts-morph project
   const project = new Project();
   // Create a source file
@@ -28,57 +43,51 @@ export function buildSamples(dpgContext: SdkContext) {
     overwrite: true
   });
 
+  provideBinder(project);
   // Initialize the binder
   const binder = useBinder();
 
-  // Define an interface model. In practice this would be a type object (e.g. from TypeSpec, TCGC, modelerfour, etc.)
-  // At this framework level, we're just using a simple object, there is no coupling with the actual type system, but this is flexible so any object can be used.
-  const modelType = {
-    name: "MyInterface",
-    properties: [{ name: "id", type: "number" }]
-  };
-
   // Define a function model
-  const functionType = {
-    name: "MyFunction",
+  const functionBody = [];
+  const clientParams = [];
+  if (credentialParam) {
+    functionBody.push(`const credential = new ${credentialParam}();`);
+    clientParams.push("credential");
+  }
+  if (subscriptionIdParam) {
+    functionBody.push(`const subscriptionId = "${subscriptionIdParam}";`);
+    clientParams.push("subscriptionId");
+  }
+  functionBody.push(
+    `const client = new ${(client as any).name}(${clientParams.join(", ")});`
+  );
+  functionBody.push(
+    `const result = await client.${operationGroupName}.${methodName}();`
+  );
+  functionBody.push(`console.log(result);`);
+  const sampleFunctionType = {
+    name: exampleName,
     returnType: "void",
-    body: `console.log("Hello World");`
-  };
-
-  // Create an interface declaration structure. This illustrates a similar pattern to the one used in the emitter. Transorming a model into a structure for ts-morph.
-  const interfaceDeclaration: InterfaceDeclarationStructure = {
-    kind: StructureKind.Interface,
-    name: modelType.name,
-    properties: modelType.properties.map((p) => ({
-      name: p.name,
-      type: p.type
-    }))
+    body: functionBody
   };
 
   // Create a function declaration structure
   const functionDeclaration: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: functionType.name,
-    returnType: functionType.returnType,
-    statements: functionType.body
+    isAsync: true,
+    name: sampleFunctionType.name,
+    returnType: sampleFunctionType.returnType,
+    statements: sampleFunctionType.body
   };
-
-  // Helper functions to add the declarations to the source file. These are needed to be able to leverage the binder to track the declarations.
-  // We'll be moving from sourceFile.addInterface(interfaceDeclaration) to addDeclaration(sourceFile, interfaceDeclaration, interfaceModel)
-  addDeclaration(sourceFile, interfaceDeclaration, modelType);
-  addDeclaration(sourceFile, functionDeclaration, functionType);
-
-  // Create another source file
-  const sourceFile2 = project.createSourceFile("test2.ts", "", {
-    overwrite: true
-  });
-
+  addDeclaration(sourceFile, functionDeclaration, sampleFunctionType);
   // Add statements referencing the tracked declarations
-  const functionReference = resolveReference(functionType);
-  const modelReference = resolveReference(modelType);
+  const functionReference = resolveReference(sampleFunctionType);
+  sourceFile.addStatements(`
+async function main() {
+  ${functionReference}();
+}
 
-  sourceFile2.addStatements(`${functionReference}();`);
-  sourceFile2.addStatements(`let obj: ${modelReference} = { id: 1 };`);
+main().catch(console.error);`);
 
   // Apply imports to ensure correct references
   binder.resolveAllReferences();
@@ -86,22 +95,25 @@ export function buildSamples(dpgContext: SdkContext) {
   // Output the generated files
   console.log("// test.ts");
   console.log(sourceFile.getFullText());
-  console.log("// test2.ts");
-  console.log(sourceFile2.getFullText());
+}
 
-  // Output
-  // test.ts
-  // interface MyInterface {
-  //     id: number;
-  // }
+function getCredentialType(initialization: SdkInitializationType) {
+  const param = initialization.properties.find((p) => p.kind === "credential");
+  if (!param) return;
+  if (param.type.kind === "union") {
+    // TODO: support union types
+    return;
+  }
+  const type = emitCredential(param.type);
+  return ["KeyCredential", "TokenCredential"].includes(type)
+    ? "DefaultAzureCredential"
+    : undefined;
+}
 
-  // function MyFunction(): void {
-  //     console.log("Hello World");
-  // }
+function getSubscriptionId(_initialization: SdkInitializationType) {
+  return "00000000-0000-0000-0000-000000000000";
+}
 
-  // // test2.ts
-  // import { MyFunction, MyInterface } from "./test";
-
-  // MyFunction();
-  // let obj: MyInterface = { id: 1 };
+function getOperationGroupName(op: SdkClientAccessor<SdkServiceOperation>) {
+  return op.name.toLowerCase();
 }
