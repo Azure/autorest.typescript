@@ -4,11 +4,11 @@
 import { User, UserActionParam, UserActionResponse } from "../models/models.js";
 import {
   isUnexpected,
+  TraitsContext as Client,
   RepeatableAction200Response,
   RepeatableActionDefaultResponse,
   SmokeTest200Response,
   SmokeTestDefaultResponse,
-  TraitsContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

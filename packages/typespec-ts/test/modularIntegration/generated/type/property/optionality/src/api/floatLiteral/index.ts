@@ -3,11 +3,11 @@
 
 import { FloatLiteralProperty } from "../../models/models.js";
 import {
+  OptionalContext as Client,
   FloatLiteralGetAll200Response,
   FloatLiteralGetDefault200Response,
   FloatLiteralPutAll204Response,
   FloatLiteralPutDefault204Response,
-  OptionalContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

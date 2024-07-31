@@ -3,12 +3,12 @@
 
 import { AzureLocationModel } from "../models/models.js";
 import {
+  ScalarContext as Client,
   Get200Response,
   Header204Response,
   Post200Response,
   Put204Response,
   Query204Response,
-  ScalarContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

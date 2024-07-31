@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
-  ArrayContext as Client,
   BooleanValueGet200Response,
   BooleanValuePut204Response,
+  ArrayContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

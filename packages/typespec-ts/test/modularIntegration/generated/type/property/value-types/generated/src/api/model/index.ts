@@ -3,9 +3,9 @@
 
 import { innerModelSerializer, ModelProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   ModelGet200Response,
   ModelPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

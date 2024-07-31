@@ -3,9 +3,9 @@
 
 import { UnionIntLiteralProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   UnionIntLiteralGet200Response,
   UnionIntLiteralPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

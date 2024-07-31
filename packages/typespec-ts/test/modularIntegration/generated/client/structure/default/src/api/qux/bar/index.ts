@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  Nine204Response,
   ServiceContext as Client,
+  Nine204Response,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,

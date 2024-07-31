@@ -46,7 +46,7 @@ export async function emitPageHelperFromTypeSpec(
     needTCGC
   );
   const program = context.program;
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   let helperDetail;
   if (clients && clients[0]) {
@@ -82,7 +82,7 @@ export async function emitSchemasFromTypeSpec(
     needTCGC
   );
   const program = context.program;
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
@@ -107,7 +107,7 @@ export async function emitModelsFromTypeSpec(
     needTCGC,
     withRawContent
   );
-  const dpgContext = createDpgContextTestHelper(
+  const dpgContext = await createDpgContextTestHelper(
     context.program,
     enableModelNamespace
   );
@@ -147,7 +147,7 @@ export async function emitParameterFromTypeSpec(
     withRawContent,
     withVersionedApiVersion
   );
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   const importSet = initInternalImports();
   let parameters;
@@ -181,7 +181,7 @@ export async function emitClientDefinitionFromTypeSpec(
   needAzureCore: boolean = false
 ) {
   const context = await rlcEmitterFor(tspContent, true, needAzureCore);
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   const internalImports = initInternalImports();
   let paths = {};
@@ -216,7 +216,7 @@ export async function emitClientFactoryFromTypeSpec(
     withRawContent
   );
   const program = context.program;
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   const importSet = initInternalImports();
 
@@ -269,7 +269,7 @@ export async function emitResponsesFromTypeSpec(
     withVersionedApiVersion,
     needArmTemplate
   );
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const importSet = initInternalImports();
   const clients = getRLCClients(dpgContext);
   let responses;
@@ -292,7 +292,7 @@ export async function emitResponsesFromTypeSpec(
 
 export async function getRLCClientsFromTypeSpec(tspContent: string) {
   const context = await rlcEmitterFor(tspContent, true, false, true, true);
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return clients;
@@ -314,7 +314,7 @@ export async function emitModularModelsFromTypeSpec(
     false,
     withRawContent
   );
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
@@ -364,7 +364,7 @@ export async function emitModularSerializeUtilsFromTypeSpec(
   tspContent: string
 ) {
   const context = await rlcEmitterFor(tspContent);
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
@@ -413,7 +413,7 @@ export async function emitModularOperationsFromTypeSpec(
     withRawContent,
     withVersionedApiVersion
   );
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
@@ -443,7 +443,7 @@ export async function emitModularOperationsFromTypeSpec(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel,
-        false,
+        false
       );
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;
@@ -467,7 +467,7 @@ export async function emitModularClientContextFromTypeSpec(
     withRawContent,
     withVersionedApiVersion
   );
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
@@ -517,7 +517,7 @@ export async function emitModularClientFromTypeSpec(
     withRawContent,
     withVersionedApiVersion
   );
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel

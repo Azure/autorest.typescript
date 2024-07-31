@@ -3,9 +3,9 @@
 
 import { IntProperty } from "../../models/models.js";
 import {
+  ValueTypesContext as Client,
   IntGet200Response,
   IntPut204Response,
-  ValueTypesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

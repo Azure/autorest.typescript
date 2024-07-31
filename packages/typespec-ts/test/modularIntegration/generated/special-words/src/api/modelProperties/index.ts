@@ -3,8 +3,8 @@
 
 import { SameAsModel } from "../../models/models.js";
 import {
-  ModelPropertiesSameAsModel204Response,
   SpecialWordsContext as Client,
+  ModelPropertiesSameAsModel204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

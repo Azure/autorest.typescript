@@ -3,9 +3,9 @@
 
 import { Cat, Dog } from "../../models/models.js";
 import {
+  UnionContext as Client,
   ModelsOnlyGet200Response,
   ModelsOnlySend204Response,
-  UnionContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
