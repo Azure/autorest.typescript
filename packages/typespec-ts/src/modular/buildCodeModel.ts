@@ -1561,7 +1561,7 @@ function emitOperationGroups(
     context.rlcOptions?.hierarchyClient === false &&
     context.rlcOptions?.enableOperationGroup
   ) {
-    appendOperationGroupPrefix (operationGroups);
+    appendOperationGroupPrefix(operationGroups);
   }
   return operationGroups;
 }
@@ -1589,7 +1589,7 @@ function addHierarchyOperationGroup(
   return [];
 }
 
-function appendOperationGroupPrefix (operationGroups: OperationGroup[]) {
+function appendOperationGroupPrefix(operationGroups: OperationGroup[]) {
   if (operationGroups.length < 2) {
     return;
   }
