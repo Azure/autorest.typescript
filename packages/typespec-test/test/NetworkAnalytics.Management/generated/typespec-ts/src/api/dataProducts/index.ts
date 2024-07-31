@@ -20,6 +20,8 @@ import {
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
+  isUnexpected,
+  NetworkAnalyticsContext as Client,
   DataProductsAddUserRole200Response,
   DataProductsAddUserRoleDefaultResponse,
   DataProductsCreate200Response,
@@ -48,8 +50,6 @@ import {
   DataProductsUpdate202Response,
   DataProductsUpdateDefaultResponse,
   DataProductsUpdateLogicalResponse,
-  isUnexpected,
-  NetworkAnalyticsContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

@@ -8,10 +8,10 @@ import {
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import {
-  ChatCompletionsCreate200Response,
-  ChatCompletionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
+  ChatCompletionsCreate200Response,
+  ChatCompletionsCreateDefaultResponse,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,

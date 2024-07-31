@@ -7,13 +7,13 @@ import {
   ManagedIdentityTrackedResource,
 } from "../models/models.js";
 import {
+  isUnexpected,
+  ManagedIdentityContext as Client,
   CreateWithSystemAssigned200Response,
   CreateWithSystemAssigned201Response,
   CreateWithSystemAssignedDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  isUnexpected,
-  ManagedIdentityContext as Client,
   UpdateWithUserAssignedAndSystemAssigned200Response,
   UpdateWithUserAssignedAndSystemAssignedDefaultResponse,
 } from "../rest/index.js";

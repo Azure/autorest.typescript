@@ -6,11 +6,11 @@ import {
   CollectionsModelProperty,
 } from "../../models/models.js";
 import {
+  OptionalContext as Client,
   CollectionsModelGetAll200Response,
   CollectionsModelGetDefault200Response,
   CollectionsModelPutAll204Response,
   CollectionsModelPutDefault204Response,
-  OptionalContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
