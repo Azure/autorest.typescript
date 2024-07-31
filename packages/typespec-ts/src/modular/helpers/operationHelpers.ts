@@ -397,6 +397,12 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     getOperationSignatureParameters(operation, clientType);
   const returnType = buildLroReturnType(operation);
   const { name, fixme = [] } = getOperationName(operation);
+  const pollerLikeReference = resolveReference(
+    AzurePollingDependencies.PollerLike
+  );
+  const operationStateReference = resolveReference(
+    AzurePollingDependencies.OperationState
+  );
   const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
@@ -407,26 +413,22 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `${resolveReference(
-      AzurePollingDependencies.PollerLike
-    )}<${resolveReference(AzurePollingDependencies.OperationState)}<${
-      returnType.type
-    }>, ${returnType.type}>`
+    returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
+
+  const getLongRunningPollerReference = resolveReference(
+    PollingHellpers.GetLongRunningPoller
+  );
 
   const statements: string[] = [];
   statements.push(`
-  return ${resolveReference(
-    PollingHellpers.GetLongRunningPoller
-  )}(context, _${name}Deserialize, {
+  return ${getLongRunningPollerReference}(context, _${name}Deserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")})
-  }) as ${resolveReference(
-    AzurePollingDependencies.PollerLike
-  )}<${resolveReference(AzurePollingDependencies.OperationState)}<${
+  }) as ${pollerLikeReference}<${operationStateReference}<${
     returnType.type
   }>, ${returnType.type}>;
   `);
@@ -463,6 +465,12 @@ function getPagingOnlyOperationFunction(
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
+  const pagedAsyncIterableIteratorReference = resolveReference(
+    PagingHelpers.PagedAsyncIterableIterator
+  );
+  const buildPagedAsyncIteratorReference = resolveReference(
+    PagingHelpers.BuildPagedAsyncIterator
+  );
   const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
@@ -473,9 +481,7 @@ function getPagingOnlyOperationFunction(
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `${resolveReference(
-      PagingHelpers.PagedAsyncIterableIterator
-    )}<${returnType.type}>`
+    returnType: `${pagedAsyncIterableIteratorReference}<${returnType.type}>`
   };
 
   const statements: string[] = [];
@@ -487,7 +493,7 @@ function getPagingOnlyOperationFunction(
     options.push(`nextLinkName: "${operation.continuationTokenName}"`);
   }
   statements.push(
-    `return ${resolveReference(PagingHelpers.BuildPagedAsyncIterator)}(
+    `return ${buildPagedAsyncIteratorReference}(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,

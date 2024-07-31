@@ -43,6 +43,8 @@ export interface Binder {
   resolveAllReferences(): void;
 }
 
+const PLACEHOLDER_PREFIX = "_PLACEHOLDER_";
+
 class BinderImp implements Binder {
   private declarations = new Map<unknown, DeclarationInfo>();
   private references = new Map<unknown, Set<SourceFile>>();
@@ -155,7 +157,7 @@ class BinderImp implements Binder {
    * @returns The serialized placeholder string.
    */
   private serializePlaceholder(refkey: unknown): string {
-    return `_PLACEHOLDER_${String(refkey)}_`;
+    return `${PLACEHOLDER_PREFIX}${String(refkey)}_`;
   }
 
   /**
@@ -370,5 +372,5 @@ function escapeRegExp(string: string): string {
 }
 
 function hasAnyPlaceholders(sourceFile: SourceFile): boolean {
-  return sourceFile.getFullText().includes(`_PLACEHOLDER_`);
+  return sourceFile.getFullText().includes(PLACEHOLDER_PREFIX);
 }

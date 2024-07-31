@@ -61,6 +61,9 @@ export function buildRootIndex(
   exportPagingTypes(codeModel, rootIndexFile);
 }
 
+/**
+ * This is a temporary solution for adding paging exports. Eventually we will have the binder generate the exports automatically.
+ */
 function exportPagingTypes(
   codeModel: ModularCodeModel,
   rootIndexFile: SourceFile
@@ -121,34 +124,6 @@ function addExportsToRootIndexFile(
     namedExports: newNamedExports
   });
 }
-
-// function exportRestorePoller(
-//   codeModel: ModularCodeModel,
-//   rootIndexFile: SourceFile
-// ) {
-//   const hasRestorePoller = codeModel.clients.some((c) =>
-//     c.operationGroups.some((og) =>
-//       og.operations.some(
-//         (op) => op.discriminator === "lro" || op.discriminator === "lropaging"
-//       )
-//     )
-//   );
-
-//   if (!hasRestorePoller) {
-//     return;
-//   }
-
-//   // PageSettings,
-//   // ContinuablePage,
-//   // PagedAsyncIterableIterator,
-//   rootIndexFile.addExportDeclaration({
-//     namedExports: [
-//       resolveReference(AzurePollingDependencies.OperationState),
-//       resolveReference(PagingHelpers.ContinuablePage),
-//       resolveReference(PagingHelpers.PagedAsyncIterableIterator)
-//     ]
-//   });
-// }
 
 function exportRestoreHelpers(
   indexFile: SourceFile,
