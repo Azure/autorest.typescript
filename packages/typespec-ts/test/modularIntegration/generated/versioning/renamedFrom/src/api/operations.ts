@@ -3,9 +3,9 @@
 
 import { NewModel } from "../models/models.js";
 import {
+  RenamedFromContext as Client,
   NewOp200Response,
   NewOpInNewInterface200Response,
-  RenamedFromContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

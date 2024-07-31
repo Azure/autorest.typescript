@@ -12,8 +12,9 @@ import {
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
-  buildCsvCollection,
   isUnexpected,
+  WidgetServiceContext as Client,
+  buildCsvCollection,
   WidgetsAnalyzeWidget200Response,
   WidgetsAnalyzeWidgetDefaultResponse,
   WidgetsCreateOrReplace200Response,
@@ -24,7 +25,6 @@ import {
   WidgetsCreateWidgetDefaultResponse,
   WidgetsDeleteWidget204Response,
   WidgetsDeleteWidgetDefaultResponse,
-  WidgetServiceContext as Client,
   WidgetsGetWidget200Response,
   WidgetsGetWidgetDefaultResponse,
   WidgetsListWidgets200Response,

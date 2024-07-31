@@ -3,9 +3,9 @@
 
 import { ClientModel, TSModel } from "../../models/models.js";
 import {
+  NamingContext as Client,
   ModelClient204Response,
   ModelLanguage204Response,
-  NamingContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
