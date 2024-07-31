@@ -55,8 +55,6 @@ export function buildClassicOperationFiles(
       );
       importApis(classicFile, client, codeModel, operationGroup);
       // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
-      classicFile.fixMissingImports();
-      classicFile.fixUnusedIdentifiers();
       classicOperationFiles.set(classicOperationFileName, classicFile);
     }
   }
@@ -100,9 +98,6 @@ export function buildClassicOperationFiles(
         // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
         importModels(srcPath, classicFile, codeModel.project, subfolder, layer);
         importApis(classicFile, client, codeModel, operationGroup, layer);
-
-        classicFile.fixMissingImports();
-        classicFile.fixUnusedIdentifiers();
         classicOperationFiles.set(classicOperationFileName, classicFile);
       }
     }

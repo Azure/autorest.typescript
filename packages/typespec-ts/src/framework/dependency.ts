@@ -26,9 +26,9 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
     name: "OperationOptions";
     module: string;
   };
-  PathUnckeckedResponse: {
+  PathUncheckedResponse: {
     kind: "externalDependency";
-    name: "PathUnckeckedResponse";
+    name: "PathUncheckedResponse";
     module: string;
   };
   AbortSignalLike: {

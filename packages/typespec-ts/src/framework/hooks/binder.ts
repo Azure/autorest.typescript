@@ -45,6 +45,7 @@ export interface Binder {
 
 class BinderImp implements Binder {
   private declarations = new Map<unknown, DeclarationInfo>();
+  private references = new Map<unknown, Set<SourceFile>>();
   private imports = new Map<SourceFile, ImportDeclarationStructure[]>();
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
   private project: Project;
@@ -154,7 +155,7 @@ class BinderImp implements Binder {
    * @returns The serialized placeholder string.
    */
   private serializePlaceholder(refkey: unknown): string {
-    return `_PLACEHOLDER_${String(refkey)}`;
+    return `_PLACEHOLDER_${String(refkey)}_`;
   }
 
   /**
@@ -230,6 +231,8 @@ class BinderImp implements Binder {
         sourceFile.addImportDeclaration(importStructure);
       }
     }
+
+    this.cleanUnreferencedHelpers();
   }
 
   private resolveDependencyReferences(file: SourceFile) {
@@ -275,11 +278,43 @@ class BinderImp implements Binder {
       }
 
       if (file !== declarationSourceFile) {
+        this.trackReference(declarationKey, file);
         const importDec = this.addImport(file, declarationSourceFile, name);
         name = importDec.alias ?? name;
       }
       replacePlaceholder(file, placeholderKey, name);
     }
+  }
+
+  private trackReference(refkey: unknown, sourceFile: SourceFile): void {
+    if (!this.references.has(refkey)) {
+      this.references.set(refkey, new Set());
+    }
+
+    this.references.get(refkey)!.add(sourceFile);
+  }
+
+  private cleanUnreferencedHelpers() {
+    const usedHelperFiles = new Set<SourceFile>();
+    for (const helper of this.staticHelpers.values()) {
+      const sourceFile = helper[SourceFileSymbol];
+      if (!sourceFile) {
+        // This should be unreachable
+        throw new Error(
+          `Static helper ${helper.name} does not have a source file. Make sure that loadStaticHelpers has been correctly initialized in index.ts`
+        );
+      }
+      const referencedHelper = this.references.get(refkey(helper));
+
+      if (referencedHelper?.size) {
+        usedHelperFiles.add(sourceFile);
+      }
+    }
+
+    this.project
+      .getSourceFiles("**/static-helpers/**/*.ts")
+      .filter((helperFile) => !usedHelperFiles.has(helperFile))
+      .forEach((helperFile) => helperFile.delete());
   }
 }
 

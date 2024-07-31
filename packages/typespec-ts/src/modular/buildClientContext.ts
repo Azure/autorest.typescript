@@ -134,12 +134,6 @@ export function buildClientContext(
       }
     ]);
   }
-
-  clientContextFile.fixMissingImports(
-    {},
-    { importModuleSpecifierEnding: "js" }
-  );
-
   clientContextFile.fixUnusedIdentifiers();
   return clientContextFile;
 }

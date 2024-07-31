@@ -156,9 +156,6 @@ export function buildOperationFiles(
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     addImportBySymbol("serializeRecord", operationGroupFile);
 
-    operationGroupFile.fixMissingImports();
-    // have to fixUnusedIdentifiers after everything get generated.
-    operationGroupFile.fixUnusedIdentifiers();
     operationFiles.push(operationGroupFile);
   }
   return operationFiles;

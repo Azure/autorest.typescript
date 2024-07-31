@@ -2,6 +2,8 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { resolveReference } from "../framework/reference.js";
+import { PagingHelpers } from "./static-helpers-metadata.js";
 
 export function buildRootIndex(
   client: Client,
@@ -55,7 +57,98 @@ export function buildRootIndex(
     subfolder,
     true
   );
+
+  exportPagingTypes(codeModel, rootIndexFile);
 }
+
+function exportPagingTypes(
+  codeModel: ModularCodeModel,
+  rootIndexFile: SourceFile
+) {
+  if (!hasPaging(codeModel)) {
+    return;
+  }
+
+  const existingExports = getExistingExports(rootIndexFile);
+  const namedExports = [
+    resolveReference(PagingHelpers.PageSettings),
+    resolveReference(PagingHelpers.ContinuablePage),
+    resolveReference(PagingHelpers.PagedAsyncIterableIterator)
+  ];
+
+  const newNamedExports = getNewNamedExports(namedExports, existingExports);
+
+  if (newNamedExports.length > 0) {
+    addExportsToRootIndexFile(rootIndexFile, newNamedExports);
+  }
+}
+
+function hasPaging(codeModel: ModularCodeModel): boolean {
+  return codeModel.clients.some((c) =>
+    c.operationGroups.some((og) =>
+      og.operations.some(
+        (op) =>
+          op.discriminator === "paging" || op.discriminator === "lropaging"
+      )
+    )
+  );
+}
+
+function getExistingExports(rootIndexFile: SourceFile): Set<string> {
+  return new Set(
+    rootIndexFile
+      .getExportDeclarations()
+      .flatMap((exportDecl) =>
+        exportDecl.getNamedExports().map((namedExport) => namedExport.getName())
+      )
+  );
+}
+
+function getNewNamedExports(
+  namedExports: string[],
+  existingExports: Set<string>
+): string[] {
+  return namedExports.filter(
+    (namedExport) => !existingExports.has(namedExport)
+  );
+}
+
+function addExportsToRootIndexFile(
+  rootIndexFile: SourceFile,
+  newNamedExports: string[]
+) {
+  rootIndexFile.addExportDeclaration({
+    namedExports: newNamedExports
+  });
+}
+
+// function exportRestorePoller(
+//   codeModel: ModularCodeModel,
+//   rootIndexFile: SourceFile
+// ) {
+//   const hasRestorePoller = codeModel.clients.some((c) =>
+//     c.operationGroups.some((og) =>
+//       og.operations.some(
+//         (op) => op.discriminator === "lro" || op.discriminator === "lropaging"
+//       )
+//     )
+//   );
+
+//   if (!hasRestorePoller) {
+//     return;
+//   }
+
+//   // PageSettings,
+//   // ContinuablePage,
+//   // PagedAsyncIterableIterator,
+//   rootIndexFile.addExportDeclaration({
+//     namedExports: [
+//       resolveReference(AzurePollingDependencies.OperationState),
+//       resolveReference(PagingHelpers.ContinuablePage),
+//       resolveReference(PagingHelpers.PagedAsyncIterableIterator)
+//     ]
+//   });
+// }
 
 function exportRestoreHelpers(
   indexFile: SourceFile,

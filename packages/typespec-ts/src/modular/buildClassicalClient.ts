@@ -106,8 +106,6 @@ export function buildClassicalClient(
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
-  clientFile.fixMissingImports();
-  clientFile.fixUnusedIdentifiers();
   return clientFile;
 }
 

@@ -67,7 +67,11 @@ import {
   PollingHellpers,
   Utilities
 } from "./modular/static-helpers-metadata.js";
-import { AzurePollingDependencies } from "./modular/external-dependencies.js";
+import {
+  AzureCoreDependencies,
+  AzurePollingDependencies
+} from "./modular/external-dependencies.js";
+import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 
 export * from "./lib.js";
 
@@ -107,7 +111,9 @@ export async function $onEmit(context: EmitContext) {
     { sourcesDir: modularSourcesDir }
   );
   const extraDependencies =
-    rlcOptions?.flavor === "azure" ? { ...AzurePollingDependencies } : {};
+    rlcOptions?.flavor === "azure"
+      ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+      : {};
   const binder = provideBinder(outputProject, {
     staticHelpers,
     dependencies: {
@@ -244,6 +250,7 @@ export async function $onEmit(context: EmitContext) {
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
         buildSubpathIndexFile(subClient, modularCodeModel, "models");
+        buildRestorePoller(modularCodeModel, subClient);
         if (dpgContext.rlcOptions?.hierarchyClient) {
           buildSubpathIndexFile(subClient, modularCodeModel, "api");
         } else {
@@ -267,6 +274,8 @@ export async function $onEmit(context: EmitContext) {
       binder.resolveAllReferences();
 
       for (const file of project.getSourceFiles()) {
+        file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+        file.fixUnusedIdentifiers();
         await emitContentByBuilder(
           program,
           () => ({ content: file.getFullText(), path: file.getFilePath() }),

@@ -31,9 +31,9 @@ export const DefaultCoreDependencies: CoreDependencies = {
     name: "OperationOptions",
     module: "@typespec/ts-http-runtime"
   },
-  PathUnckeckedResponse: {
+  PathUncheckedResponse: {
     kind: "externalDependency",
-    name: "PathUnckeckedResponse",
+    name: "PathUncheckedResponse",
     module: "@typespec/ts-http-runtime"
   },
   AbortSignalLike: {
@@ -68,6 +68,16 @@ export const AzurePollingDependencies = {
     kind: "externalDependency",
     module: "@azure/core-lro",
     name: "OperationState"
+  },
+  DeserializeState: {
+    kind: "externalDependency",
+    module: "@azure/core-lro",
+    name: "deserializeState"
+  },
+  ResourceLocationConfig: {
+    kind: "externalDependency",
+    module: "@azure/core-lro",
+    name: "ResourceLocationConfig"
   }
 };
 
@@ -102,10 +112,10 @@ export const AzureCoreDependencies: CoreDependencies = {
     module: "@azure-rest/core-client",
     name: "OperationOptions"
   },
-  PathUnckeckedResponse: {
+  PathUncheckedResponse: {
     kind: "externalDependency",
     module: "@azure-rest/core-client",
-    name: "PathUnckeckedResponse"
+    name: "PathUncheckedResponse"
   },
   AbortSignalLike: {
     kind: "externalDependency",

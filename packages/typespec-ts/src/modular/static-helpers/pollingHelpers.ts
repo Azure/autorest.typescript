@@ -12,6 +12,7 @@ import {
 
 import {
   Client,
+  OperationOptions,
   PathUncheckedResponse,
   createRestError
 } from "@azure-rest/core-client";
@@ -158,4 +159,18 @@ function checkResponse(response: PathUncheckedResponse): void {
       );
     }
   }
+}
+
+export interface RestorePollerOptions<
+  TResult,
+  TResponse extends PathUncheckedResponse = PathUncheckedResponse
+> extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /**
+   * The signal which can be used to abort requests.
+   */
+  abortSignal?: AbortSignalLike;
+  /** Deserialization function for raw response body */
+  processResponseBody?: (result: TResponse) => Promise<TResult>;
 }
