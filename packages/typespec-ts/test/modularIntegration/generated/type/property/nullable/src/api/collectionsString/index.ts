@@ -3,11 +3,11 @@
 
 import { CollectionsStringProperty } from "../../models/models.js";
 import {
+  NullableContext as Client,
   CollectionsStringGetNonNull200Response,
   CollectionsStringGetNull200Response,
   CollectionsStringPatchNonNull204Response,
   CollectionsStringPatchNull204Response,
-  NullableContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

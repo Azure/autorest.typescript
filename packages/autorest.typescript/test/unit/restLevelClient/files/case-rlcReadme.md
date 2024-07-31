@@ -10,7 +10,6 @@ Key links:
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/agrifood-farming)
 - [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/agrifood-farming?view=azure-node-preview)
 - [Product documentation](https://azure.microsoft.com/en-us/services/purview/)
-- [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/agrifood/agrifood-farming-rest/samples)
 
 ## Getting started
 

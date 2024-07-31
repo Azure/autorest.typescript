@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
+  ScalarContext as Client,
   Decimal128VerifyPrepareVerify200Response,
   Decimal128VerifyVerify204Response,
-  ScalarContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

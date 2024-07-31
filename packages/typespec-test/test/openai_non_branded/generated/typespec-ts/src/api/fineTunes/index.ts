@@ -7,6 +7,8 @@ import {
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
 import {
+  isUnexpected,
+  OpenAIContext as Client,
   FineTunesCancel200Response,
   FineTunesCancelDefaultResponse,
   FineTunesCreate200Response,
@@ -17,8 +19,6 @@ import {
   FineTunesListEventsDefaultResponse,
   FineTunesRetrieve200Response,
   FineTunesRetrieveDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

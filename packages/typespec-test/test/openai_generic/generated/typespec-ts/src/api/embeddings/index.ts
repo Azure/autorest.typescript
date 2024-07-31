@@ -6,10 +6,10 @@ import {
   CreateEmbeddingResponse,
 } from "../../models/models.js";
 import {
-  EmbeddingsCreate200Response,
-  EmbeddingsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
+  EmbeddingsCreate200Response,
+  EmbeddingsCreateDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

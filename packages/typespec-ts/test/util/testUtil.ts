@@ -88,16 +88,16 @@ ${code}
   return host;
 }
 
-export function createDpgContextTestHelper(
+export async function createDpgContextTestHelper(
   program: Program,
   enableModelNamespace = false
-): SdkContext {
+): Promise<SdkContext> {
   provideContext("rlcMetaTree", new Map());
   provideContext("modularMetaTree", new Map());
   provideContext("symbolMap", new Map());
   provideContext("outputProject", new Project());
 
-  const context = createContextWithDefaultOptions({
+  const context = await createContextWithDefaultOptions({
     program
   } as EmitContext);
 

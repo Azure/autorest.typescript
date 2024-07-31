@@ -12,6 +12,7 @@ import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
   isUnexpected,
+  ResourcesContext as Client,
   NestedProxyResourcesCreateOrReplace200Response,
   NestedProxyResourcesCreateOrReplace201Response,
   NestedProxyResourcesCreateOrReplaceDefaultResponse,
@@ -28,7 +29,6 @@ import {
   NestedProxyResourcesUpdate202Response,
   NestedProxyResourcesUpdateDefaultResponse,
   NestedProxyResourcesUpdateLogicalResponse,
-  ResourcesContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,

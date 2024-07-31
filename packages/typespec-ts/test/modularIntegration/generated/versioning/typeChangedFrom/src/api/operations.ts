@@ -3,8 +3,8 @@
 
 import { TestModel } from "../models/models.js";
 import {
-  Test200Response,
   TypeChangedFromContext as Client,
+  Test200Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,

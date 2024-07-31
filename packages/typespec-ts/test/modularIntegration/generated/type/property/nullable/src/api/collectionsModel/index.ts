@@ -6,11 +6,11 @@ import {
   CollectionsModelProperty,
 } from "../../models/models.js";
 import {
+  NullableContext as Client,
   CollectionsModelGetNonNull200Response,
   CollectionsModelGetNull200Response,
   CollectionsModelPatchNonNull204Response,
   CollectionsModelPatchNull204Response,
-  NullableContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
