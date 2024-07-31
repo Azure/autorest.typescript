@@ -230,6 +230,7 @@ importers:
     specifiers:
       '@azure-rest/core-client': ^2.1.0
       '@azure-tools/cadl-ranch': ^0.13.4
+      '@azure-tools/cadl-ranch-api': ^0.4.4
       '@azure-tools/cadl-ranch-expect': ^0.14.1
       '@azure-tools/cadl-ranch-specs': ^0.34.9
       '@azure-tools/rlc-common': workspace:^0.31.0
@@ -286,6 +287,7 @@ importers:
     devDependencies:
       '@azure-rest/core-client': 2.1.0
       '@azure-tools/cadl-ranch': 0.13.4_erzegljlzqjfevgnc7y3ko52aq
+      '@azure-tools/cadl-ranch-api': 0.4.4
       '@azure-tools/cadl-ranch-expect': 0.14.1_xh3ux2bdr4ico2ttepwgig7vam
       '@azure-tools/cadl-ranch-specs': 0.34.9_psfe3gh3g46dy4q5vvlmtrffdu
       '@azure-tools/typespec-autorest': 0.44.0_timngmzobtudd6hqmfxz372sfm
@@ -403,24 +405,6 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/cadl-ranch-api/0.4.3:
-    resolution: {integrity: sha512-1vmurkIORdQ/2j33uoKjxHFAOuRWQFaRLn7uS88hbofVj5C5DKTiMQAgawQFqGiJkaPTdZwGK3YF2qcJWebIzw==}
-    engines: {node: '>=16.0.0'}
-    dependencies:
-      body-parser: 1.20.2
-      deep-equal: 2.2.2
-      express: 4.19.2
-      express-promise-router: 4.1.1_express@4.19.2
-      glob: 10.3.9
-      morgan: 1.10.0
-      multer: 1.4.5-lts.1
-      picocolors: 1.0.1
-      winston: 3.10.0
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/express'
-    dev: true
-
   /@azure-tools/cadl-ranch-api/0.4.4:
     resolution: {integrity: sha512-7kDw5HveR6SZrzhEef9j7vBH2YUi5IWYWIbNVSsSanPAa5zlcThaklcMHDVLz0+N3mk1s9PfVD6ODnsxomSOkw==}
     engines: {node: '>=16.0.0'}
@@ -498,7 +482,7 @@ packages:
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
-      '@azure-tools/cadl-ranch-api': 0.4.3
+      '@azure-tools/cadl-ranch-api': 0.4.4
       '@azure-tools/cadl-ranch-coverage-sdk': 0.8.2
       '@azure-tools/cadl-ranch-expect': 0.14.1_xh3ux2bdr4ico2ttepwgig7vam
       '@azure/identity': 4.3.0
