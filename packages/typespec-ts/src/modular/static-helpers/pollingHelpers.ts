@@ -142,19 +142,20 @@ function getLroResponse<TResponse extends PathUncheckedResponse>(
 function checkResponse(response: PathUncheckedResponse): void {
   const statusCode = Number(response.status);
   if (statusCode < 200 || statusCode >= 300) {
+    const errorMessage = response.body?.message ?? "";
     if (statusCode >= 400 && statusCode < 500) {
       throw createRestError(
-        `Poller failed with client error statusCode ${response.status}`,
+        `Poller failed with client error statusCode ${response.status}\n ${errorMessage}`,
         response
       );
     } else if (statusCode >= 500) {
       throw createRestError(
-        `Poller failed with server error statusCode ${response.status}`,
+        `Poller failed with server error statusCode ${response.status}\n ${errorMessage}`,
         response
       );
     } else {
       throw createRestError(
-        `Poller failed with unexpected statusCode ${response.status}`,
+        `Poller failed with unexpected statusCode ${response.status}\n ${errorMessage}`,
         response
       );
     }

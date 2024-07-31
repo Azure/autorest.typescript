@@ -58,7 +58,9 @@ export async function loadStaticHelpers(
   for (const file of files) {
     const targetPath = path.resolve(sourcesDir, file.target);
     const contents = await readFile(file.source, "utf-8");
-    const addedFile = project.createSourceFile(targetPath, contents);
+    const addedFile = project.createSourceFile(targetPath, contents, {
+      overwrite: true
+    });
 
     for (const entry of Object.values(helpers)) {
       if (!addedFile.getFilePath().endsWith(entry.location)) {
