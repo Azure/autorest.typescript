@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
   PollerLike,
   OperationState,
@@ -12,11 +15,11 @@ import {
 
 import {
   Client,
+  OperationOptions,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
-import { isUnexpected } from "../rest/index.js";
 
 export interface GetLongRunningPollerOptions<TResponse> {
   /** Delay to wait until next poll, in milliseconds. */
@@ -125,9 +128,7 @@ export function getLongRunningPoller<
 function getLroResponse<TResponse extends PathUncheckedResponse>(
   response: TResponse,
 ): OperationResponse<TResponse> {
-  if (isUnexpected(response as PathUncheckedResponse)) {
-    throw createRestError(response);
-  }
+  checkResponse(response);
   return {
     flatResponse: response,
     rawResponse: {
@@ -136,4 +137,44 @@ function getLroResponse<TResponse extends PathUncheckedResponse>(
       body: response.body,
     },
   };
+}
+
+/**
+ * Checks if a request failed
+ */
+function checkResponse(response: PathUncheckedResponse): void {
+  const statusCode = Number(response.status);
+  if (statusCode < 200 || statusCode >= 300) {
+    const errorMessage = response.body?.message ?? "";
+    if (statusCode >= 400 && statusCode < 500) {
+      throw createRestError(
+        `Poller failed with client error statusCode ${response.status}\n ${errorMessage}`,
+        response,
+      );
+    } else if (statusCode >= 500) {
+      throw createRestError(
+        `Poller failed with server error statusCode ${response.status}\n ${errorMessage}`,
+        response,
+      );
+    } else {
+      throw createRestError(
+        `Poller failed with unexpected statusCode ${response.status}\n ${errorMessage}`,
+        response,
+      );
+    }
+  }
+}
+
+export interface RestorePollerOptions<
+  TResult,
+  TResponse extends PathUncheckedResponse = PathUncheckedResponse,
+> extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /**
+   * The signal which can be used to abort requests.
+   */
+  abortSignal?: AbortSignalLike;
+  /** Deserialization function for raw response body */
+  processResponseBody?: (result: TResponse) => Promise<TResult>;
 }

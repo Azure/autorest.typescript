@@ -87,8 +87,6 @@ import {
   _PoolListUsageMetricsResult,
   _PoolNodeCountsListResult,
 } from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   BatchContext as Client,
@@ -253,6 +251,10 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
 import {
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,

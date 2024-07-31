@@ -10,7 +10,6 @@ import {
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createOrUpdateTestProfile,
   deleteTestProfile,
@@ -20,6 +19,7 @@ import {
   TestProfileAdministrationOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 
 export { TestProfileAdministrationOperationsClientOptionalParams } from "./api/testProfileAdministrationOperationsContext.js";
 

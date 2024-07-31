@@ -30,7 +30,6 @@ import {
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createOrUpdateTestRun,
   createOrUpdateAppComponents,
@@ -50,6 +49,7 @@ import {
   TestRunOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 
 export { TestRunOperationsClientOptionalParams } from "./api/testRunOperationsContext.js";
 

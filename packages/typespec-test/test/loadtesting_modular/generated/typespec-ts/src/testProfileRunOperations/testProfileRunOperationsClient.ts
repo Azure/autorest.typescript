@@ -11,7 +11,6 @@ import {
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createOrUpdateTestProfileRun,
   deleteTestProfileRun,
@@ -22,6 +21,7 @@ import {
   TestProfileRunOperationsClientOptionalParams,
   LoadTestServiceContext,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 
 export { TestProfileRunOperationsClientOptionalParams } from "./api/testProfileRunOperationsContext.js";
 
