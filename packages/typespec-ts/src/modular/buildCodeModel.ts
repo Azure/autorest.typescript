@@ -1231,17 +1231,32 @@ function applyEncoding(
 
 function mergeFormatAndEncoding(
   format: string | undefined,
-  encoding: string,
+  encoding: string | undefined,
   encodeAsFormat: string | undefined
-): string {
+): string | undefined {
   switch (format) {
     case undefined:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
     case "date-time":
-      return encoding;
+      switch (encoding) {
+        case "rfc3339":
+          return "date-time";
+        case "unixTimestamp":
+          return "unixtime";
+        case "rfc7231":
+          return "http-date";
+        default:
+          return encoding;
+      }
     case "duration":
+      switch (encoding) {
+        case "ISO8601":
+          return "duration";
+        default:
+          return encodeAsFormat ?? encoding;
+      }
     default:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
   }
 }
 
