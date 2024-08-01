@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { MyOp200Response, SingleContext as Client } from "../rest/index.js";
+import { SingleContext as Client, MyOp200Response } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,

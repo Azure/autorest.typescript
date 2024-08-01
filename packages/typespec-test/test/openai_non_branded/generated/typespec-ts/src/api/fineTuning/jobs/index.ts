@@ -7,6 +7,8 @@ import {
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
 import {
+  isUnexpected,
+  OpenAIContext as Client,
   FineTuningJobsCancel200Response,
   FineTuningJobsCancelDefaultResponse,
   FineTuningJobsCreate200Response,
@@ -17,8 +19,6 @@ import {
   FineTuningJobsListEventsDefaultResponse,
   FineTuningJobsRetrieve200Response,
   FineTuningJobsRetrieveDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,

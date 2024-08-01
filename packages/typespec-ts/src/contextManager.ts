@@ -4,6 +4,7 @@ import { EmitContext } from "@typespec/compiler";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { SdkTypeContext } from "./framework/hooks/sdkTypes.js";
 import { Binder } from "./framework/hooks/binder.js";
+import { ExternalDependencies } from "./framework/dependency.js";
 
 /**
  * Contexts Object Guidelines
@@ -29,6 +30,7 @@ type Contexts = {
     tcgcContext: SdkContext;
   };
   binder: Binder;
+  dependencies: ExternalDependencies;
 };
 
 type ContextKey = keyof Contexts;

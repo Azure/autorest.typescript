@@ -5,6 +5,8 @@ import { getLongRunningPoller } from "./pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import { User, ExportedUser } from "../models/models.js";
 import {
+  isUnexpected,
+  StandardContext as Client,
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
@@ -15,8 +17,6 @@ import {
   Export202Response,
   ExportDefaultResponse,
   ExportLogicalResponse,
-  isUnexpected,
-  StandardContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,

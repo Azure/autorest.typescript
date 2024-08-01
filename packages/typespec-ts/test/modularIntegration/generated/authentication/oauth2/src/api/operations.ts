@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
+  OAuth2Context as Client,
   Invalid204Response,
   Invalid403Response,
-  OAuth2Context as Client,
   Valid204Response,
 } from "../rest/index.js";
 import {

@@ -28,6 +28,18 @@ export function assertGetInterfaceProperty(
   return property;
 }
 
+export function assertGetImportStatements(
+  sourceFile: SourceFile,
+  moduleName: string
+) {
+  const importStatements = sourceFile.getImportDeclarations();
+  const importStatement = importStatements.find((importStatement) =>
+    importStatement.getModuleSpecifierValue().includes(moduleName)
+  );
+  assert(importStatement, `Import statement for ${moduleName} not found`);
+  return importStatement;
+}
+
 export function assertGetVariableDeclaration(
   sourceFile: SourceFile,
   name: string

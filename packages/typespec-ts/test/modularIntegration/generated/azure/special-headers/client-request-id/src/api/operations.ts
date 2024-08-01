@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  Get204Response,
   XmsRequestIdClientContext as Client,
+  Get204Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
