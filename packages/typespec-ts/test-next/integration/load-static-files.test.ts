@@ -3,7 +3,9 @@ import { loadStaticHelpers } from "../../src/framework/load-static-helpers.js";
 import { Project } from "ts-morph";
 import path from "path";
 import { refkey } from "../../src/framework/refkey.js";
-import { __dirname } from "../../src/utils/dirname.js";
+import { getDirname } from "../../src/utils/dirname.js";
+
+const __dirname = getDirname(import.meta.url).__dirname;
 
 describe("loadStaticHelpers", () => {
   let project: Project;

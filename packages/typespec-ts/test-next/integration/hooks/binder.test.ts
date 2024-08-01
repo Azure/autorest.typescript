@@ -33,7 +33,9 @@ import {
 } from "../../../src/framework/load-static-helpers.js";
 import path from "path";
 import { AzurePollingDependencies } from "../../../src/modular/external-dependencies.js";
-import { __dirname } from "../../../src/utils/dirname.js";
+import { getDirname } from "../../../src/utils/dirname.js";
+
+const __dirname = getDirname(import.meta.url).__dirname;
 
 describe("Binder", () => {
   let project: Project;
