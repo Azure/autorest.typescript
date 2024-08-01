@@ -33,7 +33,7 @@ import {
 } from "../../../src/framework/load-static-helpers.js";
 import path from "path";
 import { AzurePollingDependencies } from "../../../src/modular/external-dependencies.js";
-import { format } from "prettier";
+import { __dirname } from "../../../src/utils/dirname.js";
 
 describe("Binder", () => {
   let project: Project;
@@ -356,7 +356,6 @@ describe("Binder", () => {
     let helpersDirectory: string;
 
     beforeEach(async () => {
-      const __dirname = path.dirname(new URL(import.meta.url).pathname);
       helpersDirectory = path.resolve(__dirname, "../assets/static-helpers");
       staticHelpers = {
         buildCsvCollection: {

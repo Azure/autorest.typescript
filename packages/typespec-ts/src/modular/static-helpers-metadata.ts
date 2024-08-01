@@ -39,7 +39,7 @@ export const PagingHelpers = {
   }
 } as const;
 
-export const PollingHellpers = {
+export const PollingHelpers = {
   GetLongRunningPollerOptions: {
     kind: "interface",
     name: "GetLongRunningPollerOptions",

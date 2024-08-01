@@ -1,7 +1,10 @@
 import { copyFile, mkdir, readdir } from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+// Get the correct __dirname in both Windows and Linux
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function copyFiles(srcDir, destDir, fileFilter) {
   try {

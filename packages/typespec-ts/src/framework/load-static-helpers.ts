@@ -9,8 +9,7 @@ import {
   TypeAliasDeclaration
 } from "ts-morph";
 import { refkey } from "./refkey.js";
-
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import { __dirname } from "../utils/dirname.js";
 
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {

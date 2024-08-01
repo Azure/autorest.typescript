@@ -10,7 +10,7 @@ import {
   AzureCoreDependencies,
   AzurePollingDependencies
 } from "./external-dependencies.js";
-import { PollingHellpers } from "./static-helpers-metadata.js";
+import { PollingHelpers } from "./static-helpers-metadata.js";
 
 export function buildRestorePoller(
   codeModel: ModularCodeModel,
@@ -98,7 +98,7 @@ export function buildRestorePoller(
             \`Please ensure the operation is in this client! We can't find its deserializeHelper for \${sourceOperation?.name}.\`
           );
         }
-        return ${resolveReference(PollingHellpers.GetLongRunningPoller)}(
+        return ${resolveReference(PollingHelpers.GetLongRunningPoller)}(
           (client as any)["_client"] ?? client,
           deserializeHelper as (result: TResponse) => Promise<TResult>,
           {

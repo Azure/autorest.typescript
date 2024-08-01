@@ -47,7 +47,7 @@ import {
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { buildType, isTypeNullable } from "./typeHelpers.js";
 import { resolveReference } from "../../framework/reference.js";
-import { PagingHelpers, PollingHellpers } from "../static-helpers-metadata.js";
+import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
 
 function getRLCResponseTypes(rlcResponse?: OperationResponse) {
@@ -417,7 +417,7 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
   };
 
   const getLongRunningPollerReference = resolveReference(
-    PollingHellpers.GetLongRunningPoller
+    PollingHelpers.GetLongRunningPoller
   );
 
   const statements: string[] = [];

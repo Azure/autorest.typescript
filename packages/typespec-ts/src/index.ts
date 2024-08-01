@@ -64,7 +64,7 @@ import { provideBinder } from "./framework/hooks/binder.js";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import {
   PagingHelpers,
-  PollingHellpers,
+  PollingHelpers,
   Utilities
 } from "./modular/static-helpers-metadata.js";
 import {
@@ -106,7 +106,7 @@ export async function $onEmit(context: EmitContext) {
     {
       ...Utilities,
       ...PagingHelpers,
-      ...PollingHellpers
+      ...PollingHelpers
     },
     { sourcesDir: modularSourcesDir }
   );
