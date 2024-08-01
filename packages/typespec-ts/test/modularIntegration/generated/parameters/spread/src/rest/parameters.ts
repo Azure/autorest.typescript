@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { BodyParameter, CompositeRequestMix } from "./models.js";
+import { BodyParameter, CompositeRequestMix, InnerModel } from "./models.js";
 
 export interface ModelSpreadAsRequestBodyBodyParam {
   body?: BodyParameter;
@@ -71,6 +71,23 @@ export interface AliasSpreadAsRequestBodyBodyParam {
 export type AliasSpreadAsRequestBodyParameters =
   AliasSpreadAsRequestBodyBodyParam & RequestParameters;
 
+export interface AliasSpreadParameterWithInnerModelHeaders {
+  "x-ms-test-header": string;
+}
+
+export interface AliasSpreadParameterWithInnerModelBodyParam {
+  body?: InnerModel;
+}
+
+export interface AliasSpreadParameterWithInnerModelHeaderParam {
+  headers: RawHttpHeadersInput & AliasSpreadParameterWithInnerModelHeaders;
+}
+
+export type AliasSpreadParameterWithInnerModelParameters =
+  AliasSpreadParameterWithInnerModelHeaderParam &
+    AliasSpreadParameterWithInnerModelBodyParam &
+    RequestParameters;
+
 export interface AliasSpreadAsRequestParameterHeaders {
   "x-ms-test-header": string;
 }
@@ -94,12 +111,10 @@ export interface AliasSpreadWithMultipleParametersHeaders {
 
 export interface AliasSpreadWithMultipleParametersBodyParam {
   body?: {
-    prop1: string;
-    prop2: string;
-    prop3: string;
-    prop4: string;
-    prop5: string;
-    prop6: string;
+    requiredString: string;
+    optionalInt?: number;
+    requiredIntList: number[];
+    optionalStringList?: string[];
   };
 }
 
@@ -110,4 +125,21 @@ export interface AliasSpreadWithMultipleParametersHeaderParam {
 export type AliasSpreadWithMultipleParametersParameters =
   AliasSpreadWithMultipleParametersHeaderParam &
     AliasSpreadWithMultipleParametersBodyParam &
+    RequestParameters;
+
+export interface AliasSpreadParameterWithInnerAliasHeaders {
+  "x-ms-test-header": string;
+}
+
+export interface AliasSpreadParameterWithInnerAliasBodyParam {
+  body?: { name: string; age: number };
+}
+
+export interface AliasSpreadParameterWithInnerAliasHeaderParam {
+  headers: RawHttpHeadersInput & AliasSpreadParameterWithInnerAliasHeaders;
+}
+
+export type AliasSpreadParameterWithInnerAliasParameters =
+  AliasSpreadParameterWithInnerAliasHeaderParam &
+    AliasSpreadParameterWithInnerAliasBodyParam &
     RequestParameters;

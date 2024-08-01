@@ -8,8 +8,10 @@ export {
 } from "./spreadContext.js";
 export {
   aliasSpreadAsRequestBody,
+  aliasSpreadParameterWithInnerModel,
   aliasSpreadAsRequestParameter,
   aliasSpreadWithMultipleParameters,
+  aliasSpreadParameterWithInnerAlias,
 } from "./alias/index.js";
 export {
   modelSpreadAsRequestBody,
