@@ -11,7 +11,6 @@ import { Options } from "prettier";
 
 export interface EmitterOptions extends RLCOptions {
   branded?: boolean;
-  compatibilityMode?: boolean;
   experimentalExtensibleEnums?: boolean;
 }
 
@@ -91,7 +90,6 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       enum: ["esm", "cjs"],
       default: "esm"
     },
-    compatibilityMode: { type: "boolean", nullable: true },
     experimentalExtensibleEnums: { type: "boolean", nullable: true }
   },
   required: []
@@ -224,12 +222,6 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Please note the header ${"type"} is not serializable.`
-      }
-    },
-    "compatible-additional-properties": {
-      severity: "warning",
-      messages: {
-        default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
       }
     },
     "default-response-body-type": {

@@ -223,11 +223,7 @@ export function buildModels(
         modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
       );
       if (isModelWithAdditionalProperties(model)) {
-        addExtendedDictInfo(
-          model,
-          modelInterface,
-          codeModel.modularOptions.compatibilityMode
-        );
+        addExtendedDictInfo(model, modelInterface);
       }
 
       if (!modelsFile.getInterface(modelInterface.name)) {
@@ -327,8 +323,7 @@ function getExtensibleEnumDescription(model: ModularType): string | undefined {
 
 function addExtendedDictInfo(
   model: ModularType,
-  modelInterface: InterfaceStructure,
-  compatibilityMode: boolean = false
+  modelInterface: InterfaceStructure
 ) {
   if (
     (model.properties &&
@@ -342,16 +337,8 @@ function addExtendedDictInfo(
     modelInterface.extends.push(
       `Record<string, ${getType(model.elementType!).name ?? "any"}>`
     );
-  } else if (compatibilityMode) {
-    modelInterface.extends.push(`Record<string, any>`);
   } else {
-    modelInterface.properties?.push({
-      name: "additionalProperties",
-      docs: ["Additional properties"],
-      hasQuestionToken: true,
-      isReadonly: false,
-      type: `Record<string, ${getType(model.elementType!).name ?? "any"}>`
-    });
+    modelInterface.extends.push(`Record<string, any>`);
   }
 }
 

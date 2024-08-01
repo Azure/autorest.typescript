@@ -98,7 +98,6 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { isModelWithAdditionalProperties } from "./emitModels.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
 import {
   Client as HrlcClient,
@@ -368,19 +367,6 @@ function getType(
     } else {
       simpleTypesMap.set(key, newValue);
     }
-  }
-  if (
-    type.kind === "Model" &&
-    isModelWithAdditionalProperties(newValue) &&
-    !context.rlcOptions?.compatibilityMode
-  ) {
-    reportDiagnostic(context.program, {
-      code: "compatible-additional-properties",
-      format: {
-        modelName: type?.name ?? ""
-      },
-      target: type
-    });
   }
 
   return newValue;
@@ -1832,7 +1818,6 @@ export function emitCodeModel(
     options: dpgContext.rlcOptions ?? {},
     modularOptions: {
       sourceRoot: modularSourcesRoot,
-      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode,
       experimentalExtensibleEnums:
         !!dpgContext.rlcOptions?.experimentalExtensibleEnums
     },

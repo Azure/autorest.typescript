@@ -244,7 +244,6 @@ export interface RLCOptions {
   flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
-  compatibilityMode?: boolean;
   experimentalExtensibleEnums?: boolean;
 }
 
