@@ -9,10 +9,7 @@ import {
   TypeAliasDeclaration
 } from "ts-morph";
 import { refkey } from "./refkey.js";
-import { getDirname } from "../utils/dirname.js";
-
-const __dirname = getDirname(import.meta.url).__dirname;
-
+const __dirname = path.resolve(path.dirname(new URL(import.meta.url).pathname));
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
@@ -50,14 +47,14 @@ export async function loadStaticHelpers(
   helpers: StaticHelpers,
   options: LoadStaticHelpersOptions = {}
 ): Promise<Map<string, StaticHelperMetadata>> {
-  const sourcesDir = options.sourcesDir ?? "src";
+  const sourcesDir = options.sourcesDir ?? "";
   const helpersMap = new Map<string, StaticHelperMetadata>();
   const files = await traverseDirectory(
     options.helpersAssetDirectory ?? DEFAULT_STATIC_HELPERS_PATH
   );
 
   for (const file of files) {
-    const targetPath = path.resolve(sourcesDir, file.target);
+    const targetPath = path.join(sourcesDir, file.target);
     const contents = await readFile(file.source, "utf-8");
     const addedFile = project.createSourceFile(targetPath, contents, {
       overwrite: true

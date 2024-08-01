@@ -614,6 +614,7 @@ describe("operations", () => {
         true,
         true
       );
+
       assert.ok(operationFiles);
 
       assert.equal(operationFiles?.length, 1);
@@ -622,7 +623,10 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
-
+        import {
+         PagedAsyncIterableIterator,
+         buildPagedAsyncIterator,
+        } from "../static-helpers/pagingHelpers.js";
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
         }

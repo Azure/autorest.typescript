@@ -545,6 +545,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
+        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
@@ -681,6 +682,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
+        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
@@ -838,6 +840,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
+        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";

@@ -33,6 +33,8 @@ import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { Project } from "ts-morph";
+import { useBinder } from "../../src/framework/hooks/binder.js";
+import { useContext } from "../../src/contextManager.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -418,7 +420,8 @@ export async function emitModularOperationsFromTypeSpec(
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -448,6 +451,8 @@ export async function emitModularOperationsFromTypeSpec(
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;
       }
+      binder.resolveAllReferences();
+      // const operationFiles = project.getSourceFiles();
       return res;
     }
   }
