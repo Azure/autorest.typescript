@@ -3,6 +3,7 @@
 
 export { SpreadClient, SpreadClientOptionalParams } from "./spreadClient.js";
 export {
+  InnerModel,
   BodyParameter,
   CompositeRequestMix,
   ModelSpreadAsRequestBodyOptionalParams,
@@ -11,7 +12,9 @@ export {
   ModelSpreadCompositeRequestOptionalParams,
   ModelSpreadCompositeRequestMixOptionalParams,
   AliasSpreadAsRequestBodyOptionalParams,
+  AliasSpreadParameterWithInnerModelOptionalParams,
   AliasSpreadAsRequestParameterOptionalParams,
   AliasSpreadWithMultipleParametersOptionalParams,
+  AliasSpreadParameterWithInnerAliasOptionalParams,
 } from "./models/index.js";
 export { AliasOperations, ModelOperations } from "./classic/index.js";
