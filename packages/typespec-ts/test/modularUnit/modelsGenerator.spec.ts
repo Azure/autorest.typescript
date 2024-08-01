@@ -4,7 +4,6 @@ import {
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
 import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
-import { Diagnostic } from "@typespec/compiler";
 
 async function verifyModularPropertyType(
   tspType: string,
@@ -1928,7 +1927,7 @@ describe("visibility", () => {
 });
 
 describe("spread record", () => {
-  it("should handle model additional properties from spread record of int64 | string in compatibleMode", async () => {
+  it("should handle model additional properties from spread record of int64 | string", async () => {
     const modelFile = await emitModularModelsFromTypeSpec(
       `
     
@@ -1968,31 +1967,7 @@ describe("spread record", () => {
     );
   });
 
-  it("should fail to handle model additional properties from spread record of int64 | string in non compatible mode", async () => {
-    try {
-      await emitModularModelsFromTypeSpec(
-        `
-      model Vegetables {
-        ...Record<int64 | string>;
-        carrots: int64;
-        beans: int64;
-      }
-      op post(@body body: Vegetables): { @body body: Vegetables };
-      `
-      );
-      assert.fail("Should throw diagnostic warnings");
-    } catch (e) {
-      const diagnostics = e as Diagnostic[];
-      assert.equal(diagnostics.length, 1);
-      assert.equal(
-        diagnostics[0]?.code,
-        "@azure-tools/typespec-ts/compatible-additional-properties"
-      );
-      assert.equal(diagnostics[0]?.severity, "warning");
-    }
-  });
-
-  it("should handle model extends with additional properties", async () => {
+  it("should handle model extends with additional int32 properties", async () => {
     const modelFile = await emitModularModelsFromTypeSpec(
       `
       model Base {
@@ -2012,6 +1987,83 @@ describe("spread record", () => {
       `
       export interface A extends Base, Record<string, number> {
         prop: number;
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelFile!.getInterface("Base")?.getFullText()!,
+      `
+      export interface Base {
+        foo: number;
+      }
+      `
+    );
+
+    const serializerA = modelFile?.getFunction("aSerializer")?.getText();
+    await assertEqualContent(
+      serializerA!,
+      `
+      export function aSerializer(item: A): ARest {
+        return {
+          ...item,
+          foo: item["foo"],
+          prop: item["prop"],
+        };
+      }`
+    );
+
+    await assertEqualContent(
+      modelFile!.getInterface("Base")?.getFullText()!,
+      `
+      export interface Base {
+        foo: number;
+      }
+      `
+    );
+
+    const serializerBase = modelFile?.getFunction("baseSerializer")?.getText();
+    await assertEqualContent(
+      serializerBase!,
+      `
+      export function baseSerializer(item: Base): BaseRest {
+        return {
+          foo: item["foo"],
+        };
+      }
+      `
+    );
+  });
+
+  it("should handle model additional properties from spread record of utcDateTime", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(
+      `
+      model Base {
+        foo: int32;
+      }
+      model A extends Base {
+        ...Record<utcDateTime>;
+        prop: string;
+      }
+      op post(@body body: A): { @body body: A };
+    `,
+    );
+    assert.ok(modelFile);
+    assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
+    await assertEqualContent(
+      modelFile!.getInterface("A")?.getFullText()!,
+      `
+      export interface A extends Base, Record<string, any> {
+        prop: string;
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelFile!.getInterface("Base")?.getFullText()!,
+      `
+      export interface Base {
+        foo: number;
       }
       `
     );
