@@ -28,9 +28,22 @@ export interface AliasSpreadAsRequestBodyOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
+export interface AliasSpreadParameterWithInnerModelOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
 export interface AliasSpreadAsRequestParameterOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
 export interface AliasSpreadWithMultipleParametersOptionalParams
+  extends OperationOptions {
+  /** optional int */
+  optionalInt?: number;
+  /** optional string */
+  optionalStringList?: string[];
+}
+
+/** Optional parameters. */
+export interface AliasSpreadParameterWithInnerAliasOptionalParams
   extends OperationOptions {}
