@@ -303,7 +303,6 @@ export async function emitModularModelsFromTypeSpec(
   needOptions: boolean = false,
   withRawContent: boolean = false,
   needAzureCore: boolean = false,
-  compatibilityMode: boolean = false,
   mustEmptyDiagnostic: boolean = true,
   experimentalExtensibleEnums: boolean = false
 ) {
@@ -324,7 +323,6 @@ export async function emitModularModelsFromTypeSpec(
   let modelFile = undefined;
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
-    dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
     dpgContext.rlcOptions!.experimentalExtensibleEnums =
       experimentalExtensibleEnums;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);

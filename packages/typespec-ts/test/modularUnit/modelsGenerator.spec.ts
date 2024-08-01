@@ -1939,10 +1939,6 @@ describe("spread record", () => {
     }
     op post(@body body: Vegetables): { @body body: Vegetables };
     `,
-      false,
-      false,
-      false,
-      true
     );
     assert.ok(modelFile);
     assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
@@ -2008,10 +2004,6 @@ describe("spread record", () => {
       }
       op post(@body body: A): { @body body: A };
     `,
-      false,
-      false,
-      false,
-      true
     );
     assert.ok(modelFile);
     assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
