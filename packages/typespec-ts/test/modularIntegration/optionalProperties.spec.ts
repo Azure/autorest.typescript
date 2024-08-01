@@ -83,6 +83,30 @@ describe("OptionalProperties Modular Client", () => {
     await client.duration.putDefault({});
   });
 
+  it("should handle optional plainDate", async () => {
+    const testValue = "2022-12-12";
+    const result = await client.plainDate.getAll();
+    assert.deepEqual(result.property, new Date(testValue));
+    const result2 = await client.plainDate.getDefault();
+    assert.equal(result2.property, undefined);
+    // const result3 = await client.plainDate.putAll({ property: new Date(testValue) });
+    // assert.isUndefined(result3);
+    await client.plainDate.putDefault({});
+  });
+
+  it("should handle optional plainTime", async () => {
+    const testValue = "13:06:12";
+    const result = await client.plainTime.getAll();
+    assert.deepEqual(result.property, new Date(testValue));
+    const result2 = await client.plainTime.getDefault();
+    assert.equal(result2.property, undefined);
+    // const result3 = await client.plainTime.putAll({
+    //   property: new Date(testValue)
+    // });
+    // assert.isUndefined(result3);
+    await client.plainTime.putDefault({});
+  });
+
   it("should handle optional float", async () => {
     const testValue = 1.25;
     const result = await client.floatLiteral.getAll();
