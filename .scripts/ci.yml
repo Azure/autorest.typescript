@@ -237,10 +237,6 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node20:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "20.x"
             Windows_Latest:
               Pool:
               OSVmImage: ${{ parameters.Windows_Latest }}
