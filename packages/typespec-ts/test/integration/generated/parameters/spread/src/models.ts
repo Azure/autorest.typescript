@@ -10,3 +10,7 @@ export interface BodyParameter {
 export interface CompositeRequestMix {
   prop: string;
 }
+
+export interface InnerModel {
+  name: string;
+}
