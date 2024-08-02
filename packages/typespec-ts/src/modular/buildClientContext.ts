@@ -4,11 +4,12 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import { SourceFile } from "ts-morph";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { importModels } from "./buildOperations.js";
 import {
-  getUserAgentStatements,
+  buildGetClientCredentialParam,
+  buildGetClientEndpointParam,
+  buildGetClientOptionsParam,
   getClientParameters,
   importCredential
 } from "./helpers/clientHelpers.js";
@@ -35,12 +36,17 @@ export function buildClientContext(
     }/api/${normalizeName(name, NameType.File)}Context.ts`
   );
 
-  let factoryFunction;
   importCredential(codeModel.runtimeImports, clientContextFile);
   importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
     moduleSpecifier: getImportSpecifier("restClient", codeModel.runtimeImports),
-    namedImports: ["ClientOptions"]
+    namedImports: ["ClientOptions", "Client", "getClient"]
+  });
+
+  clientContextFile.addInterface({
+    isExported: true,
+    name: `${client.rlcClientName}`,
+    extends: ["Client"]
   });
 
   clientContextFile.addInterface({
@@ -63,77 +69,100 @@ export function buildClientContext(
       }),
     docs: ["Optional parameters for the client."]
   });
-  if (isRLCMultiEndpoint(dpgContext)) {
+
+  // TODO use binder here
+  // (for now) now logger for unbranded pkgs
+  if (codeModel.options.flavor === "azure") {
     clientContextFile.addImportDeclaration({
-      moduleSpecifier: `../../rest/${subfolder}/index.js`,
-      namedImports: [`Client`]
-    });
-
-    clientContextFile.addExportDeclaration({
-      moduleSpecifier: `../../rest/${subfolder}/index.js`,
-      namedExports: [`Client`]
-    });
-    factoryFunction = clientContextFile.addFunction({
-      docs: getDocsFromDescription(description),
-      name: `create${name}`,
-      returnType: `Client.${client.name}`,
-      parameters: params,
-      isExported: true
-    });
-  } else {
-    const rlcClientName = client.rlcClientName;
-    clientContextFile.addImportDeclaration({
-      moduleSpecifier: `${
-        subfolder && subfolder !== "" ? "../" : ""
-      }../rest/index.js`,
-      namedImports: [`${rlcClientName}`]
-    });
-
-    clientContextFile.addExportDeclaration({
-      moduleSpecifier: `${
-        subfolder && subfolder !== "" ? "../" : ""
-      }../rest/index.js`,
-      namedExports: [`${rlcClientName}`]
-    });
-
-    factoryFunction = clientContextFile.addFunction({
-      docs: getDocsFromDescription(description),
-      name: `create${name}`,
-      returnType: `${rlcClientName}`,
-      parameters: params,
-      isExported: true
+      moduleSpecifier:
+        codeModel.clients.length > 1 ? "../../logger.js" : "../logger.js",
+      namedImports: ["logger"]
     });
   }
 
-  const paramNames = params.map((p) => p.name);
-  const { userAgentStatements, updatedParamNames } = getUserAgentStatements(
-    "azsdk-js-api",
-    paramNames
+  const factoryFunction = clientContextFile.addFunction({
+    docs: getDocsFromDescription(description),
+    name: `create${name}`,
+    returnType: `${client.rlcClientName}`,
+    parameters: params,
+    isExported: true
+  });
+
+  const endpointParam = buildGetClientEndpointParam(factoryFunction, client);
+  const credentialParam = buildGetClientCredentialParam(client, codeModel);
+  const optionsParam = buildGetClientOptionsParam(
+    factoryFunction,
+    codeModel,
+    endpointParam
   );
 
-  factoryFunction.addStatements([
-    userAgentStatements,
-    `const clientContext = getClient(${updatedParamNames});`,
-    `return clientContext;`
-  ]);
+  factoryFunction.addStatements(
+    `const clientContext = getClient(${endpointParam}, ${credentialParam}, ${optionsParam});`
+  );
 
-  if (isRLCMultiEndpoint(dpgContext)) {
-    clientContextFile.addImportDeclarations([
-      {
-        moduleSpecifier: `../../rest/${subfolder}/index.js`,
-        namedImports: ["createClient as getClient"]
+  const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
+    codeModel.options;
+
+  if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
+    clientContextFile.addImportDeclaration({
+      moduleSpecifier: getImportSpecifier("coreAuth", codeModel.runtimeImports),
+      namedImports: ["isKeyCredential"]
+    });
+
+    factoryFunction.addStatements(`
+      if(isKeyCredential(credential)) {
+        clientContext.pipeline.addPolicy({ 
+          name: "customKeyCredentialPolicy",
+          sendRequest(request, next) {
+            request.headers.set("${customHttpAuthHeaderName}", "${customHttpAuthSharedKeyPrefix} " + credential.key);
+            return next(request);
+          }
+        });
       }
-    ]);
-  } else {
-    clientContextFile.addImportDeclarations([
-      {
-        moduleSpecifier: `${
-          subfolder && subfolder !== "" ? "../" : ""
-        }../rest/index.js`,
-        defaultImport: "getClient"
-      }
-    ]);
+      `);
   }
+
+  let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
+
+  if (dpgContext.hasApiVersionInClient) {
+    const apiVersionParam = client.parameters.find((x) => x.isApiVersion);
+
+    if (apiVersionParam?.location === "query") {
+      if (apiVersionParam.clientDefaultValue) {
+        apiVersionPolicyStatement += `const ${apiVersionParam.clientName} = options.${apiVersionParam.clientName} ?? "${apiVersionParam.clientDefaultValue}";`;
+      }
+
+      apiVersionPolicyStatement += `
+      clientContext.pipeline.addPolicy({
+        name: 'ClientApiVersionPolicy',
+        sendRequest: (req, next) => {
+          // Use the apiVersion defined in request url directly
+          // Append one if there is no apiVersion and we have one at client options
+          const url = new URL(req.url);
+          if (!url.searchParams.get("api-version")) {
+            req.url = \`\${req.url}\${
+              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+            }api-version=\${${apiVersionParam.clientName}}\`;
+          }
+    
+          return next(req);
+        },
+      });`;
+    }
+  } else if (codeModel.options.flavor === "azure") {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        logger.warning("This client does not support client api-version, please change it at the operation level");
+      }`;
+  } else {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        console.warn("This client does not support client api-version, please change it at the operation level");
+      }`;
+  }
+  factoryFunction.addStatements(apiVersionPolicyStatement);
+
+  factoryFunction.addStatements("return clientContext;");
 
   clientContextFile.fixMissingImports(
     {},

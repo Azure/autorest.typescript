@@ -30,8 +30,7 @@ import { addImportBySymbol } from "../utils/importHelper.js";
 export function buildOperationFiles(
   client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel,
-  needUnexpectedHelper: boolean = true
+  codeModel: ModularCodeModel
 ) {
   const operationFiles = [];
   const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
@@ -103,37 +102,13 @@ export function buildOperationFiles(
       operationGroup.namespaceHierarchies.length
     );
 
-    const namedImports: string[] = [];
-    if (isMultiEndpoint) {
-      namedImports.push(`Client`);
-      if (needUnexpectedHelper) {
-        namedImports.push("UnexpectedHelper");
-      }
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: `../${"../".repeat(
-            operationGroup.namespaceHierarchies.length
-          )}rest/${subfolder}/index.js`,
-          namedImports
-        }
-      ]);
-    } else {
-      if (needUnexpectedHelper) {
-        namedImports.push("isUnexpected");
-      }
-      const rlcClientName = client.rlcClientName;
-      namedImports.push(`${rlcClientName} as Client`);
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: `${
-            subfolder && subfolder !== "" ? "../" : ""
-          }${"../".repeat(
-            operationGroup.namespaceHierarchies.length + 1
-          )}rest/index.js`,
-          namedImports
-        }
-      ]);
-    }
+    const indexPathPrefix =
+      "../".repeat(operationGroup.namespaceHierarchies.length) || "./";
+    operationGroupFile.addImportDeclaration({
+      namedImports: [`${client.rlcClientName} as Client`],
+      moduleSpecifier: `${indexPathPrefix}index.js`
+    });
+
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(
@@ -144,8 +119,6 @@ export function buildOperationFiles(
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
-        isMultiEndpoint,
-        needUnexpectedHelper,
         codeModel.runtimeImports
       );
       operationGroupFile.addFunctions([
@@ -170,6 +143,11 @@ export function buildOperationFiles(
 
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     addImportBySymbol("serializeRecord", operationGroupFile);
+    addImportBySymbol("buildMultiCollection", operationGroupFile);
+    addImportBySymbol("buildPipeCollection", operationGroupFile);
+    addImportBySymbol("buildCsvCollection", operationGroupFile);
+    addImportBySymbol("buildTsvCollection", operationGroupFile);
+    addImportBySymbol("buildSsvCollection", operationGroupFile);
 
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.

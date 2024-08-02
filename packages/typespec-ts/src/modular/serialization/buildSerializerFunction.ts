@@ -1,13 +1,8 @@
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { Type as ModularType } from "../modularCodeModel.js";
 import { getRequestModelMapping } from "../helpers/operationHelpers.js";
-import { useContext } from "../../contextManager.js";
 
-import {
-  Imports as RuntimeImports,
-  SchemaContext,
-  addImportToSpecifier
-} from "@azure-tools/rlc-common";
+import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
 import {
   SdkModelType,
@@ -24,7 +19,6 @@ export function buildModelSerializer(
   type: ModularType,
   runtimeImports: RuntimeImports
 ): string | undefined {
-  const rlcMetadata = useContext("rlcMetaTree");
   const modelTcgcType = getTcgcType(type) as SdkModelType;
   if (
     modelTcgcType.usage !== undefined &&
@@ -38,9 +32,6 @@ export function buildModelSerializer(
   }
 
   let serializerName = `${toCamelCase(type.name)}Serializer`;
-
-  const restModel = rlcMetadata.get(type.__raw!);
-  const restModelName = restModel?.rlcType.name;
 
   const output: string[] = [];
 
@@ -85,17 +76,6 @@ export function buildModelSerializer(
     serializerName = baseSerializerName;
   }
 
-  let serializerReturnType = "";
-
-  // There are some situations where the type is not present in the REST API,
-  // this can happen when client.tsp overrides visibility to public on an orphan model
-  // In this case we just let TypeScript infer the return type.
-  let restModelNameAlias = "";
-  if (restModelName && restModel.rlcType.usage?.includes(SchemaContext.Input)) {
-    restModelNameAlias = `${restModelName}Rest`;
-    serializerReturnType = `: ${restModelNameAlias}`;
-  }
-
   if (type.type === "model" || type.type === "dict") {
     const nullabilityPrefix = "";
     // getPropertySerializationPrefix({
@@ -127,18 +107,10 @@ export function buildModelSerializer(
       output.push(`
         export function ${serializerName}(item: ${toPascalCase(
           type.name
-        )})${serializerReturnType} {
+        )}): Record<string, unknown> {
           return ${fnBody}
         }
         `);
-
-      if (serializerReturnType) {
-        addImportToSpecifier(
-          "rlcIndex",
-          runtimeImports,
-          `${restModelName} as ${restModelNameAlias}`
-        );
-      }
     } else {
       output.push(`
         export function ${serializerName}(item: ${toPascalCase(type.name)}) {
@@ -148,9 +120,7 @@ export function buildModelSerializer(
     }
   } else if (type.type === "enum") {
     output.push(`
-    export function ${serializerName}(item: ${toPascalCase(
-      type.name
-    )})${serializerReturnType} {
+    export function ${serializerName}(item: ${toPascalCase(type.name)}) {
       return item;
     }
     `);

@@ -298,3 +298,11 @@ export function isNumericTypeKind(kind: string): boolean {
 export function isDateTimeTypeKind(kind: string): boolean {
   return DateTimeTypeKinds.includes(kind);
 }
+
+export function isCredentialType(type: Type): boolean {
+  const credentialTypes = ["OAuth2", "Key"];
+  return (
+    credentialTypes.includes(type.type) ||
+    (type.type === "combined" && (type.types?.every(isCredentialType) ?? false))
+  );
+}

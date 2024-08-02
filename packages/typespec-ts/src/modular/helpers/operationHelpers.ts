@@ -1,10 +1,7 @@
 import {
   addImportToSpecifier,
-  getResponseBaseName,
-  getResponseTypeName,
   Imports as RuntimeImports,
-  NameType,
-  OperationResponse
+  NameType
 } from "@azure-tools/rlc-common";
 import {
   SdkContext,
@@ -37,7 +34,6 @@ import {
   Operation,
   Parameter,
   Property,
-  Response,
   Type
 } from "../modularCodeModel.js";
 import {
@@ -47,57 +43,6 @@ import {
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { buildType, isTypeNullable } from "./typeHelpers.js";
 
-function getRLCResponseTypes(rlcResponse?: OperationResponse) {
-  if (!rlcResponse?.responses) {
-    return;
-  }
-  return rlcResponse?.responses
-    .map(
-      (resp) =>
-        resp.predefinedName ?? getRLCResponseType(resp.statusCode, rlcResponse)
-    )
-    .join(" | ");
-}
-
-function getRLCResponseType(
-  statusCode: string,
-  operationInfo?: OperationResponse
-) {
-  if (!operationInfo) {
-    return;
-  }
-  const baseResponseName = getResponseBaseName(
-    operationInfo.operationGroup,
-    operationInfo.operationName,
-    statusCode
-  );
-  // Get the information to build the Response Interface
-  return getResponseTypeName(baseResponseName);
-}
-
-function getNarrowedRLCResponse(
-  response: Response,
-  rlcResponse?: OperationResponse
-): string | undefined {
-  if (!rlcResponse) {
-    return;
-  }
-  const statusCode = response.statusCodes;
-  const names = getRLCResponseTypes(rlcResponse)?.split(" | ");
-  const lroResponse = names?.filter((n) => n.endsWith(`LogicalResponse`));
-  const normalResponse = names?.filter(
-    (n) => n === getRLCResponseType(`${statusCode}`, rlcResponse)
-  );
-  return (
-    // if the response is a LRO response, narrow to the lro logical response
-    lroResponse?.at(0) ??
-    // if the default response is a superset of one of other responses, narrow to the normal response
-    (rlcResponse.isDefaultSupersetOfOthers
-      ? normalResponse?.at(0) ?? "any"
-      : undefined)
-  );
-}
-
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
@@ -106,16 +51,13 @@ export function getSendPrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
-  const returnType = `StreamableMethod<${getRLCResponseTypes(
-    operation.rlcResponse
-  )}>`;
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: false,
     isExported: true,
     name: `_${name}Send`,
     parameters,
-    returnType
+    returnType: "StreamableMethod"
   };
 
   const operationPath = operation.url;
@@ -132,7 +74,7 @@ export function getSendPrivateFunction(
       dpgContext,
       operation,
       runtimeImports
-    )}}) ${operation.isOverload ? `as ${returnType}` : ``} ;`
+    )}});`
   );
 
   return {
@@ -143,17 +85,17 @@ export function getSendPrivateFunction(
 
 export function getDeserializePrivateFunction(
   operation: Operation,
-  needSubClient: boolean,
-  needUnexpectedHelper: boolean,
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: getRLCResponseTypes(operation.rlcResponse)
+      type: "PathUncheckedResponse"
     }
   ];
+  addImportToSpecifier("restClient", runtimeImports, "PathUncheckedResponse");
+
   // TODO: Support LRO + paging operation
   // https://github.com/Azure/autorest.typescript/issues/2313
   const isLroOnly = isLroOnlyOperation(operation);
@@ -181,48 +123,39 @@ export function getDeserializePrivateFunction(
     returnType: `Promise<${returnType.type}>`
   };
   const statements: string[] = [];
-  if (needUnexpectedHelper) {
-    statements.push(
-      `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
-      `throw createRestError(result);`,
-      "}"
-    );
-    addImportToSpecifier("restClient", runtimeImports, "createRestError");
-  } else {
-    const validStatus = [
-      ...new Set(
-        operation.responses
-          .flatMap((r) => r.statusCodes)
-          .filter((s) => s !== "default")
-      )
-    ];
 
-    if (validStatus.length > 0) {
-      statements.push(
-        `if(${validStatus
-          .map((s) => `result.status !== "${s}"`)
-          .join(" || ")}){`,
-        `throw createRestError(result);`,
-        "}"
-      );
-      addImportToSpecifier("restClient", runtimeImports, "createRestError");
-    }
+  const expectedStatusCodes = operation.responses.flatMap((x) =>
+    x.statusCodes.filter((x) => x !== "default")
+  );
+
+  // LROs may call the same path but with GET to get the operation status.
+  if (
+    isLroOnly &&
+    operation.method !== "GET" &&
+    !expectedStatusCodes.includes(200)
+  ) {
+    expectedStatusCodes.push(200);
   }
+
+  statements.push(
+    `const expectedStatuses = [${expectedStatusCodes
+      .map((x) => `"${x}"`)
+      .join(",")}];`
+  );
+
+  statements.push(
+    `if(!expectedStatuses.includes(result.status)){`,
+    `throw createRestError(result);`,
+    "}"
+  );
+  addImportToSpecifier("restClient", runtimeImports, "createRestError");
 
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response.type;
   const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
-  // Narrow down the rlc response type to deserialized one
-  const isNarrowedResponse = getNarrowedRLCResponse(
-    response,
-    operation.rlcResponse
-  );
-  let deserializePrefix = "result.body";
-  if (isNarrowedResponse) {
-    statements.push(`const res = result as unknown as ${isNarrowedResponse};`);
-    deserializePrefix = "res.body";
-  }
+
+  const deserializePrefix = "result.body";
 
   const deserializedRoot = hasLroSubPath
     ? `${deserializePrefix}.${operation?.lroMetadata?.finalResultPath}`
@@ -1243,7 +1176,7 @@ export function deserializeResponseValue(
             isTypeNullable(type.elementType) || type.elementType.optional
               ? "!p ? p :"
               : "";
-          return `${prefix}.map(p => { return ${elementNullOrUndefinedPrefix}{${getResponseMapping(
+          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}{${getResponseMapping(
             type.elementType,
             "p",
             runtimeImports,
@@ -1258,14 +1191,14 @@ export function deserializeResponseValue(
             type.elementType,
             "deserialize"
           );
-          return `${prefix}.map(p => ${nullOrUndefinedPrefix}${deserializeFunctionName}(p))`;
+          return `${prefix}.map((p: any) => ${nullOrUndefinedPrefix}${deserializeFunctionName}(p))`;
         }
         return `${prefix}`;
       } else if (
         needsDeserialize(type.elementType) &&
         !type.elementType?.aliasType
       ) {
-        return `${prefix}.map(p => ${deserializeResponseValue(
+        return `${prefix}.map((p: any) => ${deserializeResponseValue(
           type.elementType!,
           "p",
           runtimeImports,

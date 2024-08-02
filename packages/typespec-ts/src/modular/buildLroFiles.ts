@@ -260,9 +260,7 @@ function importDeserializeHelpers(client: Client, sourceFile: SourceFile) {
  */
 export function buildGetPollerHelper(
   codeModel: ModularCodeModel,
-  client: Client,
-  needUnexpectedHelper: boolean = true,
-  isMultiClients: boolean = false
+  client: Client
 ) {
   const lroOperstions = client.operationGroups
     .flatMap((op) => op.operations)
@@ -270,22 +268,7 @@ export function buildGetPollerHelper(
   if (lroOperstions.length === 0) {
     return;
   }
-  const checkResponseStatus = needUnexpectedHelper
-    ? `if (isUnexpected(response as PathUncheckedResponse)) {
-        throw createRestError(response);
-      }`
-    : `if (Number.isNaN(response.status)) {
-        throw createRestError(
-          \`Status code of the response is not a number. Value: \${response.status}\`,
-          response
-        );
-      }`;
 
-  const unexpectedHelperImport = needUnexpectedHelper
-    ? `import { isUnexpected } from "${
-        isMultiClients ? "../" : ""
-      }../rest/index.js";`
-    : "";
   const getLroPollerContent = `
   import {
     Client,
@@ -293,7 +276,6 @@ export function buildGetPollerHelper(
     createRestError
   } from "@azure-rest/core-client";
   import { AbortSignalLike } from "@azure/abort-controller";
-  ${unexpectedHelperImport}
   
   export interface GetLongRunningPollerOptions<TResponse> {
     /** Delay to wait until next poll, in milliseconds. */
@@ -376,10 +358,6 @@ export function buildGetPollerHelper(
           options.abortSignal?.removeEventListener("abort", abortListener);
           pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
         }
-        if (options.initialRequestUrl || initialResponse) {
-          response.headers["x-ms-original-url"] =
-            options.initialRequestUrl ?? initialResponse!.request.url;
-        }
 
         return getLroResponse(response as TResponse);
       }
@@ -400,9 +378,13 @@ export function buildGetPollerHelper(
    * @returns - An LRO response that the LRO implementation understands
    */
   function getLroResponse<TResponse extends PathUncheckedResponse>(
-    response: TResponse
+    response: TResponse,
   ): OperationResponse<TResponse> {
-    ${checkResponseStatus}
+    const statusCode = Number(response.status);
+    if(statusCode < 200 || statusCode > 299) {
+      throw createRestError(response);
+    }
+    
     return {
       flatResponse: response,
       rawResponse: {
