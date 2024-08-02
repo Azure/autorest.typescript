@@ -3,6 +3,6 @@
 
 export {
   createDemoService,
-  DemoServiceClientOptionalParams,
   DemoServiceContext,
+  DemoServiceClientOptionalParams,
 } from "./demoServiceContext.js";

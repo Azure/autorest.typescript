@@ -19,6 +19,6 @@ export {
 } from "./operations.js";
 export {
   createTestRunOperations,
-  TestRunOperationsClientOptionalParams,
   LoadTestServiceContext,
+  TestRunOperationsClientOptionalParams,
 } from "./testRunOperationsContext.js";

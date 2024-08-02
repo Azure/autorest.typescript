@@ -14,7 +14,6 @@ import {
   PagedAsyncIterableIterator,
   PagedResult,
 } from "../models/pagingTypes.js";
-import { isUnexpected } from "../rest/index.js";
 
 /**
  * Helper to paginate results in a generic way and return a PagedAsyncIterableIterator
@@ -182,9 +181,10 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
  * Checks if a request failed
  */
 function checkPagingRequest(response: PathUncheckedResponse): void {
-  if (isUnexpected(response)) {
+  const statusCode = Number(response.status);
+  if (statusCode < 200 || statusCode > 299) {
     throw createRestError(
-      `Pagination failed with unexpected statusCode ${response.status}`,
+      `Pagination failed with unexpected statusCode ${statusCode}`,
       response,
     );
   }
