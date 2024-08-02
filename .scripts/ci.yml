@@ -231,7 +231,7 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Check git Tree"
 
-      - job: TypeSpec_Cross_Environment_Check
+      - job: TypeSpec_Environment_Check
         dependsOn: Build
         variables:
           - template: globals.yml
