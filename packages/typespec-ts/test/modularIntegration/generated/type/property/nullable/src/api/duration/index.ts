@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { DurationProperty } from "../../models/models.js";
-import {
-  NullableContext as Client,
-  DurationGetNonNull200Response,
-  DurationGetNull200Response,
-  DurationPatchNonNull204Response,
-  DurationPatchNull204Response,
-} from "../../rest/index.js";
+import { NullableContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getNonNullSend(
   context: Client,
   options: DurationGetNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationGetNonNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/duration/non-null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNonNullDeserialize(
-  result: DurationGetNonNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<DurationProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -55,16 +51,17 @@ export async function getNonNull(
 export function _getNullSend(
   context: Client,
   options: DurationGetNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationGetNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/duration/null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNullDeserialize(
-  result: DurationGetNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<DurationProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -87,7 +84,7 @@ export function _patchNonNullSend(
   context: Client,
   body: DurationProperty,
   options: DurationPatchNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationPatchNonNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/duration/non-null")
     .patch({
@@ -102,9 +99,10 @@ export function _patchNonNullSend(
 }
 
 export async function _patchNonNullDeserialize(
-  result: DurationPatchNonNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -125,7 +123,7 @@ export function _patchNullSend(
   context: Client,
   body: DurationProperty,
   options: DurationPatchNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationPatchNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/duration/null")
     .patch({
@@ -140,9 +138,10 @@ export function _patchNullSend(
 }
 
 export async function _patchNullDeserialize(
-  result: DurationPatchNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

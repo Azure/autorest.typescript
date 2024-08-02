@@ -3,8 +3,8 @@
 
 export {
   createBasic,
-  BasicClientOptionalParams,
   BasicContext,
+  BasicClientOptionalParams,
 } from "./basicContext.js";
 export {
   createOrUpdate,

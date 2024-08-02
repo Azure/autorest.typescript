@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { UnionIntLiteralProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  UnionIntLiteralGet200Response,
-  UnionIntLiteralPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _unionIntLiteralGetSend(
   context: Client,
   options: UnionIntLiteralGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnionIntLiteralGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/union/int/literal")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _unionIntLiteralGetDeserialize(
-  result: UnionIntLiteralGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<UnionIntLiteralProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _unionIntLiteralPutSend(
   context: Client,
   body: UnionIntLiteralProperty,
   options: UnionIntLiteralPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnionIntLiteralPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/union/int/literal")
     .put({
@@ -61,9 +59,10 @@ export function _unionIntLiteralPutSend(
 }
 
 export async function _unionIntLiteralPutDeserialize(
-  result: UnionIntLiteralPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

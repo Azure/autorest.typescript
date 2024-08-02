@@ -4,10 +4,11 @@
 import { _PagedUser, User } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
-import { PageableContext as Client, List200Response } from "../rest/index.js";
+import { PageableContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { ListOptionalParams } from "../models/options.js";
@@ -15,7 +16,7 @@ import { ListOptionalParams } from "../models/options.js";
 export function _listSend(
   context: Client,
   options: ListOptionalParams = { requestOptions: {} },
-): StreamableMethod<List200Response> {
+): StreamableMethod {
   return context
     .path("/payload/pageable")
     .get({
@@ -25,14 +26,15 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: List200Response,
+  result: PathUncheckedResponse,
 ): Promise<_PagedUser> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return { name: p["name"] };
     }),
     nextLink: result.body["nextLink"],

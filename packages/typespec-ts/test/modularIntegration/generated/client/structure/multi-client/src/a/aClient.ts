@@ -10,8 +10,8 @@ import {
 } from "./models/options.js";
 import {
   createA,
-  AClientOptionalParams,
   ServiceContext,
+  AClientOptionalParams,
   renamedOne,
   renamedThree,
   renamedFive,
@@ -33,7 +33,6 @@ export class AClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createA(endpointParam, clientParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

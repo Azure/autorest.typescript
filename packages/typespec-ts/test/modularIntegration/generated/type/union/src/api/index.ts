@@ -3,8 +3,8 @@
 
 export {
   createUnion,
-  UnionClientOptionalParams,
   UnionContext,
+  UnionClientOptionalParams,
 } from "./unionContext.js";
 export { enumsOnlyGet, enumsOnlySend } from "./enumsOnly/index.js";
 export { floatsOnlyGet, floatsOnlySend } from "./floatsOnly/index.js";

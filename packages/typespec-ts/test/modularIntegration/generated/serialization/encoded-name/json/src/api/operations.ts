@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { JsonEncodedNameModel } from "../models/models.js";
-import {
-  JsonContext as Client,
-  Get200Response,
-  Send204Response,
-} from "../rest/index.js";
+import { JsonContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { SendOptionalParams, GetOptionalParams } from "../models/options.js";
@@ -18,7 +15,7 @@ export function _sendSend(
   context: Client,
   body: JsonEncodedNameModel,
   options: SendOptionalParams = { requestOptions: {} },
-): StreamableMethod<Send204Response> {
+): StreamableMethod {
   return context
     .path("/serialization/encoded-name/json/property")
     .post({
@@ -27,8 +24,11 @@ export function _sendSend(
     });
 }
 
-export async function _sendDeserialize(result: Send204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _sendDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +47,17 @@ export async function send(
 export function _getSend(
   context: Client,
   options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get200Response> {
+): StreamableMethod {
   return context
     .path("/serialization/encoded-name/json/property")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: Get200Response,
+  result: PathUncheckedResponse,
 ): Promise<JsonEncodedNameModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

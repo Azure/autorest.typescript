@@ -12,8 +12,8 @@ import {
 } from "./classic/implicitBody/index.js";
 import {
   createBasic,
-  BasicClientOptionalParams,
   BasicContext,
+  BasicClientOptionalParams,
 } from "./api/index.js";
 
 export { BasicClientOptionalParams } from "./api/basicContext.js";
@@ -29,7 +29,6 @@ export class BasicClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createBasic({
       ...options,
       userAgentOptions: { userAgentPrefix },

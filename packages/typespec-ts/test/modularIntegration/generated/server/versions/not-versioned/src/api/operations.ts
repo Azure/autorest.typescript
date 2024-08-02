@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  NotVersionedContext as Client,
-  WithoutApiVersion200Response,
-  WithPathApiVersion200Response,
-  WithQueryApiVersion200Response,
-} from "../rest/index.js";
+import { NotVersionedContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,16 +17,17 @@ import {
 export function _withoutApiVersionSend(
   context: Client,
   options: WithoutApiVersionOptionalParams = { requestOptions: {} },
-): StreamableMethod<WithoutApiVersion200Response> {
+): StreamableMethod {
   return context
     .path("/server/versions/not-versioned/without-api-version")
     .head({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _withoutApiVersionDeserialize(
-  result: WithoutApiVersion200Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,7 +46,7 @@ export function _withQueryApiVersionSend(
   context: Client,
   apiVersion: string,
   options: WithQueryApiVersionOptionalParams = { requestOptions: {} },
-): StreamableMethod<WithQueryApiVersion200Response> {
+): StreamableMethod {
   return context
     .path("/server/versions/not-versioned/with-query-api-version")
     .head({
@@ -59,9 +56,10 @@ export function _withQueryApiVersionSend(
 }
 
 export async function _withQueryApiVersionDeserialize(
-  result: WithQueryApiVersion200Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -81,7 +79,7 @@ export function _withPathApiVersionSend(
   context: Client,
   apiVersion: string,
   options: WithPathApiVersionOptionalParams = { requestOptions: {} },
-): StreamableMethod<WithPathApiVersion200Response> {
+): StreamableMethod {
   return context
     .path(
       "/server/versions/not-versioned/with-path-api-version/{apiVersion}",
@@ -91,9 +89,10 @@ export function _withPathApiVersionSend(
 }
 
 export async function _withPathApiVersionDeserialize(
-  result: WithPathApiVersion200Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

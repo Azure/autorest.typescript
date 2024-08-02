@@ -17,8 +17,8 @@ import {
 } from "./classic/responseHeader/index.js";
 import {
   createDatetime,
-  DatetimeClientOptionalParams,
   DatetimeContext,
+  DatetimeClientOptionalParams,
 } from "./api/index.js";
 
 export { DatetimeClientOptionalParams } from "./api/datetimeContext.js";
@@ -34,7 +34,6 @@ export class DatetimeClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createDatetime({
       ...options,
       userAgentOptions: { userAgentPrefix },

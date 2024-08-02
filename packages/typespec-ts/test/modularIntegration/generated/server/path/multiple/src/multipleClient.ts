@@ -8,8 +8,8 @@ import {
 } from "./models/options.js";
 import {
   createMultiple,
-  MultipleClientOptionalParams,
   MultipleContext,
+  MultipleClientOptionalParams,
   noOperationParams,
   withOperationPathParam,
 } from "./api/index.js";
@@ -29,7 +29,6 @@ export class MultipleClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createMultiple(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

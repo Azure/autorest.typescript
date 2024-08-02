@@ -2,13 +2,6 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  Fish as FishRest,
-  Shark as SharkRest,
-  SawShark as SawSharkRest,
-  GoblinShark as GoblinSharkRest,
-  Salmon as SalmonRest,
-} from "../rest/index.js";
 
 /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
 export interface Fish {
@@ -30,7 +23,7 @@ export function fishUnionSerializer(item: FishUnion) {
   }
 }
 
-export function fishSerializer(item: FishUnion): FishRest {
+export function fishSerializer(item: FishUnion): Record<string, unknown> {
   return {
     age: item["age"],
     kind: item["kind"],
@@ -57,7 +50,7 @@ export function sharkUnionSerializer(item: SharkUnion) {
   }
 }
 
-export function sharkSerializer(item: SharkUnion): SharkRest {
+export function sharkSerializer(item: SharkUnion): Record<string, unknown> {
   return {
     age: item["age"],
     kind: item["kind"],
@@ -70,7 +63,7 @@ export interface SawShark extends Shark {
   sharktype: "saw";
 }
 
-export function sawSharkSerializer(item: SawShark): SawSharkRest {
+export function sawSharkSerializer(item: SawShark): Record<string, unknown> {
   return {
     kind: item["kind"],
     sharktype: item["sharktype"],
@@ -83,7 +76,9 @@ export interface GoblinShark extends Shark {
   sharktype: "goblin";
 }
 
-export function goblinSharkSerializer(item: GoblinShark): GoblinSharkRest {
+export function goblinSharkSerializer(
+  item: GoblinShark,
+): Record<string, unknown> {
   return {
     kind: item["kind"],
     sharktype: item["sharktype"],
@@ -99,7 +94,7 @@ export interface Salmon extends Fish {
   partner?: FishUnion;
 }
 
-export function salmonSerializer(item: Salmon): SalmonRest {
+export function salmonSerializer(item: Salmon): Record<string, unknown> {
   return {
     age: item["age"],
     kind: item["kind"],

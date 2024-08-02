@@ -2,10 +2,11 @@
 // Licensed under the MIT license.
 
 import { ModelV2 } from "../models/models.js";
-import { RemovedContext as Client, V2200Response } from "../rest/index.js";
+import { RemovedContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { V2OptionalParams } from "../models/options.js";
@@ -14,7 +15,7 @@ export function _v2Send(
   context: Client,
   body: ModelV2,
   options: V2OptionalParams = { requestOptions: {} },
-): StreamableMethod<V2200Response> {
+): StreamableMethod {
   return context
     .path("/v2")
     .post({
@@ -27,8 +28,11 @@ export function _v2Send(
     });
 }
 
-export async function _v2Deserialize(result: V2200Response): Promise<ModelV2> {
-  if (result.status !== "200") {
+export async function _v2Deserialize(
+  result: PathUncheckedResponse,
+): Promise<ModelV2> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

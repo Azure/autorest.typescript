@@ -1,26 +1,35 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ClientOptions } from "@azure-rest/core-client";
-import { ModelContext } from "../rest/index.js";
-import getClient from "../rest/index.js";
+import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+import { logger } from "../logger.js";
+
+export interface ModelContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface ModelClientOptionalParams extends ClientOptions {}
 
-export { ModelContext } from "../rest/index.js";
-
 export function createModel(
   options: ModelClientOptionalParams = {},
 ): ModelContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
+
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-
-  const clientContext = getClient({
+  const updatedOptions = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-  });
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+  };
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
   return clientContext;
 }

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { MixedLiteralsCases } from "../../models/models.js";
-import {
-  UnionContext as Client,
-  MixedLiteralsGet200Response,
-  MixedLiteralsSend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _mixedLiteralsGetSend(
   context: Client,
   options: MixedLiteralsGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<MixedLiteralsGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/mixed-literals")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _mixedLiteralsGetDeserialize(
-  result: MixedLiteralsGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: MixedLiteralsCases }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -55,7 +53,7 @@ export function _mixedLiteralsSendSend(
   context: Client,
   prop: MixedLiteralsCases,
   options: MixedLiteralsSendOptionalParams = { requestOptions: {} },
-): StreamableMethod<MixedLiteralsSend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/mixed-literals")
     .post({
@@ -72,9 +70,10 @@ export function _mixedLiteralsSendSend(
 }
 
 export async function _mixedLiteralsSendDeserialize(
-  result: MixedLiteralsSend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

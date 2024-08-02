@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { AzureEmbeddingModel } from "../models/models.js";
-import {
-  ModelContext as Client,
-  Get200Response,
-  Post200Response,
-  Put204Response,
-} from "../rest/index.js";
+import { ModelContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -22,16 +18,17 @@ import {
 export function _getSend(
   context: Client,
   options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get200Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/model/embeddingVector")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: Get200Response,
+  result: PathUncheckedResponse,
 ): Promise<number[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,14 +48,17 @@ export function _putSend(
   context: Client,
   body: number[],
   options: PutOptionalParams = { requestOptions: {} },
-): StreamableMethod<Put204Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/model/embeddingVector")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
-export async function _putDeserialize(result: Put204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _putDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -79,7 +79,7 @@ export function _postSend(
   context: Client,
   body: AzureEmbeddingModel,
   options: PostOptionalParams = { requestOptions: {} },
-): StreamableMethod<Post200Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/model/embeddingVector")
     .post({
@@ -89,9 +89,10 @@ export function _postSend(
 }
 
 export async function _postDeserialize(
-  result: Post200Response,
+  result: PathUncheckedResponse,
 ): Promise<AzureEmbeddingModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

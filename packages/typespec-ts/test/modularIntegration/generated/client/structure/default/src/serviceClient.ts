@@ -12,8 +12,8 @@ import {
   one,
   two,
   createService,
-  ServiceClientOptionalParams,
   ServiceContext,
+  ServiceClientOptionalParams,
 } from "./api/index.js";
 
 export { ServiceClientOptionalParams } from "./api/serviceContext.js";
@@ -41,7 +41,6 @@ export class ServiceClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createService(endpointParam, clientParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -1,17 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  BytesContext as Client,
-  ResponseBodyBase64200Response,
-  ResponseBodyBase64url200Response,
-  ResponseBodyCustomContentType200Response,
-  ResponseBodyDefault200Response,
-  ResponseBodyOctetStream200Response,
-} from "../../rest/index.js";
+import { BytesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array } from "@azure/core-util";
@@ -26,16 +20,17 @@ import {
 export function _responseBodyDefaultSend(
   context: Client,
   options: ResponseBodyDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseBodyDefault200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/response/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseBodyDefaultDeserialize(
-  result: ResponseBodyDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -55,16 +50,17 @@ export async function responseBodyDefault(
 export function _responseBodyOctetStreamSend(
   context: Client,
   options: ResponseBodyOctetStreamOptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseBodyOctetStream200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/response/octet-stream")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseBodyOctetStreamDeserialize(
-  result: ResponseBodyOctetStream200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -82,16 +78,17 @@ export async function responseBodyOctetStream(
 export function _responseBodyCustomContentTypeSend(
   context: Client,
   options: ResponseBodyCustomContentTypeOptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseBodyCustomContentType200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/response/custom-content-type")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseBodyCustomContentTypeDeserialize(
-  result: ResponseBodyCustomContentType200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -109,16 +106,17 @@ export async function responseBodyCustomContentType(
 export function _responseBodyBase64Send(
   context: Client,
   options: ResponseBodyBase64OptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseBodyBase64200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/response/base64")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseBodyBase64Deserialize(
-  result: ResponseBodyBase64200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -138,16 +136,17 @@ export async function responseBodyBase64(
 export function _responseBodyBase64urlSend(
   context: Client,
   options: ResponseBodyBase64urlOptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseBodyBase64url200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/response/base64url")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseBodyBase64urlDeserialize(
-  result: ResponseBodyBase64url200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

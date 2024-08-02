@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  NotDefinedContext as Client,
-  Valid200Response,
-} from "../rest/index.js";
+import { NotDefinedContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { ValidOptionalParams } from "../models/options.js";
@@ -15,16 +13,17 @@ import { ValidOptionalParams } from "../models/options.js";
 export function _validSend(
   context: Client,
   options: ValidOptionalParams = { requestOptions: {} },
-): StreamableMethod<Valid200Response> {
+): StreamableMethod {
   return context
     .path("/server/endpoint/not-defined/valid")
     .head({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _validDeserialize(
-  result: Valid200Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

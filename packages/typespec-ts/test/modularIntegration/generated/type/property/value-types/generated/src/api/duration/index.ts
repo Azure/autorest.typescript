@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { DurationProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  DurationGet200Response,
-  DurationPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _durationGetSend(
   context: Client,
   options: DurationGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/duration")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _durationGetDeserialize(
-  result: DurationGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<DurationProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _durationPutSend(
   context: Client,
   body: DurationProperty,
   options: DurationPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/duration")
     .put({
@@ -61,9 +59,10 @@ export function _durationPutSend(
 }
 
 export async function _durationPutDeserialize(
-  result: DurationPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -181,21 +181,10 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
  * Checks if a request failed
  */
 function checkPagingRequest(response: PathUncheckedResponse): void {
-  const Http2xxStatusCodes = [
-    "200",
-    "201",
-    "202",
-    "203",
-    "204",
-    "205",
-    "206",
-    "207",
-    "208",
-    "226",
-  ];
-  if (!Http2xxStatusCodes.includes(response.status)) {
+  const statusCode = Number(response.status);
+  if (statusCode < 200 || statusCode > 299) {
     throw createRestError(
-      `Pagination failed with unexpected statusCode ${response.status}`,
+      `Pagination failed with unexpected statusCode ${statusCode}`,
       response,
     );
   }

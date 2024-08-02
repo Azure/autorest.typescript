@@ -2,17 +2,11 @@
 // Licensed under the MIT license.
 
 import { AzureLocationModel } from "../models/models.js";
-import {
-  ScalarContext as Client,
-  Get200Response,
-  Header204Response,
-  Post200Response,
-  Put204Response,
-  Query204Response,
-} from "../rest/index.js";
+import { ScalarContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -26,14 +20,17 @@ import {
 export function _getSend(
   context: Client,
   options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get200Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/scalar/azureLocation")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _getDeserialize(result: Get200Response): Promise<string> {
-  if (result.status !== "200") {
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<string> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,14 +50,17 @@ export function _putSend(
   context: Client,
   body: string,
   options: PutOptionalParams = { requestOptions: {} },
-): StreamableMethod<Put204Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/scalar/azureLocation")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
-export async function _putDeserialize(result: Put204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _putDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -81,7 +81,7 @@ export function _postSend(
   context: Client,
   body: AzureLocationModel,
   options: PostOptionalParams = { requestOptions: {} },
-): StreamableMethod<Post200Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/scalar/azureLocation")
     .post({
@@ -91,9 +91,10 @@ export function _postSend(
 }
 
 export async function _postDeserialize(
-  result: Post200Response,
+  result: PathUncheckedResponse,
 ): Promise<AzureLocationModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -116,7 +117,7 @@ export function _headerSend(
   context: Client,
   region: string,
   options: HeaderOptionalParams = { requestOptions: {} },
-): StreamableMethod<Header204Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/scalar/azureLocation/header")
     .post({
@@ -126,9 +127,10 @@ export function _headerSend(
 }
 
 export async function _headerDeserialize(
-  result: Header204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -149,7 +151,7 @@ export function _querySend(
   context: Client,
   region: string,
   options: QueryOptionalParams = { requestOptions: {} },
-): StreamableMethod<Query204Response> {
+): StreamableMethod {
   return context
     .path("/azure/core/scalar/azureLocation/query")
     .post({
@@ -159,9 +161,10 @@ export function _querySend(
 }
 
 export async function _queryDeserialize(
-  result: Query204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

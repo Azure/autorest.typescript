@@ -11,21 +11,11 @@ import {
   PublicDecoratorModelInPublic,
   AbstractModelUnion,
 } from "../models/models.js";
-import {
-  AccessContext as Client,
-  Discriminator200Response,
-  Internal200Response,
-  InternalDecoratorInInternal200Response,
-  NoDecoratorInInternal200Response,
-  NoDecoratorInPublic200Response,
-  Operation200Response,
-  Public200Response,
-  PublicDecoratorInInternal200Response,
-  PublicDecoratorInPublic200Response,
-} from "../rest/index.js";
+import { AccessContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -44,7 +34,7 @@ export function _noDecoratorInPublicSend(
   context: Client,
   name: string,
   options: NoDecoratorInPublicOptionalParams = { requestOptions: {} },
-): StreamableMethod<NoDecoratorInPublic200Response> {
+): StreamableMethod {
   return context
     .path(
       "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic",
@@ -56,9 +46,10 @@ export function _noDecoratorInPublicSend(
 }
 
 export async function _noDecoratorInPublicDeserialize(
-  result: NoDecoratorInPublic200Response,
+  result: PathUncheckedResponse,
 ): Promise<NoDecoratorModelInPublic> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -80,7 +71,7 @@ export function _publicDecoratorInPublicSend(
   context: Client,
   name: string,
   options: PublicDecoratorInPublicOptionalParams = { requestOptions: {} },
-): StreamableMethod<PublicDecoratorInPublic200Response> {
+): StreamableMethod {
   return context
     .path(
       "/azure/client-generator-core/access/publicOperation/publicDecoratorInPublic",
@@ -92,9 +83,10 @@ export function _publicDecoratorInPublicSend(
 }
 
 export async function _publicDecoratorInPublicDeserialize(
-  result: PublicDecoratorInPublic200Response,
+  result: PathUncheckedResponse,
 ): Promise<PublicDecoratorModelInPublic> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -116,7 +108,7 @@ export function _noDecoratorInInternalSend(
   context: Client,
   name: string,
   options: NoDecoratorInInternalOptionalParams = { requestOptions: {} },
-): StreamableMethod<NoDecoratorInInternal200Response> {
+): StreamableMethod {
   return context
     .path(
       "/azure/client-generator-core/access/internalOperation/noDecoratorInInternal",
@@ -128,9 +120,10 @@ export function _noDecoratorInInternalSend(
 }
 
 export async function _noDecoratorInInternalDeserialize(
-  result: NoDecoratorInInternal200Response,
+  result: PathUncheckedResponse,
 ): Promise<NoDecoratorModelInInternal> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -152,7 +145,7 @@ export function _internalDecoratorInInternalSend(
   context: Client,
   name: string,
   options: InternalDecoratorInInternalOptionalParams = { requestOptions: {} },
-): StreamableMethod<InternalDecoratorInInternal200Response> {
+): StreamableMethod {
   return context
     .path(
       "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal",
@@ -164,9 +157,10 @@ export function _internalDecoratorInInternalSend(
 }
 
 export async function _internalDecoratorInInternalDeserialize(
-  result: InternalDecoratorInInternal200Response,
+  result: PathUncheckedResponse,
 ): Promise<InternalDecoratorModelInInternal> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -188,7 +182,7 @@ export function _publicDecoratorInInternalSend(
   context: Client,
   name: string,
   options: PublicDecoratorInInternalOptionalParams = { requestOptions: {} },
-): StreamableMethod<PublicDecoratorInInternal200Response> {
+): StreamableMethod {
   return context
     .path(
       "/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal",
@@ -200,9 +194,10 @@ export function _publicDecoratorInInternalSend(
 }
 
 export async function _publicDecoratorInInternalDeserialize(
-  result: PublicDecoratorInInternal200Response,
+  result: PathUncheckedResponse,
 ): Promise<PublicDecoratorModelInInternal> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -224,7 +219,7 @@ export function _$publicSend(
   context: Client,
   name: string,
   options: PublicOptionalParams = { requestOptions: {} },
-): StreamableMethod<Public200Response> {
+): StreamableMethod {
   return context
     .path("/azure/client-generator-core/access/sharedModelInOperation/public")
     .get({
@@ -234,9 +229,10 @@ export function _$publicSend(
 }
 
 export async function _$publicDeserialize(
-  result: Public200Response,
+  result: PathUncheckedResponse,
 ): Promise<SharedModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -263,7 +259,7 @@ export function _internalSend(
   context: Client,
   name: string,
   options: InternalOptionalParams = { requestOptions: {} },
-): StreamableMethod<Internal200Response> {
+): StreamableMethod {
   return context
     .path("/azure/client-generator-core/access/sharedModelInOperation/internal")
     .get({
@@ -273,9 +269,10 @@ export function _internalSend(
 }
 
 export async function _internalDeserialize(
-  result: Internal200Response,
+  result: PathUncheckedResponse,
 ): Promise<SharedModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -297,7 +294,7 @@ export function _operationSend(
   context: Client,
   name: string,
   options: OperationOptionalParams = { requestOptions: {} },
-): StreamableMethod<Operation200Response> {
+): StreamableMethod {
   return context
     .path(
       "/azure/client-generator-core/access/relativeModelInOperation/operation",
@@ -309,9 +306,10 @@ export function _operationSend(
 }
 
 export async function _operationDeserialize(
-  result: Operation200Response,
+  result: PathUncheckedResponse,
 ): Promise<OuterModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -347,7 +345,7 @@ export function _discriminatorSend(
   context: Client,
   kind: string,
   options: DiscriminatorOptionalParams = { requestOptions: {} },
-): StreamableMethod<Discriminator200Response> {
+): StreamableMethod {
   return context
     .path(
       "/azure/client-generator-core/access/relativeModelInOperation/discriminator",
@@ -359,9 +357,10 @@ export function _discriminatorSend(
 }
 
 export async function _discriminatorDeserialize(
-  result: Discriminator200Response,
+  result: PathUncheckedResponse,
 ): Promise<AbstractModelUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

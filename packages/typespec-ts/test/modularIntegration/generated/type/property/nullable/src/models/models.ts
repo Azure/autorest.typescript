@@ -2,16 +2,6 @@
 // Licensed under the MIT license.
 
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  CollectionsStringProperty as CollectionsStringPropertyRest,
-  CollectionsModelProperty as CollectionsModelPropertyRest,
-  InnerModel as InnerModelRest,
-  CollectionsByteProperty as CollectionsBytePropertyRest,
-  DurationProperty as DurationPropertyRest,
-  DatetimeProperty as DatetimePropertyRest,
-  BytesProperty as BytesPropertyRest,
-  StringProperty as StringPropertyRest,
-} from "../rest/index.js";
 
 /** Model with collection string properties */
 export interface CollectionsStringProperty {
@@ -23,7 +13,7 @@ export interface CollectionsStringProperty {
 
 export function collectionsStringPropertySerializer(
   item: CollectionsStringProperty,
-): CollectionsStringPropertyRest {
+): Record<string, unknown> {
   return {
     requiredProperty: item["requiredProperty"],
     nullableProperty: item["nullableProperty"],
@@ -40,7 +30,7 @@ export interface CollectionsModelProperty {
 
 export function collectionsModelPropertySerializer(
   item: CollectionsModelProperty,
-): CollectionsModelPropertyRest {
+): Record<string, unknown> {
   return {
     requiredProperty: item["requiredProperty"],
     nullableProperty:
@@ -56,7 +46,9 @@ export interface InnerModel {
   property: string;
 }
 
-export function innerModelSerializer(item: InnerModel): InnerModelRest {
+export function innerModelSerializer(
+  item: InnerModel,
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -72,7 +64,7 @@ export interface CollectionsByteProperty {
 
 export function collectionsBytePropertySerializer(
   item: CollectionsByteProperty,
-): CollectionsBytePropertyRest {
+): Record<string, unknown> {
   return {
     requiredProperty: item["requiredProperty"],
     nullableProperty:
@@ -92,7 +84,7 @@ export interface DurationProperty {
 
 export function durationPropertySerializer(
   item: DurationProperty,
-): DurationPropertyRest {
+): Record<string, unknown> {
   return {
     requiredProperty: item["requiredProperty"],
     nullableProperty: item["nullableProperty"],
@@ -109,7 +101,7 @@ export interface DatetimeProperty {
 
 export function datetimePropertySerializer(
   item: DatetimeProperty,
-): DatetimePropertyRest {
+): Record<string, unknown> {
   return {
     requiredProperty: item["requiredProperty"],
     nullableProperty:
@@ -129,7 +121,7 @@ export interface BytesProperty {
 
 export function bytesPropertySerializer(
   item: BytesProperty,
-): BytesPropertyRest {
+): Record<string, unknown> {
   return {
     requiredProperty: item["requiredProperty"],
     nullableProperty:
@@ -149,7 +141,7 @@ export interface StringProperty {
 
 export function stringPropertySerializer(
   item: StringProperty,
-): StringPropertyRest {
+): Record<string, unknown> {
   return {
     requiredProperty: item["requiredProperty"],
     nullableProperty: item["nullableProperty"],

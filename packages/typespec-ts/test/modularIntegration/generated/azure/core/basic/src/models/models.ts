@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  User as UserRest,
-  UserOrder as UserOrderRest,
-  ListItemInputBody as ListItemInputBodyRest,
-} from "../rest/index.js";
-
 /** Details about a user. */
 export interface User {
   /** The user's id. */
@@ -19,7 +13,7 @@ export interface User {
   readonly etag: string;
 }
 
-export function userSerializer(item: User): UserRest {
+export function userSerializer(item: User): Record<string, unknown> {
   return {
     name: item["name"],
     orders:
@@ -39,7 +33,7 @@ export interface UserOrder {
   detail: string;
 }
 
-export function userOrderSerializer(item: UserOrder): UserOrderRest {
+export function userOrderSerializer(item: UserOrder): Record<string, unknown> {
   return {
     userId: item["userId"],
     detail: item["detail"],
@@ -54,7 +48,7 @@ export interface ListItemInputBody {
 
 export function listItemInputBodySerializer(
   item: ListItemInputBody,
-): ListItemInputBodyRest {
+): Record<string, unknown> {
   return {
     inputName: item["inputName"],
   };

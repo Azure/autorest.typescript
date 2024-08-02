@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { Cat, Dog } from "../../models/models.js";
-import {
-  UnionContext as Client,
-  ModelsOnlyGet200Response,
-  ModelsOnlySend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _modelsOnlyGetSend(
   context: Client,
   options: ModelsOnlyGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsOnlyGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/models-only")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _modelsOnlyGetDeserialize(
-  result: ModelsOnlyGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: Cat | Dog }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -50,7 +48,7 @@ export function _modelsOnlySendSend(
   context: Client,
   prop: Cat | Dog,
   options: ModelsOnlySendOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsOnlySend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/models-only")
     .post({
@@ -60,9 +58,10 @@ export function _modelsOnlySendSend(
 }
 
 export async function _modelsOnlySendDeserialize(
-  result: ModelsOnlySend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

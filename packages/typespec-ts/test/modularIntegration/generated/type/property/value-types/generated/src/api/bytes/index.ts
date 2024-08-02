@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { BytesProperty } from "../../models/models.js";
-import {
-  BytesGet200Response,
-  BytesPut204Response,
-  ValueTypesContext as Client,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
@@ -21,16 +18,17 @@ import {
 export function _bytesGetSend(
   context: Client,
   options: BytesGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/bytes")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _bytesGetDeserialize(
-  result: BytesGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<BytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -55,7 +53,7 @@ export function _bytesPutSend(
   context: Client,
   body: BytesProperty,
   options: BytesPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/bytes")
     .put({
@@ -65,9 +63,10 @@ export function _bytesPutSend(
 }
 
 export async function _bytesPutDeserialize(
-  result: BytesPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

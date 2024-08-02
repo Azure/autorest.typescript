@@ -3,37 +3,6 @@
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  UnionEnumValueProperty as UnionEnumValuePropertyRest,
-  UnionFloatLiteralProperty as UnionFloatLiteralPropertyRest,
-  UnionIntLiteralProperty as UnionIntLiteralPropertyRest,
-  UnionStringLiteralProperty as UnionStringLiteralPropertyRest,
-  BooleanLiteralProperty as BooleanLiteralPropertyRest,
-  FloatLiteralProperty as FloatLiteralPropertyRest,
-  IntLiteralProperty as IntLiteralPropertyRest,
-  StringLiteralProperty as StringLiteralPropertyRest,
-  UnknownArrayProperty as UnknownArrayPropertyRest,
-  UnknownDictProperty as UnknownDictPropertyRest,
-  UnknownIntProperty as UnknownIntPropertyRest,
-  UnknownStringProperty as UnknownStringPropertyRest,
-  DictionaryStringProperty as DictionaryStringPropertyRest,
-  CollectionsModelProperty as CollectionsModelPropertyRest,
-  InnerModel as InnerModelRest,
-  CollectionsIntProperty as CollectionsIntPropertyRest,
-  CollectionsStringProperty as CollectionsStringPropertyRest,
-  ModelProperty as ModelPropertyRest,
-  ExtensibleEnumProperty as ExtensibleEnumPropertyRest,
-  EnumProperty as EnumPropertyRest,
-  DurationProperty as DurationPropertyRest,
-  DatetimeProperty as DatetimePropertyRest,
-  Decimal128Property as Decimal128PropertyRest,
-  DecimalProperty as DecimalPropertyRest,
-  FloatProperty as FloatPropertyRest,
-  IntProperty as IntPropertyRest,
-  BytesProperty as BytesPropertyRest,
-  StringProperty as StringPropertyRest,
-  BooleanProperty as BooleanPropertyRest,
-} from "../rest/index.js";
 
 /** Template type for testing models with specific properties. Pass in the type of the property you are looking for */
 export interface UnionEnumValueProperty {
@@ -43,7 +12,7 @@ export interface UnionEnumValueProperty {
 
 export function unionEnumValuePropertySerializer(
   item: UnionEnumValueProperty,
-): UnionEnumValuePropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -60,7 +29,7 @@ export interface UnionFloatLiteralProperty {
 
 export function unionFloatLiteralPropertySerializer(
   item: UnionFloatLiteralProperty,
-): UnionFloatLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -74,7 +43,7 @@ export interface UnionIntLiteralProperty {
 
 export function unionIntLiteralPropertySerializer(
   item: UnionIntLiteralProperty,
-): UnionIntLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -88,7 +57,7 @@ export interface UnionStringLiteralProperty {
 
 export function unionStringLiteralPropertySerializer(
   item: UnionStringLiteralProperty,
-): UnionStringLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -102,7 +71,7 @@ export interface BooleanLiteralProperty {
 
 export function booleanLiteralPropertySerializer(
   item: BooleanLiteralProperty,
-): BooleanLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -116,7 +85,7 @@ export interface FloatLiteralProperty {
 
 export function floatLiteralPropertySerializer(
   item: FloatLiteralProperty,
-): FloatLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -130,7 +99,7 @@ export interface IntLiteralProperty {
 
 export function intLiteralPropertySerializer(
   item: IntLiteralProperty,
-): IntLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -144,7 +113,7 @@ export interface StringLiteralProperty {
 
 export function stringLiteralPropertySerializer(
   item: StringLiteralProperty,
-): StringLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -158,7 +127,7 @@ export interface UnknownArrayProperty {
 
 export function unknownArrayPropertySerializer(
   item: UnknownArrayProperty,
-): UnknownArrayPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -172,7 +141,7 @@ export interface UnknownDictProperty {
 
 export function unknownDictPropertySerializer(
   item: UnknownDictProperty,
-): UnknownDictPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -186,7 +155,7 @@ export interface UnknownIntProperty {
 
 export function unknownIntPropertySerializer(
   item: UnknownIntProperty,
-): UnknownIntPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -200,7 +169,7 @@ export interface UnknownStringProperty {
 
 export function unknownStringPropertySerializer(
   item: UnknownStringProperty,
-): UnknownStringPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -221,7 +190,7 @@ export interface DictionaryStringProperty {
 
 export function dictionaryStringPropertySerializer(
   item: DictionaryStringProperty,
-): DictionaryStringPropertyRest {
+): Record<string, unknown> {
   return {
     property: serializeRecord(item.property as any) as any,
   };
@@ -235,7 +204,7 @@ export interface CollectionsModelProperty {
 
 export function collectionsModelPropertySerializer(
   item: CollectionsModelProperty,
-): CollectionsModelPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"].map(innerModelSerializer),
   };
@@ -247,7 +216,9 @@ export interface InnerModel {
   property: string;
 }
 
-export function innerModelSerializer(item: InnerModel): InnerModelRest {
+export function innerModelSerializer(
+  item: InnerModel,
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -261,7 +232,7 @@ export interface CollectionsIntProperty {
 
 export function collectionsIntPropertySerializer(
   item: CollectionsIntProperty,
-): CollectionsIntPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -275,7 +246,7 @@ export interface CollectionsStringProperty {
 
 export function collectionsStringPropertySerializer(
   item: CollectionsStringProperty,
-): CollectionsStringPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -289,7 +260,7 @@ export interface ModelProperty {
 
 export function modelPropertySerializer(
   item: ModelProperty,
-): ModelPropertyRest {
+): Record<string, unknown> {
   return {
     property: innerModelSerializer(item.property),
   };
@@ -303,7 +274,7 @@ export interface ExtensibleEnumProperty {
 
 export function extensibleEnumPropertySerializer(
   item: ExtensibleEnumProperty,
-): ExtensibleEnumPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -318,7 +289,9 @@ export interface EnumProperty {
   property: FixedInnerEnum;
 }
 
-export function enumPropertySerializer(item: EnumProperty): EnumPropertyRest {
+export function enumPropertySerializer(
+  item: EnumProperty,
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -335,7 +308,7 @@ export interface DurationProperty {
 
 export function durationPropertySerializer(
   item: DurationProperty,
-): DurationPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -349,7 +322,7 @@ export interface DatetimeProperty {
 
 export function datetimePropertySerializer(
   item: DatetimeProperty,
-): DatetimePropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"].toISOString(),
   };
@@ -363,7 +336,7 @@ export interface Decimal128Property {
 
 export function decimal128PropertySerializer(
   item: Decimal128Property,
-): Decimal128PropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -377,7 +350,7 @@ export interface DecimalProperty {
 
 export function decimalPropertySerializer(
   item: DecimalProperty,
-): DecimalPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -391,7 +364,7 @@ export interface FloatProperty {
 
 export function floatPropertySerializer(
   item: FloatProperty,
-): FloatPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -403,7 +376,9 @@ export interface IntProperty {
   property: number;
 }
 
-export function intPropertySerializer(item: IntProperty): IntPropertyRest {
+export function intPropertySerializer(
+  item: IntProperty,
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -417,7 +392,7 @@ export interface BytesProperty {
 
 export function bytesPropertySerializer(
   item: BytesProperty,
-): BytesPropertyRest {
+): Record<string, unknown> {
   return {
     property: uint8ArrayToString(item["property"], "base64"),
   };
@@ -431,7 +406,7 @@ export interface StringProperty {
 
 export function stringPropertySerializer(
   item: StringProperty,
-): StringPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -445,7 +420,7 @@ export interface BooleanProperty {
 
 export function booleanPropertySerializer(
   item: BooleanProperty,
-): BooleanPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };

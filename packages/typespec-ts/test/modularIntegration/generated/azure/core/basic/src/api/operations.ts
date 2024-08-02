@@ -14,40 +14,14 @@ import {
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
-import {
-  isUnexpected,
-  BasicContext as Client,
-  buildMultiCollection,
-  CreateOrReplace200Response,
-  CreateOrReplace201Response,
-  CreateOrReplaceDefaultResponse,
-  CreateOrUpdate200Response,
-  CreateOrUpdate201Response,
-  CreateOrUpdateDefaultResponse,
-  Delete204Response,
-  DeleteDefaultResponse,
-  Export200Response,
-  ExportDefaultResponse,
-  Get200Response,
-  GetDefaultResponse,
-  List200Response,
-  ListDefaultResponse,
-  ListFirstItem200Response,
-  ListFirstItemDefaultResponse,
-  ListSecondItem200Response,
-  ListSecondItemDefaultResponse,
-  ListWithCustomPageModel200Response,
-  ListWithCustomPageModelDefaultResponse,
-  ListWithPage200Response,
-  ListWithPageDefaultResponse,
-  ListWithParameters200Response,
-  ListWithParametersDefaultResponse,
-} from "../rest/index.js";
+import { BasicContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { buildMultiCollection } from "../helpers/serializerHelpers.js";
 import {
   CreateOrUpdateOptionalParams,
   CreateOrReplaceOptionalParams,
@@ -67,11 +41,7 @@ export function _createOrUpdateSend(
   id: number,
   resource: User,
   options: CreateOrUpdateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | CreateOrUpdate200Response
-  | CreateOrUpdate201Response
-  | CreateOrUpdateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/users/{id}", id)
     .patch({
@@ -89,12 +59,10 @@ export function _createOrUpdateSend(
 }
 
 export async function _createOrUpdateDeserialize(
-  result:
-    | CreateOrUpdate200Response
-    | CreateOrUpdate201Response
-    | CreateOrUpdateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<User> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -104,7 +72,7 @@ export async function _createOrUpdateDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+        : result.body["orders"].map((p: any) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
     etag: result.body["etag"],
@@ -127,11 +95,7 @@ export function _createOrReplaceSend(
   id: number,
   resource: User,
   options: CreateOrReplaceOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | CreateOrReplace200Response
-  | CreateOrReplace201Response
-  | CreateOrReplaceDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/users/{id}", id)
     .put({
@@ -147,12 +111,10 @@ export function _createOrReplaceSend(
 }
 
 export async function _createOrReplaceDeserialize(
-  result:
-    | CreateOrReplace200Response
-    | CreateOrReplace201Response
-    | CreateOrReplaceDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<User> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -162,7 +124,7 @@ export async function _createOrReplaceDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+        : result.body["orders"].map((p: any) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
     etag: result.body["etag"],
@@ -184,16 +146,17 @@ export function _getSend(
   context: Client,
   id: number,
   options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get200Response | GetDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/users/{id}", id)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: Get200Response | GetDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<User> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -203,7 +166,7 @@ export async function _getDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+        : result.body["orders"].map((p: any) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
     etag: result.body["etag"],
@@ -223,7 +186,7 @@ export async function get(
 export function _listSend(
   context: Client,
   options: ListOptionalParams = { requestOptions: {} },
-): StreamableMethod<List200Response | ListDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/users")
     .get({
@@ -250,21 +213,22 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: List200Response | ListDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedUser> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
         orders:
           p["orders"] === undefined
             ? p["orders"]
-            : p["orders"].map((p) => {
+            : p["orders"].map((p: any) => {
                 return {
                   id: p["id"],
                   userId: p["userId"],
@@ -294,28 +258,29 @@ export function list(
 export function _listWithPageSend(
   context: Client,
   options: ListWithPageOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/page")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listWithPageDeserialize(
-  result: ListWithPage200Response | ListWithPageDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedUser> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
         orders:
           p["orders"] === undefined
             ? p["orders"]
-            : p["orders"].map((p) => {
+            : p["orders"].map((p: any) => {
                 return {
                   id: p["id"],
                   userId: p["userId"],
@@ -346,9 +311,7 @@ export function _listWithParametersSend(
   context: Client,
   bodyInput: ListItemInputBody,
   options: ListWithParametersOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListWithParameters200Response | ListWithParametersDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/parameters")
     .get({
@@ -359,21 +322,22 @@ export function _listWithParametersSend(
 }
 
 export async function _listWithParametersDeserialize(
-  result: ListWithParameters200Response | ListWithParametersDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedUser> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
         orders:
           p["orders"] === undefined
             ? p["orders"]
-            : p["orders"].map((p) => {
+            : p["orders"].map((p: any) => {
                 return {
                   id: p["id"],
                   userId: p["userId"],
@@ -404,32 +368,29 @@ export function listWithParameters(
 export function _listWithCustomPageModelSend(
   context: Client,
   options: ListWithCustomPageModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/custom-page")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listWithCustomPageModelDeserialize(
-  result:
-    | ListWithCustomPageModel200Response
-    | ListWithCustomPageModelDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_UserListResults> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    items: result.body["items"].map((p) => {
+    items: result.body["items"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
         orders:
           p["orders"] === undefined
             ? p["orders"]
-            : p["orders"].map((p) => {
+            : p["orders"].map((p: any) => {
                 return {
                   id: p["id"],
                   userId: p["userId"],
@@ -460,16 +421,17 @@ export function _$deleteSend(
   context: Client,
   id: number,
   options: DeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<Delete204Response | DeleteDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/users/{id}", id)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _$deleteDeserialize(
-  result: Delete204Response | DeleteDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -496,7 +458,7 @@ export function _$exportSend(
   id: number,
   format: string,
   options: ExportOptionalParams = { requestOptions: {} },
-): StreamableMethod<Export200Response | ExportDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/users/{id}:export", id)
     .post({
@@ -506,9 +468,10 @@ export function _$exportSend(
 }
 
 export async function _$exportDeserialize(
-  result: Export200Response | ExportDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<User> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -518,7 +481,7 @@ export async function _$exportDeserialize(
     orders:
       result.body["orders"] === undefined
         ? result.body["orders"]
-        : result.body["orders"].map((p) => {
+        : result.body["orders"].map((p: any) => {
             return { id: p["id"], userId: p["userId"], detail: p["detail"] };
           }),
     etag: result.body["etag"],
@@ -544,21 +507,22 @@ export async function $export(
 export function _listFirstItemSend(
   context: Client,
   options: ListFirstItemOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/first-item")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listFirstItemDeserialize(
-  result: ListFirstItem200Response | ListFirstItemDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedFirstItem> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return { id: p["id"] };
     }),
     nextLink: result.body["nextLink"],
@@ -581,21 +545,22 @@ export function listFirstItem(
 export function _listSecondItemSend(
   context: Client,
   options: ListSecondItemOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/basic/second-item")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listSecondItemDeserialize(
-  result: ListSecondItem200Response | ListSecondItemDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedSecondItem> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return { name: p["name"] };
     }),
     nextLink: result.body["nextLink"],

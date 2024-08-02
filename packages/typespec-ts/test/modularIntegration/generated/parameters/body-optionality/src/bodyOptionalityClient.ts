@@ -13,8 +13,8 @@ import {
 } from "./classic/optionalExplicit/index.js";
 import {
   createBodyOptionality,
-  BodyOptionalityClientOptionalParams,
   BodyOptionalityContext,
+  BodyOptionalityClientOptionalParams,
   requiredExplicit,
   requiredImplicit,
 } from "./api/index.js";
@@ -32,7 +32,6 @@ export class BodyOptionalityClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createBodyOptionality({
       ...options,
       userAgentOptions: { userAgentPrefix },

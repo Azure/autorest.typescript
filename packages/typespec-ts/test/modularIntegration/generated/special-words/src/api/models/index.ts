@@ -36,45 +36,11 @@ import {
   With,
   Yield,
 } from "../../models/models.js";
-import {
-  SpecialWordsContext as Client,
-  ModelsWithAnd204Response,
-  ModelsWithAs204Response,
-  ModelsWithAssert204Response,
-  ModelsWithAsync204Response,
-  ModelsWithAwait204Response,
-  ModelsWithBreak204Response,
-  ModelsWithClass204Response,
-  ModelsWithConstructor204Response,
-  ModelsWithContinue204Response,
-  ModelsWithDef204Response,
-  ModelsWithDel204Response,
-  ModelsWithElif204Response,
-  ModelsWithElse204Response,
-  ModelsWithExcept204Response,
-  ModelsWithExec204Response,
-  ModelsWithFinally204Response,
-  ModelsWithFor204Response,
-  ModelsWithFrom204Response,
-  ModelsWithGlobal204Response,
-  ModelsWithIf204Response,
-  ModelsWithImport204Response,
-  ModelsWithIn204Response,
-  ModelsWithIs204Response,
-  ModelsWithLambda204Response,
-  ModelsWithNot204Response,
-  ModelsWithOr204Response,
-  ModelsWithPass204Response,
-  ModelsWithRaise204Response,
-  ModelsWithReturn204Response,
-  ModelsWithTry204Response,
-  ModelsWithWhile204Response,
-  ModelsWithWith204Response,
-  ModelsWithYield204Response,
-} from "../../rest/index.js";
+import { SpecialWordsContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -117,7 +83,7 @@ export function _modelsWithAndSend(
   context: Client,
   body: And,
   options: ModelsWithAndOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithAnd204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/and")
     .post({
@@ -127,9 +93,10 @@ export function _modelsWithAndSend(
 }
 
 export async function _modelsWithAndDeserialize(
-  result: ModelsWithAnd204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -149,7 +116,7 @@ export function _modelsWithAsSend(
   context: Client,
   body: As,
   options: ModelsWithAsOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithAs204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/as")
     .post({
@@ -159,9 +126,10 @@ export function _modelsWithAsSend(
 }
 
 export async function _modelsWithAsDeserialize(
-  result: ModelsWithAs204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -181,7 +149,7 @@ export function _modelsWithAssertSend(
   context: Client,
   body: Assert,
   options: ModelsWithAssertOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithAssert204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/assert")
     .post({
@@ -191,9 +159,10 @@ export function _modelsWithAssertSend(
 }
 
 export async function _modelsWithAssertDeserialize(
-  result: ModelsWithAssert204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -213,7 +182,7 @@ export function _modelsWithAsyncSend(
   context: Client,
   body: Async,
   options: ModelsWithAsyncOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithAsync204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/async")
     .post({
@@ -223,9 +192,10 @@ export function _modelsWithAsyncSend(
 }
 
 export async function _modelsWithAsyncDeserialize(
-  result: ModelsWithAsync204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -245,7 +215,7 @@ export function _modelsWithAwaitSend(
   context: Client,
   body: Await,
   options: ModelsWithAwaitOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithAwait204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/await")
     .post({
@@ -255,9 +225,10 @@ export function _modelsWithAwaitSend(
 }
 
 export async function _modelsWithAwaitDeserialize(
-  result: ModelsWithAwait204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -277,7 +248,7 @@ export function _modelsWithBreakSend(
   context: Client,
   body: Break,
   options: ModelsWithBreakOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithBreak204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/break")
     .post({
@@ -287,9 +258,10 @@ export function _modelsWithBreakSend(
 }
 
 export async function _modelsWithBreakDeserialize(
-  result: ModelsWithBreak204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -309,7 +281,7 @@ export function _modelsWithClassSend(
   context: Client,
   body: Class,
   options: ModelsWithClassOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithClass204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/class")
     .post({
@@ -319,9 +291,10 @@ export function _modelsWithClassSend(
 }
 
 export async function _modelsWithClassDeserialize(
-  result: ModelsWithClass204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -341,7 +314,7 @@ export function _modelsWithConstructorSend(
   context: Client,
   body: Constructor,
   options: ModelsWithConstructorOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithConstructor204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/constructor")
     .post({
@@ -351,9 +324,10 @@ export function _modelsWithConstructorSend(
 }
 
 export async function _modelsWithConstructorDeserialize(
-  result: ModelsWithConstructor204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -373,7 +347,7 @@ export function _modelsWithContinueSend(
   context: Client,
   body: Continue,
   options: ModelsWithContinueOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithContinue204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/continue")
     .post({
@@ -383,9 +357,10 @@ export function _modelsWithContinueSend(
 }
 
 export async function _modelsWithContinueDeserialize(
-  result: ModelsWithContinue204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -405,7 +380,7 @@ export function _modelsWithDefSend(
   context: Client,
   body: Def,
   options: ModelsWithDefOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithDef204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/def")
     .post({
@@ -415,9 +390,10 @@ export function _modelsWithDefSend(
 }
 
 export async function _modelsWithDefDeserialize(
-  result: ModelsWithDef204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -437,7 +413,7 @@ export function _modelsWithDelSend(
   context: Client,
   body: Del,
   options: ModelsWithDelOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithDel204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/del")
     .post({
@@ -447,9 +423,10 @@ export function _modelsWithDelSend(
 }
 
 export async function _modelsWithDelDeserialize(
-  result: ModelsWithDel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -469,7 +446,7 @@ export function _modelsWithElifSend(
   context: Client,
   body: Elif,
   options: ModelsWithElifOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithElif204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/elif")
     .post({
@@ -479,9 +456,10 @@ export function _modelsWithElifSend(
 }
 
 export async function _modelsWithElifDeserialize(
-  result: ModelsWithElif204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -501,7 +479,7 @@ export function _modelsWithElseSend(
   context: Client,
   body: Else,
   options: ModelsWithElseOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithElse204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/else")
     .post({
@@ -511,9 +489,10 @@ export function _modelsWithElseSend(
 }
 
 export async function _modelsWithElseDeserialize(
-  result: ModelsWithElse204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -533,7 +512,7 @@ export function _modelsWithExceptSend(
   context: Client,
   body: Except,
   options: ModelsWithExceptOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithExcept204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/except")
     .post({
@@ -543,9 +522,10 @@ export function _modelsWithExceptSend(
 }
 
 export async function _modelsWithExceptDeserialize(
-  result: ModelsWithExcept204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -565,7 +545,7 @@ export function _modelsWithExecSend(
   context: Client,
   body: Exec,
   options: ModelsWithExecOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithExec204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/exec")
     .post({
@@ -575,9 +555,10 @@ export function _modelsWithExecSend(
 }
 
 export async function _modelsWithExecDeserialize(
-  result: ModelsWithExec204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -597,7 +578,7 @@ export function _modelsWithFinallySend(
   context: Client,
   body: Finally,
   options: ModelsWithFinallyOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithFinally204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/finally")
     .post({
@@ -607,9 +588,10 @@ export function _modelsWithFinallySend(
 }
 
 export async function _modelsWithFinallyDeserialize(
-  result: ModelsWithFinally204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -629,7 +611,7 @@ export function _modelsWithForSend(
   context: Client,
   body: For,
   options: ModelsWithForOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithFor204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/for")
     .post({
@@ -639,9 +621,10 @@ export function _modelsWithForSend(
 }
 
 export async function _modelsWithForDeserialize(
-  result: ModelsWithFor204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -661,7 +644,7 @@ export function _modelsWithFromSend(
   context: Client,
   body: From,
   options: ModelsWithFromOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithFrom204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/from")
     .post({
@@ -671,9 +654,10 @@ export function _modelsWithFromSend(
 }
 
 export async function _modelsWithFromDeserialize(
-  result: ModelsWithFrom204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -693,7 +677,7 @@ export function _modelsWithGlobalSend(
   context: Client,
   body: Global,
   options: ModelsWithGlobalOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithGlobal204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/global")
     .post({
@@ -703,9 +687,10 @@ export function _modelsWithGlobalSend(
 }
 
 export async function _modelsWithGlobalDeserialize(
-  result: ModelsWithGlobal204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -725,7 +710,7 @@ export function _modelsWithIfSend(
   context: Client,
   body: If,
   options: ModelsWithIfOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithIf204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/if")
     .post({
@@ -735,9 +720,10 @@ export function _modelsWithIfSend(
 }
 
 export async function _modelsWithIfDeserialize(
-  result: ModelsWithIf204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -757,7 +743,7 @@ export function _modelsWithImportSend(
   context: Client,
   body: Import,
   options: ModelsWithImportOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithImport204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/import")
     .post({
@@ -767,9 +753,10 @@ export function _modelsWithImportSend(
 }
 
 export async function _modelsWithImportDeserialize(
-  result: ModelsWithImport204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -789,7 +776,7 @@ export function _modelsWithInSend(
   context: Client,
   body: In,
   options: ModelsWithInOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithIn204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/in")
     .post({
@@ -799,9 +786,10 @@ export function _modelsWithInSend(
 }
 
 export async function _modelsWithInDeserialize(
-  result: ModelsWithIn204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -821,7 +809,7 @@ export function _modelsWithIsSend(
   context: Client,
   body: Is,
   options: ModelsWithIsOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithIs204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/is")
     .post({
@@ -831,9 +819,10 @@ export function _modelsWithIsSend(
 }
 
 export async function _modelsWithIsDeserialize(
-  result: ModelsWithIs204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -853,7 +842,7 @@ export function _modelsWithLambdaSend(
   context: Client,
   body: Lambda,
   options: ModelsWithLambdaOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithLambda204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/lambda")
     .post({
@@ -863,9 +852,10 @@ export function _modelsWithLambdaSend(
 }
 
 export async function _modelsWithLambdaDeserialize(
-  result: ModelsWithLambda204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -885,7 +875,7 @@ export function _modelsWithNotSend(
   context: Client,
   body: Not,
   options: ModelsWithNotOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithNot204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/not")
     .post({
@@ -895,9 +885,10 @@ export function _modelsWithNotSend(
 }
 
 export async function _modelsWithNotDeserialize(
-  result: ModelsWithNot204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -917,7 +908,7 @@ export function _modelsWithOrSend(
   context: Client,
   body: Or,
   options: ModelsWithOrOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithOr204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/or")
     .post({
@@ -927,9 +918,10 @@ export function _modelsWithOrSend(
 }
 
 export async function _modelsWithOrDeserialize(
-  result: ModelsWithOr204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -949,7 +941,7 @@ export function _modelsWithPassSend(
   context: Client,
   body: Pass,
   options: ModelsWithPassOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithPass204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/pass")
     .post({
@@ -959,9 +951,10 @@ export function _modelsWithPassSend(
 }
 
 export async function _modelsWithPassDeserialize(
-  result: ModelsWithPass204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -981,7 +974,7 @@ export function _modelsWithRaiseSend(
   context: Client,
   body: Raise,
   options: ModelsWithRaiseOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithRaise204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/raise")
     .post({
@@ -991,9 +984,10 @@ export function _modelsWithRaiseSend(
 }
 
 export async function _modelsWithRaiseDeserialize(
-  result: ModelsWithRaise204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1013,7 +1007,7 @@ export function _modelsWithReturnSend(
   context: Client,
   body: Return,
   options: ModelsWithReturnOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithReturn204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/return")
     .post({
@@ -1023,9 +1017,10 @@ export function _modelsWithReturnSend(
 }
 
 export async function _modelsWithReturnDeserialize(
-  result: ModelsWithReturn204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1045,7 +1040,7 @@ export function _modelsWithTrySend(
   context: Client,
   body: Try,
   options: ModelsWithTryOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithTry204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/try")
     .post({
@@ -1055,9 +1050,10 @@ export function _modelsWithTrySend(
 }
 
 export async function _modelsWithTryDeserialize(
-  result: ModelsWithTry204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1077,7 +1073,7 @@ export function _modelsWithWhileSend(
   context: Client,
   body: While,
   options: ModelsWithWhileOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithWhile204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/while")
     .post({
@@ -1087,9 +1083,10 @@ export function _modelsWithWhileSend(
 }
 
 export async function _modelsWithWhileDeserialize(
-  result: ModelsWithWhile204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1109,7 +1106,7 @@ export function _modelsWithWithSend(
   context: Client,
   body: With,
   options: ModelsWithWithOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithWith204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/with")
     .post({
@@ -1119,9 +1116,10 @@ export function _modelsWithWithSend(
 }
 
 export async function _modelsWithWithDeserialize(
-  result: ModelsWithWith204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1141,7 +1139,7 @@ export function _modelsWithYieldSend(
   context: Client,
   body: Yield,
   options: ModelsWithYieldOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsWithYield204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/models/yield")
     .post({
@@ -1151,9 +1149,10 @@ export function _modelsWithYieldSend(
 }
 
 export async function _modelsWithYieldDeserialize(
-  result: ModelsWithYield204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

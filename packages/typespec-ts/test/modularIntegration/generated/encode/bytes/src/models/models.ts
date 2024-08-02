@@ -2,12 +2,6 @@
 // Licensed under the MIT license.
 
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  DefaultBytesProperty as DefaultBytesPropertyRest,
-  Base64BytesProperty as Base64BytesPropertyRest,
-  Base64urlBytesProperty as Base64urlBytesPropertyRest,
-  Base64urlArrayBytesProperty as Base64urlArrayBytesPropertyRest,
-} from "../rest/index.js";
 
 export interface DefaultBytesProperty {
   value: Uint8Array;
@@ -15,7 +9,7 @@ export interface DefaultBytesProperty {
 
 export function defaultBytesPropertySerializer(
   item: DefaultBytesProperty,
-): DefaultBytesPropertyRest {
+): Record<string, unknown> {
   return {
     value: uint8ArrayToString(item["value"], "base64"),
   };
@@ -27,7 +21,7 @@ export interface Base64BytesProperty {
 
 export function base64BytesPropertySerializer(
   item: Base64BytesProperty,
-): Base64BytesPropertyRest {
+): Record<string, unknown> {
   return {
     value: uint8ArrayToString(item["value"], "base64"),
   };
@@ -39,7 +33,7 @@ export interface Base64urlBytesProperty {
 
 export function base64urlBytesPropertySerializer(
   item: Base64urlBytesProperty,
-): Base64urlBytesPropertyRest {
+): Record<string, unknown> {
   return {
     value: uint8ArrayToString(item["value"], "base64url"),
   };
@@ -51,7 +45,7 @@ export interface Base64urlArrayBytesProperty {
 
 export function base64urlArrayBytesPropertySerializer(
   item: Base64urlArrayBytesProperty,
-): Base64urlArrayBytesPropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"].map((p) => uint8ArrayToString(p, "base64url")),
   };

@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { InputModel as InputModelRest } from "../rest/index.js";
-
 /** Usage override to roundtrip. */
 export interface InputModel {
   name: string;
 }
 
-export function inputModelSerializer(item: InputModel): InputModelRest {
+export function inputModelSerializer(
+  item: InputModel,
+): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -19,7 +19,9 @@ export interface OutputModel {
   name: string;
 }
 
-export function outputModelSerializer(item: OutputModel) {
+export function outputModelSerializer(
+  item: OutputModel,
+): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -42,7 +44,9 @@ export interface OrphanModel {
   name: string;
 }
 
-export function orphanModelSerializer(item: OrphanModel) {
+export function orphanModelSerializer(
+  item: OrphanModel,
+): Record<string, unknown> {
   return {
     name: item["name"],
   };

@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { DatetimeProperty } from "../../models/models.js";
-import {
-  NullableContext as Client,
-  DatetimeGetNonNull200Response,
-  DatetimeGetNull200Response,
-  DatetimePatchNonNull204Response,
-  DatetimePatchNull204Response,
-} from "../../rest/index.js";
+import { NullableContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getNonNullSend(
   context: Client,
   options: DatetimeGetNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimeGetNonNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/datetime/non-null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNonNullDeserialize(
-  result: DatetimeGetNonNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<DatetimeProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -58,16 +54,17 @@ export async function getNonNull(
 export function _getNullSend(
   context: Client,
   options: DatetimeGetNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimeGetNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/datetime/null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNullDeserialize(
-  result: DatetimeGetNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<DatetimeProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -93,7 +90,7 @@ export function _patchNonNullSend(
   context: Client,
   body: DatetimeProperty,
   options: DatetimePatchNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimePatchNonNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/datetime/non-null")
     .patch({
@@ -111,9 +108,10 @@ export function _patchNonNullSend(
 }
 
 export async function _patchNonNullDeserialize(
-  result: DatetimePatchNonNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -134,7 +132,7 @@ export function _patchNullSend(
   context: Client,
   body: DatetimeProperty,
   options: DatetimePatchNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimePatchNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/datetime/null")
     .patch({
@@ -152,9 +150,10 @@ export function _patchNullSend(
 }
 
 export async function _patchNullDeserialize(
-  result: DatetimePatchNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

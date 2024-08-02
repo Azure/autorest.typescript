@@ -3,6 +3,6 @@
 
 export {
   createExtensible,
-  ExtensibleClientOptionalParams,
   ExtensibleContext,
+  ExtensibleClientOptionalParams,
 } from "./extensibleContext.js";

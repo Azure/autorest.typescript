@@ -13,8 +13,8 @@ import {
 } from "./classic/group2/index.js";
 import {
   createTwoOperationGroup,
-  TwoOperationGroupClientOptionalParams,
   ServiceContext,
+  TwoOperationGroupClientOptionalParams,
 } from "./api/index.js";
 
 export { TwoOperationGroupClientOptionalParams } from "./api/twoOperationGroupContext.js";
@@ -33,7 +33,6 @@ export class TwoOperationGroupClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createTwoOperationGroup(endpointParam, clientParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

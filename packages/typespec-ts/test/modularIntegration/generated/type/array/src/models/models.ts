@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { InnerModel as InnerModelRest } from "../rest/index.js";
-
 /** Array inner model */
 export interface InnerModel {
   /** Required string property */
@@ -10,7 +8,9 @@ export interface InnerModel {
   children?: InnerModel[];
 }
 
-export function innerModelSerializer(item: InnerModel): InnerModelRest {
+export function innerModelSerializer(
+  item: InnerModel,
+): Record<string, unknown> {
   return {
     property: item["property"],
     children:

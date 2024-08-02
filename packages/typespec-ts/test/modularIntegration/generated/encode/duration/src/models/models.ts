@@ -1,22 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  DefaultDurationProperty as DefaultDurationPropertyRest,
-  ISO8601DurationProperty as ISO8601DurationPropertyRest,
-  Int32SecondsDurationProperty as Int32SecondsDurationPropertyRest,
-  FloatSecondsDurationProperty as FloatSecondsDurationPropertyRest,
-  Float64SecondsDurationProperty as Float64SecondsDurationPropertyRest,
-  FloatSecondsDurationArrayProperty as FloatSecondsDurationArrayPropertyRest,
-} from "../rest/index.js";
-
 export interface DefaultDurationProperty {
   value: string;
 }
 
 export function defaultDurationPropertySerializer(
   item: DefaultDurationProperty,
-): DefaultDurationPropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"],
   };
@@ -28,7 +19,7 @@ export interface ISO8601DurationProperty {
 
 export function iSO8601DurationPropertySerializer(
   item: ISO8601DurationProperty,
-): ISO8601DurationPropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"],
   };
@@ -40,7 +31,7 @@ export interface Int32SecondsDurationProperty {
 
 export function int32SecondsDurationPropertySerializer(
   item: Int32SecondsDurationProperty,
-): Int32SecondsDurationPropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"],
   };
@@ -52,7 +43,7 @@ export interface FloatSecondsDurationProperty {
 
 export function floatSecondsDurationPropertySerializer(
   item: FloatSecondsDurationProperty,
-): FloatSecondsDurationPropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"],
   };
@@ -64,7 +55,7 @@ export interface Float64SecondsDurationProperty {
 
 export function float64SecondsDurationPropertySerializer(
   item: Float64SecondsDurationProperty,
-): Float64SecondsDurationPropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"],
   };
@@ -76,7 +67,7 @@ export interface FloatSecondsDurationArrayProperty {
 
 export function floatSecondsDurationArrayPropertySerializer(
   item: FloatSecondsDurationArrayProperty,
-): FloatSecondsDurationArrayPropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"],
   };

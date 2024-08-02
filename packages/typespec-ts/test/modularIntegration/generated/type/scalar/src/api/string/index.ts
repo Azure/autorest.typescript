@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ScalarContext as Client,
-  StringModelGet200Response,
-  StringModelPut204Response,
-} from "../../rest/index.js";
+import { ScalarContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _stringGetSend(
   context: Client,
   options: StringGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/string")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stringGetDeserialize(
-  result: StringModelGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<string> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,16 +46,17 @@ export function _stringPutSend(
   context: Client,
   body: string,
   options: StringPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/string")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _stringPutDeserialize(
-  result: StringModelPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

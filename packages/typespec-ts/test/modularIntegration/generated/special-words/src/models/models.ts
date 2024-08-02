@@ -1,48 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  SameAsModel as SameAsModelRest,
-  And as AndRest,
-  As as AsRest,
-  Assert as AssertRest,
-  Async as AsyncRest,
-  Await as AwaitRest,
-  Break as BreakRest,
-  Class as ClassRest,
-  Constructor as ConstructorRest,
-  Continue as ContinueRest,
-  Def as DefRest,
-  Del as DelRest,
-  Elif as ElifRest,
-  Else as ElseRest,
-  Except as ExceptRest,
-  Exec as ExecRest,
-  Finally as FinallyRest,
-  For as ForRest,
-  From as FromRest,
-  Global as GlobalRest,
-  If as IfRest,
-  Import as ImportRest,
-  In as InRest,
-  Is as IsRest,
-  Lambda as LambdaRest,
-  Not as NotRest,
-  Or as OrRest,
-  Pass as PassRest,
-  Raise as RaiseRest,
-  Return as ReturnRest,
-  Try as TryRest,
-  While as WhileRest,
-  With as WithRest,
-  Yield as YieldRest,
-} from "../rest/index.js";
-
 export interface SameAsModel {
   sameAsModel: string;
 }
 
-export function sameAsModelSerializer(item: SameAsModel): SameAsModelRest {
+export function sameAsModelSerializer(
+  item: SameAsModel,
+): Record<string, unknown> {
   return {
     SameAsModel: item["sameAsModel"],
   };
@@ -52,7 +17,7 @@ export interface And {
   name: string;
 }
 
-export function andSerializer(item: And): AndRest {
+export function andSerializer(item: And): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -62,7 +27,7 @@ export interface As {
   name: string;
 }
 
-export function asSerializer(item: As): AsRest {
+export function asSerializer(item: As): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -72,7 +37,7 @@ export interface Assert {
   name: string;
 }
 
-export function assertSerializer(item: Assert): AssertRest {
+export function assertSerializer(item: Assert): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -82,7 +47,7 @@ export interface Async {
   name: string;
 }
 
-export function asyncSerializer(item: Async): AsyncRest {
+export function asyncSerializer(item: Async): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -92,7 +57,7 @@ export interface Await {
   name: string;
 }
 
-export function awaitSerializer(item: Await): AwaitRest {
+export function awaitSerializer(item: Await): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -102,7 +67,7 @@ export interface Break {
   name: string;
 }
 
-export function breakSerializer(item: Break): BreakRest {
+export function breakSerializer(item: Break): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -112,7 +77,7 @@ export interface Class {
   name: string;
 }
 
-export function classSerializer(item: Class): ClassRest {
+export function classSerializer(item: Class): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -122,7 +87,9 @@ export interface Constructor {
   name: string;
 }
 
-export function constructorSerializer(item: Constructor): ConstructorRest {
+export function constructorSerializer(
+  item: Constructor,
+): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -132,7 +99,7 @@ export interface Continue {
   name: string;
 }
 
-export function continueSerializer(item: Continue): ContinueRest {
+export function continueSerializer(item: Continue): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -142,7 +109,7 @@ export interface Def {
   name: string;
 }
 
-export function defSerializer(item: Def): DefRest {
+export function defSerializer(item: Def): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -152,7 +119,7 @@ export interface Del {
   name: string;
 }
 
-export function delSerializer(item: Del): DelRest {
+export function delSerializer(item: Del): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -162,7 +129,7 @@ export interface Elif {
   name: string;
 }
 
-export function elifSerializer(item: Elif): ElifRest {
+export function elifSerializer(item: Elif): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -172,7 +139,7 @@ export interface Else {
   name: string;
 }
 
-export function elseSerializer(item: Else): ElseRest {
+export function elseSerializer(item: Else): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -182,7 +149,7 @@ export interface Except {
   name: string;
 }
 
-export function exceptSerializer(item: Except): ExceptRest {
+export function exceptSerializer(item: Except): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -192,7 +159,7 @@ export interface Exec {
   name: string;
 }
 
-export function execSerializer(item: Exec): ExecRest {
+export function execSerializer(item: Exec): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -202,7 +169,7 @@ export interface Finally {
   name: string;
 }
 
-export function finallySerializer(item: Finally): FinallyRest {
+export function finallySerializer(item: Finally): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -212,7 +179,7 @@ export interface For {
   name: string;
 }
 
-export function forSerializer(item: For): ForRest {
+export function forSerializer(item: For): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -222,7 +189,7 @@ export interface From {
   name: string;
 }
 
-export function fromSerializer(item: From): FromRest {
+export function fromSerializer(item: From): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -232,7 +199,7 @@ export interface Global {
   name: string;
 }
 
-export function globalSerializer(item: Global): GlobalRest {
+export function globalSerializer(item: Global): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -242,7 +209,7 @@ export interface If {
   name: string;
 }
 
-export function ifSerializer(item: If): IfRest {
+export function ifSerializer(item: If): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -252,7 +219,7 @@ export interface Import {
   name: string;
 }
 
-export function importSerializer(item: Import): ImportRest {
+export function importSerializer(item: Import): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -262,7 +229,7 @@ export interface In {
   name: string;
 }
 
-export function inSerializer(item: In): InRest {
+export function inSerializer(item: In): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -272,7 +239,7 @@ export interface Is {
   name: string;
 }
 
-export function isSerializer(item: Is): IsRest {
+export function isSerializer(item: Is): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -282,7 +249,7 @@ export interface Lambda {
   name: string;
 }
 
-export function lambdaSerializer(item: Lambda): LambdaRest {
+export function lambdaSerializer(item: Lambda): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -292,7 +259,7 @@ export interface Not {
   name: string;
 }
 
-export function notSerializer(item: Not): NotRest {
+export function notSerializer(item: Not): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -302,7 +269,7 @@ export interface Or {
   name: string;
 }
 
-export function orSerializer(item: Or): OrRest {
+export function orSerializer(item: Or): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -312,7 +279,7 @@ export interface Pass {
   name: string;
 }
 
-export function passSerializer(item: Pass): PassRest {
+export function passSerializer(item: Pass): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -322,7 +289,7 @@ export interface Raise {
   name: string;
 }
 
-export function raiseSerializer(item: Raise): RaiseRest {
+export function raiseSerializer(item: Raise): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -332,7 +299,7 @@ export interface Return {
   name: string;
 }
 
-export function returnSerializer(item: Return): ReturnRest {
+export function returnSerializer(item: Return): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -342,7 +309,7 @@ export interface Try {
   name: string;
 }
 
-export function trySerializer(item: Try): TryRest {
+export function trySerializer(item: Try): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -352,7 +319,7 @@ export interface While {
   name: string;
 }
 
-export function whileSerializer(item: While): WhileRest {
+export function whileSerializer(item: While): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -362,7 +329,7 @@ export interface With {
   name: string;
 }
 
-export function withSerializer(item: With): WithRest {
+export function withSerializer(item: With): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -372,7 +339,7 @@ export interface Yield {
   name: string;
 }
 
-export function yieldSerializer(item: Yield): YieldRest {
+export function yieldSerializer(item: Yield): Record<string, unknown> {
   return {
     name: item["name"],
   };

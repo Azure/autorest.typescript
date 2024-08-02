@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ServiceContext as Client,
-  Nine204Response,
-} from "../../../rest/index.js";
+import { ServiceContext as Client } from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { QuxBarNineOptionalParams } from "../../../models/options.js";
@@ -15,14 +13,17 @@ import { QuxBarNineOptionalParams } from "../../../models/options.js";
 export function _nineSend(
   context: Client,
   options: QuxBarNineOptionalParams = { requestOptions: {} },
-): StreamableMethod<Nine204Response> {
+): StreamableMethod {
   return context
     .path("/nine")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _nineDeserialize(result: Nine204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _nineDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ArrayContext as Client,
-  Int64ValueGet200Response,
-  Int64ValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _int64ValueGetSend(
   context: Client,
   options: Int64ValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Int64ValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/int64")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _int64ValueGetDeserialize(
-  result: Int64ValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<number[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export function _int64ValuePutSend(
   context: Client,
   body: number[],
   options: Int64ValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<Int64ValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/array/int64")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _int64ValuePutDeserialize(
-  result: Int64ValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { NeverProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  NeverGet200Response,
-  NeverPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _neverGetSend(
   context: Client,
   options: NeverGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<NeverGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/never")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _neverGetDeserialize(
-  result: NeverGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<NeverProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,16 +47,17 @@ export function _neverPutSend(
   context: Client,
   body: NeverProperty,
   options: NeverPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<NeverPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/never")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _neverPutDeserialize(
-  result: NeverPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

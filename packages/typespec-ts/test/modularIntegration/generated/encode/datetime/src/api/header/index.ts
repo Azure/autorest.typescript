@@ -1,20 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  buildCsvCollection,
-  DatetimeContext as Client,
-  HeaderDefault204Response,
-  HeaderRfc3339204Response,
-  HeaderRfc7231204Response,
-  HeaderUnixTimestamp204Response,
-  HeaderUnixTimestampArray204Response,
-} from "../../rest/index.js";
+import { DatetimeContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { buildCsvCollection } from "../../helpers/serializerHelpers.js";
 import {
   HeaderDefaultOptionalParams,
   HeaderRfc3339OptionalParams,
@@ -27,7 +21,7 @@ export function _headerDefaultSend(
   context: Client,
   value: Date,
   options: HeaderDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderDefault204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/header/default")
     .get({
@@ -37,9 +31,10 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: HeaderDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -59,7 +54,7 @@ export function _headerRfc3339Send(
   context: Client,
   value: Date,
   options: HeaderRfc3339OptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderRfc3339204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/header/rfc3339")
     .get({
@@ -69,9 +64,10 @@ export function _headerRfc3339Send(
 }
 
 export async function _headerRfc3339Deserialize(
-  result: HeaderRfc3339204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -91,7 +87,7 @@ export function _headerRfc7231Send(
   context: Client,
   value: Date,
   options: HeaderRfc7231OptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderRfc7231204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/header/rfc7231")
     .get({
@@ -101,9 +97,10 @@ export function _headerRfc7231Send(
 }
 
 export async function _headerRfc7231Deserialize(
-  result: HeaderRfc7231204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -123,7 +120,7 @@ export function _headerUnixTimestampSend(
   context: Client,
   value: Date,
   options: HeaderUnixTimestampOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderUnixTimestamp204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/header/unix-timestamp")
     .get({
@@ -133,9 +130,10 @@ export function _headerUnixTimestampSend(
 }
 
 export async function _headerUnixTimestampDeserialize(
-  result: HeaderUnixTimestamp204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -155,7 +153,7 @@ export function _headerUnixTimestampArraySend(
   context: Client,
   value: Date[],
   options: HeaderUnixTimestampArrayOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderUnixTimestampArray204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/header/unix-timestamp-array")
     .get({
@@ -165,9 +163,10 @@ export function _headerUnixTimestampArraySend(
 }
 
 export async function _headerUnixTimestampArrayDeserialize(
-  result: HeaderUnixTimestampArray204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

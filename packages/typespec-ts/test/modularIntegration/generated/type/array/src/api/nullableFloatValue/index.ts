@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ArrayContext as Client,
-  NullableFloatValueGet200Response,
-  NullableFloatValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _nullableFloatValueGetSend(
   context: Client,
   options: NullableFloatValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<NullableFloatValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/nullable-float")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _nullableFloatValueGetDeserialize(
-  result: NullableFloatValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<(number | null)[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export function _nullableFloatValuePutSend(
   context: Client,
   body: (number | null)[],
   options: NullableFloatValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<NullableFloatValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/array/nullable-float")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _nullableFloatValuePutDeserialize(
-  result: NullableFloatValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

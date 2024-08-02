@@ -8,8 +8,8 @@ import { LongRunningRpcOptionalParams } from "./models/options.js";
 import {
   longRunningRpc,
   createRpc,
-  RpcClientOptionalParams,
   RpcContext,
+  RpcClientOptionalParams,
 } from "./api/index.js";
 
 export { RpcClientOptionalParams } from "./api/rpcContext.js";
@@ -25,7 +25,6 @@ export class RpcClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createRpc({
       ...options,
       userAgentOptions: { userAgentPrefix },

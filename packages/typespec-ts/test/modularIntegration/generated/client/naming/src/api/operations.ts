@@ -6,19 +6,11 @@ import {
   LanguageClientNameModel,
   ClientNameAndJsonEncodedNameModel,
 } from "../models/models.js";
-import {
-  NamingContext as Client,
-  HeaderRequest204Response,
-  HeaderResponse204Response,
-  Operation204Response,
-  Parameter204Response,
-  PropertyClient204Response,
-  PropertyCompatibleWithEncodedName204Response,
-  PropertyLanguage204Response,
-} from "../rest/index.js";
+import { NamingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -34,16 +26,17 @@ import {
 export function _clientNameSend(
   context: Client,
   options: ClientNameOptionalParams = { requestOptions: {} },
-): StreamableMethod<Operation204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/operation")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _clientNameDeserialize(
-  result: Operation204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -62,7 +55,7 @@ export function _parameterSend(
   context: Client,
   clientName: string,
   options: ParameterOptionalParams = { requestOptions: {} },
-): StreamableMethod<Parameter204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/parameter")
     .post({
@@ -72,9 +65,10 @@ export function _parameterSend(
 }
 
 export async function _parameterDeserialize(
-  result: Parameter204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -94,7 +88,7 @@ export function _clientSend(
   context: Client,
   body: ClientNameModel,
   options: ClientOptionalParams = { requestOptions: {} },
-): StreamableMethod<PropertyClient204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/property/client")
     .post({
@@ -104,9 +98,10 @@ export function _clientSend(
 }
 
 export async function _clientDeserialize(
-  result: PropertyClient204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -126,7 +121,7 @@ export function _languageSend(
   context: Client,
   body: LanguageClientNameModel,
   options: LanguageOptionalParams = { requestOptions: {} },
-): StreamableMethod<PropertyLanguage204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/property/language")
     .post({
@@ -136,9 +131,10 @@ export function _languageSend(
 }
 
 export async function _languageDeserialize(
-  result: PropertyLanguage204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -158,7 +154,7 @@ export function _compatibleWithEncodedNameSend(
   context: Client,
   body: ClientNameAndJsonEncodedNameModel,
   options: CompatibleWithEncodedNameOptionalParams = { requestOptions: {} },
-): StreamableMethod<PropertyCompatibleWithEncodedName204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/property/compatible-with-encoded-name")
     .post({
@@ -168,9 +164,10 @@ export function _compatibleWithEncodedNameSend(
 }
 
 export async function _compatibleWithEncodedNameDeserialize(
-  result: PropertyCompatibleWithEncodedName204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -190,7 +187,7 @@ export function _requestSend(
   context: Client,
   clientName: string,
   options: RequestOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderRequest204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/header")
     .post({
@@ -200,9 +197,10 @@ export function _requestSend(
 }
 
 export async function _requestDeserialize(
-  result: HeaderRequest204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -221,16 +219,17 @@ export async function request(
 export function _responseSend(
   context: Client,
   options: ResponseOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderResponse204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/header")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseDeserialize(
-  result: HeaderResponse204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

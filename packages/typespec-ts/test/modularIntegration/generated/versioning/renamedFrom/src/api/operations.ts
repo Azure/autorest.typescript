@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { NewModel } from "../models/models.js";
-import {
-  RenamedFromContext as Client,
-  NewOp200Response,
-  NewOpInNewInterface200Response,
-} from "../rest/index.js";
+import { RenamedFromContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -22,7 +19,7 @@ export function _newOpSend(
   newQuery: string,
   body: NewModel,
   options: NewOpOptionalParams = { requestOptions: {} },
-): StreamableMethod<NewOp200Response> {
+): StreamableMethod {
   return context
     .path("/test")
     .post({
@@ -37,9 +34,10 @@ export function _newOpSend(
 }
 
 export async function _newOpDeserialize(
-  result: NewOp200Response,
+  result: PathUncheckedResponse,
 ): Promise<NewModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -64,7 +62,7 @@ export function _newOpInNewInterfaceSend(
   context: Client,
   body: NewModel,
   options: NewOpInNewInterfaceOptionalParams = { requestOptions: {} },
-): StreamableMethod<NewOpInNewInterface200Response> {
+): StreamableMethod {
   return context
     .path("/interface/test")
     .post({
@@ -78,9 +76,10 @@ export function _newOpInNewInterfaceSend(
 }
 
 export async function _newOpInNewInterfaceDeserialize(
-  result: NewOpInNewInterface200Response,
+  result: PathUncheckedResponse,
 ): Promise<NewModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

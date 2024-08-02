@@ -16,7 +16,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
-import { isUnexpected } from "../rest/index.js";
 
 export interface GetLongRunningPollerOptions<TResponse> {
   /** Delay to wait until next poll, in milliseconds. */
@@ -99,10 +98,6 @@ export function getLongRunningPoller<
         options.abortSignal?.removeEventListener("abort", abortListener);
         pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
       }
-      if (options.initialRequestUrl || initialResponse) {
-        response.headers["x-ms-original-url"] =
-          options.initialRequestUrl ?? initialResponse!.request.url;
-      }
 
       return getLroResponse(response as TResponse);
     },
@@ -125,9 +120,11 @@ export function getLongRunningPoller<
 function getLroResponse<TResponse extends PathUncheckedResponse>(
   response: TResponse,
 ): OperationResponse<TResponse> {
-  if (isUnexpected(response as PathUncheckedResponse)) {
+  const statusCode = Number(response.status);
+  if (statusCode < 200 || statusCode > 299) {
     throw createRestError(response);
   }
+
   return {
     flatResponse: response,
     rawResponse: {

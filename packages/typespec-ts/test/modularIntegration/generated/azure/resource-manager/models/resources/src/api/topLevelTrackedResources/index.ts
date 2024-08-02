@@ -10,31 +10,11 @@ import {
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
-import {
-  isUnexpected,
-  ResourcesContext as Client,
-  TopLevelTrackedResourcesCreateOrReplace200Response,
-  TopLevelTrackedResourcesCreateOrReplace201Response,
-  TopLevelTrackedResourcesCreateOrReplaceDefaultResponse,
-  TopLevelTrackedResourcesCreateOrReplaceLogicalResponse,
-  TopLevelTrackedResourcesDelete202Response,
-  TopLevelTrackedResourcesDelete204Response,
-  TopLevelTrackedResourcesDeleteDefaultResponse,
-  TopLevelTrackedResourcesDeleteLogicalResponse,
-  TopLevelTrackedResourcesGet200Response,
-  TopLevelTrackedResourcesGetDefaultResponse,
-  TopLevelTrackedResourcesListByResourceGroup200Response,
-  TopLevelTrackedResourcesListByResourceGroupDefaultResponse,
-  TopLevelTrackedResourcesListBySubscription200Response,
-  TopLevelTrackedResourcesListBySubscriptionDefaultResponse,
-  TopLevelTrackedResourcesUpdate200Response,
-  TopLevelTrackedResourcesUpdate202Response,
-  TopLevelTrackedResourcesUpdateDefaultResponse,
-  TopLevelTrackedResourcesUpdateLogicalResponse,
-} from "../../rest/index.js";
+import { ResourcesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -53,10 +33,7 @@ export function _topLevelTrackedResourcesGetSend(
   resourceGroupName: string,
   topLevelTrackedResourceName: string,
   options: TopLevelTrackedResourcesGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TopLevelTrackedResourcesGet200Response
-  | TopLevelTrackedResourcesGetDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -68,11 +45,10 @@ export function _topLevelTrackedResourcesGetSend(
 }
 
 export async function _topLevelTrackedResourcesGetDeserialize(
-  result:
-    | TopLevelTrackedResourcesGet200Response
-    | TopLevelTrackedResourcesGetDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TopLevelTrackedResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -134,12 +110,7 @@ export function _topLevelTrackedResourcesCreateOrReplaceSend(
   options: TopLevelTrackedResourcesCreateOrReplaceOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | TopLevelTrackedResourcesCreateOrReplace200Response
-  | TopLevelTrackedResourcesCreateOrReplace201Response
-  | TopLevelTrackedResourcesCreateOrReplaceDefaultResponse
-  | TopLevelTrackedResourcesCreateOrReplaceLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -162,45 +133,40 @@ export function _topLevelTrackedResourcesCreateOrReplaceSend(
 }
 
 export async function _topLevelTrackedResourcesCreateOrReplaceDeserialize(
-  result:
-    | TopLevelTrackedResourcesCreateOrReplace200Response
-    | TopLevelTrackedResourcesCreateOrReplace201Response
-    | TopLevelTrackedResourcesCreateOrReplaceDefaultResponse
-    | TopLevelTrackedResourcesCreateOrReplaceLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<TopLevelTrackedResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res =
-    result as unknown as TopLevelTrackedResourcesCreateOrReplaceLogicalResponse;
   return {
-    tags: res.body["tags"],
-    location: res.body["location"],
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
+    tags: result.body["tags"],
+    location: result.body["location"],
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !res.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: res.body.properties?.["provisioningState"],
-          description: res.body.properties?.["description"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          description: result.body.properties?.["description"],
         },
   };
 }
@@ -250,12 +216,7 @@ export function _topLevelTrackedResourcesUpdateSend(
   options: TopLevelTrackedResourcesUpdateOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | TopLevelTrackedResourcesUpdate200Response
-  | TopLevelTrackedResourcesUpdate202Response
-  | TopLevelTrackedResourcesUpdateDefaultResponse
-  | TopLevelTrackedResourcesUpdateLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -278,45 +239,40 @@ export function _topLevelTrackedResourcesUpdateSend(
 }
 
 export async function _topLevelTrackedResourcesUpdateDeserialize(
-  result:
-    | TopLevelTrackedResourcesUpdate200Response
-    | TopLevelTrackedResourcesUpdate202Response
-    | TopLevelTrackedResourcesUpdateDefaultResponse
-    | TopLevelTrackedResourcesUpdateLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<TopLevelTrackedResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res =
-    result as unknown as TopLevelTrackedResourcesUpdateLogicalResponse;
   return {
-    tags: res.body["tags"],
-    location: res.body["location"],
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
+    tags: result.body["tags"],
+    location: result.body["location"],
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !res.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: res.body.properties?.["provisioningState"],
-          description: res.body.properties?.["description"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          description: result.body.properties?.["description"],
         },
   };
 }
@@ -365,12 +321,7 @@ export function _topLevelTrackedResourcesDeleteSend(
   options: TopLevelTrackedResourcesDeleteOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | TopLevelTrackedResourcesDelete202Response
-  | TopLevelTrackedResourcesDelete204Response
-  | TopLevelTrackedResourcesDeleteDefaultResponse
-  | TopLevelTrackedResourcesDeleteLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
@@ -382,13 +333,10 @@ export function _topLevelTrackedResourcesDeleteSend(
 }
 
 export async function _topLevelTrackedResourcesDeleteDeserialize(
-  result:
-    | TopLevelTrackedResourcesDelete202Response
-    | TopLevelTrackedResourcesDelete204Response
-    | TopLevelTrackedResourcesDeleteDefaultResponse
-    | TopLevelTrackedResourcesDeleteLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "204", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -430,10 +378,7 @@ export function _topLevelTrackedResourcesListByResourceGroupSend(
   options: TopLevelTrackedResourcesListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | TopLevelTrackedResourcesListByResourceGroup200Response
-  | TopLevelTrackedResourcesListByResourceGroupDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
@@ -444,16 +389,15 @@ export function _topLevelTrackedResourcesListByResourceGroupSend(
 }
 
 export async function _topLevelTrackedResourcesListByResourceGroupDeserialize(
-  result:
-    | TopLevelTrackedResourcesListByResourceGroup200Response
-    | TopLevelTrackedResourcesListByResourceGroupDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_TopLevelTrackedResourceListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -517,10 +461,7 @@ export function _topLevelTrackedResourcesListBySubscriptionSend(
   options: TopLevelTrackedResourcesListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | TopLevelTrackedResourcesListBySubscription200Response
-  | TopLevelTrackedResourcesListBySubscriptionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
@@ -530,16 +471,15 @@ export function _topLevelTrackedResourcesListBySubscriptionSend(
 }
 
 export async function _topLevelTrackedResourcesListBySubscriptionDeserialize(
-  result:
-    | TopLevelTrackedResourcesListBySubscription200Response
-    | TopLevelTrackedResourcesListBySubscriptionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_TopLevelTrackedResourceListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         tags: p["tags"],
         location: p["location"],

@@ -3,8 +3,8 @@
 
 export {
   createArray,
-  ArrayClientOptionalParams,
   ArrayContext,
+  ArrayClientOptionalParams,
 } from "./arrayContext.js";
 export { booleanValueGet, booleanValuePut } from "./booleanValue/index.js";
 export { datetimeValueGet, datetimeValuePut } from "./datetimeValue/index.js";
