@@ -1,4 +1,4 @@
-import { RepeatabilityClient } from "./generated/special-headers/repeatability/generated/src/index.js";
+import { RepeatabilityClient } from "./generated/special-headers/repeatability/src/index.js";
 import { assert } from "chai";
 
 describe("Repeatability Client", () => {
