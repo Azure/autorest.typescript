@@ -11,6 +11,9 @@ parameters:
   - name: OSVmImage
     type: string
     default: ubuntu-20.04
+  - name: Windows_Latest
+    type: string
+    default: "Windows-latest"
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
@@ -227,6 +230,29 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Check git Tree"
+
+      - job: TypeSpec_Cross_Environment_Check
+        dependsOn: Build
+        variables:
+          - template: globals.yml
+        strategy:
+          matrix:
+            Linux_Node20:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-20.04"
+              NodeTestVersion: "20.x"
+            Windows_Latest:
+              Pool:
+              OSVmImage: ${{ parameters.Windows_Latest }}
+              NodeTestVersion: "20.x"
+        pool:
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+        steps:
+          - template: build.yml
+          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
+            displayName: "Generate Contoso Code From TypeSpec"
 
       - job: Cadl_Ranch_Test
         dependsOn: Build
