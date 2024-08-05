@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { FlattenClient } from "./generated/type/model/flatten/generated/src/index.js";
+import { FlattenClient } from "./generated/type/model/flatten/src/index.js";
 describe("Model Flatten Client", () => {
   let client: FlattenClient;
 
