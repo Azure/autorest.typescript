@@ -4,13 +4,17 @@
 import { SpreadContext } from "../../api/spreadContext.js";
 import {
   aliasSpreadAsRequestBody,
+  aliasSpreadParameterWithInnerModel,
   aliasSpreadAsRequestParameter,
   aliasSpreadWithMultipleParameters,
+  aliasSpreadParameterWithInnerAlias,
 } from "../../api/alias/index.js";
 import {
   AliasSpreadAsRequestBodyOptionalParams,
+  AliasSpreadParameterWithInnerModelOptionalParams,
   AliasSpreadAsRequestParameterOptionalParams,
   AliasSpreadWithMultipleParametersOptionalParams,
+  AliasSpreadParameterWithInnerAliasOptionalParams,
 } from "../../models/options.js";
 
 /** Interface representing a Alias operations. */
@@ -18,6 +22,12 @@ export interface AliasOperations {
   spreadAsRequestBody: (
     name: string,
     options?: AliasSpreadAsRequestBodyOptionalParams,
+  ) => Promise<void>;
+  spreadParameterWithInnerModel: (
+    id: string,
+    xMsTestHeader: string,
+    name: string,
+    options?: AliasSpreadParameterWithInnerModelOptionalParams,
   ) => Promise<void>;
   spreadAsRequestParameter: (
     id: string,
@@ -28,13 +38,17 @@ export interface AliasOperations {
   spreadWithMultipleParameters: (
     id: string,
     xMsTestHeader: string,
-    prop1: string,
-    prop2: string,
-    prop3: string,
-    prop4: string,
-    prop5: string,
-    prop6: string,
+    requiredString: string,
+    requiredIntList: number[],
     options?: AliasSpreadWithMultipleParametersOptionalParams,
+  ) => Promise<void>;
+  /** spread an alias with contains another alias property as body. */
+  spreadParameterWithInnerAlias: (
+    id: string,
+    xMsTestHeader: string,
+    name: string,
+    age: number,
+    options?: AliasSpreadParameterWithInnerAliasOptionalParams,
   ) => Promise<void>;
 }
 
@@ -44,6 +58,19 @@ export function getAlias(context: SpreadContext) {
       name: string,
       options?: AliasSpreadAsRequestBodyOptionalParams,
     ) => aliasSpreadAsRequestBody(context, name, options),
+    spreadParameterWithInnerModel: (
+      id: string,
+      xMsTestHeader: string,
+      name: string,
+      options?: AliasSpreadParameterWithInnerModelOptionalParams,
+    ) =>
+      aliasSpreadParameterWithInnerModel(
+        context,
+        id,
+        xMsTestHeader,
+        name,
+        options,
+      ),
     spreadAsRequestParameter: (
       id: string,
       xMsTestHeader: string,
@@ -54,24 +81,31 @@ export function getAlias(context: SpreadContext) {
     spreadWithMultipleParameters: (
       id: string,
       xMsTestHeader: string,
-      prop1: string,
-      prop2: string,
-      prop3: string,
-      prop4: string,
-      prop5: string,
-      prop6: string,
+      requiredString: string,
+      requiredIntList: number[],
       options?: AliasSpreadWithMultipleParametersOptionalParams,
     ) =>
       aliasSpreadWithMultipleParameters(
         context,
         id,
         xMsTestHeader,
-        prop1,
-        prop2,
-        prop3,
-        prop4,
-        prop5,
-        prop6,
+        requiredString,
+        requiredIntList,
+        options,
+      ),
+    spreadParameterWithInnerAlias: (
+      id: string,
+      xMsTestHeader: string,
+      name: string,
+      age: number,
+      options?: AliasSpreadParameterWithInnerAliasOptionalParams,
+    ) =>
+      aliasSpreadParameterWithInnerAlias(
+        context,
+        id,
+        xMsTestHeader,
+        name,
+        age,
         options,
       ),
   };
