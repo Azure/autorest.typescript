@@ -10,6 +10,7 @@ using global.Azure.Core.Traits;
 @service({
     title: "Widget Service"
 })
+@useAuth(BearerAuth | ApiKeyAuth<ApiKeyLocation.cookie, "session-id">)
 namespace WidgetService;
 
 /** The Contoso Widget Manager service version. */
@@ -135,7 +136,7 @@ It does not accept any options or parameters.
     ): ListWidgetsPagesResults | WidgetError;
 
     @doc("Get a widget by ID.")
-    @get getWidget(@path id: string): Widget | WidgetError;
+    @get getWidget(@path id: string): Widget |  WidgetError;
 
     @doc("""
 Create a new widget.

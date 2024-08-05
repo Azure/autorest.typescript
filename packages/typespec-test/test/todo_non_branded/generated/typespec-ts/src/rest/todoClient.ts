@@ -1,16 +1,14 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "../logger.js";
-import { KeyCredential } from "@azure/core-auth";
-import { WidgetServiceContext } from "./clientDefinitions.js";
+import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
+import { KeyCredential } from "@typespec/ts-http-runtime";
+import { TodoContext } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
-export interface WidgetServiceContextOptions extends ClientOptions {}
+export interface TodoContextOptions extends ClientOptions {}
 
 /**
- * Initialize a new instance of `WidgetServiceContext`
+ * Initialize a new instance of `TodoContext`
  * @param endpointParam - The parameter endpointParam
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
@@ -18,10 +16,10 @@ export interface WidgetServiceContextOptions extends ClientOptions {}
 export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
-  options: WidgetServiceContextOptions = {},
-): WidgetServiceContext {
+  options: TodoContextOptions = {},
+): TodoContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  const userAgentInfo = `azsdk-js-widget_dpg/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-todo-non-branded/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -31,18 +29,10 @@ export default function createClient(
     userAgentOptions: {
       userAgentPrefix,
     },
-    loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info,
-    },
   };
-  const client = getClient(endpointUrl, options) as WidgetServiceContext;
+  const client = getClient(endpointUrl, options) as TodoContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   client.pipeline.addPolicy({
     name: "customKeyCredentialPolicy",

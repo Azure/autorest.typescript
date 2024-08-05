@@ -164,6 +164,6 @@ export interface Routes {
   ): TodoItemsAttachmentsList;
 }
 
-export type TodoClient = Client & {
+export type TodoContext = Client & {
   path: Routes;
 };
