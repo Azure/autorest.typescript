@@ -3,6 +3,7 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
+import { KeyCredential } from "@azure/core-auth";
 import { WidgetServiceContext } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
@@ -11,10 +12,12 @@ export interface WidgetServiceContextOptions extends ClientOptions {}
 /**
  * Initialize a new instance of `WidgetServiceContext`
  * @param endpointParam - The parameter endpointParam
+ * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
+  credentials: KeyCredential,
   options: WidgetServiceContextOptions = {},
 ): WidgetServiceContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
@@ -41,5 +44,12 @@ export default function createClient(
     );
   }
 
+  client.pipeline.addPolicy({
+    name: "customKeyCredentialPolicy",
+    async sendRequest(request, next) {
+      request.headers.set("Authorization", "Bearer " + credentials.key);
+      return next(request);
+    },
+  });
   return client;
 }

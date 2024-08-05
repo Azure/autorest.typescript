@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   getWidgetsOperations,
@@ -25,6 +26,7 @@ export class WidgetServiceClient {
 
   constructor(
     endpoint: string,
+    credential: KeyCredential,
     options: WidgetServiceClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -32,7 +34,7 @@ export class WidgetServiceClient {
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
 
-    this._client = createWidgetService(endpoint, {
+    this._client = createWidgetService(endpoint, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

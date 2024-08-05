@@ -10,6 +10,7 @@ using global.Azure.Core.Traits;
 @service({
     title: "Widget Service"
 })
+@useAuth(BearerAuth | ApiKeyAuth<ApiKeyLocation.cookie, "session-id">)
 namespace WidgetService;
 
 /** The Contoso Widget Manager service version. */

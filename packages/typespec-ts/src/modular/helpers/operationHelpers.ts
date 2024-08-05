@@ -159,6 +159,7 @@ export function getDeserializePrivateFunction(
   const isLroOnly = isLroOnlyOperation(operation);
 
   // TODO: Support operation overloads
+  // TODO: Support multiple responses
   const response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
@@ -189,14 +190,8 @@ export function getDeserializePrivateFunction(
     );
     addImportToSpecifier("restClient", runtimeImports, "createRestError");
   } else {
-    const validStatus = [
-      ...new Set(
-        operation.responses
-          .flatMap((r) => r.statusCodes)
-          .filter((s) => s !== "default")
-      )
-    ];
-
+    // Directly using the status code of first response
+    const validStatus = response.statusCodes;
     if (validStatus.length > 0) {
       statements.push(
         `if(${validStatus
