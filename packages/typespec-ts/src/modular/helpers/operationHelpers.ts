@@ -124,7 +124,9 @@ export function getDeserializePrivateFunction(
   };
   const statements: string[] = [];
 
-  statements.push(`const expectedStatuses = ${getExpectedStatuses(operation)};`);
+  statements.push(
+    `const expectedStatuses = ${getExpectedStatuses(operation)};`
+  );
 
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
