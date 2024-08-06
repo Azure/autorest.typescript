@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { DatetimeProperty } from "../../models/models.js";
-import {
-  OptionalContext as Client,
-  DatetimeGetAll200Response,
-  DatetimeGetDefault200Response,
-  DatetimePutAll204Response,
-  DatetimePutDefault204Response,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: DatetimeGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimeGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/datetime/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: DatetimeGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<DatetimeProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -57,16 +53,17 @@ export async function getAll(
 export function _getDefaultSend(
   context: Client,
   options: DatetimeGetDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimeGetDefault200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/datetime/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDefaultDeserialize(
-  result: DatetimeGetDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<DatetimeProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -91,7 +88,7 @@ export function _putAllSend(
   context: Client,
   body: DatetimeProperty,
   options: DatetimePutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimePutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/datetime/all")
     .put({
@@ -101,9 +98,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: DatetimePutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -124,7 +122,7 @@ export function _putDefaultSend(
   context: Client,
   body: DatetimeProperty,
   options: DatetimePutDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimePutDefault204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/datetime/default")
     .put({
@@ -134,9 +132,10 @@ export function _putDefaultSend(
 }
 
 export async function _putDefaultDeserialize(
-  result: DatetimePutDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

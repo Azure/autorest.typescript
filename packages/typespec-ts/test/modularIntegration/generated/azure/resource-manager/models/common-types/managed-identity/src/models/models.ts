@@ -2,11 +2,6 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  TrackedResource as TrackedResourceRest,
-  ManagedIdentityTrackedResource as ManagedIdentityTrackedResourceRest,
-  ManagedServiceIdentity as ManagedServiceIdentityRest,
-} from "../rest/index.js";
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
@@ -74,7 +69,7 @@ export interface TrackedResource extends Resource {
 
 export function trackedResourceSerializer(
   item: TrackedResource,
-): TrackedResourceRest {
+): Record<string, unknown> {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -91,7 +86,7 @@ export interface ManagedIdentityTrackedResource extends TrackedResource {
 
 export function managedIdentityTrackedResourceSerializer(
   item: ManagedIdentityTrackedResource,
-): ManagedIdentityTrackedResourceRest {
+): Record<string, unknown> {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -130,7 +125,7 @@ export interface ManagedServiceIdentity {
 
 export function managedServiceIdentitySerializer(
   item: ManagedServiceIdentity,
-): ManagedServiceIdentityRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     userAssignedIdentities: !item.userAssignedIdentities

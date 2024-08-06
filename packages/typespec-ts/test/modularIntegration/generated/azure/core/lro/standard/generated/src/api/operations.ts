@@ -4,23 +4,11 @@
 import { getLongRunningPoller } from "./pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import { User, ExportedUser } from "../models/models.js";
-import {
-  isUnexpected,
-  StandardContext as Client,
-  CreateOrReplace200Response,
-  CreateOrReplace201Response,
-  CreateOrReplaceDefaultResponse,
-  CreateOrReplaceLogicalResponse,
-  Delete202Response,
-  DeleteDefaultResponse,
-  DeleteLogicalResponse,
-  Export202Response,
-  ExportDefaultResponse,
-  ExportLogicalResponse,
-} from "../rest/index.js";
+import { StandardContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -34,12 +22,7 @@ export function _createOrReplaceSend(
   name: string,
   resource: User,
   options: CreateOrReplaceOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | CreateOrReplace200Response
-  | CreateOrReplace201Response
-  | CreateOrReplaceDefaultResponse
-  | CreateOrReplaceLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/lro/standard/users/{name}", name)
     .put({
@@ -49,20 +32,16 @@ export function _createOrReplaceSend(
 }
 
 export async function _createOrReplaceDeserialize(
-  result:
-    | CreateOrReplace200Response
-    | CreateOrReplace201Response
-    | CreateOrReplaceDefaultResponse
-    | CreateOrReplaceLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<User> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as CreateOrReplaceLogicalResponse;
   return {
-    name: res.body["name"],
-    role: res.body["role"],
+    name: result.body["name"],
+    role: result.body["role"],
   };
 }
 
@@ -73,30 +52,34 @@ export function createOrReplace(
   resource: User,
   options: CreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(context, _createOrReplaceDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createOrReplaceSend(context, name, resource, options),
-  }) as PollerLike<OperationState<User>, User>;
+  return getLongRunningPoller(
+    context,
+    _createOrReplaceDeserialize,
+    ["200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _createOrReplaceSend(context, name, resource, options),
+    },
+  ) as PollerLike<OperationState<User>, User>;
 }
 
 export function _$deleteSend(
   context: Client,
   name: string,
   options: DeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  Delete202Response | DeleteDefaultResponse | DeleteLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/lro/standard/users/{name}", name)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _$deleteDeserialize(
-  result: Delete202Response | DeleteDefaultResponse | DeleteLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -114,7 +97,7 @@ export function $delete(
   name: string,
   options: DeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _$deleteDeserialize, {
+  return getLongRunningPoller(context, _$deleteDeserialize, ["202", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _$deleteSend(context, name, options),
@@ -126,9 +109,7 @@ export function _$exportSend(
   name: string,
   format: string,
   options: ExportOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  Export202Response | ExportDefaultResponse | ExportLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/lro/standard/users/{name}:export", name)
     .post({
@@ -138,23 +119,23 @@ export function _$exportSend(
 }
 
 export async function _$exportDeserialize(
-  result: Export202Response | ExportDefaultResponse | ExportLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<ExportedUser> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as ExportLogicalResponse;
-  if (res?.body?.result === undefined) {
+  if (result?.body?.result === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "res.body.result"`,
+      `Expected a result in the response at position "result.body.result"`,
       result,
     );
   }
 
   return {
-    name: res.body.result["name"],
-    resourceUri: res.body.result["resourceUri"],
+    name: result.body.result["name"],
+    resourceUri: result.body.result["resourceUri"],
   };
 }
 
@@ -170,7 +151,7 @@ export function $export(
   format: string,
   options: ExportOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<ExportedUser>, ExportedUser> {
-  return getLongRunningPoller(context, _$exportDeserialize, {
+  return getLongRunningPoller(context, _$exportDeserialize, ["202", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _$exportSend(context, name, format, options),

@@ -21,8 +21,8 @@ import {
   getWrongDiscriminator,
   getLegacyModel,
   createSingleDiscriminator,
-  SingleDiscriminatorClientOptionalParams,
   SingleDiscriminatorContext,
+  SingleDiscriminatorClientOptionalParams,
 } from "./api/index.js";
 
 export { SingleDiscriminatorClientOptionalParams } from "./api/singleDiscriminatorContext.js";
@@ -38,7 +38,6 @@ export class SingleDiscriminatorClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createSingleDiscriminator({
       ...options,
       userAgentOptions: { userAgentPrefix },

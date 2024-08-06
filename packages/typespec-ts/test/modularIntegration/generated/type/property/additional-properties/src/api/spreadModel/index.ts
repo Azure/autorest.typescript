@@ -5,14 +5,11 @@ import {
   modelForRecordSerializer,
   SpreadModelRecord,
 } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  SpreadModelGet200Response,
-  SpreadModelPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -24,16 +21,17 @@ import {
 export function _getSend(
   context: Client,
   options: SpreadModelGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<SpreadModelGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/spreadRecordModel")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: SpreadModelGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<SpreadModelRecord> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,7 +51,7 @@ export function _putSend(
   context: Client,
   body: SpreadModelRecord,
   options: SpreadModelPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<SpreadModelPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/spreadRecordModel")
     .put({
@@ -63,9 +61,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: SpreadModelPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

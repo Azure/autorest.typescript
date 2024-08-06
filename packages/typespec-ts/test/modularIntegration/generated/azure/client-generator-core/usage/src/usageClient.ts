@@ -13,8 +13,8 @@ import {
   outputToInputOutput,
   modelInReadOnlyProperty,
   createUsage,
-  UsageClientOptionalParams,
   UsageContext,
+  UsageClientOptionalParams,
 } from "./api/index.js";
 
 export { UsageClientOptionalParams } from "./api/usageContext.js";
@@ -30,7 +30,6 @@ export class UsageClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createUsage({
       ...options,
       userAgentOptions: { userAgentPrefix },

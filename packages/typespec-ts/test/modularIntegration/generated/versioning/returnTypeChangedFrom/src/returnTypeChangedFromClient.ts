@@ -7,8 +7,8 @@ import { TestOptionalParams } from "./models/options.js";
 import {
   test,
   createReturnTypeChangedFrom,
-  ReturnTypeChangedFromClientOptionalParams,
   ReturnTypeChangedFromContext,
+  ReturnTypeChangedFromClientOptionalParams,
 } from "./api/index.js";
 
 export { ReturnTypeChangedFromClientOptionalParams } from "./api/returnTypeChangedFromContext.js";
@@ -28,7 +28,6 @@ export class ReturnTypeChangedFromClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createReturnTypeChangedFrom(endpointParam, version, {
       ...options,
       userAgentOptions: { userAgentPrefix },

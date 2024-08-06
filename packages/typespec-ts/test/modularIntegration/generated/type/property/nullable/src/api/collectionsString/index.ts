@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { CollectionsStringProperty } from "../../models/models.js";
-import {
-  NullableContext as Client,
-  CollectionsStringGetNonNull200Response,
-  CollectionsStringGetNull200Response,
-  CollectionsStringPatchNonNull204Response,
-  CollectionsStringPatchNull204Response,
-} from "../../rest/index.js";
+import { NullableContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getNonNullSend(
   context: Client,
   options: CollectionsStringGetNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsStringGetNonNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/string/non-null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNonNullDeserialize(
-  result: CollectionsStringGetNonNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsStringProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -55,16 +51,17 @@ export async function getNonNull(
 export function _getNullSend(
   context: Client,
   options: CollectionsStringGetNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsStringGetNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/string/null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNullDeserialize(
-  result: CollectionsStringGetNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsStringProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -87,7 +84,7 @@ export function _patchNonNullSend(
   context: Client,
   body: CollectionsStringProperty,
   options: CollectionsStringPatchNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsStringPatchNonNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/string/non-null")
     .patch({
@@ -102,9 +99,10 @@ export function _patchNonNullSend(
 }
 
 export async function _patchNonNullDeserialize(
-  result: CollectionsStringPatchNonNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -125,7 +123,7 @@ export function _patchNullSend(
   context: Client,
   body: CollectionsStringProperty,
   options: CollectionsStringPatchNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsStringPatchNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/string/null")
     .patch({
@@ -140,9 +138,10 @@ export function _patchNullSend(
 }
 
 export async function _patchNullDeserialize(
-  result: CollectionsStringPatchNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

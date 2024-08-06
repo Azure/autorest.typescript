@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { UnknownStringProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  UnknownStringGet200Response,
-  UnknownStringPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _unknownStringGetSend(
   context: Client,
   options: UnknownStringGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownStringGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/unknown/string")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _unknownStringGetDeserialize(
-  result: UnknownStringGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<UnknownStringProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _unknownStringPutSend(
   context: Client,
   body: UnknownStringProperty,
   options: UnknownStringPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownStringPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/unknown/string")
     .put({
@@ -61,9 +59,10 @@ export function _unknownStringPutSend(
 }
 
 export async function _unknownStringPutDeserialize(
-  result: UnknownStringPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

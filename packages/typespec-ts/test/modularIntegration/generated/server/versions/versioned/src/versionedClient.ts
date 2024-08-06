@@ -14,8 +14,8 @@ import {
   withPathApiVersion,
   withQueryOldApiVersion,
   createVersioned,
-  VersionedClientOptionalParams,
   VersionedContext,
+  VersionedClientOptionalParams,
 } from "./api/index.js";
 
 export { VersionedClientOptionalParams } from "./api/versionedContext.js";
@@ -34,7 +34,6 @@ export class VersionedClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createVersioned(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

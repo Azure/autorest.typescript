@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  XmsRequestIdClientContext as Client,
-  Get204Response,
-} from "../rest/index.js";
+import { XmsRequestIdClientContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { GetOptionalParams } from "../models/options.js";
@@ -15,7 +13,7 @@ import { GetOptionalParams } from "../models/options.js";
 export function _getSend(
   context: Client,
   options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get204Response> {
+): StreamableMethod {
   return context
     .path("/azure/special-headers/x-ms-client-request-id/")
     .get({
@@ -28,8 +26,11 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(result: Get204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

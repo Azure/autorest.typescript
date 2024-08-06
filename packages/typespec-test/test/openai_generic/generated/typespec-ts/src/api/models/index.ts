@@ -6,19 +6,11 @@ import {
   Model,
   DeleteModelResponse,
 } from "../../models/models.js";
-import {
-  isUnexpected,
-  OpenAIContext as Client,
-  ModelsDelete200Response,
-  ModelsDeleteDefaultResponse,
-  ModelsList200Response,
-  ModelsListDefaultResponse,
-  ModelsRetrieve200Response,
-  ModelsRetrieveDefaultResponse,
-} from "../../rest/index.js";
+import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -30,22 +22,23 @@ import {
 export function _listSend(
   context: Client,
   options: ModelsListOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/models")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listDeserialize(
-  result: ModelsList200Response | ModelsListDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ListModelsResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -68,16 +61,17 @@ export function _retrieveSend(
   context: Client,
   model: string,
   options: ModelsRetrieveOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsRetrieve200Response | ModelsRetrieveDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/models/{model}", model)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _retrieveDeserialize(
-  result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Model> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -102,16 +96,17 @@ export function _$deleteSend(
   context: Client,
   model: string,
   options: ModelsDeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelsDelete200Response | ModelsDeleteDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/models/{model}", model)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _$deleteDeserialize(
-  result: ModelsDelete200Response | ModelsDeleteDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<DeleteModelResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

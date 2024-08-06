@@ -43,6 +43,52 @@ function isSupportedRecordType(t: any) {
 `
 };
 
+const buildMultiCollection = {
+  symbol: "buildMultiCollection",
+  content: `export function buildMultiCollection(
+  items: string[],
+  parameterName: string,
+): string {
+  return items
+    .map((item, index) => {
+      if (index === 0) {
+        return item;
+      }
+      return \`\${parameterName}=\${item}\`;
+    })
+    .join("&");
+}`
+};
+
+const buildPipeCollection = {
+  symbol: "buildPipeCollection",
+  content: `
+export function buildPipeCollection(items: string[] | number[]): string {
+  return items.join("|");
+}`
+};
+
+const buildTsvCollection = {
+  symbol: "buildTsvCollection",
+  content: `export function buildTsvCollection(items: string[] | number[]): string {
+  return items.join("\\t");
+}`
+};
+
+const buildSsvCollection = {
+  symbol: "buildSsvCollection",
+  content: `export function buildSsvCollection(items: string[] | number[]): string {
+  return items.join(" ");
+}`
+};
+
+const buildCsvCollection = {
+  symbol: "buildCsvCollection",
+  content: `export function buildCsvCollection(items: string[] | number[]): string {
+  return items.join(",");
+}`
+};
+
 export function emitSerializerHelpersFile(
   project: Project,
   srcPath: string = "src"
@@ -64,8 +110,33 @@ export function emitSerializerHelpersFile(
     symbolMap.set(isRecordElementSupportedFunction.symbol, sourceFile);
   }
 
+  if (!symbolMap.has(buildMultiCollection.symbol)) {
+    symbolMap.set(buildMultiCollection.symbol, sourceFile);
+  }
+
+  if (!symbolMap.has(buildPipeCollection.symbol)) {
+    symbolMap.set(buildPipeCollection.symbol, sourceFile);
+  }
+
+  if (!symbolMap.has(buildSsvCollection.symbol)) {
+    symbolMap.set(buildSsvCollection.symbol, sourceFile);
+  }
+
+  if (!symbolMap.has(buildTsvCollection.symbol)) {
+    symbolMap.set(buildTsvCollection.symbol, sourceFile);
+  }
+
+  if (!symbolMap.has(buildCsvCollection.symbol)) {
+    symbolMap.set(buildCsvCollection.symbol, sourceFile);
+  }
+
   sourceFile.addStatements([
     serializeRecordFunction.content,
-    isRecordElementSupportedFunction.content
+    isRecordElementSupportedFunction.content,
+    buildMultiCollection.content,
+    buildPipeCollection.content,
+    buildSsvCollection.content,
+    buildTsvCollection.content,
+    buildCsvCollection.content
   ]);
 }

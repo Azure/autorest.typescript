@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { DaysOfWeekEnum } from "../../models/models.js";
-import {
-  FixedContext as Client,
-  GetKnownValue200Response,
-  PutKnownValue204Response,
-  PutUnknownValue204Response,
-} from "../../rest/index.js";
+import { FixedContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -22,16 +18,17 @@ import {
 export function _getKnownValueSend(
   context: Client,
   options: StringGetKnownValueOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetKnownValue200Response> {
+): StreamableMethod {
   return context
     .path("/type/enum/fixed/string/known-value")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getKnownValueDeserialize(
-  result: GetKnownValue200Response,
+  result: PathUncheckedResponse,
 ): Promise<DaysOfWeekEnum> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,16 +48,17 @@ export function _putKnownValueSend(
   context: Client,
   body: DaysOfWeekEnum,
   options: StringPutKnownValueOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutKnownValue204Response> {
+): StreamableMethod {
   return context
     .path("/type/enum/fixed/string/known-value")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putKnownValueDeserialize(
-  result: PutKnownValue204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -81,16 +79,17 @@ export function _putUnknownValueSend(
   context: Client,
   body: DaysOfWeekEnum,
   options: StringPutUnknownValueOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutUnknownValue204Response> {
+): StreamableMethod {
   return context
     .path("/type/enum/fixed/string/unknown-value")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putUnknownValueDeserialize(
-  result: PutUnknownValue204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

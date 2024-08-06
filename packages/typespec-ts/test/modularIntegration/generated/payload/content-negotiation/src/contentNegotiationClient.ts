@@ -12,8 +12,8 @@ import {
 } from "./classic/differentBody/index.js";
 import {
   createContentNegotiation,
-  ContentNegotiationClientOptionalParams,
   ContentNegotiationContext,
+  ContentNegotiationClientOptionalParams,
 } from "./api/index.js";
 
 export { ContentNegotiationClientOptionalParams } from "./api/contentNegotiationContext.js";
@@ -29,7 +29,6 @@ export class ContentNegotiationClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createContentNegotiation({
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -3,8 +3,8 @@
 
 export {
   createValueTypes,
-  ValueTypesClientOptionalParams,
   ValueTypesContext,
+  ValueTypesClientOptionalParams,
 } from "./valueTypesContext.js";
 export { booleanGet, booleanPut } from "./boolean/index.js";
 export {

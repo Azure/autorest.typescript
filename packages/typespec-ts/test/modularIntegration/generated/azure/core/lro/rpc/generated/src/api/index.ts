@@ -4,6 +4,6 @@
 export { longRunningRpc } from "./operations.js";
 export {
   createRpc,
-  RpcClientOptionalParams,
   RpcContext,
+  RpcClientOptionalParams,
 } from "./rpcContext.js";

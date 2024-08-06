@@ -2,28 +2,39 @@
 // Licensed under the MIT license.
 
 import { ClientType } from "../models/models.js";
-import { ClientOptions } from "@azure-rest/core-client";
-import { ServiceContext } from "../../rest/index.js";
-import getClient from "../../rest/index.js";
+import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+import { logger } from "../../logger.js";
+
+export interface ServiceContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface BClientOptionalParams extends ClientOptions {}
-
-export { ServiceContext } from "../../rest/index.js";
 
 export function createB(
   endpointParam: string,
   clientParam: ClientType,
   options: BClientOptionalParams = {},
 ): ServiceContext {
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/client/structure/${clientParam}`;
+
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-
-  const clientContext = getClient(endpointParam, clientParam, {
+  const updatedOptions = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-  });
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+  };
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
   return clientContext;
 }

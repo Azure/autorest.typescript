@@ -44,8 +44,8 @@ import {
 } from "./classic/mixedTypes/index.js";
 import {
   createUnion,
-  UnionClientOptionalParams,
   UnionContext,
+  UnionClientOptionalParams,
 } from "./api/index.js";
 
 export { UnionClientOptionalParams } from "./api/unionContext.js";
@@ -61,7 +61,6 @@ export class UnionClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createUnion({
       ...options,
       userAgentOptions: { userAgentPrefix },

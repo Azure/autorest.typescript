@@ -2,24 +2,6 @@
 // Licensed under the MIT license.
 
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  RequiredAndOptionalProperty as RequiredAndOptionalPropertyRest,
-  UnionFloatLiteralProperty as UnionFloatLiteralPropertyRest,
-  UnionIntLiteralProperty as UnionIntLiteralPropertyRest,
-  UnionStringLiteralProperty as UnionStringLiteralPropertyRest,
-  BooleanLiteralProperty as BooleanLiteralPropertyRest,
-  FloatLiteralProperty as FloatLiteralPropertyRest,
-  IntLiteralProperty as IntLiteralPropertyRest,
-  StringLiteralProperty as StringLiteralPropertyRest,
-  CollectionsModelProperty as CollectionsModelPropertyRest,
-  StringProperty as StringPropertyRest,
-  CollectionsByteProperty as CollectionsBytePropertyRest,
-  PlainTimeProperty as PlainTimePropertyRest,
-  PlainDateProperty as PlainDatePropertyRest,
-  DurationProperty as DurationPropertyRest,
-  DatetimeProperty as DatetimePropertyRest,
-  BytesProperty as BytesPropertyRest,
-} from "../rest/index.js";
 
 /** Model with required and optional properties */
 export interface RequiredAndOptionalProperty {
@@ -31,7 +13,7 @@ export interface RequiredAndOptionalProperty {
 
 export function requiredAndOptionalPropertySerializer(
   item: RequiredAndOptionalProperty,
-): RequiredAndOptionalPropertyRest {
+): Record<string, unknown> {
   return {
     optionalProperty: item["optionalProperty"],
     requiredProperty: item["requiredProperty"],
@@ -46,7 +28,7 @@ export interface UnionFloatLiteralProperty {
 
 export function unionFloatLiteralPropertySerializer(
   item: UnionFloatLiteralProperty,
-): UnionFloatLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -60,7 +42,7 @@ export interface UnionIntLiteralProperty {
 
 export function unionIntLiteralPropertySerializer(
   item: UnionIntLiteralProperty,
-): UnionIntLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -74,7 +56,7 @@ export interface UnionStringLiteralProperty {
 
 export function unionStringLiteralPropertySerializer(
   item: UnionStringLiteralProperty,
-): UnionStringLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -88,7 +70,7 @@ export interface BooleanLiteralProperty {
 
 export function booleanLiteralPropertySerializer(
   item: BooleanLiteralProperty,
-): BooleanLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -102,7 +84,7 @@ export interface FloatLiteralProperty {
 
 export function floatLiteralPropertySerializer(
   item: FloatLiteralProperty,
-): FloatLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -116,7 +98,7 @@ export interface IntLiteralProperty {
 
 export function intLiteralPropertySerializer(
   item: IntLiteralProperty,
-): IntLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -130,7 +112,7 @@ export interface StringLiteralProperty {
 
 export function stringLiteralPropertySerializer(
   item: StringLiteralProperty,
-): StringLiteralPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -144,7 +126,7 @@ export interface CollectionsModelProperty {
 
 export function collectionsModelPropertySerializer(
   item: CollectionsModelProperty,
-): CollectionsModelPropertyRest {
+): Record<string, unknown> {
   return {
     property:
       item["property"] === undefined
@@ -161,7 +143,7 @@ export interface StringProperty {
 
 export function stringPropertySerializer(
   item: StringProperty,
-): StringPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -175,7 +157,7 @@ export interface CollectionsByteProperty {
 
 export function collectionsBytePropertySerializer(
   item: CollectionsByteProperty,
-): CollectionsBytePropertyRest {
+): Record<string, unknown> {
   return {
     property:
       item["property"] === undefined
@@ -192,7 +174,7 @@ export interface PlainTimeProperty {
 
 export function plainTimePropertySerializer(
   item: PlainTimeProperty,
-): PlainTimePropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"]?.toTimeString(),
   };
@@ -206,7 +188,7 @@ export interface PlainDateProperty {
 
 export function plainDatePropertySerializer(
   item: PlainDateProperty,
-): PlainDatePropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"]?.toDateString(),
   };
@@ -220,7 +202,7 @@ export interface DurationProperty {
 
 export function durationPropertySerializer(
   item: DurationProperty,
-): DurationPropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"],
   };
@@ -234,7 +216,7 @@ export interface DatetimeProperty {
 
 export function datetimePropertySerializer(
   item: DatetimeProperty,
-): DatetimePropertyRest {
+): Record<string, unknown> {
   return {
     property: item["property"]?.toISOString(),
   };
@@ -248,7 +230,7 @@ export interface BytesProperty {
 
 export function bytesPropertySerializer(
   item: BytesProperty,
-): BytesPropertyRest {
+): Record<string, unknown> {
   return {
     property:
       item["property"] !== undefined

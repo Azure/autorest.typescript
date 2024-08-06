@@ -1,18 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  Pet as PetRest,
-  Cat as CatRest,
-  Siamese as SiameseRest,
-} from "../rest/index.js";
-
 /** This is base model for not-discriminated normal multiple levels inheritance. */
 export interface Pet {
   name: string;
 }
 
-export function petSerializer(item: Pet): PetRest {
+export function petSerializer(item: Pet): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -23,7 +17,7 @@ export interface Cat extends Pet {
   age: number;
 }
 
-export function catSerializer(item: Cat): CatRest {
+export function catSerializer(item: Cat): Record<string, unknown> {
   return {
     name: item["name"],
     age: item["age"],
@@ -35,7 +29,7 @@ export interface Siamese extends Cat {
   smart: boolean;
 }
 
-export function siameseSerializer(item: Siamese): SiameseRest {
+export function siameseSerializer(item: Siamese): Record<string, unknown> {
   return {
     age: item["age"],
     name: item["name"],

@@ -1,18 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ModelV1 as ModelV1Rest,
-  ModelV2 as ModelV2Rest,
-} from "../rest/index.js";
-
 export interface ModelV1 {
   prop: string;
   enumProp: EnumV1;
   unionProp: UnionV1;
 }
 
-export function modelV1Serializer(item: ModelV1): ModelV1Rest {
+export function modelV1Serializer(item: ModelV1): Record<string, unknown> {
   return {
     prop: item["prop"],
     enumProp: item["enumProp"],
@@ -29,7 +24,7 @@ export interface ModelV2 {
   unionProp: UnionV2;
 }
 
-export function modelV2Serializer(item: ModelV2): ModelV2Rest {
+export function modelV2Serializer(item: ModelV2): Record<string, unknown> {
   return {
     prop: item["prop"],
     enumProp: item["enumProp"],

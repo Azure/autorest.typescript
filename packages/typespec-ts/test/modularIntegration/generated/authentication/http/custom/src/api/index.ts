@@ -3,7 +3,7 @@
 
 export {
   createCustom,
-  CustomClientOptionalParams,
   CustomContext,
+  CustomClientOptionalParams,
 } from "./customContext.js";
 export { valid, invalid } from "./operations.js";

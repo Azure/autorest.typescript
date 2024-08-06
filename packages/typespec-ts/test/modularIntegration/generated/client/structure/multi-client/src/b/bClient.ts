@@ -10,8 +10,8 @@ import {
 } from "./models/options.js";
 import {
   createB,
-  BClientOptionalParams,
   ServiceContext,
+  BClientOptionalParams,
   renamedTwo,
   renamedFour,
   renamedSix,
@@ -33,7 +33,6 @@ export class BClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createB(endpointParam, clientParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -1,16 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  AddOperation204Response,
-  ServiceDrivenContext as Client,
-  FromNone204Response,
-  FromOneOptional204Response,
-  FromOneRequired204Response,
-} from "../rest/index.js";
+import { ServiceDrivenContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -23,16 +18,17 @@ import {
 export function _addOperationSend(
   context: Client,
   options: AddOperationOptionalParams = { requestOptions: {} },
-): StreamableMethod<AddOperation204Response> {
+): StreamableMethod {
   return context
     .path("/add-operation")
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _addOperationDeserialize(
-  result: AddOperation204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +47,7 @@ export async function addOperation(
 export function _fromNoneSend(
   context: Client,
   options: FromNoneOptionalParams = { requestOptions: {} },
-): StreamableMethod<FromNone204Response> {
+): StreamableMethod {
   return context
     .path("/add-optional-param/from-none")
     .head({
@@ -61,9 +57,10 @@ export function _fromNoneSend(
 }
 
 export async function _fromNoneDeserialize(
-  result: FromNone204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -83,7 +80,7 @@ export function _fromOneRequiredSend(
   context: Client,
   parameter: string,
   options: FromOneRequiredOptionalParams = { requestOptions: {} },
-): StreamableMethod<FromOneRequired204Response> {
+): StreamableMethod {
   return context
     .path("/add-optional-param/from-one-required")
     .get({
@@ -96,9 +93,10 @@ export function _fromOneRequiredSend(
 }
 
 export async function _fromOneRequiredDeserialize(
-  result: FromOneRequired204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -118,7 +116,7 @@ export async function fromOneRequired(
 export function _fromOneOptionalSend(
   context: Client,
   options: FromOneOptionalOptionalParams = { requestOptions: {} },
-): StreamableMethod<FromOneOptional204Response> {
+): StreamableMethod {
   return context
     .path("/add-optional-param/from-one-optional")
     .get({
@@ -131,9 +129,10 @@ export function _fromOneOptionalSend(
 }
 
 export async function _fromOneOptionalDeserialize(
-  result: FromOneOptional204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

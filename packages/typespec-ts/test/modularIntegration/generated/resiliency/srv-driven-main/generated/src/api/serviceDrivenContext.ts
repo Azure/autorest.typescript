@@ -1,17 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ClientOptions } from "@azure-rest/core-client";
-import { ServiceDrivenContext } from "../rest/index.js";
-import getClient from "../rest/index.js";
+import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+import { logger } from "../logger.js";
+
+export interface ServiceDrivenContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface ServiceDrivenClientOptionalParams extends ClientOptions {
   /** Pass in either 'v1' or 'v2'. This represents the API version of a service. */
   apiVersion?: string;
 }
-
-export { ServiceDrivenContext } from "../rest/index.js";
 
 /**
  * Test that we can grow up a service spec and service deployment into a multi-versioned service with full client support.
@@ -30,14 +29,22 @@ export function createServiceDriven(
   serviceDeploymentVersion: string,
   options: ServiceDrivenClientOptionalParams = {},
 ): ServiceDrivenContext {
+  const apiVersion = options.apiVersion ?? "v2";
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/resiliency/service-driven/client:v2/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
+
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-
-  const clientContext = getClient(endpointParam, serviceDeploymentVersion, {
+  const updatedOptions = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-  });
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+  };
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return clientContext;
 }

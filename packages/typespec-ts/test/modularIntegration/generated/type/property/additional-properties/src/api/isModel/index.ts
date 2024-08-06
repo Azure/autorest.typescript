@@ -5,14 +5,11 @@ import {
   modelForRecordSerializer,
   IsModelAdditionalProperties,
 } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  IsModelGet200Response,
-  IsModelPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -24,16 +21,17 @@ import {
 export function _getSend(
   context: Client,
   options: IsModelGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<IsModelGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/isRecordModel")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: IsModelGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<IsModelAdditionalProperties> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,7 +51,7 @@ export function _putSend(
   context: Client,
   body: IsModelAdditionalProperties,
   options: IsModelPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<IsModelPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/isRecordModel")
     .put({
@@ -63,9 +61,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: IsModelPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,17 +2,11 @@
 // Licensed under the MIT license.
 
 import { User, UserActionParam, UserActionResponse } from "../models/models.js";
-import {
-  isUnexpected,
-  TraitsContext as Client,
-  RepeatableAction200Response,
-  RepeatableActionDefaultResponse,
-  SmokeTest200Response,
-  SmokeTestDefaultResponse,
-} from "../rest/index.js";
+import { TraitsContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -25,7 +19,7 @@ export function _smokeTestSend(
   id: number,
   foo: string,
   options: SmokeTestOptionalParams = { requestOptions: {} },
-): StreamableMethod<SmokeTest200Response | SmokeTestDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/azure/core/traits/user/{id}", id)
     .get({
@@ -52,9 +46,10 @@ export function _smokeTestSend(
 }
 
 export async function _smokeTestDeserialize(
-  result: SmokeTest200Response | SmokeTestDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<User> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -80,9 +75,7 @@ export function _repeatableActionSend(
   id: number,
   body: UserActionParam,
   options: RepeatableActionOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  RepeatableAction200Response | RepeatableActionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/traits/user/{id}:repeatableAction", id)
     .post({
@@ -103,9 +96,10 @@ export function _repeatableActionSend(
 }
 
 export async function _repeatableActionDeserialize(
-  result: RepeatableAction200Response | RepeatableActionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<UserActionResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

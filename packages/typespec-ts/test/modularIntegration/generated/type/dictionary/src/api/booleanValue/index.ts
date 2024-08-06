@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  BooleanValueGet200Response,
-  BooleanValuePut204Response,
-  DictionaryContext as Client,
-} from "../../rest/index.js";
+import { DictionaryContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -20,16 +17,17 @@ import {
 export function _getSend(
   context: Client,
   options: BooleanValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<BooleanValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/boolean")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: BooleanValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<Record<string, boolean>> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,7 +46,7 @@ export function _putSend(
   context: Client,
   body: Record<string, boolean>,
   options: BooleanValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<BooleanValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/boolean")
     .put({
@@ -58,9 +56,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: BooleanValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

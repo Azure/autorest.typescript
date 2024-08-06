@@ -2,13 +2,11 @@
 // Licensed under the MIT license.
 
 import { TestModel } from "../models/models.js";
-import {
-  TypeChangedFromContext as Client,
-  Test200Response,
-} from "../rest/index.js";
+import { TypeChangedFromContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { TestOptionalParams } from "../models/options.js";
@@ -18,7 +16,7 @@ export function _testSend(
   param: string,
   body: TestModel,
   options: TestOptionalParams = { requestOptions: {} },
-): StreamableMethod<Test200Response> {
+): StreamableMethod {
   return context
     .path("/test")
     .post({
@@ -29,9 +27,10 @@ export function _testSend(
 }
 
 export async function _testDeserialize(
-  result: Test200Response,
+  result: PathUncheckedResponse,
 ): Promise<TestModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

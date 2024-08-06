@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { ExtensibleEnumProperty, InnerEnum } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  ExtensibleEnumGet200Response,
-  ExtensibleEnumPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _extensibleEnumGetSend(
   context: Client,
   options: ExtensibleEnumGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<ExtensibleEnumGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/extensible-enum")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _extensibleEnumGetDeserialize(
-  result: ExtensibleEnumGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<ExtensibleEnumProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _extensibleEnumPutSend(
   context: Client,
   body: ExtensibleEnumProperty,
   options: ExtensibleEnumPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<ExtensibleEnumPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/extensible-enum")
     .put({
@@ -61,9 +59,10 @@ export function _extensibleEnumPutSend(
 }
 
 export async function _extensibleEnumPutDeserialize(
-  result: ExtensibleEnumPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

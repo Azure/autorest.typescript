@@ -3,6 +3,6 @@
 
 export {
   createParametrizedHost,
-  ParametrizedHostClientOptionalParams,
   ParametrizedHostContext,
+  ParametrizedHostClientOptionalParams,
 } from "./parametrizedHostContext.js";

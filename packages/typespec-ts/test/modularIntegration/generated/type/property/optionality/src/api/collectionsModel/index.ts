@@ -5,16 +5,11 @@ import {
   stringPropertySerializer,
   CollectionsModelProperty,
 } from "../../models/models.js";
-import {
-  OptionalContext as Client,
-  CollectionsModelGetAll200Response,
-  CollectionsModelGetDefault200Response,
-  CollectionsModelPutAll204Response,
-  CollectionsModelPutDefault204Response,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -27,16 +22,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: CollectionsModelGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/model/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: CollectionsModelGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsModelProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -44,7 +40,7 @@ export async function _getAllDeserialize(
     property:
       result.body["property"] === undefined
         ? result.body["property"]
-        : result.body["property"].map((p) => {
+        : result.body["property"].map((p: any) => {
             return { property: p["property"] };
           }),
   };
@@ -62,16 +58,17 @@ export async function getAll(
 export function _getDefaultSend(
   context: Client,
   options: CollectionsModelGetDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelGetDefault200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/model/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDefaultDeserialize(
-  result: CollectionsModelGetDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsModelProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -79,7 +76,7 @@ export async function _getDefaultDeserialize(
     property:
       result.body["property"] === undefined
         ? result.body["property"]
-        : result.body["property"].map((p) => {
+        : result.body["property"].map((p: any) => {
             return { property: p["property"] };
           }),
   };
@@ -98,7 +95,7 @@ export function _putAllSend(
   context: Client,
   body: CollectionsModelProperty,
   options: CollectionsModelPutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelPutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/model/all")
     .put({
@@ -113,9 +110,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: CollectionsModelPutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -136,7 +134,7 @@ export function _putDefaultSend(
   context: Client,
   body: CollectionsModelProperty,
   options: CollectionsModelPutDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelPutDefault204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/model/default")
     .put({
@@ -151,9 +149,10 @@ export function _putDefaultSend(
 }
 
 export async function _putDefaultDeserialize(
-  result: CollectionsModelPutDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

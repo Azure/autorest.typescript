@@ -9,8 +9,8 @@ import {
 } from "./models/options.js";
 import {
   createCustom,
-  CustomClientOptionalParams,
   CustomContext,
+  CustomClientOptionalParams,
   valid,
   invalid,
 } from "./api/index.js";
@@ -31,7 +31,6 @@ export class CustomClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createCustom(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

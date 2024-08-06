@@ -4,6 +4,6 @@
 export { smokeTest, repeatableAction } from "./operations.js";
 export {
   createTraits,
-  TraitsClientOptionalParams,
   TraitsContext,
+  TraitsClientOptionalParams,
 } from "./traitsContext.js";

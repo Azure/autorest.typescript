@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ContentNegotiationContext as Client,
-  SameBodyGetAvatarAsJpeg200Response,
-  SameBodyGetAvatarAsPng200Response,
-} from "../../rest/index.js";
+import { ContentNegotiationContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,19 +16,20 @@ import {
 export function _getAvatarAsPngSend(
   context: Client,
   options: SameBodyGetAvatarAsPngOptionalParams = { requestOptions: {} },
-): StreamableMethod<SameBodyGetAvatarAsPng200Response> {
+): StreamableMethod {
   return context
     .path("/content-negotiation/same-body")
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "image/png" },
-    }) as StreamableMethod<SameBodyGetAvatarAsPng200Response>;
+    });
 }
 
 export async function _getAvatarAsPngDeserialize(
-  result: SameBodyGetAvatarAsPng200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,19 +47,20 @@ export async function getAvatarAsPng(
 export function _getAvatarAsJpegSend(
   context: Client,
   options: SameBodyGetAvatarAsJpegOptionalParams = { requestOptions: {} },
-): StreamableMethod<SameBodyGetAvatarAsJpeg200Response> {
+): StreamableMethod {
   return context
     .path("/content-negotiation/same-body")
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "image/jpeg" },
-    }) as StreamableMethod<SameBodyGetAvatarAsJpeg200Response>;
+    });
 }
 
 export async function _getAvatarAsJpegDeserialize(
-  result: SameBodyGetAvatarAsJpeg200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

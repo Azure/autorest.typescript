@@ -10,29 +10,11 @@ import {
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
-import {
-  isUnexpected,
-  ResourcesContext as Client,
-  NestedProxyResourcesCreateOrReplace200Response,
-  NestedProxyResourcesCreateOrReplace201Response,
-  NestedProxyResourcesCreateOrReplaceDefaultResponse,
-  NestedProxyResourcesCreateOrReplaceLogicalResponse,
-  NestedProxyResourcesDelete202Response,
-  NestedProxyResourcesDelete204Response,
-  NestedProxyResourcesDeleteDefaultResponse,
-  NestedProxyResourcesDeleteLogicalResponse,
-  NestedProxyResourcesGet200Response,
-  NestedProxyResourcesGetDefaultResponse,
-  NestedProxyResourcesListByTopLevelTrackedResource200Response,
-  NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
-  NestedProxyResourcesUpdate200Response,
-  NestedProxyResourcesUpdate202Response,
-  NestedProxyResourcesUpdateDefaultResponse,
-  NestedProxyResourcesUpdateLogicalResponse,
-} from "../../rest/index.js";
+import { ResourcesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -50,9 +32,7 @@ export function _nestedProxyResourcesGetSend(
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
   options: NestedProxyResourcesGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  NestedProxyResourcesGet200Response | NestedProxyResourcesGetDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
@@ -65,11 +45,10 @@ export function _nestedProxyResourcesGetSend(
 }
 
 export async function _nestedProxyResourcesGetDeserialize(
-  result:
-    | NestedProxyResourcesGet200Response
-    | NestedProxyResourcesGetDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<NestedProxyResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -132,12 +111,7 @@ export function _nestedProxyResourcesCreateOrReplaceSend(
   options: NestedProxyResourcesCreateOrReplaceOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | NestedProxyResourcesCreateOrReplace200Response
-  | NestedProxyResourcesCreateOrReplace201Response
-  | NestedProxyResourcesCreateOrReplaceDefaultResponse
-  | NestedProxyResourcesCreateOrReplaceLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
@@ -157,43 +131,38 @@ export function _nestedProxyResourcesCreateOrReplaceSend(
 }
 
 export async function _nestedProxyResourcesCreateOrReplaceDeserialize(
-  result:
-    | NestedProxyResourcesCreateOrReplace200Response
-    | NestedProxyResourcesCreateOrReplace201Response
-    | NestedProxyResourcesCreateOrReplaceDefaultResponse
-    | NestedProxyResourcesCreateOrReplaceLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<NestedProxyResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res =
-    result as unknown as NestedProxyResourcesCreateOrReplaceLogicalResponse;
   return {
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !res.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: res.body.properties?.["provisioningState"],
-          description: res.body.properties?.["description"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          description: result.body.properties?.["description"],
         },
   };
 }
@@ -213,6 +182,7 @@ export function nestedProxyResourcesCreateOrReplace(
   return getLongRunningPoller(
     context,
     _nestedProxyResourcesCreateOrReplaceDeserialize,
+    ["200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
@@ -238,12 +208,7 @@ export function _nestedProxyResourcesUpdateSend(
   nextedProxyResourceName: string,
   properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | NestedProxyResourcesUpdate200Response
-  | NestedProxyResourcesUpdate202Response
-  | NestedProxyResourcesUpdateDefaultResponse
-  | NestedProxyResourcesUpdateLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
@@ -263,42 +228,38 @@ export function _nestedProxyResourcesUpdateSend(
 }
 
 export async function _nestedProxyResourcesUpdateDeserialize(
-  result:
-    | NestedProxyResourcesUpdate200Response
-    | NestedProxyResourcesUpdate202Response
-    | NestedProxyResourcesUpdateDefaultResponse
-    | NestedProxyResourcesUpdateLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<NestedProxyResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as NestedProxyResourcesUpdateLogicalResponse;
   return {
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !res.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: res.body.properties?.["provisioningState"],
-          description: res.body.properties?.["description"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          description: result.body.properties?.["description"],
         },
   };
 }
@@ -313,20 +274,25 @@ export function nestedProxyResourcesUpdate(
   properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<NestedProxyResource>, NestedProxyResource> {
-  return getLongRunningPoller(context, _nestedProxyResourcesUpdateDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _nestedProxyResourcesUpdateSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        topLevelTrackedResourceName,
-        nextedProxyResourceName,
-        properties,
-        options,
-      ),
-  }) as PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
+  return getLongRunningPoller(
+    context,
+    _nestedProxyResourcesUpdateDeserialize,
+    ["200", "202"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _nestedProxyResourcesUpdateSend(
+          context,
+          subscriptionId,
+          resourceGroupName,
+          topLevelTrackedResourceName,
+          nextedProxyResourceName,
+          properties,
+          options,
+        ),
+    },
+  ) as PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
 }
 
 export function _nestedProxyResourcesDeleteSend(
@@ -336,12 +302,7 @@ export function _nestedProxyResourcesDeleteSend(
   topLevelTrackedResourceName: string,
   nextedProxyResourceName: string,
   options: NestedProxyResourcesDeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | NestedProxyResourcesDelete202Response
-  | NestedProxyResourcesDelete204Response
-  | NestedProxyResourcesDeleteDefaultResponse
-  | NestedProxyResourcesDeleteLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
@@ -354,13 +315,10 @@ export function _nestedProxyResourcesDeleteSend(
 }
 
 export async function _nestedProxyResourcesDeleteDeserialize(
-  result:
-    | NestedProxyResourcesDelete202Response
-    | NestedProxyResourcesDelete204Response
-    | NestedProxyResourcesDeleteDefaultResponse
-    | NestedProxyResourcesDeleteLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "204", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -376,19 +334,24 @@ export function nestedProxyResourcesDelete(
   nextedProxyResourceName: string,
   options: NestedProxyResourcesDeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _nestedProxyResourcesDeleteDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _nestedProxyResourcesDeleteSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        topLevelTrackedResourceName,
-        nextedProxyResourceName,
-        options,
-      ),
-  }) as PollerLike<OperationState<void>, void>;
+  return getLongRunningPoller(
+    context,
+    _nestedProxyResourcesDeleteDeserialize,
+    ["202", "204", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _nestedProxyResourcesDeleteSend(
+          context,
+          subscriptionId,
+          resourceGroupName,
+          topLevelTrackedResourceName,
+          nextedProxyResourceName,
+          options,
+        ),
+    },
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _nestedProxyResourcesListByTopLevelTrackedResourceSend(
@@ -399,10 +362,7 @@ export function _nestedProxyResourcesListByTopLevelTrackedResourceSend(
   options: NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | NestedProxyResourcesListByTopLevelTrackedResource200Response
-  | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources",
@@ -414,16 +374,15 @@ export function _nestedProxyResourcesListByTopLevelTrackedResourceSend(
 }
 
 export async function _nestedProxyResourcesListByTopLevelTrackedResourceDeserialize(
-  result:
-    | NestedProxyResourcesListByTopLevelTrackedResource200Response
-    | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_NestedProxyResourceListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -477,6 +436,7 @@ export function nestedProxyResourcesListByTopLevelTrackedResource(
         options,
       ),
     _nestedProxyResourcesListByTopLevelTrackedResourceDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

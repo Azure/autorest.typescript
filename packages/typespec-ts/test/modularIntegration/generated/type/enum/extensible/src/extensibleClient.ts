@@ -8,8 +8,8 @@ import {
 } from "./classic/string/index.js";
 import {
   createExtensible,
-  ExtensibleClientOptionalParams,
   ExtensibleContext,
+  ExtensibleClientOptionalParams,
 } from "./api/index.js";
 
 export { ExtensibleClientOptionalParams } from "./api/extensibleContext.js";
@@ -24,7 +24,6 @@ export class ExtensibleClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createExtensible({
       ...options,
       userAgentOptions: { userAgentPrefix },

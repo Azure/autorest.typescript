@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { MixedTypesCases } from "../../models/models.js";
-import {
-  UnionContext as Client,
-  MixedTypesGet200Response,
-  MixedTypesSend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _mixedTypesGetSend(
   context: Client,
   options: MixedTypesGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<MixedTypesGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/mixed-types")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _mixedTypesGetDeserialize(
-  result: MixedTypesGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: MixedTypesCases }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -56,7 +54,7 @@ export function _mixedTypesSendSend(
   context: Client,
   prop: MixedTypesCases,
   options: MixedTypesSendOptionalParams = { requestOptions: {} },
-): StreamableMethod<MixedTypesSend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/mixed-types")
     .post({
@@ -74,9 +72,10 @@ export function _mixedTypesSendSend(
 }
 
 export async function _mixedTypesSendDeserialize(
-  result: MixedTypesSend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

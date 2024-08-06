@@ -5,16 +5,11 @@ import {
   innerModelSerializer,
   CollectionsModelProperty,
 } from "../../models/models.js";
-import {
-  NullableContext as Client,
-  CollectionsModelGetNonNull200Response,
-  CollectionsModelGetNull200Response,
-  CollectionsModelPatchNonNull204Response,
-  CollectionsModelPatchNull204Response,
-} from "../../rest/index.js";
+import { NullableContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -27,16 +22,17 @@ import {
 export function _getNonNullSend(
   context: Client,
   options: CollectionsModelGetNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelGetNonNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/model/non-null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNonNullDeserialize(
-  result: CollectionsModelGetNonNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsModelProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -45,7 +41,7 @@ export async function _getNonNullDeserialize(
     nullableProperty:
       result.body["nullableProperty"] === null
         ? result.body["nullableProperty"]
-        : result.body["nullableProperty"].map((p) => {
+        : result.body["nullableProperty"].map((p: any) => {
             return { property: p["property"] };
           }),
   };
@@ -63,16 +59,17 @@ export async function getNonNull(
 export function _getNullSend(
   context: Client,
   options: CollectionsModelGetNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelGetNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/model/null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNullDeserialize(
-  result: CollectionsModelGetNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsModelProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -81,7 +78,7 @@ export async function _getNullDeserialize(
     nullableProperty:
       result.body["nullableProperty"] === null
         ? result.body["nullableProperty"]
-        : result.body["nullableProperty"].map((p) => {
+        : result.body["nullableProperty"].map((p: any) => {
             return { property: p["property"] };
           }),
   };
@@ -100,7 +97,7 @@ export function _patchNonNullSend(
   context: Client,
   body: CollectionsModelProperty,
   options: CollectionsModelPatchNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelPatchNonNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/model/non-null")
     .patch({
@@ -118,9 +115,10 @@ export function _patchNonNullSend(
 }
 
 export async function _patchNonNullDeserialize(
-  result: CollectionsModelPatchNonNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -141,7 +139,7 @@ export function _patchNullSend(
   context: Client,
   body: CollectionsModelProperty,
   options: CollectionsModelPatchNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelPatchNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/collections/model/null")
     .patch({
@@ -159,9 +157,10 @@ export function _patchNullSend(
 }
 
 export async function _patchNullDeserialize(
-  result: CollectionsModelPatchNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -6,8 +6,8 @@ import { JsonEncodedNameModel } from "./models/models.js";
 import { SendOptionalParams, GetOptionalParams } from "./models/options.js";
 import {
   createJson,
-  JsonClientOptionalParams,
   JsonContext,
+  JsonClientOptionalParams,
   send,
   get,
 } from "./api/index.js";
@@ -25,7 +25,6 @@ export class JsonClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createJson({
       ...options,
       userAgentOptions: { userAgentPrefix },

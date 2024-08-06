@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  UnionContext as Client,
-  FloatsOnlyGet200Response,
-  FloatsOnlySend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _floatsOnlyGetSend(
   context: Client,
   options: FloatsOnlyGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatsOnlyGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/floats-only")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _floatsOnlyGetDeserialize(
-  result: FloatsOnlyGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: 1.1 | 2.2 | 3.3 }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,7 +47,7 @@ export function _floatsOnlySendSend(
   context: Client,
   prop: 1.1 | 2.2 | 3.3,
   options: FloatsOnlySendOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatsOnlySend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/floats-only")
     .post({
@@ -59,9 +57,10 @@ export function _floatsOnlySendSend(
 }
 
 export async function _floatsOnlySendDeserialize(
-  result: FloatsOnlySend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

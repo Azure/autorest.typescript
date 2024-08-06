@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { ClientModel, TSModel } from "../../models/models.js";
-import {
-  NamingContext as Client,
-  ModelClient204Response,
-  ModelLanguage204Response,
-} from "../../rest/index.js";
+import { NamingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,7 +18,7 @@ export function _clientSend(
   context: Client,
   body: ClientModel,
   options: ClientModelClientOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelClient204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/model/client")
     .post({
@@ -31,9 +28,10 @@ export function _clientSend(
 }
 
 export async function _clientDeserialize(
-  result: ModelClient204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,7 +51,7 @@ export function _languageSend(
   context: Client,
   body: TSModel,
   options: ClientModelLanguageOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelLanguage204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/model/language")
     .post({
@@ -63,9 +61,10 @@ export function _languageSend(
 }
 
 export async function _languageDeserialize(
-  result: ModelLanguage204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

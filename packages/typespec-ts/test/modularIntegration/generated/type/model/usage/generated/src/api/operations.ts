@@ -6,15 +6,11 @@ import {
   OutputRecord,
   InputOutputRecord,
 } from "../models/models.js";
-import {
-  UsageContext as Client,
-  Input204Response,
-  InputAndOutput200Response,
-  Output200Response,
-} from "../rest/index.js";
+import { UsageContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -27,7 +23,7 @@ export function _inputSend(
   context: Client,
   inputParameter: InputRecord,
   options: InputOptionalParams = { requestOptions: {} },
-): StreamableMethod<Input204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/usage/input")
     .post({
@@ -37,9 +33,10 @@ export function _inputSend(
 }
 
 export async function _inputDeserialize(
-  result: Input204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -58,16 +55,17 @@ export async function input(
 export function _outputSend(
   context: Client,
   options: OutputOptionalParams = { requestOptions: {} },
-): StreamableMethod<Output200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/usage/output")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _outputDeserialize(
-  result: Output200Response,
+  result: PathUncheckedResponse,
 ): Promise<OutputRecord> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -88,7 +86,7 @@ export function _inputAndOutputSend(
   context: Client,
   body: InputOutputRecord,
   options: InputAndOutputOptionalParams = { requestOptions: {} },
-): StreamableMethod<InputAndOutput200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/usage/input-output")
     .post({
@@ -98,9 +96,10 @@ export function _inputAndOutputSend(
 }
 
 export async function _inputAndOutputDeserialize(
-  result: InputAndOutput200Response,
+  result: PathUncheckedResponse,
 ): Promise<InputOutputRecord> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

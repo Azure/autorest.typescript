@@ -4,6 +4,6 @@
 export { createOrReplace, $delete, $export } from "./operations.js";
 export {
   createStandard,
-  StandardClientOptionalParams,
   StandardContext,
+  StandardClientOptionalParams,
 } from "./standardContext.js";

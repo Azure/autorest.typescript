@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { innerModelSerializer, InnerModel } from "../../models/models.js";
-import {
-  ArrayContext as Client,
-  NullableModelValueGet200Response,
-  NullableModelValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,22 +17,23 @@ import {
 export function _nullableModelValueGetSend(
   context: Client,
   options: NullableModelValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<NullableModelValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/nullable-model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _nullableModelValueGetDeserialize(
-  result: NullableModelValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<(InnerModel | null)[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => {
+    : result.body.map((p: any) => {
         return !p
           ? p
           : {
@@ -43,7 +41,7 @@ export async function _nullableModelValueGetDeserialize(
               children:
                 p["children"] === undefined
                   ? p["children"]
-                  : p["children"].map((p) => {
+                  : p["children"].map((p: any) => {
                       return {
                         property: p["property"],
                         children: !p.children ? undefined : p.children,
@@ -65,7 +63,7 @@ export function _nullableModelValuePutSend(
   context: Client,
   body: (InnerModel | null)[],
   options: NullableModelValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<NullableModelValuePut204Response> {
+): StreamableMethod {
   return context.path("/type/array/nullable-model").put({
     ...operationOptionsToRequestParameters(options),
     body: (body ?? []).map((p) => {
@@ -83,9 +81,10 @@ export function _nullableModelValuePutSend(
 }
 
 export async function _nullableModelValuePutDeserialize(
-  result: NullableModelValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
