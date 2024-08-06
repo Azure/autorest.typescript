@@ -39,8 +39,6 @@ function getFlavorlessPackageInfo(
 function getFlavorlessScripts(config: PackageCommonInfoConfig) {
   return {
     ...getCommonPackageScripts(config),
-    "check-format":
-      'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ',
     ...getCjsScripts(config),
     ...getEsmScripts(config)
   };
