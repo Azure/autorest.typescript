@@ -1231,17 +1231,17 @@ function applyEncoding(
 
 function mergeFormatAndEncoding(
   format: string | undefined,
-  encoding: string,
+  encoding: string | undefined,
   encodeAsFormat: string | undefined
-): string {
+): string | undefined {
   switch (format) {
     case undefined:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
     case "date-time":
       return encoding;
     case "duration":
     default:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
   }
 }
 
@@ -1561,7 +1561,7 @@ function emitOperationGroups(
     context.rlcOptions?.hierarchyClient === false &&
     context.rlcOptions?.enableOperationGroup
   ) {
-    resolveConflictIfExist(operationGroups);
+    appendOperationGroupPrefix(operationGroups);
   }
   return operationGroups;
 }
@@ -1589,23 +1589,8 @@ function addHierarchyOperationGroup(
   return [];
 }
 
-function resolveConflictIfExist(operationGroups: OperationGroup[]) {
+function appendOperationGroupPrefix(operationGroups: OperationGroup[]) {
   if (operationGroups.length < 2) {
-    return;
-  }
-
-  const nameSet = new Set<string>();
-  const hasConflict = operationGroups.some((g) =>
-    g.operations.some((op) => {
-      if (nameSet.has(op.name)) {
-        return true;
-      } else {
-        nameSet.add(op.name);
-        return false;
-      }
-    })
-  );
-  if (!hasConflict) {
     return;
   }
   // Append operation group prefix
