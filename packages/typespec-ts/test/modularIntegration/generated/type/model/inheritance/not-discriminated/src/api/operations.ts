@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { Siamese } from "../models/models.js";
-import {
-  NotDiscriminatedContext as Client,
-  GetValid200Response,
-  PostValid204Response,
-  PutValid200Response,
-} from "../rest/index.js";
+import { NotDiscriminatedContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -23,7 +19,7 @@ export function _postValidSend(
   context: Client,
   input: Siamese,
   options: PostValidOptionalParams = { requestOptions: {} },
-): StreamableMethod<PostValid204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
     .post({
@@ -33,9 +29,10 @@ export function _postValidSend(
 }
 
 export async function _postValidDeserialize(
-  result: PostValid204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -54,16 +51,17 @@ export async function postValid(
 export function _getValidSend(
   context: Client,
   options: GetValidOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetValid200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getValidDeserialize(
-  result: GetValid200Response,
+  result: PathUncheckedResponse,
 ): Promise<Siamese> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -86,7 +84,7 @@ export function _putValidSend(
   context: Client,
   input: Siamese,
   options: PutValidOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutValid200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
     .put({
@@ -96,9 +94,10 @@ export function _putValidSend(
 }
 
 export async function _putValidDeserialize(
-  result: PutValid200Response,
+  result: PathUncheckedResponse,
 ): Promise<Siamese> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

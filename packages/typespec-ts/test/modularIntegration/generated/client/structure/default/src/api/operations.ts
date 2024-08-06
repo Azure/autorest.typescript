@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ServiceContext as Client,
-  One204Response,
-  Two204Response,
-} from "../rest/index.js";
+import { ServiceContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { OneOptionalParams, TwoOptionalParams } from "../models/options.js";
@@ -16,14 +13,17 @@ import { OneOptionalParams, TwoOptionalParams } from "../models/options.js";
 export function _oneSend(
   context: Client,
   options: OneOptionalParams = { requestOptions: {} },
-): StreamableMethod<One204Response> {
+): StreamableMethod {
   return context
     .path("/one")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _oneDeserialize(result: One204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _oneDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -41,14 +41,17 @@ export async function one(
 export function _twoSend(
   context: Client,
   options: TwoOptionalParams = { requestOptions: {} },
-): StreamableMethod<Two204Response> {
+): StreamableMethod {
   return context
     .path("/two")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _twoDeserialize(result: Two204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _twoDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

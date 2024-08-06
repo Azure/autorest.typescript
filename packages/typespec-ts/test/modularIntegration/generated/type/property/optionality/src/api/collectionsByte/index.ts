@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { CollectionsByteProperty } from "../../models/models.js";
-import {
-  OptionalContext as Client,
-  CollectionsByteGetAll200Response,
-  CollectionsByteGetDefault200Response,
-  CollectionsBytePutAll204Response,
-  CollectionsBytePutDefault204Response,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
@@ -25,16 +20,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: CollectionsByteGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsByteGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/bytes/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: CollectionsByteGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsByteProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -42,7 +38,7 @@ export async function _getAllDeserialize(
     property:
       result.body["property"] === undefined
         ? result.body["property"]
-        : result.body["property"].map((p) =>
+        : result.body["property"].map((p: any) =>
             typeof p === "string" ? stringToUint8Array(p, "base64") : p,
           ),
   };
@@ -60,16 +56,17 @@ export async function getAll(
 export function _getDefaultSend(
   context: Client,
   options: CollectionsByteGetDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsByteGetDefault200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/bytes/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDefaultDeserialize(
-  result: CollectionsByteGetDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsByteProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -77,7 +74,7 @@ export async function _getDefaultDeserialize(
     property:
       result.body["property"] === undefined
         ? result.body["property"]
-        : result.body["property"].map((p) =>
+        : result.body["property"].map((p: any) =>
             typeof p === "string" ? stringToUint8Array(p, "base64") : p,
           ),
   };
@@ -96,7 +93,7 @@ export function _putAllSend(
   context: Client,
   body: CollectionsByteProperty,
   options: CollectionsBytePutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsBytePutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/bytes/all")
     .put({
@@ -111,9 +108,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: CollectionsBytePutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -134,7 +132,7 @@ export function _putDefaultSend(
   context: Client,
   body: CollectionsByteProperty,
   options: CollectionsBytePutDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsBytePutDefault204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/collections/bytes/default")
     .put({
@@ -149,9 +147,10 @@ export function _putDefaultSend(
 }
 
 export async function _putDefaultDeserialize(
-  result: CollectionsBytePutDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

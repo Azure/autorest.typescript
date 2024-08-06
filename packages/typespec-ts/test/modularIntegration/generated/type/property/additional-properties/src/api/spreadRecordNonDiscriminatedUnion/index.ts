@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { SpreadRecordForNonDiscriminatedUnion } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  SpreadRecordNonDiscriminatedUnionGet200Response,
-  SpreadRecordNonDiscriminatedUnionPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -23,7 +20,7 @@ export function _getSend(
   options: SpreadRecordNonDiscriminatedUnionGetOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<SpreadRecordNonDiscriminatedUnionGet200Response> {
+): StreamableMethod {
   return context
     .path(
       "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion",
@@ -32,9 +29,10 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result: SpreadRecordNonDiscriminatedUnionGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<SpreadRecordForNonDiscriminatedUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -58,7 +56,7 @@ export function _putSend(
   options: SpreadRecordNonDiscriminatedUnionPutOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<SpreadRecordNonDiscriminatedUnionPut204Response> {
+): StreamableMethod {
   return context
     .path(
       "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion",
@@ -70,9 +68,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: SpreadRecordNonDiscriminatedUnionPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

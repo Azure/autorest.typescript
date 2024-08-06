@@ -1,13 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  Dog as DogRest,
-  Golden as GoldenRest,
-  Snake as SnakeRest,
-  Cobra as CobraRest,
-} from "../rest/index.js";
-
 /** Test extensible enum type for discriminator */
 export interface Dog {
   /** the discriminator possible values: golden */
@@ -26,7 +19,7 @@ export function dogUnionSerializer(item: DogUnion) {
   }
 }
 
-export function dogSerializer(item: DogUnion): DogRest {
+export function dogSerializer(item: DogUnion): Record<string, unknown> {
   return {
     kind: item["kind"],
     weight: item["weight"],
@@ -39,7 +32,7 @@ export interface Golden extends Dog {
   kind: "golden";
 }
 
-export function goldenSerializer(item: Golden): GoldenRest {
+export function goldenSerializer(item: Golden): Record<string, unknown> {
   return {
     kind: item["kind"],
     weight: item["weight"],
@@ -67,7 +60,7 @@ export function snakeUnionSerializer(item: SnakeUnion) {
   }
 }
 
-export function snakeSerializer(item: SnakeUnion): SnakeRest {
+export function snakeSerializer(item: SnakeUnion): Record<string, unknown> {
   return {
     kind: item["kind"],
     length: item["length"],
@@ -80,7 +73,7 @@ export interface Cobra extends Snake {
   kind: "cobra";
 }
 
-export function cobraSerializer(item: Cobra): CobraRest {
+export function cobraSerializer(item: Cobra): Record<string, unknown> {
   return {
     kind: item["kind"],
     length: item["length"],

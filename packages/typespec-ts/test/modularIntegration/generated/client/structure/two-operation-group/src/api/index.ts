@@ -3,6 +3,6 @@
 
 export {
   createTwoOperationGroup,
-  TwoOperationGroupClientOptionalParams,
   ServiceContext,
+  TwoOperationGroupClientOptionalParams,
 } from "./twoOperationGroupContext.js";

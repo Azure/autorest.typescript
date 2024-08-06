@@ -4,16 +4,11 @@
 import { getLongRunningPoller } from "./pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import { GenerationOptions, GenerationResult } from "../models/models.js";
-import {
-  isUnexpected,
-  RpcContext as Client,
-  LongRunningRpc202Response,
-  LongRunningRpcDefaultResponse,
-  LongRunningRpcLogicalResponse,
-} from "../rest/index.js";
+import { RpcContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { LongRunningRpcOptionalParams } from "../models/options.js";
@@ -22,11 +17,7 @@ export function _longRunningRpcSend(
   context: Client,
   body: GenerationOptions,
   options: LongRunningRpcOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LongRunningRpc202Response
-  | LongRunningRpcDefaultResponse
-  | LongRunningRpcLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path("/azure/core/lro/rpc/generations:submit")
     .post({
@@ -36,25 +27,22 @@ export function _longRunningRpcSend(
 }
 
 export async function _longRunningRpcDeserialize(
-  result:
-    | LongRunningRpc202Response
-    | LongRunningRpcDefaultResponse
-    | LongRunningRpcLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<GenerationResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as LongRunningRpcLogicalResponse;
-  if (res?.body?.result === undefined) {
+  if (result?.body?.result === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "res.body.result"`,
+      `Expected a result in the response at position "result.body.result"`,
       result,
     );
   }
 
   return {
-    data: res.body.result["data"],
+    data: result.body.result["data"],
   };
 }
 
@@ -64,9 +52,14 @@ export function longRunningRpc(
   body: GenerationOptions,
   options: LongRunningRpcOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<GenerationResult>, GenerationResult> {
-  return getLongRunningPoller(context, _longRunningRpcDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () => _longRunningRpcSend(context, body, options),
-  }) as PollerLike<OperationState<GenerationResult>, GenerationResult>;
+  return getLongRunningPoller(
+    context,
+    _longRunningRpcDeserialize,
+    ["202", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () => _longRunningRpcSend(context, body, options),
+    },
+  ) as PollerLike<OperationState<GenerationResult>, GenerationResult>;
 }

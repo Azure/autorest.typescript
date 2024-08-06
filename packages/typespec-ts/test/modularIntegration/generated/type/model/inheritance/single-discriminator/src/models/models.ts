@@ -2,13 +2,6 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  Bird as BirdRest,
-  SeaGull as SeaGullRest,
-  Sparrow as SparrowRest,
-  Goose as GooseRest,
-  Eagle as EagleRest,
-} from "../rest/index.js";
 
 /** This is base model for polymorphic single level inheritance with a discriminator. */
 export interface Bird {
@@ -36,7 +29,7 @@ export function birdUnionSerializer(item: BirdUnion) {
   }
 }
 
-export function birdSerializer(item: BirdUnion): BirdRest {
+export function birdSerializer(item: BirdUnion): Record<string, unknown> {
   return {
     kind: item["kind"],
     wingspan: item["wingspan"],
@@ -48,7 +41,7 @@ export interface SeaGull extends Bird {
   kind: "seagull";
 }
 
-export function seaGullSerializer(item: SeaGull): SeaGullRest {
+export function seaGullSerializer(item: SeaGull): Record<string, unknown> {
   return {
     kind: item["kind"],
     wingspan: item["wingspan"],
@@ -60,7 +53,7 @@ export interface Sparrow extends Bird {
   kind: "sparrow";
 }
 
-export function sparrowSerializer(item: Sparrow): SparrowRest {
+export function sparrowSerializer(item: Sparrow): Record<string, unknown> {
   return {
     kind: item["kind"],
     wingspan: item["wingspan"],
@@ -72,7 +65,7 @@ export interface Goose extends Bird {
   kind: "goose";
 }
 
-export function gooseSerializer(item: Goose): GooseRest {
+export function gooseSerializer(item: Goose): Record<string, unknown> {
   return {
     kind: item["kind"],
     wingspan: item["wingspan"],
@@ -87,7 +80,7 @@ export interface Eagle extends Bird {
   partner?: BirdUnion;
 }
 
-export function eagleSerializer(item: Eagle): EagleRest {
+export function eagleSerializer(item: Eagle): Record<string, unknown> {
   return {
     kind: item["kind"],
     wingspan: item["wingspan"],

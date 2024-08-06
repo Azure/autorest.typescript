@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  UnionContext as Client,
-  StringExtensibleGet200Response,
-  StringExtensibleSend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _stringExtensibleGetSend(
   context: Client,
   options: StringExtensibleGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringExtensibleGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/string-extensible")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stringExtensibleGetDeserialize(
-  result: StringExtensibleGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: string | "b" | "c" }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,7 +47,7 @@ export function _stringExtensibleSendSend(
   context: Client,
   prop: string | "b" | "c",
   options: StringExtensibleSendOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringExtensibleSend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/string-extensible")
     .post({
@@ -59,9 +57,10 @@ export function _stringExtensibleSendSend(
 }
 
 export async function _stringExtensibleSendDeserialize(
-  result: StringExtensibleSend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

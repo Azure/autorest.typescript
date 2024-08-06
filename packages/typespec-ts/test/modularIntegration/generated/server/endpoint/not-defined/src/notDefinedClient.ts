@@ -4,8 +4,8 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createNotDefined,
-  NotDefinedClientOptionalParams,
   NotDefinedContext,
+  NotDefinedClientOptionalParams,
   valid,
 } from "./api/index.js";
 import { ValidOptionalParams } from "./models/options.js";
@@ -23,7 +23,6 @@ export class NotDefinedClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createNotDefined(endpoint, {
       ...options,
       userAgentOptions: { userAgentPrefix },

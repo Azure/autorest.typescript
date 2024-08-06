@@ -3,7 +3,7 @@
 
 export {
   createBodyOptionality,
-  BodyOptionalityClientOptionalParams,
   BodyOptionalityContext,
+  BodyOptionalityClientOptionalParams,
 } from "./bodyOptionalityContext.js";
 export { requiredExplicit, requiredImplicit } from "./operations.js";

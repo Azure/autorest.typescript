@@ -445,8 +445,7 @@ export async function emitModularOperationsFromTypeSpec(
       const res = buildOperationFiles(
         modularCodeModel.clients[0],
         dpgContext,
-        modularCodeModel,
-        false
+        modularCodeModel
       );
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;

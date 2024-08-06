@@ -32,8 +32,8 @@ import {
 } from "./classic/decimal128Verify/index.js";
 import {
   createScalar,
-  ScalarClientOptionalParams,
   ScalarContext,
+  ScalarClientOptionalParams,
 } from "./api/index.js";
 
 export { ScalarClientOptionalParams } from "./api/scalarContext.js";
@@ -48,7 +48,6 @@ export class ScalarClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createScalar({
       ...options,
       userAgentOptions: { userAgentPrefix },

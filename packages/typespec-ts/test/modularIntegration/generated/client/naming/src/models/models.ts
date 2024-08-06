@@ -1,14 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ClientNameModel as ClientNameModelRest,
-  LanguageClientNameModel as LanguageClientNameModelRest,
-  ClientNameAndJsonEncodedNameModel as ClientNameAndJsonEncodedNameModelRest,
-  ModelWithClientClientName as ModelWithClientClientNameRest,
-  ModelWithLanguageClientName as ModelWithLanguageClientNameRest,
-} from "../rest/index.js";
-
 export interface ClientNameModel {
   /** Pass in true */
   clientName: boolean;
@@ -16,7 +8,7 @@ export interface ClientNameModel {
 
 export function clientNameModelSerializer(
   item: ClientNameModel,
-): ClientNameModelRest {
+): Record<string, unknown> {
   return {
     defaultName: item["clientName"],
   };
@@ -29,7 +21,7 @@ export interface LanguageClientNameModel {
 
 export function languageClientNameModelSerializer(
   item: LanguageClientNameModel,
-): LanguageClientNameModelRest {
+): Record<string, unknown> {
   return {
     defaultName: item["tSName"],
   };
@@ -42,7 +34,7 @@ export interface ClientNameAndJsonEncodedNameModel {
 
 export function clientNameAndJsonEncodedNameModelSerializer(
   item: ClientNameAndJsonEncodedNameModel,
-): ClientNameAndJsonEncodedNameModelRest {
+): Record<string, unknown> {
   return {
     wireName: item["clientName"],
   };
@@ -60,7 +52,7 @@ export interface ClientModel {
 
 export function clientModelSerializer(
   item: ClientModel,
-): ModelWithClientClientNameRest {
+): Record<string, unknown> {
   return {
     defaultName: item["defaultName"],
   };
@@ -71,9 +63,7 @@ export interface TSModel {
   defaultName: boolean;
 }
 
-export function tSModelSerializer(
-  item: TSModel,
-): ModelWithLanguageClientNameRest {
+export function tSModelSerializer(item: TSModel): Record<string, unknown> {
   return {
     defaultName: item["defaultName"],
   };

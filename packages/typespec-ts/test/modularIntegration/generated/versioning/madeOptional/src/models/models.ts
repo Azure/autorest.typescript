@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { TestModel as TestModelRest } from "../rest/index.js";
-
 export interface TestModel {
   prop: string;
   changedProp?: string;
 }
 
-export function testModelSerializer(item: TestModel): TestModelRest {
+export function testModelSerializer(item: TestModel): Record<string, unknown> {
   return {
     prop: item["prop"],
     changedProp: item["changedProp"],

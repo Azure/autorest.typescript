@@ -1,23 +1,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  buildCsvCollection,
-  CollectionFormatContext as Client,
-  HeaderCsv204Response,
-} from "../../rest/index.js";
+import { CollectionFormatContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { buildCsvCollection } from "../../helpers/serializerHelpers.js";
 import { HeaderCsvOptionalParams } from "../../models/options.js";
 
 export function _headerCsvSend(
   context: Client,
   colors: string[],
   options: HeaderCsvOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderCsv204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/collection-format/header/csv")
     .get({
@@ -27,9 +25,10 @@ export function _headerCsvSend(
 }
 
 export async function _headerCsvDeserialize(
-  result: HeaderCsv204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

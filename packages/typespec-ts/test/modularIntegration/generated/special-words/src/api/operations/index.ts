@@ -1,45 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  SpecialWordsContext as Client,
-  OperationsAnd204Response,
-  OperationsAs204Response,
-  OperationsAssert204Response,
-  OperationsAsync204Response,
-  OperationsAwait204Response,
-  OperationsBreak204Response,
-  OperationsClass204Response,
-  OperationsConstructor204Response,
-  OperationsContinue204Response,
-  OperationsDef204Response,
-  OperationsDel204Response,
-  OperationsElif204Response,
-  OperationsElse204Response,
-  OperationsExcept204Response,
-  OperationsExec204Response,
-  OperationsFinally204Response,
-  OperationsFor204Response,
-  OperationsFrom204Response,
-  OperationsGlobal204Response,
-  OperationsIf204Response,
-  OperationsImport204Response,
-  OperationsIn204Response,
-  OperationsIs204Response,
-  OperationsLambda204Response,
-  OperationsNot204Response,
-  OperationsOr204Response,
-  OperationsPass204Response,
-  OperationsRaise204Response,
-  OperationsReturn204Response,
-  OperationsTry204Response,
-  OperationsWhile204Response,
-  OperationsWith204Response,
-  OperationsYield204Response,
-} from "../../rest/index.js";
+import { SpecialWordsContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -81,16 +47,17 @@ import {
 export function _operationsAndSend(
   context: Client,
   options: OperationsAndOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsAnd204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/and")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsAndDeserialize(
-  result: OperationsAnd204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -108,16 +75,17 @@ export async function operationsAnd(
 export function _operationsAsSend(
   context: Client,
   options: OperationsAsOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsAs204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/as")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsAsDeserialize(
-  result: OperationsAs204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -135,16 +103,17 @@ export async function operationsAs(
 export function _operationsAssertSend(
   context: Client,
   options: OperationsAssertOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsAssert204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/assert")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsAssertDeserialize(
-  result: OperationsAssert204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -162,16 +131,17 @@ export async function operationsAssert(
 export function _operationsAsyncSend(
   context: Client,
   options: OperationsAsyncOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsAsync204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/async")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsAsyncDeserialize(
-  result: OperationsAsync204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -189,16 +159,17 @@ export async function operationsAsync(
 export function _operationsAwaitSend(
   context: Client,
   options: OperationsAwaitOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsAwait204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/await")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsAwaitDeserialize(
-  result: OperationsAwait204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -216,16 +187,17 @@ export async function operationsAwait(
 export function _operationsBreakSend(
   context: Client,
   options: OperationsBreakOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsBreak204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/break")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsBreakDeserialize(
-  result: OperationsBreak204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -243,16 +215,17 @@ export async function operationsBreak(
 export function _operationsClassSend(
   context: Client,
   options: OperationsClassOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsClass204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/class")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsClassDeserialize(
-  result: OperationsClass204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -270,16 +243,17 @@ export async function operationsClass(
 export function _operationsConstructorSend(
   context: Client,
   options: OperationsConstructorOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsConstructor204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/constructor")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsConstructorDeserialize(
-  result: OperationsConstructor204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -297,16 +271,17 @@ export async function operationsConstructor(
 export function _operationsContinueSend(
   context: Client,
   options: OperationsContinueOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsContinue204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/continue")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsContinueDeserialize(
-  result: OperationsContinue204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -324,16 +299,17 @@ export async function operationsContinue(
 export function _operationsDefSend(
   context: Client,
   options: OperationsDefOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsDef204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/def")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsDefDeserialize(
-  result: OperationsDef204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -351,16 +327,17 @@ export async function operationsDef(
 export function _operationsDelSend(
   context: Client,
   options: OperationsDelOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsDel204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/del")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsDelDeserialize(
-  result: OperationsDel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -378,16 +355,17 @@ export async function operationsDel(
 export function _operationsElifSend(
   context: Client,
   options: OperationsElifOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsElif204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/elif")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsElifDeserialize(
-  result: OperationsElif204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -405,16 +383,17 @@ export async function operationsElif(
 export function _operationsElseSend(
   context: Client,
   options: OperationsElseOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsElse204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/else")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsElseDeserialize(
-  result: OperationsElse204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -432,16 +411,17 @@ export async function operationsElse(
 export function _operationsExceptSend(
   context: Client,
   options: OperationsExceptOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsExcept204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/except")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsExceptDeserialize(
-  result: OperationsExcept204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -459,16 +439,17 @@ export async function operationsExcept(
 export function _operationsExecSend(
   context: Client,
   options: OperationsExecOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsExec204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/exec")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsExecDeserialize(
-  result: OperationsExec204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -486,16 +467,17 @@ export async function operationsExec(
 export function _operationsFinallySend(
   context: Client,
   options: OperationsFinallyOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsFinally204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/finally")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsFinallyDeserialize(
-  result: OperationsFinally204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -513,16 +495,17 @@ export async function operationsFinally(
 export function _operationsForSend(
   context: Client,
   options: OperationsForOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsFor204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/for")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsForDeserialize(
-  result: OperationsFor204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -540,16 +523,17 @@ export async function operationsFor(
 export function _operationsFromSend(
   context: Client,
   options: OperationsFromOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsFrom204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/from")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsFromDeserialize(
-  result: OperationsFrom204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -567,16 +551,17 @@ export async function operationsFrom(
 export function _operationsGlobalSend(
   context: Client,
   options: OperationsGlobalOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsGlobal204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/global")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsGlobalDeserialize(
-  result: OperationsGlobal204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -594,16 +579,17 @@ export async function operationsGlobal(
 export function _operationsIfSend(
   context: Client,
   options: OperationsIfOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsIf204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/if")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsIfDeserialize(
-  result: OperationsIf204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -621,16 +607,17 @@ export async function operationsIf(
 export function _operationsImportSend(
   context: Client,
   options: OperationsImportOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsImport204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/import")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsImportDeserialize(
-  result: OperationsImport204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -648,16 +635,17 @@ export async function operationsImport(
 export function _operationsInSend(
   context: Client,
   options: OperationsInOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsIn204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/in")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsInDeserialize(
-  result: OperationsIn204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -675,16 +663,17 @@ export async function operationsIn(
 export function _operationsIsSend(
   context: Client,
   options: OperationsIsOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsIs204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/is")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsIsDeserialize(
-  result: OperationsIs204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -702,16 +691,17 @@ export async function operationsIs(
 export function _operationsLambdaSend(
   context: Client,
   options: OperationsLambdaOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsLambda204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/lambda")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsLambdaDeserialize(
-  result: OperationsLambda204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -729,16 +719,17 @@ export async function operationsLambda(
 export function _operationsNotSend(
   context: Client,
   options: OperationsNotOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsNot204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/not")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsNotDeserialize(
-  result: OperationsNot204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -756,16 +747,17 @@ export async function operationsNot(
 export function _operationsOrSend(
   context: Client,
   options: OperationsOrOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsOr204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/or")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsOrDeserialize(
-  result: OperationsOr204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -783,16 +775,17 @@ export async function operationsOr(
 export function _operationsPassSend(
   context: Client,
   options: OperationsPassOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsPass204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/pass")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsPassDeserialize(
-  result: OperationsPass204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -810,16 +803,17 @@ export async function operationsPass(
 export function _operationsRaiseSend(
   context: Client,
   options: OperationsRaiseOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsRaise204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/raise")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsRaiseDeserialize(
-  result: OperationsRaise204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -837,16 +831,17 @@ export async function operationsRaise(
 export function _operationsReturnSend(
   context: Client,
   options: OperationsReturnOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsReturn204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/return")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsReturnDeserialize(
-  result: OperationsReturn204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -864,16 +859,17 @@ export async function operationsReturn(
 export function _operationsTrySend(
   context: Client,
   options: OperationsTryOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsTry204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/try")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsTryDeserialize(
-  result: OperationsTry204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -891,16 +887,17 @@ export async function operationsTry(
 export function _operationsWhileSend(
   context: Client,
   options: OperationsWhileOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsWhile204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/while")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsWhileDeserialize(
-  result: OperationsWhile204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -918,16 +915,17 @@ export async function operationsWhile(
 export function _operationsWithSend(
   context: Client,
   options: OperationsWithOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsWith204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/with")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsWithDeserialize(
-  result: OperationsWith204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -945,16 +943,17 @@ export async function operationsWith(
 export function _operationsYieldSend(
   context: Client,
   options: OperationsYieldOptionalParams = { requestOptions: {} },
-): StreamableMethod<OperationsYield204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/operations/yield")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _operationsYieldDeserialize(
-  result: OperationsYield204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

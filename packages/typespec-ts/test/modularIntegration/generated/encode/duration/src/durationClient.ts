@@ -13,8 +13,8 @@ import {
 } from "./classic/header/index.js";
 import {
   createDuration,
-  DurationClientOptionalParams,
   DurationContext,
+  DurationClientOptionalParams,
 } from "./api/index.js";
 
 export { DurationClientOptionalParams } from "./api/durationContext.js";
@@ -30,7 +30,6 @@ export class DurationClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createDuration({
       ...options,
       userAgentOptions: { userAgentPrefix },

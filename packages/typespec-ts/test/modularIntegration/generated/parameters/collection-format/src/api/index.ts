@@ -3,8 +3,8 @@
 
 export {
   createCollectionFormat,
-  CollectionFormatClientOptionalParams,
   CollectionFormatContext,
+  CollectionFormatClientOptionalParams,
 } from "./collectionFormatContext.js";
 export { headerCsv } from "./header/index.js";
 export {

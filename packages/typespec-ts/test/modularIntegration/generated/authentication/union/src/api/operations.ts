@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  UnionContext as Client,
-  ValidKey204Response,
-  ValidToken204Response,
-} from "../rest/index.js";
+import { UnionContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _validKeySend(
   context: Client,
   options: ValidKeyOptionalParams = { requestOptions: {} },
-): StreamableMethod<ValidKey204Response> {
+): StreamableMethod {
   return context
     .path("/authentication/union/validkey")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _validKeyDeserialize(
-  result: ValidKey204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export async function validKey(
 export function _validTokenSend(
   context: Client,
   options: ValidTokenOptionalParams = { requestOptions: {} },
-): StreamableMethod<ValidToken204Response> {
+): StreamableMethod {
   return context
     .path("/authentication/union/validtoken")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _validTokenDeserialize(
-  result: ValidToken204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

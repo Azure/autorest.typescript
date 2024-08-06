@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { Decimal128Property } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  Decimal128Get200Response,
-  Decimal128Put204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _decimal128GetSend(
   context: Client,
   options: Decimal128GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Decimal128Get200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/decimal128")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _decimal128GetDeserialize(
-  result: Decimal128Get200Response,
+  result: PathUncheckedResponse,
 ): Promise<Decimal128Property> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _decimal128PutSend(
   context: Client,
   body: Decimal128Property,
   options: Decimal128PutOptionalParams = { requestOptions: {} },
-): StreamableMethod<Decimal128Put204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/decimal128")
     .put({
@@ -61,9 +59,10 @@ export function _decimal128PutSend(
 }
 
 export async function _decimal128PutDeserialize(
-  result: Decimal128Put204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

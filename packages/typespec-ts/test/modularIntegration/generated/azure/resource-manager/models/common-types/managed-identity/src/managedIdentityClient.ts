@@ -10,8 +10,8 @@ import {
 } from "./models/options.js";
 import {
   createManagedIdentity,
-  ManagedIdentityClientOptionalParams,
   ManagedIdentityContext,
+  ManagedIdentityClientOptionalParams,
   get,
   createWithSystemAssigned,
   updateWithUserAssignedAndSystemAssigned,
@@ -30,7 +30,6 @@ export class ManagedIdentityClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createManagedIdentity({
       ...options,
       userAgentOptions: { userAgentPrefix },

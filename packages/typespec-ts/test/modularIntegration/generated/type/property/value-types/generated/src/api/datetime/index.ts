@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { DatetimeProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  DatetimeGet200Response,
-  DatetimePut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _datetimeGetSend(
   context: Client,
   options: DatetimeGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimeGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/datetime")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _datetimeGetDeserialize(
-  result: DatetimeGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<DatetimeProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _datetimePutSend(
   context: Client,
   body: DatetimeProperty,
   options: DatetimePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/datetime")
     .put({
@@ -61,9 +59,10 @@ export function _datetimePutSend(
 }
 
 export async function _datetimePutDeserialize(
-  result: DatetimePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

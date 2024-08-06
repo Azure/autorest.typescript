@@ -126,8 +126,8 @@ import {
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBatch,
-  BatchClientOptionalParams,
   BatchContext,
+  BatchClientOptionalParams,
   listApplications,
   getApplication,
   listPoolUsageMetrics,
@@ -223,7 +223,6 @@ export class BatchClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createBatch(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

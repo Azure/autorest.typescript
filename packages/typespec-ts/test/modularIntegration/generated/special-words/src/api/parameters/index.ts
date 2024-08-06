@@ -1,46 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  SpecialWordsContext as Client,
-  ParametersWithAnd204Response,
-  ParametersWithAs204Response,
-  ParametersWithAssert204Response,
-  ParametersWithAsync204Response,
-  ParametersWithAwait204Response,
-  ParametersWithBreak204Response,
-  ParametersWithCancellationToken204Response,
-  ParametersWithClass204Response,
-  ParametersWithConstructor204Response,
-  ParametersWithContinue204Response,
-  ParametersWithDef204Response,
-  ParametersWithDel204Response,
-  ParametersWithElif204Response,
-  ParametersWithElse204Response,
-  ParametersWithExcept204Response,
-  ParametersWithExec204Response,
-  ParametersWithFinally204Response,
-  ParametersWithFor204Response,
-  ParametersWithFrom204Response,
-  ParametersWithGlobal204Response,
-  ParametersWithIf204Response,
-  ParametersWithImport204Response,
-  ParametersWithIn204Response,
-  ParametersWithIs204Response,
-  ParametersWithLambda204Response,
-  ParametersWithNot204Response,
-  ParametersWithOr204Response,
-  ParametersWithPass204Response,
-  ParametersWithRaise204Response,
-  ParametersWithReturn204Response,
-  ParametersWithTry204Response,
-  ParametersWithWhile204Response,
-  ParametersWithWith204Response,
-  ParametersWithYield204Response,
-} from "../../rest/index.js";
+import { SpecialWordsContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -84,7 +49,7 @@ export function _parametersWithAndSend(
   context: Client,
   and: string,
   options: ParametersWithAndOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithAnd204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/and")
     .get({
@@ -94,9 +59,10 @@ export function _parametersWithAndSend(
 }
 
 export async function _parametersWithAndDeserialize(
-  result: ParametersWithAnd204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -116,7 +82,7 @@ export function _parametersWithAsSend(
   context: Client,
   asParam: string,
   options: ParametersWithAsOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithAs204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/as")
     .get({
@@ -126,9 +92,10 @@ export function _parametersWithAsSend(
 }
 
 export async function _parametersWithAsDeserialize(
-  result: ParametersWithAs204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -148,7 +115,7 @@ export function _parametersWithAssertSend(
   context: Client,
   assertParam: string,
   options: ParametersWithAssertOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithAssert204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/assert")
     .get({
@@ -158,9 +125,10 @@ export function _parametersWithAssertSend(
 }
 
 export async function _parametersWithAssertDeserialize(
-  result: ParametersWithAssert204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -180,7 +148,7 @@ export function _parametersWithAsyncSend(
   context: Client,
   asyncParam: string,
   options: ParametersWithAsyncOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithAsync204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/async")
     .get({
@@ -190,9 +158,10 @@ export function _parametersWithAsyncSend(
 }
 
 export async function _parametersWithAsyncDeserialize(
-  result: ParametersWithAsync204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -212,7 +181,7 @@ export function _parametersWithAwaitSend(
   context: Client,
   awaitParam: string,
   options: ParametersWithAwaitOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithAwait204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/await")
     .get({
@@ -222,9 +191,10 @@ export function _parametersWithAwaitSend(
 }
 
 export async function _parametersWithAwaitDeserialize(
-  result: ParametersWithAwait204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -244,7 +214,7 @@ export function _parametersWithBreakSend(
   context: Client,
   breakParam: string,
   options: ParametersWithBreakOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithBreak204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/break")
     .get({
@@ -254,9 +224,10 @@ export function _parametersWithBreakSend(
 }
 
 export async function _parametersWithBreakDeserialize(
-  result: ParametersWithBreak204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -276,7 +247,7 @@ export function _parametersWithClassSend(
   context: Client,
   classParam: string,
   options: ParametersWithClassOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithClass204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/class")
     .get({
@@ -286,9 +257,10 @@ export function _parametersWithClassSend(
 }
 
 export async function _parametersWithClassDeserialize(
-  result: ParametersWithClass204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -308,7 +280,7 @@ export function _parametersWithConstructorSend(
   context: Client,
   constructorParam: string,
   options: ParametersWithConstructorOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithConstructor204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/constructor")
     .get({
@@ -318,9 +290,10 @@ export function _parametersWithConstructorSend(
 }
 
 export async function _parametersWithConstructorDeserialize(
-  result: ParametersWithConstructor204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -344,7 +317,7 @@ export function _parametersWithContinueSend(
   context: Client,
   continueParam: string,
   options: ParametersWithContinueOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithContinue204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/continue")
     .get({
@@ -354,9 +327,10 @@ export function _parametersWithContinueSend(
 }
 
 export async function _parametersWithContinueDeserialize(
-  result: ParametersWithContinue204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -380,7 +354,7 @@ export function _parametersWithDefSend(
   context: Client,
   def: string,
   options: ParametersWithDefOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithDef204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/def")
     .get({
@@ -390,9 +364,10 @@ export function _parametersWithDefSend(
 }
 
 export async function _parametersWithDefDeserialize(
-  result: ParametersWithDef204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -412,7 +387,7 @@ export function _parametersWithDelSend(
   context: Client,
   del: string,
   options: ParametersWithDelOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithDel204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/del")
     .get({
@@ -422,9 +397,10 @@ export function _parametersWithDelSend(
 }
 
 export async function _parametersWithDelDeserialize(
-  result: ParametersWithDel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -444,7 +420,7 @@ export function _parametersWithElifSend(
   context: Client,
   elif: string,
   options: ParametersWithElifOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithElif204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/elif")
     .get({
@@ -454,9 +430,10 @@ export function _parametersWithElifSend(
 }
 
 export async function _parametersWithElifDeserialize(
-  result: ParametersWithElif204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -476,7 +453,7 @@ export function _parametersWithElseSend(
   context: Client,
   elseParam: string,
   options: ParametersWithElseOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithElse204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/else")
     .get({
@@ -486,9 +463,10 @@ export function _parametersWithElseSend(
 }
 
 export async function _parametersWithElseDeserialize(
-  result: ParametersWithElse204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -508,7 +486,7 @@ export function _parametersWithExceptSend(
   context: Client,
   except: string,
   options: ParametersWithExceptOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithExcept204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/except")
     .get({
@@ -518,9 +496,10 @@ export function _parametersWithExceptSend(
 }
 
 export async function _parametersWithExceptDeserialize(
-  result: ParametersWithExcept204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -540,7 +519,7 @@ export function _parametersWithExecSend(
   context: Client,
   exec: string,
   options: ParametersWithExecOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithExec204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/exec")
     .get({
@@ -550,9 +529,10 @@ export function _parametersWithExecSend(
 }
 
 export async function _parametersWithExecDeserialize(
-  result: ParametersWithExec204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -572,7 +552,7 @@ export function _parametersWithFinallySend(
   context: Client,
   finallyParam: string,
   options: ParametersWithFinallyOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithFinally204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/finally")
     .get({
@@ -582,9 +562,10 @@ export function _parametersWithFinallySend(
 }
 
 export async function _parametersWithFinallyDeserialize(
-  result: ParametersWithFinally204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -608,7 +589,7 @@ export function _parametersWithForSend(
   context: Client,
   forParam: string,
   options: ParametersWithForOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithFor204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/for")
     .get({
@@ -618,9 +599,10 @@ export function _parametersWithForSend(
 }
 
 export async function _parametersWithForDeserialize(
-  result: ParametersWithFor204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -640,7 +622,7 @@ export function _parametersWithFromSend(
   context: Client,
   fromParam: string,
   options: ParametersWithFromOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithFrom204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/from")
     .get({
@@ -650,9 +632,10 @@ export function _parametersWithFromSend(
 }
 
 export async function _parametersWithFromDeserialize(
-  result: ParametersWithFrom204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -672,7 +655,7 @@ export function _parametersWithGlobalSend(
   context: Client,
   global: string,
   options: ParametersWithGlobalOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithGlobal204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/global")
     .get({
@@ -682,9 +665,10 @@ export function _parametersWithGlobalSend(
 }
 
 export async function _parametersWithGlobalDeserialize(
-  result: ParametersWithGlobal204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -704,7 +688,7 @@ export function _parametersWithIfSend(
   context: Client,
   ifParam: string,
   options: ParametersWithIfOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithIf204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/if")
     .get({
@@ -714,9 +698,10 @@ export function _parametersWithIfSend(
 }
 
 export async function _parametersWithIfDeserialize(
-  result: ParametersWithIf204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -736,7 +721,7 @@ export function _parametersWithImportSend(
   context: Client,
   importParam: string,
   options: ParametersWithImportOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithImport204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/import")
     .get({
@@ -746,9 +731,10 @@ export function _parametersWithImportSend(
 }
 
 export async function _parametersWithImportDeserialize(
-  result: ParametersWithImport204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -768,7 +754,7 @@ export function _parametersWithInSend(
   context: Client,
   inParam: string,
   options: ParametersWithInOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithIn204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/in")
     .get({
@@ -778,9 +764,10 @@ export function _parametersWithInSend(
 }
 
 export async function _parametersWithInDeserialize(
-  result: ParametersWithIn204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -800,7 +787,7 @@ export function _parametersWithIsSend(
   context: Client,
   is: string,
   options: ParametersWithIsOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithIs204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/is")
     .get({
@@ -810,9 +797,10 @@ export function _parametersWithIsSend(
 }
 
 export async function _parametersWithIsDeserialize(
-  result: ParametersWithIs204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -832,7 +820,7 @@ export function _parametersWithLambdaSend(
   context: Client,
   lambda: string,
   options: ParametersWithLambdaOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithLambda204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/lambda")
     .get({
@@ -842,9 +830,10 @@ export function _parametersWithLambdaSend(
 }
 
 export async function _parametersWithLambdaDeserialize(
-  result: ParametersWithLambda204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -864,7 +853,7 @@ export function _parametersWithNotSend(
   context: Client,
   not: string,
   options: ParametersWithNotOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithNot204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/not")
     .get({
@@ -874,9 +863,10 @@ export function _parametersWithNotSend(
 }
 
 export async function _parametersWithNotDeserialize(
-  result: ParametersWithNot204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -896,7 +886,7 @@ export function _parametersWithOrSend(
   context: Client,
   or: string,
   options: ParametersWithOrOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithOr204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/or")
     .get({
@@ -906,9 +896,10 @@ export function _parametersWithOrSend(
 }
 
 export async function _parametersWithOrDeserialize(
-  result: ParametersWithOr204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -928,7 +919,7 @@ export function _parametersWithPassSend(
   context: Client,
   pass: string,
   options: ParametersWithPassOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithPass204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/pass")
     .get({
@@ -938,9 +929,10 @@ export function _parametersWithPassSend(
 }
 
 export async function _parametersWithPassDeserialize(
-  result: ParametersWithPass204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -960,7 +952,7 @@ export function _parametersWithRaiseSend(
   context: Client,
   raise: string,
   options: ParametersWithRaiseOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithRaise204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/raise")
     .get({
@@ -970,9 +962,10 @@ export function _parametersWithRaiseSend(
 }
 
 export async function _parametersWithRaiseDeserialize(
-  result: ParametersWithRaise204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -992,7 +985,7 @@ export function _parametersWithReturnSend(
   context: Client,
   returnParam: string,
   options: ParametersWithReturnOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithReturn204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/return")
     .get({
@@ -1002,9 +995,10 @@ export function _parametersWithReturnSend(
 }
 
 export async function _parametersWithReturnDeserialize(
-  result: ParametersWithReturn204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1024,7 +1018,7 @@ export function _parametersWithTrySend(
   context: Client,
   tryParam: string,
   options: ParametersWithTryOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithTry204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/try")
     .get({
@@ -1034,9 +1028,10 @@ export function _parametersWithTrySend(
 }
 
 export async function _parametersWithTryDeserialize(
-  result: ParametersWithTry204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1056,7 +1051,7 @@ export function _parametersWithWhileSend(
   context: Client,
   whileParam: string,
   options: ParametersWithWhileOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithWhile204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/while")
     .get({
@@ -1066,9 +1061,10 @@ export function _parametersWithWhileSend(
 }
 
 export async function _parametersWithWhileDeserialize(
-  result: ParametersWithWhile204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1088,7 +1084,7 @@ export function _parametersWithWithSend(
   context: Client,
   withParam: string,
   options: ParametersWithWithOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithWith204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/with")
     .get({
@@ -1098,9 +1094,10 @@ export function _parametersWithWithSend(
 }
 
 export async function _parametersWithWithDeserialize(
-  result: ParametersWithWith204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1120,7 +1117,7 @@ export function _parametersWithYieldSend(
   context: Client,
   yieldParam: string,
   options: ParametersWithYieldOptionalParams = { requestOptions: {} },
-): StreamableMethod<ParametersWithYield204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/yield")
     .get({
@@ -1130,9 +1127,10 @@ export function _parametersWithYieldSend(
 }
 
 export async function _parametersWithYieldDeserialize(
-  result: ParametersWithYield204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1154,7 +1152,7 @@ export function _parametersWithCancellationTokenSend(
   options: ParametersWithCancellationTokenOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ParametersWithCancellationToken204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/parameters/cancellationToken")
     .get({
@@ -1164,9 +1162,10 @@ export function _parametersWithCancellationTokenSend(
 }
 
 export async function _parametersWithCancellationTokenDeserialize(
-  result: ParametersWithCancellationToken204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

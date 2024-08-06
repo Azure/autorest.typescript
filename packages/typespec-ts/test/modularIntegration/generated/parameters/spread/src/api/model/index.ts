@@ -2,17 +2,11 @@
 // Licensed under the MIT license.
 
 import { BodyParameter } from "../../models/models.js";
-import {
-  SpreadContext as Client,
-  ModelSpreadAsRequestBody204Response,
-  ModelSpreadCompositeRequest204Response,
-  ModelSpreadCompositeRequestMix204Response,
-  ModelSpreadCompositeRequestOnlyWithBody204Response,
-  ModelSpreadCompositeRequestWithoutBody204Response,
-} from "../../rest/index.js";
+import { SpreadContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -27,7 +21,7 @@ export function _modelSpreadAsRequestBodySend(
   context: Client,
   name: string,
   options: ModelSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelSpreadAsRequestBody204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/model/request-body")
     .put({
@@ -37,9 +31,10 @@ export function _modelSpreadAsRequestBodySend(
 }
 
 export async function _modelSpreadAsRequestBodyDeserialize(
-  result: ModelSpreadAsRequestBody204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -61,7 +56,7 @@ export function _modelSpreadCompositeRequestOnlyWithBodySend(
   options: ModelSpreadCompositeRequestOnlyWithBodyOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ModelSpreadCompositeRequestOnlyWithBody204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/model/composite-request-only-with-body")
     .put({
@@ -71,9 +66,10 @@ export function _modelSpreadCompositeRequestOnlyWithBodySend(
 }
 
 export async function _modelSpreadCompositeRequestOnlyWithBodyDeserialize(
-  result: ModelSpreadCompositeRequestOnlyWithBody204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -102,7 +98,7 @@ export function _modelSpreadCompositeRequestWithoutBodySend(
   options: ModelSpreadCompositeRequestWithoutBodyOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ModelSpreadCompositeRequestWithoutBody204Response> {
+): StreamableMethod {
   return context
     .path(
       "/parameters/spread/model/composite-request-without-body/{name}",
@@ -115,9 +111,10 @@ export function _modelSpreadCompositeRequestWithoutBodySend(
 }
 
 export async function _modelSpreadCompositeRequestWithoutBodyDeserialize(
-  result: ModelSpreadCompositeRequestWithoutBody204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -147,7 +144,7 @@ export function _modelSpreadCompositeRequestSend(
   testHeader: string,
   body: BodyParameter,
   options: ModelSpreadCompositeRequestOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelSpreadCompositeRequest204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/model/composite-request/{name}", name)
     .put({
@@ -158,9 +155,10 @@ export function _modelSpreadCompositeRequestSend(
 }
 
 export async function _modelSpreadCompositeRequestDeserialize(
-  result: ModelSpreadCompositeRequest204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -192,7 +190,7 @@ export function _modelSpreadCompositeRequestMixSend(
   options: ModelSpreadCompositeRequestMixOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ModelSpreadCompositeRequestMix204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/model/composite-request-mix/{name}", name)
     .put({
@@ -203,9 +201,10 @@ export function _modelSpreadCompositeRequestMixSend(
 }
 
 export async function _modelSpreadCompositeRequestMixDeserialize(
-  result: ModelSpreadCompositeRequestMix204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

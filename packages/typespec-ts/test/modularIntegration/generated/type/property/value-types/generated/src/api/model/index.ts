@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { innerModelSerializer, ModelProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  ModelGet200Response,
-  ModelPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _modelGetSend(
   context: Client,
   options: ModelGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _modelGetDeserialize(
-  result: ModelGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<ModelProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _modelPutSend(
   context: Client,
   body: ModelProperty,
   options: ModelPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/model")
     .put({
@@ -61,9 +59,10 @@ export function _modelPutSend(
 }
 
 export async function _modelPutDeserialize(
-  result: ModelPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { extensionSerializer, Extension } from "../models/models.js";
-import {
-  RecursiveContext as Client,
-  Get200Response,
-  Put204Response,
-} from "../rest/index.js";
+import { RecursiveContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { PutOptionalParams, GetOptionalParams } from "../models/options.js";
@@ -18,7 +15,7 @@ export function _putSend(
   context: Client,
   input: Extension,
   options: PutOptionalParams = { requestOptions: {} },
-): StreamableMethod<Put204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/recursive")
     .put({
@@ -33,8 +30,11 @@ export function _putSend(
     });
 }
 
-export async function _putDeserialize(result: Put204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _putDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,16 +53,17 @@ export async function put(
 export function _getSend(
   context: Client,
   options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/recursive")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: Get200Response,
+  result: PathUncheckedResponse,
 ): Promise<Extension> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -70,7 +71,7 @@ export async function _getDeserialize(
     extension:
       result.body["extension"] === undefined
         ? result.body["extension"]
-        : result.body["extension"].map((p) => {
+        : result.body["extension"].map((p: any) => {
             return {
               extension: !p.extension ? undefined : p.extension,
               level: p["level"],

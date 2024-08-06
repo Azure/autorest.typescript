@@ -4,8 +4,8 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createNotVersioned,
-  NotVersionedClientOptionalParams,
   NotVersionedContext,
+  NotVersionedClientOptionalParams,
   withoutApiVersion,
   withQueryApiVersion,
   withPathApiVersion,
@@ -32,7 +32,6 @@ export class NotVersionedClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createNotVersioned(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

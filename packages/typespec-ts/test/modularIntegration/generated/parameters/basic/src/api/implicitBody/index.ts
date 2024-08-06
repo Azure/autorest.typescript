@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  BasicContext as Client,
-  ImplicitBodySimple204Response,
-} from "../../rest/index.js";
+import { BasicContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { ImplicitBodySimpleOptionalParams } from "../../models/options.js";
@@ -16,7 +14,7 @@ export function _implicitBodySimpleSend(
   context: Client,
   name: string,
   options: ImplicitBodySimpleOptionalParams = { requestOptions: {} },
-): StreamableMethod<ImplicitBodySimple204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/basic/implicit-body/simple")
     .put({
@@ -26,9 +24,10 @@ export function _implicitBodySimpleSend(
 }
 
 export async function _implicitBodySimpleDeserialize(
-  result: ImplicitBodySimple204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -60,8 +60,8 @@ import {
 } from "./classic/nullableModelValue/index.js";
 import {
   createArray,
-  ArrayClientOptionalParams,
   ArrayContext,
+  ArrayClientOptionalParams,
 } from "./api/index.js";
 
 export { ArrayClientOptionalParams } from "./api/arrayContext.js";
@@ -77,7 +77,6 @@ export class ArrayClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createArray({
       ...options,
       userAgentOptions: { userAgentPrefix },

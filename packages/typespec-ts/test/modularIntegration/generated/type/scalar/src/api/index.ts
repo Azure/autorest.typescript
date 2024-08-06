@@ -3,8 +3,8 @@
 
 export {
   createScalar,
-  ScalarClientOptionalParams,
   ScalarContext,
+  ScalarClientOptionalParams,
 } from "./scalarContext.js";
 export { booleanGet, booleanPut } from "./boolean/index.js";
 export {

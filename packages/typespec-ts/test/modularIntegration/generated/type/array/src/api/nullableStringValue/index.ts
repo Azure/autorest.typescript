@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ArrayContext as Client,
-  NullableStringValueGet200Response,
-  NullableStringValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _nullableStringValueGetSend(
   context: Client,
   options: NullableStringValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<NullableStringValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/nullable-string")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _nullableStringValueGetDeserialize(
-  result: NullableStringValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<(string | null)[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export function _nullableStringValuePutSend(
   context: Client,
   body: (string | null)[],
   options: NullableStringValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<NullableStringValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/array/nullable-string")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _nullableStringValuePutDeserialize(
-  result: NullableStringValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

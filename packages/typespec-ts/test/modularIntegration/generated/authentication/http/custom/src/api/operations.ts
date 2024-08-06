@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  CustomContext as Client,
-  Invalid204Response,
-  Invalid403Response,
-  Valid204Response,
-} from "../rest/index.js";
+import { CustomContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +16,17 @@ import {
 export function _validSend(
   context: Client,
   options: ValidOptionalParams = { requestOptions: {} },
-): StreamableMethod<Valid204Response> {
+): StreamableMethod {
   return context
     .path("/authentication/http/custom/valid")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _validDeserialize(
-  result: Valid204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,16 +45,17 @@ export async function valid(
 export function _invalidSend(
   context: Client,
   options: InvalidOptionalParams = { requestOptions: {} },
-): StreamableMethod<Invalid204Response | Invalid403Response> {
+): StreamableMethod {
   return context
     .path("/authentication/http/custom/invalid")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _invalidDeserialize(
-  result: Invalid204Response | Invalid403Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

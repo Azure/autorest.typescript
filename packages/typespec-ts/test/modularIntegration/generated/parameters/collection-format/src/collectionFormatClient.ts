@@ -9,8 +9,8 @@ import {
 } from "./classic/header/index.js";
 import {
   createCollectionFormat,
-  CollectionFormatClientOptionalParams,
   CollectionFormatContext,
+  CollectionFormatClientOptionalParams,
 } from "./api/index.js";
 
 export { CollectionFormatClientOptionalParams } from "./api/collectionFormatContext.js";
@@ -26,7 +26,6 @@ export class CollectionFormatClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createCollectionFormat({
       ...options,
       userAgentOptions: { userAgentPrefix },

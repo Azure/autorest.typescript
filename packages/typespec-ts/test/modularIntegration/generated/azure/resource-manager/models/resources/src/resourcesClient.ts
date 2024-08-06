@@ -12,8 +12,8 @@ import {
 } from "./classic/nestedProxyResources/index.js";
 import {
   createResources,
-  ResourcesClientOptionalParams,
   ResourcesContext,
+  ResourcesClientOptionalParams,
 } from "./api/index.js";
 
 export { ResourcesClientOptionalParams } from "./api/resourcesContext.js";
@@ -32,7 +32,6 @@ export class ResourcesClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createResources({
       ...options,
       userAgentOptions: { userAgentPrefix },

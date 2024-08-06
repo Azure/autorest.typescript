@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BodyModel as BodyModelRest } from "../rest/index.js";
-
 export interface BodyModel {
   name: string;
 }
 
-export function bodyModelSerializer(item: BodyModel): BodyModelRest {
+export function bodyModelSerializer(item: BodyModel): Record<string, unknown> {
   return {
     name: item["name"],
   };

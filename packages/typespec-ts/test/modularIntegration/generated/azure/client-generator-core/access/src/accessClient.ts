@@ -25,8 +25,8 @@ import {
 } from "./models/options.js";
 import {
   createAccess,
-  AccessClientOptionalParams,
   AccessContext,
+  AccessClientOptionalParams,
   noDecoratorInPublic,
   publicDecoratorInPublic,
   noDecoratorInInternal,
@@ -51,7 +51,6 @@ export class AccessClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createAccess({
       ...options,
       userAgentOptions: { userAgentPrefix },

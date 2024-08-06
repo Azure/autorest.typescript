@@ -8,8 +8,8 @@ import {
 } from "./classic/string/index.js";
 import {
   createFixed,
-  FixedClientOptionalParams,
   FixedContext,
+  FixedClientOptionalParams,
 } from "./api/index.js";
 
 export { FixedClientOptionalParams } from "./api/fixedContext.js";
@@ -24,7 +24,6 @@ export class FixedClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createFixed({
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -14,8 +14,8 @@ import {
   renamedThree,
   renamedFive,
   createRenamedOperation,
-  RenamedOperationClientOptionalParams,
   ServiceContext,
+  RenamedOperationClientOptionalParams,
 } from "./api/index.js";
 
 export { RenamedOperationClientOptionalParams } from "./api/renamedOperationContext.js";
@@ -34,7 +34,6 @@ export class RenamedOperationClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createRenamedOperation(endpointParam, clientParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

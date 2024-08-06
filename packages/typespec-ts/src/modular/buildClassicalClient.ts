@@ -14,8 +14,8 @@ import {
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
+  buildUserAgentOptions,
   getClientParameters,
-  getUserAgentStatements,
   importCredential
 } from "./helpers/clientHelpers.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
@@ -90,15 +90,21 @@ export function buildClassicalClient(
     parameters: classicalParams
   });
 
-  const paramNames = (contextParams ?? []).map((p) => p.name);
-  const { updatedParamNames, userAgentStatements } = getUserAgentStatements(
-    "azsdk-js-client",
-    paramNames
-  );
+  const paramNames = (contextParams ?? [])
+    .map((p) => p.name)
+    .map((x) => {
+      if (x === "options") {
+        return `{...options, userAgentOptions: ${buildUserAgentOptions(
+          constructor,
+          "azsdk-js-client"
+        )}}`;
+      } else {
+        return x;
+      }
+    });
 
   constructor.addStatements([
-    userAgentStatements,
-    `this._client = create${modularClientName}(${updatedParamNames.join(",")})`
+    `this._client = create${modularClientName}(${paramNames.join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
   importCredential(codeModel.runtimeImports, clientFile);
