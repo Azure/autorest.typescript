@@ -52,12 +52,17 @@ export function createOrReplace(
   resource: User,
   options: CreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(context, _createOrReplaceDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createOrReplaceSend(context, name, resource, options),
-  }) as PollerLike<OperationState<User>, User>;
+  return getLongRunningPoller(
+    context,
+    _createOrReplaceDeserialize,
+    ["200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _createOrReplaceSend(context, name, resource, options),
+    },
+  ) as PollerLike<OperationState<User>, User>;
 }
 
 export function _$deleteSend(
@@ -92,7 +97,7 @@ export function $delete(
   name: string,
   options: DeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _$deleteDeserialize, {
+  return getLongRunningPoller(context, _$deleteDeserialize, ["202", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _$deleteSend(context, name, options),
@@ -146,7 +151,7 @@ export function $export(
   format: string,
   options: ExportOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<ExportedUser>, ExportedUser> {
-  return getLongRunningPoller(context, _$exportDeserialize, {
+  return getLongRunningPoller(context, _$exportDeserialize, ["202", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _$exportSend(context, name, format, options),

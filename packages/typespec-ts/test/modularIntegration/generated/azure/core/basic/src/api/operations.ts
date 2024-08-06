@@ -251,6 +251,7 @@ export function list(
     context,
     () => _listSend(context, options),
     _listDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -303,6 +304,7 @@ export function listWithPage(
     context,
     () => _listWithPageSend(context, options),
     _listWithPageDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -361,6 +363,7 @@ export function listWithParameters(
     context,
     () => _listWithParametersSend(context, bodyInput, options),
     _listWithParametersDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -413,6 +416,7 @@ export function listWithCustomPageModel(
     context,
     () => _listWithCustomPageModelSend(context, options),
     _listWithCustomPageModelDeserialize,
+    ["200"],
     { itemName: "items", nextLinkName: "nextLink" },
   );
 }
@@ -538,6 +542,7 @@ export function listFirstItem(
     context,
     () => _listFirstItemSend(context, options),
     _listFirstItemDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -576,6 +581,7 @@ export function listSecondItem(
     context,
     () => _listSecondItemSend(context, options),
     _listSecondItemDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

@@ -188,6 +188,7 @@ export function topLevelTrackedResourcesCreateOrReplace(
   return getLongRunningPoller(
     context,
     _topLevelTrackedResourcesCreateOrReplaceDeserialize,
+    ["200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
@@ -294,6 +295,7 @@ export function topLevelTrackedResourcesUpdate(
   return getLongRunningPoller(
     context,
     _topLevelTrackedResourcesUpdateDeserialize,
+    ["200", "202"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
@@ -356,6 +358,7 @@ export function topLevelTrackedResourcesDelete(
   return getLongRunningPoller(
     context,
     _topLevelTrackedResourcesDeleteDeserialize,
+    ["202", "204", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
@@ -451,6 +454,7 @@ export function topLevelTrackedResourcesListByResourceGroup(
         options,
       ),
     _topLevelTrackedResourcesListByResourceGroupDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -531,6 +535,7 @@ export function topLevelTrackedResourcesListBySubscription(
         options,
       ),
     _topLevelTrackedResourcesListBySubscriptionDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

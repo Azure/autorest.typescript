@@ -182,6 +182,7 @@ export function nestedProxyResourcesCreateOrReplace(
   return getLongRunningPoller(
     context,
     _nestedProxyResourcesCreateOrReplaceDeserialize,
+    ["200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
@@ -273,20 +274,25 @@ export function nestedProxyResourcesUpdate(
   properties: NestedProxyResource,
   options: NestedProxyResourcesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<NestedProxyResource>, NestedProxyResource> {
-  return getLongRunningPoller(context, _nestedProxyResourcesUpdateDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _nestedProxyResourcesUpdateSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        topLevelTrackedResourceName,
-        nextedProxyResourceName,
-        properties,
-        options,
-      ),
-  }) as PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
+  return getLongRunningPoller(
+    context,
+    _nestedProxyResourcesUpdateDeserialize,
+    ["200", "202"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _nestedProxyResourcesUpdateSend(
+          context,
+          subscriptionId,
+          resourceGroupName,
+          topLevelTrackedResourceName,
+          nextedProxyResourceName,
+          properties,
+          options,
+        ),
+    },
+  ) as PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
 }
 
 export function _nestedProxyResourcesDeleteSend(
@@ -328,19 +334,24 @@ export function nestedProxyResourcesDelete(
   nextedProxyResourceName: string,
   options: NestedProxyResourcesDeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _nestedProxyResourcesDeleteDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _nestedProxyResourcesDeleteSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        topLevelTrackedResourceName,
-        nextedProxyResourceName,
-        options,
-      ),
-  }) as PollerLike<OperationState<void>, void>;
+  return getLongRunningPoller(
+    context,
+    _nestedProxyResourcesDeleteDeserialize,
+    ["202", "204", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _nestedProxyResourcesDeleteSend(
+          context,
+          subscriptionId,
+          resourceGroupName,
+          topLevelTrackedResourceName,
+          nextedProxyResourceName,
+          options,
+        ),
+    },
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _nestedProxyResourcesListByTopLevelTrackedResourceSend(
@@ -425,6 +436,7 @@ export function nestedProxyResourcesListByTopLevelTrackedResource(
         options,
       ),
     _nestedProxyResourcesListByTopLevelTrackedResourceDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

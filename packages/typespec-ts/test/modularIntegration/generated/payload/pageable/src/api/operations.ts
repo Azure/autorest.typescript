@@ -50,6 +50,7 @@ export function list(
     context,
     () => _listSend(context, options),
     _listDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

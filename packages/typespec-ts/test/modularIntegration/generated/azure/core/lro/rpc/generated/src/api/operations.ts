@@ -52,9 +52,14 @@ export function longRunningRpc(
   body: GenerationOptions,
   options: LongRunningRpcOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<GenerationResult>, GenerationResult> {
-  return getLongRunningPoller(context, _longRunningRpcDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () => _longRunningRpcSend(context, body, options),
-  }) as PollerLike<OperationState<GenerationResult>, GenerationResult>;
+  return getLongRunningPoller(
+    context,
+    _longRunningRpcDeserialize,
+    ["202", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () => _longRunningRpcSend(context, body, options),
+    },
+  ) as PollerLike<OperationState<GenerationResult>, GenerationResult>;
 }

@@ -48,6 +48,7 @@ export function getLongRunningPoller<
 >(
   client: Client,
   processResponseBody: (result: TResponse) => Promise<TResult>,
+  expectedStatuses: string[],
   options: GetLongRunningPollerOptions<TResponse>,
 ): PollerLike<OperationState<TResult>, TResult> {
   const { restoreFrom, getInitialResponse } = options;
@@ -66,7 +67,7 @@ export function getLongRunningPoller<
         );
       }
       initialResponse = await getInitialResponse();
-      return getLroResponse(initialResponse);
+      return getLroResponse(initialResponse, expectedStatuses);
     },
     sendPollRequest: async (
       path: string,
@@ -99,7 +100,7 @@ export function getLongRunningPoller<
         pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
       }
 
-      return getLroResponse(response as TResponse);
+      return getLroResponse(response as TResponse, expectedStatuses);
     },
   };
   return createHttpPoller(poller, {
@@ -119,9 +120,9 @@ export function getLongRunningPoller<
  */
 function getLroResponse<TResponse extends PathUncheckedResponse>(
   response: TResponse,
+  expectedStatuses: string[],
 ): OperationResponse<TResponse> {
-  const statusCode = Number(response.status);
-  if (statusCode < 200 || statusCode > 299) {
+  if (!expectedStatuses.includes(response.status)) {
     throw createRestError(response);
   }
 
