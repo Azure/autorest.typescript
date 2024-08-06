@@ -124,24 +124,7 @@ export function getDeserializePrivateFunction(
   };
   const statements: string[] = [];
 
-  const expectedStatusCodes = operation.responses.flatMap((x) =>
-    x.statusCodes.filter((x) => x !== "default")
-  );
-
-  // LROs may call the same path but with GET to get the operation status.
-  if (
-    isLroOnly &&
-    operation.method !== "GET" &&
-    !expectedStatusCodes.includes(200)
-  ) {
-    expectedStatusCodes.push(200);
-  }
-
-  statements.push(
-    `const expectedStatuses = [${expectedStatusCodes
-      .map((x) => `"${x}"`)
-      .join(",")}];`
-  );
+  statements.push(`const expectedStatuses = ${getExpectedStatuses(operation)}`);
 
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
@@ -342,7 +325,9 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
 
   const statements: string[] = [];
   statements.push(`
-  return getLongRunningPoller(context, _${name}Deserialize, {
+  return getLongRunningPoller(context, _${name}Deserialize, ${getExpectedStatuses(
+    operation
+  )}, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
@@ -409,6 +394,7 @@ function getPagingOnlyOperationFunction(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,
+      ${getExpectedStatuses(operation)},
       ${options.length > 0 ? `{${options.join(", ")}}` : ``}
       );`
   );
@@ -1486,4 +1472,24 @@ export function isDiscriminatedUnion(type?: SdkType): type is SdkModelType {
       type.discriminatorProperty &&
       type.discriminatedSubtypes
   );
+}
+
+/**
+ * Get an expression representing an array of expected status codes for the operation
+ * @param operation The operation
+ */
+export function getExpectedStatuses(operation: Operation): string {
+  const statusCodes = operation.responses.flatMap((x) =>
+    x.statusCodes.filter((s) => s !== "default")
+  );
+  // LROs may call the same path but with GET to get the operation status.
+  if (
+    isLroOnlyOperation(operation) &&
+    operation.method !== "GET" &&
+    !statusCodes.includes(200)
+  ) {
+    statusCodes.push(200);
+  }
+
+  return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
 }

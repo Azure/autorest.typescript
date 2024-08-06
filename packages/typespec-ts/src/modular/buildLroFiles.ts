@@ -103,9 +103,9 @@ export function buildRestorePollerHelper(
         const resourceLocationConfig = metadata?.["resourceLocationConfig"] as
           | ResourceLocationConfig
           | undefined;
-        const deserializeHelper =
-          options?.processResponseBody ??
-          getDeserializationHelper(initialRequestUrl, requestMethod);
+        const { deserializer, expectedStatuses = [] } =
+          getDeserializationHelper(initialRequestUrl, requestMethod) ?? {};
+        const deserializeHelper = options?.processResponseBody ?? deserializer;
         if (!deserializeHelper) {
           throw new Error(
             \`Please ensure the operation is in this client! We can't find its deserializeHelper for \${sourceOperation?.name}.\`
@@ -114,6 +114,7 @@ export function buildRestorePollerHelper(
         return getLongRunningPoller(
           (client as any)["_client"] ?? client,
           deserializeHelper as (result: TResponse) => Promise<TResult>,
+          expectedStatuses,
           {
             updateIntervalInMs: options?.updateIntervalInMs,
             abortSignal: options?.abortSignal,
@@ -124,14 +125,19 @@ export function buildRestorePollerHelper(
         );
       }
       
-      const deserializeMap: Record<string, Function> = {
+      interface DeserializationHelper {
+        deserializer: Function;
+        expectedStatuses: string[];
+      }
+
+      const deserializeMap: Record<string, DeserializationHelper> = {
         ${deserializeMap.join(",\n")}
       };
 
       function getDeserializationHelper(
         urlStr: string,
         method: string
-      ): ((result: unknown) => Promise<unknown>) | undefined {
+      ): DeserializationHelper | undefined {
         const path = new URL(urlStr).pathname;
         const pathParts = path.split("/");
       
@@ -139,7 +145,7 @@ export function buildRestorePollerHelper(
         // matchedLen: the length of candidate path
         // matchedValue: the matched status code array
         let matchedLen = -1,
-          matchedValue: ((result: unknown) => Promise<unknown>) | undefined;
+          matchedValue: DeserializationHelper | undefined;
       
         // Iterate the responseMap to find a match
         for (const [key, value] of Object.entries(deserializeMap)) {
@@ -193,7 +199,7 @@ export function buildRestorePollerHelper(
           // Update the matched value if and only if we found the longer pattern
           if (found && candidatePath.length > matchedLen) {
             matchedLen = candidatePath.length;
-            matchedValue = value as (result: unknown) => Promise<unknown>;
+            matchedValue = value;
           }
         }
       
@@ -243,7 +249,9 @@ function importDeserializeHelpers(client: Client, sourceFile: SourceFile) {
     });
     value.forEach((detail) => {
       deserializeMap.push(
-        `"${detail.path}": ${detail.renamedDeserName ?? detail.deserName}`
+        `"${detail.path}": { deserializer: ${
+          detail.renamedDeserName ?? detail.deserName
+        }, expectedStatuses: ${detail.expectedStatusesExpression} }`
       );
     });
   }
@@ -308,6 +316,7 @@ export function buildGetPollerHelper(
   >(
     client: Client,
     processResponseBody: (result: TResponse) => Promise<TResult>,
+    expectedStatuses: string[],
     options: GetLongRunningPollerOptions<TResponse>
   ): PollerLike<OperationState<TResult>, TResult> {
     const { restoreFrom, getInitialResponse } = options;
@@ -326,7 +335,7 @@ export function buildGetPollerHelper(
           );
         }
         initialResponse = await getInitialResponse();
-        return getLroResponse(initialResponse);
+        return getLroResponse(initialResponse, expectedStatuses);
       },
       sendPollRequest: async (
         path: string,
@@ -359,7 +368,7 @@ export function buildGetPollerHelper(
           pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
         }
 
-        return getLroResponse(response as TResponse);
+        return getLroResponse(response as TResponse, expectedStatuses);
       }
     };
     return createHttpPoller(poller, {
@@ -379,9 +388,9 @@ export function buildGetPollerHelper(
    */
   function getLroResponse<TResponse extends PathUncheckedResponse>(
     response: TResponse,
+    expectedStatuses: string[]
   ): OperationResponse<TResponse> {
-    const statusCode = Number(response.status);
-    if(statusCode < 200 || statusCode > 299) {
+    if(!expectedStatuses.includes(response.status)) {
       throw createRestError(response);
     }
     

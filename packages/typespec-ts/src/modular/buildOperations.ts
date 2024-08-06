@@ -13,6 +13,7 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
 import {
   getDeserializePrivateFunction,
+  getExpectedStatuses,
   getOperationFunction,
   getOperationOptionsName,
   getSendPrivateFunction,
@@ -361,6 +362,7 @@ export function buildLroDeserDetailMap(client: Client) {
         existingNames.add(deserName);
         return {
           path: `${o.method.toUpperCase()} ${o.url}`,
+          expectedStatusesExpression: getExpectedStatuses(o),
           deserName,
           renamedDeserName
         };
