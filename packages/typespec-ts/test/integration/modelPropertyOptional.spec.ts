@@ -211,6 +211,106 @@ describe("ModelsPropertyOptional Rest Client", () => {
     }
   });
 
+  it("should get all plainDate", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainDate/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, "2022-12-12");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default plainDate", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainDate/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all plainDate", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainDate/all")
+        .put({
+          body: { property: "2022-12-12" }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default plainDate", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainDate/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all plainTime", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainTime/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, "13:06:12");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default plainTime", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainTime/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all plainTime", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainTime/all")
+        .put({
+          body: { property: "13:06:12" }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default plainTime", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/plainTime/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
   it("should get all collections bytes", async () => {
     try {
       const result = await client

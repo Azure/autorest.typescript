@@ -38,10 +38,7 @@ export async function _getAllDeserialize(
   }
 
   return {
-    property:
-      result.body["property"] !== undefined
-        ? new Date(result.body["property"])
-        : undefined,
+    property: result.body["property"],
   };
 }
 
@@ -71,10 +68,7 @@ export async function _getDefaultDeserialize(
   }
 
   return {
-    property:
-      result.body["property"] !== undefined
-        ? new Date(result.body["property"])
-        : undefined,
+    property: result.body["property"],
   };
 }
 
@@ -96,7 +90,7 @@ export function _putAllSend(
     .path("/type/property/optional/plainDate/all")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { property: body["property"]?.toDateString() },
+      body: { property: body["property"] },
     });
 }
 
@@ -129,7 +123,7 @@ export function _putDefaultSend(
     .path("/type/property/optional/plainDate/default")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { property: body["property"]?.toDateString() },
+      body: { property: body["property"] },
     });
 }
 

@@ -75,7 +75,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 }
 
 const deserializeMap: Record<string, Function> = {
-  "POST /azure/core/lro/rpc/generations:submit": _longRunningRpcDeserialize,
+  "POST /generations:submit": _longRunningRpcDeserialize,
 };
 
 function getDeserializationHelper(

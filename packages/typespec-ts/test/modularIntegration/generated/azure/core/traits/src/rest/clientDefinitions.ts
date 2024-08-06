@@ -30,13 +30,10 @@ export interface RepeatableAction {
 }
 
 export interface Routes {
-  /** Resource for '/azure/core/traits/user/\{id\}' has methods for the following verbs: get */
-  (path: "/azure/core/traits/user/{id}", id: number): SmokeTest;
-  /** Resource for '/azure/core/traits/user/\{id\}:repeatableAction' has methods for the following verbs: post */
-  (
-    path: "/azure/core/traits/user/{id}:repeatableAction",
-    id: number,
-  ): RepeatableAction;
+  /** Resource for '/user/\{id\}' has methods for the following verbs: get */
+  (path: "/user/{id}", id: number): SmokeTest;
+  /** Resource for '/user/\{id\}:repeatableAction' has methods for the following verbs: post */
+  (path: "/user/{id}:repeatableAction", id: number): RepeatableAction;
 }
 
 export type TraitsContext = Client & {

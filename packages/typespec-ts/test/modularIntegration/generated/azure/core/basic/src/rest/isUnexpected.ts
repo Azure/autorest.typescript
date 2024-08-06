@@ -29,17 +29,17 @@ import {
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /azure/core/basic/users/{id}": ["200", "201"],
-  "PUT /azure/core/basic/users/{id}": ["200", "201"],
-  "GET /azure/core/basic/users/{id}": ["200"],
-  "DELETE /azure/core/basic/users/{id}": ["204"],
-  "GET /azure/core/basic/users": ["200"],
-  "GET /azure/core/basic/page": ["200"],
-  "GET /azure/core/basic/parameters": ["200"],
-  "GET /azure/core/basic/custom-page": ["200"],
-  "POST /azure/core/basic/users/{id}:export": ["200"],
-  "GET /azure/core/basic/first-item": ["200"],
-  "GET /azure/core/basic/second-item": ["200"],
+  "PATCH /users/{id}": ["200", "201"],
+  "PUT /users/{id}": ["200", "201"],
+  "GET /users/{id}": ["200"],
+  "DELETE /users/{id}": ["204"],
+  "GET /users": ["200"],
+  "GET /page": ["200"],
+  "GET /parameters": ["200"],
+  "GET /custom-page": ["200"],
+  "POST /users/{id}:export": ["200"],
+  "GET /first-item": ["200"],
+  "GET /second-item": ["200"],
 };
 
 export function isUnexpected(
