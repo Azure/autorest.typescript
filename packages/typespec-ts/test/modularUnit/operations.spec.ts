@@ -654,6 +654,7 @@ describe("operations", () => {
                     context,
                     () => _testSend(context, options),
                     _testDeserialize,
+                    ["200"],
                     {itemName: "lists"}
                     );
         }`,
