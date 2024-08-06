@@ -73,7 +73,7 @@ export function _createOrUpdateSend(
   | CreateOrUpdateDefaultResponse
 > {
   return context
-    .path("/azure/core/basic/users/{id}", id)
+    .path("/users/{id}", id)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -133,7 +133,7 @@ export function _createOrReplaceSend(
   | CreateOrReplaceDefaultResponse
 > {
   return context
-    .path("/azure/core/basic/users/{id}", id)
+    .path("/users/{id}", id)
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
@@ -186,7 +186,7 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get200Response | GetDefaultResponse> {
   return context
-    .path("/azure/core/basic/users/{id}", id)
+    .path("/users/{id}", id)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -225,7 +225,7 @@ export function _listSend(
   options: ListOptionalParams = { requestOptions: {} },
 ): StreamableMethod<List200Response | ListDefaultResponse> {
   return context
-    .path("/azure/core/basic/users")
+    .path("/users")
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
@@ -296,7 +296,7 @@ export function _listWithPageSend(
   options: ListWithPageOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse> {
   return context
-    .path("/azure/core/basic/page")
+    .path("/page")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -350,7 +350,7 @@ export function _listWithParametersSend(
   ListWithParameters200Response | ListWithParametersDefaultResponse
 > {
   return context
-    .path("/azure/core/basic/parameters")
+    .path("/parameters")
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { another: options?.another },
@@ -408,7 +408,7 @@ export function _listWithCustomPageModelSend(
   ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse
 > {
   return context
-    .path("/azure/core/basic/custom-page")
+    .path("/custom-page")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -462,7 +462,7 @@ export function _$deleteSend(
   options: DeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Delete204Response | DeleteDefaultResponse> {
   return context
-    .path("/azure/core/basic/users/{id}", id)
+    .path("/users/{id}", id)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -498,7 +498,7 @@ export function _$exportSend(
   options: ExportOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Export200Response | ExportDefaultResponse> {
   return context
-    .path("/azure/core/basic/users/{id}:export", id)
+    .path("/users/{id}:export", id)
     .post({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { format: format },
@@ -546,7 +546,7 @@ export function _listFirstItemSend(
   options: ListFirstItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse> {
   return context
-    .path("/azure/core/basic/first-item")
+    .path("/first-item")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -583,7 +583,7 @@ export function _listSecondItemSend(
   options: ListSecondItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse> {
   return context
-    .path("/azure/core/basic/second-item")
+    .path("/second-item")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

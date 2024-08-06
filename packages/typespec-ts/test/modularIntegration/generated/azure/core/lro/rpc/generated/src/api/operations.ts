@@ -28,7 +28,7 @@ export function _longRunningRpcSend(
   | LongRunningRpcLogicalResponse
 > {
   return context
-    .path("/azure/core/lro/rpc/generations:submit")
+    .path("/generations:submit")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: { prompt: body["prompt"] },

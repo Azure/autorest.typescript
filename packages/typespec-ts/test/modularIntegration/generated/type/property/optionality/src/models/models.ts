@@ -187,28 +187,28 @@ export function collectionsBytePropertySerializer(
 /** Model with a plainTime property */
 export interface PlainTimeProperty {
   /** Property */
-  property?: Date;
+  property?: string;
 }
 
 export function plainTimePropertySerializer(
   item: PlainTimeProperty,
 ): PlainTimePropertyRest {
   return {
-    property: item["property"]?.toTimeString(),
+    property: item["property"],
   };
 }
 
 /** Model with a plainDate property */
 export interface PlainDateProperty {
   /** Property */
-  property?: Date;
+  property?: string;
 }
 
 export function plainDatePropertySerializer(
   item: PlainDateProperty,
 ): PlainDatePropertyRest {
   return {
-    property: item["property"]?.toDateString(),
+    property: item["property"],
   };
 }
 

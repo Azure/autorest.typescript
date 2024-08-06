@@ -27,7 +27,7 @@ export function _smokeTestSend(
   options: SmokeTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod<SmokeTest200Response | SmokeTestDefaultResponse> {
   return context
-    .path("/azure/core/traits/user/{id}", id)
+    .path("/user/{id}", id)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -84,7 +84,7 @@ export function _repeatableActionSend(
   RepeatableAction200Response | RepeatableActionDefaultResponse
 > {
   return context
-    .path("/azure/core/traits/user/{id}:repeatableAction", id)
+    .path("/user/{id}:repeatableAction", id)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {

@@ -125,22 +125,22 @@ export interface ListSecondItem {
 }
 
 export interface Routes {
-  /** Resource for '/azure/core/basic/users/\{id\}' has methods for the following verbs: patch, put, get, delete */
-  (path: "/azure/core/basic/users/{id}", id: number): CreateOrUpdate;
-  /** Resource for '/azure/core/basic/users' has methods for the following verbs: get */
-  (path: "/azure/core/basic/users"): List;
-  /** Resource for '/azure/core/basic/page' has methods for the following verbs: get */
-  (path: "/azure/core/basic/page"): ListWithPage;
-  /** Resource for '/azure/core/basic/parameters' has methods for the following verbs: get */
-  (path: "/azure/core/basic/parameters"): ListWithParameters;
-  /** Resource for '/azure/core/basic/custom-page' has methods for the following verbs: get */
-  (path: "/azure/core/basic/custom-page"): ListWithCustomPageModel;
-  /** Resource for '/azure/core/basic/users/\{id\}:export' has methods for the following verbs: post */
-  (path: "/azure/core/basic/users/{id}:export", id: number): Export;
-  /** Resource for '/azure/core/basic/first-item' has methods for the following verbs: get */
-  (path: "/azure/core/basic/first-item"): ListFirstItem;
-  /** Resource for '/azure/core/basic/second-item' has methods for the following verbs: get */
-  (path: "/azure/core/basic/second-item"): ListSecondItem;
+  /** Resource for '/users/\{id\}' has methods for the following verbs: patch, put, get, delete */
+  (path: "/users/{id}", id: number): CreateOrUpdate;
+  /** Resource for '/users' has methods for the following verbs: get */
+  (path: "/users"): List;
+  /** Resource for '/page' has methods for the following verbs: get */
+  (path: "/page"): ListWithPage;
+  /** Resource for '/parameters' has methods for the following verbs: get */
+  (path: "/parameters"): ListWithParameters;
+  /** Resource for '/custom-page' has methods for the following verbs: get */
+  (path: "/custom-page"): ListWithCustomPageModel;
+  /** Resource for '/users/\{id\}:export' has methods for the following verbs: post */
+  (path: "/users/{id}:export", id: number): Export;
+  /** Resource for '/first-item' has methods for the following verbs: get */
+  (path: "/first-item"): ListFirstItem;
+  /** Resource for '/second-item' has methods for the following verbs: get */
+  (path: "/second-item"): ListSecondItem;
 }
 
 export type BasicContext = Client & {

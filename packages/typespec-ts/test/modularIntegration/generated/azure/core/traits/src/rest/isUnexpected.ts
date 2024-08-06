@@ -9,8 +9,8 @@ import {
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "GET /azure/core/traits/user/{id}": ["200"],
-  "POST /azure/core/traits/user/{id}:repeatableAction": ["200"],
+  "GET /user/{id}": ["200"],
+  "POST /user/{id}:repeatableAction": ["200"],
 };
 
 export function isUnexpected(

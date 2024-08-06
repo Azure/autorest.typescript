@@ -28,13 +28,13 @@ export interface DurationProperty {
 /** Model with a plainDate property */
 export interface PlainDateProperty {
   /** Property */
-  property?: Date | string;
+  property?: string;
 }
 
 /** Model with a plainTime property */
 export interface PlainTimeProperty {
   /** Property */
-  property?: Date | string;
+  property?: string;
 }
 
 /** Model with collection bytes properties */

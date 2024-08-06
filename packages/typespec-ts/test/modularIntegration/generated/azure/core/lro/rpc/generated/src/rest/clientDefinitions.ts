@@ -18,8 +18,8 @@ export interface LongRunningRpc {
 }
 
 export interface Routes {
-  /** Resource for '/azure/core/lro/rpc/generations:submit' has methods for the following verbs: post */
-  (path: "/azure/core/lro/rpc/generations:submit"): LongRunningRpc;
+  /** Resource for '/generations:submit' has methods for the following verbs: post */
+  (path: "/generations:submit"): LongRunningRpc;
 }
 
 export type RpcContext = Client & {

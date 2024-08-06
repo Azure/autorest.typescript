@@ -79,9 +79,9 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 }
 
 const deserializeMap: Record<string, Function> = {
-  "PUT /azure/core/lro/standard/users/{name}": _createOrReplaceDeserialize,
-  "DELETE /azure/core/lro/standard/users/{name}": _$deleteDeserialize,
-  "POST /azure/core/lro/standard/users/{name}:export": _$exportDeserialize,
+  "PUT /users/{name}": _createOrReplaceDeserialize,
+  "DELETE /users/{name}": _$deleteDeserialize,
+  "POST /users/{name}:export": _$exportDeserialize,
 };
 
 function getDeserializationHelper(

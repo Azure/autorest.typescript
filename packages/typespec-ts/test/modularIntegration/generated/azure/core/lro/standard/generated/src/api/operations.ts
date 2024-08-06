@@ -41,7 +41,7 @@ export function _createOrReplaceSend(
   | CreateOrReplaceLogicalResponse
 > {
   return context
-    .path("/azure/core/lro/standard/users/{name}", name)
+    .path("/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
       body: { role: resource["role"] },
@@ -89,7 +89,7 @@ export function _$deleteSend(
   Delete202Response | DeleteDefaultResponse | DeleteLogicalResponse
 > {
   return context
-    .path("/azure/core/lro/standard/users/{name}", name)
+    .path("/users/{name}", name)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -130,7 +130,7 @@ export function _$exportSend(
   Export202Response | ExportDefaultResponse | ExportLogicalResponse
 > {
   return context
-    .path("/azure/core/lro/standard/users/{name}:export", name)
+    .path("/users/{name}:export", name)
     .post({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { format: format },
