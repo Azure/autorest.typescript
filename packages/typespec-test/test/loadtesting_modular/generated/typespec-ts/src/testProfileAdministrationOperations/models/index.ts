@@ -91,8 +91,3 @@ export {
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
 } from "./options.js";
-export {
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";
