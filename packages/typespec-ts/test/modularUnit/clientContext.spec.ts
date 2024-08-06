@@ -157,13 +157,16 @@ describe("modular client context type", () => {
         export interface ServiceContext extends Client {}
         
         /** Optional parameters for the client. */
-        export interface ServiceClientOptionalParams  extends ClientOptions  {}
+        export interface ServiceClientOptionalParams  extends ClientOptions {
+          /** Need to be set as 'http://localhost:3000' in client. */
+          endpointParam?: string;
+        }
         
         export function createService(
-          endpointParam: string,
           clientParam: ClientType,
           options: ServiceClientOptionalParams  = {}
         ): ServiceContext {
+          const endpointParam = options.endpointParam ?? "http://localhost:3000";
           const endpointUrl =
             options.endpoint ??
             options.baseUrl ??
