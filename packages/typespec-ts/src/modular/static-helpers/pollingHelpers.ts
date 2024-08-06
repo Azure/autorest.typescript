@@ -12,7 +12,6 @@ import {
 
 import {
   Client,
-  OperationOptions,
   PathUncheckedResponse,
   createRestError
 } from "@azure-rest/core-client";
@@ -49,6 +48,7 @@ export function getLongRunningPoller<
 >(
   client: Client,
   processResponseBody: (result: TResponse) => Promise<TResult>,
+  expectedStatuses: string[],
   options: GetLongRunningPollerOptions<TResponse>
 ): PollerLike<OperationState<TResult>, TResult> {
   const { restoreFrom, getInitialResponse } = options;
@@ -67,7 +67,7 @@ export function getLongRunningPoller<
         );
       }
       initialResponse = await getInitialResponse();
-      return getLroResponse(initialResponse);
+      return getLroResponse(initialResponse, expectedStatuses);
     },
     sendPollRequest: async (
       path: string,
@@ -99,12 +99,8 @@ export function getLongRunningPoller<
         options.abortSignal?.removeEventListener("abort", abortListener);
         pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
       }
-      if (options.initialRequestUrl || initialResponse) {
-        response.headers["x-ms-original-url"] =
-          options.initialRequestUrl ?? initialResponse!.request.url;
-      }
 
-      return getLroResponse(response as TResponse);
+      return getLroResponse(response as TResponse, expectedStatuses);
     }
   };
   return createHttpPoller(poller, {
@@ -123,9 +119,13 @@ export function getLongRunningPoller<
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResponse extends PathUncheckedResponse>(
-  response: TResponse
+  response: TResponse,
+  expectedStatuses: string[]
 ): OperationResponse<TResponse> {
-  checkResponse(response);
+  if (!expectedStatuses.includes(response.status)) {
+    throw createRestError(response);
+  }
+
   return {
     flatResponse: response,
     rawResponse: {
@@ -134,44 +134,4 @@ function getLroResponse<TResponse extends PathUncheckedResponse>(
       body: response.body
     }
   };
-}
-
-/**
- * Checks if a request failed
- */
-function checkResponse(response: PathUncheckedResponse): void {
-  const statusCode = Number(response.status);
-  if (statusCode < 200 || statusCode >= 300) {
-    const errorMessage = response.body?.message ?? "";
-    if (statusCode >= 400 && statusCode < 500) {
-      throw createRestError(
-        `Poller failed with client error statusCode ${response.status}\n ${errorMessage}`,
-        response
-      );
-    } else if (statusCode >= 500) {
-      throw createRestError(
-        `Poller failed with server error statusCode ${response.status}\n ${errorMessage}`,
-        response
-      );
-    } else {
-      throw createRestError(
-        `Poller failed with unexpected statusCode ${response.status}\n ${errorMessage}`,
-        response
-      );
-    }
-  }
-}
-
-export interface RestorePollerOptions<
-  TResult,
-  TResponse extends PathUncheckedResponse = PathUncheckedResponse
-> extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /**
-   * The signal which can be used to abort requests.
-   */
-  abortSignal?: AbortSignalLike;
-  /** Deserialization function for raw response body */
-  processResponseBody?: (result: TResponse) => Promise<TResult>;
 }
