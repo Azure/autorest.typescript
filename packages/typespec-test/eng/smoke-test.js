@@ -149,11 +149,11 @@ async function main() {
 
   for (const folder of folders) {
     const path = join(root, "test", folder);
-    const generatePromise = await generateSmokeTest(path);
-    // generatePromises.push(generatePromise);
+    const generatePromise = generateSmokeTest(path);
+    generatePromises.push(generatePromise);
   }
 
-  // await Promise.all(generatePromises);
+  await Promise.all(generatePromises);
 
   if (failed.length > 0) {
     console.error("\x1b[31m%s\x1b[0m", `Failed folders: ${failed.join(", ")}`);
