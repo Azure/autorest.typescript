@@ -19,9 +19,9 @@ export function createParametrizedHost(
   credential: TokenCredential,
   options: ParametrizedHostClientOptionalParams = {},
 ): ParametrizedHostContext {
-  const host = options.host;
-  const subdomain = options.subdomain;
-  const sufix = options.sufix;
+  const host = options.host ?? "one";
+  const subdomain = options.subdomain ?? "two";
+  const sufix = options.sufix ?? "three";
   const apiVersion = options.apiVersion;
   const endpointUrl =
     options.endpoint ??
