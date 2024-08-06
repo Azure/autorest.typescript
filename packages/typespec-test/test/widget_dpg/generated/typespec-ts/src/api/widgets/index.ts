@@ -158,6 +158,7 @@ export function listWidgetsPages(
     context,
     () => _listWidgetsPagesSend(context, page, pageSize, options),
     _listWidgetsPagesDeserialize,
+    ["200"],
     { itemName: "results", nextLinkName: "odata.nextLink" },
   );
 }
@@ -202,6 +203,7 @@ export function queryWidgetsPages(
     context,
     () => _queryWidgetsPagesSend(context, page, pageSize, options),
     _queryWidgetsPagesDeserialize,
+    ["200"],
     { itemName: "results", nextLinkName: "odata.nextLink" },
   );
 }
@@ -323,12 +325,17 @@ export function createOrReplace(
   resource: User,
   options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(context, _createOrReplaceDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createOrReplaceSend(context, name, resource, options),
-  }) as PollerLike<OperationState<User>, User>;
+  return getLongRunningPoller(
+    context,
+    _createOrReplaceDeserialize,
+    ["200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _createOrReplaceSend(context, name, resource, options),
+    },
+  ) as PollerLike<OperationState<User>, User>;
 }
 
 export function _updateWidgetSend(

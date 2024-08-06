@@ -196,6 +196,7 @@ export function listByResourceGroup(
         options,
       ),
     _listByResourceGroupDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -284,6 +285,7 @@ export function listBySubscription(
     context,
     () => _listBySubscriptionSend(context, subscriptionId, options),
     _listBySubscriptionDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

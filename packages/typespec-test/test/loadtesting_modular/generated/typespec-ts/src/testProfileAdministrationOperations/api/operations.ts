@@ -237,6 +237,7 @@ export function listTestProfiles(
     context,
     () => _listTestProfilesSend(context, options),
     _listTestProfilesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

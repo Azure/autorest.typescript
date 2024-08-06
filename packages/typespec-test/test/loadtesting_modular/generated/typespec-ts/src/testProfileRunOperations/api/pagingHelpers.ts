@@ -27,6 +27,7 @@ export function buildPagedAsyncIterator<
   client: Client,
   getInitialResponse: () => PromiseLike<TResponse>,
   processResponseBody: (result: TResponse) => PromiseLike<unknown>,
+  expectedStatuses: string[],
   options: BuildPagedAsyncIteratorOptions = {},
 ): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
   const itemName = options.itemName ?? "value";
@@ -37,7 +38,7 @@ export function buildPagedAsyncIterator<
         pageLink === undefined
           ? await getInitialResponse()
           : await client.pathUnchecked(pageLink).get();
-      checkPagingRequest(result);
+      checkPagingRequest(result, expectedStatuses);
       const results = await processResponseBody(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);
       const values = getElements<TElement>(results, itemName) as TPage;
@@ -180,11 +181,13 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
 /**
  * Checks if a request failed
  */
-function checkPagingRequest(response: PathUncheckedResponse): void {
-  const statusCode = Number(response.status);
-  if (statusCode < 200 || statusCode > 299) {
+function checkPagingRequest(
+  response: PathUncheckedResponse,
+  expectedStatuses: string[],
+): void {
+  if (!expectedStatuses.includes(response.status)) {
     throw createRestError(
-      `Pagination failed with unexpected statusCode ${statusCode}`,
+      `Pagination failed with unexpected statusCode ${response.status}`,
       response,
     );
   }

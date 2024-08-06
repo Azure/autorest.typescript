@@ -1468,6 +1468,7 @@ export function listMetrics(
         options,
       ),
     _listMetricsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -1937,6 +1938,7 @@ export function listTestRuns(
     context,
     () => _listTestRunsSend(context, options),
     _listTestRunsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

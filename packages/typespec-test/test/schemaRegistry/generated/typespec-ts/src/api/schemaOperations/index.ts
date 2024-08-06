@@ -65,6 +65,7 @@ export function listSchemaGroups(
     context,
     () => _listSchemaGroupsSend(context, options),
     _listSchemaGroupsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -144,6 +145,7 @@ export function listSchemaVersions(
     context,
     () => _listSchemaVersionsSend(context, groupName, name, options),
     _listSchemaVersionsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

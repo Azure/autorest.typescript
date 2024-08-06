@@ -956,6 +956,7 @@ export function listTestFiles(
     context,
     () => _listTestFilesSend(context, testId, options),
     _listTestFilesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -1240,6 +1241,7 @@ export function listTests(
     context,
     () => _listTestsSend(context, options),
     _listTestsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

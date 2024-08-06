@@ -289,6 +289,7 @@ export function listTextBlocklists(
     context,
     () => _listTextBlocklistsSend(context, options),
     _listTextBlocklistsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -482,6 +483,7 @@ export function listTextBlocklistItems(
     context,
     () => _listTextBlocklistItemsSend(context, blocklistName, options),
     _listTextBlocklistItemsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
