@@ -295,7 +295,7 @@ function transformRequestBody(
         typeName: schema.name,
         name: "body",
         type,
-        required: parameters?.bodyParameter?.optional === false,
+        required: parameters?.bodyParameter?.optional ? false : true,
         description: descriptions.join("\n\n"),
         isMultipartBody:
           hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
