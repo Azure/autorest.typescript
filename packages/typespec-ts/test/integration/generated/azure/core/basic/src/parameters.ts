@@ -2,11 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import {
-  User,
-  ListItemInputExtensibleEnum,
-  ListItemInputBody,
-} from "./models.js";
+import { User } from "./models.js";
 
 /** The resource instance. */
 export type UserResourceMergeAndPatch = Partial<User>;
@@ -56,30 +52,6 @@ export interface ListQueryParam {
 }
 
 export type ListParameters = ListQueryParam & RequestParameters;
-export type ListWithPageParameters = RequestParameters;
-
-export interface ListWithParametersBodyParam {
-  /** The body of the input. */
-  body: ListItemInputBody;
-}
-
-export interface ListWithParametersQueryParamProperties {
-  /**
-   * Another query parameter.
-   *
-   * Possible values: "First", "Second"
-   */
-  another?: ListItemInputExtensibleEnum;
-}
-
-export interface ListWithParametersQueryParam {
-  queryParameters?: ListWithParametersQueryParamProperties;
-}
-
-export type ListWithParametersParameters = ListWithParametersQueryParam &
-  ListWithParametersBodyParam &
-  RequestParameters;
-export type ListWithCustomPageModelParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
 
 export interface ExportQueryParamProperties {
@@ -92,5 +64,3 @@ export interface ExportQueryParam {
 }
 
 export type ExportParameters = ExportQueryParam & RequestParameters;
-export type ListFirstItemParameters = RequestParameters;
-export type ListSecondItemParameters = RequestParameters;

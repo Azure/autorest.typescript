@@ -7,10 +7,11 @@ import {
   Enum,
   ActionResponse,
 } from "../models/models.js";
-import { Basic200Response, BasicContext as Client } from "../rest/index.js";
+import { BasicContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
@@ -22,7 +23,7 @@ export function _basicActionSend(
   headerParam: string,
   body: ActionRequest,
   options: BasicActionOptionalParams = { requestOptions: {} },
-): StreamableMethod<Basic200Response> {
+): StreamableMethod {
   return context
     .path("/azure/example/basic/basic")
     .post({
@@ -43,9 +44,10 @@ export function _basicActionSend(
 }
 
 export async function _basicActionDeserialize(
-  result: Basic200Response,
+  result: PathUncheckedResponse,
 ): Promise<ActionResponse> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,10 +2,6 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  ActionRequest as ActionRequestRest,
-  Model as ModelRest,
-} from "../rest/index.js";
 
 export interface ActionRequest {
   stringProperty: string;
@@ -16,7 +12,7 @@ export interface ActionRequest {
 
 export function actionRequestSerializer(
   item: ActionRequest,
-): ActionRequestRest {
+): Record<string, unknown> {
   return {
     stringProperty: item["stringProperty"],
     modelProperty: !item.modelProperty
@@ -35,7 +31,7 @@ export interface Model {
   enumProperty?: Enum;
 }
 
-export function modelSerializer(item: Model): ModelRest {
+export function modelSerializer(item: Model): Record<string, unknown> {
   return {
     int32Property: item["int32Property"],
     float32Property: item["float32Property"],

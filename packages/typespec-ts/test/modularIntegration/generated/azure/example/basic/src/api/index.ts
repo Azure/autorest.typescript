@@ -3,7 +3,7 @@
 
 export {
   createAzureExample,
-  AzureExampleClientOptionalParams,
   BasicContext,
+  AzureExampleClientOptionalParams,
 } from "./azureExampleContext.js";
 export { basicAction } from "./operations.js";

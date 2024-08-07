@@ -6,8 +6,8 @@ import { ActionRequest, ActionResponse } from "./models/models.js";
 import { BasicActionOptionalParams } from "./models/options.js";
 import {
   createAzureExample,
-  AzureExampleClientOptionalParams,
   BasicContext,
+  AzureExampleClientOptionalParams,
   basicAction,
 } from "./api/index.js";
 
@@ -23,7 +23,6 @@ export class AzureExampleClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createAzureExample({
       ...options,
       userAgentOptions: { userAgentPrefix },
