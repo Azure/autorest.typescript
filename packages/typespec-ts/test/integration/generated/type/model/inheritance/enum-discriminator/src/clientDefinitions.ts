@@ -26,7 +26,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetExtensibleModel {
   /** Receive model with extensible enum discriminator type. */
   get(
-    options?: GetExtensibleModelParameters,
+    options: GetExtensibleModelParameters,
   ): StreamableMethod<GetExtensibleModel200Response>;
   /** Send model with extensible enum discriminator type. */
   put(
@@ -37,21 +37,21 @@ export interface GetExtensibleModel {
 export interface GetExtensibleModelMissingDiscriminator {
   /** Get a model omitting the discriminator. */
   get(
-    options?: GetExtensibleModelMissingDiscriminatorParameters,
+    options: GetExtensibleModelMissingDiscriminatorParameters,
   ): StreamableMethod<GetExtensibleModelMissingDiscriminator200Response>;
 }
 
 export interface GetExtensibleModelWrongDiscriminator {
   /** Get a model containing discriminator value never defined. */
   get(
-    options?: GetExtensibleModelWrongDiscriminatorParameters,
+    options: GetExtensibleModelWrongDiscriminatorParameters,
   ): StreamableMethod<GetExtensibleModelWrongDiscriminator200Response>;
 }
 
 export interface GetFixedModel {
   /** Receive model with fixed enum discriminator type. */
   get(
-    options?: GetFixedModelParameters,
+    options: GetFixedModelParameters,
   ): StreamableMethod<GetFixedModel200Response>;
   /** Send model with fixed enum discriminator type. */
   put(
@@ -62,14 +62,14 @@ export interface GetFixedModel {
 export interface GetFixedModelMissingDiscriminator {
   /** Get a model omitting the discriminator. */
   get(
-    options?: GetFixedModelMissingDiscriminatorParameters,
+    options: GetFixedModelMissingDiscriminatorParameters,
   ): StreamableMethod<GetFixedModelMissingDiscriminator200Response>;
 }
 
 export interface GetFixedModelWrongDiscriminator {
   /** Get a model containing discriminator value never defined. */
   get(
-    options?: GetFixedModelWrongDiscriminatorParameters,
+    options: GetFixedModelWrongDiscriminatorParameters,
   ): StreamableMethod<GetFixedModelWrongDiscriminator200Response>;
 }
 

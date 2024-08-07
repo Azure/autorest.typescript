@@ -7,7 +7,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Get {
   /** Get operation with azure `x-ms-client-request-id` header. */
-  get(options?: GetParameters): StreamableMethod<Get204Response>;
+  get(options: GetParameters): StreamableMethod<Get204Response>;
 }
 
 export interface Routes {

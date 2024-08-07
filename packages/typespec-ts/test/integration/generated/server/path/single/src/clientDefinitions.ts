@@ -6,7 +6,7 @@ import { MyOp200Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface MyOp {
-  head(options?: MyOpParameters): StreamableMethod<MyOp200Response>;
+  head(options: MyOpParameters): StreamableMethod<MyOp200Response>;
 }
 
 export interface Routes {

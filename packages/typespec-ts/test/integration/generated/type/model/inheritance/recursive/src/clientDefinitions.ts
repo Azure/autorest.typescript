@@ -7,7 +7,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Put {
   put(options: PutParameters): StreamableMethod<Put204Response>;
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
+  get(options: GetParameters): StreamableMethod<Get200Response>;
 }
 
 export interface Routes {

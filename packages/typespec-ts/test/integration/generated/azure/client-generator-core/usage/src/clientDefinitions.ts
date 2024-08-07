@@ -37,7 +37,7 @@ export interface OutputToInputOutput {
    * ```
    */
   get(
-    options?: OutputToInputOutputParameters,
+    options: OutputToInputOutputParameters,
   ): StreamableMethod<OutputToInputOutput200Response>;
 }
 

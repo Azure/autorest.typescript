@@ -6,7 +6,7 @@ import { Valid200Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Valid {
-  head(options?: ValidParameters): StreamableMethod<Valid200Response>;
+  head(options: ValidParameters): StreamableMethod<Valid200Response>;
 }
 
 export interface Routes {

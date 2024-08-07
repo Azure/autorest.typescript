@@ -100,7 +100,7 @@ export type FormDataCheckFileNameAndContentTypeParameters =
     RequestParameters;
 
 export interface FormDataAnonymousModelBodyParam {
-  body?:
+  body:
     | FormData
     | Array<{
         name: "profileImage";

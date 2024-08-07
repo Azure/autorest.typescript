@@ -138,7 +138,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface StringModelGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: StringModelGetAllParameters,
+    options: StringModelGetAllParameters,
   ): StreamableMethod<StringModelGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -149,7 +149,7 @@ export interface StringModelGetAll {
 export interface StringModelGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: StringModelGetDefaultParameters,
+    options: StringModelGetDefaultParameters,
   ): StreamableMethod<StringModelGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -159,9 +159,7 @@ export interface StringModelGetDefault {
 
 export interface BytesGetAll {
   /** Get models that will return all properties in the model */
-  get(
-    options?: BytesGetAllParameters,
-  ): StreamableMethod<BytesGetAll200Response>;
+  get(options: BytesGetAllParameters): StreamableMethod<BytesGetAll200Response>;
   /** Put a body with all properties present. */
   put(options: BytesPutAllParameters): StreamableMethod<BytesPutAll204Response>;
 }
@@ -169,7 +167,7 @@ export interface BytesGetAll {
 export interface BytesGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: BytesGetDefaultParameters,
+    options: BytesGetDefaultParameters,
   ): StreamableMethod<BytesGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -180,7 +178,7 @@ export interface BytesGetDefault {
 export interface DatetimeGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: DatetimeGetAllParameters,
+    options: DatetimeGetAllParameters,
   ): StreamableMethod<DatetimeGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -191,7 +189,7 @@ export interface DatetimeGetAll {
 export interface DatetimeGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: DatetimeGetDefaultParameters,
+    options: DatetimeGetDefaultParameters,
   ): StreamableMethod<DatetimeGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -202,7 +200,7 @@ export interface DatetimeGetDefault {
 export interface DurationGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: DurationGetAllParameters,
+    options: DurationGetAllParameters,
   ): StreamableMethod<DurationGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -213,7 +211,7 @@ export interface DurationGetAll {
 export interface DurationGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: DurationGetDefaultParameters,
+    options: DurationGetDefaultParameters,
   ): StreamableMethod<DurationGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -224,7 +222,7 @@ export interface DurationGetDefault {
 export interface PlainDateGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: PlainDateGetAllParameters,
+    options: PlainDateGetAllParameters,
   ): StreamableMethod<PlainDateGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -235,7 +233,7 @@ export interface PlainDateGetAll {
 export interface PlainDateGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: PlainDateGetDefaultParameters,
+    options: PlainDateGetDefaultParameters,
   ): StreamableMethod<PlainDateGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -246,7 +244,7 @@ export interface PlainDateGetDefault {
 export interface PlainTimeGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: PlainTimeGetAllParameters,
+    options: PlainTimeGetAllParameters,
   ): StreamableMethod<PlainTimeGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -257,7 +255,7 @@ export interface PlainTimeGetAll {
 export interface PlainTimeGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: PlainTimeGetDefaultParameters,
+    options: PlainTimeGetDefaultParameters,
   ): StreamableMethod<PlainTimeGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -268,7 +266,7 @@ export interface PlainTimeGetDefault {
 export interface CollectionsByteGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: CollectionsByteGetAllParameters,
+    options: CollectionsByteGetAllParameters,
   ): StreamableMethod<CollectionsByteGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -279,7 +277,7 @@ export interface CollectionsByteGetAll {
 export interface CollectionsByteGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: CollectionsByteGetDefaultParameters,
+    options: CollectionsByteGetDefaultParameters,
   ): StreamableMethod<CollectionsByteGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -290,7 +288,7 @@ export interface CollectionsByteGetDefault {
 export interface CollectionsModelGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: CollectionsModelGetAllParameters,
+    options: CollectionsModelGetAllParameters,
   ): StreamableMethod<CollectionsModelGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -301,7 +299,7 @@ export interface CollectionsModelGetAll {
 export interface CollectionsModelGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: CollectionsModelGetDefaultParameters,
+    options: CollectionsModelGetDefaultParameters,
   ): StreamableMethod<CollectionsModelGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -312,7 +310,7 @@ export interface CollectionsModelGetDefault {
 export interface StringLiteralGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: StringLiteralGetAllParameters,
+    options: StringLiteralGetAllParameters,
   ): StreamableMethod<StringLiteralGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -323,7 +321,7 @@ export interface StringLiteralGetAll {
 export interface StringLiteralGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: StringLiteralGetDefaultParameters,
+    options: StringLiteralGetDefaultParameters,
   ): StreamableMethod<StringLiteralGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -334,7 +332,7 @@ export interface StringLiteralGetDefault {
 export interface IntLiteralGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: IntLiteralGetAllParameters,
+    options: IntLiteralGetAllParameters,
   ): StreamableMethod<IntLiteralGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -345,7 +343,7 @@ export interface IntLiteralGetAll {
 export interface IntLiteralGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: IntLiteralGetDefaultParameters,
+    options: IntLiteralGetDefaultParameters,
   ): StreamableMethod<IntLiteralGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -356,7 +354,7 @@ export interface IntLiteralGetDefault {
 export interface FloatLiteralGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: FloatLiteralGetAllParameters,
+    options: FloatLiteralGetAllParameters,
   ): StreamableMethod<FloatLiteralGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -367,7 +365,7 @@ export interface FloatLiteralGetAll {
 export interface FloatLiteralGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: FloatLiteralGetDefaultParameters,
+    options: FloatLiteralGetDefaultParameters,
   ): StreamableMethod<FloatLiteralGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -378,7 +376,7 @@ export interface FloatLiteralGetDefault {
 export interface BooleanLiteralGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: BooleanLiteralGetAllParameters,
+    options: BooleanLiteralGetAllParameters,
   ): StreamableMethod<BooleanLiteralGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -389,7 +387,7 @@ export interface BooleanLiteralGetAll {
 export interface BooleanLiteralGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: BooleanLiteralGetDefaultParameters,
+    options: BooleanLiteralGetDefaultParameters,
   ): StreamableMethod<BooleanLiteralGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -400,7 +398,7 @@ export interface BooleanLiteralGetDefault {
 export interface UnionStringLiteralGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: UnionStringLiteralGetAllParameters,
+    options: UnionStringLiteralGetAllParameters,
   ): StreamableMethod<UnionStringLiteralGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -411,7 +409,7 @@ export interface UnionStringLiteralGetAll {
 export interface UnionStringLiteralGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: UnionStringLiteralGetDefaultParameters,
+    options: UnionStringLiteralGetDefaultParameters,
   ): StreamableMethod<UnionStringLiteralGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -422,7 +420,7 @@ export interface UnionStringLiteralGetDefault {
 export interface UnionIntLiteralGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: UnionIntLiteralGetAllParameters,
+    options: UnionIntLiteralGetAllParameters,
   ): StreamableMethod<UnionIntLiteralGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -433,7 +431,7 @@ export interface UnionIntLiteralGetAll {
 export interface UnionIntLiteralGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: UnionIntLiteralGetDefaultParameters,
+    options: UnionIntLiteralGetDefaultParameters,
   ): StreamableMethod<UnionIntLiteralGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -444,7 +442,7 @@ export interface UnionIntLiteralGetDefault {
 export interface UnionFloatLiteralGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: UnionFloatLiteralGetAllParameters,
+    options: UnionFloatLiteralGetAllParameters,
   ): StreamableMethod<UnionFloatLiteralGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -455,7 +453,7 @@ export interface UnionFloatLiteralGetAll {
 export interface UnionFloatLiteralGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: UnionFloatLiteralGetDefaultParameters,
+    options: UnionFloatLiteralGetDefaultParameters,
   ): StreamableMethod<UnionFloatLiteralGetDefault200Response>;
   /** Put a body with default properties. */
   put(
@@ -466,7 +464,7 @@ export interface UnionFloatLiteralGetDefault {
 export interface RequiredAndOptionalGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: RequiredAndOptionalGetAllParameters,
+    options: RequiredAndOptionalGetAllParameters,
   ): StreamableMethod<RequiredAndOptionalGetAll200Response>;
   /** Put a body with all properties present. */
   put(
@@ -477,7 +475,7 @@ export interface RequiredAndOptionalGetAll {
 export interface RequiredAndOptionalGetRequiredOnly {
   /** Get models that will return only the required properties */
   get(
-    options?: RequiredAndOptionalGetRequiredOnlyParameters,
+    options: RequiredAndOptionalGetRequiredOnlyParameters,
   ): StreamableMethod<RequiredAndOptionalGetRequiredOnly200Response>;
   /** Put a body with only required properties. */
   put(

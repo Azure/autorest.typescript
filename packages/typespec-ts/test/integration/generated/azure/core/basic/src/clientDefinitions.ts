@@ -61,25 +61,25 @@ export interface CreateOrUpdate {
   >;
   /** Gets a User */
   get(
-    options?: GetParameters,
+    options: GetParameters,
   ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Deletes a User */
   delete(
-    options?: DeleteParameters,
+    options: DeleteParameters,
   ): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
 }
 
 export interface List {
   /** Lists all Users */
   get(
-    options?: ListParameters,
+    options: ListParameters,
   ): StreamableMethod<List200Response | ListDefaultResponse>;
 }
 
 export interface ListWithPage {
   /** List with Azure.Core.Page<>. */
   get(
-    options?: ListWithPageParameters,
+    options: ListWithPageParameters,
   ): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse>;
 }
 
@@ -95,7 +95,7 @@ export interface ListWithParameters {
 export interface ListWithCustomPageModel {
   /** List with custom page model. */
   get(
-    options?: ListWithCustomPageModelParameters,
+    options: ListWithCustomPageModelParameters,
   ): StreamableMethod<
     ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse
   >;
@@ -111,14 +111,14 @@ export interface Export {
 export interface ListFirstItem {
   /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
   get(
-    options?: ListFirstItemParameters,
+    options: ListFirstItemParameters,
   ): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse>;
 }
 
 export interface ListSecondItem {
   /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
   get(
-    options?: ListSecondItemParameters,
+    options: ListSecondItemParameters,
   ): StreamableMethod<
     ListSecondItem200Response | ListSecondItemDefaultResponse
   >;

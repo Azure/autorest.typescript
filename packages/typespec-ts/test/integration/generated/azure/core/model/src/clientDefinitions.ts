@@ -11,7 +11,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Get {
   /** get an embedding vector */
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
+  get(options: GetParameters): StreamableMethod<Get200Response>;
   /** put an embedding vector */
   put(options: PutParameters): StreamableMethod<Put204Response>;
   /** post a model which has an embeddingVector property */

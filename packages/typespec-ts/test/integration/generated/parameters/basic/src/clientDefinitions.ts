@@ -19,7 +19,7 @@ export interface ExplicitBodySimple {
 
 export interface ImplicitBodySimple {
   put(
-    options?: ImplicitBodySimpleParameters,
+    options: ImplicitBodySimpleParameters,
   ): StreamableMethod<ImplicitBodySimple204Response>;
 }
 

@@ -12,7 +12,7 @@ export type ExplicitBodySimpleParameters = ExplicitBodySimpleBodyParam &
   RequestParameters;
 
 export interface ImplicitBodySimpleBodyParam {
-  body?: { name: string };
+  body: { name: string };
 }
 
 export type ImplicitBodySimpleParameters = ImplicitBodySimpleBodyParam &

@@ -16,7 +16,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/string/all")
-        .get();
+        .get({});
 
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "hello");
@@ -29,7 +29,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/string/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -65,7 +65,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/bytes/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "aGVsbG8sIHdvcmxkIQ==");
     } catch (err) {
@@ -77,7 +77,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/bytes/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -115,7 +115,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/datetime/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "2022-08-26T18:38:00Z");
     } catch (err) {
@@ -127,7 +127,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/datetime/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -165,7 +165,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/duration/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "P123DT22H14M12.011S");
     } catch (err) {
@@ -177,7 +177,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/duration/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -215,7 +215,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/collections/bytes/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property?.length, 2);
     } catch (err) {
@@ -227,7 +227,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/collections/bytes/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -265,7 +265,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/collections/model/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property?.length, 2);
     } catch (err) {
@@ -277,7 +277,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/collections/model/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -315,7 +315,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/string/literal/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "hello");
     } catch (err) {
@@ -327,7 +327,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/string/literal/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -365,7 +365,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/int/literal/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, 1);
     } catch (err) {
@@ -377,7 +377,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/int/literal/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -415,7 +415,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/float/literal/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, 1.25);
     } catch (err) {
@@ -427,7 +427,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/float/literal/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -465,7 +465,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/boolean/literal/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, true);
     } catch (err) {
@@ -477,7 +477,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/boolean/literal/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -515,7 +515,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/union/string/literal/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "world");
     } catch (err) {
@@ -527,7 +527,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/union/string/literal/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -565,7 +565,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/union/int/literal/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, 2);
     } catch (err) {
@@ -577,7 +577,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/union/int/literal/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -615,7 +615,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/union/float/literal/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, 2.375);
     } catch (err) {
@@ -627,7 +627,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/union/float/literal/default")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, {});
     } catch (err) {
@@ -665,7 +665,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/requiredAndOptional/all")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.optionalProperty, "hello");
       assert.strictEqual(result.body.requiredProperty, 42);
@@ -678,7 +678,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/requiredAndOptional/requiredOnly")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.requiredProperty, 42);
     } catch (err) {

@@ -31,7 +31,7 @@ describe("ClientEncodedNameClient Rest Client", () => {
     try {
       const result = await client
         .path("/serialization/encoded-name/json/property")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.wireName, true);
     } catch (err) {

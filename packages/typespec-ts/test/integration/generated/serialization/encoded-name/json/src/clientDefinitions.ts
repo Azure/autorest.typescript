@@ -12,9 +12,7 @@ export interface Send {
   post(
     options: PropertySendParameters,
   ): StreamableMethod<PropertySend204Response>;
-  get(
-    options?: PropertyGetParameters,
-  ): StreamableMethod<PropertyGet200Response>;
+  get(options: PropertyGetParameters): StreamableMethod<PropertyGet200Response>;
 }
 
 export interface Routes {

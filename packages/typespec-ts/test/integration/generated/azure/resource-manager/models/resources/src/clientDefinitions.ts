@@ -49,7 +49,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface TopLevelTrackedResourcesGet {
   /** Get a TopLevelTrackedResource */
   get(
-    options?: TopLevelTrackedResourcesGetParameters,
+    options: TopLevelTrackedResourcesGetParameters,
   ): StreamableMethod<
     | TopLevelTrackedResourcesGet200Response
     | TopLevelTrackedResourcesGetDefaultResponse
@@ -72,7 +72,7 @@ export interface TopLevelTrackedResourcesGet {
   >;
   /** Delete a TopLevelTrackedResource */
   delete(
-    options?: TopLevelTrackedResourcesDeleteParameters,
+    options: TopLevelTrackedResourcesDeleteParameters,
   ): StreamableMethod<
     | TopLevelTrackedResourcesDelete202Response
     | TopLevelTrackedResourcesDelete204Response
@@ -83,7 +83,7 @@ export interface TopLevelTrackedResourcesGet {
 export interface TopLevelTrackedResourcesListByResourceGroup {
   /** List TopLevelTrackedResource resources by resource group */
   get(
-    options?: TopLevelTrackedResourcesListByResourceGroupParameters,
+    options: TopLevelTrackedResourcesListByResourceGroupParameters,
   ): StreamableMethod<
     | TopLevelTrackedResourcesListByResourceGroup200Response
     | TopLevelTrackedResourcesListByResourceGroupDefaultResponse
@@ -93,7 +93,7 @@ export interface TopLevelTrackedResourcesListByResourceGroup {
 export interface TopLevelTrackedResourcesListBySubscription {
   /** List TopLevelTrackedResource resources by subscription ID */
   get(
-    options?: TopLevelTrackedResourcesListBySubscriptionParameters,
+    options: TopLevelTrackedResourcesListBySubscriptionParameters,
   ): StreamableMethod<
     | TopLevelTrackedResourcesListBySubscription200Response
     | TopLevelTrackedResourcesListBySubscriptionDefaultResponse
@@ -103,7 +103,7 @@ export interface TopLevelTrackedResourcesListBySubscription {
 export interface NestedProxyResourcesGet {
   /** Get a NestedProxyResource */
   get(
-    options?: NestedProxyResourcesGetParameters,
+    options: NestedProxyResourcesGetParameters,
   ): StreamableMethod<
     NestedProxyResourcesGet200Response | NestedProxyResourcesGetDefaultResponse
   >;
@@ -125,7 +125,7 @@ export interface NestedProxyResourcesGet {
   >;
   /** Delete a NestedProxyResource */
   delete(
-    options?: NestedProxyResourcesDeleteParameters,
+    options: NestedProxyResourcesDeleteParameters,
   ): StreamableMethod<
     | NestedProxyResourcesDelete202Response
     | NestedProxyResourcesDelete204Response
@@ -136,7 +136,7 @@ export interface NestedProxyResourcesGet {
 export interface NestedProxyResourcesListByTopLevelTrackedResource {
   /** List NestedProxyResource resources by TopLevelTrackedResource */
   get(
-    options?: NestedProxyResourcesListByTopLevelTrackedResourceParameters,
+    options: NestedProxyResourcesListByTopLevelTrackedResourceParameters,
   ): StreamableMethod<
     | NestedProxyResourcesListByTopLevelTrackedResource200Response
     | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse

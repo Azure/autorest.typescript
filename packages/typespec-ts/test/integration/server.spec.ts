@@ -26,7 +26,7 @@ describe("SingleParamInServerPath Rest Client", () => {
 
   it("should work with no param", async () => {
     try {
-      const result = await client.path("/server/path/single/myOp").head();
+      const result = await client.path("/server/path/single/myOp").head({});
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -48,7 +48,7 @@ describe("MultipleParamInServerPath Rest Client", () => {
 
   it("should work with no param", async () => {
     try {
-      const result = await client.path("/").get();
+      const result = await client.path("/").get({});
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -57,7 +57,7 @@ describe("MultipleParamInServerPath Rest Client", () => {
 
   it("should work with param", async () => {
     try {
-      const result = await client.path("/{keyword}", "test").get();
+      const result = await client.path("/{keyword}", "test").get({});
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -84,7 +84,7 @@ describe(" NotVersionedParamInServerVersions Rest Client", () => {
     try {
       const result = await client
         .path("/server/versions/not-versioned/without-api-version")
-        .head();
+        .head({});
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -109,7 +109,7 @@ describe(" NotVersionedParamInServerVersions Rest Client", () => {
           "/server/versions/not-versioned/with-path-api-version/{apiVersion}",
           "v1.0"
         )
-        .head();
+        .head({});
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -136,7 +136,7 @@ describe(" VersionedParamInServerVersions Rest Client", () => {
     try {
       const result = await client
         .path("/server/versions/versioned/without-api-version")
-        .head();
+        .head({});
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -161,7 +161,7 @@ describe(" VersionedParamInServerVersions Rest Client", () => {
           "/server/versions/versioned/with-path-api-version/{apiVersion}",
           "2022-12-01-preview"
         )
-        .head();
+        .head({});
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);

@@ -15,7 +15,7 @@ import {
 export type StringsOnlyGetParameters = RequestParameters;
 
 export interface StringsOnlySendBodyParam {
-  body?: { prop: "a" | "b" | "c" };
+  body: { prop: "a" | "b" | "c" };
 }
 
 export type StringsOnlySendParameters = StringsOnlySendBodyParam &
@@ -23,7 +23,7 @@ export type StringsOnlySendParameters = StringsOnlySendBodyParam &
 export type StringExtensibleGetParameters = RequestParameters;
 
 export interface StringExtensibleSendBodyParam {
-  body?: { prop: string };
+  body: { prop: string };
 }
 
 export type StringExtensibleSendParameters = StringExtensibleSendBodyParam &
@@ -31,7 +31,7 @@ export type StringExtensibleSendParameters = StringExtensibleSendBodyParam &
 export type StringExtensibleNamedGetParameters = RequestParameters;
 
 export interface StringExtensibleNamedSendBodyParam {
-  body?: { prop: StringExtensibleNamedUnion };
+  body: { prop: StringExtensibleNamedUnion };
 }
 
 export type StringExtensibleNamedSendParameters =
@@ -39,14 +39,14 @@ export type StringExtensibleNamedSendParameters =
 export type IntsOnlyGetParameters = RequestParameters;
 
 export interface IntsOnlySendBodyParam {
-  body?: { prop: 1 | 2 | 3 };
+  body: { prop: 1 | 2 | 3 };
 }
 
 export type IntsOnlySendParameters = IntsOnlySendBodyParam & RequestParameters;
 export type FloatsOnlyGetParameters = RequestParameters;
 
 export interface FloatsOnlySendBodyParam {
-  body?: { prop: 1.1 | 2.2 | 3.3 };
+  body: { prop: 1.1 | 2.2 | 3.3 };
 }
 
 export type FloatsOnlySendParameters = FloatsOnlySendBodyParam &
@@ -54,7 +54,7 @@ export type FloatsOnlySendParameters = FloatsOnlySendBodyParam &
 export type ModelsOnlyGetParameters = RequestParameters;
 
 export interface ModelsOnlySendBodyParam {
-  body?: { prop: Cat | Dog };
+  body: { prop: Cat | Dog };
 }
 
 export type ModelsOnlySendParameters = ModelsOnlySendBodyParam &
@@ -62,7 +62,7 @@ export type ModelsOnlySendParameters = ModelsOnlySendBodyParam &
 export type EnumsOnlyGetParameters = RequestParameters;
 
 export interface EnumsOnlySendBodyParam {
-  body?: { prop: EnumsOnlyCases };
+  body: { prop: EnumsOnlyCases };
 }
 
 export type EnumsOnlySendParameters = EnumsOnlySendBodyParam &
@@ -70,7 +70,7 @@ export type EnumsOnlySendParameters = EnumsOnlySendBodyParam &
 export type StringAndArrayGetParameters = RequestParameters;
 
 export interface StringAndArraySendBodyParam {
-  body?: { prop: StringAndArrayCases };
+  body: { prop: StringAndArrayCases };
 }
 
 export type StringAndArraySendParameters = StringAndArraySendBodyParam &
@@ -78,7 +78,7 @@ export type StringAndArraySendParameters = StringAndArraySendBodyParam &
 export type MixedLiteralsGetParameters = RequestParameters;
 
 export interface MixedLiteralsSendBodyParam {
-  body?: { prop: MixedLiteralsCases };
+  body: { prop: MixedLiteralsCases };
 }
 
 export type MixedLiteralsSendParameters = MixedLiteralsSendBodyParam &
@@ -86,7 +86,7 @@ export type MixedLiteralsSendParameters = MixedLiteralsSendBodyParam &
 export type MixedTypesGetParameters = RequestParameters;
 
 export interface MixedTypesSendBodyParam {
-  body?: { prop: MixedTypesCases };
+  body: { prop: MixedTypesCases };
 }
 
 export type MixedTypesSendParameters = MixedTypesSendBodyParam &

@@ -153,31 +153,31 @@ export interface RequestBodyBase64url {
 
 export interface ResponseBodyDefault {
   get(
-    options?: ResponseBodyDefaultParameters,
+    options: ResponseBodyDefaultParameters,
   ): StreamableMethod<ResponseBodyDefault200Response>;
 }
 
 export interface ResponseBodyOctetStream {
   get(
-    options?: ResponseBodyOctetStreamParameters,
+    options: ResponseBodyOctetStreamParameters,
   ): StreamableMethod<ResponseBodyOctetStream200Response>;
 }
 
 export interface ResponseBodyCustomContentType {
   get(
-    options?: ResponseBodyCustomContentTypeParameters,
+    options: ResponseBodyCustomContentTypeParameters,
   ): StreamableMethod<ResponseBodyCustomContentType200Response>;
 }
 
 export interface ResponseBodyBase64 {
   get(
-    options?: ResponseBodyBase64Parameters,
+    options: ResponseBodyBase64Parameters,
   ): StreamableMethod<ResponseBodyBase64200Response>;
 }
 
 export interface ResponseBodyBase64url {
   get(
-    options?: ResponseBodyBase64urlParameters,
+    options: ResponseBodyBase64urlParameters,
   ): StreamableMethod<ResponseBodyBase64url200Response>;
 }
 

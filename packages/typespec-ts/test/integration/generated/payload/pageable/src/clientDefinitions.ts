@@ -7,7 +7,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface List {
   /** List users */
-  get(options?: ListParameters): StreamableMethod<List200Response>;
+  get(options: ListParameters): StreamableMethod<List200Response>;
 }
 
 export interface Routes {

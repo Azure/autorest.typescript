@@ -15,7 +15,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface PutEmpty {
   put(options: PutEmptyParameters): StreamableMethod<PutEmpty204Response>;
-  get(options?: GetEmptyParameters): StreamableMethod<GetEmpty200Response>;
+  get(options: GetEmptyParameters): StreamableMethod<GetEmpty200Response>;
 }
 
 export interface PostRoundTripEmpty {

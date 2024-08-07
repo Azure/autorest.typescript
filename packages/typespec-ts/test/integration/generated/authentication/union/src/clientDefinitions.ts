@@ -7,12 +7,12 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ValidKey {
   /** Check whether client is authenticated */
-  get(options?: ValidKeyParameters): StreamableMethod<ValidKey204Response>;
+  get(options: ValidKeyParameters): StreamableMethod<ValidKey204Response>;
 }
 
 export interface ValidToken {
   /** Check whether client is authenticated */
-  get(options?: ValidTokenParameters): StreamableMethod<ValidToken204Response>;
+  get(options: ValidTokenParameters): StreamableMethod<ValidToken204Response>;
 }
 
 export interface Routes {

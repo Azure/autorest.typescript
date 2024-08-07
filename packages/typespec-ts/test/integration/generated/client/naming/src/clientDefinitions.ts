@@ -30,7 +30,7 @@ import {
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Operation {
-  post(options?: OperationParameters): StreamableMethod<Operation204Response>;
+  post(options: OperationParameters): StreamableMethod<Operation204Response>;
 }
 
 export interface Parameter {
@@ -60,7 +60,7 @@ export interface HeaderRequest {
     options: HeaderRequestParameters,
   ): StreamableMethod<HeaderRequest204Response>;
   get(
-    options?: HeaderResponseParameters,
+    options: HeaderResponseParameters,
   ): StreamableMethod<HeaderResponse204Response>;
 }
 

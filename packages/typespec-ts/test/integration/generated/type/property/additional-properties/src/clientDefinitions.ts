@@ -138,7 +138,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface ExtendsUnknownGet {
   /** Get call */
   get(
-    options?: ExtendsUnknownGetParameters,
+    options: ExtendsUnknownGetParameters,
   ): StreamableMethod<ExtendsUnknownGet200Response>;
   /** Put operation */
   put(
@@ -149,7 +149,7 @@ export interface ExtendsUnknownGet {
 export interface ExtendsUnknownDerivedGet {
   /** Get call */
   get(
-    options?: ExtendsUnknownDerivedGetParameters,
+    options: ExtendsUnknownDerivedGetParameters,
   ): StreamableMethod<ExtendsUnknownDerivedGet200Response>;
   /** Put operation */
   put(
@@ -160,7 +160,7 @@ export interface ExtendsUnknownDerivedGet {
 export interface ExtendsUnknownDiscriminatedGet {
   /** Get call */
   get(
-    options?: ExtendsUnknownDiscriminatedGetParameters,
+    options: ExtendsUnknownDiscriminatedGetParameters,
   ): StreamableMethod<ExtendsUnknownDiscriminatedGet200Response>;
   /** Put operation */
   put(
@@ -171,7 +171,7 @@ export interface ExtendsUnknownDiscriminatedGet {
 export interface IsUnknownGet {
   /** Get call */
   get(
-    options?: IsUnknownGetParameters,
+    options: IsUnknownGetParameters,
   ): StreamableMethod<IsUnknownGet200Response>;
   /** Put operation */
   put(
@@ -182,7 +182,7 @@ export interface IsUnknownGet {
 export interface IsUnknownDerivedGet {
   /** Get call */
   get(
-    options?: IsUnknownDerivedGetParameters,
+    options: IsUnknownDerivedGetParameters,
   ): StreamableMethod<IsUnknownDerivedGet200Response>;
   /** Put operation */
   put(
@@ -193,7 +193,7 @@ export interface IsUnknownDerivedGet {
 export interface IsUnknownDiscriminatedGet {
   /** Get call */
   get(
-    options?: IsUnknownDiscriminatedGetParameters,
+    options: IsUnknownDiscriminatedGetParameters,
   ): StreamableMethod<IsUnknownDiscriminatedGet200Response>;
   /** Put operation */
   put(
@@ -204,7 +204,7 @@ export interface IsUnknownDiscriminatedGet {
 export interface ExtendsStringGet {
   /** Get call */
   get(
-    options?: ExtendsStringGetParameters,
+    options: ExtendsStringGetParameters,
   ): StreamableMethod<ExtendsStringGet200Response>;
   /** Put operation */
   put(
@@ -214,9 +214,7 @@ export interface ExtendsStringGet {
 
 export interface IsStringGet {
   /** Get call */
-  get(
-    options?: IsStringGetParameters,
-  ): StreamableMethod<IsStringGet200Response>;
+  get(options: IsStringGetParameters): StreamableMethod<IsStringGet200Response>;
   /** Put operation */
   put(options: IsStringPutParameters): StreamableMethod<IsStringPut204Response>;
 }
@@ -224,7 +222,7 @@ export interface IsStringGet {
 export interface SpreadStringGet {
   /** Get call */
   get(
-    options?: SpreadStringGetParameters,
+    options: SpreadStringGetParameters,
   ): StreamableMethod<SpreadStringGet200Response>;
   /** Put operation */
   put(
@@ -235,7 +233,7 @@ export interface SpreadStringGet {
 export interface ExtendsFloatGet {
   /** Get call */
   get(
-    options?: ExtendsFloatGetParameters,
+    options: ExtendsFloatGetParameters,
   ): StreamableMethod<ExtendsFloatGet200Response>;
   /** Put operation */
   put(
@@ -245,7 +243,7 @@ export interface ExtendsFloatGet {
 
 export interface IsFloatGet {
   /** Get call */
-  get(options?: IsFloatGetParameters): StreamableMethod<IsFloatGet200Response>;
+  get(options: IsFloatGetParameters): StreamableMethod<IsFloatGet200Response>;
   /** Put operation */
   put(options: IsFloatPutParameters): StreamableMethod<IsFloatPut204Response>;
 }
@@ -253,7 +251,7 @@ export interface IsFloatGet {
 export interface SpreadFloatGet {
   /** Get call */
   get(
-    options?: SpreadFloatGetParameters,
+    options: SpreadFloatGetParameters,
   ): StreamableMethod<SpreadFloatGet200Response>;
   /** Put operation */
   put(
@@ -264,7 +262,7 @@ export interface SpreadFloatGet {
 export interface ExtendsModelGet {
   /** Get call */
   get(
-    options?: ExtendsModelGetParameters,
+    options: ExtendsModelGetParameters,
   ): StreamableMethod<ExtendsModelGet200Response>;
   /** Put operation */
   put(
@@ -274,7 +272,7 @@ export interface ExtendsModelGet {
 
 export interface IsModelGet {
   /** Get call */
-  get(options?: IsModelGetParameters): StreamableMethod<IsModelGet200Response>;
+  get(options: IsModelGetParameters): StreamableMethod<IsModelGet200Response>;
   /** Put operation */
   put(options: IsModelPutParameters): StreamableMethod<IsModelPut204Response>;
 }
@@ -282,7 +280,7 @@ export interface IsModelGet {
 export interface SpreadModelGet {
   /** Get call */
   get(
-    options?: SpreadModelGetParameters,
+    options: SpreadModelGetParameters,
   ): StreamableMethod<SpreadModelGet200Response>;
   /** Put operation */
   put(
@@ -293,7 +291,7 @@ export interface SpreadModelGet {
 export interface ExtendsModelArrayGet {
   /** Get call */
   get(
-    options?: ExtendsModelArrayGetParameters,
+    options: ExtendsModelArrayGetParameters,
   ): StreamableMethod<ExtendsModelArrayGet200Response>;
   /** Put operation */
   put(
@@ -304,7 +302,7 @@ export interface ExtendsModelArrayGet {
 export interface IsModelArrayGet {
   /** Get call */
   get(
-    options?: IsModelArrayGetParameters,
+    options: IsModelArrayGetParameters,
   ): StreamableMethod<IsModelArrayGet200Response>;
   /** Put operation */
   put(
@@ -315,7 +313,7 @@ export interface IsModelArrayGet {
 export interface SpreadModelArrayGet {
   /** Get call */
   get(
-    options?: SpreadModelArrayGetParameters,
+    options: SpreadModelArrayGetParameters,
   ): StreamableMethod<SpreadModelArrayGet200Response>;
   /** Put operation */
   put(
@@ -326,7 +324,7 @@ export interface SpreadModelArrayGet {
 export interface SpreadDifferentStringGet {
   /** Get call */
   get(
-    options?: SpreadDifferentStringGetParameters,
+    options: SpreadDifferentStringGetParameters,
   ): StreamableMethod<SpreadDifferentStringGet200Response>;
   /** Put operation */
   put(
@@ -337,7 +335,7 @@ export interface SpreadDifferentStringGet {
 export interface SpreadDifferentFloatGet {
   /** Get call */
   get(
-    options?: SpreadDifferentFloatGetParameters,
+    options: SpreadDifferentFloatGetParameters,
   ): StreamableMethod<SpreadDifferentFloatGet200Response>;
   /** Put operation */
   put(
@@ -348,7 +346,7 @@ export interface SpreadDifferentFloatGet {
 export interface SpreadDifferentModelGet {
   /** Get call */
   get(
-    options?: SpreadDifferentModelGetParameters,
+    options: SpreadDifferentModelGetParameters,
   ): StreamableMethod<SpreadDifferentModelGet200Response>;
   /** Put operation */
   put(
@@ -359,7 +357,7 @@ export interface SpreadDifferentModelGet {
 export interface SpreadDifferentModelArrayGet {
   /** Get call */
   get(
-    options?: SpreadDifferentModelArrayGetParameters,
+    options: SpreadDifferentModelArrayGetParameters,
   ): StreamableMethod<SpreadDifferentModelArrayGet200Response>;
   /** Put operation */
   put(
@@ -370,7 +368,7 @@ export interface SpreadDifferentModelArrayGet {
 export interface ExtendsDifferentSpreadStringGet {
   /** Get call */
   get(
-    options?: ExtendsDifferentSpreadStringGetParameters,
+    options: ExtendsDifferentSpreadStringGetParameters,
   ): StreamableMethod<ExtendsDifferentSpreadStringGet200Response>;
   /** Put operation */
   put(
@@ -381,7 +379,7 @@ export interface ExtendsDifferentSpreadStringGet {
 export interface ExtendsDifferentSpreadFloatGet {
   /** Get call */
   get(
-    options?: ExtendsDifferentSpreadFloatGetParameters,
+    options: ExtendsDifferentSpreadFloatGetParameters,
   ): StreamableMethod<ExtendsDifferentSpreadFloatGet200Response>;
   /** Put operation */
   put(
@@ -392,7 +390,7 @@ export interface ExtendsDifferentSpreadFloatGet {
 export interface ExtendsDifferentSpreadModelGet {
   /** Get call */
   get(
-    options?: ExtendsDifferentSpreadModelGetParameters,
+    options: ExtendsDifferentSpreadModelGetParameters,
   ): StreamableMethod<ExtendsDifferentSpreadModelGet200Response>;
   /** Put operation */
   put(
@@ -403,7 +401,7 @@ export interface ExtendsDifferentSpreadModelGet {
 export interface ExtendsDifferentSpreadModelArrayGet {
   /** Get call */
   get(
-    options?: ExtendsDifferentSpreadModelArrayGetParameters,
+    options: ExtendsDifferentSpreadModelArrayGetParameters,
   ): StreamableMethod<ExtendsDifferentSpreadModelArrayGet200Response>;
   /** Put operation */
   put(
@@ -414,7 +412,7 @@ export interface ExtendsDifferentSpreadModelArrayGet {
 export interface MultipleSpreadGet {
   /** Get call */
   get(
-    options?: MultipleSpreadGetParameters,
+    options: MultipleSpreadGetParameters,
   ): StreamableMethod<MultipleSpreadGet200Response>;
   /** Put operation */
   put(
@@ -425,7 +423,7 @@ export interface MultipleSpreadGet {
 export interface SpreadRecordUnionGet {
   /** Get call */
   get(
-    options?: SpreadRecordUnionGetParameters,
+    options: SpreadRecordUnionGetParameters,
   ): StreamableMethod<SpreadRecordUnionGet200Response>;
   /** Put operation */
   put(
@@ -436,7 +434,7 @@ export interface SpreadRecordUnionGet {
 export interface SpreadRecordDiscriminatedUnionGet {
   /** Get call */
   get(
-    options?: SpreadRecordDiscriminatedUnionGetParameters,
+    options: SpreadRecordDiscriminatedUnionGetParameters,
   ): StreamableMethod<SpreadRecordDiscriminatedUnionGet200Response>;
   /** Put operation */
   put(
@@ -447,7 +445,7 @@ export interface SpreadRecordDiscriminatedUnionGet {
 export interface SpreadRecordNonDiscriminatedUnionGet {
   /** Get call */
   get(
-    options?: SpreadRecordNonDiscriminatedUnionGetParameters,
+    options: SpreadRecordNonDiscriminatedUnionGetParameters,
   ): StreamableMethod<SpreadRecordNonDiscriminatedUnionGet200Response>;
   /** Put operation */
   put(
@@ -458,7 +456,7 @@ export interface SpreadRecordNonDiscriminatedUnionGet {
 export interface SpreadRecordNonDiscriminatedUnion2Get {
   /** Get call */
   get(
-    options?: SpreadRecordNonDiscriminatedUnion2GetParameters,
+    options: SpreadRecordNonDiscriminatedUnion2GetParameters,
   ): StreamableMethod<SpreadRecordNonDiscriminatedUnion2Get200Response>;
   /** Put operation */
   put(
@@ -469,7 +467,7 @@ export interface SpreadRecordNonDiscriminatedUnion2Get {
 export interface SpreadRecordNonDiscriminatedUnion3Get {
   /** Get call */
   get(
-    options?: SpreadRecordNonDiscriminatedUnion3GetParameters,
+    options: SpreadRecordNonDiscriminatedUnion3GetParameters,
   ): StreamableMethod<SpreadRecordNonDiscriminatedUnion3Get200Response>;
   /** Put operation */
   put(

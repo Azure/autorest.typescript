@@ -12,7 +12,7 @@ export type RequiredExplicitParameters = RequiredExplicitBodyParam &
   RequestParameters;
 
 export interface RequiredImplicitBodyParam {
-  body?: BodyModel;
+  body: BodyModel;
 }
 
 export type RequiredImplicitParameters = RequiredImplicitBodyParam &
