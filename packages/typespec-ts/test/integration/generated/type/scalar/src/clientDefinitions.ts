@@ -42,7 +42,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface StringModelGet {
   /** get string value */
   get(
-    options?: StringModelGetParameters,
+    options: StringModelGetParameters,
   ): StreamableMethod<StringModelGet200Response>;
   /** put string value */
   put(
@@ -53,7 +53,7 @@ export interface StringModelGet {
 export interface BooleanModelGet {
   /** get boolean value */
   get(
-    options?: BooleanModelGetParameters,
+    options: BooleanModelGetParameters,
   ): StreamableMethod<BooleanModelGet200Response>;
   /** put boolean value */
   put(
@@ -63,14 +63,14 @@ export interface BooleanModelGet {
 
 export interface UnknownGet {
   /** get unknown value */
-  get(options?: UnknownGetParameters): StreamableMethod<UnknownGet200Response>;
+  get(options: UnknownGetParameters): StreamableMethod<UnknownGet200Response>;
   /** put unknown value */
   put(options: UnknownPutParameters): StreamableMethod<UnknownPut204Response>;
 }
 
 export interface DecimalTypeResponseBody {
   get(
-    options?: DecimalTypeResponseBodyParameters,
+    options: DecimalTypeResponseBodyParameters,
   ): StreamableMethod<DecimalTypeResponseBody200Response>;
 }
 
@@ -88,7 +88,7 @@ export interface DecimalTypeRequestParameter {
 
 export interface Decimal128TypeResponseBody {
   get(
-    options?: Decimal128TypeResponseBodyParameters,
+    options: Decimal128TypeResponseBodyParameters,
   ): StreamableMethod<Decimal128TypeResponseBody200Response>;
 }
 
@@ -106,7 +106,7 @@ export interface Decimal128TypeRequestParameter {
 
 export interface DecimalVerifyPrepareVerify {
   get(
-    options?: DecimalVerifyPrepareVerifyParameters,
+    options: DecimalVerifyPrepareVerifyParameters,
   ): StreamableMethod<DecimalVerifyPrepareVerify200Response>;
 }
 
@@ -118,7 +118,7 @@ export interface DecimalVerifyVerify {
 
 export interface Decimal128VerifyPrepareVerify {
   get(
-    options?: Decimal128VerifyPrepareVerifyParameters,
+    options: Decimal128VerifyPrepareVerifyParameters,
   ): StreamableMethod<Decimal128VerifyPrepareVerify200Response>;
 }
 

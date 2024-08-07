@@ -18,7 +18,7 @@ describe("NotDefinedParamInServerEndpoint Rest Client", () => {
     try {
       const result = await client
         .path("/server/endpoint/not-defined/valid")
-        .head();
+        .head({});
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);

@@ -19,7 +19,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Get {
   /** get azureLocation value */
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
+  get(options: GetParameters): StreamableMethod<Get200Response>;
   /** put azureLocation value */
   put(options: PutParameters): StreamableMethod<Put204Response>;
   /** post a model which has azureLocation property */

@@ -26,39 +26,39 @@ import {
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface One {
-  post(options?: OneParameters): StreamableMethod<One204Response>;
+  post(options: OneParameters): StreamableMethod<One204Response>;
 }
 
 export interface Two {
-  post(options?: TwoParameters): StreamableMethod<Two204Response>;
+  post(options: TwoParameters): StreamableMethod<Two204Response>;
 }
 
 export interface Seven {
-  post(options?: SevenParameters): StreamableMethod<Seven204Response>;
+  post(options: SevenParameters): StreamableMethod<Seven204Response>;
 }
 
 export interface Eight {
-  post(options?: EightParameters): StreamableMethod<Eight204Response>;
+  post(options: EightParameters): StreamableMethod<Eight204Response>;
 }
 
 export interface Nine {
-  post(options?: NineParameters): StreamableMethod<Nine204Response>;
+  post(options: NineParameters): StreamableMethod<Nine204Response>;
 }
 
 export interface Three {
-  post(options?: ThreeParameters): StreamableMethod<Three204Response>;
+  post(options: ThreeParameters): StreamableMethod<Three204Response>;
 }
 
 export interface Four {
-  post(options?: FourParameters): StreamableMethod<Four204Response>;
+  post(options: FourParameters): StreamableMethod<Four204Response>;
 }
 
 export interface Five {
-  post(options?: FiveParameters): StreamableMethod<Five204Response>;
+  post(options: FiveParameters): StreamableMethod<Five204Response>;
 }
 
 export interface Six {
-  post(options?: SixParameters): StreamableMethod<Six204Response>;
+  post(options: SixParameters): StreamableMethod<Six204Response>;
 }
 
 export interface Routes {

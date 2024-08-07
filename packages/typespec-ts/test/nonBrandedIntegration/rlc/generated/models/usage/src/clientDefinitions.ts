@@ -17,7 +17,7 @@ export interface Input {
 }
 
 export interface Output {
-  get(options?: OutputParameters): StreamableMethod<Output200Response>;
+  get(options: OutputParameters): StreamableMethod<Output200Response>;
 }
 
 export interface InputAndOutput {

@@ -15,7 +15,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface FromNone {
   /** Test that currently accepts no parameters, will be updated in next spec to accept a new optional parameter as well */
-  head(options?: FromNoneParameters): StreamableMethod<FromNone204Response>;
+  head(options: FromNoneParameters): StreamableMethod<FromNone204Response>;
 }
 
 export interface FromOneRequired {
@@ -28,7 +28,7 @@ export interface FromOneRequired {
 export interface FromOneOptional {
   /** Test that currently accepts one optional parameter, will be updated in next spec to accept a new optional parameter as well */
   get(
-    options?: FromOneOptionalParameters,
+    options: FromOneOptionalParameters,
   ): StreamableMethod<FromOneOptional204Response>;
 }
 

@@ -57,7 +57,7 @@ describe("Azure Arm Resources Rest Client", () => {
         "test-rg",
         "top"
       )
-      .get();
+      .get({});
     const body = JSON.parse(JSON.stringify(result.body));
     assert.strictEqual(result.status, "200");
     assert.strictEqual(body.id, validTopLevelResource.id);
@@ -140,7 +140,7 @@ describe("Azure Arm Resources Rest Client", () => {
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
-      .get();
+      .get({});
     const body = JSON.parse(JSON.stringify(result.body));
     assert.strictEqual(result.status, "200");
     assert.strictEqual(body.value[0].id, validTopLevelResource.id);
@@ -154,7 +154,7 @@ describe("Azure Arm Resources Rest Client", () => {
         "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
         "00000000-0000-0000-0000-000000000000"
       )
-      .get();
+      .get({});
     const body = JSON.parse(JSON.stringify(result.body));
     assert.strictEqual(result.status, "200");
     assert.strictEqual(body.value[0].id, validTopLevelResource.id);
@@ -173,7 +173,7 @@ describe("Azure Arm Resources Rest Client", () => {
         "top",
         "nested"
       )
-      .get();
+      .get({});
     const body = JSON.parse(JSON.stringify(result.body));
     assert.strictEqual(result.status, "200");
     assert.strictEqual(body.id, validNestedResource.id);
@@ -241,7 +241,7 @@ describe("Azure Arm Resources Rest Client", () => {
         "top",
         "nested"
       )
-      .delete();
+      .delete({});
     assert.strictEqual(result.status, "204");
   });
 
@@ -253,7 +253,7 @@ describe("Azure Arm Resources Rest Client", () => {
         "test-rg",
         "top"
       )
-      .get();
+      .get({});
     const body = JSON.parse(JSON.stringify(result.body));
     assert.strictEqual(result.status, "200");
     assert.strictEqual(body.value[0].id, validNestedResource.id);

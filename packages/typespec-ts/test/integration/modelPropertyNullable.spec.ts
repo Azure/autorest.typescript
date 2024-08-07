@@ -54,7 +54,7 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
       try {
         const result = await client
           .path(`/type/property/nullable/${params.type}/null` as any)
-          .get();
+          .get({});
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body.nullableProperty, null);
         assert.deepEqual(result.body.requiredProperty, "foo");
@@ -67,7 +67,7 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
       try {
         const result = await client
           .path(`/type/property/nullable/${params.type}/non-null` as any)
-          .get();
+          .get({});
         assert.strictEqual(result.status, "200");
         assert.deepEqual(result.body.nullableProperty, params.defaultValue);
         assert.deepEqual(result.body.requiredProperty, "foo");

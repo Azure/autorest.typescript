@@ -18,7 +18,7 @@ describe("ClientRequestIdClient", () => {
     try {
       const result = await client
         .path("/azure/special-headers/x-ms-client-request-id/")
-        .get();
+        .get({});
       assert.isNotNull(result.request.headers.get("client-request-id"));
       assert.strictEqual(result.status, "204");
     } catch (err) {
@@ -60,7 +60,7 @@ describe("ClientRequestIdClient", () => {
     try {
       const result = await client
         .path("/azure/special-headers/x-ms-client-request-id/")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "400");
       assert.isNotNull(result.request.headers.get(headerName));
     } catch (err) {

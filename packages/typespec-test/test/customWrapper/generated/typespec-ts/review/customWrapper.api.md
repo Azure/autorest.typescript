@@ -85,7 +85,7 @@ export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters
 
 // @public (undocumented)
 export interface GetDeployment {
-    get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
+    get(options: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
     put(options?: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
 }
 

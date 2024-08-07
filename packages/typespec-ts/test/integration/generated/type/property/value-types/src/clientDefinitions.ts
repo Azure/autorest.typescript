@@ -126,7 +126,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface BooleanModelGet {
   /** Get call */
   get(
-    options?: BooleanModelGetParameters,
+    options: BooleanModelGetParameters,
   ): StreamableMethod<BooleanModelGet200Response>;
   /** Put operation */
   put(
@@ -137,7 +137,7 @@ export interface BooleanModelGet {
 export interface StringModelGet {
   /** Get call */
   get(
-    options?: StringModelGetParameters,
+    options: StringModelGetParameters,
   ): StreamableMethod<StringModelGet200Response>;
   /** Put operation */
   put(
@@ -147,28 +147,28 @@ export interface StringModelGet {
 
 export interface BytesGet {
   /** Get call */
-  get(options?: BytesGetParameters): StreamableMethod<BytesGet200Response>;
+  get(options: BytesGetParameters): StreamableMethod<BytesGet200Response>;
   /** Put operation */
   put(options: BytesPutParameters): StreamableMethod<BytesPut204Response>;
 }
 
 export interface IntGet {
   /** Get call */
-  get(options?: IntGetParameters): StreamableMethod<IntGet200Response>;
+  get(options: IntGetParameters): StreamableMethod<IntGet200Response>;
   /** Put operation */
   put(options: IntPutParameters): StreamableMethod<IntPut204Response>;
 }
 
 export interface FloatGet {
   /** Get call */
-  get(options?: FloatGetParameters): StreamableMethod<FloatGet200Response>;
+  get(options: FloatGetParameters): StreamableMethod<FloatGet200Response>;
   /** Put operation */
   put(options: FloatPutParameters): StreamableMethod<FloatPut204Response>;
 }
 
 export interface DecimalGet {
   /** Get call */
-  get(options?: DecimalGetParameters): StreamableMethod<DecimalGet200Response>;
+  get(options: DecimalGetParameters): StreamableMethod<DecimalGet200Response>;
   /** Put operation */
   put(options: DecimalPutParameters): StreamableMethod<DecimalPut204Response>;
 }
@@ -176,7 +176,7 @@ export interface DecimalGet {
 export interface Decimal128Get {
   /** Get call */
   get(
-    options?: Decimal128GetParameters,
+    options: Decimal128GetParameters,
   ): StreamableMethod<Decimal128Get200Response>;
   /** Put operation */
   put(
@@ -186,25 +186,21 @@ export interface Decimal128Get {
 
 export interface DatetimeGet {
   /** Get call */
-  get(
-    options?: DatetimeGetParameters,
-  ): StreamableMethod<DatetimeGet200Response>;
+  get(options: DatetimeGetParameters): StreamableMethod<DatetimeGet200Response>;
   /** Put operation */
   put(options: DatetimePutParameters): StreamableMethod<DatetimePut204Response>;
 }
 
 export interface DurationGet {
   /** Get call */
-  get(
-    options?: DurationGetParameters,
-  ): StreamableMethod<DurationGet200Response>;
+  get(options: DurationGetParameters): StreamableMethod<DurationGet200Response>;
   /** Put operation */
   put(options: DurationPutParameters): StreamableMethod<DurationPut204Response>;
 }
 
 export interface EnumGet {
   /** Get call */
-  get(options?: EnumGetParameters): StreamableMethod<EnumGet200Response>;
+  get(options: EnumGetParameters): StreamableMethod<EnumGet200Response>;
   /** Put operation */
   put(options: EnumPutParameters): StreamableMethod<EnumPut204Response>;
 }
@@ -212,7 +208,7 @@ export interface EnumGet {
 export interface ExtensibleEnumGet {
   /** Get call */
   get(
-    options?: ExtensibleEnumGetParameters,
+    options: ExtensibleEnumGetParameters,
   ): StreamableMethod<ExtensibleEnumGet200Response>;
   /** Put operation */
   put(
@@ -222,7 +218,7 @@ export interface ExtensibleEnumGet {
 
 export interface ModelGet {
   /** Get call */
-  get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
+  get(options: ModelGetParameters): StreamableMethod<ModelGet200Response>;
   /** Put operation */
   put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
 }
@@ -230,7 +226,7 @@ export interface ModelGet {
 export interface CollectionsStringGet {
   /** Get call */
   get(
-    options?: CollectionsStringGetParameters,
+    options: CollectionsStringGetParameters,
   ): StreamableMethod<CollectionsStringGet200Response>;
   /** Put operation */
   put(
@@ -241,7 +237,7 @@ export interface CollectionsStringGet {
 export interface CollectionsIntGet {
   /** Get call */
   get(
-    options?: CollectionsIntGetParameters,
+    options: CollectionsIntGetParameters,
   ): StreamableMethod<CollectionsIntGet200Response>;
   /** Put operation */
   put(
@@ -252,7 +248,7 @@ export interface CollectionsIntGet {
 export interface CollectionsModelGet {
   /** Get call */
   get(
-    options?: CollectionsModelGetParameters,
+    options: CollectionsModelGetParameters,
   ): StreamableMethod<CollectionsModelGet200Response>;
   /** Put operation */
   put(
@@ -263,7 +259,7 @@ export interface CollectionsModelGet {
 export interface DictionaryStringGet {
   /** Get call */
   get(
-    options?: DictionaryStringGetParameters,
+    options: DictionaryStringGetParameters,
   ): StreamableMethod<DictionaryStringGet200Response>;
   /** Put operation */
   put(
@@ -273,7 +269,7 @@ export interface DictionaryStringGet {
 
 export interface NeverGet {
   /** Get call */
-  get(options?: NeverGetParameters): StreamableMethod<NeverGet200Response>;
+  get(options: NeverGetParameters): StreamableMethod<NeverGet200Response>;
   /** Put operation */
   put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
 }
@@ -281,7 +277,7 @@ export interface NeverGet {
 export interface UnknownStringGet {
   /** Get call */
   get(
-    options?: UnknownStringGetParameters,
+    options: UnknownStringGetParameters,
   ): StreamableMethod<UnknownStringGet200Response>;
   /** Put operation */
   put(
@@ -292,7 +288,7 @@ export interface UnknownStringGet {
 export interface UnknownIntGet {
   /** Get call */
   get(
-    options?: UnknownIntGetParameters,
+    options: UnknownIntGetParameters,
   ): StreamableMethod<UnknownIntGet200Response>;
   /** Put operation */
   put(
@@ -303,7 +299,7 @@ export interface UnknownIntGet {
 export interface UnknownDictGet {
   /** Get call */
   get(
-    options?: UnknownDictGetParameters,
+    options: UnknownDictGetParameters,
   ): StreamableMethod<UnknownDictGet200Response>;
   /** Put operation */
   put(
@@ -314,7 +310,7 @@ export interface UnknownDictGet {
 export interface UnknownArrayGet {
   /** Get call */
   get(
-    options?: UnknownArrayGetParameters,
+    options: UnknownArrayGetParameters,
   ): StreamableMethod<UnknownArrayGet200Response>;
   /** Put operation */
   put(
@@ -325,7 +321,7 @@ export interface UnknownArrayGet {
 export interface StringLiteralGet {
   /** Get call */
   get(
-    options?: StringLiteralGetParameters,
+    options: StringLiteralGetParameters,
   ): StreamableMethod<StringLiteralGet200Response>;
   /** Put operation */
   put(
@@ -336,7 +332,7 @@ export interface StringLiteralGet {
 export interface IntLiteralGet {
   /** Get call */
   get(
-    options?: IntLiteralGetParameters,
+    options: IntLiteralGetParameters,
   ): StreamableMethod<IntLiteralGet200Response>;
   /** Put operation */
   put(
@@ -347,7 +343,7 @@ export interface IntLiteralGet {
 export interface FloatLiteralGet {
   /** Get call */
   get(
-    options?: FloatLiteralGetParameters,
+    options: FloatLiteralGetParameters,
   ): StreamableMethod<FloatLiteralGet200Response>;
   /** Put operation */
   put(
@@ -358,7 +354,7 @@ export interface FloatLiteralGet {
 export interface BooleanLiteralGet {
   /** Get call */
   get(
-    options?: BooleanLiteralGetParameters,
+    options: BooleanLiteralGetParameters,
   ): StreamableMethod<BooleanLiteralGet200Response>;
   /** Put operation */
   put(
@@ -369,7 +365,7 @@ export interface BooleanLiteralGet {
 export interface UnionStringLiteralGet {
   /** Get call */
   get(
-    options?: UnionStringLiteralGetParameters,
+    options: UnionStringLiteralGetParameters,
   ): StreamableMethod<UnionStringLiteralGet200Response>;
   /** Put operation */
   put(
@@ -380,7 +376,7 @@ export interface UnionStringLiteralGet {
 export interface UnionIntLiteralGet {
   /** Get call */
   get(
-    options?: UnionIntLiteralGetParameters,
+    options: UnionIntLiteralGetParameters,
   ): StreamableMethod<UnionIntLiteralGet200Response>;
   /** Put operation */
   put(
@@ -391,7 +387,7 @@ export interface UnionIntLiteralGet {
 export interface UnionFloatLiteralGet {
   /** Get call */
   get(
-    options?: UnionFloatLiteralGetParameters,
+    options: UnionFloatLiteralGetParameters,
   ): StreamableMethod<UnionFloatLiteralGet200Response>;
   /** Put operation */
   put(
@@ -402,7 +398,7 @@ export interface UnionFloatLiteralGet {
 export interface UnionEnumValueGet {
   /** Get call */
   get(
-    options?: UnionEnumValueGetParameters,
+    options: UnionEnumValueGetParameters,
   ): StreamableMethod<UnionEnumValueGet200Response>;
   /** Put operation */
   put(

@@ -23,7 +23,7 @@ export interface RequiredExplicit {
 
 export interface RequiredImplicit {
   post(
-    options?: RequiredImplicitParameters,
+    options: RequiredImplicitParameters,
   ): StreamableMethod<RequiredImplicit204Response>;
 }
 

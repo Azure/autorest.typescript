@@ -28,7 +28,7 @@ export type UploadParameters = UploadMediaTypesParam &
   RequestParameters;
 
 export interface ProcessBodyParam {
-  body?: { data: string | string };
+  body: { data: string | string };
 }
 
 export interface ProcessMediaTypesParam {

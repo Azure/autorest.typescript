@@ -28,7 +28,7 @@ export interface CreateOrReplace {
   >;
   /** Deletes a User */
   delete(
-    options?: DeleteParameters,
+    options: DeleteParameters,
   ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
 }
 

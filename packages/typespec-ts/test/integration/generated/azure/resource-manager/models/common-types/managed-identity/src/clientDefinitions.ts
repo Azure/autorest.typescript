@@ -20,7 +20,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface Get {
   /** Get a ManagedIdentityTrackedResource */
   get(
-    options?: GetParameters,
+    options: GetParameters,
   ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Create a ManagedIdentityTrackedResource */
   put(

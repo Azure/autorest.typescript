@@ -11,13 +11,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Valid {
   /** Check whether client is authenticated */
-  get(options?: ValidParameters): StreamableMethod<Valid204Response>;
+  get(options: ValidParameters): StreamableMethod<Valid204Response>;
 }
 
 export interface Invalid {
   /** Check whether client is authenticated. */
   get(
-    options?: InvalidParameters,
+    options: InvalidParameters,
   ): StreamableMethod<Invalid204Response | Invalid403Response>;
 }
 

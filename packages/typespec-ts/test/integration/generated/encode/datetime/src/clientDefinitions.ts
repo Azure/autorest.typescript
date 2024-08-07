@@ -137,25 +137,25 @@ export interface HeaderUnixTimestampArray {
 
 export interface ResponseHeaderDefault {
   get(
-    options?: ResponseHeaderDefaultParameters,
+    options: ResponseHeaderDefaultParameters,
   ): StreamableMethod<ResponseHeaderDefault204Response>;
 }
 
 export interface ResponseHeaderRfc3339 {
   get(
-    options?: ResponseHeaderRfc3339Parameters,
+    options: ResponseHeaderRfc3339Parameters,
   ): StreamableMethod<ResponseHeaderRfc3339204Response>;
 }
 
 export interface ResponseHeaderRfc7231 {
   get(
-    options?: ResponseHeaderRfc7231Parameters,
+    options: ResponseHeaderRfc7231Parameters,
   ): StreamableMethod<ResponseHeaderRfc7231204Response>;
 }
 
 export interface ResponseHeaderUnixTimestamp {
   get(
-    options?: ResponseHeaderUnixTimestampParameters,
+    options: ResponseHeaderUnixTimestampParameters,
   ): StreamableMethod<ResponseHeaderUnixTimestamp204Response>;
 }
 

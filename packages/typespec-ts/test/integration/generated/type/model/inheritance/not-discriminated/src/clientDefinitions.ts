@@ -15,7 +15,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface PostValid {
   post(options: PostValidParameters): StreamableMethod<PostValid204Response>;
-  get(options?: GetValidParameters): StreamableMethod<GetValid200Response>;
+  get(options: GetValidParameters): StreamableMethod<GetValid200Response>;
   put(options: PutValidParameters): StreamableMethod<PutValid200Response>;
 }
 

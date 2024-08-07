@@ -273,7 +273,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/default`)
-          .get();
+          .get({});
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body, "dGVzdA==");
       } catch (err) {
@@ -285,7 +285,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/base64`)
-          .get();
+          .get({});
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body, "dGVzdA==");
       } catch (err) {
@@ -297,7 +297,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/base64url`)
-          .get();
+          .get({});
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body, "dGVzdA");
       } catch (err) {

@@ -183,7 +183,7 @@ describe("Doc generation testing", () => {
   
         export interface Read {
             /** This is the longer description */
-            get(options?: ReadParameters): StreamableMethod<Read200Response>;
+            get(options: ReadParameters): StreamableMethod<Read200Response>;
         }
   
         export interface Routes {

@@ -19,7 +19,7 @@ export interface RequestUnionBody {
 
 export interface ResponseUnionBody {
   get(
-    options?: ResponseUnionBodyParameters,
+    options: ResponseUnionBodyParameters,
   ): StreamableMethod<ResponseUnionBody200Response>;
 }
 

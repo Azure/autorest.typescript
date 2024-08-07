@@ -20,13 +20,13 @@ import {
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetModel {
-  get(options?: GetModelParameters): StreamableMethod<GetModel200Response>;
+  get(options: GetModelParameters): StreamableMethod<GetModel200Response>;
   put(options: PutModelParameters): StreamableMethod<PutModel204Response>;
 }
 
 export interface GetRecursiveModel {
   get(
-    options?: GetRecursiveModelParameters,
+    options: GetRecursiveModelParameters,
   ): StreamableMethod<GetRecursiveModel200Response>;
   put(
     options: PutRecursiveModelParameters,
@@ -35,13 +35,13 @@ export interface GetRecursiveModel {
 
 export interface GetMissingDiscriminator {
   get(
-    options?: GetMissingDiscriminatorParameters,
+    options: GetMissingDiscriminatorParameters,
   ): StreamableMethod<GetMissingDiscriminator200Response>;
 }
 
 export interface GetWrongDiscriminator {
   get(
-    options?: GetWrongDiscriminatorParameters,
+    options: GetWrongDiscriminatorParameters,
   ): StreamableMethod<GetWrongDiscriminator200Response>;
 }
 

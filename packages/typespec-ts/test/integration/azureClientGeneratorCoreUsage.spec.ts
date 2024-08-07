@@ -25,7 +25,7 @@ describe("Usage Client", () => {
   it("should get usage model in operation", async () => {
     const result = await client
       .path("/azure/client-generator-core/usage/outputToInputOutput")
-      .get();
+      .get({});
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.name, "Madge");
   });

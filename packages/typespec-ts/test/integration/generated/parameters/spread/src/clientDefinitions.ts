@@ -29,7 +29,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ModelSpreadAsRequestBody {
   put(
-    options?: ModelSpreadAsRequestBodyParameters,
+    options: ModelSpreadAsRequestBodyParameters,
   ): StreamableMethod<ModelSpreadAsRequestBody204Response>;
 }
 
@@ -59,7 +59,7 @@ export interface ModelSpreadCompositeRequestMix {
 
 export interface AliasSpreadAsRequestBody {
   put(
-    options?: AliasSpreadAsRequestBodyParameters,
+    options: AliasSpreadAsRequestBodyParameters,
   ): StreamableMethod<AliasSpreadAsRequestBody204Response>;
 }
 

@@ -14,7 +14,7 @@ import {
 export type GetOperationResultParameters = RequestParameters;
 
 export interface DetectFromUrlBodyParam {
-  body?: { url: string };
+  body: { url: string };
 }
 
 export interface DetectFromUrlQueryParamProperties {
@@ -109,7 +109,7 @@ export type DetectParameters = DetectQueryParam &
   RequestParameters;
 
 export interface FindSimilarBodyParam {
-  body?: {
+  body: {
     faceId: string;
     maxNumOfCandidatesReturned?: number;
     mode?: FindSimilarMatchMode;
@@ -120,7 +120,7 @@ export interface FindSimilarBodyParam {
 export type FindSimilarParameters = FindSimilarBodyParam & RequestParameters;
 
 export interface FindSimilarFromFaceListBodyParam {
-  body?: {
+  body: {
     faceId: string;
     maxNumOfCandidatesReturned?: number;
     mode?: FindSimilarMatchMode;
@@ -132,7 +132,7 @@ export type FindSimilarFromFaceListParameters =
   FindSimilarFromFaceListBodyParam & RequestParameters;
 
 export interface FindSimilarFromLargeFaceListBodyParam {
-  body?: {
+  body: {
     faceId: string;
     maxNumOfCandidatesReturned?: number;
     mode?: FindSimilarMatchMode;
@@ -144,7 +144,7 @@ export type FindSimilarFromLargeFaceListParameters =
   FindSimilarFromLargeFaceListBodyParam & RequestParameters;
 
 export interface IdentifyFromPersonGroupBodyParam {
-  body?: {
+  body: {
     faceIds: string[];
     personGroupId: string;
     maxNumOfCandidatesReturned?: number;
@@ -156,7 +156,7 @@ export type IdentifyFromPersonGroupParameters =
   IdentifyFromPersonGroupBodyParam & RequestParameters;
 
 export interface IdentifyFromLargePersonGroupBodyParam {
-  body?: {
+  body: {
     faceIds: string[];
     largePersonGroupId: string;
     maxNumOfCandidatesReturned?: number;
@@ -168,7 +168,7 @@ export type IdentifyFromLargePersonGroupParameters =
   IdentifyFromLargePersonGroupBodyParam & RequestParameters;
 
 export interface IdentifyFromPersonDirectoryBodyParam {
-  body?: {
+  body: {
     faceIds: string[];
     personIds: string[];
     maxNumOfCandidatesReturned?: number;
@@ -180,7 +180,7 @@ export type IdentifyFromPersonDirectoryParameters =
   IdentifyFromPersonDirectoryBodyParam & RequestParameters;
 
 export interface IdentifyFromDynamicPersonGroupBodyParam {
-  body?: {
+  body: {
     faceIds: string[];
     dynamicPersonGroupId: string;
     maxNumOfCandidatesReturned?: number;
@@ -192,41 +192,41 @@ export type IdentifyFromDynamicPersonGroupParameters =
   IdentifyFromDynamicPersonGroupBodyParam & RequestParameters;
 
 export interface VerifyFaceToFaceBodyParam {
-  body?: { faceId1: string; faceId2: string };
+  body: { faceId1: string; faceId2: string };
 }
 
 export type VerifyFaceToFaceParameters = VerifyFaceToFaceBodyParam &
   RequestParameters;
 
 export interface VerifyFromPersonGroupBodyParam {
-  body?: { faceId: string; personGroupId: string; personId: string };
+  body: { faceId: string; personGroupId: string; personId: string };
 }
 
 export type VerifyFromPersonGroupParameters = VerifyFromPersonGroupBodyParam &
   RequestParameters;
 
 export interface VerifyFromLargePersonGroupBodyParam {
-  body?: { faceId: string; largePersonGroupId: string; personId: string };
+  body: { faceId: string; largePersonGroupId: string; personId: string };
 }
 
 export type VerifyFromLargePersonGroupParameters =
   VerifyFromLargePersonGroupBodyParam & RequestParameters;
 
 export interface VerifyFromPersonDirectoryBodyParam {
-  body?: { faceId: string; personId: string };
+  body: { faceId: string; personId: string };
 }
 
 export type VerifyFromPersonDirectoryParameters =
   VerifyFromPersonDirectoryBodyParam & RequestParameters;
 
 export interface GroupBodyParam {
-  body?: { faceIds: string[] };
+  body: { faceIds: string[] };
 }
 
 export type GroupParameters = GroupBodyParam & RequestParameters;
 
 export interface CreateFaceListBodyParam {
-  body?: {
+  body: {
     name: string;
     userData?: string;
     recognitionModel?: RecognitionModel;
@@ -249,7 +249,7 @@ export interface GetFaceListQueryParam {
 export type GetFaceListParameters = GetFaceListQueryParam & RequestParameters;
 
 export interface UpdateFaceListBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdateFaceListParameters = UpdateFaceListBodyParam &
@@ -267,7 +267,7 @@ export interface GetFaceListsQueryParam {
 export type GetFaceListsParameters = GetFaceListsQueryParam & RequestParameters;
 
 export interface AddFaceListFaceFromUrlBodyParam {
-  body?: { url: string };
+  body: { url: string };
 }
 
 export interface AddFaceListFaceFromUrlQueryParamProperties {
@@ -334,7 +334,7 @@ export type AddFaceListFaceParameters = AddFaceListFaceQueryParam &
 export type DeleteFaceListFaceParameters = RequestParameters;
 
 export interface CreateLargeFaceListBodyParam {
-  body?: {
+  body: {
     name: string;
     userData?: string;
     recognitionModel?: RecognitionModel;
@@ -358,7 +358,7 @@ export type GetLargeFaceListParameters = GetLargeFaceListQueryParam &
   RequestParameters;
 
 export interface UpdateLargeFaceListBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdateLargeFaceListParameters = UpdateLargeFaceListBodyParam &
@@ -383,7 +383,7 @@ export type GetLargeFaceListTrainingStatusParameters = RequestParameters;
 export type TrainLargeFaceListParameters = RequestParameters;
 
 export interface AddLargeFaceListFaceFromUrlBodyParam {
-  body?: { url: string };
+  body: { url: string };
 }
 
 export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
@@ -451,7 +451,7 @@ export type DeleteLargeFaceListFaceParameters = RequestParameters;
 export type GetLargeFaceListFaceParameters = RequestParameters;
 
 export interface UpdateLargeFaceListFaceBodyParam {
-  body?: { userData?: string };
+  body: { userData?: string };
 }
 
 export type UpdateLargeFaceListFaceParameters =
@@ -472,7 +472,7 @@ export type GetLargeFaceListFacesParameters = GetLargeFaceListFacesQueryParam &
   RequestParameters;
 
 export interface CreatePersonGroupBodyParam {
-  body?: {
+  body: {
     name: string;
     userData?: string;
     recognitionModel?: RecognitionModel;
@@ -496,7 +496,7 @@ export type GetPersonGroupParameters = GetPersonGroupQueryParam &
   RequestParameters;
 
 export interface UpdatePersonGroupBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdatePersonGroupParameters = UpdatePersonGroupBodyParam &
@@ -521,7 +521,7 @@ export type GetPersonGroupTrainingStatusParameters = RequestParameters;
 export type TrainPersonGroupParameters = RequestParameters;
 
 export interface CreatePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
+  body: { name: string; userData?: string };
 }
 
 export type CreatePersonGroupPersonParameters =
@@ -530,7 +530,7 @@ export type DeletePersonGroupPersonParameters = RequestParameters;
 export type GetPersonGroupPersonParameters = RequestParameters;
 
 export interface UpdatePersonGroupPersonBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdatePersonGroupPersonParameters =
@@ -551,7 +551,7 @@ export type GetPersonGroupPersonsParameters = GetPersonGroupPersonsQueryParam &
   RequestParameters;
 
 export interface AddPersonGroupPersonFaceFromUrlBodyParam {
-  body?: { url: string };
+  body: { url: string };
 }
 
 export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
@@ -620,14 +620,14 @@ export type DeletePersonGroupPersonFaceParameters = RequestParameters;
 export type GetPersonGroupPersonFaceParameters = RequestParameters;
 
 export interface UpdatePersonGroupPersonFaceBodyParam {
-  body?: { userData?: string };
+  body: { userData?: string };
 }
 
 export type UpdatePersonGroupPersonFaceParameters =
   UpdatePersonGroupPersonFaceBodyParam & RequestParameters;
 
 export interface CreateLargePersonGroupBodyParam {
-  body?: {
+  body: {
     name: string;
     userData?: string;
     recognitionModel?: RecognitionModel;
@@ -651,7 +651,7 @@ export type GetLargePersonGroupParameters = GetLargePersonGroupQueryParam &
   RequestParameters;
 
 export interface UpdateLargePersonGroupBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdateLargePersonGroupParameters = UpdateLargePersonGroupBodyParam &
@@ -676,7 +676,7 @@ export type GetLargePersonGroupTrainingStatusParameters = RequestParameters;
 export type TrainLargePersonGroupParameters = RequestParameters;
 
 export interface CreateLargePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
+  body: { name: string; userData?: string };
 }
 
 export type CreateLargePersonGroupPersonParameters =
@@ -685,7 +685,7 @@ export type DeleteLargePersonGroupPersonParameters = RequestParameters;
 export type GetLargePersonGroupPersonParameters = RequestParameters;
 
 export interface UpdateLargePersonGroupPersonBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdateLargePersonGroupPersonParameters =
@@ -706,7 +706,7 @@ export type GetLargePersonGroupPersonsParameters =
   GetLargePersonGroupPersonsQueryParam & RequestParameters;
 
 export interface AddLargePersonGroupPersonFaceFromUrlBodyParam {
-  body?: { url: string };
+  body: { url: string };
 }
 
 export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
@@ -775,14 +775,14 @@ export type DeleteLargePersonGroupPersonFaceParameters = RequestParameters;
 export type GetLargePersonGroupPersonFaceParameters = RequestParameters;
 
 export interface UpdateLargePersonGroupPersonFaceBodyParam {
-  body?: { userData?: string };
+  body: { userData?: string };
 }
 
 export type UpdateLargePersonGroupPersonFaceParameters =
   UpdateLargePersonGroupPersonFaceBodyParam & RequestParameters;
 
 export interface CreatePersonBodyParam {
-  body?: { name: string; userData?: string };
+  body: { name: string; userData?: string };
 }
 
 export type CreatePersonParameters = CreatePersonBodyParam & RequestParameters;
@@ -790,7 +790,7 @@ export type DeletePersonParameters = RequestParameters;
 export type GetPersonParameters = RequestParameters;
 
 export interface UpdatePersonBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdatePersonParameters = UpdatePersonBodyParam & RequestParameters;
@@ -863,7 +863,7 @@ export type AddPersonFaceParameters = AddPersonFaceQueryParam &
   RequestParameters;
 
 export interface AddPersonFaceFromUrlBodyParam {
-  body?: { url: string };
+  body: { url: string };
 }
 
 export interface AddPersonFaceFromUrlQueryParamProperties {
@@ -890,7 +890,7 @@ export type DeletePersonFaceParameters = RequestParameters;
 export type GetPersonFaceParameters = RequestParameters;
 
 export interface UpdatePersonFaceBodyParam {
-  body?: { userData?: string };
+  body: { userData?: string };
 }
 
 export type UpdatePersonFaceParameters = UpdatePersonFaceBodyParam &
@@ -898,14 +898,14 @@ export type UpdatePersonFaceParameters = UpdatePersonFaceBodyParam &
 export type GetPersonFacesParameters = RequestParameters;
 
 export interface CreateDynamicPersonGroupWithPersonBodyParam {
-  body?: { name: string; userData?: string; addPersonIds: string[] };
+  body: { name: string; userData?: string; addPersonIds: string[] };
 }
 
 export type CreateDynamicPersonGroupWithPersonParameters =
   CreateDynamicPersonGroupWithPersonBodyParam & RequestParameters;
 
 export interface CreateDynamicPersonGroupBodyParam {
-  body?: { name: string; userData?: string };
+  body: { name: string; userData?: string };
 }
 
 export type CreateDynamicPersonGroupParameters =
@@ -914,7 +914,7 @@ export type DeleteDynamicPersonGroupParameters = RequestParameters;
 export type GetDynamicPersonGroupParameters = RequestParameters;
 
 export interface UpdateDynamicPersonGroupWithPersonChangesBodyParam {
-  body?: {
+  body: {
     name?: string;
     userData?: string;
     addPersonIds?: string[];
@@ -926,7 +926,7 @@ export type UpdateDynamicPersonGroupWithPersonChangesParameters =
   UpdateDynamicPersonGroupWithPersonChangesBodyParam & RequestParameters;
 
 export interface UpdateDynamicPersonGroupBodyParam {
-  body?: { name?: string; userData?: string };
+  body: { name?: string; userData?: string };
 }
 
 export type UpdateDynamicPersonGroupParameters =
@@ -961,7 +961,7 @@ export type GetDynamicPersonGroupPersonsParameters =
   GetDynamicPersonGroupPersonsQueryParam & RequestParameters;
 
 export interface CreateLivenessSessionBodyParam {
-  body?: LivenessSessionCreationContent;
+  body: LivenessSessionCreationContent;
 }
 
 export type CreateLivenessSessionParameters = CreateLivenessSessionBodyParam &
@@ -998,7 +998,7 @@ export type GetLivenessSessionAuditEntriesParameters =
   GetLivenessSessionAuditEntriesQueryParam & RequestParameters;
 
 export interface CreateLivenessWithVerifySessionWithVerifyImageBodyParam {
-  body?: LivenessSessionWithVerifyImageCreationContent;
+  body: LivenessSessionWithVerifyImageCreationContent;
 }
 
 export interface CreateLivenessWithVerifySessionWithVerifyImageMediaTypesParam {
@@ -1012,7 +1012,7 @@ export type CreateLivenessWithVerifySessionWithVerifyImageParameters =
     RequestParameters;
 
 export interface CreateLivenessWithVerifySessionBodyParam {
-  body?: LivenessSessionCreationContent;
+  body: LivenessSessionCreationContent;
 }
 
 export type CreateLivenessWithVerifySessionParameters =

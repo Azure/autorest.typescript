@@ -6,7 +6,7 @@ import { RequestParameters } from "@azure-rest/core-client";
 import { BodyParameter, CompositeRequestMix, InnerModel } from "./models.js";
 
 export interface ModelSpreadAsRequestBodyBodyParam {
-  body?: BodyParameter;
+  body: BodyParameter;
 }
 
 export type ModelSpreadAsRequestBodyParameters =
@@ -52,7 +52,7 @@ export interface ModelSpreadCompositeRequestMixHeaders {
 }
 
 export interface ModelSpreadCompositeRequestMixBodyParam {
-  body?: CompositeRequestMix;
+  body: CompositeRequestMix;
 }
 
 export interface ModelSpreadCompositeRequestMixHeaderParam {
@@ -65,7 +65,7 @@ export type ModelSpreadCompositeRequestMixParameters =
     RequestParameters;
 
 export interface AliasSpreadAsRequestBodyBodyParam {
-  body?: { name: string };
+  body: { name: string };
 }
 
 export type AliasSpreadAsRequestBodyParameters =
@@ -76,7 +76,7 @@ export interface AliasSpreadParameterWithInnerModelHeaders {
 }
 
 export interface AliasSpreadParameterWithInnerModelBodyParam {
-  body?: InnerModel;
+  body: InnerModel;
 }
 
 export interface AliasSpreadParameterWithInnerModelHeaderParam {
@@ -93,7 +93,7 @@ export interface AliasSpreadAsRequestParameterHeaders {
 }
 
 export interface AliasSpreadAsRequestParameterBodyParam {
-  body?: { name: string };
+  body: { name: string };
 }
 
 export interface AliasSpreadAsRequestParameterHeaderParam {
@@ -110,7 +110,7 @@ export interface AliasSpreadWithMultipleParametersHeaders {
 }
 
 export interface AliasSpreadWithMultipleParametersBodyParam {
-  body?: {
+  body: {
     requiredString: string;
     optionalInt?: number;
     requiredIntList: number[];
@@ -132,7 +132,7 @@ export interface AliasSpreadParameterWithInnerAliasHeaders {
 }
 
 export interface AliasSpreadParameterWithInnerAliasBodyParam {
-  body?: { name: string; age: number };
+  body: { name: string; age: number };
 }
 
 export interface AliasSpreadParameterWithInnerAliasHeaderParam {

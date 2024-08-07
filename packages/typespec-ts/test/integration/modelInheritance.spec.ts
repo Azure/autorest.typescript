@@ -25,7 +25,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/nested-discriminator/model")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
       if (result.body.kind === "shark") {
@@ -110,7 +110,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/nested-discriminator/recursivemodel")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
         JSON.stringify(result.body),
@@ -146,7 +146,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
         .path(
           "/type/model/inheritance/nested-discriminator/missingdiscriminator"
         )
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
       assert.isUndefined(result.body.kind);
@@ -159,7 +159,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/nested-discriminator/wrongdiscriminator")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
       assert.strictEqual(result.body.kind, "wrongKind");

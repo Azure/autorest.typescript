@@ -14,14 +14,14 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetJob {
   /** Gets the status and details of the Trial Matcher job. */
   get(
-    options?: GetJobParameters,
+    options: GetJobParameters,
   ): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
 }
 
 export interface CreateJob {
   /** Creates a Trial Matcher job with the given request body. */
   post(
-    options?: CreateJobParameters,
+    options: CreateJobParameters,
   ): StreamableMethod<
     CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse
   >;

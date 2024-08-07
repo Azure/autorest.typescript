@@ -314,7 +314,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetOperationResult {
   /** Get status of a long running operation. */
   get(
-    options?: GetOperationResultParameters,
+    options: GetOperationResultParameters,
   ): StreamableMethod<
     GetOperationResult200Response | GetOperationResultDefaultResponse
   >;
@@ -370,7 +370,7 @@ export interface FindSimilar {
    * The 'recognitionModel' associated with the query faceId should be the same as the 'recognitionModel' used by the target faceId array.
    */
   post(
-    options?: FindSimilarParameters,
+    options: FindSimilarParameters,
   ): StreamableMethod<FindSimilar200Response | FindSimilarDefaultResponse>;
   /**
    * Depending on the input the returned similar faces list contains faceIds or persistedFaceIds ranked by similarity.
@@ -380,7 +380,7 @@ export interface FindSimilar {
    * The 'recognitionModel' associated with the query faceId should be the same as the 'recognitionModel' used by the target Face List.
    */
   post(
-    options?: FindSimilarFromFaceListParameters,
+    options: FindSimilarFromFaceListParameters,
   ): StreamableMethod<
     FindSimilarFromFaceList200Response | FindSimilarFromFaceListDefaultResponse
   >;
@@ -392,7 +392,7 @@ export interface FindSimilar {
    * The 'recognitionModel' associated with the query faceId should be the same as the 'recognitionModel' used by the target Large Face List.
    */
   post(
-    options?: FindSimilarFromLargeFaceListParameters,
+    options: FindSimilarFromLargeFaceListParameters,
   ): StreamableMethod<
     | FindSimilarFromLargeFaceList200Response
     | FindSimilarFromLargeFaceListDefaultResponse
@@ -413,7 +413,7 @@ export interface IdentifyFromPersonGroup {
    * >   * The 'recognitionModel' associated with the query faces' faceIds should be the same as the 'recognitionModel' used by the target Person Group.
    */
   post(
-    options?: IdentifyFromPersonGroupParameters,
+    options: IdentifyFromPersonGroupParameters,
   ): StreamableMethod<
     IdentifyFromPersonGroup200Response | IdentifyFromPersonGroupDefaultResponse
   >;
@@ -430,7 +430,7 @@ export interface IdentifyFromPersonGroup {
    * >   * The 'recognitionModel' associated with the query faces' faceIds should be the same as the 'recognitionModel' used by the target Person Group or Large Person Group.
    */
   post(
-    options?: IdentifyFromLargePersonGroupParameters,
+    options: IdentifyFromLargePersonGroupParameters,
   ): StreamableMethod<
     | IdentifyFromLargePersonGroup200Response
     | IdentifyFromLargePersonGroupDefaultResponse
@@ -447,7 +447,7 @@ export interface IdentifyFromPersonGroup {
    * >   * The Identify operation can only match faces obtained with the same recognition model, that is associated with the query faces.
    */
   post(
-    options?: IdentifyFromPersonDirectoryParameters,
+    options: IdentifyFromPersonDirectoryParameters,
   ): StreamableMethod<
     | IdentifyFromPersonDirectory200Response
     | IdentifyFromPersonDirectoryDefaultResponse
@@ -464,7 +464,7 @@ export interface IdentifyFromPersonGroup {
    * >   * The Identify operation can only match faces obtained with the same recognition model, that is associated with the query faces.
    */
   post(
-    options?: IdentifyFromDynamicPersonGroupParameters,
+    options: IdentifyFromDynamicPersonGroupParameters,
   ): StreamableMethod<
     | IdentifyFromDynamicPersonGroup200Response
     | IdentifyFromDynamicPersonGroupDefaultResponse
@@ -481,7 +481,7 @@ export interface VerifyFaceToFace {
    * >   * The 'recognitionModel' associated with the both faces should be the same.
    */
   post(
-    options?: VerifyFaceToFaceParameters,
+    options: VerifyFaceToFaceParameters,
   ): StreamableMethod<
     VerifyFaceToFace200Response | VerifyFaceToFaceDefaultResponse
   >;
@@ -494,7 +494,7 @@ export interface VerifyFaceToFace {
    * >   * The 'recognitionModel' associated with the query face should be the same as the 'recognitionModel' used by the Person Group.
    */
   post(
-    options?: VerifyFromPersonGroupParameters,
+    options: VerifyFromPersonGroupParameters,
   ): StreamableMethod<
     VerifyFromPersonGroup200Response | VerifyFromPersonGroupDefaultResponse
   >;
@@ -507,7 +507,7 @@ export interface VerifyFaceToFace {
    * >   * The 'recognitionModel' associated with the query face should be the same as the 'recognitionModel' used by the Large Person Group.
    */
   post(
-    options?: VerifyFromLargePersonGroupParameters,
+    options: VerifyFromLargePersonGroupParameters,
   ): StreamableMethod<
     | VerifyFromLargePersonGroup200Response
     | VerifyFromLargePersonGroupDefaultResponse
@@ -521,7 +521,7 @@ export interface VerifyFaceToFace {
    * >   * The Verify operation can only match faces obtained with the same recognition model, that is associated with the query face.
    */
   post(
-    options?: VerifyFromPersonDirectoryParameters,
+    options: VerifyFromPersonDirectoryParameters,
   ): StreamableMethod<
     | VerifyFromPersonDirectory200Response
     | VerifyFromPersonDirectoryDefaultResponse
@@ -538,7 +538,7 @@ export interface Group {
    *   * The 'recognitionModel' associated with the query faces' faceIds should be the same.
    */
   post(
-    options?: GroupParameters,
+    options: GroupParameters,
   ): StreamableMethod<Group200Response | GroupDefaultResponse>;
 }
 
@@ -555,23 +555,23 @@ export interface CreateFaceList {
    * Please consider Large Face List when the face number is large. It can support up to 1,000,000 faces.
    */
   put(
-    options?: CreateFaceListParameters,
+    options: CreateFaceListParameters,
   ): StreamableMethod<
     CreateFaceList200Response | CreateFaceListDefaultResponse
   >;
   /** Delete a specified Face List. */
   delete(
-    options?: DeleteFaceListParameters,
+    options: DeleteFaceListParameters,
   ): StreamableMethod<
     DeleteFaceList200Response | DeleteFaceListDefaultResponse
   >;
   /** Retrieve a Face List's faceListId, name, userData, recognitionModel and faces in the Face List. */
   get(
-    options?: GetFaceListParameters,
+    options: GetFaceListParameters,
   ): StreamableMethod<GetFaceList200Response | GetFaceListDefaultResponse>;
   /** Update information of a Face List, including name and userData. */
   patch(
-    options?: UpdateFaceListParameters,
+    options: UpdateFaceListParameters,
   ): StreamableMethod<
     UpdateFaceList200Response | UpdateFaceListDefaultResponse
   >;
@@ -584,7 +584,7 @@ export interface GetFaceLists {
    * To get face information inside Face List use "Get Face List".
    */
   get(
-    options?: GetFaceListsParameters,
+    options: GetFaceListsParameters,
   ): StreamableMethod<GetFaceLists200Response | GetFaceListsDefaultResponse>;
 }
 
@@ -604,7 +604,7 @@ export interface AddFaceListFaceFromUrl {
    *   * Different 'detectionModel' values can be provided. To use and compare different detection models, please refer to https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/specify-detection-model
    */
   post(
-    options?: AddFaceListFaceFromUrlParameters,
+    options: AddFaceListFaceFromUrlParameters,
   ): StreamableMethod<
     AddFaceListFaceFromUrl200Response | AddFaceListFaceFromUrlDefaultResponse
   >;
@@ -632,7 +632,7 @@ export interface AddFaceListFaceFromUrl {
 export interface DeleteFaceListFace {
   /** Adding/deleting faces to/from a same Face List are processed sequentially and to/from different Face Lists are in parallel. */
   delete(
-    options?: DeleteFaceListFaceParameters,
+    options: DeleteFaceListFaceParameters,
   ): StreamableMethod<
     DeleteFaceListFace200Response | DeleteFaceListFaceDefaultResponse
   >;
@@ -653,25 +653,25 @@ export interface CreateLargeFaceList {
    * >   * S0-tier subscription quota: 1,000,000 Large Face Lists.
    */
   put(
-    options?: CreateLargeFaceListParameters,
+    options: CreateLargeFaceListParameters,
   ): StreamableMethod<
     CreateLargeFaceList200Response | CreateLargeFaceListDefaultResponse
   >;
   /** Adding/deleting faces to/from a same Large Face List are processed sequentially and to/from different Large Face Lists are in parallel. */
   delete(
-    options?: DeleteLargeFaceListParameters,
+    options: DeleteLargeFaceListParameters,
   ): StreamableMethod<
     DeleteLargeFaceList200Response | DeleteLargeFaceListDefaultResponse
   >;
   /** Retrieve a Large Face List's largeFaceListId, name, userData and recognitionModel. */
   get(
-    options?: GetLargeFaceListParameters,
+    options: GetLargeFaceListParameters,
   ): StreamableMethod<
     GetLargeFaceList200Response | GetLargeFaceListDefaultResponse
   >;
   /** Update information of a Large Face List, including name and userData. */
   patch(
-    options?: UpdateLargeFaceListParameters,
+    options: UpdateLargeFaceListParameters,
   ): StreamableMethod<
     UpdateLargeFaceList200Response | UpdateLargeFaceListDefaultResponse
   >;
@@ -695,7 +695,7 @@ export interface GetLargeFaceLists {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetLargeFaceListsParameters,
+    options: GetLargeFaceListsParameters,
   ): StreamableMethod<
     GetLargeFaceLists200Response | GetLargeFaceListsDefaultResponse
   >;
@@ -708,7 +708,7 @@ export interface GetLargeFaceListTrainingStatus {
    * Training time depends on the number of face entries in a Large Face List. It could be in seconds, or up to half an hour for 1,000,000 faces.
    */
   get(
-    options?: GetLargeFaceListTrainingStatusParameters,
+    options: GetLargeFaceListTrainingStatusParameters,
   ): StreamableMethod<
     | GetLargeFaceListTrainingStatus200Response
     | GetLargeFaceListTrainingStatusDefaultResponse
@@ -722,7 +722,7 @@ export interface TrainLargeFaceList {
    * The training task is an asynchronous task. Training time depends on the number of face entries in a Large Face List. It could be in seconds, or up to half an hour for 1,000,000 faces. To check training completion, please use "Get Large Face List Training Status".
    */
   post(
-    options?: TrainLargeFaceListParameters,
+    options: TrainLargeFaceListParameters,
   ): StreamableMethod<
     TrainLargeFaceList202Response | TrainLargeFaceListDefaultResponse
   >;
@@ -750,7 +750,7 @@ export interface AddLargeFaceListFaceFromUrl {
    * >   * S0-tier subscription quota: 1,000,000 faces per Large Face List.
    */
   post(
-    options?: AddLargeFaceListFaceFromUrlParameters,
+    options: AddLargeFaceListFaceFromUrlParameters,
   ): StreamableMethod<
     | AddLargeFaceListFaceFromUrl200Response
     | AddLargeFaceListFaceFromUrlDefaultResponse
@@ -795,7 +795,7 @@ export interface AddLargeFaceListFaceFromUrl {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetLargeFaceListFacesParameters,
+    options: GetLargeFaceListFacesParameters,
   ): StreamableMethod<
     GetLargeFaceListFaces200Response | GetLargeFaceListFacesDefaultResponse
   >;
@@ -804,19 +804,19 @@ export interface AddLargeFaceListFaceFromUrl {
 export interface DeleteLargeFaceListFace {
   /** Delete a face from a Large Face List by specified largeFaceListId and persistedFaceId. */
   delete(
-    options?: DeleteLargeFaceListFaceParameters,
+    options: DeleteLargeFaceListFaceParameters,
   ): StreamableMethod<
     DeleteLargeFaceListFace200Response | DeleteLargeFaceListFaceDefaultResponse
   >;
   /** Retrieve persisted face in Large Face List by largeFaceListId and persistedFaceId. */
   get(
-    options?: GetLargeFaceListFaceParameters,
+    options: GetLargeFaceListFaceParameters,
   ): StreamableMethod<
     GetLargeFaceListFace200Response | GetLargeFaceListFaceDefaultResponse
   >;
   /** Update a specified face's userData field in a Large Face List by its persistedFaceId. */
   patch(
-    options?: UpdateLargeFaceListFaceParameters,
+    options: UpdateLargeFaceListFaceParameters,
   ): StreamableMethod<
     UpdateLargeFaceListFace200Response | UpdateLargeFaceListFaceDefaultResponse
   >;
@@ -840,25 +840,25 @@ export interface CreatePersonGroup {
    * >   * to handle larger scale face identification problem, please consider using Large Person Group.
    */
   put(
-    options?: CreatePersonGroupParameters,
+    options: CreatePersonGroupParameters,
   ): StreamableMethod<
     CreatePersonGroup200Response | CreatePersonGroupDefaultResponse
   >;
   /** Delete an existing Person Group with specified personGroupId. Persisted data in this Person Group will be deleted. */
   delete(
-    options?: DeletePersonGroupParameters,
+    options: DeletePersonGroupParameters,
   ): StreamableMethod<
     DeletePersonGroup200Response | DeletePersonGroupDefaultResponse
   >;
   /** Retrieve Person Group name, userData and recognitionModel. To get person information under this personGroup, use "Get Person Group Persons". */
   get(
-    options?: GetPersonGroupParameters,
+    options: GetPersonGroupParameters,
   ): StreamableMethod<
     GetPersonGroup200Response | GetPersonGroupDefaultResponse
   >;
   /** Update an existing Person Group's name and userData. The properties keep unchanged if they are not in request body. */
   patch(
-    options?: UpdatePersonGroupParameters,
+    options: UpdatePersonGroupParameters,
   ): StreamableMethod<
     UpdatePersonGroup200Response | UpdatePersonGroupDefaultResponse
   >;
@@ -880,7 +880,7 @@ export interface GetPersonGroups {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetPersonGroupsParameters,
+    options: GetPersonGroupsParameters,
   ): StreamableMethod<
     GetPersonGroups200Response | GetPersonGroupsDefaultResponse
   >;
@@ -889,7 +889,7 @@ export interface GetPersonGroups {
 export interface GetPersonGroupTrainingStatus {
   /** To check Person Group training status completed or still ongoing. Person Group training is an asynchronous operation triggered by "Train Person Group" API. */
   get(
-    options?: GetPersonGroupTrainingStatusParameters,
+    options: GetPersonGroupTrainingStatusParameters,
   ): StreamableMethod<
     | GetPersonGroupTrainingStatus200Response
     | GetPersonGroupTrainingStatusDefaultResponse
@@ -899,7 +899,7 @@ export interface GetPersonGroupTrainingStatus {
 export interface TrainPersonGroup {
   /** The training task is an asynchronous task. Training time depends on the number of person entries, and their faces in a Person Group. It could be several seconds to minutes. To check training status, please use "Get Person Group Training Status". */
   post(
-    options?: TrainPersonGroupParameters,
+    options: TrainPersonGroupParameters,
   ): StreamableMethod<
     TrainPersonGroup202Response | TrainPersonGroupDefaultResponse
   >;
@@ -918,7 +918,7 @@ export interface CreatePersonGroupPerson {
    * >     * 100,000,000 persons in all Person Groups.
    */
   post(
-    options?: CreatePersonGroupPersonParameters,
+    options: CreatePersonGroupPersonParameters,
   ): StreamableMethod<
     CreatePersonGroupPerson200Response | CreatePersonGroupPersonDefaultResponse
   >;
@@ -937,7 +937,7 @@ export interface CreatePersonGroupPerson {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetPersonGroupPersonsParameters,
+    options: GetPersonGroupPersonsParameters,
   ): StreamableMethod<
     GetPersonGroupPersons200Response | GetPersonGroupPersonsDefaultResponse
   >;
@@ -946,19 +946,19 @@ export interface CreatePersonGroupPerson {
 export interface DeletePersonGroupPerson {
   /** Delete an existing person from a Person Group. The persistedFaceId, userData, person name and face feature(s) in the person entry will all be deleted. */
   delete(
-    options?: DeletePersonGroupPersonParameters,
+    options: DeletePersonGroupPersonParameters,
   ): StreamableMethod<
     DeletePersonGroupPerson200Response | DeletePersonGroupPersonDefaultResponse
   >;
   /** Retrieve a person's name and userData, and the persisted faceIds representing the registered person face feature(s). */
   get(
-    options?: GetPersonGroupPersonParameters,
+    options: GetPersonGroupPersonParameters,
   ): StreamableMethod<
     GetPersonGroupPerson200Response | GetPersonGroupPersonDefaultResponse
   >;
   /** Update name or userData of a person. */
   patch(
-    options?: UpdatePersonGroupPersonParameters,
+    options: UpdatePersonGroupPersonParameters,
   ): StreamableMethod<
     UpdatePersonGroupPerson200Response | UpdatePersonGroupPersonDefaultResponse
   >;
@@ -980,7 +980,7 @@ export interface AddPersonGroupPersonFaceFromUrl {
    *   * Different 'detectionModel' values can be provided. To use and compare different detection models, please refer to https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/specify-detection-model
    */
   post(
-    options?: AddPersonGroupPersonFaceFromUrlParameters,
+    options: AddPersonGroupPersonFaceFromUrlParameters,
   ): StreamableMethod<
     | AddPersonGroupPersonFaceFromUrl200Response
     | AddPersonGroupPersonFaceFromUrlDefaultResponse
@@ -1010,21 +1010,21 @@ export interface AddPersonGroupPersonFaceFromUrl {
 export interface DeletePersonGroupPersonFace {
   /** Adding/deleting faces to/from a same person will be processed sequentially. Adding/deleting faces to/from different persons are processed in parallel. */
   delete(
-    options?: DeletePersonGroupPersonFaceParameters,
+    options: DeletePersonGroupPersonFaceParameters,
   ): StreamableMethod<
     | DeletePersonGroupPersonFace200Response
     | DeletePersonGroupPersonFaceDefaultResponse
   >;
   /** Retrieve person face information. The persisted person face is specified by its personGroupId, personId and persistedFaceId. */
   get(
-    options?: GetPersonGroupPersonFaceParameters,
+    options: GetPersonGroupPersonFaceParameters,
   ): StreamableMethod<
     | GetPersonGroupPersonFace200Response
     | GetPersonGroupPersonFaceDefaultResponse
   >;
   /** Update a person persisted face's userData field. */
   patch(
-    options?: UpdatePersonGroupPersonFaceParameters,
+    options: UpdatePersonGroupPersonFaceParameters,
   ): StreamableMethod<
     | UpdatePersonGroupPersonFace200Response
     | UpdatePersonGroupPersonFaceDefaultResponse
@@ -1048,25 +1048,25 @@ export interface CreateLargePersonGroup {
    * >   * S0-tier subscription quota: 1,000,000 Large Person Groups.
    */
   put(
-    options?: CreateLargePersonGroupParameters,
+    options: CreateLargePersonGroupParameters,
   ): StreamableMethod<
     CreateLargePersonGroup200Response | CreateLargePersonGroupDefaultResponse
   >;
   /** Delete an existing Large Person Group with specified personGroupId. Persisted data in this Large Person Group will be deleted. */
   delete(
-    options?: DeleteLargePersonGroupParameters,
+    options: DeleteLargePersonGroupParameters,
   ): StreamableMethod<
     DeleteLargePersonGroup200Response | DeleteLargePersonGroupDefaultResponse
   >;
   /** Retrieve the information of a Large Person Group, including its name, userData and recognitionModel. This API returns Large Person Group information only, use "Get Large Person Group Persons" instead to retrieve person information under the Large Person Group. */
   get(
-    options?: GetLargePersonGroupParameters,
+    options: GetLargePersonGroupParameters,
   ): StreamableMethod<
     GetLargePersonGroup200Response | GetLargePersonGroupDefaultResponse
   >;
   /** Update an existing Large Person Group's name and userData. The properties keep unchanged if they are not in request body. */
   patch(
-    options?: UpdateLargePersonGroupParameters,
+    options: UpdateLargePersonGroupParameters,
   ): StreamableMethod<
     UpdateLargePersonGroup200Response | UpdateLargePersonGroupDefaultResponse
   >;
@@ -1088,7 +1088,7 @@ export interface GetLargePersonGroups {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetLargePersonGroupsParameters,
+    options: GetLargePersonGroupsParameters,
   ): StreamableMethod<
     GetLargePersonGroups200Response | GetLargePersonGroupsDefaultResponse
   >;
@@ -1097,7 +1097,7 @@ export interface GetLargePersonGroups {
 export interface GetLargePersonGroupTrainingStatus {
   /** Training time depends on the number of person entries, and their faces in a Large Person Group. It could be in seconds, or up to half an hour for 1,000,000 persons. */
   get(
-    options?: GetLargePersonGroupTrainingStatusParameters,
+    options: GetLargePersonGroupTrainingStatusParameters,
   ): StreamableMethod<
     | GetLargePersonGroupTrainingStatus200Response
     | GetLargePersonGroupTrainingStatusDefaultResponse
@@ -1107,7 +1107,7 @@ export interface GetLargePersonGroupTrainingStatus {
 export interface TrainLargePersonGroup {
   /** The training task is an asynchronous task. Training time depends on the number of person entries, and their faces in a Large Person Group. It could be in several seconds, or up to half a hour for 1,000,000 persons. To check training status, please use "Get Large Person Group Training Status". */
   post(
-    options?: TrainLargePersonGroupParameters,
+    options: TrainLargePersonGroupParameters,
   ): StreamableMethod<
     TrainLargePersonGroup202Response | TrainLargePersonGroupDefaultResponse
   >;
@@ -1126,7 +1126,7 @@ export interface CreateLargePersonGroupPerson {
    * >     * 1,000,000,000 persons in all Large Person Groups.
    */
   post(
-    options?: CreateLargePersonGroupPersonParameters,
+    options: CreateLargePersonGroupPersonParameters,
   ): StreamableMethod<
     | CreateLargePersonGroupPerson200Response
     | CreateLargePersonGroupPersonDefaultResponse
@@ -1146,7 +1146,7 @@ export interface CreateLargePersonGroupPerson {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetLargePersonGroupPersonsParameters,
+    options: GetLargePersonGroupPersonsParameters,
   ): StreamableMethod<
     | GetLargePersonGroupPersons200Response
     | GetLargePersonGroupPersonsDefaultResponse
@@ -1156,21 +1156,21 @@ export interface CreateLargePersonGroupPerson {
 export interface DeleteLargePersonGroupPerson {
   /** Delete an existing person from a Large Person Group. The persistedFaceId, userData, person name and face feature(s) in the person entry will all be deleted. */
   delete(
-    options?: DeleteLargePersonGroupPersonParameters,
+    options: DeleteLargePersonGroupPersonParameters,
   ): StreamableMethod<
     | DeleteLargePersonGroupPerson200Response
     | DeleteLargePersonGroupPersonDefaultResponse
   >;
   /** Retrieve a person's name and userData, and the persisted faceIds representing the registered person face feature(s). */
   get(
-    options?: GetLargePersonGroupPersonParameters,
+    options: GetLargePersonGroupPersonParameters,
   ): StreamableMethod<
     | GetLargePersonGroupPerson200Response
     | GetLargePersonGroupPersonDefaultResponse
   >;
   /** Update name or userData of a person. */
   patch(
-    options?: UpdateLargePersonGroupPersonParameters,
+    options: UpdateLargePersonGroupPersonParameters,
   ): StreamableMethod<
     | UpdateLargePersonGroupPerson200Response
     | UpdateLargePersonGroupPersonDefaultResponse
@@ -1193,7 +1193,7 @@ export interface AddLargePersonGroupPersonFaceFromUrl {
    *   * Different 'detectionModel' values can be provided. To use and compare different detection models, please refer to https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/specify-detection-model
    */
   post(
-    options?: AddLargePersonGroupPersonFaceFromUrlParameters,
+    options: AddLargePersonGroupPersonFaceFromUrlParameters,
   ): StreamableMethod<
     | AddLargePersonGroupPersonFaceFromUrl200Response
     | AddLargePersonGroupPersonFaceFromUrlDefaultResponse
@@ -1223,21 +1223,21 @@ export interface AddLargePersonGroupPersonFaceFromUrl {
 export interface DeleteLargePersonGroupPersonFace {
   /** Adding/deleting faces to/from a same person will be processed sequentially. Adding/deleting faces to/from different persons are processed in parallel. */
   delete(
-    options?: DeleteLargePersonGroupPersonFaceParameters,
+    options: DeleteLargePersonGroupPersonFaceParameters,
   ): StreamableMethod<
     | DeleteLargePersonGroupPersonFace200Response
     | DeleteLargePersonGroupPersonFaceDefaultResponse
   >;
   /** Retrieve person face information. The persisted person face is specified by its largePersonGroupId, personId and persistedFaceId. */
   get(
-    options?: GetLargePersonGroupPersonFaceParameters,
+    options: GetLargePersonGroupPersonFaceParameters,
   ): StreamableMethod<
     | GetLargePersonGroupPersonFace200Response
     | GetLargePersonGroupPersonFaceDefaultResponse
   >;
   /** Update a person persisted face's userData field. */
   patch(
-    options?: UpdateLargePersonGroupPersonFaceParameters,
+    options: UpdateLargePersonGroupPersonFaceParameters,
   ): StreamableMethod<
     | UpdateLargePersonGroupPersonFace200Response
     | UpdateLargePersonGroupPersonFaceDefaultResponse
@@ -1247,7 +1247,7 @@ export interface DeleteLargePersonGroupPersonFace {
 export interface CreatePerson {
   /** Creates a new person in a Person Directory. To add face to this person, please call Person Directory "Add Person Face". */
   post(
-    options?: CreatePersonParameters,
+    options: CreatePersonParameters,
   ): StreamableMethod<CreatePerson202Response | CreatePersonDefaultResponse>;
   /**
    * Persons are stored in alphabetical order of personId created in Person Directory "Create Person".
@@ -1264,22 +1264,22 @@ export interface CreatePerson {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetPersonsParameters,
+    options: GetPersonsParameters,
   ): StreamableMethod<GetPersons200Response | GetPersonsDefaultResponse>;
 }
 
 export interface DeletePerson {
   /** Delete an existing person from Person Directory. The persistedFaceId(s), userData, person name and face feature(s) in the person entry will all be deleted. */
   delete(
-    options?: DeletePersonParameters,
+    options: DeletePersonParameters,
   ): StreamableMethod<DeletePerson202Response | DeletePersonDefaultResponse>;
   /** Retrieve a person's name and userData from Person Directory. */
   get(
-    options?: GetPersonParameters,
+    options: GetPersonParameters,
   ): StreamableMethod<GetPerson200Response | GetPersonDefaultResponse>;
   /** Update name or userData of a person. */
   patch(
-    options?: UpdatePersonParameters,
+    options: UpdatePersonParameters,
   ): StreamableMethod<UpdatePerson200Response | UpdatePersonDefaultResponse>;
 }
 
@@ -1299,7 +1299,7 @@ export interface GetDynamicPersonGroupReferences {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetDynamicPersonGroupReferencesParameters,
+    options: GetDynamicPersonGroupReferencesParameters,
   ): StreamableMethod<
     | GetDynamicPersonGroupReferences200Response
     | GetDynamicPersonGroupReferencesDefaultResponse
@@ -1345,13 +1345,13 @@ export interface AddPersonFace {
    *   * This is a long running operation. Use Response Header "Operation-Location" to determine when the AddFace operation has successfully propagated for future requests to "Identify". For further information about Operation-Locations see "Get Face Operation Status".
    */
   post(
-    options?: AddPersonFaceFromUrlParameters,
+    options: AddPersonFaceFromUrlParameters,
   ): StreamableMethod<
     AddPersonFaceFromUrl202Response | AddPersonFaceFromUrlDefaultResponse
   >;
   /** Retrieve a person's persistedFaceIds representing the registered person face feature(s). */
   get(
-    options?: GetPersonFacesParameters,
+    options: GetPersonFacesParameters,
   ): StreamableMethod<
     GetPersonFaces200Response | GetPersonFacesDefaultResponse
   >;
@@ -1360,17 +1360,17 @@ export interface AddPersonFace {
 export interface DeletePersonFace {
   /** Adding/deleting faces to/from a same person will be processed sequentially. Adding/deleting faces to/from different persons are processed in parallel. */
   delete(
-    options?: DeletePersonFaceParameters,
+    options: DeletePersonFaceParameters,
   ): StreamableMethod<
     DeletePersonFace202Response | DeletePersonFaceDefaultResponse
   >;
   /** Retrieve person face information. The persisted person face is specified by its personId. recognitionModel, and persistedFaceId. */
   get(
-    options?: GetPersonFaceParameters,
+    options: GetPersonFaceParameters,
   ): StreamableMethod<GetPersonFace200Response | GetPersonFaceDefaultResponse>;
   /** Update a persisted face's userData field of a person. */
   patch(
-    options?: UpdatePersonFaceParameters,
+    options: UpdatePersonFaceParameters,
   ): StreamableMethod<
     UpdatePersonFace200Response | UpdatePersonFaceDefaultResponse
   >;
@@ -1387,7 +1387,7 @@ export interface CreateDynamicPersonGroupWithPerson {
    * 'recognitionModel' does not need to be specified with Dynamic Person Groups. Dynamic Person Groups are references to Person Directory "Create Person" and therefore work with most all 'recognitionModels'. The faceId's provided during "Identify" determine the 'recognitionModel' used.
    */
   put(
-    options?: CreateDynamicPersonGroupWithPersonParameters,
+    options: CreateDynamicPersonGroupWithPersonParameters,
   ): StreamableMethod<
     | CreateDynamicPersonGroupWithPerson202Response
     | CreateDynamicPersonGroupWithPersonDefaultResponse
@@ -1402,34 +1402,34 @@ export interface CreateDynamicPersonGroupWithPerson {
    * 'recognitionModel' does not need to be specified with Dynamic Person Groups. Dynamic Person Groups are references to Person Directory "Create Person" and therefore work with most all 'recognitionModels'. The faceId's provided during "Identify" determine the 'recognitionModel' used.
    */
   put(
-    options?: CreateDynamicPersonGroupParameters,
+    options: CreateDynamicPersonGroupParameters,
   ): StreamableMethod<
     | CreateDynamicPersonGroup200Response
     | CreateDynamicPersonGroupDefaultResponse
   >;
   /** Deleting this Dynamic Person Group only delete the references to persons data. To delete actual person see Person Directory "Delete Person". */
   delete(
-    options?: DeleteDynamicPersonGroupParameters,
+    options: DeleteDynamicPersonGroupParameters,
   ): StreamableMethod<
     | DeleteDynamicPersonGroup202Response
     | DeleteDynamicPersonGroupDefaultResponse
   >;
   /** This API returns Dynamic Person Group information only, use Person Directory "Get Dynamic Person Group Persons" instead to retrieve person information under the Dynamic Person Group. */
   get(
-    options?: GetDynamicPersonGroupParameters,
+    options: GetDynamicPersonGroupParameters,
   ): StreamableMethod<
     GetDynamicPersonGroup200Response | GetDynamicPersonGroupDefaultResponse
   >;
   /** The properties keep unchanged if they are not in request body. */
   patch(
-    options?: UpdateDynamicPersonGroupWithPersonChangesParameters,
+    options: UpdateDynamicPersonGroupWithPersonChangesParameters,
   ): StreamableMethod<
     | UpdateDynamicPersonGroupWithPersonChanges202Response
     | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse
   >;
   /** The properties keep unchanged if they are not in request body. */
   patch(
-    options?: UpdateDynamicPersonGroupParameters,
+    options: UpdateDynamicPersonGroupParameters,
   ): StreamableMethod<
     | UpdateDynamicPersonGroup200Response
     | UpdateDynamicPersonGroupDefaultResponse
@@ -1452,7 +1452,7 @@ export interface GetDynamicPersonGroups {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetDynamicPersonGroupsParameters,
+    options: GetDynamicPersonGroupsParameters,
   ): StreamableMethod<
     GetDynamicPersonGroups200Response | GetDynamicPersonGroupsDefaultResponse
   >;
@@ -1474,7 +1474,7 @@ export interface GetDynamicPersonGroupPersons {
    * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
    */
   get(
-    options?: GetDynamicPersonGroupPersonsParameters,
+    options: GetDynamicPersonGroupPersonsParameters,
   ): StreamableMethod<
     | GetDynamicPersonGroupPersons200Response
     | GetDynamicPersonGroupPersonsDefaultResponse
@@ -1495,7 +1495,7 @@ export interface CreateLivenessSession {
    * > Client access can be revoked by deleting the session using the Delete Liveness Session operation. To retrieve a result, use the Get Liveness Session. To audit the individual requests that a client has made to your resource, use the List Liveness Session Audit Entries.
    */
   post(
-    options?: CreateLivenessSessionParameters,
+    options: CreateLivenessSessionParameters,
   ): StreamableMethod<
     CreateLivenessSession200Response | CreateLivenessSessionDefaultResponse
   >;
@@ -1505,7 +1505,7 @@ export interface CreateLivenessSession {
    * The result should be ordered by sessionId in ascending order.
    */
   get(
-    options?: GetLivenessSessionsParameters,
+    options: GetLivenessSessionsParameters,
   ): StreamableMethod<
     GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse
   >;
@@ -1517,13 +1517,13 @@ export interface DeleteLivenessSession {
    * > Deleting a session deactivates the Session Auth Token by blocking future API calls made with that Auth Token. While this can be used to remove any access for that token, those requests will still count towards overall resource rate limits. It's best to leverage TokenTTL to limit length of tokens in the case that it is misused.
    */
   delete(
-    options?: DeleteLivenessSessionParameters,
+    options: DeleteLivenessSessionParameters,
   ): StreamableMethod<
     DeleteLivenessSession200Response | DeleteLivenessSessionDefaultResponse
   >;
   /** Get session result of detectLiveness/singleModal call. */
   get(
-    options?: GetLivenessSessionResultParameters,
+    options: GetLivenessSessionResultParameters,
   ): StreamableMethod<
     | GetLivenessSessionResult200Response
     | GetLivenessSessionResultDefaultResponse
@@ -1533,7 +1533,7 @@ export interface DeleteLivenessSession {
 export interface GetLivenessSessionAuditEntries {
   /** Gets session requests and response body for the session. */
   get(
-    options?: GetLivenessSessionAuditEntriesParameters,
+    options: GetLivenessSessionAuditEntriesParameters,
   ): StreamableMethod<
     | GetLivenessSessionAuditEntries200Response
     | GetLivenessSessionAuditEntriesDefaultResponse
@@ -1586,7 +1586,7 @@ export interface CreateLivenessWithVerifySessionWithVerifyImage {
    * > Extra measures should be taken to validate that the client is sending the expected VerifyImage.
    */
   post(
-    options?: CreateLivenessWithVerifySessionParameters,
+    options: CreateLivenessWithVerifySessionParameters,
   ): StreamableMethod<
     | CreateLivenessWithVerifySession200Response
     | CreateLivenessWithVerifySessionDefaultResponse
@@ -1597,7 +1597,7 @@ export interface CreateLivenessWithVerifySessionWithVerifyImage {
    * The result should be ordered by sessionId in ascending order.
    */
   get(
-    options?: GetLivenessWithVerifySessionsParameters,
+    options: GetLivenessWithVerifySessionsParameters,
   ): StreamableMethod<
     | GetLivenessWithVerifySessions200Response
     | GetLivenessWithVerifySessionsDefaultResponse
@@ -1610,14 +1610,14 @@ export interface DeleteLivenessWithVerifySession {
    * > Deleting a session deactivates the Session Auth Token by blocking future API calls made with that Auth Token. While this can be used to remove any access for that token, those requests will still count towards overall resource rate limits. It's best to leverage TokenTTL to limit length of tokens in the case that it is misused.
    */
   delete(
-    options?: DeleteLivenessWithVerifySessionParameters,
+    options: DeleteLivenessWithVerifySessionParameters,
   ): StreamableMethod<
     | DeleteLivenessWithVerifySession200Response
     | DeleteLivenessWithVerifySessionDefaultResponse
   >;
   /** Get session result of detectLivenessWithVerify/singleModal call. */
   get(
-    options?: GetLivenessWithVerifySessionResultParameters,
+    options: GetLivenessWithVerifySessionResultParameters,
   ): StreamableMethod<
     | GetLivenessWithVerifySessionResult200Response
     | GetLivenessWithVerifySessionResultDefaultResponse
@@ -1627,7 +1627,7 @@ export interface DeleteLivenessWithVerifySession {
 export interface GetLivenessWithVerifySessionAuditEntries {
   /** Gets session requests and response body for the session. */
   get(
-    options?: GetLivenessWithVerifySessionAuditEntriesParameters,
+    options: GetLivenessWithVerifySessionAuditEntriesParameters,
   ): StreamableMethod<
     | GetLivenessWithVerifySessionAuditEntries200Response
     | GetLivenessWithVerifySessionAuditEntriesDefaultResponse

@@ -111,7 +111,7 @@ export interface TodoItemsAttachmentsCreateFileAttachment404Response extends Htt
 // @public (undocumented)
 export interface TodoItemsAttachmentsCreateFileAttachmentBodyParam {
     // (undocumented)
-    body?: FormData | Array<{
+    body: FormData | Array<{
         name: "contents";
         body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
         filename?: string;
@@ -143,7 +143,7 @@ export interface TodoItemsAttachmentsCreateUrlAttachment404Response extends Http
 // @public (undocumented)
 export interface TodoItemsAttachmentsCreateUrlAttachmentBodyParam {
     // (undocumented)
-    body?: {
+    body: {
         contents: TodoUrlAttachment;
     };
 }
@@ -160,7 +160,7 @@ export type TodoItemsAttachmentsCreateUrlAttachmentParameters = TodoItemsAttachm
 // @public (undocumented)
 export interface TodoItemsAttachmentsList {
     // (undocumented)
-    get(options?: TodoItemsAttachmentsListParameters): StreamableMethod<TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList404Response>;
+    get(options: TodoItemsAttachmentsListParameters): StreamableMethod<TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList404Response>;
     // (undocumented)
     post(options: TodoItemsAttachmentsCreateUrlAttachmentParameters): StreamableMethod<TodoItemsAttachmentsCreateUrlAttachment200Response | TodoItemsAttachmentsCreateUrlAttachment404Response>;
     // (undocumented)
@@ -203,7 +203,7 @@ export interface TodoItemsCreateForm422Response extends HttpResponse {
 // @public (undocumented)
 export interface TodoItemsCreateFormBodyParam {
     // (undocumented)
-    body?: FormData | Array<{
+    body: FormData | Array<{
         name: "item";
         body: TodoItem;
     } | {
@@ -242,7 +242,7 @@ export interface TodoItemsCreateJson422Response extends HttpResponse {
 // @public (undocumented)
 export interface TodoItemsCreateJsonBodyParam {
     // (undocumented)
-    body?: {
+    body: {
         item: TodoItem;
         attachments: Array<TodoUrlAttachment>;
     };
@@ -275,9 +275,9 @@ export type TodoItemsDeleteParameters = RequestParameters;
 // @public (undocumented)
 export interface TodoItemsGet {
     // (undocumented)
-    delete(options?: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
+    delete(options: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
     // (undocumented)
-    get(options?: TodoItemsGetParameters): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
+    get(options: TodoItemsGetParameters): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
     // (undocumented)
     patch(options: TodoItemsUpdateParameters): StreamableMethod<TodoItemsUpdate200Response>;
 }
@@ -343,7 +343,7 @@ export interface TodoItemsUpdate200Response extends HttpResponse {
 // @public (undocumented)
 export interface TodoItemsUpdateBodyParam {
     // (undocumented)
-    body?: {
+    body: {
         patch: TodoItemPatch;
     };
 }
@@ -426,7 +426,7 @@ export interface UserExistsResponseOutput extends ErrorModelOutput {
 // @public (undocumented)
 export interface UsersCreate {
     // (undocumented)
-    post(options?: UsersCreateParameters): StreamableMethod<UsersCreate200Response | UsersCreate409Response | UsersCreate422Response>;
+    post(options: UsersCreateParameters): StreamableMethod<UsersCreate200Response | UsersCreate409Response | UsersCreate422Response>;
 }
 
 // @public
@@ -456,7 +456,7 @@ export interface UsersCreate422Response extends HttpResponse {
 // @public (undocumented)
 export interface UsersCreateBodyParam {
     // (undocumented)
-    body?: {
+    body: {
         user: User;
     };
 }
@@ -466,7 +466,7 @@ export type UsersCreateParameters = UsersCreateBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface UsersForgotPassword {
-    post(options?: UsersForgotPasswordParameters): StreamableMethod<UsersForgotPassword200Response | UsersForgotPassword404Response>;
+    post(options: UsersForgotPasswordParameters): StreamableMethod<UsersForgotPassword200Response | UsersForgotPassword404Response>;
 }
 
 // @public
@@ -484,7 +484,7 @@ export interface UsersForgotPassword404Response extends HttpResponse {
 // @public (undocumented)
 export interface UsersForgotPasswordBodyParam {
     // (undocumented)
-    body?: {
+    body: {
         email: string;
     };
 }
@@ -495,7 +495,7 @@ export type UsersForgotPasswordParameters = UsersForgotPasswordBodyParam & Reque
 // @public (undocumented)
 export interface UsersLogin {
     // (undocumented)
-    post(options?: UsersLoginParameters): StreamableMethod<UsersLogin200Response | UsersLogin401Response>;
+    post(options: UsersLoginParameters): StreamableMethod<UsersLogin200Response | UsersLogin401Response>;
 }
 
 // @public
@@ -513,7 +513,7 @@ export interface UsersLogin401Response extends HttpResponse {
 // @public (undocumented)
 export interface UsersLoginBodyParam {
     // (undocumented)
-    body?: {
+    body: {
         username: string;
         password: string;
     };
@@ -525,7 +525,7 @@ export type UsersLoginParameters = UsersLoginBodyParam & RequestParameters;
 // @public (undocumented)
 export interface UsersLogout {
     // (undocumented)
-    get(options?: UsersLogoutParameters): StreamableMethod<UsersLogout200Response>;
+    get(options: UsersLogoutParameters): StreamableMethod<UsersLogout200Response>;
 }
 
 // @public

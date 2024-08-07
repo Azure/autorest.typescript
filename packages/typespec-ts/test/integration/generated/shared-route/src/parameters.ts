@@ -10,7 +10,7 @@ export interface ListBySubscriptionHeaders {
 }
 
 export interface ListBySubscriptionBodyParam {
-  body?: Resource;
+  body: Resource;
 }
 
 export interface ListBySubscriptionHeaderParam {
@@ -22,7 +22,7 @@ export type ListBySubscriptionParameters = ListBySubscriptionHeaderParam &
   RequestParameters;
 
 export interface ListByResourceGroupBodyParam {
-  body?: Resource;
+  body: Resource;
 }
 
 export interface ListByResourceGroupQueryParamProperties {
@@ -70,7 +70,7 @@ export type UpdateStringParameters = UpdateStringQueryParam &
   RequestParameters;
 
 export interface ReturnsIntBodyParam {
-  body?: Resource;
+  body: Resource;
 }
 
 export interface ReturnsIntQueryParamProperties {
@@ -86,7 +86,7 @@ export type ReturnsIntParameters = ReturnsIntQueryParam &
   RequestParameters;
 
 export interface ReturnsStringBodyParam {
-  body?: Resource;
+  body: Resource;
 }
 
 export interface ReturnsStringQueryParamProperties {

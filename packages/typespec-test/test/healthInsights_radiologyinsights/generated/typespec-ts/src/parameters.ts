@@ -15,7 +15,7 @@ export interface CreateJobHeaders {
 }
 
 export interface CreateJobBodyParam {
-  body?: RadiologyInsightsData;
+  body: RadiologyInsightsData;
 }
 
 export interface CreateJobHeaderParam {

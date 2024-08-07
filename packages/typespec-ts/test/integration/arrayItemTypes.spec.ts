@@ -82,7 +82,7 @@ describe("Array Item-Types Client", () => {
       try {
         const result = await client
           .path(`/type/array/${params.type}` as any)
-          .get();
+          .get({});
         assert.strictEqual(result.status, "200");
         assert.deepEqual(result.body, params.defaultValue);
       } catch (err) {

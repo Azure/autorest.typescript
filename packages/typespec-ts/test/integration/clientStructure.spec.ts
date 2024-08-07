@@ -114,17 +114,17 @@ describe("ClientStructureClient Rest Client", () => {
   });
 
   it("should call operation seven correctly", async () => {
-      try {
-        const result = await client0.path("/seven").post();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+    try {
+      const result = await client0.path("/seven").post({});
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
   it("should call operation eight correctly", async () => {
     try {
-      const result = await client0.path("/eight").post();
+      const result = await client0.path("/eight").post({});
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -133,7 +133,7 @@ describe("ClientStructureClient Rest Client", () => {
 
   it("should call operation nine correctly", async () => {
     try {
-      const result = await client0.path("/nine").post();
+      const result = await client0.path("/nine").post({});
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);

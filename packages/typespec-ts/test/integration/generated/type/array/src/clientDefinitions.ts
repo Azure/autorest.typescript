@@ -65,7 +65,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Int32ValueGet {
   get(
-    options?: Int32ValueGetParameters,
+    options: Int32ValueGetParameters,
   ): StreamableMethod<Int32ValueGet200Response>;
   put(
     options: Int32ValuePutParameters,
@@ -74,7 +74,7 @@ export interface Int32ValueGet {
 
 export interface Int64ValueGet {
   get(
-    options?: Int64ValueGetParameters,
+    options: Int64ValueGetParameters,
   ): StreamableMethod<Int64ValueGet200Response>;
   put(
     options: Int64ValuePutParameters,
@@ -83,7 +83,7 @@ export interface Int64ValueGet {
 
 export interface BooleanValueGet {
   get(
-    options?: BooleanValueGetParameters,
+    options: BooleanValueGetParameters,
   ): StreamableMethod<BooleanValueGet200Response>;
   put(
     options: BooleanValuePutParameters,
@@ -92,7 +92,7 @@ export interface BooleanValueGet {
 
 export interface StringValueGet {
   get(
-    options?: StringValueGetParameters,
+    options: StringValueGetParameters,
   ): StreamableMethod<StringValueGet200Response>;
   put(
     options: StringValuePutParameters,
@@ -101,7 +101,7 @@ export interface StringValueGet {
 
 export interface Float32ValueGet {
   get(
-    options?: Float32ValueGetParameters,
+    options: Float32ValueGetParameters,
   ): StreamableMethod<Float32ValueGet200Response>;
   put(
     options: Float32ValuePutParameters,
@@ -110,7 +110,7 @@ export interface Float32ValueGet {
 
 export interface DatetimeValueGet {
   get(
-    options?: DatetimeValueGetParameters,
+    options: DatetimeValueGetParameters,
   ): StreamableMethod<DatetimeValueGet200Response>;
   put(
     options: DatetimeValuePutParameters,
@@ -119,7 +119,7 @@ export interface DatetimeValueGet {
 
 export interface DurationValueGet {
   get(
-    options?: DurationValueGetParameters,
+    options: DurationValueGetParameters,
   ): StreamableMethod<DurationValueGet200Response>;
   put(
     options: DurationValuePutParameters,
@@ -128,7 +128,7 @@ export interface DurationValueGet {
 
 export interface UnknownValueGet {
   get(
-    options?: UnknownValueGetParameters,
+    options: UnknownValueGetParameters,
   ): StreamableMethod<UnknownValueGet200Response>;
   put(
     options: UnknownValuePutParameters,
@@ -137,7 +137,7 @@ export interface UnknownValueGet {
 
 export interface ModelValueGet {
   get(
-    options?: ModelValueGetParameters,
+    options: ModelValueGetParameters,
   ): StreamableMethod<ModelValueGet200Response>;
   put(
     options: ModelValuePutParameters,
@@ -146,7 +146,7 @@ export interface ModelValueGet {
 
 export interface NullableFloatValueGet {
   get(
-    options?: NullableFloatValueGetParameters,
+    options: NullableFloatValueGetParameters,
   ): StreamableMethod<NullableFloatValueGet200Response>;
   put(
     options: NullableFloatValuePutParameters,
@@ -155,7 +155,7 @@ export interface NullableFloatValueGet {
 
 export interface NullableInt32ValueGet {
   get(
-    options?: NullableInt32ValueGetParameters,
+    options: NullableInt32ValueGetParameters,
   ): StreamableMethod<NullableInt32ValueGet200Response>;
   put(
     options: NullableInt32ValuePutParameters,
@@ -164,7 +164,7 @@ export interface NullableInt32ValueGet {
 
 export interface NullableBooleanValueGet {
   get(
-    options?: NullableBooleanValueGetParameters,
+    options: NullableBooleanValueGetParameters,
   ): StreamableMethod<NullableBooleanValueGet200Response>;
   put(
     options: NullableBooleanValuePutParameters,
@@ -173,7 +173,7 @@ export interface NullableBooleanValueGet {
 
 export interface NullableStringValueGet {
   get(
-    options?: NullableStringValueGetParameters,
+    options: NullableStringValueGetParameters,
   ): StreamableMethod<NullableStringValueGet200Response>;
   put(
     options: NullableStringValuePutParameters,
@@ -182,7 +182,7 @@ export interface NullableStringValueGet {
 
 export interface NullableModelValueGet {
   get(
-    options?: NullableModelValueGetParameters,
+    options: NullableModelValueGetParameters,
   ): StreamableMethod<NullableModelValueGet200Response>;
   put(
     options: NullableModelValuePutParameters,

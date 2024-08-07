@@ -27,7 +27,7 @@ describe("TypeModelEmptyClient Rest Client", () => {
 
   it(`should get empty model`, async () => {
     try {
-      const result = await client.path("/type/model/empty/alone").get();
+      const result = await client.path("/type/model/empty/alone").get({});
       assert.strictEqual(result.status, "200");
       assert.isEmpty(result.body);
     } catch (err) {

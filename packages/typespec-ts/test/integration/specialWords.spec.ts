@@ -12,7 +12,9 @@ describe("SpecialWordsClient Rest Client", () => {
   describe("operations", () => {
     it("should get special words for operation `and`", async () => {
       try {
-        const result = await client.path("/special-words/operations/and").get();
+        const result = await client
+          .path("/special-words/operations/and")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -21,7 +23,9 @@ describe("SpecialWordsClient Rest Client", () => {
 
     it("should get special words for operation `as`", async () => {
       try {
-        const result = await client.path("/special-words/operations/as").get();
+        const result = await client
+          .path("/special-words/operations/as")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -32,7 +36,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/assert")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -43,7 +47,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/async")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -54,7 +58,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/await")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -65,7 +69,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/break")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -76,7 +80,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/class")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -87,7 +91,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/constructor")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -98,7 +102,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/continue")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -107,7 +111,9 @@ describe("SpecialWordsClient Rest Client", () => {
 
     it("should get special words for operation `def`", async () => {
       try {
-        const result = await client.path("/special-words/operations/def").get();
+        const result = await client
+          .path("/special-words/operations/def")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -116,7 +122,9 @@ describe("SpecialWordsClient Rest Client", () => {
 
     it("should get special words for operation `del`", async () => {
       try {
-        const result = await client.path("/special-words/operations/del").get();
+        const result = await client
+          .path("/special-words/operations/del")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -127,7 +135,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/elif")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -138,7 +146,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/else")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -149,7 +157,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/except")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -160,7 +168,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/exec")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -170,7 +178,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/finally")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -178,7 +186,9 @@ describe("SpecialWordsClient Rest Client", () => {
     });
     it("should get special words for operation `for`", async () => {
       try {
-        const result = await client.path("/special-words/operations/for").get();
+        const result = await client
+          .path("/special-words/operations/for")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -188,7 +198,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/from")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -198,7 +208,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/global")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -206,7 +216,9 @@ describe("SpecialWordsClient Rest Client", () => {
     });
     it("should get special words for operation `if`", async () => {
       try {
-        const result = await client.path("/special-words/operations/if").get();
+        const result = await client
+          .path("/special-words/operations/if")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -216,7 +228,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/import")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -224,7 +236,9 @@ describe("SpecialWordsClient Rest Client", () => {
     });
     it("should get special words for operation `in`", async () => {
       try {
-        const result = await client.path("/special-words/operations/in").get();
+        const result = await client
+          .path("/special-words/operations/in")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -232,7 +246,9 @@ describe("SpecialWordsClient Rest Client", () => {
     });
     it("should get special words for operation `is`", async () => {
       try {
-        const result = await client.path("/special-words/operations/is").get();
+        const result = await client
+          .path("/special-words/operations/is")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -242,7 +258,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/lambda")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -250,7 +266,9 @@ describe("SpecialWordsClient Rest Client", () => {
     });
     it("should get special words for operation `not`", async () => {
       try {
-        const result = await client.path("/special-words/operations/not").get();
+        const result = await client
+          .path("/special-words/operations/not")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -258,7 +276,9 @@ describe("SpecialWordsClient Rest Client", () => {
     });
     it("should get special words for operation `or`", async () => {
       try {
-        const result = await client.path("/special-words/operations/or").get();
+        const result = await client
+          .path("/special-words/operations/or")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -268,7 +288,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/pass")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -279,7 +299,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/raise")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -289,7 +309,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/return")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -298,7 +318,9 @@ describe("SpecialWordsClient Rest Client", () => {
 
     it("should get special words for operation `try`", async () => {
       try {
-        const result = await client.path("/special-words/operations/try").get();
+        const result = await client
+          .path("/special-words/operations/try")
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -308,7 +330,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/while")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -319,7 +341,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/with")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -329,7 +351,7 @@ describe("SpecialWordsClient Rest Client", () => {
       try {
         const result = await client
           .path("/special-words/operations/yield")
-          .get();
+          .get({});
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);

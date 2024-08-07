@@ -17,25 +17,25 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface WithoutApiVersion {
   head(
-    options?: WithoutApiVersionParameters,
+    options: WithoutApiVersionParameters,
   ): StreamableMethod<WithoutApiVersion200Response>;
 }
 
 export interface WithQueryApiVersion {
   head(
-    options?: WithQueryApiVersionParameters,
+    options: WithQueryApiVersionParameters,
   ): StreamableMethod<WithQueryApiVersion200Response>;
 }
 
 export interface WithPathApiVersion {
   head(
-    options?: WithPathApiVersionParameters,
+    options: WithPathApiVersionParameters,
   ): StreamableMethod<WithPathApiVersion200Response>;
 }
 
 export interface WithQueryOldApiVersion {
   head(
-    options?: WithQueryOldApiVersionParameters,
+    options: WithQueryOldApiVersionParameters,
   ): StreamableMethod<WithQueryOldApiVersion200Response>;
 }
 

@@ -23,7 +23,7 @@ export interface SendAsText {
 
 export interface GetAsText {
   get(
-    options?: StringBodyGetAsTextParameters,
+    options: StringBodyGetAsTextParameters,
   ): StreamableMethod<StringBodyGetAsText200Response>;
 }
 
@@ -35,7 +35,7 @@ export interface SendAsJson {
 
 export interface GetAsJson {
   get(
-    options?: StringBodyGetAsJsonParameters,
+    options: StringBodyGetAsJsonParameters,
   ): StreamableMethod<StringBodyGetAsJson200Response>;
 }
 

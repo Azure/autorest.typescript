@@ -160,7 +160,9 @@ function hasRequiredOptions(
   dpgContext: SdkContext,
   routeParameters: HttpOperationParameters
 ) {
-  const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;
+  const isRequiredBodyParam = routeParameters.bodyParameter?.optional
+    ? false
+    : true;
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
     .filter((parameter) => !isApiVersion(dpgContext, parameter))

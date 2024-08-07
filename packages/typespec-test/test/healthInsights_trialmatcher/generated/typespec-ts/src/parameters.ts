@@ -15,7 +15,7 @@ export interface CreateJobHeaders {
 }
 
 export interface CreateJobBodyParam {
-  body?: TrialMatcherData;
+  body: TrialMatcherData;
 }
 
 export interface CreateJobHeaderParam {

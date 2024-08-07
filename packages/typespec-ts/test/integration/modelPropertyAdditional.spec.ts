@@ -18,7 +18,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsRecordUnknown")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
         result.body.name,
@@ -54,7 +54,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsRecordUnknownDerived")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
         result.body.name,
@@ -94,7 +94,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsUnknownDiscriminated")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.name, "Derived");
       assert.strictEqual(result.body["kind"], "derived");
@@ -133,7 +133,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/isRecordUnknown")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.name, "IsUnknownAdditionalProperties");
       assert.strictEqual(result.body["prop1"], 32);
@@ -166,7 +166,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/isRecordUnknownDerived")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.name, "IsUnknownAdditionalProperties");
       assert.strictEqual(result.body["index"], 314);
@@ -203,7 +203,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/isUnknownDiscriminated")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.name, "Derived");
       assert.strictEqual(result.body["kind"], "derived");
@@ -242,7 +242,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsRecordString")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.name, "ExtendsStringAdditionalProperties");
       assert.strictEqual(result.body["prop"], "abc");
@@ -271,7 +271,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/isRecordstring")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.name, "IsStringAdditionalProperties");
       assert.strictEqual(result.body["prop"], "abc");
@@ -300,7 +300,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsRecordFloat")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.id, 43.125);
       assert.strictEqual(result.body["prop"], 43.125);
@@ -329,7 +329,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/isRecordFloat")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.id, 43.125);
       assert.strictEqual(result.body["prop"], 43.125);
@@ -358,7 +358,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsRecordModel")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body["prop"]?.state, "ok");
     } catch (err) {
@@ -386,7 +386,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/isRecordModel")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body["prop"]?.state, "ok");
     } catch (err) {
@@ -414,7 +414,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/extendsRecordModelArray")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       result.body["prop"]?.forEach((item) => {
         assert.strictEqual(item.state, "ok");
@@ -444,7 +444,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/additionalProperties/isRecordModelArray")
-        .get();
+        .get({});
       assert.strictEqual(result.status, "200");
       result.body["prop"]?.forEach((item) => {
         assert.strictEqual(item.state, "ok");
