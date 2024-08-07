@@ -2,13 +2,11 @@
 // Licensed under the MIT license.
 
 import { SameAsModel } from "../../models/models.js";
-import {
-  SpecialWordsContext as Client,
-  ModelPropertiesSameAsModel204Response,
-} from "../../rest/index.js";
+import { SpecialWordsContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { ModelPropertiesSameAsModelOptionalParams } from "../../models/options.js";
@@ -17,7 +15,7 @@ export function _modelPropertiesSameAsModelSend(
   context: Client,
   body: SameAsModel,
   options: ModelPropertiesSameAsModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelPropertiesSameAsModel204Response> {
+): StreamableMethod {
   return context
     .path("/special-words/model-properties/same-as-model")
     .post({
@@ -27,9 +25,10 @@ export function _modelPropertiesSameAsModelSend(
 }
 
 export async function _modelPropertiesSameAsModelDeserialize(
-  result: ModelPropertiesSameAsModel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

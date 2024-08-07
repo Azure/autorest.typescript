@@ -1,21 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  buildCsvCollection,
-  DurationContext as Client,
-  HeaderDefault204Response,
-  HeaderFloat64Seconds204Response,
-  HeaderFloatSeconds204Response,
-  HeaderInt32Seconds204Response,
-  HeaderIso8601204Response,
-  HeaderIso8601Array204Response,
-} from "../../rest/index.js";
+import { DurationContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { buildCsvCollection } from "../../helpers/serializerHelpers.js";
 import {
   HeaderDefaultOptionalParams,
   HeaderIso8601OptionalParams,
@@ -29,7 +22,7 @@ export function _headerDefaultSend(
   context: Client,
   duration: string,
   options: HeaderDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderDefault204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/header/default")
     .get({
@@ -39,9 +32,10 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: HeaderDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -61,7 +55,7 @@ export function _headerIso8601Send(
   context: Client,
   duration: string,
   options: HeaderIso8601OptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderIso8601204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/header/iso8601")
     .get({
@@ -71,9 +65,10 @@ export function _headerIso8601Send(
 }
 
 export async function _headerIso8601Deserialize(
-  result: HeaderIso8601204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -93,7 +88,7 @@ export function _headerIso8601ArraySend(
   context: Client,
   duration: string[],
   options: HeaderIso8601ArrayOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderIso8601Array204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/header/iso8601-array")
     .get({
@@ -103,9 +98,10 @@ export function _headerIso8601ArraySend(
 }
 
 export async function _headerIso8601ArrayDeserialize(
-  result: HeaderIso8601Array204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -125,7 +121,7 @@ export function _headerInt32SecondsSend(
   context: Client,
   duration: number,
   options: HeaderInt32SecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderInt32Seconds204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/header/int32-seconds")
     .get({
@@ -135,9 +131,10 @@ export function _headerInt32SecondsSend(
 }
 
 export async function _headerInt32SecondsDeserialize(
-  result: HeaderInt32Seconds204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -157,7 +154,7 @@ export function _headerFloatSecondsSend(
   context: Client,
   duration: number,
   options: HeaderFloatSecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderFloatSeconds204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/header/float-seconds")
     .get({
@@ -167,9 +164,10 @@ export function _headerFloatSecondsSend(
 }
 
 export async function _headerFloatSecondsDeserialize(
-  result: HeaderFloatSeconds204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -189,7 +187,7 @@ export function _headerFloat64SecondsSend(
   context: Client,
   duration: number,
   options: HeaderFloat64SecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderFloat64Seconds204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/header/float64-seconds")
     .get({
@@ -199,9 +197,10 @@ export function _headerFloat64SecondsSend(
 }
 
 export async function _headerFloat64SecondsDeserialize(
-  result: HeaderFloat64Seconds204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

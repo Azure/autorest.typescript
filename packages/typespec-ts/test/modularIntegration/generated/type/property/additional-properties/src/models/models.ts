@@ -1,53 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  WidgetData2 as WidgetData2Rest,
-  WidgetData1 as WidgetData1Rest,
-  SpreadRecordForNonDiscriminatedUnion3 as SpreadRecordForNonDiscriminatedUnion3Rest,
-  SpreadRecordForNonDiscriminatedUnion2 as SpreadRecordForNonDiscriminatedUnion2Rest,
-  WidgetData0 as WidgetData0Rest,
-  SpreadRecordForNonDiscriminatedUnion as SpreadRecordForNonDiscriminatedUnionRest,
-  SpreadRecordForDiscriminatedUnion as SpreadRecordForDiscriminatedUnionRest,
-  SpreadRecordForUnion as SpreadRecordForUnionRest,
-  MultipleSpreadRecord as MultipleSpreadRecordRest,
-  ModelForRecord as ModelForRecordRest,
-  DifferentSpreadModelArrayRecord as DifferentSpreadModelArrayRecordRest,
-  DifferentSpreadModelArrayDerived as DifferentSpreadModelArrayDerivedRest,
-  DifferentSpreadModelRecord as DifferentSpreadModelRecordRest,
-  DifferentSpreadModelDerived as DifferentSpreadModelDerivedRest,
-  DifferentSpreadFloatRecord as DifferentSpreadFloatRecordRest,
-  DifferentSpreadFloatDerived as DifferentSpreadFloatDerivedRest,
-  DifferentSpreadStringRecord as DifferentSpreadStringRecordRest,
-  DifferentSpreadStringDerived as DifferentSpreadStringDerivedRest,
-  SpreadModelArrayRecord as SpreadModelArrayRecordRest,
-  IsModelArrayAdditionalProperties as IsModelArrayAdditionalPropertiesRest,
-  ExtendsModelArrayAdditionalProperties as ExtendsModelArrayAdditionalPropertiesRest,
-  SpreadModelRecord as SpreadModelRecordRest,
-  IsModelAdditionalProperties as IsModelAdditionalPropertiesRest,
-  ExtendsModelAdditionalProperties as ExtendsModelAdditionalPropertiesRest,
-  SpreadFloatRecord as SpreadFloatRecordRest,
-  IsFloatAdditionalProperties as IsFloatAdditionalPropertiesRest,
-  ExtendsFloatAdditionalProperties as ExtendsFloatAdditionalPropertiesRest,
-  SpreadStringRecord as SpreadStringRecordRest,
-  IsStringAdditionalProperties as IsStringAdditionalPropertiesRest,
-  ExtendsStringAdditionalProperties as ExtendsStringAdditionalPropertiesRest,
-  IsUnknownAdditionalPropertiesDiscriminated as IsUnknownAdditionalPropertiesDiscriminatedRest,
-  IsUnknownAdditionalPropertiesDiscriminatedDerived as IsUnknownAdditionalPropertiesDiscriminatedDerivedRest,
-  IsUnknownAdditionalProperties as IsUnknownAdditionalPropertiesRest,
-  IsUnknownAdditionalPropertiesDerived as IsUnknownAdditionalPropertiesDerivedRest,
-  ExtendsUnknownAdditionalPropertiesDiscriminated as ExtendsUnknownAdditionalPropertiesDiscriminatedRest,
-  ExtendsUnknownAdditionalPropertiesDiscriminatedDerived as ExtendsUnknownAdditionalPropertiesDiscriminatedDerivedRest,
-  ExtendsUnknownAdditionalProperties as ExtendsUnknownAdditionalPropertiesRest,
-  ExtendsUnknownAdditionalPropertiesDerived as ExtendsUnknownAdditionalPropertiesDerivedRest,
-} from "../rest/index.js";
-
 export interface WidgetData2 {
   kind: "kind1";
   start: string;
 }
 
-export function widgetData2Serializer(item: WidgetData2): WidgetData2Rest {
+export function widgetData2Serializer(
+  item: WidgetData2,
+): Record<string, unknown> {
   return {
     kind: item["kind"],
     start: item["start"],
@@ -60,7 +21,9 @@ export interface WidgetData1 {
   end?: Date;
 }
 
-export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
+export function widgetData1Serializer(
+  item: WidgetData1,
+): Record<string, unknown> {
   return {
     kind: item["kind"],
     start: item["start"].toISOString(),
@@ -77,7 +40,7 @@ export interface SpreadRecordForNonDiscriminatedUnion3
 
 export function spreadRecordForNonDiscriminatedUnion3Serializer(
   item: SpreadRecordForNonDiscriminatedUnion3,
-): SpreadRecordForNonDiscriminatedUnion3Rest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -93,7 +56,7 @@ export interface SpreadRecordForNonDiscriminatedUnion2
 
 export function spreadRecordForNonDiscriminatedUnion2Serializer(
   item: SpreadRecordForNonDiscriminatedUnion2,
-): SpreadRecordForNonDiscriminatedUnion2Rest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -105,7 +68,9 @@ export interface WidgetData0 {
   fooProp: string;
 }
 
-export function widgetData0Serializer(item: WidgetData0): WidgetData0Rest {
+export function widgetData0Serializer(
+  item: WidgetData0,
+): Record<string, unknown> {
   return {
     kind: item["kind"],
     fooProp: item["fooProp"],
@@ -121,7 +86,7 @@ export interface SpreadRecordForNonDiscriminatedUnion
 
 export function spreadRecordForNonDiscriminatedUnionSerializer(
   item: SpreadRecordForNonDiscriminatedUnion,
-): SpreadRecordForNonDiscriminatedUnionRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -136,7 +101,7 @@ export interface SpreadRecordForDiscriminatedUnion extends Record<string, any> {
 
 export function spreadRecordForDiscriminatedUnionSerializer(
   item: SpreadRecordForDiscriminatedUnion,
-): SpreadRecordForDiscriminatedUnionRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -151,7 +116,7 @@ export interface SpreadRecordForUnion extends Record<string, any> {
 
 export function spreadRecordForUnionSerializer(
   item: SpreadRecordForUnion,
-): SpreadRecordForUnionRest {
+): Record<string, unknown> {
   return {
     ...item,
     flag: item["flag"],
@@ -166,7 +131,7 @@ export interface MultipleSpreadRecord extends Record<string, any> {
 
 export function multipleSpreadRecordSerializer(
   item: MultipleSpreadRecord,
-): MultipleSpreadRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     flag: item["flag"],
@@ -181,7 +146,7 @@ export interface ModelForRecord {
 
 export function modelForRecordSerializer(
   item: ModelForRecord,
-): ModelForRecordRest {
+): Record<string, unknown> {
   return {
     state: item["state"],
   };
@@ -194,7 +159,7 @@ export interface DifferentSpreadModelArrayRecord extends Record<string, any> {
 
 export function differentSpreadModelArrayRecordSerializer(
   item: DifferentSpreadModelArrayRecord,
-): DifferentSpreadModelArrayRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: item["knownProp"],
@@ -210,7 +175,7 @@ export interface DifferentSpreadModelArrayDerived
 
 export function differentSpreadModelArrayDerivedSerializer(
   item: DifferentSpreadModelArrayDerived,
-): DifferentSpreadModelArrayDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: item["knownProp"],
@@ -225,7 +190,7 @@ export interface DifferentSpreadModelRecord extends Record<string, any> {
 
 export function differentSpreadModelRecordSerializer(
   item: DifferentSpreadModelRecord,
-): DifferentSpreadModelRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: item["knownProp"],
@@ -241,7 +206,7 @@ export interface DifferentSpreadModelDerived
 
 export function differentSpreadModelDerivedSerializer(
   item: DifferentSpreadModelDerived,
-): DifferentSpreadModelDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: item["knownProp"],
@@ -257,7 +222,7 @@ export interface DifferentSpreadFloatRecord extends Record<string, any> {
 
 export function differentSpreadFloatRecordSerializer(
   item: DifferentSpreadFloatRecord,
-): DifferentSpreadFloatRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -273,7 +238,7 @@ export interface DifferentSpreadFloatDerived
 
 export function differentSpreadFloatDerivedSerializer(
   item: DifferentSpreadFloatDerived,
-): DifferentSpreadFloatDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -289,7 +254,7 @@ export interface DifferentSpreadStringRecord extends Record<string, any> {
 
 export function differentSpreadStringRecordSerializer(
   item: DifferentSpreadStringRecord,
-): DifferentSpreadStringRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     id: item["id"],
@@ -305,7 +270,7 @@ export interface DifferentSpreadStringDerived
 
 export function differentSpreadStringDerivedSerializer(
   item: DifferentSpreadStringDerived,
-): DifferentSpreadStringDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     id: item["id"],
@@ -320,7 +285,7 @@ export interface SpreadModelArrayRecord
 
 export function spreadModelArrayRecordSerializer(
   item: SpreadModelArrayRecord,
-): SpreadModelArrayRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: item["knownProp"].map(modelForRecordSerializer),
@@ -335,7 +300,7 @@ export interface IsModelArrayAdditionalProperties
 
 export function isModelArrayAdditionalPropertiesSerializer(
   item: IsModelArrayAdditionalProperties,
-): IsModelArrayAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: item["knownProp"].map(modelForRecordSerializer),
@@ -350,7 +315,7 @@ export interface ExtendsModelArrayAdditionalProperties
 
 export function extendsModelArrayAdditionalPropertiesSerializer(
   item: ExtendsModelArrayAdditionalProperties,
-): ExtendsModelArrayAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: item["knownProp"].map(modelForRecordSerializer),
@@ -364,7 +329,7 @@ export interface SpreadModelRecord extends Record<string, ModelForRecord> {
 
 export function spreadModelRecordSerializer(
   item: SpreadModelRecord,
-): SpreadModelRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: modelForRecordSerializer(item.knownProp),
@@ -379,7 +344,7 @@ export interface IsModelAdditionalProperties
 
 export function isModelAdditionalPropertiesSerializer(
   item: IsModelAdditionalProperties,
-): IsModelAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: modelForRecordSerializer(item.knownProp),
@@ -394,7 +359,7 @@ export interface ExtendsModelAdditionalProperties
 
 export function extendsModelAdditionalPropertiesSerializer(
   item: ExtendsModelAdditionalProperties,
-): ExtendsModelAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     knownProp: modelForRecordSerializer(item.knownProp),
@@ -409,7 +374,7 @@ export interface SpreadFloatRecord extends Record<string, number> {
 
 export function spreadFloatRecordSerializer(
   item: SpreadFloatRecord,
-): SpreadFloatRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     id: item["id"],
@@ -424,7 +389,7 @@ export interface IsFloatAdditionalProperties extends Record<string, number> {
 
 export function isFloatAdditionalPropertiesSerializer(
   item: IsFloatAdditionalProperties,
-): IsFloatAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     id: item["id"],
@@ -440,7 +405,7 @@ export interface ExtendsFloatAdditionalProperties
 
 export function extendsFloatAdditionalPropertiesSerializer(
   item: ExtendsFloatAdditionalProperties,
-): ExtendsFloatAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     id: item["id"],
@@ -455,7 +420,7 @@ export interface SpreadStringRecord extends Record<string, string> {
 
 export function spreadStringRecordSerializer(
   item: SpreadStringRecord,
-): SpreadStringRecordRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -470,7 +435,7 @@ export interface IsStringAdditionalProperties extends Record<string, string> {
 
 export function isStringAdditionalPropertiesSerializer(
   item: IsStringAdditionalProperties,
-): IsStringAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -486,7 +451,7 @@ export interface ExtendsStringAdditionalProperties
 
 export function extendsStringAdditionalPropertiesSerializer(
   item: ExtendsStringAdditionalProperties,
-): ExtendsStringAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -518,7 +483,7 @@ export function isUnknownAdditionalPropertiesDiscriminatedUnionSerializer(
 
 export function isUnknownAdditionalPropertiesDiscriminatedSerializer(
   item: IsUnknownAdditionalPropertiesDiscriminatedUnion,
-): IsUnknownAdditionalPropertiesDiscriminatedRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -538,7 +503,7 @@ export interface IsUnknownAdditionalPropertiesDiscriminatedDerived
 
 export function isUnknownAdditionalPropertiesDiscriminatedDerivedSerializer(
   item: IsUnknownAdditionalPropertiesDiscriminatedDerived,
-): IsUnknownAdditionalPropertiesDiscriminatedDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -556,7 +521,7 @@ export interface IsUnknownAdditionalProperties extends Record<string, any> {
 
 export function isUnknownAdditionalPropertiesSerializer(
   item: IsUnknownAdditionalProperties,
-): IsUnknownAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -574,7 +539,7 @@ export interface IsUnknownAdditionalPropertiesDerived
 
 export function isUnknownAdditionalPropertiesDerivedSerializer(
   item: IsUnknownAdditionalPropertiesDerived,
-): IsUnknownAdditionalPropertiesDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -608,7 +573,7 @@ export function extendsUnknownAdditionalPropertiesDiscriminatedUnionSerializer(
 
 export function extendsUnknownAdditionalPropertiesDiscriminatedSerializer(
   item: ExtendsUnknownAdditionalPropertiesDiscriminatedUnion,
-): ExtendsUnknownAdditionalPropertiesDiscriminatedRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -628,7 +593,7 @@ export interface ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
 
 export function extendsUnknownAdditionalPropertiesDiscriminatedDerivedSerializer(
   item: ExtendsUnknownAdditionalPropertiesDiscriminatedDerived,
-): ExtendsUnknownAdditionalPropertiesDiscriminatedDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -647,7 +612,7 @@ export interface ExtendsUnknownAdditionalProperties
 
 export function extendsUnknownAdditionalPropertiesSerializer(
   item: ExtendsUnknownAdditionalProperties,
-): ExtendsUnknownAdditionalPropertiesRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],
@@ -665,7 +630,7 @@ export interface ExtendsUnknownAdditionalPropertiesDerived
 
 export function extendsUnknownAdditionalPropertiesDerivedSerializer(
   item: ExtendsUnknownAdditionalPropertiesDerived,
-): ExtendsUnknownAdditionalPropertiesDerivedRest {
+): Record<string, unknown> {
   return {
     ...item,
     name: item["name"],

@@ -3,6 +3,6 @@
 
 export {
   createDictionary,
-  DictionaryClientOptionalParams,
   DictionaryContext,
+  DictionaryClientOptionalParams,
 } from "./dictionaryContext.js";

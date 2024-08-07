@@ -4,6 +4,6 @@
 export { newOp, newOpInNewInterface } from "./operations.js";
 export {
   createRenamedFrom,
-  RenamedFromClientOptionalParams,
   RenamedFromContext,
+  RenamedFromClientOptionalParams,
 } from "./renamedFromContext.js";

@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { DaysOfWeekExtensibleEnum } from "../../models/models.js";
-import {
-  ExtensibleContext as Client,
-  GetKnownValue200Response,
-  GetUnknownValue200Response,
-  PutKnownValue204Response,
-  PutUnknownValue204Response,
-} from "../../rest/index.js";
+import { ExtensibleContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getKnownValueSend(
   context: Client,
   options: StringGetKnownValueOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetKnownValue200Response> {
+): StreamableMethod {
   return context
     .path("/type/enum/extensible/string/known-value")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getKnownValueDeserialize(
-  result: GetKnownValue200Response,
+  result: PathUncheckedResponse,
 ): Promise<DaysOfWeekExtensibleEnum> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,16 +47,17 @@ export async function getKnownValue(
 export function _getUnknownValueSend(
   context: Client,
   options: StringGetUnknownValueOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetUnknownValue200Response> {
+): StreamableMethod {
   return context
     .path("/type/enum/extensible/string/unknown-value")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getUnknownValueDeserialize(
-  result: GetUnknownValue200Response,
+  result: PathUncheckedResponse,
 ): Promise<DaysOfWeekExtensibleEnum> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -79,16 +76,17 @@ export function _putKnownValueSend(
   context: Client,
   body: DaysOfWeekExtensibleEnum,
   options: StringPutKnownValueOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutKnownValue204Response> {
+): StreamableMethod {
   return context
     .path("/type/enum/extensible/string/known-value")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putKnownValueDeserialize(
-  result: PutKnownValue204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -108,16 +106,17 @@ export function _putUnknownValueSend(
   context: Client,
   body: DaysOfWeekExtensibleEnum,
   options: StringPutUnknownValueOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutUnknownValue204Response> {
+): StreamableMethod {
   return context
     .path("/type/enum/extensible/string/unknown-value")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putUnknownValueDeserialize(
-  result: PutUnknownValue204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

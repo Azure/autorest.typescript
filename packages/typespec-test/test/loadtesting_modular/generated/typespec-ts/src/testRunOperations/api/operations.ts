@@ -24,44 +24,11 @@ import {
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
-import {
-  isUnexpected,
-  LoadTestServiceContext as Client,
-  LoadTestRunCreateOrUpdateAppComponents200Response,
-  LoadTestRunCreateOrUpdateAppComponents201Response,
-  LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
-  LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
-  LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
-  LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
-  LoadTestRunCreateOrUpdateTestRun200Response,
-  LoadTestRunCreateOrUpdateTestRun201Response,
-  LoadTestRunCreateOrUpdateTestRunDefaultResponse,
-  LoadTestRunDeleteTestRun204Response,
-  LoadTestRunDeleteTestRunDefaultResponse,
-  LoadTestRunGetAppComponents200Response,
-  LoadTestRunGetAppComponentsDefaultResponse,
-  LoadTestRunGetServerMetricsConfig200Response,
-  LoadTestRunGetServerMetricsConfigDefaultResponse,
-  LoadTestRunGetTestRun200Response,
-  LoadTestRunGetTestRunDefaultResponse,
-  LoadTestRunGetTestRunFile200Response,
-  LoadTestRunGetTestRunFileDefaultResponse,
-  LoadTestRunListMetricDefinitions200Response,
-  LoadTestRunListMetricDefinitionsDefaultResponse,
-  LoadTestRunListMetricDimensionValues200Response,
-  LoadTestRunListMetricDimensionValuesDefaultResponse,
-  LoadTestRunListMetricNamespaces200Response,
-  LoadTestRunListMetricNamespacesDefaultResponse,
-  LoadTestRunListMetrics200Response,
-  LoadTestRunListMetricsDefaultResponse,
-  LoadTestRunListTestRuns200Response,
-  LoadTestRunListTestRunsDefaultResponse,
-  LoadTestRunStop200Response,
-  LoadTestRunStopDefaultResponse,
-} from "../../rest/index.js";
+import { LoadTestServiceContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -87,11 +54,7 @@ export function _createOrUpdateTestRunSend(
   testRunId: string,
   body: TestRun,
   options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunCreateOrUpdateTestRun200Response
-  | LoadTestRunCreateOrUpdateTestRun201Response
-  | LoadTestRunCreateOrUpdateTestRunDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}", testRunId)
     .patch({
@@ -128,12 +91,10 @@ export function _createOrUpdateTestRunSend(
 }
 
 export async function _createOrUpdateTestRunDeserialize(
-  result:
-    | LoadTestRunCreateOrUpdateTestRun200Response
-    | LoadTestRunCreateOrUpdateTestRun201Response
-    | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -162,7 +123,7 @@ export async function _createOrUpdateTestRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
+        : result.body["errorDetails"].map((p: any) => {
             return { message: p["message"] };
           }),
     testRunStatistics: result.body["testRunStatistics"],
@@ -209,7 +170,7 @@ export async function _createOrUpdateTestRunDeserialize(
               ? result.body.loadTestConfiguration?.["regionalLoadTestConfig"]
               : result.body.loadTestConfiguration?.[
                   "regionalLoadTestConfig"
-                ].map((p) => {
+                ].map((p: any) => {
                   return {
                     engineInstances: p["engineInstances"],
                     region: p["region"],
@@ -370,7 +331,7 @@ export async function _createOrUpdateTestRunDeserialize(
                       ]
                     : result.body.testArtifacts?.inputArtifacts?.[
                         "additionalFileInfo"
-                      ].map((p) => {
+                      ].map((p: any) => {
                         return {
                           fileName: p["fileName"],
                           url: p["url"],
@@ -546,11 +507,7 @@ export function _createOrUpdateAppComponentsSend(
   testRunId: string,
   body: TestRunAppComponents,
   options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunCreateOrUpdateAppComponents200Response
-  | LoadTestRunCreateOrUpdateAppComponents201Response
-  | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
     .patch({
@@ -567,12 +524,10 @@ export function _createOrUpdateAppComponentsSend(
 }
 
 export async function _createOrUpdateAppComponentsDeserialize(
-  result:
-    | LoadTestRunCreateOrUpdateAppComponents200Response
-    | LoadTestRunCreateOrUpdateAppComponents201Response
-    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRunAppComponents> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -615,11 +570,7 @@ export function _createOrUpdateServerMetricsConfigSend(
   options: CreateOrUpdateServerMetricsConfigOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
-  | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
-  | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
     .patch({
@@ -638,12 +589,10 @@ export function _createOrUpdateServerMetricsConfigSend(
 }
 
 export async function _createOrUpdateServerMetricsConfigDeserialize(
-  result:
-    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
-    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
-    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRunServerMetricConfig> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -685,20 +634,17 @@ export function _deleteTestRunSend(
   context: Client,
   testRunId: string,
   options: DeleteTestRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}", testRunId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestRunDeserialize(
-  result:
-    | LoadTestRunDeleteTestRun204Response
-    | LoadTestRunDeleteTestRunDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -719,21 +665,17 @@ export function _getAppComponentsSend(
   context: Client,
   testRunId: string,
   options: GetAppComponentsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunGetAppComponents200Response
-  | LoadTestRunGetAppComponentsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAppComponentsDeserialize(
-  result:
-    | LoadTestRunGetAppComponents200Response
-    | LoadTestRunGetAppComponentsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRunAppComponents> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -770,21 +712,17 @@ export function _getServerMetricsConfigSend(
   context: Client,
   testRunId: string,
   options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunGetServerMetricsConfig200Response
-  | LoadTestRunGetServerMetricsConfigDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getServerMetricsConfigDeserialize(
-  result:
-    | LoadTestRunGetServerMetricsConfig200Response
-    | LoadTestRunGetServerMetricsConfigDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRunServerMetricConfig> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -818,20 +756,17 @@ export function _getTestRunSend(
   context: Client,
   testRunId: string,
   options: GetTestRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}", testRunId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunDeserialize(
-  result:
-    | LoadTestRunGetTestRun200Response
-    | LoadTestRunGetTestRunDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -860,7 +795,7 @@ export async function _getTestRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
+        : result.body["errorDetails"].map((p: any) => {
             return { message: p["message"] };
           }),
     testRunStatistics: result.body["testRunStatistics"],
@@ -907,7 +842,7 @@ export async function _getTestRunDeserialize(
               ? result.body.loadTestConfiguration?.["regionalLoadTestConfig"]
               : result.body.loadTestConfiguration?.[
                   "regionalLoadTestConfig"
-                ].map((p) => {
+                ].map((p: any) => {
                   return {
                     engineInstances: p["engineInstances"],
                     region: p["region"],
@@ -1068,7 +1003,7 @@ export async function _getTestRunDeserialize(
                       ]
                     : result.body.testArtifacts?.inputArtifacts?.[
                         "additionalFileInfo"
-                      ].map((p) => {
+                      ].map((p: any) => {
                         return {
                           fileName: p["fileName"],
                           url: p["url"],
@@ -1238,21 +1173,17 @@ export function _getTestRunFileSend(
   testRunId: string,
   fileName: string,
   options: GetTestRunFileOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunGetTestRunFile200Response
-  | LoadTestRunGetTestRunFileDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/files/{fileName}", testRunId, fileName)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunFileDeserialize(
-  result:
-    | LoadTestRunGetTestRunFile200Response
-    | LoadTestRunGetTestRunFileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRunFileInfo> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1293,10 +1224,7 @@ export function _listMetricDimensionValuesSend(
   metricNamespace: string,
   timespan: string,
   options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunListMetricDimensionValues200Response
-  | LoadTestRunListMetricDimensionValuesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/test-runs/{testRunId}/metric-dimensions/{name}/values",
@@ -1315,11 +1243,10 @@ export function _listMetricDimensionValuesSend(
 }
 
 export async function _listMetricDimensionValuesDeserialize(
-  result:
-    | LoadTestRunListMetricDimensionValues200Response
-    | LoadTestRunListMetricDimensionValuesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<DimensionValueList> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1357,10 +1284,7 @@ export function _listMetricDefinitionsSend(
   testRunId: string,
   metricNamespace: string,
   options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunListMetricDefinitions200Response
-  | LoadTestRunListMetricDefinitionsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/metric-definitions", testRunId)
     .get({
@@ -1370,21 +1294,20 @@ export function _listMetricDefinitionsSend(
 }
 
 export async function _listMetricDefinitionsDeserialize(
-  result:
-    | LoadTestRunListMetricDefinitions200Response
-    | LoadTestRunListMetricDefinitionsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<MetricDefinitionCollection> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         dimensions:
           p["dimensions"] === undefined
             ? p["dimensions"]
-            : p["dimensions"].map((p) => {
+            : p["dimensions"].map((p: any) => {
                 return { description: p["description"], name: p["name"] };
               }),
         description: p["description"],
@@ -1396,7 +1319,7 @@ export async function _listMetricDefinitionsDeserialize(
         metricAvailabilities:
           p["metricAvailabilities"] === undefined
             ? p["metricAvailabilities"]
-            : p["metricAvailabilities"].map((p) => {
+            : p["metricAvailabilities"].map((p: any) => {
                 return { timeGrain: p["timeGrain"] };
               }),
       };
@@ -1424,26 +1347,22 @@ export function _listMetricNamespacesSend(
   context: Client,
   testRunId: string,
   options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | LoadTestRunListMetricNamespaces200Response
-  | LoadTestRunListMetricNamespacesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/metric-namespaces", testRunId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listMetricNamespacesDeserialize(
-  result:
-    | LoadTestRunListMetricNamespaces200Response
-    | LoadTestRunListMetricNamespacesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<MetricNamespaceCollection> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return { description: p["description"], name: p["name"] };
     }),
   };
@@ -1467,9 +1386,7 @@ export function _listMetricsSend(
   timespan: string,
   body?: MetricRequestPayload,
   options: ListMetricsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  LoadTestRunListMetrics200Response | LoadTestRunListMetricsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}/metrics", testRunId)
     .post({
@@ -1494,21 +1411,20 @@ export function _listMetricsSend(
 }
 
 export async function _listMetricsDeserialize(
-  result:
-    | LoadTestRunListMetrics200Response
-    | LoadTestRunListMetricsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_Metrics> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         data:
           p["data"] === undefined
             ? p["data"]
-            : p["data"].map((p) => {
+            : p["data"].map((p: any) => {
                 return {
                   timestamp:
                     p["timestamp"] !== undefined
@@ -1520,7 +1436,7 @@ export async function _listMetricsDeserialize(
         dimensionValues:
           p["dimensionValues"] === undefined
             ? p["dimensionValues"]
-            : p["dimensionValues"].map((p) => {
+            : p["dimensionValues"].map((p: any) => {
                 return { name: p["name"], value: p["value"] };
               }),
       };
@@ -1552,6 +1468,7 @@ export function listMetrics(
         options,
       ),
     _listMetricsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -1559,9 +1476,7 @@ export function listMetrics(
 export function _listTestRunsSend(
   context: Client,
   options: ListTestRunsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  LoadTestRunListTestRuns200Response | LoadTestRunListTestRunsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs")
     .get({
@@ -1579,16 +1494,15 @@ export function _listTestRunsSend(
 }
 
 export async function _listTestRunsDeserialize(
-  result:
-    | LoadTestRunListTestRuns200Response
-    | LoadTestRunListTestRunsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedTestRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         testRunId: p["testRunId"],
         passFailCriteria: !p.passFailCriteria
@@ -1614,7 +1528,7 @@ export async function _listTestRunsDeserialize(
         errorDetails:
           p["errorDetails"] === undefined
             ? p["errorDetails"]
-            : p["errorDetails"].map((p) => {
+            : p["errorDetails"].map((p: any) => {
                 return { message: p["message"] };
               }),
         testRunStatistics: p["testRunStatistics"],
@@ -1659,7 +1573,7 @@ export async function _listTestRunsDeserialize(
                 undefined
                   ? p.loadTestConfiguration?.["regionalLoadTestConfig"]
                   : p.loadTestConfiguration?.["regionalLoadTestConfig"].map(
-                      (p) => {
+                      (p: any) => {
                         return {
                           engineInstances: p["engineInstances"],
                           region: p["region"],
@@ -1839,7 +1753,7 @@ export async function _listTestRunsDeserialize(
                           ]
                         : p.testArtifacts?.inputArtifacts?.[
                             "additionalFileInfo"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return {
                               fileName: p["fileName"],
                               url: p["url"],
@@ -2024,6 +1938,7 @@ export function listTestRuns(
     context,
     () => _listTestRunsSend(context, options),
     _listTestRunsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -2032,18 +1947,17 @@ export function _stopTestRunSend(
   context: Client,
   testRunId: string,
   options: StopTestRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  LoadTestRunStop200Response | LoadTestRunStopDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-runs/{testRunId}:stop", testRunId)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stopTestRunDeserialize(
-  result: LoadTestRunStop200Response | LoadTestRunStopDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2072,7 +1986,7 @@ export async function _stopTestRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
+        : result.body["errorDetails"].map((p: any) => {
             return { message: p["message"] };
           }),
     testRunStatistics: result.body["testRunStatistics"],
@@ -2119,7 +2033,7 @@ export async function _stopTestRunDeserialize(
               ? result.body.loadTestConfiguration?.["regionalLoadTestConfig"]
               : result.body.loadTestConfiguration?.[
                   "regionalLoadTestConfig"
-                ].map((p) => {
+                ].map((p: any) => {
                   return {
                     engineInstances: p["engineInstances"],
                     region: p["region"],
@@ -2280,7 +2194,7 @@ export async function _stopTestRunDeserialize(
                       ]
                     : result.body.testArtifacts?.inputArtifacts?.[
                         "additionalFileInfo"
-                      ].map((p) => {
+                      ].map((p: any) => {
                         return {
                           fileName: p["fileName"],
                           url: p["url"],

@@ -3,8 +3,8 @@
 
 export {
   createResources,
-  ResourcesClientOptionalParams,
   ResourcesContext,
+  ResourcesClientOptionalParams,
 } from "./resourcesContext.js";
 export {
   nestedProxyResourcesGet,

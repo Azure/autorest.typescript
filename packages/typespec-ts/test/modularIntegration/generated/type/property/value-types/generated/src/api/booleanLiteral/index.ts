@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { BooleanLiteralProperty } from "../../models/models.js";
-import {
-  BooleanLiteralGet200Response,
-  BooleanLiteralPut204Response,
-  ValueTypesContext as Client,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _booleanLiteralGetSend(
   context: Client,
   options: BooleanLiteralGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<BooleanLiteralGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/boolean/literal")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _booleanLiteralGetDeserialize(
-  result: BooleanLiteralGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<BooleanLiteralProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _booleanLiteralPutSend(
   context: Client,
   body: BooleanLiteralProperty,
   options: BooleanLiteralPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<BooleanLiteralPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/boolean/literal")
     .put({
@@ -61,9 +59,10 @@ export function _booleanLiteralPutSend(
 }
 
 export async function _booleanLiteralPutDeserialize(
-  result: BooleanLiteralPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

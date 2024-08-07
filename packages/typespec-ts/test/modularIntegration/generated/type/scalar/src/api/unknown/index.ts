@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ScalarContext as Client,
-  UnknownGet200Response,
-  UnknownPut204Response,
-} from "../../rest/index.js";
+import { ScalarContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _unknownGetSend(
   context: Client,
   options: UnknownGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/unknown")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _unknownGetDeserialize(
-  result: UnknownGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<any> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,16 +46,17 @@ export function _unknownPutSend(
   context: Client,
   body: any,
   options: UnknownPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/unknown")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _unknownPutDeserialize(
-  result: UnknownPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

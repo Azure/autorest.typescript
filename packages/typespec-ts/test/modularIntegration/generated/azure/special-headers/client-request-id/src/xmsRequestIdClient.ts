@@ -5,8 +5,8 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   get,
   createXmsRequestId,
-  XmsRequestIdClientOptionalParams,
   XmsRequestIdClientContext,
+  XmsRequestIdClientOptionalParams,
 } from "./api/index.js";
 import { GetOptionalParams } from "./models/options.js";
 
@@ -23,7 +23,6 @@ export class XmsRequestIdClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createXmsRequestId({
       ...options,
       userAgentOptions: { userAgentPrefix },

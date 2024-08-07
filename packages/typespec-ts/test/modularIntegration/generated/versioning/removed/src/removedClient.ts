@@ -7,8 +7,8 @@ import { V2OptionalParams } from "./models/options.js";
 import {
   v2,
   createRemoved,
-  RemovedClientOptionalParams,
   RemovedContext,
+  RemovedClientOptionalParams,
 } from "./api/index.js";
 
 export { RemovedClientOptionalParams } from "./api/removedContext.js";
@@ -28,7 +28,6 @@ export class RemovedClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createRemoved(endpointParam, version, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { PngImageAsJson } from "../../models/models.js";
-import {
-  ContentNegotiationContext as Client,
-  DifferentBodyGetAvatarAsJson200Response,
-  DifferentBodyGetAvatarAsPng200Response,
-} from "../../rest/index.js";
+import { ContentNegotiationContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array } from "@azure/core-util";
@@ -21,19 +18,20 @@ import {
 export function _getAvatarAsPngSend(
   context: Client,
   options: DifferentBodyGetAvatarAsPngOptionalParams = { requestOptions: {} },
-): StreamableMethod<DifferentBodyGetAvatarAsPng200Response> {
+): StreamableMethod {
   return context
     .path("/content-negotiation/different-body")
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "image/png" },
-    }) as StreamableMethod<DifferentBodyGetAvatarAsPng200Response>;
+    });
 }
 
 export async function _getAvatarAsPngDeserialize(
-  result: DifferentBodyGetAvatarAsPng200Response,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,19 +49,20 @@ export async function getAvatarAsPng(
 export function _getAvatarAsJsonSend(
   context: Client,
   options: DifferentBodyGetAvatarAsJsonOptionalParams = { requestOptions: {} },
-): StreamableMethod<DifferentBodyGetAvatarAsJson200Response> {
+): StreamableMethod {
   return context
     .path("/content-negotiation/different-body")
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-    }) as StreamableMethod<DifferentBodyGetAvatarAsJson200Response>;
+    });
 }
 
 export async function _getAvatarAsJsonDeserialize(
-  result: DifferentBodyGetAvatarAsJson200Response,
+  result: PathUncheckedResponse,
 ): Promise<PngImageAsJson> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

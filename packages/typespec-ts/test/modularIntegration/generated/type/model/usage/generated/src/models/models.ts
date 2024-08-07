@@ -1,17 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  InputRecord as InputRecordRest,
-  InputOutputRecord as InputOutputRecordRest,
-} from "../rest/index.js";
-
 /** Record used in operation parameters */
 export interface InputRecord {
   requiredProp: string;
 }
 
-export function inputRecordSerializer(item: InputRecord): InputRecordRest {
+export function inputRecordSerializer(
+  item: InputRecord,
+): Record<string, unknown> {
   return {
     requiredProp: item["requiredProp"],
   };
@@ -29,7 +26,7 @@ export interface InputOutputRecord {
 
 export function inputOutputRecordSerializer(
   item: InputOutputRecord,
-): InputOutputRecordRest {
+): Record<string, unknown> {
   return {
     requiredProp: item["requiredProp"],
   };

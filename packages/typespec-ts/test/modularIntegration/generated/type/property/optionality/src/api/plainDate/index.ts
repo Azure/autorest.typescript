@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { PlainDateProperty } from "../../models/models.js";
-import {
-  OptionalContext as Client,
-  PlainDateGetAll200Response,
-  PlainDateGetDefault200Response,
-  PlainDatePutAll204Response,
-  PlainDatePutDefault204Response,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: PlainDateGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<PlainDateGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/plainDate/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: PlainDateGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<PlainDateProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -57,16 +53,17 @@ export async function getAll(
 export function _getDefaultSend(
   context: Client,
   options: PlainDateGetDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<PlainDateGetDefault200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/plainDate/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDefaultDeserialize(
-  result: PlainDateGetDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<PlainDateProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -91,7 +88,7 @@ export function _putAllSend(
   context: Client,
   body: PlainDateProperty,
   options: PlainDatePutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<PlainDatePutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/plainDate/all")
     .put({
@@ -101,9 +98,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: PlainDatePutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -124,7 +122,7 @@ export function _putDefaultSend(
   context: Client,
   body: PlainDateProperty,
   options: PlainDatePutDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<PlainDatePutDefault204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/plainDate/default")
     .put({
@@ -134,9 +132,10 @@ export function _putDefaultSend(
 }
 
 export async function _putDefaultDeserialize(
-  result: PlainDatePutDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

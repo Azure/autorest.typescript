@@ -10,8 +10,8 @@ import {
 } from "./models/options.js";
 import {
   createNotDiscriminated,
-  NotDiscriminatedClientOptionalParams,
   NotDiscriminatedContext,
+  NotDiscriminatedClientOptionalParams,
   postValid,
   getValid,
   putValid,
@@ -30,7 +30,6 @@ export class NotDiscriminatedClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createNotDiscriminated({
       ...options,
       userAgentOptions: { userAgentPrefix },

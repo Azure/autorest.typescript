@@ -8,8 +8,8 @@ import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   list,
   createPageable,
-  PageableClientOptionalParams,
   PageableContext,
+  PageableClientOptionalParams,
 } from "./api/index.js";
 
 export { PageableClientOptionalParams } from "./api/pageableContext.js";
@@ -25,7 +25,6 @@ export class PageableClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createPageable({
       ...options,
       userAgentOptions: { userAgentPrefix },

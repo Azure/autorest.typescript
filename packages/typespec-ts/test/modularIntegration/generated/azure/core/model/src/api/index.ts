@@ -3,7 +3,7 @@
 
 export {
   createModel,
-  ModelClientOptionalParams,
   ModelContext,
+  ModelClientOptionalParams,
 } from "./modelContext.js";
 export { get, put, post } from "./operations.js";

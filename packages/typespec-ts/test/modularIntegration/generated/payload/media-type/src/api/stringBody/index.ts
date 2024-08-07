@@ -1,16 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  MediaTypeContext as Client,
-  GetAsJson200Response,
-  GetAsText200Response,
-  SendAsJson200Response,
-  SendAsText200Response,
-} from "../../rest/index.js";
+import { MediaTypeContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,7 +19,7 @@ export function _sendAsTextSend(
   context: Client,
   text: string,
   options: StringBodySendAsTextOptionalParams = { requestOptions: {} },
-): StreamableMethod<SendAsText200Response> {
+): StreamableMethod {
   return context
     .path("/payload/media-type/string-body/sendAsText")
     .post({
@@ -35,9 +30,10 @@ export function _sendAsTextSend(
 }
 
 export async function _sendAsTextDeserialize(
-  result: SendAsText200Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -56,16 +52,17 @@ export async function sendAsText(
 export function _getAsTextSend(
   context: Client,
   options: StringBodyGetAsTextOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetAsText200Response> {
+): StreamableMethod {
   return context
     .path("/payload/media-type/string-body/getAsText")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAsTextDeserialize(
-  result: GetAsText200Response,
+  result: PathUncheckedResponse,
 ): Promise<string> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -84,7 +81,7 @@ export function _sendAsJsonSend(
   context: Client,
   text: string,
   options: StringBodySendAsJsonOptionalParams = { requestOptions: {} },
-): StreamableMethod<SendAsJson200Response> {
+): StreamableMethod {
   return context
     .path("/payload/media-type/string-body/sendAsJson")
     .post({
@@ -95,9 +92,10 @@ export function _sendAsJsonSend(
 }
 
 export async function _sendAsJsonDeserialize(
-  result: SendAsJson200Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -116,16 +114,17 @@ export async function sendAsJson(
 export function _getAsJsonSend(
   context: Client,
   options: StringBodyGetAsJsonOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetAsJson200Response> {
+): StreamableMethod {
   return context
     .path("/payload/media-type/string-body/getAsJson")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAsJsonDeserialize(
-  result: GetAsJson200Response,
+  result: PathUncheckedResponse,
 ): Promise<string> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

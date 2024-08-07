@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import { InnerModel as InnerModelRest } from "../rest/index.js";
 
 /** Dictionary inner model */
 export interface InnerModel {
@@ -11,7 +10,9 @@ export interface InnerModel {
   children?: Record<string, InnerModel>;
 }
 
-export function innerModelSerializer(item: InnerModel): InnerModelRest {
+export function innerModelSerializer(
+  item: InnerModel,
+): Record<string, unknown> {
   return {
     property: item["property"],
     children: !item.children

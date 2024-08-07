@@ -6,19 +6,11 @@ import {
   BirdUnion,
   DinosaurUnion,
 } from "../models/models.js";
-import {
-  SingleDiscriminatorContext as Client,
-  GetLegacyModel200Response,
-  GetMissingDiscriminator200Response,
-  GetModel200Response,
-  GetRecursiveModel200Response,
-  GetWrongDiscriminator200Response,
-  PutModel204Response,
-  PutRecursiveModel204Response,
-} from "../rest/index.js";
+import { SingleDiscriminatorContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -34,16 +26,17 @@ import {
 export function _getModelSend(
   context: Client,
   options: GetModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetModel200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/single-discriminator/model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getModelDeserialize(
-  result: GetModel200Response,
+  result: PathUncheckedResponse,
 ): Promise<BirdUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -62,7 +55,7 @@ export function _putModelSend(
   context: Client,
   input: BirdUnion,
   options: PutModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutModel204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/single-discriminator/model")
     .put({
@@ -72,9 +65,10 @@ export function _putModelSend(
 }
 
 export async function _putModelDeserialize(
-  result: PutModel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -93,16 +87,17 @@ export async function putModel(
 export function _getRecursiveModelSend(
   context: Client,
   options: GetRecursiveModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetRecursiveModel200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/single-discriminator/recursivemodel")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getRecursiveModelDeserialize(
-  result: GetRecursiveModel200Response,
+  result: PathUncheckedResponse,
 ): Promise<BirdUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -121,7 +116,7 @@ export function _putRecursiveModelSend(
   context: Client,
   input: BirdUnion,
   options: PutRecursiveModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutRecursiveModel204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/single-discriminator/recursivemodel")
     .put({
@@ -131,9 +126,10 @@ export function _putRecursiveModelSend(
 }
 
 export async function _putRecursiveModelDeserialize(
-  result: PutRecursiveModel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -152,16 +148,17 @@ export async function putRecursiveModel(
 export function _getMissingDiscriminatorSend(
   context: Client,
   options: GetMissingDiscriminatorOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetMissingDiscriminator200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/single-discriminator/missingdiscriminator")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getMissingDiscriminatorDeserialize(
-  result: GetMissingDiscriminator200Response,
+  result: PathUncheckedResponse,
 ): Promise<BirdUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -179,16 +176,17 @@ export async function getMissingDiscriminator(
 export function _getWrongDiscriminatorSend(
   context: Client,
   options: GetWrongDiscriminatorOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetWrongDiscriminator200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/single-discriminator/wrongdiscriminator")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getWrongDiscriminatorDeserialize(
-  result: GetWrongDiscriminator200Response,
+  result: PathUncheckedResponse,
 ): Promise<BirdUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -206,16 +204,17 @@ export async function getWrongDiscriminator(
 export function _getLegacyModelSend(
   context: Client,
   options: GetLegacyModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetLegacyModel200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/single-discriminator/legacy-model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getLegacyModelDeserialize(
-  result: GetLegacyModel200Response,
+  result: PathUncheckedResponse,
 ): Promise<DinosaurUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

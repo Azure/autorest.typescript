@@ -5,14 +5,11 @@ import {
   differentSpreadFloatDerivedSerializer,
   DifferentSpreadFloatDerived,
 } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  ExtendsDifferentSpreadFloatGet200Response,
-  ExtendsDifferentSpreadFloatPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -25,16 +22,17 @@ export function _getSend(
   options: ExtendsDifferentSpreadFloatGetOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ExtendsDifferentSpreadFloatGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/extendsDifferentSpreadFloat")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: ExtendsDifferentSpreadFloatGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<DifferentSpreadFloatDerived> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -58,7 +56,7 @@ export function _putSend(
   options: ExtendsDifferentSpreadFloatPutOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ExtendsDifferentSpreadFloatPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/extendsDifferentSpreadFloat")
     .put({
@@ -68,9 +66,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: ExtendsDifferentSpreadFloatPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

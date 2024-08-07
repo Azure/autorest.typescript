@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { BytesProperty } from "../../models/models.js";
-import {
-  BytesGetAll200Response,
-  BytesGetDefault200Response,
-  BytesPutAll204Response,
-  BytesPutDefault204Response,
-  OptionalContext as Client,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
@@ -25,16 +20,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: BytesGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/bytes/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: BytesGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<BytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -58,16 +54,17 @@ export async function getAll(
 export function _getDefaultSend(
   context: Client,
   options: BytesGetDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesGetDefault200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/bytes/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDefaultDeserialize(
-  result: BytesGetDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<BytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -92,7 +89,7 @@ export function _putAllSend(
   context: Client,
   body: BytesProperty,
   options: BytesPutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesPutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/bytes/all")
     .put({
@@ -107,9 +104,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: BytesPutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -130,7 +128,7 @@ export function _putDefaultSend(
   context: Client,
   body: BytesProperty,
   options: BytesPutDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesPutDefault204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/bytes/default")
     .put({
@@ -145,9 +143,10 @@ export function _putDefaultSend(
 }
 
 export async function _putDefaultDeserialize(
-  result: BytesPutDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

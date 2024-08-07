@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { StringLiteralProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  StringLiteralGet200Response,
-  StringLiteralPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _stringLiteralGetSend(
   context: Client,
   options: StringLiteralGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringLiteralGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/string/literal")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stringLiteralGetDeserialize(
-  result: StringLiteralGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<StringLiteralProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _stringLiteralPutSend(
   context: Client,
   body: StringLiteralProperty,
   options: StringLiteralPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringLiteralPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/string/literal")
     .put({
@@ -61,9 +59,10 @@ export function _stringLiteralPutSend(
 }
 
 export async function _stringLiteralPutDeserialize(
-  result: StringLiteralPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

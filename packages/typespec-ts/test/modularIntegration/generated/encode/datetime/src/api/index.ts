@@ -3,8 +3,8 @@
 
 export {
   createDatetime,
-  DatetimeClientOptionalParams,
   DatetimeContext,
+  DatetimeClientOptionalParams,
 } from "./datetimeContext.js";
 export {
   headerDefault,

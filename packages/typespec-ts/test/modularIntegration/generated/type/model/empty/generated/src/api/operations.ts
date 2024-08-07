@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { EmptyInput, EmptyOutput, EmptyInputOutput } from "../models/models.js";
-import {
-  EmptyContext as Client,
-  GetEmpty200Response,
-  PostRoundTripEmpty200Response,
-  PutEmpty204Response,
-} from "../rest/index.js";
+import { EmptyContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -23,16 +19,17 @@ export function _putEmptySend(
   context: Client,
   input: EmptyInput,
   options: PutEmptyOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutEmpty204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/empty/alone")
     .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putEmptyDeserialize(
-  result: PutEmpty204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,16 +48,17 @@ export async function putEmpty(
 export function _getEmptySend(
   context: Client,
   options: GetEmptyOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetEmpty200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/empty/alone")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getEmptyDeserialize(
-  result: GetEmpty200Response,
+  result: PathUncheckedResponse,
 ): Promise<EmptyOutput> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -79,16 +77,17 @@ export function _postRoundTripEmptySend(
   context: Client,
   body: EmptyInputOutput,
   options: PostRoundTripEmptyOptionalParams = { requestOptions: {} },
-): StreamableMethod<PostRoundTripEmpty200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/empty/round-trip")
     .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _postRoundTripEmptyDeserialize(
-  result: PostRoundTripEmpty200Response,
+  result: PathUncheckedResponse,
 ): Promise<EmptyInputOutput> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

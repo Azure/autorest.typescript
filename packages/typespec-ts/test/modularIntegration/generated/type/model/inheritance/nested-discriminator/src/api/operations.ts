@@ -2,18 +2,11 @@
 // Licensed under the MIT license.
 
 import { fishUnionSerializer, FishUnion } from "../models/models.js";
-import {
-  NestedDiscriminatorContext as Client,
-  GetMissingDiscriminator200Response,
-  GetModel200Response,
-  GetRecursiveModel200Response,
-  GetWrongDiscriminator200Response,
-  PutModel204Response,
-  PutRecursiveModel204Response,
-} from "../rest/index.js";
+import { NestedDiscriminatorContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -28,16 +21,17 @@ import {
 export function _getModelSend(
   context: Client,
   options: GetModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetModel200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/nested-discriminator/model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getModelDeserialize(
-  result: GetModel200Response,
+  result: PathUncheckedResponse,
 ): Promise<FishUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -56,7 +50,7 @@ export function _putModelSend(
   context: Client,
   input: FishUnion,
   options: PutModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutModel204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/nested-discriminator/model")
     .put({
@@ -66,9 +60,10 @@ export function _putModelSend(
 }
 
 export async function _putModelDeserialize(
-  result: PutModel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -87,16 +82,17 @@ export async function putModel(
 export function _getRecursiveModelSend(
   context: Client,
   options: GetRecursiveModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetRecursiveModel200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getRecursiveModelDeserialize(
-  result: GetRecursiveModel200Response,
+  result: PathUncheckedResponse,
 ): Promise<FishUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -115,7 +111,7 @@ export function _putRecursiveModelSend(
   context: Client,
   input: FishUnion,
   options: PutRecursiveModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutRecursiveModel204Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
     .put({
@@ -125,9 +121,10 @@ export function _putRecursiveModelSend(
 }
 
 export async function _putRecursiveModelDeserialize(
-  result: PutRecursiveModel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -146,16 +143,17 @@ export async function putRecursiveModel(
 export function _getMissingDiscriminatorSend(
   context: Client,
   options: GetMissingDiscriminatorOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetMissingDiscriminator200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/nested-discriminator/missingdiscriminator")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getMissingDiscriminatorDeserialize(
-  result: GetMissingDiscriminator200Response,
+  result: PathUncheckedResponse,
 ): Promise<FishUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -173,16 +171,17 @@ export async function getMissingDiscriminator(
 export function _getWrongDiscriminatorSend(
   context: Client,
   options: GetWrongDiscriminatorOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetWrongDiscriminator200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/inheritance/nested-discriminator/wrongdiscriminator")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getWrongDiscriminatorDeserialize(
-  result: GetWrongDiscriminator200Response,
+  result: PathUncheckedResponse,
 ): Promise<FishUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

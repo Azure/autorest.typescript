@@ -19,7 +19,7 @@ function deserializeGold(obj: GoldOutput): Gold {
     bark: obj["bark"],
     name: obj["name"],
     weight: obj["weight"],
-    friends: obj["friends"].map((p) => deserializePetUnion(p)),
+    friends: obj["friends"].map((p: any) => deserializePetUnion(p)),
     birthDay: new Date(obj["birthDay"])
   };
 }

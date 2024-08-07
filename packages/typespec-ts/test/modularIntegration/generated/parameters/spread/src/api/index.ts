@@ -3,8 +3,8 @@
 
 export {
   createSpread,
-  SpreadClientOptionalParams,
   SpreadContext,
+  SpreadClientOptionalParams,
 } from "./spreadContext.js";
 export {
   aliasSpreadAsRequestBody,

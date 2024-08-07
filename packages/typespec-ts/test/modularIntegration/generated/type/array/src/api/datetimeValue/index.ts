@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ArrayContext as Client,
-  DatetimeValueGet200Response,
-  DatetimeValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,22 +16,23 @@ import {
 export function _datetimeValueGetSend(
   context: Client,
   options: DatetimeValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimeValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/datetime")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _datetimeValueGetDeserialize(
-  result: DatetimeValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<Date[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => new Date(p));
+    : result.body.map((p: any) => new Date(p));
 }
 
 export async function datetimeValueGet(
@@ -49,16 +47,17 @@ export function _datetimeValuePutSend(
   context: Client,
   body: Date[],
   options: DatetimeValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<DatetimeValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/array/datetime")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _datetimeValuePutDeserialize(
-  result: DatetimeValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

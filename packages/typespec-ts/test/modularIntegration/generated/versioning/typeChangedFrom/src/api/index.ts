@@ -4,6 +4,6 @@
 export { test } from "./operations.js";
 export {
   createTypeChangedFrom,
-  TypeChangedFromClientOptionalParams,
   TypeChangedFromContext,
+  TypeChangedFromClientOptionalParams,
 } from "./typeChangedFromContext.js";

@@ -48,8 +48,8 @@ import {
 } from "./classic/nullableFloatValue/index.js";
 import {
   createDictionary,
-  DictionaryClientOptionalParams,
   DictionaryContext,
+  DictionaryClientOptionalParams,
 } from "./api/index.js";
 
 export { DictionaryClientOptionalParams } from "./api/dictionaryContext.js";
@@ -65,7 +65,6 @@ export class DictionaryClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createDictionary({
       ...options,
       userAgentOptions: { userAgentPrefix },

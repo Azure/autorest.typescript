@@ -1,16 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  DatetimeContext as Client,
-  ResponseHeaderDefault204Response,
-  ResponseHeaderRfc3339204Response,
-  ResponseHeaderRfc7231204Response,
-  ResponseHeaderUnixTimestamp204Response,
-} from "../../rest/index.js";
+import { DatetimeContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -23,16 +18,17 @@ import {
 export function _responseHeaderDefaultSend(
   context: Client,
   options: ResponseHeaderDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseHeaderDefault204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/responseheader/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseHeaderDefaultDeserialize(
-  result: ResponseHeaderDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -50,16 +46,17 @@ export async function responseHeaderDefault(
 export function _responseHeaderRfc3339Send(
   context: Client,
   options: ResponseHeaderRfc3339OptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseHeaderRfc3339204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/responseheader/rfc3339")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseHeaderRfc3339Deserialize(
-  result: ResponseHeaderRfc3339204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -77,16 +74,17 @@ export async function responseHeaderRfc3339(
 export function _responseHeaderRfc7231Send(
   context: Client,
   options: ResponseHeaderRfc7231OptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseHeaderRfc7231204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/responseheader/rfc7231")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseHeaderRfc7231Deserialize(
-  result: ResponseHeaderRfc7231204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -104,16 +102,17 @@ export async function responseHeaderRfc7231(
 export function _responseHeaderUnixTimestampSend(
   context: Client,
   options: ResponseHeaderUnixTimestampOptionalParams = { requestOptions: {} },
-): StreamableMethod<ResponseHeaderUnixTimestamp204Response> {
+): StreamableMethod {
   return context
     .path("/encode/datetime/responseheader/unix-timestamp")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseHeaderUnixTimestampDeserialize(
-  result: ResponseHeaderUnixTimestamp204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

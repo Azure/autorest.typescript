@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { ClientExtensibleEnum, ExtensibleEnum } from "../../models/models.js";
-import {
-  NamingContext as Client,
-  UnionEnumUnionEnumMemberName204Response,
-  UnionEnumUnionEnumName204Response,
-} from "../../rest/index.js";
+import { NamingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,16 +18,17 @@ export function _unionEnumNameSend(
   context: Client,
   body: ClientExtensibleEnum,
   options: UnionEnumUnionEnumNameOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnionEnumUnionEnumName204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/union-enum/union-enum-name")
     .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _unionEnumNameDeserialize(
-  result: UnionEnumUnionEnumName204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -50,16 +48,17 @@ export function _unionEnumMemberNameSend(
   context: Client,
   body: ExtensibleEnum,
   options: UnionEnumUnionEnumMemberNameOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnionEnumUnionEnumMemberName204Response> {
+): StreamableMethod {
   return context
     .path("/client/naming/union-enum/union-enum-member-name")
     .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _unionEnumMemberNameDeserialize(
-  result: UnionEnumUnionEnumMemberName204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

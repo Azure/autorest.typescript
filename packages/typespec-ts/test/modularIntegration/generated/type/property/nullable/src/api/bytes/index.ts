@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { BytesProperty } from "../../models/models.js";
-import {
-  BytesGetNonNull200Response,
-  BytesGetNull200Response,
-  BytesPatchNonNull204Response,
-  BytesPatchNull204Response,
-  NullableContext as Client,
-} from "../../rest/index.js";
+import { NullableContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
@@ -25,16 +20,17 @@ import {
 export function _getNonNullSend(
   context: Client,
   options: BytesGetNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesGetNonNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/bytes/non-null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNonNullDeserialize(
-  result: BytesGetNonNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<BytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -59,16 +55,17 @@ export async function getNonNull(
 export function _getNullSend(
   context: Client,
   options: BytesGetNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesGetNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/bytes/null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNullDeserialize(
-  result: BytesGetNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<BytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -94,7 +91,7 @@ export function _patchNonNullSend(
   context: Client,
   body: BytesProperty,
   options: BytesPatchNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesPatchNonNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/bytes/non-null")
     .patch({
@@ -112,9 +109,10 @@ export function _patchNonNullSend(
 }
 
 export async function _patchNonNullDeserialize(
-  result: BytesPatchNonNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -135,7 +133,7 @@ export function _patchNullSend(
   context: Client,
   body: BytesProperty,
   options: BytesPatchNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<BytesPatchNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/bytes/null")
     .patch({
@@ -153,9 +151,10 @@ export function _patchNullSend(
 }
 
 export async function _patchNullDeserialize(
-  result: BytesPatchNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

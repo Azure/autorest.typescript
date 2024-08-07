@@ -6,20 +6,11 @@ import {
   managedServiceIdentitySerializer,
   ManagedIdentityTrackedResource,
 } from "../models/models.js";
-import {
-  isUnexpected,
-  ManagedIdentityContext as Client,
-  CreateWithSystemAssigned200Response,
-  CreateWithSystemAssigned201Response,
-  CreateWithSystemAssignedDefaultResponse,
-  Get200Response,
-  GetDefaultResponse,
-  UpdateWithUserAssignedAndSystemAssigned200Response,
-  UpdateWithUserAssignedAndSystemAssignedDefaultResponse,
-} from "../rest/index.js";
+import { ManagedIdentityContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
@@ -35,7 +26,7 @@ export function _getSend(
   resourceGroupName: string,
   managedIdentityTrackedResourceName: string,
   options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Get200Response | GetDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
@@ -47,9 +38,10 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result: Get200Response | GetDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ManagedIdentityTrackedResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -115,11 +107,7 @@ export function _createWithSystemAssignedSend(
   managedIdentityTrackedResourceName: string,
   resource: ManagedIdentityTrackedResource,
   options: CreateWithSystemAssignedOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | CreateWithSystemAssigned200Response
-  | CreateWithSystemAssigned201Response
-  | CreateWithSystemAssignedDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
@@ -147,12 +135,10 @@ export function _createWithSystemAssignedSend(
 }
 
 export async function _createWithSystemAssignedDeserialize(
-  result:
-    | CreateWithSystemAssigned200Response
-    | CreateWithSystemAssigned201Response
-    | CreateWithSystemAssignedDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ManagedIdentityTrackedResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -222,10 +208,7 @@ export function _updateWithUserAssignedAndSystemAssignedSend(
   options: UpdateWithUserAssignedAndSystemAssignedOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | UpdateWithUserAssignedAndSystemAssigned200Response
-  | UpdateWithUserAssignedAndSystemAssignedDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
@@ -253,11 +236,10 @@ export function _updateWithUserAssignedAndSystemAssignedSend(
 }
 
 export async function _updateWithUserAssignedAndSystemAssignedDeserialize(
-  result:
-    | UpdateWithUserAssignedAndSystemAssigned200Response
-    | UpdateWithUserAssignedAndSystemAssignedDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ManagedIdentityTrackedResource> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

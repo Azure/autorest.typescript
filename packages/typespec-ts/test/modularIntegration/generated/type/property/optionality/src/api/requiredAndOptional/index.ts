@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { RequiredAndOptionalProperty } from "../../models/models.js";
-import {
-  OptionalContext as Client,
-  RequiredAndOptionalGetAll200Response,
-  RequiredAndOptionalGetRequiredOnly200Response,
-  RequiredAndOptionalPutAll204Response,
-  RequiredAndOptionalPutRequiredOnly204Response,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: RequiredAndOptionalGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequiredAndOptionalGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/requiredAndOptional/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: RequiredAndOptionalGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<RequiredAndOptionalProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -57,16 +53,17 @@ export function _getRequiredOnlySend(
   options: RequiredAndOptionalGetRequiredOnlyOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<RequiredAndOptionalGetRequiredOnly200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/requiredAndOptional/requiredOnly")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getRequiredOnlyDeserialize(
-  result: RequiredAndOptionalGetRequiredOnly200Response,
+  result: PathUncheckedResponse,
 ): Promise<RequiredAndOptionalProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -91,7 +88,7 @@ export function _putAllSend(
   context: Client,
   body: RequiredAndOptionalProperty,
   options: RequiredAndOptionalPutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequiredAndOptionalPutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/requiredAndOptional/all")
     .put({
@@ -104,9 +101,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: RequiredAndOptionalPutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -129,7 +127,7 @@ export function _putRequiredOnlySend(
   options: RequiredAndOptionalPutRequiredOnlyOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<RequiredAndOptionalPutRequiredOnly204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/requiredAndOptional/requiredOnly")
     .put({
@@ -142,9 +140,10 @@ export function _putRequiredOnlySend(
 }
 
 export async function _putRequiredOnlyDeserialize(
-  result: RequiredAndOptionalPutRequiredOnly204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

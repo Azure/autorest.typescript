@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  RepeatabilityContext as Client,
-  ImmediateSuccess204Response,
-} from "../rest/index.js";
+import { RepeatabilityContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { ImmediateSuccessOptionalParams } from "../models/options.js";
@@ -17,7 +15,7 @@ export function _immediateSuccessSend(
   repeatabilityRequestID: string,
   repeatabilityFirstSent: Date,
   options: ImmediateSuccessOptionalParams = { requestOptions: {} },
-): StreamableMethod<ImmediateSuccess204Response> {
+): StreamableMethod {
   return context
     .path("/special-headers/repeatability/immediateSuccess")
     .post({
@@ -30,9 +28,10 @@ export function _immediateSuccessSend(
 }
 
 export async function _immediateSuccessDeserialize(
-  result: ImmediateSuccess204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

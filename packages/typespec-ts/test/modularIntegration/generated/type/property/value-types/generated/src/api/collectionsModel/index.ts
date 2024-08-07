@@ -5,14 +5,11 @@ import {
   innerModelSerializer,
   CollectionsModelProperty,
 } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  CollectionsModelGet200Response,
-  CollectionsModelPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -23,21 +20,22 @@ import {
 export function _collectionsModelGetSend(
   context: Client,
   options: CollectionsModelGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/collections/model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _collectionsModelGetDeserialize(
-  result: CollectionsModelGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsModelProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    property: result.body["property"].map((p) => {
+    property: result.body["property"].map((p: any) => {
       return { property: p["property"] };
     }),
   };
@@ -56,7 +54,7 @@ export function _collectionsModelPutSend(
   context: Client,
   body: CollectionsModelProperty,
   options: CollectionsModelPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsModelPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/collections/model")
     .put({
@@ -66,9 +64,10 @@ export function _collectionsModelPutSend(
 }
 
 export async function _collectionsModelPutDeserialize(
-  result: CollectionsModelPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { IntLiteralProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  IntLiteralGet200Response,
-  IntLiteralPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _intLiteralGetSend(
   context: Client,
   options: IntLiteralGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<IntLiteralGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/int/literal")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _intLiteralGetDeserialize(
-  result: IntLiteralGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<IntLiteralProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _intLiteralPutSend(
   context: Client,
   body: IntLiteralProperty,
   options: IntLiteralPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<IntLiteralPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/int/literal")
     .put({
@@ -61,9 +59,10 @@ export function _intLiteralPutSend(
 }
 
 export async function _intLiteralPutDeserialize(
-  result: IntLiteralPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

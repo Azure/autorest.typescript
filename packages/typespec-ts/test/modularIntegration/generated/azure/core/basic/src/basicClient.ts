@@ -24,8 +24,8 @@ import {
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBasic,
-  BasicClientOptionalParams,
   BasicContext,
+  BasicClientOptionalParams,
   createOrUpdate,
   createOrReplace,
   get,
@@ -52,7 +52,6 @@ export class BasicClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createBasic({
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { EnumProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  EnumGet200Response,
-  EnumPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _enumGetSend(
   context: Client,
   options: EnumGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<EnumGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/enum")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _enumGetDeserialize(
-  result: EnumGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<EnumProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _enumPutSend(
   context: Client,
   body: EnumProperty,
   options: EnumPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<EnumPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/enum")
     .put({
@@ -61,9 +59,10 @@ export function _enumPutSend(
 }
 
 export async function _enumPutDeserialize(
-  result: EnumPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

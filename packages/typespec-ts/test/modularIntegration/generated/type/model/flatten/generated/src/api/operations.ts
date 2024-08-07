@@ -7,14 +7,11 @@ import {
   FlattenModel,
   NestedFlattenModel,
 } from "../models/models.js";
-import {
-  FlattenContext as Client,
-  PutFlattenModel200Response,
-  PutNestedFlattenModel200Response,
-} from "../rest/index.js";
+import { FlattenContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -26,7 +23,7 @@ export function _putFlattenModelSend(
   context: Client,
   input: FlattenModel,
   options: PutFlattenModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutFlattenModel200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/flatten/flattenModel")
     .put({
@@ -39,9 +36,10 @@ export function _putFlattenModelSend(
 }
 
 export async function _putFlattenModelDeserialize(
-  result: PutFlattenModel200Response,
+  result: PathUncheckedResponse,
 ): Promise<FlattenModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -67,7 +65,7 @@ export function _putNestedFlattenModelSend(
   context: Client,
   input: NestedFlattenModel,
   options: PutNestedFlattenModelOptionalParams = { requestOptions: {} },
-): StreamableMethod<PutNestedFlattenModel200Response> {
+): StreamableMethod {
   return context
     .path("/type/model/flatten/nestedFlattenModel")
     .put({
@@ -80,9 +78,10 @@ export function _putNestedFlattenModelSend(
 }
 
 export async function _putNestedFlattenModelDeserialize(
-  result: PutNestedFlattenModel200Response,
+  result: PathUncheckedResponse,
 ): Promise<NestedFlattenModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
