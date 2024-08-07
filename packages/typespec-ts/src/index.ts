@@ -28,7 +28,8 @@ import {
   hasUnexpectedHelper,
   RLCModel,
   RLCOptions,
-  buildLicenseFile
+  buildLicenseFile,
+  updatePackageFile
 } from "@azure-tools/rlc-common";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { EmitContext, Program } from "@typespec/compiler";
@@ -271,9 +272,11 @@ export async function $onEmit(context: EmitContext) {
     const option = dpgContext.rlcOptions!;
     const isAzureFlavor = option.flavor === "azure";
     // Generate metadata
-    const hasPackageFile = await existsSync(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
+    const existingPackageFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "package.json"
     );
+    const hasPackageFile = await existsSync(existingPackageFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
@@ -316,6 +319,14 @@ export async function $onEmit(context: EmitContext) {
           );
         }
       }
+    } else if (hasPackageFile) {
+      // update existing package.json file with correct dependencies
+      await emitContentByBuilder(
+        program,
+        (model) => updatePackageFile(model, existingPackageFilePath),
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
 
     // Generate test relevant files
