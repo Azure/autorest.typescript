@@ -6,8 +6,8 @@ import { getModelOperations, ModelOperations } from "./classic/model/index.js";
 import { getAliasOperations, AliasOperations } from "./classic/alias/index.js";
 import {
   createSpread,
-  SpreadClientOptionalParams,
   SpreadContext,
+  SpreadClientOptionalParams,
 } from "./api/index.js";
 
 export { SpreadClientOptionalParams } from "./api/spreadContext.js";
@@ -23,7 +23,6 @@ export class SpreadClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createSpread({
       ...options,
       userAgentOptions: { userAgentPrefix },

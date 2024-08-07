@@ -1,20 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  buildCsvCollection,
-  BytesContext as Client,
-  HeaderBase64204Response,
-  HeaderBase64url204Response,
-  HeaderBase64urlArray204Response,
-  HeaderDefault204Response,
-} from "../../rest/index.js";
+import { BytesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
+import { buildCsvCollection } from "../../helpers/serializerHelpers.js";
 import {
   HeaderDefaultOptionalParams,
   HeaderBase64OptionalParams,
@@ -26,7 +21,7 @@ export function _headerDefaultSend(
   context: Client,
   value: Uint8Array,
   options: HeaderDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderDefault204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/header/default")
     .get({
@@ -36,9 +31,10 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: HeaderDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -58,7 +54,7 @@ export function _headerBase64Send(
   context: Client,
   value: Uint8Array,
   options: HeaderBase64OptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderBase64204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/header/base64")
     .get({
@@ -68,9 +64,10 @@ export function _headerBase64Send(
 }
 
 export async function _headerBase64Deserialize(
-  result: HeaderBase64204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -90,7 +87,7 @@ export function _headerBase64urlSend(
   context: Client,
   value: Uint8Array,
   options: HeaderBase64urlOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderBase64url204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/header/base64url")
     .get({
@@ -100,9 +97,10 @@ export function _headerBase64urlSend(
 }
 
 export async function _headerBase64urlDeserialize(
-  result: HeaderBase64url204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -122,7 +120,7 @@ export function _headerBase64urlArraySend(
   context: Client,
   value: Uint8Array[],
   options: HeaderBase64urlArrayOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderBase64urlArray204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/header/base64url-array")
     .get({
@@ -136,9 +134,10 @@ export function _headerBase64urlArraySend(
 }
 
 export async function _headerBase64urlArrayDeserialize(
-  result: HeaderBase64urlArray204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

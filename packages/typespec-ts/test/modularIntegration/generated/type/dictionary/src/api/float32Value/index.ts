@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  DictionaryContext as Client,
-  Float32ValueGet200Response,
-  Float32ValuePut204Response,
-} from "../../rest/index.js";
+import { DictionaryContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -20,16 +17,17 @@ import {
 export function _getSend(
   context: Client,
   options: Float32ValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<Float32ValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/float32")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: Float32ValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<Record<string, number>> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,7 +46,7 @@ export function _putSend(
   context: Client,
   body: Record<string, number>,
   options: Float32ValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<Float32ValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/float32")
     .put({
@@ -58,9 +56,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: Float32ValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

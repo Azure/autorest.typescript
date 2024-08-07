@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ServiceContext as Client,
-  Seven204Response,
-} from "../../../rest/index.js";
+import { ServiceContext as Client } from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { BazFooSevenOptionalParams } from "../../../models/options.js";
@@ -15,16 +13,17 @@ import { BazFooSevenOptionalParams } from "../../../models/options.js";
 export function _sevenSend(
   context: Client,
   options: BazFooSevenOptionalParams = { requestOptions: {} },
-): StreamableMethod<Seven204Response> {
+): StreamableMethod {
   return context
     .path("/seven")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _sevenDeserialize(
-  result: Seven204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { InputModel, OutputModel, RoundTripModel } from "../models/models.js";
-import {
-  UsageContext as Client,
-  InputToInputOutput204Response,
-  ModelInReadOnlyProperty200Response,
-  OutputToInputOutput200Response,
-} from "../rest/index.js";
+import { UsageContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -23,7 +19,7 @@ export function _inputToInputOutputSend(
   context: Client,
   body: InputModel,
   options: InputToInputOutputOptionalParams = { requestOptions: {} },
-): StreamableMethod<InputToInputOutput204Response> {
+): StreamableMethod {
   return context
     .path("/azure/client-generator-core/usage/inputToInputOutput")
     .post({
@@ -33,9 +29,10 @@ export function _inputToInputOutputSend(
 }
 
 export async function _inputToInputOutputDeserialize(
-  result: InputToInputOutput204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -62,16 +59,17 @@ export async function inputToInputOutput(
 export function _outputToInputOutputSend(
   context: Client,
   options: OutputToInputOutputOptionalParams = { requestOptions: {} },
-): StreamableMethod<OutputToInputOutput200Response> {
+): StreamableMethod {
   return context
     .path("/azure/client-generator-core/usage/outputToInputOutput")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _outputToInputOutputDeserialize(
-  result: OutputToInputOutput200Response,
+  result: PathUncheckedResponse,
 ): Promise<OutputModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -100,16 +98,17 @@ export function _modelInReadOnlyPropertySend(
   context: Client,
   body: RoundTripModel,
   options: ModelInReadOnlyPropertyOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelInReadOnlyProperty200Response> {
+): StreamableMethod {
   return context
     .path("/azure/client-generator-core/usage/modelInReadOnlyProperty")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _modelInReadOnlyPropertyDeserialize(
-  result: ModelInReadOnlyProperty200Response,
+  result: PathUncheckedResponse,
 ): Promise<RoundTripModel> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

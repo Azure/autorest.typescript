@@ -3,7 +3,7 @@
 
 export {
   createEmpty,
-  EmptyClientOptionalParams,
   EmptyContext,
+  EmptyClientOptionalParams,
 } from "./emptyContext.js";
 export { putEmpty, getEmpty, postRoundTripEmpty } from "./operations.js";

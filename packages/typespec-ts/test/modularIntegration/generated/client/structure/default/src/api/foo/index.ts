@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ServiceContext as Client,
-  Four204Response,
-  Three204Response,
-} from "../../rest/index.js";
+import { ServiceContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _threeSend(
   context: Client,
   options: FooThreeOptionalParams = { requestOptions: {} },
-): StreamableMethod<Three204Response> {
+): StreamableMethod {
   return context
     .path("/three")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _threeDeserialize(
-  result: Three204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -46,14 +44,17 @@ export async function three(
 export function _fourSend(
   context: Client,
   options: FooFourOptionalParams = { requestOptions: {} },
-): StreamableMethod<Four204Response> {
+): StreamableMethod {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fourDeserialize(result: Four204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _fourDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

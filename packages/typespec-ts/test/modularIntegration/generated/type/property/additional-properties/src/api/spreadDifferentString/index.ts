@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { DifferentSpreadStringRecord } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  SpreadDifferentStringGet200Response,
-  SpreadDifferentStringPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -21,16 +18,17 @@ import {
 export function _getSend(
   context: Client,
   options: SpreadDifferentStringGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<SpreadDifferentStringGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/spreadDifferentRecordString")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: SpreadDifferentStringGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<DifferentSpreadStringRecord> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -50,7 +48,7 @@ export function _putSend(
   context: Client,
   body: DifferentSpreadStringRecord,
   options: SpreadDifferentStringPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<SpreadDifferentStringPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/spreadDifferentRecordString")
     .put({
@@ -60,9 +58,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: SpreadDifferentStringPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

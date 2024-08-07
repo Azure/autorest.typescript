@@ -9,8 +9,8 @@ import {
 } from "./models/options.js";
 import {
   createApiKey,
-  ApiKeyClientOptionalParams,
   ApiKeyContext,
+  ApiKeyClientOptionalParams,
   valid,
   invalid,
 } from "./api/index.js";
@@ -31,7 +31,6 @@ export class ApiKeyClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createApiKey(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

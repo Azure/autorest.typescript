@@ -2,13 +2,11 @@
 // Licensed under the MIT license.
 
 import { User } from "../../models/models.js";
-import {
-  BasicContext as Client,
-  ExplicitBodySimple204Response,
-} from "../../rest/index.js";
+import { BasicContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { ExplicitBodySimpleOptionalParams } from "../../models/options.js";
@@ -17,7 +15,7 @@ export function _explicitBodySimpleSend(
   context: Client,
   body: User,
   options: ExplicitBodySimpleOptionalParams = { requestOptions: {} },
-): StreamableMethod<ExplicitBodySimple204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/basic/explicit-body/simple")
     .put({
@@ -27,9 +25,10 @@ export function _explicitBodySimpleSend(
 }
 
 export async function _explicitBodySimpleDeserialize(
-  result: ExplicitBodySimple204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -3,7 +3,7 @@
 
 export {
   createNotDefined,
-  NotDefinedClientOptionalParams,
   NotDefinedContext,
+  NotDefinedClientOptionalParams,
 } from "./notDefinedContext.js";
 export { valid } from "./operations.js";

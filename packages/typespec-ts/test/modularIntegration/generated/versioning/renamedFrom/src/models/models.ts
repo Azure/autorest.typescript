@@ -1,15 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { NewModel as NewModelRest } from "../rest/index.js";
-
 export interface NewModel {
   newProp: string;
   enumProp: NewEnum;
   unionProp: NewUnion;
 }
 
-export function newModelSerializer(item: NewModel): NewModelRest {
+export function newModelSerializer(item: NewModel): Record<string, unknown> {
   return {
     newProp: item["newProp"],
     enumProp: item["enumProp"],

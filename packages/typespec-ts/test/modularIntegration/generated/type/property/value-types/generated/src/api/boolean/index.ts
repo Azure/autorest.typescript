@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { BooleanProperty } from "../../models/models.js";
-import {
-  BooleanModelGet200Response,
-  BooleanModelPut204Response,
-  ValueTypesContext as Client,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _booleanGetSend(
   context: Client,
   options: BooleanGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<BooleanModelGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/boolean")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _booleanGetDeserialize(
-  result: BooleanModelGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<BooleanProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _booleanPutSend(
   context: Client,
   body: BooleanProperty,
   options: BooleanPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<BooleanModelPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/boolean")
     .put({
@@ -61,9 +59,10 @@ export function _booleanPutSend(
 }
 
 export async function _booleanPutDeserialize(
-  result: BooleanModelPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

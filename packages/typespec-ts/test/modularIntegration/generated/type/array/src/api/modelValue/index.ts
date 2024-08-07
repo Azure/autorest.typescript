@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { innerModelSerializer, InnerModel } from "../../models/models.js";
-import {
-  ArrayContext as Client,
-  ModelValueGet200Response,
-  ModelValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,22 +17,23 @@ import {
 export function _modelValueGetSend(
   context: Client,
   options: ModelValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _modelValueGetDeserialize(
-  result: ModelValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<InnerModel[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => {
+    : result.body.map((p: any) => {
         return {
           property: p["property"],
           children: !p.children ? undefined : p.children,
@@ -55,7 +53,7 @@ export function _modelValuePutSend(
   context: Client,
   body: InnerModel[],
   options: ModelValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelValuePut204Response> {
+): StreamableMethod {
   return context.path("/type/array/model").put({
     ...operationOptionsToRequestParameters(options),
     body: (body ?? []).map((p) => {
@@ -71,9 +69,10 @@ export function _modelValuePutSend(
 }
 
 export async function _modelValuePutDeserialize(
-  result: ModelValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

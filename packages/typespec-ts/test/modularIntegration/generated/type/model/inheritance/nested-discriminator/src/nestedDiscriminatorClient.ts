@@ -13,8 +13,8 @@ import {
 } from "./models/options.js";
 import {
   createNestedDiscriminator,
-  NestedDiscriminatorClientOptionalParams,
   NestedDiscriminatorContext,
+  NestedDiscriminatorClientOptionalParams,
   getModel,
   putModel,
   getRecursiveModel,
@@ -36,7 +36,6 @@ export class NestedDiscriminatorClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createNestedDiscriminator({
       ...options,
       userAgentOptions: { userAgentPrefix },

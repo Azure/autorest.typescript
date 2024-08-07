@@ -17,8 +17,8 @@ import {
   getTestProfile,
   listTestProfiles,
   createTestProfileAdministrationOperations,
-  TestProfileAdministrationOperationsClientOptionalParams,
   LoadTestServiceContext,
+  TestProfileAdministrationOperationsClientOptionalParams,
 } from "./api/index.js";
 
 export { TestProfileAdministrationOperationsClientOptionalParams } from "./api/testProfileAdministrationOperationsContext.js";
@@ -37,7 +37,6 @@ export class TestProfileAdministrationOperationsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createTestProfileAdministrationOperations(
       endpointParam,
       credential,

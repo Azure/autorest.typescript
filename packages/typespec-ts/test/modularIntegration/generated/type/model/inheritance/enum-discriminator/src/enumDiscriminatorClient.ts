@@ -15,8 +15,8 @@ import {
 } from "./models/options.js";
 import {
   createEnumDiscriminator,
-  EnumDiscriminatorClientOptionalParams,
   EnumDiscriminatorContext,
+  EnumDiscriminatorClientOptionalParams,
   getExtensibleModel,
   putExtensibleModel,
   getExtensibleModelMissingDiscriminator,
@@ -40,7 +40,6 @@ export class EnumDiscriminatorClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createEnumDiscriminator({
       ...options,
       userAgentOptions: { userAgentPrefix },

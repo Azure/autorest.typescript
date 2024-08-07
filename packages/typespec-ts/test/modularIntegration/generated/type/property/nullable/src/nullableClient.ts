@@ -29,8 +29,8 @@ import {
 } from "./classic/collectionsString/index.js";
 import {
   createNullable,
-  NullableClientOptionalParams,
   NullableContext,
+  NullableClientOptionalParams,
 } from "./api/index.js";
 
 export { NullableClientOptionalParams } from "./api/nullableContext.js";
@@ -46,7 +46,6 @@ export class NullableClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createNullable({
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -1,21 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  DefaultDatetimeProperty as DefaultDatetimePropertyRest,
-  Rfc3339DatetimeProperty as Rfc3339DatetimePropertyRest,
-  Rfc7231DatetimeProperty as Rfc7231DatetimePropertyRest,
-  UnixTimestampDatetimeProperty as UnixTimestampDatetimePropertyRest,
-  UnixTimestampArrayDatetimeProperty as UnixTimestampArrayDatetimePropertyRest,
-} from "../rest/index.js";
-
 export interface DefaultDatetimeProperty {
   value: Date;
 }
 
 export function defaultDatetimePropertySerializer(
   item: DefaultDatetimeProperty,
-): DefaultDatetimePropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"].toISOString(),
   };
@@ -27,7 +19,7 @@ export interface Rfc3339DatetimeProperty {
 
 export function rfc3339DatetimePropertySerializer(
   item: Rfc3339DatetimeProperty,
-): Rfc3339DatetimePropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"].toISOString(),
   };
@@ -39,7 +31,7 @@ export interface Rfc7231DatetimeProperty {
 
 export function rfc7231DatetimePropertySerializer(
   item: Rfc7231DatetimeProperty,
-): Rfc7231DatetimePropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"].toUTCString(),
   };
@@ -51,7 +43,7 @@ export interface UnixTimestampDatetimeProperty {
 
 export function unixTimestampDatetimePropertySerializer(
   item: UnixTimestampDatetimeProperty,
-): UnixTimestampDatetimePropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"].getTime(),
   };
@@ -63,7 +55,7 @@ export interface UnixTimestampArrayDatetimeProperty {
 
 export function unixTimestampArrayDatetimePropertySerializer(
   item: UnixTimestampArrayDatetimeProperty,
-): UnixTimestampArrayDatetimePropertyRest {
+): Record<string, unknown> {
   return {
     value: item["value"].map((p) => p.getTime()),
   };

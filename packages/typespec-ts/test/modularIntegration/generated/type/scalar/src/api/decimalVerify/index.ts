@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ScalarContext as Client,
-  DecimalVerifyPrepareVerify200Response,
-  DecimalVerifyVerify204Response,
-} from "../../rest/index.js";
+import { ScalarContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _decimalVerifyPrepareVerifySend(
   context: Client,
   options: DecimalVerifyPrepareVerifyOptionalParams = { requestOptions: {} },
-): StreamableMethod<DecimalVerifyPrepareVerify200Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/decimal/prepare_verify")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _decimalVerifyPrepareVerifyDeserialize(
-  result: DecimalVerifyPrepareVerify200Response,
+  result: PathUncheckedResponse,
 ): Promise<number[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export function _decimalVerifyVerifySend(
   context: Client,
   body: number,
   options: DecimalVerifyVerifyOptionalParams = { requestOptions: {} },
-): StreamableMethod<DecimalVerifyVerify204Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/decimal/verify")
     .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _decimalVerifyVerifyDeserialize(
-  result: DecimalVerifyVerify204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

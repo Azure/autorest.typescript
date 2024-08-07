@@ -3,7 +3,7 @@
 
 export {
   createJson,
-  JsonClientOptionalParams,
   JsonContext,
+  JsonClientOptionalParams,
 } from "./jsonContext.js";
 export { send, get } from "./operations.js";

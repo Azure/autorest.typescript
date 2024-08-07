@@ -9,8 +9,8 @@ import {
 } from "./models/options.js";
 import {
   createFlatten,
-  FlattenClientOptionalParams,
   FlattenContext,
+  FlattenClientOptionalParams,
   putFlattenModel,
   putNestedFlattenModel,
 } from "./api/index.js";
@@ -28,7 +28,6 @@ export class FlattenClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createFlatten({
       ...options,
       userAgentOptions: { userAgentPrefix },

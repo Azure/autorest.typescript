@@ -5,14 +5,11 @@ import {
   differentSpreadModelArrayDerivedSerializer,
   DifferentSpreadModelArrayDerived,
 } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  ExtendsDifferentSpreadModelArrayGet200Response,
-  ExtendsDifferentSpreadModelArrayPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -25,7 +22,7 @@ export function _getSend(
   options: ExtendsDifferentSpreadModelArrayGetOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ExtendsDifferentSpreadModelArrayGet200Response> {
+): StreamableMethod {
   return context
     .path(
       "/type/property/additionalProperties/extendsDifferentSpreadModelArray",
@@ -34,9 +31,10 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result: ExtendsDifferentSpreadModelArrayGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<DifferentSpreadModelArrayDerived> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -60,7 +58,7 @@ export function _putSend(
   options: ExtendsDifferentSpreadModelArrayPutOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ExtendsDifferentSpreadModelArrayPut204Response> {
+): StreamableMethod {
   return context
     .path(
       "/type/property/additionalProperties/extendsDifferentSpreadModelArray",
@@ -72,9 +70,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: ExtendsDifferentSpreadModelArrayPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

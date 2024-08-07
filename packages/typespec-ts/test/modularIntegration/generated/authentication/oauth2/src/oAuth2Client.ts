@@ -9,8 +9,8 @@ import {
 } from "./models/options.js";
 import {
   createOAuth2,
-  OAuth2ClientOptionalParams,
   OAuth2Context,
+  OAuth2ClientOptionalParams,
   valid,
   invalid,
 } from "./api/index.js";
@@ -31,7 +31,6 @@ export class OAuth2Client {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createOAuth2(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -14,8 +14,8 @@ import {
   fromOneRequired,
   fromOneOptional,
   createServiceDriven,
-  ServiceDrivenClientOptionalParams,
   ServiceDrivenContext,
+  ServiceDrivenClientOptionalParams,
 } from "./api/index.js";
 
 export { ServiceDrivenClientOptionalParams } from "./api/serviceDrivenContext.js";
@@ -46,7 +46,6 @@ export class ServiceDrivenClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createServiceDriven(
       endpointParam,
       serviceDeploymentVersion,

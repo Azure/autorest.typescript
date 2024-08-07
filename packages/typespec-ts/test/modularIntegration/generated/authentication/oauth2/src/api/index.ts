@@ -3,7 +3,7 @@
 
 export {
   createOAuth2,
-  OAuth2ClientOptionalParams,
   OAuth2Context,
+  OAuth2ClientOptionalParams,
 } from "./oAuth2Context.js";
 export { valid, invalid } from "./operations.js";

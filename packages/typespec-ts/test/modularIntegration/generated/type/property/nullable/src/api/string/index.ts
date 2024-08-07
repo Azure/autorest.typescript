@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { StringProperty } from "../../models/models.js";
-import {
-  NullableContext as Client,
-  StringModelGetNonNull200Response,
-  StringModelGetNull200Response,
-  StringModelPatchNonNull204Response,
-  StringModelPatchNull204Response,
-} from "../../rest/index.js";
+import { NullableContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getNonNullSend(
   context: Client,
   options: StringGetNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelGetNonNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/string/non-null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNonNullDeserialize(
-  result: StringModelGetNonNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<StringProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -55,16 +51,17 @@ export async function getNonNull(
 export function _getNullSend(
   context: Client,
   options: StringGetNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelGetNull200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/string/null")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNullDeserialize(
-  result: StringModelGetNull200Response,
+  result: PathUncheckedResponse,
 ): Promise<StringProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -87,7 +84,7 @@ export function _patchNonNullSend(
   context: Client,
   body: StringProperty,
   options: StringPatchNonNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelPatchNonNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/string/non-null")
     .patch({
@@ -102,9 +99,10 @@ export function _patchNonNullSend(
 }
 
 export async function _patchNonNullDeserialize(
-  result: StringModelPatchNonNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -125,7 +123,7 @@ export function _patchNullSend(
   context: Client,
   body: StringProperty,
   options: StringPatchNullOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelPatchNull204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/nullable/string/null")
     .patch({
@@ -140,9 +138,10 @@ export function _patchNullSend(
 }
 
 export async function _patchNullDeserialize(
-  result: StringModelPatchNull204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

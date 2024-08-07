@@ -1,17 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  Element as ElementRest,
-  Extension as ExtensionRest,
-} from "../rest/index.js";
-
 /** element */
 export interface Element {
   extension?: Extension[];
 }
 
-export function elementSerializer(item: Element): ElementRest {
+export function elementSerializer(item: Element): Record<string, unknown> {
   return {
     extension:
       item["extension"] === undefined
@@ -25,7 +20,7 @@ export interface Extension extends Element {
   level: number;
 }
 
-export function extensionSerializer(item: Extension): ExtensionRest {
+export function extensionSerializer(item: Extension): Record<string, unknown> {
   return {
     extension:
       item["extension"] === undefined

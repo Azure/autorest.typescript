@@ -3,8 +3,8 @@
 
 export {
   createNaming,
-  NamingClientOptionalParams,
   NamingContext,
+  NamingClientOptionalParams,
 } from "./namingContext.js";
 export {
   clientName,

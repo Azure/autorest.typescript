@@ -7,8 +7,8 @@ import {
   validKey,
   validToken,
   createUnion,
-  UnionClientOptionalParams,
   UnionContext,
+  UnionClientOptionalParams,
 } from "./api/index.js";
 import {
   ValidKeyOptionalParams,
@@ -31,7 +31,6 @@ export class UnionClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createUnion(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

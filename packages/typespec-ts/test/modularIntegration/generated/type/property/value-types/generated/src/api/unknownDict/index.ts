@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { UnknownDictProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  UnknownDictGet200Response,
-  UnknownDictPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _unknownDictGetSend(
   context: Client,
   options: UnknownDictGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownDictGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/unknown/dict")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _unknownDictGetDeserialize(
-  result: UnknownDictGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<UnknownDictProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _unknownDictPutSend(
   context: Client,
   body: UnknownDictProperty,
   options: UnknownDictPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownDictPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/unknown/dict")
     .put({
@@ -61,9 +59,10 @@ export function _unknownDictPutSend(
 }
 
 export async function _unknownDictPutDeserialize(
-  result: UnknownDictPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { FloatLiteralProperty } from "../../models/models.js";
-import {
-  OptionalContext as Client,
-  FloatLiteralGetAll200Response,
-  FloatLiteralGetDefault200Response,
-  FloatLiteralPutAll204Response,
-  FloatLiteralPutDefault204Response,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: FloatLiteralGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatLiteralGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/float/literal/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: FloatLiteralGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<FloatLiteralProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -54,16 +50,17 @@ export async function getAll(
 export function _getDefaultSend(
   context: Client,
   options: FloatLiteralGetDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatLiteralGetDefault200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/float/literal/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDefaultDeserialize(
-  result: FloatLiteralGetDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<FloatLiteralProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -85,7 +82,7 @@ export function _putAllSend(
   context: Client,
   body: FloatLiteralProperty,
   options: FloatLiteralPutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatLiteralPutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/float/literal/all")
     .put({
@@ -95,9 +92,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: FloatLiteralPutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -118,7 +116,7 @@ export function _putDefaultSend(
   context: Client,
   body: FloatLiteralProperty,
   options: FloatLiteralPutDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatLiteralPutDefault204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/float/literal/default")
     .put({
@@ -128,9 +126,10 @@ export function _putDefaultSend(
 }
 
 export async function _putDefaultDeserialize(
-  result: FloatLiteralPutDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

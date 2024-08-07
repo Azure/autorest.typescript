@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { ModelV1, ModelV2 } from "../models/models.js";
-import {
-  AddedContext as Client,
-  V1200Response,
-  V2200Response,
-  V2InInterface200Response,
-} from "../rest/index.js";
+import { AddedContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,7 +20,7 @@ export function _v1Send(
   headerV2: string,
   body: ModelV1,
   options: V1OptionalParams = { requestOptions: {} },
-): StreamableMethod<V1200Response> {
+): StreamableMethod {
   return context
     .path("/v1")
     .post({
@@ -38,8 +34,11 @@ export function _v1Send(
     });
 }
 
-export async function _v1Deserialize(result: V1200Response): Promise<ModelV1> {
-  if (result.status !== "200") {
+export async function _v1Deserialize(
+  result: PathUncheckedResponse,
+): Promise<ModelV1> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -64,7 +63,7 @@ export function _v2Send(
   context: Client,
   body: ModelV2,
   options: V2OptionalParams = { requestOptions: {} },
-): StreamableMethod<V2200Response> {
+): StreamableMethod {
   return context
     .path("/v2")
     .post({
@@ -77,8 +76,11 @@ export function _v2Send(
     });
 }
 
-export async function _v2Deserialize(result: V2200Response): Promise<ModelV2> {
-  if (result.status !== "200") {
+export async function _v2Deserialize(
+  result: PathUncheckedResponse,
+): Promise<ModelV2> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -102,7 +104,7 @@ export function _v2InInterfaceSend(
   context: Client,
   body: ModelV2,
   options: V2InInterfaceOptionalParams = { requestOptions: {} },
-): StreamableMethod<V2InInterface200Response> {
+): StreamableMethod {
   return context
     .path("/interface-v2/v2")
     .post({
@@ -116,9 +118,10 @@ export function _v2InInterfaceSend(
 }
 
 export async function _v2InInterfaceDeserialize(
-  result: V2InInterface200Response,
+  result: PathUncheckedResponse,
 ): Promise<ModelV2> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

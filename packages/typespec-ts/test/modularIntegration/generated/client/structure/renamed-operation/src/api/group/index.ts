@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ServiceContext as Client,
-  Four204Response,
-  Six204Response,
-  Two204Response,
-} from "../../rest/index.js";
+import { ServiceContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,16 +17,17 @@ import {
 export function _renamedTwoSend(
   context: Client,
   options: GroupRenamedTwoOptionalParams = { requestOptions: {} },
-): StreamableMethod<Two204Response> {
+): StreamableMethod {
   return context
     .path("/two")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedTwoDeserialize(
-  result: Two204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,16 +45,17 @@ export async function renamedTwo(
 export function _renamedFourSend(
   context: Client,
   options: GroupRenamedFourOptionalParams = { requestOptions: {} },
-): StreamableMethod<Four204Response> {
+): StreamableMethod {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedFourDeserialize(
-  result: Four204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -75,16 +73,17 @@ export async function renamedFour(
 export function _renamedSixSend(
   context: Client,
   options: GroupRenamedSixOptionalParams = { requestOptions: {} },
-): StreamableMethod<Six204Response> {
+): StreamableMethod {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedSixDeserialize(
-  result: Six204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

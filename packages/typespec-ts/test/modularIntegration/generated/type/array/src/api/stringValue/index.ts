@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ArrayContext as Client,
-  StringValueGet200Response,
-  StringValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _stringValueGetSend(
   context: Client,
   options: StringValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/string")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stringValueGetDeserialize(
-  result: StringValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<string[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export function _stringValuePutSend(
   context: Client,
   body: string[],
   options: StringValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/array/string")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _stringValuePutDeserialize(
-  result: StringValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

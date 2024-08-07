@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { innerModelSerializer, InnerModel } from "../../models/models.js";
-import {
-  DictionaryContext as Client,
-  ModelValueGet200Response,
-  ModelValuePut204Response,
-} from "../../rest/index.js";
+import { DictionaryContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -21,16 +18,17 @@ import {
 export function _getSend(
   context: Client,
   options: ModelValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/model")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: ModelValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<Record<string, InnerModel>> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,7 +47,7 @@ export function _putSend(
   context: Client,
   body: Record<string, InnerModel>,
   options: ModelValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<ModelValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/model")
     .put({
@@ -59,9 +57,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: ModelValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

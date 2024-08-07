@@ -11,8 +11,8 @@ import {
   smokeTest,
   repeatableAction,
   createTraits,
-  TraitsClientOptionalParams,
   TraitsContext,
+  TraitsClientOptionalParams,
 } from "./api/index.js";
 
 export { TraitsClientOptionalParams } from "./api/traitsContext.js";
@@ -28,7 +28,6 @@ export class TraitsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createTraits({
       ...options,
       userAgentOptions: { userAgentPrefix },

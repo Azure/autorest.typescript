@@ -3,6 +3,6 @@
 
 export {
   createMediaType,
-  MediaTypeClientOptionalParams,
   MediaTypeContext,
+  MediaTypeClientOptionalParams,
 } from "./mediaTypeContext.js";

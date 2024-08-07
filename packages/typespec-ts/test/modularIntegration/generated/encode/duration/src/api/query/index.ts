@@ -1,18 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  DurationContext as Client,
-  QueryDefault204Response,
-  QueryFloat64Seconds204Response,
-  QueryFloatSeconds204Response,
-  QueryInt32Seconds204Response,
-  QueryInt32SecondsArray204Response,
-  QueryIso8601204Response,
-} from "../../rest/index.js";
+import { DurationContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -28,7 +21,7 @@ export function _queryDefaultSend(
   context: Client,
   input: string,
   options: QueryDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryDefault204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/query/default")
     .get({
@@ -38,9 +31,10 @@ export function _queryDefaultSend(
 }
 
 export async function _queryDefaultDeserialize(
-  result: QueryDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -60,7 +54,7 @@ export function _queryIso8601Send(
   context: Client,
   input: string,
   options: QueryIso8601OptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryIso8601204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/query/iso8601")
     .get({
@@ -70,9 +64,10 @@ export function _queryIso8601Send(
 }
 
 export async function _queryIso8601Deserialize(
-  result: QueryIso8601204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -92,7 +87,7 @@ export function _queryInt32SecondsSend(
   context: Client,
   input: number,
   options: QueryInt32SecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryInt32Seconds204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/query/int32-seconds")
     .get({
@@ -102,9 +97,10 @@ export function _queryInt32SecondsSend(
 }
 
 export async function _queryInt32SecondsDeserialize(
-  result: QueryInt32Seconds204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -124,7 +120,7 @@ export function _queryFloatSecondsSend(
   context: Client,
   input: number,
   options: QueryFloatSecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryFloatSeconds204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/query/float-seconds")
     .get({
@@ -134,9 +130,10 @@ export function _queryFloatSecondsSend(
 }
 
 export async function _queryFloatSecondsDeserialize(
-  result: QueryFloatSeconds204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -156,7 +153,7 @@ export function _queryFloat64SecondsSend(
   context: Client,
   input: number,
   options: QueryFloat64SecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryFloat64Seconds204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/query/float64-seconds")
     .get({
@@ -166,9 +163,10 @@ export function _queryFloat64SecondsSend(
 }
 
 export async function _queryFloat64SecondsDeserialize(
-  result: QueryFloat64Seconds204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -188,7 +186,7 @@ export function _queryInt32SecondsArraySend(
   context: Client,
   input: number[],
   options: QueryInt32SecondsArrayOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryInt32SecondsArray204Response> {
+): StreamableMethod {
   return context
     .path("/encode/duration/query/int32-seconds-array")
     .get({
@@ -198,9 +196,10 @@ export function _queryInt32SecondsArraySend(
 }
 
 export async function _queryInt32SecondsArrayDeserialize(
-  result: QueryInt32SecondsArray204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

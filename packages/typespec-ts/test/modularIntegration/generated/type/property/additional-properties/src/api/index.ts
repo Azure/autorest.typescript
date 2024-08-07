@@ -3,6 +3,6 @@
 
 export {
   createAdditionalProperties,
-  AdditionalPropertiesClientOptionalParams,
   AdditionalPropertiesContext,
+  AdditionalPropertiesClientOptionalParams,
 } from "./additionalPropertiesContext.js";

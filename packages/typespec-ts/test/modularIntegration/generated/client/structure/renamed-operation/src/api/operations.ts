@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ServiceContext as Client,
-  Five204Response,
-  One204Response,
-  Three204Response,
-} from "../rest/index.js";
+import { ServiceContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,16 +17,17 @@ import {
 export function _renamedOneSend(
   context: Client,
   options: RenamedOneOptionalParams = { requestOptions: {} },
-): StreamableMethod<One204Response> {
+): StreamableMethod {
   return context
     .path("/one")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedOneDeserialize(
-  result: One204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,16 +45,17 @@ export async function renamedOne(
 export function _renamedThreeSend(
   context: Client,
   options: RenamedThreeOptionalParams = { requestOptions: {} },
-): StreamableMethod<Three204Response> {
+): StreamableMethod {
   return context
     .path("/three")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedThreeDeserialize(
-  result: Three204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -75,16 +73,17 @@ export async function renamedThree(
 export function _renamedFiveSend(
   context: Client,
   options: RenamedFiveOptionalParams = { requestOptions: {} },
-): StreamableMethod<Five204Response> {
+): StreamableMethod {
   return context
     .path("/five")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedFiveDeserialize(
-  result: Five204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -5,14 +5,11 @@ import {
   isUnknownAdditionalPropertiesDiscriminatedUnionSerializer,
   IsUnknownAdditionalPropertiesDiscriminatedUnion,
 } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  IsUnknownDiscriminatedGet200Response,
-  IsUnknownDiscriminatedPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -23,16 +20,17 @@ import {
 export function _getSend(
   context: Client,
   options: IsUnknownDiscriminatedGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<IsUnknownDiscriminatedGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/isUnknownDiscriminated")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: IsUnknownDiscriminatedGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -52,7 +50,7 @@ export function _putSend(
   context: Client,
   body: IsUnknownAdditionalPropertiesDiscriminatedUnion,
   options: IsUnknownDiscriminatedPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<IsUnknownDiscriminatedPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/isUnknownDiscriminated")
     .put({
@@ -62,9 +60,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: IsUnknownDiscriminatedPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

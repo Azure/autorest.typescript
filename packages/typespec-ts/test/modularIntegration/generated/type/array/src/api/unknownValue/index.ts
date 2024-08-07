@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ArrayContext as Client,
-  UnknownValueGet200Response,
-  UnknownValuePut204Response,
-} from "../../rest/index.js";
+import { ArrayContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _unknownValueGetSend(
   context: Client,
   options: UnknownValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/array/unknown")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _unknownValueGetDeserialize(
-  result: UnknownValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<any[]> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export function _unknownValuePutSend(
   context: Client,
   body: any[],
   options: UnknownValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnknownValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/array/unknown")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _unknownValuePutDeserialize(
-  result: UnknownValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { FloatProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  FloatGet200Response,
-  FloatPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _floatGetSend(
   context: Client,
   options: FloatGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/float")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _floatGetDeserialize(
-  result: FloatGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<FloatProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _floatPutSend(
   context: Client,
   body: FloatProperty,
   options: FloatPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/float")
     .put({
@@ -61,9 +59,10 @@ export function _floatPutSend(
 }
 
 export async function _floatPutDeserialize(
-  result: FloatPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

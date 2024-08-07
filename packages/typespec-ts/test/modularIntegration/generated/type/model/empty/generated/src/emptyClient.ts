@@ -10,8 +10,8 @@ import {
 } from "./models/options.js";
 import {
   createEmpty,
-  EmptyClientOptionalParams,
   EmptyContext,
+  EmptyClientOptionalParams,
   putEmpty,
   getEmpty,
   postRoundTripEmpty,
@@ -30,7 +30,6 @@ export class EmptyClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createEmpty({
       ...options,
       userAgentOptions: { userAgentPrefix },

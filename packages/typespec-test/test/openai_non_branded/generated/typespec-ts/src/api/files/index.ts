@@ -6,24 +6,12 @@ import {
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
-import {
-  isUnexpected,
-  OpenAIContext as Client,
-  FilesCreate200Response,
-  FilesCreateDefaultResponse,
-  FilesDelete200Response,
-  FilesDeleteDefaultResponse,
-  FilesDownload200Response,
-  FilesDownloadDefaultResponse,
-  FilesList200Response,
-  FilesListDefaultResponse,
-  FilesRetrieve200Response,
-  FilesRetrieveDefaultResponse,
-} from "../../rest/index.js";
+import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   uint8ArrayToString,
+  PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import {
@@ -37,22 +25,23 @@ import {
 export function _listSend(
   context: Client,
   options: FilesListOptionalParams = { requestOptions: {} },
-): StreamableMethod<FilesList200Response | FilesListDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/files")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listDeserialize(
-  result: FilesList200Response | FilesListDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ListFilesResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -79,7 +68,7 @@ export function _createSend(
   context: Client,
   file: CreateFileRequest,
   options: FilesCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<FilesCreate200Response | FilesCreateDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/files")
     .post({
@@ -93,9 +82,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: FilesCreate200Response | FilesCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<OpenAIFile> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -124,16 +114,17 @@ export function _retrieveSend(
   context: Client,
   fileId: string,
   options: FilesRetrieveOptionalParams = { requestOptions: {} },
-): StreamableMethod<FilesRetrieve200Response | FilesRetrieveDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/files/files/{file_id}", fileId)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _retrieveDeserialize(
-  result: FilesRetrieve200Response | FilesRetrieveDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<OpenAIFile> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -162,16 +153,17 @@ export function _$deleteSend(
   context: Client,
   fileId: string,
   options: FilesDeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<FilesDelete200Response | FilesDeleteDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/files/files/{file_id}", fileId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _$deleteDeserialize(
-  result: FilesDelete200Response | FilesDeleteDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<DeleteFileResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -200,16 +192,17 @@ export function _downloadSend(
   context: Client,
   fileId: string,
   options: FilesDownloadOptionalParams = { requestOptions: {} },
-): StreamableMethod<FilesDownload200Response | FilesDownloadDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/files/files/{file_id}/content", fileId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _downloadDeserialize(
-  result: FilesDownload200Response | FilesDownloadDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<string> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

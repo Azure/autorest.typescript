@@ -3,8 +3,8 @@
 
 export {
   createSpecialWords,
-  SpecialWordsClientOptionalParams,
   SpecialWordsContext,
+  SpecialWordsClientOptionalParams,
 } from "./specialWordsContext.js";
 export { modelPropertiesSameAsModel } from "./modelProperties/index.js";
 export {

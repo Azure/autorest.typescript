@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  DictionaryContext as Client,
-  DurationValueGet200Response,
-  DurationValuePut204Response,
-} from "../../rest/index.js";
+import { DictionaryContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -20,16 +17,17 @@ import {
 export function _getSend(
   context: Client,
   options: DurationValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/duration")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: DurationValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<Record<string, string>> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -48,7 +46,7 @@ export function _putSend(
   context: Client,
   body: Record<string, string>,
   options: DurationValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<DurationValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/dictionary/duration")
     .put({
@@ -58,9 +56,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: DurationValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

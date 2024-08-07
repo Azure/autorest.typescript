@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ScalarContext as Client,
-  DecimalTypeRequestBody204Response,
-  DecimalTypeRequestParameter204Response,
-  DecimalTypeResponseBody200Response,
-} from "../../rest/index.js";
+import { ScalarContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,16 +17,17 @@ import {
 export function _decimalTypeResponseBodySend(
   context: Client,
   options: DecimalTypeResponseBodyOptionalParams = { requestOptions: {} },
-): StreamableMethod<DecimalTypeResponseBody200Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/decimal/response_body")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _decimalTypeResponseBodyDeserialize(
-  result: DecimalTypeResponseBody200Response,
+  result: PathUncheckedResponse,
 ): Promise<number> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,16 +46,17 @@ export function _decimalTypeRequestBodySend(
   context: Client,
   body: number,
   options: DecimalTypeRequestBodyOptionalParams = { requestOptions: {} },
-): StreamableMethod<DecimalTypeRequestBody204Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/decimal/resquest_body")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _decimalTypeRequestBodyDeserialize(
-  result: DecimalTypeRequestBody204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -78,7 +76,7 @@ export function _decimalTypeRequestParameterSend(
   context: Client,
   value: number,
   options: DecimalTypeRequestParameterOptionalParams = { requestOptions: {} },
-): StreamableMethod<DecimalTypeRequestParameter204Response> {
+): StreamableMethod {
   return context
     .path("/type/scalar/decimal/request_parameter")
     .get({
@@ -88,9 +86,10 @@ export function _decimalTypeRequestParameterSend(
 }
 
 export async function _decimalTypeRequestParameterDeserialize(
-  result: DecimalTypeRequestParameter204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

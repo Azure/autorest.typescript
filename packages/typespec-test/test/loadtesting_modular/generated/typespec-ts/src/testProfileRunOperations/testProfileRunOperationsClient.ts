@@ -19,8 +19,8 @@ import {
   listTestProfileRuns,
   stopTestProfileRun,
   createTestProfileRunOperations,
-  TestProfileRunOperationsClientOptionalParams,
   LoadTestServiceContext,
+  TestProfileRunOperationsClientOptionalParams,
 } from "./api/index.js";
 
 export { TestProfileRunOperationsClientOptionalParams } from "./api/testProfileRunOperationsContext.js";
@@ -39,7 +39,6 @@ export class TestProfileRunOperationsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createTestProfileRunOperations(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

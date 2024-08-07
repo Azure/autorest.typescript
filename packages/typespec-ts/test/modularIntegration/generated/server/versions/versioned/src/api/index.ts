@@ -9,6 +9,6 @@ export {
 } from "./operations.js";
 export {
   createVersioned,
-  VersionedClientOptionalParams,
   VersionedContext,
+  VersionedClientOptionalParams,
 } from "./versionedContext.js";

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { BodyModel } from "../../models/models.js";
-import {
-  BodyOptionalityContext as Client,
-  Omit204Response,
-  SetModel204Response,
-} from "../../rest/index.js";
+import { BodyOptionalityContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,7 +18,7 @@ export function _setSend(
   context: Client,
   body?: BodyModel,
   options: OptionalExplicitSetOptionalParams = { requestOptions: {} },
-): StreamableMethod<SetModel204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/body-optionality/optional-explicit/set")
     .post({
@@ -31,9 +28,10 @@ export function _setSend(
 }
 
 export async function _setDeserialize(
-  result: SetModel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,7 +51,7 @@ export function _omitSend(
   context: Client,
   body?: BodyModel,
   options: OptionalExplicitOmitOptionalParams = { requestOptions: {} },
-): StreamableMethod<Omit204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/body-optionality/optional-explicit/omit")
     .post({
@@ -62,8 +60,11 @@ export function _omitSend(
     });
 }
 
-export async function _omitDeserialize(result: Omit204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _omitDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

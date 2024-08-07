@@ -3,8 +3,8 @@
 
 export {
   createManagedIdentity,
-  ManagedIdentityClientOptionalParams,
   ManagedIdentityContext,
+  ManagedIdentityClientOptionalParams,
 } from "./managedIdentityContext.js";
 export {
   get,

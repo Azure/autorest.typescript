@@ -1,23 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  buildMultiCollection,
-  buildPipeCollection,
-  buildSsvCollection,
-  buildTsvCollection,
-  CollectionFormatContext as Client,
-  QueryCsv204Response,
-  QueryMulti204Response,
-  QueryPipes204Response,
-  QuerySsv204Response,
-  QueryTsv204Response,
-} from "../../rest/index.js";
+import { CollectionFormatContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  buildMultiCollection,
+  buildPipeCollection,
+  buildTsvCollection,
+  buildSsvCollection,
+} from "../../helpers/serializerHelpers.js";
 import {
   QueryMultiOptionalParams,
   QuerySsvOptionalParams,
@@ -30,7 +26,7 @@ export function _queryMultiSend(
   context: Client,
   colors: string[],
   options: QueryMultiOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryMulti204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/collection-format/query/multi")
     .get({
@@ -40,9 +36,10 @@ export function _queryMultiSend(
 }
 
 export async function _queryMultiDeserialize(
-  result: QueryMulti204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -62,7 +59,7 @@ export function _querySsvSend(
   context: Client,
   colors: string[],
   options: QuerySsvOptionalParams = { requestOptions: {} },
-): StreamableMethod<QuerySsv204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/collection-format/query/ssv")
     .get({
@@ -72,9 +69,10 @@ export function _querySsvSend(
 }
 
 export async function _querySsvDeserialize(
-  result: QuerySsv204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -94,7 +92,7 @@ export function _queryTsvSend(
   context: Client,
   colors: string[],
   options: QueryTsvOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryTsv204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/collection-format/query/tsv")
     .get({
@@ -104,9 +102,10 @@ export function _queryTsvSend(
 }
 
 export async function _queryTsvDeserialize(
-  result: QueryTsv204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -126,7 +125,7 @@ export function _queryPipesSend(
   context: Client,
   colors: string[],
   options: QueryPipesOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryPipes204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/collection-format/query/pipes")
     .get({
@@ -136,9 +135,10 @@ export function _queryPipesSend(
 }
 
 export async function _queryPipesDeserialize(
-  result: QueryPipes204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -158,7 +158,7 @@ export function _queryCsvSend(
   context: Client,
   colors: string[],
   options: QueryCsvOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryCsv204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/collection-format/query/csv")
     .get({
@@ -168,9 +168,10 @@ export function _queryCsvSend(
 }
 
 export async function _queryCsvDeserialize(
-  result: QueryCsv204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

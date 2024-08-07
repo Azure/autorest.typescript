@@ -3,6 +3,6 @@
 
 export {
   createContentNegotiation,
-  ContentNegotiationClientOptionalParams,
   ContentNegotiationContext,
+  ContentNegotiationClientOptionalParams,
 } from "./contentNegotiationContext.js";

@@ -8,8 +8,8 @@ import {
 } from "./classic/stringBody/index.js";
 import {
   createMediaType,
-  MediaTypeClientOptionalParams,
   MediaTypeContext,
+  MediaTypeClientOptionalParams,
 } from "./api/index.js";
 
 export { MediaTypeClientOptionalParams } from "./api/mediaTypeContext.js";
@@ -25,7 +25,6 @@ export class MediaTypeClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createMediaType({
       ...options,
       userAgentOptions: { userAgentPrefix },

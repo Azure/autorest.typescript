@@ -31,8 +31,8 @@ import {
 } from "./models/options.js";
 import {
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,
   getAudioTranslationAsPlainText,
@@ -60,7 +60,6 @@ export class OpenAIClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createOpenAI(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

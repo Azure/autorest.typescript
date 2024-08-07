@@ -2,16 +2,11 @@
 // Licensed under the MIT license.
 
 import { StringProperty } from "../../models/models.js";
-import {
-  OptionalContext as Client,
-  StringModelGetAll200Response,
-  StringModelGetDefault200Response,
-  StringModelPutAll204Response,
-  StringModelPutDefault204Response,
-} from "../../rest/index.js";
+import { OptionalContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -24,16 +19,17 @@ import {
 export function _getAllSend(
   context: Client,
   options: StringGetAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelGetAll200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/string/all")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAllDeserialize(
-  result: StringModelGetAll200Response,
+  result: PathUncheckedResponse,
 ): Promise<StringProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -54,16 +50,17 @@ export async function getAll(
 export function _getDefaultSend(
   context: Client,
   options: StringGetDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelGetDefault200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/string/default")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDefaultDeserialize(
-  result: StringModelGetDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<StringProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -85,7 +82,7 @@ export function _putAllSend(
   context: Client,
   body: StringProperty,
   options: StringPutAllOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelPutAll204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/string/all")
     .put({
@@ -95,9 +92,10 @@ export function _putAllSend(
 }
 
 export async function _putAllDeserialize(
-  result: StringModelPutAll204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -118,7 +116,7 @@ export function _putDefaultSend(
   context: Client,
   body: StringProperty,
   options: StringPutDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringModelPutDefault204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/optional/string/default")
     .put({
@@ -128,9 +126,10 @@ export function _putDefaultSend(
 }
 
 export async function _putDefaultDeserialize(
-  result: StringModelPutDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
