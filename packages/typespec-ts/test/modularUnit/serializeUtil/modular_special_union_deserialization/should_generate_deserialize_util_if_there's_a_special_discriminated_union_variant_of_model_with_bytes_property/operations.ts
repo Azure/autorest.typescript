@@ -1,21 +1,23 @@
-import { TestingContext as Client } from "../rest/index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError
 } from "@azure-rest/core-client";
 export function _customGet1Send(
   context: Client,
   options: CustomGet1OptionalParams = { requestOptions: {} }
-): StreamableMethod<CustomGet1200Response> {
+): StreamableMethod {
   return context
     .path("/customGet1")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 export async function _customGet1Deserialize(
-  result: CustomGet1200Response
+  result: PathUncheckedResponse
 ): Promise<Widget1> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
   return {

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { IsUnknownAdditionalProperties } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  IsUnknownGet200Response,
-  IsUnknownPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -21,16 +18,17 @@ import {
 export function _getSend(
   context: Client,
   options: IsUnknownGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<IsUnknownGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/isRecordUnknown")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: IsUnknownGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<IsUnknownAdditionalProperties> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -50,7 +48,7 @@ export function _putSend(
   context: Client,
   body: IsUnknownAdditionalProperties,
   options: IsUnknownPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<IsUnknownPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/isRecordUnknown")
     .put({
@@ -60,9 +58,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: IsUnknownPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

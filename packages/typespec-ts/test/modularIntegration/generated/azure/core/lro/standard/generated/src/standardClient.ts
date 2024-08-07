@@ -14,8 +14,8 @@ import {
   $delete,
   $export,
   createStandard,
-  StandardClientOptionalParams,
   StandardContext,
+  StandardClientOptionalParams,
 } from "./api/index.js";
 
 export { StandardClientOptionalParams } from "./api/standardContext.js";
@@ -31,7 +31,6 @@ export class StandardClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createStandard({
       ...options,
       userAgentOptions: { userAgentPrefix },

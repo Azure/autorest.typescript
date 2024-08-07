@@ -132,8 +132,8 @@ import {
 } from "./classic/spreadRecordNonDiscriminatedUnion3/index.js";
 import {
   createAdditionalProperties,
-  AdditionalPropertiesClientOptionalParams,
   AdditionalPropertiesContext,
+  AdditionalPropertiesClientOptionalParams,
 } from "./api/index.js";
 
 export { AdditionalPropertiesClientOptionalParams } from "./api/additionalPropertiesContext.js";
@@ -149,7 +149,6 @@ export class AdditionalPropertiesClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createAdditionalProperties({
       ...options,
       userAgentOptions: { userAgentPrefix },

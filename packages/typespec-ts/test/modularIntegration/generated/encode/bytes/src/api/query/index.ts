@@ -1,16 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  BytesContext as Client,
-  QueryBase64204Response,
-  QueryBase64url204Response,
-  QueryBase64urlArray204Response,
-  QueryDefault204Response,
-} from "../../rest/index.js";
+import { BytesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
@@ -25,7 +20,7 @@ export function _queryDefaultSend(
   context: Client,
   value: Uint8Array,
   options: QueryDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryDefault204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/query/default")
     .get({
@@ -35,9 +30,10 @@ export function _queryDefaultSend(
 }
 
 export async function _queryDefaultDeserialize(
-  result: QueryDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -57,7 +53,7 @@ export function _queryBase64Send(
   context: Client,
   value: Uint8Array,
   options: QueryBase64OptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryBase64204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/query/base64")
     .get({
@@ -67,9 +63,10 @@ export function _queryBase64Send(
 }
 
 export async function _queryBase64Deserialize(
-  result: QueryBase64204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -89,7 +86,7 @@ export function _queryBase64urlSend(
   context: Client,
   value: Uint8Array,
   options: QueryBase64urlOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryBase64url204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/query/base64url")
     .get({
@@ -99,9 +96,10 @@ export function _queryBase64urlSend(
 }
 
 export async function _queryBase64urlDeserialize(
-  result: QueryBase64url204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -121,7 +119,7 @@ export function _queryBase64urlArraySend(
   context: Client,
   value: Uint8Array[],
   options: QueryBase64urlArrayOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryBase64urlArray204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/query/base64url-array")
     .get({
@@ -133,9 +131,10 @@ export function _queryBase64urlArraySend(
 }
 
 export async function _queryBase64urlArrayDeserialize(
-  result: QueryBase64urlArray204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

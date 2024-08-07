@@ -5,8 +5,8 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   myOp,
   createSingle,
-  SingleClientOptionalParams,
   SingleContext,
+  SingleClientOptionalParams,
 } from "./api/index.js";
 import { MyOpOptionalParams } from "./models/options.js";
 
@@ -23,7 +23,6 @@ export class SingleClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createSingle(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

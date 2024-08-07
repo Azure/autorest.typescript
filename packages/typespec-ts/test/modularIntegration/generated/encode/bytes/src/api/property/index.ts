@@ -7,16 +7,11 @@ import {
   Base64urlBytesProperty,
   Base64urlArrayBytesProperty,
 } from "../../models/models.js";
-import {
-  BytesContext as Client,
-  PropertyBase64200Response,
-  PropertyBase64url200Response,
-  PropertyBase64urlArray200Response,
-  PropertyDefault200Response,
-} from "../../rest/index.js";
+import { BytesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
@@ -31,7 +26,7 @@ export function _propertyDefaultSend(
   context: Client,
   body: DefaultBytesProperty,
   options: PropertyDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<PropertyDefault200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/property/default")
     .post({
@@ -41,9 +36,10 @@ export function _propertyDefaultSend(
 }
 
 export async function _propertyDefaultDeserialize(
-  result: PropertyDefault200Response,
+  result: PathUncheckedResponse,
 ): Promise<DefaultBytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -68,7 +64,7 @@ export function _propertyBase64Send(
   context: Client,
   body: Base64BytesProperty,
   options: PropertyBase64OptionalParams = { requestOptions: {} },
-): StreamableMethod<PropertyBase64200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/property/base64")
     .post({
@@ -78,9 +74,10 @@ export function _propertyBase64Send(
 }
 
 export async function _propertyBase64Deserialize(
-  result: PropertyBase64200Response,
+  result: PathUncheckedResponse,
 ): Promise<Base64BytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -105,7 +102,7 @@ export function _propertyBase64urlSend(
   context: Client,
   body: Base64urlBytesProperty,
   options: PropertyBase64urlOptionalParams = { requestOptions: {} },
-): StreamableMethod<PropertyBase64url200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/property/base64url")
     .post({
@@ -115,9 +112,10 @@ export function _propertyBase64urlSend(
 }
 
 export async function _propertyBase64urlDeserialize(
-  result: PropertyBase64url200Response,
+  result: PathUncheckedResponse,
 ): Promise<Base64urlBytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -142,7 +140,7 @@ export function _propertyBase64urlArraySend(
   context: Client,
   body: Base64urlArrayBytesProperty,
   options: PropertyBase64urlArrayOptionalParams = { requestOptions: {} },
-): StreamableMethod<PropertyBase64urlArray200Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/property/base64url-array")
     .post({
@@ -154,14 +152,15 @@ export function _propertyBase64urlArraySend(
 }
 
 export async function _propertyBase64urlArrayDeserialize(
-  result: PropertyBase64urlArray200Response,
+  result: PathUncheckedResponse,
 ): Promise<Base64urlArrayBytesProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) =>
+    value: result.body["value"].map((p: any) =>
       typeof p === "string" ? stringToUint8Array(p, "base64url") : p,
     ),
   };

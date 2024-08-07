@@ -3,71 +3,6 @@
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  AudioTranscriptionOptions as AudioTranscriptionOptionsRest,
-  AudioTranslationOptions as AudioTranslationOptionsRest,
-  CompletionsOptions as CompletionsOptionsRest,
-  ChatCompletionsOptions as ChatCompletionsOptionsRest,
-  ChatRequestMessage as ChatRequestMessageRest,
-  ChatRequestSystemMessage as ChatRequestSystemMessageRest,
-  ChatRequestUserMessage as ChatRequestUserMessageRest,
-  ChatMessageContentItem as ChatMessageContentItemRest,
-  ChatMessageTextContentItem as ChatMessageTextContentItemRest,
-  ChatMessageImageContentItem as ChatMessageImageContentItemRest,
-  ChatMessageImageUrl as ChatMessageImageUrlRest,
-  ChatRequestAssistantMessage as ChatRequestAssistantMessageRest,
-  ChatCompletionsToolCall as ChatCompletionsToolCallRest,
-  ChatCompletionsFunctionToolCall as ChatCompletionsFunctionToolCallRest,
-  FunctionCall as FunctionCallRest,
-  ChatRequestToolMessage as ChatRequestToolMessageRest,
-  ChatRequestFunctionMessage as ChatRequestFunctionMessageRest,
-  FunctionDefinition as FunctionDefinitionRest,
-  FunctionName as FunctionNameRest,
-  AzureChatExtensionConfiguration as AzureChatExtensionConfigurationRest,
-  AzureSearchChatExtensionConfiguration as AzureSearchChatExtensionConfigurationRest,
-  AzureSearchChatExtensionParameters as AzureSearchChatExtensionParametersRest,
-  OnYourDataAuthenticationOptions as OnYourDataAuthenticationOptionsRest,
-  OnYourDataApiKeyAuthenticationOptions as OnYourDataApiKeyAuthenticationOptionsRest,
-  OnYourDataConnectionStringAuthenticationOptions as OnYourDataConnectionStringAuthenticationOptionsRest,
-  OnYourDataKeyAndKeyIdAuthenticationOptions as OnYourDataKeyAndKeyIdAuthenticationOptionsRest,
-  OnYourDataEncodedApiKeyAuthenticationOptions as OnYourDataEncodedApiKeyAuthenticationOptionsRest,
-  OnYourDataAccessTokenAuthenticationOptions as OnYourDataAccessTokenAuthenticationOptionsRest,
-  OnYourDataSystemAssignedManagedIdentityAuthenticationOptions as OnYourDataSystemAssignedManagedIdentityAuthenticationOptionsRest,
-  OnYourDataUserAssignedManagedIdentityAuthenticationOptions as OnYourDataUserAssignedManagedIdentityAuthenticationOptionsRest,
-  AzureSearchIndexFieldMappingOptions as AzureSearchIndexFieldMappingOptionsRest,
-  OnYourDataVectorizationSource as OnYourDataVectorizationSourceRest,
-  OnYourDataEndpointVectorizationSource as OnYourDataEndpointVectorizationSourceRest,
-  OnYourDataVectorSearchAuthenticationOptions as OnYourDataVectorSearchAuthenticationOptionsRest,
-  OnYourDataVectorSearchApiKeyAuthenticationOptions as OnYourDataVectorSearchApiKeyAuthenticationOptionsRest,
-  OnYourDataVectorSearchAccessTokenAuthenticationOptions as OnYourDataVectorSearchAccessTokenAuthenticationOptionsRest,
-  OnYourDataDeploymentNameVectorizationSource as OnYourDataDeploymentNameVectorizationSourceRest,
-  OnYourDataModelIdVectorizationSource as OnYourDataModelIdVectorizationSourceRest,
-  AzureMachineLearningIndexChatExtensionConfiguration as AzureMachineLearningIndexChatExtensionConfigurationRest,
-  AzureMachineLearningIndexChatExtensionParameters as AzureMachineLearningIndexChatExtensionParametersRest,
-  AzureCosmosDBChatExtensionConfiguration as AzureCosmosDBChatExtensionConfigurationRest,
-  AzureCosmosDBChatExtensionParameters as AzureCosmosDBChatExtensionParametersRest,
-  AzureCosmosDBFieldMappingOptions as AzureCosmosDBFieldMappingOptionsRest,
-  ElasticsearchChatExtensionConfiguration as ElasticsearchChatExtensionConfigurationRest,
-  ElasticsearchChatExtensionParameters as ElasticsearchChatExtensionParametersRest,
-  ElasticsearchIndexFieldMappingOptions as ElasticsearchIndexFieldMappingOptionsRest,
-  PineconeChatExtensionConfiguration as PineconeChatExtensionConfigurationRest,
-  PineconeChatExtensionParameters as PineconeChatExtensionParametersRest,
-  PineconeFieldMappingOptions as PineconeFieldMappingOptionsRest,
-  AzureChatEnhancementConfiguration as AzureChatEnhancementConfigurationRest,
-  AzureChatGroundingEnhancementConfiguration as AzureChatGroundingEnhancementConfigurationRest,
-  AzureChatOCREnhancementConfiguration as AzureChatOCREnhancementConfigurationRest,
-  ChatCompletionsResponseFormat as ChatCompletionsResponseFormatRest,
-  ChatCompletionsTextResponseFormat as ChatCompletionsTextResponseFormatRest,
-  ChatCompletionsJsonResponseFormat as ChatCompletionsJsonResponseFormatRest,
-  ChatCompletionsToolDefinition as ChatCompletionsToolDefinitionRest,
-  ChatCompletionsFunctionToolDefinition as ChatCompletionsFunctionToolDefinitionRest,
-  ChatCompletionsNamedToolSelection as ChatCompletionsNamedToolSelectionRest,
-  ChatCompletionsNamedFunctionToolSelection as ChatCompletionsNamedFunctionToolSelectionRest,
-  ChatCompletionsFunctionToolSelection as ChatCompletionsFunctionToolSelectionRest,
-  ImageGenerationOptions as ImageGenerationOptionsRest,
-  SpeechGenerationOptions as SpeechGenerationOptionsRest,
-  EmbeddingsOptions as EmbeddingsOptionsRest,
-} from "../rest/index.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** The configuration information for an audio transcription request. */
@@ -111,7 +46,7 @@ export interface AudioTranscriptionOptions {
 
 export function audioTranscriptionOptionsSerializer(
   item: AudioTranscriptionOptions,
-): AudioTranscriptionOptionsRest {
+): Record<string, unknown> {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -228,7 +163,7 @@ export interface AudioTranslationOptions {
 
 export function audioTranslationOptionsSerializer(
   item: AudioTranslationOptions,
-): AudioTranslationOptionsRest {
+): Record<string, unknown> {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
@@ -394,7 +329,7 @@ export interface CompletionsOptions {
 
 export function completionsOptionsSerializer(
   item: CompletionsOptions,
-): CompletionsOptionsRest {
+): Record<string, unknown> {
   return {
     prompt: item["prompt"],
     max_tokens: item["maxTokens"],
@@ -754,7 +689,7 @@ export interface ChatCompletionsOptions {
 
 export function chatCompletionsOptionsSerializer(
   item: ChatCompletionsOptions,
-): ChatCompletionsOptionsRest {
+): Record<string, unknown> {
   return {
     messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
     functions:
@@ -833,7 +768,7 @@ export function chatRequestMessageUnionSerializer(
 
 export function chatRequestMessageSerializer(
   item: ChatRequestMessageUnion,
-): ChatRequestMessageRest {
+): Record<string, unknown> {
   return {
     ...chatRequestMessageUnionSerializer(item),
   };
@@ -854,7 +789,7 @@ export interface ChatRequestSystemMessage extends ChatRequestMessage {
 
 export function chatRequestSystemMessageSerializer(
   item: ChatRequestSystemMessage,
-): ChatRequestSystemMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -874,7 +809,7 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
 
 export function chatRequestUserMessageSerializer(
   item: ChatRequestUserMessage,
-): ChatRequestUserMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"] as any,
@@ -909,7 +844,7 @@ export function chatMessageContentItemUnionSerializer(
 
 export function chatMessageContentItemSerializer(
   item: ChatMessageContentItemUnion,
-): ChatMessageContentItemRest {
+): Record<string, unknown> {
   return {
     ...chatMessageContentItemUnionSerializer(item),
   };
@@ -925,7 +860,7 @@ export interface ChatMessageTextContentItem extends ChatMessageContentItem {
 
 export function chatMessageTextContentItemSerializer(
   item: ChatMessageTextContentItem,
-): ChatMessageTextContentItemRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     text: item["text"],
@@ -942,7 +877,7 @@ export interface ChatMessageImageContentItem extends ChatMessageContentItem {
 
 export function chatMessageImageContentItemSerializer(
   item: ChatMessageImageContentItem,
-): ChatMessageImageContentItemRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     image_url: chatMessageImageUrlSerializer(item.imageUrl),
@@ -962,7 +897,7 @@ export interface ChatMessageImageUrl {
 
 export function chatMessageImageUrlSerializer(
   item: ChatMessageImageUrl,
-): ChatMessageImageUrlRest {
+): Record<string, unknown> {
   return {
     url: item["url"],
     detail: item["detail"],
@@ -994,7 +929,7 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessage {
 
 export function chatRequestAssistantMessageSerializer(
   item: ChatRequestAssistantMessage,
-): ChatRequestAssistantMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -1033,7 +968,7 @@ export function chatCompletionsToolCallUnionSerializer(
 
 export function chatCompletionsToolCallSerializer(
   item: ChatCompletionsToolCallUnion,
-): ChatCompletionsToolCallRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     id: item["id"],
@@ -1054,7 +989,7 @@ export interface ChatCompletionsFunctionToolCall
 
 export function chatCompletionsFunctionToolCallSerializer(
   item: ChatCompletionsFunctionToolCall,
-): ChatCompletionsFunctionToolCallRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     id: item["id"],
@@ -1075,7 +1010,9 @@ export interface FunctionCall {
   arguments: string;
 }
 
-export function functionCallSerializer(item: FunctionCall): FunctionCallRest {
+export function functionCallSerializer(
+  item: FunctionCall,
+): Record<string, unknown> {
   return {
     name: item["name"],
     arguments: item["arguments"],
@@ -1094,7 +1031,7 @@ export interface ChatRequestToolMessage extends ChatRequestMessage {
 
 export function chatRequestToolMessageSerializer(
   item: ChatRequestToolMessage,
-): ChatRequestToolMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -1114,7 +1051,7 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
 
 export function chatRequestFunctionMessageSerializer(
   item: ChatRequestFunctionMessage,
-): ChatRequestFunctionMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     name: item["name"],
@@ -1140,7 +1077,7 @@ export interface FunctionDefinition {
 
 export function functionDefinitionSerializer(
   item: FunctionDefinition,
-): FunctionDefinitionRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
     description: item["description"],
@@ -1163,7 +1100,9 @@ export interface FunctionName {
   name: string;
 }
 
-export function functionNameSerializer(item: FunctionName): FunctionNameRest {
+export function functionNameSerializer(
+  item: FunctionName,
+): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -1215,7 +1154,7 @@ export function azureChatExtensionConfigurationUnionSerializer(
 
 export function azureChatExtensionConfigurationSerializer(
   item: AzureChatExtensionConfigurationUnion,
-): AzureChatExtensionConfigurationRest {
+): Record<string, unknown> {
   return {
     ...azureChatExtensionConfigurationUnionSerializer(item),
   };
@@ -1238,7 +1177,7 @@ export interface AzureSearchChatExtensionConfiguration
 
 export function azureSearchChatExtensionConfigurationSerializer(
   item: AzureSearchChatExtensionConfiguration,
-): AzureSearchChatExtensionConfigurationRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     parameters: azureSearchChatExtensionParametersSerializer(item.parameters),
@@ -1293,7 +1232,7 @@ export interface AzureSearchChatExtensionParameters {
 
 export function azureSearchChatExtensionParametersSerializer(
   item: AzureSearchChatExtensionParameters,
-): AzureSearchChatExtensionParametersRest {
+): Record<string, unknown> {
   return {
     authentication: !item.authentication
       ? item.authentication
@@ -1371,7 +1310,7 @@ export function onYourDataAuthenticationOptionsUnionSerializer(
 
 export function onYourDataAuthenticationOptionsSerializer(
   item: OnYourDataAuthenticationOptionsUnion,
-): OnYourDataAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     ...onYourDataAuthenticationOptionsUnionSerializer(item),
   };
@@ -1388,7 +1327,7 @@ export interface OnYourDataApiKeyAuthenticationOptions
 
 export function onYourDataApiKeyAuthenticationOptionsSerializer(
   item: OnYourDataApiKeyAuthenticationOptions,
-): OnYourDataApiKeyAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     key: item["key"],
@@ -1406,7 +1345,7 @@ export interface OnYourDataConnectionStringAuthenticationOptions
 
 export function onYourDataConnectionStringAuthenticationOptionsSerializer(
   item: OnYourDataConnectionStringAuthenticationOptions,
-): OnYourDataConnectionStringAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     connection_string: item["connectionString"],
@@ -1426,7 +1365,7 @@ export interface OnYourDataKeyAndKeyIdAuthenticationOptions
 
 export function onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
   item: OnYourDataKeyAndKeyIdAuthenticationOptions,
-): OnYourDataKeyAndKeyIdAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     key: item["key"],
@@ -1445,7 +1384,7 @@ export interface OnYourDataEncodedApiKeyAuthenticationOptions
 
 export function onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
   item: OnYourDataEncodedApiKeyAuthenticationOptions,
-): OnYourDataEncodedApiKeyAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     encoded_api_key: item["encodedApiKey"],
@@ -1463,7 +1402,7 @@ export interface OnYourDataAccessTokenAuthenticationOptions
 
 export function onYourDataAccessTokenAuthenticationOptionsSerializer(
   item: OnYourDataAccessTokenAuthenticationOptions,
-): OnYourDataAccessTokenAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     access_token: item["accessToken"],
@@ -1479,7 +1418,7 @@ export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
 
 export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(
   item: OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
-): OnYourDataSystemAssignedManagedIdentityAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -1496,7 +1435,7 @@ export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions
 
 export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerializer(
   item: OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
-): OnYourDataUserAssignedManagedIdentityAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     managed_identity_resource_id: item["managedIdentityResourceId"],
@@ -1538,7 +1477,7 @@ export interface AzureSearchIndexFieldMappingOptions {
 
 export function azureSearchIndexFieldMappingOptionsSerializer(
   item: AzureSearchIndexFieldMappingOptions,
-): AzureSearchIndexFieldMappingOptionsRest {
+): Record<string, unknown> {
   return {
     title_field: item["titleField"],
     url_field: item["urlField"],
@@ -1590,7 +1529,7 @@ export function onYourDataVectorizationSourceUnionSerializer(
 
 export function onYourDataVectorizationSourceSerializer(
   item: OnYourDataVectorizationSourceUnion,
-): OnYourDataVectorizationSourceRest {
+): Record<string, unknown> {
   return {
     ...onYourDataVectorizationSourceUnionSerializer(item),
   };
@@ -1612,7 +1551,7 @@ export interface OnYourDataEndpointVectorizationSource
 
 export function onYourDataEndpointVectorizationSourceSerializer(
   item: OnYourDataEndpointVectorizationSource,
-): OnYourDataEndpointVectorizationSourceRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     endpoint: item["endpoint"],
@@ -1649,7 +1588,7 @@ export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
 
 export function onYourDataVectorSearchAuthenticationOptionsSerializer(
   item: OnYourDataVectorSearchAuthenticationOptionsUnion,
-): OnYourDataVectorSearchAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     ...onYourDataVectorSearchAuthenticationOptionsUnionSerializer(item),
   };
@@ -1666,7 +1605,7 @@ export interface OnYourDataVectorSearchApiKeyAuthenticationOptions
 
 export function onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
   item: OnYourDataVectorSearchApiKeyAuthenticationOptions,
-): OnYourDataVectorSearchApiKeyAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     key: item["key"],
@@ -1684,7 +1623,7 @@ export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions
 
 export function onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer(
   item: OnYourDataVectorSearchAccessTokenAuthenticationOptions,
-): OnYourDataVectorSearchAccessTokenAuthenticationOptionsRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     access_token: item["accessToken"],
@@ -1712,7 +1651,7 @@ export interface OnYourDataDeploymentNameVectorizationSource
 
 export function onYourDataDeploymentNameVectorizationSourceSerializer(
   item: OnYourDataDeploymentNameVectorizationSource,
-): OnYourDataDeploymentNameVectorizationSourceRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     deployment_name: item["deploymentName"],
@@ -1734,7 +1673,7 @@ export interface OnYourDataModelIdVectorizationSource
 
 export function onYourDataModelIdVectorizationSourceSerializer(
   item: OnYourDataModelIdVectorizationSource,
-): OnYourDataModelIdVectorizationSourceRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     model_id: item["modelId"],
@@ -1767,7 +1706,7 @@ export interface AzureMachineLearningIndexChatExtensionConfiguration
 
 export function azureMachineLearningIndexChatExtensionConfigurationSerializer(
   item: AzureMachineLearningIndexChatExtensionConfiguration,
-): AzureMachineLearningIndexChatExtensionConfigurationRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     parameters: azureMachineLearningIndexChatExtensionParametersSerializer(
@@ -1818,7 +1757,7 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
 
 export function azureMachineLearningIndexChatExtensionParametersSerializer(
   item: AzureMachineLearningIndexChatExtensionParameters,
-): AzureMachineLearningIndexChatExtensionParametersRest {
+): Record<string, unknown> {
   return {
     authentication: !item.authentication
       ? item.authentication
@@ -1854,7 +1793,7 @@ export interface AzureCosmosDBChatExtensionConfiguration
 
 export function azureCosmosDBChatExtensionConfigurationSerializer(
   item: AzureCosmosDBChatExtensionConfiguration,
-): AzureCosmosDBChatExtensionConfigurationRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     parameters: azureCosmosDBChatExtensionParametersSerializer(item.parameters),
@@ -1908,7 +1847,7 @@ export interface AzureCosmosDBChatExtensionParameters {
 
 export function azureCosmosDBChatExtensionParametersSerializer(
   item: AzureCosmosDBChatExtensionParameters,
-): AzureCosmosDBChatExtensionParametersRest {
+): Record<string, unknown> {
   return {
     authentication: !item.authentication
       ? item.authentication
@@ -1950,7 +1889,7 @@ export interface AzureCosmosDBFieldMappingOptions {
 
 export function azureCosmosDBFieldMappingOptionsSerializer(
   item: AzureCosmosDBFieldMappingOptions,
-): AzureCosmosDBFieldMappingOptionsRest {
+): Record<string, unknown> {
   return {
     title_field: item["titleField"],
     url_field: item["urlField"],
@@ -1978,7 +1917,7 @@ export interface ElasticsearchChatExtensionConfiguration
 
 export function elasticsearchChatExtensionConfigurationSerializer(
   item: ElasticsearchChatExtensionConfiguration,
-): ElasticsearchChatExtensionConfigurationRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     parameters: elasticsearchChatExtensionParametersSerializer(item.parameters),
@@ -2029,7 +1968,7 @@ export interface ElasticsearchChatExtensionParameters {
 
 export function elasticsearchChatExtensionParametersSerializer(
   item: ElasticsearchChatExtensionParameters,
-): ElasticsearchChatExtensionParametersRest {
+): Record<string, unknown> {
   return {
     authentication: !item.authentication
       ? item.authentication
@@ -2071,7 +2010,7 @@ export interface ElasticsearchIndexFieldMappingOptions {
 
 export function elasticsearchIndexFieldMappingOptionsSerializer(
   item: ElasticsearchIndexFieldMappingOptions,
-): ElasticsearchIndexFieldMappingOptionsRest {
+): Record<string, unknown> {
   return {
     title_field: item["titleField"],
     url_field: item["urlField"],
@@ -2102,7 +2041,7 @@ export interface PineconeChatExtensionConfiguration
 
 export function pineconeChatExtensionConfigurationSerializer(
   item: PineconeChatExtensionConfiguration,
-): PineconeChatExtensionConfigurationRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     parameters: pineconeChatExtensionParametersSerializer(item.parameters),
@@ -2151,7 +2090,7 @@ export interface PineconeChatExtensionParameters {
 
 export function pineconeChatExtensionParametersSerializer(
   item: PineconeChatExtensionParameters,
-): PineconeChatExtensionParametersRest {
+): Record<string, unknown> {
   return {
     authentication: !item.authentication
       ? item.authentication
@@ -2188,7 +2127,7 @@ export interface PineconeFieldMappingOptions {
 
 export function pineconeFieldMappingOptionsSerializer(
   item: PineconeFieldMappingOptions,
-): PineconeFieldMappingOptionsRest {
+): Record<string, unknown> {
   return {
     title_field: item["titleField"],
     url_field: item["urlField"],
@@ -2220,7 +2159,7 @@ export interface AzureChatEnhancementConfiguration {
 
 export function azureChatEnhancementConfigurationSerializer(
   item: AzureChatEnhancementConfiguration,
-): AzureChatEnhancementConfigurationRest {
+): Record<string, unknown> {
   return {
     grounding: !item.grounding
       ? item.grounding
@@ -2239,7 +2178,7 @@ export interface AzureChatGroundingEnhancementConfiguration {
 
 export function azureChatGroundingEnhancementConfigurationSerializer(
   item: AzureChatGroundingEnhancementConfiguration,
-): AzureChatGroundingEnhancementConfigurationRest {
+): Record<string, unknown> {
   return {
     enabled: item["enabled"],
   };
@@ -2253,7 +2192,7 @@ export interface AzureChatOCREnhancementConfiguration {
 
 export function azureChatOCREnhancementConfigurationSerializer(
   item: AzureChatOCREnhancementConfiguration,
-): AzureChatOCREnhancementConfigurationRest {
+): Record<string, unknown> {
   return {
     enabled: item["enabled"],
   };
@@ -2289,7 +2228,7 @@ export function chatCompletionsResponseFormatUnionSerializer(
 
 export function chatCompletionsResponseFormatSerializer(
   item: ChatCompletionsResponseFormatUnion,
-): ChatCompletionsResponseFormatRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -2307,7 +2246,7 @@ export interface ChatCompletionsTextResponseFormat
 
 export function chatCompletionsTextResponseFormatSerializer(
   item: ChatCompletionsTextResponseFormat,
-): ChatCompletionsTextResponseFormatRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -2322,7 +2261,7 @@ export interface ChatCompletionsJsonResponseFormat
 
 export function chatCompletionsJsonResponseFormatSerializer(
   item: ChatCompletionsJsonResponseFormat,
-): ChatCompletionsJsonResponseFormatRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -2350,7 +2289,7 @@ export function chatCompletionsToolDefinitionUnionSerializer(
 
 export function chatCompletionsToolDefinitionSerializer(
   item: ChatCompletionsToolDefinitionUnion,
-): ChatCompletionsToolDefinitionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -2367,7 +2306,7 @@ export interface ChatCompletionsFunctionToolDefinition
 
 export function chatCompletionsFunctionToolDefinitionSerializer(
   item: ChatCompletionsFunctionToolDefinition,
-): ChatCompletionsFunctionToolDefinitionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     function: functionDefinitionSerializer(item.function),
@@ -2399,7 +2338,7 @@ export function chatCompletionsNamedToolSelectionUnionSerializer(
 
 export function chatCompletionsNamedToolSelectionSerializer(
   item: ChatCompletionsNamedToolSelectionUnion,
-): ChatCompletionsNamedToolSelectionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -2416,7 +2355,7 @@ export interface ChatCompletionsNamedFunctionToolSelection
 
 export function chatCompletionsNamedFunctionToolSelectionSerializer(
   item: ChatCompletionsNamedFunctionToolSelection,
-): ChatCompletionsNamedFunctionToolSelectionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     function: chatCompletionsFunctionToolSelectionSerializer(item.function),
@@ -2431,7 +2370,7 @@ export interface ChatCompletionsFunctionToolSelection {
 
 export function chatCompletionsFunctionToolSelectionSerializer(
   item: ChatCompletionsFunctionToolSelection,
-): ChatCompletionsFunctionToolSelectionRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -2733,7 +2672,7 @@ export interface ImageGenerationOptions {
 
 export function imageGenerationOptionsSerializer(
   item: ImageGenerationOptions,
-): ImageGenerationOptionsRest {
+): Record<string, unknown> {
   return {
     model: item["model"],
     prompt: item["prompt"],
@@ -2884,7 +2823,7 @@ export interface SpeechGenerationOptions {
 
 export function speechGenerationOptionsSerializer(
   item: SpeechGenerationOptions,
-): SpeechGenerationOptionsRest {
+): Record<string, unknown> {
   return {
     input: item["input"],
     voice: item["voice"],
@@ -2946,7 +2885,7 @@ export interface EmbeddingsOptions {
 
 export function embeddingsOptionsSerializer(
   item: EmbeddingsOptions,
-): EmbeddingsOptionsRest {
+): Record<string, unknown> {
   return {
     user: item["user"],
     model: item["model"],

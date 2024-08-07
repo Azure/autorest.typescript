@@ -4,6 +4,6 @@
 export { validKey, validToken } from "./operations.js";
 export {
   createUnion,
-  UnionClientOptionalParams,
   UnionContext,
+  UnionClientOptionalParams,
 } from "./unionContext.js";

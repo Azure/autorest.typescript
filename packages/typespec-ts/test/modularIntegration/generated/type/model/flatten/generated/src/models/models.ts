@@ -1,20 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  FlattenModel as FlattenModelRest,
-  ChildModel as ChildModelRest,
-  NestedFlattenModel as NestedFlattenModelRest,
-  ChildFlattenModel as ChildFlattenModelRest,
-} from "../rest/index.js";
-
 /** This is the model with one level of flattening. */
 export interface FlattenModel {
   name: string;
   properties: ChildModel;
 }
 
-export function flattenModelSerializer(item: FlattenModel): FlattenModelRest {
+export function flattenModelSerializer(
+  item: FlattenModel,
+): Record<string, unknown> {
   return {
     name: item["name"],
     properties: childModelSerializer(item.properties),
@@ -27,7 +22,9 @@ export interface ChildModel {
   age: number;
 }
 
-export function childModelSerializer(item: ChildModel): ChildModelRest {
+export function childModelSerializer(
+  item: ChildModel,
+): Record<string, unknown> {
   return {
     description: item["description"],
     age: item["age"],
@@ -42,7 +39,7 @@ export interface NestedFlattenModel {
 
 export function nestedFlattenModelSerializer(
   item: NestedFlattenModel,
-): NestedFlattenModelRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
     properties: childFlattenModelSerializer(item.properties),
@@ -57,7 +54,7 @@ export interface ChildFlattenModel {
 
 export function childFlattenModelSerializer(
   item: ChildFlattenModel,
-): ChildFlattenModelRest {
+): Record<string, unknown> {
   return {
     summary: item["summary"],
     properties: childModelSerializer(item.properties),

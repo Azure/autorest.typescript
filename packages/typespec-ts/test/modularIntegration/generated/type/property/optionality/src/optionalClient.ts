@@ -65,8 +65,8 @@ import {
 } from "./classic/requiredAndOptional/index.js";
 import {
   createOptional,
-  OptionalClientOptionalParams,
   OptionalContext,
+  OptionalClientOptionalParams,
 } from "./api/index.js";
 
 export { OptionalClientOptionalParams } from "./api/optionalContext.js";
@@ -82,7 +82,6 @@ export class OptionalClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createOptional({
       ...options,
       userAgentOptions: { userAgentPrefix },

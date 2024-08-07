@@ -1,17 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  AliasSpreadAsRequestBody204Response,
-  AliasSpreadAsRequestParameter204Response,
-  AliasSpreadParameterWithInnerAlias204Response,
-  AliasSpreadParameterWithInnerModel204Response,
-  AliasSpreadWithMultipleParameters204Response,
-  SpreadContext as Client,
-} from "../../rest/index.js";
+import { SpreadContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -26,7 +20,7 @@ export function _aliasSpreadAsRequestBodySend(
   context: Client,
   name: string,
   options: AliasSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
-): StreamableMethod<AliasSpreadAsRequestBody204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/alias/request-body")
     .put({
@@ -36,9 +30,10 @@ export function _aliasSpreadAsRequestBodySend(
 }
 
 export async function _aliasSpreadAsRequestBodyDeserialize(
-  result: AliasSpreadAsRequestBody204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -62,7 +57,7 @@ export function _aliasSpreadParameterWithInnerModelSend(
   options: AliasSpreadParameterWithInnerModelOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<AliasSpreadParameterWithInnerModel204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/alias/inner-model-parameter/{id}", id)
     .post({
@@ -73,9 +68,10 @@ export function _aliasSpreadParameterWithInnerModelSend(
 }
 
 export async function _aliasSpreadParameterWithInnerModelDeserialize(
-  result: AliasSpreadParameterWithInnerModel204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -107,7 +103,7 @@ export function _aliasSpreadAsRequestParameterSend(
   xMsTestHeader: string,
   name: string,
   options: AliasSpreadAsRequestParameterOptionalParams = { requestOptions: {} },
-): StreamableMethod<AliasSpreadAsRequestParameter204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/alias/request-parameter/{id}", id)
     .put({
@@ -118,9 +114,10 @@ export function _aliasSpreadAsRequestParameterSend(
 }
 
 export async function _aliasSpreadAsRequestParameterDeserialize(
-  result: AliasSpreadAsRequestParameter204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -153,7 +150,7 @@ export function _aliasSpreadWithMultipleParametersSend(
   options: AliasSpreadWithMultipleParametersOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<AliasSpreadWithMultipleParameters204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/alias/multiple-parameters/{id}", id)
     .put({
@@ -169,9 +166,10 @@ export function _aliasSpreadWithMultipleParametersSend(
 }
 
 export async function _aliasSpreadWithMultipleParametersDeserialize(
-  result: AliasSpreadWithMultipleParameters204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -208,7 +206,7 @@ export function _aliasSpreadParameterWithInnerAliasSend(
   options: AliasSpreadParameterWithInnerAliasOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<AliasSpreadParameterWithInnerAlias204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/spread/alias/inner-alias-parameter/{id}", id)
     .post({
@@ -219,9 +217,10 @@ export function _aliasSpreadParameterWithInnerAliasSend(
 }
 
 export async function _aliasSpreadParameterWithInnerAliasDeserialize(
-  result: AliasSpreadParameterWithInnerAlias204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

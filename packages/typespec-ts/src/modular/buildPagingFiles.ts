@@ -113,9 +113,7 @@ export function buildPagingTypes(client: Client, codeModel: ModularCodeModel) {
 
 export function buildPagingHelpers(
   client: Client,
-  codeModel: ModularCodeModel,
-  needUnexpectedHelper: boolean = true,
-  isMultiClients: boolean = false
+  codeModel: ModularCodeModel
 ) {
   const pagingOperstions = client.operationGroups
     .flatMap((op) => op.operations)
@@ -124,37 +122,6 @@ export function buildPagingHelpers(
     return;
   }
 
-  const checkingPagingRequestContent = needUnexpectedHelper
-    ? `if (isUnexpected(response)) {
-      throw createRestError(
-        \`Pagination failed with unexpected statusCode \${response.status}\`,
-        response
-      );
-    }`
-    : `const Http2xxStatusCodes = [
-      "200",
-      "201",
-      "202",
-      "203",
-      "204",
-      "205",
-      "206",
-      "207",
-      "208",
-      "226",
-    ];
-    if (!Http2xxStatusCodes.includes(response.status)) {
-      throw createRestError(
-        \`Pagination failed with unexpected statusCode \${response.status}\`,
-        response
-      );
-    }`;
-
-  const unexpectedHelperImport = needUnexpectedHelper
-    ? `import { isUnexpected } from "${
-        isMultiClients ? "../" : ""
-      }../rest/index.js";`
-    : "";
   const pagingTypesPath = `../models/pagingTypes.js`;
   const filePath = path.join(
     codeModel.modularOptions.sourceRoot,
@@ -181,7 +148,6 @@ export function buildPagingHelpers(
       PagedAsyncIterableIterator,
       PagedResult, 
     } from "${pagingTypesPath}";
-    ${unexpectedHelperImport}
 
       /**
        * Helper to paginate results in a generic way and return a PagedAsyncIterableIterator
@@ -195,6 +161,7 @@ export function buildPagingHelpers(
         client: Client,
         getInitialResponse: () => PromiseLike<TResponse>,
         processResponseBody: (result: TResponse) => PromiseLike<unknown>,
+        expectedStatuses: string[],
         options: BuildPagedAsyncIteratorOptions = {}
       ): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
         const itemName = options.itemName ?? "value";
@@ -205,7 +172,7 @@ export function buildPagingHelpers(
               pageLink === undefined
                 ? await getInitialResponse()
                 : await client.pathUnchecked(pageLink).get();
-            checkPagingRequest(result);
+            checkPagingRequest(result, expectedStatuses);
             const results = await processResponseBody(result as TResponse);
             const nextLink = getNextLink(results, nextLinkName);
             const values = getElements<TElement>(results, itemName) as TPage;
@@ -348,8 +315,10 @@ export function buildPagingHelpers(
       /**
        * Checks if a request failed
        */
-      function checkPagingRequest(response: PathUncheckedResponse): void {
-        ${checkingPagingRequestContent}
+      function checkPagingRequest(response: PathUncheckedResponse, expectedStatuses: string[]): void {
+        if(!expectedStatuses.includes(response.status)) {
+          throw createRestError(\`Pagination failed with unexpected statusCode \${response.status}\`, response);
+        }
       }
     `
   ]);

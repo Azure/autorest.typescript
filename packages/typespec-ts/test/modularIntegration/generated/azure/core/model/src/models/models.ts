@@ -1,15 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { AzureEmbeddingModel as AzureEmbeddingModelRest } from "../rest/index.js";
-
 export interface AzureEmbeddingModel {
   embedding: number[];
 }
 
 export function azureEmbeddingModelSerializer(
   item: AzureEmbeddingModel,
-): AzureEmbeddingModelRest {
+): Record<string, unknown> {
   return {
     embedding: item["embedding"],
   };

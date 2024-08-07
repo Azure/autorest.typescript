@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { FloatLiteralProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  FloatLiteralGet200Response,
-  FloatLiteralPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _floatLiteralGetSend(
   context: Client,
   options: FloatLiteralGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatLiteralGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/float/literal")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _floatLiteralGetDeserialize(
-  result: FloatLiteralGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<FloatLiteralProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _floatLiteralPutSend(
   context: Client,
   body: FloatLiteralProperty,
   options: FloatLiteralPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<FloatLiteralPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/float/literal")
     .put({
@@ -61,9 +59,10 @@ export function _floatLiteralPutSend(
 }
 
 export async function _floatLiteralPutDeserialize(
-  result: FloatLiteralPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

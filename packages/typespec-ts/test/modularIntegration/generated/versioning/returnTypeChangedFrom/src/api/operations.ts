@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ReturnTypeChangedFromContext as Client,
-  Test200Response,
-} from "../rest/index.js";
+import { ReturnTypeChangedFromContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { TestOptionalParams } from "../models/options.js";
@@ -16,16 +14,17 @@ export function _testSend(
   context: Client,
   body: string,
   options: TestOptionalParams = { requestOptions: {} },
-): StreamableMethod<Test200Response> {
+): StreamableMethod {
   return context
     .path("/test")
     .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _testDeserialize(
-  result: Test200Response,
+  result: PathUncheckedResponse,
 ): Promise<string> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

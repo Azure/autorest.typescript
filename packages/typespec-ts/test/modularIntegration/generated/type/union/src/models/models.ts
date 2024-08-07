@@ -1,15 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  MixedTypesCases as MixedTypesCasesRest,
-  Cat as CatRest,
-  MixedLiteralsCases as MixedLiteralsCasesRest,
-  StringAndArrayCases as StringAndArrayCasesRest,
-  EnumsOnlyCases as EnumsOnlyCasesRest,
-  Dog as DogRest,
-} from "../rest/index.js";
-
 export interface MixedTypesCases {
   /** This should be receive/send the Cat variant */
   model: Cat | "a" | number | boolean;
@@ -25,7 +16,7 @@ export interface MixedTypesCases {
 
 export function mixedTypesCasesSerializer(
   item: MixedTypesCases,
-): MixedTypesCasesRest {
+): Record<string, unknown> {
   return {
     model: item["model"],
     literal: item["literal"],
@@ -39,7 +30,7 @@ export interface Cat {
   name: string;
 }
 
-export function catSerializer(item: Cat): CatRest {
+export function catSerializer(item: Cat): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -58,7 +49,7 @@ export interface MixedLiteralsCases {
 
 export function mixedLiteralsCasesSerializer(
   item: MixedLiteralsCases,
-): MixedLiteralsCasesRest {
+): Record<string, unknown> {
   return {
     stringLiteral: item["stringLiteral"],
     intLiteral: item["intLiteral"],
@@ -76,7 +67,7 @@ export interface StringAndArrayCases {
 
 export function stringAndArrayCasesSerializer(
   item: StringAndArrayCases,
-): StringAndArrayCasesRest {
+): Record<string, unknown> {
   return {
     string: item["string"],
     array: item["array"],
@@ -92,7 +83,7 @@ export interface EnumsOnlyCases {
 
 export function enumsOnlyCasesSerializer(
   item: EnumsOnlyCases,
-): EnumsOnlyCasesRest {
+): Record<string, unknown> {
   return {
     lr: item["lr"],
     ud: item["ud"],
@@ -108,7 +99,7 @@ export interface Dog {
   bark: string;
 }
 
-export function dogSerializer(item: Dog): DogRest {
+export function dogSerializer(item: Dog): Record<string, unknown> {
   return {
     bark: item["bark"],
   };

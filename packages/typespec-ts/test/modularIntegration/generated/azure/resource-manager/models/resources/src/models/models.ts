@@ -2,13 +2,6 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  NestedProxyResource as NestedProxyResourceRest,
-  NestedProxyResourceProperties as NestedProxyResourcePropertiesRest,
-  TrackedResource as TrackedResourceRest,
-  TopLevelTrackedResource as TopLevelTrackedResourceRest,
-  TopLevelTrackedResourceProperties as TopLevelTrackedResourcePropertiesRest,
-} from "../rest/index.js";
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
@@ -81,7 +74,7 @@ export interface NestedProxyResource extends ProxyResource {
 
 export function nestedProxyResourceSerializer(
   item: NestedProxyResource,
-): NestedProxyResourceRest {
+): Record<string, unknown> {
   return {
     properties: !item.properties
       ? item.properties
@@ -99,7 +92,7 @@ export interface NestedProxyResourceProperties {
 
 export function nestedProxyResourcePropertiesSerializer(
   item: NestedProxyResourceProperties,
-): NestedProxyResourcePropertiesRest {
+): Record<string, unknown> {
   return {
     description: item["description"],
   };
@@ -172,7 +165,7 @@ export interface TrackedResource extends Resource {
 
 export function trackedResourceSerializer(
   item: TrackedResource,
-): TrackedResourceRest {
+): Record<string, unknown> {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -187,7 +180,7 @@ export interface TopLevelTrackedResource extends TrackedResource {
 
 export function topLevelTrackedResourceSerializer(
   item: TopLevelTrackedResource,
-): TopLevelTrackedResourceRest {
+): Record<string, unknown> {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -207,7 +200,7 @@ export interface TopLevelTrackedResourceProperties {
 
 export function topLevelTrackedResourcePropertiesSerializer(
   item: TopLevelTrackedResourceProperties,
-): TopLevelTrackedResourcePropertiesRest {
+): Record<string, unknown> {
   return {
     description: item["description"],
   };

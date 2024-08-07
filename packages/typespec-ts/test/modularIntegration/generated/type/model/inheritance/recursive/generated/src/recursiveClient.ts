@@ -8,8 +8,8 @@ import {
   put,
   get,
   createRecursive,
-  RecursiveClientOptionalParams,
   RecursiveContext,
+  RecursiveClientOptionalParams,
 } from "./api/index.js";
 
 export { RecursiveClientOptionalParams } from "./api/recursiveContext.js";
@@ -25,7 +25,6 @@ export class RecursiveClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createRecursive({
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -24,8 +24,8 @@ import {
 } from "./models/options.js";
 import {
   createEventGrid,
-  EventGridClientOptionalParams,
   EventGridContext,
+  EventGridClientOptionalParams,
   publishCloudEvent,
   publishCloudEvents,
   receiveCloudEvents,
@@ -51,7 +51,6 @@ export class EventGridClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createEventGrid(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

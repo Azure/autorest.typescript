@@ -102,8 +102,8 @@ import {
 } from "./classic/unionEnumValue/index.js";
 import {
   createValueTypes,
-  ValueTypesClientOptionalParams,
   ValueTypesContext,
+  ValueTypesClientOptionalParams,
 } from "./api/index.js";
 
 export { ValueTypesClientOptionalParams } from "./api/valueTypesContext.js";
@@ -119,7 +119,6 @@ export class ValueTypesClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createValueTypes({
       ...options,
       userAgentOptions: { userAgentPrefix },

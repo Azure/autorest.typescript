@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { StringExtensibleNamedUnion } from "../../models/models.js";
-import {
-  UnionContext as Client,
-  StringExtensibleNamedGet200Response,
-  StringExtensibleNamedSend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _stringExtensibleNamedGetSend(
   context: Client,
   options: StringExtensibleNamedGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringExtensibleNamedGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/string-extensible-named")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stringExtensibleNamedGetDeserialize(
-  result: StringExtensibleNamedGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: StringExtensibleNamedUnion }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -50,7 +48,7 @@ export function _stringExtensibleNamedSendSend(
   context: Client,
   prop: StringExtensibleNamedUnion,
   options: StringExtensibleNamedSendOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringExtensibleNamedSend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/string-extensible-named")
     .post({
@@ -60,9 +58,10 @@ export function _stringExtensibleNamedSendSend(
 }
 
 export async function _stringExtensibleNamedSendDeserialize(
-  result: StringExtensibleNamedSend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

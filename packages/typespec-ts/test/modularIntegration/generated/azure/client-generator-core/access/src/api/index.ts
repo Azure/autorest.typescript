@@ -3,8 +3,8 @@
 
 export {
   createAccess,
-  AccessClientOptionalParams,
   AccessContext,
+  AccessClientOptionalParams,
 } from "./accessContext.js";
 export {
   noDecoratorInPublic,

@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  MultipleContext as Client,
-  NoOperationParams204Response,
-  WithOperationPathParam204Response,
-} from "../rest/index.js";
+import { MultipleContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _noOperationParamsSend(
   context: Client,
   options: NoOperationParamsOptionalParams = { requestOptions: {} },
-): StreamableMethod<NoOperationParams204Response> {
+): StreamableMethod {
   return context
     .path("/")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _noOperationParamsDeserialize(
-  result: NoOperationParams204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -47,16 +45,17 @@ export function _withOperationPathParamSend(
   context: Client,
   keyword: string,
   options: WithOperationPathParamOptionalParams = { requestOptions: {} },
-): StreamableMethod<WithOperationPathParam204Response> {
+): StreamableMethod {
   return context
     .path("/{keyword}", keyword)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _withOperationPathParamDeserialize(
-  result: WithOperationPathParam204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

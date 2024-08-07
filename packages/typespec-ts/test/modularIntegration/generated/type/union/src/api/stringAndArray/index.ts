@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { StringAndArrayCases } from "../../models/models.js";
-import {
-  UnionContext as Client,
-  StringAndArrayGet200Response,
-  StringAndArraySend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _stringAndArrayGetSend(
   context: Client,
   options: StringAndArrayGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringAndArrayGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/string-and-array")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stringAndArrayGetDeserialize(
-  result: StringAndArrayGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: StringAndArrayCases }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,7 +51,7 @@ export function _stringAndArraySendSend(
   context: Client,
   prop: StringAndArrayCases,
   options: StringAndArraySendOptionalParams = { requestOptions: {} },
-): StreamableMethod<StringAndArraySend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/string-and-array")
     .post({
@@ -63,9 +61,10 @@ export function _stringAndArraySendSend(
 }
 
 export async function _stringAndArraySendDeserialize(
-  result: StringAndArraySend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

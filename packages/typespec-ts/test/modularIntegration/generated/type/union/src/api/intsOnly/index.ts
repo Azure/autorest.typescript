@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  UnionContext as Client,
-  IntsOnlyGet200Response,
-  IntsOnlySend204Response,
-} from "../../rest/index.js";
+import { UnionContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -19,16 +16,17 @@ import {
 export function _intsOnlyGetSend(
   context: Client,
   options: IntsOnlyGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<IntsOnlyGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/union/ints-only")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _intsOnlyGetDeserialize(
-  result: IntsOnlyGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<{ prop: 1 | 2 | 3 }> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -49,7 +47,7 @@ export function _intsOnlySendSend(
   context: Client,
   prop: 1 | 2 | 3,
   options: IntsOnlySendOptionalParams = { requestOptions: {} },
-): StreamableMethod<IntsOnlySend204Response> {
+): StreamableMethod {
   return context
     .path("/type/union/ints-only")
     .post({
@@ -59,9 +57,10 @@ export function _intsOnlySendSend(
 }
 
 export async function _intsOnlySendDeserialize(
-  result: IntsOnlySend204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

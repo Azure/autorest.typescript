@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { UnionEnumValueProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  UnionEnumValueGet200Response,
-  UnionEnumValuePut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _unionEnumValueGetSend(
   context: Client,
   options: UnionEnumValueGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnionEnumValueGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/union-enum-value")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _unionEnumValueGetDeserialize(
-  result: UnionEnumValueGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<UnionEnumValueProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _unionEnumValuePutSend(
   context: Client,
   body: UnionEnumValueProperty,
   options: UnionEnumValuePutOptionalParams = { requestOptions: {} },
-): StreamableMethod<UnionEnumValuePut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/union-enum-value")
     .put({
@@ -61,9 +59,10 @@ export function _unionEnumValuePutSend(
 }
 
 export async function _unionEnumValuePutDeserialize(
-  result: UnionEnumValuePut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

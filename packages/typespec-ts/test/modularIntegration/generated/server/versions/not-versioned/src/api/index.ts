@@ -3,8 +3,8 @@
 
 export {
   createNotVersioned,
-  NotVersionedClientOptionalParams,
   NotVersionedContext,
+  NotVersionedClientOptionalParams,
 } from "./notVersionedContext.js";
 export {
   withoutApiVersion,

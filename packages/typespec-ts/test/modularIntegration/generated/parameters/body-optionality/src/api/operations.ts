@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { BodyModel } from "../models/models.js";
-import {
-  BodyOptionalityContext as Client,
-  RequiredExplicit204Response,
-  RequiredImplicit204Response,
-} from "../rest/index.js";
+import { BodyOptionalityContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -21,7 +18,7 @@ export function _requiredExplicitSend(
   context: Client,
   body: BodyModel,
   options: RequiredExplicitOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequiredExplicit204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/body-optionality/required-explicit")
     .post({
@@ -31,9 +28,10 @@ export function _requiredExplicitSend(
 }
 
 export async function _requiredExplicitDeserialize(
-  result: RequiredExplicit204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -53,7 +51,7 @@ export function _requiredImplicitSend(
   context: Client,
   name: string,
   options: RequiredImplicitOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequiredImplicit204Response> {
+): StreamableMethod {
   return context
     .path("/parameters/body-optionality/required-implicit")
     .post({
@@ -63,9 +61,10 @@ export function _requiredImplicitSend(
 }
 
 export async function _requiredImplicitDeserialize(
-  result: RequiredImplicit204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

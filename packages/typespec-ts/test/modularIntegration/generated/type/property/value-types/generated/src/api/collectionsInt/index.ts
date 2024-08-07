@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { CollectionsIntProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  CollectionsIntGet200Response,
-  CollectionsIntPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _collectionsIntGetSend(
   context: Client,
   options: CollectionsIntGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsIntGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/collections/int")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _collectionsIntGetDeserialize(
-  result: CollectionsIntGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<CollectionsIntProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _collectionsIntPutSend(
   context: Client,
   body: CollectionsIntProperty,
   options: CollectionsIntPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<CollectionsIntPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/collections/int")
     .put({
@@ -61,9 +59,10 @@ export function _collectionsIntPutSend(
 }
 
 export async function _collectionsIntPutDeserialize(
-  result: CollectionsIntPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

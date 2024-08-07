@@ -11,8 +11,8 @@ import {
   newOp,
   newOpInNewInterface,
   createRenamedFrom,
-  RenamedFromClientOptionalParams,
   RenamedFromContext,
+  RenamedFromClientOptionalParams,
 } from "./api/index.js";
 
 export { RenamedFromClientOptionalParams } from "./api/renamedFromContext.js";
@@ -32,7 +32,6 @@ export class RenamedFromClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createRenamedFrom(endpointParam, version, {
       ...options,
       userAgentOptions: { userAgentPrefix },

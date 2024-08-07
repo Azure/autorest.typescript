@@ -5,14 +5,11 @@ import {
   extendsUnknownAdditionalPropertiesDiscriminatedUnionSerializer,
   ExtendsUnknownAdditionalPropertiesDiscriminatedUnion,
 } from "../../models/models.js";
-import {
-  AdditionalPropertiesContext as Client,
-  ExtendsUnknownDiscriminatedGet200Response,
-  ExtendsUnknownDiscriminatedPut204Response,
-} from "../../rest/index.js";
+import { AdditionalPropertiesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -25,16 +22,17 @@ export function _getSend(
   options: ExtendsUnknownDiscriminatedGetOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ExtendsUnknownDiscriminatedGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/extendsUnknownDiscriminated")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
-  result: ExtendsUnknownDiscriminatedGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<ExtendsUnknownAdditionalPropertiesDiscriminatedUnion> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -58,7 +56,7 @@ export function _putSend(
   options: ExtendsUnknownDiscriminatedPutOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<ExtendsUnknownDiscriminatedPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/additionalProperties/extendsUnknownDiscriminated")
     .put({
@@ -70,9 +68,10 @@ export function _putSend(
 }
 
 export async function _putDeserialize(
-  result: ExtendsUnknownDiscriminatedPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

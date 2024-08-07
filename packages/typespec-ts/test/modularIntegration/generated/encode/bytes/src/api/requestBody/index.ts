@@ -1,17 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  BytesContext as Client,
-  RequestBodyBase64204Response,
-  RequestBodyBase64url204Response,
-  RequestBodyCustomContentType204Response,
-  RequestBodyDefault204Response,
-  RequestBodyOctetStream204Response,
-} from "../../rest/index.js";
+import { BytesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
@@ -27,7 +21,7 @@ export function _requestBodyDefaultSend(
   context: Client,
   value: Uint8Array,
   options: RequestBodyDefaultOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequestBodyDefault204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/request/default")
     .post({
@@ -37,9 +31,10 @@ export function _requestBodyDefaultSend(
 }
 
 export async function _requestBodyDefaultDeserialize(
-  result: RequestBodyDefault204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -59,7 +54,7 @@ export function _requestBodyOctetStreamSend(
   context: Client,
   value: Uint8Array,
   options: RequestBodyOctetStreamOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequestBodyOctetStream204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/request/octet-stream")
     .post({
@@ -70,9 +65,10 @@ export function _requestBodyOctetStreamSend(
 }
 
 export async function _requestBodyOctetStreamDeserialize(
-  result: RequestBodyOctetStream204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -92,7 +88,7 @@ export function _requestBodyCustomContentTypeSend(
   context: Client,
   value: Uint8Array,
   options: RequestBodyCustomContentTypeOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequestBodyCustomContentType204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/request/custom-content-type")
     .post({
@@ -103,9 +99,10 @@ export function _requestBodyCustomContentTypeSend(
 }
 
 export async function _requestBodyCustomContentTypeDeserialize(
-  result: RequestBodyCustomContentType204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -129,7 +126,7 @@ export function _requestBodyBase64Send(
   context: Client,
   value: Uint8Array,
   options: RequestBodyBase64OptionalParams = { requestOptions: {} },
-): StreamableMethod<RequestBodyBase64204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/request/base64")
     .post({
@@ -139,9 +136,10 @@ export function _requestBodyBase64Send(
 }
 
 export async function _requestBodyBase64Deserialize(
-  result: RequestBodyBase64204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -161,7 +159,7 @@ export function _requestBodyBase64urlSend(
   context: Client,
   value: Uint8Array,
   options: RequestBodyBase64urlOptionalParams = { requestOptions: {} },
-): StreamableMethod<RequestBodyBase64url204Response> {
+): StreamableMethod {
   return context
     .path("/encode/bytes/body/request/base64url")
     .post({
@@ -171,9 +169,10 @@ export function _requestBodyBase64urlSend(
 }
 
 export async function _requestBodyBase64urlDeserialize(
-  result: RequestBodyBase64url204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

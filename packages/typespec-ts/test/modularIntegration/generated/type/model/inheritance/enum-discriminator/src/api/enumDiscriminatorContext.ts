@@ -1,27 +1,36 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ClientOptions } from "@azure-rest/core-client";
-import { EnumDiscriminatorContext } from "../rest/index.js";
-import getClient from "../rest/index.js";
+import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+import { logger } from "../logger.js";
+
+export interface EnumDiscriminatorContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface EnumDiscriminatorClientOptionalParams extends ClientOptions {}
-
-export { EnumDiscriminatorContext } from "../rest/index.js";
 
 /** Illustrates inheritance with enum discriminator. */
 export function createEnumDiscriminator(
   options: EnumDiscriminatorClientOptionalParams = {},
 ): EnumDiscriminatorContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
+
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-
-  const clientContext = getClient({
+  const updatedOptions = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-  });
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+  };
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
   return clientContext;
 }

@@ -8,6 +8,6 @@ export {
 } from "./operations.js";
 export {
   createUsage,
-  UsageClientOptionalParams,
   UsageContext,
+  UsageClientOptionalParams,
 } from "./usageContext.js";

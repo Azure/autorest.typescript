@@ -5,15 +5,11 @@ import {
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
-import {
-  isUnexpected,
-  OpenAIContext as Client,
-  AudioTranscriptionsCreate200Response,
-  AudioTranscriptionsCreateDefaultResponse,
-} from "../../../rest/index.js";
+import { OpenAIContext as Client } from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
@@ -23,10 +19,7 @@ export function _createSend(
   context: Client,
   audio: CreateTranscriptionRequest,
   options: AudioTranscriptionsCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | AudioTranscriptionsCreate200Response
-  | AudioTranscriptionsCreateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/audio/transcriptions")
     .post({
@@ -44,11 +37,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result:
-    | AudioTranscriptionsCreate200Response
-    | AudioTranscriptionsCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<CreateTranscriptionResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

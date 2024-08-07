@@ -6,8 +6,8 @@ import { TestModel, Versions } from "./models/models.js";
 import { TestOptionalParams } from "./models/options.js";
 import {
   createMadeOptional,
-  MadeOptionalClientOptionalParams,
   MadeOptionalContext,
+  MadeOptionalClientOptionalParams,
   test,
 } from "./api/index.js";
 
@@ -28,7 +28,6 @@ export class MadeOptionalClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createMadeOptional(endpointParam, version, {
       ...options,
       userAgentOptions: { userAgentPrefix },

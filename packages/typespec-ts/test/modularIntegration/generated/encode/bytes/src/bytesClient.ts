@@ -21,8 +21,8 @@ import {
 } from "./classic/responseBody/index.js";
 import {
   createBytes,
-  BytesClientOptionalParams,
   BytesContext,
+  BytesClientOptionalParams,
 } from "./api/index.js";
 
 export { BytesClientOptionalParams } from "./api/bytesContext.js";
@@ -38,7 +38,6 @@ export class BytesClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createBytes({
       ...options,
       userAgentOptions: { userAgentPrefix },

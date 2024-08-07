@@ -26,8 +26,8 @@ import {
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createAdministrationOperations,
-  AdministrationOperationsClientOptionalParams,
   LoadTestServiceContext,
+  AdministrationOperationsClientOptionalParams,
   createOrUpdateTest,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -58,7 +58,6 @@ export class AdministrationOperationsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createAdministrationOperations(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { IntProperty } from "../../models/models.js";
-import {
-  ValueTypesContext as Client,
-  IntGet200Response,
-  IntPut204Response,
-} from "../../rest/index.js";
+import { ValueTypesContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -20,16 +17,17 @@ import {
 export function _intGetSend(
   context: Client,
   options: IntGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<IntGet200Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/int")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _intGetDeserialize(
-  result: IntGet200Response,
+  result: PathUncheckedResponse,
 ): Promise<IntProperty> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -51,7 +49,7 @@ export function _intPutSend(
   context: Client,
   body: IntProperty,
   options: IntPutOptionalParams = { requestOptions: {} },
-): StreamableMethod<IntPut204Response> {
+): StreamableMethod {
   return context
     .path("/type/property/value-types/int")
     .put({
@@ -61,9 +59,10 @@ export function _intPutSend(
 }
 
 export async function _intPutDeserialize(
-  result: IntPut204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
