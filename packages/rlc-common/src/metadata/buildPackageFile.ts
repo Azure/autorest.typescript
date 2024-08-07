@@ -71,8 +71,6 @@ export function buildPackageFile(
 
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
- * @param model
- * @param existingFilePath
  */
 export function updatePackageFile(model: RLCModel, existingFilePath: string) {
   const project = new Project();
