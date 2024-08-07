@@ -53,7 +53,7 @@ export interface BatchImageGenerationOperationResponseOutput {
 
 // @public (undocumented)
 export interface BeginAzureBatchImageGeneration {
-    post(options?: BeginAzureBatchImageGenerationParameters): StreamableMethod<BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationDefaultResponse>;
+    post(options: BeginAzureBatchImageGenerationParameters): StreamableMethod<BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -74,7 +74,7 @@ export interface BeginAzureBatchImageGeneration202Response extends HttpResponse 
 // @public (undocumented)
 export interface BeginAzureBatchImageGenerationBodyParam {
     // (undocumented)
-    body?: ImageGenerationOptions;
+    body: ImageGenerationOptions;
 }
 
 // @public (undocumented)
@@ -294,7 +294,7 @@ export interface FunctionName {
 
 // @public (undocumented)
 export interface GetAzureBatchImageGenerationOperationStatus {
-    get(options?: GetAzureBatchImageGenerationOperationStatusParameters): StreamableMethod<GetAzureBatchImageGenerationOperationStatus200Response | GetAzureBatchImageGenerationOperationStatusDefaultResponse>;
+    get(options: GetAzureBatchImageGenerationOperationStatusParameters): StreamableMethod<GetAzureBatchImageGenerationOperationStatus200Response | GetAzureBatchImageGenerationOperationStatusDefaultResponse>;
 }
 
 // @public
@@ -325,7 +325,7 @@ export type GetAzureBatchImageGenerationOperationStatusParameters = RequestParam
 
 // @public (undocumented)
 export interface GetChatCompletions {
-    post(options?: GetChatCompletionsParameters): StreamableMethod<GetChatCompletions200Response | GetChatCompletionsDefaultResponse>;
+    post(options: GetChatCompletionsParameters): StreamableMethod<GetChatCompletions200Response | GetChatCompletionsDefaultResponse>;
 }
 
 // @public
@@ -339,7 +339,7 @@ export interface GetChatCompletions200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetChatCompletionsBodyParam {
     // (undocumented)
-    body?: ChatCompletionsOptions;
+    body: ChatCompletionsOptions;
 }
 
 // @public (undocumented)
@@ -362,7 +362,7 @@ export type GetChatCompletionsParameters = GetChatCompletionsBodyParam & Request
 
 // @public (undocumented)
 export interface GetChatCompletionsWithAzureExtensions {
-    post(options?: GetChatCompletionsWithAzureExtensionsParameters): StreamableMethod<GetChatCompletionsWithAzureExtensions200Response | GetChatCompletionsWithAzureExtensionsDefaultResponse>;
+    post(options: GetChatCompletionsWithAzureExtensionsParameters): StreamableMethod<GetChatCompletionsWithAzureExtensions200Response | GetChatCompletionsWithAzureExtensionsDefaultResponse>;
 }
 
 // @public
@@ -376,7 +376,7 @@ export interface GetChatCompletionsWithAzureExtensions200Response extends HttpRe
 // @public (undocumented)
 export interface GetChatCompletionsWithAzureExtensionsBodyParam {
     // (undocumented)
-    body?: ChatCompletionsOptions;
+    body: ChatCompletionsOptions;
 }
 
 // @public (undocumented)
@@ -399,7 +399,7 @@ export type GetChatCompletionsWithAzureExtensionsParameters = GetChatCompletions
 
 // @public (undocumented)
 export interface GetCompletions {
-    post(options?: GetCompletionsParameters): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse>;
+    post(options: GetCompletionsParameters): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse>;
 }
 
 // @public
@@ -413,7 +413,7 @@ export interface GetCompletions200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetCompletionsBodyParam {
     // (undocumented)
-    body?: CompletionsOptions;
+    body: CompletionsOptions;
 }
 
 // @public (undocumented)
@@ -436,7 +436,7 @@ export type GetCompletionsParameters = GetCompletionsBodyParam & RequestParamete
 
 // @public (undocumented)
 export interface GetEmbeddings {
-    post(options?: GetEmbeddingsParameters): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
+    post(options: GetEmbeddingsParameters): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
 }
 
 // @public
@@ -450,7 +450,7 @@ export interface GetEmbeddings200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetEmbeddingsBodyParam {
     // (undocumented)
-    body?: EmbeddingsOptions;
+    body: EmbeddingsOptions;
 }
 
 // @public (undocumented)

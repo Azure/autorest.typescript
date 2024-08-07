@@ -212,7 +212,7 @@ export default createClient;
 
 // @public (undocumented)
 export interface CreateJob {
-    post(options?: CreateJobParameters): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
+    post(options: CreateJobParameters): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -235,7 +235,7 @@ export interface CreateJob202Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateJobBodyParam {
     // (undocumented)
-    body?: RadiologyInsightsData;
+    body: RadiologyInsightsData;
 }
 
 // @public (undocumented)
@@ -498,7 +498,7 @@ export interface GenericProcedureRecommendationOutput extends ProcedureRecommend
 
 // @public (undocumented)
 export interface GetJob {
-    get(options?: GetJobParameters): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
+    get(options: GetJobParameters): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
 }
 
 // @public (undocumented)

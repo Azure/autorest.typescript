@@ -24,7 +24,7 @@ describe("Client definition generation", () => {
 
       export interface Read {
           /** This is the longer description */
-          get(options?: ReadParameters): StreamableMethod<Read200Response>;
+          get(options: ReadParameters): StreamableMethod<Read200Response>;
       }
 
       export interface Routes {
@@ -57,7 +57,7 @@ describe("Client definition generation", () => {
 
       export interface Read {
           /** This is the longer description */
-          get(options?: ReadParameters): StreamableMethod<Read200Response>;
+          get(options: ReadParameters): StreamableMethod<Read200Response>;
       }
 
       export interface Routes {
@@ -95,7 +95,7 @@ describe("Client definition generation", () => {
   
         export interface Read {
             /** This is the longer description */
-            get(options?: ReadParameters): StreamableMethod<Read200Response>;
+            get(options: ReadParameters): StreamableMethod<Read200Response>;
         }
   
         export interface Routes {
@@ -135,7 +135,7 @@ describe("Client definition generation", () => {
   
         export interface Read {
             /** This is the longer description */
-            get(options?: ReadParameters): StreamableMethod<Read200Response>;
+            get(options: ReadParameters): StreamableMethod<Read200Response>;
         }
   
         export interface Routes {
@@ -172,7 +172,7 @@ describe("Client definition generation", () => {
   
         export interface Read {
             /** This is the longer description */
-            get(options?: ReadParameters): StreamableMethod<Read200Response>;
+            get(options: ReadParameters): StreamableMethod<Read200Response>;
         }
   
         export interface Routes {

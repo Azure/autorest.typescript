@@ -51,7 +51,7 @@ import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface UsersCreate {
   post(
-    options?: UsersCreateParameters,
+    options: UsersCreateParameters,
   ): StreamableMethod<
     UsersCreate200Response | UsersCreate409Response | UsersCreate422Response
   >;
@@ -65,20 +65,18 @@ export interface UsersValidate {
 
 export interface UsersLogin {
   post(
-    options?: UsersLoginParameters,
+    options: UsersLoginParameters,
   ): StreamableMethod<UsersLogin200Response | UsersLogin401Response>;
 }
 
 export interface UsersLogout {
-  get(
-    options?: UsersLogoutParameters,
-  ): StreamableMethod<UsersLogout200Response>;
+  get(options: UsersLogoutParameters): StreamableMethod<UsersLogout200Response>;
 }
 
 export interface UsersForgotPassword {
   /** Sends a reset token to the user's email address */
   post(
-    options?: UsersForgotPasswordParameters,
+    options: UsersForgotPasswordParameters,
   ): StreamableMethod<
     UsersForgotPassword200Response | UsersForgotPassword404Response
   >;
@@ -110,19 +108,19 @@ export interface TodoItemsList {
 
 export interface TodoItemsGet {
   get(
-    options?: TodoItemsGetParameters,
+    options: TodoItemsGetParameters,
   ): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
   patch(
     options: TodoItemsUpdateParameters,
   ): StreamableMethod<TodoItemsUpdate200Response>;
   delete(
-    options?: TodoItemsDeleteParameters,
+    options: TodoItemsDeleteParameters,
   ): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
 }
 
 export interface TodoItemsAttachmentsList {
   get(
-    options?: TodoItemsAttachmentsListParameters,
+    options: TodoItemsAttachmentsListParameters,
   ): StreamableMethod<
     TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList404Response
   >;

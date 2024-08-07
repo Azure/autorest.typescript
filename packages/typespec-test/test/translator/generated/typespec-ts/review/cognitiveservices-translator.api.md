@@ -364,7 +364,7 @@ export interface ExampleOutput {
 
 // @public (undocumented)
 export interface GetLanguages {
-    get(options?: GetLanguagesParameters): StreamableMethod<GetLanguages200Response | GetLanguagesDefaultResponse>;
+    get(options: GetLanguagesParameters): StreamableMethod<GetLanguages200Response | GetLanguagesDefaultResponse>;
 }
 
 // @public (undocumented)
