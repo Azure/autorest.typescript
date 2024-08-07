@@ -10,7 +10,7 @@ describe("AzureExampleClient Client", () => {
     });
   });
 
-  it.only("basic example client action", async () => {
+  it("basic example client action", async () => {
     const result = await client.basicAction("query", "header", {
       stringProperty: "text",
       modelProperty: {

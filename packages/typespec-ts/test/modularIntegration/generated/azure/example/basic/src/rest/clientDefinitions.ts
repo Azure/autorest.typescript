@@ -10,8 +10,8 @@ export interface Basic {
 }
 
 export interface Routes {
-  /** Resource for '/azure/example/basic/azure/example/basic/basic' has methods for the following verbs: post */
-  (path: "/azure/example/basic/azure/example/basic/basic"): Basic;
+  /** Resource for '/azure/example/basic/basic' has methods for the following verbs: post */
+  (path: "/azure/example/basic/basic"): Basic;
 }
 
 export type BasicContext = Client & {
