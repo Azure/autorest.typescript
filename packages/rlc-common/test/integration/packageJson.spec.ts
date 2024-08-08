@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import { expect } from "chai";
-import { buildPackageFile } from "../../src/metadata/buildPackageFile.js";
+import {
+  buildPackageFile,
+  updatePackageFile
+} from "../../src/metadata/buildPackageFile.js";
 import "mocha";
 import { createMockModel, TestModelConfig } from "./mockHelper.js";
 
@@ -674,6 +677,78 @@ describe("Package file generation", () => {
         "build:node",
         "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
       );
+    });
+    it("[cjs] should update to correct lro dependencies if there are lro operations", () => {
+      const model = createMockModel({
+        moduleKind: "cjs",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasLro: true
+      });
+      const packageFileContent = updatePackageFile(
+        model,
+        "./test/integration/static/package.json"
+      );
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      console.log(packageFile);
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/core-lro",
+        "^3.0.0"
+      );
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/abort-controller",
+        "^2.1.2"
+      );
+    });
+
+    it("[cjs] should update to correct paging dependencies if there are paging operations", () => {
+      const model = createMockModel({
+        moduleKind: "cjs",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasPaging: true
+      });
+      const packageFileContent = updatePackageFile(
+        model,
+        "./test/integration/static/package.json"
+      );
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      console.log(packageFile);
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/core-paging",
+        "^1.5.0"
+      );
+    });
+
+    it("[cjs] should return directly if package.json is non-existing or no paging/lro operations", () => {
+      let model = createMockModel({
+        moduleKind: "cjs",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasPaging: false,
+        hasLro: false
+      });
+      let packageFileContent = updatePackageFile(
+        model,
+        "./test/integration/static/package.json"
+      );
+      expect(packageFileContent).to.be.undefined;
+      model = createMockModel({
+        moduleKind: "cjs",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasPaging: true,
+        hasLro: true
+      });
+      packageFileContent = updatePackageFile(
+        model,
+        "./test/integration/static/package_non_existing.json"
+      );
+      expect(packageFileContent).to.be.undefined;
     });
   });
 

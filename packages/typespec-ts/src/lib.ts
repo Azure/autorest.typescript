@@ -92,7 +92,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       default: "esm"
     },
     compatibilityMode: { type: "boolean", nullable: true },
-    experimentalExtensibleEnums: { type: "boolean", nullable: true }
+    experimentalExtensibleEnums: { type: "boolean", nullable: true },
+    clearOutputFolder: { type: "boolean", nullable: true }
   },
   required: []
 };

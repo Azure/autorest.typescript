@@ -66,6 +66,7 @@ function extractRLCOptions(
     emitterOptions
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
+  const clearOutputFolder = getClearOutputFolder(emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -83,7 +84,8 @@ function extractRLCOptions(
     enableOperationGroup,
     enableModelNamespace,
     hierarchyClient,
-    azureArm: dpgContext.arm
+    azureArm: dpgContext.arm,
+    clearOutputFolder
   };
 }
 
@@ -193,6 +195,13 @@ function getHierarchyClient(emitterOptions: EmitterOptions) {
   }
   // enable hierarchy client by default if customers didn't set the option explicitly
   return true;
+}
+
+function getClearOutputFolder(emitterOptions: EmitterOptions) {
+  if (emitterOptions.clearOutputFolder === true) {
+    return true;
+  }
+  return false;
 }
 
 function detectIfNameConflicts(dpgContext: SdkContext) {
