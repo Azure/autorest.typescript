@@ -46,6 +46,8 @@ export function path(client: Client, path: string, ...pathParams: string[]) {
   } as any;
 }
 
+// only prepare the path parameters mapping
+// input: "/widgets/{+widgetName}{?+key}", "widgetName"
 // return {widgetName: "widgetName"};
 function preparePathParameters(path: string, ...pathParams: string[]) {
   const parameters = {};
