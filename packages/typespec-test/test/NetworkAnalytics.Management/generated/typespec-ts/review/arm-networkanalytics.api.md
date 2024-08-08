@@ -135,7 +135,7 @@ export interface DataProductsCatalogsListBySubscriptionOptionalParams extends Op
 
 // @public
 export interface DataProductsCatalogsOperations {
-    get: (resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
+    get: (resourceGroupName: string, dataProductsCatalogName: string, options?: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
     listByResourceGroup: (resourceGroupName: string, options?: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
     listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }

@@ -17,7 +17,7 @@ async function getSupportedLanguagesSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
   const initialResponse = await client
-    .path("/authoring/analyze-text/projects/global/languages")
+    .path("/languages")
     .get({ queryParameters: { top: 123, skip: 123, maxpagesize: 123 } });
   const pageData = paginate(client, initialResponse);
   const result = [];

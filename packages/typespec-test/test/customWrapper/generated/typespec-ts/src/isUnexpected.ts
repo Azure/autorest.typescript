@@ -10,8 +10,8 @@ import {
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "GET /authoring/analyze-text/deployments/{deploymentName}": ["200"],
-  "PUT /authoring/analyze-text/deployments/{deploymentName}": ["200", "201"],
+  "GET /deployments/{deploymentName}": ["200"],
+  "PUT /deployments/{deploymentName}": ["200", "201"],
 };
 
 export function isUnexpected(

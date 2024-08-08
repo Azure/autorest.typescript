@@ -123,7 +123,7 @@ export function isUnexpected(response: DeployProject200Response | DeployProject2
 
 // @public (undocumented)
 export interface Routes {
-    (path: "/authoring/analyze-text/deployments/{deploymentName}", deploymentName: string): GetDeployment;
+    (path: "/deployments/{deploymentName}", deploymentName: string): GetDeployment;
 }
 
 // (No @packageDocumentation comment for this package)

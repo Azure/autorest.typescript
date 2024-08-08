@@ -24,13 +24,15 @@ export function _getSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
+  dataProductsCatalogName: string,
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default",
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/{dataProductsCatalogName}",
       subscriptionId,
       resourceGroupName,
+      dataProductsCatalogName,
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
@@ -92,12 +94,14 @@ export async function get(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
+  dataProductsCatalogName: string,
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
 ): Promise<DataProductsCatalog> {
   const result = await _getSend(
     context,
     subscriptionId,
     resourceGroupName,
+    dataProductsCatalogName,
     options,
   );
   return _getDeserialize(result);

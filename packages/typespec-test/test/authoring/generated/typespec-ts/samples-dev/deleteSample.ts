@@ -20,7 +20,7 @@ async function deleteSample() {
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
-    .path("/authoring/analyze-text/projects/{projectName}", projectName)
+    .path("/projects/{projectName}", projectName)
     .delete();
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

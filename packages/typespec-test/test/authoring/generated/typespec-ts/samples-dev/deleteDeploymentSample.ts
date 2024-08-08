@@ -22,7 +22,7 @@ async function deleteDeploymentSample() {
   const deploymentName = "{Your deploymentName}";
   const initialResponse = await client
     .path(
-      "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
+      "/projects/{projectName}/deployments/{deploymentName}",
       projectName,
       deploymentName,
     )

@@ -21,7 +21,7 @@ async function getSwapDeploymentsStatusSample() {
   const jobId = "{Your jobId}";
   const result = await client
     .path(
-      "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}",
+      "/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}",
       projectName,
       deploymentName,
       jobId,
