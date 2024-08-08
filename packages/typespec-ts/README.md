@@ -150,7 +150,7 @@ credentialKeyHeaderName: Your-Subscription-Key
 If we enable this option `clearOutputFolder` we would empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline.
 
 ```yaml
-addCredentials: true
+clearOutputFolder: true
 ```
 
 # Contributing
