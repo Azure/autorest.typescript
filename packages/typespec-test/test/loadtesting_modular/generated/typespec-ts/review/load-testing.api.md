@@ -687,7 +687,7 @@ export class TestProfileAdministrationOperationsClient {
     createOrUpdateTestProfile(testProfileId: string, body: TestProfileAdministrationOperationsClientTestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfileAdministrationOperationsClientTestProfile>;
     deleteTestProfile(testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
     getTestProfile(testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfileAdministrationOperationsClientTestProfile>;
-    listTestProfiles(options?: ListTestProfilesOptionalParams): TestProfileAdministrationOperationsClientPagedAsyncIterableIterator<TestProfileAdministrationOperationsClientTestProfile>;
+    listTestProfiles(options?: ListTestProfilesOptionalParams): PagedAsyncIterableIterator<TestProfileAdministrationOperationsClientTestProfile>;
     readonly pipeline: Pipeline;
 }
 
@@ -730,11 +730,6 @@ export interface TestProfileAdministrationOperationsClientCertificateMetadata {
 
 // @public
 export type TestProfileAdministrationOperationsClientCertificateType = string;
-
-// @public
-export type TestProfileAdministrationOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
 
 // @public
 export interface TestProfileAdministrationOperationsClientDimensionFilter {
@@ -1024,18 +1019,6 @@ export interface TestProfileAdministrationOperationsClientOptionalLoadTestConfig
 // @public
 export interface TestProfileAdministrationOperationsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface TestProfileAdministrationOperationsClientPagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends TestProfileAdministrationOperationsClientPageSettings = TestProfileAdministrationOperationsClientPageSettings> {
-    [Symbol.asyncIterator](): TestProfileAdministrationOperationsClientPagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TestProfileAdministrationOperationsClientContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface TestProfileAdministrationOperationsClientPageSettings {
-    continuationToken?: string;
 }
 
 // @public
@@ -1384,7 +1367,7 @@ export class TestProfileRunOperationsClient {
     createOrUpdateTestProfileRun(testProfileRunId: string, body: TestProfileRunOperationsClientTestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
     deleteTestProfileRun(testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
     getTestProfileRun(testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
-    listTestProfileRuns(options?: ListTestProfileRunsOptionalParams): TestProfileRunOperationsClientPagedAsyncIterableIterator<TestProfileRunOperationsClientTestProfileRun>;
+    listTestProfileRuns(options?: ListTestProfileRunsOptionalParams): PagedAsyncIterableIterator<TestProfileRunOperationsClientTestProfileRun>;
     readonly pipeline: Pipeline;
     stopTestProfileRun(testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRunOperationsClientTestProfileRun>;
 }
@@ -1428,11 +1411,6 @@ export interface TestProfileRunOperationsClientCertificateMetadata {
 
 // @public
 export type TestProfileRunOperationsClientCertificateType = string;
-
-// @public
-export type TestProfileRunOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
 
 // @public
 export interface TestProfileRunOperationsClientDimensionFilter {
@@ -1722,18 +1700,6 @@ export interface TestProfileRunOperationsClientOptionalLoadTestConfig {
 // @public
 export interface TestProfileRunOperationsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface TestProfileRunOperationsClientPagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends TestProfileRunOperationsClientPageSettings = TestProfileRunOperationsClientPageSettings> {
-    [Symbol.asyncIterator](): TestProfileRunOperationsClientPagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TestProfileRunOperationsClientContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface TestProfileRunOperationsClientPageSettings {
-    continuationToken?: string;
 }
 
 // @public
@@ -2156,8 +2122,8 @@ export class TestRunOperationsClient {
     listMetricDefinitions(testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<TestRunOperationsClientMetricDefinitionCollection>;
     listMetricDimensionValues(testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<TestRunOperationsClientDimensionValueList>;
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<TestRunOperationsClientMetricNamespaceCollection>;
-    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: TestRunOperationsClientMetricRequestPayload, options?: ListMetricsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
-    listTestRuns(options?: ListTestRunsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
+    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: TestRunOperationsClientMetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
+    listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
 }
@@ -2201,11 +2167,6 @@ export interface TestRunOperationsClientCertificateMetadata {
 
 // @public
 export type TestRunOperationsClientCertificateType = string;
-
-// @public
-export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
 
 // @public
 export interface TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
@@ -2513,18 +2474,6 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
 // @public
 export interface TestRunOperationsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends TestRunOperationsClientPageSettings = TestRunOperationsClientPageSettings> {
-    [Symbol.asyncIterator](): TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TestRunOperationsClientContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface TestRunOperationsClientPageSettings {
-    continuationToken?: string;
 }
 
 // @public

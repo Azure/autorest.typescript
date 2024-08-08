@@ -123,7 +123,6 @@ import {
   GetNodeFilePropertiesOptionalParams,
   ListNodeFilesOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBatch,
   BatchContext,
@@ -205,6 +204,7 @@ import {
   getNodeFileProperties,
   listNodeFiles,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 
 export { BatchClientOptionalParams } from "./api/batchContext.js";
 

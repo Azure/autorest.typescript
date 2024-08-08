@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "../pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import { User } from "../../models/models.js";
 import { WidgetServiceContext as Client } from "../index.js";
 import {
@@ -11,6 +9,8 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
 
 export function _createOrReplaceSend(

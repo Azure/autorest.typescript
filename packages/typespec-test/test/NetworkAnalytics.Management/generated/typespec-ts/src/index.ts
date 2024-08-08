@@ -1,11 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export {
   NetworkAnalyticsClient,
   NetworkAnalyticsClientOptionalParams,
 } from "./networkAnalyticsClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Resource,
   SystemData,
@@ -86,9 +91,6 @@ export {
   DataProductsListRolesAssignmentsOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   DataProductsOperations,
@@ -96,3 +98,4 @@ export {
   DataTypesOperations,
   OperationsOperations,
 } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

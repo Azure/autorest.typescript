@@ -17,6 +17,21 @@ import { createContextWithDefaultOptions } from "../../src/index.js";
 import { provideContext } from "../../src/contextManager.js";
 import { Project } from "ts-morph";
 import { provideSdkTypes } from "../../src/framework/hooks/sdkTypes.js";
+import { provideBinder } from "../../src/framework/hooks/binder.js";
+import { loadStaticHelpers } from "../../src/framework/load-static-helpers.js";
+import path from "path";
+import { getDirname } from "../../src/utils/dirname.js";
+import {
+  PagingHelpers,
+  PollingHelpers,
+  Utilities
+} from "../../src/modular/static-helpers-metadata.js";
+import {
+  AzureCoreDependencies,
+  AzurePollingDependencies
+} from "../../src/modular/external-dependencies.js";
+
+const { __dirname } = getDirname(import.meta.url);
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -92,10 +107,11 @@ export async function createDpgContextTestHelper(
   program: Program,
   enableModelNamespace = false
 ): Promise<SdkContext> {
+  const outputProject = new Project({ useInMemoryFileSystem: true });
   provideContext("rlcMetaTree", new Map());
   provideContext("modularMetaTree", new Map());
   provideContext("symbolMap", new Map());
-  provideContext("outputProject", new Project());
+  provideContext("outputProject", outputProject);
 
   const context = await createContextWithDefaultOptions({
     program
@@ -116,6 +132,7 @@ export async function createDpgContextTestHelper(
   });
 
   provideSdkTypes(context.sdkPackage);
+  await provideBinderWithAzureDependencies(outputProject);
 
   return sdkContext;
 }
@@ -147,3 +164,32 @@ export type VerifyPropertyConfig = {
   additionalInputContent?: string;
   additionalOutputContent?: string;
 };
+
+export async function provideBinderWithAzureDependencies(project: Project) {
+  const helpersDirectory = path.resolve(
+    __dirname,
+    "../../src/modular/static-helpers"
+  );
+
+  const extraDependencies = {
+    ...AzurePollingDependencies,
+    ...AzureCoreDependencies
+  };
+
+  const staticHelpers = {
+    ...Utilities,
+    ...PagingHelpers,
+    ...PollingHelpers
+  };
+
+  const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {
+    helpersAssetDirectory: helpersDirectory
+  });
+
+  const binder = provideBinder(project, {
+    staticHelpers: staticHelperMap,
+    dependencies: extraDependencies
+  });
+
+  return binder;
+}

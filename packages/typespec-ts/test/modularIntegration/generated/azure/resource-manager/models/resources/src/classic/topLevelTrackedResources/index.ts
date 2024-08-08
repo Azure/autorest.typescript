@@ -11,7 +11,7 @@ import {
   topLevelTrackedResourcesListByResourceGroup,
   topLevelTrackedResourcesListBySubscription,
 } from "../../api/topLevelTrackedResources/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   TopLevelTrackedResourcesGetOptionalParams,
