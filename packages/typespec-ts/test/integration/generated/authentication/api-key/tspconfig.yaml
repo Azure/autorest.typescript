@@ -6,6 +6,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     title: AuthApiKeyClient
+    clearOutputFolder: true
     packageDetails:
       name: "@msinternal/auth-apikey"
       description: "Auth api key Test Service"
