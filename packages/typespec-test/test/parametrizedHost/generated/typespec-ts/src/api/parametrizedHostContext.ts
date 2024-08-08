@@ -22,7 +22,7 @@ export function createParametrizedHost(
   const host = options.host ?? "one";
   const subdomain = options.subdomain ?? "two";
   const sufix = options.sufix ?? "three";
-  const apiVersion = options.apiVersion;
+  const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
