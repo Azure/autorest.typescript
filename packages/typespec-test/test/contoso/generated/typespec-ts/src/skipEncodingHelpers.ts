@@ -8,7 +8,7 @@ import { Client } from "@azure-rest/core-client";
  */
 // step 1: build the mapping between the path and uri template
 const uriTemplateMapper = {
-  "widgets/{widgetName}": "widgets/{+widgetName}{?+key}",
+  "widgets/{widgetName}": "widgets/{+widgetName}?{+key}",
 };
 
 // step 2: the overloading with paths which includes special skip encoding
@@ -65,12 +65,13 @@ function prepareUrlFromUriTemplate(uri: string, uriParams: any) {
  * here is the customer's code
  */
 const client = createClient("https://example.com");
+// widgets/foo?key=bar
 const getWidgetResponse = await path(
   client,
   "/widgets/{widgetName}",
-  "widgetName"
+  "foo"
 ).get({
-  queryParameters: { key: "value" },
+  queryParameters: { key: "bar" },
 });
 
 if (isUnexpected(getWidgetResponse)) {
