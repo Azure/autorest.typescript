@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { PollerLike, OperationState } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User, ExportedUser } from "./models/models.js";
 import {
@@ -17,6 +16,7 @@ import {
   StandardContext,
   StandardClientOptionalParams,
 } from "./api/index.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 export { StandardClientOptionalParams } from "./api/standardContext.js";
 
