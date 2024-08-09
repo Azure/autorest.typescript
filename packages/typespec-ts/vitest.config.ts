@@ -9,7 +9,7 @@ export default defineConfig({
       include: [
         "src/modular/serialization/**/*.ts",
         "src/framework/**/*.ts",
-        "src/modular/static-helpers/**/*.ts"
+        "static/static-helpers/**/*.ts"
       ],
       exclude: ["**/*.spec.ts", "**/*.spec.tsx", ".next/*"]
     }

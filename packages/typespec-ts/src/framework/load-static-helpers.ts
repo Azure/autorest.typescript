@@ -9,8 +9,7 @@ import {
   TypeAliasDeclaration
 } from "ts-morph";
 import { refkey } from "./refkey.js";
-import { getDirname } from "../utils/dirname.js";
-const { __dirname } = getDirname(import.meta.url);
+import { resolveProjectRoot } from "../utils/resolve-project-root.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
@@ -33,10 +32,7 @@ export function isStaticHelperMetadata(
 
 export type StaticHelpers = Record<string, StaticHelperMetadata>;
 
-const DEFAULT_STATIC_HELPERS_PATH = path.resolve(
-  __dirname,
-  "../modular/static-helpers"
-);
+const DEFAULT_STATIC_HELPERS_PATH = "static/static-helpers";
 
 export interface LoadStaticHelpersOptions {
   helpersAssetDirectory?: string;
@@ -50,8 +46,12 @@ export async function loadStaticHelpers(
 ): Promise<Map<string, StaticHelperMetadata>> {
   const sourcesDir = options.sourcesDir ?? "";
   const helpersMap = new Map<string, StaticHelperMetadata>();
+  const defaultStaticHelpersPath = path.join(
+    resolveProjectRoot(),
+    DEFAULT_STATIC_HELPERS_PATH
+  );
   const files = await traverseDirectory(
-    options.helpersAssetDirectory ?? DEFAULT_STATIC_HELPERS_PATH
+    options.helpersAssetDirectory ?? defaultStaticHelpersPath
   );
 
   for (const file of files) {

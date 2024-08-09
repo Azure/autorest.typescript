@@ -24,7 +24,7 @@ import { getDirname } from "../../src/utils/dirname.js";
 import {
   PagingHelpers,
   PollingHelpers,
-  Utilities
+  SerializationHelpers
 } from "../../src/modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
@@ -168,7 +168,7 @@ export type VerifyPropertyConfig = {
 export async function provideBinderWithAzureDependencies(project: Project) {
   const helpersDirectory = path.resolve(
     __dirname,
-    "../../src/modular/static-helpers"
+    "../../static/static-helpers"
   );
 
   const extraDependencies = {
@@ -177,7 +177,7 @@ export async function provideBinderWithAzureDependencies(project: Project) {
   };
 
   const staticHelpers = {
-    ...Utilities,
+    ...SerializationHelpers,
     ...PagingHelpers,
     ...PollingHelpers
   };

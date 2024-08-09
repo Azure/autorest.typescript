@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { buildCsvCollection } from "../../../src/modular/static-helpers/serialization/build-csv-collection.js";
-import { buildPipeCollection } from "../../../src/modular/static-helpers/serialization/build-pipe-collection.js";
-import { buildSsvCollection } from "../../../src/modular/static-helpers/serialization/build-ssv-collection.js";
-import { buildTsvCollection } from "../../../src/modular/static-helpers/serialization/build-tsv-collection.js";
+import { buildCsvCollection } from "../../../static/static-helpers/serialization/build-csv-collection.js";
+import { buildPipeCollection } from "../../../static/static-helpers/serialization/build-pipe-collection.js";
+import { buildSsvCollection } from "../../../static/static-helpers/serialization/build-ssv-collection.js";
+import { buildTsvCollection } from "../../../static/static-helpers/serialization/build-tsv-collection.js";
 
 describe("Collection Functions", () => {
   const items = [1, 2, 3];

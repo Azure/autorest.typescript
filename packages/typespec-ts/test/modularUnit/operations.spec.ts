@@ -131,7 +131,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "./index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
         import { uint8ArrayToString } from "@azure/core-util";
-        
+        import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
         export function _readSend(
           context: Client, 
           requiredHeader: string,

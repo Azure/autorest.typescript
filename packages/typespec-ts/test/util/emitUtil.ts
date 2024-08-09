@@ -451,7 +451,6 @@ export async function emitModularOperationsFromTypeSpec(
         throw dpgContext.program.diagnostics;
       }
       binder.resolveAllReferences();
-      // const operationFiles = project.getSourceFiles();
       return res;
     }
   }
