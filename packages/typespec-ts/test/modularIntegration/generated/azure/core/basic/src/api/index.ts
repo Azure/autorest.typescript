@@ -11,11 +11,6 @@ export {
   createOrReplace,
   get,
   list,
-  listWithPage,
-  listWithParameters,
-  listWithCustomPageModel,
   $delete,
   $export,
-  listFirstItem,
-  listSecondItem,
 } from "./operations.js";

@@ -2,24 +2,14 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  User,
-  ListItemInputBody,
-  FirstItem,
-  SecondItem,
-} from "./models/models.js";
+import { User } from "./models/models.js";
 import {
   CreateOrUpdateOptionalParams,
   CreateOrReplaceOptionalParams,
   GetOptionalParams,
   ListOptionalParams,
-  ListWithPageOptionalParams,
-  ListWithParametersOptionalParams,
-  ListWithCustomPageModelOptionalParams,
   DeleteOptionalParams,
   ExportOptionalParams,
-  ListFirstItemOptionalParams,
-  ListSecondItemOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -30,13 +20,8 @@ import {
   createOrReplace,
   get,
   list,
-  listWithPage,
-  listWithParameters,
-  listWithCustomPageModel,
   $delete,
   $export,
-  listFirstItem,
-  listSecondItem,
 } from "./api/index.js";
 
 export { BasicClientOptionalParams } from "./api/basicContext.js";
@@ -92,28 +77,6 @@ export class BasicClient {
     return list(this._client, options);
   }
 
-  /** List with Azure.Core.Page<>. */
-  listWithPage(
-    options: ListWithPageOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<User> {
-    return listWithPage(this._client, options);
-  }
-
-  /** List with extensible enum parameter Azure.Core.Page<>. */
-  listWithParameters(
-    bodyInput: ListItemInputBody,
-    options: ListWithParametersOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<User> {
-    return listWithParameters(this._client, bodyInput, options);
-  }
-
-  /** List with custom page model. */
-  listWithCustomPageModel(
-    options: ListWithCustomPageModelOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<User> {
-    return listWithCustomPageModel(this._client, options);
-  }
-
   /** Deletes a User */
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
@@ -139,19 +102,5 @@ export class BasicClient {
     options: ExportOptionalParams = { requestOptions: {} },
   ): Promise<User> {
     return $export(this._client, id, format, options);
-  }
-
-  /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
-  listFirstItem(
-    options: ListFirstItemOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<FirstItem> {
-    return listFirstItem(this._client, options);
-  }
-
-  /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
-  listSecondItem(
-    options: ListSecondItemOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<SecondItem> {
-    return listSecondItem(this._client, options);
   }
 }
