@@ -32,7 +32,7 @@ interface AdministrationOperations {
 
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
 @client({
-  name: "LoadTestRunClient",
+  name: "SubNamespace.LoadTestRunClient",
   service: Microsoft.LoadTestService,
 })
 interface TestRunOperations {

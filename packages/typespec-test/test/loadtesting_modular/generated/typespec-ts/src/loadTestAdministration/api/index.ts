@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 export {
-  createAdministrationOperations,
+  createLoadTestAdministration,
   LoadTestServiceContext,
-  AdministrationOperationsClientOptionalParams,
-} from "./administrationOperationsContext.js";
+  LoadTestAdministrationClientOptionalParams,
+} from "./loadTestAdministrationContext.js";
 export {
   createOrUpdateTest,
   createOrUpdateAppComponents,

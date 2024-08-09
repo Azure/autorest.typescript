@@ -32,6 +32,9 @@ import {
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
+  createLoadTestRun,
+  LoadTestServiceContext,
+  LoadTestRunClientOptionalParams,
   createOrUpdateTestRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -46,14 +49,11 @@ import {
   listMetrics,
   listTestRuns,
   stopTestRun,
-  createTestRunOperations,
-  LoadTestServiceContext,
-  TestRunOperationsClientOptionalParams,
 } from "./api/index.js";
 
-export { TestRunOperationsClientOptionalParams } from "./api/testRunOperationsContext.js";
+export { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
 
-export class TestRunOperationsClient {
+export class LoadTestRunClient {
   private _client: LoadTestServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
@@ -61,13 +61,13 @@ export class TestRunOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: TestRunOperationsClientOptionalParams = {},
+    options: LoadTestRunClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createTestRunOperations(endpointParam, credential, {
+    this._client = createLoadTestRun(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

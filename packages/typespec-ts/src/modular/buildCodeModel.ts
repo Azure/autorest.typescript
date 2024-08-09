@@ -478,7 +478,7 @@ function emitBodyParameter(
       type,
       location: "body",
       ...base,
-      isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
+      isBinaryPayload: isBinaryPayload(context, body.type)
     };
   }
   return undefined;
@@ -639,11 +639,7 @@ function emitResponse(
     discriminator: "basic",
     type: type,
     isBinaryPayload: innerResponse.body?.type
-      ? isBinaryPayload(
-          context,
-          innerResponse.body?.type,
-          innerResponse.body?.contentTypes![0] ?? "application/json"
-        )
+      ? isBinaryPayload(context, innerResponse.body?.type)
       : false
   };
 
@@ -1747,7 +1743,6 @@ function getMethodApiVersionParameter(): Parameter | void {
 
 function emitClients(
   context: SdkContext,
-  namespace: string,
   rlcModelsMap: Map<string, RLCModel>
 ): HrlcClient[] {
   const program = context.program;
@@ -1755,13 +1750,10 @@ function emitClients(
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
-    const clientName = getLibraryName(context, client.type).replace(
+    const clientName = client.name.replace(
       "Client",
       ""
     );
-    if (getNamespace(context, client.name) !== namespace) {
-      continue;
-    }
     const server = getServerHelper(program, client.service);
     const rlcModels = rlcModelsMap.get(client.service.name);
     if (!rlcModels) {
@@ -1844,7 +1836,6 @@ export function emitCodeModel(
         !!dpgContext.rlcOptions?.experimentalExtensibleEnums
     },
     namespace: clientNamespaceString,
-    subnamespaceToClients: {},
     clients: [],
     types: [],
     project,
@@ -1859,7 +1850,7 @@ export function emitCodeModel(
   }
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
-      codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
+      codeModel.clients = emitClients(dpgContext, rlcModelsMap);
       codeModel.clients.length > 1 &&
         codeModel.clients.map((client) => {
           client["subfolder"] = normalizeName(
@@ -1867,18 +1858,6 @@ export function emitCodeModel(
             NameType.File
           );
         });
-    } else {
-      codeModel["subnamespaceToClients"][namespace] = emitClients(
-        dpgContext,
-        namespace,
-        rlcModelsMap
-      );
-      codeModel["subnamespaceToClients"][namespace].length > 1 &&
-        (codeModel["subnamespaceToClients"][namespace] as HrlcClient[]).map(
-          (client) => {
-            client["subfolder"] = normalizeName(client.name, NameType.File);
-          }
-        );
     }
   }
 

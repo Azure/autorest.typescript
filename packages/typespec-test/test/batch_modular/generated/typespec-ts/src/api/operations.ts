@@ -12676,9 +12676,7 @@ export async function _getNodeRemoteDesktopFileDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body as any;
 }
 
 /**
@@ -13431,9 +13429,7 @@ export async function _getNodeFileDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body as any;
 }
 
 /** Returns the content of the specified Compute Node file. */
