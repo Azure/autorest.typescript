@@ -1,16 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "../pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   User,
   Widget,
   AnalyzeResult,
   _ListWidgetsPagesResults,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { WidgetServiceContext as Client } from "../index.js";
 import {
   StreamableMethod,
@@ -19,7 +15,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { buildCsvCollection } from "../../helpers/serializerHelpers.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,

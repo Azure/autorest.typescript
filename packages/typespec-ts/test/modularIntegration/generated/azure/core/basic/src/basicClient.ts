@@ -21,7 +21,6 @@ import {
   ListFirstItemOptionalParams,
   ListSecondItemOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBasic,
   BasicContext,
@@ -38,6 +37,7 @@ import {
   listFirstItem,
   listSecondItem,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 
 export { BasicClientOptionalParams } from "./api/basicContext.js";
 

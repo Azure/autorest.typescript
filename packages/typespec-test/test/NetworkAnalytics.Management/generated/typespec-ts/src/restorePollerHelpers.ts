@@ -1,14 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  PollerLike,
-  OperationState,
-  deserializeState,
-  ResourceLocationConfig,
-} from "@azure/core-lro";
 import { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
-import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
   _createDeserialize,
   _updateDeserialize,
@@ -20,11 +13,18 @@ import {
   _updateDeserialize as _updateDeserializeDataProducts,
   _$deleteDeserialize as _$deleteDeserializeDataProducts,
 } from "./api/dataProducts/index.js";
+import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
-  PathUncheckedResponse,
   OperationOptions,
+  PathUncheckedResponse,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
+import {
+  PollerLike,
+  OperationState,
+  deserializeState,
+  ResourceLocationConfig,
+} from "@azure/core-lro";
 
 export interface RestorePollerOptions<
   TResult,

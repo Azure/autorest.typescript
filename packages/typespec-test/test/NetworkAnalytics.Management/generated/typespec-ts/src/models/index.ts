@@ -84,8 +84,3 @@ export {
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
 } from "./options.js";
-export {
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";

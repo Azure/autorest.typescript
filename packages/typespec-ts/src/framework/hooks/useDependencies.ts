@@ -1,11 +1,12 @@
 import { provideContext, useContext } from "../../contextManager.js";
-import { DEFAULT_DEPENDENCIES, ExternalDependencies } from "../dependency.js";
+import { DefaultCoreDependencies } from "../../modular/external-dependencies.js";
+import { ExternalDependencies } from "../dependency.js";
 
 export function provideDependencies(
   customDependencies: Partial<ExternalDependencies> = {}
 ) {
   const dependencies = {
-    ...DEFAULT_DEPENDENCIES,
+    ...DefaultCoreDependencies,
     ...customDependencies
   } as ExternalDependencies;
 

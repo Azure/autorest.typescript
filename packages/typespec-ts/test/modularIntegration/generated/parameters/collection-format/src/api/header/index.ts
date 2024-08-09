@@ -8,7 +8,7 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { buildCsvCollection } from "../../helpers/serializerHelpers.js";
+import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import { HeaderCsvOptionalParams } from "../../models/options.js";
 
 export function _headerCsvSend(

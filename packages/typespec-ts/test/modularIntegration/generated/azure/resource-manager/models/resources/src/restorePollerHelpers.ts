@@ -1,14 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  PollerLike,
-  OperationState,
-  deserializeState,
-  ResourceLocationConfig,
-} from "@azure/core-lro";
 import { ResourcesClient } from "./resourcesClient.js";
-import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
   _topLevelTrackedResourcesCreateOrReplaceDeserialize,
   _topLevelTrackedResourcesUpdateDeserialize,
@@ -19,11 +12,18 @@ import {
   _nestedProxyResourcesUpdateDeserialize,
   _nestedProxyResourcesDeleteDeserialize,
 } from "./api/nestedProxyResources/index.js";
+import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
-  PathUncheckedResponse,
   OperationOptions,
+  PathUncheckedResponse,
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
+import {
+  PollerLike,
+  OperationState,
+  deserializeState,
+  ResourceLocationConfig,
+} from "@azure/core-lro";
 
 export interface RestorePollerOptions<
   TResult,

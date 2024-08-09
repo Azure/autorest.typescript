@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "../pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   nestedProxyResourcePropertiesSerializer,
   NestedProxyResource,
   _NestedProxyResourceListResult,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { ResourcesContext as Client } from "../index.js";
 import {
   StreamableMethod,
@@ -17,6 +13,12 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   NestedProxyResourcesGetOptionalParams,
   NestedProxyResourcesCreateOrReplaceOptionalParams,

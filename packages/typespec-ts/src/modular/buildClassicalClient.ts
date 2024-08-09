@@ -13,7 +13,6 @@ import {
 } from "ts-morph";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
 import {
   buildUserAgentOptions,
   getClientParameters,
@@ -108,14 +107,11 @@ export function buildClassicalClient(
     `this._client = create${modularClientName}(${paramNames.join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
-  importLroCoreDependencies(clientFile);
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
-  clientFile.fixMissingImports();
-  clientFile.fixUnusedIdentifiers();
   return clientFile;
 }
 

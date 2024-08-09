@@ -8,7 +8,7 @@ import {
   listByResourceGroup,
   listBySubscription,
 } from "../../api/dataProductsCatalogs/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,

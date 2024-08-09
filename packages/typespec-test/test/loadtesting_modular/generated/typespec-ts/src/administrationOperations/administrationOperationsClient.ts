@@ -23,7 +23,6 @@ import {
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createAdministrationOperations,
   LoadTestServiceContext,
@@ -41,6 +40,7 @@ import {
   deleteTestFile,
   deleteTest,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 
 export { AdministrationOperationsClientOptionalParams } from "./api/administrationOperationsContext.js";
 

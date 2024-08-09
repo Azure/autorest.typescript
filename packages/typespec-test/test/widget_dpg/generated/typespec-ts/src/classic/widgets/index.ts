@@ -14,7 +14,7 @@ import {
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   WidgetsListWidgetsOptionalParams,

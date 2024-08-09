@@ -8,8 +8,6 @@ import {
   _PagedSchemaGroup,
   _PagedVersion,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import { SchemaRegistryContext as Client } from "../index.js";
 import {
   StreamableMethod,
@@ -18,6 +16,10 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
 import {
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,

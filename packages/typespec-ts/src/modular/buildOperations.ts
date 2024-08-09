@@ -8,7 +8,6 @@ import {
 import { Project, SourceFile } from "ts-morph";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
 import {
@@ -58,11 +57,6 @@ export function buildOperationFiles(
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${operationFileName}.ts`
     );
-    // We need to import the lro helpers and types explicitly because ts-morph may not be able to find correct ones.
-    importLroDependencies(
-      operationGroupFile,
-      operationGroup.namespaceHierarchies.length
-    );
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
@@ -90,15 +84,6 @@ export function buildOperationFiles(
       operationGroupFile,
       codeModel.project,
       "serialize",
-      subfolder,
-      operationGroup.namespaceHierarchies.length
-    );
-
-    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
-    importPagingDependencies(
-      srcPath,
-      operationGroupFile,
-      codeModel.project,
       subfolder,
       operationGroup.namespaceHierarchies.length
     );
@@ -144,15 +129,7 @@ export function buildOperationFiles(
 
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     addImportBySymbol("serializeRecord", operationGroupFile);
-    addImportBySymbol("buildMultiCollection", operationGroupFile);
-    addImportBySymbol("buildPipeCollection", operationGroupFile);
-    addImportBySymbol("buildCsvCollection", operationGroupFile);
-    addImportBySymbol("buildTsvCollection", operationGroupFile);
-    addImportBySymbol("buildSsvCollection", operationGroupFile);
 
-    operationGroupFile.fixMissingImports();
-    // have to fixUnusedIdentifiers after everything get generated.
-    operationGroupFile.fixUnusedIdentifiers();
     operationFiles.push(operationGroupFile);
   }
   return operationFiles;
@@ -224,64 +201,6 @@ export function importDeserializeUtils(
       namedImports: deserializeUtil
     });
   }
-}
-// Import all deserializeUtil and then let ts-morph clean up the unused ones
-// we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
-// sourceFile.fixUnusedIdentifiers();
-export function importPagingDependencies(
-  srcPath: string,
-  sourceFile: SourceFile,
-  project: Project,
-  subfolder: string = "",
-  importLayer: number = 0
-) {
-  const pagingTypes = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/pagingTypes.ts`
-  );
-
-  if (!pagingTypes) {
-    return;
-  }
-
-  const exportedPaingTypes = [...pagingTypes.getExportedDeclarations().keys()];
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: `${"../".repeat(importLayer + 1)}models/pagingTypes.js`,
-    namedImports: exportedPaingTypes
-  });
-
-  const pagingHelper = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/pagingHelpers.ts`
-  );
-
-  if (!pagingHelper) {
-    return;
-  }
-
-  const exportedPaingHelpers = [
-    ...pagingHelper.getExportedDeclarations().keys()
-  ];
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: `${
-      importLayer === 0 ? "./" : "../".repeat(importLayer)
-    }pagingHelpers.js`,
-    namedImports: exportedPaingHelpers
-  });
-}
-
-export function importLroDependencies(
-  sourceFile: SourceFile,
-  importLayer: number = 0
-) {
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: `${
-      importLayer === 0 ? "./" : "../".repeat(importLayer)
-    }pollingHelpers.js`,
-    namedImports: ["getLongRunningPoller"]
-  });
-
-  importLroCoreDependencies(sourceFile);
 }
 
 /**
