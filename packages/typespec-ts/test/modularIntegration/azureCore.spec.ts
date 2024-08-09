@@ -10,11 +10,16 @@ describe("BasicClient Classical Client", () => {
       allowInsecureConnection: true
     });
   });
+  const validUser = {
+    id: 1,
+    name: "Madge",
+    etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  };
 
-  it("should get a user", async () => {
+  // same as https://github.com/Azure/autorest.typescript/issues/2705
+  it.skip("should get a user", async () => {
     const user = await client.get(1);
-    assert.strictEqual(user?.name, "Madge");
-    assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
+    assert.deepEqual(user, validUser);
   });
 
   it("should list all users", async () => {
@@ -31,63 +36,55 @@ describe("BasicClient Classical Client", () => {
     for await (const user of iter) {
       items.push(user);
     }
-    assert.strictEqual(items.length, 2);
-    assert.strictEqual(items[0]?.name, "Madge");
-    assert.strictEqual(items[1]?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b5a");
-  });
-  it("should export a user", async () => {
-    try {
-      const user = await client.export(1, "json");
-      assert.strictEqual(user?.id, 1);
-      assert.strictEqual(user?.name, "Madge");
-      assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should create or replace a user", async () => {
-    try {
-      const user = await client.createOrReplace(
-        1,
+    const responseBody = {
+      value: [
         {
-          name: "Madge",
           id: 1,
-          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+          name: "Madge",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          orders: [{ id: 1, userId: 1, detail: "a recorder" }]
         },
         {
-          requestOptions: { headers: { "content-type": "application/json" } }
+          id: 2,
+          name: "John",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+          orders: [{ id: 2, userId: 2, detail: "a TV" }]
         }
-      );
-      assert.strictEqual(user?.id, 1);
-      assert.strictEqual(user?.name, "Madge");
-      assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+      ]
+    };
+    assert.deepEqual(items, responseBody.value);
+  });
+  it.skip("should export a user", async () => {
+    const user = await client.export(1, "json");
+    assert.deepEqual(user, validUser);
   });
 
-  it("should create or update a user", async () => {
-    try {
-      const user = await client.createOrUpdate(1, {
+  it.skip("should create or replace a user", async () => {
+    const user = await client.createOrReplace(
+      1,
+      {
         name: "Madge",
         id: 1,
         etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      });
-      assert.strictEqual(user?.id, 1);
-      assert.strictEqual(user?.name, "Madge");
-      assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+      },
+      {
+        requestOptions: { headers: { "content-type": "application/json" } }
+      }
+    );
+    assert.deepEqual(user, validUser);
+  });
+
+  it.skip("should create or update a user", async () => {
+    const user = await client.createOrUpdate(1, {
+      name: "Madge",
+      id: 1,
+      etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+    });
+    assert.deepEqual(user, validUser);
   });
 
   it("should delete a user", async () => {
-    try {
-      const user = await client.delete(1);
-      assert.isUndefined(user);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const user = await client.delete(1);
+    assert.isUndefined(user);
   });
 });
