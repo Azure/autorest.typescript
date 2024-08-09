@@ -40,11 +40,11 @@ describe("Collection Functions", () => {
 
   describe("buildTsvCollection", () => {
     it("should join numbers with a tab", () => {
-      expect(buildTsvCollection(items)).toBe("1\\t2\\t3");
+      expect(buildTsvCollection(items)).toBe("1\t2\t3");
     });
 
     it("should join strings with a tab", () => {
-      expect(buildTsvCollection(stringItems)).toBe("a\\tb\\tc");
+      expect(buildTsvCollection(stringItems)).toBe("a\tb\tc");
     });
   });
 });
