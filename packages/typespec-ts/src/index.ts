@@ -65,13 +65,14 @@ import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import {
   PagingHelpers,
   PollingHelpers,
-  Utilities
+  SerializationHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
   AzurePollingDependencies
 } from "./modular/external-dependencies.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
+import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 
 export * from "./lib.js";
 
@@ -104,7 +105,7 @@ export async function $onEmit(context: EmitContext) {
   const staticHelpers = await loadStaticHelpers(
     outputProject,
     {
-      ...Utilities,
+      ...SerializationHelpers,
       ...PagingHelpers,
       ...PollingHelpers
     },
@@ -256,6 +257,7 @@ export async function $onEmit(context: EmitContext) {
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
       buildSubpathIndexFile(subClient, modularCodeModel, "models");
+      buildRestorePoller(modularCodeModel, subClient);
       if (dpgContext.rlcOptions?.hierarchyClient) {
         buildSubpathIndexFile(subClient, modularCodeModel, "api");
       } else {

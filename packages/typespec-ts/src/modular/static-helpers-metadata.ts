@@ -1,8 +1,28 @@
-export const Utilities = {
+export const SerializationHelpers = {
+  buildMultiCollection: {
+    kind: "function",
+    name: "buildMultiCollection",
+    location: "serialization/build-multi-collection.ts"
+  },
   buildCsvCollection: {
     kind: "function",
     name: "buildCsvCollection",
-    location: "utilities.ts"
+    location: "serialization/build-csv-collection.ts"
+  },
+  buildPipeCollection: {
+    kind: "function",
+    name: "buildPipeCollection",
+    location: "serialization/build-pipe-collection.ts"
+  },
+  buildSsvCollection: {
+    kind: "function",
+    name: "buildSsvCollection",
+    location: "serialization/build-ssv-collection.ts"
+  },
+  buildTsvCollection: {
+    kind: "function",
+    name: "buildTsvCollection",
+    location: "serialization/build-tsv-collection.ts"
   }
 } as const;
 

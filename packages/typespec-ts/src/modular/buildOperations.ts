@@ -129,11 +129,6 @@ export function buildOperationFiles(
 
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     addImportBySymbol("serializeRecord", operationGroupFile);
-    addImportBySymbol("buildMultiCollection", operationGroupFile);
-    addImportBySymbol("buildPipeCollection", operationGroupFile);
-    addImportBySymbol("buildCsvCollection", operationGroupFile);
-    addImportBySymbol("buildTsvCollection", operationGroupFile);
-    addImportBySymbol("buildSsvCollection", operationGroupFile);
 
     operationFiles.push(operationGroupFile);
   }
