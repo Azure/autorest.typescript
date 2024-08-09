@@ -6,8 +6,6 @@ import {
   TestProfile,
   _PagedTestProfile,
 } from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import { LoadTestServiceContext as Client } from "./index.js";
 import {
   StreamableMethod,
@@ -15,6 +13,10 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
 import {
   CreateOrUpdateTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,

@@ -9,7 +9,7 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { buildCsvCollection } from "../../helpers/serializerHelpers.js";
+import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
   HeaderDefaultOptionalParams,
   HeaderBase64OptionalParams,

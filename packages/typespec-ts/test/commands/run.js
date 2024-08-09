@@ -55,13 +55,17 @@ export async function runTypespec(config, mode) {
     `${typespecPath}`,
     "--config tspconfig.yaml "
   ];
+  let error;
   try {
     await npxCommand("tsp", commandArguments, workingDir, logger);
     logger.log(`=== End ${targetFolder} ===`);
   } catch (e) {
     logger.error(e.toString());
+    error = e;
   } finally {
     logger.flush();
-    throw e;
+    if (error) {
+      throw error;
+    }
   }
 }

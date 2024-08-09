@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export {
   AdministrationOperationsClient,
   AdministrationOperationsClientOptionalParams,
@@ -100,10 +106,8 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./administrationOperations/models/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export {
   TestRunOperationsClient,
   TestRunOperationsClientOptionalParams,
@@ -205,9 +209,6 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-  PageSettings as TestRunOperationsClientPageSettings,
-  ContinuablePage as TestRunOperationsClientContinuablePage,
-  PagedAsyncIterableIterator as TestRunOperationsClientPagedAsyncIterableIterator,
 } from "./testRunOperations/models/index.js";
 export {
   TestProfileAdministrationOperationsClient,
@@ -300,9 +301,6 @@ export {
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-  PageSettings as TestProfileAdministrationOperationsClientPageSettings,
-  ContinuablePage as TestProfileAdministrationOperationsClientContinuablePage,
-  PagedAsyncIterableIterator as TestProfileAdministrationOperationsClientPagedAsyncIterableIterator,
 } from "./testProfileAdministrationOperations/models/index.js";
 export {
   TestProfileRunOperationsClient,
@@ -396,7 +394,4 @@ export {
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
-  PageSettings as TestProfileRunOperationsClientPageSettings,
-  ContinuablePage as TestProfileRunOperationsClientContinuablePage,
-  PagedAsyncIterableIterator as TestProfileRunOperationsClientPagedAsyncIterableIterator,
 } from "./testProfileRunOperations/models/index.js";

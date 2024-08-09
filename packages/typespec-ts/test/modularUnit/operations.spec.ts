@@ -131,7 +131,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "./index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
         import { uint8ArrayToString } from "@azure/core-util";
-        
+        import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
         export function _readSend(
           context: Client, 
           requiredHeader: string,
@@ -626,6 +626,7 @@ describe("operations", () => {
         true,
         true
       );
+
       assert.ok(operationFiles);
 
       assert.equal(operationFiles?.length, 1);
@@ -634,6 +635,10 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "./index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+         import {
+         PagedAsyncIterableIterator,
+         buildPagedAsyncIterator,
+        } from "../static-helpers/pagingHelpers.js";
 
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
