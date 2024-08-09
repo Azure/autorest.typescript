@@ -20,7 +20,7 @@ async function importxSample() {
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
-    .path("/projects/{projectName}:importx", projectName)
+    .path("/authoring/analyze-text/projects/{projectName}:importx", projectName)
     .post();
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

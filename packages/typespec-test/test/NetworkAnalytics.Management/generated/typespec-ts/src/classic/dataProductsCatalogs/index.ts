@@ -20,7 +20,6 @@ export interface DataProductsCatalogsOperations {
   /** Retrieve data type resource. */
   get: (
     resourceGroupName: string,
-    dataProductsCatalogName: string,
     options?: DataProductsCatalogsGetOptionalParams,
   ) => Promise<DataProductsCatalog>;
   /** List data catalog by resource group. */
@@ -41,16 +40,8 @@ export function getDataProductsCatalogs(
   return {
     get: (
       resourceGroupName: string,
-      dataProductsCatalogName: string,
       options?: DataProductsCatalogsGetOptionalParams,
-    ) =>
-      get(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductsCatalogName,
-        options,
-      ),
+    ) => get(context, subscriptionId, resourceGroupName, options),
     listByResourceGroup: (
       resourceGroupName: string,
       options?: DataProductsCatalogsListByResourceGroupOptionalParams,

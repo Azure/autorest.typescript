@@ -18,7 +18,7 @@ async function getSample() {
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const result = await client
-    .path("/projects/{projectName}", projectName)
+    .path("/authoring/analyze-text/projects/{projectName}", projectName)
     .get();
   console.log(result);
 }

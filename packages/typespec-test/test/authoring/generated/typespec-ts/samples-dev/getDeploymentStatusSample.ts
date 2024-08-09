@@ -21,7 +21,7 @@ async function getDeploymentStatusSample() {
   const jobId = "{Your jobId}";
   const result = await client
     .path(
-      "/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}",
+      "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}",
       projectName,
       deploymentName,
       jobId,

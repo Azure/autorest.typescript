@@ -155,37 +155,37 @@ export interface DeleteUser {
 }
 
 export interface Routes {
-  /** Resource for '/collections' has methods for the following verbs: get */
-  (path: "/collections"): ListCollections;
-  /** Resource for '/enclaveQuotes' has methods for the following verbs: get */
-  (path: "/enclaveQuotes"): GetEnclaveQuotes;
-  /** Resource for '/governance/constitution' has methods for the following verbs: get */
-  (path: "/governance/constitution"): GetConstitution;
-  /** Resource for '/governance/members' has methods for the following verbs: get */
-  (path: "/governance/members"): GetConsortiumMembers;
-  /** Resource for '/transactions' has methods for the following verbs: get */
-  (path: "/transactions"): ListLedgerEntries;
-  /** Resource for '/transactions/transactions' has methods for the following verbs: post */
-  (path: "/transactions/transactions"): CreateLedgerEntry;
-  /** Resource for '/transactions/\{transactionId\}' has methods for the following verbs: get */
+  /** Resource for '/app/collections' has methods for the following verbs: get */
+  (path: "/app/collections"): ListCollections;
+  /** Resource for '/app/enclaveQuotes' has methods for the following verbs: get */
+  (path: "/app/enclaveQuotes"): GetEnclaveQuotes;
+  /** Resource for '/app/governance/constitution' has methods for the following verbs: get */
+  (path: "/app/governance/constitution"): GetConstitution;
+  /** Resource for '/app/governance/members' has methods for the following verbs: get */
+  (path: "/app/governance/members"): GetConsortiumMembers;
+  /** Resource for '/app/transactions' has methods for the following verbs: get */
+  (path: "/app/transactions"): ListLedgerEntries;
+  /** Resource for '/app/transactions/transactions' has methods for the following verbs: post */
+  (path: "/app/transactions/transactions"): CreateLedgerEntry;
+  /** Resource for '/app/transactions/\{transactionId\}' has methods for the following verbs: get */
   (
-    path: "/transactions/{transactionId}",
+    path: "/app/transactions/{transactionId}",
     transactionId: string,
   ): GetLedgerEntry;
-  /** Resource for '/transactions/\{transactionId\}/receipt' has methods for the following verbs: get */
+  /** Resource for '/app/transactions/\{transactionId\}/receipt' has methods for the following verbs: get */
   (
-    path: "/transactions/{transactionId}/receipt",
+    path: "/app/transactions/{transactionId}/receipt",
     transactionId: string,
   ): GetReceipt;
-  /** Resource for '/transactions/\{transactionId\}/status' has methods for the following verbs: get */
+  /** Resource for '/app/transactions/\{transactionId\}/status' has methods for the following verbs: get */
   (
-    path: "/transactions/{transactionId}/status",
+    path: "/app/transactions/{transactionId}/status",
     transactionId: string,
   ): GetTransactionStatus;
-  /** Resource for '/transactions/getCurrentLedgerEntry' has methods for the following verbs: get */
-  (path: "/transactions/getCurrentLedgerEntry"): GetCurrentLedgerEntry;
-  /** Resource for '/users/\{userId\}' has methods for the following verbs: delete, get, patch */
-  (path: "/users/{userId}", userId: string): DeleteUser;
+  /** Resource for '/app/transactions/getCurrentLedgerEntry' has methods for the following verbs: get */
+  (path: "/app/transactions/getCurrentLedgerEntry"): GetCurrentLedgerEntry;
+  /** Resource for '/app/users/\{userId\}' has methods for the following verbs: delete, get, patch */
+  (path: "/app/users/{userId}", userId: string): DeleteUser;
 }
 
 export type ConfidentialLedgerClient = Client & {

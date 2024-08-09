@@ -20,7 +20,7 @@ async function trainSample() {
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
-    .path("/projects/{projectName}:train", projectName)
+    .path("/authoring/analyze-text/projects/{projectName}:train", projectName)
     .post({ body: { modelLabel: "{Your modelLabel}" } });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

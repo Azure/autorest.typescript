@@ -20,7 +20,7 @@ async function exportSample() {
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
-    .path("/projects/{projectName}:export", projectName)
+    .path("/authoring/analyze-text/projects/{projectName}:export", projectName)
     .post({
       queryParameters: { projectFileVersion: "{Your projectFileVersion}" },
     });

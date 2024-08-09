@@ -803,18 +803,18 @@ export interface ProjectSettingsOutput extends Record<string, string> {
 
 // @public (undocumented)
 export interface Routes {
-    (path: "/projects/{projectName}", projectName: string): CreateOrUpdate;
-    (path: "/projects"): ListProjects;
-    (path: "/projects/{projectName}:export", projectName: string): Export;
-    (path: "/projects/{projectName}:importx", projectName: string): Importx;
-    (path: "/projects/{projectName}:train", projectName: string): Train;
-    (path: "/projects/{projectName}/deployments/{deploymentName}", projectName: string, deploymentName: string): GetDeployment;
-    (path: "/projects/{projectName}/deployments", projectName: string): ListDeployments;
-    (path: "/projects/{projectName}/deployments:swap", projectName: string): SwapDeployments;
-    (path: "/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetDeploymentStatus;
-    (path: "/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetSwapDeploymentsStatus;
-    (path: "/languages"): GetSupportedLanguages;
-    (path: "/training-config-versions"): ListTrainingConfigVersions;
+    (path: "/authoring/analyze-text/projects/{projectName}", projectName: string): CreateOrUpdate;
+    (path: "/authoring/analyze-text/projects"): ListProjects;
+    (path: "/authoring/analyze-text/projects/{projectName}:export", projectName: string): Export;
+    (path: "/authoring/analyze-text/projects/{projectName}:importx", projectName: string): Importx;
+    (path: "/authoring/analyze-text/projects/{projectName}:train", projectName: string): Train;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}", projectName: string, deploymentName: string): GetDeployment;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments", projectName: string): ListDeployments;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments:swap", projectName: string): SwapDeployments;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetDeploymentStatus;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetSwapDeploymentsStatus;
+    (path: "/authoring/analyze-text/projects/global/languages"): GetSupportedLanguages;
+    (path: "/authoring/analyze-text/projects/global/training-config-versions"): ListTrainingConfigVersions;
 }
 
 // @public

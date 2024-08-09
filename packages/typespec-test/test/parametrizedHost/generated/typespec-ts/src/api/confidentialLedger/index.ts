@@ -19,7 +19,7 @@ export function _listCollectionsSend(
   },
 ): StreamableMethod {
   return context
-    .path("/collections")
+    .path("/app/collections")
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { "api-version": apiVersion },

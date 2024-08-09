@@ -30,9 +30,9 @@ export interface GetDeployment {
 }
 
 export interface Routes {
-  /** Resource for '/deployments/\{deploymentName\}' has methods for the following verbs: get, put */
+  /** Resource for '/authoring/analyze-text/deployments/\{deploymentName\}' has methods for the following verbs: get, put */
   (
-    path: "/deployments/{deploymentName}",
+    path: "/authoring/analyze-text/deployments/{deploymentName}",
     deploymentName: string,
   ): GetDeployment;
 }

@@ -20,7 +20,7 @@ async function getDeploymentSample() {
   const deploymentName = "{Your deploymentName}";
   const result = await client
     .path(
-      "/projects/{projectName}/deployments/{deploymentName}",
+      "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
       projectName,
       deploymentName,
     )

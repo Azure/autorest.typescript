@@ -20,7 +20,10 @@ async function swapDeploymentsSample() {
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
-    .path("/projects/{projectName}/deployments:swap", projectName)
+    .path(
+      "/authoring/analyze-text/projects/{projectName}/deployments:swap",
+      projectName,
+    )
     .post({
       body: {
         firstDeploymentName: "{Your firstDeploymentName}",

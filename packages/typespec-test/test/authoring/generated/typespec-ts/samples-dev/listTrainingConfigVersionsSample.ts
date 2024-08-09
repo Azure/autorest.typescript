@@ -17,7 +17,7 @@ async function listTrainingConfigVersionsSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
   const initialResponse = await client
-    .path("/training-config-versions")
+    .path("/authoring/analyze-text/projects/global/training-config-versions")
     .get({ queryParameters: { top: 123, skip: 123, maxpagesize: 123 } });
   const pageData = paginate(client, initialResponse);
   const result = [];

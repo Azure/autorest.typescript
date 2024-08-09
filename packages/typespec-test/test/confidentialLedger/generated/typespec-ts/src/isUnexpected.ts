@@ -32,19 +32,19 @@ import {
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "GET /collections": ["200"],
-  "GET /enclaveQuotes": ["200"],
-  "GET /governance/constitution": ["200"],
-  "GET /governance/members": ["200"],
-  "GET /transactions": ["200"],
-  "POST /transactions/transactions": ["201"],
-  "GET /transactions/{transactionId}": ["200"],
-  "GET /transactions/{transactionId}/receipt": ["200"],
-  "GET /transactions/{transactionId}/status": ["200"],
-  "GET /transactions/getCurrentLedgerEntry": ["200"],
-  "DELETE /users/{userId}": ["204"],
-  "GET /users/{userId}": ["200"],
-  "PATCH /users/{userId}": ["200", "201"],
+  "GET /app/collections": ["200"],
+  "GET /app/enclaveQuotes": ["200"],
+  "GET /app/governance/constitution": ["200"],
+  "GET /app/governance/members": ["200"],
+  "GET /app/transactions": ["200"],
+  "POST /app/transactions/transactions": ["201"],
+  "GET /app/transactions/{transactionId}": ["200"],
+  "GET /app/transactions/{transactionId}/receipt": ["200"],
+  "GET /app/transactions/{transactionId}/status": ["200"],
+  "GET /app/transactions/getCurrentLedgerEntry": ["200"],
+  "DELETE /app/users/{userId}": ["204"],
+  "GET /app/users/{userId}": ["200"],
+  "PATCH /app/users/{userId}": ["200", "201"],
 };
 
 export function isUnexpected(

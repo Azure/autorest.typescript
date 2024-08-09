@@ -182,50 +182,66 @@ export interface ListTrainingConfigVersions {
 }
 
 export interface Routes {
-  /** Resource for '/projects/\{projectName\}' has methods for the following verbs: patch, get, delete */
-  (path: "/projects/{projectName}", projectName: string): CreateOrUpdate;
-  /** Resource for '/projects' has methods for the following verbs: get */
-  (path: "/projects"): ListProjects;
-  /** Resource for '/projects/\{projectName\}:export' has methods for the following verbs: post */
-  (path: "/projects/{projectName}:export", projectName: string): Export;
-  /** Resource for '/projects/\{projectName\}:importx' has methods for the following verbs: post */
-  (path: "/projects/{projectName}:importx", projectName: string): Importx;
-  /** Resource for '/projects/\{projectName\}:train' has methods for the following verbs: post */
-  (path: "/projects/{projectName}:train", projectName: string): Train;
-  /** Resource for '/projects/\{projectName\}/deployments/\{deploymentName\}' has methods for the following verbs: get, put, delete */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}' has methods for the following verbs: patch, get, delete */
   (
-    path: "/projects/{projectName}/deployments/{deploymentName}",
+    path: "/authoring/analyze-text/projects/{projectName}",
+    projectName: string,
+  ): CreateOrUpdate;
+  /** Resource for '/authoring/analyze-text/projects' has methods for the following verbs: get */
+  (path: "/authoring/analyze-text/projects"): ListProjects;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}:export' has methods for the following verbs: post */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}:export",
+    projectName: string,
+  ): Export;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}:importx' has methods for the following verbs: post */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}:importx",
+    projectName: string,
+  ): Importx;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}:train' has methods for the following verbs: post */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}:train",
+    projectName: string,
+  ): Train;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}' has methods for the following verbs: get, put, delete */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
     projectName: string,
     deploymentName: string,
   ): GetDeployment;
-  /** Resource for '/projects/\{projectName\}/deployments' has methods for the following verbs: get */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments' has methods for the following verbs: get */
   (
-    path: "/projects/{projectName}/deployments",
+    path: "/authoring/analyze-text/projects/{projectName}/deployments",
     projectName: string,
   ): ListDeployments;
-  /** Resource for '/projects/\{projectName\}/deployments:swap' has methods for the following verbs: post */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments:swap' has methods for the following verbs: post */
   (
-    path: "/projects/{projectName}/deployments:swap",
+    path: "/authoring/analyze-text/projects/{projectName}/deployments:swap",
     projectName: string,
   ): SwapDeployments;
-  /** Resource for '/projects/\{projectName\}/deployments/\{deploymentName\}/jobs/\{jobId\}' has methods for the following verbs: get */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}/jobs/\{jobId\}' has methods for the following verbs: get */
   (
-    path: "/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}",
+    path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}",
     projectName: string,
     deploymentName: string,
     jobId: string,
   ): GetDeploymentStatus;
-  /** Resource for '/projects/\{projectName\}/deployments/\{deploymentName\}/swap/jobs/\{jobId\}' has methods for the following verbs: get */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}/swap/jobs/\{jobId\}' has methods for the following verbs: get */
   (
-    path: "/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}",
+    path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}",
     projectName: string,
     deploymentName: string,
     jobId: string,
   ): GetSwapDeploymentsStatus;
-  /** Resource for '/languages' has methods for the following verbs: get */
-  (path: "/languages"): GetSupportedLanguages;
-  /** Resource for '/training-config-versions' has methods for the following verbs: get */
-  (path: "/training-config-versions"): ListTrainingConfigVersions;
+  /** Resource for '/authoring/analyze-text/projects/global/languages' has methods for the following verbs: get */
+  (
+    path: "/authoring/analyze-text/projects/global/languages",
+  ): GetSupportedLanguages;
+  /** Resource for '/authoring/analyze-text/projects/global/training-config-versions' has methods for the following verbs: get */
+  (
+    path: "/authoring/analyze-text/projects/global/training-config-versions",
+  ): ListTrainingConfigVersions;
 }
 
 export type AuthoringClient = Client & {

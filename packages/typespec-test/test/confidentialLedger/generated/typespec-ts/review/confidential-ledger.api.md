@@ -576,17 +576,17 @@ export interface ReceiptContentsOutput {
 
 // @public (undocumented)
 export interface Routes {
-    (path: "/collections"): ListCollections;
-    (path: "/enclaveQuotes"): GetEnclaveQuotes;
-    (path: "/governance/constitution"): GetConstitution;
-    (path: "/governance/members"): GetConsortiumMembers;
-    (path: "/transactions"): ListLedgerEntries;
-    (path: "/transactions/transactions"): CreateLedgerEntry;
-    (path: "/transactions/{transactionId}", transactionId: string): GetLedgerEntry;
-    (path: "/transactions/{transactionId}/receipt", transactionId: string): GetReceipt;
-    (path: "/transactions/{transactionId}/status", transactionId: string): GetTransactionStatus;
-    (path: "/transactions/getCurrentLedgerEntry"): GetCurrentLedgerEntry;
-    (path: "/users/{userId}", userId: string): DeleteUser;
+    (path: "/app/collections"): ListCollections;
+    (path: "/app/enclaveQuotes"): GetEnclaveQuotes;
+    (path: "/app/governance/constitution"): GetConstitution;
+    (path: "/app/governance/members"): GetConsortiumMembers;
+    (path: "/app/transactions"): ListLedgerEntries;
+    (path: "/app/transactions/transactions"): CreateLedgerEntry;
+    (path: "/app/transactions/{transactionId}", transactionId: string): GetLedgerEntry;
+    (path: "/app/transactions/{transactionId}/receipt", transactionId: string): GetReceipt;
+    (path: "/app/transactions/{transactionId}/status", transactionId: string): GetTransactionStatus;
+    (path: "/app/transactions/getCurrentLedgerEntry"): GetCurrentLedgerEntry;
+    (path: "/app/users/{userId}", userId: string): DeleteUser;
 }
 
 // @public

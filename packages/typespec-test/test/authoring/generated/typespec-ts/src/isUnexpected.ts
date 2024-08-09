@@ -47,29 +47,38 @@ import {
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "GET /projects/{projectName}": ["200"],
-  "PATCH /projects/{projectName}": ["200", "201"],
-  "DELETE /projects/{projectName}": ["202"],
-  "GET /projects": ["200"],
-  "GET /projects/{projectName}:export": ["200", "202"],
-  "POST /projects/{projectName}:export": ["202"],
-  "GET /projects/{projectName}:importx": ["200", "202"],
-  "POST /projects/{projectName}:importx": ["202"],
-  "GET /projects/{projectName}:train": ["200", "202"],
-  "POST /projects/{projectName}:train": ["202"],
-  "GET /projects/{projectName}/deployments/{deploymentName}": ["200"],
-  "PUT /projects/{projectName}/deployments/{deploymentName}": ["200", "201"],
-  "DELETE /projects/{projectName}/deployments/{deploymentName}": ["202"],
-  "GET /projects/{projectName}/deployments": ["200"],
-  "GET /projects/{projectName}/deployments:swap": ["200", "202"],
-  "POST /projects/{projectName}/deployments:swap": ["202"],
-  "GET /projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}": [
+  "GET /authoring/analyze-text/projects/{projectName}": ["200"],
+  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
+  "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
+  "GET /authoring/analyze-text/projects": ["200"],
+  "GET /authoring/analyze-text/projects/{projectName}:export": ["200", "202"],
+  "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:importx": ["200", "202"],
+  "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:train": ["200", "202"],
+  "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
+    ["200"],
+  "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
+    ["200", "201"],
+  "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
+    ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments": ["200"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": [
+    "200",
+    "202",
+  ],
+  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": [
+    "202",
+  ],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":
+    ["200"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}":
+    ["200"],
+  "GET /authoring/analyze-text/projects/global/languages": ["200"],
+  "GET /authoring/analyze-text/projects/global/training-config-versions": [
     "200",
   ],
-  "GET /projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}":
-    ["200"],
-  "GET /languages": ["200"],
-  "GET /training-config-versions": ["200"],
 };
 
 export function isUnexpected(
