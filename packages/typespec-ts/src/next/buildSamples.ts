@@ -1,33 +1,23 @@
-import { Project, StructureKind, FunctionDeclarationStructure } from "ts-morph";
-import { provideBinder, useBinder } from "../framework/hooks/binder.js";
+import { StructureKind, FunctionDeclarationStructure } from "ts-morph";
 import { addDeclaration } from "../framework/declaration.js";
 import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
+  SdkHttpParameterExample,
   SdkInitializationType,
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { emitCredential } from "./emitCredential.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { useContext } from "../contextManager.js";
 import { join } from "path";
 
 export function buildSamples(dpgContext: SdkContext) {
   // Create a new ts-morph project
-  const project = new Project();
-  provideBinder(project);
-  // Initialize the binder
-  const binder = useBinder();
   for (const client of dpgContext.sdkPackage.clients) {
-    buildClassicalClientSample(dpgContext, project, client);
-  }
-
-  // Apply imports to ensure correct references
-  binder.resolveAllReferences();
-  for (const sourceFile of project.getSourceFiles()) {
-    console.log(sourceFile.getFilePath());
-    console.log(sourceFile.getFullText());
+    buildClassicalClientSample(dpgContext, client);
   }
 }
 
@@ -48,8 +38,7 @@ export function buildSamples(dpgContext: SdkContext) {
 // main().catch(console.error);
 
 function buildClassicalClientSample(
-  _dpgContext: SdkContext,
-  project: Project,
+  dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
   // build client-level parameters
@@ -63,14 +52,14 @@ function buildClassicalClientSample(
           continue;
         }
         // this is an operation
-        buildExamplesForMethod(project, operation, {
+        buildExamplesForMethod(dpgContext, operation, {
           clientName,
           credentialType,
-          operationGroupPrefix: operationOrGroup.name.toLowerCase()
+          operationGroupPrefix: operationOrGroup.response.name.toLowerCase()
         });
       }
     } else {
-      buildExamplesForMethod(project, operationOrGroup, {
+      buildExamplesForMethod(dpgContext, operationOrGroup, {
         clientName,
         credentialType
       });
@@ -79,7 +68,7 @@ function buildClassicalClientSample(
 }
 
 function buildExamplesForMethod(
-  project: Project,
+  dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
   options: {
     clientName: string;
@@ -87,21 +76,32 @@ function buildExamplesForMethod(
     operationGroupPrefix?: string;
   }
 ) {
+  const project = useContext("outputProject");
+  const operationPrefix = `${options.operationGroupPrefix ?? ""} ${
+    method.name
+  }`;
+  const sampleFolder = join(
+    dpgContext.generationPathDetail?.rootDir ?? "",
+    "samples-dev"
+  );
+  const fileName = normalizeName(`${operationPrefix} Sample`, NameType.File);
+  const sourceFile = project.createSourceFile(
+    join(sampleFolder, `${fileName}.ts`),
+    "",
+    {
+      overwrite: true
+    }
+  );
   // const dependencies = useDependencies();
   for (const example of method.operation.examples ?? []) {
-    const arr = example.filePath.split("/");
-    const sourceFile = project.createSourceFile(
-      join(...arr.slice(-2, arr.length)),
-      "",
-      {
-        overwrite: true
-      }
-    );
     // build example
-    const exampleFunctionBody: string[] = [];
-    const clientParams = [];
-    const methodParams = [];
-    const exampleName = normalizeName(example.name, NameType.Method);
+    const exampleFunctionBody: string[] = [],
+      clientParams = [],
+      methodParams = [];
+    const exampleName = normalizeName(
+      transformSpecialLetterToSpace(example.name),
+      NameType.Method
+    );
     const exampleFunctionType = {
       name: exampleName,
       returnType: "void",
@@ -122,10 +122,8 @@ function buildExamplesForMethod(
         continue;
       }
       const paramName = param.parameter.name;
-      // TODO: handle values that are not strings
-      const paramValue = param.value;
       exampleFunctionBody.push(
-        `const ${paramName} = ${JSON.stringify(paramValue)};`
+        `const ${paramName} = ${getParameterValue(param)};`
       );
       clientParams.push(paramName);
     }
@@ -137,8 +135,7 @@ function buildExamplesForMethod(
       if (param.parameter.onClient === true) {
         continue;
       }
-      // TODO: handle values that are not strings
-      const paramValue = param.value;
+      const paramValue = `${getParameterValue(param)}`;
       methodParams.push(paramValue);
     }
     const prefix = options.operationGroupPrefix
@@ -167,6 +164,7 @@ function buildExamplesForMethod(
     }
 
     main().catch(console.error);`);
+    console.log(sourceFile.getFilePath(), sourceFile.getFullText());
   }
 }
 
@@ -181,4 +179,46 @@ function getCredentialType(initialization: SdkInitializationType) {
   return ["KeyCredential", "TokenCredential"].includes(type)
     ? "DefaultAzureCredential"
     : undefined;
+}
+
+// TODO: handle values that are not strings
+function getParameterValue(parameter: SdkHttpParameterExample) {
+  const example = parameter.value;
+  let retValue = example.value;
+  switch (example.kind) {
+    case "string": {
+      switch (example.type.kind) {
+        case "utcDateTime":
+        case "offsetDateTime":
+          retValue = `new Date("${example.value}")`;
+          break;
+        default:
+          retValue = `"${example.value}"`;
+          break;
+      }
+      break;
+    }
+    case "boolean":
+    case "number":
+    case "null":
+      retValue = `${example.value}`;
+      break;
+    default:
+      retValue = "{} as any";
+      break;
+  }
+  return retValue;
+}
+
+function transformSpecialLetterToSpace(str: string) {
+  if (!str) {
+    return str;
+  }
+  return str
+    .replace(/_/g, " ")
+    .replace(/\//g, " Or ")
+    .replace(/,|\.|\(|\)/g, " ")
+    .replace("'s ", " ")
+    .replace(/\[/g, " ")
+    .replace(/\]/g, " ");
 }
