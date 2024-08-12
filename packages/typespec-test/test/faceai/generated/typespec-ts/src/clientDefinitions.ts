@@ -1637,8 +1637,10 @@ export interface GetLivenessWithVerifySessionAuditEntries {
 export interface Routes {
   /** Resource for '/operations/\{operationId\}' has methods for the following verbs: get */
   (path: "/operations/{operationId}", operationId: string): GetOperationResult;
-  /** Resource for '/detect' has methods for the following verbs: post */
-  (path: "/detect"): DetectFromUrl;
+  /** Resource for '/detect\{?returnFaceId,returnFaceLandmarks,returnFaceAttributes,recognitionModel,returnRecognitionModel,detectionModel,faceIdTimeToLive\}' has methods for the following verbs: post */
+  (
+    path: "/detect{?returnFaceId,returnFaceLandmarks,returnFaceAttributes,recognitionModel,returnRecognitionModel,detectionModel,faceIdTimeToLive}",
+  ): DetectFromUrl;
   /** Resource for '/findsimilars' has methods for the following verbs: post */
   (path: "/findsimilars"): FindSimilar;
   /** Resource for '/identify' has methods for the following verbs: post */

@@ -219,7 +219,8 @@ import {
 
 const responseMap: Record<string, string[]> = {
   "GET /operations/{operationId}": ["200"],
-  "POST /detect": ["200"],
+  "POST /detect{?returnFaceId,returnFaceLandmarks,returnFaceAttributes,recognitionModel,returnRecognitionModel,detectionModel,faceIdTimeToLive}":
+    ["200"],
   "POST /findsimilars": ["200"],
   "POST /identify": ["200"],
   "POST /verify": ["200"],

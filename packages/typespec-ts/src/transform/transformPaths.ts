@@ -115,14 +115,14 @@ function transformOperation(
     }
   };
   if (
-    paths[route.path] !== undefined &&
-    !paths[route.path]?.methods[route.verb]
+    paths[route.uriTemplate] !== undefined &&
+    !paths[route.uriTemplate]?.methods[route.verb]
   ) {
-    (paths[route.path] as PathMetadata).methods[route.verb] = [method];
-  } else if (paths[route.path]?.methods[route.verb]) {
-    paths[route.path]?.methods[route.verb]?.push(method);
+    (paths[route.uriTemplate] as PathMetadata).methods[route.verb] = [method];
+  } else if (paths[route.uriTemplate]?.methods[route.verb]) {
+    paths[route.uriTemplate]?.methods[route.verb]?.push(method);
   } else {
-    paths[route.path] = {
+    paths[route.uriTemplate] = {
       description: getDoc(program, route.operation) ?? "",
       name: escapeCoreName(
         getOperationName(dpgContext, route.operation) || "Client"
