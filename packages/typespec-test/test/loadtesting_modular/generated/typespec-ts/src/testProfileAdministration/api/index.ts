@@ -8,7 +8,7 @@ export {
   listTestProfiles,
 } from "./operations.js";
 export {
-  createTestProfileAdministrationOperations,
+  createTestProfileAdministration,
   LoadTestServiceContext,
-  TestProfileAdministrationOperationsClientOptionalParams,
-} from "./testProfileAdministrationOperationsContext.js";
+  TestProfileAdministrationClientOptionalParams,
+} from "./testProfileAdministrationContext.js";

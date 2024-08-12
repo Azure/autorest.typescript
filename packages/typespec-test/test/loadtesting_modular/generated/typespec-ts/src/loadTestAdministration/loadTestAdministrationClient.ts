@@ -24,9 +24,9 @@ import {
   DeleteTestOptionalParams,
 } from "./models/options.js";
 import {
-  createAdministrationOperations,
+  createLoadTestAdministration,
   LoadTestServiceContext,
-  AdministrationOperationsClientOptionalParams,
+  LoadTestAdministrationClientOptionalParams,
   createOrUpdateTest,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -42,9 +42,9 @@ import {
 } from "./api/index.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 
-export { AdministrationOperationsClientOptionalParams } from "./api/administrationOperationsContext.js";
+export { LoadTestAdministrationClientOptionalParams } from "./api/loadTestAdministrationContext.js";
 
-export class AdministrationOperationsClient {
+export class LoadTestAdministrationClient {
   private _client: LoadTestServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
@@ -52,13 +52,13 @@ export class AdministrationOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: AdministrationOperationsClientOptionalParams = {},
+    options: LoadTestAdministrationClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createAdministrationOperations(endpointParam, credential, {
+    this._client = createLoadTestAdministration(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

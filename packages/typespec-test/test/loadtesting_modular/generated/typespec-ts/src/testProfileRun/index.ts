@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 export {
-  TestProfileAdministrationOperationsClient,
-  TestProfileAdministrationOperationsClientOptionalParams,
-} from "./testProfileAdministrationOperationsClient.js";
+  TestProfileRunClient,
+  TestProfileRunClientOptionalParams,
+} from "./testProfileRunClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -88,8 +88,9 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
-  ListTestProfilesOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  GetTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  StopTestProfileRunOptionalParams,
 } from "./models/index.js";

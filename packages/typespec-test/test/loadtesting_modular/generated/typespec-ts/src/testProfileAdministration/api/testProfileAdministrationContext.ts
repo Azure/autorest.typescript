@@ -8,15 +8,16 @@ import { logger } from "../../logger.js";
 export interface LoadTestServiceContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface TestRunOperationsClientOptionalParams extends ClientOptions {
+export interface TestProfileAdministrationClientOptionalParams
+  extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
 
-export function createTestRunOperations(
+export function createTestProfileAdministration(
   endpointParam: string,
   credential: TokenCredential,
-  options: TestRunOperationsClientOptionalParams = {},
+  options: TestProfileAdministrationClientOptionalParams = {},
 ): LoadTestServiceContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;

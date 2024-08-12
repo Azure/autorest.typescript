@@ -1,34 +1,15 @@
 import {
-  buildRuntimeImports,
-  getClientName,
-  NameType,
-  normalizeName,
-  RLCModel
-} from "@azure-tools/rlc-common";
-import {
-  getLroMetadata,
-  getPagedResult
-} from "@azure-tools/typespec-azure-core";
-import {
-  getAllModels,
-  getClientNamespaceString,
-  getClientType,
-  getDefaultApiVersion,
-  getHttpOperationWithCache,
-  getLibraryName,
-  getSdkUnion,
-  getWireName,
-  isApiVersion,
-  listClients,
-  listOperationGroups,
-  listOperationsInOperationGroup,
-  SdkBuiltInType,
-  SdkClient,
-  SdkEnumValueType,
-  SdkType
-} from "@azure-tools/typespec-client-generator-core";
-import {
   Enum,
+  IntrinsicScalarName,
+  Model,
+  ModelProperty,
+  Namespace,
+  Operation,
+  Program,
+  Scalar,
+  Type,
+  Union,
+  UsageFlags,
   getDiscriminator,
   getDoc,
   getEncode,
@@ -43,7 +24,6 @@ import {
   getPropertyType,
   getSummary,
   getVisibility,
-  IntrinsicScalarName,
   isErrorModel,
   isNeverType,
   isNullType,
@@ -52,33 +32,55 @@ import {
   isTemplateDeclarationOrInstance,
   isType,
   isVoidType,
-  listServices,
-  Model,
-  ModelProperty,
-  Namespace,
-  Operation,
-  Program,
-  Scalar,
-  Type,
-  Union,
-  UsageFlags
+  listServices
 } from "@typespec/compiler";
 import {
-  getAuthentication,
-  getServers,
+  Header,
+  Client as HrlcClient,
+  Operation as HrlcOperation,
+  Type as HrlcType,
+  ModularCodeModel,
+  OperationGroup,
+  Parameter,
+  Property,
+  Response
+} from "./modularCodeModel.js";
+import {
   HttpAuth,
   HttpOperation,
   HttpOperationParameter,
   HttpOperationResponse,
   HttpOperationResponseContent,
   HttpServer,
+  getAuthentication,
+  getServers,
   isSharedRoute
 } from "@typespec/http";
-import { getAddedOnVersions } from "@typespec/versioning";
-import { Project } from "ts-morph";
-import { reportDiagnostic } from "../lib.js";
-import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
+import {
+  NameType,
+  RLCModel,
+  buildRuntimeImports,
+  getClientName,
+  normalizeName
+} from "@azure-tools/rlc-common";
+import {
+  SdkBuiltInType,
+  SdkClient,
+  SdkEnumValueType,
+  SdkType,
+  getAllModels,
+  getClientNamespaceString,
+  getClientType,
+  getDefaultApiVersion,
+  getHttpOperationWithCache,
+  getLibraryName,
+  getSdkUnion,
+  getWireName,
+  isApiVersion,
+  listClients,
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
 import {
   buildCoreTypeInfo,
   getBodyType,
@@ -87,7 +89,7 @@ import {
   isAzureCoreErrorType,
   isSchemaProperty
 } from "../utils/modelUtils.js";
-import { getModelNamespaceName } from "../utils/namespaceUtils.js";
+import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import {
   extractPagedMetadataNested,
   getOperationGroupName,
@@ -98,19 +100,18 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { isModelWithAdditionalProperties } from "./emitModels.js";
-import { getType as getTypeName } from "./helpers/typeHelpers.js";
 import {
-  Client as HrlcClient,
-  Header,
-  ModularCodeModel,
-  Operation as HrlcOperation,
-  OperationGroup,
-  Parameter,
-  Property,
-  Response,
-  Type as HrlcType
-} from "./modularCodeModel.js";
+  getLroMetadata,
+  getPagedResult
+} from "@azure-tools/typespec-azure-core";
+
+import { Project } from "ts-morph";
+import { SdkContext } from "../utils/interfaces.js";
+import { getAddedOnVersions } from "@typespec/versioning";
+import { getModelNamespaceName } from "../utils/namespaceUtils.js";
+import { getType as getTypeName } from "./helpers/typeHelpers.js";
+import { isModelWithAdditionalProperties } from "./emitModels.js";
+import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
 
 interface HttpServerParameter {
@@ -1747,7 +1748,6 @@ function getMethodApiVersionParameter(): Parameter | void {
 
 function emitClients(
   context: SdkContext,
-  namespace: string,
   rlcModelsMap: Map<string, RLCModel>
 ): HrlcClient[] {
   const program = context.program;
@@ -1755,13 +1755,10 @@ function emitClients(
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
-    const clientName = getLibraryName(context, client.type).replace(
+    const clientName = client.name.replace(
       "Client",
       ""
     );
-    if (getNamespace(context, client.name) !== namespace) {
-      continue;
-    }
     const server = getServerHelper(program, client.service);
     const rlcModels = rlcModelsMap.get(client.service.name);
     if (!rlcModels) {
@@ -1844,7 +1841,6 @@ export function emitCodeModel(
         !!dpgContext.rlcOptions?.experimentalExtensibleEnums
     },
     namespace: clientNamespaceString,
-    subnamespaceToClients: {},
     clients: [],
     types: [],
     project,
@@ -1859,7 +1855,7 @@ export function emitCodeModel(
   }
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
-      codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
+      codeModel.clients = emitClients(dpgContext, rlcModelsMap);
       codeModel.clients.length > 1 &&
         codeModel.clients.map((client) => {
           client["subfolder"] = normalizeName(
@@ -1867,18 +1863,6 @@ export function emitCodeModel(
             NameType.File
           );
         });
-    } else {
-      codeModel["subnamespaceToClients"][namespace] = emitClients(
-        dpgContext,
-        namespace,
-        rlcModelsMap
-      );
-      codeModel["subnamespaceToClients"][namespace].length > 1 &&
-        (codeModel["subnamespaceToClients"][namespace] as HrlcClient[]).map(
-          (client) => {
-            client["subfolder"] = normalizeName(client.name, NameType.File);
-          }
-        );
     }
   }
 
