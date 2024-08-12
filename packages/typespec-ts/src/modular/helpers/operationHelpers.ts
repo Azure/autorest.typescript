@@ -1,21 +1,32 @@
+import { AzureCoreDependencies, AzurePollingDependencies } from "../external-dependencies.js";
 import {
-  addImportToSpecifier,
-  Imports as RuntimeImports,
-  NameType
-} from "@azure-tools/rlc-common";
-import {
-  SdkContext,
-  SdkModelType,
-  SdkType
-} from "@azure-tools/typespec-client-generator-core";
-import { NoTarget, Program } from "@typespec/compiler";
+  BodyParameter,
+  Client,
+  ModularCodeModel,
+  Operation,
+  Parameter,
+  Property,
+  Type
+} from "../modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { reportDiagnostic } from "../../lib.js";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+import {
+  NameType,
+  Imports as RuntimeImports,
+  addImportToSpecifier
+} from "@azure-tools/rlc-common";
+import { NoTarget, Program } from "@typespec/compiler";
+import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
+import {
+  SdkContext,
+  SdkModelType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
+import { buildType, isTypeNullable } from "./typeHelpers.js";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
@@ -28,23 +39,13 @@ import {
   isSpecialUnionVariant
 } from "../buildSerializeUtils.js";
 import {
-  BodyParameter,
-  Client,
-  ModularCodeModel,
-  Operation,
-  Parameter,
-  Property,
-  Type
-} from "../modularCodeModel.js";
-import {
   getDocsFromDescription,
   getFixmeForMultilineDocs
 } from "./docsHelpers.js";
-import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
-import { buildType, isTypeNullable } from "./typeHelpers.js";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+
+import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
-import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
-import { AzurePollingDependencies } from "../external-dependencies.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -645,14 +646,16 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
+    const uint8ArrayToStringReference = resolveReference(
+      AzureCoreDependencies.uint8ArrayToString
+    );
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
-    ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
+    ? ${uint8ArrayToStringReference}(${bodyParameter.clientName}, "${getEncodingFormat(
       bodyParameter
     )}")
     : ${bodyParameter.clientName}`
-      : `body: uint8ArrayToString(${
+      : `body: ${uint8ArrayToStringReference}(${
           bodyParameter.clientName
         }, "${getEncodingFormat(bodyParameter)}")`;
   } else if (bodyParameter.isBinaryPayload) {
@@ -1358,15 +1361,17 @@ export function serializeRequestValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
+        const uint8ArrayToStringReference = resolveReference(
+          AzureCoreDependencies.uint8ArrayToString
+        );
         return required
           ? `${getNullableCheck(
               clientValue,
               type
-            )} uint8ArrayToString(${clientValue}, "${
+            )} ${uint8ArrayToStringReference}(${clientValue}, "${
               getEncodingFormat({ format }) ?? "base64"
             }")`
-          : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
+          : `${clientValue} !== undefined ? ${uint8ArrayToStringReference}(${clientValue}, "${
               getEncodingFormat({ format }) ?? "base64"
             }"): undefined`;
       }
