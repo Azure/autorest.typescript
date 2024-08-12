@@ -35,6 +35,7 @@ export function getAzurePackageDependencies({
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
     "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.1.0",
+    "@azure/core-util": "^1.9.2",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
@@ -157,7 +158,7 @@ export function getAzurePackageDevDependencies(config: AzurePackageInfoConfig) {
   const cjsDevDependencies = getAzurePackageCjsDevDependencies(config);
 
   const testDevDependencies = {
-    "@azure/core-util": "^1.0.0",
+    "@azure/core-util": "^1.9.2",
     "@azure/identity": "^4.2.1"
   };
 
