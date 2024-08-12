@@ -993,7 +993,7 @@ describe("anonymous model", () => {
             emptyAnomyousArray: result.body["emptyAnomyousArray"],
             emptyAnomyousDict: result.body["emptyAnomyousDict"],
             emptyModel: {},
-            emptyModelArray: result.body["emptyModelArray"].map(() => {
+            emptyModelArray: result.body["emptyModelArray"].map((p: any) => {
                     return {};
               }),
             emptyModelDict: result.body["emptyModelDict"],

@@ -5,7 +5,6 @@ import {
   rlcTsps
 } from "./cadl-ranch-list.js";
 import { runTypespec } from "./run.js";
-import os from "os";
 
 async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
   let list = rlcTsps;
@@ -33,23 +32,29 @@ async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
   }
 
   const maxConcurrentWorkers = 4;
-  let generatePromises = [];
-  let count = 0;
+  let activePromises = [];
   for (const tsp of list) {
     if (isDebugging === true && tsp.debug !== true) {
       continue;
     }
-    const generatePromise = runTypespec(tsp, tag);
-    generatePromises.push(generatePromise);
-    count++;
-    if (count % maxConcurrentWorkers === 0) {
-      await Promise.allSettled(generatePromises);
-      generatePromises = [];
+    const generatePromise = runTypespec(tsp, tag)
+      .then((result) => {
+        activePromises = activePromises.filter((p) => p !== generatePromise);
+        return result;
+      })
+      .catch((error) => {
+        activePromises = activePromises.filter((p) => p !== generatePromise);
+        throw error;
+      });
+
+    activePromises.push(generatePromise);
+
+    if (activePromises.length >= maxConcurrentWorkers) {
+      await Promise.race(activePromises);
     }
   }
-  if (generatePromises.length > 0) {
-    await Promise.allSettled(generatePromises);
-  }
+
+  await Promise.allSettled(activePromises);
 }
 
 async function main() {
@@ -63,10 +68,12 @@ async function main() {
 
 let exitCode = 0;
 try {
+  console.time("generate-cadl-ranch");
   await main();
 } catch (e) {
   console.error(e);
   exitCode = 1;
 } finally {
+  console.timeEnd("generate-cadl-ranch");
   process.exit(exitCode);
 }

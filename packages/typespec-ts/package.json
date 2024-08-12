@@ -128,7 +128,8 @@
     "dist/**",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "static/**"
   ],
   "mocha": {
     "extension": [
