@@ -35,6 +35,8 @@ import {
 import { SdkContext } from "./interfaces.js";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
+import { resolveReference } from "../framework/reference.js";
+import { SerializationHelpers } from "../modular/static-helpers-metadata.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -479,8 +481,29 @@ export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
 ) {
-  const detail = getSpecialSerializeInfo(paramType, paramFormat);
-  return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
+  // const detail = getSpecialSerializeInfo(paramType, paramFormat);
+  // return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
+  if (getHasMultiCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildMultiCollection);
+  }
+
+  if (getHasPipeCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildPipeCollection);
+  }
+
+  if (getHasSsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildSsvCollection);
+  }
+
+  if (getHasTsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildTsvCollection);
+  }
+
+  if (getHasCsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildCsvCollection);
+  }
+
+  return undefined;
 }
 
 export function getCustomRequestHeaderNameForOperation(

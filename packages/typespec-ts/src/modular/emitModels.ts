@@ -393,13 +393,6 @@ export function buildModelsOptions(
     }
   ]);
 
-  modelOptionsFile.fixMissingImports(
-    {},
-    {
-      importModuleSpecifierPreference: "shortest",
-      importModuleSpecifierEnding: "js"
-    }
-  );
   modelOptionsFile
     .getImportDeclarations()
     .filter((id) => {

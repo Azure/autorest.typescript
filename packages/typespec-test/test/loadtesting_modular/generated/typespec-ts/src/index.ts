@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export {
   LoadTestAdministrationClient,
   LoadTestAdministrationClientOptionalParams,
@@ -100,10 +106,8 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./loadTestAdministration/models/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export {
   LoadTestRunClient,
   LoadTestRunClientOptionalParams,
@@ -205,9 +209,6 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-  PageSettings as LoadTestRunClientPageSettings,
-  ContinuablePage as LoadTestRunClientContinuablePage,
-  PagedAsyncIterableIterator as LoadTestRunClientPagedAsyncIterableIterator,
 } from "./loadTestRun/models/index.js";
 export {
   TestProfileAdministrationClient,
@@ -300,9 +301,6 @@ export {
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-  PageSettings as TestProfileAdministrationClientPageSettings,
-  ContinuablePage as TestProfileAdministrationClientContinuablePage,
-  PagedAsyncIterableIterator as TestProfileAdministrationClientPagedAsyncIterableIterator,
 } from "./testProfileAdministration/models/index.js";
 export {
   TestProfileRunClient,
@@ -396,7 +394,4 @@ export {
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
-  PageSettings as TestProfileRunClientPageSettings,
-  ContinuablePage as TestProfileRunClientContinuablePage,
-  PagedAsyncIterableIterator as TestProfileRunClientPagedAsyncIterableIterator,
 } from "./testProfileRun/models/index.js";

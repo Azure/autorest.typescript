@@ -12,8 +12,6 @@ import {
   _PagedUser,
   _UserListResults,
 } from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import { BasicContext as Client } from "./index.js";
 import {
   StreamableMethod,
@@ -21,7 +19,11 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { buildMultiCollection } from "../helpers/serializerHelpers.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import { buildMultiCollection } from "../static-helpers/serialization/build-multi-collection.js";
 import {
   CreateOrUpdateOptionalParams,
   CreateOrReplaceOptionalParams,

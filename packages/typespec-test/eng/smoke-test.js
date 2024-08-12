@@ -14,22 +14,7 @@ async function exists(filePath) {
   }
 }
 
-const calculateMemoryLimit = () => {
-  const totalMemory = os.totalmem();
-  const freeMemory = os.freemem();
-  const minimumFreeMemory = 1024 * 1024 * 1024; // e.g., 1GB
-
-  if (freeMemory > minimumFreeMemory) {
-    // Allow using up to 50% of total memory if there is at least 1GB free
-    return Math.floor(totalMemory / 1024 / 1024 / 1024 / 2); // in GB
-  } else {
-    // Default or lower memory limit if free memory is less than 1GB
-    return 512; // 512MB as a fallback
-  }
-};
-
-const memoryLimit = calculateMemoryLimit();
-console.log(`Memory limit: ${memoryLimit}GB`);
+const memoryLimit = 4096; // 4GB
 
 function runCommand(command, args = [], workingDirectory, logger) {
   const isLinux = os.platform() === "linux";
@@ -145,15 +130,31 @@ async function main() {
   const root = join(__dirname, "..");
 
   const folders = folder ? [folder] : await readdir(join(root, "test"));
-  const generatePromises = [];
+  const maxConcurrentWorkers = 4;
+  let activePromises = [];
 
   for (const folder of folders) {
     const path = join(root, "test", folder);
-    const generatePromise = generateSmokeTest(path);
-    generatePromises.push(generatePromise);
+
+    const generatePromise = generateSmokeTest(path)
+      .then((result) => {
+        activePromises = activePromises.filter((p) => p !== generatePromise);
+        return result;
+      })
+      .catch((error) => {
+        activePromises = activePromises.filter((p) => p !== generatePromise);
+        throw error;
+      });
+
+    activePromises.push(generatePromise);
+
+    if (activePromises.length >= maxConcurrentWorkers) {
+      await Promise.race(activePromises);
+    }
   }
 
-  await Promise.all(generatePromises);
+  // Wait for all remaining promises to settle
+  await Promise.allSettled(activePromises);
 
   if (failed.length > 0) {
     console.error("\x1b[31m%s\x1b[0m", `Failed folders: ${failed.join(", ")}`);

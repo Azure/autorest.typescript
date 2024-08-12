@@ -9,6 +9,11 @@ import { provideContext, useContext } from "../../contextManager.js";
 import { ReferenceableSymbol } from "../dependency.js";
 import { provideDependencies, useDependencies } from "./useDependencies.js";
 import { refkey } from "../refkey.js";
+import {
+  isStaticHelperMetadata,
+  SourceFileSymbol,
+  StaticHelperMetadata
+} from "../load-static-helpers.js";
 
 export interface DeclarationInfo {
   name: string;
@@ -17,6 +22,7 @@ export interface DeclarationInfo {
 }
 
 export interface BinderOptions {
+  staticHelpers?: Map<string, StaticHelperMetadata>;
   dependencies?: Record<string, ReferenceableSymbol>;
 }
 
@@ -37,17 +43,22 @@ export interface Binder {
   resolveAllReferences(): void;
 }
 
+const PLACEHOLDER_PREFIX = "_PLACEHOLDER_";
+
 class BinderImp implements Binder {
   private declarations = new Map<unknown, DeclarationInfo>();
+  private references = new Map<unknown, Set<SourceFile>>();
   private imports = new Map<SourceFile, ImportDeclarationStructure[]>();
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
   private project: Project;
   private dependencies: Record<string, ReferenceableSymbol>;
+  private staticHelpers: Map<string, StaticHelperMetadata>;
 
   constructor(project: Project, options: BinderOptions = {}) {
     this.project = project;
 
     provideDependencies(options.dependencies);
+    this.staticHelpers = options.staticHelpers ?? new Map();
     this.dependencies = useDependencies();
   }
 
@@ -146,7 +157,7 @@ class BinderImp implements Binder {
    * @returns The serialized placeholder string.
    */
   private serializePlaceholder(refkey: unknown): string {
-    return `"<PLACEHOLDER:${String(refkey)}>"`;
+    return `${PLACEHOLDER_PREFIX}${String(refkey)}_`;
   }
 
   /**
@@ -172,7 +183,7 @@ class BinderImp implements Binder {
       moduleSpecifier =
         fileWhereImportIsAdded.getRelativePathAsModuleSpecifierTo(
           fileWhereImportPointsTo
-        );
+        ) + ".js";
     }
 
     const importStructures = this.imports.get(fileWhereImportIsAdded) || [];
@@ -222,6 +233,8 @@ class BinderImp implements Binder {
         sourceFile.addImportDeclaration(importStructure);
       }
     }
+
+    this.cleanUnreferencedHelpers();
   }
 
   private resolveDependencyReferences(file: SourceFile) {
@@ -244,19 +257,66 @@ class BinderImp implements Binder {
     if (!hasAnyPlaceholders(file)) {
       return;
     }
-    for (const [declarationKey, declaration] of this.declarations) {
+
+    for (const [declarationKey, declaration] of [
+      ...this.declarations,
+      ...this.staticHelpers
+    ]) {
       const placeholderKey = this.serializePlaceholder(declarationKey);
+      if (
+        isStaticHelperMetadata(declaration) &&
+        !countPlaceholderOccurrences(file, placeholderKey)
+      ) {
+        continue;
+      }
+
       let name = declaration.name;
-      if (file !== declaration.sourceFile) {
-        const importDec = this.addImport(
-          file,
-          declaration.sourceFile,
-          declaration.name
-        );
-        name = importDec.alias ?? declaration.name;
+      let declarationSourceFile: SourceFile;
+
+      if ("sourceFile" in declaration) {
+        declarationSourceFile = declaration.sourceFile;
+      } else {
+        declarationSourceFile = declaration[SourceFileSymbol]!;
+      }
+
+      if (file !== declarationSourceFile) {
+        this.trackReference(declarationKey, file);
+        const importDec = this.addImport(file, declarationSourceFile, name);
+        name = importDec.alias ?? name;
       }
       replacePlaceholder(file, placeholderKey, name);
     }
+  }
+
+  private trackReference(refkey: unknown, sourceFile: SourceFile): void {
+    if (!this.references.has(refkey)) {
+      this.references.set(refkey, new Set());
+    }
+
+    this.references.get(refkey)!.add(sourceFile);
+  }
+
+  private cleanUnreferencedHelpers() {
+    const usedHelperFiles = new Set<SourceFile>();
+    for (const helper of this.staticHelpers.values()) {
+      const sourceFile = helper[SourceFileSymbol];
+      if (!sourceFile) {
+        // This should be unreachable
+        throw new Error(
+          `Static helper ${helper.name} does not have a source file. Make sure that loadStaticHelpers has been correctly initialized in index.ts`
+        );
+      }
+      const referencedHelper = this.references.get(refkey(helper));
+
+      if (referencedHelper?.size) {
+        usedHelperFiles.add(sourceFile);
+      }
+    }
+
+    this.project
+      .getSourceFiles("**/static-helpers/**/*.ts")
+      .filter((helperFile) => !usedHelperFiles.has(helperFile))
+      .forEach((helperFile) => helperFile.delete());
   }
 }
 
@@ -264,8 +324,10 @@ class BinderImp implements Binder {
 export function provideBinder(
   project: Project,
   options: BinderOptions = {}
-): void {
-  return provideContext("binder", new BinderImp(project, options));
+): Binder {
+  const binder = new BinderImp(project, options);
+  provideContext("binder", binder);
+  return binder;
 }
 
 /**
@@ -310,5 +372,5 @@ function escapeRegExp(string: string): string {
 }
 
 function hasAnyPlaceholders(sourceFile: SourceFile): boolean {
-  return sourceFile.getFullText().includes(`<PLACEHOLDER:`);
+  return sourceFile.getFullText().includes(PLACEHOLDER_PREFIX);
 }

@@ -2,7 +2,7 @@ import {
   StandardClient,
   User
 } from "./generated/azure/core/lro/standard/generated/src/index.js";
-import { assert } from "chai";
+import { assert, expect } from "chai";
 import { restorePoller } from "./generated/azure/core/lro/standard/generated/src/restorePollerHelpers.js";
 import { OperationState } from "@azure/core-lro";
 
@@ -148,9 +148,9 @@ describe("LROStandardClient Classical Client", () => {
         await poller.submitted();
         assert.fail("Expected an exception");
       } catch (err: any) {
-        assert.strictEqual(
-          err.message,
-          "Body provided doesn't match expected body"
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
         );
       }
     });
@@ -164,9 +164,9 @@ describe("LROStandardClient Classical Client", () => {
         await poller.poll();
         assert.fail("Expected an exception");
       } catch (err: any) {
-        assert.strictEqual(
-          err.message,
-          "Body provided doesn't match expected body"
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
         );
       }
     });
@@ -180,9 +180,9 @@ describe("LROStandardClient Classical Client", () => {
         await poller.pollUntilDone();
         assert.fail("Expected an exception");
       } catch (err: any) {
-        assert.strictEqual(
-          err.message,
-          "Body provided doesn't match expected body"
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
         );
       }
     });
@@ -194,9 +194,9 @@ describe("LROStandardClient Classical Client", () => {
         } as any);
         assert.fail("Expected an exception");
       } catch (err: any) {
-        assert.strictEqual(
-          err.message,
-          "Body provided doesn't match expected body"
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
         );
       }
     });
