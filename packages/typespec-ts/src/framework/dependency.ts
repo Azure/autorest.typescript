@@ -51,16 +51,6 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
     name: "uint8ArrayToString";
     module: string;
   };
-  DefaultAzureCredential: {
-    kind: "externalDependency";
-    name: "DefaultAzureCredential";
-    module: string;
-  };
 }
 
-  },
-  DefaultAzureCredential: {
-    kind: "externalDependency",
-    name: "DefaultAzureCredential",
-    module: "@azure/identity"
 export type CoreDependency = keyof CoreDependencies;
