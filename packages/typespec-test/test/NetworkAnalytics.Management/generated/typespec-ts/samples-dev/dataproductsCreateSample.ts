@@ -15,12 +15,6 @@ async function dataProductsCreateMaximumSetGen(): void {
   console.log(result);
 }
 
-async function main() {
-  dataProductsCreateMaximumSetGen();
-}
-
-main().catch(console.error);
-
 async function dataProductsCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -34,6 +28,7 @@ async function dataProductsCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSe
 }
 
 async function main() {
+  dataProductsCreateMaximumSetGen();
   dataProductsCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 

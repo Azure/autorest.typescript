@@ -16,12 +16,6 @@ async function dataTypesDeleteDataMaximumSetGen(): void {
   console.log(result);
 }
 
-async function main() {
-  dataTypesDeleteDataMaximumSetGen();
-}
-
-main().catch(console.error);
-
 async function dataTypesDeleteDataMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -36,6 +30,7 @@ async function dataTypesDeleteDataMinimumSetGen(): void {
 }
 
 async function main() {
+  dataTypesDeleteDataMaximumSetGen();
   dataTypesDeleteDataMinimumSetGen();
 }
 

@@ -92,6 +92,7 @@ function buildExamplesForMethod(
       overwrite: true
     }
   );
+  const exampleFunctions = [];
   // const dependencies = useDependencies();
   for (const example of method.operation.examples ?? []) {
     // build example
@@ -156,16 +157,20 @@ function buildExamplesForMethod(
       statements: exampleFunctionType.body
     };
     addDeclaration(sourceFile, functionDeclaration, exampleFunctionType);
-    // Add statements referencing the tracked declarations
-    const functionReference = resolveReference(exampleFunctionType);
-    sourceFile.addStatements(`
-    async function main() {
-      ${functionReference}();
-    }
-
-    main().catch(console.error);`);
-    console.log(sourceFile.getFilePath(), sourceFile.getFullText());
+    exampleFunctions.push(exampleFunctionType);
   }
+  // Add statements referencing the tracked declarations
+  const functions = exampleFunctions
+    .map((f) => resolveReference(f))
+    .map((f) => `${f}();`)
+    .join("\n");
+  sourceFile.addStatements(`
+  async function main() {
+    ${functions}
+  }
+
+  main().catch(console.error);`);
+  console.log(sourceFile.getFilePath(), sourceFile.getFullText());
 }
 
 function getCredentialType(initialization: SdkInitializationType) {

@@ -15,12 +15,6 @@ async function dataProductsListRolesAssignmentsMaximumSetGen(): void {
   console.log(result);
 }
 
-async function main() {
-  dataProductsListRolesAssignmentsMaximumSetGen();
-}
-
-main().catch(console.error);
-
 async function dataProductsListRolesAssignmentsMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -34,6 +28,7 @@ async function dataProductsListRolesAssignmentsMaximumSetGenGeneratedByMinimumSe
 }
 
 async function main() {
+  dataProductsListRolesAssignmentsMaximumSetGen();
   dataProductsListRolesAssignmentsMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 

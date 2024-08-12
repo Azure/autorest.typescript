@@ -15,12 +15,6 @@ async function dataTypesGetMaximumSetGen(): void {
   console.log(result);
 }
 
-async function main() {
-  dataTypesGetMaximumSetGen();
-}
-
-main().catch(console.error);
-
 async function dataTypesGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -34,6 +28,7 @@ async function dataTypesGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen()
 }
 
 async function main() {
+  dataTypesGetMaximumSetGen();
   dataTypesGetMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 

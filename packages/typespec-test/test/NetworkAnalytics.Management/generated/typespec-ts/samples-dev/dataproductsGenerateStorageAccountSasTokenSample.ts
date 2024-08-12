@@ -15,12 +15,6 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen(): void {
   console.log(result);
 }
 
-async function main() {
-  dataProductsGenerateStorageAccountSasTokenMaximumSetGen();
-}
-
-main().catch(console.error);
-
 async function dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -34,6 +28,7 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedB
 }
 
 async function main() {
+  dataProductsGenerateStorageAccountSasTokenMaximumSetGen();
   dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 

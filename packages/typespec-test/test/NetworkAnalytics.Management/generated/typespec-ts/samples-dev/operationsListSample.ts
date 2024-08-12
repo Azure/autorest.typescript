@@ -10,12 +10,6 @@ async function operationsListMaximumSetGen(): void {
   console.log(result);
 }
 
-async function main() {
-  operationsListMaximumSetGen();
-}
-
-main().catch(console.error);
-
 async function operationsListMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const client = new NetworkAnalyticsClient(credential);
@@ -24,6 +18,7 @@ async function operationsListMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen
 }
 
 async function main() {
+  operationsListMaximumSetGen();
   operationsListMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 
