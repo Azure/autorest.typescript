@@ -294,10 +294,6 @@ export const nonBrandedRlcTsps = [
 
 export const modularTsps = [
   {
-    outputPath: "azure/core/page",
-    inputPath: "azure/core/page"
-  },
-  {
     outputPath: "azure/core/model",
     inputPath: "azure/core/model"
   },
@@ -546,6 +542,10 @@ export const modularTsps = [
   {
     outputPath: "azure/resource-manager/models/common-types/managed-identity",
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
+  },
+  {
+    outputPath: "azure/core/page",
+    inputPath: "azure/core/page"
   }
 ];
 
