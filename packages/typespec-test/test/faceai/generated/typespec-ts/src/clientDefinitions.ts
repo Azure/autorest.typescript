@@ -19,37 +19,37 @@ import {
   GroupParameters,
   CreateFaceListParameters,
   DeleteFaceListParameters,
-  GetFaceListParameters,
   UpdateFaceListParameters,
+  GetFaceListParameters,
   GetFaceListsParameters,
   AddFaceListFaceFromUrlParameters,
   AddFaceListFaceParameters,
   DeleteFaceListFaceParameters,
   CreateLargeFaceListParameters,
   DeleteLargeFaceListParameters,
-  GetLargeFaceListParameters,
   UpdateLargeFaceListParameters,
+  GetLargeFaceListParameters,
   GetLargeFaceListsParameters,
   GetLargeFaceListTrainingStatusParameters,
   TrainLargeFaceListParameters,
   AddLargeFaceListFaceFromUrlParameters,
   AddLargeFaceListFaceParameters,
-  GetLargeFaceListFacesParameters,
   DeleteLargeFaceListFaceParameters,
   GetLargeFaceListFaceParameters,
   UpdateLargeFaceListFaceParameters,
+  GetLargeFaceListFacesParameters,
   CreatePersonGroupParameters,
   DeletePersonGroupParameters,
-  GetPersonGroupParameters,
   UpdatePersonGroupParameters,
+  GetPersonGroupParameters,
   GetPersonGroupsParameters,
   GetPersonGroupTrainingStatusParameters,
   TrainPersonGroupParameters,
   CreatePersonGroupPersonParameters,
-  GetPersonGroupPersonsParameters,
   DeletePersonGroupPersonParameters,
   GetPersonGroupPersonParameters,
   UpdatePersonGroupPersonParameters,
+  GetPersonGroupPersonsParameters,
   AddPersonGroupPersonFaceFromUrlParameters,
   AddPersonGroupPersonFaceParameters,
   DeletePersonGroupPersonFaceParameters,
@@ -57,33 +57,33 @@ import {
   UpdatePersonGroupPersonFaceParameters,
   CreateLargePersonGroupParameters,
   DeleteLargePersonGroupParameters,
-  GetLargePersonGroupParameters,
   UpdateLargePersonGroupParameters,
+  GetLargePersonGroupParameters,
   GetLargePersonGroupsParameters,
   GetLargePersonGroupTrainingStatusParameters,
   TrainLargePersonGroupParameters,
   CreateLargePersonGroupPersonParameters,
-  GetLargePersonGroupPersonsParameters,
   DeleteLargePersonGroupPersonParameters,
   GetLargePersonGroupPersonParameters,
   UpdateLargePersonGroupPersonParameters,
+  GetLargePersonGroupPersonsParameters,
   AddLargePersonGroupPersonFaceFromUrlParameters,
   AddLargePersonGroupPersonFaceParameters,
   DeleteLargePersonGroupPersonFaceParameters,
   GetLargePersonGroupPersonFaceParameters,
   UpdateLargePersonGroupPersonFaceParameters,
   CreatePersonParameters,
-  GetPersonsParameters,
   DeletePersonParameters,
   GetPersonParameters,
   UpdatePersonParameters,
+  GetPersonsParameters,
   GetDynamicPersonGroupReferencesParameters,
   AddPersonFaceParameters,
   AddPersonFaceFromUrlParameters,
-  GetPersonFacesParameters,
   DeletePersonFaceParameters,
   GetPersonFaceParameters,
   UpdatePersonFaceParameters,
+  GetPersonFacesParameters,
   CreateDynamicPersonGroupWithPersonParameters,
   CreateDynamicPersonGroupParameters,
   DeleteDynamicPersonGroupParameters,
@@ -93,15 +93,15 @@ import {
   GetDynamicPersonGroupsParameters,
   GetDynamicPersonGroupPersonsParameters,
   CreateLivenessSessionParameters,
-  GetLivenessSessionsParameters,
   DeleteLivenessSessionParameters,
   GetLivenessSessionResultParameters,
+  GetLivenessSessionsParameters,
   GetLivenessSessionAuditEntriesParameters,
   CreateLivenessWithVerifySessionWithVerifyImageParameters,
   CreateLivenessWithVerifySessionParameters,
-  GetLivenessWithVerifySessionsParameters,
   DeleteLivenessWithVerifySessionParameters,
   GetLivenessWithVerifySessionResultParameters,
+  GetLivenessWithVerifySessionsParameters,
   GetLivenessWithVerifySessionAuditEntriesParameters,
 } from "./parameters.js";
 import {
@@ -139,10 +139,10 @@ import {
   CreateFaceListDefaultResponse,
   DeleteFaceList200Response,
   DeleteFaceListDefaultResponse,
-  GetFaceList200Response,
-  GetFaceListDefaultResponse,
   UpdateFaceList200Response,
   UpdateFaceListDefaultResponse,
+  GetFaceList200Response,
+  GetFaceListDefaultResponse,
   GetFaceLists200Response,
   GetFaceListsDefaultResponse,
   AddFaceListFaceFromUrl200Response,
@@ -155,10 +155,10 @@ import {
   CreateLargeFaceListDefaultResponse,
   DeleteLargeFaceList200Response,
   DeleteLargeFaceListDefaultResponse,
-  GetLargeFaceList200Response,
-  GetLargeFaceListDefaultResponse,
   UpdateLargeFaceList200Response,
   UpdateLargeFaceListDefaultResponse,
+  GetLargeFaceList200Response,
+  GetLargeFaceListDefaultResponse,
   GetLargeFaceLists200Response,
   GetLargeFaceListsDefaultResponse,
   GetLargeFaceListTrainingStatus200Response,
@@ -169,22 +169,22 @@ import {
   AddLargeFaceListFaceFromUrlDefaultResponse,
   AddLargeFaceListFace200Response,
   AddLargeFaceListFaceDefaultResponse,
-  GetLargeFaceListFaces200Response,
-  GetLargeFaceListFacesDefaultResponse,
   DeleteLargeFaceListFace200Response,
   DeleteLargeFaceListFaceDefaultResponse,
   GetLargeFaceListFace200Response,
   GetLargeFaceListFaceDefaultResponse,
   UpdateLargeFaceListFace200Response,
   UpdateLargeFaceListFaceDefaultResponse,
+  GetLargeFaceListFaces200Response,
+  GetLargeFaceListFacesDefaultResponse,
   CreatePersonGroup200Response,
   CreatePersonGroupDefaultResponse,
   DeletePersonGroup200Response,
   DeletePersonGroupDefaultResponse,
-  GetPersonGroup200Response,
-  GetPersonGroupDefaultResponse,
   UpdatePersonGroup200Response,
   UpdatePersonGroupDefaultResponse,
+  GetPersonGroup200Response,
+  GetPersonGroupDefaultResponse,
   GetPersonGroups200Response,
   GetPersonGroupsDefaultResponse,
   GetPersonGroupTrainingStatus200Response,
@@ -193,14 +193,14 @@ import {
   TrainPersonGroupDefaultResponse,
   CreatePersonGroupPerson200Response,
   CreatePersonGroupPersonDefaultResponse,
-  GetPersonGroupPersons200Response,
-  GetPersonGroupPersonsDefaultResponse,
   DeletePersonGroupPerson200Response,
   DeletePersonGroupPersonDefaultResponse,
   GetPersonGroupPerson200Response,
   GetPersonGroupPersonDefaultResponse,
   UpdatePersonGroupPerson200Response,
   UpdatePersonGroupPersonDefaultResponse,
+  GetPersonGroupPersons200Response,
+  GetPersonGroupPersonsDefaultResponse,
   AddPersonGroupPersonFaceFromUrl200Response,
   AddPersonGroupPersonFaceFromUrlDefaultResponse,
   AddPersonGroupPersonFace200Response,
@@ -215,10 +215,10 @@ import {
   CreateLargePersonGroupDefaultResponse,
   DeleteLargePersonGroup200Response,
   DeleteLargePersonGroupDefaultResponse,
-  GetLargePersonGroup200Response,
-  GetLargePersonGroupDefaultResponse,
   UpdateLargePersonGroup200Response,
   UpdateLargePersonGroupDefaultResponse,
+  GetLargePersonGroup200Response,
+  GetLargePersonGroupDefaultResponse,
   GetLargePersonGroups200Response,
   GetLargePersonGroupsDefaultResponse,
   GetLargePersonGroupTrainingStatus200Response,
@@ -227,14 +227,14 @@ import {
   TrainLargePersonGroupDefaultResponse,
   CreateLargePersonGroupPerson200Response,
   CreateLargePersonGroupPersonDefaultResponse,
-  GetLargePersonGroupPersons200Response,
-  GetLargePersonGroupPersonsDefaultResponse,
   DeleteLargePersonGroupPerson200Response,
   DeleteLargePersonGroupPersonDefaultResponse,
   GetLargePersonGroupPerson200Response,
   GetLargePersonGroupPersonDefaultResponse,
   UpdateLargePersonGroupPerson200Response,
   UpdateLargePersonGroupPersonDefaultResponse,
+  GetLargePersonGroupPersons200Response,
+  GetLargePersonGroupPersonsDefaultResponse,
   AddLargePersonGroupPersonFaceFromUrl200Response,
   AddLargePersonGroupPersonFaceFromUrlDefaultResponse,
   AddLargePersonGroupPersonFace200Response,
@@ -247,28 +247,28 @@ import {
   UpdateLargePersonGroupPersonFaceDefaultResponse,
   CreatePerson202Response,
   CreatePersonDefaultResponse,
-  GetPersons200Response,
-  GetPersonsDefaultResponse,
   DeletePerson202Response,
   DeletePersonDefaultResponse,
   GetPerson200Response,
   GetPersonDefaultResponse,
   UpdatePerson200Response,
   UpdatePersonDefaultResponse,
+  GetPersons200Response,
+  GetPersonsDefaultResponse,
   GetDynamicPersonGroupReferences200Response,
   GetDynamicPersonGroupReferencesDefaultResponse,
   AddPersonFace202Response,
   AddPersonFaceDefaultResponse,
   AddPersonFaceFromUrl202Response,
   AddPersonFaceFromUrlDefaultResponse,
-  GetPersonFaces200Response,
-  GetPersonFacesDefaultResponse,
   DeletePersonFace202Response,
   DeletePersonFaceDefaultResponse,
   GetPersonFace200Response,
   GetPersonFaceDefaultResponse,
   UpdatePersonFace200Response,
   UpdatePersonFaceDefaultResponse,
+  GetPersonFaces200Response,
+  GetPersonFacesDefaultResponse,
   CreateDynamicPersonGroupWithPerson202Response,
   CreateDynamicPersonGroupWithPersonDefaultResponse,
   CreateDynamicPersonGroup200Response,
@@ -287,24 +287,24 @@ import {
   GetDynamicPersonGroupPersonsDefaultResponse,
   CreateLivenessSession200Response,
   CreateLivenessSessionDefaultResponse,
-  GetLivenessSessions200Response,
-  GetLivenessSessionsDefaultResponse,
   DeleteLivenessSession200Response,
   DeleteLivenessSessionDefaultResponse,
   GetLivenessSessionResult200Response,
   GetLivenessSessionResultDefaultResponse,
+  GetLivenessSessions200Response,
+  GetLivenessSessionsDefaultResponse,
   GetLivenessSessionAuditEntries200Response,
   GetLivenessSessionAuditEntriesDefaultResponse,
   CreateLivenessWithVerifySessionWithVerifyImage200Response,
   CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse,
   CreateLivenessWithVerifySession200Response,
   CreateLivenessWithVerifySessionDefaultResponse,
-  GetLivenessWithVerifySessions200Response,
-  GetLivenessWithVerifySessionsDefaultResponse,
   DeleteLivenessWithVerifySession200Response,
   DeleteLivenessWithVerifySessionDefaultResponse,
   GetLivenessWithVerifySessionResult200Response,
   GetLivenessWithVerifySessionResultDefaultResponse,
+  GetLivenessWithVerifySessions200Response,
+  GetLivenessWithVerifySessionsDefaultResponse,
   GetLivenessWithVerifySessionAuditEntries200Response,
   GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
 } from "./responses.js";
@@ -565,16 +565,19 @@ export interface CreateFaceList {
   ): StreamableMethod<
     DeleteFaceList200Response | DeleteFaceListDefaultResponse
   >;
-  /** Retrieve a Face List's faceListId, name, userData, recognitionModel and faces in the Face List. */
-  get(
-    options?: GetFaceListParameters,
-  ): StreamableMethod<GetFaceList200Response | GetFaceListDefaultResponse>;
   /** Update information of a Face List, including name and userData. */
   patch(
     options?: UpdateFaceListParameters,
   ): StreamableMethod<
     UpdateFaceList200Response | UpdateFaceListDefaultResponse
   >;
+}
+
+export interface GetFaceList {
+  /** Retrieve a Face List's faceListId, name, userData, recognitionModel and faces in the Face List. */
+  get(
+    options?: GetFaceListParameters,
+  ): StreamableMethod<GetFaceList200Response | GetFaceListDefaultResponse>;
 }
 
 export interface GetFaceLists {
@@ -663,17 +666,20 @@ export interface CreateLargeFaceList {
   ): StreamableMethod<
     DeleteLargeFaceList200Response | DeleteLargeFaceListDefaultResponse
   >;
-  /** Retrieve a Large Face List's largeFaceListId, name, userData and recognitionModel. */
-  get(
-    options?: GetLargeFaceListParameters,
-  ): StreamableMethod<
-    GetLargeFaceList200Response | GetLargeFaceListDefaultResponse
-  >;
   /** Update information of a Large Face List, including name and userData. */
   patch(
     options?: UpdateLargeFaceListParameters,
   ): StreamableMethod<
     UpdateLargeFaceList200Response | UpdateLargeFaceListDefaultResponse
+  >;
+}
+
+export interface GetLargeFaceList {
+  /** Retrieve a Large Face List's largeFaceListId, name, userData and recognitionModel. */
+  get(
+    options?: GetLargeFaceListParameters,
+  ): StreamableMethod<
+    GetLargeFaceList200Response | GetLargeFaceListDefaultResponse
   >;
 }
 
@@ -780,25 +786,6 @@ export interface AddLargeFaceListFaceFromUrl {
   ): StreamableMethod<
     AddLargeFaceListFace200Response | AddLargeFaceListFaceDefaultResponse
   >;
-  /**
-   * Faces are stored in alphabetical order of persistedFaceId created in "Add Large Face List Face".
-   * >
-   * *
-   *   * "start" parameter (string, optional) specifies an ID value from which returned entries will have larger IDs based on string comparison. Setting "start" to an empty value indicates that entries should be returned starting from the first item.
-   *   * "top" parameter (int, optional) determines the maximum number of entries to be returned, with a limit of up to 1000 entries per call. To retrieve additional entries beyond this limit, specify "start" with the personId of the last entry returned in the current call.
-   *
-   * > [!TIP]
-   * >
-   * > * For example, there are total 5 items with their IDs: "itemId1", ..., "itemId5".
-   * >   * "start=&top=" will return all 5 items.
-   * >   * "start=&top=2" will return "itemId1", "itemId2".
-   * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
-   */
-  get(
-    options?: GetLargeFaceListFacesParameters,
-  ): StreamableMethod<
-    GetLargeFaceListFaces200Response | GetLargeFaceListFacesDefaultResponse
-  >;
 }
 
 export interface DeleteLargeFaceListFace {
@@ -819,6 +806,28 @@ export interface DeleteLargeFaceListFace {
     options?: UpdateLargeFaceListFaceParameters,
   ): StreamableMethod<
     UpdateLargeFaceListFace200Response | UpdateLargeFaceListFaceDefaultResponse
+  >;
+}
+
+export interface GetLargeFaceListFaces {
+  /**
+   * Faces are stored in alphabetical order of persistedFaceId created in "Add Large Face List Face".
+   * >
+   * *
+   *   * "start" parameter (string, optional) specifies an ID value from which returned entries will have larger IDs based on string comparison. Setting "start" to an empty value indicates that entries should be returned starting from the first item.
+   *   * "top" parameter (int, optional) determines the maximum number of entries to be returned, with a limit of up to 1000 entries per call. To retrieve additional entries beyond this limit, specify "start" with the personId of the last entry returned in the current call.
+   *
+   * > [!TIP]
+   * >
+   * > * For example, there are total 5 items with their IDs: "itemId1", ..., "itemId5".
+   * >   * "start=&top=" will return all 5 items.
+   * >   * "start=&top=2" will return "itemId1", "itemId2".
+   * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
+   */
+  get(
+    options?: GetLargeFaceListFacesParameters,
+  ): StreamableMethod<
+    GetLargeFaceListFaces200Response | GetLargeFaceListFacesDefaultResponse
   >;
 }
 
@@ -850,17 +859,20 @@ export interface CreatePersonGroup {
   ): StreamableMethod<
     DeletePersonGroup200Response | DeletePersonGroupDefaultResponse
   >;
-  /** Retrieve Person Group name, userData and recognitionModel. To get person information under this personGroup, use "Get Person Group Persons". */
-  get(
-    options?: GetPersonGroupParameters,
-  ): StreamableMethod<
-    GetPersonGroup200Response | GetPersonGroupDefaultResponse
-  >;
   /** Update an existing Person Group's name and userData. The properties keep unchanged if they are not in request body. */
   patch(
     options?: UpdatePersonGroupParameters,
   ): StreamableMethod<
     UpdatePersonGroup200Response | UpdatePersonGroupDefaultResponse
+  >;
+}
+
+export interface GetPersonGroup {
+  /** Retrieve Person Group name, userData and recognitionModel. To get person information under this personGroup, use "Get Person Group Persons". */
+  get(
+    options?: GetPersonGroupParameters,
+  ): StreamableMethod<
+    GetPersonGroup200Response | GetPersonGroupDefaultResponse
   >;
 }
 
@@ -922,25 +934,6 @@ export interface CreatePersonGroupPerson {
   ): StreamableMethod<
     CreatePersonGroupPerson200Response | CreatePersonGroupPersonDefaultResponse
   >;
-  /**
-   * Persons are stored in alphabetical order of personId created in "Create Person Group Person".
-   * >
-   * *
-   *   * "start" parameter (string, optional) specifies an ID value from which returned entries will have larger IDs based on string comparison. Setting "start" to an empty value indicates that entries should be returned starting from the first item.
-   *   * "top" parameter (int, optional) determines the maximum number of entries to be returned, with a limit of up to 1000 entries per call. To retrieve additional entries beyond this limit, specify "start" with the personId of the last entry returned in the current call.
-   *
-   * > [!TIP]
-   * >
-   * > * For example, there are total 5 items with their IDs: "itemId1", ..., "itemId5".
-   * >   * "start=&top=" will return all 5 items.
-   * >   * "start=&top=2" will return "itemId1", "itemId2".
-   * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
-   */
-  get(
-    options?: GetPersonGroupPersonsParameters,
-  ): StreamableMethod<
-    GetPersonGroupPersons200Response | GetPersonGroupPersonsDefaultResponse
-  >;
 }
 
 export interface DeletePersonGroupPerson {
@@ -961,6 +954,28 @@ export interface DeletePersonGroupPerson {
     options?: UpdatePersonGroupPersonParameters,
   ): StreamableMethod<
     UpdatePersonGroupPerson200Response | UpdatePersonGroupPersonDefaultResponse
+  >;
+}
+
+export interface GetPersonGroupPersons {
+  /**
+   * Persons are stored in alphabetical order of personId created in "Create Person Group Person".
+   * >
+   * *
+   *   * "start" parameter (string, optional) specifies an ID value from which returned entries will have larger IDs based on string comparison. Setting "start" to an empty value indicates that entries should be returned starting from the first item.
+   *   * "top" parameter (int, optional) determines the maximum number of entries to be returned, with a limit of up to 1000 entries per call. To retrieve additional entries beyond this limit, specify "start" with the personId of the last entry returned in the current call.
+   *
+   * > [!TIP]
+   * >
+   * > * For example, there are total 5 items with their IDs: "itemId1", ..., "itemId5".
+   * >   * "start=&top=" will return all 5 items.
+   * >   * "start=&top=2" will return "itemId1", "itemId2".
+   * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
+   */
+  get(
+    options?: GetPersonGroupPersonsParameters,
+  ): StreamableMethod<
+    GetPersonGroupPersons200Response | GetPersonGroupPersonsDefaultResponse
   >;
 }
 
@@ -1058,17 +1073,20 @@ export interface CreateLargePersonGroup {
   ): StreamableMethod<
     DeleteLargePersonGroup200Response | DeleteLargePersonGroupDefaultResponse
   >;
-  /** Retrieve the information of a Large Person Group, including its name, userData and recognitionModel. This API returns Large Person Group information only, use "Get Large Person Group Persons" instead to retrieve person information under the Large Person Group. */
-  get(
-    options?: GetLargePersonGroupParameters,
-  ): StreamableMethod<
-    GetLargePersonGroup200Response | GetLargePersonGroupDefaultResponse
-  >;
   /** Update an existing Large Person Group's name and userData. The properties keep unchanged if they are not in request body. */
   patch(
     options?: UpdateLargePersonGroupParameters,
   ): StreamableMethod<
     UpdateLargePersonGroup200Response | UpdateLargePersonGroupDefaultResponse
+  >;
+}
+
+export interface GetLargePersonGroup {
+  /** Retrieve the information of a Large Person Group, including its name, userData and recognitionModel. This API returns Large Person Group information only, use "Get Large Person Group Persons" instead to retrieve person information under the Large Person Group. */
+  get(
+    options?: GetLargePersonGroupParameters,
+  ): StreamableMethod<
+    GetLargePersonGroup200Response | GetLargePersonGroupDefaultResponse
   >;
 }
 
@@ -1131,26 +1149,6 @@ export interface CreateLargePersonGroupPerson {
     | CreateLargePersonGroupPerson200Response
     | CreateLargePersonGroupPersonDefaultResponse
   >;
-  /**
-   * Persons are stored in alphabetical order of personId created in "Create Large Person Group Person".
-   * >
-   * *
-   *   * "start" parameter (string, optional) specifies an ID value from which returned entries will have larger IDs based on string comparison. Setting "start" to an empty value indicates that entries should be returned starting from the first item.
-   *   * "top" parameter (int, optional) determines the maximum number of entries to be returned, with a limit of up to 1000 entries per call. To retrieve additional entries beyond this limit, specify "start" with the personId of the last entry returned in the current call.
-   *
-   * > [!TIP]
-   * >
-   * > * For example, there are total 5 items with their IDs: "itemId1", ..., "itemId5".
-   * >   * "start=&top=" will return all 5 items.
-   * >   * "start=&top=2" will return "itemId1", "itemId2".
-   * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
-   */
-  get(
-    options?: GetLargePersonGroupPersonsParameters,
-  ): StreamableMethod<
-    | GetLargePersonGroupPersons200Response
-    | GetLargePersonGroupPersonsDefaultResponse
-  >;
 }
 
 export interface DeleteLargePersonGroupPerson {
@@ -1174,6 +1172,29 @@ export interface DeleteLargePersonGroupPerson {
   ): StreamableMethod<
     | UpdateLargePersonGroupPerson200Response
     | UpdateLargePersonGroupPersonDefaultResponse
+  >;
+}
+
+export interface GetLargePersonGroupPersons {
+  /**
+   * Persons are stored in alphabetical order of personId created in "Create Large Person Group Person".
+   * >
+   * *
+   *   * "start" parameter (string, optional) specifies an ID value from which returned entries will have larger IDs based on string comparison. Setting "start" to an empty value indicates that entries should be returned starting from the first item.
+   *   * "top" parameter (int, optional) determines the maximum number of entries to be returned, with a limit of up to 1000 entries per call. To retrieve additional entries beyond this limit, specify "start" with the personId of the last entry returned in the current call.
+   *
+   * > [!TIP]
+   * >
+   * > * For example, there are total 5 items with their IDs: "itemId1", ..., "itemId5".
+   * >   * "start=&top=" will return all 5 items.
+   * >   * "start=&top=2" will return "itemId1", "itemId2".
+   * >   * "start=itemId2&top=3" will return "itemId3", "itemId4", "itemId5".
+   */
+  get(
+    options?: GetLargePersonGroupPersonsParameters,
+  ): StreamableMethod<
+    | GetLargePersonGroupPersons200Response
+    | GetLargePersonGroupPersonsDefaultResponse
   >;
 }
 
@@ -1249,6 +1270,24 @@ export interface CreatePerson {
   post(
     options?: CreatePersonParameters,
   ): StreamableMethod<CreatePerson202Response | CreatePersonDefaultResponse>;
+}
+
+export interface DeletePerson {
+  /** Delete an existing person from Person Directory. The persistedFaceId(s), userData, person name and face feature(s) in the person entry will all be deleted. */
+  delete(
+    options?: DeletePersonParameters,
+  ): StreamableMethod<DeletePerson202Response | DeletePersonDefaultResponse>;
+  /** Retrieve a person's name and userData from Person Directory. */
+  get(
+    options?: GetPersonParameters,
+  ): StreamableMethod<GetPerson200Response | GetPersonDefaultResponse>;
+  /** Update name or userData of a person. */
+  patch(
+    options?: UpdatePersonParameters,
+  ): StreamableMethod<UpdatePerson200Response | UpdatePersonDefaultResponse>;
+}
+
+export interface GetPersons {
   /**
    * Persons are stored in alphabetical order of personId created in Person Directory "Create Person".
    * >
@@ -1266,21 +1305,6 @@ export interface CreatePerson {
   get(
     options?: GetPersonsParameters,
   ): StreamableMethod<GetPersons200Response | GetPersonsDefaultResponse>;
-}
-
-export interface DeletePerson {
-  /** Delete an existing person from Person Directory. The persistedFaceId(s), userData, person name and face feature(s) in the person entry will all be deleted. */
-  delete(
-    options?: DeletePersonParameters,
-  ): StreamableMethod<DeletePerson202Response | DeletePersonDefaultResponse>;
-  /** Retrieve a person's name and userData from Person Directory. */
-  get(
-    options?: GetPersonParameters,
-  ): StreamableMethod<GetPerson200Response | GetPersonDefaultResponse>;
-  /** Update name or userData of a person. */
-  patch(
-    options?: UpdatePersonParameters,
-  ): StreamableMethod<UpdatePerson200Response | UpdatePersonDefaultResponse>;
 }
 
 export interface GetDynamicPersonGroupReferences {
@@ -1349,12 +1373,6 @@ export interface AddPersonFace {
   ): StreamableMethod<
     AddPersonFaceFromUrl202Response | AddPersonFaceFromUrlDefaultResponse
   >;
-  /** Retrieve a person's persistedFaceIds representing the registered person face feature(s). */
-  get(
-    options?: GetPersonFacesParameters,
-  ): StreamableMethod<
-    GetPersonFaces200Response | GetPersonFacesDefaultResponse
-  >;
 }
 
 export interface DeletePersonFace {
@@ -1373,6 +1391,15 @@ export interface DeletePersonFace {
     options?: UpdatePersonFaceParameters,
   ): StreamableMethod<
     UpdatePersonFace200Response | UpdatePersonFaceDefaultResponse
+  >;
+}
+
+export interface GetPersonFaces {
+  /** Retrieve a person's persistedFaceIds representing the registered person face feature(s). */
+  get(
+    options?: GetPersonFacesParameters,
+  ): StreamableMethod<
+    GetPersonFaces200Response | GetPersonFacesDefaultResponse
   >;
 }
 
@@ -1499,16 +1526,6 @@ export interface CreateLivenessSession {
   ): StreamableMethod<
     CreateLivenessSession200Response | CreateLivenessSessionDefaultResponse
   >;
-  /**
-   * List sessions from the last sessionId greater than the 'start'.
-   *
-   * The result should be ordered by sessionId in ascending order.
-   */
-  get(
-    options?: GetLivenessSessionsParameters,
-  ): StreamableMethod<
-    GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse
-  >;
 }
 
 export interface DeleteLivenessSession {
@@ -1527,6 +1544,19 @@ export interface DeleteLivenessSession {
   ): StreamableMethod<
     | GetLivenessSessionResult200Response
     | GetLivenessSessionResultDefaultResponse
+  >;
+}
+
+export interface GetLivenessSessions {
+  /**
+   * List sessions from the last sessionId greater than the 'start'.
+   *
+   * The result should be ordered by sessionId in ascending order.
+   */
+  get(
+    options?: GetLivenessSessionsParameters,
+  ): StreamableMethod<
+    GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse
   >;
 }
 
@@ -1591,17 +1621,6 @@ export interface CreateLivenessWithVerifySessionWithVerifyImage {
     | CreateLivenessWithVerifySession200Response
     | CreateLivenessWithVerifySessionDefaultResponse
   >;
-  /**
-   * List sessions from the last sessionId greater than the "start".
-   *
-   * The result should be ordered by sessionId in ascending order.
-   */
-  get(
-    options?: GetLivenessWithVerifySessionsParameters,
-  ): StreamableMethod<
-    | GetLivenessWithVerifySessions200Response
-    | GetLivenessWithVerifySessionsDefaultResponse
-  >;
 }
 
 export interface DeleteLivenessWithVerifySession {
@@ -1621,6 +1640,20 @@ export interface DeleteLivenessWithVerifySession {
   ): StreamableMethod<
     | GetLivenessWithVerifySessionResult200Response
     | GetLivenessWithVerifySessionResultDefaultResponse
+  >;
+}
+
+export interface GetLivenessWithVerifySessions {
+  /**
+   * List sessions from the last sessionId greater than the "start".
+   *
+   * The result should be ordered by sessionId in ascending order.
+   */
+  get(
+    options?: GetLivenessWithVerifySessionsParameters,
+  ): StreamableMethod<
+    | GetLivenessWithVerifySessions200Response
+    | GetLivenessWithVerifySessionsDefaultResponse
   >;
 }
 
@@ -1649,13 +1682,18 @@ export interface Routes {
   (path: "/verify"): VerifyFaceToFace;
   /** Resource for '/group' has methods for the following verbs: post */
   (path: "/group"): Group;
-  /** Resource for '/facelists/\{faceListId\}' has methods for the following verbs: put, delete, get, patch */
+  /** Resource for '/facelists/\{faceListId\}' has methods for the following verbs: put, delete, patch */
   (path: "/facelists/{faceListId}", faceListId: string): CreateFaceList;
-  /** Resource for '/facelists' has methods for the following verbs: get */
-  (path: "/facelists"): GetFaceLists;
-  /** Resource for '/facelists/\{faceListId\}/persistedfaces' has methods for the following verbs: post */
+  /** Resource for '/facelists/\{faceListId\}\{?returnRecognitionModel\}' has methods for the following verbs: get */
   (
-    path: "/facelists/{faceListId}/persistedfaces",
+    path: "/facelists/{faceListId}{?returnRecognitionModel}",
+    faceListId: string,
+  ): GetFaceList;
+  /** Resource for '/facelists\{?returnRecognitionModel\}' has methods for the following verbs: get */
+  (path: "/facelists{?returnRecognitionModel}"): GetFaceLists;
+  /** Resource for '/facelists/\{faceListId\}/persistedfaces\{?targetFace,detectionModel,userData\}' has methods for the following verbs: post */
+  (
+    path: "/facelists/{faceListId}/persistedfaces{?targetFace,detectionModel,userData}",
     faceListId: string,
   ): AddFaceListFaceFromUrl;
   /** Resource for '/facelists/\{faceListId\}/persistedfaces/\{persistedFaceId\}' has methods for the following verbs: delete */
@@ -1664,13 +1702,20 @@ export interface Routes {
     faceListId: string,
     persistedFaceId: string,
   ): DeleteFaceListFace;
-  /** Resource for '/largefacelists/\{largeFaceListId\}' has methods for the following verbs: put, delete, get, patch */
+  /** Resource for '/largefacelists/\{largeFaceListId\}' has methods for the following verbs: put, delete, patch */
   (
     path: "/largefacelists/{largeFaceListId}",
     largeFaceListId: string,
   ): CreateLargeFaceList;
-  /** Resource for '/largefacelists' has methods for the following verbs: get */
-  (path: "/largefacelists"): GetLargeFaceLists;
+  /** Resource for '/largefacelists/\{largeFaceListId\}\{?returnRecognitionModel\}' has methods for the following verbs: get */
+  (
+    path: "/largefacelists/{largeFaceListId}{?returnRecognitionModel}",
+    largeFaceListId: string,
+  ): GetLargeFaceList;
+  /** Resource for '/largefacelists\{?start,top,returnRecognitionModel\}' has methods for the following verbs: get */
+  (
+    path: "/largefacelists{?start,top,returnRecognitionModel}",
+  ): GetLargeFaceLists;
   /** Resource for '/largefacelists/\{largeFaceListId\}/training' has methods for the following verbs: get */
   (
     path: "/largefacelists/{largeFaceListId}/training",
@@ -1681,9 +1726,9 @@ export interface Routes {
     path: "/largefacelists/{largeFaceListId}/train",
     largeFaceListId: string,
   ): TrainLargeFaceList;
-  /** Resource for '/largefacelists/\{largeFaceListId\}/persistedfaces' has methods for the following verbs: post, get */
+  /** Resource for '/largefacelists/\{largeFaceListId\}/persistedfaces\{?targetFace,detectionModel,userData\}' has methods for the following verbs: post */
   (
-    path: "/largefacelists/{largeFaceListId}/persistedfaces",
+    path: "/largefacelists/{largeFaceListId}/persistedfaces{?targetFace,detectionModel,userData}",
     largeFaceListId: string,
   ): AddLargeFaceListFaceFromUrl;
   /** Resource for '/largefacelists/\{largeFaceListId\}/persistedfaces/\{persistedFaceId\}' has methods for the following verbs: delete, get, patch */
@@ -1692,13 +1737,23 @@ export interface Routes {
     largeFaceListId: string,
     persistedFaceId: string,
   ): DeleteLargeFaceListFace;
-  /** Resource for '/persongroups/\{personGroupId\}' has methods for the following verbs: put, delete, get, patch */
+  /** Resource for '/largefacelists/\{largeFaceListId\}/persistedfaces\{?start,top\}' has methods for the following verbs: get */
+  (
+    path: "/largefacelists/{largeFaceListId}/persistedfaces{?start,top}",
+    largeFaceListId: string,
+  ): GetLargeFaceListFaces;
+  /** Resource for '/persongroups/\{personGroupId\}' has methods for the following verbs: put, delete, patch */
   (
     path: "/persongroups/{personGroupId}",
     personGroupId: string,
   ): CreatePersonGroup;
-  /** Resource for '/persongroups' has methods for the following verbs: get */
-  (path: "/persongroups"): GetPersonGroups;
+  /** Resource for '/persongroups/\{personGroupId\}\{?returnRecognitionModel\}' has methods for the following verbs: get */
+  (
+    path: "/persongroups/{personGroupId}{?returnRecognitionModel}",
+    personGroupId: string,
+  ): GetPersonGroup;
+  /** Resource for '/persongroups\{?start,top,returnRecognitionModel\}' has methods for the following verbs: get */
+  (path: "/persongroups{?start,top,returnRecognitionModel}"): GetPersonGroups;
   /** Resource for '/persongroups/\{personGroupId\}/training' has methods for the following verbs: get */
   (
     path: "/persongroups/{personGroupId}/training",
@@ -1709,7 +1764,7 @@ export interface Routes {
     path: "/persongroups/{personGroupId}/train",
     personGroupId: string,
   ): TrainPersonGroup;
-  /** Resource for '/persongroups/\{personGroupId\}/persons' has methods for the following verbs: post, get */
+  /** Resource for '/persongroups/\{personGroupId\}/persons' has methods for the following verbs: post */
   (
     path: "/persongroups/{personGroupId}/persons",
     personGroupId: string,
@@ -1720,9 +1775,14 @@ export interface Routes {
     personGroupId: string,
     personId: string,
   ): DeletePersonGroupPerson;
-  /** Resource for '/persongroups/\{personGroupId\}/persons/\{personId\}/persistedfaces' has methods for the following verbs: post */
+  /** Resource for '/persongroups/\{personGroupId\}/persons\{?start,top\}' has methods for the following verbs: get */
   (
-    path: "/persongroups/{personGroupId}/persons/{personId}/persistedfaces",
+    path: "/persongroups/{personGroupId}/persons{?start,top}",
+    personGroupId: string,
+  ): GetPersonGroupPersons;
+  /** Resource for '/persongroups/\{personGroupId\}/persons/\{personId\}/persistedfaces\{?targetFace,detectionModel,userData\}' has methods for the following verbs: post */
+  (
+    path: "/persongroups/{personGroupId}/persons/{personId}/persistedfaces{?targetFace,detectionModel,userData}",
     personGroupId: string,
     personId: string,
   ): AddPersonGroupPersonFaceFromUrl;
@@ -1733,13 +1793,20 @@ export interface Routes {
     personId: string,
     persistedFaceId: string,
   ): DeletePersonGroupPersonFace;
-  /** Resource for '/largepersongroups/\{largePersonGroupId\}' has methods for the following verbs: put, delete, get, patch */
+  /** Resource for '/largepersongroups/\{largePersonGroupId\}' has methods for the following verbs: put, delete, patch */
   (
     path: "/largepersongroups/{largePersonGroupId}",
     largePersonGroupId: string,
   ): CreateLargePersonGroup;
-  /** Resource for '/largepersongroups' has methods for the following verbs: get */
-  (path: "/largepersongroups"): GetLargePersonGroups;
+  /** Resource for '/largepersongroups/\{largePersonGroupId\}\{?returnRecognitionModel\}' has methods for the following verbs: get */
+  (
+    path: "/largepersongroups/{largePersonGroupId}{?returnRecognitionModel}",
+    largePersonGroupId: string,
+  ): GetLargePersonGroup;
+  /** Resource for '/largepersongroups\{?start,top,returnRecognitionModel\}' has methods for the following verbs: get */
+  (
+    path: "/largepersongroups{?start,top,returnRecognitionModel}",
+  ): GetLargePersonGroups;
   /** Resource for '/largepersongroups/\{largePersonGroupId\}/training' has methods for the following verbs: get */
   (
     path: "/largepersongroups/{largePersonGroupId}/training",
@@ -1750,7 +1817,7 @@ export interface Routes {
     path: "/largepersongroups/{largePersonGroupId}/train",
     largePersonGroupId: string,
   ): TrainLargePersonGroup;
-  /** Resource for '/largepersongroups/\{largePersonGroupId\}/persons' has methods for the following verbs: post, get */
+  /** Resource for '/largepersongroups/\{largePersonGroupId\}/persons' has methods for the following verbs: post */
   (
     path: "/largepersongroups/{largePersonGroupId}/persons",
     largePersonGroupId: string,
@@ -1761,9 +1828,14 @@ export interface Routes {
     largePersonGroupId: string,
     personId: string,
   ): DeleteLargePersonGroupPerson;
-  /** Resource for '/largepersongroups/\{largePersonGroupId\}/persons/\{personId\}/persistedfaces' has methods for the following verbs: post */
+  /** Resource for '/largepersongroups/\{largePersonGroupId\}/persons\{?start,top\}' has methods for the following verbs: get */
   (
-    path: "/largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces",
+    path: "/largepersongroups/{largePersonGroupId}/persons{?start,top}",
+    largePersonGroupId: string,
+  ): GetLargePersonGroupPersons;
+  /** Resource for '/largepersongroups/\{largePersonGroupId\}/persons/\{personId\}/persistedfaces\{?targetFace,detectionModel,userData\}' has methods for the following verbs: post */
+  (
+    path: "/largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces{?targetFace,detectionModel,userData}",
     largePersonGroupId: string,
     personId: string,
   ): AddLargePersonGroupPersonFaceFromUrl;
@@ -1774,18 +1846,20 @@ export interface Routes {
     personId: string,
     persistedFaceId: string,
   ): DeleteLargePersonGroupPersonFace;
-  /** Resource for '/persons' has methods for the following verbs: post, get */
+  /** Resource for '/persons' has methods for the following verbs: post */
   (path: "/persons"): CreatePerson;
   /** Resource for '/persons/\{personId\}' has methods for the following verbs: delete, get, patch */
   (path: "/persons/{personId}", personId: string): DeletePerson;
-  /** Resource for '/persons/\{personId\}/dynamicPersonGroupReferences' has methods for the following verbs: get */
+  /** Resource for '/persons\{?start,top\}' has methods for the following verbs: get */
+  (path: "/persons{?start,top}"): GetPersons;
+  /** Resource for '/persons/\{personId\}/dynamicPersonGroupReferences\{?start,top\}' has methods for the following verbs: get */
   (
-    path: "/persons/{personId}/dynamicPersonGroupReferences",
+    path: "/persons/{personId}/dynamicPersonGroupReferences{?start,top}",
     personId: string,
   ): GetDynamicPersonGroupReferences;
-  /** Resource for '/persons/\{personId\}/recognitionModels/\{recognitionModel\}/persistedfaces' has methods for the following verbs: post, get */
+  /** Resource for '/persons/\{personId\}/recognitionModels/\{recognitionModel\}/persistedfaces\{?targetFace,detectionModel,userData\}' has methods for the following verbs: post */
   (
-    path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces",
+    path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces{?targetFace,detectionModel,userData}",
     personId: string,
     recognitionModel: RecognitionModel,
   ): AddPersonFace;
@@ -1796,31 +1870,41 @@ export interface Routes {
     recognitionModel: RecognitionModel,
     persistedFaceId: string,
   ): DeletePersonFace;
+  /** Resource for '/persons/\{personId\}/recognitionModels/\{recognitionModel\}/persistedfaces' has methods for the following verbs: get */
+  (
+    path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces",
+    personId: string,
+    recognitionModel: RecognitionModel,
+  ): GetPersonFaces;
   /** Resource for '/dynamicpersongroups/\{dynamicPersonGroupId\}' has methods for the following verbs: put, delete, get, patch */
   (
     path: "/dynamicpersongroups/{dynamicPersonGroupId}",
     dynamicPersonGroupId: string,
   ): CreateDynamicPersonGroupWithPerson;
-  /** Resource for '/dynamicpersongroups' has methods for the following verbs: get */
-  (path: "/dynamicpersongroups"): GetDynamicPersonGroups;
-  /** Resource for '/dynamicpersongroups/\{dynamicPersonGroupId\}/persons' has methods for the following verbs: get */
+  /** Resource for '/dynamicpersongroups\{?start,top\}' has methods for the following verbs: get */
+  (path: "/dynamicpersongroups{?start,top}"): GetDynamicPersonGroups;
+  /** Resource for '/dynamicpersongroups/\{dynamicPersonGroupId\}/persons\{?start,top\}' has methods for the following verbs: get */
   (
-    path: "/dynamicpersongroups/{dynamicPersonGroupId}/persons",
+    path: "/dynamicpersongroups/{dynamicPersonGroupId}/persons{?start,top}",
     dynamicPersonGroupId: string,
   ): GetDynamicPersonGroupPersons;
-  /** Resource for '/detectLiveness/singleModal/sessions' has methods for the following verbs: post, get */
+  /** Resource for '/detectLiveness/singleModal/sessions' has methods for the following verbs: post */
   (path: "/detectLiveness/singleModal/sessions"): CreateLivenessSession;
   /** Resource for '/detectLiveness/singleModal/sessions/\{sessionId\}' has methods for the following verbs: delete, get */
   (
     path: "/detectLiveness/singleModal/sessions/{sessionId}",
     sessionId: string,
   ): DeleteLivenessSession;
-  /** Resource for '/detectLiveness/singleModal/sessions/\{sessionId\}/audit' has methods for the following verbs: get */
+  /** Resource for '/detectLiveness/singleModal/sessions\{?start,top\}' has methods for the following verbs: get */
   (
-    path: "/detectLiveness/singleModal/sessions/{sessionId}/audit",
+    path: "/detectLiveness/singleModal/sessions{?start,top}",
+  ): GetLivenessSessions;
+  /** Resource for '/detectLiveness/singleModal/sessions/\{sessionId\}/audit\{?start,top\}' has methods for the following verbs: get */
+  (
+    path: "/detectLiveness/singleModal/sessions/{sessionId}/audit{?start,top}",
     sessionId: string,
   ): GetLivenessSessionAuditEntries;
-  /** Resource for '/detectLivenessWithVerify/singleModal/sessions' has methods for the following verbs: post, get */
+  /** Resource for '/detectLivenessWithVerify/singleModal/sessions' has methods for the following verbs: post */
   (
     path: "/detectLivenessWithVerify/singleModal/sessions",
   ): CreateLivenessWithVerifySessionWithVerifyImage;
@@ -1829,9 +1913,13 @@ export interface Routes {
     path: "/detectLivenessWithVerify/singleModal/sessions/{sessionId}",
     sessionId: string,
   ): DeleteLivenessWithVerifySession;
-  /** Resource for '/detectLivenessWithVerify/singleModal/sessions/\{sessionId\}/audit' has methods for the following verbs: get */
+  /** Resource for '/detectLivenessWithVerify/singleModal/sessions\{?start,top\}' has methods for the following verbs: get */
   (
-    path: "/detectLivenessWithVerify/singleModal/sessions/{sessionId}/audit",
+    path: "/detectLivenessWithVerify/singleModal/sessions{?start,top}",
+  ): GetLivenessWithVerifySessions;
+  /** Resource for '/detectLivenessWithVerify/singleModal/sessions/\{sessionId\}/audit\{?start,top\}' has methods for the following verbs: get */
+  (
+    path: "/detectLivenessWithVerify/singleModal/sessions/{sessionId}/audit{?start,top}",
     sessionId: string,
   ): GetLivenessWithVerifySessionAuditEntries;
 }
