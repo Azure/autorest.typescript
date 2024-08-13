@@ -4,9 +4,7 @@
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
-const esLintConfig: Record<string, any> = {
-  plugins: ["@azure/azure-sdk"],
-  extends: ["plugin:@azure/azure-sdk/azure-sdk-base"],
+const rules: Record<string, any> = {
   rules: {
     "@azure/azure-sdk/ts-modules-only-named": "warn",
     "@azure/azure-sdk/ts-apiextractor-json-types": "warn",
@@ -16,21 +14,42 @@ const esLintConfig: Record<string, any> = {
   }
 };
 
+const esmRules: Record<string, any> = {
+  rules: {
+    "@azure/azure-sdk/ts-modules-only-named": "warn",
+    "@azure/azure-sdk/ts-apiextractor-json-types": "warn",
+    "@azure/azure-sdk/ts-package-json-types": "warn",
+    "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
+    "@azure/azure-sdk/ts-package-json-module": "off",
+    "@azure/azure-sdk/ts-package-json-files-required": "off",
+    "@azure/azure-sdk/ts-package-json-main-is-cjs": "off",
+    "tsdoc/syntax": "warn"
+  }
+};
+
+const esLintConfigTemplate = `import azsdkEslint from "@azure/eslint-plugin-azure-sdk";
+
+export default [
+  ...azsdkEslint.configs.recommended,
+  <rulesPlaceHolder>
+];
+`;
+
 export function buildEsLintConfig(model: RLCModel) {
   if (model.options?.flavor !== "azure") {
     return;
   }
   const project = new Project();
-  const filePath = ".eslintrc.json";
-  if (model.options?.moduleKind == "esm") {
-    esLintConfig.rules["@azure/azure-sdk/ts-package-json-module"] = "off";
-    esLintConfig.rules["@azure/azure-sdk/ts-package-json-files-required"] =
-      "off";
-    esLintConfig.rules["@azure/azure-sdk/ts-package-json-main-is-cjs"] = "off";
-  }
+  const filePath = "eslint.config.mjs";
+
+  const contentText = esLintConfigTemplate.replace(
+    "<rulesPlaceHolder>",
+    JSON.stringify(model.options?.moduleKind === "esm" ? esmRules : rules)
+  );
+
   const configFile = project.createSourceFile(
-    ".eslintrc.json",
-    JSON.stringify(esLintConfig),
+    "eslint.config.mjs",
+    contentText,
     {
       overwrite: true
     }
