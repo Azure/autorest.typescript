@@ -2,11 +2,11 @@ import {
   NameType,
   normalizeName,
   ReservedModelNames
-} from "@azure-tools/rlc-common";
+} from "../rlc/common/index.js";
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-import { SdkContext } from "../../utils/interfaces.js";
+import { toCamelCase, toPascalCase } from "../utils/casingUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 import {
   Client,
   ModularCodeModel,

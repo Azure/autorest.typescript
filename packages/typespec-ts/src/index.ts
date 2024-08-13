@@ -35,22 +35,9 @@ import { EmitContext, Program } from "@typespec/compiler";
 import { existsSync } from "fs";
 import * as fsextra from "fs-extra";
 import { join } from "path";
-import { env } from "process";
 import { Project } from "ts-morph";
 import { EmitterOptions } from "./lib.js";
-import { buildClassicalClient } from "./modular/buildClassicalClient.js";
-import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { buildClientContext } from "./modular/buildClientContext.js";
-import { emitCodeModel } from "./modular/buildCodeModel.js";
-import { buildOperationFiles } from "./modular/buildOperations.js";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
-import {
-  buildRootIndex,
-  buildSubClientIndexFile
-} from "./modular/buildRootIndex.js";
-import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
-import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
@@ -58,25 +45,17 @@ import { getRLCClients } from "./utils/clientUtils.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
-import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
-import { provideBinder } from "./framework/hooks/binder.js";
-import { loadStaticHelpers } from "./framework/load-static-helpers.js";
-import {
-  PagingHelpers,
-  PollingHelpers,
-  SerializationHelpers
-} from "./modular/static-helpers-metadata.js";
-import {
-  AzureCoreDependencies,
-  AzurePollingDependencies
-} from "./modular/external-dependencies.js";
-import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { buildRestorePoller } from "./modular/buildRestorePoller.js";
+
+import { $onEmit as modularOnEmit } from "./modular/index.js";
 
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
+  if (context.options["isModularLibrary"] === true) {
+    return modularOnEmit(context);
+  }
+
   /** Shared status */
   const outputProject = new Project();
   const program: Program = context.program;
@@ -101,26 +80,30 @@ export async function $onEmit(context: EmitContext) {
     tcgcContext: dpgContext
   });
   provideSdkTypes(dpgContext.sdkPackage);
-  const { modularSourcesDir } = await calculateGenerationDir();
-  const staticHelpers = await loadStaticHelpers(
-    outputProject,
-    {
-      ...SerializationHelpers,
-      ...PagingHelpers,
-      ...PollingHelpers
-    },
-    { sourcesDir: modularSourcesDir }
-  );
-  const extraDependencies =
-    rlcOptions?.flavor === "azure"
-      ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
-      : {};
-  const binder = provideBinder(outputProject, {
-    staticHelpers,
-    dependencies: {
-      ...extraDependencies
-    }
-  });
+
+  // TODO: Uncomment these lines if using Binder in RLC
+  // const { modularSourcesDir } = await calculateGenerationDir();
+  // const staticHelpers = await loadStaticHelpers(
+  //   outputProject,
+  //   {
+  //     ...SerializationHelpers,
+  //     ...PagingHelpers,
+  //     ...PollingHelpers
+  //   },
+  //   { sourcesDir: modularSourcesDir }
+  // );
+
+  // const extraDependencies =
+  //   rlcOptions?.flavor === "azure"
+  //     ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+  //     : {};
+
+  // const binder = provideBinder(outputProject, {
+  //   staticHelpers,
+  //   dependencies: {
+  //     ...extraDependencies
+  //   }
+  // });
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
@@ -133,11 +116,7 @@ export async function $onEmit(context: EmitContext) {
   await buildRLCCodeModels();
 
   // 4. Generate sources
-  if (emitterOptions.isModularLibrary) {
-    await generateModularSources();
-  } else {
-    await generateRLCSources();
-  }
+  await generateRLCSources();
 
   // 5. Generate metadata and test files
   await generateMetadataAndTest();
@@ -217,76 +196,6 @@ export async function $onEmit(context: EmitContext) {
         buildSamples,
         rlcModels,
         dpgContext.generationPathDetail?.metadataDir
-      );
-    }
-  }
-
-  async function generateModularSources() {
-    const modularSourcesRoot =
-      dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
-    const project = useContext("outputProject");
-    emitSerializerHelpersFile(project, modularSourcesRoot);
-    modularCodeModel = emitCodeModel(
-      dpgContext,
-      serviceNameToRlcModelsMap,
-      modularSourcesRoot,
-      project,
-      {
-        casing: "camel"
-      }
-    );
-
-    emitLoggerFile(modularCodeModel, project, modularSourcesRoot);
-
-    const rootIndexFile = project.createSourceFile(
-      `${modularSourcesRoot}/index.ts`,
-      "",
-      {
-        overwrite: true
-      }
-    );
-
-    const isMultiClients = modularCodeModel.clients.length > 1;
-
-    for (const subClient of modularCodeModel.clients) {
-      buildModels(subClient, modularCodeModel);
-      buildModelsOptions(subClient, modularCodeModel);
-      if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
-        buildSerializeUtils(modularCodeModel);
-      // build operation files
-      buildOperationFiles(subClient, dpgContext, modularCodeModel);
-      buildClientContext(subClient, dpgContext, modularCodeModel);
-      buildSubpathIndexFile(subClient, modularCodeModel, "models");
-      buildRestorePoller(modularCodeModel, subClient);
-      if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(subClient, modularCodeModel, "api");
-      } else {
-        buildSubpathIndexFile(subClient, modularCodeModel, "api", {
-          exportIndex: true
-        });
-      }
-
-      buildClassicalClient(subClient, dpgContext, modularCodeModel);
-      buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
-      buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
-        exportIndex: true,
-        interfaceOnly: true
-      });
-      if (isMultiClients) {
-        buildSubClientIndexFile(subClient, modularCodeModel);
-      }
-      buildRootIndex(subClient, modularCodeModel, rootIndexFile);
-    }
-
-    binder.resolveAllReferences();
-
-    for (const file of project.getSourceFiles()) {
-      file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
-      file.fixUnusedIdentifiers();
-      await emitContentByBuilder(
-        program,
-        () => ({ content: file.getFullText(), path: file.getFilePath() }),
-        modularCodeModel as any
       );
     }
   }

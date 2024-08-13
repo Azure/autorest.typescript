@@ -4,7 +4,7 @@ import {
   NameType,
   normalizeName,
   RLCModel
-} from "@azure-tools/rlc-common";
+} from "./rlc/common/index.js";
 import {
   getLroMetadata,
   getPagedResult
@@ -76,9 +76,9 @@ import {
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import { Project } from "ts-morph";
-import { reportDiagnostic } from "../lib.js";
-import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
+import { reportDiagnostic } from "./lib.js";
+import { camelToSnakeCase, toCamelCase } from "./utils/casingUtils.js";
+import { SdkContext } from "./utils/interfaces.js";
 import {
   buildCoreTypeInfo,
   getBodyType,
@@ -86,8 +86,8 @@ import {
   getEffectiveSchemaType,
   isAzureCoreErrorType,
   isSchemaProperty
-} from "../utils/modelUtils.js";
-import { getModelNamespaceName } from "../utils/namespaceUtils.js";
+} from "./utils/modelUtils.js";
+import { getModelNamespaceName } from "./utils/namespaceUtils.js";
 import {
   extractPagedMetadataNested,
   getOperationGroupName,
@@ -111,7 +111,7 @@ import {
   Response,
   Type as HrlcType
 } from "./modularCodeModel.js";
-import { useContext } from "../contextManager.js";
+import { useContext } from "./contextManager.js";
 
 interface HttpServerParameter {
   type: "endpointPath";

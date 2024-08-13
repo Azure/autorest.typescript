@@ -1,8 +1,8 @@
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
-} from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+} from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 import { assert } from "chai";
 
 describe("header parameters", () => {

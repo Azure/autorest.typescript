@@ -2,8 +2,8 @@ import { assert } from "chai";
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
-} from "../util/emitUtil.js";
-import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+} from "./util/emitUtil.js";
+import { VerifyPropertyConfig, assertEqualContent } from "./util/testUtil.js";
 import { Diagnostic } from "@typespec/compiler";
 
 async function verifyModularPropertyType(

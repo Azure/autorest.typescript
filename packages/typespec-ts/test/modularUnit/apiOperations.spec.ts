@@ -3,8 +3,8 @@ import {
   emitModularClientContextFromTypeSpec,
   emitModularClientFromTypeSpec,
   emitModularOperationsFromTypeSpec
-} from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+} from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("api operations in Modular", () => {
   describe("in parameters", () => {

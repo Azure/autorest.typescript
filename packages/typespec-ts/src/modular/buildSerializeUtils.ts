@@ -3,7 +3,7 @@ import {
   addImportToSpecifier,
   clearImportSets,
   Imports as RuntimeImports
-} from "@azure-tools/rlc-common";
+} from "./rlc/common/index.js";
 import { UsageFlags } from "@typespec/compiler";
 import {
   FunctionDeclarationStructure,

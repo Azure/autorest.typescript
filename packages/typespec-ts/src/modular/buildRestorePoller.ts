@@ -4,8 +4,8 @@ import { ModularCodeModel, Client } from "./modularCodeModel.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { resolveReference } from "../framework/reference.js";
+import { NameType, normalizeName } from "./rlc/common/index.js";
+import { resolveReference } from "./framework/reference.js";
 import {
   AzureCoreDependencies,
   AzurePollingDependencies

@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitModularOperationsFromTypeSpec } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+import { emitModularOperationsFromTypeSpec } from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 import { Diagnostic } from "@typespec/compiler";
 
 describe("operations", () => {

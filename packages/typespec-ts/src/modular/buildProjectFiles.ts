@@ -1,4 +1,4 @@
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "./rlc/common/index.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import { ModularCodeModel } from "./modularCodeModel.js";
 

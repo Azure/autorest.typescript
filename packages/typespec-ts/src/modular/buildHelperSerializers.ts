@@ -1,5 +1,5 @@
 import { Project } from "ts-morph";
-import { useContext } from "../contextManager.js";
+import { useContext } from "./contextManager.js";
 const serializeRecordFunction = {
   symbol: "serializeRecord",
   content: `

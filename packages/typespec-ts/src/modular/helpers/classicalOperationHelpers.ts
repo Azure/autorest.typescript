@@ -1,4 +1,4 @@
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "../rlc/common/index.js";
 import {
   FunctionDeclarationStructure,
   OptionalKind,
@@ -9,7 +9,7 @@ import {
 import { Client, OperationGroup } from "../modularCodeModel.js";
 import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
-import { SdkContext } from "../../utils/interfaces.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function shouldPromoteSubscriptionId(
   dpgContext: SdkContext,

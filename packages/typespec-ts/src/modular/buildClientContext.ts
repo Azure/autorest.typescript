@@ -2,9 +2,9 @@ import {
   getImportSpecifier,
   NameType,
   normalizeName
-} from "@azure-tools/rlc-common";
+} from "./rlc/common/index.js";
 import { SourceFile } from "ts-morph";
-import { SdkContext } from "../utils/interfaces.js";
+import { SdkContext } from "./utils/interfaces.js";
 import { importModels } from "./buildOperations.js";
 import {
   buildGetClientCredentialParam,
