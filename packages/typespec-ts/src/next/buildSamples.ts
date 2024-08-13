@@ -15,27 +15,10 @@ import { useContext } from "../contextManager.js";
 import { join } from "path";
 
 export function buildSamples(dpgContext: SdkContext) {
-  // Create a new ts-morph project
   for (const client of dpgContext.sdkPackage.clients) {
     buildClassicalClientSample(dpgContext, client);
   }
 }
-
-// importing the necessary modules
-
-// async function getASingleSubscription() {
-//   const subscriptionId = "291bba3f-e0a5-47bc-a099-3bdcb2a50a05";
-//   const credential = new DefaultAzureCredential();
-//   const client = new SubscriptionClient(credential);
-//   const result = await client.subscriptions.get(subscriptionId);
-//   console.log(result);
-// }
-
-// async function main() {
-//   getASingleSubscription();
-// }
-
-// main().catch(console.error);
 
 function buildClassicalClientSample(
   dpgContext: SdkContext,
@@ -100,7 +83,7 @@ function buildExamplesForMethod(
       clientParams: string[] = [],
       methodParams: string[] = [];
     const exampleName = normalizeName(
-      transformSpecialLetterToSpace(example.name),
+      escapeSpecialCharToSpace(example.name),
       NameType.Method
     );
     const exampleFunctionType = {
@@ -186,7 +169,6 @@ function getCredentialType(initialization: SdkInitializationType) {
     : undefined;
 }
 
-// TODO: handle values that are not strings
 function getParameterValue(value: SdkTypeExample) {
   let retValue = value.value;
   switch (value.kind) {
@@ -209,6 +191,7 @@ function getParameterValue(value: SdkTypeExample) {
       break;
     case "dict":
     case "model": {
+      // TODO: handle the client name and serialization name gaps
       const values = [];
       const additionalPropertiesValue =
         value.kind === "model" ? value?.additionalPropertiesValue : {};
@@ -228,10 +211,9 @@ function getParameterValue(value: SdkTypeExample) {
       break;
     }
     case "array": {
-      const valuesArr = [];
-      for (const element of value.value) {
-        valuesArr.push(getParameterValue(element));
-      }
+      const valuesArr = value.value.map((element) =>
+        getParameterValue(element)
+      );
       retValue = `[${valuesArr.join(", ")}]`;
       break;
     }
@@ -242,7 +224,7 @@ function getParameterValue(value: SdkTypeExample) {
   return retValue;
 }
 
-function transformSpecialLetterToSpace(str: string) {
+function escapeSpecialCharToSpace(str: string) {
   if (!str) {
     return str;
   }
