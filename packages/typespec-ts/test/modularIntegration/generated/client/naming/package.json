@@ -16,15 +16,34 @@
       "./api/clientModel": "src/api/clientModel/index.ts",
       "./api/unionEnum": "src/api/unionEnum/index.ts"
     },
-    "dialects": ["esm", "commonjs"],
-    "esmDialects": ["browser", "react-native"],
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
     "selfLink": false
   },
   "type": "module",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
-  "files": ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "review/*",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "@azure-rest/core-client": "^2.1.0",
     "@azure/core-auth": "^1.6.0",
@@ -41,7 +60,7 @@
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1",
     "typescript": "~5.5.3",
-    "tshy": "1.11.1"
+    "tshy": "^2.0.0"
   },
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",

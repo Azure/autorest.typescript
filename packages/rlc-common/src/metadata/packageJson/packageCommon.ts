@@ -56,7 +56,7 @@ function getEsmDevDependencies({ moduleKind }: PackageCommonInfoConfig) {
     return {};
   }
   return {
-    tshy: "1.11.1"
+    tshy: "^2.0.0"
   };
 }
 
