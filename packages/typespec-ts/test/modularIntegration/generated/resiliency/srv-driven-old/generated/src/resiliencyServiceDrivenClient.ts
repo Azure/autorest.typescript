@@ -11,14 +11,14 @@ import {
   fromNone,
   fromOneRequired,
   fromOneOptional,
-  createServiceDriven,
+  createResiliencyServiceDriven,
   ServiceDrivenContext,
-  ServiceDrivenClientOptionalParams,
+  ResiliencyServiceDrivenClientOptionalParams,
 } from "./api/index.js";
 
-export { ServiceDrivenClientOptionalParams } from "./api/serviceDrivenContext.js";
+export { ResiliencyServiceDrivenClientOptionalParams } from "./api/resiliencyServiceDrivenContext.js";
 
-export class ServiceDrivenClient {
+export class ResiliencyServiceDrivenClient {
   private _client: ServiceDrivenContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
@@ -27,13 +27,13 @@ export class ServiceDrivenClient {
   constructor(
     endpointParam: string,
     serviceDeploymentVersion: string,
-    options: ServiceDrivenClientOptionalParams = {},
+    options: ResiliencyServiceDrivenClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createServiceDriven(
+    this._client = createResiliencyServiceDriven(
       endpointParam,
       serviceDeploymentVersion,
       { ...options, userAgentOptions: { userAgentPrefix } },

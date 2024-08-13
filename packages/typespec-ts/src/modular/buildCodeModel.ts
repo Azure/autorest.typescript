@@ -1755,10 +1755,7 @@ function emitClients(
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
-    const clientName = client.name.replace(
-      "Client",
-      ""
-    );
+    const clientName = client.name.replace("Client", "");
     const server = getServerHelper(program, client.service);
     const rlcModels = rlcModelsMap.get(client.service.name);
     if (!rlcModels) {

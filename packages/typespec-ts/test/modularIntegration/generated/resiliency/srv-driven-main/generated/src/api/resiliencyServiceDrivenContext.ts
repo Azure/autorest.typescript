@@ -7,7 +7,8 @@ import { logger } from "../logger.js";
 export interface ServiceDrivenContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface ServiceDrivenClientOptionalParams extends ClientOptions {
+export interface ResiliencyServiceDrivenClientOptionalParams
+  extends ClientOptions {
   /** Pass in either 'v1' or 'v2'. This represents the API version of a service. */
   apiVersion?: string;
 }
@@ -24,10 +25,10 @@ export interface ServiceDrivenClientOptionalParams extends ClientOptions {
  * - A client generated from the second service spec can call the second deployment of a service with api version v1
  * - A client generated from the second service spec can call the second deployment of a service with api version v2
  */
-export function createServiceDriven(
+export function createResiliencyServiceDriven(
   endpointParam: string,
   serviceDeploymentVersion: string,
-  options: ServiceDrivenClientOptionalParams = {},
+  options: ResiliencyServiceDrivenClientOptionalParams = {},
 ): ServiceDrivenContext {
   const apiVersion = options.apiVersion ?? "v2";
   const endpointUrl =

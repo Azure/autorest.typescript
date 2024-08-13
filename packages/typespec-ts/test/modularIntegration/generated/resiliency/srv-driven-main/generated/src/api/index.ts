@@ -8,7 +8,7 @@ export {
   fromOneOptional,
 } from "./operations.js";
 export {
-  createServiceDriven,
+  createResiliencyServiceDriven,
   ServiceDrivenContext,
-  ServiceDrivenClientOptionalParams,
-} from "./serviceDrivenContext.js";
+  ResiliencyServiceDrivenClientOptionalParams,
+} from "./resiliencyServiceDrivenContext.js";

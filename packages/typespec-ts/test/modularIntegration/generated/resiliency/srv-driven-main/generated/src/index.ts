@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 export {
-  ServiceDrivenClient,
-  ServiceDrivenClientOptionalParams,
-} from "./serviceDrivenClient.js";
+  ResiliencyServiceDrivenClient,
+  ResiliencyServiceDrivenClientOptionalParams,
+} from "./resiliencyServiceDrivenClient.js";
 export {
   Versions,
   AddOperationOptionalParams,
