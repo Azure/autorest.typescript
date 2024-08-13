@@ -10,7 +10,15 @@ async function dataProductsRemoveUserRoleMaximumSetGen(): void {
   const result = await client.dataproducts.removeUserRole(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {
+      roleId: "00000000-0000-0000-0000-00000000000",
+      principalId: "00000000-0000-0000-0000-00000000000",
+      userName: "UserName",
+      dataTypeScope: ["scope"],
+      principalType: "User",
+      role: "Reader",
+      roleAssignmentId: "00000000-0000-0000-0000-00000000000",
+    },
   );
   console.log(result);
 }
@@ -22,7 +30,15 @@ async function dataProductsRemoveUserRoleMaximumSetGenGeneratedByMinimumSetRuleM
   const result = await client.dataproducts.removeUserRole(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {
+      roleId: "00000000-0000-0000-0000-00000000000",
+      principalId: "00000000-0000-0000-0000-00000000000",
+      userName: "UserName",
+      dataTypeScope: ["scope"],
+      principalType: "User",
+      role: "Reader",
+      roleAssignmentId: "00000000-0000-0000-0000-00000000000",
+    },
   );
   console.log(result);
 }

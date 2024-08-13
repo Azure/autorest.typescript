@@ -10,7 +10,7 @@ async function dataProductsListRolesAssignmentsMaximumSetGen(): void {
   const result = await client.dataproducts.listRolesAssignments(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {},
   );
   console.log(result);
 }
@@ -22,7 +22,7 @@ async function dataProductsListRolesAssignmentsMaximumSetGenGeneratedByMinimumSe
   const result = await client.dataproducts.listRolesAssignments(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {},
   );
   console.log(result);
 }

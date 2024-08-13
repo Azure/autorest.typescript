@@ -4,10 +4,10 @@ import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
-  SdkHttpParameterExample,
   SdkInitializationType,
   SdkServiceMethod,
-  SdkServiceOperation
+  SdkServiceOperation,
+  SdkTypeExample
 } from "@azure-tools/typespec-client-generator-core";
 import { emitCredential } from "./emitCredential.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
@@ -97,8 +97,8 @@ function buildExamplesForMethod(
   for (const example of method.operation.examples ?? []) {
     // build example
     const exampleFunctionBody: string[] = [],
-      clientParams = [],
-      methodParams = [];
+      clientParams: string[] = [],
+      methodParams: string[] = [];
     const exampleName = normalizeName(
       transformSpecialLetterToSpace(example.name),
       NameType.Method
@@ -124,7 +124,7 @@ function buildExamplesForMethod(
       }
       const paramName = param.parameter.name;
       exampleFunctionBody.push(
-        `const ${paramName} = ${getParameterValue(param)};`
+        `const ${paramName} = ${getParameterValue(param.value)};`
       );
       clientParams.push(paramName);
     }
@@ -136,7 +136,7 @@ function buildExamplesForMethod(
       if (param.parameter.onClient === true) {
         continue;
       }
-      const paramValue = `${getParameterValue(param)}`;
+      const paramValue = `${getParameterValue(param.value)}`;
       methodParams.push(paramValue);
     }
     const prefix = options.operationGroupPrefix
@@ -187,18 +187,17 @@ function getCredentialType(initialization: SdkInitializationType) {
 }
 
 // TODO: handle values that are not strings
-function getParameterValue(parameter: SdkHttpParameterExample) {
-  const example = parameter.value;
-  let retValue = example.value;
-  switch (example.kind) {
+function getParameterValue(value: SdkTypeExample) {
+  let retValue = value.value;
+  switch (value.kind) {
     case "string": {
-      switch (example.type.kind) {
+      switch (value.type.kind) {
         case "utcDateTime":
         case "offsetDateTime":
-          retValue = `new Date("${example.value}")`;
+          retValue = `new Date("${value.value}")`;
           break;
         default:
-          retValue = `"${example.value}"`;
+          retValue = `"${value.value}"`;
           break;
       }
       break;
@@ -206,8 +205,36 @@ function getParameterValue(parameter: SdkHttpParameterExample) {
     case "boolean":
     case "number":
     case "null":
-      retValue = `${example.value}`;
+      retValue = `${value.value}`;
       break;
+    case "dict":
+    case "model": {
+      const values = [];
+      const additionalPropertiesValue =
+        value.kind === "model" ? value?.additionalPropertiesValue : {};
+      for (const propName in {
+        ...value.value,
+        ...additionalPropertiesValue
+      }) {
+        const propValue = value.value[propName];
+        if (propValue === undefined || propValue === null) {
+          continue;
+        }
+        const propRetValue = `"${propName}": ` + getParameterValue(propValue);
+        values.push(propRetValue);
+      }
+
+      retValue = `{${values.join(", ")}}`;
+      break;
+    }
+    case "array": {
+      const valuesArr = [];
+      for (const element of value.value) {
+        valuesArr.push(getParameterValue(element));
+      }
+      retValue = `[${valuesArr.join(", ")}]`;
+      break;
+    }
     default:
       retValue = "{} as any";
       break;

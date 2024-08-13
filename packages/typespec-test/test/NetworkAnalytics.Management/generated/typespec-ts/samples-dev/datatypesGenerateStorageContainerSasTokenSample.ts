@@ -11,7 +11,11 @@ async function dataTypesGenerateStorageContainerSasTokenMaximumSetGen(): void {
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",
-    {} as any,
+    {
+      startTimeStamp: new Date("2023-08-24T05:34:58.039Z"),
+      expiryTimeStamp: new Date("2023-08-24T05:34:58.039Z"),
+      ipAddress: "1.1.1.1",
+    },
   );
   console.log(result);
 }
@@ -24,7 +28,11 @@ async function dataTypesGenerateStorageContainerSasTokenMaximumSetGenGeneratedBy
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",
-    {} as any,
+    {
+      startTimeStamp: new Date("2023-08-24T05:35:16.887Z"),
+      expiryTimeStamp: new Date("2023-08-24T05:35:16.887Z"),
+      ipAddress: "1.1.1.1",
+    },
   );
   console.log(result);
 }

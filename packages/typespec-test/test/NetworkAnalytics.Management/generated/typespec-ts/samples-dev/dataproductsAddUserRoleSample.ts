@@ -10,7 +10,14 @@ async function dataProductsAddUserRoleMaximumSetGen(): void {
   const result = await client.dataproducts.addUserRole(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {
+      roleId: "00000000-0000-0000-0000-00000000000",
+      principalId: "00000000-0000-0000-0000-00000000000",
+      userName: "UserName",
+      dataTypeScope: ["scope"],
+      principalType: "User",
+      role: "Reader",
+    },
   );
   console.log(result);
 }
@@ -22,7 +29,14 @@ async function dataProductsAddUserRoleMaximumSetGenGeneratedByMinimumSetRuleMini
   const result = await client.dataproducts.addUserRole(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {
+      roleId: "00000000-0000-0000-0000-00000000000",
+      principalId: "00000000-0000-0000-0000-00000000000",
+      userName: "userName",
+      dataTypeScope: ["scope"],
+      principalType: "User",
+      role: "Reader",
+    },
   );
   console.log(result);
 }

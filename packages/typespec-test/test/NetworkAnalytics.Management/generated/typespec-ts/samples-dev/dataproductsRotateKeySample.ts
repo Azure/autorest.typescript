@@ -10,7 +10,7 @@ async function dataProductsRotateKeyMaximumSetGen(): void {
   const result = await client.dataproducts.rotateKey(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    { keyVaultUrl: "https://myKeyVault.vault.azure.net" },
   );
   console.log(result);
 }
@@ -22,7 +22,7 @@ async function dataProductsRotateKeyMaximumSetGenGeneratedByMinimumSetRuleMinimu
   const result = await client.dataproducts.rotateKey(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    { keyVaultUrl: "https://myKeyVault.vault.azure.net" },
   );
   console.log(result);
 }

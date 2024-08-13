@@ -10,7 +10,23 @@ async function dataProductsUpdateMaximumSetGen(): void {
   const result = await client.dataproducts.update(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {
+      identity: {
+        type: "UserAssigned",
+        userAssignedIdentities: {
+          "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
+            {},
+        },
+      },
+      tags: { userSpecifiedKeyName: "userSpecifiedKeyValue" },
+      properties: {
+        owners: ["abc@micros.com", "def@micros.com"],
+        purviewAccount: "testpurview",
+        purviewCollection: "134567890",
+        privateLinksEnabled: "Disabled",
+        currentMinorVersion: "1.0.1",
+      },
+    },
   );
   console.log(result);
 }
@@ -22,7 +38,7 @@ async function dataProductsUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSe
   const result = await client.dataproducts.update(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {},
   );
   console.log(result);
 }

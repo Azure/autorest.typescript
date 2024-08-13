@@ -10,7 +10,11 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen(): void {
   const result = await client.dataproducts.generateStorageAccountSasToken(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {
+      startTimeStamp: new Date("2023-08-24T05:34:58.151Z"),
+      expiryTimeStamp: new Date("2023-08-24T05:34:58.151Z"),
+      ipAddress: "1.1.1.1",
+    },
   );
   console.log(result);
 }
@@ -22,7 +26,11 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedB
   const result = await client.dataproducts.generateStorageAccountSasToken(
     "aoiresourceGroupName",
     "dataproduct01",
-    {} as any,
+    {
+      startTimeStamp: new Date("2023-08-24T05:35:17.051Z"),
+      expiryTimeStamp: new Date("2023-08-24T05:35:17.051Z"),
+      ipAddress: "1.1.1.1",
+    },
   );
   console.log(result);
 }

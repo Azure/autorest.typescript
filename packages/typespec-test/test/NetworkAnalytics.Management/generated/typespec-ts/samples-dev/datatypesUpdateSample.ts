@@ -11,7 +11,13 @@ async function dataTypesUpdateMaximumSetGen(): void {
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",
-    {} as any,
+    {
+      properties: {
+        storageOutputRetention: 30,
+        databaseCacheRetention: 16,
+        databaseRetention: 9,
+      },
+    },
   );
   console.log(result);
 }
@@ -24,7 +30,7 @@ async function dataTypesUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGe
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",
-    {} as any,
+    {},
   );
   console.log(result);
 }

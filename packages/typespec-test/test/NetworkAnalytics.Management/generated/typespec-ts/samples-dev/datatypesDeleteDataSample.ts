@@ -11,7 +11,7 @@ async function dataTypesDeleteDataMaximumSetGen(): void {
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",
-    {} as any,
+    {},
   );
   console.log(result);
 }
@@ -24,7 +24,7 @@ async function dataTypesDeleteDataMinimumSetGen(): void {
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",
-    {} as any,
+    {},
   );
   console.log(result);
 }
