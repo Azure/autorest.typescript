@@ -543,7 +543,7 @@ function getPropertySignatures(
   importedModels: Set<string>,
   options: GetPropertySignatureOptions = {}
 ) {
-  let validPropertyEntries = Object.entries(properties);
+  const validPropertyEntries = Object.entries(properties);
 
   const validProperties = validPropertyEntries
     .filter(
