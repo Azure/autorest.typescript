@@ -8,8 +8,8 @@ export {
   SchemaProperties,
   SchemaFormat,
   Schema,
-  ContentTypeEnum,
   ServiceApiVersions,
+  ContentTypeEnum,
 } from "./models.js";
 export {
   SchemaOperationsListSchemaGroupsOptionalParams,

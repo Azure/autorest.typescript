@@ -64,14 +64,14 @@ export function schemaSerializer(item: Schema): Record<string, unknown> {
   };
 }
 
+/** Represents the Schema Registry API version to use for requests. */
+export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 /** The content type for the schema. */
 export type ContentTypeEnum =
   | "application/octet-stream"
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
-/** Represents the Schema Registry API version to use for requests. */
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {
