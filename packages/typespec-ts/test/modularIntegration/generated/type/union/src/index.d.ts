@@ -11,17 +11,14 @@ export declare interface Dog {
 }
 
 export declare interface EnumsOnlyCases {
-    lr: Lr | Ud;
-    ud: Ud | Ud;
+    prop: EnumsOnlyCases;
 }
 
 export declare interface EnumsOnlyGetOptionalParams extends OperationOptions {
 }
 
 export declare interface EnumsOnlyOperations {
-    get: (options?: EnumsOnlyGetOptionalParams) => Promise<{
-        prop: EnumsOnlyCases;
-    }>;
+    get: (options?: EnumsOnlyGetOptionalParams) => Promise<EnumsOnlyCases>;
     send: (prop: EnumsOnlyCases, options?: EnumsOnlySendOptionalParams) => Promise<void>;
 }
 
@@ -62,19 +59,14 @@ export declare enum KnownStringExtensibleNamedUnion {
 export declare type Lr = "left" | "right";
 
 export declare interface MixedLiteralsCases {
-    stringLiteral: "a" | 2 | 3.3 | true;
-    intLiteral: "a" | 2 | 3.3 | true;
-    floatLiteral: "a" | 2 | 3.3 | true;
-    booleanLiteral: "a" | 2 | 3.3 | true;
+    prop: MixedLiteralsCases;
 }
 
 export declare interface MixedLiteralsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface MixedLiteralsOperations {
-    get: (options?: MixedLiteralsGetOptionalParams) => Promise<{
-        prop: MixedLiteralsCases;
-    }>;
+    get: (options?: MixedLiteralsGetOptionalParams) => Promise<MixedLiteralsCases>;
     send: (prop: MixedLiteralsCases, options?: MixedLiteralsSendOptionalParams) => Promise<void>;
 }
 
@@ -82,20 +74,14 @@ export declare interface MixedLiteralsSendOptionalParams extends OperationOption
 }
 
 export declare interface MixedTypesCases {
-    model: Cat | "a" | number | boolean;
-    literal: Cat | "a" | number | boolean;
-    int: Cat | "a" | number | boolean;
-    boolean: Cat | "a" | number | boolean;
-    array: (Cat | "a" | number | boolean)[];
+    prop: MixedTypesCases;
 }
 
 export declare interface MixedTypesGetOptionalParams extends OperationOptions {
 }
 
 export declare interface MixedTypesOperations {
-    get: (options?: MixedTypesGetOptionalParams) => Promise<{
-        prop: MixedTypesCases;
-    }>;
+    get: (options?: MixedTypesGetOptionalParams) => Promise<MixedTypesCases>;
     send: (prop: MixedTypesCases, options?: MixedTypesSendOptionalParams) => Promise<void>;
 }
 
@@ -116,17 +102,14 @@ export declare interface ModelsOnlySendOptionalParams extends OperationOptions {
 }
 
 export declare interface StringAndArrayCases {
-    string: string | string[];
-    array: string | string[];
+    prop: StringAndArrayCases;
 }
 
 export declare interface StringAndArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringAndArrayOperations {
-    get: (options?: StringAndArrayGetOptionalParams) => Promise<{
-        prop: StringAndArrayCases;
-    }>;
+    get: (options?: StringAndArrayGetOptionalParams) => Promise<StringAndArrayCases>;
     send: (prop: StringAndArrayCases, options?: StringAndArraySendOptionalParams) => Promise<void>;
 }
 
@@ -140,9 +123,7 @@ export declare interface StringExtensibleNamedGetOptionalParams extends Operatio
 }
 
 export declare interface StringExtensibleNamedOperations {
-    get: (options?: StringExtensibleNamedGetOptionalParams) => Promise<{
-        prop: StringExtensibleNamedUnion;
-    }>;
+    get: (options?: StringExtensibleNamedGetOptionalParams) => Promise<StringExtensibleNamedUnionStringExtensibleNamedUnion>;
     send: (prop: StringExtensibleNamedUnion, options?: StringExtensibleNamedSendOptionalParams) => Promise<void>;
 }
 
@@ -150,6 +131,10 @@ export declare interface StringExtensibleNamedSendOptionalParams extends Operati
 }
 
 export declare type StringExtensibleNamedUnion = string;
+
+export declare interface StringExtensibleNamedUnionStringExtensibleNamedUnion {
+    prop: StringExtensibleNamedUnion;
+}
 
 export declare interface StringExtensibleOperations {
     get: (options?: StringExtensibleGetOptionalParams) => Promise<{
