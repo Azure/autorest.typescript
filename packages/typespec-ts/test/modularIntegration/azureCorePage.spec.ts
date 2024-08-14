@@ -22,6 +22,7 @@ describe("Page Client", () => {
     for await (const page of result) {
       items.push(page);
     }
+    assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0]?.name, validUser.name);
     assert.strictEqual(items[0]?.id, validUser.id);
     assert.strictEqual(items[0]?.etag, validUser.etag);
@@ -36,6 +37,7 @@ describe("Page Client", () => {
     for await (const parameter of result) {
       items.push(parameter);
     }
+    assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0]?.name, validUser.name);
     assert.strictEqual(items[0]?.id, validUser.id);
     assert.strictEqual(items[0]?.etag, validUser.etag);
@@ -47,12 +49,14 @@ describe("Page Client", () => {
     for await (const user of result1) {
       firstItems.push(user);
     }
+    assert.strictEqual(firstItems.length, 1);
     assert.strictEqual(firstItems[0]?.id, 1);
     const result2 = await client.listSecondItem();
     const secondItems = [];
     for await (const user of result2) {
       secondItems.push(user);
     }
+    assert.strictEqual(secondItems.length, 1);
     assert.deepStrictEqual(secondItems[0]?.name, "Madge");
   });
 
@@ -62,6 +66,7 @@ describe("Page Client", () => {
     for await (const model of result) {
       items.push(model);
     }
+    assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0]?.name, validUser.name);
     assert.strictEqual(items[0]?.id, validUser.id);
     assert.strictEqual(items[0]?.etag, validUser.etag);
