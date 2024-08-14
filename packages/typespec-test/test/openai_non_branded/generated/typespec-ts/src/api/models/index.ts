@@ -5,18 +5,18 @@ import {
   Model,
   DeleteModelResponse,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  ModelsDeleteOptionalParams,
+  ModelsListOptionalParams,
+  ModelsRetrieveOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import {
-  ModelsListOptionalParams,
-  ModelsRetrieveOptionalParams,
-  ModelsDeleteOptionalParams,
-} from "../options.js";
 
 export function _listSend(
   context: Client,

@@ -8,25 +8,22 @@ import {
   EmbeddingsResult,
 } from "../../models/models.js";
 import {
-  GetEmbeddings200Response,
-  GetEmbeddingsDefaultResponse,
-  GetModelInfo200Response,
-  GetModelInfoDefaultResponse,
-  isUnexpected,
   ModelClientContext as Client,
-} from "../../rest/index.js";
+  EmbedOptionalParams,
+  GetModelInfoOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { EmbedOptionalParams, GetModelInfoOptionalParams } from "./options.js";
 
 export function _embedSend(
   context: Client,
   input: string[],
   options: EmbedOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/embeddings")
     .post({
@@ -46,15 +43,16 @@ export function _embedSend(
 }
 
 export async function _embedDeserialize(
-  result: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<EmbeddingsResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     id: result.body["id"],
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return { embedding: p["embedding"], index: p["index"] };
     }),
     usage: {
@@ -80,16 +78,17 @@ export async function embed(
 export function _getModelInfoSend(
   context: Client,
   options: GetModelInfoOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetModelInfo200Response | GetModelInfoDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/info")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getModelInfoDeserialize(
-  result: GetModelInfo200Response | GetModelInfoDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ModelInfo> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

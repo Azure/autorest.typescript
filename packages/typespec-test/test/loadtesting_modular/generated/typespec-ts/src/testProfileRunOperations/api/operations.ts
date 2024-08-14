@@ -1,46 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
 import { TestProfileRun, _PagedTestProfileRun } from "../../models/models.js";
 import {
-  isUnexpected,
   LoadTestServiceContext as Client,
-  TestProfileRunAdministrationCreateOrUpdateTestProfileRun200Response,
-  TestProfileRunAdministrationCreateOrUpdateTestProfileRun201Response,
-  TestProfileRunAdministrationCreateOrUpdateTestProfileRunDefaultResponse,
-  TestProfileRunAdministrationDeleteTestProfileRun204Response,
-  TestProfileRunAdministrationDeleteTestProfileRunDefaultResponse,
-  TestProfileRunAdministrationGetTestProfileRun200Response,
-  TestProfileRunAdministrationGetTestProfileRunDefaultResponse,
-  TestProfileRunAdministrationListTestProfileRuns200Response,
-  TestProfileRunAdministrationListTestProfileRunsDefaultResponse,
-  TestProfileRunAdministrationStop200Response,
-  TestProfileRunAdministrationStopDefaultResponse,
-} from "../../rest/index.js";
-=======
-import { TestProfileRun, _PagedTestProfileRun } from "../models/models.js";
-import { LoadTestServiceContext as Client } from "./index.js";
->>>>>>> main
+  CreateOrUpdateTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  GetTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  StopTestProfileRunOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import {
-  CreateOrUpdateTestProfileRunOptionalParams,
-  DeleteTestProfileRunOptionalParams,
-  GetTestProfileRunOptionalParams,
-  ListTestProfileRunsOptionalParams,
-  StopTestProfileRunOptionalParams,
-} from "./options.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 
 export function _createOrUpdateTestProfileRunSend(
   context: Client,

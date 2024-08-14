@@ -3,8 +3,8 @@
 
 export {
   createChatCompletions,
-  ChatCompletionsClientOptionalParams,
   ModelClientContext,
+  ChatCompletionsClientOptionalParams,
 } from "./chatCompletionsContext.js";
 export { complete, getModelInfo } from "./operations.js";
 export {

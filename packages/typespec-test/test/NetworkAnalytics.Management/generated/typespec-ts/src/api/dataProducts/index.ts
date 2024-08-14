@@ -15,7 +15,20 @@ import {
   ListRoleAssignments,
   _DataProductListResult,
 } from "../../models/models.js";
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  DataProductsAddUserRoleOptionalParams,
+  DataProductsCreateOptionalParams,
+  DataProductsDeleteOptionalParams,
+  DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  DataProductsGetOptionalParams,
+  DataProductsListByResourceGroupOptionalParams,
+  DataProductsListBySubscriptionOptionalParams,
+  DataProductsListRolesAssignmentsOptionalParams,
+  DataProductsRemoveUserRoleOptionalParams,
+  DataProductsRotateKeyOptionalParams,
+  DataProductsUpdateOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -29,19 +42,6 @@ import {
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataProductsCreateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListBySubscriptionOptionalParams,
-} from "../options.js";
 
 export function _createSend(
   context: Client,

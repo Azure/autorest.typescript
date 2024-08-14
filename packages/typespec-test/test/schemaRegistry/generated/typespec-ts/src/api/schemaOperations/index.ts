@@ -8,7 +8,15 @@ import {
   _PagedSchemaGroup,
   _PagedVersion,
 } from "../../models/models.js";
-import { SchemaRegistryContext as Client } from "../index.js";
+import {
+  SchemaRegistryContext as Client,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsRegisterSchemaOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -20,14 +28,6 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import {
-  SchemaOperationsListSchemaGroupsOptionalParams,
-  SchemaOperationsGetSchemaByIdOptionalParams,
-  SchemaOperationsListSchemaVersionsOptionalParams,
-  SchemaOperationsGetSchemaByVersionOptionalParams,
-  SchemaOperationsGetSchemaIdByContentOptionalParams,
-  SchemaOperationsRegisterSchemaOptionalParams,
-} from "../options.js";
 
 export function _listSchemaGroupsSend(
   context: Client,

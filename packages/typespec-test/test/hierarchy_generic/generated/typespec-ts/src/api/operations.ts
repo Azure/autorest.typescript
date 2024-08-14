@@ -1,20 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
 import { A0 } from "../models/models.js";
-import { FooContext as Client, Op1204Response } from "../rest/index.js";
-=======
-import { A } from "../models/models.js";
-import { FooContext as Client } from "./index.js";
->>>>>>> main
+import { FooContext as Client, Op1OptionalParams } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { Op1OptionalParams } from "./options.js";
 
 export function _op1Send(
   context: Client,

@@ -1,24 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  ChatRequestMessage as ChatRequestMessageRest,
-  ChatRequestSystemMessage as ChatRequestSystemMessageRest,
-  ChatRequestUserMessage as ChatRequestUserMessageRest,
-  ChatRequestAssistantMessage as ChatRequestAssistantMessageRest,
-  ChatCompletionsToolCall as ChatCompletionsToolCallRest,
-  ChatCompletionsFunctionToolCall as ChatCompletionsFunctionToolCallRest,
-  FunctionCall as FunctionCallRest,
-  ChatRequestToolMessage as ChatRequestToolMessageRest,
-  ChatCompletionsToolDefinition as ChatCompletionsToolDefinitionRest,
-  ChatCompletionsFunctionToolDefinition as ChatCompletionsFunctionToolDefinitionRest,
-  FunctionDefinition as FunctionDefinitionRest,
-  ChatCompletionsNamedToolSelection as ChatCompletionsNamedToolSelectionRest,
-  ChatCompletionsNamedFunctionToolSelection as ChatCompletionsNamedFunctionToolSelectionRest,
-  ChatCompletionsFunctionToolSelection as ChatCompletionsFunctionToolSelectionRest,
-  EmbeddingInput as EmbeddingInputRest,
-} from "../rest/index.js";
-
 /** An abstract representation of a chat message as provided in a request. */
 export interface ChatRequestMessage {
   /** the discriminator possible values: system, user, assistant, tool */
@@ -52,7 +34,7 @@ export function chatRequestMessageUnionSerializer(
 
 export function chatRequestMessageSerializer(
   item: ChatRequestMessageUnion,
-): ChatRequestMessageRest {
+): Record<string, unknown> {
   return {
     ...chatRequestMessageUnionSerializer(item),
   };
@@ -71,7 +53,7 @@ export interface ChatRequestSystemMessage extends ChatRequestMessage {
 
 export function chatRequestSystemMessageSerializer(
   item: ChatRequestSystemMessage,
-): ChatRequestSystemMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -88,7 +70,7 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
 
 export function chatRequestUserMessageSerializer(
   item: ChatRequestUserMessage,
-): ChatRequestUserMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -110,7 +92,7 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessage {
 
 export function chatRequestAssistantMessageSerializer(
   item: ChatRequestAssistantMessage,
-): ChatRequestAssistantMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -145,7 +127,7 @@ export function chatCompletionsToolCallUnionSerializer(
 
 export function chatCompletionsToolCallSerializer(
   item: ChatCompletionsToolCallUnion,
-): ChatCompletionsToolCallRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     id: item["id"],
@@ -166,7 +148,7 @@ export interface ChatCompletionsFunctionToolCall
 
 export function chatCompletionsFunctionToolCallSerializer(
   item: ChatCompletionsFunctionToolCall,
-): ChatCompletionsFunctionToolCallRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     id: item["id"],
@@ -187,7 +169,9 @@ export interface FunctionCall {
   arguments: string;
 }
 
-export function functionCallSerializer(item: FunctionCall): FunctionCallRest {
+export function functionCallSerializer(
+  item: FunctionCall,
+): Record<string, unknown> {
   return {
     name: item["name"],
     arguments: item["arguments"],
@@ -206,7 +190,7 @@ export interface ChatRequestToolMessage extends ChatRequestMessage {
 
 export function chatRequestToolMessageSerializer(
   item: ChatRequestToolMessage,
-): ChatRequestToolMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -244,7 +228,7 @@ export function chatCompletionsToolDefinitionUnionSerializer(
 
 export function chatCompletionsToolDefinitionSerializer(
   item: ChatCompletionsToolDefinitionUnion,
-): ChatCompletionsToolDefinitionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -261,7 +245,7 @@ export interface ChatCompletionsFunctionToolDefinition
 
 export function chatCompletionsFunctionToolDefinitionSerializer(
   item: ChatCompletionsFunctionToolDefinition,
-): ChatCompletionsFunctionToolDefinitionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     function: functionDefinitionSerializer(item.function),
@@ -283,7 +267,7 @@ export interface FunctionDefinition {
 
 export function functionDefinitionSerializer(
   item: FunctionDefinition,
-): FunctionDefinitionRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
     description: item["description"],
@@ -316,7 +300,7 @@ export function chatCompletionsNamedToolSelectionUnionSerializer(
 
 export function chatCompletionsNamedToolSelectionSerializer(
   item: ChatCompletionsNamedToolSelectionUnion,
-): ChatCompletionsNamedToolSelectionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
   };
@@ -333,7 +317,7 @@ export interface ChatCompletionsNamedFunctionToolSelection
 
 export function chatCompletionsNamedFunctionToolSelectionSerializer(
   item: ChatCompletionsNamedFunctionToolSelection,
-): ChatCompletionsNamedFunctionToolSelectionRest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     function: chatCompletionsFunctionToolSelectionSerializer(item.function),
@@ -348,7 +332,7 @@ export interface ChatCompletionsFunctionToolSelection {
 
 export function chatCompletionsFunctionToolSelectionSerializer(
   item: ChatCompletionsFunctionToolSelection,
-): ChatCompletionsFunctionToolSelectionRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -510,7 +494,7 @@ export interface EmbeddingInput {
 
 export function embeddingInputSerializer(
   item: EmbeddingInput,
-): EmbeddingInputRest {
+): Record<string, unknown> {
   return {
     image: item["image"],
     text: item["text"],

@@ -1,20 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
-export { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
-=======
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  NetworkAnalyticsClient,
-  NetworkAnalyticsClientOptionalParams,
-} from "./networkAnalyticsClient.js";
->>>>>>> main
+export { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Resource,
@@ -74,9 +67,6 @@ export {
   KnownActionType,
   ActionType,
   Versions,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   NetworkAnalyticsClientOptionalParams,
@@ -102,11 +92,7 @@ export {
   DataProductsListRolesAssignmentsOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
-<<<<<<< HEAD
 } from "./api/index.js";
-=======
-} from "./models/index.js";
->>>>>>> main
 export {
   DataProductsOperations,
   DataProductsCatalogsOperations,

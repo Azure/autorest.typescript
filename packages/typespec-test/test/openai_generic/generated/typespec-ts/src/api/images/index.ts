@@ -7,7 +7,12 @@ import {
   CreateImageEditRequest,
   CreateImageVariationRequest,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
+  ImagesCreateVariationOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -15,11 +20,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
-import {
-  ImagesCreateOptionalParams,
-  ImagesCreateEditOptionalParams,
-  ImagesCreateVariationOptionalParams,
-} from "../options.js";
 
 export function _createSend(
   context: Client,

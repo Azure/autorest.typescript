@@ -85,9 +85,6 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "../models/index.js";
 export {
   CreateOrUpdateTestRunOptionalParams,
@@ -104,9 +101,5 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-<<<<<<< HEAD
   TestRunOperationsClientOptionalParams,
 } from "./api/index.js";
-=======
-} from "./models/index.js";
->>>>>>> main

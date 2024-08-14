@@ -5,7 +5,12 @@ import {
   DataProductsCatalog,
   _DataProductsCatalogListResult,
 } from "../../models/models.js";
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  DataProductsCatalogsGetOptionalParams,
+  DataProductsCatalogsListByResourceGroupOptionalParams,
+  DataProductsCatalogsListBySubscriptionOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -16,11 +21,6 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import {
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-} from "../options.js";
 
 export function _getSend(
   context: Client,

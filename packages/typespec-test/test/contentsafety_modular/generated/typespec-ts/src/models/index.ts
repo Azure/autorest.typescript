@@ -22,22 +22,3 @@ export {
   TextAnalyzeSeverityResult,
   Versions,
 } from "./models.js";
-export {
-<<<<<<< HEAD
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";
-=======
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-} from "./options.js";
->>>>>>> main

@@ -2,19 +2,19 @@
 // Licensed under the MIT license.
 
 import { Test } from "../../models/models.js";
-import { DemoServiceContext as Client } from "../index.js";
+import {
+  ATest1OptionalParams,
+  ATest2OptionalParams,
+  ATest3OptionalParams,
+  ATest4OptionalParams,
+  DemoServiceContext as Client,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  ATest1OptionalParams,
-  ATest2OptionalParams,
-  ATest3OptionalParams,
-  ATest4OptionalParams,
-} from "../options.js";
 
 export function _test1Send(
   context: Client,

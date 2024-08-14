@@ -5,7 +5,10 @@ import {
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
-import { OpenAIContext as Client } from "../../index.js";
+import {
+  AudioTranscriptionsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -13,7 +16,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { AudioTranscriptionsCreateOptionalParams } from "../../options.js";
 
 export function _createSend(
   context: Client,

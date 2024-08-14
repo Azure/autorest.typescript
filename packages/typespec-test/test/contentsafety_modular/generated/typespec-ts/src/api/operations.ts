@@ -16,7 +16,19 @@ import {
   _PagedTextBlockItem,
   _PagedTextBlocklist,
 } from "../models/models.js";
-import { ContentSafetyContext as Client } from "./index.js";
+import {
+  AddOrUpdateBlockItemsOptionalParams,
+  AnalyzeImageOptionalParams,
+  AnalyzeTextOptionalParams,
+  ContentSafetyContext as Client,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  GetTextBlocklistOptionalParams,
+  ListTextBlocklistItemsOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  RemoveBlockItemsOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -27,18 +39,6 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import {
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-} from "./options.js";
 
 export function _analyzeTextSend(
   context: Client,

@@ -7,7 +7,10 @@ import {
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
-import { OpenAIContext as Client } from "../../index.js";
+import {
+  ChatCompletionsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -15,7 +18,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../../helpers/serializerHelpers.js";
-import { ChatCompletionsCreateOptionalParams } from "../../options.js";
 
 export function _createSend(
   context: Client,

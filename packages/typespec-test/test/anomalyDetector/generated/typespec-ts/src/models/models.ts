@@ -1,23 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
-import {
-  VariableState as VariableStateRest,
-  MultivariateBatchDetectionOptions as MultivariateBatchDetectionOptionsRest,
-  ModelInfo as ModelInfoRest,
-  AlignPolicy as AlignPolicyRest,
-  DiagnosticsInfo as DiagnosticsInfoRest,
-  ModelState as ModelStateRest,
-  MultivariateLastDetectionOptions as MultivariateLastDetectionOptionsRest,
-  VariableValues as VariableValuesRest,
-  UnivariateDetectionOptions as UnivariateDetectionOptionsRest,
-  TimeSeriesPoint as TimeSeriesPointRest,
-  UnivariateChangePointDetectionOptions as UnivariateChangePointDetectionOptionsRest,
-} from "../rest/index.js";
-
-=======
->>>>>>> main
 /** Detection results for the given resultId. */
 export interface MultivariateDetectionResult {
   /** Result identifier, which is used to fetch the results of an inference call. */
@@ -72,15 +55,9 @@ export interface VariableState {
   lastTimestamp?: Date;
 }
 
-<<<<<<< HEAD
 export function variableStateSerializer(
   item: VariableState,
-): VariableStateRest {
-=======
-export function multivariateVariableStateSerializer(
-  item: MultivariateVariableState,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     variable: item["variable"],
     filledNARatio: item["filledNARatio"],
@@ -120,15 +97,9 @@ export interface MultivariateBatchDetectionOptions {
   endTime: Date;
 }
 
-<<<<<<< HEAD
 export function multivariateBatchDetectionOptionsSerializer(
   item: MultivariateBatchDetectionOptions,
-): MultivariateBatchDetectionOptionsRest {
-=======
-export function multivariateMultivariateBatchDetectionOptionsSerializer(
-  item: MultivariateMultivariateBatchDetectionOptions,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     dataSource: item["dataSource"],
     topContributorCount: item["topContributorCount"],
@@ -230,13 +201,7 @@ export interface ModelInfo {
   diagnosticsInfo?: DiagnosticsInfo;
 }
 
-<<<<<<< HEAD
-export function modelInfoSerializer(item: ModelInfo): ModelInfoRest {
-=======
-export function multivariateModelInfoSerializer(
-  item: MultivariateModelInfo,
-): Record<string, unknown> {
->>>>>>> main
+export function modelInfoSerializer(item: ModelInfo): Record<string, unknown> {
   return {
     dataSource: item["dataSource"],
     dataSchema: item["dataSchema"],
@@ -273,13 +238,9 @@ export interface AlignPolicy {
   paddingValue?: number;
 }
 
-<<<<<<< HEAD
-export function alignPolicySerializer(item: AlignPolicy): AlignPolicyRest {
-=======
-export function multivariateAlignPolicySerializer(
-  item: MultivariateAlignPolicy,
+export function alignPolicySerializer(
+  item: AlignPolicy,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     alignMode: item["alignMode"],
     fillNAMethod: item["fillNAMethod"],
@@ -307,15 +268,9 @@ export interface DiagnosticsInfo {
   variableStates?: VariableState[];
 }
 
-<<<<<<< HEAD
 export function diagnosticsInfoSerializer(
   item: DiagnosticsInfo,
-): DiagnosticsInfoRest {
-=======
-export function multivariateDiagnosticsInfoSerializer(
-  item: MultivariateDiagnosticsInfo,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     modelState: !item.modelState
       ? item.modelState
@@ -348,13 +303,9 @@ export interface ModelState {
   latenciesInSeconds?: number[];
 }
 
-<<<<<<< HEAD
-export function modelStateSerializer(item: ModelState): ModelStateRest {
-=======
-export function multivariateModelStateSerializer(
-  item: MultivariateModelState,
+export function modelStateSerializer(
+  item: ModelState,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     epochIds: item["epochIds"],
     trainLosses: item["trainLosses"],
@@ -405,15 +356,9 @@ export interface MultivariateLastDetectionOptions {
   topContributorCount: number;
 }
 
-<<<<<<< HEAD
 export function multivariateLastDetectionOptionsSerializer(
   item: MultivariateLastDetectionOptions,
-): MultivariateLastDetectionOptionsRest {
-=======
-export function multivariateMultivariateLastDetectionOptionsSerializer(
-  item: MultivariateMultivariateLastDetectionOptions,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     variables: item["variables"].map(variableValuesSerializer),
     topContributorCount: item["topContributorCount"],
@@ -430,15 +375,9 @@ export interface VariableValues {
   values: number[];
 }
 
-<<<<<<< HEAD
 export function variableValuesSerializer(
   item: VariableValues,
-): VariableValuesRest {
-=======
-export function multivariateVariableValuesSerializer(
-  item: MultivariateVariableValues,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     variable: item["variable"],
     timestamps: item["timestamps"],
@@ -501,15 +440,9 @@ export interface UnivariateDetectionOptions {
   imputeFixedValue?: number;
 }
 
-<<<<<<< HEAD
 export function univariateDetectionOptionsSerializer(
   item: UnivariateDetectionOptions,
-): UnivariateDetectionOptionsRest {
-=======
-export function univariateUnivariateDetectionOptionsSerializer(
-  item: UnivariateUnivariateDetectionOptions,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     series: item["series"].map(timeSeriesPointSerializer),
     granularity: item["granularity"],
@@ -530,15 +463,9 @@ export interface TimeSeriesPoint {
   value: number;
 }
 
-<<<<<<< HEAD
 export function timeSeriesPointSerializer(
   item: TimeSeriesPoint,
-): TimeSeriesPointRest {
-=======
-export function univariateTimeSeriesPointSerializer(
-  item: UnivariateTimeSeriesPoint,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     timestamp: item["timestamp"]?.toISOString(),
     value: item["value"],
@@ -726,15 +653,9 @@ export interface UnivariateChangePointDetectionOptions {
   threshold?: number;
 }
 
-<<<<<<< HEAD
 export function univariateChangePointDetectionOptionsSerializer(
   item: UnivariateChangePointDetectionOptions,
-): UnivariateChangePointDetectionOptionsRest {
-=======
-export function univariateUnivariateChangePointDetectionOptionsSerializer(
-  item: UnivariateUnivariateChangePointDetectionOptions,
 ): Record<string, unknown> {
->>>>>>> main
   return {
     series: item["series"].map(timeSeriesPointSerializer),
     granularity: item["granularity"],

@@ -12,30 +12,22 @@ import {
   ChatRequestMessageUnion,
 } from "../../models/models.js";
 import {
-  GetChatCompletions200Response,
-  GetChatCompletionsDefaultResponse,
-  GetModelInfo200Response,
-  GetModelInfoDefaultResponse,
-  isUnexpected,
   ModelClientContext as Client,
-} from "../../rest/index.js";
+  CompleteOptionalParams,
+  GetModelInfoOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  CompleteOptionalParams,
-  GetModelInfoOptionalParams,
-} from "./options.js";
 
 export function _completeSend(
   context: Client,
   messages: ChatRequestMessageUnion[],
   options: CompleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetChatCompletions200Response | GetChatCompletionsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/chat/completions")
     .post({
@@ -63,9 +55,10 @@ export function _completeSend(
 }
 
 export async function _completeDeserialize(
-  result: GetChatCompletions200Response | GetChatCompletionsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ChatCompletions> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -79,7 +72,7 @@ export async function _completeDeserialize(
       promptTokens: result.body.usage["prompt_tokens"],
       totalTokens: result.body.usage["total_tokens"],
     },
-    choices: result.body["choices"].map((p) => {
+    choices: result.body["choices"].map((p: any) => {
       return {
         index: p["index"],
         finishReason: p["finish_reason"] as CompletionsFinishReason,
@@ -113,16 +106,17 @@ export async function complete(
 export function _getModelInfoSend(
   context: Client,
   options: GetModelInfoOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetModelInfo200Response | GetModelInfoDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/info")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getModelInfoDeserialize(
-  result: GetModelInfo200Response | GetModelInfoDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ModelInfo> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

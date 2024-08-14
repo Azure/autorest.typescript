@@ -46,87 +46,6 @@ import {
   BatchApplication,
 } from "./models/models.js";
 import {
-<<<<<<< HEAD
-=======
-  ListApplicationsOptionalParams,
-  GetApplicationOptionalParams,
-  ListPoolUsageMetricsOptionalParams,
-  CreatePoolOptionalParams,
-  ListPoolsOptionalParams,
-  DeletePoolOptionalParams,
-  PoolExistsOptionalParams,
-  GetPoolOptionalParams,
-  UpdatePoolOptionalParams,
-  DisablePoolAutoScaleOptionalParams,
-  EnablePoolAutoScaleOptionalParams,
-  EvaluatePoolAutoScaleOptionalParams,
-  ResizePoolOptionalParams,
-  StopPoolResizeOptionalParams,
-  ReplacePoolPropertiesOptionalParams,
-  RemoveNodesOptionalParams,
-  ListSupportedImagesOptionalParams,
-  ListPoolNodeCountsOptionalParams,
-  DeleteJobOptionalParams,
-  GetJobOptionalParams,
-  UpdateJobOptionalParams,
-  ReplaceJobOptionalParams,
-  DisableJobOptionalParams,
-  EnableJobOptionalParams,
-  TerminateJobOptionalParams,
-  CreateJobOptionalParams,
-  ListJobsOptionalParams,
-  ListJobsFromScheduleOptionalParams,
-  ListJobPreparationAndReleaseTaskStatusOptionalParams,
-  GetJobTaskCountsOptionalParams,
-  CreateCertificateOptionalParams,
-  ListCertificatesOptionalParams,
-  CancelCertificateDeletionOptionalParams,
-  DeleteCertificateOptionalParams,
-  GetCertificateOptionalParams,
-  JobScheduleExistsOptionalParams,
-  DeleteJobScheduleOptionalParams,
-  GetJobScheduleOptionalParams,
-  UpdateJobScheduleOptionalParams,
-  ReplaceJobScheduleOptionalParams,
-  DisableJobScheduleOptionalParams,
-  EnableJobScheduleOptionalParams,
-  TerminateJobScheduleOptionalParams,
-  CreateJobScheduleOptionalParams,
-  ListJobSchedulesOptionalParams,
-  CreateTaskOptionalParams,
-  ListTasksOptionalParams,
-  CreateTaskCollectionOptionalParams,
-  DeleteTaskOptionalParams,
-  GetTaskOptionalParams,
-  ReplaceTaskOptionalParams,
-  ListSubTasksOptionalParams,
-  TerminateTaskOptionalParams,
-  ReactivateTaskOptionalParams,
-  DeleteTaskFileOptionalParams,
-  GetTaskFileOptionalParams,
-  GetTaskFilePropertiesOptionalParams,
-  ListTaskFilesOptionalParams,
-  CreateNodeUserOptionalParams,
-  DeleteNodeUserOptionalParams,
-  ReplaceNodeUserOptionalParams,
-  GetNodeOptionalParams,
-  RebootNodeOptionalParams,
-  ReimageNodeOptionalParams,
-  DisableNodeSchedulingOptionalParams,
-  EnableNodeSchedulingOptionalParams,
-  GetNodeRemoteLoginSettingsOptionalParams,
-  GetNodeRemoteDesktopFileOptionalParams,
-  UploadNodeLogsOptionalParams,
-  ListNodesOptionalParams,
-  GetNodeExtensionOptionalParams,
-  ListNodeExtensionsOptionalParams,
-  DeleteNodeFileOptionalParams,
-  GetNodeFileOptionalParams,
-  GetNodeFilePropertiesOptionalParams,
-  ListNodeFilesOptionalParams,
-} from "./models/options.js";
-import {
->>>>>>> main
   createBatch,
   BatchContext,
   BatchClientOptionalParams,
@@ -283,13 +202,7 @@ import {
   GetNodeFilePropertiesOptionalParams,
   ListNodeFilesOptionalParams,
 } from "./api/index.js";
-<<<<<<< HEAD
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
-=======
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
-
-export { BatchClientOptionalParams } from "./api/batchContext.js";
->>>>>>> main
 
 export class BatchClient {
   private _client: BatchContext;

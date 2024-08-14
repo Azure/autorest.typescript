@@ -1,17 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
-export { BatchClient } from "./batchClient.js";
-=======
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { BatchClient, BatchClientOptionalParams } from "./batchClient.js";
->>>>>>> main
+export { BatchClient } from "./batchClient.js";
 export {
   BatchNodeUserCreateOptions,
   BatchError,
@@ -205,9 +201,6 @@ export {
   NodeRemoveOptions,
   BatchApplication,
   Versions,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   BatchClientOptionalParams,
@@ -287,9 +280,5 @@ export {
   GetNodeFileOptionalParams,
   GetNodeFilePropertiesOptionalParams,
   ListNodeFilesOptionalParams,
-<<<<<<< HEAD
 } from "./api/index.js";
-=======
-} from "./models/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
->>>>>>> main

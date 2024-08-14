@@ -5,43 +5,24 @@ import {
   targetResourceConfigurationsUnionSerializer,
   TestProfile,
   _PagedTestProfile,
-<<<<<<< HEAD
 } from "../../models/models.js";
 import {
-  isUnexpected,
   LoadTestServiceContext as Client,
-  TestProfileAdministrationCreateOrUpdateTestProfile200Response,
-  TestProfileAdministrationCreateOrUpdateTestProfile201Response,
-  TestProfileAdministrationCreateOrUpdateTestProfileDefaultResponse,
-  TestProfileAdministrationDeleteTestProfile204Response,
-  TestProfileAdministrationDeleteTestProfileDefaultResponse,
-  TestProfileAdministrationGetTestProfile200Response,
-  TestProfileAdministrationGetTestProfileDefaultResponse,
-  TestProfileAdministrationListTestProfiles200Response,
-  TestProfileAdministrationListTestProfilesDefaultResponse,
-} from "../../rest/index.js";
-=======
-} from "../models/models.js";
-import { LoadTestServiceContext as Client } from "./index.js";
->>>>>>> main
+  CreateOrUpdateTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  GetTestProfileOptionalParams,
+  ListTestProfilesOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import {
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
-  ListTestProfilesOptionalParams,
-} from "./options.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 
 export function _createOrUpdateTestProfileSend(
   context: Client,

@@ -36,22 +36,3 @@ export {
   UnivariateChangePointDetectionResult,
   Versions,
 } from "./models.js";
-export {
-<<<<<<< HEAD
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";
-=======
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "./options.js";
->>>>>>> main

@@ -19,20 +19,6 @@ import {
   Embeddings,
 } from "./models/models.js";
 import {
-<<<<<<< HEAD
-=======
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
-  GetEmbeddingsOptionalParams,
-} from "./models/options.js";
-import {
->>>>>>> main
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
@@ -52,7 +38,7 @@ import {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./api/index.js";
 

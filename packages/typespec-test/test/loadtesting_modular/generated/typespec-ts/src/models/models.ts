@@ -1,36 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/models/models.ts
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  Test as TestRest,
-  PassFailCriteria as PassFailCriteriaRest,
-  PassFailMetric as PassFailMetricRest,
-  AutoStopCriteria as AutoStopCriteriaRest,
-  Secret as SecretRest,
-  CertificateMetadata as CertificateMetadataRest,
-  LoadTestConfiguration as LoadTestConfigurationRest,
-  OptionalLoadTestConfig as OptionalLoadTestConfigRest,
-  RegionalConfiguration as RegionalConfigurationRest,
-  TestAppComponents as TestAppComponentsRest,
-  AppComponent as AppComponentRest,
-  TestServerMetricConfig as TestServerMetricConfigRest,
-  ResourceMetric as ResourceMetricRest,
-  TestRun as TestRunRest,
-  TestRunAppComponents as TestRunAppComponentsRest,
-  TestRunServerMetricConfig as TestRunServerMetricConfigRest,
-  MetricRequestPayload as MetricRequestPayloadRest,
-  DimensionFilter as DimensionFilterRest,
-  TestProfile as TestProfileRest,
-  TargetResourceConfigurations as TargetResourceConfigurationsRest,
-  FunctionFlexConsumptionTargetResourceConfigurations as FunctionFlexConsumptionTargetResourceConfigurationsRest,
-  FunctionFlexConsumptionResourceConfiguration as FunctionFlexConsumptionResourceConfigurationRest,
-  TestProfileRun as TestProfileRunRest,
-} from "../rest/index.js";
-=======
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
->>>>>>> main:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/administrationOperations/models/models.ts
 
 /** Load test model. */
 export interface Test {

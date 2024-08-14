@@ -85,9 +85,6 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "../models/index.js";
 export {
   AdministrationOperationsClientOptionalParams,
@@ -103,8 +100,4 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-<<<<<<< HEAD
 } from "./api/index.js";
-=======
-} from "./models/index.js";
->>>>>>> main

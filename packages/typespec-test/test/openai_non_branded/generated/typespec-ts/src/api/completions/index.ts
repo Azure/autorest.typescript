@@ -4,7 +4,10 @@ import {
   CreateCompletionRequest,
   CreateCompletionResponse,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  CompletionsCreateOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -12,7 +15,6 @@ import {
   createRestError,
 } from "@typespec/ts-http-runtime";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
-import { CompletionsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

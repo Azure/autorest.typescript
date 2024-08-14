@@ -60,34 +60,3 @@ export {
   ActionType,
   Versions,
 } from "./models.js";
-export {
-<<<<<<< HEAD
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";
-=======
-  OperationsListOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-  DataTypesCreateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByDataProductOptionalParams,
-  DataProductsCreateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListBySubscriptionOptionalParams,
-} from "./options.js";
->>>>>>> main

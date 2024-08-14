@@ -10,8 +10,8 @@ import {
 } from "./../models/models.js";
 import {
   createChatCompletions,
-  ChatCompletionsClientOptionalParams,
   ModelClientContext,
+  ChatCompletionsClientOptionalParams,
   complete,
   getModelInfo,
   CompleteOptionalParams,
@@ -32,7 +32,6 @@ export class ChatCompletionsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createChatCompletions(endpoint, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

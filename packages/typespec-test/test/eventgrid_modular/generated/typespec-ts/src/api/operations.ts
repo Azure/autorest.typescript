@@ -13,7 +13,15 @@ import {
   RejectOptions,
   RejectResult,
 } from "../models/models.js";
-import { EventGridContext as Client } from "./index.js";
+import {
+  AcknowledgeCloudEventsOptionalParams,
+  EventGridContext as Client,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -21,14 +29,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-import {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "./options.js";
 
 export function _publishCloudEventSend(
   context: Client,

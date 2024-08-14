@@ -1,20 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
 import { A1 } from "../../../models/models.js";
-import { BcOp1204Response, FooContext as Client } from "../../../rest/index.js";
-=======
-import { BA } from "../../../models/models.js";
-import { FooContext as Client } from "../../index.js";
->>>>>>> main
+import { BCOp1OptionalParams, FooContext as Client } from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { BCOp1OptionalParams } from "../../options.js";
 
 export function _op1Send(
   context: Client,

@@ -7,20 +7,20 @@ import {
   ListFineTunesResponse,
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  FineTunesCancelOptionalParams,
+  FineTunesCreateOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesRetrieveOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  FineTunesCreateOptionalParams,
-  FineTunesListOptionalParams,
-  FineTunesRetrieveOptionalParams,
-  FineTunesListEventsOptionalParams,
-  FineTunesCancelOptionalParams,
-} from "../options.js";
 
 export function _createSend(
   context: Client,

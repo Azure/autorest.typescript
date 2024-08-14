@@ -25,6 +25,6 @@ export {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./options.js";

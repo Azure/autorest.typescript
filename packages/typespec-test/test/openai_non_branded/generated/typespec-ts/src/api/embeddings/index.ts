@@ -4,14 +4,16 @@ import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  EmbeddingsCreateOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { EmbeddingsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

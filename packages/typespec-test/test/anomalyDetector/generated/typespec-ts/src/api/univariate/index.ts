@@ -9,18 +9,18 @@ import {
   UnivariateChangePointDetectionOptions,
   UnivariateChangePointDetectionResult,
 } from "../../models/models.js";
-import { AnomalyDetectorContext as Client } from "../index.js";
+import {
+  AnomalyDetectorContext as Client,
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-} from "../options.js";
 
 export function _detectUnivariateEntireSeriesSend(
   context: Client,
@@ -47,18 +47,10 @@ export function _detectUnivariateEntireSeriesSend(
 }
 
 export async function _detectUnivariateEntireSeriesDeserialize(
-<<<<<<< HEAD
-  result:
-    | DetectUnivariateEntireSeries200Response
-    | DetectUnivariateEntireSeriesDefaultResponse,
-): Promise<UnivariateEntireDetectionResult> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateEntireDetectionResult> {
+): Promise<UnivariateEntireDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 
@@ -120,18 +112,10 @@ export function _detectUnivariateLastPointSend(
 }
 
 export async function _detectUnivariateLastPointDeserialize(
-<<<<<<< HEAD
-  result:
-    | DetectUnivariateLastPoint200Response
-    | DetectUnivariateLastPointDefaultResponse,
-): Promise<UnivariateLastDetectionResult> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateLastDetectionResult> {
+): Promise<UnivariateLastDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 
@@ -190,18 +174,10 @@ export function _detectUnivariateChangePointSend(
 }
 
 export async function _detectUnivariateChangePointDeserialize(
-<<<<<<< HEAD
-  result:
-    | DetectUnivariateChangePoint200Response
-    | DetectUnivariateChangePointDefaultResponse,
-): Promise<UnivariateChangePointDetectionResult> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateChangePointDetectionResult> {
+): Promise<UnivariateChangePointDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 

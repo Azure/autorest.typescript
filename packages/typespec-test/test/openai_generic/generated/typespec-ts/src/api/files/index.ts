@@ -7,7 +7,14 @@ import {
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  FilesCreateOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesDownloadOptionalParams,
+  FilesListOptionalParams,
+  FilesRetrieveOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -15,13 +22,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  FilesListOptionalParams,
-  FilesCreateOptionalParams,
-  FilesRetrieveOptionalParams,
-  FilesDeleteOptionalParams,
-  FilesDownloadOptionalParams,
-} from "../options.js";
 
 export function _listSend(
   context: Client,

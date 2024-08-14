@@ -2,22 +2,20 @@
 // Licensed under the MIT license.
 
 import { Operation, _OperationListResult } from "../../models/models.js";
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  OperationsListOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-<<<<<<< HEAD
-import { OperationsListOptionalParams } from "../options.js";
-=======
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { OperationsListOptionalParams } from "../../models/options.js";
->>>>>>> main
 
 export function _listSend(
   context: Client,

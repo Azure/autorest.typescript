@@ -85,24 +85,3 @@ export {
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
 } from "./models.js";
-export {
-<<<<<<< HEAD:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/models/index.ts
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";
-=======
-  CreateOrUpdateTestOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestOptionalParams,
-  GetTestFileOptionalParams,
-  ListTestFilesOptionalParams,
-  ListTestsOptionalParams,
-  UploadTestFileOptionalParams,
-  DeleteTestFileOptionalParams,
-  DeleteTestOptionalParams,
-} from "./options.js";
->>>>>>> main:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/administrationOperations/models/index.ts

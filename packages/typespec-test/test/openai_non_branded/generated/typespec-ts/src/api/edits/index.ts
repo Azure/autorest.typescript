@@ -1,14 +1,16 @@
 // Licensed under the MIT license.
 
 import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  EditsCreateOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { EditsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

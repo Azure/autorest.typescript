@@ -2,14 +2,16 @@
 // Licensed under the MIT license.
 
 import { Collection } from "../../models/models.js";
-import { ParametrizedHostContext as Client } from "../index.js";
+import {
+  ParametrizedHostContext as Client,
+  ConfidentialLedgerListCollectionsOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "../options.js";
 
 export function _listCollectionsSend(
   context: Client,

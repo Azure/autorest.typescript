@@ -1,20 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
-export { AdministrationOperationsClient } from "./administrationOperations/administrationOperationsClient.js";
-=======
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  AdministrationOperationsClient,
-  AdministrationOperationsClientOptionalParams,
-} from "./administrationOperations/administrationOperationsClient.js";
->>>>>>> main
+export { AdministrationOperationsClient } from "./administrationOperations/administrationOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -98,9 +91,6 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export {
   AdministrationOperationsClientOptionalParams,
@@ -116,13 +106,9 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-<<<<<<< HEAD
 } from "./administrationOperations/api/index.js";
-export { TestRunOperationsClient } from "./testRunOperations/testRunOperationsClient.js";
-=======
-} from "./administrationOperations/models/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
->>>>>>> main
+export { TestRunOperationsClient } from "./testRunOperations/testRunOperationsClient.js";
 export {
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams as TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams,
@@ -138,34 +124,22 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-<<<<<<< HEAD
   TestRunOperationsClientOptionalParams,
 } from "./testRunOperations/api/index.js";
 export { TestProfileAdministrationOperationsClient } from "./testProfileAdministrationOperations/testProfileAdministrationOperationsClient.js";
-=======
-} from "./testRunOperations/models/index.js";
->>>>>>> main
 export {
   CreateOrUpdateTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-<<<<<<< HEAD
   TestProfileAdministrationOperationsClientOptionalParams,
 } from "./testProfileAdministrationOperations/api/index.js";
 export { TestProfileRunOperationsClient } from "./testProfileRunOperations/testProfileRunOperationsClient.js";
-=======
-} from "./testProfileAdministrationOperations/models/index.js";
->>>>>>> main
 export {
   CreateOrUpdateTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
-<<<<<<< HEAD
   TestProfileRunOperationsClientOptionalParams,
 } from "./testProfileRunOperations/api/index.js";
-=======
-} from "./testProfileRunOperations/models/index.js";
->>>>>>> main

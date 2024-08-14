@@ -85,18 +85,11 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   TargetResourceConfigurationsUnion,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "../models/index.js";
 export {
   CreateOrUpdateTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-<<<<<<< HEAD
   TestProfileAdministrationOperationsClientOptionalParams,
 } from "./api/index.js";
-=======
-} from "./models/index.js";
->>>>>>> main

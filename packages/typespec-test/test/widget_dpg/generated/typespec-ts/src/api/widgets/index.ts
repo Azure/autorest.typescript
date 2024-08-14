@@ -7,7 +7,18 @@ import {
   AnalyzeResult,
   _ListWidgetsPagesResults,
 } from "../../models/models.js";
-import { WidgetServiceContext as Client } from "../index.js";
+import {
+  WidgetServiceContext as Client,
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -22,17 +33,6 @@ import {
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
-} from "../options.js";
 
 export function _listWidgetsSend(
   context: Client,

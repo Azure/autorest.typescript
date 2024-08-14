@@ -10,8 +10,8 @@ import {
 } from "./../models/models.js";
 import {
   createImageEmbeddings,
-  ImageEmbeddingsClientOptionalParams,
   ModelClientContext,
+  ImageEmbeddingsClientOptionalParams,
   embed,
   getModelInfo,
   EmbedOptionalParams,
@@ -32,7 +32,6 @@ export class ImageEmbeddingsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createImageEmbeddings(endpoint, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

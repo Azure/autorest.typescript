@@ -250,15 +250,16 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
+    buildModels(modularCodeModel);
+    buildSubpathIndexFile(modularCodeModel, "models");
     for (const subClient of modularCodeModel.clients) {
-      buildModels(modularCodeModel);
       buildApiOptions(subClient, modularCodeModel);
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
         buildSerializeUtils(modularCodeModel);
       // build operation files
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
-      buildSubpathIndexFile(modularCodeModel, "models", subClient);
+
       buildRestorePoller(modularCodeModel, subClient);
       if (dpgContext.rlcOptions?.hierarchyClient) {
         buildSubpathIndexFile(modularCodeModel, "api", subClient);

@@ -25,7 +25,18 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "../models/models.js";
-import { OpenAIContext as Client } from "./index.js";
+import {
+  OpenAIContext as Client,
+  GenerateSpeechFromTextOptionalParams,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetCompletionsOptionalParams,
+  GetEmbeddingsOptionalParams,
+  GetImageGenerationsOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -34,17 +45,6 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
-  GetEmbeddingsOptionalParams,
-} from "./options.js";
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,

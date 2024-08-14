@@ -8,7 +8,11 @@ import {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
 } from "../models/models.js";
-import { ChatProtocolContext as Client } from "./index.js";
+import {
+  ChatProtocolContext as Client,
+  CreateOptionalParams,
+  CreateStreamingOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -16,10 +20,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  CreateStreamingOptionalParams,
-  CreateOptionalParams,
-} from "./options.js";
 
 export function _createStreamingSend(
   context: Client,

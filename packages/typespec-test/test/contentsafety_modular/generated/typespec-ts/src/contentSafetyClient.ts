@@ -15,21 +15,6 @@ import {
   AnalyzeTextResult,
 } from "./models/models.js";
 import {
-<<<<<<< HEAD
-=======
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-} from "./models/options.js";
-import {
->>>>>>> main
   createContentSafety,
   ContentSafetyContext,
   ContentSafetyClientOptionalParams,
@@ -54,13 +39,7 @@ import {
   GetTextBlocklistItemOptionalParams,
   ListTextBlocklistItemsOptionalParams,
 } from "./api/index.js";
-<<<<<<< HEAD
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
-=======
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
-
-export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
->>>>>>> main
 
 export class ContentSafetyClient {
   private _client: ContentSafetyContext;

@@ -13,7 +13,16 @@ import {
   MultivariateLastDetectionResult,
   _ModelList,
 } from "../../models/models.js";
-import { AnomalyDetectorContext as Client } from "../index.js";
+import {
+  AnomalyDetectorContext as Client,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -24,15 +33,6 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import {
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "../options.js";
 
 export function _getMultivariateBatchDetectionResultSend(
   context: Client,
@@ -47,18 +47,10 @@ export function _getMultivariateBatchDetectionResultSend(
 }
 
 export async function _getMultivariateBatchDetectionResultDeserialize(
-<<<<<<< HEAD
-  result:
-    | GetMultivariateBatchDetectionResult200Response
-    | GetMultivariateBatchDetectionResultDefaultResponse,
-): Promise<MultivariateDetectionResult> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<MultivariateDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 
@@ -183,18 +175,10 @@ export function _trainMultivariateModelSend(
 }
 
 export async function _trainMultivariateModelDeserialize(
-<<<<<<< HEAD
-  result:
-    | TrainMultivariateModel201Response
-    | TrainMultivariateModelDefaultResponse,
-): Promise<AnomalyDetectionModel> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectionModel> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 
@@ -311,18 +295,10 @@ export function _listMultivariateModelsSend(
 }
 
 export async function _listMultivariateModelsDeserialize(
-<<<<<<< HEAD
-  result:
-    | ListMultivariateModels200Response
-    | ListMultivariateModelsDefaultResponse,
-): Promise<_ModelList> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<_MultivariateModelList> {
+): Promise<_ModelList> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 
@@ -473,16 +449,10 @@ export function _getMultivariateModelSend(
 }
 
 export async function _getMultivariateModelDeserialize(
-<<<<<<< HEAD
-  result: GetMultivariateModel200Response | GetMultivariateModelDefaultResponse,
-): Promise<AnomalyDetectionModel> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectionModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 
@@ -601,18 +571,10 @@ export function _detectMultivariateBatchAnomalySend(
 }
 
 export async function _detectMultivariateBatchAnomalyDeserialize(
-<<<<<<< HEAD
-  result:
-    | DetectMultivariateBatchAnomaly202Response
-    | DetectMultivariateBatchAnomalyDefaultResponse,
-): Promise<MultivariateDetectionResult> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<MultivariateDetectionResult> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 
@@ -733,18 +695,10 @@ export function _detectMultivariateLastAnomalySend(
 }
 
 export async function _detectMultivariateLastAnomalyDeserialize(
-<<<<<<< HEAD
-  result:
-    | DetectMultivariateLastAnomaly200Response
-    | DetectMultivariateLastAnomalyDefaultResponse,
-): Promise<MultivariateLastDetectionResult> {
-  if (isUnexpected(result)) {
-=======
   result: PathUncheckedResponse,
-): Promise<MultivariateMultivariateLastDetectionResult> {
+): Promise<MultivariateLastDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
->>>>>>> main
     throw createRestError(result);
   }
 

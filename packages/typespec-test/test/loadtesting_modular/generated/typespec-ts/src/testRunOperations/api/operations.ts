@@ -21,47 +21,24 @@ import {
   TimeSeriesElement,
   _Metrics,
   _PagedTestRun,
-<<<<<<< HEAD
 } from "../../models/models.js";
 import {
-  isUnexpected,
-  LoadTestRunCreateOrUpdateAppComponents200Response,
-  LoadTestRunCreateOrUpdateAppComponents201Response,
-  LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
-  LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
-  LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
-  LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
-  LoadTestRunCreateOrUpdateTestRun200Response,
-  LoadTestRunCreateOrUpdateTestRun201Response,
-  LoadTestRunCreateOrUpdateTestRunDefaultResponse,
-  LoadTestRunDeleteTestRun204Response,
-  LoadTestRunDeleteTestRunDefaultResponse,
-  LoadTestRunGetAppComponents200Response,
-  LoadTestRunGetAppComponentsDefaultResponse,
-  LoadTestRunGetServerMetricsConfig200Response,
-  LoadTestRunGetServerMetricsConfigDefaultResponse,
-  LoadTestRunGetTestRun200Response,
-  LoadTestRunGetTestRunDefaultResponse,
-  LoadTestRunGetTestRunFile200Response,
-  LoadTestRunGetTestRunFileDefaultResponse,
-  LoadTestRunListMetricDefinitions200Response,
-  LoadTestRunListMetricDefinitionsDefaultResponse,
-  LoadTestRunListMetricDimensionValues200Response,
-  LoadTestRunListMetricDimensionValuesDefaultResponse,
-  LoadTestRunListMetricNamespaces200Response,
-  LoadTestRunListMetricNamespacesDefaultResponse,
-  LoadTestRunListMetrics200Response,
-  LoadTestRunListMetricsDefaultResponse,
-  LoadTestRunListTestRuns200Response,
-  LoadTestRunListTestRunsDefaultResponse,
-  LoadTestRunStop200Response,
-  LoadTestRunStopDefaultResponse,
   LoadTestServiceContext as Client,
-} from "../../rest/index.js";
-=======
-} from "../models/models.js";
-import { LoadTestServiceContext as Client } from "./index.js";
->>>>>>> main
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
+} from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -69,28 +46,10 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import {
-  CreateOrUpdateTestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./options.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 
 export function _createOrUpdateTestRunSend(
   context: Client,

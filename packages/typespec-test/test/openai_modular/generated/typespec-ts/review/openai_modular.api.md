@@ -128,9 +128,6 @@ export interface AzureChatExtensionDataSourceResponseCitation {
 }
 
 // @public
-<<<<<<< HEAD
-export type AzureChatExtensionType = "azure_search" | "azure_ml_index" | "azure_cosmos_db" | "elasticsearch" | "Pinecone";
-=======
 export interface AzureChatExtensionRetrievedDocument {
     chunkId?: string;
     content: string;
@@ -148,15 +145,7 @@ export interface AzureChatExtensionRetrievedDocument {
 export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
 
 // @public
-export interface AzureChatExtensionsMessageContext {
-    allRetrievedDocuments?: AzureChatExtensionRetrievedDocument[];
-    citations?: AzureChatExtensionDataSourceResponseCitation[];
-    intent?: string;
-}
-
-// @public
 export type AzureChatExtensionType = "azure_search" | "azure_ml_index" | "azure_cosmos_db" | "elasticsearch" | "pinecone";
->>>>>>> main
 
 // @public
 export interface AzureChatGroundingEnhancementConfiguration {

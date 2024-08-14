@@ -4,7 +4,10 @@ import {
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
-import { OpenAIContext as Client } from "../../index.js";
+import {
+  AudioTranscriptionsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -12,7 +15,6 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { AudioTranscriptionsCreateOptionalParams } from "../../options.js";
 
 export function _createSend(
   context: Client,

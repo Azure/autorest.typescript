@@ -3,8 +3,8 @@
 
 export {
   createImageEmbeddings,
-  ImageEmbeddingsClientOptionalParams,
   ModelClientContext,
+  ImageEmbeddingsClientOptionalParams,
 } from "./imageEmbeddingsContext.js";
 export { embed, getModelInfo } from "./operations.js";
 export { EmbedOptionalParams, GetModelInfoOptionalParams } from "./options.js";

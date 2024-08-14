@@ -4,14 +4,16 @@ import {
   CreateModerationRequest,
   CreateModerationResponse,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  ModerationsCreateOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { ModerationsCreateOptionalParams } from "../options.js";
 
 export function _createSend(
   context: Client,

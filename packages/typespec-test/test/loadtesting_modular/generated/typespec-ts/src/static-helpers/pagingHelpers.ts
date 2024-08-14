@@ -10,16 +10,6 @@ import {
   PathUncheckedResponse,
 } from "@azure-rest/core-client";
 import { RestError } from "@azure/core-rest-pipeline";
-<<<<<<< HEAD:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testRunOperations/api/pagingHelpers.ts
-import {
-  BuildPagedAsyncIteratorOptions,
-  ContinuablePage,
-  PageSettings,
-  PagedAsyncIterableIterator,
-  PagedResult,
-} from "../../models/pagingTypes.js";
-import { isUnexpected } from "../../rest/index.js";
-=======
 
 /**
  * Options for the byPage method
@@ -107,7 +97,6 @@ export interface BuildPagedAsyncIteratorOptions {
   itemName?: string;
   nextLinkName?: string;
 }
->>>>>>> main:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/static-helpers/pagingHelpers.ts
 
 /**
  * Helper to paginate results in a generic way and return a PagedAsyncIterableIterator

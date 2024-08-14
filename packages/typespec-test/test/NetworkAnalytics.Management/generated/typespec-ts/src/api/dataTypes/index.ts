@@ -10,7 +10,16 @@ import {
   ContainerSasToken,
   _DataTypeListResult,
 } from "../../models/models.js";
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  DataTypesCreateOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesListByDataProductOptionalParams,
+  DataTypesUpdateOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
@@ -23,15 +32,6 @@ import {
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataTypesCreateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByDataProductOptionalParams,
-} from "../options.js";
 
 export function _createSend(
   context: Client,
