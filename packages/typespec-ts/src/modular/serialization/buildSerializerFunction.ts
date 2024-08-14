@@ -1,13 +1,13 @@
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-import { Type as ModularType } from "../modularCodeModel.js";
-import { getRequestModelMapping } from "../helpers/operationHelpers.js";
-
-import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
-import { UsageFlags } from "@typespec/compiler";
 import {
   SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+
+import { Type as ModularType } from "../modularCodeModel.js";
+import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
+import { UsageFlags } from "@typespec/compiler";
+import { getRequestModelMapping } from "../helpers/operationHelpers.js";
 
 function getTcgcType(type: ModularType): SdkType {
   if (type.tcgcType?.kind === "nullable") {
@@ -106,13 +106,9 @@ export function buildModelSerializer(
              )}
           }`;
       output.push(`
-<<<<<<< HEAD
-        export function ${serializerName}(item: ${type.name})${serializerReturnType} {
-=======
         export function ${serializerName}(item: ${toPascalCase(
           type.name
         )}): Record<string, unknown> {
->>>>>>> main
           return ${fnBody}
         }
         `);
@@ -125,11 +121,7 @@ export function buildModelSerializer(
     }
   } else if (type.type === "enum") {
     output.push(`
-<<<<<<< HEAD
-    export function ${serializerName}(item: ${type.name})${serializerReturnType} {
-=======
     export function ${serializerName}(item: ${toPascalCase(type.name)}) {
->>>>>>> main
       return item;
     }
     `);

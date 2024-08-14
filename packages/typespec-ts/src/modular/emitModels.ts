@@ -1,23 +1,25 @@
-import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
 import * as path from "path";
+
+import {
+  Client,
+  ModularCodeModel,
+  Type as ModularType
+} from "./modularCodeModel.js";
 import {
   InterfaceDeclarationStructure,
   OptionalKind,
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
+import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
 import { buildOperationOptions, importModels } from "./buildOperations.js";
+
+import { addImportBySymbol } from "../utils/importHelper.js";
+import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
-import {
-  Client,
-  ModularCodeModel,
-  Type as ModularType
-} from "./modularCodeModel.js";
-import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { toCamelCase } from "../utils/casingUtils.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
 
 // ====== UTILITIES ======
 
@@ -251,16 +253,8 @@ export function buildModels(
   }
 
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-<<<<<<< HEAD
     rlcIndex: path.posix.join("../rest", "index.js"),
     serializerHelpers: path.posix.join("../", "helpers", "serializerHelpers.js")
-=======
-    serializerHelpers: path.posix.join(
-      projectRootFromModels,
-      "helpers",
-      "serializerHelpers.js"
-    )
->>>>>>> main
   });
 
   if (coreClientTypes.size > 0) {
@@ -399,17 +393,6 @@ export function buildApiOptions(client: Client, codeModel: ModularCodeModel) {
     }
   ]);
 
-<<<<<<< HEAD
-  modelOptionsFile.fixMissingImports(
-    {},
-    {
-      importModuleSpecifierPreference: "shortest",
-      importModuleSpecifierEnding: "js"
-    }
-  );
-  modelOptionsFile.fixUnusedIdentifiers();
-=======
->>>>>>> main
   modelOptionsFile
     .getImportDeclarations()
     .filter((id) => {

@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RLCOptions } from "@azure-tools/rlc-common";
 import {
-  createTypeSpecLibrary,
   JSONSchemaType,
+  createTypeSpecLibrary,
   paramMessage
 } from "@typespec/compiler";
+
 import { Options } from "prettier";
+import { RLCOptions } from "@azure-tools/rlc-common";
 
 export interface EmitterOptions extends RLCOptions {
   branded?: boolean;
@@ -232,17 +233,16 @@ const libDef = {
         default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
       }
     },
-<<<<<<< HEAD
     "duplicate-model-name": {
       severity: "warning",
       messages: {
         default: paramMessage`Duplicate model name found - ${"modelName"} in namespace ${"namespace"} , please consider renaming the model in TypeSpec.`
-=======
+      }
+    },
     "default-response-body-type": {
       severity: "warning",
       messages: {
         default: paramMessage`Please note the body type of default response for operation - ${"operationName"} is not a model type.`
->>>>>>> main
       }
     }
   },

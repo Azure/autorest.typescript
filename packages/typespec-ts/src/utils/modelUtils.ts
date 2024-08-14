@@ -4,28 +4,30 @@
 import {
   ArraySchema,
   DictionarySchema,
-  isArraySchema,
   NameType,
-  normalizeName,
   ObjectSchema,
   Schema,
-  SchemaContext
+  SchemaContext,
+  isArraySchema,
+  normalizeName
 } from "@azure-tools/rlc-common";
-import {
-  getPagedResult,
-  getUnionAsEnum
-} from "@azure-tools/typespec-azure-core";
-import {
-  getDefaultApiVersion,
-  getWireName,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
 import {
   BooleanLiteral,
   Discriminator,
   EncodeData,
   Enum,
   EnumMember,
+  Model,
+  ModelProperty,
+  NoTarget,
+  NumericLiteral,
+  Program,
+  Scalar,
+  Service,
+  StringLiteral,
+  Type,
+  Union,
+  UnionVariant,
   getDiscriminator,
   getDoc,
   getEffectiveModelType,
@@ -49,36 +51,35 @@ import {
   isSecret,
   isStringType,
   isTemplateDeclaration,
+  isType,
   isUnknownType,
-  listServices,
-  Model,
-  ModelProperty,
-  NoTarget,
-  NumericLiteral,
-  Program,
-  Scalar,
-  Service,
-  StringLiteral,
-  Type,
-  Union,
-  UnionVariant,
-  isType
+  listServices
 } from "@typespec/compiler";
+import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
+  HttpOperation,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  HttpOperation,
   isStatusCode
 } from "@typespec/http";
-import { reportDiagnostic } from "../lib.js";
-import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
+  KnownMediaType,
   hasMediaType,
-  isMediaTypeMultipartFormData,
-  KnownMediaType
+  isMediaTypeMultipartFormData
 } from "./mediaTypes.js";
+import {
+  getDefaultApiVersion,
+  getWireName,
+  isApiVersion
+} from "@azure-tools/typespec-client-generator-core";
+import {
+  getPagedResult,
+  getUnionAsEnum
+} from "@azure-tools/typespec-azure-core";
+
 import { extractPagedMetadataNested } from "./operationUtil.js";
+import { reportDiagnostic } from "../lib.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -389,18 +390,7 @@ function getSchemaForUnion(
   const values = [];
   let namedUnionMember = false;
 
-<<<<<<< HEAD
-  for (const variant of variants) {
-    // We already know it's not a model type
-    values.push(
-      getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
-    );
-  }
-  if (asEnum?.open && asEnum?.members.size > 0) {
-    values = [];
-=======
   if (asEnum?.open && asEnum.members.size > 0) {
->>>>>>> main
     for (const [_, member] of asEnum.members.entries()) {
       const memberType = getSchemaForType(dpgContext, member.type, {
         ...options,
