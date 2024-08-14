@@ -5,8 +5,8 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import { getAOperations, AOperations } from "./classic/a/index.js";
 import {
   createDemoService,
-  DemoServiceClientOptionalParams,
   DemoServiceContext,
+  DemoServiceClientOptionalParams,
 } from "./api/index.js";
 
 export class DemoServiceClient {
@@ -19,7 +19,6 @@ export class DemoServiceClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createDemoService(endpoint, {
       ...options,
       userAgentOptions: { userAgentPrefix },

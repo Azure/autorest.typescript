@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
-import {
-  EditsCreate200Response,
-  EditsCreateDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../../rest/index.js";
+import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { EditsCreateOptionalParams } from "../options.js";
@@ -19,7 +15,7 @@ export function _createSend(
   context: Client,
   edit: CreateEditRequest,
   options: EditsCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<EditsCreate200Response | EditsCreateDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/edits")
     .post({
@@ -36,16 +32,17 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: EditsCreate200Response | EditsCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<CreateEditResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
     created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p) => {
+    choices: result.body["choices"].map((p: any) => {
       return {
         text: p["text"],
         index: p["index"],

@@ -6,23 +6,11 @@ import {
   ListFineTunesResponse,
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
-import {
-  FineTunesCancel200Response,
-  FineTunesCancelDefaultResponse,
-  FineTunesCreate200Response,
-  FineTunesCreateDefaultResponse,
-  FineTunesList200Response,
-  FineTunesListDefaultResponse,
-  FineTunesListEvents200Response,
-  FineTunesListEventsDefaultResponse,
-  FineTunesRetrieve200Response,
-  FineTunesRetrieveDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../../rest/index.js";
+import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import {
@@ -37,9 +25,7 @@ export function _createSend(
   context: Client,
   fineTune: CreateFineTuneRequest,
   options: FineTunesCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  FineTunesCreate200Response | FineTunesCreateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/fine-tunes")
     .post({
@@ -63,9 +49,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: FineTunesCreate200Response | FineTunesCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<FineTune> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -91,7 +78,7 @@ export async function _createDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => {
+    trainingFiles: result.body["training_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -103,7 +90,7 @@ export async function _createDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    validationFiles: result.body["validation_files"].map((p) => {
+    validationFiles: result.body["validation_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -115,7 +102,7 @@ export async function _createDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    resultFiles: result.body["result_files"].map((p) => {
+    resultFiles: result.body["result_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -130,7 +117,7 @@ export async function _createDeserialize(
     events:
       result.body["events"] === undefined
         ? result.body["events"]
-        : result.body["events"].map((p) => {
+        : result.body["events"].map((p: any) => {
             return {
               object: p["object"],
               createdAt: new Date(p["created_at"]),
@@ -153,22 +140,23 @@ export async function create(
 export function _listSend(
   context: Client,
   options: FineTunesListOptionalParams = { requestOptions: {} },
-): StreamableMethod<FineTunesList200Response | FineTunesListDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/fine-tunes")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listDeserialize(
-  result: FineTunesList200Response | FineTunesListDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ListFineTunesResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -189,7 +177,7 @@ export async function _listDeserialize(
             p.hyperparams["classification_positive_class"],
           classificationNClasses: p.hyperparams["classification_n_classes"],
         },
-        trainingFiles: p["training_files"].map((p) => {
+        trainingFiles: p["training_files"].map((p: any) => {
           return {
             id: p["id"],
             object: p["object"],
@@ -201,7 +189,7 @@ export async function _listDeserialize(
             statusDetails: p["status_details"],
           };
         }),
-        validationFiles: p["validation_files"].map((p) => {
+        validationFiles: p["validation_files"].map((p: any) => {
           return {
             id: p["id"],
             object: p["object"],
@@ -213,7 +201,7 @@ export async function _listDeserialize(
             statusDetails: p["status_details"],
           };
         }),
-        resultFiles: p["result_files"].map((p) => {
+        resultFiles: p["result_files"].map((p: any) => {
           return {
             id: p["id"],
             object: p["object"],
@@ -228,7 +216,7 @@ export async function _listDeserialize(
         events:
           p["events"] === undefined
             ? p["events"]
-            : p["events"].map((p) => {
+            : p["events"].map((p: any) => {
                 return {
                   object: p["object"],
                   createdAt: new Date(p["created_at"]),
@@ -253,18 +241,17 @@ export function _retrieveSend(
   context: Client,
   fineTuneId: string,
   options: FineTunesRetrieveOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/fine-tunes/{fine_tune_id}", fineTuneId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _retrieveDeserialize(
-  result: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<FineTune> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -290,7 +277,7 @@ export async function _retrieveDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => {
+    trainingFiles: result.body["training_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -302,7 +289,7 @@ export async function _retrieveDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    validationFiles: result.body["validation_files"].map((p) => {
+    validationFiles: result.body["validation_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -314,7 +301,7 @@ export async function _retrieveDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    resultFiles: result.body["result_files"].map((p) => {
+    resultFiles: result.body["result_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -329,7 +316,7 @@ export async function _retrieveDeserialize(
     events:
       result.body["events"] === undefined
         ? result.body["events"]
-        : result.body["events"].map((p) => {
+        : result.body["events"].map((p: any) => {
             return {
               object: p["object"],
               createdAt: new Date(p["created_at"]),
@@ -353,9 +340,7 @@ export function _listEventsSend(
   context: Client,
   fineTuneId: string,
   options: FineTunesListEventsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/fine-tunes/{fine_tune_id}/events", fineTuneId)
     .get({
@@ -365,15 +350,16 @@ export function _listEventsSend(
 }
 
 export async function _listEventsDeserialize(
-  result: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ListFineTuneEventsResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         object: p["object"],
         createdAt: new Date(p["created_at"]),
@@ -397,18 +383,17 @@ export function _cancelSend(
   context: Client,
   fineTuneId: string,
   options: FineTunesCancelOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  FineTunesCancel200Response | FineTunesCancelDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/fine-tunes/{fine_tune_id}/cancel", fineTuneId)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _cancelDeserialize(
-  result: FineTunesCancel200Response | FineTunesCancelDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<FineTune> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -434,7 +419,7 @@ export async function _cancelDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: result.body["training_files"].map((p) => {
+    trainingFiles: result.body["training_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -446,7 +431,7 @@ export async function _cancelDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    validationFiles: result.body["validation_files"].map((p) => {
+    validationFiles: result.body["validation_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -458,7 +443,7 @@ export async function _cancelDeserialize(
         statusDetails: p["status_details"],
       };
     }),
-    resultFiles: result.body["result_files"].map((p) => {
+    resultFiles: result.body["result_files"].map((p: any) => {
       return {
         id: p["id"],
         object: p["object"],
@@ -473,7 +458,7 @@ export async function _cancelDeserialize(
     events:
       result.body["events"] === undefined
         ? result.body["events"]
-        : result.body["events"].map((p) => {
+        : result.body["events"].map((p: any) => {
             return {
               object: p["object"],
               createdAt: new Date(p["created_at"]),

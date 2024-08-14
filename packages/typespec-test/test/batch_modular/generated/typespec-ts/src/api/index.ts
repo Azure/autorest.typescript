@@ -3,8 +3,8 @@
 
 export {
   createBatch,
-  BatchClientOptionalParams,
   BatchContext,
+  BatchClientOptionalParams,
 } from "./batchContext.js";
 export {
   listApplications,

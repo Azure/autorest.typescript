@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+<<<<<<< HEAD
 import { TestProfileRun, _PagedTestProfileRun } from "../../models/models.js";
 import {
   isUnexpected,
@@ -17,12 +18,21 @@ import {
   TestProfileRunAdministrationStop200Response,
   TestProfileRunAdministrationStopDefaultResponse,
 } from "../../rest/index.js";
+=======
+import { TestProfileRun, _PagedTestProfileRun } from "../models/models.js";
+import { LoadTestServiceContext as Client } from "./index.js";
+>>>>>>> main
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
 import {
   CreateOrUpdateTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,
@@ -37,11 +47,7 @@ export function _createOrUpdateTestProfileRunSend(
   testProfileRunId: string,
   body: TestProfileRun,
   options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileRunAdministrationCreateOrUpdateTestProfileRun200Response
-  | TestProfileRunAdministrationCreateOrUpdateTestProfileRun201Response
-  | TestProfileRunAdministrationCreateOrUpdateTestProfileRunDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
     .patch({
@@ -57,12 +63,10 @@ export function _createOrUpdateTestProfileRunSend(
 }
 
 export async function _createOrUpdateTestProfileRunDeserialize(
-  result:
-    | TestProfileRunAdministrationCreateOrUpdateTestProfileRun200Response
-    | TestProfileRunAdministrationCreateOrUpdateTestProfileRun201Response
-    | TestProfileRunAdministrationCreateOrUpdateTestProfileRunDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestProfileRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -79,7 +83,7 @@ export async function _createOrUpdateTestProfileRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
+        : result.body["errorDetails"].map((p: any) => {
             return { message: p["message"] };
           }),
     startDateTime:
@@ -95,7 +99,7 @@ export async function _createOrUpdateTestProfileRunDeserialize(
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
-        : result.body["recommendations"].map((p) => {
+        : result.body["recommendations"].map((p: any) => {
             return {
               category: p["category"],
               configurations: p["configurations"],
@@ -134,21 +138,17 @@ export function _deleteTestProfileRunSend(
   context: Client,
   testProfileRunId: string,
   options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileRunAdministrationDeleteTestProfileRun204Response
-  | TestProfileRunAdministrationDeleteTestProfileRunDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestProfileRunDeserialize(
-  result:
-    | TestProfileRunAdministrationDeleteTestProfileRun204Response
-    | TestProfileRunAdministrationDeleteTestProfileRunDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -173,21 +173,17 @@ export function _getTestProfileRunSend(
   context: Client,
   testProfileRunId: string,
   options: GetTestProfileRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileRunAdministrationGetTestProfileRun200Response
-  | TestProfileRunAdministrationGetTestProfileRunDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestProfileRunDeserialize(
-  result:
-    | TestProfileRunAdministrationGetTestProfileRun200Response
-    | TestProfileRunAdministrationGetTestProfileRunDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestProfileRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -204,7 +200,7 @@ export async function _getTestProfileRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
+        : result.body["errorDetails"].map((p: any) => {
             return { message: p["message"] };
           }),
     startDateTime:
@@ -220,7 +216,7 @@ export async function _getTestProfileRunDeserialize(
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
-        : result.body["recommendations"].map((p) => {
+        : result.body["recommendations"].map((p: any) => {
             return {
               category: p["category"],
               configurations: p["configurations"],
@@ -256,10 +252,7 @@ export async function getTestProfileRun(
 export function _listTestProfileRunsSend(
   context: Client,
   options: ListTestProfileRunsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileRunAdministrationListTestProfileRuns200Response
-  | TestProfileRunAdministrationListTestProfileRunsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profile-runs")
     .get({
@@ -280,16 +273,15 @@ export function _listTestProfileRunsSend(
 }
 
 export async function _listTestProfileRunsDeserialize(
-  result:
-    | TestProfileRunAdministrationListTestProfileRuns200Response
-    | TestProfileRunAdministrationListTestProfileRunsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedTestProfileRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         testProfileRunId: p["testProfileRunId"],
         displayName: p["displayName"],
@@ -303,7 +295,7 @@ export async function _listTestProfileRunsDeserialize(
         errorDetails:
           p["errorDetails"] === undefined
             ? p["errorDetails"]
-            : p["errorDetails"].map((p) => {
+            : p["errorDetails"].map((p: any) => {
                 return { message: p["message"] };
               }),
         startDateTime:
@@ -319,7 +311,7 @@ export async function _listTestProfileRunsDeserialize(
         recommendations:
           p["recommendations"] === undefined
             ? p["recommendations"]
-            : p["recommendations"].map((p) => {
+            : p["recommendations"].map((p: any) => {
                 return {
                   category: p["category"],
                   configurations: p["configurations"],
@@ -350,6 +342,7 @@ export function listTestProfileRuns(
     context,
     () => _listTestProfileRunsSend(context, options),
     _listTestProfileRunsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -358,21 +351,17 @@ export function _stopTestProfileRunSend(
   context: Client,
   testProfileRunId: string,
   options: StopTestProfileRunOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileRunAdministrationStop200Response
-  | TestProfileRunAdministrationStopDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profile-runs/{testProfileRunId}:stop", testProfileRunId)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stopTestProfileRunDeserialize(
-  result:
-    | TestProfileRunAdministrationStop200Response
-    | TestProfileRunAdministrationStopDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestProfileRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -389,7 +378,7 @@ export async function _stopTestProfileRunDeserialize(
     errorDetails:
       result.body["errorDetails"] === undefined
         ? result.body["errorDetails"]
-        : result.body["errorDetails"].map((p) => {
+        : result.body["errorDetails"].map((p: any) => {
             return { message: p["message"] };
           }),
     startDateTime:
@@ -405,7 +394,7 @@ export async function _stopTestProfileRunDeserialize(
     recommendations:
       result.body["recommendations"] === undefined
         ? result.body["recommendations"]
-        : result.body["recommendations"].map((p) => {
+        : result.body["recommendations"].map((p: any) => {
             return {
               category: p["category"],
               configurations: p["configurations"],

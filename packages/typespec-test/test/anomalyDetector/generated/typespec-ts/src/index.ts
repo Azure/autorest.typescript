@@ -1,7 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+<<<<<<< HEAD
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
+=======
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
+>>>>>>> main
 export {
   MultivariateDetectionResult,
   MultivariateBatchDetectionResultSummary,
@@ -52,8 +61,13 @@ export {
   MultivariateGetMultivariateModelOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
+<<<<<<< HEAD
 } from "./api/index.js";
+=======
+} from "./models/index.js";
+>>>>>>> main
 export {
   MultivariateOperations,
   UnivariateOperations,
 } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

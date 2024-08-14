@@ -1,25 +1,6 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  CreateModerationRequest as CreateModerationRequestRest,
-  CreateImageRequest as CreateImageRequestRest,
-  CreateImageEditRequest as CreateImageEditRequestRest,
-  CreateImageVariationRequest as CreateImageVariationRequestRest,
-  CreateFineTuneRequest as CreateFineTuneRequestRest,
-  CreateFileRequest as CreateFileRequestRest,
-  CreateEmbeddingRequest as CreateEmbeddingRequestRest,
-  CreateEditRequest as CreateEditRequestRest,
-  CreateCompletionRequest as CreateCompletionRequestRest,
-  CreateFineTuningJobRequest as CreateFineTuningJobRequestRest,
-  CreateChatCompletionRequest as CreateChatCompletionRequestRest,
-  ChatCompletionRequestMessage as ChatCompletionRequestMessageRest,
-  ChatCompletionFunctions as ChatCompletionFunctionsRest,
-  ChatCompletionFunctionParameters as ChatCompletionFunctionParametersRest,
-  ChatCompletionFunctionCallOption as ChatCompletionFunctionCallOptionRest,
-  CreateTranslationRequest as CreateTranslationRequestRest,
-  CreateTranscriptionRequest as CreateTranscriptionRequestRest,
-} from "../rest/index.js";
 import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 
 export interface CreateModerationRequest {
@@ -37,7 +18,7 @@ export interface CreateModerationRequest {
 
 export function createModerationRequestSerializer(
   item: CreateModerationRequest,
-): CreateModerationRequestRest {
+): Record<string, unknown> {
   return {
     input: item["input"],
     model: item["model"],
@@ -106,7 +87,7 @@ export interface CreateImageRequest {
 
 export function createImageRequestSerializer(
   item: CreateImageRequest,
-): CreateImageRequestRest {
+): Record<string, unknown> {
   return {
     prompt: item["prompt"],
     n: item["n"],
@@ -154,7 +135,7 @@ export interface CreateImageEditRequest {
 
 export function createImageEditRequestSerializer(
   item: CreateImageEditRequest,
-): CreateImageEditRequestRest {
+): Record<string, unknown> {
   return {
     prompt: item["prompt"],
     image: uint8ArrayToString(item["image"], "base64"),
@@ -186,7 +167,7 @@ export interface CreateImageVariationRequest {
 
 export function createImageVariationRequestSerializer(
   item: CreateImageVariationRequest,
-): CreateImageVariationRequestRest {
+): Record<string, unknown> {
   return {
     image: uint8ArrayToString(item["image"], "base64"),
     n: item["n"],
@@ -331,7 +312,7 @@ export interface CreateFineTuneRequest {
 
 export function createFineTuneRequestSerializer(
   item: CreateFineTuneRequest,
-): CreateFineTuneRequestRest {
+): Record<string, unknown> {
   return {
     training_file: item["trainingFile"],
     validation_file: item["validationFile"],
@@ -463,7 +444,7 @@ export interface CreateFileRequest {
 
 export function createFileRequestSerializer(
   item: CreateFileRequest,
-): CreateFileRequestRest {
+): Record<string, unknown> {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     purpose: item["purpose"],
@@ -492,7 +473,7 @@ export interface CreateEmbeddingRequest {
 
 export function createEmbeddingRequestSerializer(
   item: CreateEmbeddingRequest,
-): CreateEmbeddingRequestRest {
+): Record<string, unknown> {
   return {
     model: item["model"],
     input: item["input"],
@@ -519,7 +500,7 @@ export interface Embedding {
   object: "embedding";
   /**
    * The embedding vector, which is a list of floats. The length of vector depends on the model as\
-   *    * listed in the [embedding guide](/docs/guides/embeddings).
+   * listed in the [embedding guide](/docs/guides/embeddings).
    */
   embedding: number[];
 }
@@ -555,7 +536,7 @@ export interface CreateEditRequest {
 
 export function createEditRequestSerializer(
   item: CreateEditRequest,
-): CreateEditRequestRest {
+): Record<string, unknown> {
   return {
     model: item["model"],
     input: item["input"],
@@ -706,7 +687,7 @@ export interface CreateCompletionRequest {
 
 export function createCompletionRequestSerializer(
   item: CreateCompletionRequest,
-): CreateCompletionRequestRest {
+): Record<string, unknown> {
   return {
     model: item["model"],
     prompt: item["prompt"],
@@ -800,7 +781,7 @@ export interface CreateFineTuningJobRequest {
 
 export function createFineTuningJobRequestSerializer(
   item: CreateFineTuningJobRequest,
-): CreateFineTuningJobRequestRest {
+): Record<string, unknown> {
   return {
     training_file: item["trainingFile"],
     validation_file: item["validationFile"],
@@ -999,7 +980,7 @@ export interface CreateChatCompletionRequest {
 
 export function createChatCompletionRequestSerializer(
   item: CreateChatCompletionRequest,
-): CreateChatCompletionRequestRest {
+): Record<string, unknown> {
   return {
     model: item["model"],
     messages: item["messages"].map(chatCompletionRequestMessageSerializer),
@@ -1043,7 +1024,7 @@ export interface ChatCompletionRequestMessage {
 
 export function chatCompletionRequestMessageSerializer(
   item: ChatCompletionRequestMessage,
-): ChatCompletionRequestMessageRest {
+): Record<string, unknown> {
   return {
     role: item["role"],
     content: item["content"],
@@ -1080,7 +1061,7 @@ export interface ChatCompletionFunctions {
 
 export function chatCompletionFunctionsSerializer(
   item: ChatCompletionFunctions,
-): ChatCompletionFunctionsRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
     description: item["description"],
@@ -1092,7 +1073,7 @@ export interface ChatCompletionFunctionParameters extends Record<string, any> {}
 
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
-): ChatCompletionFunctionParametersRest {
+): Record<string, unknown> {
   return {
     ...item,
   };
@@ -1105,7 +1086,7 @@ export interface ChatCompletionFunctionCallOption {
 
 export function chatCompletionFunctionCallOptionSerializer(
   item: ChatCompletionFunctionCallOption,
-): ChatCompletionFunctionCallOptionRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
   };
@@ -1168,7 +1149,7 @@ export interface CreateTranslationRequest {
 
 export function createTranslationRequestSerializer(
   item: CreateTranslationRequest,
-): CreateTranslationRequestRest {
+): Record<string, unknown> {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],
@@ -1217,7 +1198,7 @@ export interface CreateTranscriptionRequest {
 
 export function createTranscriptionRequestSerializer(
   item: CreateTranscriptionRequest,
-): CreateTranscriptionRequestRest {
+): Record<string, unknown> {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],

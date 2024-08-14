@@ -88,17 +88,41 @@ describe("SpreadClient Client", () => {
     }
   });
 
-  it("should spread alias with more than 5 params", async () => {
+  it("should spread alias with multiple-parameters", async () => {
     try {
       const result = await client.alias.spreadWithMultipleParameters(
         "1",
         "bar",
-        "foo1",
-        "foo2",
-        "foo3",
-        "foo4",
-        "foo5",
-        "foo6"
+        "foo",
+        [1, 2],
+        { optionalInt: 1, optionalStringList: ["foo", "bar"] }
+      );
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread alias with inner-model-parameter", async () => {
+    try {
+      const result = await client.alias.spreadParameterWithInnerModel(
+        "1",
+        "bar",
+        "foo"
+      );
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread alias with inner-alias-parameter", async () => {
+    try {
+      const result = await client.alias.spreadParameterWithInnerAlias(
+        "1",
+        "bar",
+        "foo",
+        1
       );
       assert.isUndefined(result);
     } catch (err) {

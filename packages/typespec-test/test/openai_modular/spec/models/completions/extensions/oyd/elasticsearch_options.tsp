@@ -10,15 +10,15 @@ using Azure.ClientGenerator.Core;
 
 @added(ServiceApiVersions.v2024_02_15_Preview)
 @doc("""
-A specific representation of configurable options for Elasticsearch when using it as an Azure OpenAI chat
-extension.
-""")
+  A specific representation of configurable options for Elasticsearch when using it as an Azure OpenAI chat
+  extension.
+  """)
 model ElasticsearchChatExtensionConfiguration
   extends AzureChatExtensionConfiguration {
   @doc("""
-  The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
-  default value for Elasticsearch®.
-  """)
+    The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
+    default value for Elasticsearch®.
+    """)
   type: AzureChatExtensionType.elasticsearch;
 
   @doc("The parameters to use when configuring Elasticsearch®.")
@@ -86,10 +86,12 @@ model ElasticsearchIndexFieldMappingOptions {
 }
 
 @doc("""
-The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension.
-""")
+  The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension.
+  """)
 @added(ServiceApiVersions.v2024_02_15_Preview)
-enum ElasticsearchQueryType {
+union ElasticsearchQueryType {
+  string,
+
   @doc("Represents the default, simple query parser.")
   simple: "simple",
 

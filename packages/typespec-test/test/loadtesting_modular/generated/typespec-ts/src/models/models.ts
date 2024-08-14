@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+<<<<<<< HEAD:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/models/models.ts
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   Test as TestRest,
@@ -27,6 +28,9 @@ import {
   FunctionFlexConsumptionResourceConfiguration as FunctionFlexConsumptionResourceConfigurationRest,
   TestProfileRun as TestProfileRunRest,
 } from "../rest/index.js";
+=======
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
+>>>>>>> main:packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/administrationOperations/models/models.ts
 
 /** Load test model. */
 export interface Test {
@@ -78,7 +82,7 @@ export interface Test {
   readonly lastModifiedBy?: string;
 }
 
-export function testSerializer(item: Test): TestRest {
+export function testSerializer(item: Test): Record<string, unknown> {
   return {
     passFailCriteria: !item.passFailCriteria
       ? item.passFailCriteria
@@ -117,7 +121,7 @@ export interface PassFailCriteria {
 
 export function passFailCriteriaSerializer(
   item: PassFailCriteria,
-): PassFailCriteriaRest {
+): Record<string, unknown> {
   return {
     passFailMetrics: !item.passFailMetrics
       ? item.passFailMetrics
@@ -158,7 +162,7 @@ export interface PassFailMetric {
 
 export function passFailMetricSerializer(
   item: PassFailMetric,
-): PassFailMetricRest {
+): Record<string, unknown> {
   return {
     clientMetric: item["clientMetric"],
     aggregate: item["aggregate"],
@@ -304,7 +308,7 @@ export interface AutoStopCriteria {
 
 export function autoStopCriteriaSerializer(
   item: AutoStopCriteria,
-): AutoStopCriteriaRest {
+): Record<string, unknown> {
   return {
     autoStopDisabled: item["autoStopDisabled"],
     errorRate: item["errorRate"],
@@ -320,7 +324,7 @@ export interface Secret {
   type?: SecretType;
 }
 
-export function secretSerializer(item: Secret): SecretRest {
+export function secretSerializer(item: Secret): Record<string, unknown> {
   return {
     value: item["value"],
     type: item["type"],
@@ -357,7 +361,7 @@ export interface CertificateMetadata {
 
 export function certificateMetadataSerializer(
   item: CertificateMetadata,
-): CertificateMetadataRest {
+): Record<string, unknown> {
   return {
     value: item["value"],
     type: item["type"],
@@ -404,7 +408,7 @@ export interface LoadTestConfiguration {
 
 export function loadTestConfigurationSerializer(
   item: LoadTestConfiguration,
-): LoadTestConfigurationRest {
+): Record<string, unknown> {
   return {
     engineInstances: item["engineInstances"],
     splitAllCSVs: item["splitAllCSVs"],
@@ -437,7 +441,7 @@ export interface OptionalLoadTestConfig {
 
 export function optionalLoadTestConfigSerializer(
   item: OptionalLoadTestConfig,
-): OptionalLoadTestConfigRest {
+): Record<string, unknown> {
   return {
     endpointUrl: item["endpointUrl"],
     requestsPerSecond: item["requestsPerSecond"],
@@ -462,7 +466,7 @@ export interface RegionalConfiguration {
 
 export function regionalConfigurationSerializer(
   item: RegionalConfiguration,
-): RegionalConfigurationRest {
+): Record<string, unknown> {
   return {
     engineInstances: item["engineInstances"],
     region: item["region"],
@@ -601,7 +605,7 @@ export interface TestAppComponents {
 
 export function testAppComponentsSerializer(
   item: TestAppComponents,
-): TestAppComponentsRest {
+): Record<string, unknown> {
   return {
     components: serializeRecord(
       item.components as any,
@@ -628,7 +632,9 @@ export interface AppComponent {
   kind?: string;
 }
 
-export function appComponentSerializer(item: AppComponent): AppComponentRest {
+export function appComponentSerializer(
+  item: AppComponent,
+): Record<string, unknown> {
   return {
     resourceName: item["resourceName"],
     resourceType: item["resourceType"],
@@ -659,7 +665,7 @@ export interface TestServerMetricConfig {
 
 export function testServerMetricConfigSerializer(
   item: TestServerMetricConfig,
-): TestServerMetricConfigRest {
+): Record<string, unknown> {
   return {
     metrics: serializeRecord(
       item.metrics as any,
@@ -694,7 +700,7 @@ export interface ResourceMetric {
 
 export function resourceMetricSerializer(
   item: ResourceMetric,
-): ResourceMetricRest {
+): Record<string, unknown> {
   return {
     resourceId: item["resourceId"],
     metricNamespace: item["metricNamespace"],
@@ -793,7 +799,7 @@ export interface TestRun {
   readonly lastModifiedBy?: string;
 }
 
-export function testRunSerializer(item: TestRun): TestRunRest {
+export function testRunSerializer(item: TestRun): Record<string, unknown> {
   return {
     passFailCriteria: !item.passFailCriteria
       ? item.passFailCriteria
@@ -1052,7 +1058,7 @@ export interface TestRunAppComponents {
 
 export function testRunAppComponentsSerializer(
   item: TestRunAppComponents,
-): TestRunAppComponentsRest {
+): Record<string, unknown> {
   return {
     components: serializeRecord(
       item.components as any,
@@ -1083,7 +1089,7 @@ export interface TestRunServerMetricConfig {
 
 export function testRunServerMetricConfigSerializer(
   item: TestRunServerMetricConfig,
-): TestRunServerMetricConfigRest {
+): Record<string, unknown> {
   return {
     metrics: !item.metrics
       ? item.metrics
@@ -1288,7 +1294,7 @@ export interface MetricRequestPayload {
 
 export function metricRequestPayloadSerializer(
   item: MetricRequestPayload,
-): MetricRequestPayloadRest {
+): Record<string, unknown> {
   return {
     filters:
       item["filters"] === undefined
@@ -1307,7 +1313,7 @@ export interface DimensionFilter {
 
 export function dimensionFilterSerializer(
   item: DimensionFilter,
-): DimensionFilterRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
     values: item["values"],
@@ -1370,7 +1376,9 @@ export interface TestProfile {
   readonly lastModifiedBy?: string;
 }
 
-export function testProfileSerializer(item: TestProfile): TestProfileRest {
+export function testProfileSerializer(
+  item: TestProfile,
+): Record<string, unknown> {
   return {
     displayName: item["displayName"],
     description: item["description"],
@@ -1406,7 +1414,7 @@ export function targetResourceConfigurationsUnionSerializer(
 
 export function targetResourceConfigurationsSerializer(
   item: TargetResourceConfigurationsUnion,
-): TargetResourceConfigurationsRest {
+): Record<string, unknown> {
   return {
     kind: item["kind"],
   };
@@ -1426,7 +1434,7 @@ export interface FunctionFlexConsumptionTargetResourceConfigurations
 
 export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
   item: FunctionFlexConsumptionTargetResourceConfigurations,
-): FunctionFlexConsumptionTargetResourceConfigurationsRest {
+): Record<string, unknown> {
   return {
     kind: item["kind"],
     configurations: !item.configurations
@@ -1448,7 +1456,7 @@ export interface FunctionFlexConsumptionResourceConfiguration {
 
 export function functionFlexConsumptionResourceConfigurationSerializer(
   item: FunctionFlexConsumptionResourceConfiguration,
-): FunctionFlexConsumptionResourceConfigurationRest {
+): Record<string, unknown> {
   return {
     instanceMemoryMB: item["instanceMemoryMB"],
     httpConcurrency: item["httpConcurrency"],
@@ -1513,7 +1521,7 @@ export interface TestProfileRun {
 
 export function testProfileRunSerializer(
   item: TestProfileRun,
-): TestProfileRunRest {
+): Record<string, unknown> {
   return {
     displayName: item["displayName"],
     description: item["description"],

@@ -103,4 +103,8 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
+<<<<<<< HEAD
 } from "./api/index.js";
+=======
+} from "./models/index.js";
+>>>>>>> main

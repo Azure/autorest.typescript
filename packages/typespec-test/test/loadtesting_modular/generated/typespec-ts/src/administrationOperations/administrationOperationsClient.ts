@@ -8,11 +8,29 @@ import {
   TestFileInfo,
   TestAppComponents,
   TestServerMetricConfig,
+<<<<<<< HEAD
 } from "./../models/models.js";
+=======
+} from "./models/models.js";
+import {
+  CreateOrUpdateTestOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestOptionalParams,
+  GetTestFileOptionalParams,
+  ListTestFilesOptionalParams,
+  ListTestsOptionalParams,
+  UploadTestFileOptionalParams,
+  DeleteTestFileOptionalParams,
+  DeleteTestOptionalParams,
+} from "./models/options.js";
+>>>>>>> main
 import {
   createAdministrationOperations,
-  AdministrationOperationsClientOptionalParams,
   LoadTestServiceContext,
+  AdministrationOperationsClientOptionalParams,
   createOrUpdateTest,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -38,7 +56,13 @@ import {
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
 } from "./api/index.js";
+<<<<<<< HEAD
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+=======
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
+
+export { AdministrationOperationsClientOptionalParams } from "./api/administrationOperationsContext.js";
+>>>>>>> main
 
 export class AdministrationOperationsClient {
   private _client: LoadTestServiceContext;
@@ -54,7 +78,6 @@ export class AdministrationOperationsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createAdministrationOperations(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

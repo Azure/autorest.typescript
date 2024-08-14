@@ -19,7 +19,7 @@ import {
   detectMultivariateBatchAnomaly,
   detectMultivariateLastAnomaly,
 } from "../../api/multivariate/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   MultivariateGetMultivariateBatchDetectionResultOptionalParams,
   MultivariateTrainMultivariateModelOptionalParams,

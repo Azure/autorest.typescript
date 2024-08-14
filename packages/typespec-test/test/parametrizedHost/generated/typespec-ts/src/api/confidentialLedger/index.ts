@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { Collection } from "../../models/models.js";
-import {
-  isUnexpected,
-  ListCollections200Response,
-  ListCollectionsDefaultResponse,
-  ParametrizedHostContext as Client,
-} from "../../rest/index.js";
+import { ParametrizedHostContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "../options.js";
@@ -21,9 +17,7 @@ export function _listCollectionsSend(
   options: ConfidentialLedgerListCollectionsOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  ListCollections200Response | ListCollectionsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/app/collections")
     .get({
@@ -33,15 +27,16 @@ export function _listCollectionsSend(
 }
 
 export async function _listCollectionsDeserialize(
-  result: ListCollections200Response | ListCollectionsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Collection[]> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return result.body === undefined
     ? result.body
-    : result.body.map((p) => {
+    : result.body.map((p: any) => {
         return { collectionId: p["collectionId"] };
       });
 }

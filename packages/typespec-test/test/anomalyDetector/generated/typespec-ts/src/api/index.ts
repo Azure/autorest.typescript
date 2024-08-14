@@ -3,8 +3,8 @@
 
 export {
   createAnomalyDetector,
-  AnomalyDetectorClientOptionalParams,
   AnomalyDetectorContext,
+  AnomalyDetectorClientOptionalParams,
 } from "./anomalyDetectorContext.js";
 export {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,

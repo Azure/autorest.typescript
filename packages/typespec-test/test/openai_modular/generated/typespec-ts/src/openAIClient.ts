@@ -14,14 +14,28 @@ import {
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
-  AudioSpeechOptions,
+  SpeechGenerationOptions,
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
 import {
+<<<<<<< HEAD
+=======
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetCompletionsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetEmbeddingsOptionalParams,
+} from "./models/options.js";
+import {
+>>>>>>> main
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,
   getAudioTranslationAsPlainText,
@@ -29,7 +43,7 @@ import {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
-  getAudioSpeech,
+  generateSpeechFromText,
   getEmbeddings,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
@@ -56,7 +70,6 @@ export class OpenAIClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createOpenAI(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
@@ -170,12 +183,12 @@ export class OpenAIClient {
   }
 
   /** Generates text-to-speech audio from the input text. */
-  getAudioSpeech(
+  generateSpeechFromText(
     deploymentId: string,
-    body: AudioSpeechOptions,
-    options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+    body: SpeechGenerationOptions,
+    options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
   ): Promise<Uint8Array> {
-    return getAudioSpeech(this._client, deploymentId, body, options);
+    return generateSpeechFromText(this._client, deploymentId, body, options);
   }
 
   /** Return the embeddings for a given prompt. */

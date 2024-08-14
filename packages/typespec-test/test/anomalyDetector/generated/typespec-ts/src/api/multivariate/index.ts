@@ -13,31 +13,17 @@ import {
   MultivariateLastDetectionResult,
   _ModelList,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
-import {
-  isUnexpected,
-  AnomalyDetectorContext as Client,
-  DeleteMultivariateModel204Response,
-  DeleteMultivariateModelDefaultResponse,
-  DetectMultivariateBatchAnomaly202Response,
-  DetectMultivariateBatchAnomalyDefaultResponse,
-  DetectMultivariateLastAnomaly200Response,
-  DetectMultivariateLastAnomalyDefaultResponse,
-  GetMultivariateBatchDetectionResult200Response,
-  GetMultivariateBatchDetectionResultDefaultResponse,
-  GetMultivariateModel200Response,
-  GetMultivariateModelDefaultResponse,
-  ListMultivariateModels200Response,
-  ListMultivariateModelsDefaultResponse,
-  TrainMultivariateModel201Response,
-  TrainMultivariateModelDefaultResponse,
-} from "../../rest/index.js";
+import { AnomalyDetectorContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
 import {
   MultivariateGetMultivariateBatchDetectionResultOptionalParams,
   MultivariateTrainMultivariateModelOptionalParams,
@@ -54,21 +40,25 @@ export function _getMultivariateBatchDetectionResultSend(
   options: MultivariateGetMultivariateBatchDetectionResultOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | GetMultivariateBatchDetectionResult200Response
-  | GetMultivariateBatchDetectionResultDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/multivariate/detect-batch/{resultId}", resultId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getMultivariateBatchDetectionResultDeserialize(
+<<<<<<< HEAD
   result:
     | GetMultivariateBatchDetectionResult200Response
     | GetMultivariateBatchDetectionResultDefaultResponse,
 ): Promise<MultivariateDetectionResult> {
   if (isUnexpected(result)) {
+=======
+  result: PathUncheckedResponse,
+): Promise<MultivariateMultivariateDetectionResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+>>>>>>> main
     throw createRestError(result);
   }
 
@@ -79,13 +69,13 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
       errors:
         result.body.summary["errors"] === undefined
           ? result.body.summary["errors"]
-          : result.body.summary["errors"].map((p) => {
+          : result.body.summary["errors"].map((p: any) => {
               return { code: p["code"], message: p["message"] };
             }),
       variableStates:
         result.body.summary["variableStates"] === undefined
           ? result.body.summary["variableStates"]
-          : result.body.summary["variableStates"].map((p) => {
+          : result.body.summary["variableStates"].map((p: any) => {
               return {
                 variable: p["variable"],
                 filledNARatio: p["filledNARatio"],
@@ -108,7 +98,7 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
         endTime: new Date(result.body.summary.setupInfo["endTime"]),
       },
     },
-    results: result.body["results"].map((p) => {
+    results: result.body["results"].map((p: any) => {
       return {
         timestamp: new Date(p["timestamp"]),
         value: !p.value
@@ -120,7 +110,7 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
               interpretation:
                 p.value?.["interpretation"] === undefined
                   ? p.value?.["interpretation"]
-                  : p.value?.["interpretation"].map((p) => {
+                  : p.value?.["interpretation"].map((p: any) => {
                       return {
                         variable: p["variable"],
                         contributionScore: p["contributionScore"],
@@ -136,7 +126,7 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
         errors:
           p["errors"] === undefined
             ? p["errors"]
-            : p["errors"].map((p) => {
+            : p["errors"].map((p: any) => {
                 return { code: p["code"], message: p["message"] };
               }),
       };
@@ -169,9 +159,7 @@ export function _trainMultivariateModelSend(
   options: MultivariateTrainMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  TrainMultivariateModel201Response | TrainMultivariateModelDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/multivariate/models")
     .post({
@@ -195,11 +183,18 @@ export function _trainMultivariateModelSend(
 }
 
 export async function _trainMultivariateModelDeserialize(
+<<<<<<< HEAD
   result:
     | TrainMultivariateModel201Response
     | TrainMultivariateModelDefaultResponse,
 ): Promise<AnomalyDetectionModel> {
   if (isUnexpected(result)) {
+=======
+  result: PathUncheckedResponse,
+): Promise<MultivariateAnomalyDetectionModel> {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
+>>>>>>> main
     throw createRestError(result);
   }
 
@@ -229,7 +224,7 @@ export async function _trainMultivariateModelDeserialize(
           errors:
             result.body.modelInfo?.["errors"] === undefined
               ? result.body.modelInfo?.["errors"]
-              : result.body.modelInfo?.["errors"].map((p) => {
+              : result.body.modelInfo?.["errors"].map((p: any) => {
                   return { code: p["code"], message: p["message"] };
                 }),
           diagnosticsInfo: !result.body.modelInfo?.diagnosticsInfo
@@ -261,7 +256,7 @@ export async function _trainMultivariateModelDeserialize(
                     ? result.body.modelInfo?.diagnosticsInfo?.["variableStates"]
                     : result.body.modelInfo?.diagnosticsInfo?.[
                         "variableStates"
-                      ].map((p) => {
+                      ].map((p: any) => {
                         return {
                           variable: p["variable"],
                           filledNARatio: p["filledNARatio"],
@@ -306,9 +301,7 @@ export function _listMultivariateModelsSend(
   options: MultivariateListMultivariateModelsOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/multivariate/models")
     .get({
@@ -318,16 +311,23 @@ export function _listMultivariateModelsSend(
 }
 
 export async function _listMultivariateModelsDeserialize(
+<<<<<<< HEAD
   result:
     | ListMultivariateModels200Response
     | ListMultivariateModelsDefaultResponse,
 ): Promise<_ModelList> {
   if (isUnexpected(result)) {
+=======
+  result: PathUncheckedResponse,
+): Promise<_MultivariateModelList> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+>>>>>>> main
     throw createRestError(result);
   }
 
   return {
-    models: result.body["models"].map((p) => {
+    models: result.body["models"].map((p: any) => {
       return {
         modelId: p["modelId"],
         createdTime: new Date(p["createdTime"]),
@@ -352,7 +352,7 @@ export async function _listMultivariateModelsDeserialize(
               errors:
                 p.modelInfo?.["errors"] === undefined
                   ? p.modelInfo?.["errors"]
-                  : p.modelInfo?.["errors"].map((p) => {
+                  : p.modelInfo?.["errors"].map((p: any) => {
                       return { code: p["code"], message: p["message"] };
                     }),
               diagnosticsInfo: !p.modelInfo?.diagnosticsInfo
@@ -383,7 +383,7 @@ export async function _listMultivariateModelsDeserialize(
                       undefined
                         ? p.modelInfo?.diagnosticsInfo?.["variableStates"]
                         : p.modelInfo?.diagnosticsInfo?.["variableStates"].map(
-                            (p) => {
+                            (p: any) => {
                               return {
                                 variable: p["variable"],
                                 filledNARatio: p["filledNARatio"],
@@ -420,6 +420,7 @@ export function listMultivariateModels(
     context,
     () => _listMultivariateModelsSend(context, options),
     _listMultivariateModelsDeserialize,
+    ["200"],
     { itemName: "models", nextLinkName: "nextLink" },
   );
 }
@@ -430,20 +431,17 @@ export function _deleteMultivariateModelSend(
   options: MultivariateDeleteMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  DeleteMultivariateModel204Response | DeleteMultivariateModelDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/multivariate/models/{modelId}", modelId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteMultivariateModelDeserialize(
-  result:
-    | DeleteMultivariateModel204Response
-    | DeleteMultivariateModelDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -468,18 +466,23 @@ export function _getMultivariateModelSend(
   options: MultivariateGetMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  GetMultivariateModel200Response | GetMultivariateModelDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/multivariate/models/{modelId}", modelId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getMultivariateModelDeserialize(
+<<<<<<< HEAD
   result: GetMultivariateModel200Response | GetMultivariateModelDefaultResponse,
 ): Promise<AnomalyDetectionModel> {
   if (isUnexpected(result)) {
+=======
+  result: PathUncheckedResponse,
+): Promise<MultivariateAnomalyDetectionModel> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+>>>>>>> main
     throw createRestError(result);
   }
 
@@ -509,7 +512,7 @@ export async function _getMultivariateModelDeserialize(
           errors:
             result.body.modelInfo?.["errors"] === undefined
               ? result.body.modelInfo?.["errors"]
-              : result.body.modelInfo?.["errors"].map((p) => {
+              : result.body.modelInfo?.["errors"].map((p: any) => {
                   return { code: p["code"], message: p["message"] };
                 }),
           diagnosticsInfo: !result.body.modelInfo?.diagnosticsInfo
@@ -541,7 +544,7 @@ export async function _getMultivariateModelDeserialize(
                     ? result.body.modelInfo?.diagnosticsInfo?.["variableStates"]
                     : result.body.modelInfo?.diagnosticsInfo?.[
                         "variableStates"
-                      ].map((p) => {
+                      ].map((p: any) => {
                         return {
                           variable: p["variable"],
                           filledNARatio: p["filledNARatio"],
@@ -583,10 +586,7 @@ export function _detectMultivariateBatchAnomalySend(
   optionalParams: MultivariateDetectMultivariateBatchAnomalyOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DetectMultivariateBatchAnomaly202Response
-  | DetectMultivariateBatchAnomalyDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/multivariate/models/{modelId}:detect-batch", modelId)
     .post({
@@ -601,11 +601,18 @@ export function _detectMultivariateBatchAnomalySend(
 }
 
 export async function _detectMultivariateBatchAnomalyDeserialize(
+<<<<<<< HEAD
   result:
     | DetectMultivariateBatchAnomaly202Response
     | DetectMultivariateBatchAnomalyDefaultResponse,
 ): Promise<MultivariateDetectionResult> {
   if (isUnexpected(result)) {
+=======
+  result: PathUncheckedResponse,
+): Promise<MultivariateMultivariateDetectionResult> {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
+>>>>>>> main
     throw createRestError(result);
   }
 
@@ -616,13 +623,13 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
       errors:
         result.body.summary["errors"] === undefined
           ? result.body.summary["errors"]
-          : result.body.summary["errors"].map((p) => {
+          : result.body.summary["errors"].map((p: any) => {
               return { code: p["code"], message: p["message"] };
             }),
       variableStates:
         result.body.summary["variableStates"] === undefined
           ? result.body.summary["variableStates"]
-          : result.body.summary["variableStates"].map((p) => {
+          : result.body.summary["variableStates"].map((p: any) => {
               return {
                 variable: p["variable"],
                 filledNARatio: p["filledNARatio"],
@@ -645,7 +652,7 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
         endTime: new Date(result.body.summary.setupInfo["endTime"]),
       },
     },
-    results: result.body["results"].map((p) => {
+    results: result.body["results"].map((p: any) => {
       return {
         timestamp: new Date(p["timestamp"]),
         value: !p.value
@@ -657,7 +664,7 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
               interpretation:
                 p.value?.["interpretation"] === undefined
                   ? p.value?.["interpretation"]
-                  : p.value?.["interpretation"].map((p) => {
+                  : p.value?.["interpretation"].map((p: any) => {
                       return {
                         variable: p["variable"],
                         contributionScore: p["contributionScore"],
@@ -673,7 +680,7 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
         errors:
           p["errors"] === undefined
             ? p["errors"]
-            : p["errors"].map((p) => {
+            : p["errors"].map((p: any) => {
                 return { code: p["code"], message: p["message"] };
               }),
       };
@@ -713,10 +720,7 @@ export function _detectMultivariateLastAnomalySend(
   optionalParams: MultivariateDetectMultivariateLastAnomalyOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DetectMultivariateLastAnomaly200Response
-  | DetectMultivariateLastAnomalyDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/multivariate/models/{modelId}:detect-last", modelId)
     .post({
@@ -729,11 +733,18 @@ export function _detectMultivariateLastAnomalySend(
 }
 
 export async function _detectMultivariateLastAnomalyDeserialize(
+<<<<<<< HEAD
   result:
     | DetectMultivariateLastAnomaly200Response
     | DetectMultivariateLastAnomalyDefaultResponse,
 ): Promise<MultivariateLastDetectionResult> {
   if (isUnexpected(result)) {
+=======
+  result: PathUncheckedResponse,
+): Promise<MultivariateMultivariateLastDetectionResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+>>>>>>> main
     throw createRestError(result);
   }
 
@@ -741,7 +752,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
     variableStates:
       result.body["variableStates"] === undefined
         ? result.body["variableStates"]
-        : result.body["variableStates"].map((p) => {
+        : result.body["variableStates"].map((p: any) => {
             return {
               variable: p["variable"],
               filledNARatio: p["filledNARatio"],
@@ -759,7 +770,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
     results:
       result.body["results"] === undefined
         ? result.body["results"]
-        : result.body["results"].map((p) => {
+        : result.body["results"].map((p: any) => {
             return {
               timestamp: new Date(p["timestamp"]),
               value: !p.value
@@ -771,7 +782,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
                     interpretation:
                       p.value?.["interpretation"] === undefined
                         ? p.value?.["interpretation"]
-                        : p.value?.["interpretation"].map((p) => {
+                        : p.value?.["interpretation"].map((p: any) => {
                             return {
                               variable: p["variable"],
                               contributionScore: p["contributionScore"],
@@ -789,7 +800,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
               errors:
                 p["errors"] === undefined
                   ? p["errors"]
-                  : p["errors"].map((p) => {
+                  : p["errors"].map((p: any) => {
                       return { code: p["code"], message: p["message"] };
                     }),
             };

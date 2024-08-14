@@ -1,7 +1,6 @@
 import { NameType } from "@azure-tools/rlc-common";
 import { SourceFile } from "ts-morph";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
-import { importModels, importPagingDependencies } from "./buildOperations.js";
+import { importModels } from "./buildOperations.js";
 import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import {
@@ -57,16 +56,6 @@ export function buildClassicOperationFiles(
       );
       importApis(classicFile, client, codeModel, operationGroup);
       // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
-      importPagingDependencies(
-        srcPath,
-        classicFile,
-        codeModel.project,
-        subfolder,
-        operationGroup.namespaceHierarchies.length
-      );
-      importLroCoreDependencies(classicFile);
-      classicFile.fixMissingImports();
-      classicFile.fixUnusedIdentifiers();
       classicOperationFiles.set(classicOperationFileName, classicFile);
     }
   }
@@ -115,18 +104,6 @@ export function buildClassicOperationFiles(
           subfolder !== "" ? layer + 1 : layer
         );
         importApis(classicFile, client, codeModel, operationGroup, layer);
-        // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
-        importPagingDependencies(
-          srcPath,
-          classicFile,
-          codeModel.project,
-          subfolder,
-          operationGroup.namespaceHierarchies.length
-        );
-        importLroCoreDependencies(classicFile);
-
-        classicFile.fixMissingImports();
-        classicFile.fixUnusedIdentifiers();
         classicOperationFiles.set(classicOperationFileName, classicFile);
       }
     }

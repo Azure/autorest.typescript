@@ -1,10 +1,7 @@
 import {
   addImportToSpecifier,
-  getResponseBaseName,
-  getResponseTypeName,
   Imports as RuntimeImports,
-  NameType,
-  OperationResponse
+  NameType
 } from "@azure-tools/rlc-common";
 import {
   SdkContext,
@@ -45,32 +42,9 @@ import {
 } from "./docsHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { buildType, isTypeNullable } from "./typeHelpers.js";
-
-function getRLCResponseType(rlcResponse?: OperationResponse) {
-  if (!rlcResponse?.responses) {
-    return;
-  }
-  return rlcResponse?.responses
-    .map((resp) => {
-      const baseResponseName = getResponseBaseName(
-        rlcResponse.operationGroup,
-        rlcResponse.operationName,
-        resp.statusCode
-      );
-      // Get the information to build the Response Interface
-      return resp.predefinedName ?? getResponseTypeName(baseResponseName);
-    })
-    .join(" | ");
-}
-
-function getRLCLroLogicalResponse(rlcResponse?: OperationResponse) {
-  const logicalResponse = (rlcResponse?.responses ?? []).filter(
-    (r) => r.predefinedName && r.predefinedName.endsWith(`LogicalResponse`)
-  );
-  return logicalResponse.length > 0
-    ? logicalResponse[0]!.predefinedName!
-    : "any";
-}
+import { resolveReference } from "../../framework/reference.js";
+import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
+import { AzurePollingDependencies } from "../external-dependencies.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -80,16 +54,13 @@ export function getSendPrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
-  const returnType = `StreamableMethod<${getRLCResponseType(
-    operation.rlcResponse
-  )}>`;
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: false,
     isExported: true,
     name: `_${name}Send`,
     parameters,
-    returnType
+    returnType: "StreamableMethod"
   };
 
   const operationPath = operation.url;
@@ -106,7 +77,7 @@ export function getSendPrivateFunction(
       dpgContext,
       operation,
       runtimeImports
-    )}}) ${operation.isOverload ? `as ${returnType}` : ``} ;`
+    )}});`
   );
 
   return {
@@ -117,17 +88,17 @@ export function getSendPrivateFunction(
 
 export function getDeserializePrivateFunction(
   operation: Operation,
-  needSubClient: boolean,
-  needUnexpectedHelper: boolean,
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: getRLCResponseType(operation.rlcResponse)
+      type: "PathUncheckedResponse"
     }
   ];
+  addImportToSpecifier("restClient", runtimeImports, "PathUncheckedResponse");
+
   // TODO: Support LRO + paging operation
   // https://github.com/Azure/autorest.typescript/issues/2313
   const isLroOnly = isLroOnlyOperation(operation);
@@ -155,52 +126,35 @@ export function getDeserializePrivateFunction(
     returnType: `Promise<${returnType.type}>`
   };
   const statements: string[] = [];
-  if (needUnexpectedHelper) {
-    statements.push(
-      `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
-      `throw createRestError(result);`,
-      "}"
-    );
-    addImportToSpecifier("restClient", runtimeImports, "createRestError");
-  } else {
-    const validStatus = [
-      ...new Set(
-        operation.responses
-          .flatMap((r) => r.statusCodes)
-          .filter((s) => s !== "default")
-      )
-    ];
 
-    if (validStatus.length > 0) {
-      statements.push(
-        `if(${validStatus
-          .map((s) => `result.status !== "${s}"`)
-          .join(" || ")}){`,
-        `throw createRestError(result);`,
-        "}"
-      );
-      addImportToSpecifier("restClient", runtimeImports, "createRestError");
-    }
-  }
+  statements.push(
+    `const expectedStatuses = ${getExpectedStatuses(operation)};`
+  );
+
+  statements.push(
+    `if(!expectedStatuses.includes(result.status)){`,
+    `throw createRestError(result);`,
+    "}"
+  );
+  addImportToSpecifier("restClient", runtimeImports, "createRestError");
 
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response.type;
   const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+
+  const deserializePrefix = "result.body";
+
   const deserializedRoot = hasLroSubPath
-    ? `result.body.${operation?.lroMetadata?.finalResultPath}`
-    : "result.body";
-  if (isLroOnly) {
-    const lroLogicalResponse = getRLCLroLogicalResponse(operation.rlcResponse);
-    statements.push(`result = result as ${lroLogicalResponse};`);
-    if (hasLroSubPath) {
-      statements.push(
-        `if(${deserializedRoot.split(".").join("?.")} === undefined) {
-          throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
-        }
-        `
-      );
-    }
+    ? `${deserializePrefix}.${operation?.lroMetadata?.finalResultPath}`
+    : `${deserializePrefix}`;
+  if (isLroOnly && hasLroSubPath) {
+    statements.push(
+      `if(${deserializedRoot.split(".").join("?.")} === undefined) {
+        throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+      }
+      `
+    );
   }
 
   const allParents = deserializedType ? getAllAncestors(deserializedType) : [];
@@ -215,7 +169,7 @@ export function getDeserializePrivateFunction(
     response.isBinaryPayload
   ) {
     // TODO: Fix this any cast when implementing handling dict.
-    statements.push(`return result.body as any`);
+    statements.push(`return ${deserializedRoot} as any`);
   } else if (
     deserializedType &&
     properties.length > 0 &&
@@ -361,6 +315,12 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     getOperationSignatureParameters(operation, clientType);
   const returnType = buildLroReturnType(operation);
   const { name, fixme = [] } = getOperationName(operation);
+  const pollerLikeReference = resolveReference(
+    AzurePollingDependencies.PollerLike
+  );
+  const operationStateReference = resolveReference(
+    AzurePollingDependencies.OperationState
+  );
   const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
@@ -371,18 +331,27 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `PollerLike<OperationState<${returnType.type}>, ${returnType.type}>`
+    returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
+
+  const getLongRunningPollerReference = resolveReference(
+    PollingHelpers.GetLongRunningPoller
+  );
 
   const statements: string[] = [];
   statements.push(`
-  return getLongRunningPoller(context, _${name}Deserialize, {
+
+  return ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
+    operation
+  )}, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")})
-  }) as PollerLike<OperationState<${returnType.type}>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${
+    returnType.type
+  }>, ${returnType.type}>;
   `);
 
   return {
@@ -417,6 +386,12 @@ function getPagingOnlyOperationFunction(
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
+  const pagedAsyncIterableIteratorReference = resolveReference(
+    PagingHelpers.PagedAsyncIterableIterator
+  );
+  const buildPagedAsyncIteratorReference = resolveReference(
+    PagingHelpers.BuildPagedAsyncIterator
+  );
   const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
@@ -427,7 +402,7 @@ function getPagingOnlyOperationFunction(
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `PagedAsyncIterableIterator<${returnType.type}>`
+    returnType: `${pagedAsyncIterableIteratorReference}<${returnType.type}>`
   };
 
   const statements: string[] = [];
@@ -439,10 +414,11 @@ function getPagingOnlyOperationFunction(
     options.push(`nextLinkName: "${operation.continuationTokenName}"`);
   }
   statements.push(
-    `return buildPagedAsyncIterator(
+    `return ${buildPagedAsyncIteratorReference}(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,
+      ${getExpectedStatuses(operation)},
       ${options.length > 0 ? `{${options.join(", ")}}` : ``}
       );`
   );
@@ -1210,7 +1186,7 @@ export function deserializeResponseValue(
             isTypeNullable(type.elementType) || type.elementType.optional
               ? "!p ? p :"
               : "";
-          return `${prefix}.map(p => { return ${elementNullOrUndefinedPrefix}{${getResponseMapping(
+          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}{${getResponseMapping(
             type.elementType,
             "p",
             runtimeImports,
@@ -1225,14 +1201,14 @@ export function deserializeResponseValue(
             type.elementType,
             "deserialize"
           );
-          return `${prefix}.map(p => ${nullOrUndefinedPrefix}${deserializeFunctionName}(p))`;
+          return `${prefix}.map((p: any) => ${nullOrUndefinedPrefix}${deserializeFunctionName}(p))`;
         }
         return `${prefix}`;
       } else if (
         needsDeserialize(type.elementType) &&
         !type.elementType?.aliasType
       ) {
-        return `${prefix}.map(p => ${deserializeResponseValue(
+        return `${prefix}.map((p: any) => ${deserializeResponseValue(
           type.elementType!,
           "p",
           runtimeImports,
@@ -1520,4 +1496,24 @@ export function isDiscriminatedUnion(type?: SdkType): type is SdkModelType {
       type.discriminatorProperty &&
       type.discriminatedSubtypes
   );
+}
+
+/**
+ * Get an expression representing an array of expected status codes for the operation
+ * @param operation The operation
+ */
+export function getExpectedStatuses(operation: Operation): string {
+  const statusCodes = operation.responses.flatMap((x) =>
+    x.statusCodes.filter((s) => s !== "default")
+  );
+  // LROs may call the same path but with GET to get the operation status.
+  if (
+    isLroOnlyOperation(operation) &&
+    operation.method !== "GET" &&
+    !statusCodes.includes(200)
+  ) {
+    statusCodes.push(200);
+  }
+
+  return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
 }

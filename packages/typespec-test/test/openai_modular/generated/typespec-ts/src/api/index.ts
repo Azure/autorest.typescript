@@ -3,8 +3,8 @@
 
 export {
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
 } from "./openAIContext.js";
 export {
   getAudioTranscriptionAsPlainText,
@@ -14,7 +14,7 @@ export {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
-  getAudioSpeech,
+  generateSpeechFromText,
   getEmbeddings,
 } from "./operations.js";
 export {

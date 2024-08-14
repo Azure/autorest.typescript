@@ -85,7 +85,7 @@ describe("SdkTypes hook", () => {
     }
         `
         sdkContext = await createSdkContextFromTypespec(spec, {});
-        sdkPackage = sdkContext.experimental_sdkPackage;
+        sdkPackage = sdkContext.sdkPackage;
         provideSdkTypes(sdkPackage);
         provideContext("emitContext", {tcgcContext: sdkContext, compilerContext: sdkContext.emitContext as any})
       });

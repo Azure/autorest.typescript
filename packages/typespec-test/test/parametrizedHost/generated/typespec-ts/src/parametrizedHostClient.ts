@@ -9,8 +9,8 @@ import {
 } from "./classic/confidentialLedger/index.js";
 import {
   createParametrizedHost,
-  ParametrizedHostClientOptionalParams,
   ParametrizedHostContext,
+  ParametrizedHostClientOptionalParams,
 } from "./api/index.js";
 
 export class ParametrizedHostClient {
@@ -26,7 +26,6 @@ export class ParametrizedHostClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createParametrizedHost(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -94,5 +94,9 @@ export {
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
+<<<<<<< HEAD
   TestProfileAdministrationOperationsClientOptionalParams,
 } from "./api/index.js";
+=======
+} from "./models/index.js";
+>>>>>>> main

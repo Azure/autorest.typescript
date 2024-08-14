@@ -4,6 +4,6 @@
 export { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 export {
   createParametrizedHost,
-  ParametrizedHostClientOptionalParams,
   ParametrizedHostContext,
+  ParametrizedHostClientOptionalParams,
 } from "./parametrizedHostContext.js";

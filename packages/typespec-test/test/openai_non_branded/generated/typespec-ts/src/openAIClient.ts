@@ -36,8 +36,8 @@ import {
 } from "./classic/moderations/index.js";
 import {
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
 } from "./api/index.js";
 
 export class OpenAIClient {
@@ -54,7 +54,6 @@ export class OpenAIClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createOpenAI(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

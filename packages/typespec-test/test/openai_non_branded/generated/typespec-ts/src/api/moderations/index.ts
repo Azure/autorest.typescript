@@ -4,15 +4,11 @@ import {
   CreateModerationRequest,
   CreateModerationResponse,
 } from "../../models/models.js";
-import {
-  isUnexpected,
-  ModerationsCreate200Response,
-  ModerationsCreateDefaultResponse,
-  OpenAIContext as Client,
-} from "../../rest/index.js";
+import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import { ModerationsCreateOptionalParams } from "../options.js";
@@ -21,9 +17,7 @@ export function _createSend(
   context: Client,
   content: CreateModerationRequest,
   options: ModerationsCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ModerationsCreate200Response | ModerationsCreateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/moderations")
     .post({
@@ -33,16 +27,17 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: ModerationsCreate200Response | ModerationsCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<CreateModerationResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     id: result.body["id"],
     model: result.body["model"],
-    results: result.body["results"].map((p) => {
+    results: result.body["results"].map((p: any) => {
       return {
         flagged: p["flagged"],
         categories: {

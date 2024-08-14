@@ -11,6 +11,7 @@ export interface ClientDetails {
 
 export interface OperationPathAndDeserDetails {
   path: string;
+  expectedStatusesExpression: string;
   deserName: string;
   renamedDeserName?: string;
 }

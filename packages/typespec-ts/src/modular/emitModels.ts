@@ -251,8 +251,16 @@ export function buildModels(
   }
 
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
+<<<<<<< HEAD
     rlcIndex: path.posix.join("../rest", "index.js"),
     serializerHelpers: path.posix.join("../", "helpers", "serializerHelpers.js")
+=======
+    serializerHelpers: path.posix.join(
+      projectRootFromModels,
+      "helpers",
+      "serializerHelpers.js"
+    )
+>>>>>>> main
   });
 
   if (coreClientTypes.size > 0) {
@@ -391,6 +399,7 @@ export function buildApiOptions(client: Client, codeModel: ModularCodeModel) {
     }
   ]);
 
+<<<<<<< HEAD
   modelOptionsFile.fixMissingImports(
     {},
     {
@@ -399,6 +408,8 @@ export function buildApiOptions(client: Client, codeModel: ModularCodeModel) {
     }
   );
   modelOptionsFile.fixUnusedIdentifiers();
+=======
+>>>>>>> main
   modelOptionsFile
     .getImportDeclarations()
     .filter((id) => {

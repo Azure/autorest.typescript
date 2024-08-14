@@ -14,20 +14,19 @@ describe("Azure ClientGeneratorCore Usage Client", () => {
   });
 
   it("should post input usage model in operation", async () => {
-    try {
-      const result = await client.inputToInputOutput({ name: "Madge" });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.inputToInputOutput({ name: "Madge" });
+    assert.isUndefined(result);
   });
 
   it("should get usage model in operation", async () => {
-    try {
-      const result = await client.outputToInputOutput();
-      assert.strictEqual(result.name, "Madge");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.outputToInputOutput();
+    assert.strictEqual(result.name, "Madge");
+  });
+
+  it("should put usage model in operation", async () => {
+    const result = await client.modelInReadOnlyProperty({
+      result: { name: "Madge" }
+    });
+    assert.strictEqual(result.result.name, "Madge");
   });
 });

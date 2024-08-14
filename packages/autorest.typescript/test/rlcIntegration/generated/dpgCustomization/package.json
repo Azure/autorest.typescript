@@ -19,7 +19,8 @@
     "types/dpg-customization-rest.d.ts",
     "README.md",
     "LICENSE",
-    "review/*"
+    "review/*",
+    "CHANGELOG.md"
   ],
   "sdk-type": "mgmt",
   "repository": "github:Azure/azure-sdk-for-js",
@@ -35,7 +36,7 @@
       },
       {
         "path": "src/dPGCustomizationClient.ts",
-        "prefix": "package-version"
+        "prefix": "userAgentInfo"
       }
     ]
   },

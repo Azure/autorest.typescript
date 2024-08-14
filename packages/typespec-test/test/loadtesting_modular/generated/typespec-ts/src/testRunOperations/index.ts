@@ -104,5 +104,9 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
+<<<<<<< HEAD
   TestRunOperationsClientOptionalParams,
 } from "./api/index.js";
+=======
+} from "./models/index.js";
+>>>>>>> main

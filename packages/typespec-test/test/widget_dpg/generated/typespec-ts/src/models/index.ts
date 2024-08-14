@@ -12,7 +12,21 @@ export {
   Versions,
 } from "./models.js";
 export {
+<<<<<<< HEAD
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./pagingTypes.js";
+=======
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
+  BudgetsCreateOrReplaceOptionalParams,
+} from "./options.js";
+>>>>>>> main

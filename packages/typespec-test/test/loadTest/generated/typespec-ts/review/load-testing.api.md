@@ -114,6 +114,9 @@ export interface FileInfo {
 }
 
 // @public
+export type FileInfoListOutput = Paged<FileInfoOutput>;
+
+// @public
 export interface FileInfoOutput {
     expireDateTime?: string;
     fileName?: string;
@@ -542,7 +545,7 @@ export interface LoadTestAdministrationListTestFiles {
 // @public
 export interface LoadTestAdministrationListTestFiles200Response extends HttpResponse {
     // (undocumented)
-    body: PagedFileInfoOutput;
+    body: FileInfoListOutput;
     // (undocumented)
     status: "200";
 }
@@ -573,7 +576,7 @@ export interface LoadTestAdministrationListTests {
 // @public
 export interface LoadTestAdministrationListTests200Response extends HttpResponse {
     // (undocumented)
-    body: PagedTestOutput;
+    body: TestsListOutput;
     // (undocumented)
     status: "200";
 }
@@ -1101,7 +1104,7 @@ export interface LoadTestRunListMetrics {
 // @public
 export interface LoadTestRunListMetrics200Response extends HttpResponse {
     // (undocumented)
-    body: PagedTimeSeriesElementOutput;
+    body: MetricsOutput;
     // (undocumented)
     status: "200";
 }
@@ -1152,7 +1155,7 @@ export interface LoadTestRunListTestRuns {
 // @public
 export interface LoadTestRunListTestRuns200Response extends HttpResponse {
     // (undocumented)
-    body: PagedTestRunOutput;
+    body: TestRunsListOutput;
     // (undocumented)
     status: "200";
 }
@@ -1288,6 +1291,9 @@ export interface MetricRequestPayload {
 }
 
 // @public
+export type MetricsOutput = Paged<TimeSeriesElementOutput>;
+
+// @public
 export type MetricUnitOutput = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
@@ -1320,18 +1326,6 @@ export interface OptionalLoadTestConfigOutput {
 
 // @public
 export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;
-
-// @public
-export type PagedFileInfoOutput = Paged<FileInfoOutput>;
-
-// @public
-export type PagedTestOutput = Paged<TestOutput>;
-
-// @public
-export type PagedTestRunOutput = Paged<TestRunOutput>;
-
-// @public
-export type PagedTimeSeriesElementOutput = Paged<TimeSeriesElementOutput>;
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -1692,6 +1686,9 @@ export interface TestRunServerMetricConfigOutput {
 export type TestRunServerMetricConfigResourceMergeAndPatch = Partial<TestRunServerMetricConfig>;
 
 // @public
+export type TestRunsListOutput = Paged<TestRunOutput>;
+
+// @public
 export interface TestRunStatistics {
 }
 
@@ -1730,6 +1727,9 @@ export interface TestServerMetricConfigOutput {
 
 // @public
 export type TestServerMetricConfigResourceMergeAndPatch = Partial<TestServerMetricConfig>;
+
+// @public
+export type TestsListOutput = Paged<TestOutput>;
 
 // @public
 export type TimeGrainOutput = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";

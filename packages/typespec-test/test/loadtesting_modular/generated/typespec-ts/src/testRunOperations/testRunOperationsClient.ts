@@ -13,7 +13,27 @@ import {
   MetricNamespaceCollection,
   MetricRequestPayload,
   TimeSeriesElement,
+<<<<<<< HEAD
 } from "./../models/models.js";
+=======
+} from "./models/models.js";
+import {
+  CreateOrUpdateTestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
+} from "./models/options.js";
+>>>>>>> main
 import {
   createOrUpdateTestRun,
   createOrUpdateAppComponents,
@@ -44,10 +64,16 @@ import {
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
   createTestRunOperations,
-  TestRunOperationsClientOptionalParams,
   LoadTestServiceContext,
+  TestRunOperationsClientOptionalParams,
 } from "./api/index.js";
+<<<<<<< HEAD
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+=======
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
+
+export { TestRunOperationsClientOptionalParams } from "./api/testRunOperationsContext.js";
+>>>>>>> main
 
 export class TestRunOperationsClient {
   private _client: LoadTestServiceContext;
@@ -63,7 +89,6 @@ export class TestRunOperationsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createTestRunOperations(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

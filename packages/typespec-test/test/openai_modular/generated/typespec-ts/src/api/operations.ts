@@ -9,43 +9,27 @@ import {
   chatCompletionsResponseFormatUnionSerializer,
   AudioTranscriptionOptions,
   AudioTranscription,
+  AudioTaskLabel,
   AudioTranslationOptions,
   AudioTranslation,
   CompletionsOptions,
   Completions,
+  ContentFilterSeverity,
+  CompletionsFinishReason,
   ChatCompletionsOptions,
+  ChatRole,
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
-  AudioSpeechOptions,
+  SpeechGenerationOptions,
   EmbeddingsOptions,
   Embeddings,
 } from "../models/models.js";
-import {
-  GetAudioSpeech200Response,
-  GetAudioSpeechDefaultResponse,
-  GetAudioTranscriptionAsPlainText200Response,
-  GetAudioTranscriptionAsPlainTextDefaultResponse,
-  GetAudioTranscriptionAsResponseObject200Response,
-  GetAudioTranscriptionAsResponseObjectDefaultResponse,
-  GetAudioTranslationAsPlainText200Response,
-  GetAudioTranslationAsPlainTextDefaultResponse,
-  GetAudioTranslationAsResponseObject200Response,
-  GetAudioTranslationAsResponseObjectDefaultResponse,
-  GetChatCompletions200Response,
-  GetChatCompletionsDefaultResponse,
-  GetCompletions200Response,
-  GetCompletionsDefaultResponse,
-  GetEmbeddings200Response,
-  GetEmbeddingsDefaultResponse,
-  GetImageGenerations200Response,
-  GetImageGenerationsDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../rest/index.js";
+import { OpenAIContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
@@ -58,7 +42,7 @@ import {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./options.js";
 
@@ -69,10 +53,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
   options: GetAudioTranscriptionAsPlainTextOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | GetAudioTranscriptionAsPlainText200Response
-  | GetAudioTranscriptionAsPlainTextDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/audio/transcriptions", deploymentId)
     .post({
@@ -85,20 +66,17 @@ export function _getAudioTranscriptionAsPlainTextSend(
         language: body["language"],
         prompt: body["prompt"],
         temperature: body["temperature"],
+        timestamp_granularities: body["timestampGranularities"],
         model: body["model"],
       },
-    }) as StreamableMethod<
-    | GetAudioTranscriptionAsPlainText200Response
-    | GetAudioTranscriptionAsPlainTextDefaultResponse
-  >;
+    });
 }
 
 export async function _getAudioTranscriptionAsPlainTextDeserialize(
-  result:
-    | GetAudioTranscriptionAsPlainText200Response
-    | GetAudioTranscriptionAsPlainTextDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<string> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -133,10 +111,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
   options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | GetAudioTranscriptionAsResponseObject200Response
-  | GetAudioTranscriptionAsResponseObjectDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/audio/transcriptions", deploymentId)
     .post({
@@ -149,32 +124,29 @@ export function _getAudioTranscriptionAsResponseObjectSend(
         language: body["language"],
         prompt: body["prompt"],
         temperature: body["temperature"],
+        timestamp_granularities: body["timestampGranularities"],
         model: body["model"],
       },
-    }) as StreamableMethod<
-    | GetAudioTranscriptionAsResponseObject200Response
-    | GetAudioTranscriptionAsResponseObjectDefaultResponse
-  >;
+    });
 }
 
 export async function _getAudioTranscriptionAsResponseObjectDeserialize(
-  result:
-    | GetAudioTranscriptionAsResponseObject200Response
-    | GetAudioTranscriptionAsResponseObjectDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<AudioTranscription> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     text: result.body["text"],
-    task: result.body["task"],
+    task: result.body["task"] as AudioTaskLabel,
     language: result.body["language"],
     duration: result.body["duration"],
     segments:
       result.body["segments"] === undefined
         ? result.body["segments"]
-        : result.body["segments"].map((p) => {
+        : result.body["segments"].map((p: any) => {
             return {
               id: p["id"],
               start: p["start"],
@@ -187,6 +159,12 @@ export async function _getAudioTranscriptionAsResponseObjectDeserialize(
               tokens: p["tokens"],
               seek: p["seek"],
             };
+          }),
+    words:
+      result.body["words"] === undefined
+        ? result.body["words"]
+        : result.body["words"].map((p: any) => {
+            return { word: p["word"], start: p["start"], end: p["end"] };
           }),
   };
 }
@@ -219,10 +197,7 @@ export function _getAudioTranslationAsPlainTextSend(
   options: GetAudioTranslationAsPlainTextOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | GetAudioTranslationAsPlainText200Response
-  | GetAudioTranslationAsPlainTextDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/audio/translations", deploymentId)
     .post({
@@ -236,18 +211,14 @@ export function _getAudioTranslationAsPlainTextSend(
         temperature: body["temperature"],
         model: body["model"],
       },
-    }) as StreamableMethod<
-    | GetAudioTranslationAsPlainText200Response
-    | GetAudioTranslationAsPlainTextDefaultResponse
-  >;
+    });
 }
 
 export async function _getAudioTranslationAsPlainTextDeserialize(
-  result:
-    | GetAudioTranslationAsPlainText200Response
-    | GetAudioTranslationAsPlainTextDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<string> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -279,10 +250,7 @@ export function _getAudioTranslationAsResponseObjectSend(
   options: GetAudioTranslationAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | GetAudioTranslationAsResponseObject200Response
-  | GetAudioTranslationAsResponseObjectDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/audio/translations", deploymentId)
     .post({
@@ -296,30 +264,26 @@ export function _getAudioTranslationAsResponseObjectSend(
         temperature: body["temperature"],
         model: body["model"],
       },
-    }) as StreamableMethod<
-    | GetAudioTranslationAsResponseObject200Response
-    | GetAudioTranslationAsResponseObjectDefaultResponse
-  >;
+    });
 }
 
 export async function _getAudioTranslationAsResponseObjectDeserialize(
-  result:
-    | GetAudioTranslationAsResponseObject200Response
-    | GetAudioTranslationAsResponseObjectDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<AudioTranslation> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     text: result.body["text"],
-    task: result.body["task"],
+    task: result.body["task"] as AudioTaskLabel,
     language: result.body["language"],
     duration: result.body["duration"],
     segments:
       result.body["segments"] === undefined
         ? result.body["segments"]
-        : result.body["segments"].map((p) => {
+        : result.body["segments"].map((p: any) => {
             return {
               id: p["id"],
               start: p["start"],
@@ -359,7 +323,7 @@ export function _getCompletionsSend(
   deploymentId: string,
   body: CompletionsOptions,
   options: GetCompletionsOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
@@ -375,6 +339,7 @@ export function _getCompletionsSend(
         user: body["user"],
         n: body["n"],
         logprobs: body["logprobs"],
+        suffix: body["suffix"],
         echo: body["echo"],
         stop: body["stop"],
         presence_penalty: body["presencePenalty"],
@@ -387,9 +352,10 @@ export function _getCompletionsSend(
 }
 
 export async function _getCompletionsDeserialize(
-  result: GetCompletions200Response | GetCompletionsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Completions> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -399,35 +365,42 @@ export async function _getCompletionsDeserialize(
     promptFilterResults:
       result.body["prompt_filter_results"] === undefined
         ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p) => {
+        : result.body["prompt_filter_results"].map((p: any) => {
             return {
               promptIndex: p["prompt_index"],
               contentFilterResults: {
                 sexual: !p.content_filter_results.sexual
                   ? undefined
                   : {
-                      severity: p.content_filter_results.sexual?.["severity"],
                       filtered: p.content_filter_results.sexual?.["filtered"],
+                      severity: p.content_filter_results.sexual?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 violence: !p.content_filter_results.violence
                   ? undefined
                   : {
-                      severity: p.content_filter_results.violence?.["severity"],
                       filtered: p.content_filter_results.violence?.["filtered"],
+                      severity: p.content_filter_results.violence?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 hate: !p.content_filter_results.hate
                   ? undefined
                   : {
-                      severity: p.content_filter_results.hate?.["severity"],
                       filtered: p.content_filter_results.hate?.["filtered"],
+                      severity: p.content_filter_results.hate?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 selfHarm: !p.content_filter_results.self_harm
                   ? undefined
                   : {
-                      severity:
-                        p.content_filter_results.self_harm?.["severity"],
                       filtered:
                         p.content_filter_results.self_harm?.["filtered"],
+                      severity: p.content_filter_results.self_harm?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 profanity: !p.content_filter_results.profanity
                   ? undefined
@@ -437,12 +410,19 @@ export async function _getCompletionsDeserialize(
                       detected:
                         p.content_filter_results.profanity?.["detected"],
                     },
-                customBlocklists:
-                  p.content_filter_results["custom_blocklists"] === undefined
-                    ? p.content_filter_results["custom_blocklists"]
-                    : p.content_filter_results["custom_blocklists"].map((p) => {
-                        return { id: p["id"], filtered: p["filtered"] };
+                customBlocklists: !p.content_filter_results.custom_blocklists
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.custom_blocklists?.[
+                          "filtered"
+                        ],
+                      details: p.content_filter_results.custom_blocklists?.[
+                        "details"
+                      ].map((p: any) => {
+                        return { filtered: p["filtered"], id: p["id"] };
                       }),
+                    },
                 error: !p.content_filter_results.error
                   ? undefined
                   : p.content_filter_results.error,
@@ -454,10 +434,18 @@ export async function _getCompletionsDeserialize(
                       detected:
                         p.content_filter_results.jailbreak?.["detected"],
                     },
+                indirectAttack: !p.content_filter_results.indirect_attack
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.indirect_attack?.["filtered"],
+                      detected:
+                        p.content_filter_results.indirect_attack?.["detected"],
+                    },
               },
             };
           }),
-    choices: result.body["choices"].map((p) => {
+    choices: result.body["choices"].map((p: any) => {
       return {
         text: p["text"],
         index: p["index"],
@@ -467,26 +455,34 @@ export async function _getCompletionsDeserialize(
               sexual: !p.content_filter_results?.sexual
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.sexual?.["severity"],
                     filtered: p.content_filter_results?.sexual?.["filtered"],
+                    severity: p.content_filter_results?.sexual?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               violence: !p.content_filter_results?.violence
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.violence?.["severity"],
                     filtered: p.content_filter_results?.violence?.["filtered"],
+                    severity: p.content_filter_results?.violence?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               hate: !p.content_filter_results?.hate
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.hate?.["severity"],
                     filtered: p.content_filter_results?.hate?.["filtered"],
+                    severity: p.content_filter_results?.hate?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               selfHarm: !p.content_filter_results?.self_harm
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.self_harm?.["severity"],
                     filtered: p.content_filter_results?.self_harm?.["filtered"],
+                    severity: p.content_filter_results?.self_harm?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               profanity: !p.content_filter_results?.profanity
                 ? undefined
@@ -494,12 +490,17 @@ export async function _getCompletionsDeserialize(
                     filtered: p.content_filter_results?.profanity?.["filtered"],
                     detected: p.content_filter_results?.profanity?.["detected"],
                   },
-              customBlocklists:
-                p.content_filter_results?.["custom_blocklists"] === undefined
-                  ? p.content_filter_results?.["custom_blocklists"]
-                  : p.content_filter_results?.["custom_blocklists"].map((p) => {
-                      return { id: p["id"], filtered: p["filtered"] };
+              customBlocklists: !p.content_filter_results?.custom_blocklists
+                ? undefined
+                : {
+                    filtered:
+                      p.content_filter_results?.custom_blocklists?.["filtered"],
+                    details: p.content_filter_results?.custom_blocklists?.[
+                      "details"
+                    ].map((p: any) => {
+                      return { filtered: p["filtered"], id: p["id"] };
                     }),
+                  },
               error: !p.content_filter_results?.error
                 ? undefined
                 : p.content_filter_results?.error,
@@ -546,7 +547,7 @@ export async function _getCompletionsDeserialize(
                 topLogprobs: p.logprobs["top_logprobs"],
                 textOffset: p.logprobs["text_offset"],
               },
-        finishReason: p["finish_reason"],
+        finishReason: p["finish_reason"] as CompletionsFinishReason,
       };
     }),
     usage: {
@@ -582,9 +583,7 @@ export function _getChatCompletionsSend(
   deploymentId: string,
   body: ChatCompletionsOptions,
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetChatCompletions200Response | GetChatCompletionsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
@@ -597,7 +596,7 @@ export function _getChatCompletionsSend(
           body["functions"] === undefined
             ? body["functions"]
             : body["functions"].map(functionDefinitionSerializer),
-        function_call: body["functionCall"],
+        function_call: body["functionCall"] as any,
         max_tokens: body["maxTokens"],
         temperature: body["temperature"],
         top_p: body["topP"],
@@ -627,27 +626,28 @@ export function _getChatCompletionsSend(
           ? body.responseFormat
           : chatCompletionsResponseFormatUnionSerializer(body.responseFormat),
         tools: body["tools"],
-        tool_choice: body["toolChoice"],
+        tool_choice: body["toolChoice"] as any,
       },
     });
 }
 
 export async function _getChatCompletionsDeserialize(
-  result: GetChatCompletions200Response | GetChatCompletionsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ChatCompletions> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     id: result.body["id"],
     created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p) => {
+    choices: result.body["choices"].map((p: any) => {
       return {
         message: !p.message
           ? undefined
           : {
-              role: p.message?.["role"],
+              role: p.message?.["role"] as ChatRole,
               content: p.message?.["content"],
               toolCalls:
                 p.message?.["tool_calls"] === undefined
@@ -665,7 +665,7 @@ export async function _getChatCompletionsDeserialize(
                     citations:
                       p.message?.context?.["citations"] === undefined
                         ? p.message?.context?.["citations"]
-                        : p.message?.context?.["citations"].map((p) => {
+                        : p.message?.context?.["citations"].map((p: any) => {
                             return {
                               content: p["content"],
                               title: p["title"],
@@ -675,6 +675,26 @@ export async function _getChatCompletionsDeserialize(
                             };
                           }),
                     intent: p.message?.context?.["intent"],
+                    allRetrievedDocuments:
+                      p.message?.context?.["all_retrieved_documents"] ===
+                      undefined
+                        ? p.message?.context?.["all_retrieved_documents"]
+                        : p.message?.context?.["all_retrieved_documents"].map(
+                            (p: any) => {
+                              return {
+                                content: p["content"],
+                                title: p["title"],
+                                url: p["url"],
+                                filepath: p["filepath"],
+                                chunkId: p["chunk_id"],
+                                searchQueries: p["search_queries"],
+                                dataSourceIndex: p["data_source_index"],
+                                originalSearchScore: p["original_search_score"],
+                                rerankScore: p["rerank_score"],
+                                filterReason: p["filter_reason"],
+                              };
+                            },
+                          ),
                   },
             },
         logprobs:
@@ -684,7 +704,7 @@ export async function _getChatCompletionsDeserialize(
                 content:
                   p.logprobs["content"] === null
                     ? p.logprobs["content"]
-                    : p.logprobs["content"].map((p) => {
+                    : p.logprobs["content"].map((p: any) => {
                         return {
                           token: p["token"],
                           logprob: p["logprob"],
@@ -692,7 +712,7 @@ export async function _getChatCompletionsDeserialize(
                           topLogprobs:
                             p["top_logprobs"] === null
                               ? p["top_logprobs"]
-                              : p["top_logprobs"].map((p) => {
+                              : p["top_logprobs"].map((p: any) => {
                                   return {
                                     token: p["token"],
                                     logprob: p["logprob"],
@@ -703,14 +723,14 @@ export async function _getChatCompletionsDeserialize(
                       }),
               },
         index: p["index"],
-        finishReason: p["finish_reason"],
+        finishReason: p["finish_reason"] as CompletionsFinishReason,
         finishDetails: !p.finish_details
           ? undefined
           : { type: p.finish_details?.["type"] },
         delta: !p.delta
           ? undefined
           : {
-              role: p.delta?.["role"],
+              role: p.delta?.["role"] as ChatRole,
               content: p.delta?.["content"],
               toolCalls:
                 p.delta?.["tool_calls"] === undefined
@@ -728,7 +748,7 @@ export async function _getChatCompletionsDeserialize(
                     citations:
                       p.delta?.context?.["citations"] === undefined
                         ? p.delta?.context?.["citations"]
-                        : p.delta?.context?.["citations"].map((p) => {
+                        : p.delta?.context?.["citations"].map((p: any) => {
                             return {
                               content: p["content"],
                               title: p["title"],
@@ -738,6 +758,26 @@ export async function _getChatCompletionsDeserialize(
                             };
                           }),
                     intent: p.delta?.context?.["intent"],
+                    allRetrievedDocuments:
+                      p.delta?.context?.["all_retrieved_documents"] ===
+                      undefined
+                        ? p.delta?.context?.["all_retrieved_documents"]
+                        : p.delta?.context?.["all_retrieved_documents"].map(
+                            (p: any) => {
+                              return {
+                                content: p["content"],
+                                title: p["title"],
+                                url: p["url"],
+                                filepath: p["filepath"],
+                                chunkId: p["chunk_id"],
+                                searchQueries: p["search_queries"],
+                                dataSourceIndex: p["data_source_index"],
+                                originalSearchScore: p["original_search_score"],
+                                rerankScore: p["rerank_score"],
+                                filterReason: p["filter_reason"],
+                              };
+                            },
+                          ),
                   },
             },
         contentFilterResults: !p.content_filter_results
@@ -746,26 +786,34 @@ export async function _getChatCompletionsDeserialize(
               sexual: !p.content_filter_results?.sexual
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.sexual?.["severity"],
                     filtered: p.content_filter_results?.sexual?.["filtered"],
+                    severity: p.content_filter_results?.sexual?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               violence: !p.content_filter_results?.violence
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.violence?.["severity"],
                     filtered: p.content_filter_results?.violence?.["filtered"],
+                    severity: p.content_filter_results?.violence?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               hate: !p.content_filter_results?.hate
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.hate?.["severity"],
                     filtered: p.content_filter_results?.hate?.["filtered"],
+                    severity: p.content_filter_results?.hate?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               selfHarm: !p.content_filter_results?.self_harm
                 ? undefined
                 : {
-                    severity: p.content_filter_results?.self_harm?.["severity"],
                     filtered: p.content_filter_results?.self_harm?.["filtered"],
+                    severity: p.content_filter_results?.self_harm?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
                   },
               profanity: !p.content_filter_results?.profanity
                 ? undefined
@@ -773,12 +821,17 @@ export async function _getChatCompletionsDeserialize(
                     filtered: p.content_filter_results?.profanity?.["filtered"],
                     detected: p.content_filter_results?.profanity?.["detected"],
                   },
-              customBlocklists:
-                p.content_filter_results?.["custom_blocklists"] === undefined
-                  ? p.content_filter_results?.["custom_blocklists"]
-                  : p.content_filter_results?.["custom_blocklists"].map((p) => {
-                      return { id: p["id"], filtered: p["filtered"] };
+              customBlocklists: !p.content_filter_results?.custom_blocklists
+                ? undefined
+                : {
+                    filtered:
+                      p.content_filter_results?.custom_blocklists?.["filtered"],
+                    details: p.content_filter_results?.custom_blocklists?.[
+                      "details"
+                    ].map((p: any) => {
+                      return { filtered: p["filtered"], id: p["id"] };
                     }),
+                  },
               error: !p.content_filter_results?.error
                 ? undefined
                 : p.content_filter_results?.error,
@@ -822,57 +875,67 @@ export async function _getChatCompletionsDeserialize(
               grounding: !p.enhancements?.grounding
                 ? undefined
                 : {
-                    lines: p.enhancements?.grounding?.["lines"].map((p) => {
-                      return {
-                        text: p["text"],
-                        spans: p["spans"].map((p) => {
-                          return {
-                            text: p["text"],
-                            offset: p["offset"],
-                            length: p["length"],
-                            polygon: p["polygon"].map((p) => {
-                              return { x: p["x"], y: p["y"] };
-                            }),
-                          };
-                        }),
-                      };
-                    }),
+                    lines: p.enhancements?.grounding?.["lines"].map(
+                      (p: any) => {
+                        return {
+                          text: p["text"],
+                          spans: p["spans"].map((p: any) => {
+                            return {
+                              text: p["text"],
+                              offset: p["offset"],
+                              length: p["length"],
+                              polygon: p["polygon"].map((p: any) => {
+                                return { x: p["x"], y: p["y"] };
+                              }),
+                            };
+                          }),
+                        };
+                      },
+                    ),
                   },
             },
       };
     }),
+    model: result.body["model"],
     promptFilterResults:
       result.body["prompt_filter_results"] === undefined
         ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p) => {
+        : result.body["prompt_filter_results"].map((p: any) => {
             return {
               promptIndex: p["prompt_index"],
               contentFilterResults: {
                 sexual: !p.content_filter_results.sexual
                   ? undefined
                   : {
-                      severity: p.content_filter_results.sexual?.["severity"],
                       filtered: p.content_filter_results.sexual?.["filtered"],
+                      severity: p.content_filter_results.sexual?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 violence: !p.content_filter_results.violence
                   ? undefined
                   : {
-                      severity: p.content_filter_results.violence?.["severity"],
                       filtered: p.content_filter_results.violence?.["filtered"],
+                      severity: p.content_filter_results.violence?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 hate: !p.content_filter_results.hate
                   ? undefined
                   : {
-                      severity: p.content_filter_results.hate?.["severity"],
                       filtered: p.content_filter_results.hate?.["filtered"],
+                      severity: p.content_filter_results.hate?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 selfHarm: !p.content_filter_results.self_harm
                   ? undefined
                   : {
-                      severity:
-                        p.content_filter_results.self_harm?.["severity"],
                       filtered:
                         p.content_filter_results.self_harm?.["filtered"],
+                      severity: p.content_filter_results.self_harm?.[
+                        "severity"
+                      ] as ContentFilterSeverity,
                     },
                 profanity: !p.content_filter_results.profanity
                   ? undefined
@@ -882,12 +945,19 @@ export async function _getChatCompletionsDeserialize(
                       detected:
                         p.content_filter_results.profanity?.["detected"],
                     },
-                customBlocklists:
-                  p.content_filter_results["custom_blocklists"] === undefined
-                    ? p.content_filter_results["custom_blocklists"]
-                    : p.content_filter_results["custom_blocklists"].map((p) => {
-                        return { id: p["id"], filtered: p["filtered"] };
+                customBlocklists: !p.content_filter_results.custom_blocklists
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.custom_blocklists?.[
+                          "filtered"
+                        ],
+                      details: p.content_filter_results.custom_blocklists?.[
+                        "details"
+                      ].map((p: any) => {
+                        return { filtered: p["filtered"], id: p["id"] };
                       }),
+                    },
                 error: !p.content_filter_results.error
                   ? undefined
                   : p.content_filter_results.error,
@@ -898,6 +968,14 @@ export async function _getChatCompletionsDeserialize(
                         p.content_filter_results.jailbreak?.["filtered"],
                       detected:
                         p.content_filter_results.jailbreak?.["detected"],
+                    },
+                indirectAttack: !p.content_filter_results.indirect_attack
+                  ? undefined
+                  : {
+                      filtered:
+                        p.content_filter_results.indirect_attack?.["filtered"],
+                      detected:
+                        p.content_filter_results.indirect_attack?.["detected"],
                     },
               },
             };
@@ -936,9 +1014,7 @@ export function _getImageGenerationsSend(
   deploymentId: string,
   body: ImageGenerationOptions,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetImageGenerations200Response | GetImageGenerationsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/images/generations", deploymentId)
     .post({
@@ -957,19 +1033,115 @@ export function _getImageGenerationsSend(
 }
 
 export async function _getImageGenerationsDeserialize(
-  result: GetImageGenerations200Response | GetImageGenerationsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ImageGenerations> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         url: p["url"],
         base64Data: p["b64_json"],
+        contentFilterResults: !p.content_filter_results
+          ? undefined
+          : {
+              sexual: !p.content_filter_results?.sexual
+                ? undefined
+                : {
+                    filtered: p.content_filter_results?.sexual?.["filtered"],
+                    severity: p.content_filter_results?.sexual?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+              violence: !p.content_filter_results?.violence
+                ? undefined
+                : {
+                    filtered: p.content_filter_results?.violence?.["filtered"],
+                    severity: p.content_filter_results?.violence?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+              hate: !p.content_filter_results?.hate
+                ? undefined
+                : {
+                    filtered: p.content_filter_results?.hate?.["filtered"],
+                    severity: p.content_filter_results?.hate?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+              selfHarm: !p.content_filter_results?.self_harm
+                ? undefined
+                : {
+                    filtered: p.content_filter_results?.self_harm?.["filtered"],
+                    severity: p.content_filter_results?.self_harm?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+            },
         revisedPrompt: p["revised_prompt"],
+        promptFilterResults: !p.prompt_filter_results
+          ? undefined
+          : {
+              sexual: !p.prompt_filter_results?.sexual
+                ? undefined
+                : {
+                    filtered: p.prompt_filter_results?.sexual?.["filtered"],
+                    severity: p.prompt_filter_results?.sexual?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+              violence: !p.prompt_filter_results?.violence
+                ? undefined
+                : {
+                    filtered: p.prompt_filter_results?.violence?.["filtered"],
+                    severity: p.prompt_filter_results?.violence?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+              hate: !p.prompt_filter_results?.hate
+                ? undefined
+                : {
+                    filtered: p.prompt_filter_results?.hate?.["filtered"],
+                    severity: p.prompt_filter_results?.hate?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+              selfHarm: !p.prompt_filter_results?.self_harm
+                ? undefined
+                : {
+                    filtered: p.prompt_filter_results?.self_harm?.["filtered"],
+                    severity: p.prompt_filter_results?.self_harm?.[
+                      "severity"
+                    ] as ContentFilterSeverity,
+                  },
+              profanity: !p.prompt_filter_results?.profanity
+                ? undefined
+                : {
+                    filtered: p.prompt_filter_results?.profanity?.["filtered"],
+                    detected: p.prompt_filter_results?.profanity?.["detected"],
+                  },
+              jailbreak: !p.prompt_filter_results?.jailbreak
+                ? undefined
+                : {
+                    filtered: p.prompt_filter_results?.jailbreak?.["filtered"],
+                    detected: p.prompt_filter_results?.jailbreak?.["detected"],
+                  },
+              customBlocklists: !p.prompt_filter_results?.custom_blocklists
+                ? undefined
+                : {
+                    filtered:
+                      p.prompt_filter_results?.custom_blocklists?.["filtered"],
+                    details: p.prompt_filter_results?.custom_blocklists?.[
+                      "details"
+                    ].map((p: any) => {
+                      return { filtered: p["filtered"], id: p["id"] };
+                    }),
+                  },
+            },
       };
     }),
   };
@@ -991,12 +1163,12 @@ export async function getImageGenerations(
   return _getImageGenerationsDeserialize(result);
 }
 
-export function _getAudioSpeechSend(
+export function _generateSpeechFromTextSend(
   context: Client,
   deploymentId: string,
-  body: AudioSpeechOptions,
-  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetAudioSpeech200Response | GetAudioSpeechDefaultResponse> {
+  body: SpeechGenerationOptions,
+  options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/audio/speech", deploymentId)
     .post({
@@ -1006,14 +1178,16 @@ export function _getAudioSpeechSend(
         voice: body["voice"],
         response_format: body["responseFormat"],
         speed: body["speed"],
+        model: body["model"],
       },
     });
 }
 
-export async function _getAudioSpeechDeserialize(
-  result: GetAudioSpeech200Response | GetAudioSpeechDefaultResponse,
+export async function _generateSpeechFromTextDeserialize(
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1021,19 +1195,19 @@ export async function _getAudioSpeechDeserialize(
 }
 
 /** Generates text-to-speech audio from the input text. */
-export async function getAudioSpeech(
+export async function generateSpeechFromText(
   context: Client,
   deploymentId: string,
-  body: AudioSpeechOptions,
-  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
+  body: SpeechGenerationOptions,
+  options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _getAudioSpeechSend(
+  const result = await _generateSpeechFromTextSend(
     context,
     deploymentId,
     body,
     options,
   );
-  return _getAudioSpeechDeserialize(result);
+  return _generateSpeechFromTextDeserialize(result);
 }
 
 export function _getEmbeddingsSend(
@@ -1041,7 +1215,7 @@ export function _getEmbeddingsSend(
   deploymentId: string,
   body: EmbeddingsOptions,
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
@@ -1050,20 +1224,23 @@ export function _getEmbeddingsSend(
         user: body["user"],
         model: body["model"],
         input: body["input"],
+        encoding_format: body["encodingFormat"],
+        dimensions: body["dimensions"],
         input_type: body["inputType"],
       },
     });
 }
 
 export async function _getEmbeddingsDeserialize(
-  result: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Embeddings> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return { embedding: p["embedding"], index: p["index"] };
     }),
     usage: {

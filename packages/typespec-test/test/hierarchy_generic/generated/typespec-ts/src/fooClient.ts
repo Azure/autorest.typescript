@@ -7,8 +7,8 @@ import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
   createFoo,
-  FooClientOptionalParams,
   FooContext,
+  FooClientOptionalParams,
   op1,
   Op1OptionalParams,
 } from "./api/index.js";
@@ -23,7 +23,6 @@ export class FooClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createFoo(endpoint, {
       ...options,
       userAgentOptions: { userAgentPrefix },

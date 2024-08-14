@@ -7,6 +7,6 @@ export {
 } from "./options.js";
 export {
   createWidgetManager,
-  WidgetManagerClientOptionalParams,
   WidgetManagerContext,
+  WidgetManagerClientOptionalParams,
 } from "./widgetManagerContext.js";

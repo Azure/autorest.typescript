@@ -8,14 +8,11 @@ import {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
 } from "../models/models.js";
-import {
-  ChatProtocolContext as Client,
-  Create200Response,
-  CreateStreaming200Response,
-} from "../rest/index.js";
+import { ChatProtocolContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
@@ -28,7 +25,7 @@ export function _createStreamingSend(
   context: Client,
   body: StreamingChatCompletionOptionsRecord,
   options: CreateStreamingOptionalParams = { requestOptions: {} },
-): StreamableMethod<CreateStreaming200Response> {
+): StreamableMethod {
   return context
     .path("/chat")
     .post({
@@ -41,18 +38,19 @@ export function _createStreamingSend(
           ? body.context
           : (serializeRecord(body.context as any) as any),
       },
-    }) as StreamableMethod<CreateStreaming200Response>;
+    });
 }
 
 export async function _createStreamingDeserialize(
-  result: CreateStreaming200Response,
+  result: PathUncheckedResponse,
 ): Promise<ChatCompletionChunkRecord> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    choices: result.body["choices"].map((p) => {
+    choices: result.body["choices"].map((p: any) => {
       return {
         index: p["index"],
         delta: {
@@ -82,7 +80,7 @@ export function _createSend(
   context: Client,
   body: ChatCompletionOptionsRecord,
   options: CreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<Create200Response> {
+): StreamableMethod {
   return context
     .path("/chat")
     .post({
@@ -95,18 +93,19 @@ export function _createSend(
           ? body.context
           : (serializeRecord(body.context as any) as any),
       },
-    }) as StreamableMethod<Create200Response>;
+    });
 }
 
 export async function _createDeserialize(
-  result: Create200Response,
+  result: PathUncheckedResponse,
 ): Promise<ChatCompletionRecord> {
-  if (result.status !== "200") {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    choices: result.body["choices"].map((p) => {
+    choices: result.body["choices"].map((p: any) => {
       return {
         index: p["index"],
         message: {

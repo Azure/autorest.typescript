@@ -3,7 +3,18 @@
 
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
+<<<<<<< HEAD
 import { TestProfileRun } from "./../models/models.js";
+=======
+import { TestProfileRun } from "./models/models.js";
+import {
+  CreateOrUpdateTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  GetTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  StopTestProfileRunOptionalParams,
+} from "./models/options.js";
+>>>>>>> main
 import {
   createOrUpdateTestProfileRun,
   deleteTestProfileRun,
@@ -16,10 +27,16 @@ import {
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
   createTestProfileRunOperations,
-  TestProfileRunOperationsClientOptionalParams,
   LoadTestServiceContext,
+  TestProfileRunOperationsClientOptionalParams,
 } from "./api/index.js";
+<<<<<<< HEAD
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+=======
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
+
+export { TestProfileRunOperationsClientOptionalParams } from "./api/testProfileRunOperationsContext.js";
+>>>>>>> main
 
 export class TestProfileRunOperationsClient {
   private _client: LoadTestServiceContext;
@@ -35,7 +52,6 @@ export class TestProfileRunOperationsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createTestProfileRunOperations(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

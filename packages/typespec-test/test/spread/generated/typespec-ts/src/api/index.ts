@@ -3,8 +3,8 @@
 
 export {
   createDemoService,
-  DemoServiceClientOptionalParams,
   DemoServiceContext,
+  DemoServiceClientOptionalParams,
 } from "./demoServiceContext.js";
 export {
   ATest1OptionalParams,

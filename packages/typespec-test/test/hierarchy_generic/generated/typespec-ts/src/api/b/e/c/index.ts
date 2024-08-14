@@ -1,14 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+<<<<<<< HEAD
 import { A2 } from "../../../../models/models.js";
 import {
   BecOp1204Response,
   FooContext as Client,
 } from "../../../../rest/index.js";
+=======
+import { BEA } from "../../../../models/models.js";
+import { FooContext as Client } from "../../../index.js";
+>>>>>>> main
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { BECOp1OptionalParams } from "../../../options.js";
@@ -17,7 +23,7 @@ export function _op1Send(
   context: Client,
   body: A2,
   options: BECOp1OptionalParams = { requestOptions: {} },
-): StreamableMethod<BecOp1204Response> {
+): StreamableMethod {
   return context
     .path("/b/e")
     .post({
@@ -27,9 +33,10 @@ export function _op1Send(
 }
 
 export async function _op1Deserialize(
-  result: BecOp1204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

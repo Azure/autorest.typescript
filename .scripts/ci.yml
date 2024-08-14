@@ -11,6 +11,9 @@ parameters:
   - name: OSVmImage
     type: string
     default: ubuntu-20.04
+  - name: Windows_Latest
+    type: string
+    default: "Windows-latest"
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
@@ -182,11 +185,6 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
-          - script: |
-              npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
-            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver
-            displayName: "Upload Coverage Report"
-            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
 
       # We are splitting smoke test validation in buckets to help reduce the overall run time by running each bucket in parallel
       - template: smoke-test.yml
@@ -227,6 +225,25 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Check git Tree"
+
+      - job: TypeSpec_Environment_Check
+        dependsOn: Build
+        variables:
+          - template: globals.yml
+        strategy:
+          matrix:
+            Windows_Latest:
+              Pool:
+              OSVmImage: ${{ parameters.Windows_Latest }}
+              NodeTestVersion: "20.x"
+        pool:
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+        steps:
+          - template: build.yml
+          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
+            displayName: "Generate Contoso Code From TypeSpec"
 
       - job: Cadl_Ranch_Test
         dependsOn: Build

@@ -2453,6 +2453,80 @@ describe("Input/output model type", () => {
     });
   });
 
+  describe("extensible union", () => {
+    it("extensible union string as enum", async () => {
+      const tspDefinition = `
+      union ExtensibleStringEnum {
+        string;
+        "a";
+        "b";
+      }
+      model SimpleModel {
+        propRequired: ExtensibleStringEnum;
+        propOptional?: ExtensibleStringEnum;
+        propNullableRequired: ExtensibleStringEnum | null;
+        propNullableOptional?: ExtensibleStringEnum | null;
+        propNullableFlattened: string | "a" | "b" | null;
+        propArrayElement: ExtensibleStringEnum[];
+        propArrayElementNullable: (ExtensibleStringEnum | null)[];
+        propRecord: Record<ExtensibleStringEnum>;
+        propRecordNullable: Record<ExtensibleStringEnum | null>;
+      }
+
+      @route("/models")
+      @put
+      op putModel(@body input: SimpleModel): SimpleModel;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile?.content);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+       export interface SimpleModel {
+         /** Possible values: "a", "b" */
+         propRequired: ExtensibleStringEnum;
+         /** Possible values: "a", "b" */
+         propOptional?: ExtensibleStringEnum;
+         propNullableRequired: ExtensibleStringEnum | null;
+         propNullableOptional?: ExtensibleStringEnum | null;
+         propNullableFlattened: string | null;
+         propArrayElement: ExtensibleStringEnum[];
+         propArrayElementNullable: (ExtensibleStringEnum | null)[];
+         propRecord: Record<string, ExtensibleStringEnum>;
+         propRecordNullable: Record<string, ExtensibleStringEnum | null>;
+       }
+       
+       /** Alias for ExtensibleStringEnum */
+       export type ExtensibleStringEnum = string;
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+       export interface SimpleModelOutput {
+         /** Possible values: "a", "b" */
+         propRequired: ExtensibleStringEnumOutput;
+         /** Possible values: "a", "b" */
+         propOptional?: ExtensibleStringEnumOutput;
+         propNullableRequired: ExtensibleStringEnumOutput | null;
+         propNullableOptional?: ExtensibleStringEnumOutput | null;
+         propNullableFlattened: string | null;
+         propArrayElement: ExtensibleStringEnumOutput[];
+         propArrayElementNullable: (ExtensibleStringEnumOutput | null)[];
+         propRecord: Record<string, ExtensibleStringEnumOutput>;
+         propRecordNullable: Record<string, ExtensibleStringEnumOutput | null>;
+       }
+       
+       /** Alias for ExtensibleStringEnumOutput */
+       export type ExtensibleStringEnumOutput = string;
+      `
+      );
+    });
+  });
+
   describe("'is' keyword generation", () => {
     it("should handle A is B, only A is referenced", async () => {
       const tspDefinition = `
@@ -2793,19 +2867,19 @@ describe("Input/output model type", () => {
       model X is Templated<Base>{};
       `;
       const tspType = "X";
-      const inputModelName = "TemplatedBase";
+      const inputModelName = "X";
       await verifyPropertyType(tspType, inputModelName, {
         additionalTypeSpecDefinition: tspDefinition,
-        outputType: `TemplatedBaseOutput`,
+        outputType: `XOutput`,
         additionalInputContent: `
-        export interface TemplatedBase {
+        export interface X {
            prop: BaseModel;
         }
 
         export interface BaseModel {}
         `,
         additionalOutputContent: `
-        export interface TemplatedBaseOutput {
+        export interface XOutput {
           prop: BaseModelOutput;
         }
 

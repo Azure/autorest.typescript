@@ -297,17 +297,17 @@ function applyEncoding(
 
 function mergeFormatAndEncoding(
   format: string | undefined,
-  encoding: string,
+  encoding: string | undefined,
   encodeAsFormat: string | undefined
-): string {
+): string | undefined {
   switch (format) {
     case undefined:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
     case "date-time":
       return encoding;
     case "duration":
     default:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
   }
 }
 
@@ -386,8 +386,10 @@ function getSchemaForUnion(
   const [asEnum, _] = getUnionAsEnum(union);
   const variants = Array.from(union.variants.values());
 
-  let values = [];
+  const values = [];
+  let namedUnionMember = false;
 
+<<<<<<< HEAD
   for (const variant of variants) {
     // We already know it's not a model type
     values.push(
@@ -396,29 +398,46 @@ function getSchemaForUnion(
   }
   if (asEnum?.open && asEnum?.members.size > 0) {
     values = [];
+=======
+  if (asEnum?.open && asEnum.members.size > 0) {
+>>>>>>> main
     for (const [_, member] of asEnum.members.entries()) {
-      values.push(
-        getSchemaForType(dpgContext, member.type, {
-          ...options,
-          needRef: false
-        })
-      );
+      const memberType = getSchemaForType(dpgContext, member.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(memberType);
+      if (memberType.name) {
+        namedUnionMember = true;
+      }
+    }
+  } else {
+    for (const variant of variants) {
+      // We already know it's not a model type
+      const variantType = getSchemaForType(dpgContext, variant.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(variantType);
+      if (variantType.typeName) {
+        namedUnionMember = true;
+      }
     }
   }
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
     const unionAlias =
-      asEnum?.open && asEnum?.kind
-        ? asEnum.kind
+      asEnum?.open && asEnum?.kind && !namedUnionMember
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
             .map(
               (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
             )
             .join(" | ");
     const outputUnionAlias =
-      asEnum?.open && asEnum?.kind
-        ? asEnum.kind
+      asEnum?.open && asEnum?.kind && !namedUnionMember
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
             .map(
               (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`

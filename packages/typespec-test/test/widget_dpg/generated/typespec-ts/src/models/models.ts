@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  User as UserRest,
-  CreateWidget as CreateWidgetRest,
-  UpdateWidget as UpdateWidgetRest,
-} from "../rest/index.js";
-
 /** Details about a user. */
 export interface User {
   /** The name of user. */
@@ -17,7 +11,7 @@ export interface User {
   id: string;
 }
 
-export function userSerializer(item: User): UserRest {
+export function userSerializer(item: User): Record<string, unknown> {
   return {
     role: item["role"],
     id: item["id"],
@@ -54,25 +48,11 @@ export interface CreateWidget {
   color: "red" | "blue";
 }
 
-export function createWidgetSerializer(item: CreateWidget): CreateWidgetRest {
-  return {
-    weight: item["weight"],
-    color: item["color"],
-  };
-}
-
 export interface UpdateWidget {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
   /** The color of the widget. */
   color?: "red" | "blue";
-}
-
-export function updateWidgetSerializer(item: UpdateWidget): UpdateWidgetRest {
-  return {
-    weight: item["weight"],
-    color: item["color"],
-  };
 }
 
 export interface AnalyzeResult {
@@ -86,7 +66,9 @@ export interface NonReferencedModel {
   prop2: string;
 }
 
-export function nonReferencedModelSerializer(item: NonReferencedModel) {
+export function nonReferencedModelSerializer(
+  item: NonReferencedModel,
+): Record<string, unknown> {
   return {
     prop1: item["prop1"],
     prop2: item["prop2"],

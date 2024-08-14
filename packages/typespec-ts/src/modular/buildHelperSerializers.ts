@@ -34,6 +34,7 @@ export function serializeRecord<T, R>(
   );
 }`
 };
+
 const isRecordElementSupportedFunction = {
   symbol: "isSupportedRecordType",
   content: `

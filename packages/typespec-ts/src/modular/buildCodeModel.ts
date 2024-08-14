@@ -16,7 +16,6 @@ import {
   getDefaultApiVersion,
   getHttpOperationWithCache,
   getLibraryName,
-  getSdkBuiltInType,
   getSdkUnion,
   getWireName,
   isApiVersion,
@@ -45,7 +44,6 @@ import {
   getSummary,
   getVisibility,
   IntrinsicScalarName,
-  IntrinsicType,
   isErrorModel,
   isNeverType,
   isNullType,
@@ -537,7 +535,14 @@ function emitParameter(
     if (clientDefaultValue !== undefined) {
       (paramMap as any).optional = true;
     }
+  } else if (
+    paramMap.location === "endpointPath" &&
+    parameter.param.defaultValue?.valueKind === "StringValue"
+  ) {
+    // For endpoint path params, treat the default value as a client default.
+    clientDefaultValue = parameter.param.defaultValue.value;
   }
+
   return { clientDefaultValue, ...base, ...paramMap };
 }
 
@@ -1226,17 +1231,17 @@ function applyEncoding(
 
 function mergeFormatAndEncoding(
   format: string | undefined,
-  encoding: string,
+  encoding: string | undefined,
   encodeAsFormat: string | undefined
-): string {
+): string | undefined {
   switch (format) {
     case undefined:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
     case "date-time":
       return encoding;
     case "duration":
     default:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
   }
 }
 
@@ -1411,7 +1416,7 @@ function emitUnion(
       description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
-      valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
+      valueType: emitSimpleType(sdkType.valueType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
       isNonExhaustive: context.rlcOptions?.experimentalExtensibleEnums ?? false,
@@ -1451,20 +1456,10 @@ function emitEnumMember(context: SdkContext, member: any): Record<string, any> {
   };
 }
 
-function emitSimpleType(
-  context: SdkContext,
-  type: Scalar | IntrinsicType | SdkBuiltInType
-): Record<string, any> {
-  let sdkType: SdkBuiltInType;
-  if (type.kind === "Scalar" || type.kind === "Intrinsic") {
-    sdkType = getSdkBuiltInType(context, type);
-  } else {
-    sdkType = type;
-  }
-
+function emitSimpleType(type: SdkBuiltInType): Record<string, any> {
   return {
-    nullable: isNullType(sdkType.__raw!),
-    type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
+    nullable: isNullType(type.__raw!),
+    type: type.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
     sdkDefaultValue: undefined,
@@ -1566,7 +1561,7 @@ function emitOperationGroups(
     context.rlcOptions?.hierarchyClient === false &&
     context.rlcOptions?.enableOperationGroup
   ) {
-    resolveConflictIfExist(operationGroups);
+    appendOperationGroupPrefix(operationGroups);
   }
   return operationGroups;
 }
@@ -1594,23 +1589,8 @@ function addHierarchyOperationGroup(
   return [];
 }
 
-function resolveConflictIfExist(operationGroups: OperationGroup[]) {
+function appendOperationGroupPrefix(operationGroups: OperationGroup[]) {
   if (operationGroups.length < 2) {
-    return;
-  }
-
-  const nameSet = new Set<string>();
-  const hasConflict = operationGroups.some((g) =>
-    g.operations.some((op) => {
-      if (nameSet.has(op.name)) {
-        return true;
-      } else {
-        nameSet.add(op.name);
-        return false;
-      }
-    })
-  );
-  if (!hasConflict) {
     return;
   }
   // Append operation group prefix

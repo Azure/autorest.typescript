@@ -15,6 +15,6 @@ export {
 } from "./options.js";
 export {
   createTestProfileAdministrationOperations,
-  TestProfileAdministrationOperationsClientOptionalParams,
   LoadTestServiceContext,
+  TestProfileAdministrationOperationsClientOptionalParams,
 } from "./testProfileAdministrationOperationsContext.js";

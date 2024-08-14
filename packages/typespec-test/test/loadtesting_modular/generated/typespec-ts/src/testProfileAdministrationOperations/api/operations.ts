@@ -5,6 +5,7 @@ import {
   targetResourceConfigurationsUnionSerializer,
   TestProfile,
   _PagedTestProfile,
+<<<<<<< HEAD
 } from "../../models/models.js";
 import {
   isUnexpected,
@@ -19,12 +20,21 @@ import {
   TestProfileAdministrationListTestProfiles200Response,
   TestProfileAdministrationListTestProfilesDefaultResponse,
 } from "../../rest/index.js";
+=======
+} from "../models/models.js";
+import { LoadTestServiceContext as Client } from "./index.js";
+>>>>>>> main
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
 import {
   CreateOrUpdateTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
@@ -38,11 +48,7 @@ export function _createOrUpdateTestProfileSend(
   testProfileId: string,
   body: TestProfile,
   options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileAdministrationCreateOrUpdateTestProfile200Response
-  | TestProfileAdministrationCreateOrUpdateTestProfile201Response
-  | TestProfileAdministrationCreateOrUpdateTestProfileDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profiles/{testProfileId}", testProfileId)
     .patch({
@@ -64,12 +70,10 @@ export function _createOrUpdateTestProfileSend(
 }
 
 export async function _createOrUpdateTestProfileDeserialize(
-  result:
-    | TestProfileAdministrationCreateOrUpdateTestProfile200Response
-    | TestProfileAdministrationCreateOrUpdateTestProfile201Response
-    | TestProfileAdministrationCreateOrUpdateTestProfileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestProfile> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -115,21 +119,17 @@ export function _deleteTestProfileSend(
   context: Client,
   testProfileId: string,
   options: DeleteTestProfileOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileAdministrationDeleteTestProfile204Response
-  | TestProfileAdministrationDeleteTestProfileDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profiles/{testProfileId}", testProfileId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestProfileDeserialize(
-  result:
-    | TestProfileAdministrationDeleteTestProfile204Response
-    | TestProfileAdministrationDeleteTestProfileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -150,21 +150,17 @@ export function _getTestProfileSend(
   context: Client,
   testProfileId: string,
   options: GetTestProfileOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileAdministrationGetTestProfile200Response
-  | TestProfileAdministrationGetTestProfileDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profiles/{testProfileId}", testProfileId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestProfileDeserialize(
-  result:
-    | TestProfileAdministrationGetTestProfile200Response
-    | TestProfileAdministrationGetTestProfileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TestProfile> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -203,10 +199,7 @@ export async function getTestProfile(
 export function _listTestProfilesSend(
   context: Client,
   options: ListTestProfilesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | TestProfileAdministrationListTestProfiles200Response
-  | TestProfileAdministrationListTestProfilesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/test-profiles")
     .get({
@@ -222,16 +215,15 @@ export function _listTestProfilesSend(
 }
 
 export async function _listTestProfilesDeserialize(
-  result:
-    | TestProfileAdministrationListTestProfiles200Response
-    | TestProfileAdministrationListTestProfilesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedTestProfile> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         testProfileId: p["testProfileId"],
         displayName: p["displayName"],
@@ -266,6 +258,7 @@ export function listTestProfiles(
     context,
     () => _listTestProfilesSend(context, options),
     _listTestProfilesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

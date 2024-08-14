@@ -95,5 +95,9 @@ export {
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
+<<<<<<< HEAD
   TestProfileRunOperationsClientOptionalParams,
 } from "./api/index.js";
+=======
+} from "./models/index.js";
+>>>>>>> main

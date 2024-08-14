@@ -3,8 +3,8 @@
 
 export {
   createEventGrid,
-  EventGridClientOptionalParams,
   EventGridContext,
+  EventGridClientOptionalParams,
 } from "./eventGridContext.js";
 export {
   publishCloudEvent,

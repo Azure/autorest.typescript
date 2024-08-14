@@ -17,7 +17,7 @@ describe("ClientRequestIdClient", () => {
   it("should append client-request-id header and value if no any input", async () => {
     try {
       const result = await client
-        .path("/azure/special-headers/x-ms-client-request-id")
+        .path("/azure/special-headers/x-ms-client-request-id/")
         .get();
       assert.isNotNull(result.request.headers.get("client-request-id"));
       assert.strictEqual(result.status, "204");
@@ -30,7 +30,7 @@ describe("ClientRequestIdClient", () => {
     try {
       const overrideReqId = "86aede1f-96fa-4e7f-b1e1-bf8a947cb804";
       const result = await client
-        .path("/azure/special-headers/x-ms-client-request-id")
+        .path("/azure/special-headers/x-ms-client-request-id/")
         .get({
           headers: {
             "client-request-id": overrideReqId
@@ -59,7 +59,7 @@ describe("ClientRequestIdClient", () => {
     });
     try {
       const result = await client
-        .path("/azure/special-headers/x-ms-client-request-id")
+        .path("/azure/special-headers/x-ms-client-request-id/")
         .get();
       assert.strictEqual(result.status, "400");
       assert.isNotNull(result.request.headers.get(headerName));

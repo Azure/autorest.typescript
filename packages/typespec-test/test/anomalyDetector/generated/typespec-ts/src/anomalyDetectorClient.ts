@@ -13,8 +13,8 @@ import {
 } from "./classic/multivariate/index.js";
 import {
   createAnomalyDetector,
-  AnomalyDetectorClientOptionalParams,
   AnomalyDetectorContext,
+  AnomalyDetectorClientOptionalParams,
 } from "./api/index.js";
 
 export class AnomalyDetectorClient {
@@ -49,7 +49,6 @@ export class AnomalyDetectorClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createAnomalyDetector(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

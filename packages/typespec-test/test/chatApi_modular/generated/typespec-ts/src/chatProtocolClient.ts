@@ -11,8 +11,8 @@ import {
 } from "./models/models.js";
 import {
   createChatProtocol,
-  ChatProtocolClientOptionalParams,
   ChatProtocolContext,
+  ChatProtocolClientOptionalParams,
   createStreaming,
   create,
   CreateStreamingOptionalParams,
@@ -34,7 +34,6 @@ export class ChatProtocolClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createChatProtocol(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
