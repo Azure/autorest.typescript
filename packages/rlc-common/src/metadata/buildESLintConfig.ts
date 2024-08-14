@@ -44,7 +44,7 @@ export function buildEsLintConfig(model: RLCModel) {
 
   const contentText = esLintConfigTemplate.replace(
     "<rulesPlaceHolder>",
-    JSON.stringify(model.options?.moduleKind === "esm" ? esmRules : rules)
+    JSON.stringify(model.options?.moduleKind === "esm" ? esmRules : rules, null, 2)
   );
 
   const configFile = project.createSourceFile(
