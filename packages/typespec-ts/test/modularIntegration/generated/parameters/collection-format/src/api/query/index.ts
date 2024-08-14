@@ -8,8 +8,8 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { buildPipeCollection } from "../../static-helpers/serialization/build-pipe-collection.js";
 import { buildMultiCollection } from "../../static-helpers/serialization/build-multi-collection.js";
+import { buildPipeCollection } from "../../static-helpers/serialization/build-pipe-collection.js";
 import { buildSsvCollection } from "../../static-helpers/serialization/build-ssv-collection.js";
 import { buildTsvCollection } from "../../static-helpers/serialization/build-tsv-collection.js";
 import {

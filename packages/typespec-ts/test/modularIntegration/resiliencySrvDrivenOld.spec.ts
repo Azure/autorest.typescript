@@ -1,4 +1,4 @@
-import { ResiliencyServiceDrivenClient } from "./generated/resiliency/srv-driven-old/generated/src/index.js";
+import { ResiliencyServiceDrivenClient } from "./generated/resiliency/srv-driven-old/src/index.js";
 import { assert } from "chai";
 describe("Service Driven old Client v1", () => {
   let client: ResiliencyServiceDrivenClient;

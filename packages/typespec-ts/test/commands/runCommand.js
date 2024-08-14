@@ -1,7 +1,7 @@
 import { spawn } from "child_process";
 
 export async function runCommand(command, args = [], workingDirectory, logger) {
-  return new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     const env = { ...process.env, FORCE_COLOR: "true" };
     const child = spawn(command, [...args], {
       cwd: workingDirectory ?? process.cwd(),
