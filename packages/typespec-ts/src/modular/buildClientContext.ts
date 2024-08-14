@@ -92,7 +92,6 @@ export function buildClientContext(
   const credentialParam = buildGetClientCredentialParam(client, codeModel);
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
-    client,
     codeModel,
     endpointParam
   );

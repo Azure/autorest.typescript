@@ -115,7 +115,6 @@ export function buildGetClientEndpointParam(
  */
 export function buildGetClientOptionsParam(
   context: StatementedNode,
-  client: Client,
   codeModel: ModularCodeModel,
   endpointParam: string
 ): string {
@@ -123,14 +122,7 @@ export function buildGetClientOptionsParam(
   const loggingOptions = buildLoggingOptions(codeModel.options.flavor);
   const credentials = buildCredentials(codeModel, endpointParam);
 
-  // If we have an optional parameter named apiVersion, destructure so that it does not get
-  // passed in to Core. Otherwise, it would get handled by the Core apiVersionPolicy.
-  const hasApiVersion = client.parameters.some(
-    (x) => x.optional && x.clientName === "apiVersion"
-  );
-  let expr = hasApiVersion
-    ? "const { apiVersion: _, ...updatedOptions } = {"
-    : "const updatedOptions = {";
+  let expr = "const { apiVersion: _, ...updatedOptions } = {";
 
   expr += "...options,";
 

@@ -21,7 +21,7 @@ export function createNestedDiscriminator(
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-  const updatedOptions = {
+  const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
