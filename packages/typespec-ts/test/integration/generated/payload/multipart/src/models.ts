@@ -40,11 +40,6 @@ export interface ComplexPartsRequestProfileImagePartDescriptor {
   contentType?: string;
 }
 
-export interface ComplexPartsRequestPreviousAddressesPartDescriptor {
-  name: "previousAddresses";
-  body: Array<Address>;
-}
-
 export interface ComplexPartsRequestPicturesPartDescriptor {
   name: "pictures";
   body:
@@ -95,23 +90,6 @@ export interface BinaryArrayPartsRequestPicturesPartDescriptor {
   contentType?: string;
 }
 
-export interface JsonArrayPartsRequestProfileImagePartDescriptor {
-  name: "profileImage";
-  body:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-  filename?: string;
-  contentType?: string;
-}
-
-export interface JsonArrayPartsRequestPreviousAddressesPartDescriptor {
-  name: "previousAddresses";
-  body: Array<Address>;
-}
-
 export interface MultiBinaryPartsRequestProfileImagePartDescriptor {
   name: "profileImage";
   body:
@@ -136,6 +114,48 @@ export interface MultiBinaryPartsRequestPicturePartDescriptor {
   contentType?: string;
 }
 
+export interface FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body: HttpPart;
+}
+
+export interface HttpPart {}
+
+export interface FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body: HttpPart;
+}
+
+export interface FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body: HttpPart;
+}
+
+export interface ComplexHttpPartsModelRequestIdPartDescriptor {
+  name: "id";
+  body: HttpPart;
+}
+
+export interface ComplexHttpPartsModelRequestAddressPartDescriptor {
+  name: "address";
+  body: HttpPart;
+}
+
+export interface ComplexHttpPartsModelRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body: HttpPart;
+}
+
+export interface ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor {
+  name: "previousAddresses";
+  body: HttpPart;
+}
+
+export interface ComplexHttpPartsModelRequestPicturesPartDescriptor {
+  name: "pictures";
+  body: Array<HttpPart>;
+}
+
 export type MultiPartRequest =
   | FormData
   | Array<
@@ -148,7 +168,6 @@ export type ComplexPartsRequest =
       | ComplexPartsRequestIdPartDescriptor
       | ComplexPartsRequestAddressPartDescriptor
       | ComplexPartsRequestProfileImagePartDescriptor
-      | ComplexPartsRequestPreviousAddressesPartDescriptor
       | ComplexPartsRequestPicturesPartDescriptor
     >;
 export type JsonPartRequest =
@@ -163,15 +182,27 @@ export type BinaryArrayPartsRequest =
       | BinaryArrayPartsRequestIdPartDescriptor
       | BinaryArrayPartsRequestPicturesPartDescriptor
     >;
-export type JsonArrayPartsRequest =
-  | FormData
-  | Array<
-      | JsonArrayPartsRequestProfileImagePartDescriptor
-      | JsonArrayPartsRequestPreviousAddressesPartDescriptor
-    >;
 export type MultiBinaryPartsRequest =
   | FormData
   | Array<
       | MultiBinaryPartsRequestProfileImagePartDescriptor
       | MultiBinaryPartsRequestPicturePartDescriptor
+    >;
+export type FileWithHttpPartSpecificContentTypeRequest =
+  | FormData
+  | Array<FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor>;
+export type FileWithHttpPartRequiredContentTypeRequest =
+  | FormData
+  | Array<FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor>;
+export type FileWithHttpPartOptionalContentTypeRequest =
+  | FormData
+  | Array<FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor>;
+export type ComplexHttpPartsModelRequest =
+  | FormData
+  | Array<
+      | ComplexHttpPartsModelRequestIdPartDescriptor
+      | ComplexHttpPartsModelRequestAddressPartDescriptor
+      | ComplexHttpPartsModelRequestProfileImagePartDescriptor
+      | ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor
+      | ComplexHttpPartsModelRequestPicturesPartDescriptor
     >;

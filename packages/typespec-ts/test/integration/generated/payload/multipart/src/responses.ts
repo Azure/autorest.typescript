@@ -24,11 +24,6 @@ export interface FormDataBinaryArrayParts204Response extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface FormDataJsonArrayParts204Response extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
 export interface FormDataMultiBinaryParts204Response extends HttpResponse {
   status: "204";
 }
@@ -41,5 +36,28 @@ export interface FormDataCheckFileNameAndContentType204Response
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface FormDataAnonymousModel204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface FormDataFileWithHttpPartSpecificContentType204Response
+  extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface FormDataFileWithHttpPartRequiredContentType204Response
+  extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface FormDataFileWithHttpPartOptionalContentType204Response
+  extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface FormDataComplexWithHttpPart204Response extends HttpResponse {
   status: "204";
 }

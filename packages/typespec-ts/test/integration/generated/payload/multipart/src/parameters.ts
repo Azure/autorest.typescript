@@ -7,8 +7,11 @@ import {
   ComplexPartsRequest,
   JsonPartRequest,
   BinaryArrayPartsRequest,
-  JsonArrayPartsRequest,
   MultiBinaryPartsRequest,
+  FileWithHttpPartSpecificContentTypeRequest,
+  FileWithHttpPartRequiredContentTypeRequest,
+  FileWithHttpPartOptionalContentTypeRequest,
+  ComplexHttpPartsModelRequest,
 } from "./models.js";
 
 export interface FormDataBasicBodyParam {
@@ -60,19 +63,6 @@ export type FormDataBinaryArrayPartsParameters =
     FormDataBinaryArrayPartsBodyParam &
     RequestParameters;
 
-export interface FormDataJsonArrayPartsBodyParam {
-  body: JsonArrayPartsRequest;
-}
-
-export interface FormDataJsonArrayPartsMediaTypesParam {
-  contentType: "multipart/form-data";
-}
-
-export type FormDataJsonArrayPartsParameters =
-  FormDataJsonArrayPartsMediaTypesParam &
-    FormDataJsonArrayPartsBodyParam &
-    RequestParameters;
-
 export interface FormDataMultiBinaryPartsBodyParam {
   body: MultiBinaryPartsRequest;
 }
@@ -122,4 +112,56 @@ export interface FormDataAnonymousModelMediaTypesParam {
 export type FormDataAnonymousModelParameters =
   FormDataAnonymousModelMediaTypesParam &
     FormDataAnonymousModelBodyParam &
+    RequestParameters;
+
+export interface FormDataFileWithHttpPartSpecificContentTypeBodyParam {
+  body: FileWithHttpPartSpecificContentTypeRequest;
+}
+
+export interface FormDataFileWithHttpPartSpecificContentTypeMediaTypesParam {
+  contentType: "multipart/form-data";
+}
+
+export type FormDataFileWithHttpPartSpecificContentTypeParameters =
+  FormDataFileWithHttpPartSpecificContentTypeMediaTypesParam &
+    FormDataFileWithHttpPartSpecificContentTypeBodyParam &
+    RequestParameters;
+
+export interface FormDataFileWithHttpPartRequiredContentTypeBodyParam {
+  body: FileWithHttpPartRequiredContentTypeRequest;
+}
+
+export interface FormDataFileWithHttpPartRequiredContentTypeMediaTypesParam {
+  contentType: "multipart/form-data";
+}
+
+export type FormDataFileWithHttpPartRequiredContentTypeParameters =
+  FormDataFileWithHttpPartRequiredContentTypeMediaTypesParam &
+    FormDataFileWithHttpPartRequiredContentTypeBodyParam &
+    RequestParameters;
+
+export interface FormDataFileWithHttpPartOptionalContentTypeBodyParam {
+  body: FileWithHttpPartOptionalContentTypeRequest;
+}
+
+export interface FormDataFileWithHttpPartOptionalContentTypeMediaTypesParam {
+  contentType: "multipart/form-data";
+}
+
+export type FormDataFileWithHttpPartOptionalContentTypeParameters =
+  FormDataFileWithHttpPartOptionalContentTypeMediaTypesParam &
+    FormDataFileWithHttpPartOptionalContentTypeBodyParam &
+    RequestParameters;
+
+export interface FormDataComplexWithHttpPartBodyParam {
+  body: ComplexHttpPartsModelRequest;
+}
+
+export interface FormDataComplexWithHttpPartMediaTypesParam {
+  contentType: "multipart/form-data";
+}
+
+export type FormDataComplexWithHttpPartParameters =
+  FormDataComplexWithHttpPartMediaTypesParam &
+    FormDataComplexWithHttpPartBodyParam &
     RequestParameters;
