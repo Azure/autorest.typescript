@@ -1,9 +1,0 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
-export {
-  createMultiple,
-  MultipleContext,
-  MultipleClientOptionalParams,
-} from "./multipleContext.js";
-export { noOperationParams, withOperationPathParam } from "./operations.js";
