@@ -2,7 +2,7 @@ import {
   addImportToSpecifier,
   Imports as RuntimeImports,
   NameType
-} from "@azure-tools/rlc-common";
+} from "../rlc/common/index.js";
 import {
   SdkContext,
   SdkModelType,
@@ -14,12 +14,12 @@ import {
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { reportDiagnostic } from "../../lib.js";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+import { reportDiagnostic } from "../lib.js";
+import { toCamelCase, toPascalCase } from "../utils/casingUtils.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
-} from "../../utils/operationUtil.js";
+} from "../utils/operationUtil.js";
 import {
   getDeserializeFunctionName,
   isNormalUnion,
@@ -42,7 +42,7 @@ import {
 } from "./docsHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { buildType, isTypeNullable } from "./typeHelpers.js";
-import { resolveReference } from "../../framework/reference.js";
+import { resolveReference } from "../framework/reference.js";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
 

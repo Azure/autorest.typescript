@@ -1,4 +1,4 @@
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType } from "./rlc/common/index.js";
 import { SourceFile } from "ts-morph";
 import { importModels } from "./buildOperations.js";
 import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
@@ -8,7 +8,7 @@ import {
   ModularCodeModel,
   OperationGroup
 } from "./modularCodeModel.js";
-import { SdkContext } from "../utils/interfaces.js";
+import { SdkContext } from "./utils/interfaces.js";
 
 export function buildClassicOperationFiles(
   dpgContext: SdkContext,

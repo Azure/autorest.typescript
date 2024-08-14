@@ -2,7 +2,7 @@ import {
   getImportSpecifier,
   PackageFlavor,
   Imports as RuntimeImports
-} from "@azure-tools/rlc-common";
+} from "../rlc/common/index.js";
 import {
   OptionalKind,
   ParameterDeclarationStructure,
@@ -12,7 +12,7 @@ import {
 import { Client, ModularCodeModel } from "../modularCodeModel.js";
 import { getClientName } from "./namingHelpers.js";
 import { getType, isCredentialType } from "./typeHelpers.js";
-import { SdkContext } from "../../utils/interfaces.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function getClientParameters(
   client: Client,

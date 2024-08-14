@@ -4,10 +4,10 @@ import {
   getImportSpecifier,
   NameType,
   normalizeName
-} from "@azure-tools/rlc-common";
+} from "./rlc/common/index.js";
 import { Project, SourceFile } from "ts-morph";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
+import { isRLCMultiEndpoint } from "./utils/clientUtils.js";
+import { SdkContext } from "./utils/interfaces.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
 import {
@@ -21,7 +21,7 @@ import {
 import { buildType } from "./helpers/typeHelpers.js";
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
+import { addImportBySymbol } from "./utils/importHelper.js";
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single

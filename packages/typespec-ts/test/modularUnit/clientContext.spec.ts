@@ -1,6 +1,6 @@
 import assert from "assert";
-import { emitModularClientContextFromTypeSpec } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+import { emitModularClientContextFromTypeSpec } from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("modular client context type", () => {
   it("handle with no default values in server", async () => {

@@ -3,8 +3,8 @@ import {
   emitModularSerializeUtilsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
   emitModularModelsFromTypeSpec
-} from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+} from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 // Replaced with new serializers
 describe("modular special union serialization", () => {

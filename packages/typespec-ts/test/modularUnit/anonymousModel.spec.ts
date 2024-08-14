@@ -2,8 +2,8 @@ import { assert } from "chai";
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
-} from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+} from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("anonymous model", () => {
   describe("in request", async () => {

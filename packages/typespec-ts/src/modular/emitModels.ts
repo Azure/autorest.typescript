@@ -1,4 +1,4 @@
-import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
+import { addImportsToFiles, getImportSpecifier } from "./rlc/common/index.js";
 import * as path from "path";
 import {
   InterfaceDeclarationStructure,
@@ -16,8 +16,8 @@ import {
   Type as ModularType
 } from "./modularCodeModel.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
-import { toCamelCase } from "../utils/casingUtils.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
+import { toCamelCase } from "./utils/casingUtils.js";
+import { addImportBySymbol } from "./utils/importHelper.js";
 
 // ====== UTILITIES ======
 

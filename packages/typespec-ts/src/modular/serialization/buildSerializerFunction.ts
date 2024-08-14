@@ -2,7 +2,7 @@ import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { Type as ModularType } from "../modularCodeModel.js";
 import { getRequestModelMapping } from "../helpers/operationHelpers.js";
 
-import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
+import { Imports as RuntimeImports } from "../rlc/common/index.js";
 import { UsageFlags } from "@typespec/compiler";
 import {
   SdkModelType,
