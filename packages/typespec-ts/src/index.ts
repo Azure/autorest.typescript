@@ -50,7 +50,7 @@ import {
 } from "./modular/buildRootIndex.js";
 import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
+import { buildModelsOptions } from "./modular/emitModels.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
@@ -73,6 +73,7 @@ import {
 } from "./modular/external-dependencies.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
+import { emitTypes } from "./modular/emit-models.js";
 
 export * from "./lib.js";
 
@@ -248,8 +249,8 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
+    emitTypes(dpgContext.sdkPackage, { sourceRoot: modularSourcesRoot });
     for (const subClient of modularCodeModel.clients) {
-      buildModels(subClient, modularCodeModel);
       buildModelsOptions(subClient, modularCodeModel);
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
         buildSerializeUtils(modularCodeModel);

@@ -58,16 +58,6 @@ export function buildOperationFiles(
       }api/${operationFileName}.ts`
     );
 
-    // Import models used from ./models.ts
-    // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(
-      srcPath,
-      operationGroupFile,
-      codeModel.project,
-      subfolder,
-      operationGroup.namespaceHierarchies.length
-    );
-
     // Import the deserializeUtils
     importDeserializeUtils(
       srcPath,
@@ -133,42 +123,6 @@ export function buildOperationFiles(
     operationFiles.push(operationGroupFile);
   }
   return operationFiles;
-}
-
-export function importModels(
-  srcPath: string,
-  sourceFile: SourceFile,
-  project: Project,
-  subfolder: string = "",
-  importLayer: number = 0
-) {
-  const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
-    return i.getModuleSpecifierValue().endsWith(`models/models.js`);
-  });
-  const modelsFile = project.getSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }models/models.ts`
-  );
-  const models: string[] = [];
-
-  for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    if (name.startsWith("_")) {
-      continue;
-    }
-    models.push(name);
-  }
-
-  if (models.length > 0 && !hasModelsImport) {
-    sourceFile.addImportDeclaration({
-      moduleSpecifier: `${"../".repeat(importLayer + 1)}models/models.js`,
-      namedImports: models
-    });
-  }
-
-  // Import all models and then let ts-morph clean up the unused ones
-  // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
-  // sourceFile.fixUnusedIdentifiers();
 }
 
 export function importDeserializeUtils(
