@@ -1,9 +1,9 @@
 import {
   StandardClient,
   User
-} from "./generated/azure/core/lro/standard/generated/src/index.js";
+} from "./generated/azure/core/lro/standard/src/index.js";
 import { assert, expect } from "chai";
-import { restorePoller } from "./generated/azure/core/lro/standard/generated/src/restorePollerHelpers.js";
+import { restorePoller } from "./generated/azure/core/lro/standard/src/restorePollerHelpers.js";
 import { OperationState } from "@azure/core-lro";
 
 describe("LROStandardClient Classical Client", () => {

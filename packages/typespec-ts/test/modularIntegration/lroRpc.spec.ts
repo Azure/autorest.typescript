@@ -1,4 +1,4 @@
-import { RpcClient } from "./generated/azure/core/lro/rpc/generated/src/index.js";
+import { RpcClient } from "./generated/azure/core/lro/rpc/src/index.js";
 import { assert } from "chai";
 
 describe("RpcClient Classical Client", () => {
