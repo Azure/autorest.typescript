@@ -536,7 +536,10 @@ function emitParameter(
     if (clientDefaultValue !== undefined) {
       (paramMap as any).optional = true;
     }
-  } else if (
+  }
+
+  if (
+    clientDefaultValue === undefined &&
     paramMap.location === "endpointPath" &&
     parameter.param.defaultValue?.valueKind === "StringValue"
   ) {

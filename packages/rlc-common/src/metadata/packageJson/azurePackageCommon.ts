@@ -140,10 +140,10 @@ function getAzurePackageEsmDevDependencies({
   if (withTests) {
     devDependencies = {
       ...devDependencies,
-      "@vitest/browser": "^1.3.1",
-      "@vitest/coverage-istanbul": "^1.3.1",
+      "@vitest/browser": "^2.0.5",
+      "@vitest/coverage-istanbul": "^2.0.5",
       playwright: "^1.41.2",
-      vitest: "^1.3.1",
+      vitest: "^2.0.5",
       "@azure-tools/test-credential": "^2.0.0",
       "@azure-tools/test-recorder": "^4.0.0"
     };
