@@ -7,7 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { AdministrationOperationsClient } from "./administrationOperations/administrationOperationsClient.js";
+export { LoadTestAdministrationClient } from "./loadTestAdministration/loadTestAdministrationClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -93,7 +93,7 @@ export {
   TargetResourceConfigurationsUnion,
 } from "./models/index.js";
 export {
-  AdministrationOperationsClientOptionalParams,
+  LoadTestAdministrationClientOptionalParams,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -106,16 +106,17 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-} from "./administrationOperations/api/index.js";
+} from "./loadTestAdministration/api/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
-export { TestRunOperationsClient } from "./testRunOperations/testRunOperationsClient.js";
+export { LoadTestRunClient } from "./loadTestRun/loadTestRunClient.js";
 export {
+  LoadTestRunClientOptionalParams,
   CreateOrUpdateTestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams as TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams as TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams as LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams as LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams,
   DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams as TestRunOperationsClientGetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams as TestRunOperationsClientGetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams as LoadTestRunClientGetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams as LoadTestRunClientGetServerMetricsConfigOptionalParams,
   GetTestRunOptionalParams,
   GetTestRunFileOptionalParams,
   ListMetricDimensionValuesOptionalParams,
@@ -124,22 +125,21 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-  TestRunOperationsClientOptionalParams,
-} from "./testRunOperations/api/index.js";
-export { TestProfileAdministrationOperationsClient } from "./testProfileAdministrationOperations/testProfileAdministrationOperationsClient.js";
+} from "./loadTestRun/api/index.js";
+export { TestProfileAdministrationClient } from "./testProfileAdministration/testProfileAdministrationClient.js";
 export {
   CreateOrUpdateTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-  TestProfileAdministrationOperationsClientOptionalParams,
-} from "./testProfileAdministrationOperations/api/index.js";
-export { TestProfileRunOperationsClient } from "./testProfileRunOperations/testProfileRunOperationsClient.js";
+  TestProfileAdministrationClientOptionalParams,
+} from "./testProfileAdministration/api/index.js";
+export { TestProfileRunClient } from "./testProfileRun/testProfileRunClient.js";
 export {
   CreateOrUpdateTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
-  TestProfileRunOperationsClientOptionalParams,
-} from "./testProfileRunOperations/api/index.js";
+  TestProfileRunClientOptionalParams,
+} from "./testProfileRun/api/index.js";

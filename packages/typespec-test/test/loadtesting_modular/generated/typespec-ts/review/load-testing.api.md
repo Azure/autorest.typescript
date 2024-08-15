@@ -9,29 +9,6 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
-export class AdministrationOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: AdministrationOperationsClientOptionalParams);
-    createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
-    createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
-    createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
-    deleteTest(testId: string, options?: DeleteTestOptionalParams): Promise<void>;
-    deleteTestFile(testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
-    getAppComponents(testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
-    getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
-    getTest(testId: string, options?: GetTestOptionalParams): Promise<Test>;
-    getTestFile(testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
-    listTestFiles(testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
-    listTests(options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
-    readonly pipeline: Pipeline;
-    uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<TestFileInfo>;
-}
-
-// @public
-export interface AdministrationOperationsClientOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
 // @public
 export type AggregationType = string;
 
@@ -439,6 +416,29 @@ export interface ListTestsOptionalParams extends OperationOptions {
     search?: string;
 }
 
+// @public (undocumented)
+export class LoadTestAdministrationClient {
+    constructor(endpointParam: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptionalParams);
+    createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
+    createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+    createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
+    deleteTest(testId: string, options?: DeleteTestOptionalParams): Promise<void>;
+    deleteTestFile(testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
+    getAppComponents(testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
+    getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+    getTest(testId: string, options?: GetTestOptionalParams): Promise<Test>;
+    getTestFile(testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
+    listTestFiles(testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
+    listTests(options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
+    readonly pipeline: Pipeline;
+    uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<TestFileInfo>;
+}
+
+// @public
+export interface LoadTestAdministrationClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
+}
+
 // @public
 export interface LoadTestConfiguration {
     engineInstances?: number;
@@ -446,6 +446,49 @@ export interface LoadTestConfiguration {
     quickStartTest?: boolean;
     regionalLoadTestConfig?: RegionalConfiguration[];
     splitAllCSVs?: boolean;
+}
+
+// @public (undocumented)
+export class LoadTestRunClient {
+    constructor(endpointParam: string, credential: TokenCredential, options?: LoadTestRunClientOptionalParams);
+    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+    createOrUpdateTestRun(testRunId: string, body: TestRun, options?: CreateOrUpdateTestRunOptionalParams): Promise<TestRun>;
+    deleteTestRun(testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
+    getAppComponents(testRunId: string, options?: LoadTestRunClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+    getServerMetricsConfig(testRunId: string, options?: LoadTestRunClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+    getTestRun(testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
+    getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunFileInfo>;
+    listMetricDefinitions(testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
+    listMetricDimensionValues(testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
+    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
+    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
+    listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
+    readonly pipeline: Pipeline;
+    stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
+}
+
+// @public
+export interface LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
+    contentType?: string;
+}
+
+// @public
+export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
+    contentType?: string;
+}
+
+// @public
+export interface LoadTestRunClientGetAppComponentsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface LoadTestRunClientGetServerMetricsConfigOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface LoadTestRunClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -682,8 +725,8 @@ export interface TestProfile {
 }
 
 // @public (undocumented)
-export class TestProfileAdministrationOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationOperationsClientOptionalParams);
+export class TestProfileAdministrationClient {
+    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationClientOptionalParams);
     createOrUpdateTestProfile(testProfileId: string, body: TestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfile>;
     deleteTestProfile(testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
     getTestProfile(testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfile>;
@@ -692,7 +735,7 @@ export class TestProfileAdministrationOperationsClient {
 }
 
 // @public
-export interface TestProfileAdministrationOperationsClientOptionalParams extends ClientOptions {
+export interface TestProfileAdministrationClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -718,8 +761,8 @@ export interface TestProfileRun {
 }
 
 // @public (undocumented)
-export class TestProfileRunOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileRunOperationsClientOptionalParams);
+export class TestProfileRunClient {
+    constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileRunClientOptionalParams);
     createOrUpdateTestProfileRun(testProfileRunId: string, body: TestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRun>;
     deleteTestProfileRun(testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
     getTestProfileRun(testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRun>;
@@ -729,7 +772,7 @@ export class TestProfileRunOperationsClient {
 }
 
 // @public
-export interface TestProfileRunOperationsClientOptionalParams extends ClientOptions {
+export interface TestProfileRunClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -818,49 +861,6 @@ export interface TestRunInputArtifacts {
     testScriptFileInfo?: TestRunFileInfo;
     urlTestConfigFileInfo?: TestRunFileInfo;
     userPropFileInfo?: TestRunFileInfo;
-}
-
-// @public (undocumented)
-export class TestRunOperationsClient {
-    constructor(endpointParam: string, credential: TokenCredential, options?: TestRunOperationsClientOptionalParams);
-    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
-    createOrUpdateTestRun(testRunId: string, body: TestRun, options?: CreateOrUpdateTestRunOptionalParams): Promise<TestRun>;
-    deleteTestRun(testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
-    getAppComponents(testRunId: string, options?: TestRunOperationsClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-    getServerMetricsConfig(testRunId: string, options?: TestRunOperationsClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
-    getTestRun(testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
-    getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunFileInfo>;
-    listMetricDefinitions(testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
-    listMetricDimensionValues(testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
-    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
-    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
-    listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
-    readonly pipeline: Pipeline;
-    stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
-}
-
-// @public
-export interface TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
-    contentType?: string;
-}
-
-// @public
-export interface TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
-    contentType?: string;
-}
-
-// @public
-export interface TestRunOperationsClientGetAppComponentsOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface TestRunOperationsClientGetServerMetricsConfigOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface TestRunOperationsClientOptionalParams extends ClientOptions {
-    apiVersion?: string;
 }
 
 // @public

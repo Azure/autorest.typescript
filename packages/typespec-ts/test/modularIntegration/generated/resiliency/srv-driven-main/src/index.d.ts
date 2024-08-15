@@ -18,17 +18,17 @@ export declare interface FromOneRequiredOptionalParams extends OperationOptions 
     newParameter?: string;
 }
 
-export declare class ServiceDrivenClient {
+export declare class ResiliencyServiceDrivenClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, serviceDeploymentVersion: string, options?: ServiceDrivenClientOptionalParams);
+    constructor(endpointParam: string, serviceDeploymentVersion: string, options?: ResiliencyServiceDrivenClientOptionalParams);
     addOperation(options?: AddOperationOptionalParams): Promise<void>;
     fromNone(options?: FromNoneOptionalParams): Promise<void>;
     fromOneRequired(parameter: string, options?: FromOneRequiredOptionalParams): Promise<void>;
     fromOneOptional(options?: FromOneOptionalOptionalParams): Promise<void>;
 }
 
-export declare interface ServiceDrivenClientOptionalParams extends ClientOptions {
+export declare interface ResiliencyServiceDrivenClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
