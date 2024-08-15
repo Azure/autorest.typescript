@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 export {
-  AdministrationOperationsClient,
-  AdministrationOperationsClientOptionalParams,
-} from "./administrationOperationsClient.js";
+  LoadTestAdministrationClient,
+  LoadTestAdministrationClientOptionalParams,
+} from "./loadTestAdministrationClient.js";
 export {
   Test,
   PassFailCriteria,

@@ -15,15 +15,15 @@ import {
   deleteTestProfile,
   getTestProfile,
   listTestProfiles,
-  createTestProfileAdministrationOperations,
+  createTestProfileAdministration,
   LoadTestServiceContext,
-  TestProfileAdministrationOperationsClientOptionalParams,
+  TestProfileAdministrationClientOptionalParams,
 } from "./api/index.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 
-export { TestProfileAdministrationOperationsClientOptionalParams } from "./api/testProfileAdministrationOperationsContext.js";
+export { TestProfileAdministrationClientOptionalParams } from "./api/testProfileAdministrationContext.js";
 
-export class TestProfileAdministrationOperationsClient {
+export class TestProfileAdministrationClient {
   private _client: LoadTestServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
@@ -31,17 +31,16 @@ export class TestProfileAdministrationOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: TestProfileAdministrationOperationsClientOptionalParams = {},
+    options: TestProfileAdministrationClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createTestProfileAdministrationOperations(
-      endpointParam,
-      credential,
-      { ...options, userAgentOptions: { userAgentPrefix } },
-    );
+    this._client = createTestProfileAdministration(endpointParam, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
   }
 

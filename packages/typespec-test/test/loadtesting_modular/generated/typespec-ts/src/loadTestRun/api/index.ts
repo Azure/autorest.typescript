@@ -2,6 +2,11 @@
 // Licensed under the MIT license.
 
 export {
+  createLoadTestRun,
+  LoadTestServiceContext,
+  LoadTestRunClientOptionalParams,
+} from "./loadTestRunContext.js";
+export {
   createOrUpdateTestRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -17,8 +22,3 @@ export {
   listTestRuns,
   stopTestRun,
 } from "./operations.js";
-export {
-  createTestRunOperations,
-  LoadTestServiceContext,
-  TestRunOperationsClientOptionalParams,
-} from "./testRunOperationsContext.js";
