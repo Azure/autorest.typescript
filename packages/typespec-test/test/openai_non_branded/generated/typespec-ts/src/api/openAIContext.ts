@@ -21,7 +21,10 @@ export function createOpenAI(
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-  const updatedOptions = { ...options, userAgentOptions: { userAgentPrefix } };
+  const { apiVersion: _, ...updatedOptions } = {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+  };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
 
   if (isKeyCredential(credential)) {
