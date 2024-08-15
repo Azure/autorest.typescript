@@ -1,6 +1,7 @@
 ## 6.0.26 (2024-08-15)
 
 - [Feature] Remove internal RLC layer from modular. Please refer to [#2728](https://github.com/Azure/autorest.typescript/pull/2728).
+- [Feature] Upgrade compiler to v0.59. Please refer to [#2741](https://github.com/Azure/autorest.typescript/pull/2741).
 - [Feature] Fix some issues with API version handling in new getClient. Please refer to [#2738](https://github.com/Azure/autorest.typescript/pull/2738).
 - [Feature] Binder support external dependencies. Please refer to [#2728](https://github.com/Azure/autorest.typescript/pull/2728) and [#2716](https://github.com/Azure/autorest.typescript/pull/2716).
 - [Feature] Engineering system related improvements.
