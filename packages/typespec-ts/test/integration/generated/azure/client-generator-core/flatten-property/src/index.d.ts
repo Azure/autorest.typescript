@@ -24,15 +24,8 @@ export declare interface ChildModelOutput {
     age: number;
 }
 
-declare function createClient(options?: FlattenClientOptions): FlattenClient;
+declare function createClient(options?: FlattenPropertyClientOptions): FlattenPropertyClient;
 export default createClient;
-
-export declare type FlattenClient = Client & {
-    path: Routes;
-};
-
-export declare interface FlattenClientOptions extends ClientOptions {
-}
 
 export declare interface FlattenModel {
     name: string;
@@ -42,6 +35,13 @@ export declare interface FlattenModel {
 export declare interface FlattenModelOutput {
     name: string;
     properties: ChildModelOutput;
+}
+
+export declare type FlattenPropertyClient = Client & {
+    path: Routes;
+};
+
+export declare interface FlattenPropertyClientOptions extends ClientOptions {
 }
 
 export declare interface NestedFlattenModel {
@@ -85,8 +85,8 @@ export declare interface PutNestedFlattenModelBodyParam {
 export declare type PutNestedFlattenModelParameters = PutNestedFlattenModelBodyParam & RequestParameters;
 
 export declare interface Routes {
-    (path: "/type/model/flatten/flattenModel"): PutFlattenModel;
-    (path: "/type/model/flatten/nestedFlattenModel"): PutNestedFlattenModel;
+    (path: "/azure/client-generator-core/flatten-property/flattenModel"): PutFlattenModel;
+    (path: "/azure/client-generator-core/flatten-property/nestedFlattenModel"): PutNestedFlattenModel;
 }
 
 export { }

@@ -9,5 +9,5 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     packageDetails:
-      name: "@msinternal/flatten-model"
-      description: "Flatten model Service"
+      name: "@msinternal/flatten-property"
+      description: "Flatten property Service"

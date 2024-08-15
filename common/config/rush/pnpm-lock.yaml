@@ -228,10 +228,10 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       "@azure-rest/core-client": ^2.1.0
-      "@azure-tools/cadl-ranch": ^0.14.2
-      "@azure-tools/cadl-ranch-api": ^0.4.5
+      "@azure-tools/cadl-ranch": ^0.14.3
+      "@azure-tools/cadl-ranch-api": ^0.4.6
       "@azure-tools/cadl-ranch-expect": ^0.15.1
-      "@azure-tools/cadl-ranch-specs": ^0.35.4
+      "@azure-tools/cadl-ranch-specs": ^0.36.1
       "@azure-tools/rlc-common": workspace:^0.31.0
       "@azure-tools/typespec-autorest": ">=0.45.0 <1.0.0"
       "@azure-tools/typespec-azure-core": ">=0.45.0 <1.0.0"
@@ -287,10 +287,10 @@ importers:
       tslib: 2.6.2
     devDependencies:
       "@azure-rest/core-client": 2.1.0
-      "@azure-tools/cadl-ranch": 0.14.2_e53zy5pp4bbrxbruosuhuay6sm
-      "@azure-tools/cadl-ranch-api": 0.4.5
+      "@azure-tools/cadl-ranch": 0.14.3_e53zy5pp4bbrxbruosuhuay6sm
+      "@azure-tools/cadl-ranch-api": 0.4.6
       "@azure-tools/cadl-ranch-expect": 0.15.1_y3yxhtjg35d3g6m2dacugmsjfu
-      "@azure-tools/cadl-ranch-specs": 0.35.4_cvode6xhpuyl3aj5dk75xzx5nu
+      "@azure-tools/cadl-ranch-specs": 0.36.1_cvode6xhpuyl3aj5dk75xzx5nu
       "@azure-tools/typespec-autorest": 0.45.0_n4w2xh5fhregk7uzwn23tc3udm
       "@azure-tools/typespec-azure-core": 0.45.0_alrznhyrw66bvx6gp4zrtdfkte
       "@azure-tools/typespec-azure-resource-manager": 0.45.0_rxzquxnvxkwebgrumlsfc6ni5i
@@ -434,10 +434,10 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/cadl-ranch-api/0.4.5:
+  /@azure-tools/cadl-ranch-api/0.4.6:
     resolution:
       {
-        integrity: sha512-OXJ65ibuli0q7gsWo/5lv8BznSv4thpBxL5qERUyd1w6tvOOCg5iBBidZMUbmlasYspLCP25YlKqiOgbdPhHDQ==,
+        integrity: sha512-IwIpl+wZYXWdDuY3hoI81n7rkm90CcjMWxQLhUYjBhppvc4o1YYgkV9jfxMBaclrDgS1R2TrAq2Xul/+kY99lg==,
       }
     engines: { node: ">=16.0.0" }
     dependencies:
@@ -489,10 +489,10 @@ packages:
       "@typespec/versioning": 0.59.0_@typespec+compiler@0.59.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.35.4_cvode6xhpuyl3aj5dk75xzx5nu:
+  /@azure-tools/cadl-ranch-specs/0.36.1_cvode6xhpuyl3aj5dk75xzx5nu:
     resolution:
       {
-        integrity: sha512-ZGqxbrFzyvV4oVsc0UKSzsKT23eX8xv3AmQu0BAo2IN8T2BF+RhoGbpA2LaOTwpJYa7K3htqfRf11+rdJ5AuNA==,
+        integrity: sha512-DmgSaMeEhM6N3ZTFCDcBAy73hz8o1PYUdAKCN9P6WCj8sOVzZ8FCD9CGi2XjKBMqeJr4KHHooIgceglODJWSwQ==,
       }
     engines: { node: ">=16.0.0" }
     peerDependencies:
@@ -504,8 +504,8 @@ packages:
       "@typespec/versioning": ~0.59.0
       "@typespec/xml": ~0.59.0
     dependencies:
-      "@azure-tools/cadl-ranch": 0.14.2_e53zy5pp4bbrxbruosuhuay6sm
-      "@azure-tools/cadl-ranch-api": 0.4.5
+      "@azure-tools/cadl-ranch": 0.14.3_e53zy5pp4bbrxbruosuhuay6sm
+      "@azure-tools/cadl-ranch-api": 0.4.6
       "@azure-tools/cadl-ranch-expect": 0.15.1_y3yxhtjg35d3g6m2dacugmsjfu
       "@azure-tools/typespec-azure-core": 0.45.0_alrznhyrw66bvx6gp4zrtdfkte
       "@typespec/compiler": 0.59.0
@@ -518,15 +518,15 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/cadl-ranch/0.14.2_e53zy5pp4bbrxbruosuhuay6sm:
+  /@azure-tools/cadl-ranch/0.14.3_e53zy5pp4bbrxbruosuhuay6sm:
     resolution:
       {
-        integrity: sha512-5aMzmiCbMXijc9c3TVCxYdoF4ALyu5fGZhv4gGSSHYCNvqc2uE10seURu5jIVp0GZWyKv9Bis152rYKw/gg01g==,
+        integrity: sha512-7UVhTi5dHR9hH6OnpWQONvDJGx5t5sU9q8BYHoJU0gdaTy0x23EHie5GTMg7aIFI896kuksu4iggUnQaCm2AnA==,
       }
     engines: { node: ">=16.0.0" }
     hasBin: true
     dependencies:
-      "@azure-tools/cadl-ranch-api": 0.4.5
+      "@azure-tools/cadl-ranch-api": 0.4.6
       "@azure-tools/cadl-ranch-coverage-sdk": 0.8.3
       "@azure-tools/cadl-ranch-expect": 0.15.1_y3yxhtjg35d3g6m2dacugmsjfu
       "@azure/identity": 4.4.1
@@ -734,7 +734,7 @@ packages:
       "@azure/abort-controller": 2.1.2
       "@azure/core-auth": 1.6.0
       "@azure/core-rest-pipeline": 1.14.0
-      "@azure/core-tracing": 1.0.1
+      "@azure/core-tracing": 1.1.2
       "@azure/core-util": 1.9.0
       "@azure/logger": 1.0.4
       tslib: 2.6.2
@@ -918,7 +918,7 @@ packages:
       "@azure/core-auth": 1.6.0
       "@azure/core-client": 1.9.2
       "@azure/core-rest-pipeline": 1.14.0
-      "@azure/core-tracing": 1.0.1
+      "@azure/core-tracing": 1.1.2
       "@azure/core-util": 1.9.0
       "@azure/logger": 1.0.4
       "@azure/msal-browser": 3.18.0

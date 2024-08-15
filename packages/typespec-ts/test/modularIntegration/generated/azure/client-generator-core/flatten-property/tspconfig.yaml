@@ -9,4 +9,4 @@ options:
     hierarchyClient: false
     "emitter-output-dir": "{project-root}"
     packageDetails:
-      name: "@msinternal/modular-model-flatten"
+      name: "@msinternal/modular-property-flatten"
