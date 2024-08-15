@@ -1,4 +1,7 @@
-import { AzureCoreDependencies, AzurePollingDependencies } from "../external-dependencies.js";
+import {
+  AzureCoreDependencies,
+  AzurePollingDependencies
+} from "../external-dependencies.js";
 import {
   BodyParameter,
   Client,
@@ -651,9 +654,9 @@ function buildBodyParameter(
     );
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
-    ? ${uint8ArrayToStringReference}(${bodyParameter.clientName}, "${getEncodingFormat(
-      bodyParameter
-    )}")
+    ? ${uint8ArrayToStringReference}(${
+      bodyParameter.clientName
+    }, "${getEncodingFormat(bodyParameter)}")
     : ${bodyParameter.clientName}`
       : `body: ${uint8ArrayToStringReference}(${
           bodyParameter.clientName
