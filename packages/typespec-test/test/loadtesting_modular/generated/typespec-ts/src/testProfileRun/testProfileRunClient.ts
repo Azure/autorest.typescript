@@ -17,15 +17,15 @@ import {
   getTestProfileRun,
   listTestProfileRuns,
   stopTestProfileRun,
-  createTestProfileRunOperations,
+  createTestProfileRun,
   LoadTestServiceContext,
-  TestProfileRunOperationsClientOptionalParams,
+  TestProfileRunClientOptionalParams,
 } from "./api/index.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 
-export { TestProfileRunOperationsClientOptionalParams } from "./api/testProfileRunOperationsContext.js";
+export { TestProfileRunClientOptionalParams } from "./api/testProfileRunContext.js";
 
-export class TestProfileRunOperationsClient {
+export class TestProfileRunClient {
   private _client: LoadTestServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
@@ -33,13 +33,13 @@ export class TestProfileRunOperationsClient {
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: TestProfileRunOperationsClientOptionalParams = {},
+    options: TestProfileRunClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createTestProfileRunOperations(endpointParam, credential, {
+    this._client = createTestProfileRun(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

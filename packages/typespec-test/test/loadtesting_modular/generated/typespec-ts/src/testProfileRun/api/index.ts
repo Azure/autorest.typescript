@@ -9,7 +9,7 @@ export {
   stopTestProfileRun,
 } from "./operations.js";
 export {
-  createTestProfileRunOperations,
+  createTestProfileRun,
   LoadTestServiceContext,
-  TestProfileRunOperationsClientOptionalParams,
-} from "./testProfileRunOperationsContext.js";
+  TestProfileRunClientOptionalParams,
+} from "./testProfileRunContext.js";
