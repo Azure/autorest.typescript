@@ -131,8 +131,6 @@ export function getDeserializePrivateFunction(
   statements.push(
     `const expectedStatuses = ${getExpectedStatuses(operation)};`
   );
-    // Directly using the status code of first response
-    const validStatus = response.statusCodes;
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
     `throw createRestError(result);`,
