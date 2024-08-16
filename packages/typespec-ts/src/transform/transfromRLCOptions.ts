@@ -20,6 +20,7 @@ import { SdkContext } from "../utils/interfaces.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
 import { getOperationName } from "../utils/operationUtil.js";
+import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 
 export function transformRLCOptions(
   emitterOptions: EmitterOptions,
@@ -99,60 +100,58 @@ function processAuth(program: Program) {
     return undefined;
   }
   const securityInfo: RLCOptions = {};
-  for (const option of authorization.options) {
-    for (const auth of option.schemes) {
-      switch (auth.type) {
-        case "http":
-          securityInfo.addCredentials = true;
-          securityInfo.customHttpAuthHeaderName = "Authorization";
-          // If it is basic or bearer auth we should generate it as Basic or Bearer
-          securityInfo.customHttpAuthSharedKeyPrefix = [
-            "basic",
-            "bearer"
-          ].includes(auth.scheme.toLowerCase())
-            ? pascalCase(auth.scheme)
-            : auth.scheme;
-          break;
-        case "apiKey":
-          if (auth.in === "cookie") {
-            return undefined;
-          }
-          securityInfo.addCredentials = true;
-          securityInfo.credentialKeyHeaderName = auth.name;
-          break;
-        case "oauth2": {
-          const flow = auth.flows[0];
-          if (flow === undefined || !flow.scopes) {
-            return undefined;
-          }
-          securityInfo.addCredentials = true;
-          if (!securityInfo.credentialScopes) {
-            securityInfo.credentialScopes = [];
-          }
-          if (flow.scopes.length === 0) {
-            reportDiagnostic(program, {
-              code: "no-credential-scopes",
-              target: NoTarget
-            });
-          }
-          // ignore the user_impersonation scope
-          if (
-            flow.scopes.length === 1 &&
-            flow.scopes[0] &&
-            flow.scopes[0].value.toLowerCase() === "user_impersonation"
-          ) {
-            return securityInfo;
-          }
-          securityInfo.credentialScopes.push(
-            ...flow.scopes.map((item) => {
-              return item.value;
-            })
-          );
-          break;
+  for (const auth of getSupportedHttpAuth(program, authorization)) {
+    switch (auth.type) {
+      case "http":
+        securityInfo.addCredentials = true;
+        securityInfo.customHttpAuthHeaderName = "Authorization";
+        // If it is basic or bearer auth we should generate it as Basic or Bearer
+        securityInfo.customHttpAuthSharedKeyPrefix = [
+          "basic",
+          "bearer"
+        ].includes(auth.scheme.toLowerCase())
+          ? pascalCase(auth.scheme)
+          : auth.scheme;
+        break;
+      case "apiKey":
+        if (auth.in === "cookie") {
+          return undefined;
         }
-        default:
-          break;
+        securityInfo.addCredentials = true;
+        securityInfo.credentialKeyHeaderName = auth.name;
+        break;
+      case "oauth2": {
+        const flow = auth.flows[0];
+        if (flow === undefined || !flow.scopes) {
+          return undefined;
+        }
+        securityInfo.addCredentials = true;
+        if (!securityInfo.credentialScopes) {
+          securityInfo.credentialScopes = [];
+        }
+        if (flow.scopes.length === 0) {
+          reportDiagnostic(program, {
+            code: "no-credential-scopes",
+            target: NoTarget
+          });
+        }
+        // ignore the user_impersonation scope
+        if (
+          flow.scopes.length === 1 &&
+          flow.scopes[0] &&
+          flow.scopes[0].value.toLowerCase() === "user_impersonation"
+        ) {
+          return securityInfo;
+        }
+        securityInfo.credentialScopes.push(
+          ...flow.scopes.map((item) => {
+            return item.value;
+          })
+        );
+        break;
       }
+      default:
+        break;
     }
   }
   return securityInfo;
