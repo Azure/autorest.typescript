@@ -104,6 +104,7 @@ export function getDeserializePrivateFunction(
   const isLroOnly = isLroOnlyOperation(operation);
 
   // TODO: Support operation overloads
+  // TODO: Support multiple responses
   const response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
@@ -130,7 +131,6 @@ export function getDeserializePrivateFunction(
   statements.push(
     `const expectedStatuses = ${getExpectedStatuses(operation)};`
   );
-
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
     `throw createRestError(result);`,

@@ -61,6 +61,7 @@ import {
   RLCModel,
   buildRuntimeImports,
   getClientName,
+  isAzurePackage,
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
@@ -113,6 +114,7 @@ import { getType as getTypeName } from "./helpers/typeHelpers.js";
 import { isModelWithAdditionalProperties } from "./emitModels.js";
 import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
+import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -667,7 +669,7 @@ function emitOperation(
   rlcModels: RLCModel,
   hierarchies: string[]
 ): HrlcOperation {
-  const isAzureFlavor = rlcModels.options?.flavor === "azure";
+  const isAzureFlavor = isAzurePackage(rlcModels);
   const emittedOperation = emitBasicOperation(
     context,
     operation,
@@ -1690,15 +1692,14 @@ function emitCredentialParam(
   const auth = getAuthentication(context.program, namespace);
   if (auth) {
     const credential_types: CredentialType[] = [];
-    for (const option of auth.options) {
-      for (const scheme of option.schemes) {
-        const type: CredentialType = {
-          kind: "Credential",
-          scheme: scheme
-        };
-        credential_types.push(type);
-      }
+    for (const scheme of getSupportedHttpAuth(context.program, auth)) {
+      const type: CredentialType = {
+        kind: "Credential",
+        scheme: scheme
+      };
+      credential_types.push(type);
     }
+
     if (
       credential_types.length > 0 &&
       context.rlcOptions?.addCredentials !== false
