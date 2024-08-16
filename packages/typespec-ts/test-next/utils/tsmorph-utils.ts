@@ -1,5 +1,11 @@
 import { assert } from "chai";
-import { InterfaceDeclaration, SourceFile, SyntaxKind } from "ts-morph";
+import exp from "constants";
+import {
+  FunctionDeclaration,
+  InterfaceDeclaration,
+  SourceFile,
+  TypeAliasDeclaration
+} from "ts-morph";
 
 export function assertGetInterfaceDeclaration(
   sourceFile: SourceFile,
@@ -10,6 +16,15 @@ export function assertGetInterfaceDeclaration(
   return interfaceDeclaration;
 }
 
+export function assertGetTypealiasDeclaration(
+  sourceFile: SourceFile,
+  name: string
+): TypeAliasDeclaration {
+  const typeAliasDeclaration = sourceFile.getTypeAlias(name);
+  assert(typeAliasDeclaration, `Type alias ${name} not found`);
+  return typeAliasDeclaration;
+}
+
 export function assertGetFunctionDeclaration(
   sourceFile: SourceFile,
   name: string
@@ -17,6 +32,32 @@ export function assertGetFunctionDeclaration(
   const functionDeclaration = sourceFile.getFunction(name);
   assert(functionDeclaration, `Function ${name} not found`);
   return functionDeclaration;
+}
+
+export function assertGetFunctionParameter(
+  functionDeclaration: FunctionDeclaration,
+  name: string
+) {
+  const parameter = functionDeclaration.getParameter(name);
+  assert(parameter, `Parameter ${name} not found`);
+  return parameter;
+}
+
+export function assertGetFunctionReturnType(
+  functionDeclaration: FunctionDeclaration,
+  expected: string
+) {
+  const returnType = functionDeclaration.getReturnType().getText();
+  assert.equal(returnType, expected);
+}
+
+export function assertGetStatement(sourceFile: SourceFile, expected: string) {
+  const statement = sourceFile
+    .getStatements()
+    .find((statement) => statement.getText() === expected);
+
+  assert(statement, `Statement \`${expected}\` not found`);
+  return statement;
 }
 
 export function assertGetInterfaceProperty(

@@ -548,7 +548,7 @@ describe("api operations in Modular", () => {
           const userAgentPrefix = prefixFromOptions
             ? \`\${prefixFromOptions} azsdk-js-api\`
             : "azsdk-js-api";
-          const updatedOptions = {
+          const { apiVersion: _, ...updatedOptions } = {
             ...options,
             userAgentOptions: { userAgentPrefix },
             loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
@@ -583,6 +583,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
+        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
@@ -701,7 +702,7 @@ describe("api operations in Modular", () => {
           const userAgentPrefix = prefixFromOptions
             ? \`\${prefixFromOptions} azsdk-js-api\`
             : "azsdk-js-api";
-          const updatedOptions = {
+          const { apiVersion: _, ...updatedOptions } = {
             ...options,
             userAgentOptions: { userAgentPrefix },
             loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
@@ -741,6 +742,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
+        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
@@ -880,7 +882,7 @@ describe("api operations in Modular", () => {
         export function createTesting(endpoint: string, options: TestingClientOptionalParams = {}): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions ? \`\${prefixFromOptions} azsdk-js-api\` : "azsdk-js-api";
-          const updatedOptions = { ...options,userAgentOptions: { userAgentPrefix },loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },}
+          const { apiVersion: _, ...updatedOptions } = { ...options,userAgentOptions: { userAgentPrefix },loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },}
           const clientContext = getClient(options.endpoint ?? options.baseUrl ?? endpoint, undefined, updatedOptions);
           clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
           if (options.apiVersion) {
@@ -895,6 +897,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
+        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
