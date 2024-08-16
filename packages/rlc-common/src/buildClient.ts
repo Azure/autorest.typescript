@@ -109,8 +109,7 @@ export function buildClient(model: RLCModel): File | undefined {
     credentialScopes,
     credentialKeyHeaderName,
     customHttpAuthHeaderName,
-    customHttpAuthSharedKeyPrefix,
-    flavor
+    customHttpAuthSharedKeyPrefix
   } = model.options;
   const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
 
@@ -310,8 +309,7 @@ export function getClientFactoryBody(
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
-  const { includeShortcuts, packageDetails, flavor, addCredentials } =
-    model.options;
+  const { includeShortcuts, packageDetails, addCredentials } = model.options;
   let clientPackageName =
     packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
   const packageVersion = packageDetails.version;
