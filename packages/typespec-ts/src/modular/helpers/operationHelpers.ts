@@ -1504,9 +1504,7 @@ export function isDiscriminatedUnion(type?: SdkType): type is SdkModelType {
  */
 export function getExpectedStatuses(operation: Operation): string {
   const statusCodes = operation.responses.flatMap((x) =>
-    x.statusCodes
-      .filter((s) => s !== "default")
-      .filter((s) => s > 199 && s < 300)
+    x.statusCodes.filter((s) => s !== "default")
   );
   // LROs may call the same path but with GET to get the operation status.
   if (
