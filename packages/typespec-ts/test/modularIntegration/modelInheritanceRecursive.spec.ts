@@ -1,7 +1,7 @@
 import {
   Extension,
   RecursiveClient
-} from "./generated/type/model/inheritance/recursive/generated/src/index.js";
+} from "./generated/type/model/inheritance/recursive/src/index.js";
 import { assert } from "chai";
 
 const body: Extension = {

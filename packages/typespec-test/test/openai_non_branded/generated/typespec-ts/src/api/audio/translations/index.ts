@@ -4,16 +4,12 @@ import {
   CreateTranslationRequest,
   CreateTranslationResponse,
 } from "../../../models/models.js";
-import {
-  AudioTranslationsCreate200Response,
-  AudioTranslationsCreateDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../../../rest/index.js";
+import { OpenAIContext as Client } from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   uint8ArrayToString,
+  PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
@@ -22,9 +18,7 @@ export function _createSend(
   context: Client,
   audio: CreateTranslationRequest,
   options: AudioTranslationsCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/audio/translations")
     .post({
@@ -41,11 +35,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result:
-    | AudioTranslationsCreate200Response
-    | AudioTranslationsCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<CreateTranslationResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

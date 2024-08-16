@@ -4,15 +4,11 @@ import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
-import {
-  EmbeddingsCreate200Response,
-  EmbeddingsCreateDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../../rest/index.js";
+import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
@@ -21,9 +17,7 @@ export function _createSend(
   context: Client,
   embedding: CreateEmbeddingRequest,
   options: EmbeddingsCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/embeddings")
     .post({
@@ -37,16 +31,17 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<CreateEmbeddingResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
     model: result.body["model"],
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         index: p["index"],
         object: p["object"],

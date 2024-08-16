@@ -6,11 +6,24 @@ import {
   Project
 } from "ts-morph";
 import { provideContext, useContext } from "../../contextManager.js";
+import { ReferenceableSymbol } from "../dependency.js";
+import { provideDependencies, useDependencies } from "./useDependencies.js";
+import { refkey } from "../refkey.js";
+import {
+  isStaticHelperMetadata,
+  SourceFileSymbol,
+  StaticHelperMetadata
+} from "../load-static-helpers.js";
 
 export interface DeclarationInfo {
   name: string;
   sourceFile: SourceFile;
   alias?: string;
+}
+
+export interface BinderOptions {
+  staticHelpers?: Map<string, StaticHelperMetadata>;
+  dependencies?: Record<string, ReferenceableSymbol>;
 }
 
 export interface Binder {
@@ -27,17 +40,26 @@ export interface Binder {
     sourceFile: SourceFile
   ): string;
   resolveReference(refkey: unknown): string;
-  applyImports(): void;
+  resolveAllReferences(): void;
 }
+
+const PLACEHOLDER_PREFIX = "_PLACEHOLDER_";
 
 class BinderImp implements Binder {
   private declarations = new Map<unknown, DeclarationInfo>();
+  private references = new Map<unknown, Set<SourceFile>>();
   private imports = new Map<SourceFile, ImportDeclarationStructure[]>();
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
   private project: Project;
+  private dependencies: Record<string, ReferenceableSymbol>;
+  private staticHelpers: Map<string, StaticHelperMetadata>;
 
-  constructor(project?: Project) {
-    this.project = project ?? new Project();
+  constructor(project: Project, options: BinderOptions = {}) {
+    this.project = project;
+
+    provideDependencies(options.dependencies);
+    this.staticHelpers = options.staticHelpers ?? new Map();
+    this.dependencies = useDependencies();
   }
 
   trackDeclaration(
@@ -135,7 +157,7 @@ class BinderImp implements Binder {
    * @returns The serialized placeholder string.
    */
   private serializePlaceholder(refkey: unknown): string {
-    return `PLACEHOLDER:${String(refkey)}`;
+    return `${PLACEHOLDER_PREFIX}${String(refkey)}_`;
   }
 
   /**
@@ -147,27 +169,33 @@ class BinderImp implements Binder {
    */
   private addImport(
     fileWhereImportIsAdded: SourceFile,
-    fileWhereImportPointsTo: SourceFile,
+    fileWhereImportPointsTo: SourceFile | string,
     name: string
   ): ImportSpecifierStructure {
     const importAlias = this.generateLocallyUniqueImportName(
       name,
       fileWhereImportIsAdded
     );
-    const relativePath =
-      fileWhereImportIsAdded.getRelativePathAsModuleSpecifierTo(
-        fileWhereImportPointsTo
-      );
+    let moduleSpecifier = "";
+    if (typeof fileWhereImportPointsTo === "string") {
+      moduleSpecifier = fileWhereImportPointsTo;
+    } else {
+      moduleSpecifier =
+        fileWhereImportIsAdded.getRelativePathAsModuleSpecifierTo(
+          fileWhereImportPointsTo
+        ) + ".js";
+    }
+
     const importStructures = this.imports.get(fileWhereImportIsAdded) || [];
 
     let importStructure = importStructures.find(
-      (imp) => imp.moduleSpecifier === relativePath
+      (imp) => imp.moduleSpecifier === moduleSpecifier
     );
 
     if (!importStructure) {
       importStructure = {
         kind: StructureKind.ImportDeclaration,
-        moduleSpecifier: relativePath,
+        moduleSpecifier,
         namedImports: []
       };
       importStructures.push(importStructure);
@@ -194,21 +222,10 @@ class BinderImp implements Binder {
   /**
    * Applies all tracked imports to their respective source files.
    */
-  applyImports(): void {
+  resolveAllReferences(): void {
     for (const file of this.project.getSourceFiles()) {
-      for (const [declarationKey, declaration] of this.declarations) {
-        const placeholderKey = this.serializePlaceholder(declarationKey);
-        let name = declaration.name;
-        if (file !== declaration.sourceFile) {
-          const importDec = this.addImport(
-            file,
-            declaration.sourceFile,
-            declaration.name
-          );
-          name = importDec.alias ?? declaration.name;
-        }
-        replacePlaceholder(file, placeholderKey, name);
-      }
+      this.resolveDeclarationReferences(file);
+      this.resolveDependencyReferences(file);
     }
 
     for (const [sourceFile, importStructures] of this.imports) {
@@ -216,12 +233,101 @@ class BinderImp implements Binder {
         sourceFile.addImportDeclaration(importStructure);
       }
     }
+
+    this.cleanUnreferencedHelpers();
+  }
+
+  private resolveDependencyReferences(file: SourceFile) {
+    if (!hasAnyPlaceholders(file)) {
+      return;
+    }
+    for (const dependency of Object.values(this.dependencies)) {
+      const placeholder = this.serializePlaceholder(refkey(dependency));
+      const { name, module } = dependency;
+      const occurences = countPlaceholderOccurrences(file, placeholder);
+      if (occurences > 0) {
+        const importDec = this.addImport(file, module, name);
+        const uniqueName = importDec.alias ?? name;
+        replacePlaceholder(file, placeholder, uniqueName);
+      }
+    }
+  }
+
+  private resolveDeclarationReferences(file: SourceFile) {
+    if (!hasAnyPlaceholders(file)) {
+      return;
+    }
+
+    for (const [declarationKey, declaration] of [
+      ...this.declarations,
+      ...this.staticHelpers
+    ]) {
+      const placeholderKey = this.serializePlaceholder(declarationKey);
+      if (
+        isStaticHelperMetadata(declaration) &&
+        !countPlaceholderOccurrences(file, placeholderKey)
+      ) {
+        continue;
+      }
+
+      let name = declaration.name;
+      let declarationSourceFile: SourceFile;
+
+      if ("sourceFile" in declaration) {
+        declarationSourceFile = declaration.sourceFile;
+      } else {
+        declarationSourceFile = declaration[SourceFileSymbol]!;
+      }
+
+      if (file !== declarationSourceFile) {
+        this.trackReference(declarationKey, file);
+        const importDec = this.addImport(file, declarationSourceFile, name);
+        name = importDec.alias ?? name;
+      }
+      replacePlaceholder(file, placeholderKey, name);
+    }
+  }
+
+  private trackReference(refkey: unknown, sourceFile: SourceFile): void {
+    if (!this.references.has(refkey)) {
+      this.references.set(refkey, new Set());
+    }
+
+    this.references.get(refkey)!.add(sourceFile);
+  }
+
+  private cleanUnreferencedHelpers() {
+    const usedHelperFiles = new Set<SourceFile>();
+    for (const helper of this.staticHelpers.values()) {
+      const sourceFile = helper[SourceFileSymbol];
+      if (!sourceFile) {
+        // This should be unreachable
+        throw new Error(
+          `Static helper ${helper.name} does not have a source file. Make sure that loadStaticHelpers has been correctly initialized in index.ts`
+        );
+      }
+      const referencedHelper = this.references.get(refkey(helper));
+
+      if (referencedHelper?.size) {
+        usedHelperFiles.add(sourceFile);
+      }
+    }
+
+    this.project
+      .getSourceFiles("**/static-helpers/**/*.ts")
+      .filter((helperFile) => !usedHelperFiles.has(helperFile))
+      .forEach((helperFile) => helperFile.delete());
   }
 }
 
 // Provide the binder context to be used globally
-export function provideBinder(project?: Project): void {
-  return provideContext("binder", new BinderImp(project));
+export function provideBinder(
+  project: Project,
+  options: BinderOptions = {}
+): Binder {
+  const binder = new BinderImp(project, options);
+  provideContext("binder", binder);
+  return binder;
 }
 
 /**
@@ -249,6 +355,13 @@ function replacePlaceholder(
   sourceFile.replaceWithText(updatedText);
 }
 
+function countPlaceholderOccurrences(
+  sourceFile: SourceFile,
+  placeholder: string
+): number {
+  return sourceFile.getFullText().split(placeholder).length - 1;
+}
+
 /**
  * Escapes special characters in a string to be used in a regular expression.
  * @param string - The input string.
@@ -256,4 +369,8 @@ function replacePlaceholder(
  */
 function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function hasAnyPlaceholders(sourceFile: SourceFile): boolean {
+  return sourceFile.getFullText().includes(PLACEHOLDER_PREFIX);
 }

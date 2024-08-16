@@ -42,15 +42,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
-import {
-  buildGetPollerHelper,
-  buildRestorePollerHelper
-} from "./modular/buildLroFiles.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
-import {
-  buildPagingHelpers as buildModularPagingHelpers,
-  buildPagingTypes
-} from "./modular/buildPagingFiles.js";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
   buildRootIndex,
@@ -68,14 +60,33 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
+import { provideBinder } from "./framework/hooks/binder.js";
+import { loadStaticHelpers } from "./framework/load-static-helpers.js";
+import {
+  PagingHelpers,
+  PollingHelpers,
+  SerializationHelpers
+} from "./modular/static-helpers-metadata.js";
+import {
+  AzureCoreDependencies,
+  AzurePollingDependencies
+} from "./modular/external-dependencies.js";
+import { emitLoggerFile } from "./modular/emitLoggerFile.js";
+import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
+  const outputProject = new Project();
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
-  const dpgContext = createContextWithDefaultOptions(context);
+  const dpgContext = await createContextWithDefaultOptions(context);
+  const rlcOptions: RLCOptions = transformRLCOptions(
+    emitterOptions,
+    dpgContext
+  );
+
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -84,12 +95,32 @@ export async function $onEmit(context: EmitContext) {
   provideContext("rlcMetaTree", new Map());
   provideContext("symbolMap", new Map());
   provideContext("modularMetaTree", new Map());
-  provideContext("outputProject", new Project());
+  provideContext("outputProject", outputProject);
   provideContext("emitContext", {
     compilerContext: context,
     tcgcContext: dpgContext
   });
   provideSdkTypes(dpgContext.sdkPackage);
+  const { modularSourcesDir } = await calculateGenerationDir();
+  const staticHelpers = await loadStaticHelpers(
+    outputProject,
+    {
+      ...SerializationHelpers,
+      ...PagingHelpers,
+      ...PollingHelpers
+    },
+    { sourcesDir: modularSourcesDir }
+  );
+  const extraDependencies =
+    rlcOptions?.flavor === "azure"
+      ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+      : {};
+  const binder = provideBinder(outputProject, {
+    staticHelpers,
+    dependencies: {
+      ...extraDependencies
+    }
+  });
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
@@ -97,10 +128,17 @@ export async function $onEmit(context: EmitContext) {
   await enrichDpgContext();
   // 2. Clear sources folder
   await clearSrcFolder();
-  // 3. Generate RLC sources
-  await generateRLCSources();
-  // 4. Generate Modular sources
-  await generateModularSources();
+  // 3. Generate RLC code model
+  // TODO: skip this step in modular once modular generator is sufficiently decoupled
+  await buildRLCCodeModels();
+
+  // 4. Generate sources
+  if (emitterOptions.isModularLibrary) {
+    await generateModularSources();
+  } else {
+    await generateRLCSources();
+  }
+
   // 5. Generate metadata and test files
   await generateMetadataAndTest();
 
@@ -108,16 +146,15 @@ export async function $onEmit(context: EmitContext) {
     const generationPathDetail: GenerationDirDetail =
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
-    const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
     );
-    options.generateTest =
-      options.generateTest === true ||
-      (options.generateTest === undefined &&
+    rlcOptions.generateTest =
+      rlcOptions.generateTest === true ||
+      (rlcOptions.generateTest === undefined &&
         !hasTestFolder &&
-        options.flavor === "azure");
-    dpgContext.rlcOptions = options;
+        rlcOptions.flavor === "azure");
+    dpgContext.rlcOptions = rlcOptions;
   }
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
@@ -148,7 +185,7 @@ export async function $onEmit(context: EmitContext) {
     );
   }
 
-  async function generateRLCSources() {
+  async function buildRLCCodeModels() {
     const clients = getRLCClients(dpgContext);
     for (const client of clients) {
       const rlcModels = await transformRLCModel(client, dpgContext);
@@ -158,7 +195,11 @@ export async function $onEmit(context: EmitContext) {
         getClientName(rlcModels),
         hasUnexpectedHelper(rlcModels)
       );
+    }
+  }
 
+  async function generateRLCSources() {
+    for (const rlcModels of rlcCodeModels) {
       await emitModels(rlcModels, program);
       await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
       await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -181,90 +222,72 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
-    if (emitterOptions.isModularLibrary) {
-      // TODO: Emit modular parts of the library
-      const modularSourcesRoot =
-        dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
-      const project = useContext("outputProject");
-      emitSerializerHelpersFile(project, modularSourcesRoot);
-      modularCodeModel = emitCodeModel(
-        dpgContext,
-        serviceNameToRlcModelsMap,
-        modularSourcesRoot,
-        project,
-        {
-          casing: "camel"
-        }
-      );
-      const rootIndexFile = project.createSourceFile(
-        `${modularSourcesRoot}/index.ts`,
-        "",
-        {
-          overwrite: true
-        }
-      );
+    const modularSourcesRoot =
+      dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
+    const project = useContext("outputProject");
+    emitSerializerHelpersFile(project, modularSourcesRoot);
+    modularCodeModel = emitCodeModel(
+      dpgContext,
+      serviceNameToRlcModelsMap,
+      modularSourcesRoot,
+      project,
+      {
+        casing: "camel"
+      }
+    );
 
-      const isMultiClients = modularCodeModel.clients.length > 1;
-      for (const subClient of modularCodeModel.clients) {
-        buildModels(subClient, modularCodeModel);
-        buildModelsOptions(subClient, modularCodeModel);
-        const hasClientUnexpectedHelper =
-          needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
-        if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
-          buildSerializeUtils(modularCodeModel);
-        // build paging files
-        buildPagingTypes(subClient, modularCodeModel);
-        buildModularPagingHelpers(
-          subClient,
-          modularCodeModel,
-          hasClientUnexpectedHelper,
-          isMultiClients
-        );
-        // build operation files
-        buildOperationFiles(
-          subClient,
-          dpgContext,
-          modularCodeModel,
-          hasClientUnexpectedHelper
-        );
-        buildClientContext(subClient, dpgContext, modularCodeModel);
-        buildSubpathIndexFile(subClient, modularCodeModel, "models");
-        // build lro files
-        buildGetPollerHelper(
-          modularCodeModel,
-          subClient,
-          hasClientUnexpectedHelper,
-          isMultiClients
-        );
-        buildRestorePollerHelper(modularCodeModel, subClient);
-        if (dpgContext.rlcOptions?.hierarchyClient) {
-          buildSubpathIndexFile(subClient, modularCodeModel, "api");
-        } else {
-          buildSubpathIndexFile(subClient, modularCodeModel, "api", {
-            exportIndex: true
-          });
-        }
+    emitLoggerFile(modularCodeModel, project, modularSourcesRoot);
 
-        buildClassicalClient(subClient, dpgContext, modularCodeModel);
-        buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
-        buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
-          exportIndex: true,
-          interfaceOnly: true
+    const rootIndexFile = project.createSourceFile(
+      `${modularSourcesRoot}/index.ts`,
+      "",
+      {
+        overwrite: true
+      }
+    );
+
+    const isMultiClients = modularCodeModel.clients.length > 1;
+
+    for (const subClient of modularCodeModel.clients) {
+      buildModels(subClient, modularCodeModel);
+      buildModelsOptions(subClient, modularCodeModel);
+      if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
+        buildSerializeUtils(modularCodeModel);
+      // build operation files
+      buildOperationFiles(subClient, dpgContext, modularCodeModel);
+      buildClientContext(subClient, dpgContext, modularCodeModel);
+      buildSubpathIndexFile(subClient, modularCodeModel, "models");
+      buildRestorePoller(modularCodeModel, subClient);
+      if (dpgContext.rlcOptions?.hierarchyClient) {
+        buildSubpathIndexFile(subClient, modularCodeModel, "api");
+      } else {
+        buildSubpathIndexFile(subClient, modularCodeModel, "api", {
+          exportIndex: true
         });
-        if (isMultiClients) {
-          buildSubClientIndexFile(subClient, modularCodeModel);
-        }
-        buildRootIndex(subClient, modularCodeModel, rootIndexFile);
       }
 
-      for (const file of project.getSourceFiles()) {
-        await emitContentByBuilder(
-          program,
-          () => ({ content: file.getFullText(), path: file.getFilePath() }),
-          modularCodeModel as any
-        );
-        // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
+      buildClassicalClient(subClient, dpgContext, modularCodeModel);
+      buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
+      buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
+        exportIndex: true,
+        interfaceOnly: true
+      });
+      if (isMultiClients) {
+        buildSubClientIndexFile(subClient, modularCodeModel);
       }
+      buildRootIndex(subClient, modularCodeModel, rootIndexFile);
+    }
+
+    binder.resolveAllReferences();
+
+    for (const file of project.getSourceFiles()) {
+      file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+      file.fixUnusedIdentifiers();
+      await emitContentByBuilder(
+        program,
+        () => ({ content: file.getFullText(), path: file.getFilePath() }),
+        modularCodeModel as any
+      );
     }
   }
 
@@ -335,9 +358,9 @@ export async function $onEmit(context: EmitContext) {
   }
 }
 
-export function createContextWithDefaultOptions(
+export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
-): SdkContext {
+): Promise<SdkContext> {
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
@@ -354,5 +377,5 @@ export function createContextWithDefaultOptions(
     ...tcgcSettings
   };
 
-  return createSdkContext(context) as SdkContext;
+  return (await createSdkContext(context)) as SdkContext;
 }

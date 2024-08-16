@@ -13,8 +13,8 @@ import {
 } from "./classic/budgets/index.js";
 import {
   createWidgetService,
-  WidgetServiceClientOptionalParams,
   WidgetServiceContext,
+  WidgetServiceClientOptionalParams,
 } from "./api/index.js";
 
 export { WidgetServiceClientOptionalParams } from "./api/widgetServiceContext.js";
@@ -33,7 +33,6 @@ export class WidgetServiceClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createWidgetService(endpoint, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

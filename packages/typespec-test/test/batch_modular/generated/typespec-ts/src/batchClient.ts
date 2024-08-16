@@ -123,11 +123,10 @@ import {
   GetNodeFilePropertiesOptionalParams,
   ListNodeFilesOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBatch,
-  BatchClientOptionalParams,
   BatchContext,
+  BatchClientOptionalParams,
   listApplications,
   getApplication,
   listPoolUsageMetrics,
@@ -205,6 +204,7 @@ import {
   getNodeFileProperties,
   listNodeFiles,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 
 export { BatchClientOptionalParams } from "./api/batchContext.js";
 
@@ -223,7 +223,6 @@ export class BatchClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createBatch(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

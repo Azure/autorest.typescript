@@ -9,8 +9,8 @@ import {
 } from "./classic/fooOperations/index.js";
 import {
   createWidgetManager,
-  WidgetManagerClientOptionalParams,
   WidgetManagerContext,
+  WidgetManagerClientOptionalParams,
 } from "./api/index.js";
 
 export { WidgetManagerClientOptionalParams } from "./api/widgetManagerContext.js";
@@ -29,7 +29,6 @@ export class WidgetManagerClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createWidgetManager(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

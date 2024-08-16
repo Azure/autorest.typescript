@@ -2,10 +2,11 @@
 // Licensed under the MIT license.
 
 import { A } from "../../models/models.js";
-import { DOp1204Response, FooContext as Client } from "../../rest/index.js";
+import { FooContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { DOp1OptionalParams } from "../../models/options.js";
@@ -14,7 +15,7 @@ export function _op1Send(
   context: Client,
   body: A,
   options: DOp1OptionalParams = { requestOptions: {} },
-): StreamableMethod<DOp1204Response> {
+): StreamableMethod {
   return context
     .path("/d")
     .post({
@@ -23,8 +24,11 @@ export function _op1Send(
     });
 }
 
-export async function _op1Deserialize(result: DOp1204Response): Promise<void> {
-  if (result.status !== "204") {
+export async function _op1Deserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

@@ -8,30 +8,18 @@ import {
   _PagedSchemaGroup,
   _PagedVersion,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
-import {
-  GetSchemaById200Response,
-  GetSchemaByIdDefaultResponse,
-  GetSchemaByVersion200Response,
-  GetSchemaByVersionDefaultResponse,
-  GetSchemaIdByContent204Response,
-  GetSchemaIdByContentDefaultResponse,
-  isUnexpected,
-  ListSchemaGroups200Response,
-  ListSchemaGroupsDefaultResponse,
-  ListSchemaVersions200Response,
-  ListSchemaVersionsDefaultResponse,
-  RegisterSchema204Response,
-  RegisterSchemaDefaultResponse,
-  SchemaRegistryContext as Client,
-} from "../../rest/index.js";
+import { SchemaRegistryContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
 import {
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
@@ -46,27 +34,22 @@ export function _listSchemaGroupsSend(
   options: SchemaOperationsListSchemaGroupsOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/$schemaGroups")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-    }) as StreamableMethod<
-    ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
-  >;
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listSchemaGroupsDeserialize(
-  result: ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedSchemaGroup> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return { groupName: p["groupName"] };
     }),
     nextLink: result.body["nextLink"],
@@ -84,6 +67,7 @@ export function listSchemaGroups(
     context,
     () => _listSchemaGroupsSend(context, options),
     _listSchemaGroupsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -92,16 +76,17 @@ export function _getSchemaByIdSend(
   context: Client,
   id: string,
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetSchemaById200Response | GetSchemaByIdDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/$schemaGroups/$schemas/{id}", id)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getSchemaByIdDeserialize(
-  result: GetSchemaById200Response | GetSchemaByIdDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -127,23 +112,22 @@ export function _listSchemaVersionsSend(
   options: SchemaOperationsListSchemaVersionsOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/$schemaGroups/{groupName}/schemas/{name}/versions", groupName, name)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listSchemaVersionsDeserialize(
-  result: ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PagedVersion> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return { schemaVersion: p["schemaVersion"] };
     }),
     nextLink: result.body["nextLink"],
@@ -163,6 +147,7 @@ export function listSchemaVersions(
     context,
     () => _listSchemaVersionsSend(context, groupName, name, options),
     _listSchemaVersionsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -175,9 +160,7 @@ export function _getSchemaByVersionSend(
   options: SchemaOperationsGetSchemaByVersionOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}",
@@ -189,9 +172,10 @@ export function _getSchemaByVersionSend(
 }
 
 export async function _getSchemaByVersionDeserialize(
-  result: GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -229,9 +213,7 @@ export function _getSchemaIdByContentSend(
   options: SchemaOperationsGetSchemaIdByContentOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  GetSchemaIdByContent204Response | GetSchemaIdByContentDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/$schemaGroups/{groupName}/schemas/{name}:get-id", groupName, name)
     .post({
@@ -242,9 +224,10 @@ export function _getSchemaIdByContentSend(
 }
 
 export async function _getSchemaIdByContentDeserialize(
-  result: GetSchemaIdByContent204Response | GetSchemaIdByContentDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -282,7 +265,7 @@ export function _registerSchemaSend(
   options: SchemaOperationsRegisterSchemaOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<RegisterSchema204Response | RegisterSchemaDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/$schemaGroups/{groupName}/schemas/{name}", groupName, name)
     .put({
@@ -293,9 +276,10 @@ export function _registerSchemaSend(
 }
 
 export async function _registerSchemaDeserialize(
-  result: RegisterSchema204Response | RegisterSchemaDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

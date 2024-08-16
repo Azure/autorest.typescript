@@ -1,22 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "../pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import { User } from "../../models/models.js";
-import {
-  BudgetsCreateOrReplace200Response,
-  BudgetsCreateOrReplace201Response,
-  BudgetsCreateOrReplaceDefaultResponse,
-  BudgetsCreateOrReplaceLogicalResponse,
-  isUnexpected,
-  WidgetServiceContext as Client,
-} from "../../rest/index.js";
+import { WidgetServiceContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
 
 export function _createOrReplaceSend(
@@ -24,12 +18,7 @@ export function _createOrReplaceSend(
   name: string,
   resource: User,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | BudgetsCreateOrReplace200Response
-  | BudgetsCreateOrReplace201Response
-  | BudgetsCreateOrReplaceDefaultResponse
-  | BudgetsCreateOrReplaceLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path("/budgets/widgets/createOrReplace/users/{name}", name)
     .put({
@@ -40,21 +29,17 @@ export function _createOrReplaceSend(
 }
 
 export async function _createOrReplaceDeserialize(
-  result:
-    | BudgetsCreateOrReplace200Response
-    | BudgetsCreateOrReplace201Response
-    | BudgetsCreateOrReplaceDefaultResponse
-    | BudgetsCreateOrReplaceLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<User> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as BudgetsCreateOrReplaceLogicalResponse;
   return {
-    name: res.body["name"],
-    role: res.body["role"],
-    id: res.body["id"],
+    name: result.body["name"],
+    role: result.body["role"],
+    id: result.body["id"],
   };
 }
 
@@ -65,10 +50,15 @@ export function createOrReplace(
   resource: User,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(context, _createOrReplaceDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createOrReplaceSend(context, name, resource, options),
-  }) as PollerLike<OperationState<User>, User>;
+  return getLongRunningPoller(
+    context,
+    _createOrReplaceDeserialize,
+    ["200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _createOrReplaceSend(context, name, resource, options),
+    },
+  ) as PollerLike<OperationState<User>, User>;
 }
