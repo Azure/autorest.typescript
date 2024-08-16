@@ -61,6 +61,7 @@ import {
   RLCModel,
   buildRuntimeImports,
   getClientName,
+  isAzurePackage,
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
@@ -667,7 +668,7 @@ function emitOperation(
   rlcModels: RLCModel,
   hierarchies: string[]
 ): HrlcOperation {
-  const isAzureFlavor = rlcModels.options?.flavor === "azure";
+  const isAzureFlavor = isAzurePackage(rlcModels);
   const emittedOperation = emitBasicOperation(
     context,
     operation,

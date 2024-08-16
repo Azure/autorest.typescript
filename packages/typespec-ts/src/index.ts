@@ -29,7 +29,8 @@ import {
   RLCModel,
   RLCOptions,
   buildLicenseFile,
-  updatePackageFile
+  updatePackageFile,
+  isAzurePackage
 } from "@azure-tools/rlc-common";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { EmitContext, Program } from "@typespec/compiler";
@@ -102,7 +103,7 @@ export async function $onEmit(context: EmitContext) {
     tcgcContext: dpgContext
   });
   provideSdkTypes(dpgContext.sdkPackage);
-  const { modularSourcesDir } = await calculateGenerationDir();
+  const { modularSourcesDir } = await calculateGenerationDir(rlcOptions);
   const staticHelpers = await loadStaticHelpers(
     outputProject,
     {
@@ -112,10 +113,9 @@ export async function $onEmit(context: EmitContext) {
     },
     { sourcesDir: modularSourcesDir }
   );
-  const extraDependencies =
-    rlcOptions?.flavor === "azure"
-      ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
-      : {};
+  const extraDependencies = isAzurePackage({ options: rlcOptions })
+    ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+    : {};
   const binder = provideBinder(outputProject, {
     staticHelpers,
     dependencies: {
@@ -155,7 +155,7 @@ export async function $onEmit(context: EmitContext) {
       rlcOptions.generateTest === true ||
       (rlcOptions.generateTest === undefined &&
         !hasTestFolder &&
-        rlcOptions.flavor === "azure");
+        isAzurePackage({ options: rlcOptions }));
     dpgContext.rlcOptions = rlcOptions;
   }
 
@@ -305,7 +305,7 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
-    const isAzureFlavor = option.flavor === "azure";
+    const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
     const existingPackageFilePath = join(
       dpgContext.generationPathDetail?.metadataDir ?? "",

@@ -13,6 +13,11 @@ import {
 } from "../helpers/operationHelpers.js";
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
 import { Project } from "ts-morph";
+import {
+  isAzurePackage,
+  isAzureMonorepoPackage,
+  isAzureStandalonePackage
+} from "../helpers/packageUtil.js";
 
 export function buildPackageFile(
   model: RLCModel,
@@ -124,23 +129,6 @@ function getDescription(model: RLCModel): string {
 
 function getPackageName(model: RLCModel): string {
   return model.options?.packageDetails?.name ?? model.libraryName;
-}
-
-function isAzureMonorepoPackage(model: RLCModel): boolean {
-  return (
-    Boolean(model.options?.azureSdkForJs) &&
-    Boolean(model.options?.flavor === "azure")
-  );
-}
-
-function isAzurePackage(model: RLCModel): boolean {
-  return Boolean(model.options?.flavor === "azure");
-}
-
-function isAzureStandalonePackage(model: RLCModel): boolean {
-  return (
-    Boolean(model.options?.flavor === "azure") && !model.options?.azureSdkForJs
-  );
 }
 
 function getClientFilePath(model: RLCModel) {
