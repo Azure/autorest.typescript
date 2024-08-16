@@ -1,10 +1,10 @@
+import { ResiliencyServiceDrivenClient } from "./generated/resiliency/srv-driven-main/src/index.js";
 import { assert } from "chai";
-import { ServiceDrivenClient } from "./generated/resiliency/srv-driven-main/generated/src/index.js";
 describe("Service Driven new Client v1", () => {
-  let client: ServiceDrivenClient;
+  let client: ResiliencyServiceDrivenClient;
 
   beforeEach(() => {
-    client = new ServiceDrivenClient("http://localhost:3002", "v2", {
+    client = new ResiliencyServiceDrivenClient("http://localhost:3002", "v2", {
       allowInsecureConnection: true,
       apiVersion: "v1"
     });
@@ -33,10 +33,10 @@ describe("Service Driven new Client v1", () => {
   });
 });
 describe("Service Driven new Client v2", () => {
-  let client: ServiceDrivenClient;
+  let client: ResiliencyServiceDrivenClient;
 
   beforeEach(() => {
-    client = new ServiceDrivenClient("http://localhost:3002", "v2", {
+    client = new ResiliencyServiceDrivenClient("http://localhost:3002", "v2", {
       allowInsecureConnection: true,
       apiVersion: "v2"
     });

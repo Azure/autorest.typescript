@@ -134,9 +134,9 @@ export function getCommonPackageScripts({
     "extract-api":
       "rimraf review && mkdirp ./review && api-extractor run --local",
     pack: "npm pack 2>&1",
-    lint: "eslint package.json api-extractor.json src  --ext .ts",
+    lint: "eslint package.json api-extractor.json src",
     "lint:fix":
-      "eslint package.json api-extractor.json src  --ext .ts --fix --fix-type [problem,suggestion]",
+      "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
     ...(withTests && testScripts)
   };
 }

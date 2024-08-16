@@ -122,7 +122,9 @@ export function buildGetClientOptionsParam(
   const loggingOptions = buildLoggingOptions(codeModel.options.flavor);
   const credentials = buildCredentials(codeModel, endpointParam);
 
-  let expr = `const updatedOptions = { ...options,`;
+  let expr = "const { apiVersion: _, ...updatedOptions } = {";
+
+  expr += "...options,";
 
   if (userAgentOptions) {
     expr += `userAgentOptions: ${userAgentOptions},`;
