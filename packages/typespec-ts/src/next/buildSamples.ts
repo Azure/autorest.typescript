@@ -141,12 +141,21 @@ function buildExamplesForMethod(
     const prefix = options.operationGroupPrefix
       ? `${options.operationGroupPrefix}.`
       : "";
-    exampleFunctionBody.push(
-      `const result = await client.${prefix}${method.name}(${methodParams.join(
-        ", "
-      )});`
-    );
-    exampleFunctionBody.push(`console.log(result);`);
+    const isPaging = method.kind === "paging";
+    const methodCall = `client.${prefix}${method.name}(${methodParams.join(
+      ", "
+    )})`;
+    if (isPaging) {
+      exampleFunctionBody.push(`const resArray = new Array();`);
+      exampleFunctionBody.push(
+        `for await (let item of ${methodCall}) { resArray.push(item); }`
+      );
+      exampleFunctionBody.push(`console.log(resArray);`);
+    } else {
+      exampleFunctionBody.push(`const result = await ${methodCall};`);
+      exampleFunctionBody.push(`console.log(result);`);
+    }
+
     // Create a function declaration structure
     const normalizedDescription =
       (method.description?.charAt(0).toLowerCase() ?? "") +

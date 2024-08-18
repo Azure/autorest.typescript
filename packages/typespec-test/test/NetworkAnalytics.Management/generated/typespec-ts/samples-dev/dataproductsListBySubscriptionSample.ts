@@ -13,8 +13,12 @@ async function dataProductsListBySubscriptionMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.listBySubscription();
-  console.log(result);
+  const resArray = new Array();
+  for await (let item of client.dataproducts.listBySubscription()) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
 }
 
 /**
@@ -27,8 +31,12 @@ async function dataProductsListBySubscriptionMaximumSetGenGeneratedByMinimumSetR
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.listBySubscription();
-  console.log(result);
+  const resArray = new Array();
+  for await (let item of client.dataproducts.listBySubscription()) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
 }
 
 async function main() {

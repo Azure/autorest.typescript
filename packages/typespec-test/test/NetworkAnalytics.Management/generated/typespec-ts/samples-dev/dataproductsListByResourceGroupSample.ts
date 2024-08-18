@@ -13,10 +13,14 @@ async function dataProductsListByResourceGroupMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.listByResourceGroup(
+  const resArray = new Array();
+  for await (let item of client.dataproducts.listByResourceGroup(
     "aoiresourceGroupName",
-  );
-  console.log(result);
+  )) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
 }
 
 /**
@@ -29,10 +33,14 @@ async function dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSet
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.listByResourceGroup(
+  const resArray = new Array();
+  for await (let item of client.dataproducts.listByResourceGroup(
     "aoiresourceGroupName",
-  );
-  console.log(result);
+  )) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
 }
 
 async function main() {
