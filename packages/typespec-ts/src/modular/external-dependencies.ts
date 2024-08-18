@@ -138,3 +138,11 @@ export const AzureCoreDependencies: CoreDependencies = {
     name: "uint8ArrayToString"
   }
 };
+
+export const AzureIdentityDependencies = {
+  DefaultAzureCredential: {
+    kind: "externalDependency",
+    module: "@azure/identity",
+    name: "DefaultAzureCredential"
+  }
+};

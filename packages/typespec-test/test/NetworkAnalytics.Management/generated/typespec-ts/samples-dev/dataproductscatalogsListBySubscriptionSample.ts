@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { DefaultAzureCredential } from "@azure/identity";
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
 /**

@@ -70,6 +70,7 @@ import {
 } from "./modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
+  AzureIdentityDependencies,
   AzurePollingDependencies
 } from "./modular/external-dependencies.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
@@ -114,7 +115,11 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies =
     rlcOptions?.flavor === "azure"
-      ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+      ? {
+          ...AzurePollingDependencies,
+          ...AzureCoreDependencies,
+          ...AzureIdentityDependencies
+        }
       : {};
   const binder = provideBinder(outputProject, {
     staticHelpers,

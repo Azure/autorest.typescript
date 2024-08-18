@@ -13,6 +13,7 @@ import { emitCredential } from "./emitCredential.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
+import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 
 export function buildSamples(dpgContext: SdkContext) {
   for (const client of dpgContext.sdkPackage.clients) {
@@ -93,8 +94,11 @@ function buildExamplesForMethod(
     };
     // prepare client-level parameters
     if (options.credentialType) {
+      // Only support DefaultAzureCredential for now
       exampleFunctionBody.push(
-        `const credential = new ${options.credentialType}();`
+        `const credential = new ${resolveReference(
+          AzureIdentityDependencies.DefaultAzureCredential
+        )}();`
       );
       clientParams.push("credential");
     }
