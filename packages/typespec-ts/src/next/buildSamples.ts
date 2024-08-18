@@ -98,7 +98,15 @@ function buildExamplesForMethod(
       );
       clientParams.push("credential");
     }
+    let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
     for (const param of example.parameters) {
+      if (
+        param.parameter.name === "subscriptionId" &&
+        dpgContext.rlcOptions?.azureArm
+      ) {
+        subscriptionIdValue = getParameterValue(param.value);
+        continue;
+      }
       if (
         param.parameter.type.kind === "constant" ||
         param.parameter.onClient === false
@@ -111,9 +119,17 @@ function buildExamplesForMethod(
       );
       clientParams.push(paramName);
     }
+    // always add subscriptionId for ARM clients
+    if (dpgContext.rlcOptions?.azureArm) {
+      exampleFunctionBody.push(
+        `const subscriptionId = ${subscriptionIdValue};`
+      );
+      clientParams.push("subscriptionId");
+    }
     exampleFunctionBody.push(
       `const client = new ${options.clientName}(${clientParams.join(", ")});`
     );
+
     // prepare operation-level parameters
     for (const param of example.parameters) {
       if (param.parameter.onClient === true) {
@@ -169,7 +185,7 @@ function getCredentialType(initialization: SdkInitializationType) {
     : undefined;
 }
 
-function getParameterValue(value: SdkTypeExample) {
+function getParameterValue(value: SdkTypeExample): string {
   let retValue = value.value;
   switch (value.kind) {
     case "string": {
@@ -221,7 +237,7 @@ function getParameterValue(value: SdkTypeExample) {
       retValue = "{} as any";
       break;
   }
-  return retValue;
+  return `${retValue}`;
 }
 
 function escapeSpecialCharToSpace(str: string) {
