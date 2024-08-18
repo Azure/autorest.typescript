@@ -14,7 +14,7 @@ async function dataTypesUpdateMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.datatypes.update(
+  const result = await client.dataTypes.update(
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",
@@ -39,7 +39,7 @@ async function dataTypesUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGe
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.datatypes.update(
+  const result = await client.dataTypes.update(
     "aoiresourceGroupName",
     "dataproduct01",
     "datatypename",

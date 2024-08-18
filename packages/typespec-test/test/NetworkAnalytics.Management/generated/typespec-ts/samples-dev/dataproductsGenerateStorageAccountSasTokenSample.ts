@@ -14,7 +14,7 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.generateStorageAccountSasToken(
+  const result = await client.dataProducts.generateStorageAccountSasToken(
     "aoiresourceGroupName",
     "dataproduct01",
     {
@@ -36,7 +36,7 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedB
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.generateStorageAccountSasToken(
+  const result = await client.dataProducts.generateStorageAccountSasToken(
     "aoiresourceGroupName",
     "dataproduct01",
     {

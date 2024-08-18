@@ -14,7 +14,7 @@ async function dataProductsRotateKeyMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.rotateKey(
+  const result = await client.dataProducts.rotateKey(
     "aoiresourceGroupName",
     "dataproduct01",
     { keyVaultUrl: "https://myKeyVault.vault.azure.net" },
@@ -32,7 +32,7 @@ async function dataProductsRotateKeyMaximumSetGenGeneratedByMinimumSetRuleMinimu
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataproducts.rotateKey(
+  const result = await client.dataProducts.rotateKey(
     "aoiresourceGroupName",
     "dataproduct01",
     { keyVaultUrl: "https://myKeyVault.vault.azure.net" },

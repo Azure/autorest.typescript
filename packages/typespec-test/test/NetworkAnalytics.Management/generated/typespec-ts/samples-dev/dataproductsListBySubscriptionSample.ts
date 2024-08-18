@@ -15,7 +15,7 @@ async function dataProductsListBySubscriptionMaximumSetGen(): void {
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.dataproducts.listBySubscription()) {
+  for await (let item of client.dataProducts.listBySubscription()) {
     resArray.push(item);
   }
 
@@ -33,7 +33,7 @@ async function dataProductsListBySubscriptionMaximumSetGenGeneratedByMinimumSetR
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.dataproducts.listBySubscription()) {
+  for await (let item of client.dataProducts.listBySubscription()) {
     resArray.push(item);
   }
 

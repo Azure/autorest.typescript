@@ -39,7 +39,10 @@ function buildClassicalClientSample(
         buildExamplesForMethod(dpgContext, operation, {
           clientName,
           credentialType,
-          operationGroupPrefix: operationOrGroup.response.name.toLowerCase()
+          operationGroupPrefix: normalizeName(
+            operationOrGroup.response.name,
+            NameType.Property
+          )
         });
       }
     } else {

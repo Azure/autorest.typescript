@@ -15,7 +15,7 @@ async function dataProductsCatalogsListByResourceGroupMaximumSetGen(): void {
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.dataproductscatalogs.listByResourceGroup(
+  for await (let item of client.dataProductsCatalogs.listByResourceGroup(
     "aoiresourceGroupName",
   )) {
     resArray.push(item);
@@ -35,7 +35,7 @@ async function dataProductsCatalogsListByResourceGroupMinimumSetGen(): void {
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.dataproductscatalogs.listByResourceGroup(
+  for await (let item of client.dataProductsCatalogs.listByResourceGroup(
     "aoiresourceGroupName",
   )) {
     resArray.push(item);
