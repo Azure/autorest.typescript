@@ -148,12 +148,18 @@ function buildExamplesForMethod(
     );
     exampleFunctionBody.push(`console.log(result);`);
     // Create a function declaration structure
+    const normalizedDescription =
+      (method.description?.charAt(0).toLowerCase() ?? "") +
+      method.description?.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       isAsync: true,
       name: exampleFunctionType.name,
       returnType: exampleFunctionType.returnType,
-      statements: exampleFunctionType.body
+      statements: exampleFunctionType.body,
+      docs: [
+        `This sample demonstrates how to ${normalizedDescription}\n\n@summary ${normalizedDescription}\nx-ms-original-file: ${example.filePath}`
+      ]
     };
     addDeclaration(sourceFile, functionDeclaration, exampleFunctionType);
     exampleFunctions.push(exampleFunctionType);

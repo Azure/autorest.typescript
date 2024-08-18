@@ -3,6 +3,12 @@
 
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
+/**
+ * This sample demonstrates how to list the operations for the provider
+ *
+ * @summary list the operations for the provider
+ * x-ms-original-file: 2023-11-15/Operations_List_MaximumSet_Gen.json
+ */
 async function operationsListMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -11,6 +17,12 @@ async function operationsListMaximumSetGen(): void {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to list the operations for the provider
+ *
+ * @summary list the operations for the provider
+ * x-ms-original-file: 2023-11-15/Operations_List_MinimumSet_Gen.json
+ */
 async function operationsListMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";

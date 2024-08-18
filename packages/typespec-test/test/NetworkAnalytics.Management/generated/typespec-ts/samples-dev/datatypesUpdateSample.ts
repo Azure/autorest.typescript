@@ -3,6 +3,12 @@
 
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
+/**
+ * This sample demonstrates how to update data type resource.
+ *
+ * @summary update data type resource.
+ * x-ms-original-file: 2023-11-15/DataTypes_Update_MaximumSet_Gen.json
+ */
 async function dataTypesUpdateMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -22,6 +28,12 @@ async function dataTypesUpdateMaximumSetGen(): void {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to update data type resource.
+ *
+ * @summary update data type resource.
+ * x-ms-original-file: 2023-11-15/DataTypes_Update_MinimumSet_Gen.json
+ */
 async function dataTypesUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";

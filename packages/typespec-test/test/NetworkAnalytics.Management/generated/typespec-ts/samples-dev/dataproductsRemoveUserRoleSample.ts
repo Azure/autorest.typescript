@@ -3,6 +3,12 @@
 
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
+/**
+ * This sample demonstrates how to remove role from the data product.
+ *
+ * @summary remove role from the data product.
+ * x-ms-original-file: 2023-11-15/DataProducts_RemoveUserRole_MaximumSet_Gen.json
+ */
 async function dataProductsRemoveUserRoleMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -23,6 +29,12 @@ async function dataProductsRemoveUserRoleMaximumSetGen(): void {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to remove role from the data product.
+ *
+ * @summary remove role from the data product.
+ * x-ms-original-file: 2023-11-15/DataProducts_RemoveUserRole_MinimumSet_Gen.json
+ */
 async function dataProductsRemoveUserRoleMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";

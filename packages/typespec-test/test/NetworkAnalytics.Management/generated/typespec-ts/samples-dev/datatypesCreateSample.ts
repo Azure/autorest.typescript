@@ -3,6 +3,12 @@
 
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
+/**
+ * This sample demonstrates how to create data type resource.
+ *
+ * @summary create data type resource.
+ * x-ms-original-file: 2023-11-15/DataTypes_Create_MaximumSet_Gen.json
+ */
 async function dataTypesCreateMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -23,6 +29,12 @@ async function dataTypesCreateMaximumSetGen(): void {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to create data type resource.
+ *
+ * @summary create data type resource.
+ * x-ms-original-file: 2023-11-15/DataTypes_Create_MinimumSet_Gen.json
+ */
 async function dataTypesCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";

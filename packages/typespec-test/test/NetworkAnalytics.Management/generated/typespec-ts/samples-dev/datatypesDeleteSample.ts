@@ -3,6 +3,12 @@
 
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
+/**
+ * This sample demonstrates how to delete data type resource.
+ *
+ * @summary delete data type resource.
+ * x-ms-original-file: 2023-11-15/DataTypes_Delete_MaximumSet_Gen.json
+ */
 async function dataTypesDeleteMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -15,6 +21,12 @@ async function dataTypesDeleteMaximumSetGen(): void {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to delete data type resource.
+ *
+ * @summary delete data type resource.
+ * x-ms-original-file: 2023-11-15/DataTypes_Delete_MinimumSet_Gen.json
+ */
 async function dataTypesDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";

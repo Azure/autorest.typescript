@@ -3,6 +3,12 @@
 
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
+/**
+ * This sample demonstrates how to update data product resource.
+ *
+ * @summary update data product resource.
+ * x-ms-original-file: 2023-11-15/DataProducts_Update_MaximumSet_Gen.json
+ */
 async function dataProductsUpdateMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -31,6 +37,12 @@ async function dataProductsUpdateMaximumSetGen(): void {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to update data product resource.
+ *
+ * @summary update data product resource.
+ * x-ms-original-file: 2023-11-15/DataProducts_Update_MinimumSet_Gen.json
+ */
 async function dataProductsUpdateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";

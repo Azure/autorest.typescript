@@ -237,7 +237,7 @@ importers:
       '@azure-tools/typespec-autorest': '>=0.45.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.45.0 <1.0.0'
       '@azure-tools/typespec-azure-resource-manager': '>=0.45.0 <1.0.0'
-      '@azure-tools/typespec-client-generator-core': '>=0.45.1 <1.0.0'
+      '@azure-tools/typespec-client-generator-core': '>=0.45.3 <1.0.0'
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^3.0.0
@@ -292,10 +292,10 @@ importers:
       '@azure-tools/cadl-ranch-api': 0.4.4
       '@azure-tools/cadl-ranch-expect': 0.14.1_y3yxhtjg35d3g6m2dacugmsjfu
       '@azure-tools/cadl-ranch-specs': 0.34.9_tng6jshqt7yaa5x3ni6zlckyqm
-      '@azure-tools/typespec-autorest': 0.45.0_n4w2xh5fhregk7uzwn23tc3udm
+      '@azure-tools/typespec-autorest': 0.45.0_o6b4rinboa2fjzlsc372ktw7ay
       '@azure-tools/typespec-azure-core': 0.45.0_alrznhyrw66bvx6gp4zrtdfkte
       '@azure-tools/typespec-azure-resource-manager': 0.45.0_rxzquxnvxkwebgrumlsfc6ni5i
-      '@azure-tools/typespec-client-generator-core': 0.45.1_rxzquxnvxkwebgrumlsfc6ni5i
+      '@azure-tools/typespec-client-generator-core': 0.45.3_rxzquxnvxkwebgrumlsfc6ni5i
       '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 3.0.0
@@ -579,6 +579,30 @@ packages:
       '@typespec/openapi': 0.59.0_kqkvcwi4aithpv7x2xgy7toc2q
       '@typespec/rest': 0.59.0_kqkvcwi4aithpv7x2xgy7toc2q
       '@typespec/versioning': 0.59.0_@typespec+compiler@0.59.0
+    dev: false
+
+  /@azure-tools/typespec-autorest/0.45.0_o6b4rinboa2fjzlsc372ktw7ay:
+    resolution: {integrity: sha512-6ycZ0bEfXC0U26FHHEt9smAhxh78SACIDY+u7zLAopRzmxjTuthDdGgYSShuRDu3J+vEBi1fOKpz4cYQkgRkBQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ~0.45.0
+      '@azure-tools/typespec-azure-resource-manager': ~0.45.0
+      '@azure-tools/typespec-client-generator-core': ~0.45.0
+      '@typespec/compiler': ~0.59.0
+      '@typespec/http': ~0.59.0
+      '@typespec/openapi': ~0.59.0
+      '@typespec/rest': ~0.59.0
+      '@typespec/versioning': ~0.59.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.45.0_alrznhyrw66bvx6gp4zrtdfkte
+      '@azure-tools/typespec-azure-resource-manager': 0.45.0_rxzquxnvxkwebgrumlsfc6ni5i
+      '@azure-tools/typespec-client-generator-core': 0.45.3_rxzquxnvxkwebgrumlsfc6ni5i
+      '@typespec/compiler': 0.59.0
+      '@typespec/http': 0.59.0_@typespec+compiler@0.59.0
+      '@typespec/openapi': 0.59.0_kqkvcwi4aithpv7x2xgy7toc2q
+      '@typespec/rest': 0.59.0_kqkvcwi4aithpv7x2xgy7toc2q
+      '@typespec/versioning': 0.59.0_@typespec+compiler@0.59.0
+    dev: true
 
   /@azure-tools/typespec-azure-core/0.45.0_alrznhyrw66bvx6gp4zrtdfkte:
     resolution: {integrity: sha512-GycGMCmaIVSN+TftPtlPJLyeOrglbLmH08ZiZaVMjSih/TQEJM21RGR6d8QdjlkQWN61ntNDRD+RP2uv9tHmqw==}
@@ -631,6 +655,28 @@ packages:
       '@typespec/versioning': 0.59.0_@typespec+compiler@0.59.0
       change-case: 5.4.4
       pluralize: 8.0.0
+    dev: false
+
+  /@azure-tools/typespec-client-generator-core/0.45.3_rxzquxnvxkwebgrumlsfc6ni5i:
+    resolution: {integrity: sha512-o1E38DJnJ71ixK3jHTy42QgY1ztXPGEOhJjdzSb9aI0aXlqqBt0Klgg52RuBHBajQ+RI+nWtGLE+LJaVDSHAqw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ~0.45.0
+      '@typespec/compiler': ~0.59.0
+      '@typespec/http': ~0.59.0
+      '@typespec/openapi': ~0.59.0
+      '@typespec/rest': ~0.59.0
+      '@typespec/versioning': ~0.59.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.45.0_alrznhyrw66bvx6gp4zrtdfkte
+      '@typespec/compiler': 0.59.0
+      '@typespec/http': 0.59.0_@typespec+compiler@0.59.0
+      '@typespec/openapi': 0.59.0_kqkvcwi4aithpv7x2xgy7toc2q
+      '@typespec/rest': 0.59.0_kqkvcwi4aithpv7x2xgy7toc2q
+      '@typespec/versioning': 0.59.0_@typespec+compiler@0.59.0
+      change-case: 5.4.4
+      pluralize: 8.0.0
+    dev: true
 
   /@azure/abort-controller/1.1.0:
     resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}

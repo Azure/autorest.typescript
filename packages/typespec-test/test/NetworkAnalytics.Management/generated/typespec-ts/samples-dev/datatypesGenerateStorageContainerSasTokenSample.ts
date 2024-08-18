@@ -3,6 +3,12 @@
 
 import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
+/**
+ * This sample demonstrates how to generate sas token for storage container.
+ *
+ * @summary generate sas token for storage container.
+ * x-ms-original-file: 2023-11-15/DataTypes_GenerateStorageContainerSasToken_MaximumSet_Gen.json
+ */
 async function dataTypesGenerateStorageContainerSasTokenMaximumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
@@ -20,6 +26,12 @@ async function dataTypesGenerateStorageContainerSasTokenMaximumSetGen(): void {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to generate sas token for storage container.
+ *
+ * @summary generate sas token for storage container.
+ * x-ms-original-file: 2023-11-15/DataTypes_GenerateStorageContainerSasToken_MinimumSet_Gen.json
+ */
 async function dataTypesGenerateStorageContainerSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
