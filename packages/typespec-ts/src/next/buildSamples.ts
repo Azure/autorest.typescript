@@ -77,7 +77,14 @@ function buildExamplesForMethod(
     }
   );
   const exampleFunctions = [];
-  // const dependencies = useDependencies();
+  // TODO: remove hard-coded for package
+  if (dpgContext.rlcOptions?.packageDetails?.name) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: dpgContext.rlcOptions?.packageDetails?.name,
+      namedImports: [options.clientName]
+    });
+  }
+
   for (const example of method.operation.examples ?? []) {
     // build example
     const exampleFunctionBody: string[] = [],

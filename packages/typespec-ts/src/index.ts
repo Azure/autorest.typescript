@@ -113,6 +113,7 @@ export async function $onEmit(context: EmitContext) {
     },
     { sourcesDir: modularSourcesDir }
   );
+
   const extraDependencies =
     rlcOptions?.flavor === "azure"
       ? {

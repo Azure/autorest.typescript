@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { NetworkAnalyticsClient } from "@azure/arm-networkanalytics";
 import { DefaultAzureCredential } from "@azure/identity";
-import { NetworkAnalyticsClient } from "../src/networkAnalyticsClient.js";
 
 /**
  * This sample demonstrates how to list data catalog by resource group.
