@@ -1,6 +1,6 @@
 {
   "name": "@autorest/typescript",
-  "version": "6.0.24",
+  "version": "6.0.26",
   "scripts": {
     "build": "tsc -p . && npm run copyFiles",
     "build:test:browser:rlc": "tsc -p tsconfig.browser-test.json && ts-node test/commands/prepare-deps.ts --browser && webpack --config webpack.config.test.js --env mode=rlc",
@@ -36,7 +36,7 @@
     "validate-version-tolerance": "npm run start-test-server:v2 & npm run generate-version-tolerance && npm run generate-version-tolerance:tests && npm run test-version-tolerance && npm run stop-test-server",
     "generate-version-tolerance": "ts-node ./test/commands/version-tolerance.ts",
     "generate-version-tolerance:tests": "ts-node ./test/commands/version-tolerance.ts --test-gen",
-    "regen-test-baselines": "npm run generate-swaggers && npm run rlc-generate-swaggers && npm run smoke-test",
+    "regen-test-baselines": "npm run generate-swaggers && npm run rlc-generate-swaggers && npm run generate-version-tolerance && npm run smoke-test",
     "test-version-tolerance": "mocha -r ts-node/register --timeout 2000 \"./test/version-tolerance/**/!(sampleTest).spec.ts\"",
     "clone:specs": "git clone -c core.longpaths=true https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
     "smoke-test": "ts-node ./test/commands/smoke-test.ts",
@@ -76,7 +76,7 @@
     "source-map-support": "^0.5.16",
     "ts-morph": "^23.0.0",
     "@azure/core-auth": "^1.6.0",
-    "@azure-tools/rlc-common": "workspace:^0.31.0"
+    "@azure-tools/rlc-common": "workspace:^0.32.0"
   },
   "devDependencies": {
     "@azure-tools/test-recorder": "^3.0.0",

@@ -1,8 +1,9 @@
-import { Channel, AutorestExtensionHost } from "@autorest/extension-base";
+import { AutorestExtensionHost, Channel } from "@autorest/extension-base";
 import { AutorestOptions, getHost, getSession } from "../autorestSession";
 import { DependencyInfo, TracingInfo } from "../models/clientDetails";
-import { PackageDetails } from "../models/packageDetails";
 import { NameType, normalizeName } from "./nameUtils";
+
+import { PackageDetails } from "../models/packageDetails";
 import { PackageFlavor } from "@azure-tools/rlc-common";
 
 /**
@@ -358,7 +359,9 @@ async function getFlavor(host: AutorestExtensionHost): Promise<PackageFlavor> {
 
   if (
     scopeName &&
-    (scopeName.startsWith("azure") || scopeName.startsWith("msinternal"))
+    (scopeName.startsWith("azure") ||
+      scopeName.startsWith("azure-rest") ||
+      scopeName.startsWith("msinternal"))
   ) {
     return "azure";
   } else {

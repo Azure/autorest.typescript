@@ -42,6 +42,9 @@ import {
 } from "./docsHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { buildType, isTypeNullable } from "./typeHelpers.js";
+import { resolveReference } from "../../framework/reference.js";
+import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
+import { AzurePollingDependencies } from "../external-dependencies.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -101,6 +104,7 @@ export function getDeserializePrivateFunction(
   const isLroOnly = isLroOnlyOperation(operation);
 
   // TODO: Support operation overloads
+  // TODO: Support multiple responses
   const response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
@@ -127,7 +131,6 @@ export function getDeserializePrivateFunction(
   statements.push(
     `const expectedStatuses = ${getExpectedStatuses(operation)};`
   );
-
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
     `throw createRestError(result);`,
@@ -312,6 +315,12 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     getOperationSignatureParameters(operation, clientType);
   const returnType = buildLroReturnType(operation);
   const { name, fixme = [] } = getOperationName(operation);
+  const pollerLikeReference = resolveReference(
+    AzurePollingDependencies.PollerLike
+  );
+  const operationStateReference = resolveReference(
+    AzurePollingDependencies.OperationState
+  );
   const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
@@ -322,12 +331,17 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `PollerLike<OperationState<${returnType.type}>, ${returnType.type}>`
+    returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
+
+  const getLongRunningPollerReference = resolveReference(
+    PollingHelpers.GetLongRunningPoller
+  );
 
   const statements: string[] = [];
   statements.push(`
-  return getLongRunningPoller(context, _${name}Deserialize, ${getExpectedStatuses(
+
+  return ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
     operation
   )}, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -335,7 +349,9 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")})
-  }) as PollerLike<OperationState<${returnType.type}>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${
+    returnType.type
+  }>, ${returnType.type}>;
   `);
 
   return {
@@ -370,6 +386,12 @@ function getPagingOnlyOperationFunction(
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
+  const pagedAsyncIterableIteratorReference = resolveReference(
+    PagingHelpers.PagedAsyncIterableIterator
+  );
+  const buildPagedAsyncIteratorReference = resolveReference(
+    PagingHelpers.BuildPagedAsyncIterator
+  );
   const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
@@ -380,7 +402,7 @@ function getPagingOnlyOperationFunction(
     name,
     propertyName: operation.name,
     parameters,
-    returnType: `PagedAsyncIterableIterator<${returnType.type}>`
+    returnType: `${pagedAsyncIterableIteratorReference}<${returnType.type}>`
   };
 
   const statements: string[] = [];
@@ -392,7 +414,7 @@ function getPagingOnlyOperationFunction(
     options.push(`nextLinkName: "${operation.continuationTokenName}"`);
   }
   statements.push(
-    `return buildPagedAsyncIterator(
+    `return ${buildPagedAsyncIteratorReference}(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,

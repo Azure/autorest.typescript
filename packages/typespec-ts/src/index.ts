@@ -28,7 +28,9 @@ import {
   hasUnexpectedHelper,
   RLCModel,
   RLCOptions,
-  buildLicenseFile
+  buildLicenseFile,
+  updatePackageFile,
+  isAzurePackage
 } from "@azure-tools/rlc-common";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { EmitContext, Program } from "@typespec/compiler";
@@ -42,15 +44,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
-import {
-  buildGetPollerHelper,
-  buildRestorePollerHelper
-} from "./modular/buildLroFiles.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
-import {
-  buildPagingHelpers as buildModularPagingHelpers,
-  buildPagingTypes
-} from "./modular/buildPagingFiles.js";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
   buildRootIndex,
@@ -68,15 +62,33 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
+import { provideBinder } from "./framework/hooks/binder.js";
+import { loadStaticHelpers } from "./framework/load-static-helpers.js";
+import {
+  PagingHelpers,
+  PollingHelpers,
+  SerializationHelpers
+} from "./modular/static-helpers-metadata.js";
+import {
+  AzureCoreDependencies,
+  AzurePollingDependencies
+} from "./modular/external-dependencies.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
+import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
+  const outputProject = new Project();
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
+  const rlcOptions: RLCOptions = transformRLCOptions(
+    emitterOptions,
+    dpgContext
+  );
+
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -85,12 +97,31 @@ export async function $onEmit(context: EmitContext) {
   provideContext("rlcMetaTree", new Map());
   provideContext("symbolMap", new Map());
   provideContext("modularMetaTree", new Map());
-  provideContext("outputProject", new Project());
+  provideContext("outputProject", outputProject);
   provideContext("emitContext", {
     compilerContext: context,
     tcgcContext: dpgContext
   });
   provideSdkTypes(dpgContext.sdkPackage);
+  const { modularSourcesDir } = await calculateGenerationDir(rlcOptions);
+  const staticHelpers = await loadStaticHelpers(
+    outputProject,
+    {
+      ...SerializationHelpers,
+      ...PagingHelpers,
+      ...PollingHelpers
+    },
+    { sourcesDir: modularSourcesDir }
+  );
+  const extraDependencies = isAzurePackage({ options: rlcOptions })
+    ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+    : {};
+  const binder = provideBinder(outputProject, {
+    staticHelpers,
+    dependencies: {
+      ...extraDependencies
+    }
+  });
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
@@ -113,28 +144,34 @@ export async function $onEmit(context: EmitContext) {
   await generateMetadataAndTest();
 
   async function enrichDpgContext() {
-    const generationPathDetail: GenerationDirDetail =
-      await calculateGenerationDir();
-    dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    const generationPathDetail: GenerationDirDetail =
+      await calculateGenerationDir(options);
+    dpgContext.generationPathDetail = generationPathDetail;
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
     );
-    options.generateTest =
-      options.generateTest === true ||
-      (options.generateTest === undefined &&
+    rlcOptions.generateTest =
+      rlcOptions.generateTest === true ||
+      (rlcOptions.generateTest === undefined &&
         !hasTestFolder &&
-        options.flavor === "azure");
-    dpgContext.rlcOptions = options;
+        isAzurePackage({ options: rlcOptions }));
+    dpgContext.rlcOptions = rlcOptions;
   }
 
-  async function calculateGenerationDir(): Promise<GenerationDirDetail> {
-    const projectRoot = context.emitterOutputDir ?? "";
-    let sourcesRoot = join(projectRoot, "src");
-    const customizationFolder = join(projectRoot, "sources");
-    if (await fsextra.pathExists(customizationFolder)) {
-      sourcesRoot = join(customizationFolder, "generated", "src");
+  async function calculateGenerationDir(
+    options: RLCOptions
+  ): Promise<GenerationDirDetail> {
+    // clear output folder if needed
+    if (options.clearOutputFolder) {
+      await fsextra.emptyDir(context.emitterOutputDir);
     }
+    const projectRoot = context.emitterOutputDir ?? "";
+    const customizationFolder = join(projectRoot, "generated");
+    // if customization folder exists, use it as sources root
+    const sourcesRoot = (await fsextra.pathExists(customizationFolder))
+      ? customizationFolder
+      : join(projectRoot, "src");
     return {
       rootDir: projectRoot,
       metadataDir: projectRoot,
@@ -224,16 +261,11 @@ export async function $onEmit(context: EmitContext) {
       buildModelsOptions(subClient, modularCodeModel);
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
         buildSerializeUtils(modularCodeModel);
-      // build paging files
-      buildPagingTypes(subClient, modularCodeModel);
-      buildModularPagingHelpers(subClient, modularCodeModel);
       // build operation files
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
       buildSubpathIndexFile(subClient, modularCodeModel, "models");
-      // build lro files
-      buildGetPollerHelper(modularCodeModel, subClient);
-      buildRestorePollerHelper(modularCodeModel, subClient);
+      buildRestorePoller(modularCodeModel, subClient);
       if (dpgContext.rlcOptions?.hierarchyClient) {
         buildSubpathIndexFile(subClient, modularCodeModel, "api");
       } else {
@@ -254,7 +286,11 @@ export async function $onEmit(context: EmitContext) {
       buildRootIndex(subClient, modularCodeModel, rootIndexFile);
     }
 
+    binder.resolveAllReferences();
+
     for (const file of project.getSourceFiles()) {
+      file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+      file.fixUnusedIdentifiers();
       await emitContentByBuilder(
         program,
         () => ({ content: file.getFullText(), path: file.getFilePath() }),
@@ -269,11 +305,13 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
-    const isAzureFlavor = option.flavor === "azure";
+    const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
-    const hasPackageFile = await existsSync(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
+    const existingPackageFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "package.json"
     );
+    const hasPackageFile = await existsSync(existingPackageFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
@@ -316,6 +354,14 @@ export async function $onEmit(context: EmitContext) {
           );
         }
       }
+    } else if (hasPackageFile) {
+      // update existing package.json file with correct dependencies
+      await emitContentByBuilder(
+        program,
+        (model) => updatePackageFile(model, existingPackageFilePath),
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
 
     // Generate test relevant files
