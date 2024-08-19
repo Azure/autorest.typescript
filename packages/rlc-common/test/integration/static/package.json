@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@azure/core-lro": "^1.0.0"
+  }
+}
