@@ -313,7 +313,7 @@ export type GeoJsonType = "Feature";
 
 // @public (undocumented)
 export interface GetJob {
-    get(options: GetJobParameters): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
+    get(options?: GetJobParameters): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
 }
 
 // @public

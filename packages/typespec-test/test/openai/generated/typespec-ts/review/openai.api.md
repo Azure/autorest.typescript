@@ -294,7 +294,7 @@ export interface FunctionName {
 
 // @public (undocumented)
 export interface GetAzureBatchImageGenerationOperationStatus {
-    get(options: GetAzureBatchImageGenerationOperationStatusParameters): StreamableMethod<GetAzureBatchImageGenerationOperationStatus200Response | GetAzureBatchImageGenerationOperationStatusDefaultResponse>;
+    get(options?: GetAzureBatchImageGenerationOperationStatusParameters): StreamableMethod<GetAzureBatchImageGenerationOperationStatus200Response | GetAzureBatchImageGenerationOperationStatusDefaultResponse>;
 }
 
 // @public

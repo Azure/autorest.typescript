@@ -70,7 +70,9 @@ export interface UsersLogin {
 }
 
 export interface UsersLogout {
-  get(options: UsersLogoutParameters): StreamableMethod<UsersLogout200Response>;
+  get(
+    options?: UsersLogoutParameters,
+  ): StreamableMethod<UsersLogout200Response>;
 }
 
 export interface UsersForgotPassword {
@@ -108,19 +110,19 @@ export interface TodoItemsList {
 
 export interface TodoItemsGet {
   get(
-    options: TodoItemsGetParameters,
+    options?: TodoItemsGetParameters,
   ): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
   patch(
     options: TodoItemsUpdateParameters,
   ): StreamableMethod<TodoItemsUpdate200Response>;
   delete(
-    options: TodoItemsDeleteParameters,
+    options?: TodoItemsDeleteParameters,
   ): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
 }
 
 export interface TodoItemsAttachmentsList {
   get(
-    options: TodoItemsAttachmentsListParameters,
+    options?: TodoItemsAttachmentsListParameters,
   ): StreamableMethod<
     TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList404Response
   >;

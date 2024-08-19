@@ -233,7 +233,7 @@ export function isUnexpected(response: LoadTestRunTestRunListServerMetricsConfig
 
 // @public (undocumented)
 export interface LoadTestAdministrationCreateOrUpdateAppComponents {
-    get(options: LoadTestAdministrationGetAppComponentsParameters): StreamableMethod<LoadTestAdministrationGetAppComponents200Response | LoadTestAdministrationGetAppComponentsDefaultResponse>;
+    get(options?: LoadTestAdministrationGetAppComponentsParameters): StreamableMethod<LoadTestAdministrationGetAppComponents200Response | LoadTestAdministrationGetAppComponentsDefaultResponse>;
     patch(options: LoadTestAdministrationCreateOrUpdateAppComponentsParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateAppComponents200Response | LoadTestAdministrationCreateOrUpdateAppComponents201Response | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse>;
 }
 
@@ -284,7 +284,7 @@ export type LoadTestAdministrationCreateOrUpdateAppComponentsParameters = LoadTe
 
 // @public (undocumented)
 export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig {
-    get(options: LoadTestAdministrationGetServerMetricsConfigParameters): StreamableMethod<LoadTestAdministrationGetServerMetricsConfig200Response | LoadTestAdministrationGetServerMetricsConfigDefaultResponse>;
+    get(options?: LoadTestAdministrationGetServerMetricsConfigParameters): StreamableMethod<LoadTestAdministrationGetServerMetricsConfig200Response | LoadTestAdministrationGetServerMetricsConfigDefaultResponse>;
     patch(options: LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse>;
 }
 
@@ -335,8 +335,8 @@ export type LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters = 
 
 // @public (undocumented)
 export interface LoadTestAdministrationCreateOrUpdateTest {
-    delete(options: LoadTestAdministrationDeleteTestParameters): StreamableMethod<LoadTestAdministrationDeleteTest204Response | LoadTestAdministrationDeleteTestDefaultResponse>;
-    get(options: LoadTestAdministrationGetTestParameters): StreamableMethod<LoadTestAdministrationGetTest200Response | LoadTestAdministrationGetTestDefaultResponse>;
+    delete(options?: LoadTestAdministrationDeleteTestParameters): StreamableMethod<LoadTestAdministrationDeleteTest204Response | LoadTestAdministrationDeleteTestDefaultResponse>;
+    get(options?: LoadTestAdministrationGetTestParameters): StreamableMethod<LoadTestAdministrationGetTest200Response | LoadTestAdministrationGetTestDefaultResponse>;
     patch(options: LoadTestAdministrationCreateOrUpdateTestParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateTest200Response | LoadTestAdministrationCreateOrUpdateTest201Response | LoadTestAdministrationCreateOrUpdateTestDefaultResponse>;
 }
 
@@ -539,7 +539,7 @@ export type LoadTestAdministrationGetTestParameters = RequestParameters;
 
 // @public (undocumented)
 export interface LoadTestAdministrationListTestFiles {
-    get(options: LoadTestAdministrationListTestFilesParameters): StreamableMethod<LoadTestAdministrationListTestFiles200Response | LoadTestAdministrationListTestFilesDefaultResponse>;
+    get(options?: LoadTestAdministrationListTestFilesParameters): StreamableMethod<LoadTestAdministrationListTestFiles200Response | LoadTestAdministrationListTestFilesDefaultResponse>;
 }
 
 // @public
@@ -570,7 +570,7 @@ export type LoadTestAdministrationListTestFilesParameters = RequestParameters;
 
 // @public (undocumented)
 export interface LoadTestAdministrationListTests {
-    get(options: LoadTestAdministrationListTestsParameters): StreamableMethod<LoadTestAdministrationListTests200Response | LoadTestAdministrationListTestsDefaultResponse>;
+    get(options?: LoadTestAdministrationListTestsParameters): StreamableMethod<LoadTestAdministrationListTests200Response | LoadTestAdministrationListTestsDefaultResponse>;
 }
 
 // @public
@@ -616,8 +616,8 @@ export interface LoadTestAdministrationListTestsQueryParamProperties {
 
 // @public (undocumented)
 export interface LoadTestAdministrationUploadTestFile {
-    delete(options: LoadTestAdministrationDeleteTestFileParameters): StreamableMethod<LoadTestAdministrationDeleteTestFile204Response | LoadTestAdministrationDeleteTestFileDefaultResponse>;
-    get(options: LoadTestAdministrationGetTestFileParameters): StreamableMethod<LoadTestAdministrationGetTestFile200Response | LoadTestAdministrationGetTestFileDefaultResponse>;
+    delete(options?: LoadTestAdministrationDeleteTestFileParameters): StreamableMethod<LoadTestAdministrationDeleteTestFile204Response | LoadTestAdministrationDeleteTestFileDefaultResponse>;
+    get(options?: LoadTestAdministrationGetTestFileParameters): StreamableMethod<LoadTestAdministrationGetTestFile200Response | LoadTestAdministrationGetTestFileDefaultResponse>;
     put(options: LoadTestAdministrationUploadTestFileParameters): StreamableMethod<LoadTestAdministrationUploadTestFile201Response | LoadTestAdministrationUploadTestFileDefaultResponse>;
 }
 
@@ -687,7 +687,7 @@ export interface LoadTestConfigurationOutput {
 
 // @public (undocumented)
 export interface LoadTestRunCreateOrUpdateAppComponents {
-    get(options: LoadTestRunGetAppComponentsParameters): StreamableMethod<LoadTestRunGetAppComponents200Response | LoadTestRunGetAppComponentsDefaultResponse>;
+    get(options?: LoadTestRunGetAppComponentsParameters): StreamableMethod<LoadTestRunGetAppComponents200Response | LoadTestRunGetAppComponentsDefaultResponse>;
     patch(options: LoadTestRunCreateOrUpdateAppComponentsParameters): StreamableMethod<LoadTestRunCreateOrUpdateAppComponents200Response | LoadTestRunCreateOrUpdateAppComponents201Response | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse>;
 }
 
@@ -738,7 +738,7 @@ export type LoadTestRunCreateOrUpdateAppComponentsParameters = LoadTestRunCreate
 
 // @public (undocumented)
 export interface LoadTestRunCreateOrUpdateServerMetricsConfig {
-    get(options: LoadTestRunTestRunListServerMetricsConfigParameters): StreamableMethod<LoadTestRunTestRunListServerMetricsConfig200Response | LoadTestRunTestRunListServerMetricsConfigDefaultResponse>;
+    get(options?: LoadTestRunTestRunListServerMetricsConfigParameters): StreamableMethod<LoadTestRunTestRunListServerMetricsConfig200Response | LoadTestRunTestRunListServerMetricsConfigDefaultResponse>;
     patch(options: LoadTestRunCreateOrUpdateServerMetricsConfigParameters): StreamableMethod<LoadTestRunCreateOrUpdateServerMetricsConfig200Response | LoadTestRunCreateOrUpdateServerMetricsConfig201Response | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse>;
 }
 
@@ -866,8 +866,8 @@ export interface LoadTestRunCreateOrUpdateTestRunQueryParamProperties {
 
 // @public (undocumented)
 export interface LoadTestRunDeleteTestRun {
-    delete(options: LoadTestRunDeleteTestRunParameters): StreamableMethod<LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse>;
-    get(options: LoadTestRunGetTestRunParameters): StreamableMethod<LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse>;
+    delete(options?: LoadTestRunDeleteTestRunParameters): StreamableMethod<LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse>;
+    get(options?: LoadTestRunGetTestRunParameters): StreamableMethod<LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse>;
     patch(options: LoadTestRunCreateOrUpdateTestRunParameters): StreamableMethod<LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRunDefaultResponse>;
 }
 
@@ -946,7 +946,7 @@ export interface LoadTestRunGetTestRunDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface LoadTestRunGetTestRunFile {
-    get(options: LoadTestRunGetTestRunFileParameters): StreamableMethod<LoadTestRunGetTestRunFile200Response | LoadTestRunGetTestRunFileDefaultResponse>;
+    get(options?: LoadTestRunGetTestRunFileParameters): StreamableMethod<LoadTestRunGetTestRunFile200Response | LoadTestRunGetTestRunFileDefaultResponse>;
 }
 
 // @public
@@ -980,7 +980,7 @@ export type LoadTestRunGetTestRunParameters = RequestParameters;
 
 // @public (undocumented)
 export interface LoadTestRunListMetricDefinitions {
-    get(options: LoadTestRunListMetricDefinitionsParameters): StreamableMethod<LoadTestRunListMetricDefinitions200Response | LoadTestRunListMetricDefinitionsDefaultResponse>;
+    get(options?: LoadTestRunListMetricDefinitionsParameters): StreamableMethod<LoadTestRunListMetricDefinitions200Response | LoadTestRunListMetricDefinitionsDefaultResponse>;
 }
 
 // @public
@@ -1067,7 +1067,7 @@ export interface LoadTestRunListMetricDimensionValuesQueryParamProperties {
 
 // @public (undocumented)
 export interface LoadTestRunListMetricNamespaces {
-    get(options: LoadTestRunListMetricNamespacesParameters): StreamableMethod<LoadTestRunListMetricNamespaces200Response | LoadTestRunListMetricNamespacesDefaultResponse>;
+    get(options?: LoadTestRunListMetricNamespacesParameters): StreamableMethod<LoadTestRunListMetricNamespaces200Response | LoadTestRunListMetricNamespacesDefaultResponse>;
 }
 
 // @public
@@ -1149,7 +1149,7 @@ export interface LoadTestRunListMetricsQueryParamProperties {
 
 // @public (undocumented)
 export interface LoadTestRunListTestRuns {
-    get(options: LoadTestRunListTestRunsParameters): StreamableMethod<LoadTestRunListTestRuns200Response | LoadTestRunListTestRunsDefaultResponse>;
+    get(options?: LoadTestRunListTestRunsParameters): StreamableMethod<LoadTestRunListTestRuns200Response | LoadTestRunListTestRunsDefaultResponse>;
 }
 
 // @public
@@ -1197,7 +1197,7 @@ export interface LoadTestRunListTestRunsQueryParamProperties {
 
 // @public (undocumented)
 export interface LoadTestRunStopTestRun {
-    post(options: LoadTestRunStopTestRunParameters): StreamableMethod<LoadTestRunStopTestRun200Response | LoadTestRunStopTestRunDefaultResponse>;
+    post(options?: LoadTestRunStopTestRunParameters): StreamableMethod<LoadTestRunStopTestRun200Response | LoadTestRunStopTestRunDefaultResponse>;
 }
 
 // @public

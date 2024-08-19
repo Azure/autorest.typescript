@@ -160,8 +160,8 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 
 // @public (undocumented)
 export interface GetWidget {
-    delete(options: DeleteWidgetParameters): StreamableMethod<DeleteWidget202Response | DeleteWidgetDefaultResponse>;
-    get(options: GetWidgetParameters): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse>;
+    delete(options?: DeleteWidgetParameters): StreamableMethod<DeleteWidget202Response | DeleteWidgetDefaultResponse>;
+    get(options?: GetWidgetParameters): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse>;
     patch(options: CreateOrUpdateWidgetParameters): StreamableMethod<CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetDefaultResponse>;
 }
 
@@ -190,7 +190,7 @@ export interface GetWidgetDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface GetWidgetOperationStatus {
-    get(options: GetWidgetOperationStatusParameters): StreamableMethod<GetWidgetOperationStatus200Response | GetWidgetOperationStatusDefaultResponse>;
+    get(options?: GetWidgetOperationStatusParameters): StreamableMethod<GetWidgetOperationStatus200Response | GetWidgetOperationStatusDefaultResponse>;
 }
 
 // @public
@@ -239,7 +239,7 @@ export function isUnexpected(response: ListWidgets200Response | ListWidgetsDefau
 
 // @public (undocumented)
 export interface ListWidgets {
-    get(options: ListWidgetsParameters): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse>;
+    get(options?: ListWidgetsParameters): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse>;
 }
 
 // @public

@@ -14,7 +14,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetJob {
   /** Gets the status and details of the Trial Matcher job. */
   get(
-    options: GetJobParameters,
+    options?: GetJobParameters,
   ): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
 }
 

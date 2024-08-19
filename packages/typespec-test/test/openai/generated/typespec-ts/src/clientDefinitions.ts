@@ -75,7 +75,7 @@ export interface GetChatCompletionsWithAzureExtensions {
 export interface GetAzureBatchImageGenerationOperationStatus {
   /** Returns the status of the images operation */
   get(
-    options: GetAzureBatchImageGenerationOperationStatusParameters,
+    options?: GetAzureBatchImageGenerationOperationStatusParameters,
   ): StreamableMethod<
     | GetAzureBatchImageGenerationOperationStatus200Response
     | GetAzureBatchImageGenerationOperationStatusDefaultResponse

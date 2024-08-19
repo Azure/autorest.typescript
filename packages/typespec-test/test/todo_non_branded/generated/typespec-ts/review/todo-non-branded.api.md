@@ -160,7 +160,7 @@ export type TodoItemsAttachmentsCreateUrlAttachmentParameters = TodoItemsAttachm
 // @public (undocumented)
 export interface TodoItemsAttachmentsList {
     // (undocumented)
-    get(options: TodoItemsAttachmentsListParameters): StreamableMethod<TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList404Response>;
+    get(options?: TodoItemsAttachmentsListParameters): StreamableMethod<TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList404Response>;
     // (undocumented)
     post(options: TodoItemsAttachmentsCreateUrlAttachmentParameters): StreamableMethod<TodoItemsAttachmentsCreateUrlAttachment200Response | TodoItemsAttachmentsCreateUrlAttachment404Response>;
     // (undocumented)
@@ -275,9 +275,9 @@ export type TodoItemsDeleteParameters = RequestParameters;
 // @public (undocumented)
 export interface TodoItemsGet {
     // (undocumented)
-    delete(options: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
+    delete(options?: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
     // (undocumented)
-    get(options: TodoItemsGetParameters): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
+    get(options?: TodoItemsGetParameters): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
     // (undocumented)
     patch(options: TodoItemsUpdateParameters): StreamableMethod<TodoItemsUpdate200Response>;
 }
@@ -525,7 +525,7 @@ export type UsersLoginParameters = UsersLoginBodyParam & RequestParameters;
 // @public (undocumented)
 export interface UsersLogout {
     // (undocumented)
-    get(options: UsersLogoutParameters): StreamableMethod<UsersLogout200Response>;
+    get(options?: UsersLogoutParameters): StreamableMethod<UsersLogout200Response>;
 }
 
 // @public

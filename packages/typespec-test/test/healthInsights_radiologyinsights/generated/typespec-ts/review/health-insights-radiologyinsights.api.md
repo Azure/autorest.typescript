@@ -498,7 +498,7 @@ export interface GenericProcedureRecommendationOutput extends ProcedureRecommend
 
 // @public (undocumented)
 export interface GetJob {
-    get(options: GetJobParameters): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
+    get(options?: GetJobParameters): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
 }
 
 // @public (undocumented)

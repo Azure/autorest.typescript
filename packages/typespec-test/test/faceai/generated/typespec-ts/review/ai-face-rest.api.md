@@ -163,7 +163,7 @@ export interface AddLargeFaceListFaceDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface AddLargeFaceListFaceFromUrl {
-    get(options: GetLargeFaceListFacesParameters): StreamableMethod<GetLargeFaceListFaces200Response | GetLargeFaceListFacesDefaultResponse>;
+    get(options?: GetLargeFaceListFacesParameters): StreamableMethod<GetLargeFaceListFaces200Response | GetLargeFaceListFacesDefaultResponse>;
     post(options: AddLargeFaceListFaceFromUrlParameters): StreamableMethod<AddLargeFaceListFaceFromUrl200Response | AddLargeFaceListFaceFromUrlDefaultResponse>;
     post(options: AddLargeFaceListFaceParameters): StreamableMethod<AddLargeFaceListFace200Response | AddLargeFaceListFaceDefaultResponse>;
 }
@@ -340,7 +340,7 @@ export interface AddLargePersonGroupPersonFaceQueryParamProperties {
 
 // @public (undocumented)
 export interface AddPersonFace {
-    get(options: GetPersonFacesParameters): StreamableMethod<GetPersonFaces200Response | GetPersonFacesDefaultResponse>;
+    get(options?: GetPersonFacesParameters): StreamableMethod<GetPersonFaces200Response | GetPersonFacesDefaultResponse>;
     post(options: AddPersonFaceParameters): StreamableMethod<AddPersonFace202Response | AddPersonFaceDefaultResponse>;
     post(options: AddPersonFaceFromUrlParameters): StreamableMethod<AddPersonFaceFromUrl202Response | AddPersonFaceFromUrlDefaultResponse>;
 }
@@ -627,8 +627,8 @@ export type CreateDynamicPersonGroupParameters = CreateDynamicPersonGroupBodyPar
 
 // @public (undocumented)
 export interface CreateDynamicPersonGroupWithPerson {
-    delete(options: DeleteDynamicPersonGroupParameters): StreamableMethod<DeleteDynamicPersonGroup202Response | DeleteDynamicPersonGroupDefaultResponse>;
-    get(options: GetDynamicPersonGroupParameters): StreamableMethod<GetDynamicPersonGroup200Response | GetDynamicPersonGroupDefaultResponse>;
+    delete(options?: DeleteDynamicPersonGroupParameters): StreamableMethod<DeleteDynamicPersonGroup202Response | DeleteDynamicPersonGroupDefaultResponse>;
+    get(options?: GetDynamicPersonGroupParameters): StreamableMethod<GetDynamicPersonGroup200Response | GetDynamicPersonGroupDefaultResponse>;
     patch(options: UpdateDynamicPersonGroupWithPersonChangesParameters): StreamableMethod<UpdateDynamicPersonGroupWithPersonChanges202Response | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse>;
     patch(options: UpdateDynamicPersonGroupParameters): StreamableMethod<UpdateDynamicPersonGroup200Response | UpdateDynamicPersonGroupDefaultResponse>;
     put(options: CreateDynamicPersonGroupWithPersonParameters): StreamableMethod<CreateDynamicPersonGroupWithPerson202Response | CreateDynamicPersonGroupWithPersonDefaultResponse>;
@@ -685,8 +685,8 @@ export type CreateDynamicPersonGroupWithPersonParameters = CreateDynamicPersonGr
 
 // @public (undocumented)
 export interface CreateFaceList {
-    delete(options: DeleteFaceListParameters): StreamableMethod<DeleteFaceList200Response | DeleteFaceListDefaultResponse>;
-    get(options: GetFaceListParameters): StreamableMethod<GetFaceList200Response | GetFaceListDefaultResponse>;
+    delete(options?: DeleteFaceListParameters): StreamableMethod<DeleteFaceList200Response | DeleteFaceListDefaultResponse>;
+    get(options?: GetFaceListParameters): StreamableMethod<GetFaceList200Response | GetFaceListDefaultResponse>;
     patch(options: UpdateFaceListParameters): StreamableMethod<UpdateFaceList200Response | UpdateFaceListDefaultResponse>;
     put(options: CreateFaceListParameters): StreamableMethod<CreateFaceList200Response | CreateFaceListDefaultResponse>;
 }
@@ -727,8 +727,8 @@ export type CreateFaceListParameters = CreateFaceListBodyParam & RequestParamete
 
 // @public (undocumented)
 export interface CreateLargeFaceList {
-    delete(options: DeleteLargeFaceListParameters): StreamableMethod<DeleteLargeFaceList200Response | DeleteLargeFaceListDefaultResponse>;
-    get(options: GetLargeFaceListParameters): StreamableMethod<GetLargeFaceList200Response | GetLargeFaceListDefaultResponse>;
+    delete(options?: DeleteLargeFaceListParameters): StreamableMethod<DeleteLargeFaceList200Response | DeleteLargeFaceListDefaultResponse>;
+    get(options?: GetLargeFaceListParameters): StreamableMethod<GetLargeFaceList200Response | GetLargeFaceListDefaultResponse>;
     patch(options: UpdateLargeFaceListParameters): StreamableMethod<UpdateLargeFaceList200Response | UpdateLargeFaceListDefaultResponse>;
     put(options: CreateLargeFaceListParameters): StreamableMethod<CreateLargeFaceList200Response | CreateLargeFaceListDefaultResponse>;
 }
@@ -769,8 +769,8 @@ export type CreateLargeFaceListParameters = CreateLargeFaceListBodyParam & Reque
 
 // @public (undocumented)
 export interface CreateLargePersonGroup {
-    delete(options: DeleteLargePersonGroupParameters): StreamableMethod<DeleteLargePersonGroup200Response | DeleteLargePersonGroupDefaultResponse>;
-    get(options: GetLargePersonGroupParameters): StreamableMethod<GetLargePersonGroup200Response | GetLargePersonGroupDefaultResponse>;
+    delete(options?: DeleteLargePersonGroupParameters): StreamableMethod<DeleteLargePersonGroup200Response | DeleteLargePersonGroupDefaultResponse>;
+    get(options?: GetLargePersonGroupParameters): StreamableMethod<GetLargePersonGroup200Response | GetLargePersonGroupDefaultResponse>;
     patch(options: UpdateLargePersonGroupParameters): StreamableMethod<UpdateLargePersonGroup200Response | UpdateLargePersonGroupDefaultResponse>;
     put(options: CreateLargePersonGroupParameters): StreamableMethod<CreateLargePersonGroup200Response | CreateLargePersonGroupDefaultResponse>;
 }
@@ -811,7 +811,7 @@ export type CreateLargePersonGroupParameters = CreateLargePersonGroupBodyParam &
 
 // @public (undocumented)
 export interface CreateLargePersonGroupPerson {
-    get(options: GetLargePersonGroupPersonsParameters): StreamableMethod<GetLargePersonGroupPersons200Response | GetLargePersonGroupPersonsDefaultResponse>;
+    get(options?: GetLargePersonGroupPersonsParameters): StreamableMethod<GetLargePersonGroupPersons200Response | GetLargePersonGroupPersonsDefaultResponse>;
     post(options: CreateLargePersonGroupPersonParameters): StreamableMethod<CreateLargePersonGroupPerson200Response | CreateLargePersonGroupPersonDefaultResponse>;
 }
 
@@ -852,7 +852,7 @@ export type CreateLargePersonGroupPersonParameters = CreateLargePersonGroupPerso
 
 // @public (undocumented)
 export interface CreateLivenessSession {
-    get(options: GetLivenessSessionsParameters): StreamableMethod<GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse>;
+    get(options?: GetLivenessSessionsParameters): StreamableMethod<GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse>;
     post(options: CreateLivenessSessionParameters): StreamableMethod<CreateLivenessSession200Response | CreateLivenessSessionDefaultResponse>;
 }
 
@@ -922,7 +922,7 @@ export type CreateLivenessWithVerifySessionParameters = CreateLivenessWithVerify
 
 // @public (undocumented)
 export interface CreateLivenessWithVerifySessionWithVerifyImage {
-    get(options: GetLivenessWithVerifySessionsParameters): StreamableMethod<GetLivenessWithVerifySessions200Response | GetLivenessWithVerifySessionsDefaultResponse>;
+    get(options?: GetLivenessWithVerifySessionsParameters): StreamableMethod<GetLivenessWithVerifySessions200Response | GetLivenessWithVerifySessionsDefaultResponse>;
     post(options: CreateLivenessWithVerifySessionWithVerifyImageParameters): StreamableMethod<CreateLivenessWithVerifySessionWithVerifyImage200Response | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse>;
     post(options: CreateLivenessWithVerifySessionParameters): StreamableMethod<CreateLivenessWithVerifySession200Response | CreateLivenessWithVerifySessionDefaultResponse>;
 }
@@ -966,7 +966,7 @@ export type CreateLivenessWithVerifySessionWithVerifyImageParameters = CreateLiv
 
 // @public (undocumented)
 export interface CreatePerson {
-    get(options: GetPersonsParameters): StreamableMethod<GetPersons200Response | GetPersonsDefaultResponse>;
+    get(options?: GetPersonsParameters): StreamableMethod<GetPersons200Response | GetPersonsDefaultResponse>;
     post(options: CreatePersonParameters): StreamableMethod<CreatePerson202Response | CreatePersonDefaultResponse>;
 }
 
@@ -1014,8 +1014,8 @@ export interface CreatePersonDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface CreatePersonGroup {
-    delete(options: DeletePersonGroupParameters): StreamableMethod<DeletePersonGroup200Response | DeletePersonGroupDefaultResponse>;
-    get(options: GetPersonGroupParameters): StreamableMethod<GetPersonGroup200Response | GetPersonGroupDefaultResponse>;
+    delete(options?: DeletePersonGroupParameters): StreamableMethod<DeletePersonGroup200Response | DeletePersonGroupDefaultResponse>;
+    get(options?: GetPersonGroupParameters): StreamableMethod<GetPersonGroup200Response | GetPersonGroupDefaultResponse>;
     patch(options: UpdatePersonGroupParameters): StreamableMethod<UpdatePersonGroup200Response | UpdatePersonGroupDefaultResponse>;
     put(options: CreatePersonGroupParameters): StreamableMethod<CreatePersonGroup200Response | CreatePersonGroupDefaultResponse>;
 }
@@ -1056,7 +1056,7 @@ export type CreatePersonGroupParameters = CreatePersonGroupBodyParam & RequestPa
 
 // @public (undocumented)
 export interface CreatePersonGroupPerson {
-    get(options: GetPersonGroupPersonsParameters): StreamableMethod<GetPersonGroupPersons200Response | GetPersonGroupPersonsDefaultResponse>;
+    get(options?: GetPersonGroupPersonsParameters): StreamableMethod<GetPersonGroupPersons200Response | GetPersonGroupPersonsDefaultResponse>;
     post(options: CreatePersonGroupPersonParameters): StreamableMethod<CreatePersonGroupPerson200Response | CreatePersonGroupPersonDefaultResponse>;
 }
 
@@ -1172,7 +1172,7 @@ export interface DeleteFaceListDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface DeleteFaceListFace {
-    delete(options: DeleteFaceListFaceParameters): StreamableMethod<DeleteFaceListFace200Response | DeleteFaceListFaceDefaultResponse>;
+    delete(options?: DeleteFaceListFaceParameters): StreamableMethod<DeleteFaceListFace200Response | DeleteFaceListFaceDefaultResponse>;
 }
 
 // @public
@@ -1225,8 +1225,8 @@ export interface DeleteLargeFaceListDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface DeleteLargeFaceListFace {
-    delete(options: DeleteLargeFaceListFaceParameters): StreamableMethod<DeleteLargeFaceListFace200Response | DeleteLargeFaceListFaceDefaultResponse>;
-    get(options: GetLargeFaceListFaceParameters): StreamableMethod<GetLargeFaceListFace200Response | GetLargeFaceListFaceDefaultResponse>;
+    delete(options?: DeleteLargeFaceListFaceParameters): StreamableMethod<DeleteLargeFaceListFace200Response | DeleteLargeFaceListFaceDefaultResponse>;
+    get(options?: GetLargeFaceListFaceParameters): StreamableMethod<GetLargeFaceListFace200Response | GetLargeFaceListFaceDefaultResponse>;
     patch(options: UpdateLargeFaceListFaceParameters): StreamableMethod<UpdateLargeFaceListFace200Response | UpdateLargeFaceListFaceDefaultResponse>;
 }
 
@@ -1283,8 +1283,8 @@ export type DeleteLargePersonGroupParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeleteLargePersonGroupPerson {
-    delete(options: DeleteLargePersonGroupPersonParameters): StreamableMethod<DeleteLargePersonGroupPerson200Response | DeleteLargePersonGroupPersonDefaultResponse>;
-    get(options: GetLargePersonGroupPersonParameters): StreamableMethod<GetLargePersonGroupPerson200Response | GetLargePersonGroupPersonDefaultResponse>;
+    delete(options?: DeleteLargePersonGroupPersonParameters): StreamableMethod<DeleteLargePersonGroupPerson200Response | DeleteLargePersonGroupPersonDefaultResponse>;
+    get(options?: GetLargePersonGroupPersonParameters): StreamableMethod<GetLargePersonGroupPerson200Response | GetLargePersonGroupPersonDefaultResponse>;
     patch(options: UpdateLargePersonGroupPersonParameters): StreamableMethod<UpdateLargePersonGroupPerson200Response | UpdateLargePersonGroupPersonDefaultResponse>;
 }
 
@@ -1311,8 +1311,8 @@ export interface DeleteLargePersonGroupPersonDefaultResponse extends HttpRespons
 
 // @public (undocumented)
 export interface DeleteLargePersonGroupPersonFace {
-    delete(options: DeleteLargePersonGroupPersonFaceParameters): StreamableMethod<DeleteLargePersonGroupPersonFace200Response | DeleteLargePersonGroupPersonFaceDefaultResponse>;
-    get(options: GetLargePersonGroupPersonFaceParameters): StreamableMethod<GetLargePersonGroupPersonFace200Response | GetLargePersonGroupPersonFaceDefaultResponse>;
+    delete(options?: DeleteLargePersonGroupPersonFaceParameters): StreamableMethod<DeleteLargePersonGroupPersonFace200Response | DeleteLargePersonGroupPersonFaceDefaultResponse>;
+    get(options?: GetLargePersonGroupPersonFaceParameters): StreamableMethod<GetLargePersonGroupPersonFace200Response | GetLargePersonGroupPersonFaceDefaultResponse>;
     patch(options: UpdateLargePersonGroupPersonFaceParameters): StreamableMethod<UpdateLargePersonGroupPersonFace200Response | UpdateLargePersonGroupPersonFaceDefaultResponse>;
 }
 
@@ -1345,8 +1345,8 @@ export type DeleteLargePersonGroupPersonParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeleteLivenessSession {
-    delete(options: DeleteLivenessSessionParameters): StreamableMethod<DeleteLivenessSession200Response | DeleteLivenessSessionDefaultResponse>;
-    get(options: GetLivenessSessionResultParameters): StreamableMethod<GetLivenessSessionResult200Response | GetLivenessSessionResultDefaultResponse>;
+    delete(options?: DeleteLivenessSessionParameters): StreamableMethod<DeleteLivenessSession200Response | DeleteLivenessSessionDefaultResponse>;
+    get(options?: GetLivenessSessionResultParameters): StreamableMethod<GetLivenessSessionResult200Response | GetLivenessSessionResultDefaultResponse>;
 }
 
 // @public
@@ -1375,8 +1375,8 @@ export type DeleteLivenessSessionParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeleteLivenessWithVerifySession {
-    delete(options: DeleteLivenessWithVerifySessionParameters): StreamableMethod<DeleteLivenessWithVerifySession200Response | DeleteLivenessWithVerifySessionDefaultResponse>;
-    get(options: GetLivenessWithVerifySessionResultParameters): StreamableMethod<GetLivenessWithVerifySessionResult200Response | GetLivenessWithVerifySessionResultDefaultResponse>;
+    delete(options?: DeleteLivenessWithVerifySessionParameters): StreamableMethod<DeleteLivenessWithVerifySession200Response | DeleteLivenessWithVerifySessionDefaultResponse>;
+    get(options?: GetLivenessWithVerifySessionResultParameters): StreamableMethod<GetLivenessWithVerifySessionResult200Response | GetLivenessWithVerifySessionResultDefaultResponse>;
 }
 
 // @public
@@ -1405,8 +1405,8 @@ export type DeleteLivenessWithVerifySessionParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeletePerson {
-    delete(options: DeletePersonParameters): StreamableMethod<DeletePerson202Response | DeletePersonDefaultResponse>;
-    get(options: GetPersonParameters): StreamableMethod<GetPerson200Response | GetPersonDefaultResponse>;
+    delete(options?: DeletePersonParameters): StreamableMethod<DeletePerson202Response | DeletePersonDefaultResponse>;
+    get(options?: GetPersonParameters): StreamableMethod<GetPerson200Response | GetPersonDefaultResponse>;
     patch(options: UpdatePersonParameters): StreamableMethod<UpdatePerson200Response | UpdatePersonDefaultResponse>;
 }
 
@@ -1441,8 +1441,8 @@ export interface DeletePersonDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface DeletePersonFace {
-    delete(options: DeletePersonFaceParameters): StreamableMethod<DeletePersonFace202Response | DeletePersonFaceDefaultResponse>;
-    get(options: GetPersonFaceParameters): StreamableMethod<GetPersonFace200Response | GetPersonFaceDefaultResponse>;
+    delete(options?: DeletePersonFaceParameters): StreamableMethod<DeletePersonFace202Response | DeletePersonFaceDefaultResponse>;
+    get(options?: GetPersonFaceParameters): StreamableMethod<GetPersonFace200Response | GetPersonFaceDefaultResponse>;
     patch(options: UpdatePersonFaceParameters): StreamableMethod<UpdatePersonFace200Response | UpdatePersonFaceDefaultResponse>;
 }
 
@@ -1510,8 +1510,8 @@ export type DeletePersonGroupParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeletePersonGroupPerson {
-    delete(options: DeletePersonGroupPersonParameters): StreamableMethod<DeletePersonGroupPerson200Response | DeletePersonGroupPersonDefaultResponse>;
-    get(options: GetPersonGroupPersonParameters): StreamableMethod<GetPersonGroupPerson200Response | GetPersonGroupPersonDefaultResponse>;
+    delete(options?: DeletePersonGroupPersonParameters): StreamableMethod<DeletePersonGroupPerson200Response | DeletePersonGroupPersonDefaultResponse>;
+    get(options?: GetPersonGroupPersonParameters): StreamableMethod<GetPersonGroupPerson200Response | GetPersonGroupPersonDefaultResponse>;
     patch(options: UpdatePersonGroupPersonParameters): StreamableMethod<UpdatePersonGroupPerson200Response | UpdatePersonGroupPersonDefaultResponse>;
 }
 
@@ -1538,8 +1538,8 @@ export interface DeletePersonGroupPersonDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface DeletePersonGroupPersonFace {
-    delete(options: DeletePersonGroupPersonFaceParameters): StreamableMethod<DeletePersonGroupPersonFace200Response | DeletePersonGroupPersonFaceDefaultResponse>;
-    get(options: GetPersonGroupPersonFaceParameters): StreamableMethod<GetPersonGroupPersonFace200Response | GetPersonGroupPersonFaceDefaultResponse>;
+    delete(options?: DeletePersonGroupPersonFaceParameters): StreamableMethod<DeletePersonGroupPersonFace200Response | DeletePersonGroupPersonFaceDefaultResponse>;
+    get(options?: GetPersonGroupPersonFaceParameters): StreamableMethod<GetPersonGroupPersonFace200Response | GetPersonGroupPersonFaceDefaultResponse>;
     patch(options: UpdatePersonGroupPersonFaceParameters): StreamableMethod<UpdatePersonGroupPersonFace200Response | UpdatePersonGroupPersonFaceDefaultResponse>;
 }
 
@@ -1991,7 +1991,7 @@ export type GetDynamicPersonGroupParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetDynamicPersonGroupPersons {
-    get(options: GetDynamicPersonGroupPersonsParameters): StreamableMethod<GetDynamicPersonGroupPersons200Response | GetDynamicPersonGroupPersonsDefaultResponse>;
+    get(options?: GetDynamicPersonGroupPersonsParameters): StreamableMethod<GetDynamicPersonGroupPersons200Response | GetDynamicPersonGroupPersonsDefaultResponse>;
 }
 
 // @public
@@ -2034,7 +2034,7 @@ export interface GetDynamicPersonGroupPersonsQueryParamProperties {
 
 // @public (undocumented)
 export interface GetDynamicPersonGroupReferences {
-    get(options: GetDynamicPersonGroupReferencesParameters): StreamableMethod<GetDynamicPersonGroupReferences200Response | GetDynamicPersonGroupReferencesDefaultResponse>;
+    get(options?: GetDynamicPersonGroupReferencesParameters): StreamableMethod<GetDynamicPersonGroupReferences200Response | GetDynamicPersonGroupReferencesDefaultResponse>;
 }
 
 // @public
@@ -2077,7 +2077,7 @@ export interface GetDynamicPersonGroupReferencesQueryParamProperties {
 
 // @public (undocumented)
 export interface GetDynamicPersonGroups {
-    get(options: GetDynamicPersonGroupsParameters): StreamableMethod<GetDynamicPersonGroups200Response | GetDynamicPersonGroupsDefaultResponse>;
+    get(options?: GetDynamicPersonGroupsParameters): StreamableMethod<GetDynamicPersonGroups200Response | GetDynamicPersonGroupsDefaultResponse>;
 }
 
 // @public
@@ -2157,7 +2157,7 @@ export interface GetFaceListQueryParamProperties {
 
 // @public (undocumented)
 export interface GetFaceLists {
-    get(options: GetFaceListsParameters): StreamableMethod<GetFaceLists200Response | GetFaceListsDefaultResponse>;
+    get(options?: GetFaceListsParameters): StreamableMethod<GetFaceLists200Response | GetFaceListsDefaultResponse>;
 }
 
 // @public
@@ -2300,7 +2300,7 @@ export interface GetLargeFaceListQueryParamProperties {
 
 // @public (undocumented)
 export interface GetLargeFaceLists {
-    get(options: GetLargeFaceListsParameters): StreamableMethod<GetLargeFaceLists200Response | GetLargeFaceListsDefaultResponse>;
+    get(options?: GetLargeFaceListsParameters): StreamableMethod<GetLargeFaceLists200Response | GetLargeFaceListsDefaultResponse>;
 }
 
 // @public
@@ -2344,7 +2344,7 @@ export interface GetLargeFaceListsQueryParamProperties {
 
 // @public (undocumented)
 export interface GetLargeFaceListTrainingStatus {
-    get(options: GetLargeFaceListTrainingStatusParameters): StreamableMethod<GetLargeFaceListTrainingStatus200Response | GetLargeFaceListTrainingStatusDefaultResponse>;
+    get(options?: GetLargeFaceListTrainingStatusParameters): StreamableMethod<GetLargeFaceListTrainingStatus200Response | GetLargeFaceListTrainingStatusDefaultResponse>;
 }
 
 // @public
@@ -2502,7 +2502,7 @@ export interface GetLargePersonGroupQueryParamProperties {
 
 // @public (undocumented)
 export interface GetLargePersonGroups {
-    get(options: GetLargePersonGroupsParameters): StreamableMethod<GetLargePersonGroups200Response | GetLargePersonGroupsDefaultResponse>;
+    get(options?: GetLargePersonGroupsParameters): StreamableMethod<GetLargePersonGroups200Response | GetLargePersonGroupsDefaultResponse>;
 }
 
 // @public
@@ -2546,7 +2546,7 @@ export interface GetLargePersonGroupsQueryParamProperties {
 
 // @public (undocumented)
 export interface GetLargePersonGroupTrainingStatus {
-    get(options: GetLargePersonGroupTrainingStatusParameters): StreamableMethod<GetLargePersonGroupTrainingStatus200Response | GetLargePersonGroupTrainingStatusDefaultResponse>;
+    get(options?: GetLargePersonGroupTrainingStatusParameters): StreamableMethod<GetLargePersonGroupTrainingStatus200Response | GetLargePersonGroupTrainingStatusDefaultResponse>;
 }
 
 // @public
@@ -2577,7 +2577,7 @@ export type GetLargePersonGroupTrainingStatusParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetLivenessSessionAuditEntries {
-    get(options: GetLivenessSessionAuditEntriesParameters): StreamableMethod<GetLivenessSessionAuditEntries200Response | GetLivenessSessionAuditEntriesDefaultResponse>;
+    get(options?: GetLivenessSessionAuditEntriesParameters): StreamableMethod<GetLivenessSessionAuditEntries200Response | GetLivenessSessionAuditEntriesDefaultResponse>;
 }
 
 // @public
@@ -2684,7 +2684,7 @@ export interface GetLivenessSessionsQueryParamProperties {
 
 // @public (undocumented)
 export interface GetLivenessWithVerifySessionAuditEntries {
-    get(options: GetLivenessWithVerifySessionAuditEntriesParameters): StreamableMethod<GetLivenessWithVerifySessionAuditEntries200Response | GetLivenessWithVerifySessionAuditEntriesDefaultResponse>;
+    get(options?: GetLivenessWithVerifySessionAuditEntriesParameters): StreamableMethod<GetLivenessWithVerifySessionAuditEntries200Response | GetLivenessWithVerifySessionAuditEntriesDefaultResponse>;
 }
 
 // @public
@@ -2821,7 +2821,7 @@ export function getLongRunningPoller<TResult extends UpdateDynamicPersonGroupWit
 
 // @public (undocumented)
 export interface GetOperationResult {
-    get(options: GetOperationResultParameters): StreamableMethod<GetOperationResult200Response | GetOperationResultDefaultResponse>;
+    get(options?: GetOperationResultParameters): StreamableMethod<GetOperationResult200Response | GetOperationResultDefaultResponse>;
 }
 
 // @public
@@ -3054,7 +3054,7 @@ export interface GetPersonGroupQueryParamProperties {
 
 // @public (undocumented)
 export interface GetPersonGroups {
-    get(options: GetPersonGroupsParameters): StreamableMethod<GetPersonGroups200Response | GetPersonGroupsDefaultResponse>;
+    get(options?: GetPersonGroupsParameters): StreamableMethod<GetPersonGroups200Response | GetPersonGroupsDefaultResponse>;
 }
 
 // @public
@@ -3098,7 +3098,7 @@ export interface GetPersonGroupsQueryParamProperties {
 
 // @public (undocumented)
 export interface GetPersonGroupTrainingStatus {
-    get(options: GetPersonGroupTrainingStatusParameters): StreamableMethod<GetPersonGroupTrainingStatus200Response | GetPersonGroupTrainingStatusDefaultResponse>;
+    get(options?: GetPersonGroupTrainingStatusParameters): StreamableMethod<GetPersonGroupTrainingStatus200Response | GetPersonGroupTrainingStatusDefaultResponse>;
 }
 
 // @public
@@ -4090,7 +4090,7 @@ export interface TrainingResultOutput {
 
 // @public (undocumented)
 export interface TrainLargeFaceList {
-    post(options: TrainLargeFaceListParameters): StreamableMethod<TrainLargeFaceList202Response | TrainLargeFaceListDefaultResponse>;
+    post(options?: TrainLargeFaceListParameters): StreamableMethod<TrainLargeFaceList202Response | TrainLargeFaceListDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -4133,7 +4133,7 @@ export type TrainLargeFaceListParameters = RequestParameters;
 
 // @public (undocumented)
 export interface TrainLargePersonGroup {
-    post(options: TrainLargePersonGroupParameters): StreamableMethod<TrainLargePersonGroup202Response | TrainLargePersonGroupDefaultResponse>;
+    post(options?: TrainLargePersonGroupParameters): StreamableMethod<TrainLargePersonGroup202Response | TrainLargePersonGroupDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -4176,7 +4176,7 @@ export type TrainLargePersonGroupParameters = RequestParameters;
 
 // @public (undocumented)
 export interface TrainPersonGroup {
-    post(options: TrainPersonGroupParameters): StreamableMethod<TrainPersonGroup202Response | TrainPersonGroupDefaultResponse>;
+    post(options?: TrainPersonGroupParameters): StreamableMethod<TrainPersonGroup202Response | TrainPersonGroupDefaultResponse>;
 }
 
 // @public (undocumented)

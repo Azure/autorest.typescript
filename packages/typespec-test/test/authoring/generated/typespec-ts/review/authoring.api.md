@@ -37,8 +37,8 @@ export default createClient;
 
 // @public (undocumented)
 export interface CreateOrUpdate {
-    delete(options: DeleteParameters): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
-    get(options: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
+    delete(options?: DeleteParameters): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
+    get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
     patch(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
 
@@ -353,8 +353,8 @@ export interface GetDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface GetDeployment {
-    delete(options: DeleteDeploymentParameters): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
-    get(options: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
+    delete(options?: DeleteDeploymentParameters): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
+    get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
     put(options: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
 }
 
@@ -386,7 +386,7 @@ export type GetDeploymentParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetDeploymentStatus {
-    get(options: GetDeploymentStatusParameters): StreamableMethod<GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse>;
+    get(options?: GetDeploymentStatusParameters): StreamableMethod<GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse>;
 }
 
 // @public
@@ -450,7 +450,7 @@ export type GetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetSupportedLanguages {
-    get(options: GetSupportedLanguagesParameters): StreamableMethod<GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse>;
+    get(options?: GetSupportedLanguagesParameters): StreamableMethod<GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse>;
 }
 
 // @public
@@ -494,7 +494,7 @@ export interface GetSupportedLanguagesQueryParamProperties {
 
 // @public (undocumented)
 export interface GetSwapDeploymentsStatus {
-    get(options: GetSwapDeploymentsStatusParameters): StreamableMethod<GetSwapDeploymentsStatus200Response | GetSwapDeploymentsStatusDefaultResponse>;
+    get(options?: GetSwapDeploymentsStatusParameters): StreamableMethod<GetSwapDeploymentsStatus200Response | GetSwapDeploymentsStatusDefaultResponse>;
 }
 
 // @public
@@ -525,7 +525,7 @@ export type GetSwapDeploymentsStatusParameters = RequestParameters;
 
 // @public (undocumented)
 export interface Importx {
-    post(options: ImportxParameters): StreamableMethod<Importx202Response | ImportxDefaultResponse>;
+    post(options?: ImportxParameters): StreamableMethod<Importx202Response | ImportxDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -624,7 +624,7 @@ export interface JobWarningOutput {
 
 // @public (undocumented)
 export interface ListDeployments {
-    get(options: ListDeploymentsParameters): StreamableMethod<ListDeployments200Response | ListDeploymentsDefaultResponse>;
+    get(options?: ListDeploymentsParameters): StreamableMethod<ListDeployments200Response | ListDeploymentsDefaultResponse>;
 }
 
 // @public
@@ -655,7 +655,7 @@ export type ListDeploymentsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ListProjects {
-    get(options: ListProjectsParameters): StreamableMethod<ListProjects200Response | ListProjectsDefaultResponse>;
+    get(options?: ListProjectsParameters): StreamableMethod<ListProjects200Response | ListProjectsDefaultResponse>;
 }
 
 // @public
@@ -686,7 +686,7 @@ export type ListProjectsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ListTrainingConfigVersions {
-    get(options: ListTrainingConfigVersionsParameters): StreamableMethod<ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse>;
+    get(options?: ListTrainingConfigVersionsParameters): StreamableMethod<ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse>;
 }
 
 // @public

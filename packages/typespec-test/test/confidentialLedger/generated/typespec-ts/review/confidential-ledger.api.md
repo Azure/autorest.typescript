@@ -122,8 +122,8 @@ export type CreateOrUpdateUserParameters = CreateOrUpdateUserMediaTypesParam & C
 
 // @public (undocumented)
 export interface DeleteUser {
-    delete(options: DeleteUserParameters): StreamableMethod<DeleteUser204Response | DeleteUserDefaultResponse>;
-    get(options: GetUserParameters): StreamableMethod<GetUser200Response | GetUserDefaultResponse>;
+    delete(options?: DeleteUserParameters): StreamableMethod<DeleteUser204Response | DeleteUserDefaultResponse>;
+    get(options?: GetUserParameters): StreamableMethod<GetUser200Response | GetUserDefaultResponse>;
     patch(options: CreateOrUpdateUserParameters): StreamableMethod<CreateOrUpdateUser200Response | CreateOrUpdateUser201Response | CreateOrUpdateUserDefaultResponse>;
 }
 
@@ -156,7 +156,7 @@ export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public (undocumented)
 export interface GetConsortiumMembers {
-    get(options: GetConsortiumMembersParameters): StreamableMethod<GetConsortiumMembers200Response | GetConsortiumMembersDefaultResponse>;
+    get(options?: GetConsortiumMembersParameters): StreamableMethod<GetConsortiumMembers200Response | GetConsortiumMembersDefaultResponse>;
 }
 
 // @public
@@ -185,7 +185,7 @@ export type GetConsortiumMembersParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetConstitution {
-    get(options: GetConstitutionParameters): StreamableMethod<GetConstitution200Response | GetConstitutionDefaultResponse>;
+    get(options?: GetConstitutionParameters): StreamableMethod<GetConstitution200Response | GetConstitutionDefaultResponse>;
 }
 
 // @public
@@ -214,7 +214,7 @@ export type GetConstitutionParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetCurrentLedgerEntry {
-    get(options: GetCurrentLedgerEntryParameters): StreamableMethod<GetCurrentLedgerEntry200Response | GetCurrentLedgerEntryDefaultResponse>;
+    get(options?: GetCurrentLedgerEntryParameters): StreamableMethod<GetCurrentLedgerEntry200Response | GetCurrentLedgerEntryDefaultResponse>;
 }
 
 // @public
@@ -256,7 +256,7 @@ export interface GetCurrentLedgerEntryQueryParamProperties {
 
 // @public (undocumented)
 export interface GetEnclaveQuotes {
-    get(options: GetEnclaveQuotesParameters): StreamableMethod<GetEnclaveQuotes200Response | GetEnclaveQuotesDefaultResponse>;
+    get(options?: GetEnclaveQuotesParameters): StreamableMethod<GetEnclaveQuotes200Response | GetEnclaveQuotesDefaultResponse>;
 }
 
 // @public
@@ -285,7 +285,7 @@ export type GetEnclaveQuotesParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetLedgerEntry {
-    get(options: GetLedgerEntryParameters): StreamableMethod<GetLedgerEntry200Response | GetLedgerEntryDefaultResponse>;
+    get(options?: GetLedgerEntryParameters): StreamableMethod<GetLedgerEntry200Response | GetLedgerEntryDefaultResponse>;
 }
 
 // @public
@@ -322,7 +322,7 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 
 // @public (undocumented)
 export interface GetReceipt {
-    get(options: GetReceiptParameters): StreamableMethod<GetReceipt200Response | GetReceiptDefaultResponse>;
+    get(options?: GetReceiptParameters): StreamableMethod<GetReceipt200Response | GetReceiptDefaultResponse>;
 }
 
 // @public
@@ -353,7 +353,7 @@ export type GetReceiptParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetTransactionStatus {
-    get(options: GetTransactionStatusParameters): StreamableMethod<GetTransactionStatus200Response | GetTransactionStatusDefaultResponse>;
+    get(options?: GetTransactionStatusParameters): StreamableMethod<GetTransactionStatus200Response | GetTransactionStatusDefaultResponse>;
 }
 
 // @public
@@ -484,7 +484,7 @@ export type LedgerUserRoleOutput = "Administrator" | "Contributor" | "Reader";
 
 // @public (undocumented)
 export interface ListCollections {
-    get(options: ListCollectionsParameters): StreamableMethod<ListCollections200Response | ListCollectionsDefaultResponse>;
+    get(options?: ListCollectionsParameters): StreamableMethod<ListCollections200Response | ListCollectionsDefaultResponse>;
 }
 
 // @public
@@ -515,7 +515,7 @@ export type ListCollectionsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ListLedgerEntries {
-    get(options: ListLedgerEntriesParameters): StreamableMethod<ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse>;
+    get(options?: ListLedgerEntriesParameters): StreamableMethod<ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse>;
 }
 
 // @public

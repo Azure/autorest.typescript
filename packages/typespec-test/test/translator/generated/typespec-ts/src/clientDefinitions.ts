@@ -31,7 +31,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetLanguages {
   /** Gets the set of languages currently supported by other operations of the Translator. */
   get(
-    options: GetLanguagesParameters,
+    options?: GetLanguagesParameters,
   ): StreamableMethod<GetLanguages200Response | GetLanguagesDefaultResponse>;
 }
 

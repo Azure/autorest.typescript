@@ -102,14 +102,14 @@ export interface LoadTestAdministrationCreateOrUpdateTest {
   >;
   /** Delete a test by its name. */
   delete(
-    options: LoadTestAdministrationDeleteTestParameters,
+    options?: LoadTestAdministrationDeleteTestParameters,
   ): StreamableMethod<
     | LoadTestAdministrationDeleteTest204Response
     | LoadTestAdministrationDeleteTestDefaultResponse
   >;
   /** Get load test details by test name */
   get(
-    options: LoadTestAdministrationGetTestParameters,
+    options?: LoadTestAdministrationGetTestParameters,
   ): StreamableMethod<
     | LoadTestAdministrationGetTest200Response
     | LoadTestAdministrationGetTestDefaultResponse
@@ -122,7 +122,7 @@ export interface LoadTestAdministrationListTests {
    * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
    */
   get(
-    options: LoadTestAdministrationListTestsParameters,
+    options?: LoadTestAdministrationListTestsParameters,
   ): StreamableMethod<
     | LoadTestAdministrationListTests200Response
     | LoadTestAdministrationListTestsDefaultResponse
@@ -143,14 +143,14 @@ export interface LoadTestAdministrationUploadTestFile {
   >;
   /** Get test file by the file name. */
   get(
-    options: LoadTestAdministrationGetTestFileParameters,
+    options?: LoadTestAdministrationGetTestFileParameters,
   ): StreamableMethod<
     | LoadTestAdministrationGetTestFile200Response
     | LoadTestAdministrationGetTestFileDefaultResponse
   >;
   /** Delete file by the file name for a test */
   delete(
-    options: LoadTestAdministrationDeleteTestFileParameters,
+    options?: LoadTestAdministrationDeleteTestFileParameters,
   ): StreamableMethod<
     | LoadTestAdministrationDeleteTestFile204Response
     | LoadTestAdministrationDeleteTestFileDefaultResponse
@@ -160,7 +160,7 @@ export interface LoadTestAdministrationUploadTestFile {
 export interface LoadTestAdministrationListTestFiles {
   /** Get all test files. */
   get(
-    options: LoadTestAdministrationListTestFilesParameters,
+    options?: LoadTestAdministrationListTestFilesParameters,
   ): StreamableMethod<
     | LoadTestAdministrationListTestFiles200Response
     | LoadTestAdministrationListTestFilesDefaultResponse
@@ -178,7 +178,7 @@ export interface LoadTestAdministrationCreateOrUpdateAppComponents {
   >;
   /** Get associated app component (collection of azure resources) for the given test. */
   get(
-    options: LoadTestAdministrationGetAppComponentsParameters,
+    options?: LoadTestAdministrationGetAppComponentsParameters,
   ): StreamableMethod<
     | LoadTestAdministrationGetAppComponents200Response
     | LoadTestAdministrationGetAppComponentsDefaultResponse
@@ -196,7 +196,7 @@ export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig {
   >;
   /** List server metrics configuration for the given test. */
   get(
-    options: LoadTestAdministrationGetServerMetricsConfigParameters,
+    options?: LoadTestAdministrationGetServerMetricsConfigParameters,
   ): StreamableMethod<
     | LoadTestAdministrationGetServerMetricsConfig200Response
     | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
@@ -206,7 +206,7 @@ export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig {
 export interface LoadTestRunDeleteTestRun {
   /** Delete a test run by its name. */
   delete(
-    options: LoadTestRunDeleteTestRunParameters,
+    options?: LoadTestRunDeleteTestRunParameters,
   ): StreamableMethod<
     | LoadTestRunDeleteTestRun204Response
     | LoadTestRunDeleteTestRunDefaultResponse
@@ -221,7 +221,7 @@ export interface LoadTestRunDeleteTestRun {
   >;
   /** Get test run details by name. */
   get(
-    options: LoadTestRunGetTestRunParameters,
+    options?: LoadTestRunGetTestRunParameters,
   ): StreamableMethod<
     LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse
   >;
@@ -230,7 +230,7 @@ export interface LoadTestRunDeleteTestRun {
 export interface LoadTestRunGetTestRunFile {
   /** Get test run file by file name. */
   get(
-    options: LoadTestRunGetTestRunFileParameters,
+    options?: LoadTestRunGetTestRunFileParameters,
   ): StreamableMethod<
     | LoadTestRunGetTestRunFile200Response
     | LoadTestRunGetTestRunFileDefaultResponse
@@ -240,7 +240,7 @@ export interface LoadTestRunGetTestRunFile {
 export interface LoadTestRunListTestRuns {
   /** Get all test runs with given filters */
   get(
-    options: LoadTestRunListTestRunsParameters,
+    options?: LoadTestRunListTestRunsParameters,
   ): StreamableMethod<
     LoadTestRunListTestRuns200Response | LoadTestRunListTestRunsDefaultResponse
   >;
@@ -249,7 +249,7 @@ export interface LoadTestRunListTestRuns {
 export interface LoadTestRunStopTestRun {
   /** Stop test run by name. */
   post(
-    options: LoadTestRunStopTestRunParameters,
+    options?: LoadTestRunStopTestRunParameters,
   ): StreamableMethod<
     LoadTestRunStopTestRun200Response | LoadTestRunStopTestRunDefaultResponse
   >;
@@ -258,7 +258,7 @@ export interface LoadTestRunStopTestRun {
 export interface LoadTestRunListMetricNamespaces {
   /** List the metric namespaces for a load test run. */
   get(
-    options: LoadTestRunListMetricNamespacesParameters,
+    options?: LoadTestRunListMetricNamespacesParameters,
   ): StreamableMethod<
     | LoadTestRunListMetricNamespaces200Response
     | LoadTestRunListMetricNamespacesDefaultResponse
@@ -268,7 +268,7 @@ export interface LoadTestRunListMetricNamespaces {
 export interface LoadTestRunListMetricDefinitions {
   /** List the metric definitions for a load test run. */
   get(
-    options: LoadTestRunListMetricDefinitionsParameters,
+    options?: LoadTestRunListMetricDefinitionsParameters,
   ): StreamableMethod<
     | LoadTestRunListMetricDefinitions200Response
     | LoadTestRunListMetricDefinitionsDefaultResponse
@@ -308,7 +308,7 @@ export interface LoadTestRunCreateOrUpdateAppComponents {
    * run.
    */
   get(
-    options: LoadTestRunGetAppComponentsParameters,
+    options?: LoadTestRunGetAppComponentsParameters,
   ): StreamableMethod<
     | LoadTestRunGetAppComponents200Response
     | LoadTestRunGetAppComponentsDefaultResponse
@@ -326,7 +326,7 @@ export interface LoadTestRunCreateOrUpdateServerMetricsConfig {
   >;
   /** List server metrics configuration for the given test run. */
   get(
-    options: LoadTestRunTestRunListServerMetricsConfigParameters,
+    options?: LoadTestRunTestRunListServerMetricsConfigParameters,
   ): StreamableMethod<
     | LoadTestRunTestRunListServerMetricsConfig200Response
     | LoadTestRunTestRunListServerMetricsConfigDefaultResponse

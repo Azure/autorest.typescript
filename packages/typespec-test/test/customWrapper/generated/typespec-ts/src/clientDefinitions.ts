@@ -17,11 +17,11 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetDeployment {
   /** Gets the details of a deployment. */
   get(
-    options: GetDeploymentParameters,
+    options?: GetDeploymentParameters,
   ): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
   /** Creates a new deployment or replaces an existing one. */
   put(
-    options?: DeployProjectParameters,
+    options: DeployProjectParameters,
   ): StreamableMethod<
     | DeployProject200Response
     | DeployProject201Response

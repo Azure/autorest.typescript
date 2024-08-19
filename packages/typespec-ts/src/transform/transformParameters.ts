@@ -11,12 +11,25 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { isVoidType, Type } from "@typespec/compiler";
 import {
   HttpOperation,
   HttpOperationParameter,
   HttpOperationParameters
 } from "@typespec/http";
+import {
+  KnownMediaType,
+  extractMediaTypes,
+  hasMediaType,
+  isMediaTypeJsonMergePatch
+} from "../utils/mediaTypes.js";
+import {
+  SdkClient,
+  getHttpOperationWithCache,
+  isApiVersion,
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
+import { Type, isVoidType } from "@typespec/compiler";
 import {
   getBodyType,
   getFormattedPropertyDoc,
@@ -25,26 +38,13 @@ import {
   getSerializeTypeName,
   getTypeName
 } from "../utils/modelUtils.js";
-
-import {
-  getHttpOperationWithCache,
-  isApiVersion,
-  listOperationGroups,
-  listOperationsInOperationGroup,
-  SdkClient
-} from "@azure-tools/typespec-client-generator-core";
-import { SdkContext } from "../utils/interfaces.js";
-import {
-  extractMediaTypes,
-  hasMediaType,
-  isMediaTypeJsonMergePatch,
-  KnownMediaType
-} from "../utils/mediaTypes.js";
 import {
   getOperationGroupName,
   getOperationName,
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
+
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToParameterTypes(
   client: SdkClient,
@@ -295,7 +295,10 @@ function transformRequestBody(
         typeName: schema.name,
         name: "body",
         type,
-        required: parameters?.bodyParameter?.optional ? false : true,
+        required:
+          parameters.body?.property?.optional === false || parameters.body?.type
+            ? true
+            : false,
         description: descriptions.join("\n\n"),
         isMultipartBody:
           hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&

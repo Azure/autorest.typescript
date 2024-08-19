@@ -68,18 +68,18 @@ export interface CreateOrUpdate {
   >;
   /** Gets the details of a project. */
   get(
-    options: GetParameters,
+    options?: GetParameters,
   ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Deletes a project. */
   delete(
-    options: DeleteParameters,
+    options?: DeleteParameters,
   ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
 }
 
 export interface ListProjects {
   /** Lists the existing projects. */
   get(
-    options: ListProjectsParameters,
+    options?: ListProjectsParameters,
   ): StreamableMethod<ListProjects200Response | ListProjectsDefaultResponse>;
 }
 
@@ -93,7 +93,7 @@ export interface Export {
 export interface Importx {
   /** Triggers a job to export a project's data. */
   post(
-    options: ImportxParameters,
+    options?: ImportxParameters,
   ): StreamableMethod<Importx202Response | ImportxDefaultResponse>;
 }
 
@@ -107,7 +107,7 @@ export interface Train {
 export interface GetDeployment {
   /** Gets the details of a deployment. */
   get(
-    options: GetDeploymentParameters,
+    options?: GetDeploymentParameters,
   ): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
   /** Creates a new deployment or replaces an existing one. */
   put(
@@ -119,7 +119,7 @@ export interface GetDeployment {
   >;
   /** Deletes a project deployment. */
   delete(
-    options: DeleteDeploymentParameters,
+    options?: DeleteDeploymentParameters,
   ): StreamableMethod<
     DeleteDeployment202Response | DeleteDeploymentDefaultResponse
   >;
@@ -128,7 +128,7 @@ export interface GetDeployment {
 export interface ListDeployments {
   /** Lists the existing deployments. */
   get(
-    options: ListDeploymentsParameters,
+    options?: ListDeploymentsParameters,
   ): StreamableMethod<
     ListDeployments200Response | ListDeploymentsDefaultResponse
   >;
@@ -146,7 +146,7 @@ export interface SwapDeployments {
 export interface GetDeploymentStatus {
   /** Gets the status of an existing deployment job. */
   get(
-    options: GetDeploymentStatusParameters,
+    options?: GetDeploymentStatusParameters,
   ): StreamableMethod<
     GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse
   >;
@@ -155,7 +155,7 @@ export interface GetDeploymentStatus {
 export interface GetSwapDeploymentsStatus {
   /** Gets the status of an existing swap deployment job. */
   get(
-    options: GetSwapDeploymentsStatusParameters,
+    options?: GetSwapDeploymentsStatusParameters,
   ): StreamableMethod<
     | GetSwapDeploymentsStatus200Response
     | GetSwapDeploymentsStatusDefaultResponse
@@ -165,7 +165,7 @@ export interface GetSwapDeploymentsStatus {
 export interface GetSupportedLanguages {
   /** Gets the supported languages. */
   get(
-    options: GetSupportedLanguagesParameters,
+    options?: GetSupportedLanguagesParameters,
   ): StreamableMethod<
     GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse
   >;
@@ -174,7 +174,7 @@ export interface GetSupportedLanguages {
 export interface ListTrainingConfigVersions {
   /** Lists training configuration versions. */
   get(
-    options: ListTrainingConfigVersionsParameters,
+    options?: ListTrainingConfigVersionsParameters,
   ): StreamableMethod<
     | ListTrainingConfigVersions200Response
     | ListTrainingConfigVersionsDefaultResponse
