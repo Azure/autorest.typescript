@@ -10,10 +10,9 @@ import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  stringToUint8Array,
-  uint8ArrayToString,
   PathUncheckedResponse,
   createRestError,
+  stringToUint8Array,
 } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptionalParams,
@@ -83,10 +82,10 @@ export function _createEditSend(
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
         prompt: image["prompt"],
-        image: uint8ArrayToString(image["image"], "base64"),
+        image: _PLACEHOLDER_o13_(image["image"], "base64"),
         mask:
           image["mask"] !== undefined
-            ? uint8ArrayToString(image["mask"], "base64")
+            ? _PLACEHOLDER_o13_(image["mask"], "base64")
             : undefined,
         n: image["n"],
         size: image["size"],
@@ -138,7 +137,7 @@ export function _createVariationSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        image: uint8ArrayToString(image["image"], "base64"),
+        image: _PLACEHOLDER_o13_(image["image"], "base64"),
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],

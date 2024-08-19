@@ -10,7 +10,6 @@ import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  uint8ArrayToString,
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
@@ -75,7 +74,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(file["file"], "base64"),
+        file: _PLACEHOLDER_o13_(file["file"], "base64"),
         purpose: file["purpose"],
       },
     });

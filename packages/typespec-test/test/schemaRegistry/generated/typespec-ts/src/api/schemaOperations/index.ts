@@ -15,11 +15,12 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
+import { stringToUint8Array } from "@azure/core-util";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
