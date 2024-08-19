@@ -14,6 +14,7 @@ import {
   PathMetadata,
   OperationParameter
 } from "./interfaces.js";
+import { isAzurePackage } from "./helpers/packageUtil.js";
 
 /**
  * Transform the sample data based RLC detail e.g path, operations & schemas
@@ -240,11 +241,13 @@ function convertClientLevelParameters(
   }
   if (hasCredentials) {
     // Currently only support token credential
-    const apiKeyCredentialPackage =
-      flavor === "azure" ? "@azure/core-auth" : "@typespec/ts-http-runtime";
-    const tokenCredentialPackage =
-      flavor === "azure" ? "@azure/identity" : "@typespec/ts-http-runtime";
-    if (credentialKeyHeaderName && flavor === "azure") {
+    const apiKeyCredentialPackage = isAzurePackage(model)
+      ? "@azure/core-auth"
+      : "@typespec/ts-http-runtime";
+    const tokenCredentialPackage = isAzurePackage(model)
+      ? "@azure/identity"
+      : "@typespec/ts-http-runtime";
+    if (credentialKeyHeaderName && isAzurePackage(model)) {
       clientParams.push({
         name: "credential",
         assignment: `const credential = new AzureKeyCredential("{Your API key}");`
@@ -262,7 +265,7 @@ function convertClientLevelParameters(
         name: "credential",
         assignment: `const credential = { key: "{Your API key}"};`
       });
-    } else if (flavor === "azure") {
+    } else if (isAzurePackage(model)) {
       clientParams.push({
         name: "credential",
         assignment: "const credential = new DefaultAzureCredential();"

@@ -1,5 +1,6 @@
 import {
   getImportSpecifier,
+  isAzurePackage,
   NameType,
   normalizeName
 } from "@azure-tools/rlc-common";
@@ -72,7 +73,7 @@ export function buildClientContext(
 
   // TODO use binder here
   // (for now) now logger for unbranded pkgs
-  if (codeModel.options.flavor === "azure") {
+  if (isAzurePackage(codeModel)) {
     clientContextFile.addImportDeclaration({
       moduleSpecifier:
         codeModel.clients.length > 1 ? "../../logger.js" : "../logger.js",
@@ -149,7 +150,7 @@ export function buildClientContext(
         },
       });`;
     }
-  } else if (codeModel.options.flavor === "azure") {
+  } else if (isAzurePackage(codeModel)) {
     apiVersionPolicyStatement += `
       if (options.apiVersion) {
         logger.warning("This client does not support client api-version, please change it at the operation level");

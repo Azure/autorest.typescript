@@ -212,8 +212,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "test:browser":
       "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
     "lint:fix":
-      "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts --fix --fix-type [problem,suggestion]",
-    lint: "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts",
+      "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
+    lint: "eslint package.json api-extractor.json src test",
     minify:
       "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,
