@@ -1,15 +1,17 @@
+import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import {
+  InterfaceDeclarationStructure,
+  Project,
+  SourceFile,
+  StructureKind
+} from "ts-morph";
+import {
+  NameType,
   addImportsToFiles,
   clearImportSets,
   getImportSpecifier,
-  NameType,
   normalizeName
 } from "@azure-tools/rlc-common";
-import { Project, SourceFile } from "ts-morph";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { getOperationName } from "./helpers/namingHelpers.js";
 import {
   getDeserializePrivateFunction,
   getExpectedStatuses,
@@ -18,10 +20,16 @@ import {
   getSendPrivateFunction,
   isLroOnlyOperation
 } from "./helpers/operationHelpers.js";
-import { buildType } from "./helpers/typeHelpers.js";
+
 import { OperationPathAndDeserDetails } from "./interfaces.js";
-import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
+import { SdkContext } from "../utils/interfaces.js";
+import { addDeclaration } from "../framework/declaration.js";
 import { addImportBySymbol } from "../utils/importHelper.js";
+import { buildType } from "./helpers/typeHelpers.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { getOperationName } from "./helpers/namingHelpers.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single
@@ -219,7 +227,8 @@ export function buildOperationOptions(
     docs: ["Delay to wait until next poll, in milliseconds."]
   };
 
-  sourceFile.addInterface({
+  const operationOptionInterface: InterfaceDeclarationStructure = {
+    kind: StructureKind.Interface,
     name,
     isExported: true,
     extends: ["OperationOptions"],
@@ -233,7 +242,8 @@ export function buildOperationOptions(
       })
     ),
     docs: [`Optional parameters.`]
-  });
+  };
+  addDeclaration(sourceFile, operationOptionInterface, name);
 }
 
 /**

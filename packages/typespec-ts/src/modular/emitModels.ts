@@ -136,6 +136,7 @@ export function buildModelInterface(
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
   const modelInterface = {
+    // kind: StructureKind.Interface,
     name: model.alias ?? model.name ?? "FIXMYNAME",
     isExported: true,
     docs: getDocsFromDescription(model.description),

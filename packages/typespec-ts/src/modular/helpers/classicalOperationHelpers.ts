@@ -1,4 +1,4 @@
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { Client, OperationGroup } from "../modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
   OptionalKind,
@@ -6,10 +6,12 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { Client, OperationGroup } from "../modularCodeModel.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
-import { getOperationFunction } from "./operationHelpers.js";
+
 import { SdkContext } from "../../utils/interfaces.js";
+import { addDeclaration } from "../../framework/declaration.js";
+import { getOperationFunction } from "./operationHelpers.js";
 
 export function shouldPromoteSubscriptionId(
   dpgContext: SdkContext,
@@ -122,12 +124,17 @@ export function getClassicalOperation(
   if (existInterface) {
     existInterface.addProperties([...properties]);
   } else {
-    classicFile.addInterface({
-      name: interfaceName,
-      isExported: true,
-      properties,
-      docs: [`Interface representing a ${interfaceNamePrefix} operations.`]
-    });
+    addDeclaration(
+      classicFile,
+      {
+        kind: StructureKind.Interface,
+        name: interfaceName,
+        isExported: true,
+        properties,
+        docs: [`Interface representing a ${interfaceNamePrefix} operations.`]
+      },
+      interfaceName
+    );
   }
 
   if (layer === operationGroup.namespaceHierarchies.length - 1) {

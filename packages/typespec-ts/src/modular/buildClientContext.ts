@@ -1,12 +1,11 @@
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import {
+  NameType,
   getImportSpecifier,
   isAzurePackage,
-  NameType,
   normalizeName
 } from "@azure-tools/rlc-common";
-import { SourceFile } from "ts-morph";
-import { SdkContext } from "../utils/interfaces.js";
-import { importModels } from "./buildOperations.js";
+import { SourceFile, StructureKind } from "ts-morph";
 import {
   buildGetClientCredentialParam,
   buildGetClientEndpointParam,
@@ -14,10 +13,13 @@ import {
   getClientParameters,
   importCredential
 } from "./helpers/clientHelpers.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+
+import { SdkContext } from "../utils/interfaces.js";
+import { addDeclaration } from "../framework/declaration.js";
 import { getClientName } from "./helpers/namingHelpers.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { importModels } from "./buildOperations.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -49,32 +51,42 @@ export function buildClientContext(
     namedImports: ["ClientOptions", "Client", "getClient"]
   });
 
-  clientContextFile.addInterface({
-    isExported: true,
-    name: `${client.rlcClientName}`,
-    extends: ["Client"]
-  });
+  addDeclaration(
+    clientContextFile,
+    {
+      kind: StructureKind.Interface,
+      isExported: true,
+      name: `${client.rlcClientName}`,
+      extends: ["Client"]
+    },
+    client
+  );
 
-  clientContextFile.addInterface({
-    name: `${name}ClientOptionalParams`,
-    isExported: true,
-    extends: ["ClientOptions"],
-    properties: client.parameters
-      .filter((p) => {
-        return (
-          p.optional || (p.type.type !== "constant" && p.clientDefaultValue)
-        );
-      })
-      .map((p) => {
-        return {
-          name: p.clientName,
-          type: getType(p.type).name,
-          hasQuestionToken: true,
-          docs: getDocsFromDescription(p.description)
-        };
-      }),
-    docs: ["Optional parameters for the client."]
-  });
+  addDeclaration(
+    clientContextFile,
+    {
+      kind: StructureKind.Interface,
+      name: `${name}ClientOptionalParams`,
+      isExported: true,
+      extends: ["ClientOptions"],
+      properties: client.parameters
+        .filter((p) => {
+          return (
+            p.optional || (p.type.type !== "constant" && p.clientDefaultValue)
+          );
+        })
+        .map((p) => {
+          return {
+            name: p.clientName,
+            type: getType(p.type).name,
+            hasQuestionToken: true,
+            docs: getDocsFromDescription(p.description)
+          };
+        }),
+      docs: ["Optional parameters for the client."]
+    },
+    client.parameters
+  );
 
   // TODO use binder here
   // (for now) now logger for unbranded pkgs

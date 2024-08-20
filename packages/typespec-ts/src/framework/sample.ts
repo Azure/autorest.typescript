@@ -1,12 +1,13 @@
 import {
-  Project,
-  StructureKind,
+  FunctionDeclarationStructure,
   InterfaceDeclarationStructure,
-  FunctionDeclarationStructure
+  Project,
+  StructureKind
 } from "ts-morph";
-import { useBinder } from "./hooks/binder.js";
+
 import { addDeclaration } from "./declaration.js";
 import { resolveReference } from "./reference.js";
+import { useBinder } from "./hooks/binder.js";
 
 // Create a new ts-morph project
 const project = new Project();
