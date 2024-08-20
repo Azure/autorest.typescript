@@ -1645,9 +1645,9 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData1Output, WidgetDataOutput } from "../rest/index.js";
       import { WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData1 */
       function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
@@ -1758,13 +1758,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {
@@ -1883,13 +1883,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {

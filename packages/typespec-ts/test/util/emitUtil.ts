@@ -374,7 +374,8 @@ export async function emitModularSerializeUtilsFromTypeSpec(
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -395,7 +396,9 @@ export async function emitModularSerializeUtilsFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildSerializeUtils(modularCodeModel);
+      const files = buildSerializeUtils(modularCodeModel);
+      binder.resolveAllReferences();
+      return files;
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);

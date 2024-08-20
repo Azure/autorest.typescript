@@ -1169,6 +1169,10 @@ export function deserializeResponseValue(
 ): string {
   const requiredPrefix = required === false ? `${restValue} === undefined` : "";
   const nullablePrefix = isTypeNullable(type) ? `${restValue} === null` : "";
+  const dependencies = useDependencies();
+  const stringToUint8ArrayReference = resolveReference(
+    dependencies.stringToUint8Array
+  );
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""
       ? `(${requiredPrefix} || ${nullablePrefix})`
@@ -1227,9 +1231,8 @@ export function deserializeResponseValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        addImportToSpecifier("coreUtil", runtimeImports, "stringToUint8Array");
         return `typeof ${restValue} === 'string'
-        ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
+        ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;
       }
       return restValue;

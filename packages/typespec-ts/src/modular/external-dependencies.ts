@@ -55,6 +55,11 @@ export const DefaultCoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     name: "uint8ArrayToString",
     module: "@typespec/ts-http-runtime"
+  },
+  stringToUint8Array: {
+    kind: "externalDependency",
+    name: "stringToUint8Array",
+    module: "@typespec/ts-http-runtime"
   }
 } as const;
 
@@ -136,5 +141,10 @@ export const AzureCoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     module: "@azure/core-util",
     name: "uint8ArrayToString"
+  },
+  stringToUint8Array: {
+    kind: "externalDependency",
+    module: "@azure/core-util",
+    name: "stringToUint8Array"
   }
 };

@@ -763,8 +763,7 @@ describe("modular encode test for property type bytes", () => {
         PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
-      import { stringToUint8Array } from "@azure/core-util";
-      import { uint8ArrayToString } from "@azure/core-util";
+      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
@@ -836,8 +835,7 @@ describe("modular encode test for property type bytes", () => {
         PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
-      import { stringToUint8Array } from "@azure/core-util";
-      import { uint8ArrayToString } from "@azure/core-util";
+      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
@@ -909,8 +907,7 @@ describe("modular encode test for property type bytes", () => {
         PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
-      import { stringToUint8Array } from "@azure/core-util";
-      import { uint8ArrayToString } from "@azure/core-util";
+      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
