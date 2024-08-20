@@ -19,7 +19,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get strings only union", async () => {
     try {
-      const result = await client.path("/type/union/strings-only").get({});
+      const result = await client.path("/type/union/strings-only").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop, "b");
     } catch (err) {
@@ -42,7 +42,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get strings extensible union", async () => {
     try {
-      const result = await client.path("/type/union/string-extensible").get({});
+      const result = await client.path("/type/union/string-extensible").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop, "custom");
     } catch (err) {
@@ -67,7 +67,7 @@ describe("UnionsClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/union/string-extensible-named")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop, "custom");
     } catch (err) {
@@ -92,7 +92,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get ints only union", async () => {
     try {
-      const result = await client.path("/type/union/ints-only").get({});
+      const result = await client.path("/type/union/ints-only").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop, 2);
     } catch (err) {
@@ -115,7 +115,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get floats only union", async () => {
     try {
-      const result = await client.path("/type/union/floats-only").get({});
+      const result = await client.path("/type/union/floats-only").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop, 2.2);
     } catch (err) {
@@ -138,7 +138,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get models only union", async () => {
     try {
-      const result = await client.path("/type/union/models-only").get({});
+      const result = await client.path("/type/union/models-only").get();
       assert.strictEqual(result.status, "200");
       if (isCatOutput(result.body.prop)) {
         assert.strictEqual(result.body.prop.name, "test");
@@ -163,7 +163,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get enums only union", async () => {
     try {
-      const result = await client.path("/type/union/enums-only").get({});
+      const result = await client.path("/type/union/enums-only").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop.lr, "right");
       assert.strictEqual(result.body.prop.ud, "up");
@@ -190,7 +190,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get string and array union", async () => {
     try {
-      const result = await client.path("/type/union/string-and-array").get({});
+      const result = await client.path("/type/union/string-and-array").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop.string, "test");
       assert.strictEqual(result.body.prop.array[0], "test1");
@@ -218,7 +218,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get mixed literals union", async () => {
     try {
-      const result = await client.path("/type/union/mixed-literals").get({});
+      const result = await client.path("/type/union/mixed-literals").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.prop.stringLiteral, "a");
       assert.strictEqual(result.body.prop.intLiteral, 2);
@@ -249,7 +249,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should get mixed types union", async () => {
     try {
-      const result = await client.path("/type/union/mixed-types").get({});
+      const result = await client.path("/type/union/mixed-types").get();
       assert.strictEqual(result.status, "200");
       if (isCatOutput(result.body.prop.model)) {
         assert.strictEqual(result.body.prop.model.name, "test");
