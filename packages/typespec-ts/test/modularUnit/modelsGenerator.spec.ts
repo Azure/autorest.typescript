@@ -1,10 +1,11 @@
-import { assert } from "chai";
+import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+
 import { Diagnostic } from "@typespec/compiler";
+import { assert } from "chai";
 
 async function verifyModularPropertyType(
   tspType: string,
@@ -744,7 +745,7 @@ describe("modular encode test for property type bytes", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: _PLACEHOLDER_o13_(item["prop1"], "base64"),
+          prop1: uint8ArrayToString(item["prop1"], "base64"),
         }
       };`
     );
