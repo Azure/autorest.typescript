@@ -6,6 +6,7 @@
 
 import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
@@ -117,7 +118,7 @@ export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class WidgetServiceClient {
-    constructor(endpoint: string, options?: WidgetServiceClientOptionalParams);
+    constructor(endpoint: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams);
     readonly budgets: BudgetsOperations;
     readonly pipeline: Pipeline;
     readonly widgets: WidgetsOperations;

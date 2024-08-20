@@ -41,7 +41,9 @@ import {
   buildTsTestBrowserConfig,
   buildVitestConfig,
   getClientName,
-  hasUnexpectedHelper
+  hasUnexpectedHelper,
+  isAzurePackage,
+  updatePackageFile
 } from "@azure-tools/rlc-common";
 import { buildApiOptions, buildModels } from "./modular/emitModels.js";
 import {
@@ -103,7 +105,7 @@ export async function $onEmit(context: EmitContext) {
     tcgcContext: dpgContext
   });
   provideSdkTypes(dpgContext.sdkPackage);
-  const { modularSourcesDir } = await calculateGenerationDir();
+  const { modularSourcesDir } = await calculateGenerationDir(rlcOptions);
   const staticHelpers = await loadStaticHelpers(
     outputProject,
     {
@@ -113,10 +115,9 @@ export async function $onEmit(context: EmitContext) {
     },
     { sourcesDir: modularSourcesDir }
   );
-  const extraDependencies =
-    rlcOptions?.flavor === "azure"
-      ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
-      : {};
+  const extraDependencies = isAzurePackage({ options: rlcOptions })
+    ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+    : {};
   const binder = provideBinder(outputProject, {
     staticHelpers,
     dependencies: {
@@ -145,8 +146,9 @@ export async function $onEmit(context: EmitContext) {
   await generateMetadataAndTest();
 
   async function enrichDpgContext() {
+    const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     const generationPathDetail: GenerationDirDetail =
-      await calculateGenerationDir();
+      await calculateGenerationDir(options);
     dpgContext.generationPathDetail = generationPathDetail;
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
@@ -155,17 +157,23 @@ export async function $onEmit(context: EmitContext) {
       rlcOptions.generateTest === true ||
       (rlcOptions.generateTest === undefined &&
         !hasTestFolder &&
-        rlcOptions.flavor === "azure");
+        isAzurePackage({ options: rlcOptions }));
     dpgContext.rlcOptions = rlcOptions;
   }
 
-  async function calculateGenerationDir(): Promise<GenerationDirDetail> {
-    const projectRoot = context.emitterOutputDir ?? "";
-    let sourcesRoot = join(projectRoot, "src");
-    const customizationFolder = join(projectRoot, "sources");
-    if (await fsextra.pathExists(customizationFolder)) {
-      sourcesRoot = join(customizationFolder, "generated", "src");
+  async function calculateGenerationDir(
+    options: RLCOptions
+  ): Promise<GenerationDirDetail> {
+    // clear output folder if needed
+    if (options.clearOutputFolder) {
+      await fsextra.emptyDir(context.emitterOutputDir);
     }
+    const projectRoot = context.emitterOutputDir ?? "";
+    const customizationFolder = join(projectRoot, "generated");
+    // if customization folder exists, use it as sources root
+    const sourcesRoot = (await fsextra.pathExists(customizationFolder))
+      ? customizationFolder
+      : join(projectRoot, "src");
     return {
       rootDir: projectRoot,
       metadataDir: projectRoot,
@@ -300,11 +308,13 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
-    const isAzureFlavor = option.flavor === "azure";
+    const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
-    const hasPackageFile = await existsSync(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
+    const existingPackageFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "package.json"
     );
+    const hasPackageFile = await existsSync(existingPackageFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
@@ -347,6 +357,14 @@ export async function $onEmit(context: EmitContext) {
           );
         }
       }
+    } else if (hasPackageFile) {
+      // update existing package.json file with correct dependencies
+      await emitContentByBuilder(
+        program,
+        (model) => updatePackageFile(model, existingPackageFilePath),
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
 
     // Generate test relevant files
