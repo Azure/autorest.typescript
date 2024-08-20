@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { A } from "../../models/models.js";
 import { FooContext as Client } from "../index.js";
 import {
   StreamableMethod,
@@ -9,6 +8,7 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { A } from "../../models/models.js";
 import { DOp1OptionalParams } from "../../models/options.js";
 
 export function _op1Send(

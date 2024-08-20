@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BA } from "../../models/models.js";
 import { FooContext as Client } from "../index.js";
 import {
   StreamableMethod,

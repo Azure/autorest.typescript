@@ -1,0 +1,22 @@
+{
+  "title": "B_OpeS",
+  "operationId": "B_Op1",
+  "parameters": {
+    "body": {
+      "prop2": "00000000-0000-0000-0000-00000000000"
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "roleId": "00000000-0000-0000-0000-00000000000",
+        "principalId": "00000000-0000-0000-0000-00000000000",
+        "userName": "UserName",
+        "dataTypeScope": ["scope"],
+        "principalType": "User",
+        "role": "Reader",
+        "roleAssignmentId": "00000000-0000-0000-0000-00000000000"
+      }
+    }
+  }
+}

@@ -16,13 +16,14 @@ import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 
 export function emitSamples(dpgContext: SdkContext) {
   for (const client of dpgContext.sdkPackage.clients) {
-    emitClassicalClientSample(dpgContext, client);
+    emitClassicalClientSamples(dpgContext, client);
   }
 }
 
-function emitClassicalClientSample(
+function emitClassicalClientSamples(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>
+  client: SdkClientType<SdkServiceOperation>,
+  operationGroupPrefix?: string
 ) {
   // build client-level parameters
   const clientName = client.name;
@@ -32,33 +33,52 @@ function emitClassicalClientSample(
   const credentialParameterType = credentialParameter
     ? getTypeExpression(credentialParameter!)
     : undefined;
+  emitClassicalClientSamplesDfs(
+    dpgContext,
+    client,
+    clientName,
+    credentialParameterType,
+    operationGroupPrefix ?? ""
+  );
+}
+
+function emitClassicalClientSamplesDfs(
+  dpgContext: SdkContext,
+  client: SdkClientType<SdkServiceOperation>,
+  clientName: string,
+  credentialParameterType?: string,
+  operationGroupPrefix?: string
+) {
   for (const operationOrGroup of client.methods) {
     if (operationOrGroup.kind === "clientaccessor") {
-      for (const operation of operationOrGroup.response.methods) {
-        // TODO: support nested operation groups
-        if (operation.kind === "clientaccessor") {
-          continue;
-        }
-        // this is an operation
-        buildExamplesForMethod(dpgContext, operation, {
-          clientName,
-          credentialType: credentialParameterType,
-          operationGroupPrefix: normalizeName(
-            operationOrGroup.response.name,
-            NameType.Property
-          )
-        });
+      let prefix = normalizeName(
+        operationOrGroup.response.name,
+        NameType.Property
+      );
+      // append hierarchy prefix if hierarchyClient is enabled
+      if (dpgContext.rlcOptions?.hierarchyClient === true) {
+        prefix =
+          (operationGroupPrefix ? `${operationGroupPrefix}.` : "") + prefix;
       }
-    } else {
-      buildExamplesForMethod(dpgContext, operationOrGroup, {
+
+      emitClassicalClientSamplesDfs(
+        dpgContext,
+        operationOrGroup.response,
         clientName,
-        credentialType: credentialParameterType
+        credentialParameterType,
+        prefix
+      );
+    } else {
+      emitMethodSamples(dpgContext, operationOrGroup, {
+        clientName,
+        credentialType: credentialParameterType,
+        operationGroupPrefix
       });
     }
   }
 }
 
-function buildExamplesForMethod(
+function emitMethodSamples(
   dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
   options: {
@@ -67,6 +87,10 @@ function buildExamplesForMethod(
     operationGroupPrefix?: string;
   }
 ) {
+  const examples = method.operation.examples ?? [];
+  if (examples.length === 0) {
+    return;
+  }
   const project = useContext("outputProject");
   const operationPrefix = `${options.operationGroupPrefix ?? ""} ${
     method.name
@@ -92,7 +116,7 @@ function buildExamplesForMethod(
     });
   }
 
-  for (const example of method.operation.examples ?? []) {
+  for (const example of examples) {
     // build example
     const exampleFunctionBody: string[] = [],
       clientParams: string[] = [],
@@ -182,7 +206,6 @@ function buildExamplesForMethod(
       kind: StructureKind.Function,
       isAsync: true,
       name: exampleFunctionType.name,
-      returnType: exampleFunctionType.returnType,
       statements: exampleFunctionType.body,
       docs: [
         `This sample demonstrates how to ${normalizedDescription}\n\n@summary ${normalizedDescription}\nx-ms-original-file: ${example.filePath}`
