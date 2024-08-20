@@ -20,7 +20,7 @@ export function _op1Send(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop1: body["prop1"] },
+      body: { prop1: body["propRename"] },
     });
 }
 

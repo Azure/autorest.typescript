@@ -6,6 +6,7 @@ import {
   SdkClientType,
   SdkServiceMethod,
   SdkServiceOperation,
+  SdkType,
   SdkTypeExample
 } from "@azure-tools/typespec-client-generator-core";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
@@ -251,7 +252,7 @@ function getParameterValue(value: SdkTypeExample): string {
       break;
     case "dict":
     case "model": {
-      // TODO: handle the client name and serialization name gaps
+      const mapper = getPropertyClientNameMapper(value.type);
       const values = [];
       const additionalPropertiesValue =
         value.kind === "model" ? value?.additionalPropertiesValue : {};
@@ -263,7 +264,9 @@ function getParameterValue(value: SdkTypeExample): string {
         if (propValue === undefined || propValue === null) {
           continue;
         }
-        const propRetValue = `"${propName}": ` + getParameterValue(propValue);
+        const propRetValue =
+          `"${mapper.get(propName) ?? propName}": ` +
+          getParameterValue(propValue);
         values.push(propRetValue);
       }
 
@@ -281,6 +284,21 @@ function getParameterValue(value: SdkTypeExample): string {
       break;
   }
   return retValue;
+}
+
+function getPropertyClientNameMapper(model: SdkType) {
+  const mapper = new Map<string, string>();
+  if (model.kind !== "model") {
+    return mapper;
+  }
+  for (const prop of model.properties) {
+    if (prop.kind !== "property") {
+      continue;
+    }
+
+    mapper.set(prop.serializedName, prop.name);
+  }
+  return mapper;
 }
 
 function escapeSpecialCharToSpace(str: string) {

@@ -1,6 +1,8 @@
 import "@typespec/rest";
 import "@typespec/http";
+import "@azure-tools/typespec-client-generator-core";
 
+using Azure.ClientGenerator.Core;
 using TypeSpec.Rest;
 using TypeSpec.Http;
 
@@ -8,6 +10,7 @@ using TypeSpec.Http;
 namespace Foo;
 
 model A {
+  @clientName("propRename", "javascript")
   prop1: string;
 }
 

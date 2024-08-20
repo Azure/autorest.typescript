@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export interface A {
-  prop1: string;
+  propRename: string;
 }
 
 export function aSerializer(input: A): unknown {
