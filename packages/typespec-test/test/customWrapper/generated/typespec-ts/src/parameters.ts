@@ -8,7 +8,7 @@ export type GetDeploymentParameters = RequestParameters;
 
 export interface DeployProjectBodyParam {
   /** Parameter of type 'DeploymentCreationParameters' in the body. */
-  body: DeploymentCreationParameters;
+  body?: DeploymentCreationParameters;
 }
 
 export type DeployProjectParameters = DeployProjectBodyParam &

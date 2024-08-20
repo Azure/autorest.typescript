@@ -162,8 +162,8 @@ function hasRequiredOptions(
   routeParameters: HttpOperationParameters
 ) {
   const isRequiredBodyParam =
-    routeParameters.body?.property?.optional === false ||
-    routeParameters.body?.type
+    routeParameters.body?.type &&
+    routeParameters.body?.property?.optional !== true
       ? true
       : false;
   const containsRequiredNonBodyParam = routeParameters.parameters

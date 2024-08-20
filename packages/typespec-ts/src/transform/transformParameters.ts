@@ -296,7 +296,7 @@ function transformRequestBody(
         name: "body",
         type,
         required:
-          parameters.body?.property?.optional === false || parameters.body?.type
+          parameters.body?.type && parameters.body?.property?.optional !== true
             ? true
             : false,
         description: descriptions.join("\n\n"),
