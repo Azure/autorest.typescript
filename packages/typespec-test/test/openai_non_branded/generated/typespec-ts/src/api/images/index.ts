@@ -12,9 +12,11 @@ import {
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+} from "@typespec/ts-http-runtime";
+import {
+  uint8ArrayToString,
   stringToUint8Array,
 } from "@typespec/ts-http-runtime";
-import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,

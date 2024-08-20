@@ -14,8 +14,7 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { stringToUint8Array } from "@azure/core-util";
-import { uint8ArrayToString } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,
