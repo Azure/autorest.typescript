@@ -18,7 +18,7 @@ describe("AuthHttpCustomClient Rest Client", () => {
     try {
       const result = await client
         .path("/authentication/http/custom/valid")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
       console.log(err);
@@ -30,7 +30,7 @@ describe("AuthHttpCustomClient Rest Client", () => {
     try {
       const result = await client
         .path("/authentication/http/custom/invalid")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "403");
       if (result.status === "403") {
         assert.strictEqual(result.body.error, "invalid-api-key");

@@ -18,7 +18,7 @@ describe("NotDiscriminatedClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/not-discriminated/valid")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, validBody);
     } catch (err) {

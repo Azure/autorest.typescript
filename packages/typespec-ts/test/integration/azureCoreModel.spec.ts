@@ -15,9 +15,7 @@ describe("Azure Core Traits Rest Client", () => {
   });
 
   it("should get core model embeddingVector", async () => {
-    const result = await client
-      .path("/azure/core/model/embeddingVector")
-      .get({});
+    const result = await client.path("/azure/core/model/embeddingVector").get();
 
     assert.strictEqual(result.status, "200");
     assert.deepStrictEqual(result.body, [0, 1, 2, 3, 4]);

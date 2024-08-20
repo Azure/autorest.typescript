@@ -143,7 +143,7 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
       try {
         const result = await client
           .path(`/type/property/value-types/${params.type}` as any)
-          .get({});
+          .get();
         assert.strictEqual(result.status, "200");
         assert.deepEqual(result.body.property, params.defaultValue);
       } catch (err) {

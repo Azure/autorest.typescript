@@ -18,7 +18,7 @@ describe("FixedEnums Rest Client", () => {
     try {
       const result = await client
         .path("/type/enum/fixed/string/known-value")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Monday");
     } catch (err) {

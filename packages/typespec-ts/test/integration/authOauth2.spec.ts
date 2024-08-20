@@ -39,7 +39,7 @@ describe("AuthOauth2Client Rest Client", () => {
 
   it("should return 204 when the token is valid", async () => {
     try {
-      const result = await client.path("/authentication/oauth2/valid").get({});
+      const result = await client.path("/authentication/oauth2/valid").get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -51,9 +51,7 @@ describe("AuthOauth2Client Rest Client", () => {
       client.pipeline.removePolicy({
         name: bearerTokenAuthenticationPolicyName
       });
-      const result = await client
-        .path("/authentication/oauth2/invalid")
-        .get({});
+      const result = await client.path("/authentication/oauth2/invalid").get();
       assert.strictEqual(result.status, "403");
       if (result.status === "403") {
         assert.strictEqual(result.body.error, "invalid-grant");

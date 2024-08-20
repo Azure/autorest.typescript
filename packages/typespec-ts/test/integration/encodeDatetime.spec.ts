@@ -251,7 +251,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/default`)
-          .get({});
+          .get();
         assert.strictEqual(result.status, "204");
         assert.strictEqual(
           result.headers.value,
@@ -266,7 +266,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/rfc3339`)
-          .get({});
+          .get();
         assert.strictEqual(result.status, "204");
         assert.strictEqual(result.headers.value, "2022-08-26T18:38:00.000Z");
       } catch (err) {
@@ -278,7 +278,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/rfc7231`)
-          .get({});
+          .get();
         assert.strictEqual(result.status, "204");
         assert.strictEqual(
           result.headers.value,
@@ -293,7 +293,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/unix-timestamp`)
-          .get({});
+          .get();
         assert.strictEqual(result.status, "204");
         assert.strictEqual(result.headers.value, "1686566864");
       } catch (err) {

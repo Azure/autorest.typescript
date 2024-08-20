@@ -70,9 +70,7 @@ describe("Azure Core Rest Client", () => {
 
   it("should get user", async () => {
     try {
-      const result = await client
-        .path("/azure/core/basic/users/{id}", 1)
-        .get({});
+      const result = await client.path("/azure/core/basic/users/{id}", 1).get();
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
@@ -92,7 +90,7 @@ describe("Azure Core Rest Client", () => {
     try {
       const result = await client
         .path("/azure/core/basic/users/{id}", 1)
-        .delete({});
+        .delete();
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
@@ -144,9 +142,7 @@ describe("Azure Core Rest Client", () => {
 
   it("should list with pages", async () => {
     try {
-      const initialResponse = await client
-        .path("/azure/core/basic/page")
-        .get({});
+      const initialResponse = await client.path("/azure/core/basic/page").get();
 
       if (isUnexpected(initialResponse)) {
         const error = `Unexpected status code ${initialResponse.status}`;
@@ -203,7 +199,7 @@ describe("Azure Core Rest Client", () => {
     try {
       const initialResponse = await client
         .path("/azure/core/basic/first-item")
-        .get({});
+        .get();
 
       if (isUnexpected(initialResponse)) {
         const error = `Unexpected status code ${initialResponse.status}`;
@@ -225,7 +221,7 @@ describe("Azure Core Rest Client", () => {
     try {
       const initialResponse = await client
         .path("/azure/core/basic/second-item")
-        .get({});
+        .get();
 
       if (isUnexpected(initialResponse)) {
         const error = `Unexpected status code ${initialResponse.status}`;
@@ -247,7 +243,7 @@ describe("Azure Core Rest Client", () => {
     try {
       const initialResponse = await client
         .path("/azure/core/basic/custom-page")
-        .get({});
+        .get();
 
       if (isUnexpected(initialResponse)) {
         const error = `Unexpected status code ${initialResponse.status}`;

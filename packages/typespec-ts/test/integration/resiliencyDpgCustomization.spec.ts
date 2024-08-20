@@ -34,12 +34,12 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
     it("should work with none parameter", async () => {
       const result11 = await client11
         .path("/add-optional-param/from-none")
-        .head({});
+        .head();
 
       assert.equal(result11.status, "204");
       const result12 = await client12
         .path("/add-optional-param/from-none")
-        .head({});
+        .head();
 
       assert.equal(result12.status, "204");
       const result21 = await client21
@@ -146,11 +146,9 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
         apiVersion: "v2"
       }
     );
-    const result122 = await client122
-      .pathUnchecked("/add-operation")
-      .delete({});
+    const result122 = await client122.pathUnchecked("/add-operation").delete();
     assert.equal(result122.status, "204");
-    const result22 = await client22.path("/add-operation").delete({});
+    const result22 = await client22.path("/add-operation").delete();
     assert.equal(result22.status, "204");
   });
 });

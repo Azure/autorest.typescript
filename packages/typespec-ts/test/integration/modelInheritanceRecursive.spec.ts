@@ -44,7 +44,7 @@ describe("Recursive Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/recursive")
-        .get({});
+        .get();
       assert.equal(result.status, "200");
     } catch (err) {
       assert.fail(err as string);

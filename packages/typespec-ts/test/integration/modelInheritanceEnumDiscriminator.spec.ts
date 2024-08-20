@@ -26,7 +26,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/enum-discriminator/extensible-enum")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, validBody);
     } catch (err) {
@@ -51,7 +51,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
         .path(
           "/type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator"
         )
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { weight: 10 } as any);
     } catch (err) {
@@ -65,7 +65,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
         .path(
           "/type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator"
         )
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { weight: 8, kind: "wrongKind" });
     } catch (err) {
@@ -77,7 +77,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/enum-discriminator/fixed-enum")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, validFixedEnumBody);
     } catch (err) {
@@ -102,7 +102,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
         .path(
           "/type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator"
         )
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { length: 10 } as any);
     } catch (err) {
@@ -116,7 +116,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
         .path(
           "/type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator"
         )
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { length: 8, kind: "wrongKind" });
     } catch (err) {

@@ -15,7 +15,7 @@ describe("Azure Core Saclar Rest Client", () => {
     try {
       const result = await client
         .path("/azure/core/scalar/azureLocation")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "eastus");
     } catch (err) {

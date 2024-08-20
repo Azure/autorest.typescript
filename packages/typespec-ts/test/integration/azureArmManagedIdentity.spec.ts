@@ -80,7 +80,7 @@ describe("Azure Arm Resources Rest Client", () => {
         RESOURCE_GROUP_EXPECTED,
         "identity"
       )
-      .get({});
+      .get();
     assert.strictEqual(result.status, "200");
     assert.deepEqual(result.body, validSystemAssignedManagedIdentityResource);
   });

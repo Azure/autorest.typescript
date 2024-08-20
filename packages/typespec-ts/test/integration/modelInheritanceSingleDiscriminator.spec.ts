@@ -42,7 +42,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/single-discriminator/model")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, validBody);
     } catch (err) {
@@ -65,7 +65,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/single-discriminator/recursivemodel")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, validRecursiveBody);
     } catch (err) {
@@ -90,7 +90,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
         .path(
           "/type/model/inheritance/single-discriminator/missingdiscriminator"
         )
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { wingspan: 1 } as any);
     } catch (err) {
@@ -102,7 +102,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/single-discriminator/wrongdiscriminator")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { wingspan: 1, kind: "wrongKind" } as any);
     } catch (err) {
@@ -114,7 +114,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
     try {
       const result = await client
         .path("/type/model/inheritance/single-discriminator/legacy-model")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { size: 20, kind: "t-rex" });
     } catch (err) {

@@ -25,7 +25,7 @@ describe("ModelsUsageClient Rest Client", () => {
 
   it("should get output model correctly", async () => {
     try {
-      const result = await client.path("/type/model/usage/output").get({});
+      const result = await client.path("/type/model/usage/output").get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, body);
     } catch (err) {

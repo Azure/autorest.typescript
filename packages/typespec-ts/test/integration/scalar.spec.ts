@@ -17,7 +17,7 @@ describe("Scalar Client", () => {
 
   it("should get string value", async () => {
     try {
-      const result = await client.path("/type/scalar/string").get({});
+      const result = await client.path("/type/scalar/string").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "test");
     } catch (err) {
@@ -38,7 +38,7 @@ describe("Scalar Client", () => {
 
   it("should get boolean value", async () => {
     try {
-      const result = await client.path("/type/scalar/boolean").get({});
+      const result = await client.path("/type/scalar/boolean").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, true);
     } catch (err) {
@@ -59,7 +59,7 @@ describe("Scalar Client", () => {
 
   it("should get unknown value", async () => {
     try {
-      const result = await client.path("/type/scalar/unknown").get({});
+      const result = await client.path("/type/scalar/unknown").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "test");
     } catch (err) {
@@ -82,7 +82,7 @@ describe("Scalar Client", () => {
     try {
       const result = await client
         .path("/type/scalar/decimal/response_body")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, 0.33333);
     } catch (err) {
@@ -116,7 +116,7 @@ describe("Scalar Client", () => {
     try {
       const result = await client
         .path("/type/scalar/decimal128/response_body")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, 0.33333);
     } catch (err) {
@@ -151,7 +151,7 @@ describe("Scalar Client", () => {
       // prepare the verification
       const getResult = await client
         .path("/type/scalar/decimal/prepare_verify")
-        .get({});
+        .get();
       // do any calculation based on numbers
       let total = 0;
       getResult.body.forEach((decimal: number) => {
@@ -170,7 +170,7 @@ describe("Scalar Client", () => {
     try {
       const getResult = await client
         .path("/type/scalar/decimal128/prepare_verify")
-        .get({});
+        .get();
       // do any calculation based on numbers
       let total = 0;
       getResult.body.forEach((decimal: number) => {

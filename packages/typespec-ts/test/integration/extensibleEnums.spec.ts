@@ -13,7 +13,7 @@ describe("ExtensibleEnums Rest Client", () => {
     try {
       const result = await client
         .path("/type/enum/extensible/string/known-value")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Monday");
     } catch (err) {
@@ -41,7 +41,7 @@ describe("ExtensibleEnums Rest Client", () => {
     try {
       const result = await client
         .path("/type/enum/extensible/string/unknown-value")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Weekend");
     } catch (err) {

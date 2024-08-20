@@ -51,7 +51,7 @@ describe("AuthUnionClient Rest Client", () => {
     try {
       const result = await client
         .path("/authentication/union/validtoken")
-        .get({});
+        .get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -61,9 +61,7 @@ describe("AuthUnionClient Rest Client", () => {
   it("should return 204 when the key is valid", async () => {
     prepareKey();
     try {
-      const result = await client
-        .path("/authentication/union/validkey")
-        .get({});
+      const result = await client.path("/authentication/union/validkey").get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
