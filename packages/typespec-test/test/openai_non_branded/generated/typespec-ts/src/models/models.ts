@@ -2,6 +2,7 @@
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {} from "@typespec/ts-http-runtime";
+import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 
 export interface CreateModerationRequest {
   /** The input text to classify */
@@ -138,10 +139,10 @@ export function createImageEditRequestSerializer(
 ): Record<string, unknown> {
   return {
     prompt: item["prompt"],
-    image: _PLACEHOLDER_o13_(item["image"], "base64"),
+    image: uint8ArrayToString(item["image"], "base64"),
     mask:
       item["mask"] !== undefined
-        ? _PLACEHOLDER_o13_(item["mask"], "base64")
+        ? uint8ArrayToString(item["mask"], "base64")
         : undefined,
     n: item["n"],
     size: item["size"],
@@ -169,7 +170,7 @@ export function createImageVariationRequestSerializer(
   item: CreateImageVariationRequest,
 ): Record<string, unknown> {
   return {
-    image: _PLACEHOLDER_o13_(item["image"], "base64"),
+    image: uint8ArrayToString(item["image"], "base64"),
     n: item["n"],
     size: item["size"],
     response_format: item["responseFormat"],
@@ -446,7 +447,7 @@ export function createFileRequestSerializer(
   item: CreateFileRequest,
 ): Record<string, unknown> {
   return {
-    file: _PLACEHOLDER_o13_(item["file"], "base64"),
+    file: uint8ArrayToString(item["file"], "base64"),
     purpose: item["purpose"],
   };
 }
@@ -1151,7 +1152,7 @@ export function createTranslationRequestSerializer(
   item: CreateTranslationRequest,
 ): Record<string, unknown> {
   return {
-    file: _PLACEHOLDER_o13_(item["file"], "base64"),
+    file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],
     prompt: item["prompt"],
     response_format: item["responseFormat"],
@@ -1200,7 +1201,7 @@ export function createTranscriptionRequestSerializer(
   item: CreateTranscriptionRequest,
 ): Record<string, unknown> {
   return {
-    file: _PLACEHOLDER_o13_(item["file"], "base64"),
+    file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],
     prompt: item["prompt"],
     response_format: item["responseFormat"],

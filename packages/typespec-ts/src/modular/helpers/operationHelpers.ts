@@ -1,8 +1,4 @@
 import {
-  AzureCoreDependencies,
-  AzurePollingDependencies
-} from "../external-dependencies.js";
-import {
   BodyParameter,
   Client,
   ModularCodeModel,
@@ -47,8 +43,10 @@ import {
 } from "./docsHelpers.js";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
+import { AzurePollingDependencies } from "../external-dependencies.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
+import { useDependencies } from "../../framework/hooks/useDependencies.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -649,8 +647,9 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
+    const dependencies = useDependencies();
     const uint8ArrayToStringReference = resolveReference(
-      AzureCoreDependencies.uint8ArrayToString
+      dependencies.uint8ArrayToString
     );
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
@@ -1364,8 +1363,9 @@ export function serializeRequestValue(
     }
     case "byte-array":
       if (format !== "binary") {
+        const dependencies = useDependencies();
         const uint8ArrayToStringReference = resolveReference(
-          AzureCoreDependencies.uint8ArrayToString
+          dependencies.uint8ArrayToString
         );
         return required
           ? `${getNullableCheck(

@@ -11,6 +11,7 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
+import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
@@ -24,7 +25,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: _PLACEHOLDER_o13_(audio["file"], "base64"),
+        file: uint8ArrayToString(audio["file"], "base64"),
         model: audio["model"],
         prompt: audio["prompt"],
         response_format: audio["responseFormat"],

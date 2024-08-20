@@ -14,6 +14,7 @@ import {
   createRestError,
   stringToUint8Array,
 } from "@typespec/ts-http-runtime";
+import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,
@@ -82,10 +83,10 @@ export function _createEditSend(
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
         prompt: image["prompt"],
-        image: _PLACEHOLDER_o13_(image["image"], "base64"),
+        image: uint8ArrayToString(image["image"], "base64"),
         mask:
           image["mask"] !== undefined
-            ? _PLACEHOLDER_o13_(image["mask"], "base64")
+            ? uint8ArrayToString(image["mask"], "base64")
             : undefined,
         n: image["n"],
         size: image["size"],
@@ -137,7 +138,7 @@ export function _createVariationSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        image: _PLACEHOLDER_o13_(image["image"], "base64"),
+        image: uint8ArrayToString(image["image"], "base64"),
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],

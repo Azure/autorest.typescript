@@ -13,6 +13,7 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
+import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 import {
   FilesListOptionalParams,
   FilesCreateOptionalParams,
@@ -74,7 +75,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: _PLACEHOLDER_o13_(file["file"], "base64"),
+        file: uint8ArrayToString(file["file"], "base64"),
         purpose: file["purpose"],
       },
     });
