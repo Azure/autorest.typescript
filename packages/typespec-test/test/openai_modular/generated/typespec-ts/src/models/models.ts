@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { serializeRecord } from "../helpers/serializerHelpers.js";
-import { uint8ArrayToString } from "@azure/core-util";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** The configuration information for an audio transcription request. */
@@ -45,29 +44,11 @@ export interface AudioTranscriptionOptions {
 }
 
 export function audioTranscriptionOptionsSerializer(
-  item: AudioTranscriptionOptions,
-): Record<string, unknown> {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    filename: item["filename"],
-    response_format: item["responseFormat"],
-    language: item["language"],
-    prompt: item["prompt"],
-    temperature: item["temperature"],
-    timestamp_granularities: item["timestampGranularities"],
-    model: item["model"],
-  };
+  input: AudioTranscriptionOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** Defines available options for the underlying response format of output transcription information. */
-export type AudioTranscriptionFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
-/** Defines the timestamp granularities that can be requested on a verbose transcription response. */
-export type AudioTranscriptionTimestampGranularity = "word" | "segment";
 
 /** Result information for an operation that transcribed spoken audio into written text. */
 export interface AudioTranscription {
@@ -88,8 +69,12 @@ export interface AudioTranscription {
   words?: AudioTranscriptionWord[];
 }
 
-/** Defines the possible descriptors for available audio operation responses. */
-export type AudioTaskLabel = "transcribe" | "translate";
+export function audioTranscriptionSerializer(
+  input: AudioTranscription,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
 
 /**
  * Extended information about a single segment of transcribed audio data.
@@ -125,6 +110,13 @@ export interface AudioTranscriptionSegment {
   seek: number;
 }
 
+export function audioTranscriptionSegmentSerializer(
+  input: AudioTranscriptionSegment,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** Extended information about a single transcribed word, as provided on responses when the 'word' timestamp granularity is provided. */
 export interface AudioTranscriptionWord {
   /** The textual content of the word. */
@@ -133,6 +125,13 @@ export interface AudioTranscriptionWord {
   start: number;
   /** The end time of the word relative to the beginning of the audio, expressed in seconds. */
   end: number;
+}
+
+export function audioTranscriptionWordSerializer(
+  input: AudioTranscriptionWord,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The configuration information for an audio translation request. */
@@ -162,25 +161,11 @@ export interface AudioTranslationOptions {
 }
 
 export function audioTranslationOptionsSerializer(
-  item: AudioTranslationOptions,
-): Record<string, unknown> {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    filename: item["filename"],
-    response_format: item["responseFormat"],
-    prompt: item["prompt"],
-    temperature: item["temperature"],
-    model: item["model"],
-  };
+  input: AudioTranslationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** Defines available options for the underlying response format of output translation information. */
-export type AudioTranslationFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
 
 /** Result information for an operation that translated spoken audio into written text. */
 export interface AudioTranslation {
@@ -197,6 +182,11 @@ export interface AudioTranslation {
   duration?: number;
   /** A collection of information about the timing, probabilities, and other detail of each processed audio segment. */
   segments?: AudioTranslationSegment[];
+}
+
+export function audioTranslationSerializer(input: AudioTranslation): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -231,6 +221,13 @@ export interface AudioTranslationSegment {
    * segment's associated seek position.
    */
   seek: number;
+}
+
+export function audioTranslationSegmentSerializer(
+  input: AudioTranslationSegment,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -328,28 +325,10 @@ export interface CompletionsOptions {
 }
 
 export function completionsOptionsSerializer(
-  item: CompletionsOptions,
-): Record<string, unknown> {
-  return {
-    prompt: item["prompt"],
-    max_tokens: item["maxTokens"],
-    temperature: item["temperature"],
-    top_p: item["topP"],
-    logit_bias: !item.logitBias
-      ? item.logitBias
-      : (serializeRecord(item.logitBias as any) as any),
-    user: item["user"],
-    n: item["n"],
-    logprobs: item["logprobs"],
-    suffix: item["suffix"],
-    echo: item["echo"],
-    stop: item["stop"],
-    presence_penalty: item["presencePenalty"],
-    frequency_penalty: item["frequencyPenalty"],
-    best_of: item["bestOf"],
-    stream: item["stream"],
-    model: item["model"],
-  };
+  input: CompletionsOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -380,12 +359,43 @@ export interface Completions {
   usage: CompletionsUsage;
 }
 
+export function completionsSerializer(input: Completions): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/**
+ * Representation of the token counts processed for a completions request.
+ * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
+ * other consumers.
+ */
+export interface CompletionsUsage {
+  /** The number of tokens generated across all completions emissions. */
+  completionTokens: number;
+  /** The number of tokens in the provided prompts for the completions request. */
+  promptTokens: number;
+  /** The total number of tokens processed for the completions request and response. */
+  totalTokens: number;
+}
+
+export function completionsUsageSerializer(input: CompletionsUsage): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** Content filtering results for a single prompt in the request. */
 export interface ContentFilterResultsForPrompt {
   /** The index of this prompt in the set of prompt results */
   promptIndex: number;
   /** Content filtering results for this prompt */
   contentFilterResults: ContentFilterResultDetailsForPrompt;
+}
+
+export function contentFilterResultsForPromptSerializer(
+  input: ContentFilterResultsForPrompt,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Information about content filtering evaluated against input data to Azure OpenAI. */
@@ -430,6 +440,13 @@ export interface ContentFilterResultDetailsForPrompt {
   indirectAttack?: ContentFilterDetectionResult;
 }
 
+export function contentFilterResultDetailsForPromptSerializer(
+  input: ContentFilterResultDetailsForPrompt,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** Information about filtered content severity level and if it has been filtered or not. */
 export interface ContentFilterResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -438,8 +455,12 @@ export interface ContentFilterResult {
   severity: ContentFilterSeverity;
 }
 
-/** Ratings for the intensity and risk level of harmful content. */
-export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
+export function contentFilterResultSerializer(
+  input: ContentFilterResult,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
 
 /** Represents the outcome of a detection operation performed by content filtering. */
 export interface ContentFilterDetectionResult {
@@ -447,6 +468,13 @@ export interface ContentFilterDetectionResult {
   filtered: boolean;
   /** A value indicating whether detection occurred, irrespective of severity or whether the content was filtered. */
   detected: boolean;
+}
+
+export function contentFilterDetectionResultSerializer(
+  input: ContentFilterDetectionResult,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Represents a structured collection of result details for content filtering. */
@@ -457,12 +485,26 @@ export interface ContentFilterDetailedResults {
   details: ContentFilterBlocklistIdResult[];
 }
 
+export function contentFilterDetailedResultsSerializer(
+  input: ContentFilterDetailedResults,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** Represents the outcome of an evaluation against a custom blocklist as performed by content filtering. */
 export interface ContentFilterBlocklistIdResult {
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
   /** The ID of the custom blocklist evaluated. */
   id: string;
+}
+
+export function contentFilterBlocklistIdResultSerializer(
+  input: ContentFilterBlocklistIdResult,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -485,6 +527,11 @@ export interface Choice {
   logprobs: CompletionsLogProbabilityModel | null;
   /** Reason for finishing */
   finishReason: CompletionsFinishReason | null;
+}
+
+export function choiceSerializer(input: Choice): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Information about content filtering evaluated against generated model output. */
@@ -529,6 +576,13 @@ export interface ContentFilterResultsForChoice {
   protectedMaterialCode?: ContentFilterCitedDetectionResult;
 }
 
+export function contentFilterResultsForChoiceSerializer(
+  input: ContentFilterResultsForChoice,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** Represents the outcome of a detection operation against protected resources as performed by content filtering. */
 export interface ContentFilterCitedDetectionResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -539,6 +593,13 @@ export interface ContentFilterCitedDetectionResult {
   url?: string;
   /** The license description associated with the detection. */
   license: string;
+}
+
+export function contentFilterCitedDetectionResultSerializer(
+  input: ContentFilterCitedDetectionResult,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Representation of a log probabilities model for a completions generation. */
@@ -553,26 +614,11 @@ export interface CompletionsLogProbabilityModel {
   textOffset: number[];
 }
 
-/** Representation of the manner in which a completions response concluded. */
-export type CompletionsFinishReason =
-  | "stop"
-  | "length"
-  | "content_filter"
-  | "function_call"
-  | "tool_calls";
-
-/**
- * Representation of the token counts processed for a completions request.
- * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
- * other consumers.
- */
-export interface CompletionsUsage {
-  /** The number of tokens generated across all completions emissions. */
-  completionTokens: number;
-  /** The number of tokens in the provided prompts for the completions request. */
-  promptTokens: number;
-  /** The total number of tokens processed for the completions request and response. */
-  totalTokens: number;
+export function completionsLogProbabilityModelSerializer(
+  input: CompletionsLogProbabilityModel,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -688,90 +734,107 @@ export interface ChatCompletionsOptions {
 }
 
 export function chatCompletionsOptionsSerializer(
-  item: ChatCompletionsOptions,
-): Record<string, unknown> {
-  return {
-    messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
-    functions:
-      item["functions"] === undefined
-        ? item["functions"]
-        : item["functions"].map(functionDefinitionSerializer),
-    function_call: item["functionCall"] as any,
-    max_tokens: item["maxTokens"],
-    temperature: item["temperature"],
-    top_p: item["topP"],
-    logit_bias: !item.logitBias
-      ? item.logitBias
-      : (serializeRecord(item.logitBias as any) as any),
-    user: item["user"],
-    n: item["n"],
-    stop: item["stop"],
-    presence_penalty: item["presencePenalty"],
-    frequency_penalty: item["frequencyPenalty"],
-    stream: item["stream"],
-    model: item["model"],
-    data_sources:
-      item["dataSources"] === undefined
-        ? item["dataSources"]
-        : item["dataSources"].map((p) =>
-            azureChatExtensionConfigurationUnionSerializer(p),
-          ),
-    enhancements: !item.enhancements
-      ? item.enhancements
-      : azureChatEnhancementConfigurationSerializer(item.enhancements),
-    seed: item["seed"],
-    logprobs: item["logprobs"],
-    top_logprobs: item["topLogprobs"],
-    response_format: !item.responseFormat
-      ? item.responseFormat
-      : chatCompletionsResponseFormatUnionSerializer(item.responseFormat),
-    tools: item["tools"],
-    tool_choice: item["toolChoice"] as any,
-  };
+  input: ChatCompletionsOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** A representation of the available Azure OpenAI enhancement configurations. */
+export interface AzureChatEnhancementConfiguration {
+  /** A representation of the available options for the Azure OpenAI grounding enhancement. */
+  grounding?: AzureChatGroundingEnhancementConfiguration;
+  /** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
+  ocr?: AzureChatOCREnhancementConfiguration;
+}
+
+export function azureChatEnhancementConfigurationSerializer(
+  input: AzureChatEnhancementConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** A representation of the available options for the Azure OpenAI grounding enhancement. */
+export interface AzureChatGroundingEnhancementConfiguration {
+  /** Specifies whether the enhancement is enabled. */
+  enabled: boolean;
+}
+
+export function azureChatGroundingEnhancementConfigurationSerializer(
+  input: AzureChatGroundingEnhancementConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
+export interface AzureChatOCREnhancementConfiguration {
+  /** Specifies whether the enhancement is enabled. */
+  enabled: boolean;
+}
+
+export function azureChatOCREnhancementConfigurationSerializer(
+  input: AzureChatOCREnhancementConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/**
+ * An abstract representation of a response format configuration usable by Chat Completions. Can be used to enable JSON
+ * mode.
+ */
+export interface ChatCompletionsResponseFormat {
+  /** The discriminated type for the response format. */
+  type: string;
+}
+
+export function chatCompletionsResponseFormatUnionSerializer(
+  input: ChatCompletionsResponseFormatUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+export type ChatCompletionsResponseFormatUnion =
+  | ChatCompletionsTextResponseFormat
+  | ChatCompletionsJsonResponseFormat
+  | ChatCompletionsResponseFormat;
+
+export function chatCompletionsResponseFormatSerializer(
+  input: ChatCompletionsResponseFormat,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** An abstract representation of a chat message as provided in a request. */
 export interface ChatRequestMessage {
-  /** the discriminator possible values: system, user, assistant, tool, function */
+  /** The chat role associated with this message. */
   role: ChatRole;
 }
 
 export function chatRequestMessageUnionSerializer(
-  item: ChatRequestMessageUnion,
-) {
-  switch (item.role) {
-    case "system":
-      return chatRequestSystemMessageSerializer(
-        item as ChatRequestSystemMessage,
-      );
-
-    case "user":
-      return chatRequestUserMessageSerializer(item as ChatRequestUserMessage);
-
-    case "assistant":
-      return chatRequestAssistantMessageSerializer(
-        item as ChatRequestAssistantMessage,
-      );
-
-    case "tool":
-      return chatRequestToolMessageSerializer(item as ChatRequestToolMessage);
-
-    case "function":
-      return chatRequestFunctionMessageSerializer(
-        item as ChatRequestFunctionMessage,
-      );
-
-    default:
-      return chatRequestMessageSerializer(item);
-  }
+  input: ChatRequestMessageUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
+export type ChatRequestMessageUnion =
+  | ChatRequestSystemMessage
+  | ChatRequestUserMessage
+  | ChatRequestAssistantMessage
+  | ChatRequestToolMessage
+  | ChatRequestFunctionMessage
+  | ChatRequestMessage;
+
 export function chatRequestMessageSerializer(
-  item: ChatRequestMessageUnion,
-): Record<string, unknown> {
-  return {
-    ...chatRequestMessageUnionSerializer(item),
-  };
+  input: ChatRequestMessage,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -788,13 +851,10 @@ export interface ChatRequestSystemMessage extends ChatRequestMessage {
 }
 
 export function chatRequestSystemMessageSerializer(
-  item: ChatRequestSystemMessage,
-): Record<string, unknown> {
-  return {
-    role: item["role"],
-    content: item["content"],
-    name: item["name"],
-  };
+  input: ChatRequestSystemMessage,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A request chat message representing user input to the assistant. */
@@ -808,46 +868,35 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
 }
 
 export function chatRequestUserMessageSerializer(
-  item: ChatRequestUserMessage,
-): Record<string, unknown> {
-  return {
-    role: item["role"],
-    content: item["content"] as any,
-    name: item["name"],
-  };
+  input: ChatRequestUserMessage,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** An abstract representation of a structured content item within a chat message. */
 export interface ChatMessageContentItem {
-  /** the discriminator possible values: text, image_url */
+  /** The discriminated object type. */
   type: string;
 }
 
 export function chatMessageContentItemUnionSerializer(
-  item: ChatMessageContentItemUnion,
-) {
-  switch (item.type) {
-    case "text":
-      return chatMessageTextContentItemSerializer(
-        item as ChatMessageTextContentItem,
-      );
-
-    case "image_url":
-      return chatMessageImageContentItemSerializer(
-        item as ChatMessageImageContentItem,
-      );
-
-    default:
-      return chatMessageContentItemSerializer(item);
-  }
+  input: ChatMessageContentItemUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
+export type ChatMessageContentItemUnion =
+  | ChatMessageTextContentItem
+  | ChatMessageImageContentItem
+  | ChatMessageContentItem;
+
 export function chatMessageContentItemSerializer(
-  item: ChatMessageContentItemUnion,
-): Record<string, unknown> {
-  return {
-    ...chatMessageContentItemUnionSerializer(item),
-  };
+  input: ChatMessageContentItem,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A structured chat content item containing plain text. */
@@ -859,12 +908,10 @@ export interface ChatMessageTextContentItem extends ChatMessageContentItem {
 }
 
 export function chatMessageTextContentItemSerializer(
-  item: ChatMessageTextContentItem,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    text: item["text"],
-  };
+  input: ChatMessageTextContentItem,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A structured chat content item containing an image reference. */
@@ -876,12 +923,10 @@ export interface ChatMessageImageContentItem extends ChatMessageContentItem {
 }
 
 export function chatMessageImageContentItemSerializer(
-  item: ChatMessageImageContentItem,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    image_url: chatMessageImageUrlSerializer(item.imageUrl),
-  };
+  input: ChatMessageImageContentItem,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** An internet location from which the model may retrieve an image. */
@@ -896,16 +941,11 @@ export interface ChatMessageImageUrl {
 }
 
 export function chatMessageImageUrlSerializer(
-  item: ChatMessageImageUrl,
-): Record<string, unknown> {
-  return {
-    url: item["url"],
-    detail: item["detail"],
-  };
+  input: ChatMessageImageUrl,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** A representation of the possible image detail levels for image-based chat completions message content. */
-export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
 
 /** A request chat message representing response or action from the assistant. */
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
@@ -928,73 +968,10 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessage {
 }
 
 export function chatRequestAssistantMessageSerializer(
-  item: ChatRequestAssistantMessage,
-): Record<string, unknown> {
-  return {
-    role: item["role"],
-    content: item["content"],
-    name: item["name"],
-    tool_calls: item["toolCalls"],
-    function_call: !item.functionCall
-      ? item.functionCall
-      : functionCallSerializer(item.functionCall),
-  };
-}
-
-/**
- * An abstract representation of a tool call that must be resolved in a subsequent request to perform the requested
- * chat completion.
- */
-export interface ChatCompletionsToolCall {
-  /** the discriminator possible values: function */
-  type: string;
-  /** The ID of the tool call. */
-  id: string;
-}
-
-export function chatCompletionsToolCallUnionSerializer(
-  item: ChatCompletionsToolCallUnion,
-) {
-  switch (item.type) {
-    case "function":
-      return chatCompletionsFunctionToolCallSerializer(
-        item as ChatCompletionsFunctionToolCall,
-      );
-
-    default:
-      return chatCompletionsToolCallSerializer(item);
-  }
-}
-
-export function chatCompletionsToolCallSerializer(
-  item: ChatCompletionsToolCallUnion,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    id: item["id"],
-  };
-}
-
-/**
- * A tool call to a function tool, issued by the model in evaluation of a configured function tool, that represents
- * a function invocation needed for a subsequent chat completions request to resolve.
- */
-export interface ChatCompletionsFunctionToolCall
-  extends ChatCompletionsToolCall {
-  /** The type of tool call, in this case always 'function'. */
-  type: "function";
-  /** The details of the function invocation requested by the tool call. */
-  function: FunctionCall;
-}
-
-export function chatCompletionsFunctionToolCallSerializer(
-  item: ChatCompletionsFunctionToolCall,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    id: item["id"],
-    function: functionCallSerializer(item.function),
-  };
+  input: ChatRequestAssistantMessage,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The name and arguments of a function that should be called, as generated by the model. */
@@ -1010,13 +987,57 @@ export interface FunctionCall {
   arguments: string;
 }
 
-export function functionCallSerializer(
-  item: FunctionCall,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-    arguments: item["arguments"],
-  };
+export function functionCallSerializer(input: FunctionCall): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/**
+ * An abstract representation of a tool call that must be resolved in a subsequent request to perform the requested
+ * chat completion.
+ */
+export interface ChatCompletionsToolCall {
+  /** The object type. */
+  type: string;
+  /** The ID of the tool call. */
+  id: string;
+}
+
+export function chatCompletionsToolCallUnionSerializer(
+  input: ChatCompletionsToolCallUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+export type ChatCompletionsToolCallUnion =
+  | ChatCompletionsFunctionToolCall
+  | ChatCompletionsToolCall;
+
+export function chatCompletionsToolCallSerializer(
+  input: ChatCompletionsToolCall,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/**
+ * A tool call to a function tool, issued by the model in evaluation of a configured function tool, that represents
+ * a function invocation needed for a subsequent chat completions request to resolve.
+ */
+export interface ChatCompletionsFunctionToolCall
+  extends ChatCompletionsToolCall {
+  /** The type of tool call, in this case always 'function'. */
+  type: "function";
+  /** The details of the function invocation requested by the tool call. */
+  function: FunctionCall;
+}
+
+export function chatCompletionsFunctionToolCallSerializer(
+  input: ChatCompletionsFunctionToolCall,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A request chat message representing requested output from a configured tool. */
@@ -1030,13 +1051,10 @@ export interface ChatRequestToolMessage extends ChatRequestMessage {
 }
 
 export function chatRequestToolMessageSerializer(
-  item: ChatRequestToolMessage,
-): Record<string, unknown> {
-  return {
-    role: item["role"],
-    content: item["content"],
-    tool_call_id: item["toolCallId"],
-  };
+  input: ChatRequestToolMessage,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A request chat message representing requested output from a configured function. */
@@ -1050,17 +1068,11 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
 }
 
 export function chatRequestFunctionMessageSerializer(
-  item: ChatRequestFunctionMessage,
-): Record<string, unknown> {
-  return {
-    role: item["role"],
-    name: item["name"],
-    content: item["content"],
-  };
+  input: ChatRequestFunctionMessage,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** A description of the intended purpose of a message within a chat completions interaction. */
-export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
 
 /** The definition of a caller-specified function that chat completions may invoke in response to matching user input. */
 export interface FunctionDefinition {
@@ -1076,20 +1088,11 @@ export interface FunctionDefinition {
 }
 
 export function functionDefinitionSerializer(
-  item: FunctionDefinition,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-    description: item["description"],
-    parameters: item["parameters"],
-  };
+  input: FunctionDefinition,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/**
- * The collection of predefined behaviors for handling request-provided function information in a chat completions
- * operation.
- */
-export type FunctionCallPreset = "auto" | "none";
 
 /**
  * A structure that specifies the exact name of a specific, request-provided function to use when processing a chat
@@ -1100,12 +1103,9 @@ export interface FunctionName {
   name: string;
 }
 
-export function functionNameSerializer(
-  item: FunctionName,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-  };
+export function functionNameSerializer(input: FunctionName): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -1114,50 +1114,33 @@ export function functionNameSerializer(
  *   The use of this configuration is compatible only with Azure OpenAI.
  */
 export interface AzureChatExtensionConfiguration {
-  /** the discriminator possible values: azure_search, azure_ml_index, azure_cosmos_db, elasticsearch, pinecone */
+  /**
+   *   The label for the type of an Azure chat extension. This typically corresponds to a matching Azure resource.
+   *   Azure chat extensions are only compatible with Azure OpenAI.
+   */
   type: AzureChatExtensionType;
 }
 
 export function azureChatExtensionConfigurationUnionSerializer(
-  item: AzureChatExtensionConfigurationUnion,
-) {
-  switch (item.type) {
-    case "azure_search":
-      return azureSearchChatExtensionConfigurationSerializer(
-        item as AzureSearchChatExtensionConfiguration,
-      );
-
-    case "azure_ml_index":
-      return azureMachineLearningIndexChatExtensionConfigurationSerializer(
-        item as AzureMachineLearningIndexChatExtensionConfiguration,
-      );
-
-    case "azure_cosmos_db":
-      return azureCosmosDBChatExtensionConfigurationSerializer(
-        item as AzureCosmosDBChatExtensionConfiguration,
-      );
-
-    case "elasticsearch":
-      return elasticsearchChatExtensionConfigurationSerializer(
-        item as ElasticsearchChatExtensionConfiguration,
-      );
-
-    case "pinecone":
-      return pineconeChatExtensionConfigurationSerializer(
-        item as PineconeChatExtensionConfiguration,
-      );
-
-    default:
-      return azureChatExtensionConfigurationSerializer(item);
-  }
+  input: AzureChatExtensionConfigurationUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
+export type AzureChatExtensionConfigurationUnion =
+  | AzureSearchChatExtensionConfiguration
+  | AzureMachineLearningIndexChatExtensionConfiguration
+  | AzureCosmosDBChatExtensionConfiguration
+  | ElasticsearchChatExtensionConfiguration
+  | PineconeChatExtensionConfiguration
+  | AzureChatExtensionConfiguration;
+
 export function azureChatExtensionConfigurationSerializer(
-  item: AzureChatExtensionConfigurationUnion,
-): Record<string, unknown> {
-  return {
-    ...azureChatExtensionConfigurationUnionSerializer(item),
-  };
+  input: AzureChatExtensionConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -1176,12 +1159,10 @@ export interface AzureSearchChatExtensionConfiguration
 }
 
 export function azureSearchChatExtensionConfigurationSerializer(
-  item: AzureSearchChatExtensionConfiguration,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    parameters: azureSearchChatExtensionParametersSerializer(item.parameters),
-  };
+  input: AzureSearchChatExtensionConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Parameters for Azure Cognitive Search when used as an Azure OpenAI chat extension. The supported authentication types are APIKey, SystemAssignedManagedIdentity and UserAssignedManagedIdentity. */
@@ -1231,231 +1212,41 @@ export interface AzureSearchChatExtensionParameters {
 }
 
 export function azureSearchChatExtensionParametersSerializer(
-  item: AzureSearchChatExtensionParameters,
-): Record<string, unknown> {
-  return {
-    authentication: !item.authentication
-      ? item.authentication
-      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
-    top_n_documents: item["topNDocuments"],
-    in_scope: item["inScope"],
-    strictness: item["strictness"],
-    role_information: item["roleInformation"],
-    max_search_queries: item["maxSearchQueries"],
-    allow_partial_result: item["allowPartialResult"],
-    include_contexts: item["includeContexts"],
-    endpoint: item["endpoint"],
-    index_name: item["indexName"],
-    fields_mapping: !item.fieldsMapping
-      ? item.fieldsMapping
-      : azureSearchIndexFieldMappingOptionsSerializer(item.fieldsMapping),
-    query_type: item["queryType"],
-    semantic_configuration: item["semanticConfiguration"],
-    filter: item["filter"],
-    embedding_dependency: !item.embeddingDependency
-      ? item.embeddingDependency
-      : onYourDataVectorizationSourceUnionSerializer(item.embeddingDependency),
-  };
+  input: AzureSearchChatExtensionParameters,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The authentication options for Azure OpenAI On Your Data. */
 export interface OnYourDataAuthenticationOptions {
-  /** the discriminator possible values: api_key, connection_string, key_and_key_id, encoded_api_key, access_token, system_assigned_managed_identity, user_assigned_managed_identity */
+  /** The authentication type. */
   type: OnYourDataAuthenticationType;
 }
 
 export function onYourDataAuthenticationOptionsUnionSerializer(
-  item: OnYourDataAuthenticationOptionsUnion,
-) {
-  switch (item.type) {
-    case "api_key":
-      return onYourDataApiKeyAuthenticationOptionsSerializer(
-        item as OnYourDataApiKeyAuthenticationOptions,
-      );
-
-    case "connection_string":
-      return onYourDataConnectionStringAuthenticationOptionsSerializer(
-        item as OnYourDataConnectionStringAuthenticationOptions,
-      );
-
-    case "key_and_key_id":
-      return onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
-        item as OnYourDataKeyAndKeyIdAuthenticationOptions,
-      );
-
-    case "encoded_api_key":
-      return onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
-        item as OnYourDataEncodedApiKeyAuthenticationOptions,
-      );
-
-    case "access_token":
-      return onYourDataAccessTokenAuthenticationOptionsSerializer(
-        item as OnYourDataAccessTokenAuthenticationOptions,
-      );
-
-    case "system_assigned_managed_identity":
-      return onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(
-        item as OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
-      );
-
-    case "user_assigned_managed_identity":
-      return onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerializer(
-        item as OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
-      );
-
-    default:
-      return onYourDataAuthenticationOptionsSerializer(item);
-  }
+  input: OnYourDataAuthenticationOptionsUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
+
+export type OnYourDataAuthenticationOptionsUnion =
+  | OnYourDataApiKeyAuthenticationOptions
+  | OnYourDataConnectionStringAuthenticationOptions
+  | OnYourDataKeyAndKeyIdAuthenticationOptions
+  | OnYourDataEncodedApiKeyAuthenticationOptions
+  | OnYourDataAccessTokenAuthenticationOptions
+  | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
+  | OnYourDataUserAssignedManagedIdentityAuthenticationOptions
+  | OnYourDataAuthenticationOptions;
 
 export function onYourDataAuthenticationOptionsSerializer(
-  item: OnYourDataAuthenticationOptionsUnion,
-): Record<string, unknown> {
-  return {
-    ...onYourDataAuthenticationOptionsUnionSerializer(item),
-  };
+  input: OnYourDataAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** The authentication options for Azure OpenAI On Your Data when using an API key. */
-export interface OnYourDataApiKeyAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
-  /** The authentication type of API key. */
-  type: "api_key";
-  /** The API key to use for authentication. */
-  key: string;
-}
-
-export function onYourDataApiKeyAuthenticationOptionsSerializer(
-  item: OnYourDataApiKeyAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    key: item["key"],
-  };
-}
-
-/** The authentication options for Azure OpenAI On Your Data when using a connection string. */
-export interface OnYourDataConnectionStringAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
-  /** The authentication type of connection string. */
-  type: "connection_string";
-  /** The connection string to use for authentication. */
-  connectionString: string;
-}
-
-export function onYourDataConnectionStringAuthenticationOptionsSerializer(
-  item: OnYourDataConnectionStringAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    connection_string: item["connectionString"],
-  };
-}
-
-/** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch key and key ID pair. */
-export interface OnYourDataKeyAndKeyIdAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
-  /** The authentication type of Elasticsearch key and key ID pair. */
-  type: "key_and_key_id";
-  /** The key to use for authentication. */
-  key: string;
-  /** The key ID to use for authentication. */
-  keyId: string;
-}
-
-export function onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
-  item: OnYourDataKeyAndKeyIdAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    key: item["key"],
-    key_id: item["keyId"],
-  };
-}
-
-/** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch encoded API key. */
-export interface OnYourDataEncodedApiKeyAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
-  /** The authentication type of Elasticsearch encoded API Key. */
-  type: "encoded_api_key";
-  /** The encoded API key to use for authentication. */
-  encodedApiKey: string;
-}
-
-export function onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
-  item: OnYourDataEncodedApiKeyAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    encoded_api_key: item["encodedApiKey"],
-  };
-}
-
-/** The authentication options for Azure OpenAI On Your Data when using access token. */
-export interface OnYourDataAccessTokenAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
-  /** The authentication type of access token. */
-  type: "access_token";
-  /** The access token to use for authentication. */
-  accessToken: string;
-}
-
-export function onYourDataAccessTokenAuthenticationOptionsSerializer(
-  item: OnYourDataAccessTokenAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    access_token: item["accessToken"],
-  };
-}
-
-/** The authentication options for Azure OpenAI On Your Data when using a system-assigned managed identity. */
-export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
-  /** The authentication type of system-assigned managed identity. */
-  type: "system_assigned_managed_identity";
-}
-
-export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(
-  item: OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-  };
-}
-
-/** The authentication options for Azure OpenAI On Your Data when using a user-assigned managed identity. */
-export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
-  /** The authentication type of user-assigned managed identity. */
-  type: "user_assigned_managed_identity";
-  /** The resource ID of the user-assigned managed identity to use for authentication. */
-  managedIdentityResourceId: string;
-}
-
-export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerializer(
-  item: OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    managed_identity_resource_id: item["managedIdentityResourceId"],
-  };
-}
-
-/** The authentication types supported with Azure OpenAI On Your Data. */
-export type OnYourDataAuthenticationType =
-  | "api_key"
-  | "connection_string"
-  | "key_and_key_id"
-  | "encoded_api_key"
-  | "access_token"
-  | "system_assigned_managed_identity"
-  | "user_assigned_managed_identity";
-/** The context property. */
-export type OnYourDataContextProperty =
-  | "citations"
-  | "intent"
-  | "all_retrieved_documents";
 
 /** Optional settings to control how fields are processed when using a configured Azure Search resource. */
 export interface AzureSearchIndexFieldMappingOptions {
@@ -1476,63 +1267,148 @@ export interface AzureSearchIndexFieldMappingOptions {
 }
 
 export function azureSearchIndexFieldMappingOptionsSerializer(
-  item: AzureSearchIndexFieldMappingOptions,
-): Record<string, unknown> {
-  return {
-    title_field: item["titleField"],
-    url_field: item["urlField"],
-    filepath_field: item["filepathField"],
-    content_fields: item["contentFields"],
-    content_fields_separator: item["contentFieldsSeparator"],
-    vector_fields: item["vectorFields"],
-    image_vector_fields: item["imageVectorFields"],
-  };
+  input: AzureSearchIndexFieldMappingOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-export type AzureSearchQueryType =
-  | "simple"
-  | "semantic"
-  | "vector"
-  | "vector_simple_hybrid"
-  | "vector_semantic_hybrid";
 
 /** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
 export interface OnYourDataVectorizationSource {
-  /** the discriminator possible values: endpoint, deployment_name, model_id */
+  /** The type of vectorization source to use. */
   type: OnYourDataVectorizationSourceType;
 }
 
 export function onYourDataVectorizationSourceUnionSerializer(
-  item: OnYourDataVectorizationSourceUnion,
-) {
-  switch (item.type) {
-    case "endpoint":
-      return onYourDataEndpointVectorizationSourceSerializer(
-        item as OnYourDataEndpointVectorizationSource,
-      );
-
-    case "deployment_name":
-      return onYourDataDeploymentNameVectorizationSourceSerializer(
-        item as OnYourDataDeploymentNameVectorizationSource,
-      );
-
-    case "model_id":
-      return onYourDataModelIdVectorizationSourceSerializer(
-        item as OnYourDataModelIdVectorizationSource,
-      );
-
-    default:
-      return onYourDataVectorizationSourceSerializer(item);
-  }
+  input: OnYourDataVectorizationSourceUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
+export type OnYourDataVectorizationSourceUnion =
+  | OnYourDataEndpointVectorizationSource
+  | OnYourDataDeploymentNameVectorizationSource
+  | OnYourDataModelIdVectorizationSource
+  | OnYourDataVectorizationSource;
+
 export function onYourDataVectorizationSourceSerializer(
-  item: OnYourDataVectorizationSourceUnion,
-): Record<string, unknown> {
-  return {
-    ...onYourDataVectorizationSourceUnionSerializer(item),
-  };
+  input: OnYourDataVectorizationSource,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using an API key. */
+export interface OnYourDataApiKeyAuthenticationOptions
+  extends OnYourDataAuthenticationOptions {
+  /** The authentication type of API key. */
+  type: "api_key";
+  /** The API key to use for authentication. */
+  key: string;
+}
+
+export function onYourDataApiKeyAuthenticationOptionsSerializer(
+  input: OnYourDataApiKeyAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using a connection string. */
+export interface OnYourDataConnectionStringAuthenticationOptions
+  extends OnYourDataAuthenticationOptions {
+  /** The authentication type of connection string. */
+  type: "connection_string";
+  /** The connection string to use for authentication. */
+  connectionString: string;
+}
+
+export function onYourDataConnectionStringAuthenticationOptionsSerializer(
+  input: OnYourDataConnectionStringAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch key and key ID pair. */
+export interface OnYourDataKeyAndKeyIdAuthenticationOptions
+  extends OnYourDataAuthenticationOptions {
+  /** The authentication type of Elasticsearch key and key ID pair. */
+  type: "key_and_key_id";
+  /** The key to use for authentication. */
+  key: string;
+  /** The key ID to use for authentication. */
+  keyId: string;
+}
+
+export function onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
+  input: OnYourDataKeyAndKeyIdAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch encoded API key. */
+export interface OnYourDataEncodedApiKeyAuthenticationOptions
+  extends OnYourDataAuthenticationOptions {
+  /** The authentication type of Elasticsearch encoded API Key. */
+  type: "encoded_api_key";
+  /** The encoded API key to use for authentication. */
+  encodedApiKey: string;
+}
+
+export function onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
+  input: OnYourDataEncodedApiKeyAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using access token. */
+export interface OnYourDataAccessTokenAuthenticationOptions
+  extends OnYourDataAuthenticationOptions {
+  /** The authentication type of access token. */
+  type: "access_token";
+  /** The access token to use for authentication. */
+  accessToken: string;
+}
+
+export function onYourDataAccessTokenAuthenticationOptionsSerializer(
+  input: OnYourDataAccessTokenAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using a system-assigned managed identity. */
+export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
+  extends OnYourDataAuthenticationOptions {
+  /** The authentication type of system-assigned managed identity. */
+  type: "system_assigned_managed_identity";
+}
+
+export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(
+  input: OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The authentication options for Azure OpenAI On Your Data when using a user-assigned managed identity. */
+export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions
+  extends OnYourDataAuthenticationOptions {
+  /** The authentication type of user-assigned managed identity. */
+  type: "user_assigned_managed_identity";
+  /** The resource ID of the user-assigned managed identity to use for authentication. */
+  managedIdentityResourceId: string;
+}
+
+export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerializer(
+  input: OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -1550,48 +1426,35 @@ export interface OnYourDataEndpointVectorizationSource
 }
 
 export function onYourDataEndpointVectorizationSourceSerializer(
-  item: OnYourDataEndpointVectorizationSource,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    endpoint: item["endpoint"],
-    authentication: onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
-      item.authentication,
-    ),
-  };
+  input: OnYourDataEndpointVectorizationSource,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The authentication options for Azure OpenAI On Your Data vector search. */
 export interface OnYourDataVectorSearchAuthenticationOptions {
-  /** the discriminator possible values: api_key, access_token */
+  /** The type of authentication to use. */
   type: OnYourDataVectorSearchAuthenticationType;
 }
 
 export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
-  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
-) {
-  switch (item.type) {
-    case "api_key":
-      return onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
-        item as OnYourDataVectorSearchApiKeyAuthenticationOptions,
-      );
-
-    case "access_token":
-      return onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer(
-        item as OnYourDataVectorSearchAccessTokenAuthenticationOptions,
-      );
-
-    default:
-      return onYourDataVectorSearchAuthenticationOptionsSerializer(item);
-  }
+  input: OnYourDataVectorSearchAuthenticationOptionsUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
+export type OnYourDataVectorSearchAuthenticationOptionsUnion =
+  | OnYourDataVectorSearchApiKeyAuthenticationOptions
+  | OnYourDataVectorSearchAccessTokenAuthenticationOptions
+  | OnYourDataVectorSearchAuthenticationOptions;
+
 export function onYourDataVectorSearchAuthenticationOptionsSerializer(
-  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
-): Record<string, unknown> {
-  return {
-    ...onYourDataVectorSearchAuthenticationOptionsUnionSerializer(item),
-  };
+  input: OnYourDataVectorSearchAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
@@ -1604,12 +1467,10 @@ export interface OnYourDataVectorSearchApiKeyAuthenticationOptions
 }
 
 export function onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
-  item: OnYourDataVectorSearchApiKeyAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    key: item["key"],
-  };
+  input: OnYourDataVectorSearchApiKeyAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The authentication options for Azure OpenAI On Your Data vector search when using access token. */
@@ -1622,18 +1483,11 @@ export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions
 }
 
 export function onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer(
-  item: OnYourDataVectorSearchAccessTokenAuthenticationOptions,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    access_token: item["accessToken"],
-  };
+  input: OnYourDataVectorSearchAccessTokenAuthenticationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** The authentication types supported with Azure OpenAI On Your Data vector search. */
-export type OnYourDataVectorSearchAuthenticationType =
-  | "api_key"
-  | "access_token";
 
 /**
  * The details of a a vectorization source, used by Azure OpenAI On Your Data when applying vector search, that is based
@@ -1650,13 +1504,10 @@ export interface OnYourDataDeploymentNameVectorizationSource
 }
 
 export function onYourDataDeploymentNameVectorizationSourceSerializer(
-  item: OnYourDataDeploymentNameVectorizationSource,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    deployment_name: item["deploymentName"],
-    dimensions: item["dimensions"],
-  };
+  input: OnYourDataDeploymentNameVectorizationSource,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -1672,22 +1523,11 @@ export interface OnYourDataModelIdVectorizationSource
 }
 
 export function onYourDataModelIdVectorizationSourceSerializer(
-  item: OnYourDataModelIdVectorizationSource,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    model_id: item["modelId"],
-  };
+  input: OnYourDataModelIdVectorizationSource,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/**
- * Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with
- * vector search.
- */
-export type OnYourDataVectorizationSourceType =
-  | "endpoint"
-  | "deployment_name"
-  | "model_id";
 
 /**
  * A specific representation of configurable options for Azure Machine Learning vector index when using it as an Azure
@@ -1705,14 +1545,10 @@ export interface AzureMachineLearningIndexChatExtensionConfiguration
 }
 
 export function azureMachineLearningIndexChatExtensionConfigurationSerializer(
-  item: AzureMachineLearningIndexChatExtensionConfiguration,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    parameters: azureMachineLearningIndexChatExtensionParametersSerializer(
-      item.parameters,
-    ),
-  };
+  input: AzureMachineLearningIndexChatExtensionConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Parameters for the Azure Machine Learning vector index chat extension. The supported authentication types are AccessToken, SystemAssignedManagedIdentity and UserAssignedManagedIdentity. */
@@ -1756,24 +1592,10 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
 }
 
 export function azureMachineLearningIndexChatExtensionParametersSerializer(
-  item: AzureMachineLearningIndexChatExtensionParameters,
-): Record<string, unknown> {
-  return {
-    authentication: !item.authentication
-      ? item.authentication
-      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
-    top_n_documents: item["topNDocuments"],
-    in_scope: item["inScope"],
-    strictness: item["strictness"],
-    role_information: item["roleInformation"],
-    max_search_queries: item["maxSearchQueries"],
-    allow_partial_result: item["allowPartialResult"],
-    include_contexts: item["includeContexts"],
-    project_resource_id: item["projectResourceId"],
-    name: item["name"],
-    version: item["version"],
-    filter: item["filter"],
-  };
+  input: AzureMachineLearningIndexChatExtensionParameters,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -1792,12 +1614,10 @@ export interface AzureCosmosDBChatExtensionConfiguration
 }
 
 export function azureCosmosDBChatExtensionConfigurationSerializer(
-  item: AzureCosmosDBChatExtensionConfiguration,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    parameters: azureCosmosDBChatExtensionParametersSerializer(item.parameters),
-  };
+  input: AzureCosmosDBChatExtensionConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -1846,29 +1666,10 @@ export interface AzureCosmosDBChatExtensionParameters {
 }
 
 export function azureCosmosDBChatExtensionParametersSerializer(
-  item: AzureCosmosDBChatExtensionParameters,
-): Record<string, unknown> {
-  return {
-    authentication: !item.authentication
-      ? item.authentication
-      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
-    top_n_documents: item["topNDocuments"],
-    in_scope: item["inScope"],
-    strictness: item["strictness"],
-    role_information: item["roleInformation"],
-    max_search_queries: item["maxSearchQueries"],
-    allow_partial_result: item["allowPartialResult"],
-    include_contexts: item["includeContexts"],
-    database_name: item["databaseName"],
-    container_name: item["containerName"],
-    index_name: item["indexName"],
-    fields_mapping: azureCosmosDBFieldMappingOptionsSerializer(
-      item.fieldsMapping,
-    ),
-    embedding_dependency: onYourDataVectorizationSourceUnionSerializer(
-      item.embeddingDependency,
-    ),
-  };
+  input: AzureCosmosDBChatExtensionParameters,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Optional settings to control how fields are processed when using a configured Azure Cosmos DB resource. */
@@ -1888,16 +1689,10 @@ export interface AzureCosmosDBFieldMappingOptions {
 }
 
 export function azureCosmosDBFieldMappingOptionsSerializer(
-  item: AzureCosmosDBFieldMappingOptions,
-): Record<string, unknown> {
-  return {
-    title_field: item["titleField"],
-    url_field: item["urlField"],
-    filepath_field: item["filepathField"],
-    content_fields: item["contentFields"],
-    content_fields_separator: item["contentFieldsSeparator"],
-    vector_fields: item["vectorFields"],
-  };
+  input: AzureCosmosDBFieldMappingOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -1916,12 +1711,10 @@ export interface ElasticsearchChatExtensionConfiguration
 }
 
 export function elasticsearchChatExtensionConfigurationSerializer(
-  item: ElasticsearchChatExtensionConfiguration,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    parameters: elasticsearchChatExtensionParametersSerializer(item.parameters),
-  };
+  input: ElasticsearchChatExtensionConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Parameters to use when configuring Elasticsearch® as an Azure OpenAI chat extension. The supported authentication types are KeyAndKeyId and EncodedAPIKey. */
@@ -1967,29 +1760,10 @@ export interface ElasticsearchChatExtensionParameters {
 }
 
 export function elasticsearchChatExtensionParametersSerializer(
-  item: ElasticsearchChatExtensionParameters,
-): Record<string, unknown> {
-  return {
-    authentication: !item.authentication
-      ? item.authentication
-      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
-    top_n_documents: item["topNDocuments"],
-    in_scope: item["inScope"],
-    strictness: item["strictness"],
-    role_information: item["roleInformation"],
-    max_search_queries: item["maxSearchQueries"],
-    allow_partial_result: item["allowPartialResult"],
-    include_contexts: item["includeContexts"],
-    endpoint: item["endpoint"],
-    index_name: item["indexName"],
-    fields_mapping: !item.fieldsMapping
-      ? item.fieldsMapping
-      : elasticsearchIndexFieldMappingOptionsSerializer(item.fieldsMapping),
-    query_type: item["queryType"],
-    embedding_dependency: !item.embeddingDependency
-      ? item.embeddingDependency
-      : onYourDataVectorizationSourceUnionSerializer(item.embeddingDependency),
-  };
+  input: ElasticsearchChatExtensionParameters,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Optional settings to control how fields are processed when using a configured Elasticsearch® resource. */
@@ -2009,20 +1783,11 @@ export interface ElasticsearchIndexFieldMappingOptions {
 }
 
 export function elasticsearchIndexFieldMappingOptionsSerializer(
-  item: ElasticsearchIndexFieldMappingOptions,
-): Record<string, unknown> {
-  return {
-    title_field: item["titleField"],
-    url_field: item["urlField"],
-    filepath_field: item["filepathField"],
-    content_fields: item["contentFields"],
-    content_fields_separator: item["contentFieldsSeparator"],
-    vector_fields: item["vectorFields"],
-  };
+  input: ElasticsearchIndexFieldMappingOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-export type ElasticsearchQueryType = "simple" | "vector";
 
 /**
  * A specific representation of configurable options for Pinecone when using it as an Azure OpenAI chat
@@ -2040,12 +1805,10 @@ export interface PineconeChatExtensionConfiguration
 }
 
 export function pineconeChatExtensionConfigurationSerializer(
-  item: PineconeChatExtensionConfiguration,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    parameters: pineconeChatExtensionParametersSerializer(item.parameters),
-  };
+  input: PineconeChatExtensionConfiguration,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Parameters for configuring Azure OpenAI Pinecone chat extensions. The supported authentication type is APIKey. */
@@ -2089,26 +1852,10 @@ export interface PineconeChatExtensionParameters {
 }
 
 export function pineconeChatExtensionParametersSerializer(
-  item: PineconeChatExtensionParameters,
-): Record<string, unknown> {
-  return {
-    authentication: !item.authentication
-      ? item.authentication
-      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
-    top_n_documents: item["topNDocuments"],
-    in_scope: item["inScope"],
-    strictness: item["strictness"],
-    role_information: item["roleInformation"],
-    max_search_queries: item["maxSearchQueries"],
-    allow_partial_result: item["allowPartialResult"],
-    include_contexts: item["includeContexts"],
-    environment: item["environment"],
-    index_name: item["indexName"],
-    fields_mapping: pineconeFieldMappingOptionsSerializer(item.fieldsMapping),
-    embedding_dependency: onYourDataVectorizationSourceUnionSerializer(
-      item.embeddingDependency,
-    ),
-  };
+  input: PineconeChatExtensionParameters,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Optional settings to control how fields are processed when using a configured Pinecone resource. */
@@ -2126,112 +1873,10 @@ export interface PineconeFieldMappingOptions {
 }
 
 export function pineconeFieldMappingOptionsSerializer(
-  item: PineconeFieldMappingOptions,
-): Record<string, unknown> {
-  return {
-    title_field: item["titleField"],
-    url_field: item["urlField"],
-    filepath_field: item["filepathField"],
-    content_fields: item["contentFields"],
-    content_fields_separator: item["contentFieldsSeparator"],
-  };
-}
-
-/**
- *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
- *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
- *   The use of this configuration is compatible only with Azure OpenAI.
- */
-export type AzureChatExtensionType =
-  | "azure_search"
-  | "azure_ml_index"
-  | "azure_cosmos_db"
-  | "elasticsearch"
-  | "pinecone";
-
-/** A representation of the available Azure OpenAI enhancement configurations. */
-export interface AzureChatEnhancementConfiguration {
-  /** A representation of the available options for the Azure OpenAI grounding enhancement. */
-  grounding?: AzureChatGroundingEnhancementConfiguration;
-  /** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
-  ocr?: AzureChatOCREnhancementConfiguration;
-}
-
-export function azureChatEnhancementConfigurationSerializer(
-  item: AzureChatEnhancementConfiguration,
-): Record<string, unknown> {
-  return {
-    grounding: !item.grounding
-      ? item.grounding
-      : azureChatGroundingEnhancementConfigurationSerializer(item.grounding),
-    ocr: !item.ocr
-      ? item.ocr
-      : azureChatOCREnhancementConfigurationSerializer(item.ocr),
-  };
-}
-
-/** A representation of the available options for the Azure OpenAI grounding enhancement. */
-export interface AzureChatGroundingEnhancementConfiguration {
-  /** Specifies whether the enhancement is enabled. */
-  enabled: boolean;
-}
-
-export function azureChatGroundingEnhancementConfigurationSerializer(
-  item: AzureChatGroundingEnhancementConfiguration,
-): Record<string, unknown> {
-  return {
-    enabled: item["enabled"],
-  };
-}
-
-/** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
-export interface AzureChatOCREnhancementConfiguration {
-  /** Specifies whether the enhancement is enabled. */
-  enabled: boolean;
-}
-
-export function azureChatOCREnhancementConfigurationSerializer(
-  item: AzureChatOCREnhancementConfiguration,
-): Record<string, unknown> {
-  return {
-    enabled: item["enabled"],
-  };
-}
-
-/**
- * An abstract representation of a response format configuration usable by Chat Completions. Can be used to enable JSON
- * mode.
- */
-export interface ChatCompletionsResponseFormat {
-  /** the discriminator possible values: text, json_object */
-  type: string;
-}
-
-export function chatCompletionsResponseFormatUnionSerializer(
-  item: ChatCompletionsResponseFormatUnion,
-) {
-  switch (item.type) {
-    case "text":
-      return chatCompletionsTextResponseFormatSerializer(
-        item as ChatCompletionsTextResponseFormat,
-      );
-
-    case "json_object":
-      return chatCompletionsJsonResponseFormatSerializer(
-        item as ChatCompletionsJsonResponseFormat,
-      );
-
-    default:
-      return chatCompletionsResponseFormatSerializer(item);
-  }
-}
-
-export function chatCompletionsResponseFormatSerializer(
-  item: ChatCompletionsResponseFormatUnion,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-  };
+  input: PineconeFieldMappingOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -2245,11 +1890,10 @@ export interface ChatCompletionsTextResponseFormat
 }
 
 export function chatCompletionsTextResponseFormatSerializer(
-  item: ChatCompletionsTextResponseFormat,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-  };
+  input: ChatCompletionsTextResponseFormat,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A response format for Chat Completions that restricts responses to emitting valid JSON objects. */
@@ -2260,39 +1904,34 @@ export interface ChatCompletionsJsonResponseFormat
 }
 
 export function chatCompletionsJsonResponseFormatSerializer(
-  item: ChatCompletionsJsonResponseFormat,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-  };
+  input: ChatCompletionsJsonResponseFormat,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** An abstract representation of a tool that can be used by the model to improve a chat completions response. */
 export interface ChatCompletionsToolDefinition {
-  /** the discriminator possible values: function */
+  /** The object type. */
   type: string;
 }
 
 export function chatCompletionsToolDefinitionUnionSerializer(
-  item: ChatCompletionsToolDefinitionUnion,
-) {
-  switch (item.type) {
-    case "function":
-      return chatCompletionsFunctionToolDefinitionSerializer(
-        item as ChatCompletionsFunctionToolDefinition,
-      );
-
-    default:
-      return chatCompletionsToolDefinitionSerializer(item);
-  }
+  input: ChatCompletionsToolDefinitionUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
+export type ChatCompletionsToolDefinitionUnion =
+  | ChatCompletionsFunctionToolDefinition
+  | ChatCompletionsToolDefinition;
+
 export function chatCompletionsToolDefinitionSerializer(
-  item: ChatCompletionsToolDefinitionUnion,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-  };
+  input: ChatCompletionsToolDefinition,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The definition information for a chat completions function tool that can call a function in response to a tool call. */
@@ -2305,43 +1944,34 @@ export interface ChatCompletionsFunctionToolDefinition
 }
 
 export function chatCompletionsFunctionToolDefinitionSerializer(
-  item: ChatCompletionsFunctionToolDefinition,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    function: functionDefinitionSerializer(item.function),
-  };
+  input: ChatCompletionsFunctionToolDefinition,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** Represents a generic policy for how a chat completions tool may be selected. */
-export type ChatCompletionsToolSelectionPreset = "auto" | "none";
 
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
 export interface ChatCompletionsNamedToolSelection {
-  /** the discriminator possible values: function */
+  /** The object type. */
   type: string;
 }
 
 export function chatCompletionsNamedToolSelectionUnionSerializer(
-  item: ChatCompletionsNamedToolSelectionUnion,
-) {
-  switch (item.type) {
-    case "function":
-      return chatCompletionsNamedFunctionToolSelectionSerializer(
-        item as ChatCompletionsNamedFunctionToolSelection,
-      );
-
-    default:
-      return chatCompletionsNamedToolSelectionSerializer(item);
-  }
+  input: ChatCompletionsNamedToolSelectionUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
+export type ChatCompletionsNamedToolSelectionUnion =
+  | ChatCompletionsNamedFunctionToolSelection
+  | ChatCompletionsNamedToolSelection;
+
 export function chatCompletionsNamedToolSelectionSerializer(
-  item: ChatCompletionsNamedToolSelectionUnion,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-  };
+  input: ChatCompletionsNamedToolSelection,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A tool selection of a specific, named function tool that will limit chat completions to using the named function. */
@@ -2354,12 +1984,10 @@ export interface ChatCompletionsNamedFunctionToolSelection
 }
 
 export function chatCompletionsNamedFunctionToolSelectionSerializer(
-  item: ChatCompletionsNamedFunctionToolSelection,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    function: chatCompletionsFunctionToolSelectionSerializer(item.function),
-  };
+  input: ChatCompletionsNamedFunctionToolSelection,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A tool selection of a specific, named function tool that will limit chat completions to using the named function. */
@@ -2369,11 +1997,10 @@ export interface ChatCompletionsFunctionToolSelection {
 }
 
 export function chatCompletionsFunctionToolSelectionSerializer(
-  item: ChatCompletionsFunctionToolSelection,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-  };
+  input: ChatCompletionsFunctionToolSelection,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -2411,6 +2038,11 @@ export interface ChatCompletions {
   usage: CompletionsUsage;
 }
 
+export function chatCompletionsSerializer(input: ChatCompletions): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /**
  * The representation of a single prompt completion as part of an overall chat completions request.
  * Generally, `n` choices are generated per provided prompt with a default value of 1.
@@ -2446,6 +2078,11 @@ export interface ChatChoice {
   enhancements?: AzureChatEnhancements;
 }
 
+export function chatChoiceSerializer(input: ChatChoice): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** A representation of a chat message as received in a response. */
 export interface ChatResponseMessage {
   /** The chat role associated with the message. */
@@ -2469,6 +2106,13 @@ export interface ChatResponseMessage {
   context?: AzureChatExtensionsMessageContext;
 }
 
+export function chatResponseMessageSerializer(
+  input: ChatResponseMessage,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /**
  *   A representation of the additional context information available when Azure OpenAI chat extensions are involved
  *   in the generation of a corresponding chat completions response. This context information is only populated when
@@ -2488,6 +2132,65 @@ export interface AzureChatExtensionsMessageContext {
   allRetrievedDocuments?: AzureChatExtensionRetrievedDocument[];
 }
 
+export function azureChatExtensionsMessageContextSerializer(
+  input: AzureChatExtensionsMessageContext,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** An abstract representation of structured information about why a chat completions response terminated. */
+export interface ChatFinishDetails {
+  /** The object type. */
+  type: string;
+}
+
+export function chatFinishDetailsUnionSerializer(
+  input: ChatFinishDetailsUnion,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+export type ChatFinishDetailsUnion =
+  | StopFinishDetails
+  | MaxTokensFinishDetails
+  | ChatFinishDetails;
+
+export function chatFinishDetailsSerializer(input: ChatFinishDetails): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/**
+ * Represents the output results of Azure enhancements to chat completions, as configured via the matching input provided
+ * in the request.
+ */
+export interface AzureChatEnhancements {
+  /** The grounding enhancement that returns the bounding box of the objects detected in the image. */
+  grounding?: AzureGroundingEnhancement;
+}
+
+export function azureChatEnhancementsSerializer(
+  input: AzureChatEnhancements,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** The grounding enhancement that returns the bounding box of the objects detected in the image. */
+export interface AzureGroundingEnhancement {
+  /** The lines of text detected by the grounding enhancement. */
+  lines: AzureGroundingEnhancementLine[];
+}
+
+export function azureGroundingEnhancementSerializer(
+  input: AzureGroundingEnhancement,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /**
  * A single instance of additional context information available when Azure OpenAI chat extensions are involved
  * in the generation of a corresponding chat completions response. This context information is only populated when
@@ -2504,6 +2207,13 @@ export interface AzureChatExtensionDataSourceResponseCitation {
   filepath?: string;
   /** The chunk ID of the citation. */
   chunkId?: string;
+}
+
+export function azureChatExtensionDataSourceResponseCitationSerializer(
+  input: AzureChatExtensionDataSourceResponseCitation,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** The retrieved document. */
@@ -2533,13 +2243,24 @@ export interface AzureChatExtensionRetrievedDocument {
   filterReason?: AzureChatExtensionRetrieveDocumentFilterReason;
 }
 
-/** The reason for filtering the retrieved document. */
-export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
+export function azureChatExtensionRetrievedDocumentSerializer(
+  input: AzureChatExtensionRetrievedDocument,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
 
 /** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
 export interface ChatChoiceLogProbabilityInfo {
   /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
   content: ChatTokenLogProbabilityResult[] | null;
+}
+
+export function chatChoiceLogProbabilityInfoSerializer(
+  input: ChatChoiceLogProbabilityInfo,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A representation of the log probability information for a single content token, including a list of most likely tokens if 'top_logprobs' were requested. */
@@ -2554,6 +2275,13 @@ export interface ChatTokenLogProbabilityResult {
   topLogprobs: ChatTokenLogProbabilityInfo[] | null;
 }
 
+export function chatTokenLogProbabilityResultSerializer(
+  input: ChatTokenLogProbabilityResult,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** A representation of the log probability information for a single message content token. */
 export interface ChatTokenLogProbabilityInfo {
   /** The message content token. */
@@ -2564,10 +2292,11 @@ export interface ChatTokenLogProbabilityInfo {
   bytes: number[] | null;
 }
 
-/** An abstract representation of structured information about why a chat completions response terminated. */
-export interface ChatFinishDetails {
-  /** the discriminator possible values: stop, max_tokens */
-  type: string;
+export function chatTokenLogProbabilityInfoSerializer(
+  input: ChatTokenLogProbabilityInfo,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A structured representation of a stop reason that signifies natural termination by the model. */
@@ -2576,6 +2305,11 @@ export interface StopFinishDetails extends ChatFinishDetails {
   type: "stop";
   /** The token sequence that the model terminated with. */
   stop: string;
+}
+
+export function stopFinishDetailsSerializer(input: StopFinishDetails): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -2587,19 +2321,11 @@ export interface MaxTokensFinishDetails extends ChatFinishDetails {
   type: "max_tokens";
 }
 
-/**
- * Represents the output results of Azure enhancements to chat completions, as configured via the matching input provided
- * in the request.
- */
-export interface AzureChatEnhancements {
-  /** The grounding enhancement that returns the bounding box of the objects detected in the image. */
-  grounding?: AzureGroundingEnhancement;
-}
-
-/** The grounding enhancement that returns the bounding box of the objects detected in the image. */
-export interface AzureGroundingEnhancement {
-  /** The lines of text detected by the grounding enhancement. */
-  lines: AzureGroundingEnhancementLine[];
+export function maxTokensFinishDetailsSerializer(
+  input: MaxTokensFinishDetails,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A content line object consisting of an adjacent sequence of content elements, such as words and selection marks. */
@@ -2608,6 +2334,13 @@ export interface AzureGroundingEnhancementLine {
   text: string;
   /** An array of spans that represent detected objects and its bounding box information. */
   spans: AzureGroundingEnhancementLineSpan[];
+}
+
+export function azureGroundingEnhancementLineSerializer(
+  input: AzureGroundingEnhancementLine,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** A span object that represents a detected object and its bounding box information. */
@@ -2625,12 +2358,26 @@ export interface AzureGroundingEnhancementLineSpan {
   polygon: AzureGroundingEnhancementCoordinatePoint[];
 }
 
+export function azureGroundingEnhancementLineSpanSerializer(
+  input: AzureGroundingEnhancementLineSpan,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** A representation of a single polygon point as used by the Azure grounding enhancement. */
 export interface AzureGroundingEnhancementCoordinatePoint {
   /** The x-coordinate (horizontal axis) of the point. */
   x: number;
   /** The y-coordinate (vertical axis) of the point. */
   y: number;
+}
+
+export function azureGroundingEnhancementCoordinatePointSerializer(
+  input: AzureGroundingEnhancementCoordinatePoint,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Represents the request data used to generate images. */
@@ -2671,39 +2418,11 @@ export interface ImageGenerationOptions {
 }
 
 export function imageGenerationOptionsSerializer(
-  item: ImageGenerationOptions,
-): Record<string, unknown> {
-  return {
-    model: item["model"],
-    prompt: item["prompt"],
-    n: item["n"],
-    size: item["size"],
-    response_format: item["responseFormat"],
-    quality: item["quality"],
-    style: item["style"],
-    user: item["user"],
-  };
+  input: ImageGenerationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** The desired size of generated images. */
-export type ImageSize =
-  | "256x256"
-  | "512x512"
-  | "1024x1024"
-  | "1792x1024"
-  | "1024x1792";
-/** The format in which the generated images are returned. */
-export type ImageGenerationResponseFormat = "url" | "b64_json";
-/**
- * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationQuality = "standard" | "hd";
-/**
- * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationStyle = "natural" | "vivid";
 
 /** The result of a successful image generation operation. */
 export interface ImageGenerations {
@@ -2714,6 +2433,11 @@ export interface ImageGenerations {
   created: Date;
   /** The images generated by the operation. */
   data: ImageGenerationData[];
+}
+
+export function imageGenerationsSerializer(input: ImageGenerations): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /**
@@ -2743,6 +2467,13 @@ export interface ImageGenerationData {
   promptFilterResults?: ImageGenerationPromptFilterResults;
 }
 
+export function imageGenerationDataSerializer(
+  input: ImageGenerationData,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** Describes the content filtering result for the image generation request. */
 export interface ImageGenerationContentFilterResults {
   /**
@@ -2770,6 +2501,13 @@ export interface ImageGenerationContentFilterResults {
    * or damage one’s body, or kill oneself.
    */
   selfHarm?: ContentFilterResult;
+}
+
+export function imageGenerationContentFilterResultsSerializer(
+  input: ImageGenerationContentFilterResults,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
 /** Describes the content filtering results for the prompt of a image generation request. */
@@ -2807,6 +2545,13 @@ export interface ImageGenerationPromptFilterResults {
   customBlocklists?: ContentFilterDetailedResults;
 }
 
+export function imageGenerationPromptFilterResultsSerializer(
+  input: ImageGenerationPromptFilterResults,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** A representation of the request options that control the behavior of a text-to-speech operation. */
 export interface SpeechGenerationOptions {
   /** The text to generate audio for. The maximum length is 4096 characters. */
@@ -2822,33 +2567,11 @@ export interface SpeechGenerationOptions {
 }
 
 export function speechGenerationOptionsSerializer(
-  item: SpeechGenerationOptions,
-): Record<string, unknown> {
-  return {
-    input: item["input"],
-    voice: item["voice"],
-    response_format: item["responseFormat"],
-    speed: item["speed"],
-    model: item["model"],
-  };
+  input: SpeechGenerationOptions,
+): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** The available voices for text-to-speech. */
-export type SpeechVoice =
-  | "alloy"
-  | "echo"
-  | "fable"
-  | "onyx"
-  | "nova"
-  | "shimmer";
-/** The supported audio output formats for text-to-speech. */
-export type SpeechGenerationResponseFormat =
-  | "mp3"
-  | "opus"
-  | "aac"
-  | "flac"
-  | "wav"
-  | "pcm";
 
 /**
  * The configuration information for an embeddings request.
@@ -2883,21 +2606,10 @@ export interface EmbeddingsOptions {
   inputType?: string;
 }
 
-export function embeddingsOptionsSerializer(
-  item: EmbeddingsOptions,
-): Record<string, unknown> {
-  return {
-    user: item["user"],
-    model: item["model"],
-    input: item["input"],
-    encoding_format: item["encodingFormat"],
-    dimensions: item["dimensions"],
-    input_type: item["inputType"],
-  };
+export function embeddingsOptionsSerializer(input: EmbeddingsOptions): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
-
-/** Represents the available formats for embeddings data on responses. */
-export type EmbeddingEncodingFormat = "float" | "base64";
 
 /**
  * Representation of the response data from an embeddings request.
@@ -2911,6 +2623,24 @@ export interface Embeddings {
   usage: EmbeddingsUsage;
 }
 
+export function embeddingsSerializer(input: Embeddings): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** Measurement of the amount of tokens used in this request and response. */
+export interface EmbeddingsUsage {
+  /** Number of tokens sent in the original request. */
+  promptTokens: number;
+  /** Total number of tokens transacted in this request/response. */
+  totalTokens: number;
+}
+
+export function embeddingsUsageSerializer(input: EmbeddingsUsage): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
 /** Representation of a single embeddings relatedness comparison. */
 export interface EmbeddingItem {
   /**
@@ -2922,87 +2652,528 @@ export interface EmbeddingItem {
   index: number;
 }
 
-/** Measurement of the amount of tokens used in this request and response. */
-export interface EmbeddingsUsage {
-  /** Number of tokens sent in the original request. */
-  promptTokens: number;
-  /** Total number of tokens transacted in this request/response. */
-  totalTokens: number;
+export function embeddingItemSerializer(input: EmbeddingItem): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
 }
 
-/** Type of ServiceApiVersions */
+/** Defines available options for the underlying response format of output transcription information. */
+export enum AudioTranscriptionFormatKnownValues {
+  /** Use a response body that is a JSON object containing a single 'text' field for the transcription. */
+  json = '"json"',
+  /**
+   * Use a response body that is a JSON object containing transcription text along with timing, segments, and other
+   * metadata.
+   */
+  verbose_json = '"verbose_json"',
+  /** Use a response body that is plain text containing the raw, unannotated transcription. */
+  text = '"text"',
+  /** Use a response body that is plain text in SubRip (SRT) format that also includes timing information. */
+  srt = '"srt"',
+  /** Use a response body that is plain text in Web Video Text Tracks (VTT) format that also includes timing information. */
+  vtt = '"vtt"',
+}
+
+export type AudioTranscriptionFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
+
+/** Defines the timestamp granularities that can be requested on a verbose transcription response. */
+export enum AudioTranscriptionTimestampGranularityKnownValues {
+  /**
+   * Indicates that responses should include timing information about each transcribed word. Note that generating word
+   * timestamp information will incur additional response latency.
+   */
+  word = '"word"',
+  /**
+   * Indicates that responses should include timing and other information about each transcribed audio segment. Audio
+   * segment timestamp information does not incur any additional latency.
+   */
+  segment = '"segment"',
+}
+
+export type AudioTranscriptionTimestampGranularity = "word" | "segment";
+
+/** Defines the possible descriptors for available audio operation responses. */
+export enum AudioTaskLabelKnownValues {
+  /** Accompanying response data resulted from an audio transcription task. */
+  transcribe = '"transcribe"',
+  /** Accompanying response data resulted from an audio translation task. */
+  translate = '"translate"',
+}
+
+export type AudioTaskLabel = "transcribe" | "translate";
+
+/** Defines available options for the underlying response format of output translation information. */
+export enum AudioTranslationFormatKnownValues {
+  /** Use a response body that is a JSON object containing a single 'text' field for the translation. */
+  json = '"json"',
+  /**
+   * Use a response body that is a JSON object containing translation text along with timing, segments, and other
+   * metadata.
+   */
+  verbose_json = '"verbose_json"',
+  /** Use a response body that is plain text containing the raw, unannotated translation. */
+  text = '"text"',
+  /** Use a response body that is plain text in SubRip (SRT) format that also includes timing information. */
+  srt = '"srt"',
+  /** Use a response body that is plain text in Web Video Text Tracks (VTT) format that also includes timing information. */
+  vtt = '"vtt"',
+}
+
+export type AudioTranslationFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
+
+/** Ratings for the intensity and risk level of harmful content. */
+export enum ContentFilterSeverityKnownValues {
+  /**
+   * Content may be related to violence, self-harm, sexual, or hate categories but the terms
+   * are used in general, journalistic, scientific, medical, and similar professional contexts,
+   * which are appropriate for most audiences.
+   */
+  safe = '"safe"',
+  /**
+   * Content that expresses prejudiced, judgmental, or opinionated views, includes offensive
+   * use of language, stereotyping, use cases exploring a fictional world (for example, gaming,
+   * literature) and depictions at low intensity.
+   */
+  low = '"low"',
+  /**
+   * Content that uses offensive, insulting, mocking, intimidating, or demeaning language
+   * towards specific identity groups, includes depictions of seeking and executing harmful
+   * instructions, fantasies, glorification, promotion of harm at medium intensity.
+   */
+  medium = '"medium"',
+  /**
+   * Content that displays explicit and severe harmful instructions, actions,
+   * damage, or abuse; includes endorsement, glorification, or promotion of severe
+   * harmful acts, extreme or illegal forms of harm, radicalization, or non-consensual
+   * power exchange or abuse.
+   */
+  high = '"high"',
+}
+
+export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
+
+/** Representation of the manner in which a completions response concluded. */
+export enum CompletionsFinishReasonKnownValues {
+  /** Completions ended normally and reached its end of token generation. */
+  stopped = '"stop"',
+  /** Completions exhausted available token limits before generation could complete. */
+  tokenLimitReached = '"length"',
+  /**
+   * Completions generated a response that was identified as potentially sensitive per content
+   * moderation policies.
+   */
+  contentFiltered = '"content_filter"',
+  /** Completion ended normally, with the model requesting a function to be called. */
+  functionCall = '"function_call"',
+  /** Completion ended with the model calling a provided tool for output. */
+  toolCalls = '"tool_calls"',
+}
+
+export type CompletionsFinishReason =
+  | "stop"
+  | "length"
+  | "content_filter"
+  | "function_call"
+  | "tool_calls";
+
+/** A description of the intended purpose of a message within a chat completions interaction. */
+export enum ChatRoleKnownValues {
+  /** The role that instructs or sets the behavior of the assistant. */
+  system = '"system"',
+  /** The role that provides responses to system-instructed, user-prompted input. */
+  assistant = '"assistant"',
+  /** The role that provides input for chat completions. */
+  user = '"user"',
+  /** The role that provides function results for chat completions. */
+  "function" = '"function"',
+  /** The role that represents extension tool activity within a chat completions operation. */
+  tool = '"tool"',
+}
+
+export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
+
+/** A representation of the possible image detail levels for image-based chat completions message content. */
+export enum ChatMessageImageDetailLevelKnownValues {
+  /** Specifies that the model should determine which detail level to apply using heuristics like image size. */
+  auto = '"auto"',
+  /**
+   * Specifies that image evaluation should be constrained to the 'low-res' model that may be faster and consume fewer
+   * tokens but may also be less accurate for highly detailed images.
+   */
+  low = '"low"',
+  /**
+   * Specifies that image evaluation should enable the 'high-res' model that may be more accurate for highly detailed
+   * images but may also be slower and consume more tokens.
+   */
+  high = '"high"',
+}
+
+export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
+
+/**
+ * The collection of predefined behaviors for handling request-provided function information in a chat completions
+ * operation.
+ */
+export enum FunctionCallPresetKnownValues {
+  /**
+   * Specifies that the model may either use any of the functions provided in this chat completions request or
+   * instead return a standard chat completions response as if no functions were provided.
+   */
+  auto = '"auto"',
+  /**
+   * Specifies that the model should not respond with a function call and should instead provide a standard chat
+   * completions response. Response content may still be influenced by the provided function information.
+   */
+  none = '"none"',
+}
+
+export type FunctionCallPreset = "auto" | "none";
+
+/**
+ *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
+ *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
+ *   The use of this configuration is compatible only with Azure OpenAI.
+ */
+export enum AzureChatExtensionTypeKnownValues {
+  /** Represents the use of Azure AI Search as an Azure OpenAI chat extension. */
+  azureSearch = '"azure_search"',
+  /** Represents the use of Azure Machine Learning index as an Azure OpenAI chat extension. */
+  azureMachineLearningIndex = '"azure_ml_index"',
+  /** Represents the use of Azure Cosmos DB as an Azure OpenAI chat extension. */
+  azureCosmosDB = '"azure_cosmos_db"',
+  /** Represents the use of Elasticsearch® index as an Azure OpenAI chat extension. */
+  elasticsearch = '"elasticsearch"',
+  /** Represents the use of Pinecone index as an Azure OpenAI chat extension. */
+  pinecone = '"pinecone"',
+}
+
+export type AzureChatExtensionType =
+  | "azure_search"
+  | "azure_ml_index"
+  | "azure_cosmos_db"
+  | "elasticsearch"
+  | "pinecone";
+
+/** The authentication types supported with Azure OpenAI On Your Data. */
+export enum OnYourDataAuthenticationTypeKnownValues {
+  /** Authentication via API key. */
+  apiKey = '"api_key"',
+  /** Authentication via connection string. */
+  connectionString = '"connection_string"',
+  /** Authentication via key and key ID pair. */
+  keyAndKeyId = '"key_and_key_id"',
+  /** Authentication via encoded API key. */
+  encodedApiKey = '"encoded_api_key"',
+  /** Authentication via access token. */
+  accessToken = '"access_token"',
+  /** Authentication via system-assigned managed identity. */
+  systemAssignedManagedIdentity = '"system_assigned_managed_identity"',
+  /** Authentication via user-assigned managed identity. */
+  userAssignedManagedIdentity = '"user_assigned_managed_identity"',
+}
+
+export type OnYourDataAuthenticationType =
+  | "api_key"
+  | "connection_string"
+  | "key_and_key_id"
+  | "encoded_api_key"
+  | "access_token"
+  | "system_assigned_managed_identity"
+  | "user_assigned_managed_identity";
+
+/** The context property. */
+export enum OnYourDataContextPropertyKnownValues {
+  /** The `citations` property. */
+  citations = '"citations"',
+  /** The `intent` property. */
+  intent = '"intent"',
+  /** The `all_retrieved_documents` property. */
+  allRetrievedDocuments = '"all_retrieved_documents"',
+}
+
+export type OnYourDataContextProperty =
+  | "citations"
+  | "intent"
+  | "all_retrieved_documents";
+
+/** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
+export enum AzureSearchQueryTypeKnownValues {
+  /** Represents the default, simple query parser. */
+  simple = '"simple"',
+  /** Represents the semantic query parser for advanced semantic modeling. */
+  semantic = '"semantic"',
+  /** Represents vector search over computed data. */
+  vector = '"vector"',
+  /** Represents a combination of the simple query strategy with vector data. */
+  vectorSimpleHybrid = '"vector_simple_hybrid"',
+  /** Represents a combination of semantic search and vector data querying. */
+  vectorSemanticHybrid = '"vector_semantic_hybrid"',
+}
+
+export type AzureSearchQueryType =
+  | "simple"
+  | "semantic"
+  | "vector"
+  | "vector_simple_hybrid"
+  | "vector_semantic_hybrid";
+
+/**
+ * Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with
+ * vector search.
+ */
+export enum OnYourDataVectorizationSourceTypeKnownValues {
+  /** Represents vectorization performed by public service calls to an Azure OpenAI embedding model. */
+  endpoint = '"endpoint"',
+  /**
+   * Represents an Ada model deployment name to use. This model deployment must be in the same Azure OpenAI resource, but
+   * On Your Data will use this model deployment via an internal call rather than a public one, which enables vector
+   * search even in private networks.
+   */
+  deploymentName = '"deployment_name"',
+  /**
+   * Represents a specific embedding model ID as defined in the search service.
+   * Currently only supported by Elasticsearch®.
+   */
+  modelId = '"model_id"',
+}
+
+export type OnYourDataVectorizationSourceType =
+  | "endpoint"
+  | "deployment_name"
+  | "model_id";
+
+/** The authentication types supported with Azure OpenAI On Your Data vector search. */
+export enum OnYourDataVectorSearchAuthenticationTypeKnownValues {
+  /** Authentication via API key. */
+  apiKey = '"api_key"',
+  /** Authentication via access token. */
+  accessToken = '"access_token"',
+}
+
+export type OnYourDataVectorSearchAuthenticationType =
+  | "api_key"
+  | "access_token";
+
+/** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
+export enum ElasticsearchQueryTypeKnownValues {
+  /** Represents the default, simple query parser. */
+  simple = '"simple"',
+  /** Represents vector search over computed data. */
+  vector = '"vector"',
+}
+
+export type ElasticsearchQueryType = "simple" | "vector";
+
+/** Represents a generic policy for how a chat completions tool may be selected. */
+export enum ChatCompletionsToolSelectionPresetKnownValues {
+  /**
+   * Specifies that the model may either use any of the tools provided in this chat completions request or
+   * instead return a standard chat completions response as if no tools were provided.
+   */
+  auto = '"auto"',
+  /**
+   * Specifies that the model should not respond with a tool call and should instead provide a standard chat
+   * completions response. Response content may still be influenced by the provided tool definitions.
+   */
+  none = '"none"',
+}
+
+export type ChatCompletionsToolSelectionPreset = "auto" | "none";
+
+/** The reason for filtering the retrieved document. */
+export enum AzureChatExtensionRetrieveDocumentFilterReasonKnownValues {
+  /** The document is filtered by original search score threshold defined by `strictness` configure. */
+  score = '"score"',
+  /** The document is not filtered by original search score threshold, but is filtered by rerank score and `top_n_documents` configure. */
+  rerank = '"rerank"',
+}
+
+export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
+
+/** The desired size of generated images. */
+export enum ImageSizeKnownValues {
+  /**
+   * Very small image size of 256x256 pixels.
+   * Only supported with dall-e-2 models.
+   */
+  size256x256 = '"256x256"',
+  /**
+   * A smaller image size of 512x512 pixels.
+   * Only supported with dall-e-2 models.
+   */
+  size512x512 = '"512x512"',
+  /**
+   * A standard, square image size of 1024x1024 pixels.
+   * Supported by both dall-e-2 and dall-e-3 models.
+   */
+  size1024x1024 = '"1024x1024"',
+  /**
+   * A wider image size of 1024x1792 pixels.
+   * Only supported with dall-e-3 models.
+   */
+  size1792x1024 = '"1792x1024"',
+  /**
+   * A taller image size of 1792x1024 pixels.
+   * Only supported with dall-e-3 models.
+   */
+  size1024x1792 = '"1024x1792"',
+}
+
+export type ImageSize =
+  | "256x256"
+  | "512x512"
+  | "1024x1024"
+  | "1792x1024"
+  | "1024x1792";
+
+/** The format in which the generated images are returned. */
+export enum ImageGenerationResponseFormatKnownValues {
+  /** Image generation response items should provide a URL from which the image may be retrieved. */
+  url = '"url"',
+  /** Image generation response items should provide image data as a base64-encoded string. */
+  base64 = '"b64_json"',
+}
+
+export type ImageGenerationResponseFormat = "url" | "b64_json";
+
+/**
+ * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
+ * Only configurable with dall-e-3 models.
+ */
+export enum ImageGenerationQualityKnownValues {
+  /** Requests image generation with standard, balanced characteristics of quality, cost, and speed. */
+  standard = '"standard"',
+  /** Requests image generation with higher quality, higher cost and lower speed relative to standard. */
+  hd = '"hd"',
+}
+
+export type ImageGenerationQuality = "standard" | "hd";
+
+/**
+ * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
+ * Only configurable with dall-e-3 models.
+ */
+export enum ImageGenerationStyleKnownValues {
+  /** Requests image generation in a natural style with less preference for dramatic and hyper-realistic characteristics. */
+  natural = '"natural"',
+  /**
+   * Requests image generation in a vivid style with a higher preference for dramatic and hyper-realistic
+   * characteristics.
+   */
+  vivid = '"vivid"',
+}
+
+export type ImageGenerationStyle = "natural" | "vivid";
+
+/** The available voices for text-to-speech. */
+export enum SpeechVoiceKnownValues {
+  /** The Alloy voice. */
+  alloy = '"alloy"',
+  /** The Echo voice. */
+  echo = '"echo"',
+  /** The Fable voice. */
+  fable = '"fable"',
+  /** The Onyx voice. */
+  onyx = '"onyx"',
+  /** The Nova voice. */
+  nova = '"nova"',
+  /** The Shimmer voice. */
+  shimmer = '"shimmer"',
+}
+
+export type SpeechVoice =
+  | "alloy"
+  | "echo"
+  | "fable"
+  | "onyx"
+  | "nova"
+  | "shimmer";
+
+/** The supported audio output formats for text-to-speech. */
+export enum SpeechGenerationResponseFormatKnownValues {
+  /** Use MP3 as the audio output format. MP3 is the default, general-purpose format. */
+  mp3 = '"mp3"',
+  /** Use Opus as the audio output format. Opus is optimized for internet streaming and low latency. */
+  opus = '"opus"',
+  /** Use AAC as the audio output format. AAC is optimized for digital audio compression and is preferred by YouTube, Android, and iOS. */
+  aac = '"aac"',
+  /** Use FLAC as the audio output format. FLAC is a fully lossless format optimized for maximum quality at the expense of size. */
+  flac = '"flac"',
+  /** Use uncompressed WAV as the audio output format, suitable for low-latency applications to avoid decoding overhead. */
+  wav = '"wav"',
+  /** Use uncompressed PCM as the audio output format, which is similar to WAV but contains raw samples in 24kHz (16-bit signed, low-endian), without the header. */
+  pcm = '"pcm"',
+}
+
+export type SpeechGenerationResponseFormat =
+  | "mp3"
+  | "opus"
+  | "aac"
+  | "flac"
+  | "wav"
+  | "pcm";
+
+/** Represents the available formats for embeddings data on responses. */
+export enum EmbeddingEncodingFormatKnownValues {
+  /** Specifies that responses should provide arrays of floats for each embedding. */
+  float = '"float"',
+  /** Specifies that responses should provide a base64-encoded string for each embedding. */
+  base64 = '"base64"',
+}
+
+export type EmbeddingEncodingFormat = "float" | "base64";
+
+export enum ServiceApiVersionsKnownValues {
+  v2022_12_01 = '"2022-12-01"',
+  v2023_05_15 = '"2023-05-15"',
+  v2024_02_01 = '"2024-02-01"',
+  v2024_06_01 = '"2024-06-01"',
+}
+
 export type ServiceApiVersions =
   | "2022-12-01"
   | "2023-05-15"
-  | "2023-06-01-preview"
-  | "2023-07-01-preview"
   | "2024-02-01"
-  | "2024-02-15-preview"
-  | "2024-03-01-preview"
-  | "2024-04-01-preview"
-  | "2024-05-01-preview"
   | "2024-06-01";
-/** Alias for ChatRequestMessageUnion */
-export type ChatRequestMessageUnion =
-  | ChatRequestSystemMessage
-  | ChatRequestUserMessage
-  | ChatRequestAssistantMessage
-  | ChatRequestToolMessage
-  | ChatRequestFunctionMessage
-  | ChatRequestMessage;
-/** Alias for ChatMessageContentItemUnion */
-export type ChatMessageContentItemUnion =
-  | ChatMessageTextContentItem
-  | ChatMessageImageContentItem
-  | ChatMessageContentItem;
-/** Alias for ChatCompletionsToolCallUnion */
-export type ChatCompletionsToolCallUnion =
-  | ChatCompletionsFunctionToolCall
-  | ChatCompletionsToolCall;
-/** Alias for AzureChatExtensionConfigurationUnion */
-export type AzureChatExtensionConfigurationUnion =
-  | AzureSearchChatExtensionConfiguration
-  | AzureMachineLearningIndexChatExtensionConfiguration
-  | AzureCosmosDBChatExtensionConfiguration
-  | ElasticsearchChatExtensionConfiguration
-  | PineconeChatExtensionConfiguration
-  | AzureChatExtensionConfiguration;
-/** Alias for OnYourDataAuthenticationOptionsUnion */
-export type OnYourDataAuthenticationOptionsUnion =
-  | OnYourDataApiKeyAuthenticationOptions
-  | OnYourDataConnectionStringAuthenticationOptions
-  | OnYourDataKeyAndKeyIdAuthenticationOptions
-  | OnYourDataEncodedApiKeyAuthenticationOptions
-  | OnYourDataAccessTokenAuthenticationOptions
-  | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
-  | OnYourDataUserAssignedManagedIdentityAuthenticationOptions
-  | OnYourDataAuthenticationOptions;
-/** Alias for OnYourDataVectorizationSourceUnion */
-export type OnYourDataVectorizationSourceUnion =
-  | OnYourDataEndpointVectorizationSource
-  | OnYourDataDeploymentNameVectorizationSource
-  | OnYourDataModelIdVectorizationSource
-  | OnYourDataVectorizationSource;
-/** Alias for OnYourDataVectorSearchAuthenticationOptionsUnion */
-export type OnYourDataVectorSearchAuthenticationOptionsUnion =
-  | OnYourDataVectorSearchApiKeyAuthenticationOptions
-  | OnYourDataVectorSearchAccessTokenAuthenticationOptions
-  | OnYourDataVectorSearchAuthenticationOptions;
-/** Alias for ChatCompletionsResponseFormatUnion */
-export type ChatCompletionsResponseFormatUnion =
-  | ChatCompletionsTextResponseFormat
-  | ChatCompletionsJsonResponseFormat
-  | ChatCompletionsResponseFormat;
-/** Alias for ChatCompletionsToolDefinitionUnion */
-export type ChatCompletionsToolDefinitionUnion =
-  | ChatCompletionsFunctionToolDefinition
-  | ChatCompletionsToolDefinition;
-/** Alias for ChatCompletionsNamedToolSelectionUnion */
-export type ChatCompletionsNamedToolSelectionUnion =
-  | ChatCompletionsNamedFunctionToolSelection
-  | ChatCompletionsNamedToolSelection;
-/** Alias for ChatFinishDetailsUnion */
-export type ChatFinishDetailsUnion =
-  | StopFinishDetails
-  | MaxTokensFinishDetails
-  | ChatFinishDetails;
+
+/** Initialization class for the client */
+export interface OpenAIClientOptions {
+  /** Service host */
+  endpoint: string | string;
+  /** Credential used to authenticate requests to the service. */
+  credential: KeyCredential | TokenCredential;
+  /** The API version to use for this operation. */
+  apiVersion: string;
+}
+
+export function openAIClientOptionsSerializer(input: {
+  endpoint: string | string;
+  credential: KeyCredential | TokenCredential;
+  apiVersion: string;
+}): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}
+
+/** A response containing error details. */
+export interface ErrorResponse {
+  /** The error object. */
+  error: ErrorModel;
+  /** String error code indicating what went wrong. */
+  errorCode?: string;
+}
+
+export function errorResponseSerializer(input: ErrorResponse): unknown {
+  console.log(input);
+  throw new Error("Not implemented");
+}

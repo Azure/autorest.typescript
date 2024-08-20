@@ -45,6 +45,8 @@ import { buildType, isTypeNullable } from "./typeHelpers.js";
 import { resolveReference } from "../../framework/reference.js";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
+import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
+import { refkey } from "../../framework/refkey.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -1277,6 +1279,7 @@ export function serializeRequestValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
+  const getSdkType = useSdkTypes();
   const requiredPrefix =
     required === false ? `${clientValue} === undefined` : "";
   const nullablePrefix = isTypeNullable(type) ? `${clientValue} === null` : "";
@@ -1323,10 +1326,11 @@ export function serializeRequestValue(
 
           return `${prefix}.map(p => { return ${elementNullOrUndefinedPrefix}{${propertiesStr}}})`;
         } else {
+          const sdkModel = getSdkType(type.elementType.__raw!);
+          const serializerRefkey = refkey(sdkModel, "serializer");
+          const serializerReference = resolveReference(serializerRefkey);
           // When it is not anonymous we can hand it off to the serializer function
-          return `${prefix}.map(${toCamelCase(
-            type.elementType.name + "Serializer"
-          )})`;
+          return `${prefix}.map(${serializerReference})`;
         }
       } else if (
         needsDeserialize(type.elementType) &&
@@ -1375,9 +1379,9 @@ export function serializeRequestValue(
       if (isNormalUnion(type)) {
         return `${clientValue}`;
       } else if (isSpecialHandledUnion(type)) {
-        const serializeFunctionName = type.name
-          ? `${toCamelCase(type.name)}Serializer`
-          : getDeserializeFunctionName(type, "serialize");
+        const sdkType = getSdkType(type.__raw!);
+        const serializerRefkey = refkey(sdkType, "serializer");
+        const serializeFunctionName = resolveReference(serializerRefkey);
         return `${serializeFunctionName}(${clientValue})`;
       } else {
         return `${clientValue} as any`;
