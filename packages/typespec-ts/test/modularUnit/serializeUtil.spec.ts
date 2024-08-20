@@ -694,7 +694,7 @@ describe("modular special union serialization", () => {
       export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return { 
           kind: item["kind"],
-          data: uint8ArrayToString(item["data"], "base64") 
+          data: _PLACEHOLDER_o13_(item["data"], "base64"), 
         };
       }
       `
@@ -817,7 +817,7 @@ describe("modular special union serialization", () => {
       export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
         return {
           kind: item["kind"],
-          fooProp: uint8ArrayToString(item["fooProp"], "base64"),
+          fooProp: _PLACEHOLDER_o13_(item["fooProp"], "base64"),
         };
       }
       `
@@ -947,7 +947,7 @@ describe("modular special union serialization", () => {
       export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
         return {
           kind: item["kind"],
-          fooProp: uint8ArrayToString(item["fooProp"], "base64"),
+          fooProp: _PLACEHOLDER_o13_(item["fooProp"], "base64"),
         };
       }
       `
@@ -959,7 +959,7 @@ describe("modular special union serialization", () => {
       export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return { 
         kind: item["kind"],
-        data: uint8ArrayToString(item["data"], "base64")
+        data: _PLACEHOLDER_o13_(item["data"], "base64"),
         };
       }
       `

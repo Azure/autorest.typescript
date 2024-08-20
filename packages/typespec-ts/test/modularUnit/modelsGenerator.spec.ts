@@ -744,7 +744,7 @@ describe("modular encode test for property type bytes", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: uint8ArrayToString(item["prop1"], "base64"),
+          prop1: _PLACEHOLDER_o13_(item["prop1"], "base64"),
         }
       };`
     );
@@ -762,7 +762,8 @@ describe("modular encode test for property type bytes", () => {
         PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
-      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+      import { stringToUint8Array } from "@azure/core-util";
+      import { uint8ArrayToString } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
@@ -834,7 +835,8 @@ describe("modular encode test for property type bytes", () => {
         PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
-      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+      import { stringToUint8Array } from "@azure/core-util";
+      import { uint8ArrayToString } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
@@ -906,7 +908,8 @@ describe("modular encode test for property type bytes", () => {
         PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
-      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+      import { stringToUint8Array } from "@azure/core-util";
+      import { uint8ArrayToString } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
