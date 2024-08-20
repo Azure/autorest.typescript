@@ -60,7 +60,6 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
-import { buildSamples as buildModularSamples } from "./next/buildSamples.js";
 import { provideBinder } from "./framework/hooks/binder.js";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import {
@@ -76,6 +75,7 @@ import {
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { emitTypes } from "./modular/emit-models.js";
+import { emitSamples } from "./modular/emitSamples.js";
 
 export * from "./lib.js";
 
@@ -230,7 +230,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
-    buildModularSamples(dpgContext);
+    emitSamples(dpgContext);
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
