@@ -31,7 +31,8 @@ import {
 import {
   getImportedModelName,
   getSchemaForType,
-  getTypeName
+  getTypeName,
+  isBodyRequired
 } from "../utils/modelUtils.js";
 
 import { SdkContext } from "../utils/interfaces.js";
@@ -161,11 +162,8 @@ function hasRequiredOptions(
   dpgContext: SdkContext,
   routeParameters: HttpOperationParameters
 ) {
-  const isRequiredBodyParam =
-    routeParameters.body?.type &&
-    routeParameters.body?.property?.optional !== true
-      ? true
-      : false;
+  const isRequiredBodyParam = isBodyRequired(routeParameters);
+
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
     .filter((parameter) => !isApiVersion(dpgContext, parameter))

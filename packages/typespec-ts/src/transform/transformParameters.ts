@@ -36,7 +36,8 @@ import {
   getImportedModelName,
   getSchemaForType,
   getSerializeTypeName,
-  getTypeName
+  getTypeName,
+  isBodyRequired
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
@@ -295,10 +296,7 @@ function transformRequestBody(
         typeName: schema.name,
         name: "body",
         type,
-        required:
-          parameters.body?.type && parameters.body?.property?.optional !== true
-            ? true
-            : false,
+        required: isBodyRequired(parameters),
         description: descriptions.join("\n\n"),
         isMultipartBody:
           hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
