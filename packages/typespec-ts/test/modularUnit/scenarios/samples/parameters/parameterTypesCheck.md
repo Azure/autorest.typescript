@@ -69,7 +69,7 @@ async function read() {
     arrValue: ["x", "y"],
     unionValue: test,
     nullValue: null,
-    additionalProp: "additional prop",
+    additionalProp: "additional prop"
   });
   console.log(result);
 }
