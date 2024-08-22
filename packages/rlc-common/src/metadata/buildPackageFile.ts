@@ -1,27 +1,33 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { buildFlavorlessPackage } from "./packageJson/buildFlavorlessPackage.js";
-import { RLCModel } from "../interfaces.js";
-import { PackageCommonInfoConfig } from "./packageJson/packageCommon.js";
-import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
-import { normalizeName, NameType } from "../helpers/nameUtils.js";
-import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
+import { NameType, normalizeName } from "../helpers/nameUtils.js";
 import {
   hasPagingOperations,
   hasPollingOperations
 } from "../helpers/operationHelpers.js";
-import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
-import { Project } from "ts-morph";
 import {
-  isAzurePackage,
   isAzureMonorepoPackage,
+  isAzurePackage,
   isAzureStandalonePackage
 } from "../helpers/packageUtil.js";
 
+import { PackageCommonInfoConfig } from "./packageJson/packageCommon.js";
+import { Project } from "ts-morph";
+import { RLCModel } from "../interfaces.js";
+import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
+import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
+import { buildFlavorlessPackage } from "./packageJson/buildFlavorlessPackage.js";
+import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
+
+interface PackageFileOptions {
+  exports?: Record<string, any>;
+  dependencies?: Record<string, string>;
+}
+
 export function buildPackageFile(
   model: RLCModel,
-  exports?: Record<string, any>
+  { exports, dependencies }: PackageFileOptions = {}
 ) {
   const config: PackageCommonInfoConfig = {
     description: getDescription(model),
@@ -43,7 +49,8 @@ export function buildPackageFile(
     hasLro: hasPollingOperations(model),
     hasPaging: hasPagingOperations(model),
     monorepoPackageDirectory: model.options?.azureOutputDirectory,
-    specSource: model.options?.sourceFrom ?? "TypeSpec"
+    specSource: model.options?.sourceFrom ?? "TypeSpec",
+    dependencies
   };
 
   if (isAzureMonorepoPackage(model)) {

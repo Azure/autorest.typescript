@@ -338,7 +338,7 @@ export async function $onEmit(context: EmitContext) {
         moduleExports = getModuleExports(modularCodeModel);
         if (isAzureFlavor) {
           moduleExports = {
-            ...moduleExports,
+            exports: moduleExports,
             dependencies: {
               "@azure/core-util": "^1.9.2"
             }
