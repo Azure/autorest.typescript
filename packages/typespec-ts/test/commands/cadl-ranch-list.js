@@ -278,6 +278,10 @@ export const rlcTsps = [
   {
     outputPath: "azure/resource-manager/models/common-types/managed-identity",
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
+  },
+  {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
   }
 ];
 
@@ -538,6 +542,10 @@ export const modularTsps = [
   {
     outputPath: "azure/resource-manager/models/common-types/managed-identity",
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
+  },
+  {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
   }
 ];
 
