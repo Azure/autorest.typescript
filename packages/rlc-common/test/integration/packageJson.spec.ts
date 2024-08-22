@@ -1,13 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { expect } from "chai";
+import "mocha";
+
+import { TestModelConfig, createMockModel } from "./mockHelper.js";
 import {
   buildPackageFile,
   updatePackageFile
 } from "../../src/metadata/buildPackageFile.js";
-import "mocha";
-import { createMockModel, TestModelConfig } from "./mockHelper.js";
+
+import { expect } from "chai";
 
 describe("Package file generation", () => {
   describe("Flavor agnostic config", () => {
@@ -71,7 +73,7 @@ describe("Package file generation", () => {
         "./api": "./src/api/index.ts",
         "./models": "./src/models/index.ts"
       };
-      const packageFileContent = buildPackageFile(model, exports);
+      const packageFileContent = buildPackageFile(model, { exports });
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile).to.have.property("tshy");
