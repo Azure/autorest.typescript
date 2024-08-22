@@ -40,8 +40,8 @@ function getAzureStandaloneDependencies(
   config: AzurePackageInfoConfig
 ): Record<string, any> {
   return {
-    dependencies: { 
-      ...getAzurePackageDependencies(config),
+    dependencies: {
+      ...getAzurePackageDependencies(config)
     },
     devDependencies: getStandaloneDevDependencies(config)
   };

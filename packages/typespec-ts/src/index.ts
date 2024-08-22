@@ -336,6 +336,14 @@ export async function $onEmit(context: EmitContext) {
       let moduleExports = {};
       if (option.isModularLibrary) {
         moduleExports = getModuleExports(modularCodeModel);
+        if (isAzureFlavor) {
+          moduleExports = {
+            ...moduleExports,
+            dependencies: {
+              "@azure/core-util": "^1.9.2"
+            }
+          };
+        }
       }
       commonBuilders.push((model) => buildPackageFile(model, moduleExports));
       commonBuilders.push(buildTsConfig);

@@ -39,7 +39,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
   const cjsDevDependencies = getCjsDevDependencies(config);
   return {
     dependencies: {
-      ...getAzurePackageDependencies(config),
+      ...getAzurePackageDependencies(config)
     },
     devDependencies: {
       ...getAzurePackageDevDependencies(config),

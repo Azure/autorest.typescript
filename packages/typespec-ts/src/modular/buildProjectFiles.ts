@@ -54,9 +54,6 @@ export function getModuleExports(codeModel: ModularCodeModel) {
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
       "./models": "./src/models/index.ts"
-    },
-    dependencies: {
-      "@azure/core-util": "^1.9.2",
     }
   };
 
