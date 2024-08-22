@@ -573,5 +573,7 @@ export async function emitSamplesFromTypeSpec(
     examples
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
-  return await emitSamples(dpgContext);
+  const files = await emitSamples(dpgContext);
+  useBinder().resolveAllReferences();
+  return files;
 }

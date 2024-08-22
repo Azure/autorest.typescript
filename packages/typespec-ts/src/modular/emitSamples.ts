@@ -270,12 +270,13 @@ function getParameterValue(value: SdkTypeExample): string {
       const mapper = getPropertyClientNameMapper(value.type);
       const values = [];
       const additionalPropertiesValue =
-        value.kind === "model" ? value?.additionalPropertiesValue : {};
+        value.kind === "model" ? value?.additionalPropertiesValue ?? {} : {};
       for (const propName in {
         ...value.value,
         ...additionalPropertiesValue
       }) {
-        const propValue = value.value[propName];
+        const propValue =
+          value.value[propName] ?? additionalPropertiesValue[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
