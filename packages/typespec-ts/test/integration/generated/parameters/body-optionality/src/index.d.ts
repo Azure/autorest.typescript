@@ -58,7 +58,7 @@ export declare interface RequiredExplicitBodyParam {
 export declare type RequiredExplicitParameters = RequiredExplicitBodyParam & RequestParameters;
 
 export declare interface RequiredImplicit {
-    post(options?: RequiredImplicitParameters): StreamableMethod<RequiredImplicit204Response>;
+    post(options: RequiredImplicitParameters): StreamableMethod<RequiredImplicit204Response>;
 }
 
 export declare interface RequiredImplicit204Response extends HttpResponse {
@@ -66,7 +66,7 @@ export declare interface RequiredImplicit204Response extends HttpResponse {
 }
 
 export declare interface RequiredImplicitBodyParam {
-    body?: BodyModel;
+    body: BodyModel;
 }
 
 export declare type RequiredImplicitParameters = RequiredImplicitBodyParam & RequestParameters;

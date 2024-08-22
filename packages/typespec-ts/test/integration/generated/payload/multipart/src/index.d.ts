@@ -140,7 +140,7 @@ export declare interface FormDataAnonymousModel204Response extends HttpResponse 
 }
 
 export declare interface FormDataAnonymousModelBodyParam {
-    body?: FormData | Array<{
+    body: FormData | Array<{
         name: "profileImage";
         body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
         filename?: string;
