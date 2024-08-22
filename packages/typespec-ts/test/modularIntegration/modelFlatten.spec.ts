@@ -1,10 +1,10 @@
 import { assert } from "chai";
-import { FlattenClient } from "./generated/type/model/flatten/src/index.js";
-describe("Model Flatten Client", () => {
-  let client: FlattenClient;
+import { FlattenPropertyClient } from "./generated/azure/client-generator-core/flatten-property/src/index.js";
+describe("Property Flatten Client", () => {
+  let client: FlattenPropertyClient;
 
   beforeEach(() => {
-    client = new FlattenClient({
+    client = new FlattenPropertyClient({
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
