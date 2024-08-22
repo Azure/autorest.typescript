@@ -1,4 +1,4 @@
-# Should generate samples for for different types
+# Should generate samples for different types
 
 The return type for an empty anonymous model `{}` should be Record<string, any>
 
@@ -22,6 +22,7 @@ model Widget {
   ...Record<string>;
 }
 
+@doc("show example demo")
 op read(@bodyRoot body: Widget): void;
 ```
 
@@ -58,6 +59,12 @@ op read(@bodyRoot body: Widget): void;
 Generate samples for for different types:
 
 ```ts samples
+/**
+ * This sample demonstrates how to show example demo
+ *
+ * @summary show example demo
+ * x-ms-original-file: json.json
+ */
 async function read() {
   const client = new TestingClient();
   const result = await client.read({
@@ -69,7 +76,7 @@ async function read() {
     arrValue: ["x", "y"],
     unionValue: test,
     nullValue: null,
-    additionalProp: "additional prop"
+    additionalProp: "additional prop",
   });
   console.log(result);
 }

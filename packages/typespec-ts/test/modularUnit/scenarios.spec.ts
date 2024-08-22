@@ -106,7 +106,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     const result = await emitSamplesFromTypeSpec(tsp, example);
     assert.equal(result?.length, 1, "Expected exactly 1 source file");
     console.log("Result: ", result![0]!.getFullText());
-    return result![0]!.getText();
+    return result![0]!.getFullText();
   }
 };
 
