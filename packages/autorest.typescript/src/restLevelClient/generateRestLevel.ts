@@ -31,7 +31,8 @@ import {
   buildReadmeFile,
   buildSerializeHelper,
   buildLogger,
-  buildSamples
+  buildSamples,
+  updatePackageFile
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -49,7 +50,8 @@ export async function generateRestLevelClient() {
     outputPath,
     srcPath,
     generateTest,
-    generateMetadata
+    generateMetadata,
+    azureOutputDirectory
   } = getAutorestOptions();
 
   const project = new Project({
@@ -121,6 +123,12 @@ export async function generateRestLevelClient() {
     generateFileByBuilder(project, buildPackageFile, rlcModels);
     // buildTsConfig
     generateFileByBuilder(project, buildTsConfig, rlcModels);
+  } else {
+    // update existing package.json
+    const pathToPackageJson = azureOutputDirectory ? path.join(azureOutputDirectory, "package.json") : "";
+    if (fsextra.pathExistsSync(pathToPackageJson)){
+      generateFileByBuilder(project, (model) => updatePackageFile(model, pathToPackageJson), rlcModels);
+    }
   }
 
   // Save the source files to the virtual filesystem
