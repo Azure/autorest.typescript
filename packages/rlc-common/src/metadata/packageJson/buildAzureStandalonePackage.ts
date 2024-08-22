@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 
 import {
+  AzurePackageInfoConfig,
+  getAzureCommonPackageInfo,
+  getAzurePackageDependencies,
+  getAzurePackageDevDependencies
+} from "./azurePackageCommon.js";
+import {
   getCommonPackageScripts,
   getPackageCommonInfo
 } from "./packageCommon.js";
-
-import {
-  getAzurePackageDevDependencies,
-  getAzurePackageDependencies,
-  AzurePackageInfoConfig,
-  getAzureCommonPackageInfo
-} from "./azurePackageCommon.js";
 
 /**
  * Builds the package.json for an Azure package that won't be hosted in the azure-sdk-for-js repo.
@@ -41,7 +40,9 @@ function getAzureStandaloneDependencies(
   config: AzurePackageInfoConfig
 ): Record<string, any> {
   return {
-    dependencies: getAzurePackageDependencies(config),
+    dependencies: { 
+      ...getAzurePackageDependencies(config),
+    },
     devDependencies: getStandaloneDevDependencies(config)
   };
 }

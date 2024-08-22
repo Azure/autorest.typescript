@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 
 import {
+  AzurePackageInfoConfig,
+  getAzureCommonPackageInfo,
+  getAzurePackageDependencies,
+  getAzurePackageDevDependencies
+} from "./azurePackageCommon.js";
+import {
   getCommonPackageScripts,
   getPackageCommonInfo
 } from "./packageCommon.js";
-
-import {
-  getAzurePackageDevDependencies,
-  getAzurePackageDependencies,
-  AzurePackageInfoConfig,
-  getAzureCommonPackageInfo
-} from "./azurePackageCommon.js";
 
 export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
   monorepoPackageDirectory?: string;
@@ -40,7 +39,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
   const cjsDevDependencies = getCjsDevDependencies(config);
   return {
     dependencies: {
-      ...getAzurePackageDependencies(config)
+      ...getAzurePackageDependencies(config),
     },
     devDependencies: {
       ...getAzurePackageDevDependencies(config),
