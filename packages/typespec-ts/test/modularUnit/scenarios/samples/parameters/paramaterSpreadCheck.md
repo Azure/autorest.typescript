@@ -61,7 +61,14 @@ Generate samples for spread cases:
  */
 async function read() {
   const client = new TestingClient();
-  const result = await client.read("foo", "xxx-header", { name: "body name" });
+  const result = await client.read(
+    "foo",
+    "xxx-header",
+    { name: "body name" },
+    {
+      optionalQuery: "optional query"
+    }
+  );
   console.log(result);
 }
 
