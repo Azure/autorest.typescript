@@ -333,19 +333,23 @@ export async function $onEmit(context: EmitContext) {
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
-      let moduleExports = {};
+      let modularPackageInfo = {};
       if (option.isModularLibrary) {
-        moduleExports = getModuleExports(modularCodeModel);
+        modularPackageInfo = {
+          exports: getModuleExports(modularCodeModel)
+        };
         if (isAzureFlavor) {
-          moduleExports = {
-            exports: moduleExports,
+          modularPackageInfo = {
+            ...modularPackageInfo,
             dependencies: {
               "@azure/core-util": "^1.9.2"
             }
           };
         }
       }
-      commonBuilders.push((model) => buildPackageFile(model, moduleExports));
+      commonBuilders.push((model) =>
+        buildPackageFile(model, modularPackageInfo)
+      );
       commonBuilders.push(buildTsConfig);
       // build metadata relevant files
       await emitContentByBuilder(
