@@ -42,7 +42,34 @@ export declare interface Complex {
     post(options: FormDataComplexParameters): StreamableMethod<FormDataComplex204Response>;
 }
 
-export declare type ComplexPartsRequest = FormData | Array<ComplexPartsRequestIdPartDescriptor | ComplexPartsRequestAddressPartDescriptor | ComplexPartsRequestProfileImagePartDescriptor | ComplexPartsRequestPreviousAddressesPartDescriptor | ComplexPartsRequestPicturesPartDescriptor>;
+export declare type ComplexHttpPartsModelRequest = FormData | Array<ComplexHttpPartsModelRequestIdPartDescriptor | ComplexHttpPartsModelRequestAddressPartDescriptor | ComplexHttpPartsModelRequestProfileImagePartDescriptor | ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor | ComplexHttpPartsModelRequestPicturesPartDescriptor>;
+
+export declare interface ComplexHttpPartsModelRequestAddressPartDescriptor {
+    name: "address";
+    body: HttpPart;
+}
+
+export declare interface ComplexHttpPartsModelRequestIdPartDescriptor {
+    name: "id";
+    body: HttpPart;
+}
+
+export declare interface ComplexHttpPartsModelRequestPicturesPartDescriptor {
+    name: "pictures";
+    body: Array<HttpPart>;
+}
+
+export declare interface ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor {
+    name: "previousAddresses";
+    body: HttpPart;
+}
+
+export declare interface ComplexHttpPartsModelRequestProfileImagePartDescriptor {
+    name: "profileImage";
+    body: HttpPart;
+}
+
+export declare type ComplexPartsRequest = FormData | Array<ComplexPartsRequestIdPartDescriptor | ComplexPartsRequestAddressPartDescriptor | ComplexPartsRequestProfileImagePartDescriptor | ComplexPartsRequestPicturesPartDescriptor>;
 
 export declare interface ComplexPartsRequestAddressPartDescriptor {
     name: "address";
@@ -61,11 +88,6 @@ export declare interface ComplexPartsRequestPicturesPartDescriptor {
     contentType?: string;
 }
 
-export declare interface ComplexPartsRequestPreviousAddressesPartDescriptor {
-    name: "previousAddresses";
-    body: Array<Address>;
-}
-
 export declare interface ComplexPartsRequestProfileImagePartDescriptor {
     name: "profileImage";
     body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
@@ -73,8 +95,45 @@ export declare interface ComplexPartsRequestProfileImagePartDescriptor {
     contentType?: string;
 }
 
+export declare interface ComplexWithHttpPart {
+    post(options: FormDataComplexWithHttpPartParameters): StreamableMethod<FormDataComplexWithHttpPart204Response>;
+}
+
 declare function createClient(options?: MultiPartClientOptions): MultiPartClient;
 export default createClient;
+
+export declare interface FileWithHttpPartOptionalContentType {
+    post(options: FormDataFileWithHttpPartOptionalContentTypeParameters): StreamableMethod<FormDataFileWithHttpPartOptionalContentType204Response>;
+}
+
+export declare type FileWithHttpPartOptionalContentTypeRequest = FormData | Array<FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor>;
+
+export declare interface FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor {
+    name: "profileImage";
+    body: HttpPart;
+}
+
+export declare interface FileWithHttpPartRequiredContentType {
+    post(options: FormDataFileWithHttpPartRequiredContentTypeParameters): StreamableMethod<FormDataFileWithHttpPartRequiredContentType204Response>;
+}
+
+export declare type FileWithHttpPartRequiredContentTypeRequest = FormData | Array<FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor>;
+
+export declare interface FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor {
+    name: "profileImage";
+    body: HttpPart;
+}
+
+export declare interface FileWithHttpPartSpecificContentType {
+    post(options: FormDataFileWithHttpPartSpecificContentTypeParameters): StreamableMethod<FormDataFileWithHttpPartSpecificContentType204Response>;
+}
+
+export declare type FileWithHttpPartSpecificContentTypeRequest = FormData | Array<FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor>;
+
+export declare interface FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor {
+    name: "profileImage";
+    body: HttpPart;
+}
 
 export declare interface FormDataAnonymousModel204Response extends HttpResponse {
     status: "204";
@@ -151,19 +210,61 @@ export declare interface FormDataComplexMediaTypesParam {
 
 export declare type FormDataComplexParameters = FormDataComplexMediaTypesParam & FormDataComplexBodyParam & RequestParameters;
 
-export declare interface FormDataJsonArrayParts204Response extends HttpResponse {
+export declare interface FormDataComplexWithHttpPart204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface FormDataJsonArrayPartsBodyParam {
-    body: JsonArrayPartsRequest;
+export declare interface FormDataComplexWithHttpPartBodyParam {
+    body: ComplexHttpPartsModelRequest;
 }
 
-export declare interface FormDataJsonArrayPartsMediaTypesParam {
+export declare interface FormDataComplexWithHttpPartMediaTypesParam {
     contentType: "multipart/form-data";
 }
 
-export declare type FormDataJsonArrayPartsParameters = FormDataJsonArrayPartsMediaTypesParam & FormDataJsonArrayPartsBodyParam & RequestParameters;
+export declare type FormDataComplexWithHttpPartParameters = FormDataComplexWithHttpPartMediaTypesParam & FormDataComplexWithHttpPartBodyParam & RequestParameters;
+
+export declare interface FormDataFileWithHttpPartOptionalContentType204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface FormDataFileWithHttpPartOptionalContentTypeBodyParam {
+    body: FileWithHttpPartOptionalContentTypeRequest;
+}
+
+export declare interface FormDataFileWithHttpPartOptionalContentTypeMediaTypesParam {
+    contentType: "multipart/form-data";
+}
+
+export declare type FormDataFileWithHttpPartOptionalContentTypeParameters = FormDataFileWithHttpPartOptionalContentTypeMediaTypesParam & FormDataFileWithHttpPartOptionalContentTypeBodyParam & RequestParameters;
+
+export declare interface FormDataFileWithHttpPartRequiredContentType204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface FormDataFileWithHttpPartRequiredContentTypeBodyParam {
+    body: FileWithHttpPartRequiredContentTypeRequest;
+}
+
+export declare interface FormDataFileWithHttpPartRequiredContentTypeMediaTypesParam {
+    contentType: "multipart/form-data";
+}
+
+export declare type FormDataFileWithHttpPartRequiredContentTypeParameters = FormDataFileWithHttpPartRequiredContentTypeMediaTypesParam & FormDataFileWithHttpPartRequiredContentTypeBodyParam & RequestParameters;
+
+export declare interface FormDataFileWithHttpPartSpecificContentType204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface FormDataFileWithHttpPartSpecificContentTypeBodyParam {
+    body: FileWithHttpPartSpecificContentTypeRequest;
+}
+
+export declare interface FormDataFileWithHttpPartSpecificContentTypeMediaTypesParam {
+    contentType: "multipart/form-data";
+}
+
+export declare type FormDataFileWithHttpPartSpecificContentTypeParameters = FormDataFileWithHttpPartSpecificContentTypeMediaTypesParam & FormDataFileWithHttpPartSpecificContentTypeBodyParam & RequestParameters;
 
 export declare interface FormDataJsonPart204Response extends HttpResponse {
     status: "204";
@@ -193,22 +294,7 @@ export declare interface FormDataMultiBinaryPartsMediaTypesParam {
 
 export declare type FormDataMultiBinaryPartsParameters = FormDataMultiBinaryPartsMediaTypesParam & FormDataMultiBinaryPartsBodyParam & RequestParameters;
 
-export declare interface JsonArrayParts {
-    post(options: FormDataJsonArrayPartsParameters): StreamableMethod<FormDataJsonArrayParts204Response>;
-}
-
-export declare type JsonArrayPartsRequest = FormData | Array<JsonArrayPartsRequestProfileImagePartDescriptor | JsonArrayPartsRequestPreviousAddressesPartDescriptor>;
-
-export declare interface JsonArrayPartsRequestPreviousAddressesPartDescriptor {
-    name: "previousAddresses";
-    body: Array<Address>;
-}
-
-export declare interface JsonArrayPartsRequestProfileImagePartDescriptor {
-    name: "profileImage";
-    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
-    filename?: string;
-    contentType?: string;
+export declare interface HttpPart {
 }
 
 export declare interface JsonPart {
@@ -275,10 +361,13 @@ export declare interface Routes {
     (path: "/multipart/form-data/complex-parts"): Complex;
     (path: "/multipart/form-data/json-part"): JsonPart;
     (path: "/multipart/form-data/binary-array-parts"): BinaryArrayParts;
-    (path: "/multipart/form-data/json-array-parts"): JsonArrayParts;
     (path: "/multipart/form-data/multi-binary-parts"): MultiBinaryParts;
     (path: "/multipart/form-data/check-filename-and-content-type"): CheckFileNameAndContentType;
     (path: "/multipart/form-data/anonymous-model"): AnonymousModel;
+    (path: "/multipart/form-data/check-filename-and-specific-content-type-with-httppart"): FileWithHttpPartSpecificContentType;
+    (path: "/multipart/form-data/check-filename-and-required-content-type-with-httppart"): FileWithHttpPartRequiredContentType;
+    (path: "/multipart/form-data/file-with-http-part-optional-content-type"): FileWithHttpPartOptionalContentType;
+    (path: "/multipart/form-data/complex-parts-with-httppart"): ComplexWithHttpPart;
 }
 
 export { }
