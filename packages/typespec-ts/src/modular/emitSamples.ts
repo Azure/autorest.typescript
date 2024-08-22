@@ -4,57 +4,82 @@ import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
-  SdkInitializationType,
   SdkServiceMethod,
   SdkServiceOperation,
+  SdkType,
   SdkTypeExample
 } from "@azure-tools/typespec-client-generator-core";
-import { emitCredential } from "./emitCredential.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
+import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 
-export function buildSamples(dpgContext: SdkContext) {
+export function emitSamples(dpgContext: SdkContext) {
   for (const client of dpgContext.sdkPackage.clients) {
-    buildClassicalClientSample(dpgContext, client);
+    emitClassicalClientSamples(dpgContext, client);
   }
 }
 
-function buildClassicalClientSample(
+function emitClassicalClientSamples(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>
+  client: SdkClientType<SdkServiceOperation>,
+  operationGroupPrefix?: string
 ) {
   // build client-level parameters
   const clientName = client.name;
-  const credentialType = getCredentialType(client.initialization);
+  const credentialParameter = client.initialization.properties.find(
+    (p) => p.kind === "credential"
+  )?.type;
+  const credentialParameterType = credentialParameter
+    ? getTypeExpression(credentialParameter!)
+    : undefined;
+  emitClassicalClientSamplesDfs(
+    dpgContext,
+    client,
+    clientName,
+    credentialParameterType,
+    operationGroupPrefix ?? ""
+  );
+}
+
+function emitClassicalClientSamplesDfs(
+  dpgContext: SdkContext,
+  client: SdkClientType<SdkServiceOperation>,
+  clientName: string,
+  credentialParameterType?: string,
+  operationGroupPrefix?: string
+) {
   for (const operationOrGroup of client.methods) {
     if (operationOrGroup.kind === "clientaccessor") {
-      for (const operation of operationOrGroup.response.methods) {
-        // TODO: support nested operation groups
-        if (operation.kind === "clientaccessor") {
-          continue;
-        }
-        // this is an operation
-        buildExamplesForMethod(dpgContext, operation, {
-          clientName,
-          credentialType,
-          operationGroupPrefix: normalizeName(
-            operationOrGroup.response.name,
-            NameType.Property
-          )
-        });
+      let prefix = normalizeName(
+        operationOrGroup.response.name,
+        NameType.Property
+      );
+      // append hierarchy prefix if hierarchyClient is enabled
+      if (dpgContext.rlcOptions?.hierarchyClient === true) {
+        prefix =
+          (operationGroupPrefix ? `${operationGroupPrefix}.` : "") + prefix;
       }
-    } else {
-      buildExamplesForMethod(dpgContext, operationOrGroup, {
+
+      emitClassicalClientSamplesDfs(
+        dpgContext,
+        operationOrGroup.response,
         clientName,
-        credentialType
+        credentialParameterType,
+        prefix
+      );
+    } else {
+      emitMethodSamples(dpgContext, operationOrGroup, {
+        clientName,
+        credentialType: credentialParameterType,
+        operationGroupPrefix
       });
     }
   }
 }
 
-function buildExamplesForMethod(
+function emitMethodSamples(
   dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
   options: {
@@ -63,6 +88,10 @@ function buildExamplesForMethod(
     operationGroupPrefix?: string;
   }
 ) {
+  const examples = method.operation.examples ?? [];
+  if (examples.length === 0) {
+    return;
+  }
   const project = useContext("outputProject");
   const operationPrefix = `${options.operationGroupPrefix ?? ""} ${
     method.name
@@ -88,7 +117,7 @@ function buildExamplesForMethod(
     });
   }
 
-  for (const example of method.operation.examples ?? []) {
+  for (const example of examples) {
     // build example
     const exampleFunctionBody: string[] = [],
       clientParams: string[] = [],
@@ -178,7 +207,6 @@ function buildExamplesForMethod(
       kind: StructureKind.Function,
       isAsync: true,
       name: exampleFunctionType.name,
-      returnType: exampleFunctionType.returnType,
       statements: exampleFunctionType.body,
       docs: [
         `This sample demonstrates how to ${normalizedDescription}\n\n@summary ${normalizedDescription}\nx-ms-original-file: ${example.filePath}`
@@ -198,24 +226,10 @@ function buildExamplesForMethod(
   }
 
   main().catch(console.error);`);
-  console.log(sourceFile.getFilePath(), sourceFile.getFullText());
-}
-
-function getCredentialType(initialization: SdkInitializationType) {
-  const param = initialization.properties.find((p) => p.kind === "credential");
-  if (!param) return;
-  if (param.type.kind === "union") {
-    // TODO: support union types
-    return;
-  }
-  const type = emitCredential(param.type);
-  return ["KeyCredential", "TokenCredential"].includes(type)
-    ? "DefaultAzureCredential"
-    : undefined;
 }
 
 function getParameterValue(value: SdkTypeExample): string {
-  let retValue = value.value;
+  let retValue = `{} as any`;
   switch (value.kind) {
     case "string": {
       switch (value.type.kind) {
@@ -232,11 +246,13 @@ function getParameterValue(value: SdkTypeExample): string {
     case "boolean":
     case "number":
     case "null":
+    case "any":
+    case "union":
       retValue = `${value.value}`;
       break;
     case "dict":
     case "model": {
-      // TODO: handle the client name and serialization name gaps
+      const mapper = getPropertyClientNameMapper(value.type);
       const values = [];
       const additionalPropertiesValue =
         value.kind === "model" ? value?.additionalPropertiesValue : {};
@@ -248,7 +264,9 @@ function getParameterValue(value: SdkTypeExample): string {
         if (propValue === undefined || propValue === null) {
           continue;
         }
-        const propRetValue = `"${propName}": ` + getParameterValue(propValue);
+        const propRetValue =
+          `"${mapper.get(propName) ?? propName}": ` +
+          getParameterValue(propValue);
         values.push(propRetValue);
       }
 
@@ -263,10 +281,24 @@ function getParameterValue(value: SdkTypeExample): string {
       break;
     }
     default:
-      retValue = "{} as any";
       break;
   }
-  return `${retValue}`;
+  return retValue;
+}
+
+function getPropertyClientNameMapper(model: SdkType) {
+  const mapper = new Map<string, string>();
+  if (model.kind !== "model") {
+    return mapper;
+  }
+  for (const prop of model.properties) {
+    if (prop.kind !== "property") {
+      continue;
+    }
+
+    mapper.set(prop.serializedName, prop.name);
+  }
+  return mapper;
 }
 
 function escapeSpecialCharToSpace(str: string) {

@@ -3,9 +3,12 @@
 
 export { FooClient, FooClientOptionalParams } from "./fooClient.js";
 export {
+  aSerializer_1,
+  aSerializer_2,
   A,
-  BA,
-  BEA,
+  A_1,
+  A_2,
+  FooClientOptions,
   Op1OptionalParams,
   BOp1OptionalParams,
   BECOp1OptionalParams,

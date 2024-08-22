@@ -24,5 +24,5 @@ function getKey(value: unknown): RefKey {
 }
 
 export function refkey(...args: unknown[]) {
-  return args.map((v) => getKey(v)).join("\u2063");
+  return args.map((v) => getKey(v)).join("_");
 }

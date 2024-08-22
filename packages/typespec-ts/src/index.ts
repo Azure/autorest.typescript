@@ -50,7 +50,7 @@ import {
 } from "./modular/buildRootIndex.js";
 import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
+import { buildModelsOptions } from "./modular/emitModels.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
@@ -60,7 +60,6 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { provideContext, useContext } from "./contextManager.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
-import { buildSamples as buildModularSamples } from "./next/buildSamples.js";
 import { provideBinder } from "./framework/hooks/binder.js";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import {
@@ -75,6 +74,8 @@ import {
 } from "./modular/external-dependencies.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
+import { emitTypes } from "./modular/emit-models.js";
+import { emitSamples } from "./modular/emitSamples.js";
 
 export * from "./lib.js";
 
@@ -229,7 +230,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
-    buildModularSamples(dpgContext);
+    emitSamples(dpgContext);
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
@@ -256,8 +257,8 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
+    emitTypes(dpgContext.sdkPackage, { sourceRoot: modularSourcesRoot });
     for (const subClient of modularCodeModel.clients) {
-      buildModels(subClient, modularCodeModel);
       buildModelsOptions(subClient, modularCodeModel);
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
         buildSerializeUtils(modularCodeModel);

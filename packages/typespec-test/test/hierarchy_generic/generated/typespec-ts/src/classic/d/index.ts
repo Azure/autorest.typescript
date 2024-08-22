@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { FooContext } from "../../api/fooContext.js";
-import { A } from "../../models/models.js";
 import { op1 } from "../../api/d/index.js";
+import { A } from "../../models/models.js";
 import { DOp1OptionalParams } from "../../models/options.js";
 
 /** Interface representing a D operations. */
