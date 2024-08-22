@@ -17,6 +17,9 @@ model CompositeRequest {
   @header
   testHeader: string;
 
+  @header
+  optionalQuery?: string;
+
   @body
   body: BodyParameter;
 }
@@ -33,6 +36,7 @@ op read(...CompositeRequest): void;
   "operationId": "read",
   "parameters": {
     "name": "foo",
+    "optionalQuery": "optional query",
     "testHeader": "xxx-header",
     "body": {
       "name": "body name"

@@ -12,7 +12,7 @@ import { prettierTypeScriptOptions } from "../../src/lib.js";
 
 const SCENARIOS_LOCATION = "./test/modularUnit/scenarios/samples";
 
-const SCENARIOS_UPDATE = true;
+const SCENARIOS_UPDATE = false;
 
 type EmitterFunction = (
   tsp: string,
