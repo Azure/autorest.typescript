@@ -55,7 +55,8 @@ export async function rlcEmitterFor(
   needTCGC: boolean = false,
   withRawContent: boolean = false,
   withVersionedApiVersion: boolean = false,
-  needArmTemplate: boolean = false
+  needArmTemplate: boolean = false,
+  exampleJson: Record<string, any> = {}
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
@@ -97,6 +98,9 @@ ${
 ${code}
 `;
   host.addTypeSpecFile("main.tsp", content);
+  for (const example in exampleJson) {
+    host.addTypeSpecFile(`./examples/${example}.json`, exampleJson[example]);
+  }
   await host.compile("./", {
     warningAsError: false
   });

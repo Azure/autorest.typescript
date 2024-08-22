@@ -3,7 +3,8 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import path from "path";
 import {
   emitModularModelsFromTypeSpec,
-  emitModularOperationsFromTypeSpec
+  emitModularOperationsFromTypeSpec,
+  emitSamplesFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 import { format } from "prettier";
@@ -15,7 +16,8 @@ const SCENARIOS_UPDATE = false;
 
 type EmitterFunction = (
   tsp: string,
-  namedArgs: Record<string, string>
+  namedArgs: Record<string, string>,
+  examples?: Record<string, string>
 ) => Promise<string>;
 
 /**
@@ -93,6 +95,18 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     const result = await emitModularOperationsFromTypeSpec(tsp);
     assert.equal(result?.length, 1, "Expected exactly 1 source file");
     return result![0]!.getFunctionOrThrow(name!).getText();
+  },
+
+  // Snapshot of a specific example generation
+  // Throws if more than one example generated
+  "(ts|typescript) samples": async (tsp, {}, example) => {
+    if (!example) {
+      throw new Error("No example provided for samples");
+    }
+    const result = await emitSamplesFromTypeSpec(tsp, example);
+    assert.equal(result?.length, 1, "Expected exactly 1 source file");
+    console.log("Result: ", result![0]!.getFullText());
+    return result![0]!.getText();
   }
 };
 
@@ -137,10 +151,16 @@ function describeScenario(scenarioFile: string) {
         .filter((x) => x.heading === "tsp" || x.heading === "typespec")
         .map((x) => x.content)
         .join("\n");
-      const examplesInput = codeBlocks.filter((x) => x.heading === "json");
+      const examplesInput = codeBlocks.filter((x) =>
+        x.heading.startsWith("json")
+      );
+      const examples: Record<string, string> = {};
+      for (const example of examplesInput) {
+        examples[example.heading] = example.content;
+      }
       console.log("TypeSpec examples: ", examplesInput);
-      const testCodeBlocks = codeBlocks.filter((x) =>
-        x.heading.startsWith("ts")
+      const testCodeBlocks = codeBlocks.filter(
+        (x) => x.heading.startsWith("ts") && x.heading !== "tsp"
       );
 
       for (const codeBlock of testCodeBlocks) {
@@ -156,7 +176,7 @@ function describeScenario(scenarioFile: string) {
             const namedArgs = match.groups;
 
             it(codeBlock.heading, async function () {
-              const result = await fn(typeSpecInput, namedArgs ?? {});
+              const result = await fn(typeSpecInput, namedArgs ?? {}, examples);
 
               if (SCENARIOS_UPDATE) {
                 content = updateCodeBlock(

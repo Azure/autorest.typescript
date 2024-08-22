@@ -379,7 +379,8 @@ export async function createContextWithDefaultOptions(
         main: "@azure-tools/typespec-ts",
         metadata: { name: "@azure-tools/typespec-ts" }
       }
-    ]
+    ],
+    "examples-directory": `./examples`
   };
   context.options = {
     ...context.options,

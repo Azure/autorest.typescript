@@ -1,4 +1,8 @@
-import { StructureKind, FunctionDeclarationStructure } from "ts-morph";
+import {
+  StructureKind,
+  FunctionDeclarationStructure,
+  SourceFile
+} from "ts-morph";
 import { addDeclaration } from "../framework/declaration.js";
 import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
@@ -15,10 +19,13 @@ import { join } from "path";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 
-export function emitSamples(dpgContext: SdkContext) {
+export function emitSamples(dpgContext: SdkContext): SourceFile[] {
+  const generatedFiles: SourceFile[] = [];
   for (const client of dpgContext.sdkPackage.clients) {
-    emitClassicalClientSamples(dpgContext, client);
+    const tmp = emitClassicalClientSamples(dpgContext, client);
+    generatedFiles.push(...tmp);
   }
+  return generatedFiles;
 }
 
 function emitClassicalClientSamples(
@@ -34,13 +41,16 @@ function emitClassicalClientSamples(
   const credentialParameterType = credentialParameter
     ? getTypeExpression(credentialParameter!)
     : undefined;
+  const generatedFiles: SourceFile[] = [];
   emitClassicalClientSamplesDfs(
     dpgContext,
     client,
     clientName,
     credentialParameterType,
-    operationGroupPrefix ?? ""
+    operationGroupPrefix ?? "",
+    generatedFiles
   );
+  return generatedFiles;
 }
 
 function emitClassicalClientSamplesDfs(
@@ -48,7 +58,8 @@ function emitClassicalClientSamplesDfs(
   client: SdkClientType<SdkServiceOperation>,
   clientName: string,
   credentialParameterType?: string,
-  operationGroupPrefix?: string
+  operationGroupPrefix?: string,
+  generatedFiles: SourceFile[] = []
 ) {
   for (const operationOrGroup of client.methods) {
     if (operationOrGroup.kind === "clientaccessor") {
@@ -70,11 +81,14 @@ function emitClassicalClientSamplesDfs(
         prefix
       );
     } else {
-      emitMethodSamples(dpgContext, operationOrGroup, {
+      const sample = emitMethodSamples(dpgContext, operationOrGroup, {
         clientName,
         credentialType: credentialParameterType,
         operationGroupPrefix
       });
+      if (sample) {
+        generatedFiles.push(sample);
+      }
     }
   }
 }
@@ -87,7 +101,7 @@ function emitMethodSamples(
     credentialType?: string;
     operationGroupPrefix?: string;
   }
-) {
+): SourceFile | undefined {
   const examples = method.operation.examples ?? [];
   if (examples.length === 0) {
     return;
@@ -226,6 +240,7 @@ function emitMethodSamples(
   }
 
   main().catch(console.error);`);
+  return sourceFile;
 }
 
 function getParameterValue(value: SdkTypeExample): string {

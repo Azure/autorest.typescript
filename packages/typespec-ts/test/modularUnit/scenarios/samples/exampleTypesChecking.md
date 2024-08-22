@@ -1,4 +1,4 @@
-# Should map empty anonymous model ({}) to Record<string, any>
+# Should generate samples for for different types
 
 The return type for an empty anonymous model `{}` should be Record<string, any>
 
@@ -26,7 +26,7 @@ op read(body: Widget): void;
 
 ## Example
 
-```json
+```json_read_operations
 {
   "title": "read",
   "operationId": "read",
@@ -51,30 +51,25 @@ op read(body: Widget): void;
 }
 ```
 
-## Operations
+## Samples
 
-Body should get cast to `any` in the deserialize function:
+Generate samples for for different types:
 
-```ts operations function _readDeserialize
-export async function _readDeserialize(
-  result: Read200Response
-): Promise<Record<string, any>> {
-  if (result.status !== "200") {
-    throw createRestError(result);
-  }
-
-  return result.body as any;
+```ts samples
+/**
+ * This sample demonstrates how to undefined
+ *
+ * @summary undefined
+ * x-ms-original-file: json_read_operations.json
+ */ async function read() {
+  const client = new TestingClient();
+  const result = await client.read();
+  console.log(result);
 }
-```
 
-The operation should have return type `Record<string, any>`:
-
-```ts operations function read
-export async function read(
-  context: string,
-  options: ReadOptionalParams = { requestOptions: {} }
-): Promise<Record<string, any>> {
-  const result = await _readSend(context, options);
-  return _readDeserialize(result);
+async function main() {
+  __PLACEHOLDER_o13__();
 }
+
+main().catch(console.error);
 ```

@@ -35,6 +35,7 @@ import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js"
 import { Project } from "ts-morph";
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
+import { emitSamples } from "../../src/modular/emitSamples.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -555,4 +556,22 @@ export async function emitModularClientFromTypeSpec(
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return undefined;
+}
+
+export async function emitSamplesFromTypeSpec(
+  tspContent: string,
+  examples: Record<string, string>
+) {
+  const context = await rlcEmitterFor(
+    tspContent,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    examples
+  );
+  const dpgContext = await createDpgContextTestHelper(context.program);
+  return await emitSamples(dpgContext);
 }
