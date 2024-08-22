@@ -1,24 +1,41 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import * as fsextra from "fs-extra";
+
 import {
+  AzureCoreDependencies,
+  AzurePollingDependencies,
+  DefaultCoreDependencies
+} from "./modular/external-dependencies.js";
+import { EmitContext, Program } from "@typespec/compiler";
+import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
+import {
+  PagingHelpers,
+  PollingHelpers,
+  SerializationHelpers
+} from "./modular/static-helpers-metadata.js";
+import {
+  RLCModel,
+  RLCOptions,
   buildApiExtractorConfig,
   buildClient,
   buildClientDefinitions,
   buildEsLintConfig,
   buildIndexFile,
   buildIsUnexpectedHelper,
+  buildLicenseFile,
   buildLogger,
   buildPackageFile,
-  buildPaginateHelper as buildRLCPaginateHelper,
   buildParameterTypes,
   buildPollingHelper,
+  buildPaginateHelper as buildRLCPaginateHelper,
   buildReadmeFile,
   buildRecordedClientFile,
   buildResponseTypes,
   buildRollupConfig,
-  buildSamples,
   buildSampleTest,
+  buildSamples,
   buildSerializeHelper,
   buildTopLevelIndex,
   buildTsConfig,
@@ -26,55 +43,41 @@ import {
   buildVitestConfig,
   getClientName,
   hasUnexpectedHelper,
-  RLCModel,
-  RLCOptions,
-  buildLicenseFile,
-  updatePackageFile,
-  isAzurePackage
+  isAzurePackage,
+  updatePackageFile
 } from "@azure-tools/rlc-common";
-import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
-import { EmitContext, Program } from "@typespec/compiler";
-import { existsSync } from "fs";
-import * as fsextra from "fs-extra";
-import { join } from "path";
-import { env } from "process";
-import { Project } from "ts-morph";
-import { EmitterOptions } from "./lib.js";
-import { buildClassicalClient } from "./modular/buildClassicalClient.js";
-import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { buildClientContext } from "./modular/buildClientContext.js";
-import { emitCodeModel } from "./modular/buildCodeModel.js";
-import { buildOperationFiles } from "./modular/buildOperations.js";
-import { getModuleExports } from "./modular/buildProjectFiles.js";
+import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import {
   buildRootIndex,
   buildSubClientIndexFile
 } from "./modular/buildRootIndex.js";
+import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
+import { provideContext, useContext } from "./contextManager.js";
+
+import { EmitterOptions } from "./lib.js";
+import { ModularCodeModel } from "./modular/modularCodeModel.js";
+import { Project } from "ts-morph";
+import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
+import { buildClassicalClient } from "./modular/buildClassicalClient.js";
+import { buildClientContext } from "./modular/buildClientContext.js";
+import { buildOperationFiles } from "./modular/buildOperations.js";
+import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
-import { ModularCodeModel } from "./modular/modularCodeModel.js";
+import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
+import { emitCodeModel } from "./modular/buildCodeModel.js";
+import { emitLoggerFile } from "./modular/emitLoggerFile.js";
+import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
+import { env } from "process";
+import { existsSync } from "fs";
+import { getModuleExports } from "./modular/buildProjectFiles.js";
+import { getRLCClients } from "./utils/clientUtils.js";
+import { join } from "path";
+import { loadStaticHelpers } from "./framework/load-static-helpers.js";
+import { provideBinder } from "./framework/hooks/binder.js";
+import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
-import { getRLCClients } from "./utils/clientUtils.js";
-import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
-import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
-import { provideContext, useContext } from "./contextManager.js";
-import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
-import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
-import { provideBinder } from "./framework/hooks/binder.js";
-import { loadStaticHelpers } from "./framework/load-static-helpers.js";
-import {
-  PagingHelpers,
-  PollingHelpers,
-  SerializationHelpers
-} from "./modular/static-helpers-metadata.js";
-import {
-  AzureCoreDependencies,
-  AzurePollingDependencies
-} from "./modular/external-dependencies.js";
-import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 
 export * from "./lib.js";
 
@@ -115,7 +118,7 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
-    : {};
+    : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
     dependencies: {
@@ -330,11 +333,23 @@ export async function $onEmit(context: EmitContext) {
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
-      let moduleExports = {};
+      let modularPackageInfo = {};
       if (option.isModularLibrary) {
-        moduleExports = getModuleExports(modularCodeModel);
+        modularPackageInfo = {
+          exports: getModuleExports(modularCodeModel)
+        };
+        if (isAzureFlavor) {
+          modularPackageInfo = {
+            ...modularPackageInfo,
+            dependencies: {
+              "@azure/core-util": "^1.9.2"
+            }
+          };
+        }
       }
-      commonBuilders.push((model) => buildPackageFile(model, moduleExports));
+      commonBuilders.push((model) =>
+        buildPackageFile(model, modularPackageInfo)
+      );
       commonBuilders.push(buildTsConfig);
       // build metadata relevant files
       await emitContentByBuilder(

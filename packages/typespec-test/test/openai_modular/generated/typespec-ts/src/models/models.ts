@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import { uint8ArrayToString } from "@azure/core-util";
 import { ErrorModel } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {

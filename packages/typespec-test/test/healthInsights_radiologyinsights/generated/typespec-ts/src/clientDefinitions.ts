@@ -20,7 +20,7 @@ export interface GetJob {
 export interface CreateJob {
   /** Creates a Radiology Insights job with the given request body. */
   post(
-    options?: CreateJobParameters,
+    options: CreateJobParameters,
   ): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
 }
 

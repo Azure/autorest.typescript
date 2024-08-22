@@ -12,20 +12,20 @@ export declare interface ChildModel {
     age: number;
 }
 
-export declare class FlattenClient {
+export declare interface FlattenModel {
+    name: string;
+    properties: ChildModel;
+}
+
+export declare class FlattenPropertyClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(options?: FlattenClientOptionalParams);
+    constructor(options?: FlattenPropertyClientOptionalParams);
     putFlattenModel(input: FlattenModel, options?: PutFlattenModelOptionalParams): Promise<FlattenModel>;
     putNestedFlattenModel(input: NestedFlattenModel, options?: PutNestedFlattenModelOptionalParams): Promise<NestedFlattenModel>;
 }
 
-export declare interface FlattenClientOptionalParams extends ClientOptions {
-}
-
-export declare interface FlattenModel {
-    name: string;
-    properties: ChildModel;
+export declare interface FlattenPropertyClientOptionalParams extends ClientOptions {
 }
 
 export declare interface NestedFlattenModel {

@@ -77,6 +77,11 @@ export declare interface NestedProxyResourcesUpdateOptionalParams extends Operat
     updateIntervalInMs?: number;
 }
 
+export declare interface NotificationDetails {
+    message: string;
+    urgent: boolean;
+}
+
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     next(): Promise<IteratorResult<TElement>>;
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
@@ -139,6 +144,9 @@ export declare interface TopLevelTrackedResourceProperties {
     description?: string;
 }
 
+export declare interface TopLevelTrackedResourcesActionSyncOptionalParams extends OperationOptions {
+}
+
 export declare interface TopLevelTrackedResourcesCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
@@ -163,6 +171,7 @@ export declare interface TopLevelTrackedResourcesOperations {
     delete: (resourceGroupName: string, topLevelTrackedResourceName: string, options?: TopLevelTrackedResourcesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     listByResourceGroup: (resourceGroupName: string, options?: TopLevelTrackedResourcesListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<TopLevelTrackedResource>;
     listBySubscription: (options?: TopLevelTrackedResourcesListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<TopLevelTrackedResource>;
+    actionSync: (resourceGroupName: string, topLevelTrackedResourceName: string, body: NotificationDetails, options?: TopLevelTrackedResourcesActionSyncOptionalParams) => Promise<void>;
 }
 
 export declare interface TopLevelTrackedResourcesUpdateOptionalParams extends OperationOptions {
