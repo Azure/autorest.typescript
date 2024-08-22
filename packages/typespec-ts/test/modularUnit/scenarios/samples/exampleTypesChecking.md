@@ -56,12 +56,7 @@ op read(body: Widget): void;
 Generate samples for for different types:
 
 ```ts samples
-/**
- * This sample demonstrates how to undefined
- *
- * @summary undefined
- * x-ms-original-file: json_read_operations.json
- */ async function read() {
+async function read() {
   const client = new TestingClient();
   const result = await client.read();
   console.log(result);
