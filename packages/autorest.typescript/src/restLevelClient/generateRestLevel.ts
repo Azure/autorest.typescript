@@ -125,12 +125,10 @@ export async function generateRestLevelClient() {
     generateFileByBuilder(project, buildTsConfig, rlcModels);
   } else {
     // update existing package.json
-    const pathToPackageJson = azureOutputDirectory ? path.join(azureOutputDirectory, "package.json") : "";
-    if (fsextra.pathExistsSync(pathToPackageJson)){
-      generateFileByBuilder(project, (model) => updatePackageFile(model, pathToPackageJson), rlcModels);
-    }
+    const pathToPackageJson = outputPath ? path.join(outputPath, "package.json") : "";
+    generateFileByBuilder(project, (model) => updatePackageFile(model, pathToPackageJson), rlcModels);
   }
-
+    
   // Save the source files to the virtual filesystem
   project.saveSync();
   const fs = project.getFileSystem();
