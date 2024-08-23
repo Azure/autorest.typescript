@@ -8,11 +8,11 @@ import {
 import { Project, SourceFile } from "ts-morph";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
 import {
   getDeserializePrivateFunction,
+  getExpectedStatuses,
   getOperationFunction,
   getOperationOptionsName,
   getSendPrivateFunction,
@@ -30,8 +30,7 @@ import { addImportBySymbol } from "../utils/importHelper.js";
 export function buildOperationFiles(
   client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel,
-  needUnexpectedHelper: boolean = true
+  codeModel: ModularCodeModel
 ) {
   const operationFiles = [];
   const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
@@ -57,11 +56,6 @@ export function buildOperationFiles(
       `${srcPath}/${
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${operationFileName}.ts`
-    );
-    // We need to import the lro helpers and types explicitly because ts-morph may not be able to find correct ones.
-    importLroDependencies(
-      operationGroupFile,
-      operationGroup.namespaceHierarchies.length
     );
 
     // Import models used from ./models.ts
@@ -94,46 +88,13 @@ export function buildOperationFiles(
       operationGroup.namespaceHierarchies.length
     );
 
-    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
-    importPagingDependencies(
-      srcPath,
-      operationGroupFile,
-      codeModel.project,
-      subfolder,
-      operationGroup.namespaceHierarchies.length
-    );
+    const indexPathPrefix =
+      "../".repeat(operationGroup.namespaceHierarchies.length) || "./";
+    operationGroupFile.addImportDeclaration({
+      namedImports: [`${client.rlcClientName} as Client`],
+      moduleSpecifier: `${indexPathPrefix}index.js`
+    });
 
-    const namedImports: string[] = [];
-    if (isMultiEndpoint) {
-      namedImports.push(`Client`);
-      if (needUnexpectedHelper) {
-        namedImports.push("UnexpectedHelper");
-      }
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: `../${"../".repeat(
-            operationGroup.namespaceHierarchies.length
-          )}rest/${subfolder}/index.js`,
-          namedImports
-        }
-      ]);
-    } else {
-      if (needUnexpectedHelper) {
-        namedImports.push("isUnexpected");
-      }
-      const rlcClientName = client.rlcClientName;
-      namedImports.push(`${rlcClientName} as Client`);
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: `${
-            subfolder && subfolder !== "" ? "../" : ""
-          }${"../".repeat(
-            operationGroup.namespaceHierarchies.length + 1
-          )}rest/index.js`,
-          namedImports
-        }
-      ]);
-    }
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(
@@ -144,8 +105,6 @@ export function buildOperationFiles(
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
-        isMultiEndpoint,
-        needUnexpectedHelper,
         codeModel.runtimeImports
       );
       operationGroupFile.addFunctions([
@@ -171,9 +130,6 @@ export function buildOperationFiles(
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     addImportBySymbol("serializeRecord", operationGroupFile);
 
-    operationGroupFile.fixMissingImports();
-    // have to fixUnusedIdentifiers after everything get generated.
-    operationGroupFile.fixUnusedIdentifiers();
     operationFiles.push(operationGroupFile);
   }
   return operationFiles;
@@ -245,64 +201,6 @@ export function importDeserializeUtils(
       namedImports: deserializeUtil
     });
   }
-}
-// Import all deserializeUtil and then let ts-morph clean up the unused ones
-// we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
-// sourceFile.fixUnusedIdentifiers();
-export function importPagingDependencies(
-  srcPath: string,
-  sourceFile: SourceFile,
-  project: Project,
-  subfolder: string = "",
-  importLayer: number = 0
-) {
-  const pagingTypes = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/pagingTypes.ts`
-  );
-
-  if (!pagingTypes) {
-    return;
-  }
-
-  const exportedPaingTypes = [...pagingTypes.getExportedDeclarations().keys()];
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: `${"../".repeat(importLayer + 1)}models/pagingTypes.js`,
-    namedImports: exportedPaingTypes
-  });
-
-  const pagingHelper = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/pagingHelpers.ts`
-  );
-
-  if (!pagingHelper) {
-    return;
-  }
-
-  const exportedPaingHelpers = [
-    ...pagingHelper.getExportedDeclarations().keys()
-  ];
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: `${
-      importLayer === 0 ? "./" : "../".repeat(importLayer)
-    }pagingHelpers.js`,
-    namedImports: exportedPaingHelpers
-  });
-}
-
-export function importLroDependencies(
-  sourceFile: SourceFile,
-  importLayer: number = 0
-) {
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: `${
-      importLayer === 0 ? "./" : "../".repeat(importLayer)
-    }pollingHelpers.js`,
-    namedImports: ["getLongRunningPoller"]
-  });
-
-  importLroCoreDependencies(sourceFile);
 }
 
 /**
@@ -383,6 +281,7 @@ export function buildLroDeserDetailMap(client: Client) {
         existingNames.add(deserName);
         return {
           path: `${o.method.toUpperCase()} ${o.url}`,
+          expectedStatusesExpression: getExpectedStatuses(o),
           deserName,
           renamedDeserName
         };

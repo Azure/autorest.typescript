@@ -87,171 +87,17 @@ import {
   _PoolListUsageMetricsResult,
   _PoolNodeCountsListResult,
 } from "../models/models.js";
-import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "./pagingHelpers.js";
-import {
-  isUnexpected,
-  BatchContext as Client,
-  CancelCertificateDeletion204Response,
-  CancelCertificateDeletionDefaultResponse,
-  CreateCertificate201Response,
-  CreateCertificateDefaultResponse,
-  CreateJob201Response,
-  CreateJobDefaultResponse,
-  CreateJobSchedule201Response,
-  CreateJobScheduleDefaultResponse,
-  CreateNodeUser201Response,
-  CreateNodeUserDefaultResponse,
-  CreatePool201Response,
-  CreatePoolDefaultResponse,
-  CreateTask201Response,
-  CreateTaskCollection200Response,
-  CreateTaskCollectionDefaultResponse,
-  CreateTaskDefaultResponse,
-  DeleteCertificate202Response,
-  DeleteCertificateDefaultResponse,
-  DeleteJob202Response,
-  DeleteJobDefaultResponse,
-  DeleteJobSchedule202Response,
-  DeleteJobScheduleDefaultResponse,
-  DeleteNodeFile200Response,
-  DeleteNodeFileDefaultResponse,
-  DeleteNodeUser200Response,
-  DeleteNodeUserDefaultResponse,
-  DeletePool202Response,
-  DeletePoolDefaultResponse,
-  DeleteTask200Response,
-  DeleteTaskDefaultResponse,
-  DeleteTaskFile200Response,
-  DeleteTaskFileDefaultResponse,
-  DisableJob202Response,
-  DisableJobDefaultResponse,
-  DisableJobSchedule204Response,
-  DisableJobScheduleDefaultResponse,
-  DisableNodeScheduling200Response,
-  DisableNodeSchedulingDefaultResponse,
-  DisablePoolAutoScale200Response,
-  DisablePoolAutoScaleDefaultResponse,
-  EnableJob202Response,
-  EnableJobDefaultResponse,
-  EnableJobSchedule204Response,
-  EnableJobScheduleDefaultResponse,
-  EnableNodeScheduling200Response,
-  EnableNodeSchedulingDefaultResponse,
-  EnablePoolAutoScale200Response,
-  EnablePoolAutoScaleDefaultResponse,
-  EvaluatePoolAutoScale200Response,
-  EvaluatePoolAutoScaleDefaultResponse,
-  GetApplication200Response,
-  GetApplicationDefaultResponse,
-  GetCertificate200Response,
-  GetCertificateDefaultResponse,
-  GetJob200Response,
-  GetJobDefaultResponse,
-  GetJobSchedule200Response,
-  GetJobScheduleDefaultResponse,
-  GetJobTaskCounts200Response,
-  GetJobTaskCountsDefaultResponse,
-  GetNode200Response,
-  GetNodeDefaultResponse,
-  GetNodeExtension200Response,
-  GetNodeExtensionDefaultResponse,
-  GetNodeFile200Response,
-  GetNodeFileDefaultResponse,
-  GetNodeFileProperties200Response,
-  GetNodeFilePropertiesDefaultResponse,
-  GetNodeRemoteDesktopFile200Response,
-  GetNodeRemoteDesktopFileDefaultResponse,
-  GetNodeRemoteLoginSettings200Response,
-  GetNodeRemoteLoginSettingsDefaultResponse,
-  GetPool200Response,
-  GetPoolDefaultResponse,
-  GetTask200Response,
-  GetTaskDefaultResponse,
-  GetTaskFile200Response,
-  GetTaskFileDefaultResponse,
-  GetTaskFileProperties200Response,
-  GetTaskFilePropertiesDefaultResponse,
-  JobScheduleExists200Response,
-  JobScheduleExists404Response,
-  JobScheduleExistsDefaultResponse,
-  ListApplications200Response,
-  ListApplicationsDefaultResponse,
-  ListCertificates200Response,
-  ListCertificatesDefaultResponse,
-  ListJobPreparationAndReleaseTaskStatus200Response,
-  ListJobPreparationAndReleaseTaskStatusDefaultResponse,
-  ListJobs200Response,
-  ListJobSchedules200Response,
-  ListJobSchedulesDefaultResponse,
-  ListJobsDefaultResponse,
-  ListJobsFromSchedule200Response,
-  ListJobsFromScheduleDefaultResponse,
-  ListNodeExtensions200Response,
-  ListNodeExtensionsDefaultResponse,
-  ListNodeFiles200Response,
-  ListNodeFilesDefaultResponse,
-  ListNodes200Response,
-  ListNodesDefaultResponse,
-  ListPoolNodeCounts200Response,
-  ListPoolNodeCountsDefaultResponse,
-  ListPools200Response,
-  ListPoolsDefaultResponse,
-  ListPoolUsageMetrics200Response,
-  ListPoolUsageMetricsDefaultResponse,
-  ListSubTasks200Response,
-  ListSubTasksDefaultResponse,
-  ListSupportedImages200Response,
-  ListSupportedImagesDefaultResponse,
-  ListTaskFiles200Response,
-  ListTaskFilesDefaultResponse,
-  ListTasks200Response,
-  ListTasksDefaultResponse,
-  PoolExists200Response,
-  PoolExists404Response,
-  PoolExistsDefaultResponse,
-  ReactivateTask204Response,
-  ReactivateTaskDefaultResponse,
-  RebootNode202Response,
-  RebootNodeDefaultResponse,
-  ReimageNode202Response,
-  ReimageNodeDefaultResponse,
-  RemoveNodes202Response,
-  RemoveNodesDefaultResponse,
-  ReplaceJob200Response,
-  ReplaceJobDefaultResponse,
-  ReplaceJobSchedule200Response,
-  ReplaceJobScheduleDefaultResponse,
-  ReplaceNodeUser200Response,
-  ReplaceNodeUserDefaultResponse,
-  ReplacePoolProperties204Response,
-  ReplacePoolPropertiesDefaultResponse,
-  ReplaceTask200Response,
-  ReplaceTaskDefaultResponse,
-  ResizePool202Response,
-  ResizePoolDefaultResponse,
-  StopPoolResize202Response,
-  StopPoolResizeDefaultResponse,
-  TerminateJob202Response,
-  TerminateJobDefaultResponse,
-  TerminateJobSchedule202Response,
-  TerminateJobScheduleDefaultResponse,
-  TerminateTask204Response,
-  TerminateTaskDefaultResponse,
-  UpdateJob200Response,
-  UpdateJobDefaultResponse,
-  UpdateJobSchedule200Response,
-  UpdateJobScheduleDefaultResponse,
-  UpdatePool200Response,
-  UpdatePoolDefaultResponse,
-  UploadNodeLogs200Response,
-  UploadNodeLogsDefaultResponse,
-} from "../rest/index.js";
+import { BatchContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   ListApplicationsOptionalParams,
@@ -335,9 +181,7 @@ import {
 export function _listApplicationsSend(
   context: Client,
   options: ListApplicationsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListApplications200Response | ListApplicationsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/applications")
     .get({
@@ -351,9 +195,10 @@ export function _listApplicationsSend(
 }
 
 export async function _listApplicationsDeserialize(
-  result: ListApplications200Response | ListApplicationsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_ApplicationListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -361,7 +206,7 @@ export async function _listApplicationsDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -387,6 +232,7 @@ export function listApplications(
     context,
     () => _listApplicationsSend(context, options),
     _listApplicationsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -395,7 +241,7 @@ export function _getApplicationSend(
   context: Client,
   applicationId: string,
   options: GetApplicationOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetApplication200Response | GetApplicationDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/applications/{applicationId}", applicationId)
     .get({
@@ -408,9 +254,10 @@ export function _getApplicationSend(
 }
 
 export async function _getApplicationDeserialize(
-  result: GetApplication200Response | GetApplicationDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchApplication> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -440,9 +287,7 @@ export async function getApplication(
 export function _listPoolUsageMetricsSend(
   context: Client,
   options: ListPoolUsageMetricsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/poolusagemetrics")
     .get({
@@ -459,9 +304,10 @@ export function _listPoolUsageMetricsSend(
 }
 
 export async function _listPoolUsageMetricsDeserialize(
-  result: ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PoolListUsageMetricsResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -469,7 +315,7 @@ export async function _listPoolUsageMetricsDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               poolId: p["poolId"],
               startTime: new Date(p["startTime"]),
@@ -498,6 +344,7 @@ export function listPoolUsageMetrics(
     context,
     () => _listPoolUsageMetricsSend(context, options),
     _listPoolUsageMetricsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -506,7 +353,7 @@ export function _createPoolSend(
   context: Client,
   body: BatchPoolCreateOptions,
   options: CreatePoolOptionalParams = { requestOptions: {} },
-): StreamableMethod<CreatePool201Response | CreatePoolDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools")
     .post({
@@ -576,9 +423,10 @@ export function _createPoolSend(
 }
 
 export async function _createPoolDeserialize(
-  result: CreatePool201Response | CreatePoolDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -602,7 +450,7 @@ export async function createPool(
 export function _listPoolsSend(
   context: Client,
   options: ListPoolsOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListPools200Response | ListPoolsDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools")
     .get({
@@ -619,9 +467,10 @@ export function _listPoolsSend(
 }
 
 export async function _listPoolsDeserialize(
-  result: ListPools200Response | ListPoolsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_BatchPoolListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -629,7 +478,7 @@ export async function _listPoolsDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -700,7 +549,7 @@ export async function _listPoolsDeserialize(
                       p.virtualMachineConfiguration?.["dataDisks"] === undefined
                         ? p.virtualMachineConfiguration?.["dataDisks"]
                         : p.virtualMachineConfiguration?.["dataDisks"].map(
-                            (p) => {
+                            (p: any) => {
                               return {
                                 lun: p["lun"],
                                 caching: p["caching"],
@@ -730,7 +579,7 @@ export async function _listPoolsDeserialize(
                                 ]
                               : p.virtualMachineConfiguration?.containerConfiguration?.[
                                   "containerRegistries"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return {
                                     username: p["username"],
                                     password: p["password"],
@@ -765,7 +614,7 @@ export async function _listPoolsDeserialize(
                       undefined
                         ? p.virtualMachineConfiguration?.["extensions"]
                         : p.virtualMachineConfiguration?.["extensions"].map(
-                            (p) => {
+                            (p: any) => {
                               return {
                                 name: p["name"],
                                 publisher: p["publisher"],
@@ -800,14 +649,14 @@ export async function _listPoolsDeserialize(
               resizeErrors:
                 p["resizeErrors"] === undefined
                   ? p["resizeErrors"]
-                  : p["resizeErrors"].map((p) => {
+                  : p["resizeErrors"].map((p: any) => {
                       return {
                         code: p["code"],
                         message: p["message"],
                         values:
                           p["values"] === undefined
                             ? p["values"]
-                            : p["values"].map((p) => {
+                            : p["values"].map((p: any) => {
                                 return { name: p["name"], value: p["value"] };
                               }),
                       };
@@ -832,9 +681,14 @@ export async function _listPoolsDeserialize(
                           values:
                             p.autoScaleRun?.error?.["values"] === undefined
                               ? p.autoScaleRun?.error?.["values"]
-                              : p.autoScaleRun?.error?.["values"].map((p) => {
-                                  return { name: p["name"], value: p["value"] };
-                                }),
+                              : p.autoScaleRun?.error?.["values"].map(
+                                  (p: any) => {
+                                    return {
+                                      name: p["name"],
+                                      value: p["value"],
+                                    };
+                                  },
+                                ),
                         },
                   },
               enableInterNodeCommunication: p["enableInterNodeCommunication"],
@@ -851,7 +705,7 @@ export async function _listPoolsDeserialize(
                           inboundNatPools:
                             p.networkConfiguration?.endpointConfiguration?.[
                               "inboundNATPools"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return {
                                 name: p["name"],
                                 protocol: p["protocol"],
@@ -863,7 +717,7 @@ export async function _listPoolsDeserialize(
                                   p["networkSecurityGroupRules"] === undefined
                                     ? p["networkSecurityGroupRules"]
                                     : p["networkSecurityGroupRules"].map(
-                                        (p) => {
+                                        (p: any) => {
                                           return {
                                             priority: p["priority"],
                                             access: p["access"],
@@ -937,7 +791,7 @@ export async function _listPoolsDeserialize(
                     resourceFiles:
                       p.startTask?.["resourceFiles"] === undefined
                         ? p.startTask?.["resourceFiles"]
-                        : p.startTask?.["resourceFiles"].map((p) => {
+                        : p.startTask?.["resourceFiles"].map((p: any) => {
                             return {
                               autoStorageContainerName:
                                 p["autoStorageContainerName"],
@@ -957,7 +811,7 @@ export async function _listPoolsDeserialize(
                     environmentSettings:
                       p.startTask?.["environmentSettings"] === undefined
                         ? p.startTask?.["environmentSettings"]
-                        : p.startTask?.["environmentSettings"].map((p) => {
+                        : p.startTask?.["environmentSettings"].map((p: any) => {
                             return { name: p["name"], value: p["value"] };
                           }),
                     userIdentity: !p.startTask?.userIdentity
@@ -983,7 +837,7 @@ export async function _listPoolsDeserialize(
               certificateReferences:
                 p["certificateReferences"] === undefined
                   ? p["certificateReferences"]
-                  : p["certificateReferences"].map((p) => {
+                  : p["certificateReferences"].map((p: any) => {
                       return {
                         thumbprint: p["thumbprint"],
                         thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -995,7 +849,7 @@ export async function _listPoolsDeserialize(
               applicationPackageReferences:
                 p["applicationPackageReferences"] === undefined
                   ? p["applicationPackageReferences"]
-                  : p["applicationPackageReferences"].map((p) => {
+                  : p["applicationPackageReferences"].map((p: any) => {
                       return {
                         applicationId: p["applicationId"],
                         version: p["version"],
@@ -1009,7 +863,7 @@ export async function _listPoolsDeserialize(
               userAccounts:
                 p["userAccounts"] === undefined
                   ? p["userAccounts"]
-                  : p["userAccounts"].map((p) => {
+                  : p["userAccounts"].map((p: any) => {
                       return {
                         name: p["name"],
                         password: p["password"],
@@ -1033,7 +887,7 @@ export async function _listPoolsDeserialize(
               metadata:
                 p["metadata"] === undefined
                   ? p["metadata"]
-                  : p["metadata"].map((p) => {
+                  : p["metadata"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
               stats: !p.stats
@@ -1087,7 +941,7 @@ export async function _listPoolsDeserialize(
               mountConfiguration:
                 p["mountConfiguration"] === undefined
                   ? p["mountConfiguration"]
-                  : p["mountConfiguration"].map((p) => {
+                  : p["mountConfiguration"].map((p: any) => {
                       return {
                         azureBlobFileSystemConfiguration:
                           !p.azureBlobFileSystemConfiguration
@@ -1179,13 +1033,15 @@ export async function _listPoolsDeserialize(
                     userAssignedIdentities:
                       p.identity?.["userAssignedIdentities"] === undefined
                         ? p.identity?.["userAssignedIdentities"]
-                        : p.identity?.["userAssignedIdentities"].map((p) => {
-                            return {
-                              resourceId: p["resourceId"],
-                              clientId: p["clientId"],
-                              principalId: p["principalId"],
-                            };
-                          }),
+                        : p.identity?.["userAssignedIdentities"].map(
+                            (p: any) => {
+                              return {
+                                resourceId: p["resourceId"],
+                                clientId: p["clientId"],
+                                principalId: p["principalId"],
+                              };
+                            },
+                          ),
                   },
               targetNodeCommunicationMode: p["targetNodeCommunicationMode"],
               currentNodeCommunicationMode: p["currentNodeCommunicationMode"],
@@ -1204,6 +1060,7 @@ export function listPools(
     context,
     () => _listPoolsSend(context, options),
     _listPoolsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -1212,7 +1069,7 @@ export function _deletePoolSend(
   context: Client,
   poolId: string,
   options: DeletePoolOptionalParams = { requestOptions: {} },
-): StreamableMethod<DeletePool202Response | DeletePoolDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}", poolId)
     .delete({
@@ -1239,9 +1096,10 @@ export function _deletePoolSend(
 }
 
 export async function _deletePoolDeserialize(
-  result: DeletePool202Response | DeletePoolDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1275,9 +1133,7 @@ export function _poolExistsSend(
   context: Client,
   poolId: string,
   options: PoolExistsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  PoolExists200Response | PoolExists404Response | PoolExistsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}", poolId)
     .head({
@@ -1304,12 +1160,10 @@ export function _poolExistsSend(
 }
 
 export async function _poolExistsDeserialize(
-  result:
-    | PoolExists200Response
-    | PoolExists404Response
-    | PoolExistsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "404"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1330,7 +1184,7 @@ export function _getPoolSend(
   context: Client,
   poolId: string,
   options: GetPoolOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetPool200Response | GetPoolDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}", poolId)
     .get({
@@ -1359,9 +1213,10 @@ export function _getPoolSend(
 }
 
 export async function _getPoolDeserialize(
-  result: GetPool200Response | GetPoolDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchPool> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1433,7 +1288,7 @@ export async function _getPoolDeserialize(
             result.body.virtualMachineConfiguration?.["dataDisks"] === undefined
               ? result.body.virtualMachineConfiguration?.["dataDisks"]
               : result.body.virtualMachineConfiguration?.["dataDisks"].map(
-                  (p) => {
+                  (p: any) => {
                     return {
                       lun: p["lun"],
                       caching: p["caching"],
@@ -1460,7 +1315,7 @@ export async function _getPoolDeserialize(
                         ?.containerConfiguration?.["containerRegistries"]
                     : result.body.virtualMachineConfiguration?.containerConfiguration?.[
                         "containerRegistries"
-                      ].map((p) => {
+                      ].map((p: any) => {
                         return {
                           username: p["username"],
                           password: p["password"],
@@ -1494,7 +1349,7 @@ export async function _getPoolDeserialize(
             undefined
               ? result.body.virtualMachineConfiguration?.["extensions"]
               : result.body.virtualMachineConfiguration?.["extensions"].map(
-                  (p) => {
+                  (p: any) => {
                     return {
                       name: p["name"],
                       publisher: p["publisher"],
@@ -1525,14 +1380,14 @@ export async function _getPoolDeserialize(
     resizeErrors:
       result.body["resizeErrors"] === undefined
         ? result.body["resizeErrors"]
-        : result.body["resizeErrors"].map((p) => {
+        : result.body["resizeErrors"].map((p: any) => {
             return {
               code: p["code"],
               message: p["message"],
               values:
                 p["values"] === undefined
                   ? p["values"]
-                  : p["values"].map((p) => {
+                  : p["values"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
             };
@@ -1557,9 +1412,11 @@ export async function _getPoolDeserialize(
                 values:
                   result.body.autoScaleRun?.error?.["values"] === undefined
                     ? result.body.autoScaleRun?.error?.["values"]
-                    : result.body.autoScaleRun?.error?.["values"].map((p) => {
-                        return { name: p["name"], value: p["value"] };
-                      }),
+                    : result.body.autoScaleRun?.error?.["values"].map(
+                        (p: any) => {
+                          return { name: p["name"], value: p["value"] };
+                        },
+                      ),
               },
         },
     enableInterNodeCommunication: result.body["enableInterNodeCommunication"],
@@ -1576,7 +1433,7 @@ export async function _getPoolDeserialize(
                 inboundNatPools:
                   result.body.networkConfiguration?.endpointConfiguration?.[
                     "inboundNATPools"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return {
                       name: p["name"],
                       protocol: p["protocol"],
@@ -1586,7 +1443,7 @@ export async function _getPoolDeserialize(
                       networkSecurityGroupRules:
                         p["networkSecurityGroupRules"] === undefined
                           ? p["networkSecurityGroupRules"]
-                          : p["networkSecurityGroupRules"].map((p) => {
+                          : p["networkSecurityGroupRules"].map((p: any) => {
                               return {
                                 priority: p["priority"],
                                 access: p["access"],
@@ -1656,7 +1513,7 @@ export async function _getPoolDeserialize(
           resourceFiles:
             result.body.startTask?.["resourceFiles"] === undefined
               ? result.body.startTask?.["resourceFiles"]
-              : result.body.startTask?.["resourceFiles"].map((p) => {
+              : result.body.startTask?.["resourceFiles"].map((p: any) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -1672,7 +1529,7 @@ export async function _getPoolDeserialize(
           environmentSettings:
             result.body.startTask?.["environmentSettings"] === undefined
               ? result.body.startTask?.["environmentSettings"]
-              : result.body.startTask?.["environmentSettings"].map((p) => {
+              : result.body.startTask?.["environmentSettings"].map((p: any) => {
                   return { name: p["name"], value: p["value"] };
                 }),
           userIdentity: !result.body.startTask?.userIdentity
@@ -1698,7 +1555,7 @@ export async function _getPoolDeserialize(
     certificateReferences:
       result.body["certificateReferences"] === undefined
         ? result.body["certificateReferences"]
-        : result.body["certificateReferences"].map((p) => {
+        : result.body["certificateReferences"].map((p: any) => {
             return {
               thumbprint: p["thumbprint"],
               thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -1710,7 +1567,7 @@ export async function _getPoolDeserialize(
     applicationPackageReferences:
       result.body["applicationPackageReferences"] === undefined
         ? result.body["applicationPackageReferences"]
-        : result.body["applicationPackageReferences"].map((p) => {
+        : result.body["applicationPackageReferences"].map((p: any) => {
             return { applicationId: p["applicationId"], version: p["version"] };
           }),
     applicationLicenses: result.body["applicationLicenses"],
@@ -1721,7 +1578,7 @@ export async function _getPoolDeserialize(
     userAccounts:
       result.body["userAccounts"] === undefined
         ? result.body["userAccounts"]
-        : result.body["userAccounts"].map((p) => {
+        : result.body["userAccounts"].map((p: any) => {
             return {
               name: p["name"],
               password: p["password"],
@@ -1741,7 +1598,7 @@ export async function _getPoolDeserialize(
     metadata:
       result.body["metadata"] === undefined
         ? result.body["metadata"]
-        : result.body["metadata"].map((p) => {
+        : result.body["metadata"].map((p: any) => {
             return { name: p["name"], value: p["value"] };
           }),
     stats: !result.body.stats
@@ -1795,7 +1652,7 @@ export async function _getPoolDeserialize(
     mountConfiguration:
       result.body["mountConfiguration"] === undefined
         ? result.body["mountConfiguration"]
-        : result.body["mountConfiguration"].map((p) => {
+        : result.body["mountConfiguration"].map((p: any) => {
             return {
               azureBlobFileSystemConfiguration:
                 !p.azureBlobFileSystemConfiguration
@@ -1862,13 +1719,15 @@ export async function _getPoolDeserialize(
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"] === undefined
               ? result.body.identity?.["userAssignedIdentities"]
-              : result.body.identity?.["userAssignedIdentities"].map((p) => {
-                  return {
-                    resourceId: p["resourceId"],
-                    clientId: p["clientId"],
-                    principalId: p["principalId"],
-                  };
-                }),
+              : result.body.identity?.["userAssignedIdentities"].map(
+                  (p: any) => {
+                    return {
+                      resourceId: p["resourceId"],
+                      clientId: p["clientId"],
+                      principalId: p["principalId"],
+                    };
+                  },
+                ),
         },
     targetNodeCommunicationMode: result.body["targetNodeCommunicationMode"],
     currentNodeCommunicationMode: result.body["currentNodeCommunicationMode"],
@@ -1890,7 +1749,7 @@ export function _updatePoolSend(
   poolId: string,
   body: BatchPoolUpdateOptions,
   options: UpdatePoolOptionalParams = { requestOptions: {} },
-): StreamableMethod<UpdatePool200Response | UpdatePoolDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}", poolId)
     .patch({
@@ -1940,9 +1799,10 @@ export function _updatePoolSend(
 }
 
 export async function _updatePoolDeserialize(
-  result: UpdatePool200Response | UpdatePoolDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -1968,9 +1828,7 @@ export function _disablePoolAutoScaleSend(
   context: Client,
   poolId: string,
   options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DisablePoolAutoScale200Response | DisablePoolAutoScaleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/disableautoscale", poolId)
     .post({
@@ -1983,9 +1841,10 @@ export function _disablePoolAutoScaleSend(
 }
 
 export async function _disablePoolAutoScaleDeserialize(
-  result: DisablePoolAutoScale200Response | DisablePoolAutoScaleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2007,9 +1866,7 @@ export function _enablePoolAutoScaleSend(
   poolId: string,
   body: BatchPoolEnableAutoScaleOptions,
   options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/enableautoscale", poolId)
     .post({
@@ -2043,9 +1900,10 @@ export function _enablePoolAutoScaleSend(
 }
 
 export async function _enablePoolAutoScaleDeserialize(
-  result: EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2075,9 +1933,7 @@ export function _evaluatePoolAutoScaleSend(
   poolId: string,
   body: BatchPoolEvaluateAutoScaleOptions,
   options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  EvaluatePoolAutoScale200Response | EvaluatePoolAutoScaleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/evaluateautoscale", poolId)
     .post({
@@ -2094,11 +1950,10 @@ export function _evaluatePoolAutoScaleSend(
 }
 
 export async function _evaluatePoolAutoScaleDeserialize(
-  result:
-    | EvaluatePoolAutoScale200Response
-    | EvaluatePoolAutoScaleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<AutoScaleRun> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2113,7 +1968,7 @@ export async function _evaluatePoolAutoScaleDeserialize(
           values:
             result.body.error?.["values"] === undefined
               ? result.body.error?.["values"]
-              : result.body.error?.["values"].map((p) => {
+              : result.body.error?.["values"].map((p: any) => {
                   return { name: p["name"], value: p["value"] };
                 }),
         },
@@ -2145,7 +2000,7 @@ export function _resizePoolSend(
   poolId: string,
   body: BatchPoolResizeOptions,
   options: ResizePoolOptionalParams = { requestOptions: {} },
-): StreamableMethod<ResizePool202Response | ResizePoolDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/resize", poolId)
     .post({
@@ -2181,9 +2036,10 @@ export function _resizePoolSend(
 }
 
 export async function _resizePoolDeserialize(
-  result: ResizePool202Response | ResizePoolDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2213,7 +2069,7 @@ export function _stopPoolResizeSend(
   context: Client,
   poolId: string,
   options: StopPoolResizeOptionalParams = { requestOptions: {} },
-): StreamableMethod<StopPoolResize202Response | StopPoolResizeDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/stopresize", poolId)
     .post({
@@ -2240,9 +2096,10 @@ export function _stopPoolResizeSend(
 }
 
 export async function _stopPoolResizeDeserialize(
-  result: StopPoolResize202Response | StopPoolResizeDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2272,9 +2129,7 @@ export function _replacePoolPropertiesSend(
   poolId: string,
   body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ReplacePoolProperties204Response | ReplacePoolPropertiesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/updateproperties", poolId)
     .post({
@@ -2303,11 +2158,10 @@ export function _replacePoolPropertiesSend(
 }
 
 export async function _replacePoolPropertiesDeserialize(
-  result:
-    | ReplacePoolProperties204Response
-    | ReplacePoolPropertiesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2339,7 +2193,7 @@ export function _removeNodesSend(
   poolId: string,
   body: NodeRemoveOptions,
   options: RemoveNodesOptionalParams = { requestOptions: {} },
-): StreamableMethod<RemoveNodes202Response | RemoveNodesDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/removenodes", poolId)
     .post({
@@ -2374,9 +2228,10 @@ export function _removeNodesSend(
 }
 
 export async function _removeNodesDeserialize(
-  result: RemoveNodes202Response | RemoveNodesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2401,9 +2256,7 @@ export async function removeNodes(
 export function _listSupportedImagesSend(
   context: Client,
   options: ListSupportedImagesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListSupportedImages200Response | ListSupportedImagesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/supportedimages")
     .get({
@@ -2417,9 +2270,10 @@ export function _listSupportedImagesSend(
 }
 
 export async function _listSupportedImagesDeserialize(
-  result: ListSupportedImages200Response | ListSupportedImagesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_AccountListSupportedImagesResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2427,7 +2281,7 @@ export async function _listSupportedImagesDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               nodeAgentSkuId: p["nodeAgentSKUId"],
               imageReference: {
@@ -2461,6 +2315,7 @@ export function listSupportedImages(
     context,
     () => _listSupportedImagesSend(context, options),
     _listSupportedImagesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -2468,9 +2323,7 @@ export function listSupportedImages(
 export function _listPoolNodeCountsSend(
   context: Client,
   options: ListPoolNodeCountsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/nodecounts")
     .get({
@@ -2485,9 +2338,10 @@ export function _listPoolNodeCountsSend(
 }
 
 export async function _listPoolNodeCountsDeserialize(
-  result: ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_PoolNodeCountsListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2495,7 +2349,7 @@ export async function _listPoolNodeCountsDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               poolId: p["poolId"],
               dedicated: !p.dedicated
@@ -2553,6 +2407,7 @@ export function listPoolNodeCounts(
     context,
     () => _listPoolNodeCountsSend(context, options),
     _listPoolNodeCountsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -2561,7 +2416,7 @@ export function _deleteJobSend(
   context: Client,
   jobId: string,
   options: DeleteJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<DeleteJob202Response | DeleteJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}", jobId)
     .delete({
@@ -2588,9 +2443,10 @@ export function _deleteJobSend(
 }
 
 export async function _deleteJobDeserialize(
-  result: DeleteJob202Response | DeleteJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2620,7 +2476,7 @@ export function _getJobSend(
   context: Client,
   jobId: string,
   options: GetJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetJob200Response | GetJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}", jobId)
     .get({
@@ -2649,9 +2505,10 @@ export function _getJobSend(
 }
 
 export async function _getJobDeserialize(
-  result: GetJob200Response | GetJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchJob> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -2733,7 +2590,7 @@ export async function _getJobDeserialize(
           resourceFiles:
             result.body.jobManagerTask?.["resourceFiles"] === undefined
               ? result.body.jobManagerTask?.["resourceFiles"]
-              : result.body.jobManagerTask?.["resourceFiles"].map((p) => {
+              : result.body.jobManagerTask?.["resourceFiles"].map((p: any) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -2749,7 +2606,7 @@ export async function _getJobDeserialize(
           outputFiles:
             result.body.jobManagerTask?.["outputFiles"] === undefined
               ? result.body.jobManagerTask?.["outputFiles"]
-              : result.body.jobManagerTask?.["outputFiles"].map((p) => {
+              : result.body.jobManagerTask?.["outputFiles"].map((p: any) => {
                   return {
                     filePattern: p["filePattern"],
                     destination: {
@@ -2773,7 +2630,7 @@ export async function _getJobDeserialize(
                                 ? p.destination.container?.["uploadHeaders"]
                                 : p.destination.container?.[
                                     "uploadHeaders"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       name: p["name"],
                                       value: p["value"],
@@ -2789,9 +2646,11 @@ export async function _getJobDeserialize(
           environmentSettings:
             result.body.jobManagerTask?.["environmentSettings"] === undefined
               ? result.body.jobManagerTask?.["environmentSettings"]
-              : result.body.jobManagerTask?.["environmentSettings"].map((p) => {
-                  return { name: p["name"], value: p["value"] };
-                }),
+              : result.body.jobManagerTask?.["environmentSettings"].map(
+                  (p: any) => {
+                    return { name: p["name"], value: p["value"] };
+                  },
+                ),
           constraints: !result.body.jobManagerTask?.constraints
             ? undefined
             : {
@@ -2832,7 +2691,7 @@ export async function _getJobDeserialize(
               ? result.body.jobManagerTask?.["applicationPackageReferences"]
               : result.body.jobManagerTask?.[
                   "applicationPackageReferences"
-                ].map((p) => {
+                ].map((p: any) => {
                   return {
                     applicationId: p["applicationId"],
                     version: p["version"],
@@ -2896,25 +2755,27 @@ export async function _getJobDeserialize(
           resourceFiles:
             result.body.jobPreparationTask?.["resourceFiles"] === undefined
               ? result.body.jobPreparationTask?.["resourceFiles"]
-              : result.body.jobPreparationTask?.["resourceFiles"].map((p) => {
-                  return {
-                    autoStorageContainerName: p["autoStorageContainerName"],
-                    storageContainerUrl: p["storageContainerUrl"],
-                    httpUrl: p["httpUrl"],
-                    blobPrefix: p["blobPrefix"],
-                    filePath: p["filePath"],
-                    fileMode: p["fileMode"],
-                    identityReference: !p.identityReference
-                      ? undefined
-                      : { resourceId: p.identityReference?.["resourceId"] },
-                  };
-                }),
+              : result.body.jobPreparationTask?.["resourceFiles"].map(
+                  (p: any) => {
+                    return {
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    };
+                  },
+                ),
           environmentSettings:
             result.body.jobPreparationTask?.["environmentSettings"] ===
             undefined
               ? result.body.jobPreparationTask?.["environmentSettings"]
               : result.body.jobPreparationTask?.["environmentSettings"].map(
-                  (p) => {
+                  (p: any) => {
                     return { name: p["name"], value: p["value"] };
                   },
                 ),
@@ -2999,7 +2860,7 @@ export async function _getJobDeserialize(
           resourceFiles:
             result.body.jobReleaseTask?.["resourceFiles"] === undefined
               ? result.body.jobReleaseTask?.["resourceFiles"]
-              : result.body.jobReleaseTask?.["resourceFiles"].map((p) => {
+              : result.body.jobReleaseTask?.["resourceFiles"].map((p: any) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -3015,9 +2876,11 @@ export async function _getJobDeserialize(
           environmentSettings:
             result.body.jobReleaseTask?.["environmentSettings"] === undefined
               ? result.body.jobReleaseTask?.["environmentSettings"]
-              : result.body.jobReleaseTask?.["environmentSettings"].map((p) => {
-                  return { name: p["name"], value: p["value"] };
-                }),
+              : result.body.jobReleaseTask?.["environmentSettings"].map(
+                  (p: any) => {
+                    return { name: p["name"], value: p["value"] };
+                  },
+                ),
           maxWallClockTime: result.body.jobReleaseTask?.["maxWallClockTime"],
           retentionTime: result.body.jobReleaseTask?.["retentionTime"],
           userIdentity: !result.body.jobReleaseTask?.userIdentity
@@ -3042,7 +2905,7 @@ export async function _getJobDeserialize(
     commonEnvironmentSettings:
       result.body["commonEnvironmentSettings"] === undefined
         ? result.body["commonEnvironmentSettings"]
-        : result.body["commonEnvironmentSettings"].map((p) => {
+        : result.body["commonEnvironmentSettings"].map((p: any) => {
             return { name: p["name"], value: p["value"] };
           }),
     poolInfo: {
@@ -3138,7 +3001,7 @@ export async function _getJobDeserialize(
                                 ?.virtualMachineConfiguration?.["dataDisks"]
                             : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                 "dataDisks"
-                              ].map((p) => {
+                              ].map((p: any) => {
                                 return {
                                   lun: p["lun"],
                                   caching: p["caching"],
@@ -3176,7 +3039,7 @@ export async function _getJobDeserialize(
                                     ]
                                   : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                       "containerRegistries"
-                                    ].map((p) => {
+                                    ].map((p: any) => {
                                       return {
                                         username: p["username"],
                                         password: p["password"],
@@ -3222,7 +3085,7 @@ export async function _getJobDeserialize(
                                 ?.virtualMachineConfiguration?.["extensions"]
                             : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                 "extensions"
-                              ].map((p) => {
+                              ].map((p: any) => {
                                 return {
                                   name: p["name"],
                                   publisher: p["publisher"],
@@ -3317,7 +3180,7 @@ export async function _getJobDeserialize(
                               inboundNatPools:
                                 result.body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                   "inboundNATPools"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return {
                                     name: p["name"],
                                     protocol: p["protocol"],
@@ -3331,7 +3194,7 @@ export async function _getJobDeserialize(
                                       undefined
                                         ? p["networkSecurityGroupRules"]
                                         : p["networkSecurityGroupRules"].map(
-                                            (p) => {
+                                            (p: any) => {
                                               return {
                                                 priority: p["priority"],
                                                 access: p["access"],
@@ -3432,7 +3295,7 @@ export async function _getJobDeserialize(
                                 ?.startTask?.["resourceFiles"]
                             : result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                 "resourceFiles"
-                              ].map((p) => {
+                              ].map((p: any) => {
                                 return {
                                   autoStorageContainerName:
                                     p["autoStorageContainerName"],
@@ -3456,7 +3319,7 @@ export async function _getJobDeserialize(
                                 ?.startTask?.["environmentSettings"]
                             : result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                 "environmentSettings"
-                              ].map((p) => {
+                              ].map((p: any) => {
                                 return { name: p["name"], value: p["value"] };
                               }),
                         userIdentity: !result.body.poolInfo
@@ -3497,7 +3360,7 @@ export async function _getJobDeserialize(
                         ]
                       : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "certificateReferences"
-                        ].map((p) => {
+                        ].map((p: any) => {
                           return {
                             thumbprint: p["thumbprint"],
                             thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -3515,7 +3378,7 @@ export async function _getJobDeserialize(
                         ]
                       : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationPackageReferences"
-                        ].map((p) => {
+                        ].map((p: any) => {
                           return {
                             applicationId: p["applicationId"],
                             version: p["version"],
@@ -3534,7 +3397,7 @@ export async function _getJobDeserialize(
                         ]
                       : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "userAccounts"
-                        ].map((p) => {
+                        ].map((p: any) => {
                           return {
                             name: p["name"],
                             password: p["password"],
@@ -3565,7 +3428,7 @@ export async function _getJobDeserialize(
                         ]
                       : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "metadata"
-                        ].map((p) => {
+                        ].map((p: any) => {
                           return { name: p["name"], value: p["value"] };
                         }),
                   mountConfiguration:
@@ -3577,7 +3440,7 @@ export async function _getJobDeserialize(
                         ]
                       : result.body.poolInfo.autoPoolSpecification?.pool?.[
                           "mountConfiguration"
-                        ].map((p) => {
+                        ].map((p: any) => {
                           return {
                             azureBlobFileSystemConfiguration:
                               !p.azureBlobFileSystemConfiguration
@@ -3687,7 +3550,7 @@ export async function _getJobDeserialize(
     metadata:
       result.body["metadata"] === undefined
         ? result.body["metadata"]
-        : result.body["metadata"].map((p) => {
+        : result.body["metadata"].map((p: any) => {
             return { name: p["name"], value: p["value"] };
           }),
     executionInfo: !result.body.executionInfo
@@ -3713,7 +3576,7 @@ export async function _getJobDeserialize(
                     ? result.body.executionInfo?.schedulingError?.["details"]
                     : result.body.executionInfo?.schedulingError?.[
                         "details"
-                      ].map((p) => {
+                      ].map((p: any) => {
                         return { name: p["name"], value: p["value"] };
                       }),
               },
@@ -3755,7 +3618,7 @@ export function _updateJobSend(
   jobId: string,
   body: BatchJobUpdateOptions,
   options: UpdateJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<UpdateJob200Response | UpdateJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}", jobId)
     .patch({
@@ -3801,9 +3664,10 @@ export function _updateJobSend(
 }
 
 export async function _updateJobDeserialize(
-  result: UpdateJob200Response | UpdateJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -3830,7 +3694,7 @@ export function _replaceJobSend(
   jobId: string,
   body: BatchJob,
   options: ReplaceJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<ReplaceJob200Response | ReplaceJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}", jobId)
     .put({
@@ -3874,9 +3738,10 @@ export function _replaceJobSend(
 }
 
 export async function _replaceJobDeserialize(
-  result: ReplaceJob200Response | ReplaceJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -3903,7 +3768,7 @@ export function _disableJobSend(
   jobId: string,
   body: BatchJobDisableOptions,
   options: DisableJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<DisableJob202Response | DisableJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/disable", jobId)
     .post({
@@ -3934,9 +3799,10 @@ export function _disableJobSend(
 }
 
 export async function _disableJobDeserialize(
-  result: DisableJob202Response | DisableJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -3967,7 +3833,7 @@ export function _enableJobSend(
   context: Client,
   jobId: string,
   options: EnableJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<EnableJob202Response | EnableJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/enable", jobId)
     .post({
@@ -3994,9 +3860,10 @@ export function _enableJobSend(
 }
 
 export async function _enableJobDeserialize(
-  result: EnableJob202Response | EnableJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -4025,7 +3892,7 @@ export function _terminateJobSend(
   jobId: string,
   body?: BatchJobTerminateOptions,
   options: TerminateJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<TerminateJob202Response | TerminateJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/terminate", jobId)
     .post({
@@ -4059,9 +3926,10 @@ export function _terminateJobSend(
 }
 
 export async function _terminateJobDeserialize(
-  result: TerminateJob202Response | TerminateJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -4090,7 +3958,7 @@ export function _createJobSend(
   context: Client,
   body: BatchJobCreateOptions,
   options: CreateJobOptionalParams = { requestOptions: {} },
-): StreamableMethod<CreateJob201Response | CreateJobDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs")
     .post({
@@ -4142,9 +4010,10 @@ export function _createJobSend(
 }
 
 export async function _createJobDeserialize(
-  result: CreateJob201Response | CreateJobDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -4174,7 +4043,7 @@ export async function createJob(
 export function _listJobsSend(
   context: Client,
   options: ListJobsOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListJobs200Response | ListJobsDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs")
     .get({
@@ -4191,9 +4060,10 @@ export function _listJobsSend(
 }
 
 export async function _listJobsDeserialize(
-  result: ListJobs200Response | ListJobsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_BatchJobListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -4201,7 +4071,7 @@ export async function _listJobsDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -4283,7 +4153,7 @@ export async function _listJobsDeserialize(
                     resourceFiles:
                       p.jobManagerTask?.["resourceFiles"] === undefined
                         ? p.jobManagerTask?.["resourceFiles"]
-                        : p.jobManagerTask?.["resourceFiles"].map((p) => {
+                        : p.jobManagerTask?.["resourceFiles"].map((p: any) => {
                             return {
                               autoStorageContainerName:
                                 p["autoStorageContainerName"],
@@ -4303,7 +4173,7 @@ export async function _listJobsDeserialize(
                     outputFiles:
                       p.jobManagerTask?.["outputFiles"] === undefined
                         ? p.jobManagerTask?.["outputFiles"]
-                        : p.jobManagerTask?.["outputFiles"].map((p) => {
+                        : p.jobManagerTask?.["outputFiles"].map((p: any) => {
                             return {
                               filePattern: p["filePattern"],
                               destination: {
@@ -4334,7 +4204,7 @@ export async function _listJobsDeserialize(
                                             ]
                                           : p.destination.container?.[
                                               "uploadHeaders"
-                                            ].map((p) => {
+                                            ].map((p: any) => {
                                               return {
                                                 name: p["name"],
                                                 value: p["value"],
@@ -4351,9 +4221,11 @@ export async function _listJobsDeserialize(
                     environmentSettings:
                       p.jobManagerTask?.["environmentSettings"] === undefined
                         ? p.jobManagerTask?.["environmentSettings"]
-                        : p.jobManagerTask?.["environmentSettings"].map((p) => {
-                            return { name: p["name"], value: p["value"] };
-                          }),
+                        : p.jobManagerTask?.["environmentSettings"].map(
+                            (p: any) => {
+                              return { name: p["name"], value: p["value"] };
+                            },
+                          ),
                     constraints: !p.jobManagerTask?.constraints
                       ? undefined
                       : {
@@ -4394,7 +4266,7 @@ export async function _listJobsDeserialize(
                         ? p.jobManagerTask?.["applicationPackageReferences"]
                         : p.jobManagerTask?.[
                             "applicationPackageReferences"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return {
                               applicationId: p["applicationId"],
                               version: p["version"],
@@ -4461,29 +4333,31 @@ export async function _listJobsDeserialize(
                     resourceFiles:
                       p.jobPreparationTask?.["resourceFiles"] === undefined
                         ? p.jobPreparationTask?.["resourceFiles"]
-                        : p.jobPreparationTask?.["resourceFiles"].map((p) => {
-                            return {
-                              autoStorageContainerName:
-                                p["autoStorageContainerName"],
-                              storageContainerUrl: p["storageContainerUrl"],
-                              httpUrl: p["httpUrl"],
-                              blobPrefix: p["blobPrefix"],
-                              filePath: p["filePath"],
-                              fileMode: p["fileMode"],
-                              identityReference: !p.identityReference
-                                ? undefined
-                                : {
-                                    resourceId:
-                                      p.identityReference?.["resourceId"],
-                                  },
-                            };
-                          }),
+                        : p.jobPreparationTask?.["resourceFiles"].map(
+                            (p: any) => {
+                              return {
+                                autoStorageContainerName:
+                                  p["autoStorageContainerName"],
+                                storageContainerUrl: p["storageContainerUrl"],
+                                httpUrl: p["httpUrl"],
+                                blobPrefix: p["blobPrefix"],
+                                filePath: p["filePath"],
+                                fileMode: p["fileMode"],
+                                identityReference: !p.identityReference
+                                  ? undefined
+                                  : {
+                                      resourceId:
+                                        p.identityReference?.["resourceId"],
+                                    },
+                              };
+                            },
+                          ),
                     environmentSettings:
                       p.jobPreparationTask?.["environmentSettings"] ===
                       undefined
                         ? p.jobPreparationTask?.["environmentSettings"]
                         : p.jobPreparationTask?.["environmentSettings"].map(
-                            (p) => {
+                            (p: any) => {
                               return { name: p["name"], value: p["value"] };
                             },
                           ),
@@ -4571,7 +4445,7 @@ export async function _listJobsDeserialize(
                     resourceFiles:
                       p.jobReleaseTask?.["resourceFiles"] === undefined
                         ? p.jobReleaseTask?.["resourceFiles"]
-                        : p.jobReleaseTask?.["resourceFiles"].map((p) => {
+                        : p.jobReleaseTask?.["resourceFiles"].map((p: any) => {
                             return {
                               autoStorageContainerName:
                                 p["autoStorageContainerName"],
@@ -4591,9 +4465,11 @@ export async function _listJobsDeserialize(
                     environmentSettings:
                       p.jobReleaseTask?.["environmentSettings"] === undefined
                         ? p.jobReleaseTask?.["environmentSettings"]
-                        : p.jobReleaseTask?.["environmentSettings"].map((p) => {
-                            return { name: p["name"], value: p["value"] };
-                          }),
+                        : p.jobReleaseTask?.["environmentSettings"].map(
+                            (p: any) => {
+                              return { name: p["name"], value: p["value"] };
+                            },
+                          ),
                     maxWallClockTime: p.jobReleaseTask?.["maxWallClockTime"],
                     retentionTime: p.jobReleaseTask?.["retentionTime"],
                     userIdentity: !p.jobReleaseTask?.userIdentity
@@ -4618,7 +4494,7 @@ export async function _listJobsDeserialize(
               commonEnvironmentSettings:
                 p["commonEnvironmentSettings"] === undefined
                   ? p["commonEnvironmentSettings"]
-                  : p["commonEnvironmentSettings"].map((p) => {
+                  : p["commonEnvironmentSettings"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
               poolInfo: {
@@ -4720,7 +4596,7 @@ export async function _listJobsDeserialize(
                                         ]
                                       : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                           "dataDisks"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             lun: p["lun"],
                                             caching: p["caching"],
@@ -4763,7 +4639,7 @@ export async function _listJobsDeserialize(
                                               ]
                                             : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                                 "containerRegistries"
-                                              ].map((p) => {
+                                              ].map((p: any) => {
                                                 return {
                                                   username: p["username"],
                                                   password: p["password"],
@@ -4819,7 +4695,7 @@ export async function _listJobsDeserialize(
                                         ]
                                       : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                           "extensions"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             name: p["name"],
                                             publisher: p["publisher"],
@@ -4919,7 +4795,7 @@ export async function _listJobsDeserialize(
                                         inboundNatPools:
                                           p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                             "inboundNATPools"
-                                          ].map((p) => {
+                                          ].map((p: any) => {
                                             return {
                                               name: p["name"],
                                               protocol: p["protocol"],
@@ -4937,7 +4813,7 @@ export async function _listJobsDeserialize(
                                                     ]
                                                   : p[
                                                       "networkSecurityGroupRules"
-                                                    ].map((p) => {
+                                                    ].map((p: any) => {
                                                       return {
                                                         priority: p["priority"],
                                                         access: p["access"],
@@ -5053,7 +4929,7 @@ export async function _listJobsDeserialize(
                                           ?.startTask?.["resourceFiles"]
                                       : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                           "resourceFiles"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             autoStorageContainerName:
                                               p["autoStorageContainerName"],
@@ -5082,7 +4958,7 @@ export async function _listJobsDeserialize(
                                           ?.startTask?.["environmentSettings"]
                                       : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                           "environmentSettings"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             name: p["name"],
                                             value: p["value"],
@@ -5133,7 +5009,7 @@ export async function _listJobsDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "certificateReferences"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       thumbprint: p["thumbprint"],
                                       thumbprintAlgorithm:
@@ -5152,7 +5028,7 @@ export async function _listJobsDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "applicationPackageReferences"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       applicationId: p["applicationId"],
                                       version: p["version"],
@@ -5171,7 +5047,7 @@ export async function _listJobsDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "userAccounts"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       name: p["name"],
                                       password: p["password"],
@@ -5211,7 +5087,7 @@ export async function _listJobsDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "metadata"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       name: p["name"],
                                       value: p["value"],
@@ -5226,7 +5102,7 @@ export async function _listJobsDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "mountConfiguration"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       azureBlobFileSystemConfiguration:
                                         !p.azureBlobFileSystemConfiguration
@@ -5359,7 +5235,7 @@ export async function _listJobsDeserialize(
               metadata:
                 p["metadata"] === undefined
                   ? p["metadata"]
-                  : p["metadata"].map((p) => {
+                  : p["metadata"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
               executionInfo: !p.executionInfo
@@ -5385,7 +5261,7 @@ export async function _listJobsDeserialize(
                               ? p.executionInfo?.schedulingError?.["details"]
                               : p.executionInfo?.schedulingError?.[
                                   "details"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return { name: p["name"], value: p["value"] };
                                 }),
                         },
@@ -5424,6 +5300,7 @@ export function listJobs(
     context,
     () => _listJobsSend(context, options),
     _listJobsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -5432,9 +5309,7 @@ export function _listJobsFromScheduleSend(
   context: Client,
   jobScheduleId: string,
   options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}/jobs", jobScheduleId)
     .get({
@@ -5451,9 +5326,10 @@ export function _listJobsFromScheduleSend(
 }
 
 export async function _listJobsFromScheduleDeserialize(
-  result: ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_BatchJobListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -5461,7 +5337,7 @@ export async function _listJobsFromScheduleDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -5543,7 +5419,7 @@ export async function _listJobsFromScheduleDeserialize(
                     resourceFiles:
                       p.jobManagerTask?.["resourceFiles"] === undefined
                         ? p.jobManagerTask?.["resourceFiles"]
-                        : p.jobManagerTask?.["resourceFiles"].map((p) => {
+                        : p.jobManagerTask?.["resourceFiles"].map((p: any) => {
                             return {
                               autoStorageContainerName:
                                 p["autoStorageContainerName"],
@@ -5563,7 +5439,7 @@ export async function _listJobsFromScheduleDeserialize(
                     outputFiles:
                       p.jobManagerTask?.["outputFiles"] === undefined
                         ? p.jobManagerTask?.["outputFiles"]
-                        : p.jobManagerTask?.["outputFiles"].map((p) => {
+                        : p.jobManagerTask?.["outputFiles"].map((p: any) => {
                             return {
                               filePattern: p["filePattern"],
                               destination: {
@@ -5594,7 +5470,7 @@ export async function _listJobsFromScheduleDeserialize(
                                             ]
                                           : p.destination.container?.[
                                               "uploadHeaders"
-                                            ].map((p) => {
+                                            ].map((p: any) => {
                                               return {
                                                 name: p["name"],
                                                 value: p["value"],
@@ -5611,9 +5487,11 @@ export async function _listJobsFromScheduleDeserialize(
                     environmentSettings:
                       p.jobManagerTask?.["environmentSettings"] === undefined
                         ? p.jobManagerTask?.["environmentSettings"]
-                        : p.jobManagerTask?.["environmentSettings"].map((p) => {
-                            return { name: p["name"], value: p["value"] };
-                          }),
+                        : p.jobManagerTask?.["environmentSettings"].map(
+                            (p: any) => {
+                              return { name: p["name"], value: p["value"] };
+                            },
+                          ),
                     constraints: !p.jobManagerTask?.constraints
                       ? undefined
                       : {
@@ -5654,7 +5532,7 @@ export async function _listJobsFromScheduleDeserialize(
                         ? p.jobManagerTask?.["applicationPackageReferences"]
                         : p.jobManagerTask?.[
                             "applicationPackageReferences"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return {
                               applicationId: p["applicationId"],
                               version: p["version"],
@@ -5721,29 +5599,31 @@ export async function _listJobsFromScheduleDeserialize(
                     resourceFiles:
                       p.jobPreparationTask?.["resourceFiles"] === undefined
                         ? p.jobPreparationTask?.["resourceFiles"]
-                        : p.jobPreparationTask?.["resourceFiles"].map((p) => {
-                            return {
-                              autoStorageContainerName:
-                                p["autoStorageContainerName"],
-                              storageContainerUrl: p["storageContainerUrl"],
-                              httpUrl: p["httpUrl"],
-                              blobPrefix: p["blobPrefix"],
-                              filePath: p["filePath"],
-                              fileMode: p["fileMode"],
-                              identityReference: !p.identityReference
-                                ? undefined
-                                : {
-                                    resourceId:
-                                      p.identityReference?.["resourceId"],
-                                  },
-                            };
-                          }),
+                        : p.jobPreparationTask?.["resourceFiles"].map(
+                            (p: any) => {
+                              return {
+                                autoStorageContainerName:
+                                  p["autoStorageContainerName"],
+                                storageContainerUrl: p["storageContainerUrl"],
+                                httpUrl: p["httpUrl"],
+                                blobPrefix: p["blobPrefix"],
+                                filePath: p["filePath"],
+                                fileMode: p["fileMode"],
+                                identityReference: !p.identityReference
+                                  ? undefined
+                                  : {
+                                      resourceId:
+                                        p.identityReference?.["resourceId"],
+                                    },
+                              };
+                            },
+                          ),
                     environmentSettings:
                       p.jobPreparationTask?.["environmentSettings"] ===
                       undefined
                         ? p.jobPreparationTask?.["environmentSettings"]
                         : p.jobPreparationTask?.["environmentSettings"].map(
-                            (p) => {
+                            (p: any) => {
                               return { name: p["name"], value: p["value"] };
                             },
                           ),
@@ -5831,7 +5711,7 @@ export async function _listJobsFromScheduleDeserialize(
                     resourceFiles:
                       p.jobReleaseTask?.["resourceFiles"] === undefined
                         ? p.jobReleaseTask?.["resourceFiles"]
-                        : p.jobReleaseTask?.["resourceFiles"].map((p) => {
+                        : p.jobReleaseTask?.["resourceFiles"].map((p: any) => {
                             return {
                               autoStorageContainerName:
                                 p["autoStorageContainerName"],
@@ -5851,9 +5731,11 @@ export async function _listJobsFromScheduleDeserialize(
                     environmentSettings:
                       p.jobReleaseTask?.["environmentSettings"] === undefined
                         ? p.jobReleaseTask?.["environmentSettings"]
-                        : p.jobReleaseTask?.["environmentSettings"].map((p) => {
-                            return { name: p["name"], value: p["value"] };
-                          }),
+                        : p.jobReleaseTask?.["environmentSettings"].map(
+                            (p: any) => {
+                              return { name: p["name"], value: p["value"] };
+                            },
+                          ),
                     maxWallClockTime: p.jobReleaseTask?.["maxWallClockTime"],
                     retentionTime: p.jobReleaseTask?.["retentionTime"],
                     userIdentity: !p.jobReleaseTask?.userIdentity
@@ -5878,7 +5760,7 @@ export async function _listJobsFromScheduleDeserialize(
               commonEnvironmentSettings:
                 p["commonEnvironmentSettings"] === undefined
                   ? p["commonEnvironmentSettings"]
-                  : p["commonEnvironmentSettings"].map((p) => {
+                  : p["commonEnvironmentSettings"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
               poolInfo: {
@@ -5980,7 +5862,7 @@ export async function _listJobsFromScheduleDeserialize(
                                         ]
                                       : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                           "dataDisks"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             lun: p["lun"],
                                             caching: p["caching"],
@@ -6023,7 +5905,7 @@ export async function _listJobsFromScheduleDeserialize(
                                               ]
                                             : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                                 "containerRegistries"
-                                              ].map((p) => {
+                                              ].map((p: any) => {
                                                 return {
                                                   username: p["username"],
                                                   password: p["password"],
@@ -6079,7 +5961,7 @@ export async function _listJobsFromScheduleDeserialize(
                                         ]
                                       : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                           "extensions"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             name: p["name"],
                                             publisher: p["publisher"],
@@ -6179,7 +6061,7 @@ export async function _listJobsFromScheduleDeserialize(
                                         inboundNatPools:
                                           p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                             "inboundNATPools"
-                                          ].map((p) => {
+                                          ].map((p: any) => {
                                             return {
                                               name: p["name"],
                                               protocol: p["protocol"],
@@ -6197,7 +6079,7 @@ export async function _listJobsFromScheduleDeserialize(
                                                     ]
                                                   : p[
                                                       "networkSecurityGroupRules"
-                                                    ].map((p) => {
+                                                    ].map((p: any) => {
                                                       return {
                                                         priority: p["priority"],
                                                         access: p["access"],
@@ -6313,7 +6195,7 @@ export async function _listJobsFromScheduleDeserialize(
                                           ?.startTask?.["resourceFiles"]
                                       : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                           "resourceFiles"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             autoStorageContainerName:
                                               p["autoStorageContainerName"],
@@ -6342,7 +6224,7 @@ export async function _listJobsFromScheduleDeserialize(
                                           ?.startTask?.["environmentSettings"]
                                       : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                           "environmentSettings"
-                                        ].map((p) => {
+                                        ].map((p: any) => {
                                           return {
                                             name: p["name"],
                                             value: p["value"],
@@ -6393,7 +6275,7 @@ export async function _listJobsFromScheduleDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "certificateReferences"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       thumbprint: p["thumbprint"],
                                       thumbprintAlgorithm:
@@ -6412,7 +6294,7 @@ export async function _listJobsFromScheduleDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "applicationPackageReferences"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       applicationId: p["applicationId"],
                                       version: p["version"],
@@ -6431,7 +6313,7 @@ export async function _listJobsFromScheduleDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "userAccounts"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       name: p["name"],
                                       password: p["password"],
@@ -6471,7 +6353,7 @@ export async function _listJobsFromScheduleDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "metadata"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       name: p["name"],
                                       value: p["value"],
@@ -6486,7 +6368,7 @@ export async function _listJobsFromScheduleDeserialize(
                                   ]
                                 : p.poolInfo.autoPoolSpecification?.pool?.[
                                     "mountConfiguration"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       azureBlobFileSystemConfiguration:
                                         !p.azureBlobFileSystemConfiguration
@@ -6619,7 +6501,7 @@ export async function _listJobsFromScheduleDeserialize(
               metadata:
                 p["metadata"] === undefined
                   ? p["metadata"]
-                  : p["metadata"].map((p) => {
+                  : p["metadata"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
               executionInfo: !p.executionInfo
@@ -6645,7 +6527,7 @@ export async function _listJobsFromScheduleDeserialize(
                               ? p.executionInfo?.schedulingError?.["details"]
                               : p.executionInfo?.schedulingError?.[
                                   "details"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return { name: p["name"], value: p["value"] };
                                 }),
                         },
@@ -6685,6 +6567,7 @@ export function listJobsFromSchedule(
     context,
     () => _listJobsFromScheduleSend(context, jobScheduleId, options),
     _listJobsFromScheduleDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -6695,10 +6578,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
   options: ListJobPreparationAndReleaseTaskStatusOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | ListJobPreparationAndReleaseTaskStatus200Response
-  | ListJobPreparationAndReleaseTaskStatusDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/jobpreparationandreleasetaskstatus", jobId)
     .get({
@@ -6713,11 +6593,10 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
 }
 
 export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
-  result:
-    | ListJobPreparationAndReleaseTaskStatus200Response
-    | ListJobPreparationAndReleaseTaskStatusDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_BatchJobListPreparationAndReleaseTaskStatusResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -6725,7 +6604,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               poolId: p["poolId"],
               nodeId: p["nodeId"],
@@ -6790,7 +6669,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
                                     ?.failureInfo?.["details"]
                                 : p.jobPreparationTaskExecutionInfo?.failureInfo?.[
                                     "details"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       name: p["name"],
                                       value: p["value"],
@@ -6865,7 +6744,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
                                 ]
                               : p.jobReleaseTaskExecutionInfo?.failureInfo?.[
                                   "details"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return { name: p["name"], value: p["value"] };
                                 }),
                         },
@@ -6896,6 +6775,7 @@ export function listJobPreparationAndReleaseTaskStatus(
     context,
     () => _listJobPreparationAndReleaseTaskStatusSend(context, jobId, options),
     _listJobPreparationAndReleaseTaskStatusDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -6904,9 +6784,7 @@ export function _getJobTaskCountsSend(
   context: Client,
   jobId: string,
   options: GetJobTaskCountsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/taskcounts", jobId)
     .get({
@@ -6919,9 +6797,10 @@ export function _getJobTaskCountsSend(
 }
 
 export async function _getJobTaskCountsDeserialize(
-  result: GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TaskCountsResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -6962,9 +6841,7 @@ export function _createCertificateSend(
   context: Client,
   body: BatchCertificate,
   options: CreateCertificateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  CreateCertificate201Response | CreateCertificateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/certificates")
     .post({
@@ -6987,9 +6864,10 @@ export function _createCertificateSend(
 }
 
 export async function _createCertificateDeserialize(
-  result: CreateCertificate201Response | CreateCertificateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7009,9 +6887,7 @@ export async function createCertificate(
 export function _listCertificatesSend(
   context: Client,
   options: ListCertificatesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListCertificates200Response | ListCertificatesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/certificates")
     .get({
@@ -7027,9 +6903,10 @@ export function _listCertificatesSend(
 }
 
 export async function _listCertificatesDeserialize(
-  result: ListCertificates200Response | ListCertificatesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_CertificateListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7037,7 +6914,7 @@ export async function _listCertificatesDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               thumbprint: p["thumbprint"],
               thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -7064,7 +6941,7 @@ export async function _listCertificatesDeserialize(
                     values:
                       p.deleteCertificateError?.["values"] === undefined
                         ? p.deleteCertificateError?.["values"]
-                        : p.deleteCertificateError?.["values"].map((p) => {
+                        : p.deleteCertificateError?.["values"].map((p: any) => {
                             return { name: p["name"], value: p["value"] };
                           }),
                   },
@@ -7089,6 +6966,7 @@ export function listCertificates(
     context,
     () => _listCertificatesSend(context, options),
     _listCertificatesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -7098,10 +6976,7 @@ export function _cancelCertificateDeletionSend(
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | CancelCertificateDeletion204Response
-  | CancelCertificateDeletionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete",
@@ -7118,11 +6993,10 @@ export function _cancelCertificateDeletionSend(
 }
 
 export async function _cancelCertificateDeletionDeserialize(
-  result:
-    | CancelCertificateDeletion204Response
-    | CancelCertificateDeletionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7158,9 +7032,7 @@ export function _deleteCertificateSend(
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: DeleteCertificateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DeleteCertificate202Response | DeleteCertificateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
@@ -7177,9 +7049,10 @@ export function _deleteCertificateSend(
 }
 
 export async function _deleteCertificateDeserialize(
-  result: DeleteCertificate202Response | DeleteCertificateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7217,7 +7090,7 @@ export function _getCertificateSend(
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: GetCertificateOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetCertificate200Response | GetCertificateDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
@@ -7235,9 +7108,10 @@ export function _getCertificateSend(
 }
 
 export async function _getCertificateDeserialize(
-  result: GetCertificate200Response | GetCertificateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchCertificate> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7267,7 +7141,7 @@ export async function _getCertificateDeserialize(
           values:
             result.body.deleteCertificateError?.["values"] === undefined
               ? result.body.deleteCertificateError?.["values"]
-              : result.body.deleteCertificateError?.["values"].map((p) => {
+              : result.body.deleteCertificateError?.["values"].map((p: any) => {
                   return { name: p["name"], value: p["value"] };
                 }),
         },
@@ -7300,11 +7174,7 @@ export function _jobScheduleExistsSend(
   context: Client,
   jobScheduleId: string,
   options: JobScheduleExistsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | JobScheduleExists200Response
-  | JobScheduleExists404Response
-  | JobScheduleExistsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .head({
@@ -7331,12 +7201,10 @@ export function _jobScheduleExistsSend(
 }
 
 export async function _jobScheduleExistsDeserialize(
-  result:
-    | JobScheduleExists200Response
-    | JobScheduleExists404Response
-    | JobScheduleExistsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "404"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7357,9 +7225,7 @@ export function _deleteJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .delete({
@@ -7386,9 +7252,10 @@ export function _deleteJobScheduleSend(
 }
 
 export async function _deleteJobScheduleDeserialize(
-  result: DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7415,7 +7282,7 @@ export function _getJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   options: GetJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetJobSchedule200Response | GetJobScheduleDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .get({
@@ -7444,9 +7311,10 @@ export function _getJobScheduleSend(
 }
 
 export async function _getJobScheduleDeserialize(
-  result: GetJobSchedule200Response | GetJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchJobSchedule> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -7560,7 +7428,7 @@ export async function _getJobScheduleDeserialize(
                 ? result.body.jobSpecification.jobManagerTask?.["resourceFiles"]
                 : result.body.jobSpecification.jobManagerTask?.[
                     "resourceFiles"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return {
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
@@ -7579,7 +7447,7 @@ export async function _getJobScheduleDeserialize(
                 ? result.body.jobSpecification.jobManagerTask?.["outputFiles"]
                 : result.body.jobSpecification.jobManagerTask?.[
                     "outputFiles"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return {
                       filePattern: p["filePattern"],
                       destination: {
@@ -7603,7 +7471,7 @@ export async function _getJobScheduleDeserialize(
                                   ? p.destination.container?.["uploadHeaders"]
                                   : p.destination.container?.[
                                       "uploadHeaders"
-                                    ].map((p) => {
+                                    ].map((p: any) => {
                                       return {
                                         name: p["name"],
                                         value: p["value"],
@@ -7625,7 +7493,7 @@ export async function _getJobScheduleDeserialize(
                   ]
                 : result.body.jobSpecification.jobManagerTask?.[
                     "environmentSettings"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return { name: p["name"], value: p["value"] };
                   }),
             constraints: !result.body.jobSpecification.jobManagerTask
@@ -7682,7 +7550,7 @@ export async function _getJobScheduleDeserialize(
                   ]
                 : result.body.jobSpecification.jobManagerTask?.[
                     "applicationPackageReferences"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return {
                       applicationId: p["applicationId"],
                       version: p["version"],
@@ -7754,7 +7622,7 @@ export async function _getJobScheduleDeserialize(
                   ]
                 : result.body.jobSpecification.jobPreparationTask?.[
                     "resourceFiles"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return {
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
@@ -7776,7 +7644,7 @@ export async function _getJobScheduleDeserialize(
                   ]
                 : result.body.jobSpecification.jobPreparationTask?.[
                     "environmentSettings"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return { name: p["name"], value: p["value"] };
                   }),
             constraints: !result.body.jobSpecification.jobPreparationTask
@@ -7871,7 +7739,7 @@ export async function _getJobScheduleDeserialize(
                 ? result.body.jobSpecification.jobReleaseTask?.["resourceFiles"]
                 : result.body.jobSpecification.jobReleaseTask?.[
                     "resourceFiles"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return {
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
@@ -7893,7 +7761,7 @@ export async function _getJobScheduleDeserialize(
                   ]
                 : result.body.jobSpecification.jobReleaseTask?.[
                     "environmentSettings"
-                  ].map((p) => {
+                  ].map((p: any) => {
                     return { name: p["name"], value: p["value"] };
                   }),
             maxWallClockTime:
@@ -7925,7 +7793,7 @@ export async function _getJobScheduleDeserialize(
         result.body.jobSpecification["commonEnvironmentSettings"] === undefined
           ? result.body.jobSpecification["commonEnvironmentSettings"]
           : result.body.jobSpecification["commonEnvironmentSettings"].map(
-              (p) => {
+              (p: any) => {
                 return { name: p["name"], value: p["value"] };
               },
             ),
@@ -8040,7 +7908,7 @@ export async function _getJobScheduleDeserialize(
                                   ?.virtualMachineConfiguration?.["dataDisks"]
                               : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                   "dataDisks"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return {
                                     lun: p["lun"],
                                     caching: p["caching"],
@@ -8084,7 +7952,7 @@ export async function _getJobScheduleDeserialize(
                                       ]
                                     : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                         "containerRegistries"
-                                      ].map((p) => {
+                                      ].map((p: any) => {
                                         return {
                                           username: p["username"],
                                           password: p["password"],
@@ -8135,7 +8003,7 @@ export async function _getJobScheduleDeserialize(
                                   ?.virtualMachineConfiguration?.["extensions"]
                               : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                   "extensions"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return {
                                     name: p["name"],
                                     publisher: p["publisher"],
@@ -8234,7 +8102,7 @@ export async function _getJobScheduleDeserialize(
                                 inboundNatPools:
                                   result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                     "inboundNATPools"
-                                  ].map((p) => {
+                                  ].map((p: any) => {
                                     return {
                                       name: p["name"],
                                       protocol: p["protocol"],
@@ -8248,7 +8116,7 @@ export async function _getJobScheduleDeserialize(
                                         undefined
                                           ? p["networkSecurityGroupRules"]
                                           : p["networkSecurityGroupRules"].map(
-                                              (p) => {
+                                              (p: any) => {
                                                 return {
                                                   priority: p["priority"],
                                                   access: p["access"],
@@ -8367,7 +8235,7 @@ export async function _getJobScheduleDeserialize(
                                 ]
                               : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                   "resourceFiles"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return {
                                     autoStorageContainerName:
                                       p["autoStorageContainerName"],
@@ -8396,7 +8264,7 @@ export async function _getJobScheduleDeserialize(
                                 ]
                               : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                   "environmentSettings"
-                                ].map((p) => {
+                                ].map((p: any) => {
                                   return { name: p["name"], value: p["value"] };
                                 }),
                           userIdentity: !result.body.jobSpecification.poolInfo
@@ -8449,7 +8317,7 @@ export async function _getJobScheduleDeserialize(
                           ]
                         : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "certificateReferences"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return {
                               thumbprint: p["thumbprint"],
                               thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -8469,7 +8337,7 @@ export async function _getJobScheduleDeserialize(
                           ]
                         : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "applicationPackageReferences"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return {
                               applicationId: p["applicationId"],
                               version: p["version"],
@@ -8486,7 +8354,7 @@ export async function _getJobScheduleDeserialize(
                             .autoPoolSpecification?.pool?.["userAccounts"]
                         : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "userAccounts"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return {
                               name: p["name"],
                               password: p["password"],
@@ -8519,7 +8387,7 @@ export async function _getJobScheduleDeserialize(
                             .autoPoolSpecification?.pool?.["metadata"]
                         : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "metadata"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return { name: p["name"], value: p["value"] };
                           }),
                     mountConfiguration:
@@ -8530,7 +8398,7 @@ export async function _getJobScheduleDeserialize(
                             .autoPoolSpecification?.pool?.["mountConfiguration"]
                         : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                             "mountConfiguration"
-                          ].map((p) => {
+                          ].map((p: any) => {
                             return {
                               azureBlobFileSystemConfiguration:
                                 !p.azureBlobFileSystemConfiguration
@@ -8639,7 +8507,7 @@ export async function _getJobScheduleDeserialize(
       metadata:
         result.body.jobSpecification["metadata"] === undefined
           ? result.body.jobSpecification["metadata"]
-          : result.body.jobSpecification["metadata"].map((p) => {
+          : result.body.jobSpecification["metadata"].map((p: any) => {
               return { name: p["name"], value: p["value"] };
             }),
     },
@@ -8664,7 +8532,7 @@ export async function _getJobScheduleDeserialize(
     metadata:
       result.body["metadata"] === undefined
         ? result.body["metadata"]
-        : result.body["metadata"].map((p) => {
+        : result.body["metadata"].map((p: any) => {
             return { name: p["name"], value: p["value"] };
           }),
     stats: !result.body.stats
@@ -8703,9 +8571,7 @@ export function _updateJobScheduleSend(
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .patch({
@@ -8747,9 +8613,10 @@ export function _updateJobScheduleSend(
 }
 
 export async function _updateJobScheduleDeserialize(
-  result: UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -8783,9 +8650,7 @@ export function _replaceJobScheduleSend(
   jobScheduleId: string,
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .put({
@@ -8823,9 +8688,10 @@ export function _replaceJobScheduleSend(
 }
 
 export async function _replaceJobScheduleDeserialize(
-  result: ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -8858,9 +8724,7 @@ export function _disableJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   options: DisableJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DisableJobSchedule204Response | DisableJobScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}/disable", jobScheduleId)
     .post({
@@ -8887,9 +8751,10 @@ export function _disableJobScheduleSend(
 }
 
 export async function _disableJobScheduleDeserialize(
-  result: DisableJobSchedule204Response | DisableJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -8910,9 +8775,7 @@ export function _enableJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   options: EnableJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  EnableJobSchedule204Response | EnableJobScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}/enable", jobScheduleId)
     .post({
@@ -8939,9 +8802,10 @@ export function _enableJobScheduleSend(
 }
 
 export async function _enableJobScheduleDeserialize(
-  result: EnableJobSchedule204Response | EnableJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -8962,9 +8826,7 @@ export function _terminateJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  TerminateJobSchedule202Response | TerminateJobScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules/{jobScheduleId}/terminate", jobScheduleId)
     .post({
@@ -8991,9 +8853,10 @@ export function _terminateJobScheduleSend(
 }
 
 export async function _terminateJobScheduleDeserialize(
-  result: TerminateJobSchedule202Response | TerminateJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -9018,9 +8881,7 @@ export function _createJobScheduleSend(
   context: Client,
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  CreateJobSchedule201Response | CreateJobScheduleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules")
     .post({
@@ -9046,9 +8907,10 @@ export function _createJobScheduleSend(
 }
 
 export async function _createJobScheduleDeserialize(
-  result: CreateJobSchedule201Response | CreateJobScheduleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -9068,9 +8930,7 @@ export async function createJobSchedule(
 export function _listJobSchedulesSend(
   context: Client,
   options: ListJobSchedulesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListJobSchedules200Response | ListJobSchedulesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobschedules")
     .get({
@@ -9087,9 +8947,10 @@ export function _listJobSchedulesSend(
 }
 
 export async function _listJobSchedulesDeserialize(
-  result: ListJobSchedules200Response | ListJobSchedulesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_BatchJobScheduleListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -9097,7 +8958,7 @@ export async function _listJobSchedulesDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -9214,7 +9075,7 @@ export async function _listJobSchedulesDeserialize(
                           ? p.jobSpecification.jobManagerTask?.["resourceFiles"]
                           : p.jobSpecification.jobManagerTask?.[
                               "resourceFiles"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return {
                                 autoStorageContainerName:
                                   p["autoStorageContainerName"],
@@ -9237,7 +9098,7 @@ export async function _listJobSchedulesDeserialize(
                           ? p.jobSpecification.jobManagerTask?.["outputFiles"]
                           : p.jobSpecification.jobManagerTask?.[
                               "outputFiles"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return {
                                 filePattern: p["filePattern"],
                                 destination: {
@@ -9268,7 +9129,7 @@ export async function _listJobSchedulesDeserialize(
                                               ]
                                             : p.destination.container?.[
                                                 "uploadHeaders"
-                                              ].map((p) => {
+                                              ].map((p: any) => {
                                                 return {
                                                   name: p["name"],
                                                   value: p["value"],
@@ -9291,7 +9152,7 @@ export async function _listJobSchedulesDeserialize(
                             ]
                           : p.jobSpecification.jobManagerTask?.[
                               "environmentSettings"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return { name: p["name"], value: p["value"] };
                             }),
                       constraints: !p.jobSpecification.jobManagerTask
@@ -9350,7 +9211,7 @@ export async function _listJobSchedulesDeserialize(
                             ]
                           : p.jobSpecification.jobManagerTask?.[
                               "applicationPackageReferences"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return {
                                 applicationId: p["applicationId"],
                                 version: p["version"],
@@ -9428,7 +9289,7 @@ export async function _listJobSchedulesDeserialize(
                             ]
                           : p.jobSpecification.jobPreparationTask?.[
                               "resourceFiles"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return {
                                 autoStorageContainerName:
                                   p["autoStorageContainerName"],
@@ -9454,7 +9315,7 @@ export async function _listJobSchedulesDeserialize(
                             ]
                           : p.jobSpecification.jobPreparationTask?.[
                               "environmentSettings"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return { name: p["name"], value: p["value"] };
                             }),
                       constraints: !p.jobSpecification.jobPreparationTask
@@ -9557,7 +9418,7 @@ export async function _listJobSchedulesDeserialize(
                           ? p.jobSpecification.jobReleaseTask?.["resourceFiles"]
                           : p.jobSpecification.jobReleaseTask?.[
                               "resourceFiles"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return {
                                 autoStorageContainerName:
                                   p["autoStorageContainerName"],
@@ -9583,7 +9444,7 @@ export async function _listJobSchedulesDeserialize(
                             ]
                           : p.jobSpecification.jobReleaseTask?.[
                               "environmentSettings"
-                            ].map((p) => {
+                            ].map((p: any) => {
                               return { name: p["name"], value: p["value"] };
                             }),
                       maxWallClockTime:
@@ -9617,7 +9478,7 @@ export async function _listJobSchedulesDeserialize(
                   p.jobSpecification["commonEnvironmentSettings"] === undefined
                     ? p.jobSpecification["commonEnvironmentSettings"]
                     : p.jobSpecification["commonEnvironmentSettings"].map(
-                        (p) => {
+                        (p: any) => {
                           return { name: p["name"], value: p["value"] };
                         },
                       ),
@@ -9738,7 +9599,7 @@ export async function _listJobSchedulesDeserialize(
                                           ]
                                         : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                             "dataDisks"
-                                          ].map((p) => {
+                                          ].map((p: any) => {
                                             return {
                                               lun: p["lun"],
                                               caching: p["caching"],
@@ -9785,7 +9646,7 @@ export async function _listJobSchedulesDeserialize(
                                                 ]
                                               : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                                   "containerRegistries"
-                                                ].map((p) => {
+                                                ].map((p: any) => {
                                                   return {
                                                     username: p["username"],
                                                     password: p["password"],
@@ -9847,7 +9708,7 @@ export async function _listJobSchedulesDeserialize(
                                           ]
                                         : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                             "extensions"
-                                          ].map((p) => {
+                                          ].map((p: any) => {
                                             return {
                                               name: p["name"],
                                               publisher: p["publisher"],
@@ -9964,7 +9825,7 @@ export async function _listJobSchedulesDeserialize(
                                           inboundNatPools:
                                             p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                               "inboundNATPools"
-                                            ].map((p) => {
+                                            ].map((p: any) => {
                                               return {
                                                 name: p["name"],
                                                 protocol: p["protocol"],
@@ -9982,7 +9843,7 @@ export async function _listJobSchedulesDeserialize(
                                                       ]
                                                     : p[
                                                         "networkSecurityGroupRules"
-                                                      ].map((p) => {
+                                                      ].map((p: any) => {
                                                         return {
                                                           priority:
                                                             p["priority"],
@@ -10116,7 +9977,7 @@ export async function _listJobSchedulesDeserialize(
                                             ?.startTask?.["resourceFiles"]
                                         : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                             "resourceFiles"
-                                          ].map((p) => {
+                                          ].map((p: any) => {
                                             return {
                                               autoStorageContainerName:
                                                 p["autoStorageContainerName"],
@@ -10147,7 +10008,7 @@ export async function _listJobSchedulesDeserialize(
                                             ?.startTask?.["environmentSettings"]
                                         : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                             "environmentSettings"
-                                          ].map((p) => {
+                                          ].map((p: any) => {
                                             return {
                                               name: p["name"],
                                               value: p["value"],
@@ -10203,7 +10064,7 @@ export async function _listJobSchedulesDeserialize(
                                     ]
                                   : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                       "certificateReferences"
-                                    ].map((p) => {
+                                    ].map((p: any) => {
                                       return {
                                         thumbprint: p["thumbprint"],
                                         thumbprintAlgorithm:
@@ -10224,7 +10085,7 @@ export async function _listJobSchedulesDeserialize(
                                     ]
                                   : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                       "applicationPackageReferences"
-                                    ].map((p) => {
+                                    ].map((p: any) => {
                                       return {
                                         applicationId: p["applicationId"],
                                         version: p["version"],
@@ -10246,7 +10107,7 @@ export async function _listJobSchedulesDeserialize(
                                     ]
                                   : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                       "userAccounts"
-                                    ].map((p) => {
+                                    ].map((p: any) => {
                                       return {
                                         name: p["name"],
                                         password: p["password"],
@@ -10285,7 +10146,7 @@ export async function _listJobSchedulesDeserialize(
                                       .autoPoolSpecification?.pool?.["metadata"]
                                   : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                       "metadata"
-                                    ].map((p) => {
+                                    ].map((p: any) => {
                                       return {
                                         name: p["name"],
                                         value: p["value"],
@@ -10302,7 +10163,7 @@ export async function _listJobSchedulesDeserialize(
                                     ]
                                   : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                       "mountConfiguration"
-                                    ].map((p) => {
+                                    ].map((p: any) => {
                                       return {
                                         azureBlobFileSystemConfiguration:
                                           !p.azureBlobFileSystemConfiguration
@@ -10436,7 +10297,7 @@ export async function _listJobSchedulesDeserialize(
                 metadata:
                   p.jobSpecification["metadata"] === undefined
                     ? p.jobSpecification["metadata"]
-                    : p.jobSpecification["metadata"].map((p) => {
+                    : p.jobSpecification["metadata"].map((p: any) => {
                         return { name: p["name"], value: p["value"] };
                       }),
               },
@@ -10461,7 +10322,7 @@ export async function _listJobSchedulesDeserialize(
               metadata:
                 p["metadata"] === undefined
                   ? p["metadata"]
-                  : p["metadata"].map((p) => {
+                  : p["metadata"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
               stats: !p.stats
@@ -10497,6 +10358,7 @@ export function listJobSchedules(
     context,
     () => _listJobSchedulesSend(context, options),
     _listJobSchedulesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -10506,7 +10368,7 @@ export function _createTaskSend(
   jobId: string,
   body: BatchTaskCreateOptions,
   options: CreateTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<CreateTask201Response | CreateTaskDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks", jobId)
     .post({
@@ -10572,9 +10434,10 @@ export function _createTaskSend(
 }
 
 export async function _createTaskDeserialize(
-  result: CreateTask201Response | CreateTaskDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -10600,7 +10463,7 @@ export function _listTasksSend(
   context: Client,
   jobId: string,
   options: ListTasksOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListTasks200Response | ListTasksDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks", jobId)
     .get({
@@ -10617,9 +10480,10 @@ export function _listTasksSend(
 }
 
 export async function _listTasksDeserialize(
-  result: ListTasks200Response | ListTasksDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_BatchTaskListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -10627,7 +10491,7 @@ export async function _listTasksDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               displayName: p["displayName"],
@@ -10647,7 +10511,7 @@ export async function _listTasksDeserialize(
                     exitCodes:
                       p.exitConditions?.["exitCodes"] === undefined
                         ? p.exitConditions?.["exitCodes"]
-                        : p.exitConditions?.["exitCodes"].map((p) => {
+                        : p.exitConditions?.["exitCodes"].map((p: any) => {
                             return {
                               code: p["code"],
                               exitOptions: {
@@ -10660,7 +10524,7 @@ export async function _listTasksDeserialize(
                     exitCodeRanges:
                       p.exitConditions?.["exitCodeRanges"] === undefined
                         ? p.exitConditions?.["exitCodeRanges"]
-                        : p.exitConditions?.["exitCodeRanges"].map((p) => {
+                        : p.exitConditions?.["exitCodeRanges"].map((p: any) => {
                             return {
                               start: p["start"],
                               end: p["end"],
@@ -10737,7 +10601,7 @@ export async function _listTasksDeserialize(
               resourceFiles:
                 p["resourceFiles"] === undefined
                   ? p["resourceFiles"]
-                  : p["resourceFiles"].map((p) => {
+                  : p["resourceFiles"].map((p: any) => {
                       return {
                         autoStorageContainerName: p["autoStorageContainerName"],
                         storageContainerUrl: p["storageContainerUrl"],
@@ -10753,7 +10617,7 @@ export async function _listTasksDeserialize(
               outputFiles:
                 p["outputFiles"] === undefined
                   ? p["outputFiles"]
-                  : p["outputFiles"].map((p) => {
+                  : p["outputFiles"].map((p: any) => {
                       return {
                         filePattern: p["filePattern"],
                         destination: {
@@ -10777,7 +10641,7 @@ export async function _listTasksDeserialize(
                                     ? p.destination.container?.["uploadHeaders"]
                                     : p.destination.container?.[
                                         "uploadHeaders"
-                                      ].map((p) => {
+                                      ].map((p: any) => {
                                         return {
                                           name: p["name"],
                                           value: p["value"],
@@ -10793,7 +10657,7 @@ export async function _listTasksDeserialize(
               environmentSettings:
                 p["environmentSettings"] === undefined
                   ? p["environmentSettings"]
-                  : p["environmentSettings"].map((p) => {
+                  : p["environmentSettings"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
               affinityInfo: !p.affinityInfo
@@ -10850,7 +10714,7 @@ export async function _listTasksDeserialize(
                             undefined
                               ? p.executionInfo?.failureInfo?.["details"]
                               : p.executionInfo?.failureInfo?.["details"].map(
-                                  (p) => {
+                                  (p: any) => {
                                     return {
                                       name: p["name"],
                                       value: p["value"],
@@ -10892,7 +10756,7 @@ export async function _listTasksDeserialize(
                       undefined
                         ? p.multiInstanceSettings?.["commonResourceFiles"]
                         : p.multiInstanceSettings?.["commonResourceFiles"].map(
-                            (p) => {
+                            (p: any) => {
                               return {
                                 autoStorageContainerName:
                                   p["autoStorageContainerName"],
@@ -10933,14 +10797,14 @@ export async function _listTasksDeserialize(
                     taskIdRanges:
                       p.dependsOn?.["taskIdRanges"] === undefined
                         ? p.dependsOn?.["taskIdRanges"]
-                        : p.dependsOn?.["taskIdRanges"].map((p) => {
+                        : p.dependsOn?.["taskIdRanges"].map((p: any) => {
                             return { start: p["start"], end: p["end"] };
                           }),
                   },
               applicationPackageReferences:
                 p["applicationPackageReferences"] === undefined
                   ? p["applicationPackageReferences"]
-                  : p["applicationPackageReferences"].map((p) => {
+                  : p["applicationPackageReferences"].map((p: any) => {
                       return {
                         applicationId: p["applicationId"],
                         version: p["version"],
@@ -10969,6 +10833,7 @@ export function listTasks(
     context,
     () => _listTasksSend(context, jobId, options),
     _listTasksDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -10978,9 +10843,7 @@ export function _createTaskCollectionSend(
   jobId: string,
   collection: BatchTaskCollection,
   options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/addtaskcollection", jobId)
     .post({
@@ -10999,9 +10862,10 @@ export function _createTaskCollectionSend(
 }
 
 export async function _createTaskCollectionDeserialize(
-  result: CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<TaskAddCollectionResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11009,7 +10873,7 @@ export async function _createTaskCollectionDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               status: p["status"],
               taskId: p["taskId"],
@@ -11032,7 +10896,7 @@ export async function _createTaskCollectionDeserialize(
                     values:
                       p.error?.["values"] === undefined
                         ? p.error?.["values"]
-                        : p.error?.["values"].map((p) => {
+                        : p.error?.["values"].map((p: any) => {
                             return { key: p["key"], value: p["value"] };
                           }),
                   },
@@ -11077,7 +10941,7 @@ export function _deleteTaskSend(
   jobId: string,
   taskId: string,
   options: DeleteTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<DeleteTask200Response | DeleteTaskDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
     .delete({
@@ -11104,9 +10968,10 @@ export function _deleteTaskSend(
 }
 
 export async function _deleteTaskDeserialize(
-  result: DeleteTask200Response | DeleteTaskDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11135,7 +11000,7 @@ export function _getTaskSend(
   jobId: string,
   taskId: string,
   options: GetTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetTask200Response | GetTaskDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
     .get({
@@ -11164,9 +11029,10 @@ export function _getTaskSend(
 }
 
 export async function _getTaskDeserialize(
-  result: GetTask200Response | GetTaskDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchTask> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11189,7 +11055,7 @@ export async function _getTaskDeserialize(
           exitCodes:
             result.body.exitConditions?.["exitCodes"] === undefined
               ? result.body.exitConditions?.["exitCodes"]
-              : result.body.exitConditions?.["exitCodes"].map((p) => {
+              : result.body.exitConditions?.["exitCodes"].map((p: any) => {
                   return {
                     code: p["code"],
                     exitOptions: {
@@ -11201,7 +11067,7 @@ export async function _getTaskDeserialize(
           exitCodeRanges:
             result.body.exitConditions?.["exitCodeRanges"] === undefined
               ? result.body.exitConditions?.["exitCodeRanges"]
-              : result.body.exitConditions?.["exitCodeRanges"].map((p) => {
+              : result.body.exitConditions?.["exitCodeRanges"].map((p: any) => {
                   return {
                     start: p["start"],
                     end: p["end"],
@@ -11277,7 +11143,7 @@ export async function _getTaskDeserialize(
     resourceFiles:
       result.body["resourceFiles"] === undefined
         ? result.body["resourceFiles"]
-        : result.body["resourceFiles"].map((p) => {
+        : result.body["resourceFiles"].map((p: any) => {
             return {
               autoStorageContainerName: p["autoStorageContainerName"],
               storageContainerUrl: p["storageContainerUrl"],
@@ -11293,7 +11159,7 @@ export async function _getTaskDeserialize(
     outputFiles:
       result.body["outputFiles"] === undefined
         ? result.body["outputFiles"]
-        : result.body["outputFiles"].map((p) => {
+        : result.body["outputFiles"].map((p: any) => {
             return {
               filePattern: p["filePattern"],
               destination: {
@@ -11315,7 +11181,7 @@ export async function _getTaskDeserialize(
                         p.destination.container?.["uploadHeaders"] === undefined
                           ? p.destination.container?.["uploadHeaders"]
                           : p.destination.container?.["uploadHeaders"].map(
-                              (p) => {
+                              (p: any) => {
                                 return { name: p["name"], value: p["value"] };
                               },
                             ),
@@ -11329,7 +11195,7 @@ export async function _getTaskDeserialize(
     environmentSettings:
       result.body["environmentSettings"] === undefined
         ? result.body["environmentSettings"]
-        : result.body["environmentSettings"].map((p) => {
+        : result.body["environmentSettings"].map((p: any) => {
             return { name: p["name"], value: p["value"] };
           }),
     affinityInfo: !result.body.affinityInfo
@@ -11386,7 +11252,7 @@ export async function _getTaskDeserialize(
                   undefined
                     ? result.body.executionInfo?.failureInfo?.["details"]
                     : result.body.executionInfo?.failureInfo?.["details"].map(
-                        (p) => {
+                        (p: any) => {
                           return { name: p["name"], value: p["value"] };
                         },
                       ),
@@ -11425,7 +11291,7 @@ export async function _getTaskDeserialize(
             undefined
               ? result.body.multiInstanceSettings?.["commonResourceFiles"]
               : result.body.multiInstanceSettings?.["commonResourceFiles"].map(
-                  (p) => {
+                  (p: any) => {
                     return {
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
@@ -11462,14 +11328,14 @@ export async function _getTaskDeserialize(
           taskIdRanges:
             result.body.dependsOn?.["taskIdRanges"] === undefined
               ? result.body.dependsOn?.["taskIdRanges"]
-              : result.body.dependsOn?.["taskIdRanges"].map((p) => {
+              : result.body.dependsOn?.["taskIdRanges"].map((p: any) => {
                   return { start: p["start"], end: p["end"] };
                 }),
         },
     applicationPackageReferences:
       result.body["applicationPackageReferences"] === undefined
         ? result.body["applicationPackageReferences"]
-        : result.body["applicationPackageReferences"].map((p) => {
+        : result.body["applicationPackageReferences"].map((p: any) => {
             return { applicationId: p["applicationId"], version: p["version"] };
           }),
     authenticationTokenSettings: !result.body.authenticationTokenSettings
@@ -11499,7 +11365,7 @@ export function _replaceTaskSend(
   taskId: string,
   body: BatchTask,
   options: ReplaceTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<ReplaceTask200Response | ReplaceTaskDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
     .put({
@@ -11534,9 +11400,10 @@ export function _replaceTaskSend(
 }
 
 export async function _replaceTaskDeserialize(
-  result: ReplaceTask200Response | ReplaceTaskDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11560,7 +11427,7 @@ export function _listSubTasksSend(
   jobId: string,
   taskId: string,
   options: ListSubTasksOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListSubTasks200Response | ListSubTasksDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
     .get({
@@ -11574,9 +11441,10 @@ export function _listSubTasksSend(
 }
 
 export async function _listSubTasksDeserialize(
-  result: ListSubTasks200Response | ListSubTasksDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchTaskListSubtasksResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11584,7 +11452,7 @@ export async function _listSubTasksDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               nodeInfo: !p.nodeInfo
@@ -11620,7 +11488,7 @@ export async function _listSubTasksDeserialize(
                     details:
                       p.failureInfo?.["details"] === undefined
                         ? p.failureInfo?.["details"]
-                        : p.failureInfo?.["details"].map((p) => {
+                        : p.failureInfo?.["details"].map((p: any) => {
                             return { name: p["name"], value: p["value"] };
                           }),
                   },
@@ -11656,7 +11524,7 @@ export function _terminateTaskSend(
   jobId: string,
   taskId: string,
   options: TerminateTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<TerminateTask204Response | TerminateTaskDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
     .post({
@@ -11683,9 +11551,10 @@ export function _terminateTaskSend(
 }
 
 export async function _terminateTaskDeserialize(
-  result: TerminateTask204Response | TerminateTaskDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11712,7 +11581,7 @@ export function _reactivateTaskSend(
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<ReactivateTask204Response | ReactivateTaskDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
     .post({
@@ -11739,9 +11608,10 @@ export function _reactivateTaskSend(
 }
 
 export async function _reactivateTaskDeserialize(
-  result: ReactivateTask204Response | ReactivateTaskDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11773,7 +11643,7 @@ export function _deleteTaskFileSend(
   taskId: string,
   filePath: string,
   options: DeleteTaskFileOptionalParams = { requestOptions: {} },
-): StreamableMethod<DeleteTaskFile200Response | DeleteTaskFileDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
@@ -11792,9 +11662,10 @@ export function _deleteTaskFileSend(
 }
 
 export async function _deleteTaskFileDeserialize(
-  result: DeleteTaskFile200Response | DeleteTaskFileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11825,7 +11696,7 @@ export function _getTaskFileSend(
   taskId: string,
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetTaskFile200Response | GetTaskFileDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
@@ -11854,9 +11725,10 @@ export function _getTaskFileSend(
 }
 
 export async function _getTaskFileDeserialize(
-  result: GetTaskFile200Response | GetTaskFileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11887,9 +11759,7 @@ export function _getTaskFilePropertiesSend(
   taskId: string,
   filePath: string,
   options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetTaskFileProperties200Response | GetTaskFilePropertiesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
@@ -11915,11 +11785,10 @@ export function _getTaskFilePropertiesSend(
 }
 
 export async function _getTaskFilePropertiesDeserialize(
-  result:
-    | GetTaskFileProperties200Response
-    | GetTaskFilePropertiesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11949,7 +11818,7 @@ export function _listTaskFilesSend(
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListTaskFiles200Response | ListTaskFilesDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/files", jobId, taskId)
     .get({
@@ -11965,9 +11834,10 @@ export function _listTaskFilesSend(
 }
 
 export async function _listTaskFilesDeserialize(
-  result: ListTaskFiles200Response | ListTaskFilesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_NodeFileListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -11975,7 +11845,7 @@ export async function _listTaskFilesDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               name: p["name"],
               url: p["url"],
@@ -12009,6 +11879,7 @@ export function listTaskFiles(
     context,
     () => _listTaskFilesSend(context, jobId, taskId, options),
     _listTaskFilesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -12019,7 +11890,7 @@ export function _createNodeUserSend(
   nodeId: string,
   body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptionalParams = { requestOptions: {} },
-): StreamableMethod<CreateNodeUser201Response | CreateNodeUserDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
     .post({
@@ -12042,9 +11913,10 @@ export function _createNodeUserSend(
 }
 
 export async function _createNodeUserDeserialize(
-  result: CreateNodeUser201Response | CreateNodeUserDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12078,7 +11950,7 @@ export function _deleteNodeUserSend(
   nodeId: string,
   userName: string,
   options: DeleteNodeUserOptionalParams = { requestOptions: {} },
-): StreamableMethod<DeleteNodeUser200Response | DeleteNodeUserDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
@@ -12096,9 +11968,10 @@ export function _deleteNodeUserSend(
 }
 
 export async function _deleteNodeUserDeserialize(
-  result: DeleteNodeUser200Response | DeleteNodeUserDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12133,9 +12006,7 @@ export function _replaceNodeUserSend(
   userName: string,
   body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
@@ -12161,9 +12032,10 @@ export function _replaceNodeUserSend(
 }
 
 export async function _replaceNodeUserDeserialize(
-  result: ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12200,7 +12072,7 @@ export function _getNodeSend(
   poolId: string,
   nodeId: string,
   options: GetNodeOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetNode200Response | GetNodeDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId)
     .get({
@@ -12214,9 +12086,10 @@ export function _getNodeSend(
 }
 
 export async function _getNodeDeserialize(
-  result: GetNode200Response | GetNodeDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchNode> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12247,7 +12120,7 @@ export async function _getNodeDeserialize(
     recentTasks:
       result.body["recentTasks"] === undefined
         ? result.body["recentTasks"]
-        : result.body["recentTasks"].map((p) => {
+        : result.body["recentTasks"].map((p: any) => {
             return {
               taskUrl: p["taskUrl"],
               jobId: p["jobId"],
@@ -12285,7 +12158,7 @@ export async function _getNodeDeserialize(
                             undefined
                               ? p.executionInfo?.failureInfo?.["details"]
                               : p.executionInfo?.failureInfo?.["details"].map(
-                                  (p) => {
+                                  (p: any) => {
                                     return {
                                       name: p["name"],
                                       value: p["value"],
@@ -12352,7 +12225,7 @@ export async function _getNodeDeserialize(
           resourceFiles:
             result.body.startTask?.["resourceFiles"] === undefined
               ? result.body.startTask?.["resourceFiles"]
-              : result.body.startTask?.["resourceFiles"].map((p) => {
+              : result.body.startTask?.["resourceFiles"].map((p: any) => {
                   return {
                     autoStorageContainerName: p["autoStorageContainerName"],
                     storageContainerUrl: p["storageContainerUrl"],
@@ -12368,7 +12241,7 @@ export async function _getNodeDeserialize(
           environmentSettings:
             result.body.startTask?.["environmentSettings"] === undefined
               ? result.body.startTask?.["environmentSettings"]
-              : result.body.startTask?.["environmentSettings"].map((p) => {
+              : result.body.startTask?.["environmentSettings"].map((p: any) => {
                   return { name: p["name"], value: p["value"] };
                 }),
           userIdentity: !result.body.startTask?.userIdentity
@@ -12420,7 +12293,7 @@ export async function _getNodeDeserialize(
                   undefined
                     ? result.body.startTaskInfo?.failureInfo?.["details"]
                     : result.body.startTaskInfo?.failureInfo?.["details"].map(
-                        (p) => {
+                        (p: any) => {
                           return { name: p["name"], value: p["value"] };
                         },
                       ),
@@ -12435,7 +12308,7 @@ export async function _getNodeDeserialize(
     certificateReferences:
       result.body["certificateReferences"] === undefined
         ? result.body["certificateReferences"]
-        : result.body["certificateReferences"].map((p) => {
+        : result.body["certificateReferences"].map((p: any) => {
             return {
               thumbprint: p["thumbprint"],
               thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -12447,14 +12320,14 @@ export async function _getNodeDeserialize(
     errors:
       result.body["errors"] === undefined
         ? result.body["errors"]
-        : result.body["errors"].map((p) => {
+        : result.body["errors"].map((p: any) => {
             return {
               code: p["code"],
               message: p["message"],
               errorDetails:
                 p["errorDetails"] === undefined
                   ? p["errorDetails"]
-                  : p["errorDetails"].map((p) => {
+                  : p["errorDetails"].map((p: any) => {
                       return { name: p["name"], value: p["value"] };
                     }),
             };
@@ -12465,7 +12338,7 @@ export async function _getNodeDeserialize(
       : {
           inboundEndpoints: result.body.endpointConfiguration?.[
             "inboundEndpoints"
-          ].map((p) => {
+          ].map((p: any) => {
             return {
               name: p["name"],
               protocol: p["protocol"],
@@ -12527,7 +12400,7 @@ export function _rebootNodeSend(
   nodeId: string,
   body?: NodeRebootOptions,
   options: RebootNodeOptionalParams = { requestOptions: {} },
-): StreamableMethod<RebootNode202Response | RebootNodeDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
     .post({
@@ -12547,9 +12420,10 @@ export function _rebootNodeSend(
 }
 
 export async function _rebootNodeDeserialize(
-  result: RebootNode202Response | RebootNodeDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12574,7 +12448,7 @@ export function _reimageNodeSend(
   nodeId: string,
   body?: NodeReimageOptions,
   options: ReimageNodeOptionalParams = { requestOptions: {} },
-): StreamableMethod<ReimageNode202Response | ReimageNodeDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
     .post({
@@ -12594,9 +12468,10 @@ export function _reimageNodeSend(
 }
 
 export async function _reimageNodeDeserialize(
-  result: ReimageNode202Response | ReimageNodeDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12625,9 +12500,7 @@ export function _disableNodeSchedulingSend(
   nodeId: string,
   body?: NodeDisableSchedulingOptions,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DisableNodeScheduling200Response | DisableNodeSchedulingDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/disablescheduling", poolId, nodeId)
     .post({
@@ -12649,11 +12522,10 @@ export function _disableNodeSchedulingSend(
 }
 
 export async function _disableNodeSchedulingDeserialize(
-  result:
-    | DisableNodeScheduling200Response
-    | DisableNodeSchedulingDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12686,9 +12558,7 @@ export function _enableNodeSchedulingSend(
   poolId: string,
   nodeId: string,
   options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  EnableNodeScheduling200Response | EnableNodeSchedulingDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
     .post({
@@ -12701,9 +12571,10 @@ export function _enableNodeSchedulingSend(
 }
 
 export async function _enableNodeSchedulingDeserialize(
-  result: EnableNodeScheduling200Response | EnableNodeSchedulingDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12734,10 +12605,7 @@ export function _getNodeRemoteLoginSettingsSend(
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | GetNodeRemoteLoginSettings200Response
-  | GetNodeRemoteLoginSettingsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
     .get({
@@ -12750,11 +12618,10 @@ export function _getNodeRemoteLoginSettingsSend(
 }
 
 export async function _getNodeRemoteLoginSettingsDeserialize(
-  result:
-    | GetNodeRemoteLoginSettings200Response
-    | GetNodeRemoteLoginSettingsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12791,9 +12658,7 @@ export function _getNodeRemoteDesktopFileSend(
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetNodeRemoteDesktopFile200Response | GetNodeRemoteDesktopFileDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
     .get({
@@ -12806,11 +12671,10 @@ export function _getNodeRemoteDesktopFileSend(
 }
 
 export async function _getNodeRemoteDesktopFileDeserialize(
-  result:
-    | GetNodeRemoteDesktopFile200Response
-    | GetNodeRemoteDesktopFileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12846,7 +12710,7 @@ export function _uploadNodeLogsSend(
   nodeId: string,
   body: UploadBatchServiceLogsOptions,
   options: UploadNodeLogsOptionalParams = { requestOptions: {} },
-): StreamableMethod<UploadNodeLogs200Response | UploadNodeLogsDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs",
@@ -12874,9 +12738,10 @@ export function _uploadNodeLogsSend(
 }
 
 export async function _uploadNodeLogsDeserialize(
-  result: UploadNodeLogs200Response | UploadNodeLogsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<UploadBatchServiceLogsResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12913,7 +12778,7 @@ export function _listNodesSend(
   context: Client,
   poolId: string,
   options: ListNodesOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListNodes200Response | ListNodesDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes", poolId)
     .get({
@@ -12929,9 +12794,10 @@ export function _listNodesSend(
 }
 
 export async function _listNodesDeserialize(
-  result: ListNodes200Response | ListNodesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_BatchNodeListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -12939,7 +12805,7 @@ export async function _listNodesDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               id: p["id"],
               url: p["url"],
@@ -12967,7 +12833,7 @@ export async function _listNodesDeserialize(
               recentTasks:
                 p["recentTasks"] === undefined
                   ? p["recentTasks"]
-                  : p["recentTasks"].map((p) => {
+                  : p["recentTasks"].map((p: any) => {
                       return {
                         taskUrl: p["taskUrl"],
                         jobId: p["jobId"],
@@ -13019,7 +12885,7 @@ export async function _listNodesDeserialize(
                                           ]
                                         : p.executionInfo?.failureInfo?.[
                                             "details"
-                                          ].map((p) => {
+                                          ].map((p: any) => {
                                             return {
                                               name: p["name"],
                                               value: p["value"],
@@ -13089,7 +12955,7 @@ export async function _listNodesDeserialize(
                     resourceFiles:
                       p.startTask?.["resourceFiles"] === undefined
                         ? p.startTask?.["resourceFiles"]
-                        : p.startTask?.["resourceFiles"].map((p) => {
+                        : p.startTask?.["resourceFiles"].map((p: any) => {
                             return {
                               autoStorageContainerName:
                                 p["autoStorageContainerName"],
@@ -13109,7 +12975,7 @@ export async function _listNodesDeserialize(
                     environmentSettings:
                       p.startTask?.["environmentSettings"] === undefined
                         ? p.startTask?.["environmentSettings"]
-                        : p.startTask?.["environmentSettings"].map((p) => {
+                        : p.startTask?.["environmentSettings"].map((p: any) => {
                             return { name: p["name"], value: p["value"] };
                           }),
                     userIdentity: !p.startTask?.userIdentity
@@ -13161,7 +13027,7 @@ export async function _listNodesDeserialize(
                             undefined
                               ? p.startTaskInfo?.failureInfo?.["details"]
                               : p.startTaskInfo?.failureInfo?.["details"].map(
-                                  (p) => {
+                                  (p: any) => {
                                     return {
                                       name: p["name"],
                                       value: p["value"],
@@ -13179,7 +13045,7 @@ export async function _listNodesDeserialize(
               certificateReferences:
                 p["certificateReferences"] === undefined
                   ? p["certificateReferences"]
-                  : p["certificateReferences"].map((p) => {
+                  : p["certificateReferences"].map((p: any) => {
                       return {
                         thumbprint: p["thumbprint"],
                         thumbprintAlgorithm: p["thumbprintAlgorithm"],
@@ -13191,14 +13057,14 @@ export async function _listNodesDeserialize(
               errors:
                 p["errors"] === undefined
                   ? p["errors"]
-                  : p["errors"].map((p) => {
+                  : p["errors"].map((p: any) => {
                       return {
                         code: p["code"],
                         message: p["message"],
                         errorDetails:
                           p["errorDetails"] === undefined
                             ? p["errorDetails"]
-                            : p["errorDetails"].map((p) => {
+                            : p["errorDetails"].map((p: any) => {
                                 return { name: p["name"], value: p["value"] };
                               }),
                       };
@@ -13209,7 +13075,7 @@ export async function _listNodesDeserialize(
                 : {
                     inboundEndpoints: p.endpointConfiguration?.[
                       "inboundEndpoints"
-                    ].map((p) => {
+                    ].map((p: any) => {
                       return {
                         name: p["name"],
                         protocol: p["protocol"],
@@ -13267,6 +13133,7 @@ export function listNodes(
     context,
     () => _listNodesSend(context, poolId, options),
     _listNodesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -13277,9 +13144,7 @@ export function _getNodeExtensionSend(
   nodeId: string,
   extensionName: string,
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetNodeExtension200Response | GetNodeExtensionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}",
@@ -13298,9 +13163,10 @@ export function _getNodeExtensionSend(
 }
 
 export async function _getNodeExtensionDeserialize(
-  result: GetNodeExtension200Response | GetNodeExtensionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<NodeVMExtension> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -13329,7 +13195,7 @@ export async function _getNodeExtensionDeserialize(
           statuses:
             result.body.instanceView?.["statuses"] === undefined
               ? result.body.instanceView?.["statuses"]
-              : result.body.instanceView?.["statuses"].map((p) => {
+              : result.body.instanceView?.["statuses"].map((p: any) => {
                   return {
                     code: p["code"],
                     displayStatus: p["displayStatus"],
@@ -13341,7 +13207,7 @@ export async function _getNodeExtensionDeserialize(
           subStatuses:
             result.body.instanceView?.["subStatuses"] === undefined
               ? result.body.instanceView?.["subStatuses"]
-              : result.body.instanceView?.["subStatuses"].map((p) => {
+              : result.body.instanceView?.["subStatuses"].map((p: any) => {
                   return {
                     code: p["code"],
                     displayStatus: p["displayStatus"],
@@ -13377,9 +13243,7 @@ export function _listNodeExtensionsSend(
   poolId: string,
   nodeId: string,
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/extensions", poolId, nodeId)
     .get({
@@ -13393,9 +13257,10 @@ export function _listNodeExtensionsSend(
 }
 
 export async function _listNodeExtensionsDeserialize(
-  result: ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_NodeVMExtensionList> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -13403,7 +13268,7 @@ export async function _listNodeExtensionsDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               provisioningState: p["provisioningState"],
               vmExtension: !p.vmExtension
@@ -13429,7 +13294,7 @@ export async function _listNodeExtensionsDeserialize(
                     statuses:
                       p.instanceView?.["statuses"] === undefined
                         ? p.instanceView?.["statuses"]
-                        : p.instanceView?.["statuses"].map((p) => {
+                        : p.instanceView?.["statuses"].map((p: any) => {
                             return {
                               code: p["code"],
                               displayStatus: p["displayStatus"],
@@ -13441,7 +13306,7 @@ export async function _listNodeExtensionsDeserialize(
                     subStatuses:
                       p.instanceView?.["subStatuses"] === undefined
                         ? p.instanceView?.["subStatuses"]
-                        : p.instanceView?.["subStatuses"].map((p) => {
+                        : p.instanceView?.["subStatuses"].map((p: any) => {
                             return {
                               code: p["code"],
                               displayStatus: p["displayStatus"],
@@ -13468,6 +13333,7 @@ export function listNodeExtensions(
     context,
     () => _listNodeExtensionsSend(context, poolId, nodeId, options),
     _listNodeExtensionsDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
@@ -13478,7 +13344,7 @@ export function _deleteNodeFileSend(
   nodeId: string,
   filePath: string,
   options: DeleteNodeFileOptionalParams = { requestOptions: {} },
-): StreamableMethod<DeleteNodeFile200Response | DeleteNodeFileDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
@@ -13497,9 +13363,10 @@ export function _deleteNodeFileSend(
 }
 
 export async function _deleteNodeFileDeserialize(
-  result: DeleteNodeFile200Response | DeleteNodeFileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -13530,7 +13397,7 @@ export function _getNodeFileSend(
   nodeId: string,
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetNodeFile200Response | GetNodeFileDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
@@ -13559,9 +13426,10 @@ export function _getNodeFileSend(
 }
 
 export async function _getNodeFileDeserialize(
-  result: GetNodeFile200Response | GetNodeFileDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -13594,9 +13462,7 @@ export function _getNodeFilePropertiesSend(
   nodeId: string,
   filePath: string,
   options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  GetNodeFileProperties200Response | GetNodeFilePropertiesDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
@@ -13622,11 +13488,10 @@ export function _getNodeFilePropertiesSend(
 }
 
 export async function _getNodeFilePropertiesDeserialize(
-  result:
-    | GetNodeFileProperties200Response
-    | GetNodeFilePropertiesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -13656,7 +13521,7 @@ export function _listNodeFilesSend(
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptionalParams = { requestOptions: {} },
-): StreamableMethod<ListNodeFiles200Response | ListNodeFilesDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/files", poolId, nodeId)
     .get({
@@ -13672,9 +13537,10 @@ export function _listNodeFilesSend(
 }
 
 export async function _listNodeFilesDeserialize(
-  result: ListNodeFiles200Response | ListNodeFilesDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_NodeFileListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -13682,7 +13548,7 @@ export async function _listNodeFilesDeserialize(
     value:
       result.body["value"] === undefined
         ? result.body["value"]
-        : result.body["value"].map((p) => {
+        : result.body["value"].map((p: any) => {
             return {
               name: p["name"],
               url: p["url"],
@@ -13716,6 +13582,7 @@ export function listNodeFiles(
     context,
     () => _listNodeFilesSend(context, poolId, nodeId, options),
     _listNodeFilesDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }

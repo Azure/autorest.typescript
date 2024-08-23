@@ -1,10 +1,11 @@
-import { assert } from "chai";
+import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+
 import { Diagnostic } from "@typespec/compiler";
+import { assert } from "chai";
 
 async function verifyModularPropertyType(
   tspType: string,
@@ -42,14 +43,13 @@ async function verifyModularPropertyType(
   await assertEqualContent(
     modelsFile?.getFullText()!,
     `
-    import { InputOutputModel as InputOutputModelRest } from "../rest/index.js"
   ${additionalImports}
 
   export interface InputOutputModel {
       prop: ${inputType};
   }
     
-  export function inputOutputModelSerializer(item: InputOutputModel): InputOutputModelRest {
+  export function inputOutputModelSerializer(item: InputOutputModel): Record<string, unknown> {
     return {
       prop: item["prop"]
     }
@@ -137,7 +137,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): FooRest {
+      export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
           prop1: item["prop1"].toDateString(),
           prop2: item["prop2"].toTimeString(),
@@ -153,10 +153,11 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -164,7 +165,7 @@ describe("modular encode test for property type datetime", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -178,8 +179,9 @@ describe("modular encode test for property type datetime", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -212,10 +214,11 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -223,7 +226,7 @@ describe("modular encode test for property type datetime", () => {
         context: Client,
         prop: Date,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({
@@ -234,8 +237,9 @@ describe("modular encode test for property type datetime", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<void> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
       
@@ -279,7 +283,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): FooRest {
+      export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
           prop1: item["prop1"].toISOString(),
           prop2: item["prop2"],
@@ -293,10 +297,11 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -304,7 +309,7 @@ describe("modular encode test for property type datetime", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -316,8 +321,9 @@ describe("modular encode test for property type datetime", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -363,7 +369,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): FooRest {
+      export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
           prop1: item["prop1"].toUTCString(),
           prop2: item["prop2"],
@@ -377,10 +383,11 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -388,7 +395,7 @@ describe("modular encode test for property type datetime", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -400,8 +407,9 @@ describe("modular encode test for property type datetime", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -444,7 +452,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): FooRest {
+      export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
           prop1: item["prop1"].getTime(),
         };
@@ -457,10 +465,11 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -468,7 +477,7 @@ describe("modular encode test for property type datetime", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -479,8 +488,9 @@ describe("modular encode test for property type datetime", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -524,10 +534,11 @@ describe("modular encode test for property type duration", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -535,7 +546,7 @@ describe("modular encode test for property type duration", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -546,8 +557,9 @@ describe("modular encode test for property type duration", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -590,10 +602,11 @@ describe("modular encode test for property type duration", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -601,7 +614,7 @@ describe("modular encode test for property type duration", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -612,8 +625,9 @@ describe("modular encode test for property type duration", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -659,10 +673,11 @@ describe("modular encode test for property type duration", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
@@ -670,7 +685,7 @@ describe("modular encode test for property type duration", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -682,8 +697,9 @@ describe("modular encode test for property type duration", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -727,7 +743,7 @@ describe("modular encode test for property type bytes", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): FooRest {
+      export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
           prop1: uint8ArrayToString(item["prop1"], "base64"),
         }
@@ -740,10 +756,11 @@ describe("modular encode test for property type bytes", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
@@ -752,7 +769,7 @@ describe("modular encode test for property type bytes", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -763,8 +780,9 @@ describe("modular encode test for property type bytes", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -810,10 +828,11 @@ describe("modular encode test for property type bytes", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
@@ -822,7 +841,7 @@ describe("modular encode test for property type bytes", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -833,8 +852,9 @@ describe("modular encode test for property type bytes", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -880,10 +900,11 @@ describe("modular encode test for property type bytes", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
@@ -892,7 +913,7 @@ describe("modular encode test for property type bytes", () => {
         context: Client,
         body: Foo,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .post({
@@ -903,8 +924,9 @@ describe("modular encode test for property type bytes", () => {
           });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1003,24 +1025,26 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Cat> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Cat> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         
@@ -1082,24 +1106,26 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
 
       export function _readSend(
         context: Client,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
 
-      export async function _readDeserialize(result: Read200Response): Promise<Cat> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Cat> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
 
@@ -1171,24 +1197,26 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Cat> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Cat> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
 
@@ -1260,24 +1288,26 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<PetUnion> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<PetUnion> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
 
@@ -1360,24 +1390,26 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<PetUnion> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<PetUnion> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
       
@@ -1429,24 +1461,26 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
       
@@ -1516,24 +1550,26 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError
       } from "@azure-rest/core-client";
 
       export function _readSend(
         context: Client,
         options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
+      ): StreamableMethod {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
 
-      export async function _readDeserialize(result: Read200Response): Promise<Cat> {
-        if (result.status !== "200") {
+      export async function _readDeserialize(result: PathUncheckedResponse): Promise<Cat> {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
 
@@ -1612,10 +1648,11 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         paramOutput?.[0]?.getFullText()!,
         `
-        import { DemoServiceContext as Client } from "../rest/index.js";
+        import { DemoServiceContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError,
         } from "@azure-rest/core-client";
         
@@ -1624,7 +1661,7 @@ describe("inheritance & polymorphism", () => {
           contentType: SchemaContentTypeValues,
           body: string,
           options: GetOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Get204Response> {
+        ): StreamableMethod {
             return context
               .path("/")
               .post({
@@ -1634,8 +1671,9 @@ describe("inheritance & polymorphism", () => {
               });
         }
         
-        export async function _getDeserialize(result: Get204Response): Promise<void> {
-          if (result.status !== "204") {
+        export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["204"];
+          if(!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
         
@@ -1738,10 +1776,11 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         operationContent,
         `
-        import { DemoServiceContext as Client } from "../rest/index.js";
+        import { DemoServiceContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError,
         } from "@azure-rest/core-client";
         export function _getSend(
@@ -1749,7 +1788,7 @@ describe("inheritance & polymorphism", () => {
           testHeader: "A" | "B",
           body: string,
           options: GetOptionalParams = { requestOptions: {} },
-        ): StreamableMethod<Get204Response> {
+        ): StreamableMethod {
           return context
             .path("/")
             .post({
@@ -1758,8 +1797,9 @@ describe("inheritance & polymorphism", () => {
               body: body
             });
         }
-        export async function _getDeserialize(result: Get204Response): Promise<void> {
-          if (result.status !== "204") {
+        export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["204"];
+          if(!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -1807,7 +1847,7 @@ describe("`is`", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function aSerializer(item: A): ARest {
+      export function aSerializer(item: A): Record<string, unknown> {
         return {
           prop1: item["prop1"],
           prop2: item["prop2"],
@@ -1845,7 +1885,7 @@ describe("`extends`", () => {
     await assertEqualContent(
       serializerB!,
       `
-      export function bSerializer(item: B): BRest {
+      export function bSerializer(item: B): Record<string, unknown> {
         return {
           prop1: item["prop1"],
           prop2: item["prop2"],
@@ -1863,7 +1903,7 @@ describe("`extends`", () => {
     await assertEqualContent(
       serializerA!,
       `
-      export function aSerializer(item: A): ARest {
+      export function aSerializer(item: A): Record<string, unknown> {
         return {
           prop1: item["prop1"],
           prop2: item["prop2"],
@@ -1918,7 +1958,7 @@ describe("visibility", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function aSerializer(item: A): ARest {
+      export function aSerializer(item: A): Record<string, unknown> {
         return {
           exactVersion: item["exactVersion"],
         };
@@ -1962,7 +2002,7 @@ describe("spread record", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function vegetablesSerializer(item: Vegetables): VegetablesRest {
+      export function vegetablesSerializer(item: Vegetables): Record<string, unknown> {
         return {
           ...item,
           carrots: item["carrots"],
@@ -2028,7 +2068,7 @@ describe("spread record", () => {
     await assertEqualContent(
       serializerA!,
       `
-      export function aSerializer(item: A): ARest {
+      export function aSerializer(item: A): Record<string, unknown> {
         return {
           ...item,
           foo: item["foo"],
@@ -2050,7 +2090,7 @@ describe("spread record", () => {
     await assertEqualContent(
       serializerBase!,
       `
-      export function baseSerializer(item: Base): BaseRest {
+      export function baseSerializer(item: Base): Record<string, unknown> {
         return {
           foo: item["foo"],
         };

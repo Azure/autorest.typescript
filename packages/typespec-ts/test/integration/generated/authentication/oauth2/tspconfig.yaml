@@ -3,7 +3,7 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: false
+    generateMetadata: true
     generateTest: true
     azureSdkForJs: false
     isTypeSpecTest: true

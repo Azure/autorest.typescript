@@ -4,7 +4,7 @@ import { RequestParameters } from "@typespec/ts-http-runtime";
 import { User, TodoItem, TodoUrlAttachment, TodoItemPatch } from "./models.js";
 
 export interface UsersCreateBodyParam {
-  body?: { user: User };
+  body: { user: User };
 }
 
 export type UsersCreateParameters = UsersCreateBodyParam & RequestParameters;
@@ -21,14 +21,14 @@ export type UsersValidateParameters = UsersValidateQueryParam &
   RequestParameters;
 
 export interface UsersLoginBodyParam {
-  body?: { username: string; password: string };
+  body: { username: string; password: string };
 }
 
 export type UsersLoginParameters = UsersLoginBodyParam & RequestParameters;
 export type UsersLogoutParameters = RequestParameters;
 
 export interface UsersForgotPasswordBodyParam {
-  body?: { email: string };
+  body: { email: string };
 }
 
 export type UsersForgotPasswordParameters = UsersForgotPasswordBodyParam &
@@ -60,7 +60,7 @@ export type TodoItemsListParameters = TodoItemsListQueryParam &
   RequestParameters;
 
 export interface TodoItemsCreateJsonBodyParam {
-  body?: { item: TodoItem; attachments: Array<TodoUrlAttachment> };
+  body: { item: TodoItem; attachments: Array<TodoUrlAttachment> };
 }
 
 export interface TodoItemsCreateJsonMediaTypesParam {
@@ -72,7 +72,7 @@ export type TodoItemsCreateJsonParameters = TodoItemsCreateJsonMediaTypesParam &
   RequestParameters;
 
 export interface TodoItemsCreateFormBodyParam {
-  body?:
+  body:
     | FormData
     | Array<
         | { name: "item"; body: TodoItem }
@@ -101,7 +101,7 @@ export type TodoItemsCreateFormParameters = TodoItemsCreateFormMediaTypesParam &
 export type TodoItemsGetParameters = RequestParameters;
 
 export interface TodoItemsUpdateBodyParam {
-  body?: { patch: TodoItemPatch };
+  body: { patch: TodoItemPatch };
 }
 
 export interface TodoItemsUpdateMediaTypesParam {
@@ -115,7 +115,7 @@ export type TodoItemsDeleteParameters = RequestParameters;
 export type TodoItemsAttachmentsListParameters = RequestParameters;
 
 export interface TodoItemsAttachmentsCreateUrlAttachmentBodyParam {
-  body?: { contents: TodoUrlAttachment };
+  body: { contents: TodoUrlAttachment };
 }
 
 export interface TodoItemsAttachmentsCreateUrlAttachmentMediaTypesParam {
@@ -128,7 +128,7 @@ export type TodoItemsAttachmentsCreateUrlAttachmentParameters =
     RequestParameters;
 
 export interface TodoItemsAttachmentsCreateFileAttachmentBodyParam {
-  body?:
+  body:
     | FormData
     | Array<{
         name: "contents";

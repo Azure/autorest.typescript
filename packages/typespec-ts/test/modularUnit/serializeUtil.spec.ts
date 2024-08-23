@@ -1,9 +1,10 @@
-import { assert } from "chai";
 import {
-  emitModularSerializeUtilsFromTypeSpec,
+  emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
-  emitModularModelsFromTypeSpec
+  emitModularSerializeUtilsFromTypeSpec
 } from "../util/emitUtil.js";
+
+import { assert } from "chai";
 import { assertEqualContent } from "../util/testUtil.js";
 
 // Replaced with new serializers
@@ -41,10 +42,11 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
@@ -52,7 +54,7 @@ describe("modular special union serialization", () => {
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -67,9 +69,10 @@ describe("modular special union serialization", () => {
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
 
@@ -128,10 +131,11 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
@@ -139,7 +143,7 @@ describe("modular special union serialization", () => {
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -154,9 +158,10 @@ describe("modular special union serialization", () => {
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
 
@@ -207,10 +212,11 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
@@ -218,7 +224,7 @@ describe("modular special union serialization", () => {
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -233,9 +239,10 @@ describe("modular special union serialization", () => {
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
 
@@ -286,10 +293,11 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
@@ -297,7 +305,7 @@ describe("modular special union serialization", () => {
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -312,9 +320,10 @@ describe("modular special union serialization", () => {
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
       
@@ -370,10 +379,11 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
@@ -381,7 +391,7 @@ describe("modular special union serialization", () => {
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -396,9 +406,10 @@ describe("modular special union serialization", () => {
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
       
@@ -454,10 +465,11 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
@@ -465,7 +477,7 @@ describe("modular special union serialization", () => {
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -480,9 +492,10 @@ describe("modular special union serialization", () => {
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
       
@@ -545,7 +558,7 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       serializeWidgetData1?.getFullText()!,
       `
-      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
+      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return {
           kind: item["kind"],
           start: item["start"].toISOString(),
@@ -561,7 +574,7 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       serializeWidgetData0?.getFullText()!,
       `
-      export function widgetData0Serializer(item: WidgetData0): WidgetData0Rest {
+      export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
         return {
           kind: item["kind"],
           fooProp: item["fooProp"],
@@ -594,17 +607,18 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -618,9 +632,10 @@ describe("modular special union serialization", () => {
           });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return;
@@ -677,10 +692,10 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
       `
-      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
+      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return { 
           kind: item["kind"],
-          data: uint8ArrayToString(item["data"], "base64") 
+          data: uint8ArrayToString(item["data"], "base64")
         };
       }
       `
@@ -710,10 +725,11 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       
@@ -721,7 +737,7 @@ describe("modular special union serialization", () => {
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -736,9 +752,10 @@ describe("modular special union serialization", () => {
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response
+        result: PathUncheckedResponse
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
       
@@ -798,7 +815,7 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData0Serializer")?.getFullText()!,
       `
-      export function widgetData0Serializer(item: WidgetData0): WidgetData0Rest {
+      export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
         return {
           kind: item["kind"],
           fooProp: uint8ArrayToString(item["fooProp"], "base64"),
@@ -810,7 +827,7 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
       `
-      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
+      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return { 
           kind: item["kind"],
           data: item["data"].toISOString()
@@ -843,17 +860,18 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} },
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -867,9 +885,10 @@ describe("modular special union serialization", () => {
           });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response,
+        result: PathUncheckedResponse,
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return;
@@ -926,7 +945,7 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData0Serializer")?.getFullText()!,
       `
-      export function widgetData0Serializer(item: WidgetData0): WidgetData0Rest {
+      export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
         return {
           kind: item["kind"],
           fooProp: uint8ArrayToString(item["fooProp"], "base64"),
@@ -938,7 +957,7 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
       `      
-      export function widgetData1Serializer(item: WidgetData1): WidgetData1Rest {
+      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return { 
         kind: item["kind"],
         data: uint8ArrayToString(item["data"], "base64")
@@ -971,17 +990,18 @@ describe("modular special union serialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         body: Widget1,
         options: CustomGet1OptionalParams = { requestOptions: {} },
-      ): StreamableMethod<CustomGet1204Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({
@@ -995,9 +1015,10 @@ describe("modular special union serialization", () => {
           });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1204Response,
+        result: PathUncheckedResponse,
       ): Promise<void> {
-        if (result.status !== "204") {
+        const expectedStatuses = ["204"];
+        if(!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return;
@@ -1050,24 +1071,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1129,24 +1152,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1200,24 +1225,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1271,24 +1298,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1347,24 +1376,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1422,24 +1453,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1531,24 +1564,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1610,9 +1645,9 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData1Output, WidgetDataOutput } from "../rest/index.js";
       import { WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData1 */
       function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
@@ -1642,24 +1677,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
+        result: PathUncheckedResponse
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1721,13 +1758,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {
@@ -1765,24 +1802,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} },
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response,
+        result: PathUncheckedResponse,
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -1844,13 +1883,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {
@@ -1894,24 +1933,26 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "../rest/index.js";
+      import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        PathUncheckedResponse,
         createRestError,
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
         options: CustomGet1OptionalParams = { requestOptions: {} },
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod {
         return context
           .path("/customGet1")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response,
+        result: PathUncheckedResponse,
       ): Promise<Widget1> {
-        if (result.status !== "200") {
+        const expectedStatuses = ["200"];
+        if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
         return {
@@ -2014,7 +2055,7 @@ describe("modular special union deserialization", () => {
           bark: obj["bark"],
           name: obj["name"],
           weight: obj["weight"],
-          friends: obj["friends"].map((p) => deserializePetUnion(p)),
+          friends: obj["friends"].map((p: any) => deserializePetUnion(p)),
           birthDay: new Date(obj["birthDay"]),
         };
       }

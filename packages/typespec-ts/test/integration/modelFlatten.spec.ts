@@ -1,26 +1,28 @@
-import FlattenClientFactory, {
-  FlattenClient
-} from "./generated/type/model/flatten/src/index.js";
+import FlattenPropertyClientFactory, {
+  FlattenPropertyClient
+} from "./generated/azure/client-generator-core/flatten-property/src/index.js";
 import { assert } from "chai";
-describe("Flatten Rest Client", () => {
-  let client: FlattenClient;
+describe("Flatten Property Rest Client", () => {
+  let client: FlattenPropertyClient;
 
   beforeEach(() => {
-    client = FlattenClientFactory({
+    client = FlattenPropertyClientFactory({
       allowInsecureConnection: true
     });
   });
 
   it("should update and receive model with 1 level of flattening", async () => {
-    const result = await client.path("/type/model/flatten/flattenModel").put({
-      body: {
-        name: "foo",
-        properties: {
-          description: "bar",
-          age: 10
+    const result = await client
+      .path("/azure/client-generator-core/flatten-property/flattenModel")
+      .put({
+        body: {
+          name: "foo",
+          properties: {
+            description: "bar",
+            age: 10
+          }
         }
-      }
-    });
+      });
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.name, "test");
     assert.strictEqual(result.body.properties.description, "test");
@@ -29,7 +31,7 @@ describe("Flatten Rest Client", () => {
 
   it("should update and receive model with 2 level of flattening", async () => {
     const result = await client
-      .path("/type/model/flatten/nestedFlattenModel")
+      .path("/azure/client-generator-core/flatten-property/nestedFlattenModel")
       .put({
         body: {
           name: "foo",

@@ -92,7 +92,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       default: "esm"
     },
     compatibilityMode: { type: "boolean", nullable: true },
-    experimentalExtensibleEnums: { type: "boolean", nullable: true }
+    experimentalExtensibleEnums: { type: "boolean", nullable: true },
+    clearOutputFolder: { type: "boolean", nullable: true }
   },
   required: []
 };
@@ -236,6 +237,12 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Please note the body type of default response for operation - ${"operationName"} is not a model type.`
+      }
+    },
+    "un-supported-credential": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Authentication type ${"credentialType"} is not supported.`
       }
     }
   },

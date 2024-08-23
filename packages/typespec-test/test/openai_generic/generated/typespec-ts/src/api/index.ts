@@ -3,6 +3,6 @@
 
 export {
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
 } from "./openAIContext.js";

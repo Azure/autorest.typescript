@@ -3,8 +3,8 @@
 
 export {
   createContentSafety,
-  ContentSafetyClientOptionalParams,
   ContentSafetyContext,
+  ContentSafetyClientOptionalParams,
 } from "./contentSafetyContext.js";
 export {
   analyzeText,

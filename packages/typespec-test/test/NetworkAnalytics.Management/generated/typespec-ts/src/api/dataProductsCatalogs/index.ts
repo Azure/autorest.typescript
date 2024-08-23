@@ -5,23 +5,17 @@ import {
   DataProductsCatalog,
   _DataProductsCatalogListResult,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
-import {
-  isUnexpected,
-  NetworkAnalyticsContext as Client,
-  DataProductsCatalogsGet200Response,
-  DataProductsCatalogsGetDefaultResponse,
-  DataProductsCatalogsListByResourceGroup200Response,
-  DataProductsCatalogsListByResourceGroupDefaultResponse,
-  DataProductsCatalogsListBySubscription200Response,
-  DataProductsCatalogsListBySubscriptionDefaultResponse,
-} from "../../rest/index.js";
+import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
 import {
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,
@@ -33,9 +27,7 @@ export function _getSend(
   subscriptionId: string,
   resourceGroupName: string,
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DataProductsCatalogsGet200Response | DataProductsCatalogsGetDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default",
@@ -46,11 +38,10 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result:
-    | DataProductsCatalogsGet200Response
-    | DataProductsCatalogsGetDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<DataProductsCatalog> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -78,16 +69,18 @@ export async function _getDeserialize(
       ? undefined
       : {
           provisioningState: result.body.properties?.["provisioningState"],
-          publishers: result.body.properties?.["publishers"].map((p) => {
+          publishers: result.body.properties?.["publishers"].map((p: any) => {
             return {
               publisherName: p["publisherName"],
-              dataProducts: p["dataProducts"].map((p) => {
+              dataProducts: p["dataProducts"].map((p: any) => {
                 return {
                   dataProductName: p["dataProductName"],
                   description: p["description"],
-                  dataProductVersions: p["dataProductVersions"].map((p) => {
-                    return { version: p["version"] };
-                  }),
+                  dataProductVersions: p["dataProductVersions"].map(
+                    (p: any) => {
+                      return { version: p["version"] };
+                    },
+                  ),
                 };
               }),
             };
@@ -119,10 +112,7 @@ export function _listByResourceGroupSend(
   options: DataProductsCatalogsListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DataProductsCatalogsListByResourceGroup200Response
-  | DataProductsCatalogsListByResourceGroupDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
@@ -133,16 +123,15 @@ export function _listByResourceGroupSend(
 }
 
 export async function _listByResourceGroupDeserialize(
-  result:
-    | DataProductsCatalogsListByResourceGroup200Response
-    | DataProductsCatalogsListByResourceGroupDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_DataProductsCatalogListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -167,16 +156,18 @@ export async function _listByResourceGroupDeserialize(
           ? undefined
           : {
               provisioningState: p.properties?.["provisioningState"],
-              publishers: p.properties?.["publishers"].map((p) => {
+              publishers: p.properties?.["publishers"].map((p: any) => {
                 return {
                   publisherName: p["publisherName"],
-                  dataProducts: p["dataProducts"].map((p) => {
+                  dataProducts: p["dataProducts"].map((p: any) => {
                     return {
                       dataProductName: p["dataProductName"],
                       description: p["description"],
-                      dataProductVersions: p["dataProductVersions"].map((p) => {
-                        return { version: p["version"] };
-                      }),
+                      dataProductVersions: p["dataProductVersions"].map(
+                        (p: any) => {
+                          return { version: p["version"] };
+                        },
+                      ),
                     };
                   }),
                 };
@@ -207,6 +198,7 @@ export function listByResourceGroup(
         options,
       ),
     _listByResourceGroupDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -217,10 +209,7 @@ export function _listBySubscriptionSend(
   options: DataProductsCatalogsListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DataProductsCatalogsListBySubscription200Response
-  | DataProductsCatalogsListBySubscriptionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
@@ -230,16 +219,15 @@ export function _listBySubscriptionSend(
 }
 
 export async function _listBySubscriptionDeserialize(
-  result:
-    | DataProductsCatalogsListBySubscription200Response
-    | DataProductsCatalogsListBySubscriptionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_DataProductsCatalogListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -264,16 +252,18 @@ export async function _listBySubscriptionDeserialize(
           ? undefined
           : {
               provisioningState: p.properties?.["provisioningState"],
-              publishers: p.properties?.["publishers"].map((p) => {
+              publishers: p.properties?.["publishers"].map((p: any) => {
                 return {
                   publisherName: p["publisherName"],
-                  dataProducts: p["dataProducts"].map((p) => {
+                  dataProducts: p["dataProducts"].map((p: any) => {
                     return {
                       dataProductName: p["dataProductName"],
                       description: p["description"],
-                      dataProductVersions: p["dataProductVersions"].map((p) => {
-                        return { version: p["version"] };
-                      }),
+                      dataProductVersions: p["dataProductVersions"].map(
+                        (p: any) => {
+                          return { version: p["version"] };
+                        },
+                      ),
                     };
                   }),
                 };
@@ -297,6 +287,7 @@ export function listBySubscription(
     context,
     () => _listBySubscriptionSend(context, subscriptionId, options),
     _listBySubscriptionDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

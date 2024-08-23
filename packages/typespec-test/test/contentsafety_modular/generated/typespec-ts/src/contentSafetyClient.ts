@@ -26,11 +26,10 @@ import {
   GetTextBlocklistItemOptionalParams,
   ListTextBlocklistItemsOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createContentSafety,
-  ContentSafetyClientOptionalParams,
   ContentSafetyContext,
+  ContentSafetyClientOptionalParams,
   analyzeText,
   analyzeImage,
   getTextBlocklist,
@@ -42,6 +41,7 @@ import {
   getTextBlocklistItem,
   listTextBlocklistItems,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 
 export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 
@@ -60,7 +60,6 @@ export class ContentSafetyClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createContentSafety(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -34,7 +34,9 @@ export interface SchemaProperties {
   version: number;
 }
 
-export function schemaPropertiesSerializer(item: SchemaProperties) {
+export function schemaPropertiesSerializer(
+  item: SchemaProperties,
+): Record<string, unknown> {
   return {
     id: item["id"],
     format: item["format"],
@@ -55,7 +57,7 @@ export interface Schema {
   properties: SchemaProperties;
 }
 
-export function schemaSerializer(item: Schema) {
+export function schemaSerializer(item: Schema): Record<string, unknown> {
   return {
     definition: item["definition"],
     properties: schemaPropertiesSerializer(item.properties),

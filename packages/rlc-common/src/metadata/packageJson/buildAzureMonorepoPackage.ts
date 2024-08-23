@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 
 import {
+  AzurePackageInfoConfig,
+  getAzureCommonPackageInfo,
+  getAzurePackageDependencies,
+  getAzurePackageDevDependencies
+} from "./azurePackageCommon.js";
+import {
   getCommonPackageScripts,
   getPackageCommonInfo
 } from "./packageCommon.js";
-
-import {
-  getAzurePackageDevDependencies,
-  getAzurePackageDependencies,
-  AzurePackageInfoConfig,
-  getAzureCommonPackageInfo
-} from "./azurePackageCommon.js";
 
 export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
   monorepoPackageDirectory?: string;
@@ -123,10 +122,10 @@ function getEsmDevDependencies({
   let testDevDependencies: Record<string, string> = {};
   if (withTests) {
     testDevDependencies = {
-      "@vitest/browser": "^1.3.1",
-      "@vitest/coverage-istanbul": "^1.3.1",
+      "@vitest/browser": "^2.0.5",
+      "@vitest/coverage-istanbul": "^2.0.5",
       playwright: "^1.41.2",
-      vitest: "^1.3.1"
+      vitest: "^2.0.5"
     };
   }
 
@@ -212,8 +211,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "test:browser":
       "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
     "lint:fix":
-      "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts --fix --fix-type [problem,suggestion]",
-    lint: "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts",
+      "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
+    lint: "eslint package.json api-extractor.json src test",
     minify:
       "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,

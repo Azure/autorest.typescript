@@ -62,10 +62,11 @@ describe("header parameters", () => {
         await assertEqualContent(
           paramOutput?.[0]?.getFullText()!,
           `
-          import { DemoServiceContext as Client } from "../rest/index.js";
+          import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            PathUncheckedResponse,
             createRestError,
           } from "@azure-rest/core-client";
           
@@ -74,7 +75,7 @@ describe("header parameters", () => {
             contentType: SchemaContentTypeValues,
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
-          ): StreamableMethod<Get204Response> {
+          ): StreamableMethod {
               return context
                 .path("/")
                 .post({
@@ -84,8 +85,9 @@ describe("header parameters", () => {
                 });
           }
           
-          export async function _getDeserialize(result: Get204Response): Promise<void> {
-            if (result.status !== "204") {
+          export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+            const expectedStatuses = ["204"];
+            if(!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
             }
           
@@ -463,10 +465,11 @@ describe("header parameters", () => {
         await assertEqualContent(
           operationContent,
           `
-          import { DemoServiceContext as Client } from "../rest/index.js";
+          import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            PathUncheckedResponse,
             createRestError,
           } from "@azure-rest/core-client";
           export function _getSend(
@@ -474,7 +477,7 @@ describe("header parameters", () => {
             testHeader: "A" | "B",
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
-          ): StreamableMethod<Get204Response> {
+          ): StreamableMethod {
             return context
               .path("/")
               .post({
@@ -483,8 +486,9 @@ describe("header parameters", () => {
                 body: body
               });
           }
-          export async function _getDeserialize(result: Get204Response): Promise<void> {
-            if (result.status !== "204") {
+          export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+            const expectedStatuses = ["204"];
+            if(!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
             }
             return;
@@ -542,10 +546,11 @@ describe("header parameters", () => {
         await assertEqualContent(
           operationContent,
           `
-          import { DemoServiceContext as Client } from "../rest/index.js";
+          import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            PathUncheckedResponse,
             createRestError,
           } from "@azure-rest/core-client";
           export function _getSend(
@@ -553,7 +558,7 @@ describe("header parameters", () => {
             testHeader: string | "A" | "B",
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
-          ): StreamableMethod<Get204Response> {
+          ): StreamableMethod {
             return context
               .path("/")
               .post({
@@ -562,8 +567,9 @@ describe("header parameters", () => {
                 body: body
               });
           }
-          export async function _getDeserialize(result: Get204Response): Promise<void> {
-            if (result.status !== "204") {
+          export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+            const expectedStatuses = ["204"];
+            if(!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
             }
             return;
@@ -803,7 +809,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             color: item["color"],
           }
@@ -861,7 +867,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }
@@ -889,7 +895,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }
@@ -919,7 +925,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             color: item["color"],
           }
@@ -1115,7 +1121,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }
@@ -1143,7 +1149,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }
