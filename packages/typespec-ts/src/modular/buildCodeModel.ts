@@ -1195,11 +1195,11 @@ function emitStdScalar(
     case "boolean":
       return { type: "boolean" };
     case "plainDate":
-      return { type: "datetime", format: newScalar.format ?? "date" };
+      return { type: "string", format: newScalar.format ?? "date" };
     case "utcDateTime":
       return { type: "datetime", format: newScalar.format };
     case "plainTime":
-      return { type: "datetime", format: newScalar.format ?? "time" };
+      return { type: "string", format: newScalar.format ?? "time" };
     case "offsetDateTime":
       return { type: "string" };
     case "duration":

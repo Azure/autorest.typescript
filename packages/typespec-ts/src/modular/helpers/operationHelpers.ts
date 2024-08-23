@@ -1295,10 +1295,6 @@ export function serializeRequestValue(
   switch (type.type) {
     case "datetime":
       switch (type.format ?? format) {
-        case "date":
-          return `${clientValue}${required ? "" : "?"}.toDateString()`;
-        case "time":
-          return `${clientValue}${required ? "" : "?"}.toTimeString()`;
         case "rfc7231":
         case "headerDefault":
           return `${clientValue}${required ? "" : "?"}.toUTCString()`;

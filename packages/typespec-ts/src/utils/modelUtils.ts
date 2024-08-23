@@ -1301,7 +1301,7 @@ function getSchemaForStdScalar(
         type: "string",
         format,
         description,
-        typeName: "Date | string",
+        typeName: "string",
         outputTypeName: "string"
       };
     case "utcDateTime":
@@ -1325,7 +1325,7 @@ function getSchemaForStdScalar(
         type: "string",
         format: "time",
         description,
-        typeName: "Date | string",
+        typeName: "string",
         outputTypeName: "string"
       };
     case "duration":
