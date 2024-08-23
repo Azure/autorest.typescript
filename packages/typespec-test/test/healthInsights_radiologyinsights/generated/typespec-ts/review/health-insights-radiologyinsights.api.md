@@ -396,7 +396,7 @@ export interface Extension extends Element {
     valueReference?: Reference;
     valueSampledData?: SampledData;
     valueString?: string;
-    valueTime?: Date | string;
+    valueTime?: string;
 }
 
 // @public
@@ -714,7 +714,7 @@ export interface Observation extends DomainResourceParent {
     valueRatio?: Ratio;
     valueSampledData?: SampledData;
     valueString?: string;
-    valueTime?: Date | string;
+    valueTime?: string;
 }
 
 // @public
@@ -734,7 +734,7 @@ export interface ObservationComponent extends Element {
     valueReference?: Reference;
     valueSampledData?: SampledData;
     valueString?: string;
-    valueTime?: Date | string;
+    valueTime?: string;
 }
 
 // @public
@@ -845,7 +845,7 @@ export interface PatientDocument {
 
 // @public
 export interface PatientInfo {
-    birthDate?: Date | string;
+    birthDate?: string;
     clinicalInfo?: Array<Resource>;
     sex?: PatientInfoSex;
 }

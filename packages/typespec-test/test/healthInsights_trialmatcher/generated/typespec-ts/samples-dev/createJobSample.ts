@@ -30,7 +30,7 @@ async function createJobSample() {
             id: "{Your id}",
             info: {
               sex: "female",
-              birthDate: new Date(),
+              birthDate: "{Your birthDate}",
               clinicalInfo: [
                 {
                   system: "{Your system}",

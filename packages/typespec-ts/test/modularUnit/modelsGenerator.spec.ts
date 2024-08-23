@@ -126,8 +126,8 @@ describe("modular encode test for property type datetime", () => {
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
-        prop1: Date;
-        prop2: Date;
+        prop1: string;
+        prop2: string;
         prop3: Date;
         prop4: string;
       }`
