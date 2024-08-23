@@ -139,8 +139,8 @@ describe("modular encode test for property type datetime", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: item["prop1"].toDateString(),
-          prop2: item["prop2"].toTimeString(),
+          prop1: item["prop1"],
+          prop2: item["prop2"],
           prop3: item["prop3"].toISOString(),
           prop4: item["prop4"],
         };
@@ -171,8 +171,8 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: body["prop1"].toDateString(),
-              prop2: body["prop2"].toTimeString(),
+              prop1: body["prop1"],
+              prop2: body["prop2"],
               prop3: body["prop3"].toISOString(),
               prop4: body["prop4"],
             },
@@ -185,8 +185,8 @@ describe("modular encode test for property type datetime", () => {
           throw createRestError(result);
         }
         return {
-          prop1: new Date(result.body["prop1"]),
-          prop2: new Date(result.body["prop2"]),
+          prop1: result.body["prop1"],
+          prop2: result.body["prop2"],
           prop3: new Date(result.body["prop3"]),
           prop4: result.body["prop4"],
         };
