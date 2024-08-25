@@ -44,9 +44,9 @@ function emitClassicalClientSamples(
     dpgContext,
     client,
     clientName,
+    generatedFiles,
     credentialParameterType,
-    operationGroupPrefix ?? "",
-    generatedFiles
+    operationGroupPrefix ?? ""
   );
   return generatedFiles;
 }
@@ -55,9 +55,9 @@ function emitClassicalClientSamplesDfs(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   clientName: string,
+  generatedFiles: SourceFile[],
   credentialParameterType?: string,
-  operationGroupPrefix?: string,
-  generatedFiles: SourceFile[] = []
+  operationGroupPrefix?: string
 ) {
   for (const operationOrGroup of client.methods) {
     if (operationOrGroup.kind === "clientaccessor") {
@@ -75,6 +75,7 @@ function emitClassicalClientSamplesDfs(
         dpgContext,
         operationOrGroup.response,
         clientName,
+        generatedFiles,
         credentialParameterType,
         prefix
       );
@@ -265,13 +266,10 @@ function emitMethodSamples(
       ]
     };
     addDeclaration(sourceFile, functionDeclaration, exampleFunctionType);
-    exampleFunctions.push(exampleFunctionType);
+    exampleFunctions.push(exampleFunctionType.name);
   }
   // Add statements referencing the tracked declarations
-  const functions = exampleFunctions
-    .map((f) => resolveReference(f))
-    .map((f) => `${f}();`)
-    .join("\n");
+  const functions = exampleFunctions.map((f) => `${f}();`).join("\n");
   sourceFile.addStatements(`
   async function main() {
     ${functions}

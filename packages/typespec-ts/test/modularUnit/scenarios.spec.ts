@@ -10,7 +10,7 @@ import { assertEqualContent } from "../util/testUtil.js";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 
-const SCENARIOS_LOCATION = "./test/modularUnit/scenarios/samples";
+const SCENARIOS_LOCATION = "./test/modularUnit/scenarios/samples/client";
 
 const SCENARIOS_UPDATE = process.env["SCENARIOS_UPDATE"] === "true";
 
@@ -104,10 +104,12 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       throw new Error("No example provided for samples");
     }
     const examples = unknownArgs["examples"] as Record<string, string>;
+    const counts = Object.keys(examples).length;
     const result = await emitSamplesFromTypeSpec(tsp, examples);
-    assert.equal(result?.length, 1, "Expected exactly 1 source file");
-    console.log("Result: ", result![0]!.getFullText());
-    return result![0]!.getFullText();
+    assert.equal(result?.length, counts, "Expected exactly 1 source file");
+    const text = result.map((x) => x.getFullText()).join("\n");
+    console.log("Result: ", text);
+    return text;
   }
 };
 
@@ -142,7 +144,7 @@ function describeScenarioFile(scenarioFile: string): void {
         );
         const examples: Record<string, string> = {};
         for (const block of jsonBlocks) {
-          examples[block.heading] = block.content;
+          examples[block.heading.trim().replace(/ /g, "_")] = block.content;
         }
         const outputCodeBlocks = codeBlocks.filter(
           (x) => !tspBlocks.includes(x) && !jsonBlocks.includes(x)
@@ -162,7 +164,9 @@ function describeScenarioFile(scenarioFile: string): void {
                 "^" + template.replace(/\{(\w+)\}/g, "(?<$1>\\w+)") + "$"
               );
 
-              const match = x.heading.match(templateRegex);
+              const match = x.heading
+                .replace(/(\r\n|\n|\r)/gm, "")
+                .match(templateRegex);
               if (match !== null) {
                 return {
                   block: x,

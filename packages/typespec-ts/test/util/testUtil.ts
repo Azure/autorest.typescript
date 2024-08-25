@@ -127,7 +127,11 @@ export async function createDpgContextTestHelper(
   const sdkContext = {
     ...context,
     program,
-    rlcOptions: { flavor: "azure", enableModelNamespace },
+    rlcOptions: {
+      flavor: "azure",
+      enableModelNamespace,
+      hierarchyClient: true
+    },
     generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts",
     originalProgram: program
