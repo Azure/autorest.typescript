@@ -3,6 +3,7 @@
 
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { ErrorModel } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {

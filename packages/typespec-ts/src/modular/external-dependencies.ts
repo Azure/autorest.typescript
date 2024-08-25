@@ -58,7 +58,7 @@ export const DefaultCoreDependencies: CoreDependencies = {
   },
   KeyCredential: {
     kind: "externalDependency",
-    name: "KeyCredential",
+    name: "stringToUint8Array",
     module: "@typespec/ts-http-runtime"
   },
   TokenCredential: {
@@ -152,10 +152,10 @@ export const AzureCoreDependencies: CoreDependencies = {
     module: "@azure/core-util",
     name: "uint8ArrayToString"
   },
-  KeyCredential: {
+  stringToUint8Array: {
     kind: "externalDependency",
-    name: "KeyCredential",
-    module: "@azure/core-auth"
+    module: "@azure/core-util",
+    name: "stringToUint8Array"
   },
   TokenCredential: {
     kind: "externalDependency",

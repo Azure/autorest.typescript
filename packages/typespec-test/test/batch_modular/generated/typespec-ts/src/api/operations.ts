@@ -94,11 +94,11 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,

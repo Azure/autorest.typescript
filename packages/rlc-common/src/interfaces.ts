@@ -246,6 +246,7 @@ export interface RLCOptions {
   hierarchyClient?: boolean;
   compatibilityMode?: boolean;
   experimentalExtensibleEnums?: boolean;
+  clearOutputFolder?: boolean;
 }
 
 export interface ServiceInfo {

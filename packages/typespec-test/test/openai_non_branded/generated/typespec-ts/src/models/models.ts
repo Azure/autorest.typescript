@@ -1,6 +1,7 @@
 // Licensed under the MIT license.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
+import {} from "@typespec/ts-http-runtime";
 import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 
 export interface CreateModerationRequest {

@@ -58,8 +58,7 @@
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1",
     "typescript": "~5.5.3",
-    "tshy": "1.11.1",
-    "@azure/core-util": "^1.0.0",
+    "tshy": "^2.0.0",
     "@azure/identity": "^4.2.1",
     "@vitest/browser": "^2.0.5",
     "@vitest/coverage-istanbul": "^2.0.5",
@@ -109,5 +108,6 @@
     }
   },
   "main": "./dist/commonjs/index.js",
-  "types": "./dist/commonjs/index.d.ts"
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
 }

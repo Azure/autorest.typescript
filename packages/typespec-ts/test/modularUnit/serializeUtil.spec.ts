@@ -1,9 +1,10 @@
-import { assert } from "chai";
 import {
-  emitModularSerializeUtilsFromTypeSpec,
+  emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
-  emitModularModelsFromTypeSpec
+  emitModularSerializeUtilsFromTypeSpec
 } from "../util/emitUtil.js";
+
+import { assert } from "chai";
 import { assertEqualContent } from "../util/testUtil.js";
 
 // Replaced with new serializers
@@ -694,7 +695,7 @@ describe("modular special union serialization", () => {
       export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return { 
           kind: item["kind"],
-          data: uint8ArrayToString(item["data"], "base64") 
+          data: uint8ArrayToString(item["data"], "base64")
         };
       }
       `
@@ -1644,9 +1645,9 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData1Output, WidgetDataOutput } from "../rest/index.js";
       import { WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData1 */
       function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
@@ -1757,13 +1758,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {
@@ -1882,13 +1883,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {

@@ -57,7 +57,7 @@ describe("Spread(...) and alias", () => {
             import { SimpleModel } from "./models.js";
     
             export interface ReadBodyParam {
-               body?: SimpleModel;
+               body: SimpleModel;
             }  
     
             export type ReadParameters = ReadBodyParam & RequestParameters;
@@ -118,7 +118,7 @@ describe("Spread(...) and alias", () => {
               import { RequestParameters } from "@azure-rest/core-client";
       
               export interface ReadBodyParam {
-                body?: { name: string; value?: number };
+                body: { name: string; value?: number };
               }  
       
               export type ReadParameters = ReadBodyParam & RequestParameters;
@@ -147,7 +147,7 @@ describe("Spread(...) and alias", () => {
                 import { User } from "./models.js";
         
                 export interface ReadBodyParam {
-                  body?: { user: User };
+                  body: { user: User };
                 }  
 
                 export interface ReadQueryParamProperties {
@@ -181,7 +181,7 @@ describe("Spread(...) and alias", () => {
                 import { User } from "./models.js";
         
                 export interface ReadBodyParam {
-                  body?: { user: User };
+                  body: { user: User };
                 }  
 
                 export interface ReadQueryParamProperties {

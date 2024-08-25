@@ -8,8 +8,8 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   AudioTranscriptionOptions,
   AudioTranscription,

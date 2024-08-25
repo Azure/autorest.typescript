@@ -6,6 +6,7 @@ import { RLCModel } from "../interfaces.js";
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
+import { isAzurePackage } from "../helpers/packageUtil.js";
 
 const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
@@ -312,7 +313,7 @@ interface Metadata {
 export function buildReadmeFile(model: RLCModel) {
   const metadata = createMetadata(model) ?? {};
   const readmeFileContents = hbs.compile(
-    model.options?.flavor === "azure"
+    model.options && isAzurePackage(model)
       ? model.options.isModularLibrary
         ? azureReadmeModularTemplate
         : azureReadmeRLCTemplate
