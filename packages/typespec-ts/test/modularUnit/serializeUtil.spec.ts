@@ -1035,6 +1035,198 @@ describe("modular special union serialization", () => {
       true
     );
   });
+
+  it("should generate serialize util if there're special discriminated union within a anonymous model", async () => {
+    const tspContent = `
+    /** Options to configure a vector store static chunking strategy. */
+    model VectorStoreStaticChunkingStrategyOptions {
+      /** The maximum number of tokens in each chunk. The default value is 800. The minimum value is 100 and the maximum value is 4096. */
+      @encodedName("application/json", "max_chunk_size_tokens")
+      @minValue(100)
+      @maxValue(4096)
+      maxChunkSizeTokens: int32;
+
+      /**
+       * The number of tokens that overlap between chunks. The default value is 400.
+       * Note that the overlap must not exceed half of max_chunk_size_tokens.     *
+       */
+      @encodedName("application/json", "chunk_overlap_tokens")
+      chunkOverlapTokens: int32;
+    }
+
+    /** Type of chunking strategy */
+    union VectorStoreChunkingStrategyRequestType {
+      auto: "auto",
+      static: "static",
+      string,
+    }
+
+    /** An abstract representation of a vector store chunking strategy configuration. */
+    @discriminator("type")
+    model VectorStoreChunkingStrategyRequest {
+      /** The object type. */
+      type: VectorStoreChunkingStrategyRequestType;
+    }
+
+    /**
+     * The default strategy. This strategy currently uses a max_chunk_size_tokens of 800 and chunk_overlap_tokens of 400.
+     */
+    model VectorStoreAutoChunkingStrategyRequest
+      extends VectorStoreChunkingStrategyRequest {
+      /** The object type, which is always 'auto'. */
+      type: VectorStoreChunkingStrategyRequestType.auto;
+    }
+
+    /** A statically configured chunking strategy. */
+    model VectorStoreStaticChunkingStrategyRequest
+      extends VectorStoreChunkingStrategyRequest {
+      /** The object type, which is always 'static'. */
+      type: VectorStoreChunkingStrategyRequestType.static;
+
+      /** The options for the static chunking strategy. */
+      static: VectorStoreStaticChunkingStrategyOptions;
+    }
+
+    @route("/vector_stores/{vectorStoreId}/files")
+    op createVectorStoreFile(
+      /** The ID of the vector store for which to create a File. */
+      @path vectorStoreId: string,
+
+      /** A File ID that the vector store should use. Useful for tools like \`file_search\` that can access files. */
+      @encodedName("application/json", "file_id")
+      fileId: string,
+
+      /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
+      @encodedName("application/json", "chunking_strategy")
+      chunkingStrategy?: VectorStoreChunkingStrategyRequest,
+    ): void;
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelsFile);
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreChunkingStrategyRequestUnionSerializer")?.getFullText()!,
+      `
+      export function vectorStoreChunkingStrategyRequestUnionSerializer(
+        item: VectorStoreChunkingStrategyRequestUnion,
+      ) {
+        switch (item.type) {
+          case "auto":
+            return vectorStoreAutoChunkingStrategyRequestSerializer(
+              item as VectorStoreAutoChunkingStrategyRequest,
+            );
+      
+          case "static":
+            return vectorStoreStaticChunkingStrategyRequestSerializer(
+              item as VectorStoreStaticChunkingStrategyRequest,
+            );
+      
+          default:
+            return vectorStoreChunkingStrategyRequestSerializer(item);
+        }
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreAutoChunkingStrategyRequestSerializer")?.getFullText()!,
+      `
+      export function vectorStoreAutoChunkingStrategyRequestSerializer(
+        item: VectorStoreAutoChunkingStrategyRequest,
+      ): Record<string, unknown> {
+        return {
+          type: item["type"],
+        };
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreStaticChunkingStrategyRequestSerializer")?.getFullText()!,
+      `
+      export function vectorStoreStaticChunkingStrategyRequestSerializer(
+        item: VectorStoreStaticChunkingStrategyRequest,
+      ): Record<string, unknown> {
+        return {
+          type: item["type"],
+          static: vectorStoreStaticChunkingStrategyOptionsSerializer(item.static),
+        };
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreChunkingStrategyRequestSerializer")?.getFullText()!,
+      `
+      export function vectorStoreChunkingStrategyRequestSerializer(
+        item: VectorStoreChunkingStrategyRequestUnion,
+      ): Record<string, unknown> {
+        return {
+          ...vectorStoreChunkingStrategyRequestUnionSerializer(item),
+        };
+      }
+      `
+    );
+    
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "./index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        PathUncheckedResponse,
+        createRestError,
+      } from "@azure-rest/core-client";
+      export function _createVectorStoreFileSend(
+        context: Client,
+        vectorStoreId: string,
+        fileId: string,
+        options: CreateVectorStoreFileOptionalParams = { requestOptions: {} },
+      ): StreamableMethod {
+        return context
+          .path("/vector_stores/{vectorStoreId}/files", vectorStoreId)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              file_id: fileId,
+              chunking_strategy: vectorStoreChunkingStrategyRequestUnionSerializer(
+                options?.chunkingStrategy,
+              ),
+            },
+          });
+      }
+      export async function _createVectorStoreFileDeserialize(
+        result: PathUncheckedResponse,
+      ): Promise<void> {
+        const expectedStatuses = ["204"];
+        if (!expectedStatuses.includes(result.status)) {
+          throw createRestError(result);
+        }
+        return;
+      }
+      export async function createVectorStoreFile(
+        context: Client,
+        vectorStoreId: string,
+        fileId: string,
+        options: CreateVectorStoreFileOptionalParams = { requestOptions: {} },
+      ): Promise<void> {
+        const result = await _createVectorStoreFileSend(
+          context,
+          vectorStoreId,
+          fileId,
+          options,
+        );
+        return _createVectorStoreFileDeserialize(result);
+      }
+      `,
+      true
+    );
+  });
 });
 
 describe("modular special union deserialization", () => {
