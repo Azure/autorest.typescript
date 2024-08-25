@@ -3,19 +3,21 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import path from "path";
 import {
   emitModularModelsFromTypeSpec,
-  emitModularOperationsFromTypeSpec
+  emitModularOperationsFromTypeSpec,
+  emitSamplesFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 
-const SCENARIOS_LOCATION = "./test/modularUnit/scenarios";
+const SCENARIOS_LOCATION = "./test/modularUnit/scenarios/samples";
 
 const SCENARIOS_UPDATE = process.env["SCENARIOS_UPDATE"] === "true";
 
 type EmitterFunction = (
   tsp: string,
-  namedArgs: Record<string, string>
+  namedStringArgs: Record<string, string>,
+  namedUnknownArgs?: Record<string, unknown>
 ) => Promise<string>;
 
 /**
@@ -97,18 +99,19 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
 
   // Snapshot of a specific example generation
   // Throws if more than one example generated
-  "(ts|typescript) samples": async (tsp, {}, example) => {
-    if (!example) {
+  "(ts|typescript) samples": async (tsp, {}, unknownArgs) => {
+    if (!unknownArgs || !unknownArgs["examples"]) {
       throw new Error("No example provided for samples");
     }
-    const result = await emitSamplesFromTypeSpec(tsp, example);
+    const examples = unknownArgs["examples"] as Record<string, string>;
+    const result = await emitSamplesFromTypeSpec(tsp, examples);
     assert.equal(result?.length, 1, "Expected exactly 1 source file");
     console.log("Result: ", result![0]!.getFullText());
     return result![0]!.getFullText();
   }
 };
 
-describe("Scenarios", function () {
+describe.only("Scenarios", function () {
   describeScenarios(SCENARIOS_LOCATION);
 });
 
@@ -134,8 +137,15 @@ function describeScenarioFile(scenarioFile: string): void {
         const tspBlocks = codeBlocks.filter(
           (x) => x.heading.startsWith("tsp") || x.heading.startsWith("typespec")
         );
+        const jsonBlocks = codeBlocks.filter((x) =>
+          x.heading.startsWith("json")
+        );
+        const examples: Record<string, string> = {};
+        for (const block of jsonBlocks) {
+          examples[block.heading] = block.content;
+        }
         const outputCodeBlocks = codeBlocks.filter(
-          (x) => !tspBlocks.includes(x)
+          (x) => !tspBlocks.includes(x) && !jsonBlocks.includes(x)
         );
 
         const inputTsp = tspBlocks.map((x) => x.content).join("\n");
@@ -156,7 +166,7 @@ function describeScenarioFile(scenarioFile: string): void {
               if (match !== null) {
                 return {
                   block: x,
-                  fn: () => fn(inputTsp, match.groups!)
+                  fn: () => fn(inputTsp, match.groups! ?? {}, { examples })
                 };
               }
             }

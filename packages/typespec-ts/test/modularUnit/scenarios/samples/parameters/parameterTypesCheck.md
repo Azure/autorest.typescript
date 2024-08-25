@@ -1,6 +1,6 @@
 # Should generate samples for different types
 
-The return type for an empty anonymous model `{}` should be Record<string, any>
+Sample generation should handle different types in body.
 
 ## TypeSpec
 
@@ -76,7 +76,7 @@ async function read() {
     arrValue: ["x", "y"],
     unionValue: test,
     nullValue: null,
-    additionalProp: "additional prop",
+    additionalProp: "additional prop"
   });
   console.log(result);
 }

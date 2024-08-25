@@ -8,6 +8,7 @@ import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
+  SdkHttpParameterExample,
   SdkInitializationType,
   SdkServiceMethod,
   SdkServiceOperation,
@@ -18,7 +19,8 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
-import { getTypeExpression } from "./type-expressions/get-type-expression.js";
+import { reportDiagnostic } from "../index.js";
+import { NoTarget } from "@typespec/compiler";
 
 export function emitSamples(dpgContext: SdkContext): SourceFile[] {
   const generatedFiles: SourceFile[] = [];
@@ -141,6 +143,10 @@ function emitMethodSamples(
       returnType: "void",
       body: exampleFunctionBody
     };
+    const parameterMap: Record<string, SdkHttpParameterExample> = {};
+    example.parameters.forEach(
+      (param) => (parameterMap[param.parameter.name] = param)
+    );
     // prepare client-level parameters
     if (options.credentialType) {
       // Only support DefaultAzureCredential for now
@@ -184,12 +190,48 @@ function emitMethodSamples(
     );
 
     // prepare operation-level parameters
-    for (const param of example.parameters) {
-      if (param.parameter.onClient === true) {
+    // required path, header, query parameters
+    for (const param of method.operation.parameters) {
+      if (param.optional === true || param.clientDefaultValue !== undefined) {
         continue;
       }
-      const paramValue = `${getParameterValue(param.value)}`;
-      methodParams.push(paramValue);
+      const example = parameterMap[param.serializedName];
+      if (!example || !example.value) {
+        // report diagnostic if required parameter is missing
+        reportDiagnostic(dpgContext.program, {
+          code: "required-sample-parameter",
+          format: {
+            exampleName: exampleName,
+            paramName: param.serializedName
+          },
+          target: NoTarget
+        });
+        continue;
+      }
+      if (example.parameter.onClient === true) {
+        continue;
+      }
+      methodParams.push(`${getParameterValue(example.value)}`);
+    }
+    // required body parameters
+    const bodySerializedName = method.operation.bodyParam?.name;
+    if (bodySerializedName && parameterMap[bodySerializedName]) {
+      const example = parameterMap[bodySerializedName];
+      if (example && example.value) {
+        methodParams.push(`${getParameterValue(example.value)}`);
+      }
+    }
+    // optional parameters
+    const optionalParams = method.operation.parameters
+      .filter(
+        (param) => param.optional === true && parameterMap[param.serializedName]
+      )
+      .map((param) => parameterMap[param.serializedName]!)
+      .map(
+        (param) => `${param.parameter.name}: ${getParameterValue(param.value)}`
+      );
+    if (optionalParams.length > 0) {
+      methodParams.push(`{${optionalParams.join(", ")}}`);
     }
     const prefix = options.operationGroupPrefix
       ? `${options.operationGroupPrefix}.`

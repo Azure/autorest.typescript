@@ -1,8 +1,10 @@
 # Should generate samples for spread cases
 
-The return type for an empty anonymous model `{}` should be Record<string, any>
+Sample generation should handle operation-level parameter order successfully.
 
 ## TypeSpec
+
+This is tsp definition.
 
 ```tsp
 @doc("This is a simple model.")
@@ -15,9 +17,12 @@ model CompositeRequest {
   name: string;
 
   @header
-  testHeader: string;
+  header: string;
 
-  @header
+  @query
+  requiredQuery: string;
+
+  @query
   optionalQuery?: string;
 
   @body
@@ -30,14 +35,17 @@ op read(...CompositeRequest): void;
 
 ## Example
 
+Raw json files.
+
 ```json
 {
   "title": "read",
   "operationId": "read",
   "parameters": {
-    "name": "foo",
+    "name": "required path param",
     "optionalQuery": "optional query",
-    "testHeader": "xxx-header",
+    "header": "required header",
+    "requiredQuery": "required query",
     "body": {
       "name": "body name"
     }
@@ -62,8 +70,9 @@ Generate samples for spread cases:
 async function read() {
   const client = new TestingClient();
   const result = await client.read(
-    "foo",
-    "xxx-header",
+    "required path param",
+    "required header",
+    "required query",
     { name: "body name" },
     {
       optionalQuery: "optional query"

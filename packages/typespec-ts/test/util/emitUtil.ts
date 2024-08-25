@@ -324,7 +324,7 @@ export async function emitModularModelsFromTypeSpec(
     RLCModel
   >();
   const project = useContext("outputProject");
-  const binder = useBinder(); 
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   let modelFile = undefined;
   if (clients && clients[0]) {
@@ -579,6 +579,24 @@ export async function emitSamplesFromTypeSpec(
     examples
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
+  const project = new Project();
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
+    string,
+    RLCModel
+  >();
+  const clients = getRLCClients(dpgContext);
+  const rlcModels = await transformRLCModel(clients[0]!, dpgContext);
+  serviceNameToRlcModelsMap.set(clients[0]!.service.name, rlcModels);
+  const modularCodeModel = await emitCodeModel(
+    dpgContext,
+    serviceNameToRlcModelsMap,
+    "",
+    project,
+    {
+      casing: "camel"
+    }
+  );
+  modularCodeModel;
   const files = await emitSamples(dpgContext);
   useBinder().resolveAllReferences();
   return files;
