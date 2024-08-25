@@ -11,14 +11,8 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
-export type AudioTaskLabel = "transcribe" | "translate";
-
 // @public
-export enum AudioTaskLabelKnownValues {
-    transcribe = "\"transcribe\"",
-    translate = "\"translate\""
-}
+export type AudioTaskLabel = "transcribe" | "translate";
 
 // @public
 export interface AudioTranscription {
@@ -30,17 +24,8 @@ export interface AudioTranscription {
     words?: AudioTranscriptionWord[];
 }
 
-// @public (undocumented)
-export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
-
 // @public
-export enum AudioTranscriptionFormatKnownValues {
-    json = "\"json\"",
-    srt = "\"srt\"",
-    text = "\"text\"",
-    verbose_json = "\"verbose_json\"",
-    vtt = "\"vtt\""
-}
+export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
 // @public
 export interface AudioTranscriptionOptions {
@@ -68,14 +53,8 @@ export interface AudioTranscriptionSegment {
     tokens: number[];
 }
 
-// @public (undocumented)
-export type AudioTranscriptionTimestampGranularity = "word" | "segment";
-
 // @public
-export enum AudioTranscriptionTimestampGranularityKnownValues {
-    segment = "\"segment\"",
-    word = "\"word\""
-}
+export type AudioTranscriptionTimestampGranularity = "word" | "segment";
 
 // @public
 export interface AudioTranscriptionWord {
@@ -93,17 +72,8 @@ export interface AudioTranslation {
     text: string;
 }
 
-// @public (undocumented)
-export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
-
 // @public
-export enum AudioTranslationFormatKnownValues {
-    json = "\"json\"",
-    srt = "\"srt\"",
-    text = "\"text\"",
-    verbose_json = "\"verbose_json\"",
-    vtt = "\"vtt\""
-}
+export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
 // @public
 export interface AudioTranslationOptions {
@@ -145,7 +115,7 @@ export interface AzureChatExtensionConfiguration {
     type: AzureChatExtensionType;
 }
 
-// @public (undocumented)
+// @public
 export type AzureChatExtensionConfigurationUnion = AzureSearchChatExtensionConfiguration | AzureMachineLearningIndexChatExtensionConfiguration | AzureCosmosDBChatExtensionConfiguration | ElasticsearchChatExtensionConfiguration | PineconeChatExtensionConfiguration | AzureChatExtensionConfiguration;
 
 // @public
@@ -171,14 +141,8 @@ export interface AzureChatExtensionRetrievedDocument {
     url?: string;
 }
 
-// @public (undocumented)
-export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
-
 // @public
-export enum AzureChatExtensionRetrieveDocumentFilterReasonKnownValues {
-    rerank = "\"rerank\"",
-    score = "\"score\""
-}
+export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
 
 // @public
 export interface AzureChatExtensionsMessageContext {
@@ -187,17 +151,8 @@ export interface AzureChatExtensionsMessageContext {
     intent?: string;
 }
 
-// @public (undocumented)
-export type AzureChatExtensionType = "azure_search" | "azure_ml_index" | "azure_cosmos_db" | "elasticsearch" | "pinecone";
-
 // @public
-export enum AzureChatExtensionTypeKnownValues {
-    azureCosmosDB = "\"azure_cosmos_db\"",
-    azureMachineLearningIndex = "\"azure_ml_index\"",
-    azureSearch = "\"azure_search\"",
-    elasticsearch = "\"elasticsearch\"",
-    pinecone = "\"pinecone\""
-}
+export type AzureChatExtensionType = "azure_search" | "azure_ml_index" | "azure_cosmos_db" | "elasticsearch" | "pinecone";
 
 // @public
 export interface AzureChatGroundingEnhancementConfiguration {
@@ -325,17 +280,8 @@ export interface AzureSearchIndexFieldMappingOptions {
     vectorFields?: string[];
 }
 
-// @public (undocumented)
-export type AzureSearchQueryType = "simple" | "semantic" | "vector" | "vector_simple_hybrid" | "vector_semantic_hybrid";
-
 // @public
-export enum AzureSearchQueryTypeKnownValues {
-    semantic = "\"semantic\"",
-    simple = "\"simple\"",
-    vector = "\"vector\"",
-    vectorSemanticHybrid = "\"vector_semantic_hybrid\"",
-    vectorSimpleHybrid = "\"vector_simple_hybrid\""
-}
+export type AzureSearchQueryType = "simple" | "semantic" | "vector" | "vector_simple_hybrid" | "vector_semantic_hybrid";
 
 // @public
 export interface ChatChoice {
@@ -398,7 +344,7 @@ export interface ChatCompletionsNamedToolSelection {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsNamedToolSelectionUnion = ChatCompletionsNamedFunctionToolSelection | ChatCompletionsNamedToolSelection;
 
 // @public
@@ -432,7 +378,7 @@ export interface ChatCompletionsResponseFormat {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsResponseFormatUnion = ChatCompletionsTextResponseFormat | ChatCompletionsJsonResponseFormat | ChatCompletionsResponseFormat;
 
 // @public
@@ -446,7 +392,7 @@ export interface ChatCompletionsToolCall {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsToolCallUnion = ChatCompletionsFunctionToolCall | ChatCompletionsToolCall;
 
 // @public
@@ -454,24 +400,18 @@ export interface ChatCompletionsToolDefinition {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsToolDefinitionUnion = ChatCompletionsFunctionToolDefinition | ChatCompletionsToolDefinition;
 
-// @public (undocumented)
-export type ChatCompletionsToolSelectionPreset = "auto" | "none";
-
 // @public
-export enum ChatCompletionsToolSelectionPresetKnownValues {
-    auto = "\"auto\"",
-    none = "\"none\""
-}
+export type ChatCompletionsToolSelectionPreset = "auto" | "none";
 
 // @public
 export interface ChatFinishDetails {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatFinishDetailsUnion = StopFinishDetails | MaxTokensFinishDetails | ChatFinishDetails;
 
 // @public
@@ -479,7 +419,7 @@ export interface ChatMessageContentItem {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatMessageContentItemUnion = ChatMessageTextContentItem | ChatMessageImageContentItem | ChatMessageContentItem;
 
 // @public
@@ -488,15 +428,8 @@ export interface ChatMessageImageContentItem extends ChatMessageContentItem {
     type: "image_url";
 }
 
-// @public (undocumented)
-export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
-
 // @public
-export enum ChatMessageImageDetailLevelKnownValues {
-    auto = "\"auto\"",
-    high = "\"high\"",
-    low = "\"low\""
-}
+export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
 
 // @public
 export interface ChatMessageImageUrl {
@@ -531,7 +464,7 @@ export interface ChatRequestMessage {
     role: ChatRole;
 }
 
-// @public (undocumented)
+// @public
 export type ChatRequestMessageUnion = ChatRequestSystemMessage | ChatRequestUserMessage | ChatRequestAssistantMessage | ChatRequestToolMessage | ChatRequestFunctionMessage | ChatRequestMessage;
 
 // @public
@@ -564,17 +497,8 @@ export interface ChatResponseMessage {
     toolCalls?: ChatCompletionsToolCallUnion[];
 }
 
-// @public (undocumented)
-export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
-
 // @public
-export enum ChatRoleKnownValues {
-    assistant = "\"assistant\"",
-    "function" = "\"function\"",
-    system = "\"system\"",
-    tool = "\"tool\"",
-    user = "\"user\""
-}
+export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
 
 // @public
 export interface ChatTokenLogProbabilityInfo {
@@ -609,17 +533,8 @@ export interface Completions {
     usage: CompletionsUsage;
 }
 
-// @public (undocumented)
-export type CompletionsFinishReason = "stop" | "length" | "content_filter" | "function_call" | "tool_calls";
-
 // @public
-export enum CompletionsFinishReasonKnownValues {
-    contentFiltered = "\"content_filter\"",
-    functionCall = "\"function_call\"",
-    stopped = "\"stop\"",
-    tokenLimitReached = "\"length\"",
-    toolCalls = "\"tool_calls\""
-}
+export type CompletionsFinishReason = "stop" | "length" | "content_filter" | "function_call" | "tool_calls";
 
 // @public
 export interface CompletionsLogProbabilityModel {
@@ -720,16 +635,8 @@ export interface ContentFilterResultsForPrompt {
     promptIndex: number;
 }
 
-// @public (undocumented)
-export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
-
 // @public
-export enum ContentFilterSeverityKnownValues {
-    high = "\"high\"",
-    low = "\"low\"",
-    medium = "\"medium\"",
-    safe = "\"safe\""
-}
+export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
 // @public
 export interface ElasticsearchChatExtensionConfiguration extends AzureChatExtensionConfiguration {
@@ -764,23 +671,11 @@ export interface ElasticsearchIndexFieldMappingOptions {
     vectorFields?: string[];
 }
 
-// @public (undocumented)
+// @public
 export type ElasticsearchQueryType = "simple" | "vector";
 
 // @public
-export enum ElasticsearchQueryTypeKnownValues {
-    simple = "\"simple\"",
-    vector = "\"vector\""
-}
-
-// @public (undocumented)
 export type EmbeddingEncodingFormat = "float" | "base64";
-
-// @public
-export enum EmbeddingEncodingFormatKnownValues {
-    base64 = "\"base64\"",
-    float = "\"float\""
-}
 
 // @public
 export interface EmbeddingItem {
@@ -811,25 +706,13 @@ export interface EmbeddingsUsage {
 }
 
 // @public
-export interface ErrorResponse {
-    error: ErrorModel;
-    errorCode?: string;
-}
-
-// @public
 export interface FunctionCall {
     arguments: string;
     name: string;
 }
 
-// @public (undocumented)
-export type FunctionCallPreset = "auto" | "none";
-
 // @public
-export enum FunctionCallPresetKnownValues {
-    auto = "\"auto\"",
-    none = "\"none\""
-}
+export type FunctionCallPreset = "auto" | "none";
 
 // @public
 export interface FunctionDefinition {
@@ -923,23 +806,11 @@ export interface ImageGenerationPromptFilterResults {
     violence?: ContentFilterResult;
 }
 
-// @public (undocumented)
+// @public
 export type ImageGenerationQuality = "standard" | "hd";
 
 // @public
-export enum ImageGenerationQualityKnownValues {
-    hd = "\"hd\"",
-    standard = "\"standard\""
-}
-
-// @public (undocumented)
 export type ImageGenerationResponseFormat = "url" | "b64_json";
-
-// @public
-export enum ImageGenerationResponseFormatKnownValues {
-    base64 = "\"b64_json\"",
-    url = "\"url\""
-}
 
 // @public
 export interface ImageGenerations {
@@ -947,26 +818,11 @@ export interface ImageGenerations {
     data: ImageGenerationData[];
 }
 
-// @public (undocumented)
+// @public
 export type ImageGenerationStyle = "natural" | "vivid";
 
 // @public
-export enum ImageGenerationStyleKnownValues {
-    natural = "\"natural\"",
-    vivid = "\"vivid\""
-}
-
-// @public (undocumented)
 export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792";
-
-// @public
-export enum ImageSizeKnownValues {
-    size1024x1024 = "\"1024x1024\"",
-    size1024x1792 = "\"1024x1792\"",
-    size1792x1024 = "\"1792x1024\"",
-    size256x256 = "\"256x256\"",
-    size512x512 = "\"512x512\""
-}
 
 // @public
 export interface MaxTokensFinishDetails extends ChatFinishDetails {
@@ -990,22 +846,11 @@ export interface OnYourDataAuthenticationOptions {
     type: OnYourDataAuthenticationType;
 }
 
-// @public (undocumented)
+// @public
 export type OnYourDataAuthenticationOptionsUnion = OnYourDataApiKeyAuthenticationOptions | OnYourDataConnectionStringAuthenticationOptions | OnYourDataKeyAndKeyIdAuthenticationOptions | OnYourDataEncodedApiKeyAuthenticationOptions | OnYourDataAccessTokenAuthenticationOptions | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions | OnYourDataUserAssignedManagedIdentityAuthenticationOptions | OnYourDataAuthenticationOptions;
 
-// @public (undocumented)
-export type OnYourDataAuthenticationType = "api_key" | "connection_string" | "key_and_key_id" | "encoded_api_key" | "access_token" | "system_assigned_managed_identity" | "user_assigned_managed_identity";
-
 // @public
-export enum OnYourDataAuthenticationTypeKnownValues {
-    accessToken = "\"access_token\"",
-    apiKey = "\"api_key\"",
-    connectionString = "\"connection_string\"",
-    encodedApiKey = "\"encoded_api_key\"",
-    keyAndKeyId = "\"key_and_key_id\"",
-    systemAssignedManagedIdentity = "\"system_assigned_managed_identity\"",
-    userAssignedManagedIdentity = "\"user_assigned_managed_identity\""
-}
+export type OnYourDataAuthenticationType = "api_key" | "connection_string" | "key_and_key_id" | "encoded_api_key" | "access_token" | "system_assigned_managed_identity" | "user_assigned_managed_identity";
 
 // @public
 export interface OnYourDataConnectionStringAuthenticationOptions extends OnYourDataAuthenticationOptions {
@@ -1013,15 +858,8 @@ export interface OnYourDataConnectionStringAuthenticationOptions extends OnYourD
     type: "connection_string";
 }
 
-// @public (undocumented)
-export type OnYourDataContextProperty = "citations" | "intent" | "all_retrieved_documents";
-
 // @public
-export enum OnYourDataContextPropertyKnownValues {
-    allRetrievedDocuments = "\"all_retrieved_documents\"",
-    citations = "\"citations\"",
-    intent = "\"intent\""
-}
+export type OnYourDataContextProperty = "citations" | "intent" | "all_retrieved_documents";
 
 // @public
 export interface OnYourDataDeploymentNameVectorizationSource extends OnYourDataVectorizationSource {
@@ -1072,17 +910,10 @@ export interface OnYourDataVectorizationSource {
     type: OnYourDataVectorizationSourceType;
 }
 
-// @public (undocumented)
+// @public
 export type OnYourDataVectorizationSourceType = "endpoint" | "deployment_name" | "model_id";
 
 // @public
-export enum OnYourDataVectorizationSourceTypeKnownValues {
-    deploymentName = "\"deployment_name\"",
-    endpoint = "\"endpoint\"",
-    modelId = "\"model_id\""
-}
-
-// @public (undocumented)
 export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorizationSource | OnYourDataDeploymentNameVectorizationSource | OnYourDataModelIdVectorizationSource | OnYourDataVectorizationSource;
 
 // @public
@@ -1102,17 +933,11 @@ export interface OnYourDataVectorSearchAuthenticationOptions {
     type: OnYourDataVectorSearchAuthenticationType;
 }
 
-// @public (undocumented)
+// @public
 export type OnYourDataVectorSearchAuthenticationOptionsUnion = OnYourDataVectorSearchApiKeyAuthenticationOptions | OnYourDataVectorSearchAccessTokenAuthenticationOptions | OnYourDataVectorSearchAuthenticationOptions;
 
-// @public (undocumented)
-export type OnYourDataVectorSearchAuthenticationType = "api_key" | "access_token";
-
 // @public
-export enum OnYourDataVectorSearchAuthenticationTypeKnownValues {
-    accessToken = "\"access_token\"",
-    apiKey = "\"api_key\""
-}
+export type OnYourDataVectorSearchAuthenticationType = "api_key" | "access_token";
 
 // @public (undocumented)
 export class OpenAIClient {
@@ -1132,13 +957,6 @@ export class OpenAIClient {
 // @public
 export interface OpenAIClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface OpenAIClientOptions {
-    apiVersion: string;
-    credential: KeyCredential | TokenCredential;
-    endpoint: string | string;
 }
 
 // @public
@@ -1172,20 +990,8 @@ export interface PineconeFieldMappingOptions {
     urlField?: string;
 }
 
-// @public (undocumented)
-export type ServiceApiVersions = "2022-12-01" | "2023-05-15" | "2024-02-01" | "2024-06-01";
-
-// @public (undocumented)
-export enum ServiceApiVersionsKnownValues {
-    // (undocumented)
-    v2022_12_01 = "\"2022-12-01\"",
-    // (undocumented)
-    v2023_05_15 = "\"2023-05-15\"",
-    // (undocumented)
-    v2024_02_01 = "\"2024-02-01\"",
-    // (undocumented)
-    v2024_06_01 = "\"2024-06-01\""
-}
+// @public
+export type ServiceApiVersions = "2022-12-01" | "2023-05-15" | "2023-06-01-preview" | "2023-07-01-preview" | "2024-02-01" | "2024-02-15-preview" | "2024-03-01-preview" | "2024-04-01-preview" | "2024-05-01-preview" | "2024-06-01";
 
 // @public
 export interface SpeechGenerationOptions {
@@ -1196,31 +1002,11 @@ export interface SpeechGenerationOptions {
     voice: SpeechVoice;
 }
 
-// @public (undocumented)
+// @public
 export type SpeechGenerationResponseFormat = "mp3" | "opus" | "aac" | "flac" | "wav" | "pcm";
 
 // @public
-export enum SpeechGenerationResponseFormatKnownValues {
-    aac = "\"aac\"",
-    flac = "\"flac\"",
-    mp3 = "\"mp3\"",
-    opus = "\"opus\"",
-    pcm = "\"pcm\"",
-    wav = "\"wav\""
-}
-
-// @public (undocumented)
 export type SpeechVoice = "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
-
-// @public
-export enum SpeechVoiceKnownValues {
-    alloy = "\"alloy\"",
-    echo = "\"echo\"",
-    fable = "\"fable\"",
-    nova = "\"nova\"",
-    onyx = "\"onyx\"",
-    shimmer = "\"shimmer\""
-}
 
 // @public
 export interface StopFinishDetails extends ChatFinishDetails {

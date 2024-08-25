@@ -1,6 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import {
+  chatRequestMessageUnionSerializer,
+  functionDefinitionSerializer,
+  azureChatExtensionConfigurationUnionSerializer,
+  azureChatEnhancementConfigurationSerializer,
+  chatCompletionsResponseFormatUnionSerializer,
+  AudioTranscriptionOptions,
+  AudioTranscription,
+  AudioTaskLabel,
+  AudioTranslationOptions,
+  AudioTranslation,
+  CompletionsOptions,
+  Completions,
+  ContentFilterSeverity,
+  CompletionsFinishReason,
+  ChatCompletionsOptions,
+  ChatRole,
+  ChatCompletions,
+  ImageGenerationOptions,
+  ImageGenerations,
+  SpeechGenerationOptions,
+  EmbeddingsOptions,
+  Embeddings,
+} from "../models/models.js";
 import { OpenAIContext as Client } from "./index.js";
 import {
   StreamableMethod,
@@ -10,30 +34,6 @@ import {
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  AudioTranscriptionOptions,
-  AudioTranscription,
-  AudioTranslationOptions,
-  AudioTranslation,
-  CompletionsOptions,
-  Completions,
-  ChatCompletionsOptions,
-  azureChatEnhancementConfigurationSerializer,
-  functionDefinitionSerializer,
-  ChatCompletions,
-  ImageGenerationOptions,
-  ImageGenerations,
-  SpeechGenerationOptions,
-  EmbeddingsOptions,
-  Embeddings,
-  AudioTaskLabel,
-  ContentFilterSeverity,
-  CompletionsFinishReason,
-  ChatRole,
-  azureChatExtensionConfigurationUnionSerializer,
-  chatCompletionsResponseFormatUnionSerializer,
-  chatRequestMessageUnionSerializer,
-} from "../models/models.js";
 import {
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
