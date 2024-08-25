@@ -8,6 +8,7 @@ import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
+  SdkInitializationType,
   SdkServiceMethod,
   SdkServiceOperation,
   SdkType,
@@ -35,12 +36,7 @@ function emitClassicalClientSamples(
 ) {
   // build client-level parameters
   const clientName = client.name;
-  const credentialParameter = client.initialization.properties.find(
-    (p) => p.kind === "credential"
-  )?.type;
-  const credentialParameterType = credentialParameter
-    ? getTypeExpression(credentialParameter!)
-    : undefined;
+  const credentialParameterType = getCredentialType(client.initialization);
   const generatedFiles: SourceFile[] = [];
   emitClassicalClientSamplesDfs(
     dpgContext,
@@ -328,4 +324,14 @@ function escapeSpecialCharToSpace(str: string) {
     .replace("'s ", " ")
     .replace(/\[/g, " ")
     .replace(/\]/g, " ");
+}
+
+// FIXME: This is a temporary solution to get the credential type
+function getCredentialType(
+  initialization: SdkInitializationType
+): string | undefined {
+  const credentialParameter = initialization.properties.find(
+    (p) => p.kind === "credential"
+  )?.type;
+  return credentialParameter ? "Credential" : undefined;
 }
