@@ -51,19 +51,9 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
     name: "uint8ArrayToString";
     module: string;
   };
-  KeyCredential: {
+  stringToUint8Array: {
     kind: "externalDependency";
-    name: "KeyCredential";
-    module: string;
-  };
-  TokenCredential: {
-    kind: "externalDependency";
-    name: "TokenCredential";
-    module: string;
-  };
-  ErrorModel: {
-    kind: "externalDependency";
-    name: "ErrorModel";
+    name: "stringToUint8Array";
     module: string;
   };
 }

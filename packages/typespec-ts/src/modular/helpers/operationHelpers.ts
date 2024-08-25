@@ -44,8 +44,8 @@ import {
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { AzurePollingDependencies } from "../external-dependencies.js";
-import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
-import { refkey } from "../../framework/refkey.js";
+import { reportDiagnostic } from "../../lib.js";
+import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
 
 export function getSendPrivateFunction(
@@ -1285,7 +1285,6 @@ export function serializeRequestValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
-  const getSdkType = useSdkTypes();
   const requiredPrefix =
     required === false ? `${clientValue} === undefined` : "";
   const nullablePrefix = isTypeNullable(type) ? `${clientValue} === null` : "";
@@ -1328,11 +1327,10 @@ export function serializeRequestValue(
 
           return `${prefix}.map(p => { return ${elementNullOrUndefinedPrefix}{${propertiesStr}}})`;
         } else {
-          const sdkModel = getSdkType(type.elementType.__raw!);
-          const serializerRefkey = refkey(sdkModel, "serializer");
-          const serializerReference = resolveReference(serializerRefkey);
           // When it is not anonymous we can hand it off to the serializer function
-          return `${prefix}.map(${serializerReference})`;
+          return `${prefix}.map(${toCamelCase(
+            type.elementType.name + "Serializer"
+          )})`;
         }
       } else if (
         needsDeserialize(type.elementType) &&
@@ -1384,9 +1382,9 @@ export function serializeRequestValue(
       if (isNormalUnion(type)) {
         return `${clientValue}`;
       } else if (isSpecialHandledUnion(type)) {
-        const sdkType = getSdkType(type.__raw!);
-        const serializerRefkey = refkey(sdkType, "serializer");
-        const serializeFunctionName = resolveReference(serializerRefkey);
+        const serializeFunctionName = type.name
+          ? `${toCamelCase(type.name)}Serializer`
+          : getDeserializeFunctionName(type, "serialize");
         return `${serializeFunctionName}(${clientValue})`;
       } else {
         return `${clientValue} as any`;

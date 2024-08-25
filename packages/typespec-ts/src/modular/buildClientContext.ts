@@ -6,6 +6,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { SourceFile } from "ts-morph";
 import { SdkContext } from "../utils/interfaces.js";
+import { importModels } from "./buildOperations.js";
 import {
   buildGetClientCredentialParam,
   buildGetClientEndpointParam,
@@ -37,6 +38,7 @@ export function buildClientContext(
   );
 
   importCredential(codeModel.runtimeImports, clientContextFile);
+  importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
     moduleSpecifier: getImportSpecifier("restClient", codeModel.runtimeImports),
     namedImports: ["ClientOptions", "Client", "getClient"]

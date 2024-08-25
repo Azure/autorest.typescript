@@ -546,6 +546,8 @@ export const modularTsps = [
   {
     outputPath: "azure/example/basic",
     inputPath: "azure/example/basic"
+  },
+  {
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
   }

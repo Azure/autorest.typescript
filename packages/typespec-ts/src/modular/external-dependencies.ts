@@ -56,19 +56,9 @@ export const DefaultCoreDependencies: CoreDependencies = {
     name: "uint8ArrayToString",
     module: "@typespec/ts-http-runtime"
   },
-  KeyCredential: {
+  stringToUint8Array: {
     kind: "externalDependency",
     name: "stringToUint8Array",
-    module: "@typespec/ts-http-runtime"
-  },
-  TokenCredential: {
-    kind: "externalDependency",
-    name: "TokenCredential",
-    module: "@typespec/ts-http-runtime"
-  },
-  ErrorModel: {
-    kind: "externalDependency",
-    name: "ErrorModel",
     module: "@typespec/ts-http-runtime"
   }
 } as const;
@@ -156,23 +146,5 @@ export const AzureCoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     module: "@azure/core-util",
     name: "stringToUint8Array"
-  },
-  TokenCredential: {
-    kind: "externalDependency",
-    name: "TokenCredential",
-    module: "@azure/core-auth"
-  },
-  ErrorModel: {
-    kind: "externalDependency",
-    name: "ErrorModel",
-    module: "@azure-rest/core-client"
-  }
-};
-
-export const AzureIdentityDependencies = {
-  DefaultAzureCredential: {
-    kind: "externalDependency",
-    module: "@azure/identity",
-    name: "DefaultAzureCredential"
   }
 };

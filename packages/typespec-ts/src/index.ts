@@ -51,7 +51,6 @@ import {
   buildRootIndex,
   buildSubClientIndexFile
 } from "./modular/buildRootIndex.js";
-import { buildModelsOptions } from "./modular/emitModels.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { provideContext, useContext } from "./contextManager.js";
 
@@ -79,9 +78,6 @@ import { provideBinder } from "./framework/hooks/binder.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
-  AzureIdentityDependencies,
-import { emitTypes } from "./modular/emit-models.js";
-import { emitSamples } from "./modular/emitSamples.js";
 
 export * from "./lib.js";
 
@@ -120,13 +116,9 @@ export async function $onEmit(context: EmitContext) {
     },
     { sourcesDir: modularSourcesDir }
   );
-
   const extraDependencies = isAzurePackage({ options: rlcOptions })
-      ? {
+    ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
     : { ...DefaultCoreDependencies };
-          ...AzureCoreDependencies,
-          ...AzureIdentityDependencies
-        }
   const binder = provideBinder(outputProject, {
     staticHelpers,
     dependencies: {
@@ -241,7 +233,6 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
-    emitSamples(dpgContext);
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
@@ -268,8 +259,8 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
-    emitTypes(dpgContext.sdkPackage, { sourceRoot: modularSourcesRoot });
     for (const subClient of modularCodeModel.clients) {
+      buildModels(subClient, modularCodeModel);
       buildModelsOptions(subClient, modularCodeModel);
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
         buildSerializeUtils(modularCodeModel);
@@ -412,8 +403,7 @@ export async function createContextWithDefaultOptions(
         main: "@azure-tools/typespec-ts",
         metadata: { name: "@azure-tools/typespec-ts" }
       }
-    ],
-    "examples-directory": `./examples`
+    ]
   };
   context.options = {
     ...context.options,

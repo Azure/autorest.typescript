@@ -118,7 +118,10 @@ export async function createDpgContextTestHelper(
   provideContext("outputProject", outputProject);
 
   const context = await createContextWithDefaultOptions({
-    program
+    program,
+    options: {
+      "examples-directory": `./examples`
+    } as any
   } as EmitContext);
 
   const sdkContext = {
