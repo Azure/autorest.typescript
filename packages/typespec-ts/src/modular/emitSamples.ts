@@ -3,7 +3,6 @@ import {
   FunctionDeclarationStructure,
   SourceFile
 } from "ts-morph";
-import { addDeclaration } from "../framework/declaration.js";
 import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
@@ -146,7 +145,9 @@ function emitMethodSamples(
     };
     const parameterMap: Record<string, SdkHttpParameterExample> = {};
     example.parameters.forEach(
-      (param) => (parameterMap[param.parameter.name] = param)
+      (param) =>
+        (parameterMap[(param.parameter as any).serializedName ?? param.parameter.name] =
+          param)
     );
     // prepare client-level parameters
     if (options.credentialType) {
@@ -161,8 +162,8 @@ function emitMethodSamples(
     let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
     for (const param of example.parameters) {
       if (
-        param.parameter.name === "subscriptionId" &&
-        dpgContext.rlcOptions?.azureArm
+        param.parameter.name.toLowerCase() === "subscriptionid" &&
+        isArm(dpgContext)
       ) {
         subscriptionIdValue = getParameterValue(param.value);
         continue;
@@ -180,7 +181,7 @@ function emitMethodSamples(
       clientParams.push(paramName);
     }
     // always add subscriptionId for ARM clients
-    if (dpgContext.rlcOptions?.azureArm) {
+    if (isArm(dpgContext)) {
       exampleFunctionBody.push(
         `const subscriptionId = ${subscriptionIdValue};`
       );
@@ -265,7 +266,7 @@ function emitMethodSamples(
         `This sample demonstrates how to ${normalizedDescription}\n\n@summary ${normalizedDescription}\nx-ms-original-file: ${example.filePath}`
       ]
     };
-    addDeclaration(sourceFile, functionDeclaration, exampleFunctionType);
+    sourceFile.addFunction(functionDeclaration);
     exampleFunctions.push(exampleFunctionType.name);
   }
   // Add statements referencing the tracked declarations
@@ -374,4 +375,8 @@ function getCredentialType(
     (p) => p.kind === "credential"
   )?.type;
   return credentialParameter ? "Credential" : undefined;
+}
+
+function isArm(dpgContext: SdkContext): boolean {
+  return dpgContext.rlcOptions?.azureArm ?? dpgContext.arm ?? false;
 }

@@ -17,7 +17,10 @@ model CompositeRequest {
   name: string;
 
   @header
-  header: string;
+  requiredHeader: string; // requiredHeader
+
+  @header
+  optionalHeader?: string;
 
   @query
   requiredQuery: string;
@@ -44,7 +47,8 @@ Raw json files.
   "parameters": {
     "name": "required path param",
     "optionalQuery": "optional query",
-    "header": "required header",
+    "requiredHeader": "required header",
+    "optionalHeader": "optional header",
     "requiredQuery": "required query",
     "body": {
       "name": "body name"
@@ -61,11 +65,13 @@ Raw json files.
 Generate samples for spread cases:
 
 ```ts samples
+import { TestingClient } from "@azure/internal-test";
+
 /**
  * This sample demonstrates how to show example demo
  *
  * @summary show example demo
- * x-ms-original-file: json.json
+ * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function read() {
   const client = new TestingClient();
@@ -74,9 +80,7 @@ async function read() {
     "required header",
     "required query",
     { name: "body name" },
-    {
-      optionalQuery: "optional query"
-    }
+    { optionalHeader: "optional header", optionalQuery: "optional query" },
   );
   console.log(result);
 }

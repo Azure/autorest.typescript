@@ -10,7 +10,7 @@ import { assertEqualContent } from "../util/testUtil.js";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 
-const SCENARIOS_LOCATION = "./test/modularUnit/scenarios/samples/client";
+const SCENARIOS_LOCATION = "./test/modularUnit/scenarios/samples";
 
 const SCENARIOS_UPDATE = process.env["SCENARIOS_UPDATE"] === "true";
 

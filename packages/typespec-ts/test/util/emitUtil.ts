@@ -14,7 +14,11 @@ import {
   buildModels,
   buildModelsOptions
 } from "../../src/modular/emitModels.js";
-import { createDpgContextTestHelper, rlcEmitterFor } from "./testUtil.js";
+import {
+  compileTypeSpecFor,
+  createDpgContextTestHelper,
+  rlcEmitterFor
+} from "./testUtil.js";
 import {
   transformRLCModel,
   transformUrlInfo
@@ -569,43 +573,14 @@ export async function emitSamplesFromTypeSpec(
   examples: Record<string, string>,
   configs: Record<string, string> = {}
 ) {
-  const context = await rlcEmitterFor(
-    tspContent,
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-    examples
-  );
-  configs = {
+  const context = await compileTypeSpecFor(tspContent, examples);
+  const dpgContext = await createDpgContextTestHelper(context.program, false, {
     "examples-directory": `./examples`,
+    packageDetails: {
+      name: "@azure/internal-test"
+    },
     ...configs
-  };
-  const dpgContext = await createDpgContextTestHelper(
-    context.program,
-    false,
-    configs
-  );
-  const project = new Project();
-  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
-    string,
-    RLCModel
-  >();
-  const clients = getRLCClients(dpgContext);
-  const rlcModels = await transformRLCModel(clients[0]!, dpgContext);
-  serviceNameToRlcModelsMap.set(clients[0]!.service.name, rlcModels);
-  const modularCodeModel = await emitCodeModel(
-    dpgContext,
-    serviceNameToRlcModelsMap,
-    "",
-    project,
-    {
-      casing: "camel"
-    }
-  );
-  modularCodeModel;
+  });
   const files = await emitSamples(dpgContext);
   useBinder().resolveAllReferences();
   return files;

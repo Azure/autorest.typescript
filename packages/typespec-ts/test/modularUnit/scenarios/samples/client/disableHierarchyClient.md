@@ -91,14 +91,16 @@ Raw json files.
 
 ## Samples
 
-Generate samples for spread cases:
+Generate samples for non-hierarchy cases:
 
 ```ts samples
+import { TestingClient } from "@azure/internal-test";
+
 /**
  * This sample demonstrates how to show example opTopLevel
  *
  * @summary show example opTopLevel
- * x-ms-original-file: json_for_opTopLevel.json
+ * x-ms-original-file: 2021-10-01-preview/json_for_opTopLevel.json
  */
 async function opTopLevel() {
   const client = new TestingClient();
@@ -112,11 +114,13 @@ async function main() {
 
 main().catch(console.error);
 
+import { TestingClient } from "@azure/internal-test";
+
 /**
  * This sample demonstrates how to undefined
  *
  * @summary undefined
- * x-ms-original-file: json_for_opBEC.json
+ * x-ms-original-file: 2021-10-01-preview/json_for_opBEC.json
  */
 async function opBEC() {
   const client = new TestingClient();
@@ -130,11 +134,13 @@ async function main() {
 
 main().catch(console.error);
 
+import { TestingClient } from "@azure/internal-test";
+
 /**
  * This sample demonstrates how to show example opD
  *
  * @summary show example opD
- * x-ms-original-file: json_for_opD.json
+ * x-ms-original-file: 2021-10-01-preview/json_for_opD.json
  */
 async function opD() {
   const client = new TestingClient();

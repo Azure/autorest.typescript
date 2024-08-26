@@ -59,11 +59,13 @@ op read(@bodyRoot body: Widget): void;
 Generate samples for for different types:
 
 ```ts samples
+import { TestingClient } from "@azure/internal-test";
+
 /**
  * This sample demonstrates how to show example demo
  *
  * @summary show example demo
- * x-ms-original-file: json.json
+ * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function read() {
   const client = new TestingClient();
@@ -76,7 +78,7 @@ async function read() {
     arrValue: ["x", "y"],
     unionValue: test,
     nullValue: null,
-    additionalProp: "additional prop"
+    additionalProp: "additional prop",
   });
   console.log(result);
 }
