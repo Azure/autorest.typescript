@@ -254,7 +254,11 @@ function prepareMethodExampleParameters(
 ): ExampleValue[] {
   const parameters: ExampleValue[] = [];
   for (const param of method.operation.parameters) {
-    if (param.optional === true || param.onClient === true) {
+    if (
+      param.optional === true ||
+      param.onClient === true ||
+      param.type.kind === "constant"
+    ) {
       continue;
     }
     const exampleValue = parameterMap[param.serializedName];
@@ -326,9 +330,14 @@ function prepareClientExampleParameters(
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
   // required client-level parameters
   for (const param of method.operation.parameters) {
-    if (param.onClient === false || param.optional === true) {
+    if (
+      param.onClient === false ||
+      param.optional === true ||
+      param.type.kind === "constant"
+    ) {
       continue;
     }
+
     const exampleValue = parameterMap[param.serializedName];
     if (!exampleValue || !exampleValue.value) {
       // report diagnostic if required parameter is missing
@@ -342,15 +351,13 @@ function prepareClientExampleParameters(
       });
       continue;
     }
+
     if (
       param.name.toLowerCase() === "subscriptionid" &&
       isArm(dpgContext) &&
       exampleValue
     ) {
       subscriptionIdValue = getParameterValue(exampleValue.value);
-      continue;
-    }
-    if (exampleValue?.parameter.type.kind === "constant") {
       continue;
     }
     result.push({
