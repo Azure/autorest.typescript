@@ -100,129 +100,161 @@ describe("Scenarios", function () {
   describeScenarios(SCENARIOS_LOCATION);
 });
 
-function describeScenarios(location: string) {
+function describeScenarios(location: string): void {
   const children = readdirSync(location);
   for (const child of children) {
     const fullPath = path.join(location, child);
     const stat = statSync(fullPath);
     if (stat.isDirectory()) {
-      describe(child, function () {
-        describeScenarios(fullPath);
-      });
+      describeScenarios(fullPath);
     } else {
-      describeScenario(fullPath);
+      describeScenarioFile(fullPath);
     }
   }
 }
 
-function describeScenario(scenarioFile: string) {
-  let content = readFileSync(scenarioFile, { encoding: "utf-8" });
+function describeScenarioFile(scenarioFile: string): void {
+  describe(path.basename(scenarioFile), function () {
+    const scenarios = readScenarios(readFileSync(scenarioFile, "utf-8"));
+    for (const scenario of scenarios) {
+      (scenario.only ? describe.only : describe)(scenario.heading, function () {
+        const codeBlocks = scenario.parts.filter((x) => x.kind === "code");
+        const tspBlocks = codeBlocks.filter(
+          (x) => x.heading.startsWith("tsp") || x.heading.startsWith("typespec")
+        );
+        const outputCodeBlocks = codeBlocks.filter(
+          (x) => !tspBlocks.includes(x)
+        );
 
-  // Reads the first line, which should be a top-level header (h1).
-  // This becomes the name of the describe block for this scenario.
-  const scenarioName =
-    content.split("\n")[0]?.replace(/^#+\s+/, "") +
-    (SCENARIOS_UPDATE ? " (UPDATING)" : "");
+        const inputTsp = tspBlocks.map((x) => x.content).join("\n");
 
-  // Mark the test as .only if the test title starts with "only:". Useful for
-  // debuggging and updating.
-  (scenarioName.toLowerCase().startsWith("only:") ? describe.only : describe)(
-    scenarioName!,
-    function () {
-      const codeBlocks = getCodeBlocks(content);
+        const testCases: {
+          block: CodeScenarioPart;
+          fn: () => Promise<string>;
+        }[] = outputCodeBlocks
+          .map((x) => {
+            for (const [template, fn] of Object.entries(
+              OUTPUT_CODE_BLOCK_TYPES
+            )) {
+              const templateRegex = new RegExp(
+                "^" + template.replace(/\{(\w+)\}/g, "(?<$1>\\w+)") + "$"
+              );
 
-      // Find all TypeSpec codeblocks. If there are multiple, concat them and treat them as a single TypeSpec.
-      const typeSpecInput = codeBlocks
-        .filter((x) => x.heading === "tsp" || x.heading === "typespec")
-        .map((x) => x.content)
-        .join("\n");
-      const testCodeBlocks = codeBlocks.filter(
-        (x) => x.heading !== "tsp" && x.heading !== "typespec"
-      );
-
-      for (const codeBlock of testCodeBlocks) {
-        let tested = false;
-        for (const [template, fn] of Object.entries(OUTPUT_CODE_BLOCK_TYPES)) {
-          // This regex creates a named capture group for each template argument
-          const templateRegex = new RegExp(
-            "^" + template.replace(/\{(\w+)\}/g, "(?<$1>\\w+)") + "$"
-          );
-          const match = codeBlock.heading.match(templateRegex);
-
-          if (match !== null) {
-            const namedArgs = match.groups;
-
-            it(codeBlock.heading, async function () {
-              const result = await fn(typeSpecInput, namedArgs ?? {});
-
-              if (SCENARIOS_UPDATE) {
-                content = updateCodeBlock(
-                  content,
-                  codeBlock.heading,
-                  (await format(result, prettierTypeScriptOptions)).trim()
-                );
-              } else {
-                await assertEqualContent(codeBlock.content, result, true);
+              const match = x.heading.match(templateRegex);
+              if (match !== null) {
+                return {
+                  block: x,
+                  fn: () => fn(inputTsp, match.groups!)
+                };
               }
-            });
+            }
 
-            tested = true;
-          }
-        }
+            return undefined;
+          })
+          .filter((x) => x !== undefined);
 
-        if (!tested) {
-          // Empty test case to mark it as skipped
-          it.skip(codeBlock.heading, function () {});
-        }
-      }
+        for (const testCase of testCases) {
+          it(testCase.block.heading, async () => {
+            const result = await testCase.fn!();
 
-      // Update after all the tests in the scenario if write mode was enabled
-      afterEach(function () {
-        if (SCENARIOS_UPDATE) {
-          writeFileSync(scenarioFile, content);
+            if (SCENARIOS_UPDATE) {
+              // Update the content; this makes the tests pass
+              // This update also updates the `scenarios` object
+              testCase.block.content = await format(
+                result,
+                prettierTypeScriptOptions
+              );
+              // Also update the file in the test
+              writeFileSync(scenarioFile, writeScenarios(scenarios));
+            }
+
+            await assertEqualContent(result, testCase.block.content, true);
+          });
         }
       });
     }
-  );
+  });
 }
 
-interface CodeBlock {
+type ScenarioFile = Scenario[];
+
+interface Scenario {
+  only: boolean;
+  heading: string;
+  parts: ScenarioPart[];
+}
+
+interface TextScenarioPart {
+  kind: "text";
+  text: string;
+}
+
+interface CodeScenarioPart {
+  kind: "code";
   content: string;
   heading: string;
 }
 
-/**
- * Finds all code blocks in the input file text
- * @param fileText Full text of the input file
- * @returns List of code blocks in the source file with their heading (i.e. the language details after the first ```) and the content.
- */
-function getCodeBlocks(fileText: string): CodeBlock[] {
-  const matches = fileText.matchAll(
-    /^```(?<heading>[^\n]+)\n(?<content>(.|\n)*?)```$/gm
-  );
+type ScenarioPart = TextScenarioPart | CodeScenarioPart;
 
-  return [...matches].map((match) => ({
-    content: match.groups!["content"]!,
-    heading: match.groups!["heading"]!
-  }));
+function readScenarios(fileContent: string): ScenarioFile {
+  // Ignore first part of split since this is before the first h1
+  const [, ...rawParts] = fileContent.split(/^# /gm);
+
+  const scenarios: Scenario[] = [];
+
+  for (const part of rawParts) {
+    const [rawHeading, ...lines] = part.split("\n");
+    const isOnly = rawHeading!.startsWith("only: ");
+    const heading = isOnly
+      ? rawHeading!.substring("only: ".length)
+      : rawHeading!;
+
+    const content = lines.join("\n");
+
+    const partStrings = content.split(/^```/gm);
+    let inCodeBlock = false;
+    const parts: ScenarioPart[] = [];
+    for (const contentPart of partStrings) {
+      if (inCodeBlock) {
+        const [codeBlockHeading, ...lines] = contentPart.split("\n");
+        parts.push({
+          kind: "code",
+          heading: codeBlockHeading ?? "",
+          content: lines?.join("\n")
+        });
+      } else {
+        parts.push({
+          kind: "text",
+          text: contentPart
+        });
+      }
+
+      inCodeBlock = !inCodeBlock;
+    }
+
+    scenarios.push({
+      only: Boolean(isOnly),
+      heading,
+      parts
+    });
+  }
+
+  return scenarios;
 }
 
-/**
- * Update a code block's content in a given file, returning the updated file content.
- *
- * @param file The full text of the input file.
- * @param codeBlockHeading The heading of the code block whose content should be replaced.
- * @param newContent The content to replace the code block's content with.
- * @returns The new file content that results after replacing the content of the code block with the new content.
- */
-function updateCodeBlock(
-  file: string,
-  codeBlockHeading: string,
-  newContent: string
-): string {
-  const lines = file.split("\n");
-  const start = lines.indexOf("```" + codeBlockHeading) + 1;
-  const end = lines.indexOf("```", start);
+function writeScenarios(file: ScenarioFile): string {
+  let output = "";
+  for (const scenario of file) {
+    output += `# ${scenario.heading}\n`;
+    for (const part of scenario.parts) {
+      if (part.kind === "text") {
+        output += part.text;
+      } else {
+        output += `\`\`\`${part.heading}\n${part.content}\`\`\``;
+      }
+    }
+  }
 
-  return [...lines.slice(0, start), newContent, ...lines.slice(end)].join("\n");
+  return output;
 }
