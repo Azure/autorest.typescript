@@ -10,24 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary delete data product resource.
  * x-ms-original-file: 2023-11-15/DataProducts_Delete_MaximumSet_Gen.json
  */
-async function dataProductsDeleteMaximumSetGen(): void {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataProducts.delete(
-    "aoiresourceGroupName",
-    "dataproduct01",
-  );
-  console.log(result);
-}
-
-/**
- * This sample demonstrates how to delete data product resource.
- *
- * @summary delete data product resource.
- * x-ms-original-file: 2023-11-15/DataProducts_Delete_MinimumSet_Gen.json
- */
-async function dataProductsDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
+async function dataProductsDeleteMaximumSetGen() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
@@ -40,7 +23,6 @@ async function dataProductsDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSe
 
 async function main() {
   dataProductsDeleteMaximumSetGen();
-  dataProductsDeleteMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 
 main().catch(console.error);

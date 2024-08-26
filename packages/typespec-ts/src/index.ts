@@ -5,6 +5,7 @@ import * as fsextra from "fs-extra";
 
 import {
   AzureCoreDependencies,
+  AzureIdentityDependencies,
   AzurePollingDependencies,
   DefaultCoreDependencies
 } from "./modular/external-dependencies.js";
@@ -78,6 +79,7 @@ import { provideBinder } from "./framework/hooks/binder.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
+import { emitSamples } from "./modular/emitSamples.js";
 
 export * from "./lib.js";
 
@@ -117,7 +119,11 @@ export async function $onEmit(context: EmitContext) {
     { sourcesDir: modularSourcesDir }
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
-    ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+    ? {
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -259,6 +265,10 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
+    // Enable modular sample generation when explicitly set to true
+    if (emitterOptions?.generateSample === true) {
+      emitSamples(dpgContext);
+    }
     for (const subClient of modularCodeModel.clients) {
       buildModels(subClient, modularCodeModel);
       buildModelsOptions(subClient, modularCodeModel);

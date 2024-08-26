@@ -10,7 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary generate sas token for storage account.
  * x-ms-original-file: 2023-11-15/DataProducts_GenerateStorageAccountSasToken_MaximumSet_Gen.json
  */
-async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen(): void {
+async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
@@ -26,31 +26,8 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen(): void {
   console.log(result);
 }
 
-/**
- * This sample demonstrates how to generate sas token for storage account.
- *
- * @summary generate sas token for storage account.
- * x-ms-original-file: 2023-11-15/DataProducts_GenerateStorageAccountSasToken_MinimumSet_Gen.json
- */
-async function dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataProducts.generateStorageAccountSasToken(
-    "aoiresourceGroupName",
-    "dataproduct01",
-    {
-      startTimeStamp: new Date("2023-08-24T05:35:17.051Z"),
-      expiryTimeStamp: new Date("2023-08-24T05:35:17.051Z"),
-      ipAddress: "1.1.1.1",
-    },
-  );
-  console.log(result);
-}
-
 async function main() {
   dataProductsGenerateStorageAccountSasTokenMaximumSetGen();
-  dataProductsGenerateStorageAccountSasTokenMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 
 main().catch(console.error);

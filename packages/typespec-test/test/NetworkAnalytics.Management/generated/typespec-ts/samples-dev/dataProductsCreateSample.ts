@@ -10,7 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary create data product resource.
  * x-ms-original-file: 2023-11-15/DataProducts_Create_MaximumSet_Gen.json
  */
-async function dataProductsCreateMaximumSetGen(): void {
+async function dataProductsCreateMaximumSetGen() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsClient(credential, subscriptionId);
@@ -68,35 +68,8 @@ async function dataProductsCreateMaximumSetGen(): void {
   console.log(result);
 }
 
-/**
- * This sample demonstrates how to create data product resource.
- *
- * @summary create data product resource.
- * x-ms-original-file: 2023-11-15/DataProducts_Create_MinimumSet_Gen.json
- */
-async function dataProductsCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): void {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(credential, subscriptionId);
-  const result = await client.dataProducts.create(
-    "aoiresourceGroupName",
-    "dataproduct01",
-    {
-      location: "eastus",
-      properties: {
-        publisher: "Microsoft",
-        product: "MCC",
-        majorVersion: "1.0.0",
-      },
-      tags: { userSpecifiedKeyName: "userSpecifiedKeyValue" },
-    },
-  );
-  console.log(result);
-}
-
 async function main() {
   dataProductsCreateMaximumSetGen();
-  dataProductsCreateMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 
 main().catch(console.error);

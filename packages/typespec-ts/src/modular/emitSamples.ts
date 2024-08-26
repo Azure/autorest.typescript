@@ -30,8 +30,7 @@ interface ExampleValue {
 export function emitSamples(dpgContext: SdkContext): SourceFile[] {
   const generatedFiles: SourceFile[] = [];
   for (const client of dpgContext.sdkPackage.clients) {
-    const tmp = emitClassicalClientSamples(dpgContext, client);
-    generatedFiles.push(...tmp);
+    generatedFiles.push(...emitClassicalClientSamples(dpgContext, client));
   }
   return generatedFiles;
 }

@@ -112,7 +112,7 @@
     {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/hierarchy_generic",
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/NetworkAnalytics.Management",
       "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
