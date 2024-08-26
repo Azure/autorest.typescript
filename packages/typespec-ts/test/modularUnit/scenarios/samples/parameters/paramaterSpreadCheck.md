@@ -1,4 +1,6 @@
-# Should generate samples for spread cases
+# skip: Should generate samples for spread cases
+
+// FIXME: issue tracked in tcgc: https://github.com/Azure/typespec-azure/issues/1421
 
 Sample generation should handle operation-level parameter order successfully.
 
@@ -17,7 +19,7 @@ model CompositeRequest {
   name: string;
 
   @header
-  requiredHeader: string; // requiredHeader
+  requiredHeader: string; // required-header
 
   @header
   optionalHeader?: string;
@@ -26,6 +28,7 @@ model CompositeRequest {
   requiredQuery: string;
 
   @query
+  @clientName("renamedOptional", "javascript")
   optionalQuery?: string;
 
   @body
@@ -46,9 +49,9 @@ Raw json files.
   "operationId": "read",
   "parameters": {
     "name": "required path param",
-    "optionalQuery": "optional query",
-    "requiredHeader": "required header",
-    "optionalHeader": "optional header",
+    "optionalQuery": "renamed optional query",
+    "required-header": "required header",
+    "optional-header": "optional header",
     "requiredQuery": "required query",
     "body": {
       "name": "body name"
@@ -80,7 +83,7 @@ async function read() {
     "required header",
     "required query",
     { name: "body name" },
-    { optionalHeader: "optional header", optionalQuery: "optional query" },
+    { optionalHeader: "optional header", optionalQuery: "optional query" }
   );
   console.log(result);
 }

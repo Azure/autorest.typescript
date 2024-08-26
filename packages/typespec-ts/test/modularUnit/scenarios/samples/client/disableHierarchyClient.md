@@ -1,4 +1,4 @@
-# Should generate samples for hierarchy client
+# Should generate samples for disabled hierarchy client
 
 Sample generation should handle hierarchy client successfully.
 

@@ -202,11 +202,11 @@ async function employeesCreateOrUpdate() {
       properties: {
         age: 30,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms",
+        profile: "ms"
       },
       tags: { key2913: "urperxmkkhhkp" },
-      location: "itajgxyqozseoygnl",
-    },
+      location: "itajgxyqozseoygnl"
+    }
   );
   console.log(result);
 }
@@ -232,7 +232,7 @@ async function employeesDelete() {
   const client = new ContosoClient(credential, subscriptionId);
   const result = await client.employees.delete(
     "rgopenapi",
-    "5vX--BxSu3ux48rI4O9OQ569",
+    "5vX--BxSu3ux48rI4O9OQ569"
   );
   console.log(result);
 }

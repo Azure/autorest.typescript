@@ -10,7 +10,7 @@ import { assertEqualContent } from "../util/testUtil.js";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 
-const SCENARIOS_LOCATION = "./test/modularUnit/scenarios/samples";
+const SCENARIOS_LOCATION = "./test/modularUnit/scenarios";
 
 const SCENARIOS_UPDATE = process.env["SCENARIOS_UPDATE"] === "true";
 
@@ -97,24 +97,21 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result![0]!.getFunctionOrThrow(name!).getText();
   },
 
-  // Snapshot of a specific example generation
-  // Throws if more than one example generated
   "(ts|typescript) samples": async (tsp, {}, unknownArgs) => {
     if (!unknownArgs || !unknownArgs["examples"]) {
-      throw new Error("No example provided for samples");
+      throw new Error(`Expected 'examples' to be passed in as an argument`);
     }
     const configs = unknownArgs["configs"] as Record<string, string>;
     const examples = unknownArgs["examples"] as Record<string, string>;
     const counts = Object.keys(examples).length;
     const result = await emitSamplesFromTypeSpec(tsp, examples, configs);
-    assert.equal(result?.length, counts, "Expected exactly 1 source file");
+    assert.equal(result?.length, counts, `Expected exactly ${counts} files`);
     const text = result.map((x) => x.getFullText()).join("\n");
-    console.log("Result: ", text);
     return text;
   }
 };
 
-describe.only("Scenarios", function () {
+describe("Scenarios", function () {
   describeScenarios(SCENARIOS_LOCATION);
 });
 
@@ -241,6 +238,11 @@ function readScenarios(fileContent: string): ScenarioFile {
   for (const part of rawParts) {
     const [rawHeading, ...lines] = part.split("\n");
     const isOnly = rawHeading!.startsWith("only: ");
+    const isSkip = rawHeading!.startsWith("skip: ");
+    if (isSkip) {
+      console.log("Skipping scenario: ", rawHeading);
+      continue;
+    }
     const heading = isOnly
       ? rawHeading!.substring("only: ".length)
       : rawHeading!;

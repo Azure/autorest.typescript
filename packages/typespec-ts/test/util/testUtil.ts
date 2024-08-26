@@ -121,7 +121,6 @@ export async function compileTypeSpecFor(
   }
   const host: TestHost = await createRLCEmitterTestHost();
   host.addTypeSpecFile("main.tsp", `${prefix}${code}`);
-  console.log(`${prefix}${code}`);
   for (const example in exampleJson) {
     host.addTypeSpecFile(
       `./examples/2021-10-01-preview/${example}.json`,

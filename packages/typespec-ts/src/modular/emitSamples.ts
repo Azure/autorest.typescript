@@ -7,6 +7,7 @@ import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
+  SdkHttpOperationExample,
   SdkHttpParameterExample,
   SdkInitializationType,
   SdkServiceMethod,
@@ -21,6 +22,11 @@ import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import { reportDiagnostic } from "../index.js";
 import { NoTarget } from "@typespec/compiler";
 
+interface ExampleValue {
+  name: string;
+  value: string;
+  isOptional: boolean;
+}
 export function emitSamples(dpgContext: SdkContext): SourceFile[] {
   const generatedFiles: SourceFile[] = [];
   for (const client of dpgContext.sdkPackage.clients) {
@@ -131,9 +137,7 @@ function emitMethodSamples(
 
   for (const example of examples) {
     // build example
-    const exampleFunctionBody: string[] = [],
-      clientParams: string[] = [],
-      methodParams: string[] = [];
+    const exampleFunctionBody: string[] = [];
     const exampleName = normalizeName(
       escapeSpecialCharToSpace(example.name),
       NameType.Method
@@ -143,95 +147,47 @@ function emitMethodSamples(
       returnType: "void",
       body: exampleFunctionBody
     };
-    const parameterMap: Record<string, SdkHttpParameterExample> = {};
-    example.parameters.forEach(
-      (param) =>
-        (parameterMap[(param.parameter as any).serializedName ?? param.parameter.name] =
-          param)
-    );
+    const parameterMap: Record<string, SdkHttpParameterExample> =
+      buildParameterValueMap(example);
     // prepare client-level parameters
-    if (options.credentialType) {
-      // Only support DefaultAzureCredential for now
+    const clientParamValues = prepareClientExampleParameters(
+      dpgContext,
+      method,
+      parameterMap,
+      options.credentialType
+    );
+    const clientParams: string[] = clientParamValues
+      .filter((p) => !p.isOptional)
+      .map((param) => {
+        exampleFunctionBody.push(`const ${param.name} = ${param.value};`);
+        return param.name;
+      });
+    const optionalClientParams = clientParamValues
+      .filter((p) => p.isOptional)
+      .map((param) => `${param.name}: ${param.value}`);
+    if (optionalClientParams.length > 0) {
       exampleFunctionBody.push(
-        `const credential = new ${resolveReference(
-          AzureIdentityDependencies.DefaultAzureCredential
-        )}();`
+        `const clientOptions = {${optionalClientParams.join(", ")}};`
       );
-      clientParams.push("credential");
-    }
-    let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
-    for (const param of example.parameters) {
-      if (
-        param.parameter.name.toLowerCase() === "subscriptionid" &&
-        isArm(dpgContext)
-      ) {
-        subscriptionIdValue = getParameterValue(param.value);
-        continue;
-      }
-      if (
-        param.parameter.type.kind === "constant" ||
-        param.parameter.onClient === false
-      ) {
-        continue;
-      }
-      const paramName = param.parameter.name;
-      exampleFunctionBody.push(
-        `const ${paramName} = ${getParameterValue(param.value)};`
-      );
-      clientParams.push(paramName);
-    }
-    // always add subscriptionId for ARM clients
-    if (isArm(dpgContext)) {
-      exampleFunctionBody.push(
-        `const subscriptionId = ${subscriptionIdValue};`
-      );
-      clientParams.push("subscriptionId");
+      clientParams.push("clientOptions");
     }
     exampleFunctionBody.push(
       `const client = new ${options.clientName}(${clientParams.join(", ")});`
     );
 
     // prepare operation-level parameters
-    // required path, header, query parameters
-    for (const param of method.operation.parameters) {
-      if (param.optional === true || param.clientDefaultValue !== undefined) {
-        continue;
-      }
-      const example = parameterMap[param.serializedName];
-      if (!example || !example.value) {
-        // report diagnostic if required parameter is missing
-        reportDiagnostic(dpgContext.program, {
-          code: "required-sample-parameter",
-          format: {
-            exampleName: exampleName,
-            paramName: param.serializedName
-          },
-          target: NoTarget
-        });
-        continue;
-      }
-      if (example.parameter.onClient === true) {
-        continue;
-      }
-      methodParams.push(`${getParameterValue(example.value)}`);
-    }
-    // required body parameters
-    const bodySerializedName = method.operation.bodyParam?.name;
-    if (bodySerializedName && parameterMap[bodySerializedName]) {
-      const example = parameterMap[bodySerializedName];
-      if (example && example.value) {
-        methodParams.push(`${getParameterValue(example.value)}`);
-      }
-    }
-    // optional parameters
-    const optionalParams = method.operation.parameters
-      .filter(
-        (param) => param.optional === true && parameterMap[param.serializedName]
-      )
-      .map((param) => parameterMap[param.serializedName]!)
-      .map(
-        (param) => `${param.parameter.name}: ${getParameterValue(param.value)}`
-      );
+    const methodParamValues = prepareMethodExampleParameters(
+      dpgContext,
+      exampleName,
+      method,
+      parameterMap
+    );
+    const methodParams = methodParamValues
+      .filter((p) => !p.isOptional)
+      .map((p) => `${p.value}`);
+    const optionalParams = methodParamValues
+      .filter((p) => p.isOptional)
+      .map((param) => `${param.name}: ${param.value}`);
     if (optionalParams.length > 0) {
       methodParams.push(`{${optionalParams.join(", ")}}`);
     }
@@ -278,6 +234,158 @@ function emitMethodSamples(
 
   main().catch(console.error);`);
   return sourceFile;
+}
+
+function buildParameterValueMap(example: SdkHttpOperationExample) {
+  const parameterMap: Record<string, SdkHttpParameterExample> = {};
+  example.parameters.forEach(
+    (param) =>
+      (parameterMap[
+        (param.parameter as any).serializedName ?? param.parameter.name
+      ] = param)
+  );
+  return parameterMap;
+}
+
+function prepareMethodExampleParameters(
+  dpgContext: SdkContext,
+  exampleName: string,
+  method: SdkServiceMethod<SdkServiceOperation>,
+  parameterMap: Record<string, SdkHttpParameterExample>
+): ExampleValue[] {
+  const parameters: ExampleValue[] = [];
+  for (const param of method.operation.parameters) {
+    if (param.optional === true || param.onClient === true) {
+      continue;
+    }
+    const exampleValue = parameterMap[param.serializedName];
+    if (!exampleValue || !exampleValue.value) {
+      // report diagnostic if required parameter is missing
+      reportDiagnostic(dpgContext.program, {
+        code: "required-sample-parameter",
+        format: {
+          exampleName: exampleName,
+          paramName: param.name
+        },
+        target: NoTarget
+      });
+      continue;
+    }
+
+    parameters.push({
+      name: param.name,
+      value: getParameterValue(exampleValue.value),
+      isOptional: false
+    });
+  }
+  // required/optional body parameters
+  const bodyName = method.operation.bodyParam?.name;
+  if (bodyName && parameterMap[bodyName]) {
+    const example = parameterMap[bodyName];
+    if (example && example.value) {
+      parameters.push({
+        name: bodyName,
+        value: getParameterValue(example.value),
+        isOptional: Boolean(method.operation.bodyParam?.optional)
+      });
+    }
+  }
+  // optional parameters
+  method.operation.parameters
+    .filter(
+      (param) => param.optional === true && parameterMap[param.serializedName]
+    )
+    .map((param) => parameterMap[param.serializedName]!)
+    .forEach((param) => {
+      parameters.push({
+        name: param.parameter.name,
+        value: getParameterValue(param.value),
+        isOptional: true
+      });
+    });
+  return parameters;
+}
+
+function prepareClientExampleParameters(
+  dpgContext: SdkContext,
+  method: SdkServiceMethod<SdkServiceOperation>,
+  parameterMap: Record<string, SdkHttpParameterExample>,
+  credentialType?: string
+): ExampleValue[] {
+  // TODO: blocked by tcgc issue: https://github.com/Azure/typespec-azure/issues/1419
+  const result: ExampleValue[] = [];
+  if (credentialType) {
+    // Only support DefaultAzureCredential for now
+    result.push({
+      name: "credential",
+      value: `new ${resolveReference(
+        AzureIdentityDependencies.DefaultAzureCredential
+      )}()`,
+      isOptional: false
+    });
+  }
+  let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
+  // required client-level parameters
+  for (const param of method.operation.parameters) {
+    if (param.onClient === false || param.optional === true) {
+      continue;
+    }
+    const exampleValue = parameterMap[param.serializedName];
+    if (!exampleValue || !exampleValue.value) {
+      // report diagnostic if required parameter is missing
+      reportDiagnostic(dpgContext.program, {
+        code: "required-sample-parameter",
+        format: {
+          exampleName: method.name,
+          paramName: param.name
+        },
+        target: NoTarget
+      });
+      continue;
+    }
+    if (
+      param.name.toLowerCase() === "subscriptionid" &&
+      isArm(dpgContext) &&
+      exampleValue
+    ) {
+      subscriptionIdValue = getParameterValue(exampleValue.value);
+      continue;
+    }
+    if (exampleValue?.parameter.type.kind === "constant") {
+      continue;
+    }
+    result.push({
+      name: exampleValue.parameter.name,
+      value: getParameterValue(exampleValue.value),
+      isOptional: Boolean(param.optional)
+    });
+  }
+  // always add subscriptionId for ARM clients
+  if (isArm(dpgContext)) {
+    result.push({
+      name: "subscriptionId",
+      value: subscriptionIdValue,
+      isOptional: false
+    });
+  }
+  // optional parameters
+  method.operation.parameters
+    .filter(
+      (param) =>
+        param.onClient === true &&
+        param.optional === true &&
+        parameterMap[param.serializedName]
+    )
+    .map((param) => parameterMap[param.serializedName]!)
+    .forEach((param) => {
+      result.push({
+        name: param.parameter.name,
+        value: getParameterValue(param.value),
+        isOptional: true
+      });
+    });
+
+  return result;
 }
 
 function getParameterValue(value: SdkTypeExample): string {
@@ -358,13 +466,7 @@ function escapeSpecialCharToSpace(str: string) {
   if (!str) {
     return str;
   }
-  return str
-    .replace(/_/g, " ")
-    .replace(/\//g, " Or ")
-    .replace(/,|\.|\(|\)/g, " ")
-    .replace("'s ", " ")
-    .replace(/\[/g, " ")
-    .replace(/\]/g, " ");
+  return str.replace(/_|,|\.|\(|\)|'s |\[|\]/g, " ").replace(/\//g, " Or ");
 }
 
 // FIXME: This is a temporary solution to get the credential type

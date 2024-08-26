@@ -19,6 +19,8 @@ model Widget {
   arrValue: string[];
   unionValue: Foo | string;
   nullValue: null;
+  @clientName("jsClientName", "javascript")
+  renamedProp: string;
   ...Record<string>;
 }
 
@@ -45,7 +47,8 @@ op read(@bodyRoot body: Widget): void;
       "arrValue": ["x", "y"],
       "unionValue": "test",
       "nullValue": null,
-      "additionalProp": "additional prop"
+      "additionalProp": "additional prop",
+      "renamedProp": "prop renamed"
     }
   },
   "responses": {
@@ -78,7 +81,8 @@ async function read() {
     arrValue: ["x", "y"],
     unionValue: test,
     nullValue: null,
-    additionalProp: "additional prop",
+    jsClientName: "prop renamed",
+    additionalProp: "additional prop"
   });
   console.log(result);
 }
