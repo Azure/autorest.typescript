@@ -10,13 +10,7 @@ You can set the environment variable `SCENARIOS_UPDATE` to `true` to run the sna
 
 ## Only running specific scenarios
 
-You can add `only:` to the top-level heading of the scenario document to run only that scenario. This is useful when you are working on a specific scenario and want to run only that scenario. For example, the heading for this test would be changed to
-
-```
-# only: Example scenario
-```
-
-This is the equivalent of using `it.only` for a Mocha/vitest test.
+You can add `only:` to the top-level heading of the scenario document to run only that scenario. This is useful when you are working on a specific scenario and want to run only that scenario. For example, the heading for this test would be changed to `# only: Example scenario`. This is the equivalent of using `it.only` for a Mocha/vitest test.
 
 ## TypeSpec
 
@@ -76,13 +70,13 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
-  createRestError,
+  createRestError
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   return context
     .path("/{id}", id)
@@ -90,7 +84,7 @@ export function _readSend(
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Example> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -98,14 +92,14 @@ export async function _readDeserialize(
   }
 
   return {
-    id: result.body["id"],
+    id: result.body["id"]
   };
 }
 
 export async function read(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Example> {
   const result = await _readSend(context, id, options);
   return _readDeserialize(result);
@@ -118,7 +112,7 @@ Or you can extract a specific operation using `ts operations function <operation
 export async function read(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Example> {
   const result = await _readSend(context, id, options);
   return _readDeserialize(result);
