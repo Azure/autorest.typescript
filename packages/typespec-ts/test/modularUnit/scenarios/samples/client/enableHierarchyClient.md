@@ -34,6 +34,12 @@ interface D {
 op opTopLevel(@body body: A): void;
 ```
 
+This is the tspconfig.yaml.
+
+```yaml
+hierarchyClient: true
+```
+
 ## Example
 
 Raw json files.

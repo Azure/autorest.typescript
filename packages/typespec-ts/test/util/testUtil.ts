@@ -109,7 +109,8 @@ ${code}
 
 export async function createDpgContextTestHelper(
   program: Program,
-  enableModelNamespace = false
+  enableModelNamespace = false,
+  configs: Record<string, string> = {}
 ): Promise<SdkContext> {
   const outputProject = new Project({ useInMemoryFileSystem: true });
   provideContext("rlcMetaTree", new Map());
@@ -119,9 +120,7 @@ export async function createDpgContextTestHelper(
 
   const context = await createContextWithDefaultOptions({
     program,
-    options: {
-      "examples-directory": `./examples`
-    } as any
+    options: configs as any
   } as EmitContext);
 
   const sdkContext = {
@@ -130,7 +129,7 @@ export async function createDpgContextTestHelper(
     rlcOptions: {
       flavor: "azure",
       enableModelNamespace,
-      hierarchyClient: true
+      ...configs
     },
     generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts",

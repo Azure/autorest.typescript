@@ -103,9 +103,10 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     if (!unknownArgs || !unknownArgs["examples"]) {
       throw new Error("No example provided for samples");
     }
+    const configs = unknownArgs["configs"] as Record<string, string>;
     const examples = unknownArgs["examples"] as Record<string, string>;
     const counts = Object.keys(examples).length;
-    const result = await emitSamplesFromTypeSpec(tsp, examples);
+    const result = await emitSamplesFromTypeSpec(tsp, examples, configs);
     assert.equal(result?.length, counts, "Expected exactly 1 source file");
     const text = result.map((x) => x.getFullText()).join("\n");
     console.log("Result: ", text);
@@ -146,8 +147,15 @@ function describeScenarioFile(scenarioFile: string): void {
         for (const block of jsonBlocks) {
           examples[block.heading.trim().replace(/ /g, "_")] = block.content;
         }
+        const yamlConfigs = codeBlocks.filter((x) =>
+          x.heading.startsWith("yaml")
+        );
+        const configs = parseSimpleYaml(yamlConfigs.map((x) => x.content));
         const outputCodeBlocks = codeBlocks.filter(
-          (x) => !tspBlocks.includes(x) && !jsonBlocks.includes(x)
+          (x) =>
+            !tspBlocks.includes(x) &&
+            !jsonBlocks.includes(x) &&
+            !yamlConfigs.includes(x)
         );
 
         const inputTsp = tspBlocks.map((x) => x.content).join("\n");
@@ -170,7 +178,8 @@ function describeScenarioFile(scenarioFile: string): void {
               if (match !== null) {
                 return {
                   block: x,
-                  fn: () => fn(inputTsp, match.groups! ?? {}, { examples })
+                  fn: () =>
+                    fn(inputTsp, match.groups! ?? {}, { examples, configs })
                 };
               }
             }
@@ -283,4 +292,27 @@ function writeScenarios(file: ScenarioFile): string {
   }
 
   return output;
+}
+
+function parseSimpleYaml(yamlConfigs: string[]): Record<string, string> {
+  // This is a simple yaml parser that assumes that there are no nested objects.
+  // It splits the yaml into lines, then splits each line by the colon and
+  // creates a record from the key-value pairs.
+  // This is a very simple parser and will not work for all yaml files.
+  let record: Record<string, string> = {};
+  for (const yaml of yamlConfigs) {
+    const each = yaml
+      .split("\n")
+      .map((x) => x.split(":"))
+      .filter((x) => x.length === 2)
+      .reduce(
+        (acc, [key, value]) => {
+          acc[key!] = JSON.parse(value!);
+          return acc;
+        },
+        {} as Record<string, string>
+      );
+    record = { ...record, ...each };
+  }
+  return record;
 }

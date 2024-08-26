@@ -566,7 +566,8 @@ export async function emitModularClientFromTypeSpec(
 
 export async function emitSamplesFromTypeSpec(
   tspContent: string,
-  examples: Record<string, string>
+  examples: Record<string, string>,
+  configs: Record<string, string> = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -578,7 +579,15 @@ export async function emitSamplesFromTypeSpec(
     false,
     examples
   );
-  const dpgContext = await createDpgContextTestHelper(context.program);
+  configs = {
+    "examples-directory": `./examples`,
+    ...configs
+  };
+  const dpgContext = await createDpgContextTestHelper(
+    context.program,
+    false,
+    configs
+  );
   const project = new Project();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
