@@ -72,7 +72,7 @@ import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { env } from "process";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
-import { getRLCClients } from "./utils/clientUtils.js";
+import { getRLCClients, isArm } from "./utils/clientUtils.js";
 import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
@@ -265,9 +265,14 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
-    // Enable modular sample generation when explicitly set to true
-    if (emitterOptions?.generateSample === true) {
-      emitSamples(dpgContext);
+    // Enable modular sample generation when explicitly set to true or MPG
+    if (emitterOptions?.generateSample === true || isArm(dpgContext)) {
+      const samples = emitSamples(dpgContext);
+      // Refine the rlc sample generation logic
+      // TODO: remember to remove this out when RLC is splitted from Modular
+      if (samples.length > 0) {
+        dpgContext.rlcOptions!.generateSample = true;
+      }
     }
     for (const subClient of modularCodeModel.clients) {
       buildModels(subClient, modularCodeModel);

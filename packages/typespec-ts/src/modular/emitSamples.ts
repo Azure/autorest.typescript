@@ -21,6 +21,7 @@ import { join } from "path";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import { reportDiagnostic } from "../index.js";
 import { NoTarget } from "@typespec/compiler";
+import { isArm } from "../utils/clientUtils.js";
 
 interface ExampleValue {
   name: string;
@@ -483,8 +484,4 @@ function getCredentialType(
     (p) => p.kind === "credential"
   )?.type;
   return credentialParameter ? "Credential" : undefined;
-}
-
-function isArm(dpgContext: SdkContext): boolean {
-  return dpgContext.rlcOptions?.azureArm ?? dpgContext.arm ?? false;
 }
