@@ -72,7 +72,7 @@ import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { env } from "process";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
-import { getRLCClients, isArm } from "./utils/clientUtils.js";
+import { getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
