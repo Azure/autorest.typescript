@@ -1009,7 +1009,6 @@ model CertificateListResult {
 The result of listing the files on a Compute Node, or the files associated with
 a Task on a Compute Node.
 """)
-@pagedResult
 model NodeFileListResult {
   @doc("The list of files.")
   @items
@@ -1037,6 +1036,7 @@ model NodeFile {
 }
 
 @doc("test child paging model")
+@pagedResult
 model ChildModel extends NodeFileListResult {
   @doc("test")
   test?: string;

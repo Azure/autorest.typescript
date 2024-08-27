@@ -43,6 +43,7 @@ import {
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
   NodeVMExtension,
+  ChildModel,
   BatchTaskCreateOptions,
   BatchTask,
   BatchTaskCollection,
@@ -81,7 +82,6 @@ import {
   _BatchPoolListResult,
   _BatchTaskListResult,
   _CertificateListResult,
-  _ChildModel,
   _NodeVMExtensionList,
   _PoolListUsageMetricsResult,
   _PoolNodeCountsListResult,
@@ -11834,7 +11834,7 @@ export function _listTaskFilesSend(
 
 export async function _listTaskFilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_ChildModel> {
+): Promise<ChildModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -11869,19 +11869,14 @@ export async function _listTaskFilesDeserialize(
 }
 
 /** Lists the files in a Task's directory on its Compute Node. */
-export function listTaskFiles(
+export async function listTaskFiles(
   context: Client,
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<_ChildModel> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listTaskFilesSend(context, jobId, taskId, options),
-    _listTaskFilesDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
-  );
+): Promise<ChildModel> {
+  const result = await _listTaskFilesSend(context, jobId, taskId, options);
+  return _listTaskFilesDeserialize(result);
 }
 
 export function _createNodeUserSend(
@@ -13538,7 +13533,7 @@ export function _listNodeFilesSend(
 
 export async function _listNodeFilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_ChildModel> {
+): Promise<ChildModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -13573,17 +13568,12 @@ export async function _listNodeFilesDeserialize(
 }
 
 /** Lists all of the files in Task directories on the specified Compute Node. */
-export function listNodeFiles(
+export async function listNodeFiles(
   context: Client,
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<_ChildModel> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listNodeFilesSend(context, poolId, nodeId, options),
-    _listNodeFilesDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
-  );
+): Promise<ChildModel> {
+  const result = await _listNodeFilesSend(context, poolId, nodeId, options);
+  return _listNodeFilesDeserialize(result);
 }

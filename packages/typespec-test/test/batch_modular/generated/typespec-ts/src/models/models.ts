@@ -788,7 +788,7 @@ export interface _NodeVMExtensionList {
  * The result of listing the files on a Compute Node, or the files associated with
  * a Task on a Compute Node.
  */
-export interface _NodeFileListResult {
+export interface NodeFileListResult {
   /** The list of files. */
   value?: NodeFile[];
   /** The URL to get the next set of results. */
@@ -822,7 +822,7 @@ export interface FileProperties {
 }
 
 /** test child paging model */
-export interface _ChildModel extends _NodeFileListResult {
+export interface ChildModel extends NodeFileListResult {
   /** test */
   test?: string;
 }
