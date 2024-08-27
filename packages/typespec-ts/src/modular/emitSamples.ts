@@ -36,7 +36,7 @@ import {
 } from "../utils/credentialUtils.js";
 
 /**
- * Interfaces for the example generations
+ * Interfaces for samples generations
  */
 interface ExampleValue {
   name: string;
