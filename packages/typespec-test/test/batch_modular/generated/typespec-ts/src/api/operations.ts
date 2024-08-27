@@ -43,7 +43,6 @@ import {
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
   NodeVMExtension,
-  NodeFile,
   BatchTaskCreateOptions,
   BatchTask,
   BatchTaskCollection,
@@ -82,7 +81,7 @@ import {
   _BatchPoolListResult,
   _BatchTaskListResult,
   _CertificateListResult,
-  _NodeFileListResult,
+  _ChildModel,
   _NodeVMExtensionList,
   _PoolListUsageMetricsResult,
   _PoolNodeCountsListResult,
@@ -11835,7 +11834,7 @@ export function _listTaskFilesSend(
 
 export async function _listTaskFilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NodeFileListResult> {
+): Promise<_ChildModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -11865,6 +11864,7 @@ export async function _listTaskFilesDeserialize(
             };
           }),
     "odata.nextLink": result.body["odata.nextLink"],
+    test: result.body["test"],
   };
 }
 
@@ -11874,7 +11874,7 @@ export function listTaskFiles(
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<NodeFile> {
+): PagedAsyncIterableIterator<_ChildModel> {
   return buildPagedAsyncIterator(
     context,
     () => _listTaskFilesSend(context, jobId, taskId, options),
@@ -13538,7 +13538,7 @@ export function _listNodeFilesSend(
 
 export async function _listNodeFilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NodeFileListResult> {
+): Promise<_ChildModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -13568,6 +13568,7 @@ export async function _listNodeFilesDeserialize(
             };
           }),
     "odata.nextLink": result.body["odata.nextLink"],
+    test: result.body["test"],
   };
 }
 
@@ -13577,7 +13578,7 @@ export function listNodeFiles(
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<NodeFile> {
+): PagedAsyncIterableIterator<_ChildModel> {
   return buildPagedAsyncIterator(
     context,
     () => _listNodeFilesSend(context, poolId, nodeId, options),

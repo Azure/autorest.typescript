@@ -821,6 +821,12 @@ export interface FileProperties {
   fileMode?: string;
 }
 
+/** test child paging model */
+export interface _ChildModel extends _NodeFileListResult {
+  /** test */
+  test?: string;
+}
+
 /** Options for creating an Azure Batch Task. */
 export interface BatchTaskCreateOptions {
   /** A string that uniquely identifies the Task within the Job. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within a Job that differ only by case). */

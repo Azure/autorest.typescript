@@ -14,7 +14,6 @@ import {
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
   NodeVMExtension,
-  NodeFile,
   BatchTaskCreateOptions,
   BatchTask,
   BatchTaskCollection,
@@ -44,6 +43,7 @@ import {
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
   BatchApplication,
+  _ChildModel,
 } from "./models/models.js";
 import {
   ListApplicationsOptionalParams,
@@ -958,7 +958,7 @@ export class BatchClient {
     jobId: string,
     taskId: string,
     options: ListTaskFilesOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<NodeFile> {
+  ): PagedAsyncIterableIterator<_ChildModel> {
     return listTaskFiles(this._client, jobId, taskId, options);
   }
 
@@ -1187,7 +1187,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     options: ListNodeFilesOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<NodeFile> {
+  ): PagedAsyncIterableIterator<_ChildModel> {
     return listNodeFiles(this._client, poolId, nodeId, options);
   }
 }
