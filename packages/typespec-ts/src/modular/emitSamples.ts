@@ -12,106 +12,99 @@ import {
   SdkInitializationType,
   SdkServiceMethod,
   SdkServiceOperation,
-  SdkType,
   SdkTypeExample
 } from "@azure-tools/typespec-client-generator-core";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  isAzurePackage,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import { reportDiagnostic } from "../index.js";
 import { NoTarget } from "@typespec/compiler";
 import { isArm } from "../utils/clientUtils.js";
+import {
+  buildPropertyNameMapper,
+  isSpreadBodyParameter
+} from "./helpers/typeHelpers.js";
+import { getClassicalClientName } from "./helpers/namingHelpers.js";
+import {
+  hasKeyCredential,
+  hasTokenCredential
+} from "../utils/credentialUtils.js";
 
+/**
+ * Interfaces for the example generations
+ */
 interface ExampleValue {
   name: string;
   value: string;
   isOptional: boolean;
 }
+
+interface EmitSampleOptions {
+  topLevelClient: SdkClientType<SdkServiceOperation>;
+  generatedFiles: SourceFile[];
+  classicalMethodPrefix?: string;
+}
+/**
+ * Helpers to emit samples
+ */
 export function emitSamples(dpgContext: SdkContext): SourceFile[] {
   const generatedFiles: SourceFile[] = [];
   for (const client of dpgContext.sdkPackage.clients) {
-    generatedFiles.push(...emitClassicalClientSamples(dpgContext, client));
+    emitClientSamplesRecursively(dpgContext, client, {
+      topLevelClient: client,
+      generatedFiles
+    });
   }
   return generatedFiles;
 }
 
-function emitClassicalClientSamples(
+function emitClientSamplesRecursively(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
-  operationGroupPrefix?: string
-) {
-  // build client-level parameters
-  const clientName = client.name;
-  const credentialParameterType = getCredentialType(client.initialization);
-  const generatedFiles: SourceFile[] = [];
-  emitClassicalClientSamplesDfs(
-    dpgContext,
-    client,
-    clientName,
-    generatedFiles,
-    credentialParameterType,
-    operationGroupPrefix ?? ""
-  );
-  return generatedFiles;
-}
-
-function emitClassicalClientSamplesDfs(
-  dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
-  clientName: string,
-  generatedFiles: SourceFile[],
-  credentialParameterType?: string,
-  operationGroupPrefix?: string
+  options: EmitSampleOptions
 ) {
   for (const operationOrGroup of client.methods) {
-    if (operationOrGroup.kind === "clientaccessor") {
-      let prefix = normalizeName(
-        operationOrGroup.response.name,
-        NameType.Property
-      );
-      // append hierarchy prefix if hierarchyClient is enabled
-      if (dpgContext.rlcOptions?.hierarchyClient === true) {
-        prefix =
-          (operationGroupPrefix ? `${operationGroupPrefix}.` : "") + prefix;
-      }
-
-      emitClassicalClientSamplesDfs(
-        dpgContext,
-        operationOrGroup.response,
-        clientName,
-        generatedFiles,
-        credentialParameterType,
-        prefix
-      );
-    } else {
-      const sample = emitMethodSamples(dpgContext, operationOrGroup, {
-        clientName,
-        credentialType: credentialParameterType,
-        operationGroupPrefix
-      });
-      if (sample) {
-        generatedFiles.push(sample);
-      }
+    // handle client-level methods
+    if (operationOrGroup.kind !== "clientaccessor") {
+      emitMethodSamples(dpgContext, operationOrGroup, options);
+      continue;
     }
+    // handle operation group
+    let prefix = normalizeName(
+      operationOrGroup.response.name,
+      NameType.Property
+    );
+    // append hierarchy prefix if hierarchyClient is enabled
+    if (dpgContext.rlcOptions?.hierarchyClient === true) {
+      prefix =
+        (options.classicalMethodPrefix
+          ? `${options.classicalMethodPrefix}.`
+          : "") + prefix;
+    }
+
+    emitClientSamplesRecursively(dpgContext, operationOrGroup.response, {
+      ...options,
+      classicalMethodPrefix: prefix
+    });
   }
 }
 
 function emitMethodSamples(
   dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
-  options: {
-    clientName: string;
-    credentialType?: string;
-    operationGroupPrefix?: string;
-  }
+  options: EmitSampleOptions
 ): SourceFile | undefined {
   const examples = method.operation.examples ?? [];
   if (examples.length === 0) {
     return;
   }
   const project = useContext("outputProject");
-  const operationPrefix = `${options.operationGroupPrefix ?? ""} ${
+  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
     method.name
   }`;
   const sampleFolder = join(
@@ -131,12 +124,11 @@ function emitMethodSamples(
   if (dpgContext.rlcOptions?.packageDetails?.name) {
     sourceFile.addImportDeclaration({
       moduleSpecifier: dpgContext.rlcOptions?.packageDetails?.name,
-      namedImports: [options.clientName]
+      namedImports: [getClassicalClientName(options.topLevelClient)]
     });
   }
 
   for (const example of examples) {
-    // build example
     const exampleFunctionBody: string[] = [];
     const exampleName = normalizeName(
       escapeSpecialCharToSpace(example.name),
@@ -154,7 +146,7 @@ function emitMethodSamples(
       dpgContext,
       method,
       parameterMap,
-      options.credentialType
+      options.topLevelClient
     );
     const clientParams: string[] = clientParamValues
       .filter((p) => !p.isOptional)
@@ -172,7 +164,9 @@ function emitMethodSamples(
       clientParams.push("clientOptions");
     }
     exampleFunctionBody.push(
-      `const client = new ${options.clientName}(${clientParams.join(", ")});`
+      `const client = new ${getClassicalClientName(
+        options.topLevelClient
+      )}(${clientParams.join(", ")});`
     );
 
     // prepare operation-level parameters
@@ -191,8 +185,8 @@ function emitMethodSamples(
     if (optionalParams.length > 0) {
       methodParams.push(`{${optionalParams.join(", ")}}`);
     }
-    const prefix = options.operationGroupPrefix
-      ? `${options.operationGroupPrefix}.`
+    const prefix = options.classicalMethodPrefix
+      ? `${options.classicalMethodPrefix}.`
       : "";
     const isPaging = method.kind === "paging";
     const methodCall = `client.${prefix}${method.name}(${methodParams.join(
@@ -233,6 +227,7 @@ function emitMethodSamples(
   }
 
   main().catch(console.error);`);
+  options.generatedFiles.push(sourceFile);
   return sourceFile;
 }
 
@@ -283,13 +278,36 @@ function prepareMethodExampleParameters(
     });
   }
   // required/optional body parameters
-  const bodyName = method.operation.bodyParam?.name;
-  if (bodyName && parameterMap[bodyName]) {
-    const example = parameterMap[bodyName];
-    if (example && example.value) {
+  const bodyParam = method.operation.bodyParam;
+  const bodyName = bodyParam?.name;
+  const bodyExample = parameterMap[bodyName ?? ""];
+  if (
+    bodyParam &&
+    bodyName &&
+    bodyExample &&
+    bodyExample &&
+    bodyExample.value
+  ) {
+    if (
+      isSpreadBodyParameter(bodyParam) &&
+      bodyParam.type.kind === "model" &&
+      bodyExample.value.kind === "model"
+    ) {
+      for (const prop of bodyParam.type.properties) {
+        const propExample = bodyExample.value.value[prop.name];
+        if (!propExample) {
+          continue;
+        }
+        parameters.push({
+          name: prop.name,
+          value: getParameterValue(propExample),
+          isOptional: Boolean(prop.optional)
+        });
+      }
+    } else {
       parameters.push({
         name: bodyName,
-        value: getParameterValue(example.value),
+        value: getParameterValue(bodyExample.value),
         isOptional: Boolean(method.operation.bodyParam?.optional)
       });
     }
@@ -314,20 +332,19 @@ function prepareClientExampleParameters(
   dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
   parameterMap: Record<string, SdkHttpParameterExample>,
-  credentialType?: string
+  topLevelClient: SdkClientType<SdkServiceOperation>
 ): ExampleValue[] {
-  // TODO: blocked by tcgc issue: https://github.com/Azure/typespec-azure/issues/1419
+  // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
+  // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
-  if (credentialType) {
-    // Only support DefaultAzureCredential for now
-    result.push({
-      name: "credential",
-      value: `new ${resolveReference(
-        AzureIdentityDependencies.DefaultAzureCredential
-      )}()`,
-      isOptional: false
-    });
+  const credentialExampleValue = getCredentialExampleValue(
+    dpgContext,
+    topLevelClient.initialization
+  );
+  if (credentialExampleValue) {
+    result.push(credentialExampleValue);
   }
+
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
   // required client-level parameters
   for (const param of method.operation.parameters) {
@@ -395,6 +412,42 @@ function prepareClientExampleParameters(
   return result;
 }
 
+function getCredentialExampleValue(
+  dpgContext: SdkContext,
+  initialization: SdkInitializationType
+): ExampleValue | undefined {
+  const keyCredential = hasKeyCredential(initialization),
+    tokenCredential = hasTokenCredential(initialization);
+  if (keyCredential || tokenCredential) {
+    if (isAzurePackage({ options: dpgContext.rlcOptions })) {
+      // Support DefaultAzureCredential for Azure packages
+      return {
+        name: "credential",
+        value: `new ${resolveReference(
+          AzureIdentityDependencies.DefaultAzureCredential
+        )}()`,
+        isOptional: false
+      };
+    } else if (keyCredential) {
+      // Support ApiKeyCredential for non-Azure packages
+      return {
+        name: "credential",
+        value: `{ key: "INPUT_YOUR_KEY_HERE" }`,
+        isOptional: false
+      };
+    } else if (tokenCredential) {
+      // Support TokenCredential for non-Azure packages
+      return {
+        name: "credential",
+        value: `{ getToken: async () => {
+          return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: now() }; } }`,
+        isOptional: false
+      };
+    }
+  }
+  return undefined;
+}
+
 function getParameterValue(value: SdkTypeExample): string {
   let retValue = `{} as any`;
   switch (value.kind) {
@@ -419,7 +472,7 @@ function getParameterValue(value: SdkTypeExample): string {
       break;
     case "dict":
     case "model": {
-      const mapper = getPropertyClientNameMapper(value.type);
+      const mapper = buildPropertyNameMapper(value.type);
       const values = [];
       const additionalPropertiesValue =
         value.kind === "model" ? value?.additionalPropertiesValue ?? {} : {};
@@ -454,34 +507,9 @@ function getParameterValue(value: SdkTypeExample): string {
   return retValue;
 }
 
-function getPropertyClientNameMapper(model: SdkType) {
-  const mapper = new Map<string, string>();
-  if (model.kind !== "model") {
-    return mapper;
-  }
-  for (const prop of model.properties) {
-    if (prop.kind !== "property") {
-      continue;
-    }
-
-    mapper.set(prop.serializedName, prop.name);
-  }
-  return mapper;
-}
-
 function escapeSpecialCharToSpace(str: string) {
   if (!str) {
     return str;
   }
   return str.replace(/_|,|\.|\(|\)|'s |\[|\]/g, " ").replace(/\//g, " Or ");
-}
-
-// FIXME: This is a temporary solution to get the credential type
-function getCredentialType(
-  initialization: SdkInitializationType
-): string | undefined {
-  const credentialParameter = initialization.properties.find(
-    (p) => p.kind === "credential"
-  )?.type;
-  return credentialParameter ? "Credential" : undefined;
 }

@@ -82,7 +82,7 @@ async function read() {
     unionValue: test,
     nullValue: null,
     jsClientName: "prop renamed",
-    additionalProp: "additional prop"
+    additionalProp: "additional prop",
   });
   console.log(result);
 }
