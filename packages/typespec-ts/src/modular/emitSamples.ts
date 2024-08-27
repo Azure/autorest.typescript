@@ -48,16 +48,22 @@ interface EmitSampleOptions {
   topLevelClient: SdkClientType<SdkServiceOperation>;
   generatedFiles: SourceFile[];
   classicalMethodPrefix?: string;
+  subFolder?: string;
 }
 /**
  * Helpers to emit samples
  */
 export function emitSamples(dpgContext: SdkContext): SourceFile[] {
   const generatedFiles: SourceFile[] = [];
+  const clients = dpgContext.sdkPackage.clients;
   for (const client of dpgContext.sdkPackage.clients) {
     emitClientSamples(dpgContext, client, {
       topLevelClient: client,
-      generatedFiles
+      generatedFiles,
+      subFolder:
+        clients.length > 1
+          ? normalizeName(getClassicalClientName(client), NameType.File)
+          : undefined
     });
   }
   return generatedFiles;
@@ -109,7 +115,8 @@ function emitMethodSamples(
   }`;
   const sampleFolder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
-    "samples-dev"
+    "samples-dev",
+    options.subFolder ?? ""
   );
   const fileName = normalizeName(`${operationPrefix} Sample`, NameType.File);
   const sourceFile = project.createSourceFile(
@@ -204,9 +211,9 @@ function emitMethodSamples(
     }
 
     // Create a function declaration structure
+    const description = method.description ?? `execute ${method.name}`;
     const normalizedDescription =
-      (method.description?.charAt(0).toLowerCase() ?? "") +
-      method.description?.slice(1);
+      description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       isAsync: true,

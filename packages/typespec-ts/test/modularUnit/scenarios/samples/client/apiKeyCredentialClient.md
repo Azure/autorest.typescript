@@ -59,6 +59,7 @@ Raw json files.
 Generate samples for non-hierarchy cases:
 
 ```ts samples
+/** This file path is /samples-dev/readSample.ts */
 import { DemoServiceClient } from "@azure/internal-test";
 
 /**

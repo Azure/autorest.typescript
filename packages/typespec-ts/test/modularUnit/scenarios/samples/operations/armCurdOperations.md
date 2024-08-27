@@ -155,6 +155,7 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
+/** This file path is /samples-dev/operationsListSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -182,6 +183,7 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/employeesCreateOrUpdateSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -217,6 +219,7 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/employeesDeleteSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 

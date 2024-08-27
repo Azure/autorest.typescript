@@ -106,7 +106,12 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     const counts = Object.keys(examples).length;
     const result = await emitSamplesFromTypeSpec(tsp, examples, configs);
     assert.equal(result?.length, counts, `Expected exactly ${counts} files`);
-    const text = result.map((x) => x.getFullText()).join("\n");
+    const text = result
+      .map(
+        (x) =>
+          `/** This file path is ${x.getFilePath()} */\n ${x.getFullText()}`
+      )
+      .join("\n");
     return text;
   }
 };

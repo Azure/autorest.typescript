@@ -94,6 +94,7 @@ Raw json files.
 Generate samples for hierarchy cases:
 
 ```ts samples
+/** This file path is /samples-dev/opTopLevelSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -114,12 +115,13 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/bECOpBECSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
- * This sample demonstrates how to undefined
+ * This sample demonstrates how to execute opBEC
  *
- * @summary undefined
+ * @summary execute opBEC
  * x-ms-original-file: 2021-10-01-preview/json_for_opBEC.json
  */
 async function opBEC() {
@@ -134,6 +136,7 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/dOpDSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**

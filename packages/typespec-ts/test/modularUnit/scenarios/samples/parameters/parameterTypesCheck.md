@@ -62,6 +62,7 @@ op read(@bodyRoot body: Widget): void;
 Generate samples for for different types:
 
 ```ts samples
+/** This file path is /samples-dev/readSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
