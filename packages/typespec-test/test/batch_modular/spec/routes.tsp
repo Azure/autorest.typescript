@@ -1754,7 +1754,7 @@ combination with the filter parameter to list specific type of files.
       @query
       recursive?: boolean;
     },
-    BatchResponseHeaders & NodeFileListResult,
+    BatchResponseHeaders & ChildModel,
     {},
     BatchError
   >;
@@ -2301,7 +2301,7 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       @query
       recursive?: boolean;
     },
-    BatchResponseHeaders & NodeFileListResult,
+    BatchResponseHeaders & ChildModel,
     {},
     BatchError
   >;

@@ -1036,6 +1036,12 @@ model NodeFile {
   properties?: FileProperties;
 }
 
+@doc("test child paging model")
+model ChildModel extends NodeFileListResult {
+  @doc("test")
+  test?: string;
+}
+
 @doc("The properties of a file on a Compute Node.")
 model FileProperties {
   @doc("The file creation time. The creation time is not returned for files on Linux Compute Nodes.")
