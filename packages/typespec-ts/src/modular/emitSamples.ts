@@ -55,7 +55,7 @@ interface EmitSampleOptions {
 export function emitSamples(dpgContext: SdkContext): SourceFile[] {
   const generatedFiles: SourceFile[] = [];
   for (const client of dpgContext.sdkPackage.clients) {
-    emitClientSamplesRecursively(dpgContext, client, {
+    emitClientSamples(dpgContext, client, {
       topLevelClient: client,
       generatedFiles
     });
@@ -63,7 +63,7 @@ export function emitSamples(dpgContext: SdkContext): SourceFile[] {
   return generatedFiles;
 }
 
-function emitClientSamplesRecursively(
+function emitClientSamples(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   options: EmitSampleOptions
@@ -87,7 +87,7 @@ function emitClientSamplesRecursively(
           : "") + prefix;
     }
 
-    emitClientSamplesRecursively(dpgContext, operationOrGroup.response, {
+    emitClientSamples(dpgContext, operationOrGroup.response, {
       ...options,
       classicalMethodPrefix: prefix
     });
