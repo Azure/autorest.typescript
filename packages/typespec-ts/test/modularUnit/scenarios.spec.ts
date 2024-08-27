@@ -97,12 +97,12 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result![0]!.getFunctionOrThrow(name!).getText();
   },
 
-  "(ts|typescript) samples": async (tsp, {}, unknownArgs) => {
-    if (!unknownArgs || !unknownArgs["examples"]) {
+  "(ts|typescript) samples": async (tsp, {}, namedUnknownArgs) => {
+    if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
       throw new Error(`Expected 'examples' to be passed in as an argument`);
     }
-    const configs = unknownArgs["configs"] as Record<string, string>;
-    const examples = unknownArgs["examples"] as Record<string, string>;
+    const configs = namedUnknownArgs["configs"] as Record<string, string>;
+    const examples = namedUnknownArgs["examples"] as Record<string, string>;
     const counts = Object.keys(examples).length;
     const result = await emitSamplesFromTypeSpec(tsp, examples, configs);
     assert.equal(result?.length, counts, `Expected exactly ${counts} files`);
