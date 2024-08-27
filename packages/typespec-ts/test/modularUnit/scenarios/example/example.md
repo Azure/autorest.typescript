@@ -10,7 +10,13 @@ You can set the environment variable `SCENARIOS_UPDATE` to `true` to run the sna
 
 ## Only running specific scenarios
 
-You can add `only:` to the top-level heading of the scenario document to run only that scenario. This is useful when you are working on a specific scenario and want to run only that scenario. For example, the heading for this test would be changed to `# only: Example scenario`. This is the equivalent of using `it.only` for a Mocha/vitest test.
+You can add `only:` to the top-level heading of the scenario document to run only that scenario. This is useful when you are working on a specific scenario and want to run only that scenario. For example, the heading for this test would be changed to
+
+```
+  # only: Example scenario
+```
+
+This is the equivalent of using `it.only` for a Mocha/vitest test.
 
 ## TypeSpec
 
