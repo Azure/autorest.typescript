@@ -266,7 +266,10 @@ export async function $onEmit(context: EmitContext) {
     const isMultiClients = modularCodeModel.clients.length > 1;
 
     // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true || isArm(dpgContext)) {
+    if (
+      emitterOptions?.generateSample === true ||
+      (emitterOptions?.generateSample === undefined && isArm(dpgContext))
+    ) {
       const samples = emitSamples(dpgContext);
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular
