@@ -281,13 +281,7 @@ function prepareMethodExampleParameters(
   const bodyParam = method.operation.bodyParam;
   const bodyName = bodyParam?.name;
   const bodyExample = parameterMap[bodyName ?? ""];
-  if (
-    bodyParam &&
-    bodyName &&
-    bodyExample &&
-    bodyExample &&
-    bodyExample.value
-  ) {
+  if (bodyName && bodyExample && bodyExample.value) {
     if (
       isSpreadBodyParameter(bodyParam) &&
       bodyParam.type.kind === "model" &&
