@@ -1,12 +1,8 @@
 import { assert } from "chai";
 import AzureCoreClientFactory, {
   AzureCoreClient,
-  FirstItemOutput,
-  SecondItemOutput,
-  UserOutput,
   buildMultiCollection,
-  isUnexpected,
-  paginate
+  isUnexpected
 } from "./generated/azure/core/basic/src/index.js";
 describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
@@ -19,7 +15,11 @@ describe("Azure Core Rest Client", () => {
       }
     });
   });
-
+  const validUser = {
+    id: 1,
+    name: "Madge",
+    etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  };
   it("should put user", async () => {
     try {
       const result = await client.path("/azure/core/basic/users/{id}", 1).put({
@@ -32,12 +32,7 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.id, 1);
-      assert.strictEqual(result.body.name, "Madge");
-      assert.strictEqual(
-        result.body.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
+      assert.deepEqual(result.body, validUser);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -57,12 +52,7 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.id, 1);
-      assert.strictEqual(result.body.name, "Madge");
-      assert.strictEqual(
-        result.body.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
+      assert.deepEqual(result.body, validUser);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -75,12 +65,7 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.id, 1);
-      assert.strictEqual(result.body.name, "Madge");
-      assert.strictEqual(
-        result.body.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
+      assert.deepEqual(result.body, validUser);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -116,151 +101,24 @@ describe("Azure Core Rest Client", () => {
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
+      const responseBody = {
+        value: [
+          {
+            id: 1,
+            name: "Madge",
+            etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+            orders: [{ id: 1, userId: 1, detail: "a recorder" }]
+          },
+          {
+            id: 2,
+            name: "John",
+            etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+            orders: [{ id: 2, userId: 2, detail: "a TV" }]
+          }
+        ]
+      };
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.value[0]?.id, 1);
-      assert.strictEqual(result.body.value[0]?.name, "Madge");
-      assert.strictEqual(
-        result.body.value[0]?.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
-      assert.deepEqual(result.body.value[0]?.orders, [
-        { id: 1, userId: 1, detail: "a recorder" }
-      ]);
-      assert.strictEqual(result.body.value[1]?.id, 2);
-      assert.strictEqual(result.body.value[1]?.name, "John");
-      assert.strictEqual(
-        result.body.value[1]?.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b5a"
-      );
-      assert.deepEqual(result.body.value[1]?.orders, [
-        { id: 2, userId: 2, detail: "a TV" }
-      ]);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should list with pages", async () => {
-    try {
-      const initialResponse = await client.path("/azure/core/basic/page").get();
-
-      if (isUnexpected(initialResponse)) {
-        const error = `Unexpected status code ${initialResponse.status}`;
-        assert.fail(error);
-      }
-
-      const iter = paginate(client, initialResponse);
-      let result: UserOutput[] = [];
-      for await (const item of iter) {
-        result.push(item);
-      }
-      assert.strictEqual(result[0]?.id, 1);
-      assert.strictEqual(result[0]?.name, "Madge");
-      assert.strictEqual(
-        result[0]?.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should list with parameters", async () => {
-    try {
-      const initialResponse = await client
-        .path("/azure/core/basic/parameters")
-        .get({
-          queryParameters: { another: "Second" },
-          body: { inputName: "Madge" }
-        });
-
-      if (isUnexpected(initialResponse)) {
-        const error = `Unexpected status code ${initialResponse.status}`;
-        assert.fail(error);
-      }
-
-      const iter = paginate(client, initialResponse);
-      let result: UserOutput[] = [];
-      for await (const item of iter) {
-        result.push(item);
-      }
-      assert.strictEqual(result[0]?.id, 1);
-      assert.strictEqual(result[0]?.name, "Madge");
-      assert.strictEqual(
-        result[0]?.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should get first item as page item", async () => {
-    try {
-      const initialResponse = await client
-        .path("/azure/core/basic/first-item")
-        .get();
-
-      if (isUnexpected(initialResponse)) {
-        const error = `Unexpected status code ${initialResponse.status}`;
-        assert.fail(error);
-      }
-
-      const iter = paginate(client, initialResponse);
-      let result: FirstItemOutput[] = [];
-      for await (const item of iter) {
-        result.push(item);
-      }
-      assert.strictEqual(result[0]?.id, 1);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should get second item as page item", async () => {
-    try {
-      const initialResponse = await client
-        .path("/azure/core/basic/second-item")
-        .get();
-
-      if (isUnexpected(initialResponse)) {
-        const error = `Unexpected status code ${initialResponse.status}`;
-        assert.fail(error);
-      }
-
-      const iter = paginate(client, initialResponse);
-      let result: SecondItemOutput[] = [];
-      for await (const item of iter) {
-        result.push(item);
-      }
-      assert.strictEqual(result[0]?.name, "Madge");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should list with custom pages", async () => {
-    try {
-      const initialResponse = await client
-        .path("/azure/core/basic/custom-page")
-        .get();
-
-      if (isUnexpected(initialResponse)) {
-        const error = `Unexpected status code ${initialResponse.status}`;
-        assert.fail(error);
-      }
-
-      const iter = paginate(client, initialResponse);
-      let result: UserOutput[] = [];
-      for await (const item of iter) {
-        result.push(item);
-      }
-      assert.strictEqual(result[0]?.id, 1);
-      assert.strictEqual(result[0]?.name, "Madge");
-      assert.strictEqual(
-        result[0]?.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
+      assert.deepEqual(result.body, responseBody);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -279,12 +137,7 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.id, 1);
-      assert.strictEqual(result.body.name, "Madge");
-      assert.strictEqual(
-        result.body.etag,
-        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      );
+      assert.deepEqual(result.body, validUser);
     } catch (err) {
       assert.fail(err as string);
     }

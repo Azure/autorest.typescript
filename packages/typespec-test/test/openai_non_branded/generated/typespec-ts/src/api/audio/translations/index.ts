@@ -8,10 +8,10 @@ import { OpenAIContext as Client } from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  uint8ArrayToString,
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
+import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(

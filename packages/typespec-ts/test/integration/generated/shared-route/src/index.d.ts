@@ -23,7 +23,7 @@ export declare interface ListByResourceGroup200Response extends HttpResponse {
 }
 
 export declare interface ListByResourceGroupBodyParam {
-    body?: Resource;
+    body: Resource;
 }
 
 export declare interface ListByResourceGroupDefaultResponse extends HttpResponse {
@@ -52,7 +52,7 @@ export declare interface ListBySubscription202Response extends HttpResponse {
 }
 
 export declare interface ListBySubscriptionBodyParam {
-    body?: Resource;
+    body: Resource;
 }
 
 export declare interface ListBySubscriptionDefaultResponse extends HttpResponse {
@@ -132,7 +132,7 @@ export declare interface ReturnsInt200Response extends HttpResponse {
 }
 
 export declare interface ReturnsIntBodyParam {
-    body?: Resource;
+    body: Resource;
 }
 
 export declare type ReturnsIntParameters = ReturnsIntQueryParam & ReturnsIntBodyParam & RequestParameters;
@@ -151,7 +151,7 @@ export declare interface ReturnsString200Response extends HttpResponse {
 }
 
 export declare interface ReturnsStringBodyParam {
-    body?: Resource;
+    body: Resource;
 }
 
 export declare type ReturnsStringParameters = ReturnsStringQueryParam & ReturnsStringBodyParam & RequestParameters;

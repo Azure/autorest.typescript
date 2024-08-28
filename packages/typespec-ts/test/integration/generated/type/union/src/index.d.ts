@@ -35,7 +35,7 @@ export declare interface EnumsOnlyCasesOutput {
 
 export declare interface EnumsOnlyGet {
     get(options?: EnumsOnlyGetParameters): StreamableMethod<EnumsOnlyGet200Response>;
-    post(options?: EnumsOnlySendParameters): StreamableMethod<EnumsOnlySend204Response>;
+    post(options: EnumsOnlySendParameters): StreamableMethod<EnumsOnlySend204Response>;
 }
 
 export declare interface EnumsOnlyGet200Response extends HttpResponse {
@@ -52,7 +52,7 @@ export declare interface EnumsOnlySend204Response extends HttpResponse {
 }
 
 export declare interface EnumsOnlySendBodyParam {
-    body?: {
+    body: {
         prop: EnumsOnlyCases;
     };
 }
@@ -61,7 +61,7 @@ export declare type EnumsOnlySendParameters = EnumsOnlySendBodyParam & RequestPa
 
 export declare interface FloatsOnlyGet {
     get(options?: FloatsOnlyGetParameters): StreamableMethod<FloatsOnlyGet200Response>;
-    post(options?: FloatsOnlySendParameters): StreamableMethod<FloatsOnlySend204Response>;
+    post(options: FloatsOnlySendParameters): StreamableMethod<FloatsOnlySend204Response>;
 }
 
 export declare interface FloatsOnlyGet200Response extends HttpResponse {
@@ -78,7 +78,7 @@ export declare interface FloatsOnlySend204Response extends HttpResponse {
 }
 
 export declare interface FloatsOnlySendBodyParam {
-    body?: {
+    body: {
         prop: 1.1 | 2.2 | 3.3;
     };
 }
@@ -87,7 +87,7 @@ export declare type FloatsOnlySendParameters = FloatsOnlySendBodyParam & Request
 
 export declare interface IntsOnlyGet {
     get(options?: IntsOnlyGetParameters): StreamableMethod<IntsOnlyGet200Response>;
-    post(options?: IntsOnlySendParameters): StreamableMethod<IntsOnlySend204Response>;
+    post(options: IntsOnlySendParameters): StreamableMethod<IntsOnlySend204Response>;
 }
 
 export declare interface IntsOnlyGet200Response extends HttpResponse {
@@ -104,7 +104,7 @@ export declare interface IntsOnlySend204Response extends HttpResponse {
 }
 
 export declare interface IntsOnlySendBodyParam {
-    body?: {
+    body: {
         prop: 1 | 2 | 3;
     };
 }
@@ -131,7 +131,7 @@ export declare interface MixedLiteralsCasesOutput {
 
 export declare interface MixedLiteralsGet {
     get(options?: MixedLiteralsGetParameters): StreamableMethod<MixedLiteralsGet200Response>;
-    post(options?: MixedLiteralsSendParameters): StreamableMethod<MixedLiteralsSend204Response>;
+    post(options: MixedLiteralsSendParameters): StreamableMethod<MixedLiteralsSend204Response>;
 }
 
 export declare interface MixedLiteralsGet200Response extends HttpResponse {
@@ -148,7 +148,7 @@ export declare interface MixedLiteralsSend204Response extends HttpResponse {
 }
 
 export declare interface MixedLiteralsSendBodyParam {
-    body?: {
+    body: {
         prop: MixedLiteralsCases;
     };
 }
@@ -173,7 +173,7 @@ export declare interface MixedTypesCasesOutput {
 
 export declare interface MixedTypesGet {
     get(options?: MixedTypesGetParameters): StreamableMethod<MixedTypesGet200Response>;
-    post(options?: MixedTypesSendParameters): StreamableMethod<MixedTypesSend204Response>;
+    post(options: MixedTypesSendParameters): StreamableMethod<MixedTypesSend204Response>;
 }
 
 export declare interface MixedTypesGet200Response extends HttpResponse {
@@ -190,7 +190,7 @@ export declare interface MixedTypesSend204Response extends HttpResponse {
 }
 
 export declare interface MixedTypesSendBodyParam {
-    body?: {
+    body: {
         prop: MixedTypesCases;
     };
 }
@@ -199,7 +199,7 @@ export declare type MixedTypesSendParameters = MixedTypesSendBodyParam & Request
 
 export declare interface ModelsOnlyGet {
     get(options?: ModelsOnlyGetParameters): StreamableMethod<ModelsOnlyGet200Response>;
-    post(options?: ModelsOnlySendParameters): StreamableMethod<ModelsOnlySend204Response>;
+    post(options: ModelsOnlySendParameters): StreamableMethod<ModelsOnlySend204Response>;
 }
 
 export declare interface ModelsOnlyGet200Response extends HttpResponse {
@@ -216,7 +216,7 @@ export declare interface ModelsOnlySend204Response extends HttpResponse {
 }
 
 export declare interface ModelsOnlySendBodyParam {
-    body?: {
+    body: {
         prop: Cat | Dog;
     };
 }
@@ -248,7 +248,7 @@ export declare interface StringAndArrayCasesOutput {
 
 export declare interface StringAndArrayGet {
     get(options?: StringAndArrayGetParameters): StreamableMethod<StringAndArrayGet200Response>;
-    post(options?: StringAndArraySendParameters): StreamableMethod<StringAndArraySend204Response>;
+    post(options: StringAndArraySendParameters): StreamableMethod<StringAndArraySend204Response>;
 }
 
 export declare interface StringAndArrayGet200Response extends HttpResponse {
@@ -265,7 +265,7 @@ export declare interface StringAndArraySend204Response extends HttpResponse {
 }
 
 export declare interface StringAndArraySendBodyParam {
-    body?: {
+    body: {
         prop: StringAndArrayCases;
     };
 }
@@ -274,7 +274,7 @@ export declare type StringAndArraySendParameters = StringAndArraySendBodyParam &
 
 export declare interface StringExtensibleGet {
     get(options?: StringExtensibleGetParameters): StreamableMethod<StringExtensibleGet200Response>;
-    post(options?: StringExtensibleSendParameters): StreamableMethod<StringExtensibleSend204Response>;
+    post(options: StringExtensibleSendParameters): StreamableMethod<StringExtensibleSend204Response>;
 }
 
 export declare interface StringExtensibleGet200Response extends HttpResponse {
@@ -288,7 +288,7 @@ export declare type StringExtensibleGetParameters = RequestParameters;
 
 export declare interface StringExtensibleNamedGet {
     get(options?: StringExtensibleNamedGetParameters): StreamableMethod<StringExtensibleNamedGet200Response>;
-    post(options?: StringExtensibleNamedSendParameters): StreamableMethod<StringExtensibleNamedSend204Response>;
+    post(options: StringExtensibleNamedSendParameters): StreamableMethod<StringExtensibleNamedSend204Response>;
 }
 
 export declare interface StringExtensibleNamedGet200Response extends HttpResponse {
@@ -305,7 +305,7 @@ export declare interface StringExtensibleNamedSend204Response extends HttpRespon
 }
 
 export declare interface StringExtensibleNamedSendBodyParam {
-    body?: {
+    body: {
         prop: StringExtensibleNamedUnion;
     };
 }
@@ -321,7 +321,7 @@ export declare interface StringExtensibleSend204Response extends HttpResponse {
 }
 
 export declare interface StringExtensibleSendBodyParam {
-    body?: {
+    body: {
         prop: string;
     };
 }
@@ -330,7 +330,7 @@ export declare type StringExtensibleSendParameters = StringExtensibleSendBodyPar
 
 export declare interface StringsOnlyGet {
     get(options?: StringsOnlyGetParameters): StreamableMethod<StringsOnlyGet200Response>;
-    post(options?: StringsOnlySendParameters): StreamableMethod<StringsOnlySend204Response>;
+    post(options: StringsOnlySendParameters): StreamableMethod<StringsOnlySend204Response>;
 }
 
 export declare interface StringsOnlyGet200Response extends HttpResponse {
@@ -347,7 +347,7 @@ export declare interface StringsOnlySend204Response extends HttpResponse {
 }
 
 export declare interface StringsOnlySendBodyParam {
-    body?: {
+    body: {
         prop: "a" | "b" | "c";
     };
 }

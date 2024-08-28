@@ -1,21 +1,31 @@
 import {
-  addImportToSpecifier,
-  Imports as RuntimeImports,
-  NameType
-} from "@azure-tools/rlc-common";
-import {
-  SdkContext,
-  SdkModelType,
-  SdkType
-} from "@azure-tools/typespec-client-generator-core";
-import { NoTarget, Program } from "@typespec/compiler";
+  BodyParameter,
+  Client,
+  ModularCodeModel,
+  Operation,
+  Parameter,
+  Property,
+  Type
+} from "../modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { reportDiagnostic } from "../../lib.js";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+import {
+  NameType,
+  Imports as RuntimeImports,
+  addImportToSpecifier
+} from "@azure-tools/rlc-common";
+import { NoTarget, Program } from "@typespec/compiler";
+import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
+import {
+  SdkContext,
+  SdkModelType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
+import { buildType, isTypeNullable } from "./typeHelpers.js";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
@@ -28,23 +38,15 @@ import {
   isSpecialUnionVariant
 } from "../buildSerializeUtils.js";
 import {
-  BodyParameter,
-  Client,
-  ModularCodeModel,
-  Operation,
-  Parameter,
-  Property,
-  Type
-} from "../modularCodeModel.js";
-import {
   getDocsFromDescription,
   getFixmeForMultilineDocs
 } from "./docsHelpers.js";
-import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
-import { buildType, isTypeNullable } from "./typeHelpers.js";
-import { resolveReference } from "../../framework/reference.js";
-import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+
 import { AzurePollingDependencies } from "../external-dependencies.js";
+import { reportDiagnostic } from "../../lib.js";
+import { resolveReference } from "../../framework/reference.js";
+import { useDependencies } from "../../framework/hooks/useDependencies.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -645,14 +647,17 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
+    const dependencies = useDependencies();
+    const uint8ArrayToStringReference = resolveReference(
+      dependencies.uint8ArrayToString
+    );
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
-    ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
-      bodyParameter
-    )}")
+    ? ${uint8ArrayToStringReference}(${
+      bodyParameter.clientName
+    }, "${getEncodingFormat(bodyParameter)}")
     : ${bodyParameter.clientName}`
-      : `body: uint8ArrayToString(${
+      : `body: ${uint8ArrayToStringReference}(${
           bodyParameter.clientName
         }, "${getEncodingFormat(bodyParameter)}")`;
   } else if (bodyParameter.isBinaryPayload) {
@@ -1164,6 +1169,10 @@ export function deserializeResponseValue(
 ): string {
   const requiredPrefix = required === false ? `${restValue} === undefined` : "";
   const nullablePrefix = isTypeNullable(type) ? `${restValue} === null` : "";
+  const dependencies = useDependencies();
+  const stringToUint8ArrayReference = resolveReference(
+    dependencies.stringToUint8Array
+  );
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""
       ? `(${requiredPrefix} || ${nullablePrefix})`
@@ -1222,9 +1231,8 @@ export function deserializeResponseValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        addImportToSpecifier("coreUtil", runtimeImports, "stringToUint8Array");
         return `typeof ${restValue} === 'string'
-        ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
+        ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;
       }
       return restValue;
@@ -1287,10 +1295,6 @@ export function serializeRequestValue(
   switch (type.type) {
     case "datetime":
       switch (type.format ?? format) {
-        case "date":
-          return `${clientValue}${required ? "" : "?"}.toDateString()`;
-        case "time":
-          return `${clientValue}${required ? "" : "?"}.toTimeString()`;
         case "rfc7231":
         case "headerDefault":
           return `${clientValue}${required ? "" : "?"}.toUTCString()`;
@@ -1358,15 +1362,18 @@ export function serializeRequestValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
+        const dependencies = useDependencies();
+        const uint8ArrayToStringReference = resolveReference(
+          dependencies.uint8ArrayToString
+        );
         return required
           ? `${getNullableCheck(
               clientValue,
               type
-            )} uint8ArrayToString(${clientValue}, "${
+            )} ${uint8ArrayToStringReference}(${clientValue}, "${
               getEncodingFormat({ format }) ?? "base64"
             }")`
-          : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
+          : `${clientValue} !== undefined ? ${uint8ArrayToStringReference}(${clientValue}, "${
               getEncodingFormat({ format }) ?? "base64"
             }"): undefined`;
       }

@@ -51,7 +51,7 @@ import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface UsersCreate {
   post(
-    options?: UsersCreateParameters,
+    options: UsersCreateParameters,
   ): StreamableMethod<
     UsersCreate200Response | UsersCreate409Response | UsersCreate422Response
   >;
@@ -65,7 +65,7 @@ export interface UsersValidate {
 
 export interface UsersLogin {
   post(
-    options?: UsersLoginParameters,
+    options: UsersLoginParameters,
   ): StreamableMethod<UsersLogin200Response | UsersLogin401Response>;
 }
 
@@ -78,7 +78,7 @@ export interface UsersLogout {
 export interface UsersForgotPassword {
   /** Sends a reset token to the user's email address */
   post(
-    options?: UsersForgotPasswordParameters,
+    options: UsersForgotPasswordParameters,
   ): StreamableMethod<
     UsersForgotPassword200Response | UsersForgotPassword404Response
   >;

@@ -10,10 +10,12 @@ import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  stringToUint8Array,
-  uint8ArrayToString,
   PathUncheckedResponse,
   createRestError,
+} from "@typespec/ts-http-runtime";
+import {
+  uint8ArrayToString,
+  stringToUint8Array,
 } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptionalParams,
