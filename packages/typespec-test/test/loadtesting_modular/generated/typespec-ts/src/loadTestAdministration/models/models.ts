@@ -683,6 +683,13 @@ export function resourceMetricSerializer(
   };
 }
 
+/** Azure Load Testing API versions. */
+export type APIVersions =
+  | "2022-11-01"
+  | "2023-04-01-preview"
+  | "2024-03-01-preview"
+  | "2024-05-01-preview";
+
 /** Load test run model */
 export interface TestRun {
   /** Unique test run identifier for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
@@ -1000,18 +1007,102 @@ export enum KnownRequestDataLevel {
  */
 export type RequestDataLevel = string;
 
-/** Represents collection of metric namespaces. */
-export interface MetricNamespaceCollection {
-  /** The values for the metric namespaces. */
-  value: MetricNamespace[];
+/** Test run app component */
+export interface TestRunAppComponents {
+  /**
+   * Azure resource collection { resource id (fully qualified resource Id e.g
+   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})
+   * : resource object }
+   */
+  components: Record<string, AppComponent>;
+  /** Test run identifier */
+  readonly testRunId?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
 }
 
-/** Metric namespace class specifies the metadata for a metric namespace. */
-export interface MetricNamespace {
-  /** The namespace description. */
-  description?: string;
-  /** The metric namespace name. */
-  name?: string;
+export function testRunAppComponentsSerializer(
+  item: TestRunAppComponents,
+): Record<string, unknown> {
+  return {
+    components: serializeRecord(
+      item.components as any,
+      appComponentSerializer,
+    ) as any,
+  };
+}
+
+/** Test run server metrics configuration */
+export interface TestRunServerMetricConfig {
+  /** Test run identifier */
+  readonly testRunId?: string;
+  /**
+   * Azure resource metrics collection {metric id : metrics object} (Refer :
+   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
+   * for metric id).
+   */
+  metrics?: Record<string, ResourceMetric>;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
+
+export function testRunServerMetricConfigSerializer(
+  item: TestRunServerMetricConfig,
+): Record<string, unknown> {
+  return {
+    metrics: !item.metrics
+      ? item.metrics
+      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+  };
+}
+
+/** Known values of {@link TimeGrain} that the service accepts. */
+export enum KnownTimeGrain {
+  /** PT5S */
+  PT5S = "PT5S",
+  /** PT10S */
+  PT10S = "PT10S",
+  /** PT1M */
+  PT1M = "PT1M",
+  /** PT5M */
+  PT5M = "PT5M",
+  /** PT1H */
+  PT1H = "PT1H",
+}
+
+/**
+ * Time Grain \
+ * {@link KnownTimeGrain} can be used interchangeably with TimeGrain,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **PT5S** \
+ * **PT10S** \
+ * **PT1M** \
+ * **PT5M** \
+ * **PT1H**
+ */
+export type TimeGrain = string;
+
+/** Metrics dimension values. */
+export interface DimensionValueList {
+  /** The dimension name */
+  readonly name?: string;
+  /** The dimension value */
+  value?: string[];
+  /** Link for the next set of values in case of paginated results, if applicable. */
+  nextLink?: string;
 }
 
 /** Represents collection of metric definitions. */
@@ -1147,32 +1238,19 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/** Known values of {@link TimeGrain} that the service accepts. */
-export enum KnownTimeGrain {
-  /** PT5S */
-  PT5S = "PT5S",
-  /** PT10S */
-  PT10S = "PT10S",
-  /** PT1M */
-  PT1M = "PT1M",
-  /** PT5M */
-  PT5M = "PT5M",
-  /** PT1H */
-  PT1H = "PT1H",
+/** Represents collection of metric namespaces. */
+export interface MetricNamespaceCollection {
+  /** The values for the metric namespaces. */
+  value: MetricNamespace[];
 }
 
-/**
- * Time Grain \
- * {@link KnownTimeGrain} can be used interchangeably with TimeGrain,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **PT5S** \
- * **PT10S** \
- * **PT1M** \
- * **PT5M** \
- * **PT1H**
- */
-export type TimeGrain = string;
+/** Metric namespace class specifies the metadata for a metric namespace. */
+export interface MetricNamespace {
+  /** The namespace description. */
+  description?: string;
+  /** The metric namespace name. */
+  name?: string;
+}
 
 /** Filters to fetch the set of metric. */
 export interface MetricRequestPayload {
@@ -1213,6 +1291,14 @@ export function dimensionFilterSerializer(
   };
 }
 
+/** The response to a metrics query. */
+export interface _Metrics {
+  /** The TimeSeriesElement items on this page */
+  value: TimeSeriesElement[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** The time series returned when a data query is performed. */
 export interface TimeSeriesElement {
   /** An array of data points representing the metric values. */
@@ -1235,85 +1321,6 @@ export interface DimensionValue {
   name?: string;
   /** The value of the dimension. */
   value?: string;
-}
-
-/** The response to a metrics query. */
-export interface _Metrics {
-  /** The TimeSeriesElement items on this page */
-  value: TimeSeriesElement[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Metrics dimension values. */
-export interface DimensionValueList {
-  /** The dimension name */
-  readonly name?: string;
-  /** The dimension value */
-  value?: string[];
-  /** Link for the next set of values in case of paginated results, if applicable. */
-  nextLink?: string;
-}
-
-/** Test run app component */
-export interface TestRunAppComponents {
-  /**
-   * Azure resource collection { resource id (fully qualified resource Id e.g
-   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})
-   * : resource object }
-   */
-  components: Record<string, AppComponent>;
-  /** Test run identifier */
-  readonly testRunId?: string;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
-  /** The user that created. */
-  readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
-  /** The user that last modified. */
-  readonly lastModifiedBy?: string;
-}
-
-export function testRunAppComponentsSerializer(
-  item: TestRunAppComponents,
-): Record<string, unknown> {
-  return {
-    components: serializeRecord(
-      item.components as any,
-      appComponentSerializer,
-    ) as any,
-  };
-}
-
-/** Test run server metrics configuration */
-export interface TestRunServerMetricConfig {
-  /** Test run identifier */
-  readonly testRunId?: string;
-  /**
-   * Azure resource metrics collection {metric id : metrics object} (Refer :
-   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
-   * for metric id).
-   */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
-  /** The user that created. */
-  readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
-  /** The user that last modified. */
-  readonly lastModifiedBy?: string;
-}
-
-export function testRunServerMetricConfigSerializer(
-  item: TestRunServerMetricConfig,
-): Record<string, unknown> {
-  return {
-    metrics: !item.metrics
-      ? item.metrics
-      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
-  };
 }
 
 /** The Test Profile Model. A Test Profile resource enables you to set up a test profile which contains various configurations for a supported resource type and a load test to execute on that resource. */
@@ -1561,12 +1568,6 @@ export enum KnownRecommendationCategory {
  * **CostOptimized**
  */
 export type RecommendationCategory = string;
-/** Azure Load Testing API versions. */
-export type APIVersions =
-  | "2022-11-01"
-  | "2023-04-01-preview"
-  | "2024-03-01-preview"
-  | "2024-05-01-preview";
 
 /** Paged collection of TestFileInfo items */
 export interface _PagedTestFileInfo {

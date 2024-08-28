@@ -6,13 +6,13 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   TestRun,
   TestRunFileInfo,
-  MetricNamespaceCollection,
-  MetricDefinitionCollection,
-  MetricRequestPayload,
-  TimeSeriesElement,
-  DimensionValueList,
   TestRunAppComponents,
   TestRunServerMetricConfig,
+  DimensionValueList,
+  MetricDefinitionCollection,
+  MetricNamespaceCollection,
+  MetricRequestPayload,
+  TimeSeriesElement,
 } from "./models/models.js";
 import {
   CreateOrUpdateTestRunOptionalParams,

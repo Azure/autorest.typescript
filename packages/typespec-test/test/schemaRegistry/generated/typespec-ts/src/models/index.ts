@@ -5,10 +5,10 @@ export {
   SchemaGroup,
   SchemaContentTypeValues,
   SchemaVersion,
+  ServiceApiVersions,
   SchemaProperties,
   SchemaFormat,
   Schema,
-  ServiceApiVersions,
   ContentTypeEnum,
 } from "./models.js";
 export {
