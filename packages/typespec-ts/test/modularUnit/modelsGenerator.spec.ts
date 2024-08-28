@@ -109,7 +109,7 @@ describe("model property type", () => {
   });
 
 
-  it.only("should handle boolean literal type", async () => {
+  it("should handle boolean literal type", async () => {
     const tspContent = `
     @doc("The configuration for a streaming chat completion request.")
     model StreamingChatCompletionOptions {
@@ -143,7 +143,7 @@ describe("model property type", () => {
           .path("/createStreaming")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: { stream: stream },
+            body: { stream: true },
           });
       }
       export async function _createStreamingDeserialize(
