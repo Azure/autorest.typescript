@@ -123,7 +123,9 @@ export declare interface StringExtensibleNamedGetOptionalParams extends Operatio
 }
 
 export declare interface StringExtensibleNamedOperations {
-    get: (options?: StringExtensibleNamedGetOptionalParams) => Promise<StringExtensibleNamedUnionStringExtensibleNamedUnion>;
+    get: (options?: StringExtensibleNamedGetOptionalParams) => Promise<{
+        prop: StringExtensibleNamedUnion;
+    }>;
     send: (prop: StringExtensibleNamedUnion, options?: StringExtensibleNamedSendOptionalParams) => Promise<void>;
 }
 
@@ -131,10 +133,6 @@ export declare interface StringExtensibleNamedSendOptionalParams extends Operati
 }
 
 export declare type StringExtensibleNamedUnion = string;
-
-export declare interface StringExtensibleNamedUnionStringExtensibleNamedUnion {
-    prop: StringExtensibleNamedUnion;
-}
 
 export declare interface StringExtensibleOperations {
     get: (options?: StringExtensibleGetOptionalParams) => Promise<{
