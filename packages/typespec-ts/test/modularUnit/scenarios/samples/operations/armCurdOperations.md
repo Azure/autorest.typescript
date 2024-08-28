@@ -155,6 +155,7 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
+/** This file path is /samples-dev/operationsListSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -182,6 +183,7 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/employeesCreateOrUpdateSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -202,11 +204,11 @@ async function employeesCreateOrUpdate() {
       properties: {
         age: 30,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms"
+        profile: "ms",
       },
       tags: { key2913: "urperxmkkhhkp" },
-      location: "itajgxyqozseoygnl"
-    }
+      location: "itajgxyqozseoygnl",
+    },
   );
   console.log(result);
 }
@@ -217,6 +219,7 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/employeesDeleteSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -232,7 +235,7 @@ async function employeesDelete() {
   const client = new ContosoClient(credential, subscriptionId);
   const result = await client.employees.delete(
     "rgopenapi",
-    "5vX--BxSu3ux48rI4O9OQ569"
+    "5vX--BxSu3ux48rI4O9OQ569",
   );
   console.log(result);
 }

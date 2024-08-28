@@ -126,6 +126,7 @@ Raw json files.
 Generate samples for dpg cases:
 
 ```ts samples
+/** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -150,6 +151,7 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/widgetsDeleteWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -172,6 +174,7 @@ async function main() {
 
 main().catch(console.error);
 
+/** This file path is /samples-dev/widgetsListWidgetsSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 

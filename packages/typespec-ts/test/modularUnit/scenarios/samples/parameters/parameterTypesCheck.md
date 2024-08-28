@@ -62,6 +62,7 @@ op read(@bodyRoot body: Widget): void;
 Generate samples for for different types:
 
 ```ts samples
+/** This file path is /samples-dev/readSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -82,7 +83,7 @@ async function read() {
     unionValue: test,
     nullValue: null,
     jsClientName: "prop renamed",
-    additionalProp: "additional prop"
+    additionalProp: "additional prop",
   });
   console.log(result);
 }
