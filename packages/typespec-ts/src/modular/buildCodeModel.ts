@@ -980,6 +980,7 @@ function getName(program: Program, type: Model): string {
     if (
       type.templateMapper &&
       type.templateMapper.args &&
+      type.name !== "" &&
       type.templateMapper.args.length > 0
     ) {
       return (
