@@ -24,7 +24,7 @@ import {
   SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { buildType, isTypeNullable } from "./typeHelpers.js";
+import { buildType, getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
@@ -800,7 +800,9 @@ type ConstantType = (Parameter | Property) & {
 
 function getConstantValue(param: ConstantType) {
   const defaultValue =
-    param.clientDefaultValue ?? param.type.clientDefaultValue;
+    param.clientDefaultValue ??
+    param.type.clientDefaultValue ??
+    param.type.value;
 
   if (!defaultValue) {
     throw new Error(
@@ -808,13 +810,11 @@ function getConstantValue(param: ConstantType) {
     );
   }
 
-  return `"${param.restApiName}": "${defaultValue}"`;
+  return `"${param.restApiName}": ${getType(param.type).name}`;
 }
 
 function isConstant(param: Parameter | Property): param is ConstantType {
-  return (
-    param.type.type === "constant" && param.clientDefaultValue !== undefined
-  );
+  return param.type.type === "constant";
 }
 
 type OptionalType = (Parameter | Property) & {
