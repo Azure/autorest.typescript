@@ -52,7 +52,7 @@ export function getAzurePackageDependencies({
     };
   }
 
-  if (hasPaging && !isModularLibrary) {
+  if (hasPaging && isModularLibrary !== true) {
     azureDependencies = {
       ...azureDependencies,
       "@azure/core-paging": "^1.5.0"
