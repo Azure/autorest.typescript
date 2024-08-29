@@ -1,4 +1,14 @@
 import {
+  EnumDeclarationStructure,
+  EnumMemberStructure,
+  FunctionDeclarationStructure,
+  InterfaceDeclarationStructure,
+  PropertySignatureStructure,
+  StructureKind,
+  TypeAliasDeclarationStructure
+} from "ts-morph";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
   SdkClientType,
   SdkEnumType,
   SdkEnumValueType,
@@ -11,24 +21,15 @@ import {
   SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
 import {
-  EnumDeclarationStructure,
-  EnumMemberStructure,
-  FunctionDeclarationStructure,
-  InterfaceDeclarationStructure,
-  PropertySignatureStructure,
-  StructureKind,
-  TypeAliasDeclarationStructure
-} from "ts-morph";
-import { getTypeExpression } from "./type-expressions/get-type-expression.js";
-import { useContext } from "../contextManager.js";
-import { addDeclaration } from "../framework/declaration.js";
-import { refkey } from "../framework/refkey.js";
-import path from "path";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import {
   getExternalModel,
   getModelExpression
 } from "./type-expressions/get-model-expression.js";
+
+import { addDeclaration } from "../framework/declaration.js";
+import { getTypeExpression } from "./type-expressions/get-type-expression.js";
+import path from "path";
+import { refkey } from "../framework/refkey.js";
+import { useContext } from "../contextManager.js";
 
 export function emitTypes(
   sdkPackage: SdkHttpPackage,

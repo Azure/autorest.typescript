@@ -1,7 +1,7 @@
 import { SdkType } from "@azure-tools/typespec-client-generator-core";
 import { getCredentialExpression } from "./get-credential-expression.js";
-import { getModelExpression } from "./get-model-expression.js";
 import { getEnumExpression } from "./get-enum-expression.js";
+import { getModelExpression } from "./get-model-expression.js";
 import { getUnionExpression } from "./get-union-expression.js";
 
 export interface EmitTypeOptions {
@@ -50,6 +50,9 @@ export function getTypeExpression(
     case "bytes":
       return "Uint8Array";
     case "constant":
+      if (getTypeExpression(type.valueType) === "string") {
+        return `"${type.value}"`;
+      }
       return String(type.value);
     case "duration":
       return getTypeExpression(type.wireType, options);
@@ -61,6 +64,9 @@ export function getTypeExpression(
       return `Record<string, ${valueType}>`;
     }
     case "enumvalue":
+      if (getTypeExpression(type.valueType) === "string") {
+        return `"${type.value}"`;
+      }
       return String(type.value);
     case "model":
       return getModelExpression(type, options);
