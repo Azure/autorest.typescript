@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createMediaTypesClient from "@msinternal/media-types-service-rest";
 import * as dotenv from "dotenv";

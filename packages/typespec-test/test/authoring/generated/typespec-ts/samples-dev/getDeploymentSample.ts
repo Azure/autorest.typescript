@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAuthoringClient from "@msinternal/authoring";
 import { AzureKeyCredential } from "@azure/core-auth";
