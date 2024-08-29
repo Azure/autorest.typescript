@@ -727,6 +727,20 @@ function addLroInformation(
 ) {
   emittedOperation["discriminator"] = "lro";
   const metadata = getLroMetadata(context.program, operation);
+  if (
+    metadata &&
+    ["custom-link", "custom-operation-reference"].includes(
+      metadata?.finalStateVia ?? ""
+    )
+  ) {
+    reportDiagnostic(context.program, {
+      code: "un-supported-finalStateVia",
+      format: {
+        finalStateVia: metadata.finalStateVia!
+      },
+      target: operation
+    });
+  }
   emittedOperation["lroMetadata"] = {
     finalResult:
       metadata?.finalResult === "void" || metadata?.finalResult === undefined

@@ -339,7 +339,9 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
   const getLongRunningPollerReference = resolveReference(
     PollingHelpers.GetLongRunningPoller
   );
-
+  const resourceLocationConfig = operation.lroMetadata?.finalStateVia
+    ? `resourceLocationConfig: ${operation.lroMetadata?.finalStateVia}`
+    : "";
   const statements: string[] = [];
   statements.push(`
 
@@ -350,7 +352,8 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
-      .join(", ")})
+      .join(", ")}),
+    ${resourceLocationConfig}
   }) as ${pollerLikeReference}<${operationStateReference}<${
     returnType.type
   }>, ${returnType.type}>;
