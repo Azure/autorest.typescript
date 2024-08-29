@@ -8,8 +8,8 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  NonReferencedModel,
   Versions,
+  NonReferencedModel,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptionalParams,
