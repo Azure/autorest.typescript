@@ -59,6 +59,7 @@ export function createOrReplace(
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
         _createOrReplaceSend(context, name, resource, options),
+      resourceLocationConfig: "original-uri",
     },
   ) as PollerLike<OperationState<User>, User>;
 }

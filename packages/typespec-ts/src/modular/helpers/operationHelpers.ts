@@ -340,7 +340,7 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
     PollingHelpers.GetLongRunningPoller
   );
   const resourceLocationConfig = operation.lroMetadata?.finalStateVia
-    ? `resourceLocationConfig: ${operation.lroMetadata?.finalStateVia}`
+    ? `resourceLocationConfig: "${operation.lroMetadata?.finalStateVia}"`
     : "";
   const statements: string[] = [];
   statements.push(`
