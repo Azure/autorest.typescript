@@ -10,6 +10,7 @@ export interface PackageCommonInfoConfig {
   withTests: boolean;
   withSamples: boolean;
   exports?: Record<string, any>;
+  dependencies?: Record<string, string>;
   azureArm?: boolean;
 }
 
@@ -56,7 +57,7 @@ function getEsmDevDependencies({ moduleKind }: PackageCommonInfoConfig) {
     return {};
   }
   return {
-    tshy: "1.11.1"
+    tshy: "^2.0.0"
   };
 }
 

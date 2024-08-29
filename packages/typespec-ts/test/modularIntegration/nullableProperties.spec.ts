@@ -68,7 +68,21 @@ describe("NullableProperties Modular Client", () => {
     await client.collectionsModel.patchNull(nullProperty);
     await client.collectionsModel.patchNonNull(nonNull);
   });
+  it("should handle collection string", async () => {
+    const nonNull = {
+      requiredProperty: "foo",
+      nullableProperty: ["hello", "world"]
+    };
+    const nullProperty = { requiredProperty: "foo", nullableProperty: null };
+    const result = await client.collectionsString.getNull();
+    assert.deepEqual(result, nullProperty);
 
+    const result2 = await client.collectionsString.getNonNull();
+    assert.deepEqual(result2, nonNull);
+
+    await client.collectionsString.patchNull(nullProperty);
+    await client.collectionsString.patchNonNull(nonNull);
+  });
   it("should handle nullable datetime", async () => {
     const nonNull = {
       requiredProperty: "foo",

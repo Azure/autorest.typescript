@@ -48,7 +48,7 @@ export interface Extension extends Element {
   /** Value as SampledData. */
   valueSampledData?: SampledData;
   /** Value as time (hh:mm:ss) */
-  valueTime?: Date | string;
+  valueTime?: string;
   /** Value as dateTime. */
   valueDateTime?: string;
   /** Value as Period. */
@@ -292,7 +292,7 @@ export interface ObservationComponent extends Element {
   /** Value as SampledData. */
   valueSampledData?: SampledData;
   /** Value as time (hh:mm:ss) */
-  valueTime?: Date | string;
+  valueTime?: string;
   /** Value as dateTime. */
   valueDateTime?: string;
   /** Value as Period. */
@@ -413,7 +413,7 @@ export interface Observation extends DomainResourceParent {
   /** Actual result */
   valueSampledData?: SampledData;
   /** Actual result */
-  valueTime?: Date | string;
+  valueTime?: string;
   /** Actual result */
   valueDateTime?: string;
   /** Actual result */
@@ -839,7 +839,7 @@ export interface PatientInfo {
   /** The patient's sex. */
   sex?: PatientInfoSex;
   /** The patient's date of birth. */
-  birthDate?: Date | string;
+  birthDate?: string;
   /** Known clinical information for the patient, structured. */
   clinicalInfo?: Array<Resource>;
 }

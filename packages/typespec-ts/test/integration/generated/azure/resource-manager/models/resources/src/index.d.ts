@@ -98,6 +98,8 @@ export declare function isUnexpected(response: TopLevelTrackedResourcesListByRes
 
 export declare function isUnexpected(response: TopLevelTrackedResourcesListBySubscription200Response | TopLevelTrackedResourcesListBySubscriptionDefaultResponse): response is TopLevelTrackedResourcesListBySubscriptionDefaultResponse;
 
+export declare function isUnexpected(response: TopLevelTrackedResourcesActionSync204Response | TopLevelTrackedResourcesActionSyncDefaultResponse): response is TopLevelTrackedResourcesActionSyncDefaultResponse;
+
 export declare function isUnexpected(response: NestedProxyResourcesGet200Response | NestedProxyResourcesGetDefaultResponse): response is NestedProxyResourcesGetDefaultResponse;
 
 export declare function isUnexpected(response: NestedProxyResourcesCreateOrReplace200Response | NestedProxyResourcesCreateOrReplace201Response | NestedProxyResourcesCreateOrReplaceLogicalResponse | NestedProxyResourcesCreateOrReplaceDefaultResponse): response is NestedProxyResourcesCreateOrReplaceDefaultResponse;
@@ -250,6 +252,11 @@ export declare interface NestedProxyResourcesUpdateLogicalResponse extends HttpR
 
 export declare type NestedProxyResourcesUpdateParameters = NestedProxyResourcesUpdateBodyParam & RequestParameters;
 
+export declare interface NotificationDetails {
+    message: string;
+    urgent: boolean;
+}
+
 export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 export declare type PaginateReturn<TResult> = TResult extends {
@@ -393,6 +400,7 @@ export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string): TopLevelTrackedResourcesGet;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources", subscriptionId: string, resourceGroupName: string): TopLevelTrackedResourcesListByResourceGroup;
     (path: "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources", subscriptionId: string): TopLevelTrackedResourcesListBySubscription;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/actionSync", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string): TopLevelTrackedResourcesActionSync;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string): NestedProxyResourcesGet;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string): NestedProxyResourcesListByTopLevelTrackedResource;
 }
@@ -471,6 +479,25 @@ export declare interface TopLevelTrackedResourcePropertiesOutput {
     readonly provisioningState?: ProvisioningStateOutput;
     description?: string;
 }
+
+export declare interface TopLevelTrackedResourcesActionSync {
+    post(options: TopLevelTrackedResourcesActionSyncParameters): StreamableMethod<TopLevelTrackedResourcesActionSync204Response | TopLevelTrackedResourcesActionSyncDefaultResponse>;
+}
+
+export declare interface TopLevelTrackedResourcesActionSync204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface TopLevelTrackedResourcesActionSyncBodyParam {
+    body: NotificationDetails;
+}
+
+export declare interface TopLevelTrackedResourcesActionSyncDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type TopLevelTrackedResourcesActionSyncParameters = TopLevelTrackedResourcesActionSyncBodyParam & RequestParameters;
 
 export declare interface TopLevelTrackedResourcesCreateOrReplace200Response extends HttpResponse {
     status: "200";

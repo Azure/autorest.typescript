@@ -6,7 +6,7 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface AliasSpreadAsRequestBody {
-    put(options?: AliasSpreadAsRequestBodyParameters): StreamableMethod<AliasSpreadAsRequestBody204Response>;
+    put(options: AliasSpreadAsRequestBodyParameters): StreamableMethod<AliasSpreadAsRequestBody204Response>;
 }
 
 export declare interface AliasSpreadAsRequestBody204Response extends HttpResponse {
@@ -14,7 +14,7 @@ export declare interface AliasSpreadAsRequestBody204Response extends HttpRespons
 }
 
 export declare interface AliasSpreadAsRequestBodyBodyParam {
-    body?: {
+    body: {
         name: string;
     };
 }
@@ -30,7 +30,7 @@ export declare interface AliasSpreadAsRequestParameter204Response extends HttpRe
 }
 
 export declare interface AliasSpreadAsRequestParameterBodyParam {
-    body?: {
+    body: {
         name: string;
     };
 }
@@ -54,7 +54,7 @@ export declare interface AliasSpreadParameterWithInnerAlias204Response extends H
 }
 
 export declare interface AliasSpreadParameterWithInnerAliasBodyParam {
-    body?: {
+    body: {
         name: string;
         age: number;
     };
@@ -79,7 +79,7 @@ export declare interface AliasSpreadParameterWithInnerModel204Response extends H
 }
 
 export declare interface AliasSpreadParameterWithInnerModelBodyParam {
-    body?: InnerModel;
+    body: InnerModel;
 }
 
 export declare interface AliasSpreadParameterWithInnerModelHeaderParam {
@@ -101,7 +101,7 @@ export declare interface AliasSpreadWithMultipleParameters204Response extends Ht
 }
 
 export declare interface AliasSpreadWithMultipleParametersBodyParam {
-    body?: {
+    body: {
         requiredString: string;
         optionalInt?: number;
         requiredIntList: number[];
@@ -135,7 +135,7 @@ export declare interface InnerModel {
 }
 
 export declare interface ModelSpreadAsRequestBody {
-    put(options?: ModelSpreadAsRequestBodyParameters): StreamableMethod<ModelSpreadAsRequestBody204Response>;
+    put(options: ModelSpreadAsRequestBodyParameters): StreamableMethod<ModelSpreadAsRequestBody204Response>;
 }
 
 export declare interface ModelSpreadAsRequestBody204Response extends HttpResponse {
@@ -143,7 +143,7 @@ export declare interface ModelSpreadAsRequestBody204Response extends HttpRespons
 }
 
 export declare interface ModelSpreadAsRequestBodyBodyParam {
-    body?: BodyParameter;
+    body: BodyParameter;
 }
 
 export declare type ModelSpreadAsRequestBodyParameters = ModelSpreadAsRequestBodyBodyParam & RequestParameters;
@@ -177,7 +177,7 @@ export declare interface ModelSpreadCompositeRequestMix204Response extends HttpR
 }
 
 export declare interface ModelSpreadCompositeRequestMixBodyParam {
-    body?: CompositeRequestMix;
+    body: CompositeRequestMix;
 }
 
 export declare interface ModelSpreadCompositeRequestMixHeaderParam {
