@@ -32,7 +32,8 @@ export function getAzurePackageDependencies({
   hasLro,
   hasPaging,
   specSource,
-  dependencies
+  dependencies,
+  isModularLibrary
 }: AzurePackageInfoConfig) {
   let azureDependencies: Record<string, string> = {
     ...dependencies,
@@ -51,7 +52,7 @@ export function getAzurePackageDependencies({
     };
   }
 
-  if (hasPaging) {
+  if (hasPaging && !isModularLibrary) {
     azureDependencies = {
       ...azureDependencies,
       "@azure/core-paging": "^1.5.0"
