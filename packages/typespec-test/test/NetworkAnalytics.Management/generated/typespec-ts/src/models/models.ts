@@ -389,8 +389,8 @@ export enum KnownManagedServiceIdentityType {
   SystemAssigned = "SystemAssigned",
   /** UserAssigned */
   UserAssigned = "UserAssigned",
-  /** SystemAssigned, UserAssigned */
-  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+  /** SystemAndUserAssigned */
+  SystemAndUserAssigned = "SystemAssigned, UserAssigned",
 }
 
 /**

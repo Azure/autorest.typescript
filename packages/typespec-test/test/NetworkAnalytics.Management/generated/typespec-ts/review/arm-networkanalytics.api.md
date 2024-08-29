@@ -377,8 +377,8 @@ export enum KnownDefaultAction {
 
 // @public
 export enum KnownManagedServiceIdentityType {
-    "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
     None = "None",
+    SystemAndUserAssigned = "SystemAssigned, UserAssigned",
     SystemAssigned = "SystemAssigned",
     UserAssigned = "UserAssigned"
 }

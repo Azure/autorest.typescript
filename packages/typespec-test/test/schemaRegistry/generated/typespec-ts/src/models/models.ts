@@ -20,6 +20,9 @@ export interface SchemaVersion {
   readonly schemaVersion: number;
 }
 
+/** Represents the Schema Registry API version to use for requests. */
+export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
+
 /** Meta properties of a schema. */
 export interface SchemaProperties {
   /** References a specific schema in the registry namespace. */
@@ -70,8 +73,6 @@ export type ContentTypeEnum =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
-/** Represents the Schema Registry API version to use for requests. */
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {
