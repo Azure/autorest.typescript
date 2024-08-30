@@ -8,7 +8,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -702,16 +701,22 @@ type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 type GetArrayType_2<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
 
 // @public
-type GetPage_2<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+type GetPage_2<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+// @public
+function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+
+// @public
+function getPagedAsyncIterator_2<TElement, TPage = TElement[], TPageSettings = PageSettings_2, TLink = string>(pagedResult: PagedResult_2<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator_2<TElement, TPage, TPageSettings>;
 
 // @public
 interface IdentityOutput {
@@ -1131,14 +1136,66 @@ declare namespace OutputModels_2 {
 }
 
 // @public
+interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+interface PagedAsyncIterableIterator_2<TElement, TPage = TElement[], TPageSettings = PageSettings_2> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator_2<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
+    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    firstPageLink: TLink;
+    getPage: (pageLink: TLink, maxPageSize?: number) => Promise<{
+        page: TPage;
+        nextPageLink?: TLink;
+    } | undefined>;
+    toElements?: (page: TPage) => unknown[];
+}
+
+// @public
+interface PagedResult_2<TPage, TPageSettings = PageSettings_2, TLink = string> {
+    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    firstPageLink: TLink;
+    getPage: (pageLink: TLink, maxPageSize?: number) => Promise<{
+        page: TPage;
+        nextPageLink?: TLink;
+    } | undefined>;
+    toElements?: (page: TPage) => unknown[];
+}
+
+// @public
+interface PageSettings {
+    continuationToken?: string;
+    maxPageSize?: number;
+}
+
+// @public
+interface PageSettings_2 {
+    continuationToken?: string;
+    maxPageSize?: number;
+}
+
+// @public
 function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 // @public
-function paginate_2<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions_2<TResponse>): PagedAsyncIterableIterator<PaginateReturn_2<TResponse>>;
+function paginate_2<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions_2<TResponse>): PagedAsyncIterableIterator_2<PaginateReturn_2<TResponse>>;
 
 declare namespace PaginateHelper {
     export {
+        getPagedAsyncIterator,
         paginate,
+        PagedResult,
+        PagedAsyncIterableIterator,
+        PageSettings,
         GetArrayType,
         GetPage,
         PagingOptions,
@@ -1148,7 +1205,11 @@ declare namespace PaginateHelper {
 
 declare namespace PaginateHelper_2 {
     export {
+        getPagedAsyncIterator_2 as getPagedAsyncIterator,
         paginate_2 as paginate,
+        PagedResult_2 as PagedResult,
+        PagedAsyncIterableIterator_2 as PagedAsyncIterableIterator,
+        PageSettings_2 as PageSettings,
         GetArrayType_2 as GetArrayType,
         GetPage_2 as GetPage,
         PagingOptions_2 as PagingOptions,

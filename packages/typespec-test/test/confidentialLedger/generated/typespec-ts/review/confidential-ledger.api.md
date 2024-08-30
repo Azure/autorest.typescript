@@ -8,7 +8,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -315,10 +314,13 @@ export interface GetLedgerEntryDefaultResponse extends HttpResponse {
 export type GetLedgerEntryParameters = RequestParameters;
 
 // @public
-export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+// @public
+export function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
 
 // @public (undocumented)
 export interface GetReceipt {
@@ -545,10 +547,34 @@ export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
 export type ListLedgerEntriesParameters = RequestParameters;
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
 export interface PagedLedgerEntriesOutput {
     entries: Array<LedgerEntryOutput>;
     nextLink?: string;
     state: LedgerQueryStateOutput;
+}
+
+// @public
+export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
+    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    firstPageLink: TLink;
+    getPage: (pageLink: TLink, maxPageSize?: number) => Promise<{
+        page: TPage;
+        nextPageLink?: TLink;
+    } | undefined>;
+    toElements?: (page: TPage) => unknown[];
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+    maxPageSize?: number;
 }
 
 // @public

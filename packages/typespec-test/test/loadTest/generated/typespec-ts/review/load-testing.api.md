@@ -13,7 +13,6 @@ import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { Paged } from '@azure/core-paging';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -145,10 +144,13 @@ export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 export function getLongRunningPoller<TResult extends LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse>(client: Client, initialResponse: LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRunDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
-export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+// @public
+export function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
 
 // @public
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
@@ -1325,7 +1327,31 @@ export interface OptionalLoadTestConfigOutput {
 }
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
 export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;
+
+// @public
+export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
+    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    firstPageLink: TLink;
+    getPage: (pageLink: TLink, maxPageSize?: number) => Promise<{
+        page: TPage;
+        nextPageLink?: TLink;
+    } | undefined>;
+    toElements?: (page: TPage) => unknown[];
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+    maxPageSize?: number;
+}
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
