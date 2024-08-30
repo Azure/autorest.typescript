@@ -47,6 +47,20 @@ describe("Azure Arm Resources Rest Client", () => {
       lastModifiedByType: "User"
     }
   };
+
+  // top level tracked resource
+  it("should actionSync top level tracked resources", async () => {
+    const result = await client.topLevelTrackedResources.actionSync(
+      "test-rg",
+      "top",
+      {
+        message: "Resource action at top level.",
+        urgent: true
+      }
+    );
+    assert.isUndefined(result);
+  });
+
   it("should get top level tracked resources", async () => {
     const result = await client.topLevelTrackedResources.get("test-rg", "top");
     assert.strictEqual(result.id, validTopLevelResource.id);

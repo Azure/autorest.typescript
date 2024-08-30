@@ -49,6 +49,21 @@ describe("Azure Arm Resources Rest Client", () => {
       lastModifiedByType: "User"
     }
   };
+
+  // top level tracked resource
+  it("should actionSync top level tracked resources", async () => {
+    const result = await client
+      .path(
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/actionSync",
+        "00000000-0000-0000-0000-000000000000",
+        "test-rg",
+        "top"
+      )
+      .post({
+        body: { message: "Resource action at top level.", urgent: true }
+      });
+    assert.strictEqual(result.status, "204");
+  });
   it("should get top level tracked resources", async () => {
     const result = await client
       .path(
