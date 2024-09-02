@@ -61,7 +61,7 @@ async function emitFile(
   const microsoftHeader = isAzureFlavor
     ? `// Copyright (c) Microsoft Corporation.\n`
     : "";
-  const licenseHeader = `${microsoftHeader}// Licensed under the MIT license.\n`;
+  const licenseHeader = `${microsoftHeader}// Licensed under the MIT License.\n`;
   let prettierFileContent = file.content;
 
   if (isSourceCode) {

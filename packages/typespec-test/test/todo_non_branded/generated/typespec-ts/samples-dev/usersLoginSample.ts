@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createTodoClient from "@notabrand/todo-non-branded";
 import * as dotenv from "dotenv";

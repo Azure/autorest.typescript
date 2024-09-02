@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export function serializeRecord<
   T extends string | number | boolean | Date | null,

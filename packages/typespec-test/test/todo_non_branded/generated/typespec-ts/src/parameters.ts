@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@typespec/ts-http-runtime";
 import { User, TodoItem, TodoUrlAttachment, TodoItemPatch } from "./models.js";
