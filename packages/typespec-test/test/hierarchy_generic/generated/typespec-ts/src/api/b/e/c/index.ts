@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { BEA } from "../../../../models/models.js";
 import { FooContext as Client } from "../../../index.js";
