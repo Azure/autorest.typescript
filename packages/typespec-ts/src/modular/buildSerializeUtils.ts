@@ -1,16 +1,14 @@
 import {
-  addImportsToFiles,
-  addImportToSpecifier,
-  clearImportSets,
-  Imports as RuntimeImports
-} from "@azure-tools/rlc-common";
-import { UsageFlags } from "@typespec/compiler";
-import {
   FunctionDeclarationStructure,
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { toPascalCase } from "../utils/casingUtils.js";
+import { ModularCodeModel, Type } from "./modularCodeModel.js";
+import {
+  Imports as RuntimeImports,
+  addImportToSpecifier,
+  addImportsToFiles
+} from "@azure-tools/rlc-common";
 import {
   deserializeResponseValue,
   getAllAncestors,
@@ -18,7 +16,9 @@ import {
   getResponseMapping,
   serializeRequestValue
 } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Type } from "./modularCodeModel.js";
+
+import { UsageFlags } from "@typespec/compiler";
+import { toPascalCase } from "../utils/casingUtils.js";
 
 /**
  * This function creates serialize and deserialize utils for special unions and that are used in the operation.
@@ -34,7 +34,6 @@ export function buildSerializeUtils(model: ModularCodeModel) {
     if (specialUnions.length === 0) {
       continue;
     }
-    clearImportSets(model.runtimeImports);
     const utilsFile = model.project.createSourceFile(
       `${model.modularOptions.sourceRoot}/utils/${serializeType}Util.ts`
     );
@@ -49,12 +48,6 @@ export function buildSerializeUtils(model: ModularCodeModel) {
       });
       unionDeserializeTypes?.forEach((et) => {
         if (serializeType === "serialize") {
-          // getTypePredictFunction(
-          //   utilsFile,
-          //   et,
-          //   serializeType,
-          //   getTypeUnionName(su, false, model.runtimeImports, serializeType)
-          // );
           getTypeSerializeFunction(
             utilsFile,
             et,
@@ -62,12 +55,6 @@ export function buildSerializeUtils(model: ModularCodeModel) {
             model.runtimeImports
           );
         } else {
-          // getTypePredictFunction(
-          //   utilsFile,
-          //   et,
-          //   serializeType,
-          //   getTypeUnionName(su, true, model.runtimeImports, serializeType)
-          // );
           getTypeDeserializeFunction(
             utilsFile,
             et,
@@ -374,9 +361,7 @@ function getTypeDeserializeFunction(
       returnType: type.name
     };
     if (type.properties) {
-      statements.push(
-        `return {${getResponseMapping(type, "obj", runtimeImports)}};`
-      );
+      statements.push(`return {${getResponseMapping(type, "obj")}};`);
     } else {
       statements.push(`return {};`);
     }
@@ -413,8 +398,7 @@ function getTypeDeserializeFunction(
     statements.push(
       `return (obj || []).map(item => { return {${getResponseMapping(
         type.elementType,
-        "item",
-        runtimeImports
+        "item"
       )}}})`
     );
     functionStatement.statements = statements.join("\n");
@@ -472,7 +456,6 @@ function getTypeDeserializeFunction(
       `return ${deserializeResponseValue(
         type,
         "obj",
-        runtimeImports,
         true,
         [type],
         type.format ?? "base64"
@@ -519,11 +502,7 @@ function getTypeSerializeFunction(
       returnType: typeName
     };
     if (type.properties) {
-      const { propertiesStr } = getRequestModelMapping(
-        type,
-        "obj",
-        runtimeImports
-      );
+      const { propertiesStr } = getRequestModelMapping(type, "obj");
       statements.push(`return {
         ${propertiesStr.join(", ")}
         };`);
@@ -561,11 +540,7 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: type.elementType.name + "[]" }],
       returnType: `${typeName}[]`
     };
-    const { propertiesStr } = getRequestModelMapping(
-      type.elementType,
-      "item",
-      runtimeImports
-    );
+    const { propertiesStr } = getRequestModelMapping(type.elementType, "item");
 
     statements.push(
       `return (obj || []).map(item => { 
@@ -595,9 +570,7 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: "Date" }],
       returnType: "string"
     };
-    statements.push(
-      `return ${serializeRequestValue(type, "obj", runtimeImports, true)}`
-    );
+    statements.push(`return ${serializeRequestValue(type, "obj", true)}`);
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
       if (
@@ -621,9 +594,7 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: "Uint8Array" }],
       returnType: "string"
     };
-    statements.push(
-      `return ${serializeRequestValue(type, "obj", runtimeImports, true)}`
-    );
+    statements.push(`return ${serializeRequestValue(type, "obj", true)}`);
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
       if (

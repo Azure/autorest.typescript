@@ -305,7 +305,7 @@ function isEmptyAnonymousModel(type: EmitterType): boolean {
   );
 }
 
-function getType(
+export function getType(
   context: SdkContext,
   type: EmitterType,
   options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}

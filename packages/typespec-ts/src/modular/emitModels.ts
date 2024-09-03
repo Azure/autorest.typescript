@@ -237,16 +237,13 @@ export function buildModels(
       }
 
       // Generate a serializer function next to each model
-      const serializerFunction = buildModelSerializer(
-        model,
-        codeModel.runtimeImports
-      );
+      const serializerFunction = buildModelSerializer(model);
 
       if (
         serializerFunction &&
         !modelsFile.getFunction(toCamelCase(modelInterface.name + "Serializer"))
       ) {
-        modelsFile.addStatements(serializerFunction);
+        modelsFile.addFunction(serializerFunction);
       }
       addImportBySymbol("serializeRecord", modelsFile);
       modelsFile.fixUnusedIdentifiers();
@@ -294,12 +291,9 @@ export function buildModels(
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
     if (!models.includes(alias)) {
       // Generate a serializer function next to each model
-      const serializerFunction = buildModelSerializer(
-        alias,
-        codeModel.runtimeImports
-      );
+      const serializerFunction = buildModelSerializer(alias);
       if (serializerFunction) {
-        modelsFile.addStatements(serializerFunction);
+        modelsFile.addFunction(serializerFunction);
       }
     }
   });

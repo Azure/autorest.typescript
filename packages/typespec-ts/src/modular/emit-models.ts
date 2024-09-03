@@ -27,7 +27,9 @@ import {
 } from "./type-expressions/get-model-expression.js";
 
 import { addDeclaration } from "../framework/declaration.js";
+import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
+import { getType } from "./buildCodeModel.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
@@ -74,12 +76,14 @@ export function emitTypes(
             refkey(type, "polymorphicType")
           );
         }
-        const serializerFunction = buildSerializerFunction(type);
-        addDeclaration(
-          sourceFile,
-          serializerFunction,
-          refkey(type, "serializer")
-        );
+        const serializerFunction = buildSerializerFunction(context, type);
+        if (serializerFunction) {
+          addDeclaration(
+            sourceFile,
+            serializerFunction,
+            refkey(type, "serializer")
+          );
+        }
         break;
       case "enum":
         const [enumType, knownValuesEnum] = buildEnumTypes(type);
@@ -340,23 +344,11 @@ function visitType(
 }
 
 function buildSerializerFunction(
+  context: SdkContext,
   type: SdkModelType
-): FunctionDeclarationStructure {
-  const serializerFunction: FunctionDeclarationStructure = {
-    kind: StructureKind.Function,
-    name: `${normalizeName(type.name, NameType.Method)}Serializer`,
-    isExported: true,
-    parameters: [
-      {
-        name: "input",
-        type: getModelExpression(type, { skipPolymorphicUnion: true })
-      }
-    ],
-    returnType: "unknown",
-    statements: [`console.log(input)`, `throw new Error("Not implemented")`]
-  };
-
-  return serializerFunction;
+): FunctionDeclarationStructure | undefined {
+  const modularType = getType(context, type.__raw!);
+  return buildModelSerializer(modularType);
 }
 
 function buildModelPolymorphicSerializer(type: SdkModelType) {

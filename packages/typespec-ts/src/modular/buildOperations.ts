@@ -1,15 +1,12 @@
+import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import {
+  NameType,
   addImportsToFiles,
   clearImportSets,
   getImportSpecifier,
-  NameType,
   normalizeName
 } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { getOperationName } from "./helpers/namingHelpers.js";
 import {
   getDeserializePrivateFunction,
   getExpectedStatuses,
@@ -18,10 +15,15 @@ import {
   getSendPrivateFunction,
   isLroOnlyOperation
 } from "./helpers/operationHelpers.js";
-import { buildType } from "./helpers/typeHelpers.js";
+
 import { OperationPathAndDeserDetails } from "./interfaces.js";
-import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
+import { SdkContext } from "../utils/interfaces.js";
 import { addImportBySymbol } from "../utils/importHelper.js";
+import { buildType } from "./helpers/typeHelpers.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { getOperationName } from "./helpers/namingHelpers.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single
@@ -90,13 +92,9 @@ export function buildOperationFiles(
       const sendOperationDeclaration = getSendPrivateFunction(
         dpgContext,
         o,
-        clientType,
-        codeModel.runtimeImports
+        clientType
       );
-      const deserializeOperationDeclaration = getDeserializePrivateFunction(
-        o,
-        codeModel.runtimeImports
-      );
+      const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
         deserializeOperationDeclaration,

@@ -12,11 +12,6 @@ import {
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import {
-  NameType,
-  Imports as RuntimeImports,
-  addImportToSpecifier
-} from "@azure-tools/rlc-common";
 import { NoTarget, Program } from "@typespec/compiler";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
 import {
@@ -44,6 +39,7 @@ import {
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { AzurePollingDependencies } from "../external-dependencies.js";
+import { NameType } from "@azure-tools/rlc-common";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
@@ -53,8 +49,7 @@ import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
-  clientType: string,
-  runtimeImports: RuntimeImports
+  clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
@@ -79,8 +74,7 @@ export function getSendPrivateFunction(
       operation
     )}).${operationMethod}({...operationOptionsToRequestParameters(${optionalParamName}), ${getRequestParameters(
       dpgContext,
-      operation,
-      runtimeImports
+      operation
     )}});`
   );
 
@@ -91,8 +85,7 @@ export function getSendPrivateFunction(
 }
 
 export function getDeserializePrivateFunction(
-  operation: Operation,
-  runtimeImports: RuntimeImports
+  operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
@@ -101,7 +94,8 @@ export function getDeserializePrivateFunction(
       type: "PathUncheckedResponse"
     }
   ];
-  addImportToSpecifier("restClient", runtimeImports, "PathUncheckedResponse");
+  // TODO: Add import for PathUncheckedResponse
+  // addImportToSpecifier("restClient", runtimeImports, "PathUncheckedResponse");
 
   // TODO: Support LRO + paging operation
   // https://github.com/Azure/autorest.typescript/issues/2313
@@ -140,7 +134,8 @@ export function getDeserializePrivateFunction(
     `throw createRestError(result);`,
     "}"
   );
-  addImportToSpecifier("restClient", runtimeImports, "createRestError");
+  // TODO: Add import for createRestError
+  // addImportToSpecifier("restClient", runtimeImports, "createRestError");
 
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
@@ -181,11 +176,7 @@ export function getDeserializePrivateFunction(
   ) {
     statements.push(
       `return {`,
-      getResponseMapping(
-        deserializedType,
-        deserializedRoot,
-        runtimeImports
-      ).join(","),
+      getResponseMapping(deserializedType, deserializedRoot).join(","),
       `}`
     );
   } else if (returnType.type === "void" || deserializedType === undefined) {
@@ -195,7 +186,6 @@ export function getDeserializePrivateFunction(
       `return ${deserializeResponseValue(
         deserializedType,
         deserializedRoot,
-        runtimeImports,
         false, // TODO: Calculate if required
         [deserializedType],
         deserializedType.format
@@ -466,8 +456,7 @@ export function getOperationOptionsName(
  */
 function getRequestParameters(
   dpgContext: SdkContext,
-  operation: Operation,
-  runtimeImports: RuntimeImports
+  operation: Operation
 ): string {
   if (!operation.parameters) {
     return "";
@@ -494,7 +483,7 @@ function getRequestParameters(
       param.location === "body"
     ) {
       parametersImplementation[param.location].push({
-        paramMap: getParameterMap(param, runtimeImports),
+        paramMap: getParameterMap(param),
         param
       });
     }
@@ -525,10 +514,7 @@ function getRequestParameters(
       .map((i) => i.paramMap)
       .join(",\n")}}`;
   } else if (operation.bodyParameter !== undefined) {
-    paramStr = `${paramStr}${buildBodyParameter(
-      operation.bodyParameter,
-      runtimeImports
-    )}`;
+    paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
   }
   return paramStr;
 }
@@ -558,10 +544,7 @@ function buildHeaderParameter(
     : paramMap;
 }
 
-function buildBodyParameter(
-  bodyParameter: BodyParameter | undefined,
-  runtimeImports: RuntimeImports
-) {
+function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
   if (!bodyParameter) {
     return "";
   }
@@ -575,7 +558,6 @@ function buildBodyParameter(
     const { propertiesStr: bodyParts } = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
-      runtimeImports,
       [bodyParameter.type]
     );
 
@@ -589,7 +571,8 @@ function buildBodyParameter(
     }
   } else if (isDiscriminatedUnion(bodyParameter.type.tcgcType)) {
     const serializerName = toCamelCase(`${bodyParameter.type.name}Serializer`);
-    addImportToSpecifier("modularModel", runtimeImports, serializerName);
+    // TODO: Add import for serializer
+    // addImportToSpecifier("modularModel", runtimeImports, serializerName);
     return `\nbody: ${serializerName}(${bodyParameter.clientName}),`;
   } else if (
     (bodyParameter.type.type === "model" &&
@@ -621,12 +604,9 @@ function buildBodyParameter(
       !bodyParameter.type.elementType.aliasType
     ) {
       const { propertiesStr: bodyParts, directAssignment } =
-        getRequestModelMapping(
-          bodyParameter.type.elementType,
-          "p",
-          runtimeImports,
-          [bodyParameter.type.elementType]
-        );
+        getRequestModelMapping(bodyParameter.type.elementType, "p", [
+          bodyParameter.type.elementType
+        ]);
       const mapBody =
         directAssignment === true
           ? bodyParts.join(", ")
@@ -686,31 +666,28 @@ function getEncodingFormat(type: { format?: string }) {
 /**
  * This function helps with renames, translating client names to rest api names
  */
-export function getParameterMap(
-  param: Parameter | Property,
-  runtimeImports: RuntimeImports
-): string {
+export function getParameterMap(param: Parameter | Property): string {
   if (isConstant(param)) {
     return getConstantValue(param);
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    return getCollectionFormat(param as Parameter, runtimeImports);
+    return getCollectionFormat(param as Parameter);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(param, runtimeImports);
+    return getOptional(param);
   }
 
   if (isRequired(param)) {
-    return getRequired(param, runtimeImports);
+    return getRequired(param);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
 }
 
-function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
+function getCollectionFormat(param: Parameter) {
   const collectionInfo = getCollectionFormatHelper(
     param.location,
     param.format ?? ""
@@ -724,7 +701,6 @@ function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
     return `"${param.restApiName}": ${collectionInfo}(${serializeRequestValue(
       param.type,
       param.clientName,
-      runtimeImports,
       true,
       [param.type],
       param.format
@@ -735,7 +711,6 @@ function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
   } !== undefined ? ${collectionInfo}(${serializeRequestValue(
     param.type,
     "options?." + param.clientName,
-    runtimeImports,
     false,
     [param.type],
     param.format
@@ -772,12 +747,11 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
+function getRequired(param: RequiredType) {
   if (param.type.type === "model") {
     const { propertiesStr } = getRequestModelMapping(
       param.type,
       param.clientName,
-      runtimeImports,
       [param.type]
     );
     return `"${param.restApiName}": { ${propertiesStr.join(",")} }`;
@@ -785,7 +759,6 @@ function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     param.clientName,
-    runtimeImports,
     true,
     [param.type],
     param.format === undefined &&
@@ -827,12 +800,11 @@ function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
+function getOptional(param: OptionalType) {
   if (param.type.type === "model") {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
-      runtimeImports,
       [param.type]
     );
     const serializeContent =
@@ -854,7 +826,6 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
-    runtimeImports,
     false,
     [param.type],
     param.format === undefined &&
@@ -928,7 +899,6 @@ interface RequestModelMappingResult {
 export function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
-  runtimeImports: RuntimeImports,
   typeStack: Type[] = []
 ): RequestModelMappingResult {
   const props: string[] = [];
@@ -995,7 +965,6 @@ export function getRequestModelMapping(
             `${propertyPath}.${property.clientName}${
               property.optional ? "?" : ""
             }`,
-            runtimeImports,
             [...typeStack, property.type]
           );
 
@@ -1034,7 +1003,9 @@ export function getRequestModelMapping(
       //   "serializeRecord"
       // );
 
-      addImportToSpecifier("modularModel", runtimeImports, serializerName);
+      // TODO: Add import for serializer
+      // addImportToSpecifier("modularModel", runtimeImports, serializerName);
+
       props.push(statement);
     } else if (modelPropertyType.type === "enum") {
       props.push(
@@ -1049,7 +1020,6 @@ export function getRequestModelMapping(
         `"${property.restApiName}": ${serializeRequestValue(
           property.type,
           clientValue,
-          runtimeImports,
           !property.optional,
           [...typeStack, property.type],
           property.format
@@ -1068,7 +1038,6 @@ export function getRequestModelMapping(
 export function getResponseMapping(
   type: Type,
   propertyPath: string = "result.body",
-  runtimeImports: RuntimeImports,
   typeStack: Type[] = []
 ) {
   const allParents = getAllAncestors(type);
@@ -1119,7 +1088,6 @@ export function getResponseMapping(
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
-          runtimeImports,
           [...typeStack, property.type]
         )}}`;
       }
@@ -1146,7 +1114,6 @@ export function getResponseMapping(
           `"${property.clientName}": ${deserializeResponseValue(
             property.type,
             restValue,
-            runtimeImports,
             property.optional !== undefined ? !property.optional : false,
             [...typeStack, property.type],
             property.format
@@ -1168,7 +1135,6 @@ export function getResponseMapping(
 export function deserializeResponseValue(
   type: Type,
   restValue: string,
-  runtimeImports: RuntimeImports,
   required: boolean,
   typeStack: Type[] = [],
   format?: string
@@ -1204,7 +1170,6 @@ export function deserializeResponseValue(
           return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}{${getResponseMapping(
             type.elementType,
             "p",
-            runtimeImports,
             [...typeStack, type.elementType]
           )}}})`;
         } else if (isPolymorphicUnion(type.elementType)) {
@@ -1226,7 +1191,6 @@ export function deserializeResponseValue(
         return `${prefix}.map((p: any) => ${deserializeResponseValue(
           type.elementType!,
           "p",
-          runtimeImports,
           true,
           [...typeStack, type.elementType!],
           type.elementType?.format
@@ -1286,7 +1250,6 @@ export function deserializeResponseValue(
 export function serializeRequestValue(
   type: Type,
   clientValue: string,
-  runtimeImports: RuntimeImports,
   required: boolean,
   typeStack: Type[] = [],
   format?: string
@@ -1328,7 +1291,6 @@ export function serializeRequestValue(
           const { propertiesStr } = getRequestModelMapping(
             type.elementType,
             "p",
-            runtimeImports,
             [...typeStack, type.elementType]
           );
 
@@ -1347,7 +1309,6 @@ export function serializeRequestValue(
         return `${prefix}.map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
-          runtimeImports,
           true,
           [...typeStack, type.elementType!],
           type.elementType?.format
