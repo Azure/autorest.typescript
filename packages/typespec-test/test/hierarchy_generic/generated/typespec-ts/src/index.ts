@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export { FooClient, FooClientOptionalParams } from "./fooClient.js";
 export {

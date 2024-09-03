@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { ClientOptions, Client, getClient } from "@typespec/ts-http-runtime";

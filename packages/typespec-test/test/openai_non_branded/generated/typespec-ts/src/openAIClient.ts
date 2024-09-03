@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { Pipeline } from "@typespec/ts-http-runtime";
