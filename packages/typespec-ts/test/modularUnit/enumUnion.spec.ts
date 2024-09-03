@@ -2,8 +2,9 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+
 import { assert } from "chai";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("header parameters", () => {
   describe("named union", async () => {
@@ -1017,6 +1018,82 @@ describe("model type", () => {
         `
         /** Type of Color */
         export type Color = 1 | 2;
+        `
+      );
+    });
+
+    it("union of enum with experimental extensible enum flags", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+      union ImageSize {
+        string,
+
+        @doc("""
+          Very small image size of 256x256 pixels.
+          Only supported with dall-e-2 models.
+          """)
+        size256x256: "256x256",
+
+        @doc("""
+          A smaller image size of 512x512 pixels.
+          Only supported with dall-e-2 models.
+          """)
+        size512x512: "512x512",
+
+        @doc("""
+          A standard, square image size of 1024x1024 pixels.
+          Supported by both dall-e-2 and dall-e-3 models.
+          """)
+        size1024x1024: "1024x1024",
+
+        @doc("""
+          A wider image size of 1024x1792 pixels.
+          Only supported with dall-e-3 models.
+          """)
+        size1792x1024: "1792x1024",
+
+        @doc("""
+          A taller image size of 1792x1024 pixels.
+          Only supported with dall-e-3 models.
+          """)
+        size1024x1792: "1024x1792",
+      }
+      model Test {
+        color: ImageSize;
+      }
+      op read(@body body: Test): void;
+        `,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      );
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile!.getInterface("Test")!.getFullText()!,
+        `
+        export interface Test {
+          color: ImageSize;
+        }
+        `
+      );
+      await assertEqualContent(
+        modelFile!.getEnum("KnownImageSize")!.getFullText()!,
+        `
+        /** Known values of {@link ImageSize} that the service accepts. */
+        export enum KnownImageSize {
+          /** size256x256 */
+          size256x256 = "256x256",
+          /** size512x512 */
+          size512x512 = "512x512",
+          /** size1024x1024 */
+          size1024x1024 = "1024x1024",
+          /** size1792x1024 */
+          size1792x1024 = "1792x1024",
+          /** size1024x1792 */
+          size1024x1792 = "1024x1792",
+        }
         `
       );
     });

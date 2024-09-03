@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { GetJobParameters, CreateJobParameters } from "./parameters.js";
 import {
@@ -21,7 +21,7 @@ export interface GetJob {
 export interface CreateJob {
   /** Creates a Trial Matcher job with the given request body. */
   post(
-    options?: CreateJobParameters,
+    options: CreateJobParameters,
   ): StreamableMethod<
     CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse
   >;

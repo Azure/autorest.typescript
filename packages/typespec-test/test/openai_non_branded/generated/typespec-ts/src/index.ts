@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export { OpenAIClient, OpenAIClientOptionalParams } from "./openAIClient.js";
 export {

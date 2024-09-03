@@ -1,10 +1,11 @@
-import { assert } from "chai";
+import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+
 import { Diagnostic } from "@typespec/compiler";
+import { assert } from "chai";
 
 async function verifyModularPropertyType(
   tspType: string,
@@ -106,6 +107,65 @@ describe("model property type", () => {
       `
     });
   });
+
+
+  it("should handle boolean literal type", async () => {
+    const tspContent = `
+    @doc("The configuration for a streaming chat completion request.")
+    model StreamingChatCompletionOptions {
+      @doc("Indicates whether the completion is a streaming or non-streaming completion.")
+      stream: true;
+    }
+    @route("/createStreaming")
+    @post op createStreaming(
+      ...StreamingChatCompletionOptions
+    ): void;
+    `;
+    const operationFiles =
+      await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "./index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        PathUncheckedResponse,
+        createRestError,
+      } from "@azure-rest/core-client";
+      export function _createStreamingSend(
+        context: Client,
+        options: CreateStreamingOptionalParams = { requestOptions: {} },
+      ): StreamableMethod {
+        return context
+          .path("/createStreaming")
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            body: { stream: true },
+          });
+      }
+      export async function _createStreamingDeserialize(
+        result: PathUncheckedResponse,
+      ): Promise<void> {
+        const expectedStatuses = ["204"];
+        if (!expectedStatuses.includes(result.status)) {
+          throw createRestError(result);
+        }
+        return;
+      }
+      export async function createStreaming(
+        context: Client,
+        options: CreateStreamingOptionalParams = { requestOptions: {} },
+      ): Promise<void> {
+        const result = await _createStreamingSend(context, options);
+        return _createStreamingDeserialize(result);
+      }
+      `,
+      true
+    );
+  });
 });
 
 describe("modular encode test for property type datetime", () => {
@@ -125,8 +185,8 @@ describe("modular encode test for property type datetime", () => {
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
-        prop1: Date;
-        prop2: Date;
+        prop1: string;
+        prop2: string;
         prop3: Date;
         prop4: string;
       }`
@@ -138,8 +198,8 @@ describe("modular encode test for property type datetime", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: item["prop1"].toDateString(),
-          prop2: item["prop2"].toTimeString(),
+          prop1: item["prop1"],
+          prop2: item["prop2"],
           prop3: item["prop3"].toISOString(),
           prop4: item["prop4"],
         };
@@ -170,8 +230,8 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: body["prop1"].toDateString(),
-              prop2: body["prop2"].toTimeString(),
+              prop1: body["prop1"],
+              prop2: body["prop2"],
               prop3: body["prop3"].toISOString(),
               prop4: body["prop4"],
             },
@@ -184,8 +244,8 @@ describe("modular encode test for property type datetime", () => {
           throw createRestError(result);
         }
         return {
-          prop1: new Date(result.body["prop1"]),
-          prop2: new Date(result.body["prop2"]),
+          prop1: result.body["prop1"],
+          prop2: result.body["prop2"],
           prop3: new Date(result.body["prop3"]),
           prop4: result.body["prop4"],
         };

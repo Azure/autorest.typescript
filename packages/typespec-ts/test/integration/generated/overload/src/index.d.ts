@@ -38,7 +38,7 @@ export declare interface Process204Response extends HttpResponse {
 }
 
 export declare interface ProcessBodyParam {
-    body?: {
+    body: {
         data: string | string;
     };
 }

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAzureHealthInsightsClient, {
@@ -27,7 +27,7 @@ async function createJobSample() {
             id: "{Your id}",
             info: {
               sex: "female",
-              birthDate: new Date(),
+              birthDate: "{Your birthDate}",
               clinicalInfo: [
                 {
                   resourceType: "{Your resourceType}",
@@ -126,7 +126,7 @@ async function createJobSample() {
                               dimensions: 123,
                               data: "{Your data}",
                             },
-                            valueTime: new Date(),
+                            valueTime: "{Your valueTime}",
                             valueDateTime: "{Your valueDateTime}",
                             valuePeriod: {
                               id: "{Your id}",
@@ -258,7 +258,7 @@ async function createJobSample() {
                               dimensions: 123,
                               data: "{Your data}",
                             },
-                            valueTime: new Date(),
+                            valueTime: "{Your valueTime}",
                             valueDateTime: "{Your valueDateTime}",
                             valuePeriod: {
                               id: "{Your id}",
@@ -421,7 +421,7 @@ async function createJobSample() {
                             dimensions: 123,
                             data: "{Your data}",
                           },
-                          valueTime: new Date(),
+                          valueTime: "{Your valueTime}",
                           valueDateTime: "{Your valueDateTime}",
                           valuePeriod: {
                             id: "{Your id}",
@@ -550,7 +550,7 @@ async function createJobSample() {
                               dimensions: 123,
                               data: "{Your data}",
                             },
-                            valueTime: new Date(),
+                            valueTime: "{Your valueTime}",
                             valueDateTime: "{Your valueDateTime}",
                             valuePeriod: {
                               id: "{Your id}",
@@ -666,7 +666,7 @@ async function createJobSample() {
                                   dimensions: 123,
                                   data: "{Your data}",
                                 },
-                                valueTime: new Date(),
+                                valueTime: "{Your valueTime}",
                                 valueDateTime: "{Your valueDateTime}",
                                 valuePeriod: {
                                   id: "{Your id}",

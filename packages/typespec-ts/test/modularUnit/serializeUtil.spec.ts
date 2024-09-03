@@ -1,9 +1,10 @@
-import { assert } from "chai";
 import {
-  emitModularSerializeUtilsFromTypeSpec,
+  emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
-  emitModularModelsFromTypeSpec
+  emitModularSerializeUtilsFromTypeSpec
 } from "../util/emitUtil.js";
+
+import { assert } from "chai";
 import { assertEqualContent } from "../util/testUtil.js";
 
 // Replaced with new serializers
@@ -694,7 +695,7 @@ describe("modular special union serialization", () => {
       export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
         return { 
           kind: item["kind"],
-          data: uint8ArrayToString(item["data"], "base64") 
+          data: uint8ArrayToString(item["data"], "base64")
         };
       }
       `
@@ -1029,6 +1030,198 @@ describe("modular special union serialization", () => {
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
+      }
+      `,
+      true
+    );
+  });
+
+  it("should generate serialize util if there're special discriminated union within a anonymous model", async () => {
+    const tspContent = `
+    /** Options to configure a vector store static chunking strategy. */
+    model VectorStoreStaticChunkingStrategyOptions {
+      /** The maximum number of tokens in each chunk. The default value is 800. The minimum value is 100 and the maximum value is 4096. */
+      @encodedName("application/json", "max_chunk_size_tokens")
+      @minValue(100)
+      @maxValue(4096)
+      maxChunkSizeTokens: int32;
+
+      /**
+       * The number of tokens that overlap between chunks. The default value is 400.
+       * Note that the overlap must not exceed half of max_chunk_size_tokens.     *
+       */
+      @encodedName("application/json", "chunk_overlap_tokens")
+      chunkOverlapTokens: int32;
+    }
+
+    /** Type of chunking strategy */
+    union VectorStoreChunkingStrategyRequestType {
+      auto: "auto",
+      static: "static",
+      string,
+    }
+
+    /** An abstract representation of a vector store chunking strategy configuration. */
+    @discriminator("type")
+    model VectorStoreChunkingStrategyRequest {
+      /** The object type. */
+      type: VectorStoreChunkingStrategyRequestType;
+    }
+
+    /**
+     * The default strategy. This strategy currently uses a max_chunk_size_tokens of 800 and chunk_overlap_tokens of 400.
+     */
+    model VectorStoreAutoChunkingStrategyRequest
+      extends VectorStoreChunkingStrategyRequest {
+      /** The object type, which is always 'auto'. */
+      type: VectorStoreChunkingStrategyRequestType.auto;
+    }
+
+    /** A statically configured chunking strategy. */
+    model VectorStoreStaticChunkingStrategyRequest
+      extends VectorStoreChunkingStrategyRequest {
+      /** The object type, which is always 'static'. */
+      type: VectorStoreChunkingStrategyRequestType.static;
+
+      /** The options for the static chunking strategy. */
+      static: VectorStoreStaticChunkingStrategyOptions;
+    }
+
+    @route("/vector_stores/{vectorStoreId}/files")
+    op createVectorStoreFile(
+      /** The ID of the vector store for which to create a File. */
+      @path vectorStoreId: string,
+
+      /** A File ID that the vector store should use. Useful for tools like \`file_search\` that can access files. */
+      @encodedName("application/json", "file_id")
+      fileId: string,
+
+      /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
+      @encodedName("application/json", "chunking_strategy")
+      chunkingStrategy?: VectorStoreChunkingStrategyRequest,
+    ): void;
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelsFile);
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreChunkingStrategyRequestUnionSerializer")?.getFullText()!,
+      `
+      export function vectorStoreChunkingStrategyRequestUnionSerializer(
+        item: VectorStoreChunkingStrategyRequestUnion,
+      ) {
+        switch (item.type) {
+          case "auto":
+            return vectorStoreAutoChunkingStrategyRequestSerializer(
+              item as VectorStoreAutoChunkingStrategyRequest,
+            );
+      
+          case "static":
+            return vectorStoreStaticChunkingStrategyRequestSerializer(
+              item as VectorStoreStaticChunkingStrategyRequest,
+            );
+      
+          default:
+            return vectorStoreChunkingStrategyRequestSerializer(item);
+        }
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreAutoChunkingStrategyRequestSerializer")?.getFullText()!,
+      `
+      export function vectorStoreAutoChunkingStrategyRequestSerializer(
+        item: VectorStoreAutoChunkingStrategyRequest,
+      ): Record<string, unknown> {
+        return {
+          type: item["type"],
+        };
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreStaticChunkingStrategyRequestSerializer")?.getFullText()!,
+      `
+      export function vectorStoreStaticChunkingStrategyRequestSerializer(
+        item: VectorStoreStaticChunkingStrategyRequest,
+      ): Record<string, unknown> {
+        return {
+          type: item["type"],
+          static: vectorStoreStaticChunkingStrategyOptionsSerializer(item.static),
+        };
+      }
+      `
+    );
+
+    await assertEqualContent(
+      modelsFile?.getFunction("vectorStoreChunkingStrategyRequestSerializer")?.getFullText()!,
+      `
+      export function vectorStoreChunkingStrategyRequestSerializer(
+        item: VectorStoreChunkingStrategyRequestUnion,
+      ): Record<string, unknown> {
+        return {
+          ...vectorStoreChunkingStrategyRequestUnionSerializer(item),
+        };
+      }
+      `
+    );
+    
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "./index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        PathUncheckedResponse,
+        createRestError,
+      } from "@azure-rest/core-client";
+      export function _createVectorStoreFileSend(
+        context: Client,
+        vectorStoreId: string,
+        fileId: string,
+        options: CreateVectorStoreFileOptionalParams = { requestOptions: {} },
+      ): StreamableMethod {
+        return context
+          .path("/vector_stores/{vectorStoreId}/files", vectorStoreId)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              file_id: fileId,
+              chunking_strategy: vectorStoreChunkingStrategyRequestUnionSerializer(
+                options?.chunkingStrategy,
+              ),
+            },
+          });
+      }
+      export async function _createVectorStoreFileDeserialize(
+        result: PathUncheckedResponse,
+      ): Promise<void> {
+        const expectedStatuses = ["204"];
+        if (!expectedStatuses.includes(result.status)) {
+          throw createRestError(result);
+        }
+        return;
+      }
+      export async function createVectorStoreFile(
+        context: Client,
+        vectorStoreId: string,
+        fileId: string,
+        options: CreateVectorStoreFileOptionalParams = { requestOptions: {} },
+      ): Promise<void> {
+        const result = await _createVectorStoreFileSend(
+          context,
+          vectorStoreId,
+          fileId,
+          options,
+        );
+        return _createVectorStoreFileDeserialize(result);
       }
       `,
       true
@@ -1644,9 +1837,9 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData1Output, WidgetDataOutput } from "../rest/index.js";
       import { WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData1 */
       function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
@@ -1757,13 +1950,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {
@@ -1882,13 +2075,13 @@ describe("modular special union deserialization", () => {
     await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
-      import { stringToUint8Array } from "@azure/core-util";
       import {
         WidgetData0Output,
         WidgetData1Output,
         WidgetDataOutput,
       } from "../rest/index.js";
       import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      import { stringToUint8Array } from "@azure/core-util";
       
       /** deserialize function for WidgetData0 */
       function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {

@@ -4,28 +4,30 @@
 import {
   ArraySchema,
   DictionarySchema,
-  isArraySchema,
   NameType,
-  normalizeName,
   ObjectSchema,
   Schema,
-  SchemaContext
+  SchemaContext,
+  isArraySchema,
+  normalizeName
 } from "@azure-tools/rlc-common";
-import {
-  getPagedResult,
-  getUnionAsEnum
-} from "@azure-tools/typespec-azure-core";
-import {
-  getDefaultApiVersion,
-  getWireName,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
 import {
   BooleanLiteral,
   Discriminator,
   EncodeData,
   Enum,
   EnumMember,
+  Model,
+  ModelProperty,
+  NoTarget,
+  NumericLiteral,
+  Program,
+  Scalar,
+  Service,
+  StringLiteral,
+  Type,
+  Union,
+  UnionVariant,
   getDiscriminator,
   getDoc,
   getEffectiveModelType,
@@ -49,37 +51,37 @@ import {
   isSecret,
   isStringType,
   isTemplateDeclaration,
+  isType,
   isUnknownType,
-  listServices,
-  Model,
-  ModelProperty,
-  NoTarget,
-  NumericLiteral,
-  Program,
-  Scalar,
-  Service,
-  StringLiteral,
-  Type,
-  Union,
-  UnionVariant,
-  isType
+  listServices
 } from "@typespec/compiler";
+import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
+  HttpOperation,
+  HttpOperationParameters,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  HttpOperation,
   isStatusCode
 } from "@typespec/http";
-import { reportDiagnostic } from "../lib.js";
-import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
+  KnownMediaType,
   hasMediaType,
-  isMediaTypeMultipartFormData,
-  KnownMediaType
+  isMediaTypeMultipartFormData
 } from "./mediaTypes.js";
-import { getModelNamespaceName } from "./namespaceUtils.js";
+import {
+  getDefaultApiVersion,
+  getWireName,
+  isApiVersion
+} from "@azure-tools/typespec-client-generator-core";
+import {
+  getPagedResult,
+  getUnionAsEnum
+} from "@azure-tools/typespec-azure-core";
+
 import { extractPagedMetadataNested } from "./operationUtil.js";
+import { getModelNamespaceName } from "./namespaceUtils.js";
+import { reportDiagnostic } from "../lib.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -1299,7 +1301,7 @@ function getSchemaForStdScalar(
         type: "string",
         format,
         description,
-        typeName: "Date | string",
+        typeName: "string",
         outputTypeName: "string"
       };
     case "utcDateTime":
@@ -1323,7 +1325,7 @@ function getSchemaForStdScalar(
         type: "string",
         format: "time",
         description,
-        typeName: "Date | string",
+        typeName: "string",
         outputTypeName: "string"
       };
     case "duration":
@@ -1801,4 +1803,10 @@ export function getEffectiveSchemaType(
     return effective;
   }
   return type as Model;
+}
+
+export function isBodyRequired(parameter: HttpOperationParameters) {
+  return parameter.body?.type && parameter.body?.property?.optional !== true
+    ? true
+    : false;
 }

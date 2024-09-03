@@ -51,6 +51,11 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
     name: "uint8ArrayToString";
     module: string;
   };
+  stringToUint8Array: {
+    kind: "externalDependency";
+    name: "stringToUint8Array";
+    module: string;
+  };
 }
 
 export type CoreDependency = keyof CoreDependencies;

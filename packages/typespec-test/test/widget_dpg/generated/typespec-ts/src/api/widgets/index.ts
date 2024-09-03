@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   User,
@@ -14,13 +14,13 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
+import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   WidgetsListWidgetsOptionalParams,

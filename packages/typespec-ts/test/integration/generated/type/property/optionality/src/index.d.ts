@@ -455,7 +455,7 @@ export declare interface PlainDateGetDefault200Response extends HttpResponse {
 export declare type PlainDateGetDefaultParameters = RequestParameters;
 
 export declare interface PlainDateProperty {
-    property?: Date | string;
+    property?: string;
 }
 
 export declare interface PlainDatePropertyOutput {
@@ -507,7 +507,7 @@ export declare interface PlainTimeGetDefault200Response extends HttpResponse {
 export declare type PlainTimeGetDefaultParameters = RequestParameters;
 
 export declare interface PlainTimeProperty {
-    property?: Date | string;
+    property?: string;
 }
 
 export declare interface PlainTimePropertyOutput {

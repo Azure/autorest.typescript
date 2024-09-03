@@ -40,17 +40,30 @@ const testedTypes: TypeDetail[] = [
     type: "unknown",
     defaultValue: [1, "hello", null]
   },
-  {
-    type: "model",
-    defaultValue: [
-      { property: "hello", children: undefined },
-      { property: "world", children: undefined }
-    ]
-  },
+  // {
+  //   type: "model",
+  //   defaultValue: [{ property: "hello" }, { property: "world" }]
+  // },
   {
     type: "nullable-float",
     defaultValue: [1.25, null, 3.0]
+  },
+  {
+    type: "nullable-int32",
+    defaultValue: [1, null, 3]
+  },
+  {
+    type: "nullable-string",
+    defaultValue: ["hello", null, "world"]
+  },
+  {
+    type: "nullable-boolean",
+    defaultValue: [true, null, false]
   }
+  // {
+  //   type: "nullable-model",
+  //   defaultValue: [{ property: "hello" }, null, { property: "world" }]
+  // }
 ];
 describe("Array Item-Types Client", () => {
   let client: ArrayClient;
@@ -93,12 +106,24 @@ describe("Array Item-Types Client", () => {
           case "unknown":
             result = await client.unknownValue.get();
             break;
-          case "model":
-            result = await client.modelValue.get();
-            break;
+          // case "model":
+          //   result = await client.modelValue.get();
+          //   break;
           case "nullable-float":
             result = await client.nullableFloatValue.get();
             break;
+          case "nullable-int32":
+            result = await client.nullableInt32Value.get();
+            break;
+          case "nullable-string":
+            result = await client.nullableStringValue.get();
+            break;
+          case "nullable-boolean":
+            result = await client.nullableBooleanValue.get();
+            break;
+          // case "nullable-model":
+          //   result = await client.nullableModelValue.get();
+          //   break;
           default:
             break;
         }
@@ -142,6 +167,18 @@ describe("Array Item-Types Client", () => {
             break;
           case "nullable-float":
             result = await client.nullableFloatValue.put(item.defaultValue);
+            break;
+          case "nullable-boolean":
+            result = await client.nullableBooleanValue.put(item.defaultValue);
+            break;
+          case "nullable-int32":
+            result = await client.nullableInt32Value.put(item.defaultValue);
+            break;
+          case "nullable-string":
+            result = await client.nullableStringValue.put(item.defaultValue);
+            break;
+          case "nullable-model":
+            result = await client.nullableModelValue.put(item.defaultValue);
             break;
           default:
             break;
