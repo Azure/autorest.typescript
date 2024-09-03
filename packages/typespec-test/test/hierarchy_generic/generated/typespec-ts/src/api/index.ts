@@ -7,3 +7,6 @@ export {
   FooClientOptionalParams,
 } from "./fooContext.js";
 export { op1 } from "./operations.js";
+export { bOp1 } from "./b/index.js";
+export { cOp1 } from "./c/index.js";
+export { dOp1 } from "./d/index.js";

@@ -8,14 +8,7 @@ export {
   BEA,
   Op1OptionalParams,
   BOp1OptionalParams,
-  BECOp1OptionalParams,
-  BCOp1OptionalParams,
+  COp1OptionalParams,
   DOp1OptionalParams,
 } from "./models/index.js";
-export {
-  BOperations,
-  DOperations,
-  BCOperations,
-  BEOperations,
-  BECOperations,
-} from "./classic/index.js";
+export { BOperations, COperations, DOperations } from "./classic/index.js";
