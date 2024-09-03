@@ -110,6 +110,7 @@ model ChatRequestUserMessage extends ChatRequestMessage {
   @doc("The chat role associated with this message, which is always 'user' for user messages.")
   role: ChatRole.user;
 
+  @added(ServiceApiVersions.v2024_02_15_Preview)
   @doc("The contents of the user message, with available input types varying by selected model.")
   content: ChatMessageContent;
 
