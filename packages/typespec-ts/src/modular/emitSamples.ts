@@ -202,6 +202,9 @@ function emitMethodSamples(
         `for await (let item of ${methodCall}) { resArray.push(item); }`
       );
       exampleFunctionBody.push(`console.log(resArray);`);
+    } else if (method.response.type === undefined) {
+      // skip response handling for void methods
+      exampleFunctionBody.push(`await ${methodCall};`);
     } else {
       exampleFunctionBody.push(`const result = await ${methodCall};`);
       exampleFunctionBody.push(`console.log(result);`);

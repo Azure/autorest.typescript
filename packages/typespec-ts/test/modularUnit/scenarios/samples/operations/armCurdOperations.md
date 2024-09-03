@@ -204,11 +204,11 @@ async function employeesCreateOrUpdate() {
       properties: {
         age: 30,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms",
+        profile: "ms"
       },
       tags: { key2913: "urperxmkkhhkp" },
-      location: "itajgxyqozseoygnl",
-    },
+      location: "itajgxyqozseoygnl"
+    }
   );
   console.log(result);
 }
@@ -233,11 +233,7 @@ async function employeesDelete() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
-  const result = await client.employees.delete(
-    "rgopenapi",
-    "5vX--BxSu3ux48rI4O9OQ569",
-  );
-  console.log(result);
+  await client.employees.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
 }
 
 async function main() {
