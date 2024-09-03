@@ -186,9 +186,6 @@ function normalizeModelName(context: SdkContext, type: SdkModelType): string {
     // TODO: this is temporary until we have a better way in tcgc to extract the paged metadata
     // issue link https://github.com/Azure/typespec-azure/issues/1464
     const page = extractPagedMetadataNested(context.program, type.__raw!);
-    if (page) {
-      page;
-    }
     pagePrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
