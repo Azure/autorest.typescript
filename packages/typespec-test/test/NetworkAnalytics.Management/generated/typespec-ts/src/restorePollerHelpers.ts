@@ -13,6 +13,12 @@ import {
   _updateDeserialize as _updateDeserializeDataProducts,
   _$deleteDeserialize as _$deleteDeserializeDataProducts,
 } from "./api/dataProducts/index.js";
+import {
+  _DataProductListResult,
+  _DataTypeListResult,
+  _DataProductsCatalogListResult,
+  _OperationListResult,
+} from "./models/models.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,

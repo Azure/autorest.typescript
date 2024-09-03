@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Operation, _OperationListResult } from "../../models/models.js";
 import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
   StreamableMethod,
@@ -9,6 +8,13 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  _DataProductListResult,
+  _DataTypeListResult,
+  _DataProductsCatalogListResult,
+  _OperationListResult,
+  Operation,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

@@ -25,17 +25,22 @@ export interface AccountSasToken {
     storageAccountSasToken: string;
 }
 
+// @public (undocumented)
+export type ActionType = "Internal";
+
 // @public
-export type ActionType = string;
+export enum ActionTypeKnownValues {
+    Internal = "\"Internal\""
+}
 
 // @public
 export interface ConsumptionEndpointsProperties {
-    readonly fileAccessResourceId?: string;
-    readonly fileAccessUrl?: string;
-    readonly ingestionResourceId?: string;
-    readonly ingestionUrl?: string;
-    readonly queryResourceId?: string;
-    readonly queryUrl?: string;
+    fileAccessResourceId?: string;
+    fileAccessUrl?: string;
+    ingestionResourceId?: string;
+    ingestionUrl?: string;
+    queryResourceId?: string;
+    queryUrl?: string;
 }
 
 // @public
@@ -55,15 +60,30 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public
-export type ControlState = string;
+// @public (undocumented)
+export type ControlState = "Enabled" | "Disabled";
 
 // @public
-export type CreatedByType = string;
+export enum ControlStateKnownValues {
+    Disabled = "\"Disabled\"",
+    Enabled = "\"Enabled\""
+}
+
+// @public (undocumented)
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+
+// @public
+export enum CreatedByTypeKnownValues {
+    Application = "\"Application\"",
+    Key = "\"Key\"",
+    ManagedIdentity = "\"ManagedIdentity\"",
+    User = "\"User\""
+}
 
 // @public
 export interface DataProduct extends TrackedResource {
     identity?: ManagedServiceIdentityV4;
+    name: string;
     properties?: DataProductProperties;
 }
 
@@ -84,26 +104,26 @@ export interface DataProductNetworkAcls {
 
 // @public
 export interface DataProductProperties {
-    readonly availableMinorVersions?: string[];
-    readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
+    availableMinorVersions?: string[];
+    consumptionEndpoints?: ConsumptionEndpointsProperties;
     currentMinorVersion?: string;
     customerEncryptionKey?: EncryptionKeyDetails;
     customerManagedKeyEncryptionEnabled?: ControlState;
-    readonly documentation?: string;
-    readonly keyVaultUrl?: string;
+    documentation?: string;
+    keyVaultUrl?: string;
     majorVersion: string;
     managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
     networkacls?: DataProductNetworkAcls;
     owners?: string[];
     privateLinksEnabled?: ControlState;
     product: string;
-    readonly provisioningState?: ProvisioningState;
+    provisioningState?: ProvisioningState;
     publicNetworkAccess?: ControlState;
     publisher: string;
     purviewAccount?: string;
     purviewCollection?: string;
     redundancy?: ControlState;
-    readonly resourceGuid?: string;
+    resourceGuid?: string;
 }
 
 // @public
@@ -112,12 +132,13 @@ export interface DataProductsAddUserRoleOptionalParams extends OperationOptions 
 
 // @public
 export interface DataProductsCatalog extends ProxyResource {
+    name: string;
     properties?: DataProductsCatalogProperties;
 }
 
 // @public
 export interface DataProductsCatalogProperties {
-    readonly provisioningState?: ProvisioningState;
+    provisioningState?: ProvisioningState;
     publishers: PublisherInformation[];
 }
 
@@ -214,8 +235,14 @@ export interface DataProductUpdateProperties {
     purviewCollection?: string;
 }
 
+// @public (undocumented)
+export type DataProductUserRole = "Reader" | "SensitiveReader";
+
 // @public
-export type DataProductUserRole = string;
+export enum DataProductUserRoleKnownValues {
+    Reader = "\"Reader\"",
+    SensitiveReader = "\"SensitiveReader\""
+}
 
 // @public
 export interface DataProductVersion {
@@ -224,6 +251,7 @@ export interface DataProductVersion {
 
 // @public
 export interface DataType extends ProxyResource {
+    name: string;
     properties?: DataTypeProperties;
 }
 
@@ -231,11 +259,11 @@ export interface DataType extends ProxyResource {
 export interface DataTypeProperties {
     databaseCacheRetention?: number;
     databaseRetention?: number;
-    readonly provisioningState?: ProvisioningState;
+    provisioningState?: ProvisioningState;
     state?: DataTypeState;
-    readonly stateReason?: string;
+    stateReason?: string;
     storageOutputRetention?: number;
-    readonly visualizationUrl?: string;
+    visualizationUrl?: string;
 }
 
 // @public
@@ -276,8 +304,14 @@ export interface DataTypesOperations {
     update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
+// @public (undocumented)
+export type DataTypeState = "Stopped" | "Running";
+
 // @public
-export type DataTypeState = string;
+export enum DataTypeStateKnownValues {
+    Running = "\"Running\"",
+    Stopped = "\"Stopped\""
+}
 
 // @public
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
@@ -297,8 +331,18 @@ export interface DataTypeUpdateProperties {
     storageOutputRetention?: number;
 }
 
+// @public (undocumented)
+export type DefaultAction = "Allow" | "Deny";
+
 // @public
-export type DefaultAction = string;
+export enum DefaultActionKnownValues {
+    Allow = "\"Allow\"",
+    Deny = "\"Deny\""
+}
+
+// @public (undocumented)
+export interface DeleteDataRequest {
+}
 
 // @public
 export interface EncryptionKeyDetails {
@@ -309,17 +353,21 @@ export interface EncryptionKeyDetails {
 
 // @public
 export interface ErrorAdditionalInfo {
-    readonly info?: Record<string, any>;
-    readonly type?: string;
+    info?: {};
+    type?: string;
+}
+
+// @public (undocumented)
+export interface ErrorAdditionalInfoInfo {
 }
 
 // @public
 export interface ErrorDetail {
-    readonly additionalInfo?: ErrorAdditionalInfo[];
-    readonly code?: string;
-    readonly details?: ErrorDetail[];
-    readonly message?: string;
-    readonly target?: string;
+    additionalInfo?: ErrorAdditionalInfo[];
+    code?: string;
+    details?: ErrorDetail[];
+    message?: string;
+    target?: string;
 }
 
 // @public
@@ -339,72 +387,13 @@ export interface KeyVaultInfo {
 }
 
 // @public
-export enum KnownActionType {
-    Internal = "Internal"
-}
-
-// @public
-export enum KnownControlState {
-    Disabled = "Disabled",
-    Enabled = "Enabled"
-}
-
-// @public
-export enum KnownCreatedByType {
-    Application = "Application",
-    Key = "Key",
-    ManagedIdentity = "ManagedIdentity",
-    User = "User"
-}
-
-// @public
-export enum KnownDataProductUserRole {
-    Reader = "Reader",
-    SensitiveReader = "SensitiveReader"
-}
-
-// @public
-export enum KnownDataTypeState {
-    Running = "Running",
-    Stopped = "Stopped"
-}
-
-// @public
-export enum KnownDefaultAction {
-    Allow = "Allow",
-    Deny = "Deny"
-}
-
-// @public
-export enum KnownManagedServiceIdentityType {
-    None = "None",
-    SystemAndUserAssigned = "SystemAssigned, UserAssigned",
-    SystemAssigned = "SystemAssigned",
-    UserAssigned = "UserAssigned"
-}
-
-// @public
-export enum KnownOrigin {
-    "user,system" = "user,system",
-    system = "system",
-    user = "user"
-}
-
-// @public
-export enum KnownProvisioningState {
-    Accepted = "Accepted",
-    Canceled = "Canceled",
-    Deleting = "Deleting",
-    Failed = "Failed",
-    Provisioning = "Provisioning",
-    Succeeded = "Succeeded",
-    Updating = "Updating"
-}
-
-// @public
 export interface ListRoleAssignments {
     count: number;
     roleAssignmentResponse: RoleAssignmentDetail[];
+}
+
+// @public (undocumented)
+export interface ListRolesAssignmentsRequest {
 }
 
 // @public
@@ -413,13 +402,21 @@ export interface ManagedResourceGroupConfiguration {
     name: string;
 }
 
+// @public (undocumented)
+export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
+
 // @public
-export type ManagedServiceIdentityType = string;
+export enum ManagedServiceIdentityTypeKnownValues {
+    None = "\"None\"",
+    SystemAndUserAssigned = "\"SystemAssigned, UserAssigned\"",
+    SystemAssigned = "\"SystemAssigned\"",
+    UserAssigned = "\"UserAssigned\""
+}
 
 // @public
 export interface ManagedServiceIdentityV4 {
-    readonly principalId?: string;
-    readonly tenantId?: string;
+    principalId?: string;
+    tenantId?: string;
     type: ManagedServiceIdentityType;
     userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
@@ -440,20 +437,28 @@ export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
 }
 
 // @public
+export interface NetworkAnalyticsClientOptions {
+    apiVersion: string;
+    credential: TokenCredential;
+    endpoint: string;
+    subscriptionId: string;
+}
+
+// @public
 export interface Operation {
     actionType?: ActionType;
-    readonly display?: OperationDisplay;
-    readonly isDataAction?: boolean;
-    readonly name?: string;
-    readonly origin?: Origin;
+    display?: OperationDisplay;
+    isDataAction?: boolean;
+    name?: string;
+    origin?: Origin;
 }
 
 // @public
 export interface OperationDisplay {
-    readonly description?: string;
-    readonly operation?: string;
-    readonly provider?: string;
-    readonly resource?: string;
+    description?: string;
+    operation?: string;
+    provider?: string;
+    resource?: string;
 }
 
 // @public
@@ -465,8 +470,15 @@ export interface OperationsOperations {
     list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 
+// @public (undocumented)
+export type Origin = "user" | "system" | "user,system";
+
 // @public
-export type Origin = string;
+export enum OriginKnownValues {
+    "user,system" = "\"user,system\"",
+    system = "\"system\"",
+    user = "\"user\""
+}
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -480,8 +492,19 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
+// @public (undocumented)
+export type ProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+
 // @public
-export type ProvisioningState = string;
+export enum ProvisioningStateKnownValues {
+    Accepted = "\"Accepted\"",
+    Canceled = "\"Canceled\"",
+    Deleting = "\"Deleting\"",
+    Failed = "\"Failed\"",
+    Provisioning = "\"Provisioning\"",
+    Succeeded = "\"Succeeded\"",
+    Updating = "\"Updating\""
+}
 
 // @public
 export interface ProxyResource extends Resource {
@@ -495,10 +518,10 @@ export interface PublisherInformation {
 
 // @public
 export interface Resource {
-    readonly id?: string;
-    readonly name?: string;
-    readonly systemData?: SystemData;
-    readonly type?: string;
+    id?: string;
+    name?: string;
+    systemData?: SystemData;
+    type?: string;
 }
 
 // @public
@@ -550,12 +573,17 @@ export interface TrackedResource extends Resource {
 
 // @public
 export interface UserAssignedIdentity {
-    readonly clientId?: string;
-    readonly principalId?: string;
+    clientId?: string;
+    principalId?: string;
 }
 
-// @public
+// @public (undocumented)
 export type Versions = "2023-11-15";
+
+// @public
+export enum VersionsKnownValues {
+    v2023_11_15 = "\"2023-11-15\""
+}
 
 // @public
 export interface VirtualNetworkRule {

@@ -1,20 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  dataProductPropertiesSerializer,
-  managedServiceIdentityV4Serializer,
-  dataProductUpdatePropertiesSerializer,
-  DataProduct,
-  DataProductUpdate,
-  AccountSas,
-  AccountSasToken,
-  KeyVaultInfo,
-  RoleAssignmentCommonProperties,
-  RoleAssignmentDetail,
-  ListRoleAssignments,
-  _DataProductListResult,
-} from "../../models/models.js";
 import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
   StreamableMethod,
@@ -23,6 +9,23 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import {
+  DataProduct,
+  dataProductPropertiesSerializer,
+  managedServiceIdentityV4Serializer,
+  DataProductUpdate,
+  dataProductUpdatePropertiesSerializer,
+  AccountSas,
+  AccountSasToken,
+  KeyVaultInfo,
+  RoleAssignmentCommonProperties,
+  RoleAssignmentDetail,
+  ListRoleAssignments,
+  _DataProductListResult,
+  _DataTypeListResult,
+  _DataProductsCatalogListResult,
+  _OperationListResult,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

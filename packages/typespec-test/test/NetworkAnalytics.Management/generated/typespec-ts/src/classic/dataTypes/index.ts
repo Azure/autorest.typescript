@@ -3,12 +3,6 @@
 
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import {
-  DataType,
-  DataTypeUpdate,
-  ContainerSaS,
-  ContainerSasToken,
-} from "../../models/models.js";
-import {
   create,
   get,
   update,
@@ -17,6 +11,16 @@ import {
   generateStorageContainerSasToken,
   listByDataProduct,
 } from "../../api/dataTypes/index.js";
+import {
+  _DataProductListResult,
+  DataType,
+  DataTypeUpdate,
+  ContainerSaS,
+  ContainerSasToken,
+  _DataTypeListResult,
+  _DataProductsCatalogListResult,
+  _OperationListResult,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {

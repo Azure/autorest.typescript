@@ -2,10 +2,16 @@
 // Licensed under the MIT License.
 
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
-import { Operation } from "../../models/models.js";
 import { list } from "../../api/operations/index.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import {
+  _DataProductListResult,
+  _DataTypeListResult,
+  _DataProductsCatalogListResult,
+  _OperationListResult,
+  Operation,
+} from "../../models/models.js";
 import { OperationsListOptionalParams } from "../../models/options.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Operations operations. */
 export interface OperationsOperations {

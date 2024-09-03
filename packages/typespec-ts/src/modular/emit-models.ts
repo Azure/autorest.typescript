@@ -10,6 +10,7 @@ import {
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkClientType,
+  SdkContext,
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
@@ -26,15 +27,17 @@ import {
 } from "./type-expressions/get-model-expression.js";
 
 import { addDeclaration } from "../framework/declaration.js";
+import { extractPagedMetadataNested } from "../utils/operationUtil.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 
 export function emitTypes(
-  sdkPackage: SdkHttpPackage,
+  context: SdkContext,
   { sourceRoot }: { sourceRoot: string }
 ) {
+  const sdkPackage = context.sdkPackage;
   const emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType> = new Set();
   const outputProject = useContext("outputProject");
 
@@ -52,7 +55,7 @@ export function emitTypes(
   for (const type of emitQueue) {
     switch (type.kind) {
       case "model":
-        const modelInterface = buildModelInterface(type);
+        const modelInterface = buildModelInterface(context, type);
         addDeclaration(sourceFile, modelInterface, type);
         const modelPolymorphicType = buildModelPolymorphicType(type);
         if (modelPolymorphicType) {
@@ -153,11 +156,12 @@ function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
 }
 
 function buildModelInterface(
+  context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
   const interfaceStructure: InterfaceDeclarationStructure = {
     kind: StructureKind.Interface,
-    name: normalizeName(type.name, NameType.Interface),
+    name: normalizeModelName(context, type),
     isExported: true,
     properties: type.properties.map(buildModelProperty)
   };
@@ -174,6 +178,21 @@ function buildModelInterface(
   }
 
   return interfaceStructure;
+}
+
+function normalizeModelName(context: SdkContext, type: SdkModelType): string {
+  let pagePrefix = "";
+  if (type.__raw && type.__raw.kind === "Model") {
+    // TODO: this is temporary until we have a better way in tcgc to extract the paged metadata
+    // issue link https://github.com/Azure/typespec-azure/issues/1464
+    const page = extractPagedMetadataNested(context.program, type.__raw!);
+    if (page) {
+      page;
+    }
+    pagePrefix =
+      page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
+  }
+  return `${pagePrefix}${normalizeName(type.name, NameType.Interface)}`;
 }
 
 function buildModelPolymorphicType(type: SdkModelType) {

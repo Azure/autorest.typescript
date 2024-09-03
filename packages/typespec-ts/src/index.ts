@@ -260,7 +260,7 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
-    emitTypes(dpgContext.sdkPackage, { sourceRoot: modularSourcesRoot });
+    emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     for (const subClient of modularCodeModel.clients) {
       buildModelsOptions(subClient, modularCodeModel);
       if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])

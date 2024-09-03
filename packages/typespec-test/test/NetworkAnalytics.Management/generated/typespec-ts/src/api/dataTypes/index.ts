@@ -1,15 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  dataTypePropertiesSerializer,
-  dataTypeUpdatePropertiesSerializer,
-  DataType,
-  DataTypeUpdate,
-  ContainerSaS,
-  ContainerSasToken,
-  _DataTypeListResult,
-} from "../../models/models.js";
 import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
   StreamableMethod,
@@ -17,6 +8,18 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  _DataProductListResult,
+  DataType,
+  dataTypePropertiesSerializer,
+  DataTypeUpdate,
+  dataTypeUpdatePropertiesSerializer,
+  ContainerSaS,
+  ContainerSasToken,
+  _DataTypeListResult,
+  _DataProductsCatalogListResult,
+  _OperationListResult,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
