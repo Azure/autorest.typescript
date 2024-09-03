@@ -82,6 +82,8 @@ model ListWidgetsPagesResults {
     `odata.nextLink`?: string;
 }
 
+model ListPagingItems extends ListWidgetsPagesResults{}
+
 @resource("users")
 @doc("Details about a user.")
 model User {
@@ -126,7 +128,7 @@ It does not accept any options or parameters.
     listWidgetsPages(
         @query page: int32,
         @query pageSize: int32,
-    ): ListWidgetsPagesResults | WidgetError;
+    ): ListPagingItems | WidgetError;
 
     @post
     @route("/widgets/pages") 

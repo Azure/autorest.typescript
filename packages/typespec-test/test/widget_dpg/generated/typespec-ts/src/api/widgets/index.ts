@@ -5,6 +5,7 @@ import {
   User,
   Widget,
   AnalyzeResult,
+  _ListPagingItems,
   _ListWidgetsPagesResults,
 } from "../../models/models.js";
 import { WidgetServiceContext as Client } from "../index.js";
@@ -136,7 +137,7 @@ export function _listWidgetsPagesSend(
 
 export async function _listWidgetsPagesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_ListWidgetsPagesResults> {
+): Promise<_ListPagingItems> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
