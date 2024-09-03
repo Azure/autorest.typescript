@@ -22,10 +22,13 @@ model Widget {
   @clientName("jsClientName", "javascript")
   renamedProp: string;
   ...Record<string>;
+  stringLiteral: "foo";
+  booleanLiteral: true;
+  numberLiteral: 12;
 }
 
 @doc("show example demo")
-op read(@bodyRoot body: Widget): void;
+op read(@bodyRoot body: Widget): { @body body: {}};
 ```
 
 ## Example
@@ -48,7 +51,10 @@ op read(@bodyRoot body: Widget): void;
       "unionValue": "test",
       "nullValue": null,
       "additionalProp": "additional prop",
-      "renamedProp": "prop renamed"
+      "renamedProp": "prop renamed",
+      "stringLiteral": "foo",
+      "booleanLiteral": true,
+      "numberLiteral": 12
     }
   },
   "responses": {
@@ -83,7 +89,10 @@ async function read() {
     unionValue: test,
     nullValue: null,
     jsClientName: "prop renamed",
-    additionalProp: "additional prop",
+    stringLiteral: "foo",
+    booleanLiteral: true,
+    numberLiteral: 12,
+    additionalProp: "additional prop"
   });
   console.log(result);
 }

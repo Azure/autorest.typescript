@@ -110,11 +110,11 @@ import { Project } from "ts-morph";
 import { SdkContext } from "../utils/interfaces.js";
 import { getAddedOnVersions } from "@typespec/versioning";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
+import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
 import { isModelWithAdditionalProperties } from "./emitModels.js";
 import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
-import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -980,6 +980,7 @@ function getName(program: Program, type: Model): string {
     if (
       type.templateMapper &&
       type.templateMapper.args &&
+      type.name !== "" &&
       type.templateMapper.args.length > 0
     ) {
       return (
@@ -1072,10 +1073,7 @@ function intOrFloat(value: number): string {
 }
 
 function enumName(name: string): string {
-  if (name.toUpperCase() === name) {
-    return name;
-  }
-  return applyCasing(name, { casing: CASING }).toUpperCase();
+  return name;
 }
 
 function emitEnum(context: SdkContext, type: Enum): Record<string, any> {

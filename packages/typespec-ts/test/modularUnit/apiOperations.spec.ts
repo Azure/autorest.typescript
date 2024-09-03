@@ -1,9 +1,10 @@
-import { assert } from "chai";
 import {
   emitModularClientContextFromTypeSpec,
   emitModularClientFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
+
+import { assert } from "chai";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("api operations in Modular", () => {

@@ -30,9 +30,9 @@ enum Versions {
 @route("b")
 namespace Sub {
   @route("foo")
-  op foo(): void;
+  op foo(): { @body body: {}};
   @route("bar")
-  op bar(): void;
+  op bar(): { @body body: {}};
 }
 
 @client({

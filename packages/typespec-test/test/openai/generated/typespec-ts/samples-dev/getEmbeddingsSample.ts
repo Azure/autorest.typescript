@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";

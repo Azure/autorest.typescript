@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 
@@ -389,8 +389,8 @@ export enum KnownManagedServiceIdentityType {
   SystemAssigned = "SystemAssigned",
   /** UserAssigned */
   UserAssigned = "UserAssigned",
-  /** SystemAssigned, UserAssigned */
-  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+  /** SystemAndUserAssigned */
+  SystemAndUserAssigned = "SystemAssigned, UserAssigned",
 }
 
 /**

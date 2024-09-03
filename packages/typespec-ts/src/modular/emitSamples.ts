@@ -42,6 +42,7 @@ interface ExampleValue {
   name: string;
   value: string;
   isOptional: boolean;
+  onClient: boolean;
 }
 
 interface EmitSampleOptions {
@@ -148,13 +149,14 @@ function emitMethodSamples(
     };
     const parameterMap: Record<string, SdkHttpParameterExample> =
       buildParameterValueMap(example);
-    // prepare client-level parameters
-    const clientParamValues = prepareClientExampleParameters(
+    const parameters = prepareExampleParameters(
       dpgContext,
       method,
       parameterMap,
       options.topLevelClient
     );
+    // prepare client-level parameters
+    const clientParamValues = parameters.filter((p) => p.onClient);
     const clientParams: string[] = clientParamValues
       .filter((p) => !p.isOptional)
       .map((param) => {
@@ -177,12 +179,7 @@ function emitMethodSamples(
     );
 
     // prepare operation-level parameters
-    const methodParamValues = prepareMethodExampleParameters(
-      dpgContext,
-      exampleName,
-      method,
-      parameterMap
-    );
+    const methodParamValues = parameters.filter((p) => !p.onClient);
     const methodParams = methodParamValues
       .filter((p) => !p.isOptional)
       .map((p) => `${p.value}`);
@@ -205,6 +202,9 @@ function emitMethodSamples(
         `for await (let item of ${methodCall}) { resArray.push(item); }`
       );
       exampleFunctionBody.push(`console.log(resArray);`);
+    } else if (method.response.type === undefined) {
+      // skip response handling for void methods
+      exampleFunctionBody.push(`await ${methodCall};`);
     } else {
       exampleFunctionBody.push(`const result = await ${methodCall};`);
       exampleFunctionBody.push(`console.log(result);`);
@@ -249,87 +249,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
   return parameterMap;
 }
 
-function prepareMethodExampleParameters(
-  dpgContext: SdkContext,
-  exampleName: string,
-  method: SdkServiceMethod<SdkServiceOperation>,
-  parameterMap: Record<string, SdkHttpParameterExample>
-): ExampleValue[] {
-  const parameters: ExampleValue[] = [];
-  for (const param of method.operation.parameters) {
-    if (
-      param.optional === true ||
-      param.onClient === true ||
-      param.type.kind === "constant"
-    ) {
-      continue;
-    }
-    const exampleValue = parameterMap[param.serializedName];
-    if (!exampleValue || !exampleValue.value) {
-      // report diagnostic if required parameter is missing
-      reportDiagnostic(dpgContext.program, {
-        code: "required-sample-parameter",
-        format: {
-          exampleName: exampleName,
-          paramName: param.name
-        },
-        target: NoTarget
-      });
-      continue;
-    }
-
-    parameters.push({
-      name: param.name,
-      value: getParameterValue(exampleValue.value),
-      isOptional: false
-    });
-  }
-  // required/optional body parameters
-  const bodyParam = method.operation.bodyParam;
-  const bodyName = bodyParam?.name;
-  const bodyExample = parameterMap[bodyName ?? ""];
-  if (bodyName && bodyExample && bodyExample.value) {
-    if (
-      isSpreadBodyParameter(bodyParam) &&
-      bodyParam.type.kind === "model" &&
-      bodyExample.value.kind === "model"
-    ) {
-      for (const prop of bodyParam.type.properties) {
-        const propExample = bodyExample.value.value[prop.name];
-        if (!propExample) {
-          continue;
-        }
-        parameters.push({
-          name: prop.name,
-          value: getParameterValue(propExample),
-          isOptional: Boolean(prop.optional)
-        });
-      }
-    } else {
-      parameters.push({
-        name: bodyName,
-        value: getParameterValue(bodyExample.value),
-        isOptional: Boolean(method.operation.bodyParam?.optional)
-      });
-    }
-  }
-  // optional parameters
-  method.operation.parameters
-    .filter(
-      (param) => param.optional === true && parameterMap[param.serializedName]
-    )
-    .map((param) => parameterMap[param.serializedName]!)
-    .forEach((param) => {
-      parameters.push({
-        name: param.parameter.name,
-        value: getParameterValue(param.value),
-        isOptional: true
-      });
-    });
-  return parameters;
-}
-
-function prepareClientExampleParameters(
+function prepareExampleParameters(
   dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
   parameterMap: Record<string, SdkHttpParameterExample>,
@@ -347,13 +267,9 @@ function prepareClientExampleParameters(
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
-  // required client-level parameters
+  // required parameters
   for (const param of method.operation.parameters) {
-    if (
-      param.onClient === false ||
-      param.optional === true ||
-      param.type.kind === "constant"
-    ) {
+    if (param.optional === true || param.type.kind === "constant") {
       continue;
     }
 
@@ -382,7 +298,8 @@ function prepareClientExampleParameters(
     result.push({
       name: exampleValue.parameter.name,
       value: getParameterValue(exampleValue.value),
-      isOptional: Boolean(param.optional)
+      isOptional: Boolean(param.optional),
+      onClient: Boolean(param.onClient)
     });
   }
   // always add subscriptionId for ARM clients
@@ -390,23 +307,53 @@ function prepareClientExampleParameters(
     result.push({
       name: "subscriptionId",
       value: subscriptionIdValue,
-      isOptional: false
+      isOptional: false,
+      onClient: true
     });
+  }
+  // required/optional body parameters
+  const bodyParam = method.operation.bodyParam;
+  const bodyName = bodyParam?.name;
+  const bodyExample = parameterMap[bodyName ?? ""];
+  if (bodyName && bodyExample && bodyExample.value) {
+    if (
+      isSpreadBodyParameter(bodyParam) &&
+      bodyParam.type.kind === "model" &&
+      bodyExample.value.kind === "model"
+    ) {
+      for (const prop of bodyParam.type.properties) {
+        const propExample = bodyExample.value.value[prop.name];
+        if (!propExample) {
+          continue;
+        }
+        result.push({
+          name: prop.name,
+          value: getParameterValue(propExample),
+          isOptional: Boolean(prop.optional),
+          onClient: Boolean(prop.onClient)
+        });
+      }
+    } else {
+      result.push({
+        name: bodyName,
+        value: getParameterValue(bodyExample.value),
+        isOptional: Boolean(method.operation.bodyParam?.optional),
+        onClient: Boolean(method.operation.bodyParam?.onClient)
+      });
+    }
   }
   // optional parameters
   method.operation.parameters
     .filter(
-      (param) =>
-        param.onClient === true &&
-        param.optional === true &&
-        parameterMap[param.serializedName]
+      (param) => param.optional === true && parameterMap[param.serializedName]
     )
     .map((param) => parameterMap[param.serializedName]!)
     .forEach((param) => {
       result.push({
         name: param.parameter.name,
         value: getParameterValue(param.value),
-        isOptional: true
+        isOptional: true,
+        onClient: Boolean(param.parameter.onClient)
       });
     });
 
@@ -419,30 +366,32 @@ function getCredentialExampleValue(
 ): ExampleValue | undefined {
   const keyCredential = hasKeyCredential(initialization),
     tokenCredential = hasTokenCredential(initialization);
+  const defaultSetting = {
+    isOptional: false,
+    onClient: true,
+    name: "credential"
+  };
   if (keyCredential || tokenCredential) {
     if (isAzurePackage({ options: dpgContext.rlcOptions })) {
       // Support DefaultAzureCredential for Azure packages
       return {
-        name: "credential",
+        ...defaultSetting,
         value: `new ${resolveReference(
           AzureIdentityDependencies.DefaultAzureCredential
-        )}()`,
-        isOptional: false
+        )}()`
       };
     } else if (keyCredential) {
       // Support ApiKeyCredential for non-Azure packages
       return {
-        name: "credential",
-        value: `{ key: "INPUT_YOUR_KEY_HERE" }`,
-        isOptional: false
+        ...defaultSetting,
+        value: `{ key: "INPUT_YOUR_KEY_HERE" }`
       };
     } else if (tokenCredential) {
       // Support TokenCredential for non-Azure packages
       return {
-        name: "credential",
+        ...defaultSetting,
         value: `{ getToken: async () => {
-          return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: now() }; } }`,
-        isOptional: false
+          return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: now() }; } }`
       };
     }
   }

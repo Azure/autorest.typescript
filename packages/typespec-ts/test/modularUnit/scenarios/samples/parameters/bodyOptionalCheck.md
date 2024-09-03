@@ -27,7 +27,7 @@ model CompositeRequest {
 }
 
 @doc("show example demo")
-op read(...CompositeRequest): void;
+op read(...CompositeRequest): { @body body: {}};
 ```
 
 ## Example
@@ -72,7 +72,7 @@ async function read() {
   const client = new TestingClient();
   const result = await client.read("required path param", "required query", {
     body: { name: "body name" },
-    optionalQuery: "renamed optional query",
+    optionalQuery: "renamed optional query"
   });
   console.log(result);
 }

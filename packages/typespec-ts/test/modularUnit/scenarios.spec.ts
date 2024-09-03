@@ -288,7 +288,7 @@ function readScenarios(fileContent: string): ScenarioFile {
 function writeScenarios(file: ScenarioFile): string {
   let output = "";
   for (const scenario of file) {
-    output += `# ${scenario.heading}\n`;
+    output += `# ${scenario.only ? "only: " : ""}${scenario.heading}\n`;
     for (const part of scenario.parts) {
       if (part.kind === "text") {
         output += part.text;

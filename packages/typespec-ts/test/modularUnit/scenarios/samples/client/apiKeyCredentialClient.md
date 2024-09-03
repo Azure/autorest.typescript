@@ -26,7 +26,7 @@ enum Versions {
 }
 
 @doc("show example demo")
-op read(name: string): void;
+op read(name: string):  { @body body: {}};
 ```
 
 This is the tspconfig.yaml.

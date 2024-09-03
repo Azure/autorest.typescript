@@ -24,7 +24,7 @@ import {
   SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { buildType, isTypeNullable } from "./typeHelpers.js";
+import { buildType, getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
@@ -800,7 +800,9 @@ type ConstantType = (Parameter | Property) & {
 
 function getConstantValue(param: ConstantType) {
   const defaultValue =
-    param.clientDefaultValue ?? param.type.clientDefaultValue;
+    param.clientDefaultValue ??
+    param.type.clientDefaultValue ??
+    param.type.value;
 
   if (!defaultValue) {
     throw new Error(
@@ -808,13 +810,11 @@ function getConstantValue(param: ConstantType) {
     );
   }
 
-  return `"${param.restApiName}": "${defaultValue}"`;
+  return `"${param.restApiName}": ${getType(param.type).name}`;
 }
 
 function isConstant(param: Parameter | Property): param is ConstantType {
-  return (
-    param.type.type === "constant" && param.clientDefaultValue !== undefined
-  );
+  return param.type.type === "constant";
 }
 
 type OptionalType = (Parameter | Property) & {
@@ -827,13 +827,17 @@ function isOptional(param: Parameter | Property): param is OptionalType {
 
 function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
-    const { propertiesStr } = getRequestModelMapping(
+    const { propertiesStr, directAssignment } = getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
       runtimeImports,
       [param.type]
     );
-    return `"${param.restApiName}": { ${propertiesStr.join(", ")} }`;
+    const serializeContent =
+      directAssignment === true
+        ? propertiesStr.join(",")
+        : `{${propertiesStr.join(",")}}`;
+    return `"${param.restApiName}": ${serializeContent}`;
   }
   if (
     param.restApiName === "api-version" &&
@@ -942,7 +946,7 @@ export function getRequestModelMapping(
     serializerName =
       serializerName ??
       getDeserializeFunctionName(modelPropertyType, "serialize");
-    const definition = `${serializerName}(${propertyPath})`;
+    const definition = `${serializerName}(${propertyPath.replace(/\?$/, "")})`;
     props.push(definition);
     return { propertiesStr: props, directAssignment: true };
   }

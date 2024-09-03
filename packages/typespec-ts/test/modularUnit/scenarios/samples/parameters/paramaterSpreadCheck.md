@@ -36,7 +36,7 @@ model CompositeRequest {
 }
 
 @doc("show example demo")
-op read(...CompositeRequest): void;
+op read(...CompositeRequest): { @body body: {}};
 ```
 
 ## Example

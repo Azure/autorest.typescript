@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {} from "@typespec/ts-http-runtime";
