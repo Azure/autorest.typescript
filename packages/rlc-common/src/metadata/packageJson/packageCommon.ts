@@ -12,6 +12,7 @@ export interface PackageCommonInfoConfig {
   exports?: Record<string, any>;
   dependencies?: Record<string, string>;
   azureArm?: boolean;
+  isModularLibrary?: boolean;
 }
 
 /**
