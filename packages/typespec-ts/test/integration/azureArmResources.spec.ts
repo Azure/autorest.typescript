@@ -50,6 +50,101 @@ describe("Azure Arm Resources Rest Client", () => {
     }
   };
 
+  const validSingletonResource = {
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default`,
+    name: "default",
+    type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+    location: "eastus",
+    properties: {
+      provisioningState: "Succeeded",
+      description: "valid"
+    },
+    systemData: {
+      createdBy: "AzureSDK",
+      createdByType: "User",
+      createdAt: new Date(),
+      lastModifiedBy: "AzureSDK",
+      lastModifiedAt: new Date(),
+      lastModifiedByType: "User"
+    }
+  };
+  // singleton tracked resource
+  it("should get singleton tracked resources by resourceGroup", async () => {
+    const result = await client
+      .path(
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+        "00000000-0000-0000-0000-000000000000",
+        "test-rg"
+      )
+      .get();
+    const body = JSON.parse(JSON.stringify(result.body));
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(body.id, validSingletonResource.id);
+    assert.strictEqual(body.name, validSingletonResource.name);
+    assert.strictEqual(body.type, validSingletonResource.type);
+  });
+
+  it("should createOrUpdate singleton tracked resources", async () => {
+    const result = await client
+      .path(
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+        "00000000-0000-0000-0000-000000000000",
+        "test-rg"
+      )
+      .put({
+        body: {
+          location: "eastus",
+          properties: {
+            description: "valid"
+          }
+        }
+      });
+    const body = JSON.parse(JSON.stringify(result.body));
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(body.id, validSingletonResource.id);
+    assert.strictEqual(body.name, validSingletonResource.name);
+    assert.strictEqual(body.type, validSingletonResource.type);
+  });
+
+  it("should update singleton tracked resources", async () => {
+    const result = await client
+      .path(
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+        "00000000-0000-0000-0000-000000000000",
+        "test-rg"
+      )
+      .patch({
+        body: {
+          location: "eastus2",
+          properties: {
+            description: "valid2"
+          }
+        }
+      });
+    const body = JSON.parse(JSON.stringify(result.body));
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(body.id, validSingletonResource.id);
+    assert.strictEqual(body.name, validSingletonResource.name);
+    assert.strictEqual(body.type, validSingletonResource.type);
+    assert.strictEqual(body.location, "eastus2");
+    assert.strictEqual(body.properties.description, "valid2");
+  });
+
+  it("should list singleton tracked resources by resourceGroup", async () => {
+    const result = await client
+      .path(
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+        "00000000-0000-0000-0000-000000000000",
+        "test-rg"
+      )
+      .get();
+    const body = JSON.parse(JSON.stringify(result.body));
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(body.value[0].id, validSingletonResource.id);
+    assert.strictEqual(body.value[0].name, validSingletonResource.name);
+    assert.strictEqual(body.value[0].type, validSingletonResource.type);
+  });
+
   // top level tracked resource
   it("should actionSync top level tracked resources", async () => {
     const result = await client
@@ -60,10 +155,14 @@ describe("Azure Arm Resources Rest Client", () => {
         "top"
       )
       .post({
-        body: { message: "Resource action at top level.", urgent: true }
+        body: {
+          message: "Resource action at top level.",
+          urgent: true
+        }
       });
     assert.strictEqual(result.status, "204");
   });
+
   it("should get top level tracked resources", async () => {
     const result = await client
       .path(

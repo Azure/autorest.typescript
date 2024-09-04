@@ -112,6 +112,7 @@ export declare class ResourcesClient {
     constructor(subscriptionId: string, options?: ResourcesClientOptionalParams);
     readonly topLevelTrackedResources: TopLevelTrackedResourcesOperations;
     readonly nestedProxyResources: NestedProxyResourcesOperations;
+    readonly singletonTrackedResources: SingletonTrackedResourcesOperations;
 }
 
 export declare interface ResourcesClientOptionalParams extends ClientOptions {
@@ -124,6 +125,35 @@ export declare interface RestorePollerOptions<TResult, TResponse extends PathUnc
     updateIntervalInMs?: number;
     abortSignal?: AbortSignalLike;
     processResponseBody?: (result: TResponse) => Promise<TResult>;
+}
+
+export declare interface SingletonTrackedResource extends TrackedResource {
+    properties?: SingletonTrackedResourceProperties;
+}
+
+export declare interface SingletonTrackedResourceProperties {
+    readonly provisioningState?: ProvisioningState;
+    description?: string;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+export declare interface SingletonTrackedResourcesGetByResourceGroupOptionalParams extends OperationOptions {
+}
+
+export declare interface SingletonTrackedResourcesListByResourceGroupOptionalParams extends OperationOptions {
+}
+
+export declare interface SingletonTrackedResourcesOperations {
+    getByResourceGroup: (resourceGroupName: string, options?: SingletonTrackedResourcesGetByResourceGroupOptionalParams) => Promise<SingletonTrackedResource>;
+    createOrUpdate: (resourceGroupName: string, resource: SingletonTrackedResource, options?: SingletonTrackedResourcesCreateOrUpdateOptionalParams) => PollerLike<OperationState<SingletonTrackedResource>, SingletonTrackedResource>;
+    update: (resourceGroupName: string, properties: SingletonTrackedResource, options?: SingletonTrackedResourcesUpdateOptionalParams) => Promise<SingletonTrackedResource>;
+    listByResourceGroup: (resourceGroupName: string, options?: SingletonTrackedResourcesListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<SingletonTrackedResource>;
+}
+
+export declare interface SingletonTrackedResourcesUpdateOptionalParams extends OperationOptions {
 }
 
 export declare interface SystemData {
