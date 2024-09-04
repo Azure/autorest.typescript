@@ -5,7 +5,7 @@ options:
   "@azure-tools/typespec-ts":
     azureSdkForJs: false
     isModularLibrary: true
-    generateMetadata: false
+    enableOperationGroup: false
     hierarchyClient: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
