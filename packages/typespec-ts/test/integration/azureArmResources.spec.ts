@@ -145,6 +145,7 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(body.value[0].type, validSingletonResource.type);
   });
 
+  // top level tracked resource
   it("should actionSync top level tracked resources", async () => {
     const result = await client
       .path(
@@ -162,7 +163,6 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  // top level tracked resource
   it("should get top level tracked resources", async () => {
     const result = await client
       .path(
