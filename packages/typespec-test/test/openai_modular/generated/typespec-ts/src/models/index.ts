@@ -169,7 +169,6 @@ export {
   EmbeddingEncodingFormat,
   ServiceApiVersionsKnownValues,
   ServiceApiVersions,
-  OpenAIClientOptions,
   ErrorResponse,
 } from "./models.js";
 export {

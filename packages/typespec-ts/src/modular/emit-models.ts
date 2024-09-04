@@ -55,49 +55,48 @@ export function emitTypes(
   visitPackageTypes(sdkPackage, emitQueue);
 
   for (const type of emitQueue) {
-    switch (type.kind) {
-      case "model":
-        const modelInterface = buildModelInterface(context, type);
-        addDeclaration(sourceFile, modelInterface, type);
-        const modelPolymorphicType = buildModelPolymorphicType(type);
-        if (modelPolymorphicType) {
-          const polymorphicSerializer = buildModelPolymorphicSerializer(type);
-          if (polymorphicSerializer) {
-            addDeclaration(
-              sourceFile,
-              polymorphicSerializer,
-              refkey(type, "serializer")
-            );
-          }
-
-          addDeclaration(
-            sourceFile,
-            modelPolymorphicType,
-            refkey(type, "polymorphicType")
-          );
-        }
-        const serializerFunction = buildSerializerFunction(context, type);
-        if (serializerFunction) {
+    if (type.kind === "model") {
+      const modelInterface = buildModelInterface(context, type);
+      addDeclaration(sourceFile, modelInterface, type);
+      const modelPolymorphicType = buildModelPolymorphicType(type);
+      if (modelPolymorphicType) {
+        const serializerFunction = buildSerializerFunction(context, type, true);
+        if (
+          serializerFunction &&
+          serializerFunction.name &&
+          !sourceFile.getFunction(serializerFunction.name)
+        ) {
           addDeclaration(
             sourceFile,
             serializerFunction,
-            refkey(type, "serializer")
+            refkey(type, "polymorphicSerializer")
           );
         }
-        break;
-      case "enum":
-        const [enumType, knownValuesEnum] = buildEnumTypes(type);
         addDeclaration(
           sourceFile,
-          knownValuesEnum,
-          refkey(type, "knownValues")
+          modelPolymorphicType,
+          refkey(type, "polymorphicType")
         );
-        addDeclaration(sourceFile, enumType, type);
-        break;
-      case "union":
-        const unionType = buildUnionType(type);
-        addDeclaration(sourceFile, unionType, type);
-        break;
+      }
+      const serializerFunction = buildSerializerFunction(context, type);
+      if (
+        serializerFunction &&
+        serializerFunction.name &&
+        !sourceFile.getFunction(serializerFunction.name)
+      ) {
+        addDeclaration(
+          sourceFile,
+          serializerFunction,
+          refkey(type, "serializer")
+        );
+      }
+    } else if (type.kind === "enum") {
+      const [enumType, knownValuesEnum] = buildEnumTypes(type);
+      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+      addDeclaration(sourceFile, enumType, type);
+    } else if (type.kind === "union") {
+      const unionType = buildUnionType(type);
+      addDeclaration(sourceFile, unionType, type);
     }
   }
 }
@@ -260,7 +259,8 @@ function visitClient(
   client: SdkClientType<SdkHttpOperation>,
   emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
 ) {
-  visitType(client.initialization, emitQueue);
+  // Comment this out for now, as client initialization is not used in the generated code
+  // visitType(client.initialization, emitQueue);
   client.methods.forEach((method) => visitClientMethod(method, emitQueue));
 }
 
@@ -345,30 +345,9 @@ function visitType(
 
 function buildSerializerFunction(
   context: SdkContext,
-  type: SdkModelType
+  type: SdkModelType,
+  skipDiscriminatedUnion = false
 ): FunctionDeclarationStructure | undefined {
   const modularType = getType(context, type.__raw!);
-  return buildModelSerializer(modularType);
-}
-
-function buildModelPolymorphicSerializer(type: SdkModelType) {
-  if (!type.discriminatedSubtypes) {
-    return undefined;
-  }
-
-  const serializerFunction: FunctionDeclarationStructure = {
-    kind: StructureKind.Function,
-    name: `${normalizeName(type.name, NameType.Method)}UnionSerializer`,
-    isExported: true,
-    parameters: [
-      {
-        name: "input",
-        type: getModelExpression(type)
-      }
-    ],
-    returnType: "unknown",
-    statements: [`console.log(input)`, `throw new Error("Not implemented")`]
-  };
-
-  return serializerFunction;
+  return buildModelSerializer(modularType, skipDiscriminatedUnion);
 }

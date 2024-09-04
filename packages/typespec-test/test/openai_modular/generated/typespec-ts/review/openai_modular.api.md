@@ -1135,13 +1135,6 @@ export interface OpenAIClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface OpenAIClientOptions {
-    apiVersion: string;
-    credential: KeyCredential | TokenCredential;
-    endpoint: string | string;
-}
-
-// @public
 export interface PineconeChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: PineconeChatExtensionParameters;
     type: "pinecone";

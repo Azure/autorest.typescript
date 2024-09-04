@@ -3,10 +3,10 @@
 
 import { OpenAIContext as Client } from "./index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
+  StreamableMethod,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
@@ -18,7 +18,10 @@ import {
   Completions,
   ChatCompletionsOptions,
   azureChatEnhancementConfigurationSerializer,
+  chatCompletionsResponseFormatUnionSerializer,
+  chatRequestMessageUnionSerializer,
   functionDefinitionSerializer,
+  azureChatExtensionConfigurationUnionSerializer,
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
@@ -29,9 +32,6 @@ import {
   ContentFilterSeverity,
   CompletionsFinishReason,
   ChatRole,
-  azureChatExtensionConfigurationUnionSerializer,
-  chatCompletionsResponseFormatUnionSerializer,
-  chatRequestMessageUnionSerializer,
 } from "../models/models.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import {

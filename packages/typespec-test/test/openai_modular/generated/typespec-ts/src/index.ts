@@ -170,7 +170,6 @@ export {
   EmbeddingEncodingFormat,
   ServiceApiVersionsKnownValues,
   ServiceApiVersions,
-  OpenAIClientOptions,
   ErrorResponse,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,

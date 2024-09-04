@@ -1,5 +1,4 @@
 import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkModelType,
   SdkType
@@ -17,7 +16,8 @@ function getTcgcType(type: ModularType): SdkType {
   return type.tcgcType!;
 }
 export function buildModelSerializer(
-  type: ModularType
+  type: ModularType,
+  skipDiscriminatedUnion = false
 ): FunctionDeclarationStructure | undefined {
   const modelTcgcType = getTcgcType(type) as SdkModelType;
   if (
@@ -29,6 +29,9 @@ export function buildModelSerializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
+  if (type.name.endsWith("Union")) {
+    type;
+  }
 
   if (
     !isDiscriminatedUnion(type) &&
@@ -38,8 +41,8 @@ export function buildModelSerializer(
     return buildPolymorphicSerializer(type);
   }
 
-  if (isDiscriminatedUnion(type)) {
-    buildDiscriminatedUnionSerializer(type);
+  if (isDiscriminatedUnion(type) && !skipDiscriminatedUnion) {
+    return buildDiscriminatedUnionSerializer(type);
   }
 
   if (type.type === "model" || type.type === "dict") {
@@ -86,7 +89,7 @@ function buildPolymorphicSerializer(
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${normalizeName(type.name, NameType.Method)}Serializer`,
+    name: `${toCamelCase(type.name)}Serializer`,
     isExported: true,
     parameters: [],
     returnType: "unknown",
@@ -126,7 +129,7 @@ function buildPolymorphicSerializer(
       }
     `);
   serializerFunction.parameters = params;
-  serializerFunction.statements = statements;
+  serializerFunction.statements = statements.join("\n");
   return serializerFunction;
 }
 
@@ -173,7 +176,7 @@ function buildDiscriminatedUnionSerializer(
       }
     ],
     returnType: "Record<string, unknown>",
-    statements: output
+    statements: output.join("\n")
   };
   return serializerFunction;
 }
@@ -204,7 +207,7 @@ function buildModelTypeSerializer(type: ModularType) {
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${toCamelCase(type.name)}Serializer`,
+    name: `${toCamelCase(type.alias ?? type.name)}Serializer`,
     isExported: true,
     parameters: [
       {

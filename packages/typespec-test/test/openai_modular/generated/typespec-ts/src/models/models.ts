@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
+import { uint8ArrayToString } from "@azure/core-util";
 import { ErrorModel } from "@azure-rest/core-client";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
@@ -44,10 +45,18 @@ export interface AudioTranscriptionOptions {
 }
 
 export function audioTranscriptionOptionsSerializer(
-  input: AudioTranscriptionOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AudioTranscriptionOptions,
+): Record<string, unknown> {
+  return {
+    file: uint8ArrayToString(item["file"], "base64"),
+    filename: item["filename"],
+    response_format: item["responseFormat"],
+    language: item["language"],
+    prompt: item["prompt"],
+    temperature: item["temperature"],
+    timestamp_granularities: item["timestampGranularities"],
+    model: item["model"],
+  };
 }
 
 /** Result information for an operation that transcribed spoken audio into written text. */
@@ -67,13 +76,6 @@ export interface AudioTranscription {
   segments?: AudioTranscriptionSegment[];
   /** A collection of information about the timing of each processed word. */
   words?: AudioTranscriptionWord[];
-}
-
-export function audioTranscriptionSerializer(
-  input: AudioTranscription,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -110,13 +112,6 @@ export interface AudioTranscriptionSegment {
   seek: number;
 }
 
-export function audioTranscriptionSegmentSerializer(
-  input: AudioTranscriptionSegment,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Extended information about a single transcribed word, as provided on responses when the 'word' timestamp granularity is provided. */
 export interface AudioTranscriptionWord {
   /** The textual content of the word. */
@@ -125,13 +120,6 @@ export interface AudioTranscriptionWord {
   start: number;
   /** The end time of the word relative to the beginning of the audio, expressed in seconds. */
   end: number;
-}
-
-export function audioTranscriptionWordSerializer(
-  input: AudioTranscriptionWord,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** The configuration information for an audio translation request. */
@@ -161,10 +149,16 @@ export interface AudioTranslationOptions {
 }
 
 export function audioTranslationOptionsSerializer(
-  input: AudioTranslationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AudioTranslationOptions,
+): Record<string, unknown> {
+  return {
+    file: uint8ArrayToString(item["file"], "base64"),
+    filename: item["filename"],
+    response_format: item["responseFormat"],
+    prompt: item["prompt"],
+    temperature: item["temperature"],
+    model: item["model"],
+  };
 }
 
 /** Result information for an operation that translated spoken audio into written text. */
@@ -182,11 +176,6 @@ export interface AudioTranslation {
   duration?: number;
   /** A collection of information about the timing, probabilities, and other detail of each processed audio segment. */
   segments?: AudioTranslationSegment[];
-}
-
-export function audioTranslationSerializer(input: AudioTranslation): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -221,13 +210,6 @@ export interface AudioTranslationSegment {
    * segment's associated seek position.
    */
   seek: number;
-}
-
-export function audioTranslationSegmentSerializer(
-  input: AudioTranslationSegment,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -325,10 +307,28 @@ export interface CompletionsOptions {
 }
 
 export function completionsOptionsSerializer(
-  input: CompletionsOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: CompletionsOptions,
+): Record<string, unknown> {
+  return {
+    prompt: item["prompt"],
+    max_tokens: item["maxTokens"],
+    temperature: item["temperature"],
+    top_p: item["topP"],
+    logit_bias: !item.logitBias
+      ? item.logitBias
+      : (serializeRecord(item.logitBias as any) as any),
+    user: item["user"],
+    n: item["n"],
+    logprobs: item["logprobs"],
+    suffix: item["suffix"],
+    echo: item["echo"],
+    stop: item["stop"],
+    presence_penalty: item["presencePenalty"],
+    frequency_penalty: item["frequencyPenalty"],
+    best_of: item["bestOf"],
+    stream: item["stream"],
+    model: item["model"],
+  };
 }
 
 /**
@@ -359,11 +359,6 @@ export interface Completions {
   usage: CompletionsUsage;
 }
 
-export function completionsSerializer(input: Completions): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /**
  * Representation of the token counts processed for a completions request.
  * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
@@ -378,24 +373,12 @@ export interface CompletionsUsage {
   totalTokens: number;
 }
 
-export function completionsUsageSerializer(input: CompletionsUsage): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Content filtering results for a single prompt in the request. */
 export interface ContentFilterResultsForPrompt {
   /** The index of this prompt in the set of prompt results */
   promptIndex: number;
   /** Content filtering results for this prompt */
   contentFilterResults: ContentFilterResultDetailsForPrompt;
-}
-
-export function contentFilterResultsForPromptSerializer(
-  input: ContentFilterResultsForPrompt,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Information about content filtering evaluated against input data to Azure OpenAI. */
@@ -440,26 +423,12 @@ export interface ContentFilterResultDetailsForPrompt {
   indirectAttack?: ContentFilterDetectionResult;
 }
 
-export function contentFilterResultDetailsForPromptSerializer(
-  input: ContentFilterResultDetailsForPrompt,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Information about filtered content severity level and if it has been filtered or not. */
 export interface ContentFilterResult {
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
   /** Ratings for the intensity and risk level of filtered content. */
   severity: ContentFilterSeverity;
-}
-
-export function contentFilterResultSerializer(
-  input: ContentFilterResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Represents the outcome of a detection operation performed by content filtering. */
@@ -470,13 +439,6 @@ export interface ContentFilterDetectionResult {
   detected: boolean;
 }
 
-export function contentFilterDetectionResultSerializer(
-  input: ContentFilterDetectionResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Represents a structured collection of result details for content filtering. */
 export interface ContentFilterDetailedResults {
   /** A value indicating whether or not the content has been filtered. */
@@ -485,26 +447,12 @@ export interface ContentFilterDetailedResults {
   details: ContentFilterBlocklistIdResult[];
 }
 
-export function contentFilterDetailedResultsSerializer(
-  input: ContentFilterDetailedResults,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Represents the outcome of an evaluation against a custom blocklist as performed by content filtering. */
 export interface ContentFilterBlocklistIdResult {
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
   /** The ID of the custom blocklist evaluated. */
   id: string;
-}
-
-export function contentFilterBlocklistIdResultSerializer(
-  input: ContentFilterBlocklistIdResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -527,11 +475,6 @@ export interface Choice {
   logprobs: CompletionsLogProbabilityModel | null;
   /** Reason for finishing */
   finishReason: CompletionsFinishReason | null;
-}
-
-export function choiceSerializer(input: Choice): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Information about content filtering evaluated against generated model output. */
@@ -576,13 +519,6 @@ export interface ContentFilterResultsForChoice {
   protectedMaterialCode?: ContentFilterCitedDetectionResult;
 }
 
-export function contentFilterResultsForChoiceSerializer(
-  input: ContentFilterResultsForChoice,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Represents the outcome of a detection operation against protected resources as performed by content filtering. */
 export interface ContentFilterCitedDetectionResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -595,13 +531,6 @@ export interface ContentFilterCitedDetectionResult {
   license: string;
 }
 
-export function contentFilterCitedDetectionResultSerializer(
-  input: ContentFilterCitedDetectionResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Representation of a log probabilities model for a completions generation. */
 export interface CompletionsLogProbabilityModel {
   /** The textual forms of tokens evaluated in this probability model. */
@@ -612,13 +541,6 @@ export interface CompletionsLogProbabilityModel {
   topLogprobs: Record<string, number | null>[];
   /** The text offsets associated with tokens in this completions data. */
   textOffset: number[];
-}
-
-export function completionsLogProbabilityModelSerializer(
-  input: CompletionsLogProbabilityModel,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -734,10 +656,46 @@ export interface ChatCompletionsOptions {
 }
 
 export function chatCompletionsOptionsSerializer(
-  input: ChatCompletionsOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatCompletionsOptions,
+): Record<string, unknown> {
+  return {
+    messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
+    functions:
+      item["functions"] === undefined
+        ? item["functions"]
+        : item["functions"].map(functionDefinitionSerializer),
+    function_call: item["functionCall"] as any,
+    max_tokens: item["maxTokens"],
+    temperature: item["temperature"],
+    top_p: item["topP"],
+    logit_bias: !item.logitBias
+      ? item.logitBias
+      : (serializeRecord(item.logitBias as any) as any),
+    user: item["user"],
+    n: item["n"],
+    stop: item["stop"],
+    presence_penalty: item["presencePenalty"],
+    frequency_penalty: item["frequencyPenalty"],
+    stream: item["stream"],
+    model: item["model"],
+    data_sources:
+      item["dataSources"] === undefined
+        ? item["dataSources"]
+        : item["dataSources"].map((p) =>
+            azureChatExtensionConfigurationUnionSerializer(p),
+          ),
+    enhancements: !item.enhancements
+      ? item.enhancements
+      : azureChatEnhancementConfigurationSerializer(item.enhancements),
+    seed: item["seed"],
+    logprobs: item["logprobs"],
+    top_logprobs: item["topLogprobs"],
+    response_format: !item.responseFormat
+      ? item.responseFormat
+      : chatCompletionsResponseFormatUnionSerializer(item.responseFormat),
+    tools: item["tools"],
+    tool_choice: item["toolChoice"] as any,
+  };
 }
 
 /** A representation of the available Azure OpenAI enhancement configurations. */
@@ -749,10 +707,16 @@ export interface AzureChatEnhancementConfiguration {
 }
 
 export function azureChatEnhancementConfigurationSerializer(
-  input: AzureChatEnhancementConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureChatEnhancementConfiguration,
+): Record<string, unknown> {
+  return {
+    grounding: !item.grounding
+      ? item.grounding
+      : azureChatGroundingEnhancementConfigurationSerializer(item.grounding),
+    ocr: !item.ocr
+      ? item.ocr
+      : azureChatOCREnhancementConfigurationSerializer(item.ocr),
+  };
 }
 
 /** A representation of the available options for the Azure OpenAI grounding enhancement. */
@@ -762,10 +726,11 @@ export interface AzureChatGroundingEnhancementConfiguration {
 }
 
 export function azureChatGroundingEnhancementConfigurationSerializer(
-  input: AzureChatGroundingEnhancementConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureChatGroundingEnhancementConfiguration,
+): Record<string, unknown> {
+  return {
+    enabled: item["enabled"],
+  };
 }
 
 /** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
@@ -775,10 +740,11 @@ export interface AzureChatOCREnhancementConfiguration {
 }
 
 export function azureChatOCREnhancementConfigurationSerializer(
-  input: AzureChatOCREnhancementConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureChatOCREnhancementConfiguration,
+): Record<string, unknown> {
+  return {
+    enabled: item["enabled"],
+  };
 }
 
 /**
@@ -790,11 +756,12 @@ export interface ChatCompletionsResponseFormat {
   type: string;
 }
 
-export function chatCompletionsResponseFormatUnionSerializer(
-  input: ChatCompletionsResponseFormatUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsResponseFormatSerializer(
+  item: ChatCompletionsResponseFormatUnion,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
 }
 
 export type ChatCompletionsResponseFormatUnion =
@@ -802,11 +769,23 @@ export type ChatCompletionsResponseFormatUnion =
   | ChatCompletionsJsonResponseFormat
   | ChatCompletionsResponseFormat;
 
-export function chatCompletionsResponseFormatSerializer(
-  input: ChatCompletionsResponseFormat,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsResponseFormatUnionSerializer(
+  item: ChatCompletionsResponseFormatUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "text":
+      return chatCompletionsTextResponseFormatSerializer(
+        item as ChatCompletionsTextResponseFormat,
+      );
+
+    case "json_object":
+      return chatCompletionsJsonResponseFormatSerializer(
+        item as ChatCompletionsJsonResponseFormat,
+      );
+
+    default:
+      return chatCompletionsResponseFormatSerializer(item);
+  }
 }
 
 /** An abstract representation of a chat message as provided in a request. */
@@ -815,11 +794,12 @@ export interface ChatRequestMessage {
   role: ChatRole;
 }
 
-export function chatRequestMessageUnionSerializer(
-  input: ChatRequestMessageUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatRequestMessageSerializer(
+  item: ChatRequestMessageUnion,
+): Record<string, unknown> {
+  return {
+    ...chatRequestMessageUnionSerializer(item),
+  };
 }
 
 export type ChatRequestMessageUnion =
@@ -830,11 +810,34 @@ export type ChatRequestMessageUnion =
   | ChatRequestFunctionMessage
   | ChatRequestMessage;
 
-export function chatRequestMessageSerializer(
-  input: ChatRequestMessage,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatRequestMessageUnionSerializer(
+  item: ChatRequestMessageUnion,
+): Record<string, unknown> {
+  switch (item.role) {
+    case "system":
+      return chatRequestSystemMessageSerializer(
+        item as ChatRequestSystemMessage,
+      );
+
+    case "user":
+      return chatRequestUserMessageSerializer(item as ChatRequestUserMessage);
+
+    case "assistant":
+      return chatRequestAssistantMessageSerializer(
+        item as ChatRequestAssistantMessage,
+      );
+
+    case "tool":
+      return chatRequestToolMessageSerializer(item as ChatRequestToolMessage);
+
+    case "function":
+      return chatRequestFunctionMessageSerializer(
+        item as ChatRequestFunctionMessage,
+      );
+
+    default:
+      return chatRequestMessageSerializer(item);
+  }
 }
 
 /**
@@ -851,10 +854,13 @@ export interface ChatRequestSystemMessage extends ChatRequestMessage {
 }
 
 export function chatRequestSystemMessageSerializer(
-  input: ChatRequestSystemMessage,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatRequestSystemMessage,
+): Record<string, unknown> {
+  return {
+    role: item["role"],
+    content: item["content"],
+    name: item["name"],
+  };
 }
 
 /** A request chat message representing user input to the assistant. */
@@ -868,10 +874,13 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
 }
 
 export function chatRequestUserMessageSerializer(
-  input: ChatRequestUserMessage,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatRequestUserMessage,
+): Record<string, unknown> {
+  return {
+    role: item["role"],
+    content: item["content"] as any,
+    name: item["name"],
+  };
 }
 
 /** An abstract representation of a structured content item within a chat message. */
@@ -880,11 +889,12 @@ export interface ChatMessageContentItem {
   type: string;
 }
 
-export function chatMessageContentItemUnionSerializer(
-  input: ChatMessageContentItemUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatMessageContentItemSerializer(
+  item: ChatMessageContentItemUnion,
+): Record<string, unknown> {
+  return {
+    ...chatMessageContentItemUnionSerializer(item),
+  };
 }
 
 export type ChatMessageContentItemUnion =
@@ -892,11 +902,23 @@ export type ChatMessageContentItemUnion =
   | ChatMessageImageContentItem
   | ChatMessageContentItem;
 
-export function chatMessageContentItemSerializer(
-  input: ChatMessageContentItem,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatMessageContentItemUnionSerializer(
+  item: ChatMessageContentItemUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "text":
+      return chatMessageTextContentItemSerializer(
+        item as ChatMessageTextContentItem,
+      );
+
+    case "image_url":
+      return chatMessageImageContentItemSerializer(
+        item as ChatMessageImageContentItem,
+      );
+
+    default:
+      return chatMessageContentItemSerializer(item);
+  }
 }
 
 /** A structured chat content item containing plain text. */
@@ -908,10 +930,12 @@ export interface ChatMessageTextContentItem extends ChatMessageContentItem {
 }
 
 export function chatMessageTextContentItemSerializer(
-  input: ChatMessageTextContentItem,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatMessageTextContentItem,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    text: item["text"],
+  };
 }
 
 /** A structured chat content item containing an image reference. */
@@ -923,10 +947,12 @@ export interface ChatMessageImageContentItem extends ChatMessageContentItem {
 }
 
 export function chatMessageImageContentItemSerializer(
-  input: ChatMessageImageContentItem,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatMessageImageContentItem,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    image_url: chatMessageImageUrlSerializer(item.imageUrl),
+  };
 }
 
 /** An internet location from which the model may retrieve an image. */
@@ -941,10 +967,12 @@ export interface ChatMessageImageUrl {
 }
 
 export function chatMessageImageUrlSerializer(
-  input: ChatMessageImageUrl,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatMessageImageUrl,
+): Record<string, unknown> {
+  return {
+    url: item["url"],
+    detail: item["detail"],
+  };
 }
 
 /** A request chat message representing response or action from the assistant. */
@@ -968,10 +996,17 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessage {
 }
 
 export function chatRequestAssistantMessageSerializer(
-  input: ChatRequestAssistantMessage,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatRequestAssistantMessage,
+): Record<string, unknown> {
+  return {
+    role: item["role"],
+    content: item["content"],
+    name: item["name"],
+    tool_calls: item["toolCalls"],
+    function_call: !item.functionCall
+      ? item.functionCall
+      : functionCallSerializer(item.functionCall),
+  };
 }
 
 /** The name and arguments of a function that should be called, as generated by the model. */
@@ -987,9 +1022,13 @@ export interface FunctionCall {
   arguments: string;
 }
 
-export function functionCallSerializer(input: FunctionCall): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function functionCallSerializer(
+  item: FunctionCall,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+    arguments: item["arguments"],
+  };
 }
 
 /**
@@ -1003,22 +1042,31 @@ export interface ChatCompletionsToolCall {
   id: string;
 }
 
-export function chatCompletionsToolCallUnionSerializer(
-  input: ChatCompletionsToolCallUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsToolCallSerializer(
+  item: ChatCompletionsToolCallUnion,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    id: item["id"],
+  };
 }
 
 export type ChatCompletionsToolCallUnion =
   | ChatCompletionsFunctionToolCall
   | ChatCompletionsToolCall;
 
-export function chatCompletionsToolCallSerializer(
-  input: ChatCompletionsToolCall,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsToolCallUnionSerializer(
+  item: ChatCompletionsToolCallUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "function":
+      return chatCompletionsFunctionToolCallSerializer(
+        item as ChatCompletionsFunctionToolCall,
+      );
+
+    default:
+      return chatCompletionsToolCallSerializer(item);
+  }
 }
 
 /**
@@ -1034,10 +1082,13 @@ export interface ChatCompletionsFunctionToolCall
 }
 
 export function chatCompletionsFunctionToolCallSerializer(
-  input: ChatCompletionsFunctionToolCall,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatCompletionsFunctionToolCall,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    id: item["id"],
+    function: functionCallSerializer(item.function),
+  };
 }
 
 /** A request chat message representing requested output from a configured tool. */
@@ -1051,10 +1102,13 @@ export interface ChatRequestToolMessage extends ChatRequestMessage {
 }
 
 export function chatRequestToolMessageSerializer(
-  input: ChatRequestToolMessage,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatRequestToolMessage,
+): Record<string, unknown> {
+  return {
+    role: item["role"],
+    content: item["content"],
+    tool_call_id: item["toolCallId"],
+  };
 }
 
 /** A request chat message representing requested output from a configured function. */
@@ -1068,10 +1122,13 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
 }
 
 export function chatRequestFunctionMessageSerializer(
-  input: ChatRequestFunctionMessage,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatRequestFunctionMessage,
+): Record<string, unknown> {
+  return {
+    role: item["role"],
+    name: item["name"],
+    content: item["content"],
+  };
 }
 
 /** The definition of a caller-specified function that chat completions may invoke in response to matching user input. */
@@ -1088,10 +1145,13 @@ export interface FunctionDefinition {
 }
 
 export function functionDefinitionSerializer(
-  input: FunctionDefinition,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: FunctionDefinition,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+    description: item["description"],
+    parameters: item["parameters"],
+  };
 }
 
 /**
@@ -1103,9 +1163,12 @@ export interface FunctionName {
   name: string;
 }
 
-export function functionNameSerializer(input: FunctionName): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function functionNameSerializer(
+  item: FunctionName,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+  };
 }
 
 /**
@@ -1121,11 +1184,12 @@ export interface AzureChatExtensionConfiguration {
   type: AzureChatExtensionType;
 }
 
-export function azureChatExtensionConfigurationUnionSerializer(
-  input: AzureChatExtensionConfigurationUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function azureChatExtensionConfigurationSerializer(
+  item: AzureChatExtensionConfigurationUnion,
+): Record<string, unknown> {
+  return {
+    ...azureChatExtensionConfigurationUnionSerializer(item),
+  };
 }
 
 export type AzureChatExtensionConfigurationUnion =
@@ -1136,11 +1200,38 @@ export type AzureChatExtensionConfigurationUnion =
   | PineconeChatExtensionConfiguration
   | AzureChatExtensionConfiguration;
 
-export function azureChatExtensionConfigurationSerializer(
-  input: AzureChatExtensionConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function azureChatExtensionConfigurationUnionSerializer(
+  item: AzureChatExtensionConfigurationUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "azure_search":
+      return azureSearchChatExtensionConfigurationSerializer(
+        item as AzureSearchChatExtensionConfiguration,
+      );
+
+    case "azure_ml_index":
+      return azureMachineLearningIndexChatExtensionConfigurationSerializer(
+        item as AzureMachineLearningIndexChatExtensionConfiguration,
+      );
+
+    case "azure_cosmos_db":
+      return azureCosmosDBChatExtensionConfigurationSerializer(
+        item as AzureCosmosDBChatExtensionConfiguration,
+      );
+
+    case "elasticsearch":
+      return elasticsearchChatExtensionConfigurationSerializer(
+        item as ElasticsearchChatExtensionConfiguration,
+      );
+
+    case "pinecone":
+      return pineconeChatExtensionConfigurationSerializer(
+        item as PineconeChatExtensionConfiguration,
+      );
+
+    default:
+      return azureChatExtensionConfigurationSerializer(item);
+  }
 }
 
 /**
@@ -1159,10 +1250,12 @@ export interface AzureSearchChatExtensionConfiguration
 }
 
 export function azureSearchChatExtensionConfigurationSerializer(
-  input: AzureSearchChatExtensionConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureSearchChatExtensionConfiguration,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    parameters: azureSearchChatExtensionParametersSerializer(item.parameters),
+  };
 }
 
 /** Parameters for Azure Cognitive Search when used as an Azure OpenAI chat extension. The supported authentication types are APIKey, SystemAssignedManagedIdentity and UserAssignedManagedIdentity. */
@@ -1212,10 +1305,31 @@ export interface AzureSearchChatExtensionParameters {
 }
 
 export function azureSearchChatExtensionParametersSerializer(
-  input: AzureSearchChatExtensionParameters,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureSearchChatExtensionParameters,
+): Record<string, unknown> {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
+    top_n_documents: item["topNDocuments"],
+    in_scope: item["inScope"],
+    strictness: item["strictness"],
+    role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
+    endpoint: item["endpoint"],
+    index_name: item["indexName"],
+    fields_mapping: !item.fieldsMapping
+      ? item.fieldsMapping
+      : azureSearchIndexFieldMappingOptionsSerializer(item.fieldsMapping),
+    query_type: item["queryType"],
+    semantic_configuration: item["semanticConfiguration"],
+    filter: item["filter"],
+    embedding_dependency: !item.embeddingDependency
+      ? item.embeddingDependency
+      : onYourDataVectorizationSourceUnionSerializer(item.embeddingDependency),
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data. */
@@ -1224,11 +1338,12 @@ export interface OnYourDataAuthenticationOptions {
   type: OnYourDataAuthenticationType;
 }
 
-export function onYourDataAuthenticationOptionsUnionSerializer(
-  input: OnYourDataAuthenticationOptionsUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function onYourDataAuthenticationOptionsSerializer(
+  item: OnYourDataAuthenticationOptionsUnion,
+): Record<string, unknown> {
+  return {
+    ...onYourDataAuthenticationOptionsUnionSerializer(item),
+  };
 }
 
 export type OnYourDataAuthenticationOptionsUnion =
@@ -1241,11 +1356,48 @@ export type OnYourDataAuthenticationOptionsUnion =
   | OnYourDataUserAssignedManagedIdentityAuthenticationOptions
   | OnYourDataAuthenticationOptions;
 
-export function onYourDataAuthenticationOptionsSerializer(
-  input: OnYourDataAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function onYourDataAuthenticationOptionsUnionSerializer(
+  item: OnYourDataAuthenticationOptionsUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "api_key":
+      return onYourDataApiKeyAuthenticationOptionsSerializer(
+        item as OnYourDataApiKeyAuthenticationOptions,
+      );
+
+    case "connection_string":
+      return onYourDataConnectionStringAuthenticationOptionsSerializer(
+        item as OnYourDataConnectionStringAuthenticationOptions,
+      );
+
+    case "key_and_key_id":
+      return onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
+        item as OnYourDataKeyAndKeyIdAuthenticationOptions,
+      );
+
+    case "encoded_api_key":
+      return onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
+        item as OnYourDataEncodedApiKeyAuthenticationOptions,
+      );
+
+    case "access_token":
+      return onYourDataAccessTokenAuthenticationOptionsSerializer(
+        item as OnYourDataAccessTokenAuthenticationOptions,
+      );
+
+    case "system_assigned_managed_identity":
+      return onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(
+        item as OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
+      );
+
+    case "user_assigned_managed_identity":
+      return onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerializer(
+        item as OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
+      );
+
+    default:
+      return onYourDataAuthenticationOptionsSerializer(item);
+  }
 }
 
 /** Optional settings to control how fields are processed when using a configured Azure Search resource. */
@@ -1267,10 +1419,17 @@ export interface AzureSearchIndexFieldMappingOptions {
 }
 
 export function azureSearchIndexFieldMappingOptionsSerializer(
-  input: AzureSearchIndexFieldMappingOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureSearchIndexFieldMappingOptions,
+): Record<string, unknown> {
+  return {
+    title_field: item["titleField"],
+    url_field: item["urlField"],
+    filepath_field: item["filepathField"],
+    content_fields: item["contentFields"],
+    content_fields_separator: item["contentFieldsSeparator"],
+    vector_fields: item["vectorFields"],
+    image_vector_fields: item["imageVectorFields"],
+  };
 }
 
 /** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
@@ -1279,11 +1438,12 @@ export interface OnYourDataVectorizationSource {
   type: OnYourDataVectorizationSourceType;
 }
 
-export function onYourDataVectorizationSourceUnionSerializer(
-  input: OnYourDataVectorizationSourceUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function onYourDataVectorizationSourceSerializer(
+  item: OnYourDataVectorizationSourceUnion,
+): Record<string, unknown> {
+  return {
+    ...onYourDataVectorizationSourceUnionSerializer(item),
+  };
 }
 
 export type OnYourDataVectorizationSourceUnion =
@@ -1292,11 +1452,28 @@ export type OnYourDataVectorizationSourceUnion =
   | OnYourDataModelIdVectorizationSource
   | OnYourDataVectorizationSource;
 
-export function onYourDataVectorizationSourceSerializer(
-  input: OnYourDataVectorizationSource,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function onYourDataVectorizationSourceUnionSerializer(
+  item: OnYourDataVectorizationSourceUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "endpoint":
+      return onYourDataEndpointVectorizationSourceSerializer(
+        item as OnYourDataEndpointVectorizationSource,
+      );
+
+    case "deployment_name":
+      return onYourDataDeploymentNameVectorizationSourceSerializer(
+        item as OnYourDataDeploymentNameVectorizationSource,
+      );
+
+    case "model_id":
+      return onYourDataModelIdVectorizationSourceSerializer(
+        item as OnYourDataModelIdVectorizationSource,
+      );
+
+    default:
+      return onYourDataVectorizationSourceSerializer(item);
+  }
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
@@ -1309,10 +1486,12 @@ export interface OnYourDataApiKeyAuthenticationOptions
 }
 
 export function onYourDataApiKeyAuthenticationOptionsSerializer(
-  input: OnYourDataApiKeyAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataApiKeyAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    key: item["key"],
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using a connection string. */
@@ -1325,10 +1504,12 @@ export interface OnYourDataConnectionStringAuthenticationOptions
 }
 
 export function onYourDataConnectionStringAuthenticationOptionsSerializer(
-  input: OnYourDataConnectionStringAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataConnectionStringAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    connection_string: item["connectionString"],
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch key and key ID pair. */
@@ -1343,10 +1524,13 @@ export interface OnYourDataKeyAndKeyIdAuthenticationOptions
 }
 
 export function onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
-  input: OnYourDataKeyAndKeyIdAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataKeyAndKeyIdAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    key: item["key"],
+    key_id: item["keyId"],
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch encoded API key. */
@@ -1359,10 +1543,12 @@ export interface OnYourDataEncodedApiKeyAuthenticationOptions
 }
 
 export function onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
-  input: OnYourDataEncodedApiKeyAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataEncodedApiKeyAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    encoded_api_key: item["encodedApiKey"],
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using access token. */
@@ -1375,10 +1561,12 @@ export interface OnYourDataAccessTokenAuthenticationOptions
 }
 
 export function onYourDataAccessTokenAuthenticationOptionsSerializer(
-  input: OnYourDataAccessTokenAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataAccessTokenAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    access_token: item["accessToken"],
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using a system-assigned managed identity. */
@@ -1389,10 +1577,11 @@ export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
 }
 
 export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(
-  input: OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using a user-assigned managed identity. */
@@ -1405,10 +1594,12 @@ export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions
 }
 
 export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerializer(
-  input: OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    managed_identity_resource_id: item["managedIdentityResourceId"],
+  };
 }
 
 /**
@@ -1426,10 +1617,15 @@ export interface OnYourDataEndpointVectorizationSource
 }
 
 export function onYourDataEndpointVectorizationSourceSerializer(
-  input: OnYourDataEndpointVectorizationSource,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataEndpointVectorizationSource,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    endpoint: item["endpoint"],
+    authentication: onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
+      item.authentication,
+    ),
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data vector search. */
@@ -1438,11 +1634,12 @@ export interface OnYourDataVectorSearchAuthenticationOptions {
   type: OnYourDataVectorSearchAuthenticationType;
 }
 
-export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
-  input: OnYourDataVectorSearchAuthenticationOptionsUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function onYourDataVectorSearchAuthenticationOptionsSerializer(
+  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
+): Record<string, unknown> {
+  return {
+    ...onYourDataVectorSearchAuthenticationOptionsUnionSerializer(item),
+  };
 }
 
 export type OnYourDataVectorSearchAuthenticationOptionsUnion =
@@ -1450,11 +1647,23 @@ export type OnYourDataVectorSearchAuthenticationOptionsUnion =
   | OnYourDataVectorSearchAccessTokenAuthenticationOptions
   | OnYourDataVectorSearchAuthenticationOptions;
 
-export function onYourDataVectorSearchAuthenticationOptionsSerializer(
-  input: OnYourDataVectorSearchAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
+  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "api_key":
+      return onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
+        item as OnYourDataVectorSearchApiKeyAuthenticationOptions,
+      );
+
+    case "access_token":
+      return onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer(
+        item as OnYourDataVectorSearchAccessTokenAuthenticationOptions,
+      );
+
+    default:
+      return onYourDataVectorSearchAuthenticationOptionsSerializer(item);
+  }
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
@@ -1467,10 +1676,12 @@ export interface OnYourDataVectorSearchApiKeyAuthenticationOptions
 }
 
 export function onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
-  input: OnYourDataVectorSearchApiKeyAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataVectorSearchApiKeyAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    key: item["key"],
+  };
 }
 
 /** The authentication options for Azure OpenAI On Your Data vector search when using access token. */
@@ -1483,10 +1694,12 @@ export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions
 }
 
 export function onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer(
-  input: OnYourDataVectorSearchAccessTokenAuthenticationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataVectorSearchAccessTokenAuthenticationOptions,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    access_token: item["accessToken"],
+  };
 }
 
 /**
@@ -1504,10 +1717,13 @@ export interface OnYourDataDeploymentNameVectorizationSource
 }
 
 export function onYourDataDeploymentNameVectorizationSourceSerializer(
-  input: OnYourDataDeploymentNameVectorizationSource,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataDeploymentNameVectorizationSource,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    deployment_name: item["deploymentName"],
+    dimensions: item["dimensions"],
+  };
 }
 
 /**
@@ -1523,10 +1739,12 @@ export interface OnYourDataModelIdVectorizationSource
 }
 
 export function onYourDataModelIdVectorizationSourceSerializer(
-  input: OnYourDataModelIdVectorizationSource,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: OnYourDataModelIdVectorizationSource,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    model_id: item["modelId"],
+  };
 }
 
 /**
@@ -1545,10 +1763,14 @@ export interface AzureMachineLearningIndexChatExtensionConfiguration
 }
 
 export function azureMachineLearningIndexChatExtensionConfigurationSerializer(
-  input: AzureMachineLearningIndexChatExtensionConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureMachineLearningIndexChatExtensionConfiguration,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    parameters: azureMachineLearningIndexChatExtensionParametersSerializer(
+      item.parameters,
+    ),
+  };
 }
 
 /** Parameters for the Azure Machine Learning vector index chat extension. The supported authentication types are AccessToken, SystemAssignedManagedIdentity and UserAssignedManagedIdentity. */
@@ -1592,10 +1814,24 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
 }
 
 export function azureMachineLearningIndexChatExtensionParametersSerializer(
-  input: AzureMachineLearningIndexChatExtensionParameters,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureMachineLearningIndexChatExtensionParameters,
+): Record<string, unknown> {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
+    top_n_documents: item["topNDocuments"],
+    in_scope: item["inScope"],
+    strictness: item["strictness"],
+    role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
+    project_resource_id: item["projectResourceId"],
+    name: item["name"],
+    version: item["version"],
+    filter: item["filter"],
+  };
 }
 
 /**
@@ -1614,10 +1850,12 @@ export interface AzureCosmosDBChatExtensionConfiguration
 }
 
 export function azureCosmosDBChatExtensionConfigurationSerializer(
-  input: AzureCosmosDBChatExtensionConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureCosmosDBChatExtensionConfiguration,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    parameters: azureCosmosDBChatExtensionParametersSerializer(item.parameters),
+  };
 }
 
 /**
@@ -1666,10 +1904,29 @@ export interface AzureCosmosDBChatExtensionParameters {
 }
 
 export function azureCosmosDBChatExtensionParametersSerializer(
-  input: AzureCosmosDBChatExtensionParameters,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureCosmosDBChatExtensionParameters,
+): Record<string, unknown> {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
+    top_n_documents: item["topNDocuments"],
+    in_scope: item["inScope"],
+    strictness: item["strictness"],
+    role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
+    database_name: item["databaseName"],
+    container_name: item["containerName"],
+    index_name: item["indexName"],
+    fields_mapping: azureCosmosDBFieldMappingOptionsSerializer(
+      item.fieldsMapping,
+    ),
+    embedding_dependency: onYourDataVectorizationSourceUnionSerializer(
+      item.embeddingDependency,
+    ),
+  };
 }
 
 /** Optional settings to control how fields are processed when using a configured Azure Cosmos DB resource. */
@@ -1689,10 +1946,16 @@ export interface AzureCosmosDBFieldMappingOptions {
 }
 
 export function azureCosmosDBFieldMappingOptionsSerializer(
-  input: AzureCosmosDBFieldMappingOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: AzureCosmosDBFieldMappingOptions,
+): Record<string, unknown> {
+  return {
+    title_field: item["titleField"],
+    url_field: item["urlField"],
+    filepath_field: item["filepathField"],
+    content_fields: item["contentFields"],
+    content_fields_separator: item["contentFieldsSeparator"],
+    vector_fields: item["vectorFields"],
+  };
 }
 
 /**
@@ -1711,10 +1974,12 @@ export interface ElasticsearchChatExtensionConfiguration
 }
 
 export function elasticsearchChatExtensionConfigurationSerializer(
-  input: ElasticsearchChatExtensionConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ElasticsearchChatExtensionConfiguration,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    parameters: elasticsearchChatExtensionParametersSerializer(item.parameters),
+  };
 }
 
 /** Parameters to use when configuring Elasticsearch® as an Azure OpenAI chat extension. The supported authentication types are KeyAndKeyId and EncodedAPIKey. */
@@ -1760,10 +2025,29 @@ export interface ElasticsearchChatExtensionParameters {
 }
 
 export function elasticsearchChatExtensionParametersSerializer(
-  input: ElasticsearchChatExtensionParameters,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ElasticsearchChatExtensionParameters,
+): Record<string, unknown> {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
+    top_n_documents: item["topNDocuments"],
+    in_scope: item["inScope"],
+    strictness: item["strictness"],
+    role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
+    endpoint: item["endpoint"],
+    index_name: item["indexName"],
+    fields_mapping: !item.fieldsMapping
+      ? item.fieldsMapping
+      : elasticsearchIndexFieldMappingOptionsSerializer(item.fieldsMapping),
+    query_type: item["queryType"],
+    embedding_dependency: !item.embeddingDependency
+      ? item.embeddingDependency
+      : onYourDataVectorizationSourceUnionSerializer(item.embeddingDependency),
+  };
 }
 
 /** Optional settings to control how fields are processed when using a configured Elasticsearch® resource. */
@@ -1783,10 +2067,16 @@ export interface ElasticsearchIndexFieldMappingOptions {
 }
 
 export function elasticsearchIndexFieldMappingOptionsSerializer(
-  input: ElasticsearchIndexFieldMappingOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ElasticsearchIndexFieldMappingOptions,
+): Record<string, unknown> {
+  return {
+    title_field: item["titleField"],
+    url_field: item["urlField"],
+    filepath_field: item["filepathField"],
+    content_fields: item["contentFields"],
+    content_fields_separator: item["contentFieldsSeparator"],
+    vector_fields: item["vectorFields"],
+  };
 }
 
 /**
@@ -1805,10 +2095,12 @@ export interface PineconeChatExtensionConfiguration
 }
 
 export function pineconeChatExtensionConfigurationSerializer(
-  input: PineconeChatExtensionConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: PineconeChatExtensionConfiguration,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    parameters: pineconeChatExtensionParametersSerializer(item.parameters),
+  };
 }
 
 /** Parameters for configuring Azure OpenAI Pinecone chat extensions. The supported authentication type is APIKey. */
@@ -1852,10 +2144,26 @@ export interface PineconeChatExtensionParameters {
 }
 
 export function pineconeChatExtensionParametersSerializer(
-  input: PineconeChatExtensionParameters,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: PineconeChatExtensionParameters,
+): Record<string, unknown> {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionSerializer(item.authentication),
+    top_n_documents: item["topNDocuments"],
+    in_scope: item["inScope"],
+    strictness: item["strictness"],
+    role_information: item["roleInformation"],
+    max_search_queries: item["maxSearchQueries"],
+    allow_partial_result: item["allowPartialResult"],
+    include_contexts: item["includeContexts"],
+    environment: item["environment"],
+    index_name: item["indexName"],
+    fields_mapping: pineconeFieldMappingOptionsSerializer(item.fieldsMapping),
+    embedding_dependency: onYourDataVectorizationSourceUnionSerializer(
+      item.embeddingDependency,
+    ),
+  };
 }
 
 /** Optional settings to control how fields are processed when using a configured Pinecone resource. */
@@ -1873,10 +2181,15 @@ export interface PineconeFieldMappingOptions {
 }
 
 export function pineconeFieldMappingOptionsSerializer(
-  input: PineconeFieldMappingOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: PineconeFieldMappingOptions,
+): Record<string, unknown> {
+  return {
+    title_field: item["titleField"],
+    url_field: item["urlField"],
+    filepath_field: item["filepathField"],
+    content_fields: item["contentFields"],
+    content_fields_separator: item["contentFieldsSeparator"],
+  };
 }
 
 /**
@@ -1890,10 +2203,11 @@ export interface ChatCompletionsTextResponseFormat
 }
 
 export function chatCompletionsTextResponseFormatSerializer(
-  input: ChatCompletionsTextResponseFormat,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatCompletionsTextResponseFormat,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
 }
 
 /** A response format for Chat Completions that restricts responses to emitting valid JSON objects. */
@@ -1904,10 +2218,11 @@ export interface ChatCompletionsJsonResponseFormat
 }
 
 export function chatCompletionsJsonResponseFormatSerializer(
-  input: ChatCompletionsJsonResponseFormat,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatCompletionsJsonResponseFormat,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
 }
 
 /** An abstract representation of a tool that can be used by the model to improve a chat completions response. */
@@ -1916,22 +2231,30 @@ export interface ChatCompletionsToolDefinition {
   type: string;
 }
 
-export function chatCompletionsToolDefinitionUnionSerializer(
-  input: ChatCompletionsToolDefinitionUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsToolDefinitionSerializer(
+  item: ChatCompletionsToolDefinitionUnion,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
 }
 
 export type ChatCompletionsToolDefinitionUnion =
   | ChatCompletionsFunctionToolDefinition
   | ChatCompletionsToolDefinition;
 
-export function chatCompletionsToolDefinitionSerializer(
-  input: ChatCompletionsToolDefinition,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsToolDefinitionUnionSerializer(
+  item: ChatCompletionsToolDefinitionUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "function":
+      return chatCompletionsFunctionToolDefinitionSerializer(
+        item as ChatCompletionsFunctionToolDefinition,
+      );
+
+    default:
+      return chatCompletionsToolDefinitionSerializer(item);
+  }
 }
 
 /** The definition information for a chat completions function tool that can call a function in response to a tool call. */
@@ -1944,10 +2267,12 @@ export interface ChatCompletionsFunctionToolDefinition
 }
 
 export function chatCompletionsFunctionToolDefinitionSerializer(
-  input: ChatCompletionsFunctionToolDefinition,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatCompletionsFunctionToolDefinition,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    function: functionDefinitionSerializer(item.function),
+  };
 }
 
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
@@ -1956,22 +2281,30 @@ export interface ChatCompletionsNamedToolSelection {
   type: string;
 }
 
-export function chatCompletionsNamedToolSelectionUnionSerializer(
-  input: ChatCompletionsNamedToolSelectionUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsNamedToolSelectionSerializer(
+  item: ChatCompletionsNamedToolSelectionUnion,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
 }
 
 export type ChatCompletionsNamedToolSelectionUnion =
   | ChatCompletionsNamedFunctionToolSelection
   | ChatCompletionsNamedToolSelection;
 
-export function chatCompletionsNamedToolSelectionSerializer(
-  input: ChatCompletionsNamedToolSelection,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function chatCompletionsNamedToolSelectionUnionSerializer(
+  item: ChatCompletionsNamedToolSelectionUnion,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "function":
+      return chatCompletionsNamedFunctionToolSelectionSerializer(
+        item as ChatCompletionsNamedFunctionToolSelection,
+      );
+
+    default:
+      return chatCompletionsNamedToolSelectionSerializer(item);
+  }
 }
 
 /** A tool selection of a specific, named function tool that will limit chat completions to using the named function. */
@@ -1984,10 +2317,12 @@ export interface ChatCompletionsNamedFunctionToolSelection
 }
 
 export function chatCompletionsNamedFunctionToolSelectionSerializer(
-  input: ChatCompletionsNamedFunctionToolSelection,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatCompletionsNamedFunctionToolSelection,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    function: chatCompletionsFunctionToolSelectionSerializer(item.function),
+  };
 }
 
 /** A tool selection of a specific, named function tool that will limit chat completions to using the named function. */
@@ -1997,10 +2332,11 @@ export interface ChatCompletionsFunctionToolSelection {
 }
 
 export function chatCompletionsFunctionToolSelectionSerializer(
-  input: ChatCompletionsFunctionToolSelection,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ChatCompletionsFunctionToolSelection,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+  };
 }
 
 /**
@@ -2038,11 +2374,6 @@ export interface ChatCompletions {
   usage: CompletionsUsage;
 }
 
-export function chatCompletionsSerializer(input: ChatCompletions): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /**
  * The representation of a single prompt completion as part of an overall chat completions request.
  * Generally, `n` choices are generated per provided prompt with a default value of 1.
@@ -2078,11 +2409,6 @@ export interface ChatChoice {
   enhancements?: AzureChatEnhancements;
 }
 
-export function chatChoiceSerializer(input: ChatChoice): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A representation of a chat message as received in a response. */
 export interface ChatResponseMessage {
   /** The chat role associated with the message. */
@@ -2106,13 +2432,6 @@ export interface ChatResponseMessage {
   context?: AzureChatExtensionsMessageContext;
 }
 
-export function chatResponseMessageSerializer(
-  input: ChatResponseMessage,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /**
  *   A representation of the additional context information available when Azure OpenAI chat extensions are involved
  *   in the generation of a corresponding chat completions response. This context information is only populated when
@@ -2132,35 +2451,16 @@ export interface AzureChatExtensionsMessageContext {
   allRetrievedDocuments?: AzureChatExtensionRetrievedDocument[];
 }
 
-export function azureChatExtensionsMessageContextSerializer(
-  input: AzureChatExtensionsMessageContext,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** An abstract representation of structured information about why a chat completions response terminated. */
 export interface ChatFinishDetails {
   /** The object type. */
   type: string;
 }
 
-export function chatFinishDetailsUnionSerializer(
-  input: ChatFinishDetailsUnion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 export type ChatFinishDetailsUnion =
   | StopFinishDetails
   | MaxTokensFinishDetails
   | ChatFinishDetails;
-
-export function chatFinishDetailsSerializer(input: ChatFinishDetails): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
 
 /**
  * Represents the output results of Azure enhancements to chat completions, as configured via the matching input provided
@@ -2171,24 +2471,10 @@ export interface AzureChatEnhancements {
   grounding?: AzureGroundingEnhancement;
 }
 
-export function azureChatEnhancementsSerializer(
-  input: AzureChatEnhancements,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** The grounding enhancement that returns the bounding box of the objects detected in the image. */
 export interface AzureGroundingEnhancement {
   /** The lines of text detected by the grounding enhancement. */
   lines: AzureGroundingEnhancementLine[];
-}
-
-export function azureGroundingEnhancementSerializer(
-  input: AzureGroundingEnhancement,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -2207,13 +2493,6 @@ export interface AzureChatExtensionDataSourceResponseCitation {
   filepath?: string;
   /** The chunk ID of the citation. */
   chunkId?: string;
-}
-
-export function azureChatExtensionDataSourceResponseCitationSerializer(
-  input: AzureChatExtensionDataSourceResponseCitation,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** The retrieved document. */
@@ -2243,24 +2522,10 @@ export interface AzureChatExtensionRetrievedDocument {
   filterReason?: AzureChatExtensionRetrieveDocumentFilterReason;
 }
 
-export function azureChatExtensionRetrievedDocumentSerializer(
-  input: AzureChatExtensionRetrievedDocument,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
 export interface ChatChoiceLogProbabilityInfo {
   /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
   content: ChatTokenLogProbabilityResult[] | null;
-}
-
-export function chatChoiceLogProbabilityInfoSerializer(
-  input: ChatChoiceLogProbabilityInfo,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** A representation of the log probability information for a single content token, including a list of most likely tokens if 'top_logprobs' were requested. */
@@ -2275,13 +2540,6 @@ export interface ChatTokenLogProbabilityResult {
   topLogprobs: ChatTokenLogProbabilityInfo[] | null;
 }
 
-export function chatTokenLogProbabilityResultSerializer(
-  input: ChatTokenLogProbabilityResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A representation of the log probability information for a single message content token. */
 export interface ChatTokenLogProbabilityInfo {
   /** The message content token. */
@@ -2292,24 +2550,12 @@ export interface ChatTokenLogProbabilityInfo {
   bytes: number[] | null;
 }
 
-export function chatTokenLogProbabilityInfoSerializer(
-  input: ChatTokenLogProbabilityInfo,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A structured representation of a stop reason that signifies natural termination by the model. */
 export interface StopFinishDetails extends ChatFinishDetails {
   /** The object type, which is always 'stop' for this object. */
   type: "stop";
   /** The token sequence that the model terminated with. */
   stop: string;
-}
-
-export function stopFinishDetailsSerializer(input: StopFinishDetails): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -2321,26 +2567,12 @@ export interface MaxTokensFinishDetails extends ChatFinishDetails {
   type: "max_tokens";
 }
 
-export function maxTokensFinishDetailsSerializer(
-  input: MaxTokensFinishDetails,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A content line object consisting of an adjacent sequence of content elements, such as words and selection marks. */
 export interface AzureGroundingEnhancementLine {
   /** The text within the line. */
   text: string;
   /** An array of spans that represent detected objects and its bounding box information. */
   spans: AzureGroundingEnhancementLineSpan[];
-}
-
-export function azureGroundingEnhancementLineSerializer(
-  input: AzureGroundingEnhancementLine,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** A span object that represents a detected object and its bounding box information. */
@@ -2358,26 +2590,12 @@ export interface AzureGroundingEnhancementLineSpan {
   polygon: AzureGroundingEnhancementCoordinatePoint[];
 }
 
-export function azureGroundingEnhancementLineSpanSerializer(
-  input: AzureGroundingEnhancementLineSpan,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A representation of a single polygon point as used by the Azure grounding enhancement. */
 export interface AzureGroundingEnhancementCoordinatePoint {
   /** The x-coordinate (horizontal axis) of the point. */
   x: number;
   /** The y-coordinate (vertical axis) of the point. */
   y: number;
-}
-
-export function azureGroundingEnhancementCoordinatePointSerializer(
-  input: AzureGroundingEnhancementCoordinatePoint,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Represents the request data used to generate images. */
@@ -2418,10 +2636,18 @@ export interface ImageGenerationOptions {
 }
 
 export function imageGenerationOptionsSerializer(
-  input: ImageGenerationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ImageGenerationOptions,
+): Record<string, unknown> {
+  return {
+    model: item["model"],
+    prompt: item["prompt"],
+    n: item["n"],
+    size: item["size"],
+    response_format: item["responseFormat"],
+    quality: item["quality"],
+    style: item["style"],
+    user: item["user"],
+  };
 }
 
 /** The result of a successful image generation operation. */
@@ -2433,11 +2659,6 @@ export interface ImageGenerations {
   created: Date;
   /** The images generated by the operation. */
   data: ImageGenerationData[];
-}
-
-export function imageGenerationsSerializer(input: ImageGenerations): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /**
@@ -2467,13 +2688,6 @@ export interface ImageGenerationData {
   promptFilterResults?: ImageGenerationPromptFilterResults;
 }
 
-export function imageGenerationDataSerializer(
-  input: ImageGenerationData,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Describes the content filtering result for the image generation request. */
 export interface ImageGenerationContentFilterResults {
   /**
@@ -2501,13 +2715,6 @@ export interface ImageGenerationContentFilterResults {
    * or damage one’s body, or kill oneself.
    */
   selfHarm?: ContentFilterResult;
-}
-
-export function imageGenerationContentFilterResultsSerializer(
-  input: ImageGenerationContentFilterResults,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Describes the content filtering results for the prompt of a image generation request. */
@@ -2545,13 +2752,6 @@ export interface ImageGenerationPromptFilterResults {
   customBlocklists?: ContentFilterDetailedResults;
 }
 
-export function imageGenerationPromptFilterResultsSerializer(
-  input: ImageGenerationPromptFilterResults,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A representation of the request options that control the behavior of a text-to-speech operation. */
 export interface SpeechGenerationOptions {
   /** The text to generate audio for. The maximum length is 4096 characters. */
@@ -2567,10 +2767,15 @@ export interface SpeechGenerationOptions {
 }
 
 export function speechGenerationOptionsSerializer(
-  input: SpeechGenerationOptions,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: SpeechGenerationOptions,
+): Record<string, unknown> {
+  return {
+    input: item["input"],
+    voice: item["voice"],
+    response_format: item["responseFormat"],
+    speed: item["speed"],
+    model: item["model"],
+  };
 }
 
 /**
@@ -2606,9 +2811,17 @@ export interface EmbeddingsOptions {
   inputType?: string;
 }
 
-export function embeddingsOptionsSerializer(input: EmbeddingsOptions): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function embeddingsOptionsSerializer(
+  item: EmbeddingsOptions,
+): Record<string, unknown> {
+  return {
+    user: item["user"],
+    model: item["model"],
+    input: item["input"],
+    encoding_format: item["encodingFormat"],
+    dimensions: item["dimensions"],
+    input_type: item["inputType"],
+  };
 }
 
 /**
@@ -2623,22 +2836,12 @@ export interface Embeddings {
   usage: EmbeddingsUsage;
 }
 
-export function embeddingsSerializer(input: Embeddings): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Measurement of the amount of tokens used in this request and response. */
 export interface EmbeddingsUsage {
   /** Number of tokens sent in the original request. */
   promptTokens: number;
   /** Total number of tokens transacted in this request/response. */
   totalTokens: number;
-}
-
-export function embeddingsUsageSerializer(input: EmbeddingsUsage): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Representation of a single embeddings relatedness comparison. */
@@ -2650,11 +2853,6 @@ export interface EmbeddingItem {
   embedding: number[];
   /** Index of the prompt to which the EmbeddingItem corresponds. */
   index: number;
-}
-
-export function embeddingItemSerializer(input: EmbeddingItem): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Defines available options for the underlying response format of output transcription information. */
@@ -3146,34 +3344,10 @@ export type ServiceApiVersions =
   | "2024-02-01"
   | "2024-06-01";
 
-/** Initialization class for the client */
-export interface OpenAIClientOptions {
-  /** Service host */
-  endpoint: string | string;
-  /** Credential used to authenticate requests to the service. */
-  credential: KeyCredential | TokenCredential;
-  /** The API version to use for this operation. */
-  apiVersion: string;
-}
-
-export function openAIClientOptionsSerializer(input: {
-  endpoint: string | string;
-  credential: KeyCredential | TokenCredential;
-  apiVersion: string;
-}): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A response containing error details. */
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
   /** String error code indicating what went wrong. */
   errorCode?: string;
-}
-
-export function errorResponseSerializer(input: ErrorResponse): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
