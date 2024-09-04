@@ -11,7 +11,7 @@ import {
 } from "@azure-rest/core-client";
 import { DOp1OptionalParams } from "../../models/options.js";
 
-export function _op1Send(
+export function _dOp1Send(
   context: Client,
   body: A,
   options: DOp1OptionalParams = { requestOptions: {} },
@@ -24,7 +24,7 @@ export function _op1Send(
     });
 }
 
-export async function _op1Deserialize(
+export async function _dOp1Deserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -35,11 +35,11 @@ export async function _op1Deserialize(
   return;
 }
 
-export async function op1(
+export async function dOp1(
   context: Client,
   body: A,
   options: DOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _op1Send(context, body, options);
-  return _op1Deserialize(result);
+  const result = await _dOp1Send(context, body, options);
+  return _dOp1Deserialize(result);
 }
