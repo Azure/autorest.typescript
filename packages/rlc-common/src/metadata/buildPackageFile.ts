@@ -12,7 +12,7 @@ import {
   hasPollingOperations
 } from "../helpers/operationHelpers.js";
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
-import { Project } from "ts-morph";
+import { Project, SourceFile } from "ts-morph";
 import {
   isAzurePackage,
   isAzureMonorepoPackage,
@@ -77,22 +77,29 @@ export function buildPackageFile(
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
  */
-export function updatePackageFile(model: RLCModel, existingFilePath: string) {
-  const project = new Project();
+export function updatePackageFile(
+  model: RLCModel,
+  existingFilePathOrContent: string | Record<string, any>
+) {
   const hasPaging = hasPagingOperations(model),
     hasLro = hasPollingOperations(model);
   if (!isAzurePackage(model) || (!hasPaging && !hasLro)) {
     return;
   }
-  let packageFile;
-  try {
-    packageFile = project.addSourceFileAtPath(existingFilePath);
-  } catch (e) {
-    // If the file doesn't exist, we don't need to update it.
-    return;
+  let packageInfo;
+  if (typeof existingFilePathOrContent === "string") {
+    let packageFile: SourceFile;
+    try {
+      const project = new Project();
+      packageFile = project.addSourceFileAtPath(existingFilePathOrContent);
+    } catch (e) {
+      // If the file doesn't exist, we don't need to update it.
+      return;
+    }
+    packageInfo = JSON.parse(packageFile.getFullText());
+  } else {
+    packageInfo = existingFilePathOrContent;
   }
-  const packageInfo = JSON.parse(packageFile.getFullText());
-
   if (hasPaging) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
@@ -108,10 +115,9 @@ export function updatePackageFile(model: RLCModel, existingFilePath: string) {
     };
   }
 
-  packageFile.replaceWithText(JSON.stringify(packageInfo, null, 2));
   return {
     path: "package.json",
-    content: packageFile.getFullText()
+    content: JSON.stringify(packageInfo, null, 2)
   };
 }
 

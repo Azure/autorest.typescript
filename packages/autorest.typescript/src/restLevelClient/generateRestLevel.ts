@@ -124,11 +124,16 @@ export async function generateRestLevelClient() {
     // buildTsConfig
     generateFileByBuilder(project, buildTsConfig, rlcModels);
   } else {
-    // update existing package.json
-    const pathToPackageJson = outputPath ? path.join(outputPath, "package.json") : "";
-    generateFileByBuilder(project, (model) => updatePackageFile(model, pathToPackageJson), rlcModels);
+    // update package.json if existing
+    const packageJsonContent = JSON.parse(await host.readFile("package.json"));
+    if (packageJsonContent !== undefined && packageJsonContent !== null)
+      generateFileByBuilder(
+        project,
+        (model) => updatePackageFile(model, packageJsonContent),
+        rlcModels
+      );
   }
-    
+
   // Save the source files to the virtual filesystem
   project.saveSync();
   const fs = project.getFileSystem();
