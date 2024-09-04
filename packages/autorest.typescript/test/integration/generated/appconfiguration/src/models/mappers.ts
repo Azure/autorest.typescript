@@ -8,10 +8,10 @@
 
 import * as coreClient from "@azure/core-client";
 
-export const TestParentList: coreClient.CompositeMapper = {
+export const KeyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "TestParentList",
+    className: "KeyListResult",
     modelProperties: {
       items: {
         serializedName: "items",
@@ -210,40 +210,6 @@ export const Label: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         readOnly: true,
-        type: {
-          name: "String",
-        },
-      },
-    },
-  },
-};
-
-export const KeyListResult: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "KeyListResult",
-    modelProperties: {
-      ...TestParentList.type.modelProperties,
-      summary: {
-        serializedName: "summary",
-        type: {
-          name: "String",
-        },
-      },
-      items: {
-        serializedName: "items",
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "Key",
-            },
-          },
-        },
-      },
-      nextLink: {
-        serializedName: "@nextLink",
         type: {
           name: "String",
         },
