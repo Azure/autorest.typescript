@@ -741,7 +741,10 @@ describe("operations", () => {
 
         @pagedResult
         model Bar {
+          @items
           lists: string[];
+          @nextLink
+          nextLink: string;
         }
 
         model Child extends Bar {
@@ -752,21 +755,9 @@ describe("operations", () => {
         op test(): Error | Child;
           `;
 
-      try {
-        await emitModularOperationsFromTypeSpec(tspContent, true, true, true);
-        assert.fail("Should throw diagnostic warnings");
-      } catch (e) {
-        const diagnostics = e as Diagnostic[];
-        assert.equal(diagnostics.length, 1);
-        assert.equal(
-          diagnostics[0]?.code,
-          "@azure-tools/typespec-ts/no-paging-items-defined"
-        );
-        assert.equal(diagnostics[0]?.severity, "warning");
-      }
       const operationFiles = await emitModularOperationsFromTypeSpec(
         tspContent,
-        false,
+        true,
         true,
         true
       );
@@ -777,25 +768,35 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "./index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+         import {
+         PagedAsyncIterableIterator,
+         buildPagedAsyncIterator,
+        } from "../static-helpers/pagingHelpers.js";
 
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
-            return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 
+            return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
         }
 
-        export async function _testDeserialize(result: PathUncheckedResponse): Promise<Child> {
+        export async function _testDeserialize(result: PathUncheckedResponse): Promise<_Child> {
             const expectedStatuses = ["200"];
             if(!expectedStatuses.includes(result.status)){
-            throw createRestError(result);
+              throw createRestError(result);
             }
             return {
-            "lists": result.body["lists"],
-            "message": result.body["message"]
+              "lists": result.body["lists"],
+              nextLink: result.body["nextLink"],
+              message: result.body["message"]
             }
         }
 
-        export async function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): Promise<Child> {
-            const result = await _testSend(context, options);
-            return _testDeserialize(result);
+        export function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): PagedAsyncIterableIterator<string> {
+            return buildPagedAsyncIterator(
+                    context,
+                    () => _testSend(context, options),
+                    _testDeserialize,
+                    ["200"],
+                    {itemName: "lists", nextLinkName: "nextLink"}
+                    );
         }`,
         true
       );
