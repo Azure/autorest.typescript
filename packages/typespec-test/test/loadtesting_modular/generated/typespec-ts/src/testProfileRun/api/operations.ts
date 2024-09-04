@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { TestProfileRun, _PagedTestProfileRun } from "../models/models.js";
 import { LoadTestServiceContext as Client } from "./index.js";

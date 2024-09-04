@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { Collection } from "../../models/models.js";
 import { ParametrizedHostContext as Client } from "../index.js";

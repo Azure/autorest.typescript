@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createDpgCustomizationClient from "@msinternal/dpg-customization-rest";
 import * as dotenv from "dotenv";

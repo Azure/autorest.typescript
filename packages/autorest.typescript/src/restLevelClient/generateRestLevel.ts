@@ -135,7 +135,7 @@ export async function generateRestLevelClient() {
     const isJson = /\.json$/gi.test(filePath);
     const isSourceCode = /\.(ts|js)$/gi.test(filePath);
     let fileContents = fs.readFileSync(filePath);
-    const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
+    const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT License.\n`;
 
     if (isSourceCode) {
       fileContents = `${licenseHeader.trimStart()}\n${fileContents}`;
