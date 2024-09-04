@@ -4,7 +4,7 @@
 /** Detection results for the given resultId. */
 export interface MultivariateMultivariateDetectionResult {
   /** Result identifier, which is used to fetch the results of an inference call. */
-  readonly resultId: string;
+  resultId: string;
   /** Multivariate anomaly detection status. */
   summary: MultivariateMultivariateBatchDetectionResultSummary;
   /** Detection result for each timestamp. */
@@ -24,47 +24,6 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
    * will need another API to get detection results.
    */
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
-}
-
-/** Type of MultivariateBatchDetectionStatus */
-export type MultivariateBatchDetectionStatus =
-  | "CREATED"
-  | "RUNNING"
-  | "READY"
-  | "FAILED";
-
-/** ErrorResponse contains code and message that shows the error information. */
-export interface MultivariateErrorResponse {
-  /** The error code. */
-  code: string;
-  /** The message explaining the error reported by the service. */
-  message: string;
-}
-
-/** Variable Status. */
-export interface MultivariateVariableState {
-  /** Variable name in variable states. */
-  variable?: string;
-  /** Proportion of missing values that need to be filled by fillNAMethod. */
-  filledNARatio?: number;
-  /** Number of effective data points before applying fillNAMethod. */
-  effectiveCount?: number;
-  /** First valid timestamp with value of input data. */
-  firstTimestamp?: Date;
-  /** Last valid timestamp with value of input data. */
-  lastTimestamp?: Date;
-}
-
-export function multivariateVariableStateSerializer(
-  item: MultivariateVariableState,
-): Record<string, unknown> {
-  return {
-    variable: item["variable"],
-    filledNARatio: item["filledNARatio"],
-    effectiveCount: item["effectiveCount"],
-    firstTimestamp: item["firstTimestamp"]?.toISOString(),
-    lastTimestamp: item["lastTimestamp"]?.toISOString(),
-  };
 }
 
 /**
@@ -105,6 +64,40 @@ export function multivariateMultivariateBatchDetectionOptionsSerializer(
     topContributorCount: item["topContributorCount"],
     startTime: item["startTime"].toISOString(),
     endTime: item["endTime"].toISOString(),
+  };
+}
+
+/** ErrorResponse contains code and message that shows the error information. */
+export interface MultivariateErrorResponse {
+  /** The error code. */
+  code: string;
+  /** The message explaining the error reported by the service. */
+  message: string;
+}
+
+/** Variable Status. */
+export interface MultivariateVariableState {
+  /** Variable name in variable states. */
+  variable?: string;
+  /** Proportion of missing values that need to be filled by fillNAMethod. */
+  filledNARatio?: number;
+  /** Number of effective data points before applying fillNAMethod. */
+  effectiveCount?: number;
+  /** First valid timestamp with value of input data. */
+  firstTimestamp?: Date;
+  /** Last valid timestamp with value of input data. */
+  lastTimestamp?: Date;
+}
+
+export function multivariateVariableStateSerializer(
+  item: MultivariateVariableState,
+): Record<string, unknown> {
+  return {
+    variable: item["variable"],
+    filledNARatio: item["filledNARatio"],
+    effectiveCount: item["effectiveCount"],
+    firstTimestamp: item["firstTimestamp"]?.toISOString(),
+    lastTimestamp: item["lastTimestamp"]?.toISOString(),
   };
 }
 
@@ -196,7 +189,7 @@ export interface MultivariateModelInfo {
   /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
   status?: ModelStatus;
   /** Error messages when failed to create a model. */
-  readonly errors?: MultivariateErrorResponse[];
+  errors?: MultivariateErrorResponse[];
   /** Diagnostics information to help inspect the states of model or variable. */
   diagnosticsInfo?: MultivariateDiagnosticsInfo;
 }
@@ -220,9 +213,6 @@ export function multivariateModelInfoSerializer(
       : multivariateDiagnosticsInfoSerializer(item.diagnosticsInfo),
   };
 }
-
-/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
-export type DataSchema = "OneTable" | "MultiTable";
 
 /** An optional field, indicating the manner to align multiple variables. */
 export interface MultivariateAlignPolicy {
@@ -249,18 +239,6 @@ export function multivariateAlignPolicySerializer(
     paddingValue: item["paddingValue"],
   };
 }
-
-/** Type of AlignMode */
-export type AlignMode = "Inner" | "Outer";
-/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
-export type FillNAMethod =
-  | "Previous"
-  | "Subsequent"
-  | "Linear"
-  | "Zero"
-  | "Fixed";
-/** Type of ModelStatus */
-export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 /** Diagnostics information to help inspect the states of model or variable. */
 export interface MultivariateDiagnosticsInfo {
@@ -319,7 +297,7 @@ export function multivariateModelStateSerializer(
 /** Response of getting a model. */
 export interface MultivariateAnomalyDetectionModel {
   /** Model identifier. */
-  readonly modelId: string;
+  modelId: string;
   /** Date and time (UTC) when the model was created. */
   createdTime: Date;
   /** Date and time (UTC) when the model was last updated. */
@@ -474,26 +452,6 @@ export function univariateTimeSeriesPointSerializer(
   };
 }
 
-/** Type of TimeGranularity */
-export type TimeGranularity =
-  | "yearly"
-  | "monthly"
-  | "weekly"
-  | "daily"
-  | "hourly"
-  | "minutely"
-  | "secondly"
-  | "microsecond"
-  | "none";
-/** Type of ImputeMode */
-export type ImputeMode =
-  | "auto"
-  | "previous"
-  | "linear"
-  | "fixed"
-  | "zero"
-  | "notFill";
-
 /** The response of entire anomaly detection. */
 export interface UnivariateUnivariateEntireDetectionResult {
   /**
@@ -552,25 +510,13 @@ export interface UnivariateUnivariateEntireDetectionResult {
 
 /** Error information returned by the API. */
 export interface UnivariateAnomalyDetectorError {
+  /** Error code. */
+  xMsErrorCode?: string;
   /** The error code. */
   code?: AnomalyDetectorErrorCodes;
   /** A message explaining the error reported by the service. */
   message?: string;
 }
-
-/** Type of AnomalyDetectorErrorCodes */
-export type AnomalyDetectorErrorCodes =
-  | "InvalidCustomInterval"
-  | "BadArgument"
-  | "InvalidGranularity"
-  | "InvalidPeriod"
-  | "InvalidModelArgument"
-  | "InvalidSeries"
-  | "InvalidJsonFormat"
-  | "RequiredGranularity"
-  | "RequiredSeries"
-  | "InvalidImputeMode"
-  | "InvalidImputeFixedValue";
 
 /** The response of last anomaly detection. */
 export interface UnivariateUnivariateLastDetectionResult {
@@ -674,7 +620,7 @@ export interface UnivariateUnivariateChangePointDetectionResult {
    * Frequency extracted from the series, zero means no recurrent pattern has been
    * found.
    */
-  readonly period?: number;
+  period?: number;
   /**
    * isChangePoint contains change point properties for each input point. True means
    * an anomaly either negative or positive has been detected. The index of the
@@ -685,5 +631,136 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
-/** Type of Versions */
+export enum MultivariateBatchDetectionStatusKnownValues {
+  Created = '"CREATED"',
+  Running = '"RUNNING"',
+  Ready = '"READY"',
+  Failed = '"FAILED"',
+}
+
+export type MultivariateBatchDetectionStatus =
+  | "CREATED"
+  | "RUNNING"
+  | "READY"
+  | "FAILED";
+
+/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
+export enum DataSchemaKnownValues {
+  /** OneTable means that your input data are all in one CSV file, which contains one 'timestamp' column and several variable columns. The default DataSchema is OneTable. */
+  OneTable = '"OneTable"',
+  /** MultiTable means that your input data are separated in multiple CSV files, in each file containing one 'timestamp' column and one 'variable' column, and the CSV file name should indicate the name of the variable. The default DataSchema is OneTable. */
+  MultiTable = '"MultiTable"',
+}
+
+export type DataSchema = "OneTable" | "MultiTable";
+
+export enum AlignModeKnownValues {
+  Inner = '"Inner"',
+  Outer = '"Outer"',
+}
+
+export type AlignMode = "Inner" | "Outer";
+
+/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
+export enum FillNAMethodKnownValues {
+  Previous = '"Previous"',
+  Subsequent = '"Subsequent"',
+  Linear = '"Linear"',
+  Zero = '"Zero"',
+  Fixed = '"Fixed"',
+}
+
+export type FillNAMethod =
+  | "Previous"
+  | "Subsequent"
+  | "Linear"
+  | "Zero"
+  | "Fixed";
+
+export enum ModelStatusKnownValues {
+  Created = '"CREATED"',
+  Running = '"RUNNING"',
+  Ready = '"READY"',
+  Failed = '"FAILED"',
+}
+
+export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+export enum TimeGranularityKnownValues {
+  Yearly = '"yearly"',
+  Monthly = '"monthly"',
+  Weekly = '"weekly"',
+  Daily = '"daily"',
+  Hourly = '"hourly"',
+  PerMinute = '"minutely"',
+  PerSecond = '"secondly"',
+  Microsecond = '"microsecond"',
+  None = '"none"',
+}
+
+export type TimeGranularity =
+  | "yearly"
+  | "monthly"
+  | "weekly"
+  | "daily"
+  | "hourly"
+  | "minutely"
+  | "secondly"
+  | "microsecond"
+  | "none";
+
+export enum ImputeModeKnownValues {
+  Auto = '"auto"',
+  Previous = '"previous"',
+  Linear = '"linear"',
+  Fixed = '"fixed"',
+  Zero = '"zero"',
+  NotFill = '"notFill"',
+}
+
+export type ImputeMode =
+  | "auto"
+  | "previous"
+  | "linear"
+  | "fixed"
+  | "zero"
+  | "notFill";
+
+export enum AnomalyDetectorErrorCodesKnownValues {
+  InvalidCustomInterval = '"InvalidCustomInterval"',
+  BadArgument = '"BadArgument"',
+  InvalidGranularity = '"InvalidGranularity"',
+  InvalidPeriod = '"InvalidPeriod"',
+  InvalidModelArgument = '"InvalidModelArgument"',
+  InvalidSeries = '"InvalidSeries"',
+  InvalidJsonFormat = '"InvalidJsonFormat"',
+  RequiredGranularity = '"RequiredGranularity"',
+  RequiredSeries = '"RequiredSeries"',
+  InvalidImputeMode = '"InvalidImputeMode"',
+  InvalidImputeFixedValue = '"InvalidImputeFixedValue"',
+}
+
+export type AnomalyDetectorErrorCodes =
+  | "InvalidCustomInterval"
+  | "BadArgument"
+  | "InvalidGranularity"
+  | "InvalidPeriod"
+  | "InvalidModelArgument"
+  | "InvalidSeries"
+  | "InvalidJsonFormat"
+  | "RequiredGranularity"
+  | "RequiredSeries"
+  | "InvalidImputeMode"
+  | "InvalidImputeFixedValue";
+
+export enum APIVersionKnownValues {
+  v1_1 = '"v1.1"',
+}
+
+export type APIVersion = "v1.1";
+
+export enum VersionsKnownValues {
+  v1_1 = '"v1.1"',
+}
+
 export type Versions = "v1.1";

@@ -3,17 +3,17 @@
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
+  detectUnivariateEntireSeries,
+  detectUnivariateLastPoint,
+  detectUnivariateChangePoint,
+} from "../../api/univariate/index.js";
+import {
   UnivariateUnivariateDetectionOptions,
   UnivariateUnivariateEntireDetectionResult,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
 } from "../../models/models.js";
-import {
-  detectUnivariateEntireSeries,
-  detectUnivariateLastPoint,
-  detectUnivariateChangePoint,
-} from "../../api/univariate/index.js";
 import {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,

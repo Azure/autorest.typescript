@@ -1,21 +1,22 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { AnomalyDetectorContext as Client } from "../index.js";
 import {
-  univariateTimeSeriesPointSerializer,
+  PathUncheckedResponse,
+  StreamableMethod,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import {
+  _MultivariateModelList,
   UnivariateUnivariateDetectionOptions,
+  univariateTimeSeriesPointSerializer,
   UnivariateUnivariateEntireDetectionResult,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
 } from "../../models/models.js";
-import { AnomalyDetectorContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
 import {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,

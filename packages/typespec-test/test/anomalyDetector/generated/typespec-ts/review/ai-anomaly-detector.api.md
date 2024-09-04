@@ -9,8 +9,16 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public
+// @public (undocumented)
 export type AlignMode = "Inner" | "Outer";
+
+// @public (undocumented)
+export enum AlignModeKnownValues {
+    // (undocumented)
+    Inner = "\"Inner\"",
+    // (undocumented)
+    Outer = "\"Outer\""
+}
 
 // @public (undocumented)
 export class AnomalyDetectorClient {
@@ -25,25 +33,108 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public
+// @public (undocumented)
 export type AnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
+
+// @public (undocumented)
+export enum AnomalyDetectorErrorCodesKnownValues {
+    // (undocumented)
+    BadArgument = "\"BadArgument\"",
+    // (undocumented)
+    InvalidCustomInterval = "\"InvalidCustomInterval\"",
+    // (undocumented)
+    InvalidGranularity = "\"InvalidGranularity\"",
+    // (undocumented)
+    InvalidImputeFixedValue = "\"InvalidImputeFixedValue\"",
+    // (undocumented)
+    InvalidImputeMode = "\"InvalidImputeMode\"",
+    // (undocumented)
+    InvalidJsonFormat = "\"InvalidJsonFormat\"",
+    // (undocumented)
+    InvalidModelArgument = "\"InvalidModelArgument\"",
+    // (undocumented)
+    InvalidPeriod = "\"InvalidPeriod\"",
+    // (undocumented)
+    InvalidSeries = "\"InvalidSeries\"",
+    // (undocumented)
+    RequiredGranularity = "\"RequiredGranularity\"",
+    // (undocumented)
+    RequiredSeries = "\"RequiredSeries\""
+}
+
+// @public (undocumented)
+export type APIVersion = "v1.1";
+
+// @public (undocumented)
+export enum APIVersionKnownValues {
+    // (undocumented)
+    v1_1 = "\"v1.1\""
+}
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public
+// @public (undocumented)
 export type DataSchema = "OneTable" | "MultiTable";
 
 // @public
+export enum DataSchemaKnownValues {
+    MultiTable = "\"MultiTable\"",
+    OneTable = "\"OneTable\""
+}
+
+// @public (undocumented)
 export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
 // @public
+export enum FillNAMethodKnownValues {
+    // (undocumented)
+    Fixed = "\"Fixed\"",
+    // (undocumented)
+    Linear = "\"Linear\"",
+    // (undocumented)
+    Previous = "\"Previous\"",
+    // (undocumented)
+    Subsequent = "\"Subsequent\"",
+    // (undocumented)
+    Zero = "\"Zero\""
+}
+
+// @public (undocumented)
 export type ImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
-// @public
+// @public (undocumented)
+export enum ImputeModeKnownValues {
+    // (undocumented)
+    Auto = "\"auto\"",
+    // (undocumented)
+    Fixed = "\"fixed\"",
+    // (undocumented)
+    Linear = "\"linear\"",
+    // (undocumented)
+    NotFill = "\"notFill\"",
+    // (undocumented)
+    Previous = "\"previous\"",
+    // (undocumented)
+    Zero = "\"zero\""
+}
+
+// @public (undocumented)
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+// @public (undocumented)
+export enum ModelStatusKnownValues {
+    // (undocumented)
+    Created = "\"CREATED\"",
+    // (undocumented)
+    Failed = "\"FAILED\"",
+    // (undocumented)
+    Ready = "\"READY\"",
+    // (undocumented)
+    Running = "\"RUNNING\""
+}
 
 // @public
 export interface MultivariateAlignPolicy {
@@ -56,7 +147,7 @@ export interface MultivariateAlignPolicy {
 export interface MultivariateAnomalyDetectionModel {
     createdTime: Date;
     lastUpdatedTime: Date;
-    readonly modelId: string;
+    modelId: string;
     modelInfo?: MultivariateModelInfo;
 }
 
@@ -82,8 +173,20 @@ export interface MultivariateAnomalyValue {
     severity: number;
 }
 
-// @public
+// @public (undocumented)
 export type MultivariateBatchDetectionStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+// @public (undocumented)
+export enum MultivariateBatchDetectionStatusKnownValues {
+    // (undocumented)
+    Created = "\"CREATED\"",
+    // (undocumented)
+    Failed = "\"FAILED\"",
+    // (undocumented)
+    Ready = "\"READY\"",
+    // (undocumented)
+    Running = "\"RUNNING\""
+}
 
 // @public
 export interface MultivariateCorrelationChanges {
@@ -136,7 +239,7 @@ export interface MultivariateModelInfo {
     diagnosticsInfo?: MultivariateDiagnosticsInfo;
     displayName?: string;
     endTime: Date;
-    readonly errors?: MultivariateErrorResponse[];
+    errors?: MultivariateErrorResponse[];
     slidingWindow?: number;
     startTime: Date;
     status?: ModelStatus;
@@ -168,7 +271,7 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
 
 // @public
 export interface MultivariateMultivariateDetectionResult {
-    readonly resultId: string;
+    resultId: string;
     results: MultivariateAnomalyState[];
     summary: MultivariateMultivariateBatchDetectionResultSummary;
 }
@@ -228,13 +331,36 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public
+// @public (undocumented)
 export type TimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
+
+// @public (undocumented)
+export enum TimeGranularityKnownValues {
+    // (undocumented)
+    Daily = "\"daily\"",
+    // (undocumented)
+    Hourly = "\"hourly\"",
+    // (undocumented)
+    Microsecond = "\"microsecond\"",
+    // (undocumented)
+    Monthly = "\"monthly\"",
+    // (undocumented)
+    None = "\"none\"",
+    // (undocumented)
+    PerMinute = "\"minutely\"",
+    // (undocumented)
+    PerSecond = "\"secondly\"",
+    // (undocumented)
+    Weekly = "\"weekly\"",
+    // (undocumented)
+    Yearly = "\"yearly\""
+}
 
 // @public
 export interface UnivariateAnomalyDetectorError {
     code?: AnomalyDetectorErrorCodes;
     message?: string;
+    xMsErrorCode?: string;
 }
 
 // @public
@@ -276,7 +402,7 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
 export interface UnivariateUnivariateChangePointDetectionResult {
     confidenceScores?: number[];
     isChangePoint?: boolean[];
-    readonly period?: number;
+    period?: number;
 }
 
 // @public
@@ -316,8 +442,14 @@ export interface UnivariateUnivariateLastDetectionResult {
     upperMargin: number;
 }
 
-// @public
+// @public (undocumented)
 export type Versions = "v1.1";
+
+// @public (undocumented)
+export enum VersionsKnownValues {
+    // (undocumented)
+    v1_1 = "\"v1.1\""
+}
 
 // (No @packageDocumentation comment for this package)
 

@@ -10,7 +10,6 @@ import {
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkClientType,
-  SdkContext,
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
@@ -26,6 +25,7 @@ import {
   getModelExpression
 } from "./type-expressions/get-model-expression.js";
 
+import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
@@ -184,6 +184,13 @@ function buildModelInterface(
 }
 
 function normalizeModelName(context: SdkContext, type: SdkModelType): string {
+  const segments = type.crossLanguageDefinitionId.split(".");
+  segments.pop();
+  segments.shift();
+  segments.filter((segment) => segment !== context.sdkPackage.rootNamespace);
+  const namespacePrefix = context.rlcOptions?.enableModelNamespace
+    ? segments.join("")
+    : "";
   let pagePrefix = "";
   if (type.__raw && type.__raw.kind === "Model") {
     // TODO: this is temporary until we have a better way in tcgc to extract the paged metadata
@@ -192,7 +199,7 @@ function normalizeModelName(context: SdkContext, type: SdkModelType): string {
     pagePrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
-  return `${pagePrefix}${normalizeName(type.name, NameType.Interface)}`;
+  return `${pagePrefix}${namespacePrefix}${normalizeName(type.name, NameType.Interface)}`;
 }
 
 function buildModelPolymorphicType(type: SdkModelType) {

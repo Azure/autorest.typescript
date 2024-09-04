@@ -1,25 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { AnomalyDetectorContext as Client } from "../index.js";
 import {
-  multivariateAlignPolicySerializer,
-  multivariateDiagnosticsInfoSerializer,
-  multivariateVariableValuesSerializer,
+  PathUncheckedResponse,
+  StreamableMethod,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionOptions,
   MultivariateModelInfo,
+  multivariateAlignPolicySerializer,
+  multivariateDiagnosticsInfoSerializer,
   MultivariateAnomalyDetectionModel,
-  MultivariateMultivariateLastDetectionOptions,
-  MultivariateMultivariateLastDetectionResult,
   _MultivariateModelList,
+  MultivariateMultivariateLastDetectionOptions,
+  multivariateVariableValuesSerializer,
+  MultivariateMultivariateLastDetectionResult,
 } from "../../models/models.js";
-import { AnomalyDetectorContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
