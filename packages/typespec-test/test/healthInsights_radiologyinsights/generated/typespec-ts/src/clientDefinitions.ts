@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { GetJobParameters, CreateJobParameters } from "./parameters.js";
 import {
@@ -20,7 +20,7 @@ export interface GetJob {
 export interface CreateJob {
   /** Creates a Radiology Insights job with the given request body. */
   post(
-    options?: CreateJobParameters,
+    options: CreateJobParameters,
   ): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
 }
 

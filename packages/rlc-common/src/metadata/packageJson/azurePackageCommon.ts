@@ -31,9 +31,12 @@ export function getAzureCommonPackageInfo(config: AzurePackageInfoConfig) {
 export function getAzurePackageDependencies({
   hasLro,
   hasPaging,
-  specSource
+  specSource,
+  dependencies,
+  isModularLibrary
 }: AzurePackageInfoConfig) {
-  let dependencies: Record<string, string> = {
+  let azureDependencies: Record<string, string> = {
+    ...dependencies,
     "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.1.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
@@ -42,21 +45,21 @@ export function getAzurePackageDependencies({
   };
 
   if (hasLro) {
-    dependencies = {
-      ...dependencies,
+    azureDependencies = {
+      ...azureDependencies,
       "@azure/core-lro": "^3.0.0",
       "@azure/abort-controller": "^2.1.2"
     };
   }
 
-  if (hasPaging) {
-    dependencies = {
-      ...dependencies,
+  if (hasPaging && isModularLibrary !== true) {
+    azureDependencies = {
+      ...azureDependencies,
       "@azure/core-paging": "^1.5.0"
     };
   }
 
-  return dependencies;
+  return azureDependencies;
 }
 
 function getAzureCjsCommonInfo({
@@ -157,7 +160,6 @@ export function getAzurePackageDevDependencies(config: AzurePackageInfoConfig) {
   const cjsDevDependencies = getAzurePackageCjsDevDependencies(config);
 
   const testDevDependencies = {
-    "@azure/core-util": "^1.0.0",
     "@azure/identity": "^4.2.1"
   };
 

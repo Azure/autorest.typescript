@@ -10,7 +10,9 @@ export interface PackageCommonInfoConfig {
   withTests: boolean;
   withSamples: boolean;
   exports?: Record<string, any>;
+  dependencies?: Record<string, string>;
   azureArm?: boolean;
+  isModularLibrary?: boolean;
 }
 
 /**

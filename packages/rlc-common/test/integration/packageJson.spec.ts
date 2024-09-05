@@ -1,13 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { expect } from "chai";
+import "mocha";
+
+import { TestModelConfig, createMockModel } from "./mockHelper.js";
 import {
   buildPackageFile,
   updatePackageFile
 } from "../../src/metadata/buildPackageFile.js";
-import "mocha";
-import { createMockModel, TestModelConfig } from "./mockHelper.js";
+
+import { expect } from "chai";
 
 describe("Package file generation", () => {
   describe("Flavor agnostic config", () => {
@@ -71,7 +73,7 @@ describe("Package file generation", () => {
         "./api": "./src/api/index.ts",
         "./models": "./src/models/index.ts"
       };
-      const packageFileContent = buildPackageFile(model, exports);
+      const packageFileContent = buildPackageFile(model, { exports });
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile).to.have.property("tshy");
@@ -335,7 +337,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
@@ -442,7 +444,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
   });
@@ -691,7 +693,6 @@ describe("Package file generation", () => {
         "./test/integration/static/package.json"
       );
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      console.log(packageFile);
       expect(packageFile.dependencies).to.have.property(
         "@azure/core-lro",
         "^3.0.0"
@@ -715,7 +716,6 @@ describe("Package file generation", () => {
         "./test/integration/static/package.json"
       );
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      console.log(packageFile);
       expect(packageFile.dependencies).to.have.property(
         "@azure/core-paging",
         "^1.5.0"
@@ -749,6 +749,40 @@ describe("Package file generation", () => {
         "./test/integration/static/package_non_existing.json"
       );
       expect(packageFileContent).to.be.undefined;
+    });
+
+    it("[esm] should not update paging dependency if there exists paging operations for Modular", () => {
+      let model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasPaging: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = updatePackageFile(
+        model,
+        "./test/integration/static/package.json"
+      );
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile.dependencies).to.not.have.property(
+        "@azure/core-paging"
+      );
+    });
+    it("[esm] should not include paging dependency if there exists paging operations for Modular", () => {
+      let model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasPaging: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile.dependencies).to.not.have.property(
+        "@azure/core-paging"
+      );
     });
   });
 

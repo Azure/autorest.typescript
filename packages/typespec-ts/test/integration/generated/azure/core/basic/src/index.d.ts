@@ -130,10 +130,6 @@ export declare interface ExportQueryParamProperties {
     format: string;
 }
 
-export declare interface FirstItemOutput {
-    readonly id: number;
-}
-
 export declare interface Get200Response extends HttpResponse {
     status: "200";
     body: UserOutput;
@@ -168,17 +164,7 @@ export declare function isUnexpected(response: Delete204Response | DeleteDefault
 
 export declare function isUnexpected(response: List200Response | ListDefaultResponse): response is ListDefaultResponse;
 
-export declare function isUnexpected(response: ListWithPage200Response | ListWithPageDefaultResponse): response is ListWithPageDefaultResponse;
-
-export declare function isUnexpected(response: ListWithParameters200Response | ListWithParametersDefaultResponse): response is ListWithParametersDefaultResponse;
-
-export declare function isUnexpected(response: ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse): response is ListWithCustomPageModelDefaultResponse;
-
 export declare function isUnexpected(response: Export200Response | ExportDefaultResponse): response is ExportDefaultResponse;
-
-export declare function isUnexpected(response: ListFirstItem200Response | ListFirstItemDefaultResponse): response is ListFirstItemDefaultResponse;
-
-export declare function isUnexpected(response: ListSecondItem200Response | ListSecondItemDefaultResponse): response is ListSecondItemDefaultResponse;
 
 export declare interface List {
     get(options?: ListParameters): StreamableMethod<List200Response | ListDefaultResponse>;
@@ -199,33 +185,6 @@ export declare interface ListDefaultResponse extends HttpResponse {
     headers: RawHttpHeaders & ListDefaultHeaders;
 }
 
-export declare interface ListFirstItem {
-    get(options?: ListFirstItemParameters): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse>;
-}
-
-export declare interface ListFirstItem200Response extends HttpResponse {
-    status: "200";
-    body: PagedFirstItemOutput;
-}
-
-export declare interface ListFirstItemDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-export declare interface ListFirstItemDefaultResponse extends HttpResponse {
-    status: string;
-    body: ErrorResponse;
-    headers: RawHttpHeaders & ListFirstItemDefaultHeaders;
-}
-
-export declare type ListFirstItemParameters = RequestParameters;
-
-export declare interface ListItemInputBody {
-    inputName: string;
-}
-
-export declare type ListItemInputExtensibleEnum = string;
-
 export declare type ListParameters = ListQueryParam & RequestParameters;
 
 export declare interface ListQueryParam {
@@ -242,106 +201,6 @@ export declare interface ListQueryParamProperties {
     expand?: string;
 }
 
-export declare interface ListSecondItem {
-    get(options?: ListSecondItemParameters): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse>;
-}
-
-export declare interface ListSecondItem200Response extends HttpResponse {
-    status: "200";
-    body: PagedSecondItemOutput;
-}
-
-export declare interface ListSecondItemDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-export declare interface ListSecondItemDefaultResponse extends HttpResponse {
-    status: string;
-    body: ErrorResponse;
-    headers: RawHttpHeaders & ListSecondItemDefaultHeaders;
-}
-
-export declare type ListSecondItemParameters = RequestParameters;
-
-export declare interface ListWithCustomPageModel {
-    get(options?: ListWithCustomPageModelParameters): StreamableMethod<ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse>;
-}
-
-export declare interface ListWithCustomPageModel200Response extends HttpResponse {
-    status: "200";
-    body: UserListResultsOutput;
-}
-
-export declare interface ListWithCustomPageModelDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-export declare interface ListWithCustomPageModelDefaultResponse extends HttpResponse {
-    status: string;
-    body: ErrorResponse;
-    headers: RawHttpHeaders & ListWithCustomPageModelDefaultHeaders;
-}
-
-export declare type ListWithCustomPageModelParameters = RequestParameters;
-
-export declare interface ListWithPage {
-    get(options?: ListWithPageParameters): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse>;
-}
-
-export declare interface ListWithPage200Response extends HttpResponse {
-    status: "200";
-    body: PagedUserOutput;
-}
-
-export declare interface ListWithPageDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-export declare interface ListWithPageDefaultResponse extends HttpResponse {
-    status: string;
-    body: ErrorResponse;
-    headers: RawHttpHeaders & ListWithPageDefaultHeaders;
-}
-
-export declare type ListWithPageParameters = RequestParameters;
-
-export declare interface ListWithParameters {
-    get(options: ListWithParametersParameters): StreamableMethod<ListWithParameters200Response | ListWithParametersDefaultResponse>;
-}
-
-export declare interface ListWithParameters200Response extends HttpResponse {
-    status: "200";
-    body: PagedUserOutput;
-}
-
-export declare interface ListWithParametersBodyParam {
-    body: ListItemInputBody;
-}
-
-export declare interface ListWithParametersDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-export declare interface ListWithParametersDefaultResponse extends HttpResponse {
-    status: string;
-    body: ErrorResponse;
-    headers: RawHttpHeaders & ListWithParametersDefaultHeaders;
-}
-
-export declare type ListWithParametersParameters = ListWithParametersQueryParam & ListWithParametersBodyParam & RequestParameters;
-
-export declare interface ListWithParametersQueryParam {
-    queryParameters?: ListWithParametersQueryParamProperties;
-}
-
-export declare interface ListWithParametersQueryParamProperties {
-    another?: ListItemInputExtensibleEnum;
-}
-
-export declare type PagedFirstItemOutput = Paged<FirstItemOutput>;
-
-export declare type PagedSecondItemOutput = Paged<SecondItemOutput>;
-
 export declare type PagedUserOutput = Paged<UserOutput>;
 
 export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -349,10 +208,6 @@ export declare function paginate<TResponse extends PathUncheckedResponse>(client
 export declare type PaginateReturn<TResult> = TResult extends {
     body: {
         value?: infer TPage;
-    };
-} | {
-    body: {
-        items?: infer TPage;
     };
 } ? GetArrayType<TPage> : Array<unknown>;
 
@@ -363,26 +218,12 @@ export declare interface PagingOptions<TResponse> {
 export declare interface Routes {
     (path: "/azure/core/basic/users/{id}", id: number): CreateOrUpdate;
     (path: "/azure/core/basic/users"): List;
-    (path: "/azure/core/basic/page"): ListWithPage;
-    (path: "/azure/core/basic/parameters"): ListWithParameters;
-    (path: "/azure/core/basic/custom-page"): ListWithCustomPageModel;
     (path: "/azure/core/basic/users/{id}:export", id: number): Export;
-    (path: "/azure/core/basic/first-item"): ListFirstItem;
-    (path: "/azure/core/basic/second-item"): ListSecondItem;
-}
-
-export declare interface SecondItemOutput {
-    readonly name: string;
 }
 
 export declare interface User {
     name: string;
     orders?: Array<UserOrder>;
-}
-
-export declare interface UserListResultsOutput {
-    items: Array<UserOutput>;
-    nextLink?: string;
 }
 
 export declare interface UserOrder {

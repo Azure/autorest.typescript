@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   OpenAIFile,
@@ -10,10 +10,10 @@ import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  uint8ArrayToString,
   PathUncheckedResponse,
   createRestError,
 } from "@typespec/ts-http-runtime";
+import { uint8ArrayToString } from "@typespec/ts-http-runtime";
 import {
   FilesListOptionalParams,
   FilesCreateOptionalParams,

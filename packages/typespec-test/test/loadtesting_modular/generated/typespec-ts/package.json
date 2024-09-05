@@ -53,12 +53,12 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
+    "@azure/core-util": "^1.9.2",
     "@azure-rest/core-client": "^2.1.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
-    "tslib": "^2.6.2",
-    "@azure/core-paging": "^1.5.0"
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
@@ -70,7 +70,6 @@
     "mkdirp": "^3.0.1",
     "typescript": "~5.5.3",
     "tshy": "^2.0.0",
-    "@azure/core-util": "^1.0.0",
     "@azure/identity": "^4.2.1",
     "@vitest/browser": "^2.0.5",
     "@vitest/coverage-istanbul": "^2.0.5",

@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { HttpResponse } from "@typespec/ts-http-runtime";
 import {

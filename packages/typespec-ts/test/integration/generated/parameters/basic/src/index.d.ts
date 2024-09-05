@@ -29,7 +29,7 @@ export declare interface ExplicitBodySimpleBodyParam {
 export declare type ExplicitBodySimpleParameters = ExplicitBodySimpleBodyParam & RequestParameters;
 
 export declare interface ImplicitBodySimple {
-    put(options?: ImplicitBodySimpleParameters): StreamableMethod<ImplicitBodySimple204Response>;
+    put(options: ImplicitBodySimpleParameters): StreamableMethod<ImplicitBodySimple204Response>;
 }
 
 export declare interface ImplicitBodySimple204Response extends HttpResponse {
@@ -37,7 +37,7 @@ export declare interface ImplicitBodySimple204Response extends HttpResponse {
 }
 
 export declare interface ImplicitBodySimpleBodyParam {
-    body?: {
+    body: {
         name: string;
     };
 }
