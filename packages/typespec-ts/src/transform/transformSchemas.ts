@@ -33,6 +33,15 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   const requestBodySet = new Set<Type>();
   const contentTypeMap = new Map<Type, KnownMediaType[]>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  
+  // This helps emit the models that are not directly referenced by any operation.
+  // Will get those annotated with @access and @usage
+  dpgContext.sdkPackage.models.forEach((model) => {
+    if (model.kind === "model") {
+      usageMap.set(model.__raw!, [SchemaContext.Input]);
+    }
+  });
+
   for (const clientOp of clientOperations) {
     const route = getHttpOperationWithCache(dpgContext, clientOp);
     // ignore overload base operation

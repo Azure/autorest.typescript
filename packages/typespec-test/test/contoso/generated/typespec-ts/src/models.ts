@@ -16,3 +16,8 @@ export interface FakedSharedModel {
   /** The created date. */
   createdDate: Date | string;
 }
+
+export interface MyModel {
+  foo: string;
+  bar: number;
+}

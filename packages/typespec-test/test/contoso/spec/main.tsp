@@ -57,3 +57,8 @@ interface Widgets {
     }
   >;
 }
+
+model MyModel {
+  foo: string;
+  bar: int32;
+}

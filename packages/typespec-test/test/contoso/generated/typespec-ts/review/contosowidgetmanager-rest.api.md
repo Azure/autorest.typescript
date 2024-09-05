@@ -268,6 +268,14 @@ export interface ListWidgetsDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export type ListWidgetsParameters = RequestParameters;
 
+// @public (undocumented)
+export interface MyModel {
+    // (undocumented)
+    bar: number;
+    // (undocumented)
+    foo: string;
+}
+
 // @public
 export type OperationStateOutput = string;
 

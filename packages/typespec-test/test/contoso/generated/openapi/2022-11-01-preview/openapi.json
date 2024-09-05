@@ -437,6 +437,22 @@
         }
       }
     },
+    "MyModel": {
+      "type": "object",
+      "properties": {
+        "foo": {
+          "type": "string"
+        },
+        "bar": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "foo",
+        "bar"
+      ]
+    },
     "PagedWidget": {
       "type": "object",
       "description": "Paged collection of Widget items",
