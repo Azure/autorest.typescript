@@ -25,18 +25,19 @@ import { shouldPromoteSubscriptionId } from "./helpers/classicalOperationHelpers
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 
 export function buildClassicalClient(
-  client: Client,
+  _client: Client,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ) {
-  const { description } = client;
+  const client = _client.tcgcClient;
+  const { description } = _client;
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClientName(client)}Client`;
   const classicalParams = getClientParameters(client, dpgContext, true);
   const contextParams = getClientParameters(client, dpgContext, false);
   const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
+  const subfolder = _client.subfolder ?? "";
 
   const clientFile = codeModel.project.createSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
@@ -62,13 +63,13 @@ export function buildClassicalClient(
   if (isRLCMultiEndpoint(dpgContext)) {
     clientClass.addProperty({
       name: "_client",
-      type: `Client.${client.rlcClientName}`,
+      type: `Client.${_client.rlcClientName}`,
       scope: Scope.Private
     });
   } else {
     clientClass.addProperty({
       name: "_client",
-      type: `${client.rlcClientName}`,
+      type: `${_client.rlcClientName}`,
       scope: Scope.Private
     });
   }
@@ -105,7 +106,7 @@ export function buildClassicalClient(
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
 
-  buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
+  buildClientOperationGroups(clientFile, _client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   return clientFile;
 }

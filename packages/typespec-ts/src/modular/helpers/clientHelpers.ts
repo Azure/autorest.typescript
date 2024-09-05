@@ -4,21 +4,23 @@ import {
   ParameterDeclarationStructure,
   StatementedNode
 } from "ts-morph";
-import { getType, isCredentialType } from "./typeHelpers.js";
+import { isCredentialType } from "./typeHelpers.js";
 
 import { PackageFlavor } from "@azure-tools/rlc-common";
 import { SdkContext } from "../../utils/interfaces.js";
 import { getClientName } from "./namingHelpers.js";
-import { resolveReference } from "../../framework/reference.js";
-import { useDependencies } from "../../framework/hooks/useDependencies.js";
+import { getTypeExpression } from "../type-expressions/get-type-expression.js";
+import {
+  SdkClientType,
+  SdkHttpOperation,
+  SdkParameter
+} from "@azure-tools/typespec-client-generator-core";
 
 export function getClientParameters(
-  client: Client,
+  client: SdkClientType<SdkHttpOperation>,
   dpgContext: SdkContext,
   isClassicalClient = false
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const { parameters } = client;
-  const dependencies = useDependencies();
   const name = getClientName(client);
   const optionsParam = {
     name: "options",
@@ -26,28 +28,21 @@ export function getClientParameters(
     initializer: "{}"
   };
 
+  const clientParams = client.initialization.properties;
   const params: OptionalKind<ParameterDeclarationStructure>[] = [
-    ...parameters
+    ...clientParams
       .filter(
         (p) =>
           p.optional === false &&
-          p.type.type !== "constant" &&
+          p.type.kind !== "constant" &&
           (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
       )
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
-        const typeMetadata = getType(p.type, p.format);
-        let typeName = typeMetadata.name;
-        if (typeName === "KeyCredential") {
-          typeName = resolveReference(dependencies.KeyCredential);
-        } else if (typeName === "TokenCredential") {
-          typeName = resolveReference(dependencies.TokenCredential);
-        }
-        if (typeMetadata.nullable) {
-          typeName = `${typeName} | null`;
-        }
+        const typeExpression = getClientParameterTypeExpression(p);
+        const name = getClientParameterName(p);
         return {
-          name: p.clientName,
-          type: typeName
+          name,
+          type: typeExpression
         };
       })
   ];
@@ -64,20 +59,49 @@ export function getClientParameters(
   return params;
 }
 
-export function buildGetClientEndpointParam(
-  context: StatementedNode,
-  client: Client
-): string {
-  // Special case: endpoint URL not defined
-  if (client.url === "") {
-    const endpointParam = client.parameters.find(
-      (x) => x.location === "endpointPath"
+function getClientParameterTypeExpression(parameter: SdkParameter) {
+  // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
+  // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
+  // inserting a variant with {endpoint}.
+  // Our emitter allows this through the options.endpoint.
+  if (parameter.type.kind === "union") {
+    const endpointVariant = parameter.type.values.find(
+      (p) => p.kind === "endpoint"
     );
-    return `options.endpoint ?? options.baseUrl ?? ${endpointParam?.clientName}`;
+    if (endpointVariant) {
+      return getTypeExpression(endpointVariant);
+    }
+  }
+  return getTypeExpression(parameter.type);
+}
+
+function getClientParameterName(parameter: SdkParameter) {
+  // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
+  if (
+    parameter.type.kind === "union" &&
+    parameter.type.values.some((v) => v.kind === "endpoint")
+  ) {
+    return "endpointParam";
   }
 
-  const urlParams = client.parameters.filter(
-    (x) => x.location === "path" || x.location === "endpointPath"
+  return parameter.name;
+}
+
+export function buildGetClientEndpointParam(
+  context: StatementedNode,
+  _client: Client
+): string {
+  const client = _client.tcgcClient;
+  // Special case: endpoint URL not defined
+  if (_client.url === "") {
+    const endpointParam = client.initialization.properties.find(
+      (x) => x.kind === "endpoint"
+    );
+    return `options.endpoint ?? options.baseUrl ?? ${endpointParam?.name}`;
+  }
+
+  const urlParams = client.initialization.properties.filter(
+    (x) => x.kind === "endpoint" // ||  x.kind === "path" TODO: How do we finc these in TCGC?
   );
 
   for (const param of urlParams) {
@@ -87,20 +111,18 @@ export function buildGetClientEndpointParam(
           ? `"${param.clientDefaultValue}"`
           : param.clientDefaultValue;
       context.addStatements(
-        `const ${param.clientName} = options.${param.clientName} ?? ${defaultValue};`
+        `const ${param.name} = options.${param.name} ?? ${defaultValue};`
       );
     } else if (param.optional) {
-      context.addStatements(
-        `const ${param.clientName} = options.${param.clientName};`
-      );
+      context.addStatements(`const ${param.name} = options.${param.name};`);
     }
   }
 
-  let parameterizedEndpointUrl = client.url;
+  let parameterizedEndpointUrl = _client.url;
   for (const param of urlParams) {
     parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
-      `{${param.restApiName}}`,
-      `\${${param.clientName}}`
+      `{${param.name}}`,
+      `\${${getClientParameterName(param)}}`
     );
   }
 

@@ -13,7 +13,7 @@ export function buildRootIndex(
   const { project } = codeModel;
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClientName(client.tcgcClient)}Client`;
   const clientFile = project.getSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       clientName,
@@ -165,7 +165,7 @@ function exportClassicalClient(
   subfolder: string,
   isSubClient: boolean = false
 ) {
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClientName(client.tcgcClient)}Client`;
   indexFile.addExportDeclaration({
     namedExports: [clientName, `${clientName}OptionalParams`],
     moduleSpecifier: `./${
@@ -221,7 +221,7 @@ export function buildSubClientIndexFile(
     undefined,
     { overwrite: true }
   );
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClientName(client.tcgcClient)}Client`;
   const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
   }${normalizeName(clientName, NameType.File)}.ts`;

@@ -79,6 +79,11 @@ export function provideSdkTypes(sdkPackage: SdkPackage<SdkHttpOperation>) {
       }
 
       sdkTypesContext.operations.set(method.__raw, method);
+
+      // Visit the parameters of the method to add them to the types map
+      method.parameters.forEach((param) => {
+        sdkTypesContext.types.set(param.type.__raw!, param.type);
+      });
     }
   }
 

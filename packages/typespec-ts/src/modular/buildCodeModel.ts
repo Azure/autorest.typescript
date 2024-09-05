@@ -325,7 +325,7 @@ export function getType(
       return cached;
     }
   }
-  let newValue: any;
+  let newValue: any = { __raw: type };
 
   if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
@@ -345,6 +345,9 @@ export function getType(
 
   if (enableCache) {
     if (!options.disableEffectiveModel) {
+      if (newValue.__raw === undefined) {
+        newValue.__raw = type;
+      }
       typesMap.set(effectiveModel, newValue);
     }
     if (type.kind === "Union") {
@@ -1759,6 +1762,14 @@ function emitClients(
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
+    const sdkPackageClient = context.sdkPackage.clients.find(
+      (p) => p.crossLanguageDefinitionId === client.crossLanguageDefinitionId
+    );
+
+    if (!sdkPackageClient) {
+      throw new Error(`Client ${client.name} not found in the SDK package`);
+    }
+
     const clientName = client.name.replace("Client", "");
     const server = getServerHelper(program, client.service);
     const rlcModels = rlcModelsMap.get(client.service.name);
@@ -1770,6 +1781,7 @@ function emitClients(
       description: getDocStr(program, client.type),
       parameters: emitGlobalParameters(context, client.service),
       operationGroups: emitOperationGroups(context, client, rlcModels),
+      tcgcClient: sdkPackageClient,
       url: server ? server.url : "",
       apiVersions: [],
       rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,

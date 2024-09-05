@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import {
   createContentSafety,
   ContentSafetyContext,
@@ -30,6 +29,9 @@ import {
   _PagedTextBlocklist,
   _PagedTextBlockItem,
 } from "./models/models.js";
+import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import {
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
@@ -42,8 +44,6 @@ import {
   GetTextBlocklistItemOptionalParams,
   ListTextBlocklistItemsOptionalParams,
 } from "./models/options.js";
-import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 

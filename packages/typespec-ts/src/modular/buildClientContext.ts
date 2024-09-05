@@ -23,14 +23,15 @@ import { useDependencies } from "../framework/hooks/useDependencies.js";
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
-  client: Client,
+  _client: Client,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ): SourceFile {
-  const { description, subfolder } = client;
+  const { description, subfolder } = _client;
+  const client = _client.tcgcClient;
   const dependencies = useDependencies();
   const name = getClientName(client);
-  const params = getClientParameters(client, dpgContext);
+  const requiredParams = getClientParameters(client, dpgContext);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
@@ -40,7 +41,7 @@ export function buildClientContext(
 
   clientContextFile.addInterface({
     isExported: true,
-    name: `${client.rlcClientName}`,
+    name: `${_client.rlcClientName}`,
     extends: [resolveReference(dependencies.Client)]
   });
 
@@ -48,7 +49,7 @@ export function buildClientContext(
     name: `${name}ClientOptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: client.parameters
+    properties: _client.parameters
       .filter((p) => {
         return (
           p.optional || (p.type.type !== "constant" && p.clientDefaultValue)
@@ -78,13 +79,13 @@ export function buildClientContext(
   const factoryFunction = clientContextFile.addFunction({
     docs: getDocsFromDescription(description),
     name: `create${name}`,
-    returnType: `${client.rlcClientName}`,
-    parameters: params,
+    returnType: `${_client.rlcClientName}`,
+    parameters: requiredParams,
     isExported: true
   });
 
-  const endpointParam = buildGetClientEndpointParam(factoryFunction, client);
-  const credentialParam = buildGetClientCredentialParam(client, codeModel);
+  const endpointParam = buildGetClientEndpointParam(factoryFunction, _client);
+  const credentialParam = buildGetClientCredentialParam(_client, codeModel);
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
     codeModel,
@@ -115,7 +116,7 @@ export function buildClientContext(
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
 
   if (dpgContext.hasApiVersionInClient) {
-    const apiVersionParam = client.parameters.find((x) => x.isApiVersion);
+    const apiVersionParam = _client.parameters.find((x) => x.isApiVersion);
 
     if (apiVersionParam?.location === "query") {
       if (apiVersionParam.clientDefaultValue) {
