@@ -427,8 +427,12 @@ function extractPagingType(type: Type, itemName?: string): Type | undefined {
   if (!itemName) {
     return undefined;
   }
-  const prop = (type.properties ?? [])
-    ?.filter((prop) => prop.restApiName === itemName)
+  const allProperties = [
+    ...(type.properties ?? []),
+    ...(type.parents ?? []).flatMap((p) => p.properties ?? [])
+  ];
+  const prop = allProperties
+    .filter((prop) => prop.restApiName === itemName)
     .map((prop) => prop.type);
   if (prop.length === 0) {
     return undefined;
