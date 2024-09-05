@@ -107,7 +107,6 @@ export function updatePackageFile(
   } else {
     packageInfo = existingFilePathOrContent;
   }
-  const packageInfo = JSON.parse(packageFile.getFullText());
 
   // no need to update paging dependency for modular libraries
   if (hasPaging && model.options?.isModularLibrary !== true) {
