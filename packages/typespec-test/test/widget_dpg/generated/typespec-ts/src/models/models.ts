@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { ErrorModel } from "@azure-rest/core-client";
+
 /** Details about a user. */
 export interface User {
   /** The name of user. */
@@ -41,14 +43,14 @@ export interface _ListWidgetsPagesResults {
   "odata.nextLink"?: string;
 }
 
-export interface CreateWidget {
+export interface CreateWidgetRequest {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight: number;
   /** The color of the widget. */
   color: "red" | "blue";
 }
 
-export interface UpdateWidget {
+export interface UpdateWidgetRequest {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
   /** The color of the widget. */
@@ -58,9 +60,6 @@ export interface UpdateWidget {
 export interface AnalyzeResult {
   summary: string;
 }
-
-/** The Contoso Widget Manager service version. */
-export type Versions = "1.0.0";
 
 export interface NonReferencedModel {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
@@ -76,4 +75,18 @@ export function nonReferencedModelSerializer(
     prop1: item["prop1"],
     prop2: item["prop2"],
   };
+}
+
+export type WidgetColor = "red" | "blue";
+export type CreateWidgetRequestColor = "red" | "blue";
+export type UpdateWidgetRequestColor = "red" | "blue";
+/** The Contoso Widget Manager service version. */
+export type Versions = "1.0.0";
+
+/** A response containing error details. */
+export interface ErrorResponse {
+  /** The error object. */
+  error: ErrorModel;
+  /** String error code indicating what went wrong. */
+  errorCode?: string;
 }

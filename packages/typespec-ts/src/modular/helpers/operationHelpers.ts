@@ -88,15 +88,16 @@ export function getDeserializePrivateFunction(
   operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
+  const PathUncheckedResponseReference = resolveReference(
+    dependencies.PathUncheckedResponse
+  );
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: "PathUncheckedResponse"
+      type: PathUncheckedResponseReference
     }
   ];
-  // TODO: Add import for PathUncheckedResponse
-  // addImportToSpecifier("restClient", runtimeImports, "PathUncheckedResponse");
-
   // TODO: Support LRO + paging operation
   // https://github.com/Azure/autorest.typescript/issues/2313
   const isLroOnly = isLroOnlyOperation(operation);
@@ -125,18 +126,18 @@ export function getDeserializePrivateFunction(
     returnType: `Promise<${returnType.type}>`
   };
   const statements: string[] = [];
+  const createRestErrorReference = resolveReference(
+    dependencies.createRestError
+  );
 
   statements.push(
     `const expectedStatuses = ${getExpectedStatuses(operation)};`
   );
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
-    `throw createRestError(result);`,
+    `throw ${createRestErrorReference}(result);`,
     "}"
   );
-  // TODO: Add import for createRestError
-  // addImportToSpecifier("restClient", runtimeImports, "createRestError");
-
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response.type;
@@ -549,6 +550,7 @@ function buildHeaderParameter(
 }
 
 function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
+  const dependencies = useDependencies();
   if (!bodyParameter) {
     return "";
   }
@@ -633,7 +635,6 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    const dependencies = useDependencies();
     const uint8ArrayToStringReference = resolveReference(
       dependencies.uint8ArrayToString
     );
@@ -1258,6 +1259,7 @@ export function serializeRequestValue(
   format?: string
 ): string {
   const getSdkType = useSdkTypes();
+  const dependencies = useDependencies();
   const requiredPrefix =
     required === false ? `${clientValue} === undefined` : "";
   const nullablePrefix = isTypeNullable(type) ? `${clientValue} === null` : "";
@@ -1334,7 +1336,6 @@ export function serializeRequestValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        const dependencies = useDependencies();
         const uint8ArrayToStringReference = resolveReference(
           dependencies.uint8ArrayToString
         );

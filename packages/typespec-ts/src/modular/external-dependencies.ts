@@ -66,6 +66,11 @@ export const DefaultCoreDependencies: CoreDependencies = {
     name: "KeyCredential",
     module: "@typespec/ts-http-runtime"
   },
+  isKeyCredential: {
+    kind: "externalDependency",
+    name: "isKeyCredential",
+    module: "@typespec/ts-http-runtime"
+  },
   TokenCredential: {
     kind: "externalDependency",
     name: "TokenCredential",
@@ -114,7 +119,7 @@ export const AzureCoreDependencies: CoreDependencies = {
   },
   Pipeline: {
     kind: "externalDependency",
-    module: "@azure-rest/core-client",
+    module: "@azure/core-rest-pipeline",
     name: "Pipeline"
   },
   getClient: {
@@ -165,6 +170,11 @@ export const AzureCoreDependencies: CoreDependencies = {
   KeyCredential: {
     kind: "externalDependency",
     name: "KeyCredential",
+    module: "@azure/core-auth"
+  },
+  isKeyCredential: {
+    kind: "externalDependency",
+    name: "isKeyCredential",
     module: "@azure/core-auth"
   },
   TokenCredential: {

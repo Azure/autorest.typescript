@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { _ListWidgetsPagesResults } from "./models/models.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -16,11 +17,15 @@ export {
   User,
   Widget,
   WidgetError,
-  CreateWidget,
-  UpdateWidget,
+  CreateWidgetRequest,
+  UpdateWidgetRequest,
   AnalyzeResult,
-  Versions,
   NonReferencedModel,
+  WidgetColor,
+  CreateWidgetRequestColor,
+  UpdateWidgetRequestColor,
+  Versions,
+  ErrorResponse,
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,

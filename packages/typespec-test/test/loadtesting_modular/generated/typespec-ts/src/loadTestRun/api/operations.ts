@@ -1,15 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { LoadTestServiceContext as Client } from "./index.js";
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   passFailCriteriaSerializer,
   autoStopCriteriaSerializer,
-  secretSerializer,
   certificateMetadataSerializer,
   loadTestConfigurationSerializer,
+  secretSerializer,
   appComponentSerializer,
   resourceMetricSerializer,
-  dimensionFilterSerializer,
   TestRun,
   TestRunFileInfo,
   TestRunAppComponents,
@@ -18,22 +23,23 @@ import {
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
-  TimeSeriesElement,
+  dimensionFilterSerializer,
   _Metrics,
+  TimeSeriesElement,
+  _PagedTestFileInfo,
+  _PagedTest,
   _PagedTestRun,
-} from "../models/models.js";
-import { LoadTestServiceContext as Client } from "./index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
+  _PagedTestProfile,
+  _PagedTestProfileRun,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import {
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -201,8 +207,9 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.configFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.configFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -228,8 +235,9 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.testScriptFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -255,8 +263,9 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.userPropFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -283,8 +292,9 @@ export async function _createOrUpdateTestRunDeserialize(
                           ?.inputArtifactsZipFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.inputArtifactsZipFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -313,8 +323,9 @@ export async function _createOrUpdateTestRunDeserialize(
                           ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.urlTestConfigFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -367,8 +378,9 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.resultFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.resultFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -394,8 +406,9 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.logsFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.logsFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -416,8 +429,9 @@ export async function _createOrUpdateTestRunDeserialize(
                           ?.artifactsContainerInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.artifactsContainerInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                     },
@@ -437,8 +451,9 @@ export async function _createOrUpdateTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.reportFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.reportFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.reportFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -873,8 +888,9 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.configFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.configFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -900,8 +916,9 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.testScriptFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -927,8 +944,9 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.userPropFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -955,8 +973,9 @@ export async function _getTestRunDeserialize(
                           ?.inputArtifactsZipFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.inputArtifactsZipFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -985,8 +1004,9 @@ export async function _getTestRunDeserialize(
                           ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.urlTestConfigFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -1039,8 +1059,9 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.resultFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.resultFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -1066,8 +1087,9 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.logsFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.logsFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -1088,8 +1110,9 @@ export async function _getTestRunDeserialize(
                           ?.artifactsContainerInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.artifactsContainerInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                     },
@@ -1109,8 +1132,9 @@ export async function _getTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.reportFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.reportFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.reportFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -1608,8 +1632,9 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts
-                                    ?.configFileInfo?.["expireDateTime"],
+                                  p.testArtifacts?.inputArtifacts?.configFileInfo?.[
+                                    "expireDateTime"
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -1638,8 +1663,9 @@ export async function _listTestRunsDeserialize(
                               ?.testScriptFileInfo?.["expireDateTime"] !==
                             undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts
-                                    ?.testScriptFileInfo?.["expireDateTime"],
+                                  p.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
+                                    "expireDateTime"
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -1670,8 +1696,9 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts
-                                    ?.userPropFileInfo?.["expireDateTime"],
+                                  p.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
+                                    "expireDateTime"
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -1701,8 +1728,7 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts
-                                    ?.inputArtifactsZipFileInfo?.[
+                                  p.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
                                     "expireDateTime"
                                   ],
                                 )
@@ -1733,8 +1759,9 @@ export async function _listTestRunsDeserialize(
                               ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                             undefined
                               ? new Date(
-                                  p.testArtifacts?.inputArtifacts
-                                    ?.urlTestConfigFileInfo?.["expireDateTime"],
+                                  p.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
+                                    "expireDateTime"
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -1792,8 +1819,9 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts
-                                    ?.resultFileInfo?.["expireDateTime"],
+                                  p.testArtifacts?.outputArtifacts?.resultFileInfo?.[
+                                    "expireDateTime"
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -1825,8 +1853,9 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts
-                                    ?.logsFileInfo?.["expireDateTime"],
+                                  p.testArtifacts?.outputArtifacts?.logsFileInfo?.[
+                                    "expireDateTime"
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -1849,8 +1878,7 @@ export async function _listTestRunsDeserialize(
                               ?.artifactsContainerInfo?.["expireDateTime"] !==
                             undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts
-                                    ?.artifactsContainerInfo?.[
+                                  p.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
                                     "expireDateTime"
                                   ],
                                 )
@@ -1875,8 +1903,9 @@ export async function _listTestRunsDeserialize(
                               "expireDateTime"
                             ] !== undefined
                               ? new Date(
-                                  p.testArtifacts?.outputArtifacts
-                                    ?.reportFileInfo?.["expireDateTime"],
+                                  p.testArtifacts?.outputArtifacts?.reportFileInfo?.[
+                                    "expireDateTime"
+                                  ],
                                 )
                               : undefined,
                           validationStatus:
@@ -2064,8 +2093,9 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.configFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.configFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.configFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -2091,8 +2121,9 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.testScriptFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.testScriptFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.testScriptFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -2118,8 +2149,9 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.inputArtifacts
                           ?.userPropFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.userPropFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.userPropFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -2146,8 +2178,9 @@ export async function _stopTestRunDeserialize(
                           ?.inputArtifactsZipFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.inputArtifactsZipFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.inputArtifactsZipFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -2176,8 +2209,9 @@ export async function _stopTestRunDeserialize(
                           ?.urlTestConfigFileInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.inputArtifacts
-                                ?.urlTestConfigFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.inputArtifacts?.urlTestConfigFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -2230,8 +2264,9 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.resultFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.resultFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.resultFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -2257,8 +2292,9 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.logsFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.logsFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.logsFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:
@@ -2279,8 +2315,9 @@ export async function _stopTestRunDeserialize(
                           ?.artifactsContainerInfo?.["expireDateTime"] !==
                         undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.artifactsContainerInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.artifactsContainerInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                     },
@@ -2300,8 +2337,9 @@ export async function _stopTestRunDeserialize(
                         result.body.testArtifacts?.outputArtifacts
                           ?.reportFileInfo?.["expireDateTime"] !== undefined
                           ? new Date(
-                              result.body.testArtifacts?.outputArtifacts
-                                ?.reportFileInfo?.["expireDateTime"],
+                              result.body.testArtifacts?.outputArtifacts?.reportFileInfo?.[
+                                "expireDateTime"
+                              ],
                             )
                           : undefined,
                       validationStatus:

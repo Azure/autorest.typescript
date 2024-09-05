@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { A } from "../models/models.js";
 import { FooContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { A } from "../models/models.js";
+import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";

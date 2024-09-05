@@ -1,35 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  TestRun,
-  TestRunFileInfo,
-  TestRunAppComponents,
-  TestRunServerMetricConfig,
-  DimensionValueList,
-  MetricDefinitionCollection,
-  MetricNamespaceCollection,
-  MetricRequestPayload,
-  TimeSeriesElement,
-} from "./models/models.js";
-import {
-  CreateOrUpdateTestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./models/options.js";
 import {
   createLoadTestRun,
   LoadTestServiceContext,
@@ -49,7 +20,44 @@ import {
   listTestRuns,
   stopTestRun,
 } from "./api/index.js";
+import {
+  TestRun,
+  TestRunFileInfo,
+  TestRunAppComponents,
+  TestRunServerMetricConfig,
+  DimensionValueList,
+  MetricDefinitionCollection,
+  MetricNamespaceCollection,
+  MetricRequestPayload,
+  _Metrics,
+  TimeSeriesElement,
+  _PagedTestFileInfo,
+  _PagedTest,
+  _PagedTestRun,
+  _PagedTestProfile,
+  _PagedTestProfileRun,
+} from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { TokenCredential } from "@azure/core-auth";
+import {
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+} from "../loadTestAdministration/index.js";
+import {
+  CreateOrUpdateTestRunOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
+} from "./models/options.js";
 
 export { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
 

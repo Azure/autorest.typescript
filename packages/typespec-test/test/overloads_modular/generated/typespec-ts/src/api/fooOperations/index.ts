@@ -5,6 +5,8 @@ import { WidgetManagerContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";

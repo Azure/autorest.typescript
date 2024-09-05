@@ -5,6 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
@@ -16,6 +17,12 @@ export type ContentTypeEnum = "application/octet-stream" | "application/json; se
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export interface ErrorResponse {
+    error: ErrorModel;
+    errorCode?: string;
+}
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -35,7 +42,7 @@ export interface Schema {
     properties: SchemaProperties;
 }
 
-// @public
+// @public (undocumented)
 export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 
 // @public

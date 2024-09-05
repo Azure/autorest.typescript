@@ -1,23 +1,49 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { BatchContext as Client } from "./index.js";
 import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import {
+  BatchNodeUserCreateOptions,
+  BatchNodeUserUpdateOptions,
+  BatchNode,
   startTaskSerializer,
   taskContainerSettingsSerializer,
   batchNodeIdentityReferenceSerializer,
+  userIdentitySerializer,
   resourceFileSerializer,
   environmentSettingSerializer,
-  userIdentitySerializer,
   certificateReferenceSerializer,
+  NodeRebootOptions,
+  NodeReimageOptions,
+  NodeDisableSchedulingOptions,
+  BatchNodeRemoteLoginSettingsResult,
+  UploadBatchServiceLogsOptions,
+  UploadBatchServiceLogsResult,
+  _BatchNodeListResult,
+  NodeVMExtension,
+  _NodeVMExtensionList,
+  _NodeFileListResult,
+  NodeFile,
+  BatchTaskCreateOptions,
   batchTaskCreateOptionsSerializer,
   exitConditionsSerializer,
-  outputFileSerializer,
   affinityInformationSerializer,
   taskConstraintsSerializer,
   multiInstanceSettingsSerializer,
   taskDependenciesSerializer,
-  applicationPackageReferenceSerializer,
   authenticationTokenSettingsSerializer,
+  outputFileSerializer,
+  applicationPackageReferenceSerializer,
+  _BatchTaskListResult,
+  BatchTask,
+  BatchTaskCollection,
+  TaskAddCollectionResult,
+  BatchTaskListSubtasksResult,
+  BatchJobSchedule,
   scheduleSerializer,
   jobSpecificationSerializer,
   jobNetworkConfigurationSerializer,
@@ -33,37 +59,28 @@ import {
   userAccountSerializer,
   metadataItemSerializer,
   mountConfigurationSerializer,
-  BatchNodeUserCreateOptions,
-  BatchNodeUserUpdateOptions,
-  BatchNode,
-  NodeRebootOptions,
-  NodeReimageOptions,
-  NodeDisableSchedulingOptions,
-  BatchNodeRemoteLoginSettingsResult,
-  UploadBatchServiceLogsOptions,
-  UploadBatchServiceLogsResult,
-  NodeVMExtension,
-  NodeFile,
-  BatchTaskCreateOptions,
-  BatchTask,
-  BatchTaskCollection,
-  TaskAddCollectionResult,
-  BatchTaskListSubtasksResult,
-  BatchJobSchedule,
   BatchJobScheduleUpdateOptions,
   BatchJobScheduleCreateOptions,
+  _BatchJobScheduleListResult,
   BatchCertificate,
+  _CertificateListResult,
   BatchJob,
   BatchJobUpdateOptions,
   BatchJobDisableOptions,
   BatchJobTerminateOptions,
   BatchJobCreateOptions,
+  _BatchJobListResult,
+  _BatchJobListPreparationAndReleaseTaskStatusResult,
   JobPreparationAndReleaseTaskExecutionInformation,
   TaskCountsResult,
+  _AccountListSupportedImagesResult,
   ImageInformation,
+  _PoolNodeCountsListResult,
   PoolNodeCounts,
+  _PoolListUsageMetricsResult,
   PoolUsageMetrics,
   BatchPoolCreateOptions,
+  _BatchPoolListResult,
   BatchPool,
   AutoScaleRun,
   BatchPoolUpdateOptions,
@@ -72,32 +89,17 @@ import {
   BatchPoolResizeOptions,
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
-  BatchApplication,
-  _AccountListSupportedImagesResult,
   _ApplicationListResult,
-  _BatchJobListPreparationAndReleaseTaskStatusResult,
-  _BatchJobListResult,
-  _BatchJobScheduleListResult,
-  _BatchNodeListResult,
-  _BatchPoolListResult,
-  _BatchTaskListResult,
-  _CertificateListResult,
-  _NodeFileListResult,
-  _NodeVMExtensionList,
-  _PoolListUsageMetricsResult,
-  _PoolNodeCountsListResult,
+  BatchApplication,
 } from "../models/models.js";
-import { BatchContext as Client } from "./index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   ListApplicationsOptionalParams,
@@ -735,7 +737,7 @@ export async function _listPoolsDeserialize(
                       ?.publicIPAddressConfiguration
                       ? undefined
                       : {
-                          ipAddressProvisioningType:
+                          IpAddressProvisioningType:
                             p.networkConfiguration
                               ?.publicIPAddressConfiguration?.["provision"],
                           ipAddressIds:
@@ -1458,7 +1460,7 @@ export async function _getPoolDeserialize(
             ?.publicIPAddressConfiguration
             ? undefined
             : {
-                ipAddressProvisioningType:
+                IpAddressProvisioningType:
                   result.body.networkConfiguration
                     ?.publicIPAddressConfiguration?.["provision"],
                 ipAddressIds:
@@ -3213,7 +3215,7 @@ export async function _getJobDeserialize(
                           ?.publicIPAddressConfiguration
                           ? undefined
                           : {
-                              ipAddressProvisioningType:
+                              IpAddressProvisioningType:
                                 result.body.poolInfo.autoPoolSpecification?.pool
                                   ?.networkConfiguration
                                   ?.publicIPAddressConfiguration?.["provision"],
@@ -4834,7 +4836,7 @@ export async function _listJobsDeserialize(
                                     ?.publicIPAddressConfiguration
                                     ? undefined
                                     : {
-                                        ipAddressProvisioningType:
+                                        IpAddressProvisioningType:
                                           p.poolInfo.autoPoolSpecification?.pool
                                             ?.networkConfiguration
                                             ?.publicIPAddressConfiguration?.[
@@ -6100,7 +6102,7 @@ export async function _listJobsFromScheduleDeserialize(
                                     ?.publicIPAddressConfiguration
                                     ? undefined
                                     : {
-                                        ipAddressProvisioningType:
+                                        IpAddressProvisioningType:
                                           p.poolInfo.autoPoolSpecification?.pool
                                             ?.networkConfiguration
                                             ?.publicIPAddressConfiguration?.[
@@ -8136,7 +8138,7 @@ export async function _getJobScheduleDeserialize(
                             ?.publicIPAddressConfiguration
                             ? undefined
                             : {
-                                ipAddressProvisioningType:
+                                IpAddressProvisioningType:
                                   result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.networkConfiguration
@@ -9868,7 +9870,7 @@ export async function _listJobSchedulesDeserialize(
                                       ?.publicIPAddressConfiguration
                                       ? undefined
                                       : {
-                                          ipAddressProvisioningType:
+                                          IpAddressProvisioningType:
                                             p.jobSpecification.poolInfo
                                               .autoPoolSpecification?.pool
                                               ?.networkConfiguration

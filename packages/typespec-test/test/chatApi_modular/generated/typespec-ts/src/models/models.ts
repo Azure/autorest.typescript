@@ -61,9 +61,6 @@ export function chatMessageSerializer(
   };
 }
 
-/** A representation of the intended purpose of a message. */
-export type ChatRole = "user" | "system" | "assistant";
-
 /** A single response to a streaming completion request. */
 export interface ChatCompletionChunkRecord {
   /** The collection of choice deltas received in this chunk. */
@@ -106,9 +103,6 @@ export interface ChatMessageDelta {
    */
   sessionState?: any;
 }
-
-/** Representation of the reason why a chat session has finished processing. */
-export type FinishReason = "stop" | "length";
 
 /** The configuration for a chat completion request. */
 export interface ChatCompletionOptionsRecord {
@@ -171,5 +165,8 @@ export interface ChatChoiceRecord {
   finishReason: FinishReason;
 }
 
-/** Type of APIVersion */
+/** A representation of the intended purpose of a message. */
+export type ChatRole = "user" | "system" | "assistant";
+/** Representation of the reason why a chat session has finished processing. */
+export type FinishReason = "stop" | "length";
 export type APIVersion = "2023-10-01-preview";

@@ -3,9 +3,7 @@
 
 import { AnomalyDetectorContext as Client } from "../index.js";
 import {
-  PathUncheckedResponse,
   StreamableMethod,
-  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
@@ -17,6 +15,10 @@ import {
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
 } from "../../models/models.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,

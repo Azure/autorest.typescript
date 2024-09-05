@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
+import { _MultivariateModelList } from "../models/models.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+import { KeyCredential } from "@azure/core-auth";
 
 export interface AnomalyDetectorContext extends Client {}
 

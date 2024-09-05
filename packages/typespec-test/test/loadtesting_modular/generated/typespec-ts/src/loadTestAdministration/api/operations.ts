@@ -1,33 +1,39 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  passFailCriteriaSerializer,
-  autoStopCriteriaSerializer,
-  secretSerializer,
-  certificateMetadataSerializer,
-  loadTestConfigurationSerializer,
-  appComponentSerializer,
-  resourceMetricSerializer,
-  Test,
-  TestFileInfo,
-  TestAppComponents,
-  TestServerMetricConfig,
-  _PagedTest,
-  _PagedTestFileInfo,
-} from "../models/models.js";
 import { LoadTestServiceContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import {
+  Test,
+  passFailCriteriaSerializer,
+  autoStopCriteriaSerializer,
+  certificateMetadataSerializer,
+  loadTestConfigurationSerializer,
+  TestFileInfo,
+  secretSerializer,
+  TestAppComponents,
+  appComponentSerializer,
+  TestServerMetricConfig,
+  resourceMetricSerializer,
+  _Metrics,
+  _PagedTestFileInfo,
+  _PagedTest,
+  _PagedTestRun,
+  _PagedTestProfile,
+  _PagedTestProfileRun,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import {
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,

@@ -1,18 +1,16 @@
-import {
-  getImportSpecifier,
-  PackageFlavor,
-  Imports as RuntimeImports
-} from "@azure-tools/rlc-common";
+import { Client, ModularCodeModel } from "../modularCodeModel.js";
 import {
   OptionalKind,
   ParameterDeclarationStructure,
-  SourceFile,
   StatementedNode
 } from "ts-morph";
-import { Client, ModularCodeModel } from "../modularCodeModel.js";
-import { getClientName } from "./namingHelpers.js";
 import { getType, isCredentialType } from "./typeHelpers.js";
+
+import { PackageFlavor } from "@azure-tools/rlc-common";
 import { SdkContext } from "../../utils/interfaces.js";
+import { getClientName } from "./namingHelpers.js";
+import { resolveReference } from "../../framework/reference.js";
+import { useDependencies } from "../../framework/hooks/useDependencies.js";
 
 export function getClientParameters(
   client: Client,
@@ -20,6 +18,7 @@ export function getClientParameters(
   isClassicalClient = false
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const { parameters } = client;
+  const dependencies = useDependencies();
   const name = getClientName(client);
   const optionsParam = {
     name: "options",
@@ -38,6 +37,11 @@ export function getClientParameters(
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
         const typeMetadata = getType(p.type, p.format);
         let typeName = typeMetadata.name;
+        if (typeName === "KeyCredential") {
+          typeName = resolveReference(dependencies.KeyCredential);
+        } else if (typeName === "TokenCredential") {
+          typeName = resolveReference(dependencies.TokenCredential);
+        }
         if (typeMetadata.nullable) {
           typeName = `${typeName} | null`;
         }
@@ -214,14 +218,4 @@ export function buildUserAgentOptions(
   context.addStatements(userAgentStatements);
 
   return `{ userAgentPrefix }`;
-}
-
-export function importCredential(
-  runtimeImports: RuntimeImports,
-  clientSourceFile: SourceFile
-): void {
-  clientSourceFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier("coreAuth", runtimeImports),
-    namedImports: ["TokenCredential", "KeyCredential"]
-  });
 }

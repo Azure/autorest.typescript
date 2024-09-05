@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Collection } from "../../models/models.js";
 import { ParametrizedHostContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { Collection } from "../../models/models.js";
+import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";

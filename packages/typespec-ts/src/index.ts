@@ -304,6 +304,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateMetadataAndTest() {
+    const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
       return;
     }
@@ -361,7 +362,6 @@ export async function $onEmit(context: EmitContext) {
       );
 
       if (option.isModularLibrary) {
-        const project = useContext("outputProject");
         for (const file of project.getSourceFiles()) {
           await emitContentByBuilder(
             program,

@@ -1,32 +1,34 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  textBlockItemInfoSerializer,
-  imageDataSerializer,
-  TextBlocklist,
-  AddOrUpdateBlockItemsOptions,
-  AddOrUpdateBlockItemsResult,
-  TextBlockItem,
-  RemoveBlockItemsOptions,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  _PagedTextBlockItem,
-  _PagedTextBlocklist,
-} from "../models/models.js";
 import { ContentSafetyContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
 } from "@azure-rest/core-client";
+import {
+  TextBlocklist,
+  AddOrUpdateBlockItemsOptions,
+  textBlockItemInfoSerializer,
+  AddOrUpdateBlockItemsResult,
+  TextBlockItem,
+  RemoveBlockItemsOptions,
+  AnalyzeImageOptions,
+  imageDataSerializer,
+  AnalyzeImageResult,
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
+  _PagedTextBlocklist,
+  _PagedTextBlockItem,
+} from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import {
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,

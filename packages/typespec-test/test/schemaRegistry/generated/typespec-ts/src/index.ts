@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { _PagedSchemaGroup, _PagedVersion } from "./models/models.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -13,13 +14,14 @@ export {
 } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
-  SchemaContentTypeValues,
   SchemaVersion,
-  ServiceApiVersions,
   SchemaProperties,
-  SchemaFormat,
   Schema,
+  SchemaContentTypeValues,
+  ServiceApiVersions,
+  SchemaFormat,
   ContentTypeEnum,
+  ErrorResponse,
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,

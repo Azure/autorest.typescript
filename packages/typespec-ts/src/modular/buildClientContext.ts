@@ -1,22 +1,23 @@
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import {
-  getImportSpecifier,
-  isAzurePackage,
   NameType,
+  isAzurePackage,
   normalizeName
 } from "@azure-tools/rlc-common";
-import { SourceFile } from "ts-morph";
-import { SdkContext } from "../utils/interfaces.js";
 import {
   buildGetClientCredentialParam,
   buildGetClientEndpointParam,
   buildGetClientOptionsParam,
-  getClientParameters,
-  importCredential
+  getClientParameters
 } from "./helpers/clientHelpers.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+
+import { SdkContext } from "../utils/interfaces.js";
+import { SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { resolveReference } from "../framework/reference.js";
+import { useDependencies } from "../framework/hooks/useDependencies.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -27,6 +28,7 @@ export function buildClientContext(
   codeModel: ModularCodeModel
 ): SourceFile {
   const { description, subfolder } = client;
+  const dependencies = useDependencies();
   const name = getClientName(client);
   const params = getClientParameters(client, dpgContext);
   const srcPath = codeModel.modularOptions.sourceRoot;
@@ -36,22 +38,16 @@ export function buildClientContext(
     }/api/${normalizeName(name, NameType.File)}Context.ts`
   );
 
-  importCredential(codeModel.runtimeImports, clientContextFile);
-  clientContextFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier("restClient", codeModel.runtimeImports),
-    namedImports: ["ClientOptions", "Client", "getClient"]
-  });
-
   clientContextFile.addInterface({
     isExported: true,
     name: `${client.rlcClientName}`,
-    extends: ["Client"]
+    extends: [resolveReference(dependencies.Client)]
   });
 
   clientContextFile.addInterface({
     name: `${name}ClientOptionalParams`,
     isExported: true,
-    extends: ["ClientOptions"],
+    extends: [resolveReference(dependencies.ClientOptions)],
     properties: client.parameters
       .filter((p) => {
         return (
@@ -96,20 +92,15 @@ export function buildClientContext(
   );
 
   factoryFunction.addStatements(
-    `const clientContext = getClient(${endpointParam}, ${credentialParam}, ${optionsParam});`
+    `const clientContext = ${resolveReference(dependencies.getClient)}(${endpointParam}, ${credentialParam}, ${optionsParam});`
   );
 
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
     codeModel.options;
 
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
-    clientContextFile.addImportDeclaration({
-      moduleSpecifier: getImportSpecifier("coreAuth", codeModel.runtimeImports),
-      namedImports: ["isKeyCredential"]
-    });
-
     factoryFunction.addStatements(`
-      if(isKeyCredential(credential)) {
+      if(${resolveReference(dependencies.isKeyCredential)}(credential)) {
         clientContext.pipeline.addPolicy({ 
           name: "customKeyCredentialPolicy",
           sendRequest(request, next) {

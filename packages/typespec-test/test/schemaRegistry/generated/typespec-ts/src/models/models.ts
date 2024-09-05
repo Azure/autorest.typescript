@@ -1,27 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { ErrorModel } from "@azure-rest/core-client";
+
 /** Schema Group resource. */
 export interface SchemaGroup {
   /** Name of schema group. */
   readonly groupName: string;
 }
 
-/** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
-
 /** Schema versions resource. */
 export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
 }
-
-/** Represents the Schema Registry API version to use for requests. */
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Meta properties of a schema. */
 export interface SchemaProperties {
@@ -49,9 +41,6 @@ export function schemaPropertiesSerializer(
   };
 }
 
-/** Represents the format of the schema to be stored by the Schema Registry service. */
-export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
-
 /** The schema content of a schema, along with id and meta properties. */
 export interface Schema {
   /** The content of the schema. */
@@ -67,12 +56,29 @@ export function schemaSerializer(item: Schema): Record<string, unknown> {
   };
 }
 
+export type SchemaContentTypeValues =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
+/** Represents the Schema Registry API version to use for requests. */
+export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
+/** Represents the format of the schema to be stored by the Schema Registry service. */
+export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 /** The content type for the schema. */
 export type ContentTypeEnum =
   | "application/octet-stream"
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
+
+/** A response containing error details. */
+export interface ErrorResponse {
+  /** The error object. */
+  error: ErrorModel;
+  /** String error code indicating what went wrong. */
+  errorCode?: string;
+}
 
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {

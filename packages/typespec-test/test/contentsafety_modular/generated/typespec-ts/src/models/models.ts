@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { uint8ArrayToString } from "@azure/core-util";
+import { ErrorModel } from "@azure-rest/core-client";
 
 /** Text Blocklist. */
 export interface TextBlocklist {
@@ -119,11 +120,6 @@ export function imageDataSerializer(item: ImageData): Record<string, unknown> {
   };
 }
 
-/** Image analyze category */
-export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-/** The type of image analysis output. */
-export type AnalyzeImageOutputType = "FourLevels";
-
 /** The analysis response of the image. */
 export interface AnalyzeImageResult {
   /** Analysis result for categories. */
@@ -164,11 +160,6 @@ export function analyzeTextOptionsSerializer(
   };
 }
 
-/** Text analyze category */
-export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-/** The type of text analysis output. */
-export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
-
 /** The analysis response of the text */
 export interface AnalyzeTextResult {
   /** The details of blocklist match. */
@@ -195,8 +186,23 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
-/** Type of Versions */
+/** Image analyze category */
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of image analysis output. */
+export type AnalyzeImageOutputType = "FourLevels";
+/** Text analyze category */
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of text analysis output. */
+export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 export type Versions = "2023-10-01";
+
+/** A response containing error details. */
+export interface ErrorResponse {
+  /** The error object. */
+  error: ErrorModel;
+  /** String error code indicating what went wrong. */
+  errorCode?: string;
+}
 
 /** Paged collection of TextBlocklist items */
 export interface _PagedTextBlocklist {

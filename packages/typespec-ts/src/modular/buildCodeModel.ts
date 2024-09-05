@@ -960,7 +960,7 @@ function emitProperty(
   }
   const type = getType(context, property.type, { usage });
   return {
-    clientName: applyCasing(clientName, { casing: CASING }),
+    clientName,
     restApiName: jsonName,
     type: newProperty.format ? { ...type, format: newProperty.format } : type,
     optional: property.optional,

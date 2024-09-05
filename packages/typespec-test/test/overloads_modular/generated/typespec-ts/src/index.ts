@@ -7,6 +7,7 @@ export {
 } from "./widgetManagerClient.js";
 export {
   Versions,
+  ErrorResponse,
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,
 } from "./models/index.js";

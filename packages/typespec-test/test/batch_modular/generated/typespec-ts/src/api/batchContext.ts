@@ -1,9 +1,24 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
+import {
+  _BatchNodeListResult,
+  _NodeVMExtensionList,
+  _NodeFileListResult,
+  _BatchTaskListResult,
+  _BatchJobScheduleListResult,
+  _CertificateListResult,
+  _BatchJobListResult,
+  _BatchJobListPreparationAndReleaseTaskStatusResult,
+  _AccountListSupportedImagesResult,
+  _PoolNodeCountsListResult,
+  _PoolListUsageMetricsResult,
+  _BatchPoolListResult,
+  _ApplicationListResult,
+} from "../models/models.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+import { TokenCredential } from "@azure/core-auth";
 
 export interface BatchContext extends Client {}
 

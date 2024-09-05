@@ -3,9 +3,7 @@
 
 import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
-  PathUncheckedResponse,
   StreamableMethod,
-  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
@@ -31,6 +29,10 @@ import {
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   DataProductsCreateOptionalParams,

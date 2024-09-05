@@ -1,21 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  chatMessageSerializer,
-  StreamingChatCompletionOptionsRecord,
-  ChatCompletionChunkRecord,
-  ChatCompletionOptionsRecord,
-  ChatCompletionRecord,
-} from "../models/models.js";
 import { ChatProtocolContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
+import {
+  StreamingChatCompletionOptionsRecord,
+  chatMessageSerializer,
+  ChatCompletionChunkRecord,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
+} from "../models/models.js";
+import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   CreateStreamingOptionalParams,
   CreateOptionalParams,

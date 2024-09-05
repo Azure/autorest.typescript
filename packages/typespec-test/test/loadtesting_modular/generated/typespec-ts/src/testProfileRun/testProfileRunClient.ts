@@ -1,16 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
-import { TestProfileRun } from "./models/models.js";
-import {
-  CreateOrUpdateTestProfileRunOptionalParams,
-  DeleteTestProfileRunOptionalParams,
-  GetTestProfileRunOptionalParams,
-  ListTestProfileRunsOptionalParams,
-  StopTestProfileRunOptionalParams,
-} from "./models/options.js";
 import {
   createOrUpdateTestProfileRun,
   deleteTestProfileRun,
@@ -21,7 +11,25 @@ import {
   LoadTestServiceContext,
   TestProfileRunClientOptionalParams,
 } from "./api/index.js";
+import {
+  _Metrics,
+  TestProfileRun,
+  _PagedTestFileInfo,
+  _PagedTest,
+  _PagedTestRun,
+  _PagedTestProfile,
+  _PagedTestProfileRun,
+} from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { TokenCredential } from "@azure/core-auth";
+import {
+  CreateOrUpdateTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  GetTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  StopTestProfileRunOptionalParams,
+} from "./models/options.js";
 
 export { TestProfileRunClientOptionalParams } from "./api/testProfileRunContext.js";
 

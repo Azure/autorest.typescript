@@ -131,103 +131,6 @@ export interface BatchNode {
   virtualMachineInfo?: VirtualMachineInfo;
 }
 
-/** BatchNodeState enums */
-export type BatchNodeState =
-  | "idle"
-  | "rebooting"
-  | "reimaging"
-  | "running"
-  | "unusable"
-  | "creating"
-  | "starting"
-  | "waitingforstarttask"
-  | "starttaskfailed"
-  | "unknown"
-  | "leavingpool"
-  | "offline"
-  | "preempted";
-/** SchedulingState enums */
-export type SchedulingState = "enabled" | "disabled";
-
-/** Information about a Task running on a Compute Node. */
-export interface TaskInformation {
-  /** The URL of the Task. */
-  taskUrl?: string;
-  /** The ID of the Job to which the Task belongs. */
-  jobId?: string;
-  /** The ID of the Task. */
-  taskId?: string;
-  /** The ID of the subtask if the Task is a multi-instance Task. */
-  subtaskId?: number;
-  /** The current state of the Task. */
-  taskState: TaskState;
-  /** Information about the execution of the Task. */
-  executionInfo?: TaskExecutionInformation;
-}
-
-/** TaskState enums */
-export type TaskState = "active" | "preparing" | "running" | "completed";
-
-/** Information about the execution of a Task. */
-export interface TaskExecutionInformation {
-  /** The time at which the Task started running. 'Running' corresponds to the running state, so if the Task specifies resource files or Packages, then the start time reflects the time at which the Task started downloading or deploying these. If the Task has been restarted or retried, this is the most recent time at which the Task started running. This property is present only for Tasks that are in the running or completed state. */
-  startTime?: Date;
-  /** The time at which the Task completed. This property is set only if the Task is in the Completed state. */
-  endTime?: Date;
-  /** The exit code of the program specified on the Task command line. This property is set only if the Task is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the Task (due to timeout, or user termination via the API) you may see an operating system-defined exit code. */
-  exitCode?: number;
-  /** Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. */
-  containerInfo?: TaskContainerExecutionInformation;
-  /** Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. */
-  failureInfo?: TaskFailureInformation;
-  /** The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. */
-  retryCount: number;
-  /** The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. */
-  lastRetryTime?: Date;
-  /** The number of times the Task has been requeued by the Batch service as the result of a user request. When the user removes Compute Nodes from a Pool (by resizing/shrinking the pool) or when the Job is being disabled, the user can specify that running Tasks on the Compute Nodes be requeued for execution. This count tracks how many times the Task has been requeued for these reasons. */
-  requeueCount: number;
-  /** The most recent time at which the Task has been requeued by the Batch service as the result of a user request. This property is set only if the requeueCount is nonzero. */
-  lastRequeueTime?: Date;
-  /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
-  result?: TaskExecutionResult;
-}
-
-/** Contains information about the container which a Task is executing. */
-export interface TaskContainerExecutionInformation {
-  /** The ID of the container. */
-  containerId?: string;
-  /** The state of the container. This is the state of the container according to the Docker service. It is equivalent to the status field returned by "docker inspect". */
-  state?: string;
-  /** Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". */
-  error?: string;
-}
-
-/** Information about a Task failure. */
-export interface TaskFailureInformation {
-  /** The category of the Task error. */
-  category: ErrorCategory;
-  /** An identifier for the Task error. Codes are invariant and are intended to be consumed programmatically. */
-  code?: string;
-  /** A message describing the Task error, intended to be suitable for display in a user interface. */
-  message?: string;
-  /** A list of additional details related to the error. */
-  details?: NameValuePair[];
-}
-
-/** ErrorCategory enums */
-export type ErrorCategory = "usererror" | "servererror";
-
-/** Represents a name-value pair. */
-export interface NameValuePair {
-  /** The name in the name-value pair. */
-  name?: string;
-  /** The value in the name-value pair. */
-  value?: string;
-}
-
-/** TaskExecutionResult enums */
-export type TaskExecutionResult = "success" | "failure";
-
 /**
  * Batch will retry Tasks when a recovery operation is triggered on a Node.
  * Examples of recovery operations include (but are not limited to) when an
@@ -349,10 +252,188 @@ export function batchNodeIdentityReferenceSerializer(
   };
 }
 
-/** ContainerWorkingDirectory enums */
-export type ContainerWorkingDirectory =
-  | "taskWorkingDirectory"
-  | "containerImageDefault";
+/** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
+export interface UserIdentity {
+  /** The name of the user identity under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. */
+  username?: string;
+  /** The auto user under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. */
+  autoUser?: AutoUserSpecification;
+}
+
+export function userIdentitySerializer(
+  item: UserIdentity,
+): Record<string, unknown> {
+  return {
+    username: item["username"],
+    autoUser: !item.autoUser
+      ? item.autoUser
+      : autoUserSpecificationSerializer(item.autoUser),
+  };
+}
+
+/** Specifies the options for the auto user that runs an Azure Batch Task. */
+export interface AutoUserSpecification {
+  /** The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks. */
+  scope?: AutoUserScope;
+  /** The elevation level of the auto user. The default value is nonAdmin. */
+  elevationLevel?: ElevationLevel;
+}
+
+export function autoUserSpecificationSerializer(
+  item: AutoUserSpecification,
+): Record<string, unknown> {
+  return {
+    scope: item["scope"],
+    elevationLevel: item["elevationLevel"],
+  };
+}
+
+/** Information about a StartTask running on a Compute Node. */
+export interface StartTaskInformation {
+  /** The state of the StartTask on the Compute Node. */
+  state: StartTaskState;
+  /** The time at which the StartTask started running. This value is reset every time the Task is restarted or retried (that is, this is the most recent time at which the StartTask started running). */
+  startTime: Date;
+  /** The time at which the StartTask stopped running. This is the end time of the most recent run of the StartTask, if that run has completed (even if that run failed and a retry is pending). This element is not present if the StartTask is currently running. */
+  endTime?: Date;
+  /** The exit code of the program specified on the StartTask command line. This property is set only if the StartTask is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the StartTask (due to timeout, or user termination via the API) you may see an operating system-defined exit code. */
+  exitCode?: number;
+  /** Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. */
+  containerInfo?: TaskContainerExecutionInformation;
+  /** Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. */
+  failureInfo?: TaskFailureInformation;
+  /** The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. */
+  retryCount: number;
+  /** The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. */
+  lastRetryTime?: Date;
+  /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
+  result?: TaskExecutionResult;
+}
+
+/** Contains information about the container which a Task is executing. */
+export interface TaskContainerExecutionInformation {
+  /** The ID of the container. */
+  containerId?: string;
+  /** The state of the container. This is the state of the container according to the Docker service. It is equivalent to the status field returned by "docker inspect". */
+  state?: string;
+  /** Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". */
+  error?: string;
+}
+
+/** Information about a Task failure. */
+export interface TaskFailureInformation {
+  /** The category of the Task error. */
+  category: ErrorCategory;
+  /** An identifier for the Task error. Codes are invariant and are intended to be consumed programmatically. */
+  code?: string;
+  /** A message describing the Task error, intended to be suitable for display in a user interface. */
+  message?: string;
+  /** A list of additional details related to the error. */
+  details?: NameValuePair[];
+}
+
+/** The endpoint configuration for the Compute Node. */
+export interface BatchNodeEndpointConfiguration {
+  /** The list of inbound endpoints that are accessible on the Compute Node. */
+  inboundEndpoints: InboundEndpoint[];
+}
+
+/**
+ * The Batch Compute Node agent is a program that runs on each Compute Node in the
+ * Pool and provides Batch capability on the Compute Node.
+ */
+export interface NodeAgentInformation {
+  /** The version of the Batch Compute Node agent running on the Compute Node. This version number can be checked against the Compute Node agent release notes located at https://github.com/Azure/Batch/blob/master/changelogs/nodeagent/CHANGELOG.md. */
+  version: string;
+  /** The time when the Compute Node agent was updated on the Compute Node. This is the most recent time that the Compute Node agent was updated to a new version. */
+  lastUpdateTime: Date;
+}
+
+/** Info about the current state of the virtual machine. */
+export interface VirtualMachineInfo {
+  /** The reference to the Azure Virtual Machine's Marketplace Image. */
+  imageReference?: ImageReference;
+}
+
+/**
+ * A reference to an Azure Virtual Machines Marketplace Image or a Shared Image
+ * Gallery Image. To get the list of all Azure Marketplace Image references
+ * verified by Azure Batch, see the 'List Supported Images' operation.
+ */
+export interface ImageReference {
+  /** The publisher of the Azure Virtual Machines Marketplace Image. For example, Canonical or MicrosoftWindowsServer. */
+  publisher?: string;
+  /** The offer type of the Azure Virtual Machines Marketplace Image. For example, UbuntuServer or WindowsServer. */
+  offer?: string;
+  /** The SKU of the Azure Virtual Machines Marketplace Image. For example, 18.04-LTS or 2019-Datacenter. */
+  sku?: string;
+  /** The version of the Azure Virtual Machines Marketplace Image. A value of 'latest' can be specified to select the latest version of an Image. If omitted, the default is 'latest'. */
+  version?: string;
+  /** The ARM resource identifier of the Shared Image Gallery Image. Compute Nodes in the Pool will be created using this Image Id. This is of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName}/versions/{VersionId} or /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName} for always defaulting to the latest image version. This property is mutually exclusive with other ImageReference properties. The Shared Image Gallery Image must have replicas in the same region and must be in the same subscription as the Azure Batch account. If the image version is not specified in the imageId, the latest version will be used. For information about the firewall settings for the Batch Compute Node agent to communicate with the Batch service see https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration. */
+  virtualMachineImageId?: string;
+  /** The specific version of the platform image or marketplace image used to create the node. This read-only field differs from 'version' only if the value specified for 'version' when the pool was created was 'latest'. */
+  readonly exactVersion?: string;
+}
+
+export function imageReferenceSerializer(
+  item: ImageReference,
+): Record<string, unknown> {
+  return {
+    publisher: item["publisher"],
+    offer: item["offer"],
+    sku: item["sku"],
+    version: item["version"],
+    virtualMachineImageId: item["virtualMachineImageId"],
+  };
+}
+
+/** Information about a Task running on a Compute Node. */
+export interface TaskInformation {
+  /** The URL of the Task. */
+  taskUrl?: string;
+  /** The ID of the Job to which the Task belongs. */
+  jobId?: string;
+  /** The ID of the Task. */
+  taskId?: string;
+  /** The ID of the subtask if the Task is a multi-instance Task. */
+  subtaskId?: number;
+  /** The current state of the Task. */
+  taskState: TaskState;
+  /** Information about the execution of the Task. */
+  executionInfo?: TaskExecutionInformation;
+}
+
+/** Information about the execution of a Task. */
+export interface TaskExecutionInformation {
+  /** The time at which the Task started running. 'Running' corresponds to the running state, so if the Task specifies resource files or Packages, then the start time reflects the time at which the Task started downloading or deploying these. If the Task has been restarted or retried, this is the most recent time at which the Task started running. This property is present only for Tasks that are in the running or completed state. */
+  startTime?: Date;
+  /** The time at which the Task completed. This property is set only if the Task is in the Completed state. */
+  endTime?: Date;
+  /** The exit code of the program specified on the Task command line. This property is set only if the Task is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the Task (due to timeout, or user termination via the API) you may see an operating system-defined exit code. */
+  exitCode?: number;
+  /** Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. */
+  containerInfo?: TaskContainerExecutionInformation;
+  /** Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. */
+  failureInfo?: TaskFailureInformation;
+  /** The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. */
+  retryCount: number;
+  /** The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. */
+  lastRetryTime?: Date;
+  /** The number of times the Task has been requeued by the Batch service as the result of a user request. When the user removes Compute Nodes from a Pool (by resizing/shrinking the pool) or when the Job is being disabled, the user can specify that running Tasks on the Compute Nodes be requeued for execution. This count tracks how many times the Task has been requeued for these reasons. */
+  requeueCount: number;
+  /** The most recent time at which the Task has been requeued by the Batch service as the result of a user request. This property is set only if the requeueCount is nonzero. */
+  lastRequeueTime?: Date;
+  /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
+  result?: TaskExecutionResult;
+}
+
+/** Represents a name-value pair. */
+export interface NameValuePair {
+  /** The name in the name-value pair. */
+  name?: string;
+  /** The value in the name-value pair. */
+  value?: string;
+}
 
 /** A single file or multiple files to be downloaded to a Compute Node. */
 export interface ResourceFile {
@@ -405,72 +486,6 @@ export function environmentSettingSerializer(
   };
 }
 
-/** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
-export interface UserIdentity {
-  /** The name of the user identity under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. */
-  username?: string;
-  /** The auto user under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. */
-  autoUser?: AutoUserSpecification;
-}
-
-export function userIdentitySerializer(
-  item: UserIdentity,
-): Record<string, unknown> {
-  return {
-    username: item["username"],
-    autoUser: !item.autoUser
-      ? item.autoUser
-      : autoUserSpecificationSerializer(item.autoUser),
-  };
-}
-
-/** Specifies the options for the auto user that runs an Azure Batch Task. */
-export interface AutoUserSpecification {
-  /** The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks. */
-  scope?: AutoUserScope;
-  /** The elevation level of the auto user. The default value is nonAdmin. */
-  elevationLevel?: ElevationLevel;
-}
-
-export function autoUserSpecificationSerializer(
-  item: AutoUserSpecification,
-): Record<string, unknown> {
-  return {
-    scope: item["scope"],
-    elevationLevel: item["elevationLevel"],
-  };
-}
-
-/** AutoUserScope enums */
-export type AutoUserScope = "task" | "pool";
-/** ElevationLevel enums */
-export type ElevationLevel = "nonadmin" | "admin";
-
-/** Information about a StartTask running on a Compute Node. */
-export interface StartTaskInformation {
-  /** The state of the StartTask on the Compute Node. */
-  state: StartTaskState;
-  /** The time at which the StartTask started running. This value is reset every time the Task is restarted or retried (that is, this is the most recent time at which the StartTask started running). */
-  startTime: Date;
-  /** The time at which the StartTask stopped running. This is the end time of the most recent run of the StartTask, if that run has completed (even if that run failed and a retry is pending). This element is not present if the StartTask is currently running. */
-  endTime?: Date;
-  /** The exit code of the program specified on the StartTask command line. This property is set only if the StartTask is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the StartTask (due to timeout, or user termination via the API) you may see an operating system-defined exit code. */
-  exitCode?: number;
-  /** Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. */
-  containerInfo?: TaskContainerExecutionInformation;
-  /** Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. */
-  failureInfo?: TaskFailureInformation;
-  /** The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. */
-  retryCount: number;
-  /** The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. */
-  lastRetryTime?: Date;
-  /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
-  result?: TaskExecutionResult;
-}
-
-/** StartTaskState enums */
-export type StartTaskState = "running" | "completed";
-
 /** A reference to a Certificate to be installed on Compute Nodes in a Pool. Warning: This object is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export interface CertificateReference {
   /** The thumbprint of the Certificate. */
@@ -497,11 +512,6 @@ export function certificateReferenceSerializer(
   };
 }
 
-/** CertificateStoreLocation enums */
-export type CertificateStoreLocation = "currentuser" | "localmachine";
-/** CertificateVisibility enums */
-export type CertificateVisibility = "starttask" | "task" | "remoteuser";
-
 /** An error encountered by a Compute Node. */
 export interface BatchNodeError {
   /** An identifier for the Compute Node error. Codes are invariant and are intended to be consumed programmatically. */
@@ -510,12 +520,6 @@ export interface BatchNodeError {
   message?: string;
   /** The list of additional error details related to the Compute Node error. */
   errorDetails?: NameValuePair[];
-}
-
-/** The endpoint configuration for the Compute Node. */
-export interface BatchNodeEndpointConfiguration {
-  /** The list of inbound endpoints that are accessible on the Compute Node. */
-  inboundEndpoints: InboundEndpoint[];
 }
 
 /** An inbound endpoint on a Compute Node. */
@@ -534,58 +538,6 @@ export interface InboundEndpoint {
   backendPort: number;
 }
 
-/** InboundEndpointProtocol enums */
-export type InboundEndpointProtocol = "tcp" | "udp";
-
-/**
- * The Batch Compute Node agent is a program that runs on each Compute Node in the
- * Pool and provides Batch capability on the Compute Node.
- */
-export interface NodeAgentInformation {
-  /** The version of the Batch Compute Node agent running on the Compute Node. This version number can be checked against the Compute Node agent release notes located at https://github.com/Azure/Batch/blob/master/changelogs/nodeagent/CHANGELOG.md. */
-  version: string;
-  /** The time when the Compute Node agent was updated on the Compute Node. This is the most recent time that the Compute Node agent was updated to a new version. */
-  lastUpdateTime: Date;
-}
-
-/** Info about the current state of the virtual machine. */
-export interface VirtualMachineInfo {
-  /** The reference to the Azure Virtual Machine's Marketplace Image. */
-  imageReference?: ImageReference;
-}
-
-/**
- * A reference to an Azure Virtual Machines Marketplace Image or a Shared Image
- * Gallery Image. To get the list of all Azure Marketplace Image references
- * verified by Azure Batch, see the 'List Supported Images' operation.
- */
-export interface ImageReference {
-  /** The publisher of the Azure Virtual Machines Marketplace Image. For example, Canonical or MicrosoftWindowsServer. */
-  publisher?: string;
-  /** The offer type of the Azure Virtual Machines Marketplace Image. For example, UbuntuServer or WindowsServer. */
-  offer?: string;
-  /** The SKU of the Azure Virtual Machines Marketplace Image. For example, 18.04-LTS or 2019-Datacenter. */
-  sku?: string;
-  /** The version of the Azure Virtual Machines Marketplace Image. A value of 'latest' can be specified to select the latest version of an Image. If omitted, the default is 'latest'. */
-  version?: string;
-  /** The ARM resource identifier of the Shared Image Gallery Image. Compute Nodes in the Pool will be created using this Image Id. This is of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName}/versions/{VersionId} or /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName} for always defaulting to the latest image version. This property is mutually exclusive with other ImageReference properties. The Shared Image Gallery Image must have replicas in the same region and must be in the same subscription as the Azure Batch account. If the image version is not specified in the imageId, the latest version will be used. For information about the firewall settings for the Batch Compute Node agent to communicate with the Batch service see https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration. */
-  virtualMachineImageId?: string;
-  /** The specific version of the platform image or marketplace image used to create the node. This read-only field differs from 'version' only if the value specified for 'version' when the pool was created was 'latest'. */
-  readonly exactVersion?: string;
-}
-
-export function imageReferenceSerializer(
-  item: ImageReference,
-): Record<string, unknown> {
-  return {
-    publisher: item["publisher"],
-    offer: item["offer"],
-    sku: item["sku"],
-    version: item["version"],
-    virtualMachineImageId: item["virtualMachineImageId"],
-  };
-}
-
 /** Options for rebooting an Azure Batch Compute Node. */
 export interface NodeRebootOptions {
   /** When to reboot the Compute Node and what to do with currently running Tasks. The default value is requeue. */
@@ -599,13 +551,6 @@ export function nodeRebootOptionsSerializer(
     nodeRebootOption: item["nodeRebootOption"],
   };
 }
-
-/** BatchNodeRebootOption enums */
-export type BatchNodeRebootOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion"
-  | "retaineddata";
 
 /** Options for reimaging an Azure Batch Compute Node. */
 export interface NodeReimageOptions {
@@ -621,13 +566,6 @@ export function nodeReimageOptionsSerializer(
   };
 }
 
-/** BatchNodeReimageOption enums */
-export type BatchNodeReimageOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion"
-  | "retaineddata";
-
 /** Options for disabling scheduling on an Azure Batch Compute Node. */
 export interface NodeDisableSchedulingOptions {
   /** What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue. */
@@ -641,12 +579,6 @@ export function nodeDisableSchedulingOptionsSerializer(
     nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"],
   };
 }
-
-/** DisableBatchNodeSchedulingOption enums */
-export type DisableBatchNodeSchedulingOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion";
 
 /** The remote login settings for a Compute Node. */
 export interface BatchNodeRemoteLoginSettingsResult {
@@ -772,9 +704,6 @@ export interface InstanceViewStatus {
   /** The time of the status. */
   time?: string;
 }
-
-/** Level code. */
-export type StatusLevelTypes = "Error" | "Info" | "Warning";
 
 /** The result of listing the Compute Node extensions in a Node. */
 export interface _NodeVMExtensionList {
@@ -946,26 +875,6 @@ export function exitConditionsSerializer(
   };
 }
 
-/**
- * How the Batch service should respond if a Task exits with a particular exit
- * code.
- */
-export interface ExitCodeMapping {
-  /** A process exit code. */
-  code: number;
-  /** How the Batch service should respond if the Task exits with this exit code. */
-  exitOptions: ExitOptions;
-}
-
-export function exitCodeMappingSerializer(
-  item: ExitCodeMapping,
-): Record<string, unknown> {
-  return {
-    code: item["code"],
-    exitOptions: exitOptionsSerializer(item.exitOptions),
-  };
-}
-
 /** Specifies how the Batch service responds to a particular exit condition. */
 export interface ExitOptions {
   /** An action to take on the Job containing the Task, if the Task completes with the given exit condition and the Job's onTaskFailed property is 'performExitOptionsJobAction'. The default is none for exit code 0 and terminate for all other exit conditions. If the Job's onTaskFailed property is noaction, then specifying this property returns an error and the add Task request fails with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
@@ -982,138 +891,6 @@ export function exitOptionsSerializer(
     dependencyAction: item["dependencyAction"],
   };
 }
-
-/** JobAction enums */
-export type JobAction = "none" | "disable" | "terminate";
-/** DependencyAction enums */
-export type DependencyAction = "satisfy" | "block";
-
-/**
- * A range of exit codes and how the Batch service should respond to exit codes
- * within that range.
- */
-export interface ExitCodeRangeMapping {
-  /** The first exit code in the range. */
-  start: number;
-  /** The last exit code in the range. */
-  end: number;
-  /** How the Batch service should respond if the Task exits with an exit code in the range start to end (inclusive). */
-  exitOptions: ExitOptions;
-}
-
-export function exitCodeRangeMappingSerializer(
-  item: ExitCodeRangeMapping,
-): Record<string, unknown> {
-  return {
-    start: item["start"],
-    end: item["end"],
-    exitOptions: exitOptionsSerializer(item.exitOptions),
-  };
-}
-
-/** On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. */
-export interface OutputFile {
-  /** A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. */
-  filePattern: string;
-  /** The destination for the output file(s). */
-  destination: OutputFileDestination;
-  /** Additional options for the upload operation, including under what conditions to perform the upload. */
-  uploadOptions: OutputFileUploadOptions;
-}
-
-export function outputFileSerializer(
-  item: OutputFile,
-): Record<string, unknown> {
-  return {
-    filePattern: item["filePattern"],
-    destination: outputFileDestinationSerializer(item.destination),
-    uploadOptions: outputFileUploadOptionsSerializer(item.uploadOptions),
-  };
-}
-
-/** The destination to which a file should be uploaded. */
-export interface OutputFileDestination {
-  /** A location in Azure blob storage to which files are uploaded. */
-  container?: OutputFileBlobContainerDestination;
-}
-
-export function outputFileDestinationSerializer(
-  item: OutputFileDestination,
-): Record<string, unknown> {
-  return {
-    container: !item.container
-      ? item.container
-      : outputFileBlobContainerDestinationSerializer(item.container),
-  };
-}
-
-/** Specifies a file upload destination within an Azure blob storage container. */
-export interface OutputFileBlobContainerDestination {
-  /** The destination blob or virtual directory within the Azure Storage container. If filePattern refers to a specific file (i.e. contains no wildcards), then path is the name of the blob to which to upload that file. If filePattern contains one or more wildcards (and therefore may match multiple files), then path is the name of the blob virtual directory (which is prepended to each blob name) to which to upload the file(s). If omitted, file(s) are uploaded to the root of the container with a blob name matching their file name. */
-  path?: string;
-  /** The URL of the container within Azure Blob Storage to which to upload the file(s). If not using a managed identity, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. */
-  containerUrl: string;
-  /** The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. */
-  identityReference?: BatchNodeIdentityReference;
-  /** A list of name-value pairs for headers to be used in uploading output files. These headers will be specified when uploading files to Azure Storage. Official document on allowed headers when uploading blobs: https://docs.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types. */
-  uploadHeaders?: HttpHeader[];
-}
-
-export function outputFileBlobContainerDestinationSerializer(
-  item: OutputFileBlobContainerDestination,
-): Record<string, unknown> {
-  return {
-    path: item["path"],
-    containerUrl: item["containerUrl"],
-    identityReference: !item.identityReference
-      ? item.identityReference
-      : batchNodeIdentityReferenceSerializer(item.identityReference),
-    uploadHeaders:
-      item["uploadHeaders"] === undefined
-        ? item["uploadHeaders"]
-        : item["uploadHeaders"].map(httpHeaderSerializer),
-  };
-}
-
-/** An HTTP header name-value pair */
-export interface HttpHeader {
-  /** The case-insensitive name of the header to be used while uploading output files. */
-  name: string;
-  /** The value of the header to be used while uploading output files. */
-  value?: string;
-}
-
-export function httpHeaderSerializer(
-  item: HttpHeader,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-    value: item["value"],
-  };
-}
-
-/**
- * Options for an output file upload operation, including under what conditions
- * to perform the upload.
- */
-export interface OutputFileUploadOptions {
-  /** The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. */
-  uploadCondition: OutputFileUploadCondition;
-}
-
-export function outputFileUploadOptionsSerializer(
-  item: OutputFileUploadOptions,
-): Record<string, unknown> {
-  return {
-    uploadCondition: item["uploadCondition"],
-  };
-}
-
-/** OutputFileUploadCondition enums */
-export type OutputFileUploadCondition =
-  | "tasksuccess"
-  | "taskfailure"
-  | "taskcompletion";
 
 /**
  * A locality hint that can be used by the Batch service to select a Compute Node
@@ -1205,6 +982,164 @@ export function taskDependenciesSerializer(
 }
 
 /**
+ * The settings for an authentication token that the Task can use to perform Batch
+ * service operations.
+ */
+export interface AuthenticationTokenSettings {
+  /** The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. */
+  access?: AccessScope[];
+}
+
+export function authenticationTokenSettingsSerializer(
+  item: AuthenticationTokenSettings,
+): Record<string, unknown> {
+  return {
+    access: item["access"],
+  };
+}
+
+/**
+ * How the Batch service should respond if a Task exits with a particular exit
+ * code.
+ */
+export interface ExitCodeMapping {
+  /** A process exit code. */
+  code: number;
+  /** How the Batch service should respond if the Task exits with this exit code. */
+  exitOptions: ExitOptions;
+}
+
+export function exitCodeMappingSerializer(
+  item: ExitCodeMapping,
+): Record<string, unknown> {
+  return {
+    code: item["code"],
+    exitOptions: exitOptionsSerializer(item.exitOptions),
+  };
+}
+
+/**
+ * A range of exit codes and how the Batch service should respond to exit codes
+ * within that range.
+ */
+export interface ExitCodeRangeMapping {
+  /** The first exit code in the range. */
+  start: number;
+  /** The last exit code in the range. */
+  end: number;
+  /** How the Batch service should respond if the Task exits with an exit code in the range start to end (inclusive). */
+  exitOptions: ExitOptions;
+}
+
+export function exitCodeRangeMappingSerializer(
+  item: ExitCodeRangeMapping,
+): Record<string, unknown> {
+  return {
+    start: item["start"],
+    end: item["end"],
+    exitOptions: exitOptionsSerializer(item.exitOptions),
+  };
+}
+
+/** On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. */
+export interface OutputFile {
+  /** A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. */
+  filePattern: string;
+  /** The destination for the output file(s). */
+  destination: OutputFileDestination;
+  /** Additional options for the upload operation, including under what conditions to perform the upload. */
+  uploadOptions: OutputFileUploadOptions;
+}
+
+export function outputFileSerializer(
+  item: OutputFile,
+): Record<string, unknown> {
+  return {
+    filePattern: item["filePattern"],
+    destination: outputFileDestinationSerializer(item.destination),
+    uploadOptions: outputFileUploadOptionsSerializer(item.uploadOptions),
+  };
+}
+
+/** The destination to which a file should be uploaded. */
+export interface OutputFileDestination {
+  /** A location in Azure blob storage to which files are uploaded. */
+  container?: OutputFileBlobContainerDestination;
+}
+
+export function outputFileDestinationSerializer(
+  item: OutputFileDestination,
+): Record<string, unknown> {
+  return {
+    container: !item.container
+      ? item.container
+      : outputFileBlobContainerDestinationSerializer(item.container),
+  };
+}
+
+/** Specifies a file upload destination within an Azure blob storage container. */
+export interface OutputFileBlobContainerDestination {
+  /** The destination blob or virtual directory within the Azure Storage container. If filePattern refers to a specific file (i.e. contains no wildcards), then path is the name of the blob to which to upload that file. If filePattern contains one or more wildcards (and therefore may match multiple files), then path is the name of the blob virtual directory (which is prepended to each blob name) to which to upload the file(s). If omitted, file(s) are uploaded to the root of the container with a blob name matching their file name. */
+  path?: string;
+  /** The URL of the container within Azure Blob Storage to which to upload the file(s). If not using a managed identity, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. */
+  containerUrl: string;
+  /** The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. */
+  identityReference?: BatchNodeIdentityReference;
+  /** A list of name-value pairs for headers to be used in uploading output files. These headers will be specified when uploading files to Azure Storage. Official document on allowed headers when uploading blobs: https://docs.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types. */
+  uploadHeaders?: HttpHeader[];
+}
+
+export function outputFileBlobContainerDestinationSerializer(
+  item: OutputFileBlobContainerDestination,
+): Record<string, unknown> {
+  return {
+    path: item["path"],
+    containerUrl: item["containerUrl"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+    uploadHeaders:
+      item["uploadHeaders"] === undefined
+        ? item["uploadHeaders"]
+        : item["uploadHeaders"].map(httpHeaderSerializer),
+  };
+}
+
+/**
+ * Options for an output file upload operation, including under what conditions
+ * to perform the upload.
+ */
+export interface OutputFileUploadOptions {
+  /** The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. */
+  uploadCondition: OutputFileUploadCondition;
+}
+
+export function outputFileUploadOptionsSerializer(
+  item: OutputFileUploadOptions,
+): Record<string, unknown> {
+  return {
+    uploadCondition: item["uploadCondition"],
+  };
+}
+
+/** An HTTP header name-value pair */
+export interface HttpHeader {
+  /** The case-insensitive name of the header to be used while uploading output files. */
+  name: string;
+  /** The value of the header to be used while uploading output files. */
+  value?: string;
+}
+
+export function httpHeaderSerializer(
+  item: HttpHeader,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
+}
+
+/**
  * The start and end of the range are inclusive. For example, if a range has start
  * 9 and end 12, then it represents Tasks '9', '10', '11' and '12'.
  */
@@ -1240,26 +1175,6 @@ export function applicationPackageReferenceSerializer(
     version: item["version"],
   };
 }
-
-/**
- * The settings for an authentication token that the Task can use to perform Batch
- * service operations.
- */
-export interface AuthenticationTokenSettings {
-  /** The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. */
-  access?: AccessScope[];
-}
-
-export function authenticationTokenSettingsSerializer(
-  item: AuthenticationTokenSettings,
-): Record<string, unknown> {
-  return {
-    access: item["access"],
-  };
-}
-
-/** AccessScope enums */
-export type AccessScope = "job";
 
 /** The result of listing the Tasks in a Job. */
 export interface _BatchTaskListResult {
@@ -1423,9 +1338,6 @@ export interface TaskAddResult {
   error?: BatchError;
 }
 
-/** TaskAddStatus enums */
-export type TaskAddStatus = "Success" | "clienterror" | "servererror";
-
 /** The result of listing the subtasks of a Task. */
 export interface BatchTaskListSubtasksResult {
   /** The list of subtasks. */
@@ -1459,9 +1371,6 @@ export interface SubtaskInformation {
   /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
   result?: TaskExecutionResult;
 }
-
-/** SubtaskState enums */
-export type SubtaskState = "preparing" | "running" | "completed";
 
 /**
  * A Job Schedule that allows recurring Jobs by specifying when to run Jobs and a
@@ -1512,14 +1421,6 @@ export function batchJobScheduleSerializer(
         : item["metadata"].map(metadataItemSerializer),
   };
 }
-
-/** JobScheduleState enums */
-export type JobScheduleState =
-  | "active"
-  | "completed"
-  | "disabled"
-  | "terminating"
-  | "deleting";
 
 /**
  * The schedule according to which Jobs will be created. All times are fixed
@@ -1616,11 +1517,6 @@ export function jobSpecificationSerializer(
         : item["metadata"].map(metadataItemSerializer),
   };
 }
-
-/** The action the Batch service should take when all Tasks in the Job are in the completed state. */
-export type OnAllTasksComplete = "noaction" | "terminatejob";
-/** OnTaskFailure enums */
-export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
 
 /** The network configuration for the Job. */
 export interface JobNetworkConfiguration {
@@ -1948,9 +1844,6 @@ export function autoPoolSpecificationSerializer(
   };
 }
 
-/** PoolLifetimeOption enums */
-export type PoolLifetimeOption = "jobschedule" | "job";
-
 /** Specification for creating a new Pool. */
 export interface PoolSpecification {
   /** The display name for the Pool. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. */
@@ -2173,36 +2066,6 @@ export function windowsConfigurationSerializer(
   };
 }
 
-/**
- * Settings which will be used by the data disks associated to Compute Nodes in
- * the Pool. When using attached data disks, you need to mount and format the
- * disks from within a VM to use them.
- */
-export interface DataDisk {
-  /** The logical unit number. The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct lun. The value must be between 0 and 63, inclusive. */
-  lun: number;
-  /** The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. */
-  caching?: CachingType;
-  /** The initial disk size in gigabytes. */
-  diskSizeGb: number;
-  /** The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". */
-  storageAccountType?: StorageAccountType;
-}
-
-export function dataDiskSerializer(item: DataDisk): Record<string, unknown> {
-  return {
-    lun: item["lun"],
-    caching: item["caching"],
-    diskSizeGB: item["diskSizeGb"],
-    storageAccountType: item["storageAccountType"],
-  };
-}
-
-/** CachingType enums */
-export type CachingType = "none" | "readonly" | "readwrite";
-/** StorageAccountType enums */
-export type StorageAccountType = "standard_lrs" | "premium_lrs";
-
 /** The configuration for container-enabled Pools. */
 export interface ContainerConfiguration {
   /** The container technology to be used. */
@@ -2226,9 +2089,6 @@ export function containerConfigurationSerializer(
   };
 }
 
-/** ContainerType enums */
-export type ContainerType = "dockerCompatible" | "criCompatible";
-
 /**
  * The disk encryption configuration applied on compute nodes in the pool. Disk
  * encryption configuration is not supported on Linux pool created with Shared
@@ -2247,9 +2107,6 @@ export function diskEncryptionConfigurationSerializer(
   };
 }
 
-/** DiskEncryptionTarget enums */
-export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
-
 /**
  * For regional placement, nodes in the pool will be allocated in the same region.
  * For zonal placement, nodes in the pool will be spread across different zones
@@ -2267,9 +2124,6 @@ export function nodePlacementConfigurationSerializer(
     policy: item["policy"],
   };
 }
-
-/** NodePlacementPolicyType enums */
-export type NodePlacementPolicyType = "regional" | "zonal";
 
 /** Settings for the operating system disk of the compute node (VM). */
 export interface OSDisk {
@@ -2302,9 +2156,6 @@ export function diffDiskSettingsSerializer(
   };
 }
 
-/** AccessDiffDiskPlacementScope enums */
-export type DiffDiskPlacement = "cachedisk";
-
 /** Specifies how Tasks should be distributed across Compute Nodes. */
 export interface TaskSchedulingPolicy {
   /** How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. */
@@ -2318,9 +2169,6 @@ export function taskSchedulingPolicySerializer(
     nodeFillType: item["nodeFillType"],
   };
 }
-
-/** BatchNodeFillType enums */
-export type BatchNodeFillType = "spread" | "pack";
 
 /** The network configuration for a Pool. */
 export interface NetworkConfiguration {
@@ -2354,9 +2202,6 @@ export function networkConfigurationSerializer(
   };
 }
 
-/** DynamicVNetAssignmentScope enums */
-export type DynamicVNetAssignmentScope = "none" | "job";
-
 /** The endpoint configuration for a Pool. */
 export interface PoolEndpointConfiguration {
   /** A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses. */
@@ -2368,6 +2213,101 @@ export function poolEndpointConfigurationSerializer(
 ): Record<string, unknown> {
   return {
     inboundNATPools: item["inboundNatPools"].map(inboundNATPoolSerializer),
+  };
+}
+
+/** The public IP Address configuration of the networking configuration of a Pool. */
+export interface PublicIpAddressConfiguration {
+  /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
+  IpAddressProvisioningType?: IpAddressProvisioningType;
+  /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
+  ipAddressIds?: string[];
+}
+
+export function publicIpAddressConfigurationSerializer(
+  item: PublicIpAddressConfiguration,
+): Record<string, unknown> {
+  return {
+    provision: item["IpAddressProvisioningType"],
+    ipAddressIds: item["ipAddressIds"],
+  };
+}
+
+/**
+ * Contains information about Jobs that have been and will be run under a Job
+ * Schedule.
+ */
+export interface JobScheduleExecutionInformation {
+  /** The next time at which a Job will be created under this schedule. This property is meaningful only if the schedule is in the active state when the time comes around. For example, if the schedule is disabled, no Job will be created at nextRunTime unless the Job is enabled before then. */
+  nextRunTime?: Date;
+  /** Information about the most recent Job under the Job Schedule. This property is present only if the at least one Job has run under the schedule. */
+  recentJob?: RecentJob;
+  /** The time at which the schedule ended. This property is set only if the Job Schedule is in the completed state. */
+  endTime?: Date;
+}
+
+/** Information about the most recent Job to run under the Job Schedule. */
+export interface RecentJob {
+  /** The ID of the Job. */
+  id?: string;
+  /** The URL of the Job. */
+  url?: string;
+}
+
+/** Resource usage statistics for a Job Schedule. */
+export interface JobScheduleStatistics {
+  /** The URL of the statistics. */
+  url: string;
+  /** The start time of the time range covered by the statistics. */
+  startTime: Date;
+  /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
+  lastUpdateTime: Date;
+  /** The total user mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
+  userCPUTime: string;
+  /** The total kernel mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
+  kernelCPUTime: string;
+  /** The total wall clock time of all the Tasks in all the Jobs created under the schedule. The wall clock time is the elapsed time from when the Task started running on a Compute Node to when it finished (or to the last time the statistics were updated, if the Task had not finished by then). If a Task was retried, this includes the wall clock time of all the Task retries. */
+  wallClockTime: string;
+  /** The total number of disk read operations made by all Tasks in all Jobs created under the schedule. */
+  readIOps: number;
+  /** The total number of disk write operations made by all Tasks in all Jobs created under the schedule. */
+  writeIOps: number;
+  /** The total gibibytes read from disk by all Tasks in all Jobs created under the schedule. */
+  readIOGiB: number;
+  /** The total gibibytes written to disk by all Tasks in all Jobs created under the schedule. */
+  writeIOGiB: number;
+  /** The total number of Tasks successfully completed during the given time range in Jobs created under the schedule. A Task completes successfully if it returns exit code 0. */
+  numSucceededTasks: number;
+  /** The total number of Tasks that failed during the given time range in Jobs created under the schedule. A Task fails if it exhausts its maximum retry count without returning exit code 0. */
+  numFailedTasks: number;
+  /** The total number of retries during the given time range on all Tasks in all Jobs created under the schedule. */
+  numTaskRetries: number;
+  /** The total wait time of all Tasks in all Jobs created under the schedule. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). This value is only reported in the Account lifetime statistics; it is not included in the Job statistics. */
+  waitTime: string;
+}
+
+/**
+ * Settings which will be used by the data disks associated to Compute Nodes in
+ * the Pool. When using attached data disks, you need to mount and format the
+ * disks from within a VM to use them.
+ */
+export interface DataDisk {
+  /** The logical unit number. The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct lun. The value must be between 0 and 63, inclusive. */
+  lun: number;
+  /** The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. */
+  caching?: CachingType;
+  /** The initial disk size in gigabytes. */
+  diskSizeGb: number;
+  /** The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". */
+  storageAccountType?: StorageAccountType;
+}
+
+export function dataDiskSerializer(item: DataDisk): Record<string, unknown> {
+  return {
+    lun: item["lun"],
+    caching: item["caching"],
+    diskSizeGB: item["diskSizeGb"],
+    storageAccountType: item["storageAccountType"],
   };
 }
 
@@ -2430,32 +2370,6 @@ export function networkSecurityGroupRuleSerializer(
     sourcePortRanges: item["sourcePortRanges"],
   };
 }
-
-/** NetworkSecurityGroupRuleAccess enums */
-export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
-
-/** The public IP Address configuration of the networking configuration of a Pool. */
-export interface PublicIpAddressConfiguration {
-  /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
-  ipAddressProvisioningType?: IpAddressProvisioningType;
-  /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
-  ipAddressIds?: string[];
-}
-
-export function publicIpAddressConfigurationSerializer(
-  item: PublicIpAddressConfiguration,
-): Record<string, unknown> {
-  return {
-    provision: item["ipAddressProvisioningType"],
-    ipAddressIds: item["ipAddressIds"],
-  };
-}
-
-/** IPAddressProvisioningType enums */
-export type IpAddressProvisioningType =
-  | "batchmanaged"
-  | "usermanaged"
-  | "nopublicipaddresses";
 
 /**
  * Properties used to create a user used to execute Tasks on an Azure Batch
@@ -2523,9 +2437,6 @@ export function windowsUserConfigurationSerializer(
     loginMode: item["loginMode"],
   };
 }
-
-/** LoginMode enums */
-export type LoginMode = "batch" | "interactive";
 
 /**
  * The Batch service does not assign any meaning to this metadata; it is solely
@@ -2686,62 +2597,6 @@ export function azureFileShareConfigurationSerializer(
   };
 }
 
-/** NodeCommunicationMode enums */
-export type NodeCommunicationMode = "default" | "classic" | "simplified";
-
-/**
- * Contains information about Jobs that have been and will be run under a Job
- * Schedule.
- */
-export interface JobScheduleExecutionInformation {
-  /** The next time at which a Job will be created under this schedule. This property is meaningful only if the schedule is in the active state when the time comes around. For example, if the schedule is disabled, no Job will be created at nextRunTime unless the Job is enabled before then. */
-  nextRunTime?: Date;
-  /** Information about the most recent Job under the Job Schedule. This property is present only if the at least one Job has run under the schedule. */
-  recentJob?: RecentJob;
-  /** The time at which the schedule ended. This property is set only if the Job Schedule is in the completed state. */
-  endTime?: Date;
-}
-
-/** Information about the most recent Job to run under the Job Schedule. */
-export interface RecentJob {
-  /** The ID of the Job. */
-  id?: string;
-  /** The URL of the Job. */
-  url?: string;
-}
-
-/** Resource usage statistics for a Job Schedule. */
-export interface JobScheduleStatistics {
-  /** The URL of the statistics. */
-  url: string;
-  /** The start time of the time range covered by the statistics. */
-  startTime: Date;
-  /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
-  lastUpdateTime: Date;
-  /** The total user mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
-  userCPUTime: string;
-  /** The total kernel mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
-  kernelCPUTime: string;
-  /** The total wall clock time of all the Tasks in all the Jobs created under the schedule. The wall clock time is the elapsed time from when the Task started running on a Compute Node to when it finished (or to the last time the statistics were updated, if the Task had not finished by then). If a Task was retried, this includes the wall clock time of all the Task retries. */
-  wallClockTime: string;
-  /** The total number of disk read operations made by all Tasks in all Jobs created under the schedule. */
-  readIOps: number;
-  /** The total number of disk write operations made by all Tasks in all Jobs created under the schedule. */
-  writeIOps: number;
-  /** The total gibibytes read from disk by all Tasks in all Jobs created under the schedule. */
-  readIOGiB: number;
-  /** The total gibibytes written to disk by all Tasks in all Jobs created under the schedule. */
-  writeIOGiB: number;
-  /** The total number of Tasks successfully completed during the given time range in Jobs created under the schedule. A Task completes successfully if it returns exit code 0. */
-  numSucceededTasks: number;
-  /** The total number of Tasks that failed during the given time range in Jobs created under the schedule. A Task fails if it exhausts its maximum retry count without returning exit code 0. */
-  numFailedTasks: number;
-  /** The total number of retries during the given time range on all Tasks in all Jobs created under the schedule. */
-  numTaskRetries: number;
-  /** The total wait time of all Tasks in all Jobs created under the schedule. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). This value is only reported in the Account lifetime statistics; it is not included in the Job statistics. */
-  waitTime: string;
-}
-
 /** Options for updating an Azure Batch Job Schedule. */
 export interface BatchJobScheduleUpdateOptions {
   /** The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. If you do not specify this element, the existing schedule is left unchanged. */
@@ -2849,9 +2704,6 @@ export function batchCertificateSerializer(
   };
 }
 
-/** CertificateState enums */
-export type CertificateState = "active" | "deleting" | "deletefailed";
-
 /** An error encountered by the Batch service when deleting a Certificate. */
 export interface DeleteCertificateError {
   /** An identifier for the Certificate deletion error. Codes are invariant and are intended to be consumed programmatically. */
@@ -2861,9 +2713,6 @@ export interface DeleteCertificateError {
   /** A list of additional error details related to the Certificate deletion error. This list includes details such as the active Pools and Compute Nodes referencing this Certificate. However, if a large number of resources reference the Certificate, the list contains only about the first hundred. */
   values?: NameValuePair[];
 }
-
-/** CertificateFormat enums */
-export type CertificateFormat = "pfx" | "cer";
 
 /** The result of listing the Certificates in the Account. */
 export interface _CertificateListResult {
@@ -2945,16 +2794,6 @@ export function batchJobSerializer(item: BatchJob): Record<string, unknown> {
         : item["metadata"].map(metadataItemSerializer),
   };
 }
-
-/** JobState enums */
-export type JobState =
-  | "active"
-  | "disabling"
-  | "disabled"
-  | "enabling"
-  | "terminating"
-  | "completed"
-  | "deleting";
 
 /** Contains information about the execution of a Job in the Azure Batch service. */
 export interface JobExecutionInformation {
@@ -3066,9 +2905,6 @@ export function batchJobDisableOptionsSerializer(
     disableTasks: item["disableTasks"],
   };
 }
-
-/** DisableJobOption enums */
-export type DisableJobOption = "requeue" | "terminate" | "wait";
 
 /** Options for terminating an Azure Batch Job. */
 export interface BatchJobTerminateOptions {
@@ -3221,9 +3057,6 @@ export interface JobPreparationTaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
-/** JobPreparationTaskState enums */
-export type JobPreparationTaskState = "running" | "completed";
-
 /**
  * Contains information about the execution of a Job Release Task on a Compute
  * Node.
@@ -3248,9 +3081,6 @@ export interface JobReleaseTaskExecutionInformation {
   /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
   result?: TaskExecutionResult;
 }
-
-/** JobReleaseTaskState enums */
-export type JobReleaseTaskState = "running" | "completed";
 
 /** The Task and TaskSlot counts for a Job. */
 export interface TaskCountsResult {
@@ -3314,11 +3144,6 @@ export interface ImageInformation {
   /** Whether the Azure Batch service actively verifies that the Image is compatible with the associated Compute Node agent SKU. */
   verificationType: VerificationType;
 }
-
-/** OSType enums */
-export type OSType = "linux" | "windows";
-/** VerificationType enums */
-export type VerificationType = "verified" | "unverified";
 
 /** The result of listing the Compute Node counts in the Account. */
 export interface _PoolNodeCountsListResult {
@@ -3597,21 +3422,6 @@ export interface BatchPool {
   readonly currentNodeCommunicationMode?: NodeCommunicationMode;
 }
 
-/** PoolState enums */
-export type PoolState = "active" | "deleting";
-/** AllocationState enums */
-export type AllocationState = "steady" | "resizing" | "stopping";
-
-/** An error that occurred when resizing a Pool. */
-export interface ResizeError {
-  /** An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. */
-  code?: string;
-  /** A message describing the Pool resize error, intended to be suitable for display in a user interface. */
-  message?: string;
-  /** A list of additional error details related to the Pool resize error. */
-  values?: NameValuePair[];
-}
-
 /** The results and errors from an execution of a Pool autoscale formula. */
 export interface AutoScaleRun {
   /** The time at which the autoscale formula was last evaluated. */
@@ -3694,8 +3504,15 @@ export interface BatchPoolIdentity {
   userAssignedIdentities?: UserAssignedIdentity[];
 }
 
-/** PoolIdentityType enums */
-export type PoolIdentityType = "UserAssigned" | "None";
+/** An error that occurred when resizing a Pool. */
+export interface ResizeError {
+  /** An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. */
+  code?: string;
+  /** A message describing the Pool resize error, intended to be suitable for display in a user interface. */
+  message?: string;
+  /** A list of additional error details related to the Pool resize error. */
+  values?: NameValuePair[];
+}
 
 /** The user assigned Identity */
 export interface UserAssignedIdentity {
@@ -3807,13 +3624,6 @@ export function batchPoolResizeOptionsSerializer(
   };
 }
 
-/** BatchNodeDeallocationOption enums */
-export type BatchNodeDeallocationOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion"
-  | "retaineddata";
-
 /** Options for replacing properties on an Azure Batch Pool. */
 export interface BatchPoolReplaceOptions {
   /** A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. If this element is present, it overwrites any existing StartTask. If omitted, any existing StartTask is removed from the Pool. */
@@ -3891,5 +3701,153 @@ export interface BatchApplication {
   versions: string[];
 }
 
+/** BatchNodeState enums */
+export type BatchNodeState =
+  | "idle"
+  | "rebooting"
+  | "reimaging"
+  | "running"
+  | "unusable"
+  | "creating"
+  | "starting"
+  | "waitingforstarttask"
+  | "starttaskfailed"
+  | "unknown"
+  | "leavingpool"
+  | "offline"
+  | "preempted";
+/** SchedulingState enums */
+export type SchedulingState = "enabled" | "disabled";
+/** TaskState enums */
+export type TaskState = "active" | "preparing" | "running" | "completed";
+/** ErrorCategory enums */
+export type ErrorCategory = "usererror" | "servererror";
+/** TaskExecutionResult enums */
+export type TaskExecutionResult = "success" | "failure";
+/** ContainerWorkingDirectory enums */
+export type ContainerWorkingDirectory =
+  | "taskWorkingDirectory"
+  | "containerImageDefault";
+/** AutoUserScope enums */
+export type AutoUserScope = "task" | "pool";
+/** ElevationLevel enums */
+export type ElevationLevel = "nonadmin" | "admin";
+/** StartTaskState enums */
+export type StartTaskState = "running" | "completed";
+/** CertificateStoreLocation enums */
+export type CertificateStoreLocation = "currentuser" | "localmachine";
+/** CertificateVisibility enums */
+export type CertificateVisibility = "starttask" | "task" | "remoteuser";
+/** InboundEndpointProtocol enums */
+export type InboundEndpointProtocol = "tcp" | "udp";
+/** BatchNodeRebootOption enums */
+export type BatchNodeRebootOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+/** BatchNodeReimageOption enums */
+export type BatchNodeReimageOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+/** DisableBatchNodeSchedulingOption enums */
+export type DisableBatchNodeSchedulingOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion";
+/** Level code. */
+export type StatusLevelTypes = "Error" | "Info" | "Warning";
+/** JobAction enums */
+export type JobAction = "none" | "disable" | "terminate";
+/** DependencyAction enums */
+export type DependencyAction = "satisfy" | "block";
+/** OutputFileUploadCondition enums */
+export type OutputFileUploadCondition =
+  | "tasksuccess"
+  | "taskfailure"
+  | "taskcompletion";
+/** AccessScope enums */
+export type AccessScope = "job";
+/** TaskAddStatus enums */
+export type TaskAddStatus = "Success" | "clienterror" | "servererror";
+/** SubtaskState enums */
+export type SubtaskState = "preparing" | "running" | "completed";
+/** JobScheduleState enums */
+export type JobScheduleState =
+  | "active"
+  | "completed"
+  | "disabled"
+  | "terminating"
+  | "deleting";
+/** The action the Batch service should take when all Tasks in the Job are in the completed state. */
+export type OnAllTasksComplete = "noaction" | "terminatejob";
+/** OnTaskFailure enums */
+export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
+/** PoolLifetimeOption enums */
+export type PoolLifetimeOption = "jobschedule" | "job";
+/** CachingType enums */
+export type CachingType = "none" | "readonly" | "readwrite";
+/** StorageAccountType enums */
+export type StorageAccountType = "standard_lrs" | "premium_lrs";
+/** ContainerType enums */
+export type ContainerType = "dockerCompatible" | "criCompatible";
+/** DiskEncryptionTarget enums */
+export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
+/** NodePlacementPolicyType enums */
+export type NodePlacementPolicyType = "regional" | "zonal";
+/** AccessDiffDiskPlacementScope enums */
+export type DiffDiskPlacement = "cachedisk";
+/** BatchNodeFillType enums */
+export type BatchNodeFillType = "spread" | "pack";
+/** DynamicVNetAssignmentScope enums */
+export type DynamicVNetAssignmentScope = "none" | "job";
+/** NetworkSecurityGroupRuleAccess enums */
+export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
+/** IPAddressProvisioningType enums */
+export type IpAddressProvisioningType =
+  | "batchmanaged"
+  | "usermanaged"
+  | "nopublicipaddresses";
+/** LoginMode enums */
+export type LoginMode = "batch" | "interactive";
+/** NodeCommunicationMode enums */
+export type NodeCommunicationMode = "default" | "classic" | "simplified";
+/** CertificateState enums */
+export type CertificateState = "active" | "deleting" | "deletefailed";
+/** CertificateFormat enums */
+export type CertificateFormat = "pfx" | "cer";
+/** JobState enums */
+export type JobState =
+  | "active"
+  | "disabling"
+  | "disabled"
+  | "enabling"
+  | "terminating"
+  | "completed"
+  | "deleting";
+/** DisableJobOption enums */
+export type DisableJobOption = "requeue" | "terminate" | "wait";
+/** JobPreparationTaskState enums */
+export type JobPreparationTaskState = "running" | "completed";
+/** JobReleaseTaskState enums */
+export type JobReleaseTaskState = "running" | "completed";
+/** OSType enums */
+export type OSType = "linux" | "windows";
+/** VerificationType enums */
+export type VerificationType = "verified" | "unverified";
+/** PoolState enums */
+export type PoolState = "active" | "deleting";
+/** AllocationState enums */
+export type AllocationState = "steady" | "resizing" | "stopping";
+/** PoolIdentityType enums */
+export type PoolIdentityType = "UserAssigned" | "None";
+/** BatchNodeDeallocationOption enums */
+export type BatchNodeDeallocationOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
 /** The Azure Batch service version. */
 export type Versions = "2023-05-01.17.0";

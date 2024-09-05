@@ -1,24 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  SchemaGroup,
-  SchemaContentTypeValues,
-  SchemaVersion,
-  _PagedSchemaGroup,
-  _PagedVersion,
-} from "../../models/models.js";
 import { SchemaRegistryContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
 } from "@azure-rest/core-client";
+import {
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
+  _PagedSchemaGroup,
+  _PagedVersion,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   SchemaOperationsListSchemaGroupsOptionalParams,

@@ -3,9 +3,7 @@
 
 import { AnomalyDetectorContext as Client } from "../index.js";
 import {
-  PathUncheckedResponse,
   StreamableMethod,
-  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
@@ -24,6 +22,10 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import {
   MultivariateGetMultivariateBatchDetectionResultOptionalParams,
   MultivariateTrainMultivariateModelOptionalParams,

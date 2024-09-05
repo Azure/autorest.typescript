@@ -5,11 +5,15 @@ export {
   User,
   Widget,
   WidgetError,
-  CreateWidget,
-  UpdateWidget,
+  CreateWidgetRequest,
+  UpdateWidgetRequest,
   AnalyzeResult,
-  Versions,
   NonReferencedModel,
+  WidgetColor,
+  CreateWidgetRequestColor,
+  UpdateWidgetRequestColor,
+  Versions,
+  ErrorResponse,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptionalParams,

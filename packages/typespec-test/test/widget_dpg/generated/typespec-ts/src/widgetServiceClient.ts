@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   getWidgetsOperations,
   WidgetsOperations,
@@ -16,6 +14,9 @@ import {
   WidgetServiceContext,
   WidgetServiceClientOptionalParams,
 } from "./api/index.js";
+import { _ListWidgetsPagesResults } from "./models/models.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential } from "@azure/core-auth";
 
 export { WidgetServiceClientOptionalParams } from "./api/widgetServiceContext.js";
 

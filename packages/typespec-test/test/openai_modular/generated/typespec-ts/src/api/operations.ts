@@ -3,9 +3,7 @@
 
 import { OpenAIContext as Client } from "./index.js";
 import {
-  PathUncheckedResponse,
   StreamableMethod,
-  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../helpers/serializerHelpers.js";
@@ -33,6 +31,10 @@ import {
   CompletionsFinishReason,
   ChatRole,
 } from "../models/models.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
   GetAudioTranscriptionAsPlainTextOptionalParams,
@@ -621,7 +623,7 @@ export function _getChatCompletionsSend(
           : azureChatEnhancementConfigurationSerializer(body.enhancements),
         seed: body["seed"],
         logprobs: body["logprobs"],
-        top_logprobs: body["topLogprobs"],
+        top_logprobs: body["top_logprobs"],
         response_format: !body.responseFormat
           ? body.responseFormat
           : chatCompletionsResponseFormatUnionSerializer(body.responseFormat),
@@ -671,7 +673,7 @@ export async function _getChatCompletionsDeserialize(
                               title: p["title"],
                               url: p["url"],
                               filepath: p["filepath"],
-                              chunkId: p["chunk_id"],
+                              chunk_id: p["chunk_id"],
                             };
                           }),
                     intent: p.message?.context?.["intent"],
@@ -686,7 +688,7 @@ export async function _getChatCompletionsDeserialize(
                                 title: p["title"],
                                 url: p["url"],
                                 filepath: p["filepath"],
-                                chunkId: p["chunk_id"],
+                                chunk_id: p["chunk_id"],
                                 searchQueries: p["search_queries"],
                                 dataSourceIndex: p["data_source_index"],
                                 originalSearchScore: p["original_search_score"],
@@ -709,7 +711,7 @@ export async function _getChatCompletionsDeserialize(
                           token: p["token"],
                           logprob: p["logprob"],
                           bytes: p["bytes"],
-                          topLogprobs:
+                          top_logprobs:
                             p["top_logprobs"] === null
                               ? p["top_logprobs"]
                               : p["top_logprobs"].map((p: any) => {
@@ -754,7 +756,7 @@ export async function _getChatCompletionsDeserialize(
                               title: p["title"],
                               url: p["url"],
                               filepath: p["filepath"],
-                              chunkId: p["chunk_id"],
+                              chunk_id: p["chunk_id"],
                             };
                           }),
                     intent: p.delta?.context?.["intent"],
@@ -769,7 +771,7 @@ export async function _getChatCompletionsDeserialize(
                                 title: p["title"],
                                 url: p["url"],
                                 filepath: p["filepath"],
-                                chunkId: p["chunk_id"],
+                                chunk_id: p["chunk_id"],
                                 searchQueries: p["search_queries"],
                                 dataSourceIndex: p["data_source_index"],
                                 originalSearchScore: p["original_search_score"],

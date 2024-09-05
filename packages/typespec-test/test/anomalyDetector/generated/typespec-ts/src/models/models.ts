@@ -511,7 +511,7 @@ export interface UnivariateUnivariateEntireDetectionResult {
 /** Error information returned by the API. */
 export interface UnivariateAnomalyDetectorError {
   /** Error code. */
-  xMsErrorCode?: string;
+  "x-ms-error-code"?: string;
   /** The error code. */
   code?: AnomalyDetectorErrorCodes;
   /** A message explaining the error reported by the service. */
@@ -631,46 +631,14 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
-export enum MultivariateBatchDetectionStatusKnownValues {
-  Created = '"CREATED"',
-  Running = '"RUNNING"',
-  Ready = '"READY"',
-  Failed = '"FAILED"',
-}
-
 export type MultivariateBatchDetectionStatus =
   | "CREATED"
   | "RUNNING"
   | "READY"
   | "FAILED";
-
-/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
-export enum DataSchemaKnownValues {
-  /** OneTable means that your input data are all in one CSV file, which contains one 'timestamp' column and several variable columns. The default DataSchema is OneTable. */
-  OneTable = '"OneTable"',
-  /** MultiTable means that your input data are separated in multiple CSV files, in each file containing one 'timestamp' column and one 'variable' column, and the CSV file name should indicate the name of the variable. The default DataSchema is OneTable. */
-  MultiTable = '"MultiTable"',
-}
-
 /** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
 export type DataSchema = "OneTable" | "MultiTable";
-
-export enum AlignModeKnownValues {
-  Inner = '"Inner"',
-  Outer = '"Outer"',
-}
-
 export type AlignMode = "Inner" | "Outer";
-
-/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
-export enum FillNAMethodKnownValues {
-  Previous = '"Previous"',
-  Subsequent = '"Subsequent"',
-  Linear = '"Linear"',
-  Zero = '"Zero"',
-  Fixed = '"Fixed"',
-}
-
 /** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
 export type FillNAMethod =
   | "Previous"
@@ -678,28 +646,7 @@ export type FillNAMethod =
   | "Linear"
   | "Zero"
   | "Fixed";
-
-export enum ModelStatusKnownValues {
-  Created = '"CREATED"',
-  Running = '"RUNNING"',
-  Ready = '"READY"',
-  Failed = '"FAILED"',
-}
-
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
-
-export enum TimeGranularityKnownValues {
-  Yearly = '"yearly"',
-  Monthly = '"monthly"',
-  Weekly = '"weekly"',
-  Daily = '"daily"',
-  Hourly = '"hourly"',
-  PerMinute = '"minutely"',
-  PerSecond = '"secondly"',
-  Microsecond = '"microsecond"',
-  None = '"none"',
-}
-
 export type TimeGranularity =
   | "yearly"
   | "monthly"
@@ -710,16 +657,6 @@ export type TimeGranularity =
   | "secondly"
   | "microsecond"
   | "none";
-
-export enum ImputeModeKnownValues {
-  Auto = '"auto"',
-  Previous = '"previous"',
-  Linear = '"linear"',
-  Fixed = '"fixed"',
-  Zero = '"zero"',
-  NotFill = '"notFill"',
-}
-
 export type ImputeMode =
   | "auto"
   | "previous"
@@ -727,21 +664,6 @@ export type ImputeMode =
   | "fixed"
   | "zero"
   | "notFill";
-
-export enum AnomalyDetectorErrorCodesKnownValues {
-  InvalidCustomInterval = '"InvalidCustomInterval"',
-  BadArgument = '"BadArgument"',
-  InvalidGranularity = '"InvalidGranularity"',
-  InvalidPeriod = '"InvalidPeriod"',
-  InvalidModelArgument = '"InvalidModelArgument"',
-  InvalidSeries = '"InvalidSeries"',
-  InvalidJsonFormat = '"InvalidJsonFormat"',
-  RequiredGranularity = '"RequiredGranularity"',
-  RequiredSeries = '"RequiredSeries"',
-  InvalidImputeMode = '"InvalidImputeMode"',
-  InvalidImputeFixedValue = '"InvalidImputeFixedValue"',
-}
-
 export type AnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
   | "BadArgument"
@@ -754,15 +676,5 @@ export type AnomalyDetectorErrorCodes =
   | "RequiredSeries"
   | "InvalidImputeMode"
   | "InvalidImputeFixedValue";
-
-export enum APIVersionKnownValues {
-  v1_1 = '"v1.1"',
-}
-
 export type APIVersion = "v1.1";
-
-export enum VersionsKnownValues {
-  v1_1 = '"v1.1"',
-}
-
 export type Versions = "v1.1";

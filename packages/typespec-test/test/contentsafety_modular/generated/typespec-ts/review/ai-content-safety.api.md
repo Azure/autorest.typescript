@@ -5,6 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -101,6 +102,12 @@ export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 }
 
 // @public
+export interface ErrorResponse {
+    error: ErrorModel;
+    errorCode?: string;
+}
+
+// @public
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {
 }
 
@@ -190,7 +197,7 @@ export interface TextBlocklistMatchResult {
 // @public
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
-// @public
+// @public (undocumented)
 export type Versions = "2023-10-01";
 
 // (No @packageDocumentation comment for this package)

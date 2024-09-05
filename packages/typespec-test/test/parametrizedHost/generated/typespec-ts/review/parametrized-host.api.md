@@ -5,6 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
@@ -22,6 +23,12 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 // @public
 export interface ConfidentialLedgerOperations {
     listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+}
+
+// @public
+export interface ErrorResponse {
+    error: ErrorModel;
+    errorCode?: string;
 }
 
 // @public (undocumented)

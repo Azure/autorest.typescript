@@ -3,13 +3,14 @@
 
 export {
   SchemaGroup,
-  SchemaContentTypeValues,
   SchemaVersion,
-  ServiceApiVersions,
   SchemaProperties,
-  SchemaFormat,
   Schema,
+  SchemaContentTypeValues,
+  ServiceApiVersions,
+  SchemaFormat,
   ContentTypeEnum,
+  ErrorResponse,
 } from "./models.js";
 export {
   SchemaOperationsListSchemaGroupsOptionalParams,

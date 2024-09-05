@@ -270,7 +270,7 @@ function buildModelProperty(
 ): PropertySignatureStructure {
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
-    name: normalizeName(property.name, NameType.Property),
+    name: `"${property.name}"`,
     type: getTypeExpression(property.type),
     hasQuestionToken: property.optional,
     isReadonly: isReadOnly(property as SdkBodyModelPropertyType)

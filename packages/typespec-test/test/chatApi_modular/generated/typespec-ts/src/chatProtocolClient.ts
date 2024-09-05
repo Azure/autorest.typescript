@@ -1,18 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  StreamingChatCompletionOptionsRecord,
-  ChatCompletionChunkRecord,
-  ChatCompletionOptionsRecord,
-  ChatCompletionRecord,
-} from "./models/models.js";
-import {
-  CreateStreamingOptionalParams,
-  CreateOptionalParams,
-} from "./models/options.js";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import {
   createChatProtocol,
   ChatProtocolContext,
@@ -20,6 +9,17 @@ import {
   createStreaming,
   create,
 } from "./api/index.js";
+import {
+  StreamingChatCompletionOptionsRecord,
+  ChatCompletionChunkRecord,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
+} from "./models/models.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "./models/options.js";
 
 export { ChatProtocolClientOptionalParams } from "./api/chatProtocolContext.js";
 

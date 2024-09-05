@@ -1,18 +1,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TestProfileRun, _PagedTestProfileRun } from "../models/models.js";
 import { LoadTestServiceContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
 } from "@azure-rest/core-client";
+import {
+  _Metrics,
+  TestProfileRun,
+  _PagedTestFileInfo,
+  _PagedTest,
+  _PagedTestRun,
+  _PagedTestProfile,
+  _PagedTestProfileRun,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import {
+  PathUncheckedResponse,
+  createRestError,
+} from "@azure-rest/core-client";
 import {
   CreateOrUpdateTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,

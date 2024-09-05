@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
-import { User, Widget, AnalyzeResult } from "../../models/models.js";
 import {
   listWidgets,
   listWidgetsPages,
@@ -14,8 +13,12 @@ import {
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
+import {
+  User,
+  Widget,
+  _ListWidgetsPagesResults,
+  AnalyzeResult,
+} from "../../models/models.js";
 import {
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
@@ -27,6 +30,8 @@ import {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
 } from "../../models/options.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Widgets operations. */
 export interface WidgetsOperations {

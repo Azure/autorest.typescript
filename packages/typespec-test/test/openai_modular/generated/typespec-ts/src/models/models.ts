@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString } from "@azure/core-util";
 import { ErrorModel } from "@azure-rest/core-client";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
@@ -644,7 +644,7 @@ export interface ChatCompletionsOptions {
   /** Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. This option is currently not available on the `gpt-4-vision-preview` model. */
   logprobs?: boolean | null;
   /** An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. */
-  topLogprobs?: number | null;
+  top_logprobs?: number | null;
   /** An object specifying the format that the model must output. Used to enable JSON mode. */
   responseFormat?: ChatCompletionsResponseFormatUnion;
   /** The available tool definitions that the chat completions request can use, including caller-defined functions. */
@@ -689,7 +689,7 @@ export function chatCompletionsOptionsSerializer(
       : azureChatEnhancementConfigurationSerializer(item.enhancements),
     seed: item["seed"],
     logprobs: item["logprobs"],
-    top_logprobs: item["topLogprobs"],
+    top_logprobs: item["top_logprobs"],
     response_format: !item.responseFormat
       ? item.responseFormat
       : chatCompletionsResponseFormatUnionSerializer(item.responseFormat),
@@ -2492,7 +2492,7 @@ export interface AzureChatExtensionDataSourceResponseCitation {
   /** The file path of the citation. */
   filepath?: string;
   /** The chunk ID of the citation. */
-  chunkId?: string;
+  chunk_id?: string;
 }
 
 /** The retrieved document. */
@@ -2506,7 +2506,7 @@ export interface AzureChatExtensionRetrievedDocument {
   /** The file path of the citation. */
   filepath?: string;
   /** The chunk ID of the citation. */
-  chunkId?: string;
+  chunk_id?: string;
   /** The search queries used to retrieve the document. */
   searchQueries: string[];
   /** The index of the data source. */
@@ -2537,7 +2537,7 @@ export interface ChatTokenLogProbabilityResult {
   /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
   bytes: number[] | null;
   /** The list of most likely tokens and their log probability information, as requested via 'top_logprobs'. */
-  topLogprobs: ChatTokenLogProbabilityInfo[] | null;
+  top_logprobs: ChatTokenLogProbabilityInfo[] | null;
 }
 
 /** A representation of the log probability information for a single message content token. */
@@ -2856,230 +2856,53 @@ export interface EmbeddingItem {
 }
 
 /** Defines available options for the underlying response format of output transcription information. */
-export enum AudioTranscriptionFormatKnownValues {
-  /** Use a response body that is a JSON object containing a single 'text' field for the transcription. */
-  json = '"json"',
-  /**
-   * Use a response body that is a JSON object containing transcription text along with timing, segments, and other
-   * metadata.
-   */
-  verbose_json = '"verbose_json"',
-  /** Use a response body that is plain text containing the raw, unannotated transcription. */
-  text = '"text"',
-  /** Use a response body that is plain text in SubRip (SRT) format that also includes timing information. */
-  srt = '"srt"',
-  /** Use a response body that is plain text in Web Video Text Tracks (VTT) format that also includes timing information. */
-  vtt = '"vtt"',
-}
-
 export type AudioTranscriptionFormat =
   | "json"
   | "verbose_json"
   | "text"
   | "srt"
   | "vtt";
-
 /** Defines the timestamp granularities that can be requested on a verbose transcription response. */
-export enum AudioTranscriptionTimestampGranularityKnownValues {
-  /**
-   * Indicates that responses should include timing information about each transcribed word. Note that generating word
-   * timestamp information will incur additional response latency.
-   */
-  word = '"word"',
-  /**
-   * Indicates that responses should include timing and other information about each transcribed audio segment. Audio
-   * segment timestamp information does not incur any additional latency.
-   */
-  segment = '"segment"',
-}
-
 export type AudioTranscriptionTimestampGranularity = "word" | "segment";
-
 /** Defines the possible descriptors for available audio operation responses. */
-export enum AudioTaskLabelKnownValues {
-  /** Accompanying response data resulted from an audio transcription task. */
-  transcribe = '"transcribe"',
-  /** Accompanying response data resulted from an audio translation task. */
-  translate = '"translate"',
-}
-
 export type AudioTaskLabel = "transcribe" | "translate";
-
 /** Defines available options for the underlying response format of output translation information. */
-export enum AudioTranslationFormatKnownValues {
-  /** Use a response body that is a JSON object containing a single 'text' field for the translation. */
-  json = '"json"',
-  /**
-   * Use a response body that is a JSON object containing translation text along with timing, segments, and other
-   * metadata.
-   */
-  verbose_json = '"verbose_json"',
-  /** Use a response body that is plain text containing the raw, unannotated translation. */
-  text = '"text"',
-  /** Use a response body that is plain text in SubRip (SRT) format that also includes timing information. */
-  srt = '"srt"',
-  /** Use a response body that is plain text in Web Video Text Tracks (VTT) format that also includes timing information. */
-  vtt = '"vtt"',
-}
-
 export type AudioTranslationFormat =
   | "json"
   | "verbose_json"
   | "text"
   | "srt"
   | "vtt";
-
 /** Ratings for the intensity and risk level of harmful content. */
-export enum ContentFilterSeverityKnownValues {
-  /**
-   * Content may be related to violence, self-harm, sexual, or hate categories but the terms
-   * are used in general, journalistic, scientific, medical, and similar professional contexts,
-   * which are appropriate for most audiences.
-   */
-  safe = '"safe"',
-  /**
-   * Content that expresses prejudiced, judgmental, or opinionated views, includes offensive
-   * use of language, stereotyping, use cases exploring a fictional world (for example, gaming,
-   * literature) and depictions at low intensity.
-   */
-  low = '"low"',
-  /**
-   * Content that uses offensive, insulting, mocking, intimidating, or demeaning language
-   * towards specific identity groups, includes depictions of seeking and executing harmful
-   * instructions, fantasies, glorification, promotion of harm at medium intensity.
-   */
-  medium = '"medium"',
-  /**
-   * Content that displays explicit and severe harmful instructions, actions,
-   * damage, or abuse; includes endorsement, glorification, or promotion of severe
-   * harmful acts, extreme or illegal forms of harm, radicalization, or non-consensual
-   * power exchange or abuse.
-   */
-  high = '"high"',
-}
-
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
-
 /** Representation of the manner in which a completions response concluded. */
-export enum CompletionsFinishReasonKnownValues {
-  /** Completions ended normally and reached its end of token generation. */
-  stopped = '"stop"',
-  /** Completions exhausted available token limits before generation could complete. */
-  tokenLimitReached = '"length"',
-  /**
-   * Completions generated a response that was identified as potentially sensitive per content
-   * moderation policies.
-   */
-  contentFiltered = '"content_filter"',
-  /** Completion ended normally, with the model requesting a function to be called. */
-  functionCall = '"function_call"',
-  /** Completion ended with the model calling a provided tool for output. */
-  toolCalls = '"tool_calls"',
-}
-
 export type CompletionsFinishReason =
   | "stop"
   | "length"
   | "content_filter"
   | "function_call"
   | "tool_calls";
-
 /** A description of the intended purpose of a message within a chat completions interaction. */
-export enum ChatRoleKnownValues {
-  /** The role that instructs or sets the behavior of the assistant. */
-  system = '"system"',
-  /** The role that provides responses to system-instructed, user-prompted input. */
-  assistant = '"assistant"',
-  /** The role that provides input for chat completions. */
-  user = '"user"',
-  /** The role that provides function results for chat completions. */
-  "function" = '"function"',
-  /** The role that represents extension tool activity within a chat completions operation. */
-  tool = '"tool"',
-}
-
 export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
-
 /** A representation of the possible image detail levels for image-based chat completions message content. */
-export enum ChatMessageImageDetailLevelKnownValues {
-  /** Specifies that the model should determine which detail level to apply using heuristics like image size. */
-  auto = '"auto"',
-  /**
-   * Specifies that image evaluation should be constrained to the 'low-res' model that may be faster and consume fewer
-   * tokens but may also be less accurate for highly detailed images.
-   */
-  low = '"low"',
-  /**
-   * Specifies that image evaluation should enable the 'high-res' model that may be more accurate for highly detailed
-   * images but may also be slower and consume more tokens.
-   */
-  high = '"high"',
-}
-
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
-
 /**
  * The collection of predefined behaviors for handling request-provided function information in a chat completions
  * operation.
  */
-export enum FunctionCallPresetKnownValues {
-  /**
-   * Specifies that the model may either use any of the functions provided in this chat completions request or
-   * instead return a standard chat completions response as if no functions were provided.
-   */
-  auto = '"auto"',
-  /**
-   * Specifies that the model should not respond with a function call and should instead provide a standard chat
-   * completions response. Response content may still be influenced by the provided function information.
-   */
-  none = '"none"',
-}
-
 export type FunctionCallPreset = "auto" | "none";
-
 /**
  *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
  *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
  *   The use of this configuration is compatible only with Azure OpenAI.
  */
-export enum AzureChatExtensionTypeKnownValues {
-  /** Represents the use of Azure AI Search as an Azure OpenAI chat extension. */
-  azureSearch = '"azure_search"',
-  /** Represents the use of Azure Machine Learning index as an Azure OpenAI chat extension. */
-  azureMachineLearningIndex = '"azure_ml_index"',
-  /** Represents the use of Azure Cosmos DB as an Azure OpenAI chat extension. */
-  azureCosmosDB = '"azure_cosmos_db"',
-  /** Represents the use of Elasticsearch® index as an Azure OpenAI chat extension. */
-  elasticsearch = '"elasticsearch"',
-  /** Represents the use of Pinecone index as an Azure OpenAI chat extension. */
-  pinecone = '"pinecone"',
-}
-
 export type AzureChatExtensionType =
   | "azure_search"
   | "azure_ml_index"
   | "azure_cosmos_db"
   | "elasticsearch"
   | "pinecone";
-
 /** The authentication types supported with Azure OpenAI On Your Data. */
-export enum OnYourDataAuthenticationTypeKnownValues {
-  /** Authentication via API key. */
-  apiKey = '"api_key"',
-  /** Authentication via connection string. */
-  connectionString = '"connection_string"',
-  /** Authentication via key and key ID pair. */
-  keyAndKeyId = '"key_and_key_id"',
-  /** Authentication via encoded API key. */
-  encodedApiKey = '"encoded_api_key"',
-  /** Authentication via access token. */
-  accessToken = '"access_token"',
-  /** Authentication via system-assigned managed identity. */
-  systemAssignedManagedIdentity = '"system_assigned_managed_identity"',
-  /** Authentication via user-assigned managed identity. */
-  userAssignedManagedIdentity = '"user_assigned_managed_identity"',
-}
-
 export type OnYourDataAuthenticationType =
   | "api_key"
   | "connection_string"
@@ -3088,207 +2911,56 @@ export type OnYourDataAuthenticationType =
   | "access_token"
   | "system_assigned_managed_identity"
   | "user_assigned_managed_identity";
-
 /** The context property. */
-export enum OnYourDataContextPropertyKnownValues {
-  /** The `citations` property. */
-  citations = '"citations"',
-  /** The `intent` property. */
-  intent = '"intent"',
-  /** The `all_retrieved_documents` property. */
-  allRetrievedDocuments = '"all_retrieved_documents"',
-}
-
 export type OnYourDataContextProperty =
   | "citations"
   | "intent"
   | "all_retrieved_documents";
-
 /** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-export enum AzureSearchQueryTypeKnownValues {
-  /** Represents the default, simple query parser. */
-  simple = '"simple"',
-  /** Represents the semantic query parser for advanced semantic modeling. */
-  semantic = '"semantic"',
-  /** Represents vector search over computed data. */
-  vector = '"vector"',
-  /** Represents a combination of the simple query strategy with vector data. */
-  vectorSimpleHybrid = '"vector_simple_hybrid"',
-  /** Represents a combination of semantic search and vector data querying. */
-  vectorSemanticHybrid = '"vector_semantic_hybrid"',
-}
-
 export type AzureSearchQueryType =
   | "simple"
   | "semantic"
   | "vector"
   | "vector_simple_hybrid"
   | "vector_semantic_hybrid";
-
 /**
  * Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with
  * vector search.
  */
-export enum OnYourDataVectorizationSourceTypeKnownValues {
-  /** Represents vectorization performed by public service calls to an Azure OpenAI embedding model. */
-  endpoint = '"endpoint"',
-  /**
-   * Represents an Ada model deployment name to use. This model deployment must be in the same Azure OpenAI resource, but
-   * On Your Data will use this model deployment via an internal call rather than a public one, which enables vector
-   * search even in private networks.
-   */
-  deploymentName = '"deployment_name"',
-  /**
-   * Represents a specific embedding model ID as defined in the search service.
-   * Currently only supported by Elasticsearch®.
-   */
-  modelId = '"model_id"',
-}
-
 export type OnYourDataVectorizationSourceType =
   | "endpoint"
   | "deployment_name"
   | "model_id";
-
 /** The authentication types supported with Azure OpenAI On Your Data vector search. */
-export enum OnYourDataVectorSearchAuthenticationTypeKnownValues {
-  /** Authentication via API key. */
-  apiKey = '"api_key"',
-  /** Authentication via access token. */
-  accessToken = '"access_token"',
-}
-
 export type OnYourDataVectorSearchAuthenticationType =
   | "api_key"
   | "access_token";
-
 /** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-export enum ElasticsearchQueryTypeKnownValues {
-  /** Represents the default, simple query parser. */
-  simple = '"simple"',
-  /** Represents vector search over computed data. */
-  vector = '"vector"',
-}
-
 export type ElasticsearchQueryType = "simple" | "vector";
-
 /** Represents a generic policy for how a chat completions tool may be selected. */
-export enum ChatCompletionsToolSelectionPresetKnownValues {
-  /**
-   * Specifies that the model may either use any of the tools provided in this chat completions request or
-   * instead return a standard chat completions response as if no tools were provided.
-   */
-  auto = '"auto"',
-  /**
-   * Specifies that the model should not respond with a tool call and should instead provide a standard chat
-   * completions response. Response content may still be influenced by the provided tool definitions.
-   */
-  none = '"none"',
-}
-
 export type ChatCompletionsToolSelectionPreset = "auto" | "none";
-
 /** The reason for filtering the retrieved document. */
-export enum AzureChatExtensionRetrieveDocumentFilterReasonKnownValues {
-  /** The document is filtered by original search score threshold defined by `strictness` configure. */
-  score = '"score"',
-  /** The document is not filtered by original search score threshold, but is filtered by rerank score and `top_n_documents` configure. */
-  rerank = '"rerank"',
-}
-
 export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
-
 /** The desired size of generated images. */
-export enum ImageSizeKnownValues {
-  /**
-   * Very small image size of 256x256 pixels.
-   * Only supported with dall-e-2 models.
-   */
-  size256x256 = '"256x256"',
-  /**
-   * A smaller image size of 512x512 pixels.
-   * Only supported with dall-e-2 models.
-   */
-  size512x512 = '"512x512"',
-  /**
-   * A standard, square image size of 1024x1024 pixels.
-   * Supported by both dall-e-2 and dall-e-3 models.
-   */
-  size1024x1024 = '"1024x1024"',
-  /**
-   * A wider image size of 1024x1792 pixels.
-   * Only supported with dall-e-3 models.
-   */
-  size1792x1024 = '"1792x1024"',
-  /**
-   * A taller image size of 1792x1024 pixels.
-   * Only supported with dall-e-3 models.
-   */
-  size1024x1792 = '"1024x1792"',
-}
-
 export type ImageSize =
   | "256x256"
   | "512x512"
   | "1024x1024"
   | "1792x1024"
   | "1024x1792";
-
 /** The format in which the generated images are returned. */
-export enum ImageGenerationResponseFormatKnownValues {
-  /** Image generation response items should provide a URL from which the image may be retrieved. */
-  url = '"url"',
-  /** Image generation response items should provide image data as a base64-encoded string. */
-  base64 = '"b64_json"',
-}
-
 export type ImageGenerationResponseFormat = "url" | "b64_json";
-
 /**
  * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
  * Only configurable with dall-e-3 models.
  */
-export enum ImageGenerationQualityKnownValues {
-  /** Requests image generation with standard, balanced characteristics of quality, cost, and speed. */
-  standard = '"standard"',
-  /** Requests image generation with higher quality, higher cost and lower speed relative to standard. */
-  hd = '"hd"',
-}
-
 export type ImageGenerationQuality = "standard" | "hd";
-
 /**
  * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
  * Only configurable with dall-e-3 models.
  */
-export enum ImageGenerationStyleKnownValues {
-  /** Requests image generation in a natural style with less preference for dramatic and hyper-realistic characteristics. */
-  natural = '"natural"',
-  /**
-   * Requests image generation in a vivid style with a higher preference for dramatic and hyper-realistic
-   * characteristics.
-   */
-  vivid = '"vivid"',
-}
-
 export type ImageGenerationStyle = "natural" | "vivid";
-
 /** The available voices for text-to-speech. */
-export enum SpeechVoiceKnownValues {
-  /** The Alloy voice. */
-  alloy = '"alloy"',
-  /** The Echo voice. */
-  echo = '"echo"',
-  /** The Fable voice. */
-  fable = '"fable"',
-  /** The Onyx voice. */
-  onyx = '"onyx"',
-  /** The Nova voice. */
-  nova = '"nova"',
-  /** The Shimmer voice. */
-  shimmer = '"shimmer"',
-}
-
 export type SpeechVoice =
   | "alloy"
   | "echo"
@@ -3296,23 +2968,7 @@ export type SpeechVoice =
   | "onyx"
   | "nova"
   | "shimmer";
-
 /** The supported audio output formats for text-to-speech. */
-export enum SpeechGenerationResponseFormatKnownValues {
-  /** Use MP3 as the audio output format. MP3 is the default, general-purpose format. */
-  mp3 = '"mp3"',
-  /** Use Opus as the audio output format. Opus is optimized for internet streaming and low latency. */
-  opus = '"opus"',
-  /** Use AAC as the audio output format. AAC is optimized for digital audio compression and is preferred by YouTube, Android, and iOS. */
-  aac = '"aac"',
-  /** Use FLAC as the audio output format. FLAC is a fully lossless format optimized for maximum quality at the expense of size. */
-  flac = '"flac"',
-  /** Use uncompressed WAV as the audio output format, suitable for low-latency applications to avoid decoding overhead. */
-  wav = '"wav"',
-  /** Use uncompressed PCM as the audio output format, which is similar to WAV but contains raw samples in 24kHz (16-bit signed, low-endian), without the header. */
-  pcm = '"pcm"',
-}
-
 export type SpeechGenerationResponseFormat =
   | "mp3"
   | "opus"
@@ -3320,24 +2976,8 @@ export type SpeechGenerationResponseFormat =
   | "flac"
   | "wav"
   | "pcm";
-
 /** Represents the available formats for embeddings data on responses. */
-export enum EmbeddingEncodingFormatKnownValues {
-  /** Specifies that responses should provide arrays of floats for each embedding. */
-  float = '"float"',
-  /** Specifies that responses should provide a base64-encoded string for each embedding. */
-  base64 = '"base64"',
-}
-
 export type EmbeddingEncodingFormat = "float" | "base64";
-
-export enum ServiceApiVersionsKnownValues {
-  v2022_12_01 = '"2022-12-01"',
-  v2023_05_15 = '"2023-05-15"',
-  v2024_02_01 = '"2024-02-01"',
-  v2024_06_01 = '"2024-06-01"',
-}
-
 export type ServiceApiVersions =
   | "2022-12-01"
   | "2023-05-15"

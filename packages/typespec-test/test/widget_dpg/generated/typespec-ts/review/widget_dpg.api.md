@@ -6,6 +6,7 @@
 
 import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -36,9 +37,18 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public (undocumented)
-export interface CreateWidget {
+export interface CreateWidgetRequest {
     color: "red" | "blue";
     weight: number;
+}
+
+// @public (undocumented)
+export type CreateWidgetRequestColor = "red" | "blue";
+
+// @public
+export interface ErrorResponse {
+    error: ErrorModel;
+    errorCode?: string;
 }
 
 // @public (undocumented)
@@ -70,10 +80,13 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
 }
 
 // @public (undocumented)
-export interface UpdateWidget {
+export interface UpdateWidgetRequest {
     color?: "red" | "blue";
     weight?: number;
 }
+
+// @public (undocumented)
+export type UpdateWidgetRequestColor = "red" | "blue";
 
 // @public
 export interface User {
@@ -91,6 +104,9 @@ export interface Widget {
     id: string;
     weight: number;
 }
+
+// @public (undocumented)
+export type WidgetColor = "red" | "blue";
 
 // @public (undocumented)
 export interface WidgetError {

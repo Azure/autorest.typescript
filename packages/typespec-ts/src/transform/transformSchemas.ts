@@ -1,17 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SchemaContext } from "@azure-tools/rlc-common";
+import { HttpOperation, getServers } from "@typespec/http";
+import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
+import { Model, Type } from "@typespec/compiler";
 import {
+  SdkClient,
   getHttpOperationWithCache,
   listOperationGroups,
-  listOperationsInOperationGroup,
-  SdkClient
+  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { Model, Type } from "@typespec/compiler";
-import { getServers, HttpOperation } from "@typespec/http";
-import { SdkContext } from "../utils/interfaces.js";
-import { extractMediaTypes, KnownMediaType } from "../utils/mediaTypes.js";
 import {
   getBodyType,
   getDefaultService,
@@ -20,10 +18,14 @@ import {
   isAzureCoreErrorType,
   trimUsage
 } from "../utils/modelUtils.js";
+
+import { SchemaContext } from "@azure-tools/rlc-common";
+import { SdkContext } from "../utils/interfaces.js";
 import { useContext } from "../contextManager.js";
 
 export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;
+  const metatree = useContext("rlcMetaTree");
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
     SchemaContext[]
@@ -120,7 +122,6 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   }
   transformHostParameters();
   usageMap.forEach((context, tspModel) => {
-    const metatree = useContext("rlcMetaTree");
     const model = getSchemaForType(dpgContext, tspModel, {
       usage: context,
       isRequestBody: requestBodySet.has(tspModel),

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { _PagedTextBlocklist, _PagedTextBlockItem } from "./models/models.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -20,17 +21,18 @@ export {
   RemoveBlockItemsOptions,
   AnalyzeImageOptions,
   ImageData,
-  ImageCategory,
-  AnalyzeImageOutputType,
   AnalyzeImageResult,
   ImageAnalyzeSeverityResult,
   AnalyzeTextOptions,
-  TextCategory,
-  AnalyzeTextOutputType,
   AnalyzeTextResult,
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
+  ImageCategory,
+  AnalyzeImageOutputType,
+  TextCategory,
+  AnalyzeTextOutputType,
   Versions,
+  ErrorResponse,
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
   GetTextBlocklistOptionalParams,
