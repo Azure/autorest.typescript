@@ -732,15 +732,20 @@ export enum ProvisioningStateKnownValues {
   Accepted = '"Accepted"',
 }
 
-/** The status of the current operation. */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Provisioning"
-  | "Updating"
-  | "Deleting"
-  | "Accepted";
+/**
+ * The status of the current operation. \
+ * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Succeeded**: Represents a succeeded operation. \
+ * **Failed**: Represents a failed operation. \
+ * **Canceled**: Represents a canceled operation. \
+ * **Provisioning**: Represents a pending operation. \
+ * **Updating**: Represents a pending operation. \
+ * **Deleting**: Represents an operation under deletion. \
+ * **Accepted**: Represents an accepted operation.
+ */
+export type ProvisioningState = string;
 
 /** The data type state */
 export enum ControlStateKnownValues {
@@ -750,8 +755,15 @@ export enum ControlStateKnownValues {
   Disabled = '"Disabled"',
 }
 
-/** The data type state */
-export type ControlState = "Enabled" | "Disabled";
+/**
+ * The data type state \
+ * {@link KnownControlState} can be used interchangeably with ControlState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Enabled**: Field to enable a setting. \
+ * **Disabled**: Field to disable a setting.
+ */
+export type ControlState = string;
 
 /** Specifies the default action of allow or deny when no other rules match. */
 export enum DefaultActionKnownValues {
@@ -761,8 +773,15 @@ export enum DefaultActionKnownValues {
   Deny = '"Deny"',
 }
 
-/** Specifies the default action of allow or deny when no other rules match. */
-export type DefaultAction = "Allow" | "Deny";
+/**
+ * Specifies the default action of allow or deny when no other rules match. \
+ * {@link KnownDefaultAction} can be used interchangeably with DefaultAction,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Allow**: Represents allow action. \
+ * **Deny**: Represents deny action.
+ */
+export type DefaultAction = string;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export enum ManagedServiceIdentityTypeKnownValues {
@@ -776,12 +795,17 @@ export enum ManagedServiceIdentityTypeKnownValues {
   SystemAndUserAssigned = '"SystemAssigned, UserAssigned"',
 }
 
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned, UserAssigned";
+/**
+ * Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). \
+ * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None**: No managed identity. \
+ * **SystemAssigned**: System assigned managed identity. \
+ * **UserAssigned**: User assigned managed identity. \
+ * **SystemAssigned, UserAssigned**: System and user assigned managed identity.
+ */
+export type ManagedServiceIdentityType = string;
 
 /** The kind of entity that created the resource. */
 export enum CreatedByTypeKnownValues {
@@ -795,8 +819,17 @@ export enum CreatedByTypeKnownValues {
   Key = '"Key"',
 }
 
-/** The kind of entity that created the resource. */
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+/**
+ * The kind of entity that created the resource. \
+ * {@link KnowncreatedByType} can be used interchangeably with createdByType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **User**: The entity was created by a user. \
+ * **Application**: The entity was created by an application. \
+ * **ManagedIdentity**: The entity was created by a managed identity. \
+ * **Key**: The entity was created by a key.
+ */
+export type CreatedByType = string;
 
 /** The data type state */
 export enum DataProductUserRoleKnownValues {
@@ -809,8 +842,16 @@ export enum DataProductUserRoleKnownValues {
   SensitiveReader = '"SensitiveReader"',
 }
 
-/** The data type state */
-export type DataProductUserRole = "Reader" | "SensitiveReader";
+/**
+ * The data type state \
+ * {@link KnownDataProductUserRole} can be used interchangeably with DataProductUserRole,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Reader**: Field to specify user of type Reader. \
+ * **SensitiveReader**: Field to specify user of type SensitiveReader.
+ * This user has privileged access to read sensitive data of a data product.
+ */
+export type DataProductUserRole = string;
 
 /** The data type state */
 export enum DataTypeStateKnownValues {
@@ -820,8 +861,15 @@ export enum DataTypeStateKnownValues {
   Running = '"Running"',
 }
 
-/** The data type state */
-export type DataTypeState = "Stopped" | "Running";
+/**
+ * The data type state \
+ * {@link KnownDataTypeState} can be used interchangeably with DataTypeState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Stopped**: Field to specify stopped state. \
+ * **Running**: Field to specify running state.
+ */
+export type DataTypeState = string;
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export enum OriginKnownValues {
@@ -833,8 +881,16 @@ export enum OriginKnownValues {
   "user,system" = '"user,system"',
 }
 
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type Origin = "user" | "system" | "user,system";
+/**
+ * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" \
+ * {@link KnownOrigin} can be used interchangeably with Origin,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **user**: Indicates the operation is initiated by a user. \
+ * **system**: Indicates the operation is initiated by a system. \
+ * **user,system**: Indicates the operation is initiated by a user or system.
+ */
+export type Origin = string;
 
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export enum ActionTypeKnownValues {
@@ -842,14 +898,13 @@ export enum ActionTypeKnownValues {
   Internal = '"Internal"',
 }
 
-/** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type ActionType = "Internal";
-
-/** The available API versions for the Microsoft.NetworkAnalytics RP. */
-export enum VersionsKnownValues {
-  /** The 2023-11-15 stable version. */
-  v2023_11_15 = '"2023-11-15"',
-}
-
+/**
+ * Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. \
+ * {@link KnownActionType} can be used interchangeably with ActionType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Internal**: Actions are for internal-only APIs.
+ */
+export type ActionType = string;
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export type Versions = "2023-11-15";

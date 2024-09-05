@@ -78,7 +78,6 @@ export {
   Origin,
   ActionTypeKnownValues,
   ActionType,
-  VersionsKnownValues,
   Versions,
   OperationsListOptionalParams,
   DataProductsCatalogsGetOptionalParams,

@@ -910,8 +910,8 @@ export function getRequestModelMapping(
   }
 
   let serializerName = modelPropertyType.name
-      ? `${toCamelCase(modelPropertyType.name)}Serializer`
-      : undefined;
+    ? `${toCamelCase(modelPropertyType.name)}Serializer`
+    : undefined;
 
   if (isSpecialHandledUnion(modelPropertyType)) {
     serializerName =

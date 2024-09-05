@@ -61,7 +61,6 @@ export {
   Origin,
   ActionTypeKnownValues,
   ActionType,
-  VersionsKnownValues,
   Versions,
 } from "./models.js";
 export {

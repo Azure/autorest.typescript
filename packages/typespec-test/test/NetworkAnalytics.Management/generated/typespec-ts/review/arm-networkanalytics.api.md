@@ -26,7 +26,7 @@ export interface AccountSasToken {
 }
 
 // @public
-export type ActionType = "Internal";
+export type ActionType = string;
 
 // @public
 export enum ActionTypeKnownValues {
@@ -61,7 +61,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
-export type ControlState = "Enabled" | "Disabled";
+export type ControlState = string;
 
 // @public
 export enum ControlStateKnownValues {
@@ -70,7 +70,7 @@ export enum ControlStateKnownValues {
 }
 
 // @public
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+export type CreatedByType = string;
 
 // @public
 export enum CreatedByTypeKnownValues {
@@ -236,7 +236,7 @@ export interface DataProductUpdateProperties {
 }
 
 // @public
-export type DataProductUserRole = "Reader" | "SensitiveReader";
+export type DataProductUserRole = string;
 
 // @public
 export enum DataProductUserRoleKnownValues {
@@ -305,7 +305,7 @@ export interface DataTypesOperations {
 }
 
 // @public
-export type DataTypeState = "Stopped" | "Running";
+export type DataTypeState = string;
 
 // @public
 export enum DataTypeStateKnownValues {
@@ -332,7 +332,7 @@ export interface DataTypeUpdateProperties {
 }
 
 // @public
-export type DefaultAction = "Allow" | "Deny";
+export type DefaultAction = string;
 
 // @public
 export enum DefaultActionKnownValues {
@@ -403,7 +403,7 @@ export interface ManagedResourceGroupConfiguration {
 }
 
 // @public
-export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
+export type ManagedServiceIdentityType = string;
 
 // @public
 export enum ManagedServiceIdentityTypeKnownValues {
@@ -463,7 +463,7 @@ export interface OperationsOperations {
 }
 
 // @public
-export type Origin = "user" | "system" | "user,system";
+export type Origin = string;
 
 // @public
 export enum OriginKnownValues {
@@ -485,7 +485,7 @@ export interface PageSettings {
 }
 
 // @public
-export type ProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+export type ProvisioningState = string;
 
 // @public
 export enum ProvisioningStateKnownValues {
@@ -571,11 +571,6 @@ export interface UserAssignedIdentity {
 
 // @public
 export type Versions = "2023-11-15";
-
-// @public
-export enum VersionsKnownValues {
-    v2023_11_15 = "\"2023-11-15\""
-}
 
 // @public
 export interface VirtualNetworkRule {

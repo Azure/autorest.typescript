@@ -94,8 +94,14 @@ export function emitTypes(
         );
       }
     } else if (type.kind === "enum") {
-      const [enumType, knownValuesEnum] = buildEnumTypes(type);
-      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+      const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
+      if (isExtensibleEnum(context, type)) {
+        addDeclaration(
+          sourceFile,
+          knownValuesEnum,
+          refkey(type, "knownValues")
+        );
+      }
       addDeclaration(sourceFile, enumType, type);
     } else if (type.kind === "union") {
       const unionType = buildUnionType(type);
@@ -126,6 +132,7 @@ function buildUnionType(type: SdkUnionType): TypeAliasDeclarationStructure {
 }
 
 function buildEnumTypes(
+  context: SdkContext,
   type: SdkEnumType
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
   const enumDeclaration: EnumDeclarationStructure = {
@@ -139,15 +146,45 @@ function buildEnumTypes(
     kind: StructureKind.TypeAlias,
     name: normalizeName(type.name, NameType.Interface),
     isExported: true,
-    type: type.values.map((v) => getTypeExpression(v)).join(" | ")
+    type: !isExtensibleEnum(context, type)
+      ? type.values.map((v) => getTypeExpression(v)).join(" | ")
+      : getTypeExpression(type.valueType)
   };
 
   if (type.description) {
-    enumAsUnion.docs = [type.description];
+    enumAsUnion.docs = isExtensibleEnum(context, type)
+      ? [getExtensibleEnumDescription(type) ?? type.description]
+      : [type.description];
     enumDeclaration.docs = [type.description];
   }
 
   return [enumAsUnion, enumDeclaration];
+}
+
+function isExtensibleEnum(context: SdkContext, type: SdkEnumType): boolean {
+  return (
+    !type.isFixed && context.rlcOptions?.experimentalExtensibleEnums === true
+  );
+}
+
+function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
+  if (model.isFixed && model.name && model.values) {
+    return;
+  }
+  const valueDescriptions = model.values
+    .map((v) => `**${v.value}**${v.description ? `: ${v.description}` : ""}`)
+    .join(` \\\n`)
+    // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
+    .replace(/^\//g, "\\/")
+    .replace(/([^\\])(\/)/g, "$1\\/");
+  const enumLink = `{@link Known${model.name}} can be used interchangeably with ${model.name},\n this enum contains the known values that the service supports.`;
+
+  return [
+    `${model.description} \\`,
+    enumLink,
+    `### Known values supported by the service`,
+    valueDescriptions
+  ].join(" \n");
 }
 
 function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
