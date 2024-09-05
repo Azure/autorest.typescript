@@ -38,7 +38,8 @@ export function buildPackageFile(
     withTests: model.options?.generateTest === true,
     nameWithoutScope: model.options?.packageDetails?.nameWithoutScope,
     exports,
-    azureArm: model.options?.azureArm
+    azureArm: model.options?.azureArm,
+    isModularLibrary: model.options?.isModularLibrary ?? false
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);
@@ -100,7 +101,8 @@ export function updatePackageFile(model: RLCModel, existingFilePath: string) {
   }
   const packageInfo = JSON.parse(packageFile.getFullText());
 
-  if (hasPaging) {
+  // no need to update paging dependency for modular libraries
+  if (hasPaging && model.options?.isModularLibrary !== true) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
       "@azure/core-paging": "^1.5.0"
