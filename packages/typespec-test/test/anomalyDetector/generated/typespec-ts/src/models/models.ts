@@ -4,7 +4,7 @@
 /** Detection results for the given resultId. */
 export interface MultivariateMultivariateDetectionResult {
   /** Result identifier, which is used to fetch the results of an inference call. */
-  resultId: string;
+  readonly resultId: string;
   /** Multivariate anomaly detection status. */
   summary: MultivariateMultivariateBatchDetectionResultSummary;
   /** Detection result for each timestamp. */
@@ -189,7 +189,7 @@ export interface MultivariateModelInfo {
   /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
   status?: ModelStatus;
   /** Error messages when failed to create a model. */
-  errors?: MultivariateErrorResponse[];
+  readonly errors?: MultivariateErrorResponse[];
   /** Diagnostics information to help inspect the states of model or variable. */
   diagnosticsInfo?: MultivariateDiagnosticsInfo;
 }
@@ -297,7 +297,7 @@ export function multivariateModelStateSerializer(
 /** Response of getting a model. */
 export interface MultivariateAnomalyDetectionModel {
   /** Model identifier. */
-  modelId: string;
+  readonly modelId: string;
   /** Date and time (UTC) when the model was created. */
   createdTime: Date;
   /** Date and time (UTC) when the model was last updated. */
@@ -620,7 +620,7 @@ export interface UnivariateUnivariateChangePointDetectionResult {
    * Frequency extracted from the series, zero means no recurrent pattern has been
    * found.
    */
-  period?: number;
+  readonly period?: number;
   /**
    * isChangePoint contains change point properties for each input point. True means
    * an anomaly either negative or positive has been detected. The index of the
@@ -652,6 +652,7 @@ export enum DataSchemaKnownValues {
   MultiTable = '"MultiTable"',
 }
 
+/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
 export type DataSchema = "OneTable" | "MultiTable";
 
 export enum AlignModeKnownValues {
@@ -670,6 +671,7 @@ export enum FillNAMethodKnownValues {
   Fixed = '"Fixed"',
 }
 
+/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
 export type FillNAMethod =
   | "Previous"
   | "Subsequent"

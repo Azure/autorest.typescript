@@ -63,7 +63,6 @@ export {
   ActionType,
   VersionsKnownValues,
   Versions,
-  NetworkAnalyticsClientOptions,
 } from "./models.js";
 export {
   OperationsListOptionalParams,

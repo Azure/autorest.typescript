@@ -29,9 +29,6 @@ export function buildModelSerializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-  if (type.name.endsWith("Union")) {
-    type;
-  }
 
   if (
     !isDiscriminatedUnion(type) &&

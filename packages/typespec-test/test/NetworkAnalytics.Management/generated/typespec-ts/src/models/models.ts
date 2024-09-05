@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
+import { serializeRecord } from "../helpers/serializerHelpers.js";
 
 /** The data product resource. */
 export interface DataProduct extends TrackedResource {
@@ -13,17 +13,27 @@ export interface DataProduct extends TrackedResource {
   identity?: ManagedServiceIdentityV4;
 }
 
-export function dataProductSerializer(input: DataProduct): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function dataProductSerializer(
+  item: DataProduct,
+): Record<string, unknown> {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+    properties: !item.properties
+      ? item.properties
+      : dataProductPropertiesSerializer(item.properties),
+    identity: !item.identity
+      ? item.identity
+      : managedServiceIdentityV4Serializer(item.identity),
+  };
 }
 
 /** The data product properties. */
 export interface DataProductProperties {
   /** The resource GUID property of the data product resource. */
-  resourceGuid?: string;
+  readonly resourceGuid?: string;
   /** Latest provisioning state  of data product. */
-  provisioningState?: ProvisioningState;
+  readonly provisioningState?: ProvisioningState;
   /** Data product publisher name. */
   publisher: string;
   /** Product name of data product. */
@@ -51,22 +61,45 @@ export interface DataProductProperties {
   /** Managed resource group configuration. */
   managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
   /** List of available minor versions of the data product resource. */
-  availableMinorVersions?: string[];
+  readonly availableMinorVersions?: string[];
   /** Current configured minor version of the data product resource. */
   currentMinorVersion?: string;
   /** Documentation link for the data product based on definition file. */
-  documentation?: string;
+  readonly documentation?: string;
   /** Resource links which exposed to the customer to query the data. */
-  consumptionEndpoints?: ConsumptionEndpointsProperties;
+  readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
   /** Key vault url. */
-  keyVaultUrl?: string;
+  readonly keyVaultUrl?: string;
 }
 
 export function dataProductPropertiesSerializer(
-  input: DataProductProperties,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: DataProductProperties,
+): Record<string, unknown> {
+  return {
+    publisher: item["publisher"],
+    product: item["product"],
+    majorVersion: item["majorVersion"],
+    owners: item["owners"],
+    redundancy: item["redundancy"],
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: item["privateLinksEnabled"],
+    publicNetworkAccess: item["publicNetworkAccess"],
+    customerManagedKeyEncryptionEnabled:
+      item["customerManagedKeyEncryptionEnabled"],
+    customerEncryptionKey: !item.customerEncryptionKey
+      ? item.customerEncryptionKey
+      : encryptionKeyDetailsSerializer(item.customerEncryptionKey),
+    networkacls: !item.networkacls
+      ? item.networkacls
+      : dataProductNetworkAclsSerializer(item.networkacls),
+    managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
+      ? item.managedResourceGroupConfiguration
+      : managedResourceGroupConfigurationSerializer(
+          item.managedResourceGroupConfiguration,
+        ),
+    currentMinorVersion: item["currentMinorVersion"],
+  };
 }
 
 /** Encryption key details. */
@@ -80,10 +113,13 @@ export interface EncryptionKeyDetails {
 }
 
 export function encryptionKeyDetailsSerializer(
-  input: EncryptionKeyDetails,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: EncryptionKeyDetails,
+): Record<string, unknown> {
+  return {
+    keyVaultUri: item["keyVaultUri"],
+    keyName: item["keyName"],
+    keyVersion: item["keyVersion"],
+  };
 }
 
 /** Data Product Network rule set */
@@ -99,10 +135,16 @@ export interface DataProductNetworkAcls {
 }
 
 export function dataProductNetworkAclsSerializer(
-  input: DataProductNetworkAcls,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: DataProductNetworkAcls,
+): Record<string, unknown> {
+  return {
+    virtualNetworkRule: item["virtualNetworkRule"].map(
+      virtualNetworkRuleSerializer,
+    ),
+    ipRules: item["ipRules"].map(iPRulesSerializer),
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
+    defaultAction: item["defaultAction"],
+  };
 }
 
 /** ManagedResourceGroup related properties */
@@ -114,41 +156,36 @@ export interface ManagedResourceGroupConfiguration {
 }
 
 export function managedResourceGroupConfigurationSerializer(
-  input: ManagedResourceGroupConfiguration,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ManagedResourceGroupConfiguration,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+    location: item["location"],
+  };
 }
 
 /** Details of Consumption Properties */
 export interface ConsumptionEndpointsProperties {
   /** Ingestion url to upload the data. */
-  ingestionUrl?: string;
+  readonly ingestionUrl?: string;
   /** Resource Id of ingestion endpoint. */
-  ingestionResourceId?: string;
+  readonly ingestionResourceId?: string;
   /** Url to consume file type. */
-  fileAccessUrl?: string;
+  readonly fileAccessUrl?: string;
   /** Resource Id of file access endpoint. */
-  fileAccessResourceId?: string;
+  readonly fileAccessResourceId?: string;
   /** Url to consume the processed data. */
-  queryUrl?: string;
+  readonly queryUrl?: string;
   /** Resource Id of query endpoint. */
-  queryResourceId?: string;
-}
-
-export function consumptionEndpointsPropertiesSerializer(
-  input: ConsumptionEndpointsProperties,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  readonly queryResourceId?: string;
 }
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentityV4 {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
+  readonly principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
+  readonly tenantId?: string;
   /** The type of managed identity assigned to this resource. */
   type: ManagedServiceIdentityType;
   /** The identities assigned to this resource by the user. */
@@ -156,10 +193,17 @@ export interface ManagedServiceIdentityV4 {
 }
 
 export function managedServiceIdentityV4Serializer(
-  input: ManagedServiceIdentityV4,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: ManagedServiceIdentityV4,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    userAssignedIdentities: !item.userAssignedIdentities
+      ? item.userAssignedIdentities
+      : (serializeRecord(
+          item.userAssignedIdentities as any,
+          userAssignedIdentitySerializer,
+        ) as any),
+  };
 }
 
 /** Virtual Network Rule */
@@ -173,10 +217,13 @@ export interface VirtualNetworkRule {
 }
 
 export function virtualNetworkRuleSerializer(
-  input: VirtualNetworkRule,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: VirtualNetworkRule,
+): Record<string, unknown> {
+  return {
+    id: item["id"],
+    action: item["action"],
+    state: item["state"],
+  };
 }
 
 /** IP rule with specific IP or IP range in CIDR format. */
@@ -187,24 +234,25 @@ export interface IPRules {
   action: string;
 }
 
-export function iPRulesSerializer(input: IPRules): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function iPRulesSerializer(item: IPRules): Record<string, unknown> {
+  return {
+    value: item["value"],
+    action: item["action"],
+  };
 }
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
   /** The principal ID of the assigned identity. */
-  principalId?: string;
+  readonly principalId?: string;
   /** The client ID of the assigned identity. */
-  clientId?: string;
+  readonly clientId?: string;
 }
 
 export function userAssignedIdentitySerializer(
-  input: UserAssignedIdentity,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: UserAssignedIdentity,
+): Record<string, unknown> {
+  return item as any;
 }
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
@@ -215,26 +263,29 @@ export interface TrackedResource extends Resource {
   location: string;
 }
 
-export function trackedResourceSerializer(input: TrackedResource): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function trackedResourceSerializer(
+  item: TrackedResource,
+): Record<string, unknown> {
+  return {
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    location: item["location"],
+  };
 }
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
+  readonly id?: string;
   /** The name of the resource */
-  name?: string;
+  readonly name?: string;
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
+  readonly type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
+  readonly systemData?: SystemData;
 }
 
-export function resourceSerializer(input: Resource): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function resourceSerializer(item: Resource): Record<string, unknown> {
+  return item as any;
 }
 
 /** Metadata pertaining to creation and last modification of the resource. */
@@ -253,62 +304,35 @@ export interface SystemData {
   lastModifiedAt?: Date;
 }
 
-export function systemDataSerializer(input: SystemData): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
   /** The error object. */
   error?: ErrorDetail;
 }
 
-export function errorResponseSerializer(input: ErrorResponse): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** The error detail. */
 export interface ErrorDetail {
   /** The error code. */
-  code?: string;
+  readonly code?: string;
   /** The error message. */
-  message?: string;
+  readonly message?: string;
   /** The error target. */
-  target?: string;
+  readonly target?: string;
   /** The error details. */
-  details?: ErrorDetail[];
+  readonly details?: ErrorDetail[];
   /** The error additional info. */
-  additionalInfo?: ErrorAdditionalInfo[];
-}
-
-export function errorDetailSerializer(input: ErrorDetail): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
 /** The resource management error additional info. */
 export interface ErrorAdditionalInfo {
   /** The additional info type. */
-  type?: string;
+  readonly type?: string;
   /** The additional info. */
-  info?: {};
-}
-
-export function errorAdditionalInfoSerializer(
-  input: ErrorAdditionalInfo,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  readonly info?: {};
 }
 
 export interface ErrorAdditionalInfoInfo {}
-
-export function errorAdditionalInfoInfoSerializer(input: {}): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
 
 /** The type used for update operations of the DataProduct. */
 export interface DataProductUpdate {
@@ -320,9 +344,18 @@ export interface DataProductUpdate {
   properties?: DataProductUpdateProperties;
 }
 
-export function dataProductUpdateSerializer(input: DataProductUpdate): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function dataProductUpdateSerializer(
+  item: DataProductUpdate,
+): Record<string, unknown> {
+  return {
+    identity: !item.identity
+      ? item.identity
+      : managedServiceIdentityV4Serializer(item.identity),
+    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    properties: !item.properties
+      ? item.properties
+      : dataProductUpdatePropertiesSerializer(item.properties),
+  };
 }
 
 /** The updatable properties of the DataProduct. */
@@ -340,10 +373,15 @@ export interface DataProductUpdateProperties {
 }
 
 export function dataProductUpdatePropertiesSerializer(
-  input: DataProductUpdateProperties,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: DataProductUpdateProperties,
+): Record<string, unknown> {
+  return {
+    owners: item["owners"],
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: item["privateLinksEnabled"],
+    currentMinorVersion: item["currentMinorVersion"],
+  };
 }
 
 /** The details for storage account sas creation. */
@@ -356,9 +394,14 @@ export interface AccountSas {
   ipAddress: string;
 }
 
-export function accountSasSerializer(input: AccountSas): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function accountSasSerializer(
+  item: AccountSas,
+): Record<string, unknown> {
+  return {
+    startTimeStamp: item["startTimeStamp"].toISOString(),
+    expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
+    ipAddress: item["ipAddress"],
+  };
 }
 
 /** Details of storage account sas token . */
@@ -367,20 +410,18 @@ export interface AccountSasToken {
   storageAccountSasToken: string;
 }
 
-export function accountSasTokenSerializer(input: AccountSasToken): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Details for KeyVault. */
 export interface KeyVaultInfo {
   /** key vault url. */
   keyVaultUrl: string;
 }
 
-export function keyVaultInfoSerializer(input: KeyVaultInfo): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function keyVaultInfoSerializer(
+  item: KeyVaultInfo,
+): Record<string, unknown> {
+  return {
+    keyVaultUrl: item["keyVaultUrl"],
+  };
 }
 
 /** The details for role assignment common properties. */
@@ -400,10 +441,16 @@ export interface RoleAssignmentCommonProperties {
 }
 
 export function roleAssignmentCommonPropertiesSerializer(
-  input: RoleAssignmentCommonProperties,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: RoleAssignmentCommonProperties,
+): Record<string, unknown> {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"],
+    principalType: item["principalType"],
+    role: item["role"],
+  };
 }
 
 /** The details for role assignment response. */
@@ -425,18 +472,20 @@ export interface RoleAssignmentDetail {
 }
 
 export function roleAssignmentDetailSerializer(
-  input: RoleAssignmentDetail,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: RoleAssignmentDetail,
+): Record<string, unknown> {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"],
+    principalType: item["principalType"],
+    role: item["role"],
+    roleAssignmentId: item["roleAssignmentId"],
+  };
 }
 
 export interface ListRolesAssignmentsRequest {}
-
-export function listRolesAssignmentsRequestSerializer(input: {}): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
 
 /** list role assignments. */
 export interface ListRoleAssignments {
@@ -444,13 +493,6 @@ export interface ListRoleAssignments {
   count: number;
   /** list of role assignments */
   roleAssignmentResponse: RoleAssignmentDetail[];
-}
-
-export function listRoleAssignmentsSerializer(
-  input: ListRoleAssignments,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** The response of a DataProduct list operation. */
@@ -461,13 +503,6 @@ export interface _DataProductListResult {
   nextLink?: string;
 }
 
-export function dataProductListResultSerializer(
-  input: _DataProductListResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** The data type resource. */
 export interface DataType extends ProxyResource {
   /** The resource-specific properties for this resource. */
@@ -476,19 +511,22 @@ export interface DataType extends ProxyResource {
   name: string;
 }
 
-export function dataTypeSerializer(input: DataType): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function dataTypeSerializer(item: DataType): Record<string, unknown> {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : dataTypePropertiesSerializer(item.properties),
+  };
 }
 
 /** The data type properties */
 export interface DataTypeProperties {
   /** Latest provisioning state  of data product. */
-  provisioningState?: ProvisioningState;
+  readonly provisioningState?: ProvisioningState;
   /** State of data type. */
   state?: DataTypeState;
   /** Reason for the state of data type. */
-  stateReason?: string;
+  readonly stateReason?: string;
   /** Field for storage output retention in days. */
   storageOutputRetention?: number;
   /** Field for database cache retention in days. */
@@ -496,22 +534,27 @@ export interface DataTypeProperties {
   /** Field for database data retention in days. */
   databaseRetention?: number;
   /** Url for data visualization. */
-  visualizationUrl?: string;
+  readonly visualizationUrl?: string;
 }
 
 export function dataTypePropertiesSerializer(
-  input: DataTypeProperties,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: DataTypeProperties,
+): Record<string, unknown> {
+  return {
+    state: item["state"],
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+  };
 }
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
-export function proxyResourceSerializer(input: ProxyResource): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function proxyResourceSerializer(
+  item: ProxyResource,
+): Record<string, unknown> {
+  return item as any;
 }
 
 /** The type used for update operations of the DataType. */
@@ -520,9 +563,14 @@ export interface DataTypeUpdate {
   properties?: DataTypeUpdateProperties;
 }
 
-export function dataTypeUpdateSerializer(input: DataTypeUpdate): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function dataTypeUpdateSerializer(
+  item: DataTypeUpdate,
+): Record<string, unknown> {
+  return {
+    properties: !item.properties
+      ? item.properties
+      : dataTypeUpdatePropertiesSerializer(item.properties),
+  };
 }
 
 /** The updatable properties of the DataType. */
@@ -538,18 +586,17 @@ export interface DataTypeUpdateProperties {
 }
 
 export function dataTypeUpdatePropertiesSerializer(
-  input: DataTypeUpdateProperties,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  item: DataTypeUpdateProperties,
+): Record<string, unknown> {
+  return {
+    state: item["state"],
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+  };
 }
 
 export interface DeleteDataRequest {}
-
-export function deleteDataRequestSerializer(input: {}): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
 
 /** The details for container sas creation. */
 export interface ContainerSaS {
@@ -561,20 +608,20 @@ export interface ContainerSaS {
   ipAddress: string;
 }
 
-export function containerSaSSerializer(input: ContainerSaS): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+export function containerSaSSerializer(
+  item: ContainerSaS,
+): Record<string, unknown> {
+  return {
+    startTimeStamp: item["startTimeStamp"].toISOString(),
+    expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
+    ipAddress: item["ipAddress"],
+  };
 }
 
 /** Details of storage container account sas token . */
 export interface ContainerSasToken {
   /** Field to specify storage container sas token. */
   storageContainerSasToken: string;
-}
-
-export function containerSasTokenSerializer(input: ContainerSasToken): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** The response of a DataType list operation. */
@@ -585,13 +632,6 @@ export interface _DataTypeListResult {
   nextLink?: string;
 }
 
-export function dataTypeListResultSerializer(
-  input: _DataTypeListResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** The data catalog resource. */
 export interface DataProductsCatalog extends ProxyResource {
   /** The resource-specific properties for this resource. */
@@ -600,26 +640,12 @@ export interface DataProductsCatalog extends ProxyResource {
   name: string;
 }
 
-export function dataProductsCatalogSerializer(
-  input: DataProductsCatalog,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Details for data catalog properties. */
 export interface DataProductsCatalogProperties {
   /** The data catalog provisioning state. */
-  provisioningState?: ProvisioningState;
+  readonly provisioningState?: ProvisioningState;
   /** The data product publisher information. */
   publishers: PublisherInformation[];
-}
-
-export function dataProductsCatalogPropertiesSerializer(
-  input: DataProductsCatalogProperties,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Details for Publisher Information. */
@@ -628,13 +654,6 @@ export interface PublisherInformation {
   publisherName: string;
   /** Data product information. */
   dataProducts: DataProductInformation[];
-}
-
-export function publisherInformationSerializer(
-  input: PublisherInformation,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Data Product Information */
@@ -647,24 +666,10 @@ export interface DataProductInformation {
   dataProductVersions: DataProductVersion[];
 }
 
-export function dataProductInformationSerializer(
-  input: DataProductInformation,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Data Product Version. */
 export interface DataProductVersion {
   /** Version of data product */
   version: string;
-}
-
-export function dataProductVersionSerializer(
-  input: DataProductVersion,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** The response of a DataProductsCatalog list operation. */
@@ -675,13 +680,6 @@ export interface _DataProductsCatalogListResult {
   nextLink?: string;
 }
 
-export function dataProductsCatalogListResultSerializer(
-  input: _DataProductsCatalogListResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export interface _OperationListResult {
   /** The Operation items on this page */
@@ -690,47 +688,30 @@ export interface _OperationListResult {
   nextLink?: string;
 }
 
-export function operationListResultSerializer(
-  input: _OperationListResult,
-): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}
-
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
   /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
+  readonly name?: string;
   /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for Azure Resource Manager/control-plane operations. */
-  isDataAction?: boolean;
+  readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
+  readonly display?: OperationDisplay;
   /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: Origin;
+  readonly origin?: Origin;
   /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
   actionType?: ActionType;
-}
-
-export function operationSerializer(input: Operation): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
 }
 
 /** Localized display information for and operation. */
 export interface OperationDisplay {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
+  readonly provider?: string;
   /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
+  readonly resource?: string;
   /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
+  readonly operation?: string;
   /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-
-export function operationDisplaySerializer(input: OperationDisplay): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
+  readonly description?: string;
 }
 
 /** The status of the current operation. */
@@ -751,6 +732,7 @@ export enum ProvisioningStateKnownValues {
   Accepted = '"Accepted"',
 }
 
+/** The status of the current operation. */
 export type ProvisioningState =
   | "Succeeded"
   | "Failed"
@@ -768,6 +750,7 @@ export enum ControlStateKnownValues {
   Disabled = '"Disabled"',
 }
 
+/** The data type state */
 export type ControlState = "Enabled" | "Disabled";
 
 /** Specifies the default action of allow or deny when no other rules match. */
@@ -778,6 +761,7 @@ export enum DefaultActionKnownValues {
   Deny = '"Deny"',
 }
 
+/** Specifies the default action of allow or deny when no other rules match. */
 export type DefaultAction = "Allow" | "Deny";
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
@@ -792,6 +776,7 @@ export enum ManagedServiceIdentityTypeKnownValues {
   SystemAndUserAssigned = '"SystemAssigned, UserAssigned"',
 }
 
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType =
   | "None"
   | "SystemAssigned"
@@ -810,6 +795,7 @@ export enum CreatedByTypeKnownValues {
   Key = '"Key"',
 }
 
+/** The kind of entity that created the resource. */
 export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
 /** The data type state */
@@ -823,6 +809,7 @@ export enum DataProductUserRoleKnownValues {
   SensitiveReader = '"SensitiveReader"',
 }
 
+/** The data type state */
 export type DataProductUserRole = "Reader" | "SensitiveReader";
 
 /** The data type state */
@@ -833,6 +820,7 @@ export enum DataTypeStateKnownValues {
   Running = '"Running"',
 }
 
+/** The data type state */
 export type DataTypeState = "Stopped" | "Running";
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
@@ -845,6 +833,7 @@ export enum OriginKnownValues {
   "user,system" = '"user,system"',
 }
 
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type Origin = "user" | "system" | "user,system";
 
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
@@ -853,6 +842,7 @@ export enum ActionTypeKnownValues {
   Internal = '"Internal"',
 }
 
+/** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type ActionType = "Internal";
 
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
@@ -861,26 +851,5 @@ export enum VersionsKnownValues {
   v2023_11_15 = '"2023-11-15"',
 }
 
+/** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export type Versions = "2023-11-15";
-
-/** Initialization class for the client */
-export interface NetworkAnalyticsClientOptions {
-  /** Service host */
-  endpoint: string;
-  /** Credential used to authenticate requests to the service. */
-  credential: TokenCredential;
-  /** The API version to use for this operation. */
-  apiVersion: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-
-export function networkAnalyticsClientOptionsSerializer(input: {
-  endpoint: string;
-  credential: TokenCredential;
-  apiVersion: string;
-  subscriptionId: string;
-}): unknown {
-  console.log(input);
-  throw new Error("Not implemented");
-}

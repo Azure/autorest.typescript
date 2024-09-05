@@ -1,7 +1,6 @@
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import {
   NameType,
-  addImportsToFiles,
   clearImportSets,
   getImportSpecifier,
   normalizeName
@@ -115,7 +114,7 @@ export function buildOperationFiles(
       }
     ]);
 
-    addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
+    // addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     addImportBySymbol("serializeRecord", operationGroupFile);
 
     operationFiles.push(operationGroupFile);

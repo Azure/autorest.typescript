@@ -80,7 +80,6 @@ export {
   ActionType,
   VersionsKnownValues,
   Versions,
-  NetworkAnalyticsClientOptions,
   OperationsListOptionalParams,
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,

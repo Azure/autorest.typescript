@@ -9,6 +9,7 @@ import {
 } from "ts-morph";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
+  SdkBodyModelPropertyType,
   SdkClientType,
   SdkEnumType,
   SdkEnumValueType,
@@ -18,7 +19,8 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkType,
-  SdkUnionType
+  SdkUnionType,
+  isReadOnly
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
@@ -27,6 +29,7 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
+import { addImportBySymbol } from "../utils/importHelper.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
 import { getType } from "./buildCodeModel.js";
@@ -99,6 +102,8 @@ export function emitTypes(
       addDeclaration(sourceFile, unionType, type);
     }
   }
+
+  addImportBySymbol("serializeRecord", sourceFile);
 }
 
 export function getModelsPath(sourceRoot: string): string {
@@ -138,6 +143,7 @@ function buildEnumTypes(
   };
 
   if (type.description) {
+    enumAsUnion.docs = [type.description];
     enumDeclaration.docs = [type.description];
   }
 
@@ -228,15 +234,13 @@ function buildModelProperty(
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: normalizeName(property.name, NameType.Property),
-    type: getTypeExpression(property.type)
+    type: getTypeExpression(property.type),
+    hasQuestionToken: property.optional,
+    isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
   };
 
   if (property.description) {
     propertyStructure.docs = [property.description];
-  }
-
-  if (property.optional) {
-    propertyStructure.hasQuestionToken = true;
   }
 
   return propertyStructure;

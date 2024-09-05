@@ -293,6 +293,8 @@ export async function $onEmit(context: EmitContext) {
     binder.resolveAllReferences();
 
     for (const file of project.getSourceFiles()) {
+      const filePath = file.getFilePath();
+      filePath;
       file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
       file.fixUnusedIdentifiers();
       await emitContentByBuilder(

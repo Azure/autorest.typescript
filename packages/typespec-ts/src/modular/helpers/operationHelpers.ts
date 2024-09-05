@@ -909,8 +909,7 @@ export function getRequestModelMapping(
     return { propertiesStr: [] };
   }
 
-  let serializerName =
-    "name" in modelPropertyType && modelPropertyType.name
+  let serializerName = modelPropertyType.name
       ? `${toCamelCase(modelPropertyType.name)}Serializer`
       : undefined;
 

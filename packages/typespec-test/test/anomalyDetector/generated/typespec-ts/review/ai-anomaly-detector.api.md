@@ -76,7 +76,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export type DataSchema = "OneTable" | "MultiTable";
 
 // @public
@@ -85,7 +85,7 @@ export enum DataSchemaKnownValues {
     OneTable = "\"OneTable\""
 }
 
-// @public (undocumented)
+// @public
 export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
 // @public
@@ -147,7 +147,7 @@ export interface MultivariateAlignPolicy {
 export interface MultivariateAnomalyDetectionModel {
     createdTime: Date;
     lastUpdatedTime: Date;
-    modelId: string;
+    readonly modelId: string;
     modelInfo?: MultivariateModelInfo;
 }
 
@@ -239,7 +239,7 @@ export interface MultivariateModelInfo {
     diagnosticsInfo?: MultivariateDiagnosticsInfo;
     displayName?: string;
     endTime: Date;
-    errors?: MultivariateErrorResponse[];
+    readonly errors?: MultivariateErrorResponse[];
     slidingWindow?: number;
     startTime: Date;
     status?: ModelStatus;
@@ -271,7 +271,7 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
 
 // @public
 export interface MultivariateMultivariateDetectionResult {
-    resultId: string;
+    readonly resultId: string;
     results: MultivariateAnomalyState[];
     summary: MultivariateMultivariateBatchDetectionResultSummary;
 }
@@ -402,7 +402,7 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
 export interface UnivariateUnivariateChangePointDetectionResult {
     confidenceScores?: number[];
     isChangePoint?: boolean[];
-    period?: number;
+    readonly period?: number;
 }
 
 // @public

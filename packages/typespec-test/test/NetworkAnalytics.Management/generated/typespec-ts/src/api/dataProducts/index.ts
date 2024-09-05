@@ -3,10 +3,10 @@
 
 import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
+  StreamableMethod,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {

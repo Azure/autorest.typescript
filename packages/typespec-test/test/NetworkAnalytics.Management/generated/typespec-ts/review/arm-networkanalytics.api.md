@@ -25,7 +25,7 @@ export interface AccountSasToken {
     storageAccountSasToken: string;
 }
 
-// @public (undocumented)
+// @public
 export type ActionType = "Internal";
 
 // @public
@@ -35,12 +35,12 @@ export enum ActionTypeKnownValues {
 
 // @public
 export interface ConsumptionEndpointsProperties {
-    fileAccessResourceId?: string;
-    fileAccessUrl?: string;
-    ingestionResourceId?: string;
-    ingestionUrl?: string;
-    queryResourceId?: string;
-    queryUrl?: string;
+    readonly fileAccessResourceId?: string;
+    readonly fileAccessUrl?: string;
+    readonly ingestionResourceId?: string;
+    readonly ingestionUrl?: string;
+    readonly queryResourceId?: string;
+    readonly queryUrl?: string;
 }
 
 // @public
@@ -60,7 +60,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export type ControlState = "Enabled" | "Disabled";
 
 // @public
@@ -69,7 +69,7 @@ export enum ControlStateKnownValues {
     Enabled = "\"Enabled\""
 }
 
-// @public (undocumented)
+// @public
 export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
 // @public
@@ -104,26 +104,26 @@ export interface DataProductNetworkAcls {
 
 // @public
 export interface DataProductProperties {
-    availableMinorVersions?: string[];
-    consumptionEndpoints?: ConsumptionEndpointsProperties;
+    readonly availableMinorVersions?: string[];
+    readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
     currentMinorVersion?: string;
     customerEncryptionKey?: EncryptionKeyDetails;
     customerManagedKeyEncryptionEnabled?: ControlState;
-    documentation?: string;
-    keyVaultUrl?: string;
+    readonly documentation?: string;
+    readonly keyVaultUrl?: string;
     majorVersion: string;
     managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
     networkacls?: DataProductNetworkAcls;
     owners?: string[];
     privateLinksEnabled?: ControlState;
     product: string;
-    provisioningState?: ProvisioningState;
+    readonly provisioningState?: ProvisioningState;
     publicNetworkAccess?: ControlState;
     publisher: string;
     purviewAccount?: string;
     purviewCollection?: string;
     redundancy?: ControlState;
-    resourceGuid?: string;
+    readonly resourceGuid?: string;
 }
 
 // @public
@@ -138,7 +138,7 @@ export interface DataProductsCatalog extends ProxyResource {
 
 // @public
 export interface DataProductsCatalogProperties {
-    provisioningState?: ProvisioningState;
+    readonly provisioningState?: ProvisioningState;
     publishers: PublisherInformation[];
 }
 
@@ -235,7 +235,7 @@ export interface DataProductUpdateProperties {
     purviewCollection?: string;
 }
 
-// @public (undocumented)
+// @public
 export type DataProductUserRole = "Reader" | "SensitiveReader";
 
 // @public
@@ -259,11 +259,11 @@ export interface DataType extends ProxyResource {
 export interface DataTypeProperties {
     databaseCacheRetention?: number;
     databaseRetention?: number;
-    provisioningState?: ProvisioningState;
+    readonly provisioningState?: ProvisioningState;
     state?: DataTypeState;
-    stateReason?: string;
+    readonly stateReason?: string;
     storageOutputRetention?: number;
-    visualizationUrl?: string;
+    readonly visualizationUrl?: string;
 }
 
 // @public
@@ -304,7 +304,7 @@ export interface DataTypesOperations {
     update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
-// @public (undocumented)
+// @public
 export type DataTypeState = "Stopped" | "Running";
 
 // @public
@@ -331,7 +331,7 @@ export interface DataTypeUpdateProperties {
     storageOutputRetention?: number;
 }
 
-// @public (undocumented)
+// @public
 export type DefaultAction = "Allow" | "Deny";
 
 // @public
@@ -353,8 +353,8 @@ export interface EncryptionKeyDetails {
 
 // @public
 export interface ErrorAdditionalInfo {
-    info?: {};
-    type?: string;
+    readonly info?: {};
+    readonly type?: string;
 }
 
 // @public (undocumented)
@@ -363,11 +363,11 @@ export interface ErrorAdditionalInfoInfo {
 
 // @public
 export interface ErrorDetail {
-    additionalInfo?: ErrorAdditionalInfo[];
-    code?: string;
-    details?: ErrorDetail[];
-    message?: string;
-    target?: string;
+    readonly additionalInfo?: ErrorAdditionalInfo[];
+    readonly code?: string;
+    readonly details?: ErrorDetail[];
+    readonly message?: string;
+    readonly target?: string;
 }
 
 // @public
@@ -402,7 +402,7 @@ export interface ManagedResourceGroupConfiguration {
     name: string;
 }
 
-// @public (undocumented)
+// @public
 export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
 
 // @public
@@ -415,8 +415,8 @@ export enum ManagedServiceIdentityTypeKnownValues {
 
 // @public
 export interface ManagedServiceIdentityV4 {
-    principalId?: string;
-    tenantId?: string;
+    readonly principalId?: string;
+    readonly tenantId?: string;
     type: ManagedServiceIdentityType;
     userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
@@ -437,28 +437,20 @@ export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface NetworkAnalyticsClientOptions {
-    apiVersion: string;
-    credential: TokenCredential;
-    endpoint: string;
-    subscriptionId: string;
-}
-
-// @public
 export interface Operation {
     actionType?: ActionType;
-    display?: OperationDisplay;
-    isDataAction?: boolean;
-    name?: string;
-    origin?: Origin;
+    readonly display?: OperationDisplay;
+    readonly isDataAction?: boolean;
+    readonly name?: string;
+    readonly origin?: Origin;
 }
 
 // @public
 export interface OperationDisplay {
-    description?: string;
-    operation?: string;
-    provider?: string;
-    resource?: string;
+    readonly description?: string;
+    readonly operation?: string;
+    readonly provider?: string;
+    readonly resource?: string;
 }
 
 // @public
@@ -470,7 +462,7 @@ export interface OperationsOperations {
     list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 
-// @public (undocumented)
+// @public
 export type Origin = "user" | "system" | "user,system";
 
 // @public
@@ -492,7 +484,7 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public (undocumented)
+// @public
 export type ProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Provisioning" | "Updating" | "Deleting" | "Accepted";
 
 // @public
@@ -518,10 +510,10 @@ export interface PublisherInformation {
 
 // @public
 export interface Resource {
-    id?: string;
-    name?: string;
-    systemData?: SystemData;
-    type?: string;
+    readonly id?: string;
+    readonly name?: string;
+    readonly systemData?: SystemData;
+    readonly type?: string;
 }
 
 // @public
@@ -573,11 +565,11 @@ export interface TrackedResource extends Resource {
 
 // @public
 export interface UserAssignedIdentity {
-    clientId?: string;
-    principalId?: string;
+    readonly clientId?: string;
+    readonly principalId?: string;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "2023-11-15";
 
 // @public
