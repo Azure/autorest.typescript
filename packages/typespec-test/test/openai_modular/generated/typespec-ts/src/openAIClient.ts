@@ -31,6 +31,7 @@ import {
   Embeddings,
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import {
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,

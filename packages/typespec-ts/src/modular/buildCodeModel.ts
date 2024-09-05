@@ -1762,9 +1762,9 @@ function emitClients(
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
-    const sdkPackageClient = context.sdkPackage.clients.find(
-      (p) => p.crossLanguageDefinitionId === client.crossLanguageDefinitionId
-    );
+    const sdkPackageClient = context.sdkPackage.clients.find((p) => {
+      return p.name === client.name;
+    });
 
     if (!sdkPackageClient) {
       throw new Error(`Client ${client.name} not found in the SDK package`);

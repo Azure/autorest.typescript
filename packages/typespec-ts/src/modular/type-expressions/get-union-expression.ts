@@ -8,9 +8,10 @@ export function getUnionExpression(
   options: EmitTypeOptions = {}
 ): string {
   if (shouldEmitInline(type, options)) {
-    return `(${type.values
-      .map((v) => `${getTypeExpression(v, options)}`)
-      .join(" | ")})`;
+    const variantTypes = new Set(
+      type.values.map((v) => `${getTypeExpression(v, options)}`)
+    );
+    return `(${[...variantTypes].join(" | ")})`;
   } else {
     return resolveReference(type);
   }
