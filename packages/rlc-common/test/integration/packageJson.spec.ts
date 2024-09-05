@@ -337,7 +337,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
@@ -444,7 +444,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
   });
@@ -693,7 +693,6 @@ describe("Package file generation", () => {
         "./test/integration/static/package.json"
       );
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      console.log(packageFile);
       expect(packageFile.dependencies).to.have.property(
         "@azure/core-lro",
         "^3.0.0"
@@ -717,7 +716,6 @@ describe("Package file generation", () => {
         "./test/integration/static/package.json"
       );
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      console.log(packageFile);
       expect(packageFile.dependencies).to.have.property(
         "@azure/core-paging",
         "^1.5.0"
@@ -751,6 +749,40 @@ describe("Package file generation", () => {
         "./test/integration/static/package_non_existing.json"
       );
       expect(packageFileContent).to.be.undefined;
+    });
+
+    it("[esm] should not update paging dependency if there exists paging operations for Modular", () => {
+      let model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasPaging: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = updatePackageFile(
+        model,
+        "./test/integration/static/package.json"
+      );
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile.dependencies).to.not.have.property(
+        "@azure/core-paging"
+      );
+    });
+    it("[esm] should not include paging dependency if there exists paging operations for Modular", () => {
+      let model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: false,
+        withTests: true,
+        hasPaging: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile.dependencies).to.not.have.property(
+        "@azure/core-paging"
+      );
     });
   });
 
