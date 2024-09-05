@@ -137,7 +137,7 @@ function buildEnumTypes(
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
   const enumDeclaration: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
-    name: `${normalizeName(type.name, NameType.Interface)}KnownValues`,
+    name: `Known${normalizeName(type.name, NameType.Interface)}`,
     isExported: true,
     members: type.values.map(emitEnumMember)
   };

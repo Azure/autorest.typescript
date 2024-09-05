@@ -715,7 +715,7 @@ export interface OperationDisplay {
 }
 
 /** The status of the current operation. */
-export enum ProvisioningStateKnownValues {
+export enum KnownProvisioningState {
   /** Represents a succeeded operation. */
   Succeeded = '"Succeeded"',
   /** Represents a failed operation. */
@@ -748,7 +748,7 @@ export enum ProvisioningStateKnownValues {
 export type ProvisioningState = string;
 
 /** The data type state */
-export enum ControlStateKnownValues {
+export enum KnownControlState {
   /** Field to enable a setting. */
   Enabled = '"Enabled"',
   /** Field to disable a setting. */
@@ -766,7 +766,7 @@ export enum ControlStateKnownValues {
 export type ControlState = string;
 
 /** Specifies the default action of allow or deny when no other rules match. */
-export enum DefaultActionKnownValues {
+export enum KnownDefaultAction {
   /** Represents allow action. */
   Allow = '"Allow"',
   /** Represents deny action. */
@@ -784,7 +784,7 @@ export enum DefaultActionKnownValues {
 export type DefaultAction = string;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export enum ManagedServiceIdentityTypeKnownValues {
+export enum KnownManagedServiceIdentityType {
   /** No managed identity. */
   None = '"None"',
   /** System assigned managed identity. */
@@ -808,7 +808,7 @@ export enum ManagedServiceIdentityTypeKnownValues {
 export type ManagedServiceIdentityType = string;
 
 /** The kind of entity that created the resource. */
-export enum CreatedByTypeKnownValues {
+export enum KnownCreatedByType {
   /** The entity was created by a user. */
   User = '"User"',
   /** The entity was created by an application. */
@@ -832,7 +832,7 @@ export enum CreatedByTypeKnownValues {
 export type CreatedByType = string;
 
 /** The data type state */
-export enum DataProductUserRoleKnownValues {
+export enum KnownDataProductUserRole {
   /** Field to specify user of type Reader. */
   Reader = '"Reader"',
   /**
@@ -854,7 +854,7 @@ export enum DataProductUserRoleKnownValues {
 export type DataProductUserRole = string;
 
 /** The data type state */
-export enum DataTypeStateKnownValues {
+export enum KnownDataTypeState {
   /** Field to specify stopped state. */
   Stopped = '"Stopped"',
   /** Field to specify running state. */
@@ -872,7 +872,7 @@ export enum DataTypeStateKnownValues {
 export type DataTypeState = string;
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export enum OriginKnownValues {
+export enum KnownOrigin {
   /** Indicates the operation is initiated by a user. */
   user = '"user"',
   /** Indicates the operation is initiated by a system. */
@@ -893,7 +893,7 @@ export enum OriginKnownValues {
 export type Origin = string;
 
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export enum ActionTypeKnownValues {
+export enum KnownActionType {
   /** Actions are for internal-only APIs. */
   Internal = '"Internal"',
 }
