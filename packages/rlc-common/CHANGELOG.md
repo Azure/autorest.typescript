@@ -1,3 +1,5 @@
+## 0.33.0 (2024-09-06)
+
 ## 0.32.0 (2024-08-15)
 
 - [Feature] Remove internal RLC layer from modular. Please refer to [#2728](https://github.com/Azure/autorest.typescript/pull/2728).
