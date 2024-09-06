@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 export interface ChatProtocolContext extends Client {}
 

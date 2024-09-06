@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import {
   createChatProtocol,
   ChatProtocolContext,
@@ -16,6 +15,7 @@ import {
   ChatCompletionRecord,
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import {
   CreateStreamingOptionalParams,
   CreateOptionalParams,

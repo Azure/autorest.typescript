@@ -26,7 +26,7 @@ export class WidgetServiceClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential,
     options: WidgetServiceClientOptionalParams = {},
   ) {
@@ -34,7 +34,7 @@ export class WidgetServiceClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createWidgetService(endpoint, credential, {
+    this._client = createWidgetService(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

@@ -17,6 +17,7 @@ export interface ParametrizedHostClientOptionalParams extends ClientOptions {
 
 export function createParametrizedHost(
   credential: TokenCredential,
+  apiVersion: string,
   options: ParametrizedHostClientOptionalParams = {},
 ): ParametrizedHostContext {
   const host = options.host ?? "one";

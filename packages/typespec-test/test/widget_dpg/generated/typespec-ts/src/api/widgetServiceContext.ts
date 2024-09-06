@@ -12,7 +12,6 @@ export interface WidgetServiceContext extends Client {}
 export interface WidgetServiceClientOptionalParams extends ClientOptions {}
 
 export function createWidgetService(
-  endpoint: string,
   credential: KeyCredential,
   options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {

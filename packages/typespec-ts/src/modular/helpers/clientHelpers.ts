@@ -4,17 +4,17 @@ import {
   ParameterDeclarationStructure,
   StatementedNode
 } from "ts-morph";
-import { isCredentialType } from "./typeHelpers.js";
-
-import { PackageFlavor } from "@azure-tools/rlc-common";
-import { SdkContext } from "../../utils/interfaces.js";
-import { getClientName } from "./namingHelpers.js";
-import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import {
   SdkClientType,
   SdkHttpOperation,
   SdkParameter
 } from "@azure-tools/typespec-client-generator-core";
+
+import { PackageFlavor } from "@azure-tools/rlc-common";
+import { SdkContext } from "../../utils/interfaces.js";
+import { getClientName } from "./namingHelpers.js";
+import { getTypeExpression } from "../type-expressions/get-type-expression.js";
+import { isCredentialType } from "./typeHelpers.js";
 
 export function getClientParameters(
   client: SdkClientType<SdkHttpOperation>,
@@ -37,6 +37,8 @@ export function getClientParameters(
           p.type.kind !== "constant" &&
           (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
       )
+      .filter((p) => !(p.kind === "endpoint" && dpgContext.arm))
+      .filter((p) => isClassicalClient || p.name !== "subscriptionId")
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
         const typeExpression = getClientParameterTypeExpression(p);
         const name = getClientParameterName(p);
@@ -46,14 +48,6 @@ export function getClientParameters(
         };
       })
   ];
-  // Add promoted client-level parameters for classical clients
-  if (isClassicalClient && dpgContext.rlcOptions?.azureArm) {
-    // added subscriptionId parameter for ARM clients
-    params.push({
-      name: "subscriptionId",
-      type: `string`
-    });
-  }
   params.push(optionsParam);
 
   return params;
@@ -78,8 +72,9 @@ function getClientParameterTypeExpression(parameter: SdkParameter) {
 function getClientParameterName(parameter: SdkParameter) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
-    parameter.type.kind === "union" &&
-    parameter.type.values.some((v) => v.kind === "endpoint")
+    (parameter.type.kind === "union" &&
+      parameter.type.values.some((v) => v.kind === "endpoint")) ||
+    (parameter.kind === "endpoint" && parameter.name === "endpoint")
   ) {
     return "endpointParam";
   }
@@ -100,8 +95,8 @@ export function buildGetClientEndpointParam(
     return `options.endpoint ?? options.baseUrl ?? ${endpointParam?.name}`;
   }
 
-  const urlParams = client.initialization.properties.filter(
-    (x) => x.kind === "endpoint" // ||  x.kind === "path" TODO: How do we finc these in TCGC?
+  const urlParams = _client.parameters.filter(
+    (x) => x.location === "path" || x.location === "endpointPath"
   );
 
   for (const param of urlParams) {
@@ -111,18 +106,20 @@ export function buildGetClientEndpointParam(
           ? `"${param.clientDefaultValue}"`
           : param.clientDefaultValue;
       context.addStatements(
-        `const ${param.name} = options.${param.name} ?? ${defaultValue};`
+        `const ${param.clientName} = options.${param.clientName} ?? ${defaultValue};`
       );
     } else if (param.optional) {
-      context.addStatements(`const ${param.name} = options.${param.name};`);
+      context.addStatements(
+        `const ${param.clientName} = options.${param.clientName};`
+      );
     }
   }
 
   let parameterizedEndpointUrl = _client.url;
   for (const param of urlParams) {
     parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
-      `{${param.name}}`,
-      `\${${getClientParameterName(param)}}`
+      `{${param.restApiName}}`,
+      `\${${param.clientName}}`
     );
   }
 

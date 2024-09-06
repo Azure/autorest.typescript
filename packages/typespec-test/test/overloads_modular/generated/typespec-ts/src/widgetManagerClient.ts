@@ -11,6 +11,7 @@ import {
   WidgetManagerClientOptionalParams,
 } from "./api/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 export { WidgetManagerClientOptionalParams } from "./api/widgetManagerContext.js";
 

@@ -16,7 +16,6 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
 
 /** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
 export function createSchemaRegistry(
-  fullyQualifiedNamespace: string,
   credential: TokenCredential,
   options: SchemaRegistryClientOptionalParams = {},
 ): SchemaRegistryContext {

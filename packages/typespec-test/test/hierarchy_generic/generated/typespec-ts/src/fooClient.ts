@@ -20,12 +20,12 @@ export class FooClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpoint: string, options: FooClientOptionalParams = {}) {
+  constructor(endpointParam: string, options: FooClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createFoo(endpoint, {
+    this._client = createFoo(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
