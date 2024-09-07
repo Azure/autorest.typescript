@@ -359,20 +359,6 @@ export interface Completions {
   usage: CompletionsUsage;
 }
 
-/**
- * Representation of the token counts processed for a completions request.
- * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
- * other consumers.
- */
-export interface CompletionsUsage {
-  /** The number of tokens generated across all completions emissions. */
-  completionTokens: number;
-  /** The number of tokens in the provided prompts for the completions request. */
-  promptTokens: number;
-  /** The total number of tokens processed for the completions request and response. */
-  totalTokens: number;
-}
-
 /** Content filtering results for a single prompt in the request. */
 export interface ContentFilterResultsForPrompt {
   /** The index of this prompt in the set of prompt results */
@@ -529,6 +515,20 @@ export interface ContentFilterCitedDetectionResult {
   url?: string;
   /** The license description associated with the detection. */
   license: string;
+}
+
+/**
+ * Representation of the token counts processed for a completions request.
+ * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
+ * other consumers.
+ */
+export interface CompletionsUsage {
+  /** The number of tokens generated across all completions emissions. */
+  completionTokens: number;
+  /** The number of tokens in the provided prompts for the completions request. */
+  promptTokens: number;
+  /** The total number of tokens processed for the completions request and response. */
+  totalTokens: number;
 }
 
 /** Representation of a log probabilities model for a completions generation. */
@@ -698,96 +698,6 @@ export function chatCompletionsOptionsSerializer(
   };
 }
 
-/** A representation of the available Azure OpenAI enhancement configurations. */
-export interface AzureChatEnhancementConfiguration {
-  /** A representation of the available options for the Azure OpenAI grounding enhancement. */
-  grounding?: AzureChatGroundingEnhancementConfiguration;
-  /** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
-  ocr?: AzureChatOCREnhancementConfiguration;
-}
-
-export function azureChatEnhancementConfigurationSerializer(
-  item: AzureChatEnhancementConfiguration,
-): Record<string, unknown> {
-  return {
-    grounding: !item.grounding
-      ? item.grounding
-      : azureChatGroundingEnhancementConfigurationSerializer(item.grounding),
-    ocr: !item.ocr
-      ? item.ocr
-      : azureChatOCREnhancementConfigurationSerializer(item.ocr),
-  };
-}
-
-/** A representation of the available options for the Azure OpenAI grounding enhancement. */
-export interface AzureChatGroundingEnhancementConfiguration {
-  /** Specifies whether the enhancement is enabled. */
-  enabled: boolean;
-}
-
-export function azureChatGroundingEnhancementConfigurationSerializer(
-  item: AzureChatGroundingEnhancementConfiguration,
-): Record<string, unknown> {
-  return {
-    enabled: item["enabled"],
-  };
-}
-
-/** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
-export interface AzureChatOCREnhancementConfiguration {
-  /** Specifies whether the enhancement is enabled. */
-  enabled: boolean;
-}
-
-export function azureChatOCREnhancementConfigurationSerializer(
-  item: AzureChatOCREnhancementConfiguration,
-): Record<string, unknown> {
-  return {
-    enabled: item["enabled"],
-  };
-}
-
-/**
- * An abstract representation of a response format configuration usable by Chat Completions. Can be used to enable JSON
- * mode.
- */
-export interface ChatCompletionsResponseFormat {
-  /** The discriminated type for the response format. */
-  type: string;
-}
-
-export function chatCompletionsResponseFormatSerializer(
-  item: ChatCompletionsResponseFormatUnion,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-  };
-}
-
-export type ChatCompletionsResponseFormatUnion =
-  | ChatCompletionsTextResponseFormat
-  | ChatCompletionsJsonResponseFormat
-  | ChatCompletionsResponseFormat;
-
-export function chatCompletionsResponseFormatUnionSerializer(
-  item: ChatCompletionsResponseFormatUnion,
-): Record<string, unknown> {
-  switch (item.type) {
-    case "text":
-      return chatCompletionsTextResponseFormatSerializer(
-        item as ChatCompletionsTextResponseFormat,
-      );
-
-    case "json_object":
-      return chatCompletionsJsonResponseFormatSerializer(
-        item as ChatCompletionsJsonResponseFormat,
-      );
-
-    default:
-      return chatCompletionsResponseFormatSerializer(item);
-  }
-}
-
 /** An abstract representation of a chat message as provided in a request. */
 export interface ChatRequestMessage {
   /** The chat role associated with this message. */
@@ -795,7 +705,7 @@ export interface ChatRequestMessage {
 }
 
 export function chatRequestMessageSerializer(
-  item: ChatRequestMessageUnion,
+  item: ChatRequestMessage,
 ): Record<string, unknown> {
   return {
     ...chatRequestMessageUnionSerializer(item),
@@ -811,7 +721,7 @@ export type ChatRequestMessageUnion =
   | ChatRequestMessage;
 
 export function chatRequestMessageUnionSerializer(
-  item: ChatRequestMessageUnion,
+  item: ChatRequestMessage,
 ): Record<string, unknown> {
   switch (item.role) {
     case "system":
@@ -883,98 +793,6 @@ export function chatRequestUserMessageSerializer(
   };
 }
 
-/** An abstract representation of a structured content item within a chat message. */
-export interface ChatMessageContentItem {
-  /** The discriminated object type. */
-  type: string;
-}
-
-export function chatMessageContentItemSerializer(
-  item: ChatMessageContentItemUnion,
-): Record<string, unknown> {
-  return {
-    ...chatMessageContentItemUnionSerializer(item),
-  };
-}
-
-export type ChatMessageContentItemUnion =
-  | ChatMessageTextContentItem
-  | ChatMessageImageContentItem
-  | ChatMessageContentItem;
-
-export function chatMessageContentItemUnionSerializer(
-  item: ChatMessageContentItemUnion,
-): Record<string, unknown> {
-  switch (item.type) {
-    case "text":
-      return chatMessageTextContentItemSerializer(
-        item as ChatMessageTextContentItem,
-      );
-
-    case "image_url":
-      return chatMessageImageContentItemSerializer(
-        item as ChatMessageImageContentItem,
-      );
-
-    default:
-      return chatMessageContentItemSerializer(item);
-  }
-}
-
-/** A structured chat content item containing plain text. */
-export interface ChatMessageTextContentItem extends ChatMessageContentItem {
-  /** The discriminated object type: always 'text' for this type. */
-  type: "text";
-  /** The content of the message. */
-  text: string;
-}
-
-export function chatMessageTextContentItemSerializer(
-  item: ChatMessageTextContentItem,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    text: item["text"],
-  };
-}
-
-/** A structured chat content item containing an image reference. */
-export interface ChatMessageImageContentItem extends ChatMessageContentItem {
-  /** The discriminated object type: always 'image_url' for this type. */
-  type: "image_url";
-  /** An internet location, which must be accessible to the model,from which the image may be retrieved. */
-  imageUrl: ChatMessageImageUrl;
-}
-
-export function chatMessageImageContentItemSerializer(
-  item: ChatMessageImageContentItem,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    image_url: chatMessageImageUrlSerializer(item.imageUrl),
-  };
-}
-
-/** An internet location from which the model may retrieve an image. */
-export interface ChatMessageImageUrl {
-  /** The URL of the image. */
-  url: string;
-  /**
-   * The evaluation quality setting to use, which controls relative prioritization of speed, token consumption, and
-   * accuracy.
-   */
-  detail?: ChatMessageImageDetailLevel;
-}
-
-export function chatMessageImageUrlSerializer(
-  item: ChatMessageImageUrl,
-): Record<string, unknown> {
-  return {
-    url: item["url"],
-    detail: item["detail"],
-  };
-}
-
 /** A request chat message representing response or action from the assistant. */
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'assistant' for assistant messages. */
@@ -1009,28 +827,6 @@ export function chatRequestAssistantMessageSerializer(
   };
 }
 
-/** The name and arguments of a function that should be called, as generated by the model. */
-export interface FunctionCall {
-  /** The name of the function to call. */
-  name: string;
-  /**
-   * The arguments to call the function with, as generated by the model in JSON format.
-   * Note that the model does not always generate valid JSON, and may hallucinate parameters
-   * not defined by your function schema. Validate the arguments in your code before calling
-   * your function.
-   */
-  arguments: string;
-}
-
-export function functionCallSerializer(
-  item: FunctionCall,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-    arguments: item["arguments"],
-  };
-}
-
 /**
  * An abstract representation of a tool call that must be resolved in a subsequent request to perform the requested
  * chat completion.
@@ -1043,7 +839,7 @@ export interface ChatCompletionsToolCall {
 }
 
 export function chatCompletionsToolCallSerializer(
-  item: ChatCompletionsToolCallUnion,
+  item: ChatCompletionsToolCall,
 ): Record<string, unknown> {
   return {
     type: item["type"],
@@ -1056,7 +852,7 @@ export type ChatCompletionsToolCallUnion =
   | ChatCompletionsToolCall;
 
 export function chatCompletionsToolCallUnionSerializer(
-  item: ChatCompletionsToolCallUnion,
+  item: ChatCompletionsToolCall,
 ): Record<string, unknown> {
   switch (item.type) {
     case "function":
@@ -1088,6 +884,28 @@ export function chatCompletionsFunctionToolCallSerializer(
     type: item["type"],
     id: item["id"],
     function: functionCallSerializer(item.function),
+  };
+}
+
+/** The name and arguments of a function that should be called, as generated by the model. */
+export interface FunctionCall {
+  /** The name of the function to call. */
+  name: string;
+  /**
+   * The arguments to call the function with, as generated by the model in JSON format.
+   * Note that the model does not always generate valid JSON, and may hallucinate parameters
+   * not defined by your function schema. Validate the arguments in your code before calling
+   * your function.
+   */
+  arguments: string;
+}
+
+export function functionCallSerializer(
+  item: FunctionCall,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+    arguments: item["arguments"],
   };
 }
 
@@ -1155,23 +973,6 @@ export function functionDefinitionSerializer(
 }
 
 /**
- * A structure that specifies the exact name of a specific, request-provided function to use when processing a chat
- * completions operation.
- */
-export interface FunctionName {
-  /** The name of the function to call. */
-  name: string;
-}
-
-export function functionNameSerializer(
-  item: FunctionName,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-  };
-}
-
-/**
  *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
  *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
  *   The use of this configuration is compatible only with Azure OpenAI.
@@ -1185,7 +986,7 @@ export interface AzureChatExtensionConfiguration {
 }
 
 export function azureChatExtensionConfigurationSerializer(
-  item: AzureChatExtensionConfigurationUnion,
+  item: AzureChatExtensionConfiguration,
 ): Record<string, unknown> {
   return {
     ...azureChatExtensionConfigurationUnionSerializer(item),
@@ -1201,7 +1002,7 @@ export type AzureChatExtensionConfigurationUnion =
   | AzureChatExtensionConfiguration;
 
 export function azureChatExtensionConfigurationUnionSerializer(
-  item: AzureChatExtensionConfigurationUnion,
+  item: AzureChatExtensionConfiguration,
 ): Record<string, unknown> {
   switch (item.type) {
     case "azure_search":
@@ -1339,7 +1140,7 @@ export interface OnYourDataAuthenticationOptions {
 }
 
 export function onYourDataAuthenticationOptionsSerializer(
-  item: OnYourDataAuthenticationOptionsUnion,
+  item: OnYourDataAuthenticationOptions,
 ): Record<string, unknown> {
   return {
     ...onYourDataAuthenticationOptionsUnionSerializer(item),
@@ -1357,7 +1158,7 @@ export type OnYourDataAuthenticationOptionsUnion =
   | OnYourDataAuthenticationOptions;
 
 export function onYourDataAuthenticationOptionsUnionSerializer(
-  item: OnYourDataAuthenticationOptionsUnion,
+  item: OnYourDataAuthenticationOptions,
 ): Record<string, unknown> {
   switch (item.type) {
     case "api_key":
@@ -1397,82 +1198,6 @@ export function onYourDataAuthenticationOptionsUnionSerializer(
 
     default:
       return onYourDataAuthenticationOptionsSerializer(item);
-  }
-}
-
-/** Optional settings to control how fields are processed when using a configured Azure Search resource. */
-export interface AzureSearchIndexFieldMappingOptions {
-  /** The name of the index field to use as a title. */
-  titleField?: string;
-  /** The name of the index field to use as a URL. */
-  urlField?: string;
-  /** The name of the index field to use as a filepath. */
-  filepathField?: string;
-  /** The names of index fields that should be treated as content. */
-  contentFields?: string[];
-  /** The separator pattern that content fields should use. */
-  contentFieldsSeparator?: string;
-  /** The names of fields that represent vector data. */
-  vectorFields?: string[];
-  /** The names of fields that represent image vector data. */
-  imageVectorFields?: string[];
-}
-
-export function azureSearchIndexFieldMappingOptionsSerializer(
-  item: AzureSearchIndexFieldMappingOptions,
-): Record<string, unknown> {
-  return {
-    title_field: item["titleField"],
-    url_field: item["urlField"],
-    filepath_field: item["filepathField"],
-    content_fields: item["contentFields"],
-    content_fields_separator: item["contentFieldsSeparator"],
-    vector_fields: item["vectorFields"],
-    image_vector_fields: item["imageVectorFields"],
-  };
-}
-
-/** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
-export interface OnYourDataVectorizationSource {
-  /** The type of vectorization source to use. */
-  type: OnYourDataVectorizationSourceType;
-}
-
-export function onYourDataVectorizationSourceSerializer(
-  item: OnYourDataVectorizationSourceUnion,
-): Record<string, unknown> {
-  return {
-    ...onYourDataVectorizationSourceUnionSerializer(item),
-  };
-}
-
-export type OnYourDataVectorizationSourceUnion =
-  | OnYourDataEndpointVectorizationSource
-  | OnYourDataDeploymentNameVectorizationSource
-  | OnYourDataModelIdVectorizationSource
-  | OnYourDataVectorizationSource;
-
-export function onYourDataVectorizationSourceUnionSerializer(
-  item: OnYourDataVectorizationSourceUnion,
-): Record<string, unknown> {
-  switch (item.type) {
-    case "endpoint":
-      return onYourDataEndpointVectorizationSourceSerializer(
-        item as OnYourDataEndpointVectorizationSource,
-      );
-
-    case "deployment_name":
-      return onYourDataDeploymentNameVectorizationSourceSerializer(
-        item as OnYourDataDeploymentNameVectorizationSource,
-      );
-
-    case "model_id":
-      return onYourDataModelIdVectorizationSourceSerializer(
-        item as OnYourDataModelIdVectorizationSource,
-      );
-
-    default:
-      return onYourDataVectorizationSourceSerializer(item);
   }
 }
 
@@ -1602,6 +1327,82 @@ export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerial
   };
 }
 
+/** Optional settings to control how fields are processed when using a configured Azure Search resource. */
+export interface AzureSearchIndexFieldMappingOptions {
+  /** The name of the index field to use as a title. */
+  titleField?: string;
+  /** The name of the index field to use as a URL. */
+  urlField?: string;
+  /** The name of the index field to use as a filepath. */
+  filepathField?: string;
+  /** The names of index fields that should be treated as content. */
+  contentFields?: string[];
+  /** The separator pattern that content fields should use. */
+  contentFieldsSeparator?: string;
+  /** The names of fields that represent vector data. */
+  vectorFields?: string[];
+  /** The names of fields that represent image vector data. */
+  imageVectorFields?: string[];
+}
+
+export function azureSearchIndexFieldMappingOptionsSerializer(
+  item: AzureSearchIndexFieldMappingOptions,
+): Record<string, unknown> {
+  return {
+    title_field: item["titleField"],
+    url_field: item["urlField"],
+    filepath_field: item["filepathField"],
+    content_fields: item["contentFields"],
+    content_fields_separator: item["contentFieldsSeparator"],
+    vector_fields: item["vectorFields"],
+    image_vector_fields: item["imageVectorFields"],
+  };
+}
+
+/** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
+export interface OnYourDataVectorizationSource {
+  /** The type of vectorization source to use. */
+  type: OnYourDataVectorizationSourceType;
+}
+
+export function onYourDataVectorizationSourceSerializer(
+  item: OnYourDataVectorizationSource,
+): Record<string, unknown> {
+  return {
+    ...onYourDataVectorizationSourceUnionSerializer(item),
+  };
+}
+
+export type OnYourDataVectorizationSourceUnion =
+  | OnYourDataEndpointVectorizationSource
+  | OnYourDataDeploymentNameVectorizationSource
+  | OnYourDataModelIdVectorizationSource
+  | OnYourDataVectorizationSource;
+
+export function onYourDataVectorizationSourceUnionSerializer(
+  item: OnYourDataVectorizationSource,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "endpoint":
+      return onYourDataEndpointVectorizationSourceSerializer(
+        item as OnYourDataEndpointVectorizationSource,
+      );
+
+    case "deployment_name":
+      return onYourDataDeploymentNameVectorizationSourceSerializer(
+        item as OnYourDataDeploymentNameVectorizationSource,
+      );
+
+    case "model_id":
+      return onYourDataModelIdVectorizationSourceSerializer(
+        item as OnYourDataModelIdVectorizationSource,
+      );
+
+    default:
+      return onYourDataVectorizationSourceSerializer(item);
+  }
+}
+
 /**
  * The details of a a vectorization source, used by Azure OpenAI On Your Data when applying vector search, that is based
  * on a public Azure OpenAI endpoint call for embeddings.
@@ -1635,7 +1436,7 @@ export interface OnYourDataVectorSearchAuthenticationOptions {
 }
 
 export function onYourDataVectorSearchAuthenticationOptionsSerializer(
-  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
+  item: OnYourDataVectorSearchAuthenticationOptions,
 ): Record<string, unknown> {
   return {
     ...onYourDataVectorSearchAuthenticationOptionsUnionSerializer(item),
@@ -1648,7 +1449,7 @@ export type OnYourDataVectorSearchAuthenticationOptionsUnion =
   | OnYourDataVectorSearchAuthenticationOptions;
 
 export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
-  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
+  item: OnYourDataVectorSearchAuthenticationOptions,
 ): Record<string, unknown> {
   switch (item.type) {
     case "api_key":
@@ -2192,6 +1993,96 @@ export function pineconeFieldMappingOptionsSerializer(
   };
 }
 
+/** A representation of the available Azure OpenAI enhancement configurations. */
+export interface AzureChatEnhancementConfiguration {
+  /** A representation of the available options for the Azure OpenAI grounding enhancement. */
+  grounding?: AzureChatGroundingEnhancementConfiguration;
+  /** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
+  ocr?: AzureChatOCREnhancementConfiguration;
+}
+
+export function azureChatEnhancementConfigurationSerializer(
+  item: AzureChatEnhancementConfiguration,
+): Record<string, unknown> {
+  return {
+    grounding: !item.grounding
+      ? item.grounding
+      : azureChatGroundingEnhancementConfigurationSerializer(item.grounding),
+    ocr: !item.ocr
+      ? item.ocr
+      : azureChatOCREnhancementConfigurationSerializer(item.ocr),
+  };
+}
+
+/** A representation of the available options for the Azure OpenAI grounding enhancement. */
+export interface AzureChatGroundingEnhancementConfiguration {
+  /** Specifies whether the enhancement is enabled. */
+  enabled: boolean;
+}
+
+export function azureChatGroundingEnhancementConfigurationSerializer(
+  item: AzureChatGroundingEnhancementConfiguration,
+): Record<string, unknown> {
+  return {
+    enabled: item["enabled"],
+  };
+}
+
+/** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
+export interface AzureChatOCREnhancementConfiguration {
+  /** Specifies whether the enhancement is enabled. */
+  enabled: boolean;
+}
+
+export function azureChatOCREnhancementConfigurationSerializer(
+  item: AzureChatOCREnhancementConfiguration,
+): Record<string, unknown> {
+  return {
+    enabled: item["enabled"],
+  };
+}
+
+/**
+ * An abstract representation of a response format configuration usable by Chat Completions. Can be used to enable JSON
+ * mode.
+ */
+export interface ChatCompletionsResponseFormat {
+  /** The discriminated type for the response format. */
+  type: string;
+}
+
+export function chatCompletionsResponseFormatSerializer(
+  item: ChatCompletionsResponseFormat,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
+}
+
+export type ChatCompletionsResponseFormatUnion =
+  | ChatCompletionsTextResponseFormat
+  | ChatCompletionsJsonResponseFormat
+  | ChatCompletionsResponseFormat;
+
+export function chatCompletionsResponseFormatUnionSerializer(
+  item: ChatCompletionsResponseFormat,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "text":
+      return chatCompletionsTextResponseFormatSerializer(
+        item as ChatCompletionsTextResponseFormat,
+      );
+
+    case "json_object":
+      return chatCompletionsJsonResponseFormatSerializer(
+        item as ChatCompletionsJsonResponseFormat,
+      );
+
+    default:
+      return chatCompletionsResponseFormatSerializer(item);
+  }
+}
+
 /**
  * The standard Chat Completions response format that can freely generate text and is not guaranteed to produce response
  * content that adheres to a specific schema.
@@ -2232,7 +2123,7 @@ export interface ChatCompletionsToolDefinition {
 }
 
 export function chatCompletionsToolDefinitionSerializer(
-  item: ChatCompletionsToolDefinitionUnion,
+  item: ChatCompletionsToolDefinition,
 ): Record<string, unknown> {
   return {
     type: item["type"],
@@ -2244,7 +2135,7 @@ export type ChatCompletionsToolDefinitionUnion =
   | ChatCompletionsToolDefinition;
 
 export function chatCompletionsToolDefinitionUnionSerializer(
-  item: ChatCompletionsToolDefinitionUnion,
+  item: ChatCompletionsToolDefinition,
 ): Record<string, unknown> {
   switch (item.type) {
     case "function":
@@ -2275,6 +2166,115 @@ export function chatCompletionsFunctionToolDefinitionSerializer(
   };
 }
 
+/** An abstract representation of a structured content item within a chat message. */
+export interface ChatMessageContentItem {
+  /** The discriminated object type. */
+  type: string;
+}
+
+export function chatMessageContentItemSerializer(
+  item: ChatMessageContentItem,
+): Record<string, unknown> {
+  return {
+    ...chatMessageContentItemUnionSerializer(item),
+  };
+}
+
+export type ChatMessageContentItemUnion =
+  | ChatMessageTextContentItem
+  | ChatMessageImageContentItem
+  | ChatMessageContentItem;
+
+export function chatMessageContentItemUnionSerializer(
+  item: ChatMessageContentItem,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "text":
+      return chatMessageTextContentItemSerializer(
+        item as ChatMessageTextContentItem,
+      );
+
+    case "image_url":
+      return chatMessageImageContentItemSerializer(
+        item as ChatMessageImageContentItem,
+      );
+
+    default:
+      return chatMessageContentItemSerializer(item);
+  }
+}
+
+/** A structured chat content item containing plain text. */
+export interface ChatMessageTextContentItem extends ChatMessageContentItem {
+  /** The discriminated object type: always 'text' for this type. */
+  type: "text";
+  /** The content of the message. */
+  text: string;
+}
+
+export function chatMessageTextContentItemSerializer(
+  item: ChatMessageTextContentItem,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    text: item["text"],
+  };
+}
+
+/** A structured chat content item containing an image reference. */
+export interface ChatMessageImageContentItem extends ChatMessageContentItem {
+  /** The discriminated object type: always 'image_url' for this type. */
+  type: "image_url";
+  /** An internet location, which must be accessible to the model,from which the image may be retrieved. */
+  imageUrl: ChatMessageImageUrl;
+}
+
+export function chatMessageImageContentItemSerializer(
+  item: ChatMessageImageContentItem,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    image_url: chatMessageImageUrlSerializer(item.imageUrl),
+  };
+}
+
+/** An internet location from which the model may retrieve an image. */
+export interface ChatMessageImageUrl {
+  /** The URL of the image. */
+  url: string;
+  /**
+   * The evaluation quality setting to use, which controls relative prioritization of speed, token consumption, and
+   * accuracy.
+   */
+  detail?: ChatMessageImageDetailLevel;
+}
+
+export function chatMessageImageUrlSerializer(
+  item: ChatMessageImageUrl,
+): Record<string, unknown> {
+  return {
+    url: item["url"],
+    detail: item["detail"],
+  };
+}
+
+/**
+ * A structure that specifies the exact name of a specific, request-provided function to use when processing a chat
+ * completions operation.
+ */
+export interface FunctionName {
+  /** The name of the function to call. */
+  name: string;
+}
+
+export function functionNameSerializer(
+  item: FunctionName,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+  };
+}
+
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
 export interface ChatCompletionsNamedToolSelection {
   /** The object type. */
@@ -2282,7 +2282,7 @@ export interface ChatCompletionsNamedToolSelection {
 }
 
 export function chatCompletionsNamedToolSelectionSerializer(
-  item: ChatCompletionsNamedToolSelectionUnion,
+  item: ChatCompletionsNamedToolSelection,
 ): Record<string, unknown> {
   return {
     type: item["type"],
@@ -2294,7 +2294,7 @@ export type ChatCompletionsNamedToolSelectionUnion =
   | ChatCompletionsNamedToolSelection;
 
 export function chatCompletionsNamedToolSelectionUnionSerializer(
-  item: ChatCompletionsNamedToolSelectionUnion,
+  item: ChatCompletionsNamedToolSelection,
 ): Record<string, unknown> {
   switch (item.type) {
     case "function":
@@ -2451,32 +2451,6 @@ export interface AzureChatExtensionsMessageContext {
   allRetrievedDocuments?: AzureChatExtensionRetrievedDocument[];
 }
 
-/** An abstract representation of structured information about why a chat completions response terminated. */
-export interface ChatFinishDetails {
-  /** The object type. */
-  type: string;
-}
-
-export type ChatFinishDetailsUnion =
-  | StopFinishDetails
-  | MaxTokensFinishDetails
-  | ChatFinishDetails;
-
-/**
- * Represents the output results of Azure enhancements to chat completions, as configured via the matching input provided
- * in the request.
- */
-export interface AzureChatEnhancements {
-  /** The grounding enhancement that returns the bounding box of the objects detected in the image. */
-  grounding?: AzureGroundingEnhancement;
-}
-
-/** The grounding enhancement that returns the bounding box of the objects detected in the image. */
-export interface AzureGroundingEnhancement {
-  /** The lines of text detected by the grounding enhancement. */
-  lines: AzureGroundingEnhancementLine[];
-}
-
 /**
  * A single instance of additional context information available when Azure OpenAI chat extensions are involved
  * in the generation of a corresponding chat completions response. This context information is only populated when
@@ -2522,33 +2496,16 @@ export interface AzureChatExtensionRetrievedDocument {
   filterReason?: AzureChatExtensionRetrieveDocumentFilterReason;
 }
 
-/** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
-export interface ChatChoiceLogProbabilityInfo {
-  /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
-  content: ChatTokenLogProbabilityResult[] | null;
+/** An abstract representation of structured information about why a chat completions response terminated. */
+export interface ChatFinishDetails {
+  /** The object type. */
+  type: string;
 }
 
-/** A representation of the log probability information for a single content token, including a list of most likely tokens if 'top_logprobs' were requested. */
-export interface ChatTokenLogProbabilityResult {
-  /** The message content token. */
-  token: string;
-  /** The log probability of the message content token. */
-  logprob: number;
-  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
-  bytes: number[] | null;
-  /** The list of most likely tokens and their log probability information, as requested via 'top_logprobs'. */
-  top_logprobs: ChatTokenLogProbabilityInfo[] | null;
-}
-
-/** A representation of the log probability information for a single message content token. */
-export interface ChatTokenLogProbabilityInfo {
-  /** The message content token. */
-  token: string;
-  /** The log probability of the message content token. */
-  logprob: number;
-  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
-  bytes: number[] | null;
-}
+export type ChatFinishDetailsUnion =
+  | StopFinishDetails
+  | MaxTokensFinishDetails
+  | ChatFinishDetails;
 
 /** A structured representation of a stop reason that signifies natural termination by the model. */
 export interface StopFinishDetails extends ChatFinishDetails {
@@ -2565,6 +2522,21 @@ export interface StopFinishDetails extends ChatFinishDetails {
 export interface MaxTokensFinishDetails extends ChatFinishDetails {
   /** The object type, which is always 'max_tokens' for this object. */
   type: "max_tokens";
+}
+
+/**
+ * Represents the output results of Azure enhancements to chat completions, as configured via the matching input provided
+ * in the request.
+ */
+export interface AzureChatEnhancements {
+  /** The grounding enhancement that returns the bounding box of the objects detected in the image. */
+  grounding?: AzureGroundingEnhancement;
+}
+
+/** The grounding enhancement that returns the bounding box of the objects detected in the image. */
+export interface AzureGroundingEnhancement {
+  /** The lines of text detected by the grounding enhancement. */
+  lines: AzureGroundingEnhancementLine[];
 }
 
 /** A content line object consisting of an adjacent sequence of content elements, such as words and selection marks. */
@@ -2596,6 +2568,34 @@ export interface AzureGroundingEnhancementCoordinatePoint {
   x: number;
   /** The y-coordinate (vertical axis) of the point. */
   y: number;
+}
+
+/** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
+export interface ChatChoiceLogProbabilityInfo {
+  /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
+  content: ChatTokenLogProbabilityResult[] | null;
+}
+
+/** A representation of the log probability information for a single content token, including a list of most likely tokens if 'top_logprobs' were requested. */
+export interface ChatTokenLogProbabilityResult {
+  /** The message content token. */
+  token: string;
+  /** The log probability of the message content token. */
+  logprob: number;
+  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
+  bytes: number[] | null;
+  /** The list of most likely tokens and their log probability information, as requested via 'top_logprobs'. */
+  top_logprobs: ChatTokenLogProbabilityInfo[] | null;
+}
+
+/** A representation of the log probability information for a single message content token. */
+export interface ChatTokenLogProbabilityInfo {
+  /** The message content token. */
+  token: string;
+  /** The log probability of the message content token. */
+  logprob: number;
+  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
+  bytes: number[] | null;
 }
 
 /** Represents the request data used to generate images. */
@@ -2836,14 +2836,6 @@ export interface Embeddings {
   usage: EmbeddingsUsage;
 }
 
-/** Measurement of the amount of tokens used in this request and response. */
-export interface EmbeddingsUsage {
-  /** Number of tokens sent in the original request. */
-  promptTokens: number;
-  /** Total number of tokens transacted in this request/response. */
-  totalTokens: number;
-}
-
 /** Representation of a single embeddings relatedness comparison. */
 export interface EmbeddingItem {
   /**
@@ -2853,6 +2845,14 @@ export interface EmbeddingItem {
   embedding: number[];
   /** Index of the prompt to which the EmbeddingItem corresponds. */
   index: number;
+}
+
+/** Measurement of the amount of tokens used in this request and response. */
+export interface EmbeddingsUsage {
+  /** Number of tokens sent in the original request. */
+  promptTokens: number;
+  /** Total number of tokens transacted in this request/response. */
+  totalTokens: number;
 }
 
 /** Defines available options for the underlying response format of output transcription information. */

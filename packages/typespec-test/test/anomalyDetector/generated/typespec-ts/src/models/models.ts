@@ -26,6 +26,40 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
 }
 
+/** ErrorResponse contains code and message that shows the error information. */
+export interface MultivariateErrorResponse {
+  /** The error code. */
+  code: string;
+  /** The message explaining the error reported by the service. */
+  message: string;
+}
+
+/** Variable Status. */
+export interface MultivariateVariableState {
+  /** Variable name in variable states. */
+  variable?: string;
+  /** Proportion of missing values that need to be filled by fillNAMethod. */
+  filledNARatio?: number;
+  /** Number of effective data points before applying fillNAMethod. */
+  effectiveCount?: number;
+  /** First valid timestamp with value of input data. */
+  firstTimestamp?: Date;
+  /** Last valid timestamp with value of input data. */
+  lastTimestamp?: Date;
+}
+
+export function multivariateVariableStateSerializer(
+  item: MultivariateVariableState,
+): Record<string, unknown> {
+  return {
+    variable: item["variable"],
+    filledNARatio: item["filledNARatio"],
+    effectiveCount: item["effectiveCount"],
+    firstTimestamp: item["firstTimestamp"]?.toISOString(),
+    lastTimestamp: item["lastTimestamp"]?.toISOString(),
+  };
+}
+
 /**
  * Detection request for batch inference. This is an asynchronous inference which
  * will need another API to get detection results.
@@ -64,40 +98,6 @@ export function multivariateMultivariateBatchDetectionOptionsSerializer(
     topContributorCount: item["topContributorCount"],
     startTime: item["startTime"].toISOString(),
     endTime: item["endTime"].toISOString(),
-  };
-}
-
-/** ErrorResponse contains code and message that shows the error information. */
-export interface MultivariateErrorResponse {
-  /** The error code. */
-  code: string;
-  /** The message explaining the error reported by the service. */
-  message: string;
-}
-
-/** Variable Status. */
-export interface MultivariateVariableState {
-  /** Variable name in variable states. */
-  variable?: string;
-  /** Proportion of missing values that need to be filled by fillNAMethod. */
-  filledNARatio?: number;
-  /** Number of effective data points before applying fillNAMethod. */
-  effectiveCount?: number;
-  /** First valid timestamp with value of input data. */
-  firstTimestamp?: Date;
-  /** Last valid timestamp with value of input data. */
-  lastTimestamp?: Date;
-}
-
-export function multivariateVariableStateSerializer(
-  item: MultivariateVariableState,
-): Record<string, unknown> {
-  return {
-    variable: item["variable"],
-    filledNARatio: item["filledNARatio"],
-    effectiveCount: item["effectiveCount"],
-    firstTimestamp: item["firstTimestamp"]?.toISOString(),
-    lastTimestamp: item["lastTimestamp"]?.toISOString(),
   };
 }
 

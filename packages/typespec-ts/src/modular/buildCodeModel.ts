@@ -112,7 +112,6 @@ import { getAddedOnVersions } from "@typespec/versioning";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
-import { isModelWithAdditionalProperties } from "./emitModels.js";
 import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
 
@@ -377,7 +376,8 @@ export function getType(
   }
   if (
     type.kind === "Model" &&
-    isModelWithAdditionalProperties(newValue) &&
+    newValue.type === "dict" &&
+    newValue.name !== "Record" &&
     !context.rlcOptions?.compatibilityMode
   ) {
     reportDiagnostic(context.program, {
@@ -998,7 +998,7 @@ function getName(program: Program, type: Model): string {
   }
 }
 
-function emitModel(
+export function emitModel(
   context: SdkContext,
   type: Model,
   usage: UsageFlags

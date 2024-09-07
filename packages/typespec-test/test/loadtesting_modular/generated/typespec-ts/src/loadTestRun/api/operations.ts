@@ -10,9 +10,9 @@ import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   passFailCriteriaSerializer,
   autoStopCriteriaSerializer,
+  secretSerializer,
   certificateMetadataSerializer,
   loadTestConfigurationSerializer,
-  secretSerializer,
   appComponentSerializer,
   resourceMetricSerializer,
   TestRun,

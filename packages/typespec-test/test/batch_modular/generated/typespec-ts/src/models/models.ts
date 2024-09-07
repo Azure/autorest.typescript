@@ -131,6 +131,76 @@ export interface BatchNode {
   virtualMachineInfo?: VirtualMachineInfo;
 }
 
+/** Information about a Task running on a Compute Node. */
+export interface TaskInformation {
+  /** The URL of the Task. */
+  taskUrl?: string;
+  /** The ID of the Job to which the Task belongs. */
+  jobId?: string;
+  /** The ID of the Task. */
+  taskId?: string;
+  /** The ID of the subtask if the Task is a multi-instance Task. */
+  subtaskId?: number;
+  /** The current state of the Task. */
+  taskState: TaskState;
+  /** Information about the execution of the Task. */
+  executionInfo?: TaskExecutionInformation;
+}
+
+/** Information about the execution of a Task. */
+export interface TaskExecutionInformation {
+  /** The time at which the Task started running. 'Running' corresponds to the running state, so if the Task specifies resource files or Packages, then the start time reflects the time at which the Task started downloading or deploying these. If the Task has been restarted or retried, this is the most recent time at which the Task started running. This property is present only for Tasks that are in the running or completed state. */
+  startTime?: Date;
+  /** The time at which the Task completed. This property is set only if the Task is in the Completed state. */
+  endTime?: Date;
+  /** The exit code of the program specified on the Task command line. This property is set only if the Task is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the Task (due to timeout, or user termination via the API) you may see an operating system-defined exit code. */
+  exitCode?: number;
+  /** Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. */
+  containerInfo?: TaskContainerExecutionInformation;
+  /** Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. */
+  failureInfo?: TaskFailureInformation;
+  /** The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. */
+  retryCount: number;
+  /** The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. */
+  lastRetryTime?: Date;
+  /** The number of times the Task has been requeued by the Batch service as the result of a user request. When the user removes Compute Nodes from a Pool (by resizing/shrinking the pool) or when the Job is being disabled, the user can specify that running Tasks on the Compute Nodes be requeued for execution. This count tracks how many times the Task has been requeued for these reasons. */
+  requeueCount: number;
+  /** The most recent time at which the Task has been requeued by the Batch service as the result of a user request. This property is set only if the requeueCount is nonzero. */
+  lastRequeueTime?: Date;
+  /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
+  result?: TaskExecutionResult;
+}
+
+/** Contains information about the container which a Task is executing. */
+export interface TaskContainerExecutionInformation {
+  /** The ID of the container. */
+  containerId?: string;
+  /** The state of the container. This is the state of the container according to the Docker service. It is equivalent to the status field returned by "docker inspect". */
+  state?: string;
+  /** Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". */
+  error?: string;
+}
+
+/** Information about a Task failure. */
+export interface TaskFailureInformation {
+  /** The category of the Task error. */
+  category: ErrorCategory;
+  /** An identifier for the Task error. Codes are invariant and are intended to be consumed programmatically. */
+  code?: string;
+  /** A message describing the Task error, intended to be suitable for display in a user interface. */
+  message?: string;
+  /** A list of additional details related to the error. */
+  details?: NameValuePair[];
+}
+
+/** Represents a name-value pair. */
+export interface NameValuePair {
+  /** The name in the name-value pair. */
+  name?: string;
+  /** The value in the name-value pair. */
+  value?: string;
+}
+
 /**
  * Batch will retry Tasks when a recovery operation is triggered on a Node.
  * Examples of recovery operations include (but are not limited to) when an
@@ -252,6 +322,57 @@ export function batchNodeIdentityReferenceSerializer(
   };
 }
 
+/** A single file or multiple files to be downloaded to a Compute Node. */
+export interface ResourceFile {
+  /** The storage container name in the auto storage Account. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. */
+  autoStorageContainerName?: string;
+  /** The URL of the blob container within Azure Blob Storage. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. This URL must be readable and listable from compute nodes. There are three ways to get such a URL for a container in Azure storage: include a Shared Access Signature (SAS) granting read and list permissions on the container, use a managed identity with read and list permissions, or set the ACL for the container to allow public access. */
+  storageContainerUrl?: string;
+  /** The URL of the file to download. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. If the URL points to Azure Blob Storage, it must be readable from compute nodes. There are three ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the blob, use a managed identity with read permission, or set the ACL for the blob or its container to allow public access. */
+  httpUrl?: string;
+  /** The blob prefix to use when downloading blobs from an Azure Storage container. Only the blobs whose names begin with the specified prefix will be downloaded. The property is valid only when autoStorageContainerName or storageContainerUrl is used. This prefix can be a partial filename or a subdirectory. If a prefix is not specified, all the files in the container will be downloaded. */
+  blobPrefix?: string;
+  /** The location on the Compute Node to which to download the file(s), relative to the Task's working directory. If the httpUrl property is specified, the filePath is required and describes the path which the file will be downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl property is specified, filePath is optional and is the directory to download the files to. In the case where filePath is used as a directory, any directory structure already associated with the input data will be retained in full and appended to the specified filePath directory. The specified relative path cannot break out of the Task's working directory (for example by using '..'). */
+  filePath?: string;
+  /** The file permission mode attribute in octal format. This property applies only to files being downloaded to Linux Compute Nodes. It will be ignored if it is specified for a resourceFile which will be downloaded to a Windows Compute Node. If this property is not specified for a Linux Compute Node, then a default value of 0770 is applied to the file. */
+  fileMode?: string;
+  /** The reference to the user assigned identity to use to access Azure Blob Storage specified by storageContainerUrl or httpUrl. */
+  identityReference?: BatchNodeIdentityReference;
+}
+
+export function resourceFileSerializer(
+  item: ResourceFile,
+): Record<string, unknown> {
+  return {
+    autoStorageContainerName: item["autoStorageContainerName"],
+    storageContainerUrl: item["storageContainerUrl"],
+    httpUrl: item["httpUrl"],
+    blobPrefix: item["blobPrefix"],
+    filePath: item["filePath"],
+    fileMode: item["fileMode"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+  };
+}
+
+/** An environment variable to be set on a Task process. */
+export interface EnvironmentSetting {
+  /** The name of the environment variable. */
+  name: string;
+  /** The value of the environment variable. */
+  value?: string;
+}
+
+export function environmentSettingSerializer(
+  item: EnvironmentSetting,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
+}
+
 /** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
 export interface UserIdentity {
   /** The name of the user identity under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. */
@@ -310,32 +431,62 @@ export interface StartTaskInformation {
   result?: TaskExecutionResult;
 }
 
-/** Contains information about the container which a Task is executing. */
-export interface TaskContainerExecutionInformation {
-  /** The ID of the container. */
-  containerId?: string;
-  /** The state of the container. This is the state of the container according to the Docker service. It is equivalent to the status field returned by "docker inspect". */
-  state?: string;
-  /** Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". */
-  error?: string;
+/** A reference to a Certificate to be installed on Compute Nodes in a Pool. Warning: This object is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
+export interface CertificateReference {
+  /** The thumbprint of the Certificate. */
+  thumbprint: string;
+  /** The algorithm with which the thumbprint is associated. This must be sha1. */
+  thumbprintAlgorithm: string;
+  /** The location of the Certificate store on the Compute Node into which to install the Certificate. The default value is currentuser. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). For Linux Compute Nodes, the Certificates are stored in a directory inside the Task working directory and an environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query for this location. For Certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g., /home/{user-name}/certs) and Certificates are placed in that directory. */
+  storeLocation?: CertificateStoreLocation;
+  /** The name of the Certificate store on the Compute Node into which to install the Certificate. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). Common store names include: My, Root, CA, Trust, Disallowed, TrustedPeople, TrustedPublisher, AuthRoot, AddressBook, but any custom store name can also be used. The default value is My. */
+  storeName?: string;
+  /** Which user Accounts on the Compute Node should have access to the private data of the Certificate. You can specify more than one visibility in this collection. The default is all Accounts. */
+  visibility?: CertificateVisibility[];
 }
 
-/** Information about a Task failure. */
-export interface TaskFailureInformation {
-  /** The category of the Task error. */
-  category: ErrorCategory;
-  /** An identifier for the Task error. Codes are invariant and are intended to be consumed programmatically. */
+export function certificateReferenceSerializer(
+  item: CertificateReference,
+): Record<string, unknown> {
+  return {
+    thumbprint: item["thumbprint"],
+    thumbprintAlgorithm: item["thumbprintAlgorithm"],
+    storeLocation: item["storeLocation"],
+    storeName: item["storeName"],
+    visibility: item["visibility"],
+  };
+}
+
+/** An error encountered by a Compute Node. */
+export interface BatchNodeError {
+  /** An identifier for the Compute Node error. Codes are invariant and are intended to be consumed programmatically. */
   code?: string;
-  /** A message describing the Task error, intended to be suitable for display in a user interface. */
+  /** A message describing the Compute Node error, intended to be suitable for display in a user interface. */
   message?: string;
-  /** A list of additional details related to the error. */
-  details?: NameValuePair[];
+  /** The list of additional error details related to the Compute Node error. */
+  errorDetails?: NameValuePair[];
 }
 
 /** The endpoint configuration for the Compute Node. */
 export interface BatchNodeEndpointConfiguration {
   /** The list of inbound endpoints that are accessible on the Compute Node. */
   inboundEndpoints: InboundEndpoint[];
+}
+
+/** An inbound endpoint on a Compute Node. */
+export interface InboundEndpoint {
+  /** The name of the endpoint. */
+  name: string;
+  /** The protocol of the endpoint. */
+  protocol: InboundEndpointProtocol;
+  /** The public IP address of the Compute Node. */
+  publicIpAddress?: string;
+  /** The public fully qualified domain name for the Compute Node. */
+  publicFQDN?: string;
+  /** The public port number of the endpoint. */
+  frontendPort: number;
+  /** The backend port number of the endpoint. */
+  backendPort: number;
 }
 
 /**
@@ -385,157 +536,6 @@ export function imageReferenceSerializer(
     version: item["version"],
     virtualMachineImageId: item["virtualMachineImageId"],
   };
-}
-
-/** Information about a Task running on a Compute Node. */
-export interface TaskInformation {
-  /** The URL of the Task. */
-  taskUrl?: string;
-  /** The ID of the Job to which the Task belongs. */
-  jobId?: string;
-  /** The ID of the Task. */
-  taskId?: string;
-  /** The ID of the subtask if the Task is a multi-instance Task. */
-  subtaskId?: number;
-  /** The current state of the Task. */
-  taskState: TaskState;
-  /** Information about the execution of the Task. */
-  executionInfo?: TaskExecutionInformation;
-}
-
-/** Information about the execution of a Task. */
-export interface TaskExecutionInformation {
-  /** The time at which the Task started running. 'Running' corresponds to the running state, so if the Task specifies resource files or Packages, then the start time reflects the time at which the Task started downloading or deploying these. If the Task has been restarted or retried, this is the most recent time at which the Task started running. This property is present only for Tasks that are in the running or completed state. */
-  startTime?: Date;
-  /** The time at which the Task completed. This property is set only if the Task is in the Completed state. */
-  endTime?: Date;
-  /** The exit code of the program specified on the Task command line. This property is set only if the Task is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the Task (due to timeout, or user termination via the API) you may see an operating system-defined exit code. */
-  exitCode?: number;
-  /** Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. */
-  containerInfo?: TaskContainerExecutionInformation;
-  /** Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. */
-  failureInfo?: TaskFailureInformation;
-  /** The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. */
-  retryCount: number;
-  /** The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. */
-  lastRetryTime?: Date;
-  /** The number of times the Task has been requeued by the Batch service as the result of a user request. When the user removes Compute Nodes from a Pool (by resizing/shrinking the pool) or when the Job is being disabled, the user can specify that running Tasks on the Compute Nodes be requeued for execution. This count tracks how many times the Task has been requeued for these reasons. */
-  requeueCount: number;
-  /** The most recent time at which the Task has been requeued by the Batch service as the result of a user request. This property is set only if the requeueCount is nonzero. */
-  lastRequeueTime?: Date;
-  /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
-  result?: TaskExecutionResult;
-}
-
-/** Represents a name-value pair. */
-export interface NameValuePair {
-  /** The name in the name-value pair. */
-  name?: string;
-  /** The value in the name-value pair. */
-  value?: string;
-}
-
-/** A single file or multiple files to be downloaded to a Compute Node. */
-export interface ResourceFile {
-  /** The storage container name in the auto storage Account. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. */
-  autoStorageContainerName?: string;
-  /** The URL of the blob container within Azure Blob Storage. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. This URL must be readable and listable from compute nodes. There are three ways to get such a URL for a container in Azure storage: include a Shared Access Signature (SAS) granting read and list permissions on the container, use a managed identity with read and list permissions, or set the ACL for the container to allow public access. */
-  storageContainerUrl?: string;
-  /** The URL of the file to download. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. If the URL points to Azure Blob Storage, it must be readable from compute nodes. There are three ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the blob, use a managed identity with read permission, or set the ACL for the blob or its container to allow public access. */
-  httpUrl?: string;
-  /** The blob prefix to use when downloading blobs from an Azure Storage container. Only the blobs whose names begin with the specified prefix will be downloaded. The property is valid only when autoStorageContainerName or storageContainerUrl is used. This prefix can be a partial filename or a subdirectory. If a prefix is not specified, all the files in the container will be downloaded. */
-  blobPrefix?: string;
-  /** The location on the Compute Node to which to download the file(s), relative to the Task's working directory. If the httpUrl property is specified, the filePath is required and describes the path which the file will be downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl property is specified, filePath is optional and is the directory to download the files to. In the case where filePath is used as a directory, any directory structure already associated with the input data will be retained in full and appended to the specified filePath directory. The specified relative path cannot break out of the Task's working directory (for example by using '..'). */
-  filePath?: string;
-  /** The file permission mode attribute in octal format. This property applies only to files being downloaded to Linux Compute Nodes. It will be ignored if it is specified for a resourceFile which will be downloaded to a Windows Compute Node. If this property is not specified for a Linux Compute Node, then a default value of 0770 is applied to the file. */
-  fileMode?: string;
-  /** The reference to the user assigned identity to use to access Azure Blob Storage specified by storageContainerUrl or httpUrl. */
-  identityReference?: BatchNodeIdentityReference;
-}
-
-export function resourceFileSerializer(
-  item: ResourceFile,
-): Record<string, unknown> {
-  return {
-    autoStorageContainerName: item["autoStorageContainerName"],
-    storageContainerUrl: item["storageContainerUrl"],
-    httpUrl: item["httpUrl"],
-    blobPrefix: item["blobPrefix"],
-    filePath: item["filePath"],
-    fileMode: item["fileMode"],
-    identityReference: !item.identityReference
-      ? item.identityReference
-      : batchNodeIdentityReferenceSerializer(item.identityReference),
-  };
-}
-
-/** An environment variable to be set on a Task process. */
-export interface EnvironmentSetting {
-  /** The name of the environment variable. */
-  name: string;
-  /** The value of the environment variable. */
-  value?: string;
-}
-
-export function environmentSettingSerializer(
-  item: EnvironmentSetting,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-    value: item["value"],
-  };
-}
-
-/** A reference to a Certificate to be installed on Compute Nodes in a Pool. Warning: This object is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
-export interface CertificateReference {
-  /** The thumbprint of the Certificate. */
-  thumbprint: string;
-  /** The algorithm with which the thumbprint is associated. This must be sha1. */
-  thumbprintAlgorithm: string;
-  /** The location of the Certificate store on the Compute Node into which to install the Certificate. The default value is currentuser. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). For Linux Compute Nodes, the Certificates are stored in a directory inside the Task working directory and an environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query for this location. For Certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g., /home/{user-name}/certs) and Certificates are placed in that directory. */
-  storeLocation?: CertificateStoreLocation;
-  /** The name of the Certificate store on the Compute Node into which to install the Certificate. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). Common store names include: My, Root, CA, Trust, Disallowed, TrustedPeople, TrustedPublisher, AuthRoot, AddressBook, but any custom store name can also be used. The default value is My. */
-  storeName?: string;
-  /** Which user Accounts on the Compute Node should have access to the private data of the Certificate. You can specify more than one visibility in this collection. The default is all Accounts. */
-  visibility?: CertificateVisibility[];
-}
-
-export function certificateReferenceSerializer(
-  item: CertificateReference,
-): Record<string, unknown> {
-  return {
-    thumbprint: item["thumbprint"],
-    thumbprintAlgorithm: item["thumbprintAlgorithm"],
-    storeLocation: item["storeLocation"],
-    storeName: item["storeName"],
-    visibility: item["visibility"],
-  };
-}
-
-/** An error encountered by a Compute Node. */
-export interface BatchNodeError {
-  /** An identifier for the Compute Node error. Codes are invariant and are intended to be consumed programmatically. */
-  code?: string;
-  /** A message describing the Compute Node error, intended to be suitable for display in a user interface. */
-  message?: string;
-  /** The list of additional error details related to the Compute Node error. */
-  errorDetails?: NameValuePair[];
-}
-
-/** An inbound endpoint on a Compute Node. */
-export interface InboundEndpoint {
-  /** The name of the endpoint. */
-  name: string;
-  /** The protocol of the endpoint. */
-  protocol: InboundEndpointProtocol;
-  /** The public IP address of the Compute Node. */
-  publicIpAddress?: string;
-  /** The public fully qualified domain name for the Compute Node. */
-  publicFQDN?: string;
-  /** The public port number of the endpoint. */
-  frontendPort: number;
-  /** The backend port number of the endpoint. */
-  backendPort: number;
 }
 
 /** Options for rebooting an Azure Batch Compute Node. */
@@ -875,6 +875,26 @@ export function exitConditionsSerializer(
   };
 }
 
+/**
+ * How the Batch service should respond if a Task exits with a particular exit
+ * code.
+ */
+export interface ExitCodeMapping {
+  /** A process exit code. */
+  code: number;
+  /** How the Batch service should respond if the Task exits with this exit code. */
+  exitOptions: ExitOptions;
+}
+
+export function exitCodeMappingSerializer(
+  item: ExitCodeMapping,
+): Record<string, unknown> {
+  return {
+    code: item["code"],
+    exitOptions: exitOptionsSerializer(item.exitOptions),
+  };
+}
+
 /** Specifies how the Batch service responds to a particular exit condition. */
 export interface ExitOptions {
   /** An action to take on the Job containing the Task, if the Task completes with the given exit condition and the Job's onTaskFailed property is 'performExitOptionsJobAction'. The default is none for exit code 0 and terminate for all other exit conditions. If the Job's onTaskFailed property is noaction, then specifying this property returns an error and the add Task request fails with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
@@ -889,6 +909,127 @@ export function exitOptionsSerializer(
   return {
     jobAction: item["jobAction"],
     dependencyAction: item["dependencyAction"],
+  };
+}
+
+/**
+ * A range of exit codes and how the Batch service should respond to exit codes
+ * within that range.
+ */
+export interface ExitCodeRangeMapping {
+  /** The first exit code in the range. */
+  start: number;
+  /** The last exit code in the range. */
+  end: number;
+  /** How the Batch service should respond if the Task exits with an exit code in the range start to end (inclusive). */
+  exitOptions: ExitOptions;
+}
+
+export function exitCodeRangeMappingSerializer(
+  item: ExitCodeRangeMapping,
+): Record<string, unknown> {
+  return {
+    start: item["start"],
+    end: item["end"],
+    exitOptions: exitOptionsSerializer(item.exitOptions),
+  };
+}
+
+/** On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. */
+export interface OutputFile {
+  /** A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. */
+  filePattern: string;
+  /** The destination for the output file(s). */
+  destination: OutputFileDestination;
+  /** Additional options for the upload operation, including under what conditions to perform the upload. */
+  uploadOptions: OutputFileUploadOptions;
+}
+
+export function outputFileSerializer(
+  item: OutputFile,
+): Record<string, unknown> {
+  return {
+    filePattern: item["filePattern"],
+    destination: outputFileDestinationSerializer(item.destination),
+    uploadOptions: outputFileUploadOptionsSerializer(item.uploadOptions),
+  };
+}
+
+/** The destination to which a file should be uploaded. */
+export interface OutputFileDestination {
+  /** A location in Azure blob storage to which files are uploaded. */
+  container?: OutputFileBlobContainerDestination;
+}
+
+export function outputFileDestinationSerializer(
+  item: OutputFileDestination,
+): Record<string, unknown> {
+  return {
+    container: !item.container
+      ? item.container
+      : outputFileBlobContainerDestinationSerializer(item.container),
+  };
+}
+
+/** Specifies a file upload destination within an Azure blob storage container. */
+export interface OutputFileBlobContainerDestination {
+  /** The destination blob or virtual directory within the Azure Storage container. If filePattern refers to a specific file (i.e. contains no wildcards), then path is the name of the blob to which to upload that file. If filePattern contains one or more wildcards (and therefore may match multiple files), then path is the name of the blob virtual directory (which is prepended to each blob name) to which to upload the file(s). If omitted, file(s) are uploaded to the root of the container with a blob name matching their file name. */
+  path?: string;
+  /** The URL of the container within Azure Blob Storage to which to upload the file(s). If not using a managed identity, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. */
+  containerUrl: string;
+  /** The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. */
+  identityReference?: BatchNodeIdentityReference;
+  /** A list of name-value pairs for headers to be used in uploading output files. These headers will be specified when uploading files to Azure Storage. Official document on allowed headers when uploading blobs: https://docs.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types. */
+  uploadHeaders?: HttpHeader[];
+}
+
+export function outputFileBlobContainerDestinationSerializer(
+  item: OutputFileBlobContainerDestination,
+): Record<string, unknown> {
+  return {
+    path: item["path"],
+    containerUrl: item["containerUrl"],
+    identityReference: !item.identityReference
+      ? item.identityReference
+      : batchNodeIdentityReferenceSerializer(item.identityReference),
+    uploadHeaders:
+      item["uploadHeaders"] === undefined
+        ? item["uploadHeaders"]
+        : item["uploadHeaders"].map(httpHeaderSerializer),
+  };
+}
+
+/** An HTTP header name-value pair */
+export interface HttpHeader {
+  /** The case-insensitive name of the header to be used while uploading output files. */
+  name: string;
+  /** The value of the header to be used while uploading output files. */
+  value?: string;
+}
+
+export function httpHeaderSerializer(
+  item: HttpHeader,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
+}
+
+/**
+ * Options for an output file upload operation, including under what conditions
+ * to perform the upload.
+ */
+export interface OutputFileUploadOptions {
+  /** The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. */
+  uploadCondition: OutputFileUploadCondition;
+}
+
+export function outputFileUploadOptionsSerializer(
+  item: OutputFileUploadOptions,
+): Record<string, unknown> {
+  return {
+    uploadCondition: item["uploadCondition"],
   };
 }
 
@@ -982,164 +1123,6 @@ export function taskDependenciesSerializer(
 }
 
 /**
- * The settings for an authentication token that the Task can use to perform Batch
- * service operations.
- */
-export interface AuthenticationTokenSettings {
-  /** The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. */
-  access?: AccessScope[];
-}
-
-export function authenticationTokenSettingsSerializer(
-  item: AuthenticationTokenSettings,
-): Record<string, unknown> {
-  return {
-    access: item["access"],
-  };
-}
-
-/**
- * How the Batch service should respond if a Task exits with a particular exit
- * code.
- */
-export interface ExitCodeMapping {
-  /** A process exit code. */
-  code: number;
-  /** How the Batch service should respond if the Task exits with this exit code. */
-  exitOptions: ExitOptions;
-}
-
-export function exitCodeMappingSerializer(
-  item: ExitCodeMapping,
-): Record<string, unknown> {
-  return {
-    code: item["code"],
-    exitOptions: exitOptionsSerializer(item.exitOptions),
-  };
-}
-
-/**
- * A range of exit codes and how the Batch service should respond to exit codes
- * within that range.
- */
-export interface ExitCodeRangeMapping {
-  /** The first exit code in the range. */
-  start: number;
-  /** The last exit code in the range. */
-  end: number;
-  /** How the Batch service should respond if the Task exits with an exit code in the range start to end (inclusive). */
-  exitOptions: ExitOptions;
-}
-
-export function exitCodeRangeMappingSerializer(
-  item: ExitCodeRangeMapping,
-): Record<string, unknown> {
-  return {
-    start: item["start"],
-    end: item["end"],
-    exitOptions: exitOptionsSerializer(item.exitOptions),
-  };
-}
-
-/** On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. */
-export interface OutputFile {
-  /** A pattern indicating which file(s) to upload. Both relative and absolute paths are supported. Relative paths are relative to the Task working directory. The following wildcards are supported: * matches 0 or more characters (for example pattern abc* would match abc or abcdef), ** matches any directory, ? matches any single character, [abc] matches one character in the brackets, and [a-c] matches one character in the range. */
-  filePattern: string;
-  /** The destination for the output file(s). */
-  destination: OutputFileDestination;
-  /** Additional options for the upload operation, including under what conditions to perform the upload. */
-  uploadOptions: OutputFileUploadOptions;
-}
-
-export function outputFileSerializer(
-  item: OutputFile,
-): Record<string, unknown> {
-  return {
-    filePattern: item["filePattern"],
-    destination: outputFileDestinationSerializer(item.destination),
-    uploadOptions: outputFileUploadOptionsSerializer(item.uploadOptions),
-  };
-}
-
-/** The destination to which a file should be uploaded. */
-export interface OutputFileDestination {
-  /** A location in Azure blob storage to which files are uploaded. */
-  container?: OutputFileBlobContainerDestination;
-}
-
-export function outputFileDestinationSerializer(
-  item: OutputFileDestination,
-): Record<string, unknown> {
-  return {
-    container: !item.container
-      ? item.container
-      : outputFileBlobContainerDestinationSerializer(item.container),
-  };
-}
-
-/** Specifies a file upload destination within an Azure blob storage container. */
-export interface OutputFileBlobContainerDestination {
-  /** The destination blob or virtual directory within the Azure Storage container. If filePattern refers to a specific file (i.e. contains no wildcards), then path is the name of the blob to which to upload that file. If filePattern contains one or more wildcards (and therefore may match multiple files), then path is the name of the blob virtual directory (which is prepended to each blob name) to which to upload the file(s). If omitted, file(s) are uploaded to the root of the container with a blob name matching their file name. */
-  path?: string;
-  /** The URL of the container within Azure Blob Storage to which to upload the file(s). If not using a managed identity, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. */
-  containerUrl: string;
-  /** The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. */
-  identityReference?: BatchNodeIdentityReference;
-  /** A list of name-value pairs for headers to be used in uploading output files. These headers will be specified when uploading files to Azure Storage. Official document on allowed headers when uploading blobs: https://docs.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types. */
-  uploadHeaders?: HttpHeader[];
-}
-
-export function outputFileBlobContainerDestinationSerializer(
-  item: OutputFileBlobContainerDestination,
-): Record<string, unknown> {
-  return {
-    path: item["path"],
-    containerUrl: item["containerUrl"],
-    identityReference: !item.identityReference
-      ? item.identityReference
-      : batchNodeIdentityReferenceSerializer(item.identityReference),
-    uploadHeaders:
-      item["uploadHeaders"] === undefined
-        ? item["uploadHeaders"]
-        : item["uploadHeaders"].map(httpHeaderSerializer),
-  };
-}
-
-/**
- * Options for an output file upload operation, including under what conditions
- * to perform the upload.
- */
-export interface OutputFileUploadOptions {
-  /** The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. */
-  uploadCondition: OutputFileUploadCondition;
-}
-
-export function outputFileUploadOptionsSerializer(
-  item: OutputFileUploadOptions,
-): Record<string, unknown> {
-  return {
-    uploadCondition: item["uploadCondition"],
-  };
-}
-
-/** An HTTP header name-value pair */
-export interface HttpHeader {
-  /** The case-insensitive name of the header to be used while uploading output files. */
-  name: string;
-  /** The value of the header to be used while uploading output files. */
-  value?: string;
-}
-
-export function httpHeaderSerializer(
-  item: HttpHeader,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-    value: item["value"],
-  };
-}
-
-/**
  * The start and end of the range are inclusive. For example, if a range has start
  * 9 and end 12, then it represents Tasks '9', '10', '11' and '12'.
  */
@@ -1173,6 +1156,23 @@ export function applicationPackageReferenceSerializer(
   return {
     applicationId: item["applicationId"],
     version: item["version"],
+  };
+}
+
+/**
+ * The settings for an authentication token that the Task can use to perform Batch
+ * service operations.
+ */
+export interface AuthenticationTokenSettings {
+  /** The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. */
+  access?: AccessScope[];
+}
+
+export function authenticationTokenSettingsSerializer(
+  item: AuthenticationTokenSettings,
+): Record<string, unknown> {
+  return {
+    access: item["access"],
   };
 }
 
@@ -2066,6 +2066,31 @@ export function windowsConfigurationSerializer(
   };
 }
 
+/**
+ * Settings which will be used by the data disks associated to Compute Nodes in
+ * the Pool. When using attached data disks, you need to mount and format the
+ * disks from within a VM to use them.
+ */
+export interface DataDisk {
+  /** The logical unit number. The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct lun. The value must be between 0 and 63, inclusive. */
+  lun: number;
+  /** The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. */
+  caching?: CachingType;
+  /** The initial disk size in gigabytes. */
+  diskSizeGb: number;
+  /** The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". */
+  storageAccountType?: StorageAccountType;
+}
+
+export function dataDiskSerializer(item: DataDisk): Record<string, unknown> {
+  return {
+    lun: item["lun"],
+    caching: item["caching"],
+    diskSizeGB: item["diskSizeGb"],
+    storageAccountType: item["storageAccountType"],
+  };
+}
+
 /** The configuration for container-enabled Pools. */
 export interface ContainerConfiguration {
   /** The container technology to be used. */
@@ -2216,101 +2241,6 @@ export function poolEndpointConfigurationSerializer(
   };
 }
 
-/** The public IP Address configuration of the networking configuration of a Pool. */
-export interface PublicIpAddressConfiguration {
-  /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
-  IpAddressProvisioningType?: IpAddressProvisioningType;
-  /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
-  ipAddressIds?: string[];
-}
-
-export function publicIpAddressConfigurationSerializer(
-  item: PublicIpAddressConfiguration,
-): Record<string, unknown> {
-  return {
-    provision: item["IpAddressProvisioningType"],
-    ipAddressIds: item["ipAddressIds"],
-  };
-}
-
-/**
- * Contains information about Jobs that have been and will be run under a Job
- * Schedule.
- */
-export interface JobScheduleExecutionInformation {
-  /** The next time at which a Job will be created under this schedule. This property is meaningful only if the schedule is in the active state when the time comes around. For example, if the schedule is disabled, no Job will be created at nextRunTime unless the Job is enabled before then. */
-  nextRunTime?: Date;
-  /** Information about the most recent Job under the Job Schedule. This property is present only if the at least one Job has run under the schedule. */
-  recentJob?: RecentJob;
-  /** The time at which the schedule ended. This property is set only if the Job Schedule is in the completed state. */
-  endTime?: Date;
-}
-
-/** Information about the most recent Job to run under the Job Schedule. */
-export interface RecentJob {
-  /** The ID of the Job. */
-  id?: string;
-  /** The URL of the Job. */
-  url?: string;
-}
-
-/** Resource usage statistics for a Job Schedule. */
-export interface JobScheduleStatistics {
-  /** The URL of the statistics. */
-  url: string;
-  /** The start time of the time range covered by the statistics. */
-  startTime: Date;
-  /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
-  lastUpdateTime: Date;
-  /** The total user mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
-  userCPUTime: string;
-  /** The total kernel mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
-  kernelCPUTime: string;
-  /** The total wall clock time of all the Tasks in all the Jobs created under the schedule. The wall clock time is the elapsed time from when the Task started running on a Compute Node to when it finished (or to the last time the statistics were updated, if the Task had not finished by then). If a Task was retried, this includes the wall clock time of all the Task retries. */
-  wallClockTime: string;
-  /** The total number of disk read operations made by all Tasks in all Jobs created under the schedule. */
-  readIOps: number;
-  /** The total number of disk write operations made by all Tasks in all Jobs created under the schedule. */
-  writeIOps: number;
-  /** The total gibibytes read from disk by all Tasks in all Jobs created under the schedule. */
-  readIOGiB: number;
-  /** The total gibibytes written to disk by all Tasks in all Jobs created under the schedule. */
-  writeIOGiB: number;
-  /** The total number of Tasks successfully completed during the given time range in Jobs created under the schedule. A Task completes successfully if it returns exit code 0. */
-  numSucceededTasks: number;
-  /** The total number of Tasks that failed during the given time range in Jobs created under the schedule. A Task fails if it exhausts its maximum retry count without returning exit code 0. */
-  numFailedTasks: number;
-  /** The total number of retries during the given time range on all Tasks in all Jobs created under the schedule. */
-  numTaskRetries: number;
-  /** The total wait time of all Tasks in all Jobs created under the schedule. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). This value is only reported in the Account lifetime statistics; it is not included in the Job statistics. */
-  waitTime: string;
-}
-
-/**
- * Settings which will be used by the data disks associated to Compute Nodes in
- * the Pool. When using attached data disks, you need to mount and format the
- * disks from within a VM to use them.
- */
-export interface DataDisk {
-  /** The logical unit number. The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct lun. The value must be between 0 and 63, inclusive. */
-  lun: number;
-  /** The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. */
-  caching?: CachingType;
-  /** The initial disk size in gigabytes. */
-  diskSizeGb: number;
-  /** The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". */
-  storageAccountType?: StorageAccountType;
-}
-
-export function dataDiskSerializer(item: DataDisk): Record<string, unknown> {
-  return {
-    lun: item["lun"],
-    caching: item["caching"],
-    diskSizeGB: item["diskSizeGb"],
-    storageAccountType: item["storageAccountType"],
-  };
-}
-
 /**
  * A inbound NAT Pool that can be used to address specific ports on Compute Nodes
  * in a Batch Pool externally.
@@ -2368,6 +2298,23 @@ export function networkSecurityGroupRuleSerializer(
     access: item["access"],
     sourceAddressPrefix: item["sourceAddressPrefix"],
     sourcePortRanges: item["sourcePortRanges"],
+  };
+}
+
+/** The public IP Address configuration of the networking configuration of a Pool. */
+export interface PublicIpAddressConfiguration {
+  /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
+  IpAddressProvisioningType?: IpAddressProvisioningType;
+  /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
+  ipAddressIds?: string[];
+}
+
+export function publicIpAddressConfigurationSerializer(
+  item: PublicIpAddressConfiguration,
+): Record<string, unknown> {
+  return {
+    provision: item["IpAddressProvisioningType"],
+    ipAddressIds: item["ipAddressIds"],
   };
 }
 
@@ -2595,6 +2542,59 @@ export function azureFileShareConfigurationSerializer(
     relativeMountPath: item["relativeMountPath"],
     mountOptions: item["mountOptions"],
   };
+}
+
+/**
+ * Contains information about Jobs that have been and will be run under a Job
+ * Schedule.
+ */
+export interface JobScheduleExecutionInformation {
+  /** The next time at which a Job will be created under this schedule. This property is meaningful only if the schedule is in the active state when the time comes around. For example, if the schedule is disabled, no Job will be created at nextRunTime unless the Job is enabled before then. */
+  nextRunTime?: Date;
+  /** Information about the most recent Job under the Job Schedule. This property is present only if the at least one Job has run under the schedule. */
+  recentJob?: RecentJob;
+  /** The time at which the schedule ended. This property is set only if the Job Schedule is in the completed state. */
+  endTime?: Date;
+}
+
+/** Information about the most recent Job to run under the Job Schedule. */
+export interface RecentJob {
+  /** The ID of the Job. */
+  id?: string;
+  /** The URL of the Job. */
+  url?: string;
+}
+
+/** Resource usage statistics for a Job Schedule. */
+export interface JobScheduleStatistics {
+  /** The URL of the statistics. */
+  url: string;
+  /** The start time of the time range covered by the statistics. */
+  startTime: Date;
+  /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
+  lastUpdateTime: Date;
+  /** The total user mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
+  userCPUTime: string;
+  /** The total kernel mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
+  kernelCPUTime: string;
+  /** The total wall clock time of all the Tasks in all the Jobs created under the schedule. The wall clock time is the elapsed time from when the Task started running on a Compute Node to when it finished (or to the last time the statistics were updated, if the Task had not finished by then). If a Task was retried, this includes the wall clock time of all the Task retries. */
+  wallClockTime: string;
+  /** The total number of disk read operations made by all Tasks in all Jobs created under the schedule. */
+  readIOps: number;
+  /** The total number of disk write operations made by all Tasks in all Jobs created under the schedule. */
+  writeIOps: number;
+  /** The total gibibytes read from disk by all Tasks in all Jobs created under the schedule. */
+  readIOGiB: number;
+  /** The total gibibytes written to disk by all Tasks in all Jobs created under the schedule. */
+  writeIOGiB: number;
+  /** The total number of Tasks successfully completed during the given time range in Jobs created under the schedule. A Task completes successfully if it returns exit code 0. */
+  numSucceededTasks: number;
+  /** The total number of Tasks that failed during the given time range in Jobs created under the schedule. A Task fails if it exhausts its maximum retry count without returning exit code 0. */
+  numFailedTasks: number;
+  /** The total number of retries during the given time range on all Tasks in all Jobs created under the schedule. */
+  numTaskRetries: number;
+  /** The total wait time of all Tasks in all Jobs created under the schedule. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). This value is only reported in the Account lifetime statistics; it is not included in the Job statistics. */
+  waitTime: string;
 }
 
 /** Options for updating an Azure Batch Job Schedule. */
@@ -3422,6 +3422,16 @@ export interface BatchPool {
   readonly currentNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+/** An error that occurred when resizing a Pool. */
+export interface ResizeError {
+  /** An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. */
+  code?: string;
+  /** A message describing the Pool resize error, intended to be suitable for display in a user interface. */
+  message?: string;
+  /** A list of additional error details related to the Pool resize error. */
+  values?: NameValuePair[];
+}
+
 /** The results and errors from an execution of a Pool autoscale formula. */
 export interface AutoScaleRun {
   /** The time at which the autoscale formula was last evaluated. */
@@ -3502,16 +3512,6 @@ export interface BatchPoolIdentity {
   type: PoolIdentityType;
   /** The list of user identities associated with the Batch account. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
   userAssignedIdentities?: UserAssignedIdentity[];
-}
-
-/** An error that occurred when resizing a Pool. */
-export interface ResizeError {
-  /** An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. */
-  code?: string;
-  /** A message describing the Pool resize error, intended to be suitable for display in a user interface. */
-  message?: string;
-  /** A list of additional error details related to the Pool resize error. */
-  values?: NameValuePair[];
 }
 
 /** The user assigned Identity */

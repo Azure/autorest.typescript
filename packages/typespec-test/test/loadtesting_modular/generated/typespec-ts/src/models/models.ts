@@ -104,6 +104,47 @@ export function passFailCriteriaSerializer(
   };
 }
 
+/** Pass fail metric */
+export interface PassFailMetric {
+  /** The client metric on which the criteria should be applied. */
+  clientMetric?: PFMetrics;
+  /**
+   * The aggregation function to be applied on the client metric. Allowed functions
+   * - ‘percentage’ - for error metric , ‘avg’, percentiles like ‘p50’, ‘p90’, & so on, ‘min’,
+   * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
+   * ‘count’ - for requests
+   */
+  aggregate?: PFAgFunc;
+  /** The comparison operator. Supported types ‘>’, ‘<’ */
+  condition?: string;
+  /** Request name for which the Pass fail criteria has to be applied */
+  requestName?: string;
+  /**
+   * The value to compare with the client metric. Allowed values - ‘error : [0.0 ,
+   * 100.0] unit- % ’, response_time_ms and latency : any integer value unit- ms.
+   */
+  value?: number;
+  /** Action taken after the threshold is met. Default is ‘continue’. */
+  action?: PFAction;
+  /** The actual value of the client metric for the test run. */
+  readonly actualValue?: number;
+  /** Outcome of the test run. */
+  readonly result?: PFResult;
+}
+
+export function passFailMetricSerializer(
+  item: PassFailMetric,
+): Record<string, unknown> {
+  return {
+    clientMetric: item["clientMetric"],
+    aggregate: item["aggregate"],
+    condition: item["condition"],
+    requestName: item["requestName"],
+    value: item["value"],
+    action: item["action"],
+  };
+}
+
 /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
 export interface AutoStopCriteria {
   /** Whether auto-stop should be disabled. The default value is false. */
@@ -121,6 +162,21 @@ export function autoStopCriteriaSerializer(
     autoStopDisabled: item["autoStopDisabled"],
     errorRate: item["errorRate"],
     errorRateTimeWindowInSeconds: item["errorRateTimeWindowInSeconds"],
+  };
+}
+
+/** Secret */
+export interface Secret {
+  /** The value of the secret for the respective type */
+  value?: string;
+  /** Type of secret */
+  type?: SecretType;
+}
+
+export function secretSerializer(item: Secret): Record<string, unknown> {
+  return {
+    value: item["value"],
+    type: item["type"],
   };
 }
 
@@ -212,6 +268,27 @@ export function optionalLoadTestConfigSerializer(
   };
 }
 
+/** Region distribution configuration for the load test. */
+export interface RegionalConfiguration {
+  /**   The number of engine instances to execute load test in specified region. Supported values are in range of 1-400. */
+  engineInstances: number;
+  /**
+   * Azure region name.
+   * The region name should of format accepted by ARM, and should be a region supported by Azure Load Testing. For example, East US should be passed as "eastus".
+   * The region name must match one of the strings in the "Name" column returned from running the "az account list-locations -o table" Azure CLI command.
+   */
+  region: string;
+}
+
+export function regionalConfigurationSerializer(
+  item: RegionalConfiguration,
+): Record<string, unknown> {
+  return {
+    engineInstances: item["engineInstances"],
+    region: item["region"],
+  };
+}
+
 /** The input artifacts for the test. */
 export interface TestInputArtifacts {
   /** File info */
@@ -242,83 +319,6 @@ export interface TestFileInfo {
   readonly validationStatus?: FileStatus;
   /** Validation failure error details */
   readonly validationFailureDetails?: string;
-}
-
-/** Pass fail metric */
-export interface PassFailMetric {
-  /** The client metric on which the criteria should be applied. */
-  clientMetric?: PFMetrics;
-  /**
-   * The aggregation function to be applied on the client metric. Allowed functions
-   * - ‘percentage’ - for error metric , ‘avg’, percentiles like ‘p50’, ‘p90’, & so on, ‘min’,
-   * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
-   * ‘count’ - for requests
-   */
-  aggregate?: PFAgFunc;
-  /** The comparison operator. Supported types ‘>’, ‘<’ */
-  condition?: string;
-  /** Request name for which the Pass fail criteria has to be applied */
-  requestName?: string;
-  /**
-   * The value to compare with the client metric. Allowed values - ‘error : [0.0 ,
-   * 100.0] unit- % ’, response_time_ms and latency : any integer value unit- ms.
-   */
-  value?: number;
-  /** Action taken after the threshold is met. Default is ‘continue’. */
-  action?: PFAction;
-  /** The actual value of the client metric for the test run. */
-  readonly actualValue?: number;
-  /** Outcome of the test run. */
-  readonly result?: PFResult;
-}
-
-export function passFailMetricSerializer(
-  item: PassFailMetric,
-): Record<string, unknown> {
-  return {
-    clientMetric: item["clientMetric"],
-    aggregate: item["aggregate"],
-    condition: item["condition"],
-    requestName: item["requestName"],
-    value: item["value"],
-    action: item["action"],
-  };
-}
-
-/** Secret */
-export interface Secret {
-  /** The value of the secret for the respective type */
-  value?: string;
-  /** Type of secret */
-  type?: SecretType;
-}
-
-export function secretSerializer(item: Secret): Record<string, unknown> {
-  return {
-    value: item["value"],
-    type: item["type"],
-  };
-}
-
-/** Region distribution configuration for the load test. */
-export interface RegionalConfiguration {
-  /**   The number of engine instances to execute load test in specified region. Supported values are in range of 1-400. */
-  engineInstances: number;
-  /**
-   * Azure region name.
-   * The region name should of format accepted by ARM, and should be a region supported by Azure Load Testing. For example, East US should be passed as "eastus".
-   * The region name must match one of the strings in the "Name" column returned from running the "az account list-locations -o table" Azure CLI command.
-   */
-  region: string;
-}
-
-export function regionalConfigurationSerializer(
-  item: RegionalConfiguration,
-): Record<string, unknown> {
-  return {
-    engineInstances: item["engineInstances"],
-    region: item["region"],
-  };
 }
 
 /** Test app components */
@@ -558,6 +558,56 @@ export function testRunSerializer(item: TestRun): Record<string, unknown> {
   };
 }
 
+/** Error details if there is any failure in load test run */
+export interface ErrorDetails {
+  /** Error details in case test run was not successfully run. */
+  readonly message?: string;
+}
+
+/** Test run statistics. */
+export interface TestRunStatistics {
+  /** Transaction name. */
+  readonly transaction?: string;
+  /** Sampler count. */
+  readonly sampleCount?: number;
+  /** Error count. */
+  readonly errorCount?: number;
+  /** Error percentage. */
+  readonly errorPct?: number;
+  /** Mean response time. */
+  readonly meanResTime?: number;
+  /** Median response time. */
+  readonly medianResTime?: number;
+  /** Max response time. */
+  readonly maxResTime?: number;
+  /** Minimum response time. */
+  readonly minResTime?: number;
+  /** 90 percentile response time. */
+  readonly pct1ResTime?: number;
+  /** 95 percentile response time. */
+  readonly pct2ResTime?: number;
+  /** 99 percentile response time. */
+  readonly pct3ResTime?: number;
+  /** 75 percentile response time. */
+  readonly pct75ResTime?: number;
+  /** 96 percentile response time. */
+  readonly pct96ResTime?: number;
+  /** 97 percentile response time. */
+  readonly pct97ResTime?: number;
+  /** 98 percentile response time. */
+  readonly pct98ResTime?: number;
+  /** 99.9 percentile response time. */
+  readonly pct999ResTime?: number;
+  /** 99.99 percentile response time. */
+  readonly pct9999ResTime?: number;
+  /** Throughput. */
+  readonly throughput?: number;
+  /** Received network bytes. */
+  readonly receivedKBytesPerSec?: number;
+  /** Send network bytes. */
+  readonly sentKBytesPerSec?: number;
+}
+
 /** Collection of test run artifacts */
 export interface TestRunArtifacts {
   /** The input artifacts for the test run. */
@@ -616,56 +666,6 @@ export interface ArtifactsContainerInfo {
   url?: string;
   /** Expiry time of the container (RFC 3339 literal format) */
   expireDateTime?: Date;
-}
-
-/** Error details if there is any failure in load test run */
-export interface ErrorDetails {
-  /** Error details in case test run was not successfully run. */
-  readonly message?: string;
-}
-
-/** Test run statistics. */
-export interface TestRunStatistics {
-  /** Transaction name. */
-  readonly transaction?: string;
-  /** Sampler count. */
-  readonly sampleCount?: number;
-  /** Error count. */
-  readonly errorCount?: number;
-  /** Error percentage. */
-  readonly errorPct?: number;
-  /** Mean response time. */
-  readonly meanResTime?: number;
-  /** Median response time. */
-  readonly medianResTime?: number;
-  /** Max response time. */
-  readonly maxResTime?: number;
-  /** Minimum response time. */
-  readonly minResTime?: number;
-  /** 90 percentile response time. */
-  readonly pct1ResTime?: number;
-  /** 95 percentile response time. */
-  readonly pct2ResTime?: number;
-  /** 99 percentile response time. */
-  readonly pct3ResTime?: number;
-  /** 75 percentile response time. */
-  readonly pct75ResTime?: number;
-  /** 96 percentile response time. */
-  readonly pct96ResTime?: number;
-  /** 97 percentile response time. */
-  readonly pct97ResTime?: number;
-  /** 98 percentile response time. */
-  readonly pct98ResTime?: number;
-  /** 99.9 percentile response time. */
-  readonly pct999ResTime?: number;
-  /** 99.99 percentile response time. */
-  readonly pct9999ResTime?: number;
-  /** Throughput. */
-  readonly throughput?: number;
-  /** Received network bytes. */
-  readonly receivedKBytesPerSec?: number;
-  /** Send network bytes. */
-  readonly sentKBytesPerSec?: number;
 }
 
 /** Test run app component */
@@ -917,7 +917,7 @@ export interface TargetResourceConfigurations {
 }
 
 export function targetResourceConfigurationsSerializer(
-  item: TargetResourceConfigurationsUnion,
+  item: TargetResourceConfigurations,
 ): Record<string, unknown> {
   return {
     kind: item["kind"],
@@ -929,7 +929,7 @@ export type TargetResourceConfigurationsUnion =
   | TargetResourceConfigurations;
 
 export function targetResourceConfigurationsUnionSerializer(
-  item: TargetResourceConfigurationsUnion,
+  item: TargetResourceConfigurations,
 ): Record<string, unknown> {
   switch (item.kind) {
     case "FunctionsFlexConsumption":

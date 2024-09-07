@@ -147,6 +147,41 @@ export function dataProductNetworkAclsSerializer(
   };
 }
 
+/** Virtual Network Rule */
+export interface VirtualNetworkRule {
+  /** Resource ID of a subnet */
+  id: string;
+  /** The action of virtual network rule. */
+  action?: string;
+  /** Gets the state of virtual network rule. */
+  state?: string;
+}
+
+export function virtualNetworkRuleSerializer(
+  item: VirtualNetworkRule,
+): Record<string, unknown> {
+  return {
+    id: item["id"],
+    action: item["action"],
+    state: item["state"],
+  };
+}
+
+/** IP rule with specific IP or IP range in CIDR format. */
+export interface IPRules {
+  /** IP Rules Value */
+  value?: string;
+  /** The action of virtual network rule. */
+  action: string;
+}
+
+export function iPRulesSerializer(item: IPRules): Record<string, unknown> {
+  return {
+    value: item["value"],
+    action: item["action"],
+  };
+}
+
 /** ManagedResourceGroup related properties */
 export interface ManagedResourceGroupConfiguration {
   /** Name of managed resource group */
@@ -203,41 +238,6 @@ export function managedServiceIdentityV4Serializer(
           item.userAssignedIdentities as any,
           userAssignedIdentitySerializer,
         ) as any),
-  };
-}
-
-/** Virtual Network Rule */
-export interface VirtualNetworkRule {
-  /** Resource ID of a subnet */
-  id: string;
-  /** The action of virtual network rule. */
-  action?: string;
-  /** Gets the state of virtual network rule. */
-  state?: string;
-}
-
-export function virtualNetworkRuleSerializer(
-  item: VirtualNetworkRule,
-): Record<string, unknown> {
-  return {
-    id: item["id"],
-    action: item["action"],
-    state: item["state"],
-  };
-}
-
-/** IP rule with specific IP or IP range in CIDR format. */
-export interface IPRules {
-  /** IP Rules Value */
-  value?: string;
-  /** The action of virtual network rule. */
-  action: string;
-}
-
-export function iPRulesSerializer(item: IPRules): Record<string, unknown> {
-  return {
-    value: item["value"],
-    action: item["action"],
   };
 }
 

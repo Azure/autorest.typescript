@@ -4,9 +4,9 @@
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
-  MultivariateMultivariateBatchDetectionOptions,
   MultivariateErrorResponse,
   MultivariateVariableState,
+  MultivariateMultivariateBatchDetectionOptions,
   MultivariateAnomalyState,
   MultivariateAnomalyValue,
   MultivariateAnomalyInterpretation,

@@ -1,307 +1,172 @@
-import * as path from "path";
-
 import {
-  Client,
-  ModularCodeModel,
-  Type as ModularType
-} from "./modularCodeModel.js";
-import {
+  EnumDeclarationStructure,
+  EnumMemberStructure,
   InterfaceDeclarationStructure,
-  OptionalKind,
-  SourceFile,
+  PropertySignatureStructure,
+  StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  SdkBodyModelPropertyType,
+  SdkClientType,
+  SdkEnumType,
+  SdkEnumValueType,
+  SdkHttpOperation,
+  SdkHttpPackage,
+  SdkMethod,
+  SdkModelPropertyType,
+  SdkModelType,
+  SdkType,
+  SdkUnionType,
+  isReadOnly
+} from "@azure-tools/typespec-client-generator-core";
+import {
+  getExternalModel,
+  getModelExpression
+} from "./type-expressions/get-model-expression.js";
 
+import { SdkContext } from "../utils/interfaces.js";
+import { addDeclaration } from "../framework/declaration.js";
 import { addImportBySymbol } from "../utils/importHelper.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
-import { buildOperationOptions } from "./buildOperations.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { getModularModelFilePath } from "./helpers/namingHelpers.js";
-import { getType } from "./helpers/typeHelpers.js";
-import { toCamelCase } from "../utils/casingUtils.js";
+import { extractPagedMetadataNested } from "../utils/operationUtil.js";
+import { getTypeExpression } from "./type-expressions/get-type-expression.js";
+import path from "path";
+import { refkey } from "../framework/refkey.js";
+import { useContext } from "../contextManager.js";
 
-// ====== UTILITIES ======
+export function emitTypes(
+  context: SdkContext,
+  { sourceRoot }: { sourceRoot: string }
+) {
+  const sdkPackage = context.sdkPackage;
+  const emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType> = new Set();
+  const outputProject = useContext("outputProject");
 
-function isAzureCoreErrorSdkType(t: ModularType) {
-  return (
-    t.name &&
-    ["error", "errormodel", "innererror", "errorresponse"].includes(
-      t.name.toLowerCase()
-    ) &&
-    t.coreTypeInfo === "ErrorType"
-  );
-}
+  const modelsFilePath = getModelsPath(sourceRoot);
+  let sourceFile = outputProject.getSourceFile(modelsFilePath);
 
-function isAzureCoreLroSdkType(t: ModularType) {
-  return (
-    t.name &&
-    ["operationstate"].includes(t.name.toLowerCase()) &&
-    t.coreTypeInfo === "LroType"
-  );
-}
+  if (!sourceFile) {
+    sourceFile = outputProject.createSourceFile(modelsFilePath, "", {
+      overwrite: true
+    });
+  }
 
-function isAnonymousModel(t: ModularType) {
-  return t.type === "model" && t.name === "";
-}
+  visitPackageTypes(sdkPackage, emitQueue);
 
-export function isModelWithAdditionalProperties(t: ModularType) {
-  return t.type === "dict" && t.name !== "Record";
-}
-
-function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
-  const coreClientType: string = name === "Error" ? "ErrorModel" : name;
-  coreClientTypes.add(coreClientType);
-  return coreClientType;
-}
-
-function getCoreLroType(name: string, coreLroTypes: Set<string>) {
-  const coreLroType = name === "OperationState" ? "CoreOperationStatus" : name;
-  coreLroTypes.add(coreLroType);
-  return coreLroType;
-}
-
-// ====== TYPE EXTRACTION ======
-
-function extractModels(codeModel: ModularCodeModel): ModularType[] {
-  const models = codeModel.types.filter(
-    (t) =>
-      ((t.type === "model" || t.type === "enum") &&
-        !isAzureCoreErrorSdkType(t) &&
-        !isAzureCoreLroSdkType(t) &&
-        !isAnonymousModel(t)) ||
-      isModelWithAdditionalProperties(t)
-  );
-
-  for (const model of codeModel.types) {
-    if (model.type === "combined") {
-      for (const unionModel of model.types ?? []) {
-        if (unionModel.type === "model") {
-          models.push(unionModel);
+  for (const type of emitQueue) {
+    if (type.kind === "model") {
+      const modelInterface = buildModelInterface(context, type);
+      addDeclaration(sourceFile, modelInterface, type);
+      const modelPolymorphicType = buildModelPolymorphicType(type);
+      if (modelPolymorphicType) {
+        const serializerFunction = buildModelSerializer(context, type, true);
+        if (
+          serializerFunction &&
+          serializerFunction.name &&
+          !sourceFile.getFunction(serializerFunction.name)
+        ) {
+          addDeclaration(
+            sourceFile,
+            serializerFunction,
+            refkey(type, "polymorphicSerializer")
+          );
         }
-      }
-    }
-  }
-  return models;
-}
-
-/**
- * Extracts all the aliases from the code model
- * 1. alias from polymorphic base model, where we need to use typescript union to combine all the sub models
- * 2. alias from unions, where we also need to use typescript union to combine all the union variants
- */
-export function extractAliases(codeModel: ModularCodeModel): ModularType[] {
-  const models = codeModel.types.filter(
-    (t) =>
-      ((t.type === "model" || t.type === "combined") &&
-        t.alias &&
-        t.aliasType) ||
-      (isModelWithAdditionalProperties(t) && t.alias && t.aliasType)
-  );
-  return models;
-}
-// ====== TYPE BUILDERS ======
-function buildEnumModel(
-  model: ModularType
-): OptionalKind<TypeAliasDeclarationStructure> {
-  const valueType = model.valueType?.type === "string" ? "string" : "number";
-  return {
-    name: model.name!,
-    isExported: true,
-    docs: [...getDocsFromDescription(model.description)],
-    type: buildEnumType()
-  };
-
-  function buildEnumType() {
-    return model.isFixed || !model.isNonExhaustive
-      ? getEnumValues(" | ")
-      : valueType;
-  }
-
-  function getEnumValues(separator: string = ", ") {
-    const splitWord = valueType === "string" ? `"` : ``;
-    return (model.values ?? [])
-      .map((v) => `${splitWord}${v.value}${splitWord}`)
-      .join(separator);
-  }
-}
-
-type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
-  extends: string[];
-};
-
-export function buildModelInterface(
-  model: ModularType,
-  cache: { coreClientTypes: Set<string>; coreLroTypes: Set<string> }
-): InterfaceStructure {
-  const modelProperties = model.properties ?? [];
-  const modelInterface = {
-    name: model.alias ?? model.name ?? "FIXMYNAME",
-    isExported: true,
-    docs: getDocsFromDescription(model.description),
-    extends: [] as string[],
-    properties: (modelProperties ?? []).map((p) => {
-      const propertyMetadata = getType(p.type, p.format);
-      let propertyTypeName = propertyMetadata.name;
-      if (isAzureCoreErrorSdkType(p.type)) {
-        propertyTypeName = getCoreClientErrorType(
-          propertyTypeName,
-          cache.coreClientTypes
+        addDeclaration(
+          sourceFile,
+          modelPolymorphicType,
+          refkey(type, "polymorphicType")
         );
       }
-      if (isAzureCoreLroSdkType(p.type)) {
-        propertyTypeName = getCoreLroType(propertyTypeName, cache.coreLroTypes);
-      }
-
-      return {
-        name: `"${p.clientName}"`,
-        docs: getDocsFromDescription(p.description),
-        hasQuestionToken: p.optional,
-        isReadonly: p.readonly,
-        type: propertyTypeName
-      };
-    })
-  };
-
-  return modelInterface;
-}
-
-// ====== MAIN FUNCTIONS ======
-/**
- * This function creates the file containing all the models defined in TypeSpec
- */
-export function buildModels(
-  subClient: Client,
-  codeModel: ModularCodeModel
-): SourceFile | undefined {
-  // We are generating both models and enums here
-  const coreClientTypes = new Set<string>();
-  const coreLroTypes = new Set<string>();
-  // filter out the models/enums that are anonymous
-  const models = extractModels(codeModel).filter((m) => !!m.name);
-  const aliases = extractAliases(codeModel);
-  // Skip to generate models.ts if there is no any models
-  if (models.length === 0 && aliases.length === 0) {
-    return;
-  }
-  const modelsFile = codeModel.project.createSourceFile(
-    getModularModelFilePath(codeModel, subClient)
-  );
-  for (const model of models) {
-    if (model.type === "enum") {
-      if (modelsFile.getTypeAlias(model.name!)) {
-        // If the enum is already defined, we don't need to do anything
-        continue;
-      }
-      const enumAlias = buildEnumModel(model);
-
-      if (model.isNonExhaustive && model.name) {
-        modelsFile.addEnum({
-          name: `Known${model.name}`,
-          isExported: true,
-          members:
-            model.values?.map((v) => ({
-              name: v.name,
-              value: v.value,
-              docs: v.description ? [v.description] : [v.name]
-            })) ?? [],
-          docs: [
-            `Known values of {@link ${model.name}} that the service accepts.`
-          ]
-        });
-        const description = getExtensibleEnumDescription(model);
-        if (description) {
-          enumAlias.docs = [description];
-        }
-      }
-      modelsFile.addTypeAlias(enumAlias);
-    } else {
-      const modelInterface = buildModelInterface(model, {
-        coreClientTypes,
-        coreLroTypes
-      });
-
-      model.parents?.forEach((p) =>
-        modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
-      );
-      if (isModelWithAdditionalProperties(model)) {
-        addExtendedDictInfo(
-          model,
-          modelInterface,
-          codeModel.modularOptions.compatibilityMode
-        );
-      }
-
-      if (!modelsFile.getInterface(modelInterface.name)) {
-        modelsFile.addInterface(modelInterface);
-      }
-
-      // Generate a serializer function next to each model
-      const serializerFunction = buildModelSerializer(model);
-
+      const serializerFunction = buildModelSerializer(context, type);
       if (
         serializerFunction &&
-        !modelsFile.getFunction(toCamelCase(modelInterface.name + "Serializer"))
+        serializerFunction.name &&
+        !sourceFile.getFunction(serializerFunction.name)
       ) {
-        modelsFile.addFunction(serializerFunction);
+        addDeclaration(
+          sourceFile,
+          serializerFunction,
+          refkey(type, "serializer")
+        );
       }
-      addImportBySymbol("serializeRecord", modelsFile);
-      modelsFile.fixUnusedIdentifiers();
+    } else if (type.kind === "enum") {
+      const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
+      if (isExtensibleEnum(context, type)) {
+        addDeclaration(
+          sourceFile,
+          knownValuesEnum,
+          refkey(type, "knownValues")
+        );
+      }
+      addDeclaration(sourceFile, enumType, type);
+    } else if (type.kind === "union") {
+      const unionType = buildUnionType(type);
+      addDeclaration(sourceFile, unionType, type);
     }
   }
 
-  const projectRootFromModels = codeModel.clients.length > 1 ? "../.." : "../";
-  addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-    serializerHelpers: path.posix.join(
-      projectRootFromModels,
-      "helpers",
-      "serializerHelpers.js"
-    )
-  });
-
-  if (coreClientTypes.size > 0) {
-    modelsFile.addImportDeclarations([
-      {
-        moduleSpecifier: getImportSpecifier(
-          "restClient",
-          codeModel.runtimeImports
-        ),
-        namedImports: Array.from(coreClientTypes)
-      }
-    ]);
-  }
-
-  if (coreLroTypes.size > 0) {
-    modelsFile.addImportDeclarations([
-      {
-        moduleSpecifier: getImportSpecifier(
-          "azureCoreLro",
-          codeModel.runtimeImports
-        ),
-        namedImports: Array.from(coreLroTypes).map((t) =>
-          t === "CoreOperationStatus"
-            ? "OperationStatus as CoreOperationStatus"
-            : t
-        )
-      }
-    ]);
-  }
-
-  aliases.forEach((alias) => {
-    modelsFile.addTypeAlias(buildModelTypeAlias(alias));
-    if (!models.includes(alias)) {
-      // Generate a serializer function next to each model
-      const serializerFunction = buildModelSerializer(alias);
-      if (serializerFunction) {
-        modelsFile.addFunction(serializerFunction);
-      }
-    }
-  });
-  return modelsFile;
+  addImportBySymbol("serializeRecord", sourceFile);
 }
 
-function getExtensibleEnumDescription(model: ModularType): string | undefined {
-  if (!(model.isNonExhaustive && model.name && model.values)) {
+export function getModelsPath(sourceRoot: string): string {
+  return path.join(...[sourceRoot, "models", `models.ts`]);
+}
+
+function buildUnionType(type: SdkUnionType): TypeAliasDeclarationStructure {
+  const unionDeclaration: TypeAliasDeclarationStructure = {
+    kind: StructureKind.TypeAlias,
+    name: normalizeName(type.name, NameType.Interface),
+    isExported: true,
+    type: type.values.map((v) => getTypeExpression(v)).join(" | ")
+  };
+
+  if (type.description) {
+    unionDeclaration.docs = [type.description];
+  }
+
+  return unionDeclaration;
+}
+
+function buildEnumTypes(
+  context: SdkContext,
+  type: SdkEnumType
+): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
+  const enumDeclaration: EnumDeclarationStructure = {
+    kind: StructureKind.Enum,
+    name: `Known${normalizeName(type.name, NameType.Interface)}`,
+    isExported: true,
+    members: type.values.map(emitEnumMember)
+  };
+
+  const enumAsUnion: TypeAliasDeclarationStructure = {
+    kind: StructureKind.TypeAlias,
+    name: normalizeName(type.name, NameType.Interface),
+    isExported: true,
+    type: !isExtensibleEnum(context, type)
+      ? type.values.map((v) => getTypeExpression(v)).join(" | ")
+      : getTypeExpression(type.valueType)
+  };
+
+  if (type.description) {
+    enumAsUnion.docs = isExtensibleEnum(context, type)
+      ? [getExtensibleEnumDescription(type) ?? type.description]
+      : [type.description];
+    enumDeclaration.docs = [type.description];
+  }
+
+  return [enumAsUnion, enumDeclaration];
+}
+
+function isExtensibleEnum(context: SdkContext, type: SdkEnumType): boolean {
+  return (
+    !type.isFixed && context.rlcOptions?.experimentalExtensibleEnums === true
+  );
+}
+
+function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
+  if (model.isFixed && model.name && model.values) {
     return;
   }
   const valueDescriptions = model.values
@@ -320,86 +185,226 @@ function getExtensibleEnumDescription(model: ModularType): string | undefined {
   ].join(" \n");
 }
 
-function addExtendedDictInfo(
-  model: ModularType,
-  modelInterface: InterfaceStructure,
-  compatibilityMode: boolean = false
-) {
-  if (
-    (model.properties &&
-      model.properties.length > 0 &&
-      model.elementType &&
-      model.properties?.every((p) => {
-        return getType(model.elementType!)?.name.includes(getType(p.type).name);
-      })) ||
-    (model.properties?.length === 0 && model.elementType)
-  ) {
-    modelInterface.extends.push(
-      `Record<string, ${getType(model.elementType!).name ?? "any"}>`
-    );
-  } else if (compatibilityMode) {
-    modelInterface.extends.push(`Record<string, any>`);
-  } else {
-    modelInterface.properties?.push({
-      name: "additionalProperties",
-      docs: ["Additional properties"],
-      hasQuestionToken: true,
-      isReadonly: false,
-      type: `Record<string, ${getType(model.elementType!).name ?? "any"}>`
-    });
-  }
-}
-
-export function buildModelTypeAlias(model: ModularType) {
-  return {
-    name: model.name!,
-    isExported: true,
-    docs: ["Alias for " + model.name],
-    type: model.aliasType!
+function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
+  const memberStructure: EnumMemberStructure = {
+    kind: StructureKind.EnumMember,
+    name: member.name,
+    value: getTypeExpression(member)
   };
+
+  if (member.description) {
+    memberStructure.docs = [member.description];
+  }
+
+  return memberStructure;
 }
 
-export function buildModelsOptions(
-  client: Client,
-  codeModel: ModularCodeModel
-) {
-  const modelOptionsFile = codeModel.project.createSourceFile(
-    path.join(
-      codeModel.modularOptions.sourceRoot,
-      client.subfolder ?? "",
-      `models/options.ts`
-    ),
-    undefined,
-    {
-      overwrite: true
-    }
-  );
-  for (const operationGroup of client.operationGroups) {
-    operationGroup.operations.forEach((o) => {
-      buildOperationOptions(o, modelOptionsFile);
-    });
-  }
-  modelOptionsFile.addImportDeclarations([
-    {
-      moduleSpecifier: getImportSpecifier(
-        "restClient",
-        codeModel.runtimeImports
-      ),
-      namedImports: ["OperationOptions"]
-    }
-  ]);
+function buildModelInterface(
+  context: SdkContext,
+  type: SdkModelType
+): InterfaceDeclarationStructure {
+  const interfaceStructure: InterfaceDeclarationStructure = {
+    kind: StructureKind.Interface,
+    name: normalizeModelName(context, type),
+    isExported: true,
+    properties: type.properties.map(buildModelProperty)
+  };
 
-  modelOptionsFile
-    .getImportDeclarations()
-    .filter((id) => {
-      return (
-        id.isModuleSpecifierRelative() &&
-        !id.getModuleSpecifierValue().endsWith(".js")
-      );
-    })
-    .map((id) => {
-      id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
-      return id;
+  if (type.baseModel) {
+    const partentReference = getModelExpression(type.baseModel, {
+      skipPolymorphicUnion: true
     });
-  return modelOptionsFile;
+    interfaceStructure.extends = [partentReference];
+  }
+
+  if (type.description) {
+    interfaceStructure.docs = [type.description];
+  }
+
+  return interfaceStructure;
+}
+
+export function normalizeModelName(
+  context: SdkContext,
+  type: SdkModelType | SdkEnumType
+): string {
+  const segments = type.crossLanguageDefinitionId.split(".");
+  segments.pop();
+  segments.shift();
+  segments.filter((segment) => segment !== context.sdkPackage.rootNamespace);
+  const namespacePrefix = context.rlcOptions?.enableModelNamespace
+    ? segments.join("")
+    : "";
+  let pagePrefix = "";
+  if (type.__raw && type.__raw.kind === "Model") {
+    // TODO: this is temporary until we have a better way in tcgc to extract the paged metadata
+    // issue link https://github.com/Azure/typespec-azure/issues/1464
+    const page = extractPagedMetadataNested(context.program, type.__raw!);
+    pagePrefix =
+      page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
+  }
+  return `${pagePrefix}${namespacePrefix}${normalizeName(type.name, NameType.Interface)}`;
+}
+
+function buildModelPolymorphicType(type: SdkModelType) {
+  if (!type.discriminatedSubtypes) {
+    return undefined;
+  }
+
+  const discriminatedSubtypes = Object.values(type.discriminatedSubtypes);
+
+  const typeDeclaration: TypeAliasDeclarationStructure = {
+    kind: StructureKind.TypeAlias,
+    name: `${normalizeName(type.name, NameType.Interface)}Union`,
+    isExported: true,
+    type: discriminatedSubtypes.map((t) => getTypeExpression(t)).join(" | ")
+  };
+
+  typeDeclaration.type += ` | ${getModelExpression(type, {
+    skipPolymorphicUnion: true
+  })}`;
+  return typeDeclaration;
+}
+
+function buildModelProperty(
+  property: SdkModelPropertyType
+): PropertySignatureStructure {
+  const propertyStructure: PropertySignatureStructure = {
+    kind: StructureKind.PropertySignature,
+    name: `"${property.name}"`,
+    type: getTypeExpression(property.type),
+    hasQuestionToken: property.optional,
+    isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
+  };
+
+  if (property.description) {
+    propertyStructure.docs = [property.description];
+  }
+
+  return propertyStructure;
+}
+
+function visitPackageTypes(
+  sdkPackage: SdkHttpPackage,
+  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+) {
+  // Add all models in the package to the emit queue
+  for (const model of sdkPackage.models) {
+    visitType(model, emitQueue);
+  }
+
+  // Add all enums to the queue
+  for (const enumType of sdkPackage.enums) {
+    emitQueue.add(enumType);
+  }
+
+  // Visit the clients to discover all models
+  for (const client of sdkPackage.clients) {
+    visitClient(client, emitQueue);
+  }
+}
+
+function visitClient(
+  client: SdkClientType<SdkHttpOperation>,
+  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+) {
+  // Comment this out for now, as client initialization is not used in the generated code
+  // visitType(client.initialization, emitQueue);
+  client.methods.forEach((method) => visitClientMethod(method, emitQueue));
+}
+
+function visitClientMethod(
+  method: SdkMethod<SdkHttpOperation>,
+  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+) {
+  switch (method.kind) {
+    case "lro":
+    case "paging":
+    case "lropaging":
+    case "basic":
+      // Visit the response
+      visitType(method.response.type, emitQueue);
+      // Visit the error response
+      visitType(method.exception?.type, emitQueue);
+      // Visit the parameters
+      method.parameters.forEach((parameter) => {
+        visitType(parameter.type, emitQueue);
+      });
+
+      visitOperation(method.operation, emitQueue);
+      break;
+    case "clientaccessor":
+      method.response.methods.forEach((responseMethod) =>
+        visitClientMethod(responseMethod, emitQueue)
+      );
+      method.parameters.forEach((parameter) =>
+        visitType(parameter.type, emitQueue)
+      );
+      break;
+    default:
+      throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
+  }
+}
+
+function visitOperation(
+  operation: SdkHttpOperation,
+  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+) {
+  // Visit the request
+  visitType(operation.bodyParam?.type, emitQueue);
+  // Visit the response
+  operation.exceptions.forEach((exception) =>
+    visitType(exception.type, emitQueue)
+  );
+
+  operation.parameters.forEach((parameter) =>
+    visitType(parameter.type, emitQueue)
+  );
+
+  operation.responses.forEach((response) =>
+    visitType(response.type, emitQueue)
+  );
+}
+
+function visitType(
+  type: SdkType | undefined,
+  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+) {
+  if (!type) {
+    return;
+  }
+
+  if (emitQueue.has(type as any)) {
+    return;
+  }
+
+  if (type.kind === "model") {
+    const externalModel = getExternalModel(type);
+    if (externalModel) {
+      return;
+    }
+    emitQueue.add(type);
+    for (const property of type.properties) {
+      if (!emitQueue.has(property.type as any)) {
+        visitType(property.type, emitQueue);
+      }
+    }
+    if (type.discriminatedSubtypes) {
+      for (const subType of Object.values(type.discriminatedSubtypes)) {
+        if (!emitQueue.has(subType as any)) {
+          visitType(subType, emitQueue);
+        }
+      }
+    }
+  }
+  if (type.kind === "array") {
+    if (!emitQueue.has(type.valueType as any)) {
+      visitType(type.valueType, emitQueue);
+    }
+  }
+  if (type.kind === "dict") {
+    if (!emitQueue.has(type.valueType as any)) {
+      visitType(type.valueType, emitQueue);
+    }
+  }
 }
