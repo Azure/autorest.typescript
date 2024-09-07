@@ -1,5 +1,6 @@
-import { join } from "path";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+
+import { join } from "path";
 
 export interface buildSubpathIndexFileOptions {
   exportIndex?: boolean;
@@ -58,7 +59,8 @@ export function buildSubpathIndexFile(
           if (
             subpath === "models" &&
             ex.getKindName() === "FunctionDeclaration" &&
-            exDeclaration[0].endsWith("Serializer")
+            (exDeclaration[0].endsWith("Serializer") || 
+            exDeclaration[0].endsWith("Deserializer"))
           ) {
             return false;
           }
