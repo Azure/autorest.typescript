@@ -19,7 +19,8 @@ function isSupportedSerializerType(type: SdkType): boolean {
     type.kind === "model" ||
     type.kind === "enum" ||
     type.kind === "dict" ||
-    type.kind === "array"
+    type.kind === "array" ||
+    type.kind === "union"
   );
 }
 

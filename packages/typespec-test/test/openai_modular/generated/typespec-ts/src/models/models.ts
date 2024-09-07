@@ -83,8 +83,33 @@ export type AudioTranscriptionFormat =
   | "text"
   | "srt"
   | "vtt";
+
+export function audioTranscriptionFormatSerializer(
+  item: AudioTranscriptionFormat,
+): any {
+  return item;
+}
+
+export function audioTranscriptionFormatDeserializer(
+  item: any,
+): AudioTranscriptionFormat {
+  return item;
+}
+
 /** Defines the timestamp granularities that can be requested on a verbose transcription response. */
 export type AudioTranscriptionTimestampGranularity = "word" | "segment";
+
+export function audioTranscriptionTimestampGranularitySerializer(
+  item: AudioTranscriptionTimestampGranularity,
+): any {
+  return item;
+}
+
+export function audioTranscriptionTimestampGranularityDeserializer(
+  item: any,
+): AudioTranscriptionTimestampGranularity {
+  return item;
+}
 
 /** Result information for an operation that transcribed spoken audio into written text. */
 export interface AudioTranscription {
@@ -107,6 +132,14 @@ export interface AudioTranscription {
 
 /** Defines the possible descriptors for available audio operation responses. */
 export type AudioTaskLabel = "transcribe" | "translate";
+
+export function audioTaskLabelSerializer(item: AudioTaskLabel): any {
+  return item;
+}
+
+export function audioTaskLabelDeserializer(item: any): AudioTaskLabel {
+  return item;
+}
 
 /**
  * Extended information about a single segment of transcribed audio data.
@@ -211,6 +244,18 @@ export type AudioTranslationFormat =
   | "text"
   | "srt"
   | "vtt";
+
+export function audioTranslationFormatSerializer(
+  item: AudioTranslationFormat,
+): any {
+  return item;
+}
+
+export function audioTranslationFormatDeserializer(
+  item: any,
+): AudioTranslationFormat {
+  return item;
+}
 
 /** Result information for an operation that translated spoken audio into written text. */
 export interface AudioTranslation {
@@ -492,6 +537,18 @@ export interface ContentFilterResult {
 /** Ratings for the intensity and risk level of harmful content. */
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
+export function contentFilterSeveritySerializer(
+  item: ContentFilterSeverity,
+): any {
+  return item;
+}
+
+export function contentFilterSeverityDeserializer(
+  item: any,
+): ContentFilterSeverity {
+  return item;
+}
+
 /** Represents the outcome of a detection operation performed by content filtering. */
 export interface ContentFilterDetectionResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -611,6 +668,18 @@ export type CompletionsFinishReason =
   | "content_filter"
   | "function_call"
   | "tool_calls";
+
+export function completionsFinishReasonSerializer(
+  item: CompletionsFinishReason,
+): any {
+  return item;
+}
+
+export function completionsFinishReasonDeserializer(
+  item: any,
+): CompletionsFinishReason {
+  return item;
+}
 
 /**
  * Representation of the token counts processed for a completions request.
@@ -787,7 +856,9 @@ export function chatCompletionsOptionsDeserializer(
   return {
     messages: item["messages"],
     functions: item["functions"],
-    functionCall: item["function_call"],
+    functionCall: chatCompletionsOptionsFunctionCallDeserializer(
+      item["function_call"],
+    ),
     maxTokens: item["max_tokens"],
     temperature: item["temperature"],
     topP: item["top_p"],
@@ -810,7 +881,9 @@ export function chatCompletionsOptionsDeserializer(
       ? undefined
       : chatCompletionsResponseFormatUnionDeserializer(item.response_format),
     tools: item["tools"],
-    toolChoice: item["tool_choice"],
+    toolChoice: chatCompletionsOptionsToolChoiceDeserializer(
+      item["tool_choice"],
+    ),
   };
 }
 
@@ -905,6 +978,14 @@ export function chatRequestMessageUnionDeserializer(
 /** A description of the intended purpose of a message within a chat completions interaction. */
 export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
 
+export function chatRoleSerializer(item: ChatRole): any {
+  return item;
+}
+
+export function chatRoleDeserializer(item: any): ChatRole {
+  return item;
+}
+
 /**
  * A request chat message containing system instructions that influence how the model will generate a chat completions
  * response.
@@ -963,7 +1044,7 @@ export function chatRequestUserMessageDeserializer(
 ): ChatRequestUserMessage {
   return {
     role: item["role"],
-    content: item["content"],
+    content: chatRequestUserMessageContentDeserializer(item["content"]),
     name: item["name"],
   };
 }
@@ -971,6 +1052,18 @@ export function chatRequestUserMessageDeserializer(
 export type ChatRequestUserMessageContent =
   | string
   | ChatMessageContentItemUnion[];
+
+export function chatRequestUserMessageContentSerializer(
+  item: ChatRequestUserMessageContent,
+): any {
+  return item;
+}
+
+export function chatRequestUserMessageContentDeserializer(
+  item: any,
+): ChatRequestUserMessageContent {
+  return item;
+}
 
 /** An abstract representation of a structured content item within a chat message. */
 export interface ChatMessageContentItem {
@@ -1120,6 +1213,18 @@ export function chatMessageImageUrlDeserializer(
 
 /** A representation of the possible image detail levels for image-based chat completions message content. */
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
+
+export function chatMessageImageDetailLevelSerializer(
+  item: ChatMessageImageDetailLevel,
+): any {
+  return item;
+}
+
+export function chatMessageImageDetailLevelDeserializer(
+  item: any,
+): ChatMessageImageDetailLevel {
+  return item;
+}
 
 /** A request chat message representing response or action from the assistant. */
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
@@ -1385,11 +1490,32 @@ export function functionDefinitionDeserializer(item: any): FunctionDefinition {
 export type ChatCompletionsOptionsFunctionCall =
   | FunctionCallPreset
   | FunctionName;
+
+export function chatCompletionsOptionsFunctionCallSerializer(
+  item: ChatCompletionsOptionsFunctionCall,
+): any {
+  return item;
+}
+
+export function chatCompletionsOptionsFunctionCallDeserializer(
+  item: any,
+): ChatCompletionsOptionsFunctionCall {
+  return item;
+}
+
 /**
  * The collection of predefined behaviors for handling request-provided function information in a chat completions
  * operation.
  */
 export type FunctionCallPreset = "auto" | "none";
+
+export function functionCallPresetSerializer(item: FunctionCallPreset): any {
+  return item;
+}
+
+export function functionCallPresetDeserializer(item: any): FunctionCallPreset {
+  return item;
+}
 
 /**
  * A structure that specifies the exact name of a specific, request-provided function to use when processing a chat
@@ -1530,6 +1656,18 @@ export type AzureChatExtensionType =
   | "azure_cosmos_db"
   | "elasticsearch"
   | "pinecone";
+
+export function azureChatExtensionTypeSerializer(
+  item: AzureChatExtensionType,
+): any {
+  return item;
+}
+
+export function azureChatExtensionTypeDeserializer(
+  item: any,
+): AzureChatExtensionType {
+  return item;
+}
 
 /**
  * A specific representation of configurable options for Azure Search when using it as an Azure OpenAI chat
@@ -1798,6 +1936,18 @@ export type OnYourDataAuthenticationType =
   | "system_assigned_managed_identity"
   | "user_assigned_managed_identity";
 
+export function onYourDataAuthenticationTypeSerializer(
+  item: OnYourDataAuthenticationType,
+): any {
+  return item;
+}
+
+export function onYourDataAuthenticationTypeDeserializer(
+  item: any,
+): OnYourDataAuthenticationType {
+  return item;
+}
+
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
 export interface OnYourDataApiKeyAuthenticationOptions
   extends OnYourDataAuthenticationOptions {
@@ -1993,6 +2143,18 @@ export type OnYourDataContextProperty =
   | "intent"
   | "all_retrieved_documents";
 
+export function onYourDataContextPropertySerializer(
+  item: OnYourDataContextProperty,
+): any {
+  return item;
+}
+
+export function onYourDataContextPropertyDeserializer(
+  item: any,
+): OnYourDataContextProperty {
+  return item;
+}
+
 /** Optional settings to control how fields are processed when using a configured Azure Search resource. */
 export interface AzureSearchIndexFieldMappingOptions {
   /** The name of the index field to use as a title. */
@@ -2046,6 +2208,18 @@ export type AzureSearchQueryType =
   | "vector"
   | "vector_simple_hybrid"
   | "vector_semantic_hybrid";
+
+export function azureSearchQueryTypeSerializer(
+  item: AzureSearchQueryType,
+): any {
+  return item;
+}
+
+export function azureSearchQueryTypeDeserializer(
+  item: any,
+): AzureSearchQueryType {
+  return item;
+}
 
 /** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
 export interface OnYourDataVectorizationSource {
@@ -2131,6 +2305,18 @@ export type OnYourDataVectorizationSourceType =
   | "endpoint"
   | "deployment_name"
   | "model_id";
+
+export function onYourDataVectorizationSourceTypeSerializer(
+  item: OnYourDataVectorizationSourceType,
+): any {
+  return item;
+}
+
+export function onYourDataVectorizationSourceTypeDeserializer(
+  item: any,
+): OnYourDataVectorizationSourceType {
+  return item;
+}
 
 /**
  * The details of a a vectorization source, used by Azure OpenAI On Your Data when applying vector search, that is based
@@ -2240,6 +2426,18 @@ export function onYourDataVectorSearchAuthenticationOptionsUnionDeserializer(
 export type OnYourDataVectorSearchAuthenticationType =
   | "api_key"
   | "access_token";
+
+export function onYourDataVectorSearchAuthenticationTypeSerializer(
+  item: OnYourDataVectorSearchAuthenticationType,
+): any {
+  return item;
+}
+
+export function onYourDataVectorSearchAuthenticationTypeDeserializer(
+  item: any,
+): OnYourDataVectorSearchAuthenticationType {
+  return item;
+}
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
 export interface OnYourDataVectorSearchApiKeyAuthenticationOptions
@@ -2828,6 +3026,18 @@ export function elasticsearchIndexFieldMappingOptionsDeserializer(
 /** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
 export type ElasticsearchQueryType = "simple" | "vector";
 
+export function elasticsearchQueryTypeSerializer(
+  item: ElasticsearchQueryType,
+): any {
+  return item;
+}
+
+export function elasticsearchQueryTypeDeserializer(
+  item: any,
+): ElasticsearchQueryType {
+  return item;
+}
+
 /**
  * A specific representation of configurable options for Pinecone when using it as an Azure OpenAI chat
  * extension.
@@ -3264,8 +3474,33 @@ export function chatCompletionsFunctionToolDefinitionDeserializer(
 export type ChatCompletionsOptionsToolChoice =
   | ChatCompletionsToolSelectionPreset
   | ChatCompletionsNamedToolSelectionUnion;
+
+export function chatCompletionsOptionsToolChoiceSerializer(
+  item: ChatCompletionsOptionsToolChoice,
+): any {
+  return item;
+}
+
+export function chatCompletionsOptionsToolChoiceDeserializer(
+  item: any,
+): ChatCompletionsOptionsToolChoice {
+  return item;
+}
+
 /** Represents a generic policy for how a chat completions tool may be selected. */
 export type ChatCompletionsToolSelectionPreset = "auto" | "none";
+
+export function chatCompletionsToolSelectionPresetSerializer(
+  item: ChatCompletionsToolSelectionPreset,
+): any {
+  return item;
+}
+
+export function chatCompletionsToolSelectionPresetDeserializer(
+  item: any,
+): ChatCompletionsToolSelectionPreset {
+  return item;
+}
 
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
 export interface ChatCompletionsNamedToolSelection {
@@ -3530,6 +3765,18 @@ export interface AzureChatExtensionRetrievedDocument {
 /** The reason for filtering the retrieved document. */
 export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
 
+export function azureChatExtensionRetrieveDocumentFilterReasonSerializer(
+  item: AzureChatExtensionRetrieveDocumentFilterReason,
+): any {
+  return item;
+}
+
+export function azureChatExtensionRetrieveDocumentFilterReasonDeserializer(
+  item: any,
+): AzureChatExtensionRetrieveDocumentFilterReason {
+  return item;
+}
+
 /** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
 export interface ChatChoiceLogProbabilityInfo {
   /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
@@ -3708,18 +3955,65 @@ export type ImageSize =
   | "1024x1024"
   | "1792x1024"
   | "1024x1792";
+
+export function imageSizeSerializer(item: ImageSize): any {
+  return item;
+}
+
+export function imageSizeDeserializer(item: any): ImageSize {
+  return item;
+}
+
 /** The format in which the generated images are returned. */
 export type ImageGenerationResponseFormat = "url" | "b64_json";
+
+export function imageGenerationResponseFormatSerializer(
+  item: ImageGenerationResponseFormat,
+): any {
+  return item;
+}
+
+export function imageGenerationResponseFormatDeserializer(
+  item: any,
+): ImageGenerationResponseFormat {
+  return item;
+}
+
 /**
  * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
  * Only configurable with dall-e-3 models.
  */
 export type ImageGenerationQuality = "standard" | "hd";
+
+export function imageGenerationQualitySerializer(
+  item: ImageGenerationQuality,
+): any {
+  return item;
+}
+
+export function imageGenerationQualityDeserializer(
+  item: any,
+): ImageGenerationQuality {
+  return item;
+}
+
 /**
  * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
  * Only configurable with dall-e-3 models.
  */
 export type ImageGenerationStyle = "natural" | "vivid";
+
+export function imageGenerationStyleSerializer(
+  item: ImageGenerationStyle,
+): any {
+  return item;
+}
+
+export function imageGenerationStyleDeserializer(
+  item: any,
+): ImageGenerationStyle {
+  return item;
+}
 
 /** The result of a successful image generation operation. */
 export interface ImageGenerations {
@@ -3871,6 +4165,15 @@ export type SpeechVoice =
   | "onyx"
   | "nova"
   | "shimmer";
+
+export function speechVoiceSerializer(item: SpeechVoice): any {
+  return item;
+}
+
+export function speechVoiceDeserializer(item: any): SpeechVoice {
+  return item;
+}
+
 /** The supported audio output formats for text-to-speech. */
 export type SpeechGenerationResponseFormat =
   | "mp3"
@@ -3879,6 +4182,18 @@ export type SpeechGenerationResponseFormat =
   | "flac"
   | "wav"
   | "pcm";
+
+export function speechGenerationResponseFormatSerializer(
+  item: SpeechGenerationResponseFormat,
+): any {
+  return item;
+}
+
+export function speechGenerationResponseFormatDeserializer(
+  item: any,
+): SpeechGenerationResponseFormat {
+  return item;
+}
 
 /**
  * The configuration information for an embeddings request.
@@ -3942,6 +4257,18 @@ export function embeddingsOptionsDeserializer(item: any): EmbeddingsOptions {
 /** Represents the available formats for embeddings data on responses. */
 export type EmbeddingEncodingFormat = "float" | "base64";
 
+export function embeddingEncodingFormatSerializer(
+  item: EmbeddingEncodingFormat,
+): any {
+  return item;
+}
+
+export function embeddingEncodingFormatDeserializer(
+  item: any,
+): EmbeddingEncodingFormat {
+  return item;
+}
+
 /**
  * Representation of the response data from an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -3978,6 +4305,14 @@ export type ServiceApiVersions =
   | "2023-05-15"
   | "2024-02-01"
   | "2024-06-01";
+
+export function serviceApiVersionsSerializer(item: ServiceApiVersions): any {
+  return item;
+}
+
+export function serviceApiVersionsDeserializer(item: any): ServiceApiVersions {
+  return item;
+}
 
 /** A response containing error details. */
 export interface ErrorResponse {

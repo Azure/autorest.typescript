@@ -14,6 +14,9 @@ import { TokenCredential } from '@azure/core-auth';
 // @public
 export type AudioTaskLabel = "transcribe" | "translate";
 
+// @public (undocumented)
+export function audioTaskLabelDeserializer(item: any): AudioTaskLabel;
+
 // @public
 export interface AudioTranscription {
     duration?: number;
@@ -27,6 +30,9 @@ export interface AudioTranscription {
 // @public
 export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
+// @public (undocumented)
+export function audioTranscriptionFormatDeserializer(item: any): AudioTranscriptionFormat;
+
 // @public
 export interface AudioTranscriptionOptions {
     file: Uint8Array;
@@ -38,6 +44,9 @@ export interface AudioTranscriptionOptions {
     temperature?: number;
     timestampGranularities?: AudioTranscriptionTimestampGranularity[];
 }
+
+// @public (undocumented)
+export function audioTranscriptionOptionsDeserializer(item: any): AudioTranscriptionOptions;
 
 // @public
 export interface AudioTranscriptionSegment {
@@ -55,6 +64,9 @@ export interface AudioTranscriptionSegment {
 
 // @public
 export type AudioTranscriptionTimestampGranularity = "word" | "segment";
+
+// @public (undocumented)
+export function audioTranscriptionTimestampGranularityDeserializer(item: any): AudioTranscriptionTimestampGranularity;
 
 // @public
 export interface AudioTranscriptionWord {
@@ -75,6 +87,9 @@ export interface AudioTranslation {
 // @public
 export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | "vtt";
 
+// @public (undocumented)
+export function audioTranslationFormatDeserializer(item: any): AudioTranslationFormat;
+
 // @public
 export interface AudioTranslationOptions {
     file: Uint8Array;
@@ -84,6 +99,9 @@ export interface AudioTranslationOptions {
     responseFormat?: AudioTranslationFormat;
     temperature?: number;
 }
+
+// @public (undocumented)
+export function audioTranslationOptionsDeserializer(item: any): AudioTranslationOptions;
 
 // @public
 export interface AudioTranslationSegment {
@@ -105,6 +123,9 @@ export interface AzureChatEnhancementConfiguration {
     ocr?: AzureChatOCREnhancementConfiguration;
 }
 
+// @public (undocumented)
+export function azureChatEnhancementConfigurationDeserializer(item: any): AzureChatEnhancementConfiguration;
+
 // @public
 export interface AzureChatEnhancements {
     grounding?: AzureGroundingEnhancement;
@@ -116,7 +137,13 @@ export interface AzureChatExtensionConfiguration {
 }
 
 // @public (undocumented)
+export function azureChatExtensionConfigurationDeserializer(item: any): AzureChatExtensionConfiguration;
+
+// @public (undocumented)
 export type AzureChatExtensionConfigurationUnion = AzureSearchChatExtensionConfiguration | AzureMachineLearningIndexChatExtensionConfiguration | AzureCosmosDBChatExtensionConfiguration | ElasticsearchChatExtensionConfiguration | PineconeChatExtensionConfiguration | AzureChatExtensionConfiguration;
+
+// @public (undocumented)
+export function azureChatExtensionConfigurationUnionDeserializer(item: any): AzureChatExtensionConfiguration;
 
 // @public
 export interface AzureChatExtensionDataSourceResponseCitation {
@@ -144,6 +171,9 @@ export interface AzureChatExtensionRetrievedDocument {
 // @public
 export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
 
+// @public (undocumented)
+export function azureChatExtensionRetrieveDocumentFilterReasonDeserializer(item: any): AzureChatExtensionRetrieveDocumentFilterReason;
+
 // @public
 export interface AzureChatExtensionsMessageContext {
     allRetrievedDocuments?: AzureChatExtensionRetrievedDocument[];
@@ -154,21 +184,33 @@ export interface AzureChatExtensionsMessageContext {
 // @public
 export type AzureChatExtensionType = "azure_search" | "azure_ml_index" | "azure_cosmos_db" | "elasticsearch" | "pinecone";
 
+// @public (undocumented)
+export function azureChatExtensionTypeDeserializer(item: any): AzureChatExtensionType;
+
 // @public
 export interface AzureChatGroundingEnhancementConfiguration {
     enabled: boolean;
 }
+
+// @public (undocumented)
+export function azureChatGroundingEnhancementConfigurationDeserializer(item: any): AzureChatGroundingEnhancementConfiguration;
 
 // @public
 export interface AzureChatOCREnhancementConfiguration {
     enabled: boolean;
 }
 
+// @public (undocumented)
+export function azureChatOCREnhancementConfigurationDeserializer(item: any): AzureChatOCREnhancementConfiguration;
+
 // @public
 export interface AzureCosmosDBChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: AzureCosmosDBChatExtensionParameters;
     type: "azure_cosmos_db";
 }
+
+// @public (undocumented)
+export function azureCosmosDBChatExtensionConfigurationDeserializer(item: any): AzureCosmosDBChatExtensionConfiguration;
 
 // @public
 export interface AzureCosmosDBChatExtensionParameters {
@@ -187,6 +229,9 @@ export interface AzureCosmosDBChatExtensionParameters {
     topNDocuments?: number;
 }
 
+// @public (undocumented)
+export function azureCosmosDBChatExtensionParametersDeserializer(item: any): AzureCosmosDBChatExtensionParameters;
+
 // @public
 export interface AzureCosmosDBFieldMappingOptions {
     contentFields: string[];
@@ -196,6 +241,9 @@ export interface AzureCosmosDBFieldMappingOptions {
     urlField?: string;
     vectorFields: string[];
 }
+
+// @public (undocumented)
+export function azureCosmosDBFieldMappingOptionsDeserializer(item: any): AzureCosmosDBFieldMappingOptions;
 
 // @public
 export interface AzureGroundingEnhancement {
@@ -228,6 +276,9 @@ export interface AzureMachineLearningIndexChatExtensionConfiguration extends Azu
     type: "azure_ml_index";
 }
 
+// @public (undocumented)
+export function azureMachineLearningIndexChatExtensionConfigurationDeserializer(item: any): AzureMachineLearningIndexChatExtensionConfiguration;
+
 // @public
 export interface AzureMachineLearningIndexChatExtensionParameters {
     allowPartialResult?: boolean;
@@ -244,11 +295,17 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
     version: string;
 }
 
+// @public (undocumented)
+export function azureMachineLearningIndexChatExtensionParametersDeserializer(item: any): AzureMachineLearningIndexChatExtensionParameters;
+
 // @public
 export interface AzureSearchChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: AzureSearchChatExtensionParameters;
     type: "azure_search";
 }
+
+// @public (undocumented)
+export function azureSearchChatExtensionConfigurationDeserializer(item: any): AzureSearchChatExtensionConfiguration;
 
 // @public
 export interface AzureSearchChatExtensionParameters {
@@ -269,6 +326,9 @@ export interface AzureSearchChatExtensionParameters {
     topNDocuments?: number;
 }
 
+// @public (undocumented)
+export function azureSearchChatExtensionParametersDeserializer(item: any): AzureSearchChatExtensionParameters;
+
 // @public
 export interface AzureSearchIndexFieldMappingOptions {
     contentFields?: string[];
@@ -280,8 +340,14 @@ export interface AzureSearchIndexFieldMappingOptions {
     vectorFields?: string[];
 }
 
+// @public (undocumented)
+export function azureSearchIndexFieldMappingOptionsDeserializer(item: any): AzureSearchIndexFieldMappingOptions;
+
 // @public
 export type AzureSearchQueryType = "simple" | "semantic" | "vector" | "vector_simple_hybrid" | "vector_semantic_hybrid";
+
+// @public (undocumented)
+export function azureSearchQueryTypeDeserializer(item: any): AzureSearchQueryType;
 
 // @public
 export interface ChatChoice {
@@ -317,21 +383,33 @@ export interface ChatCompletionsFunctionToolCall extends ChatCompletionsToolCall
     type: "function";
 }
 
+// @public (undocumented)
+export function chatCompletionsFunctionToolCallDeserializer(item: any): ChatCompletionsFunctionToolCall;
+
 // @public
 export interface ChatCompletionsFunctionToolDefinition extends ChatCompletionsToolDefinition {
     function: FunctionDefinition;
     type: "function";
 }
 
+// @public (undocumented)
+export function chatCompletionsFunctionToolDefinitionDeserializer(item: any): ChatCompletionsFunctionToolDefinition;
+
 // @public
 export interface ChatCompletionsFunctionToolSelection {
     name: string;
 }
 
+// @public (undocumented)
+export function chatCompletionsFunctionToolSelectionDeserializer(item: any): ChatCompletionsFunctionToolSelection;
+
 // @public
 export interface ChatCompletionsJsonResponseFormat extends ChatCompletionsResponseFormat {
     type: "json_object";
 }
+
+// @public (undocumented)
+export function chatCompletionsJsonResponseFormatDeserializer(item: any): ChatCompletionsJsonResponseFormat;
 
 // @public
 export interface ChatCompletionsNamedFunctionToolSelection extends ChatCompletionsNamedToolSelection {
@@ -339,13 +417,22 @@ export interface ChatCompletionsNamedFunctionToolSelection extends ChatCompletio
     type: "function";
 }
 
+// @public (undocumented)
+export function chatCompletionsNamedFunctionToolSelectionDeserializer(item: any): ChatCompletionsNamedFunctionToolSelection;
+
 // @public
 export interface ChatCompletionsNamedToolSelection {
     type: string;
 }
 
 // @public (undocumented)
+export function chatCompletionsNamedToolSelectionDeserializer(item: any): ChatCompletionsNamedToolSelection;
+
+// @public (undocumented)
 export type ChatCompletionsNamedToolSelectionUnion = ChatCompletionsNamedFunctionToolSelection | ChatCompletionsNamedToolSelection;
+
+// @public (undocumented)
+export function chatCompletionsNamedToolSelectionUnionDeserializer(item: any): ChatCompletionsNamedToolSelection;
 
 // @public
 export interface ChatCompletionsOptions {
@@ -374,10 +461,19 @@ export interface ChatCompletionsOptions {
 }
 
 // @public (undocumented)
+export function chatCompletionsOptionsDeserializer(item: any): ChatCompletionsOptions;
+
+// @public (undocumented)
 export type ChatCompletionsOptionsFunctionCall = FunctionCallPreset | FunctionName;
 
 // @public (undocumented)
+export function chatCompletionsOptionsFunctionCallDeserializer(item: any): ChatCompletionsOptionsFunctionCall;
+
+// @public (undocumented)
 export type ChatCompletionsOptionsToolChoice = ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
+
+// @public (undocumented)
+export function chatCompletionsOptionsToolChoiceDeserializer(item: any): ChatCompletionsOptionsToolChoice;
 
 // @public
 export interface ChatCompletionsResponseFormat {
@@ -385,12 +481,21 @@ export interface ChatCompletionsResponseFormat {
 }
 
 // @public (undocumented)
+export function chatCompletionsResponseFormatDeserializer(item: any): ChatCompletionsResponseFormat;
+
+// @public (undocumented)
 export type ChatCompletionsResponseFormatUnion = ChatCompletionsTextResponseFormat | ChatCompletionsJsonResponseFormat | ChatCompletionsResponseFormat;
+
+// @public (undocumented)
+export function chatCompletionsResponseFormatUnionDeserializer(item: any): ChatCompletionsResponseFormat;
 
 // @public
 export interface ChatCompletionsTextResponseFormat extends ChatCompletionsResponseFormat {
     type: "text";
 }
+
+// @public (undocumented)
+export function chatCompletionsTextResponseFormatDeserializer(item: any): ChatCompletionsTextResponseFormat;
 
 // @public
 export interface ChatCompletionsToolCall {
@@ -399,7 +504,13 @@ export interface ChatCompletionsToolCall {
 }
 
 // @public (undocumented)
+export function chatCompletionsToolCallDeserializer(item: any): ChatCompletionsToolCall;
+
+// @public (undocumented)
 export type ChatCompletionsToolCallUnion = ChatCompletionsFunctionToolCall | ChatCompletionsToolCall;
+
+// @public (undocumented)
+export function chatCompletionsToolCallUnionDeserializer(item: any): ChatCompletionsToolCall;
 
 // @public
 export interface ChatCompletionsToolDefinition {
@@ -407,10 +518,19 @@ export interface ChatCompletionsToolDefinition {
 }
 
 // @public (undocumented)
+export function chatCompletionsToolDefinitionDeserializer(item: any): ChatCompletionsToolDefinition;
+
+// @public (undocumented)
 export type ChatCompletionsToolDefinitionUnion = ChatCompletionsFunctionToolDefinition | ChatCompletionsToolDefinition;
+
+// @public (undocumented)
+export function chatCompletionsToolDefinitionUnionDeserializer(item: any): ChatCompletionsToolDefinition;
 
 // @public
 export type ChatCompletionsToolSelectionPreset = "auto" | "none";
+
+// @public (undocumented)
+export function chatCompletionsToolSelectionPresetDeserializer(item: any): ChatCompletionsToolSelectionPreset;
 
 // @public
 export interface ChatFinishDetails {
@@ -426,7 +546,13 @@ export interface ChatMessageContentItem {
 }
 
 // @public (undocumented)
+export function chatMessageContentItemDeserializer(item: any): ChatMessageContentItem;
+
+// @public (undocumented)
 export type ChatMessageContentItemUnion = ChatMessageTextContentItem | ChatMessageImageContentItem | ChatMessageContentItem;
+
+// @public (undocumented)
+export function chatMessageContentItemUnionDeserializer(item: any): ChatMessageContentItem;
 
 // @public
 export interface ChatMessageImageContentItem extends ChatMessageContentItem {
@@ -434,8 +560,14 @@ export interface ChatMessageImageContentItem extends ChatMessageContentItem {
     type: "image_url";
 }
 
+// @public (undocumented)
+export function chatMessageImageContentItemDeserializer(item: any): ChatMessageImageContentItem;
+
 // @public
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
+
+// @public (undocumented)
+export function chatMessageImageDetailLevelDeserializer(item: any): ChatMessageImageDetailLevel;
 
 // @public
 export interface ChatMessageImageUrl {
@@ -443,11 +575,17 @@ export interface ChatMessageImageUrl {
     url: string;
 }
 
+// @public (undocumented)
+export function chatMessageImageUrlDeserializer(item: any): ChatMessageImageUrl;
+
 // @public
 export interface ChatMessageTextContentItem extends ChatMessageContentItem {
     text: string;
     type: "text";
 }
+
+// @public (undocumented)
+export function chatMessageTextContentItemDeserializer(item: any): ChatMessageTextContentItem;
 
 // @public
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
@@ -458,6 +596,9 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessage {
     toolCalls?: ChatCompletionsToolCallUnion[];
 }
 
+// @public (undocumented)
+export function chatRequestAssistantMessageDeserializer(item: any): ChatRequestAssistantMessage;
+
 // @public
 export interface ChatRequestFunctionMessage extends ChatRequestMessage {
     content: string | null;
@@ -465,13 +606,22 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
     role: "function";
 }
 
+// @public (undocumented)
+export function chatRequestFunctionMessageDeserializer(item: any): ChatRequestFunctionMessage;
+
 // @public
 export interface ChatRequestMessage {
     role: ChatRole;
 }
 
 // @public (undocumented)
+export function chatRequestMessageDeserializer(item: any): ChatRequestMessage;
+
+// @public (undocumented)
 export type ChatRequestMessageUnion = ChatRequestSystemMessage | ChatRequestUserMessage | ChatRequestAssistantMessage | ChatRequestToolMessage | ChatRequestFunctionMessage | ChatRequestMessage;
+
+// @public (undocumented)
+export function chatRequestMessageUnionDeserializer(item: any): ChatRequestMessage;
 
 // @public
 export interface ChatRequestSystemMessage extends ChatRequestMessage {
@@ -480,12 +630,18 @@ export interface ChatRequestSystemMessage extends ChatRequestMessage {
     role: "system";
 }
 
+// @public (undocumented)
+export function chatRequestSystemMessageDeserializer(item: any): ChatRequestSystemMessage;
+
 // @public
 export interface ChatRequestToolMessage extends ChatRequestMessage {
     content: string | null;
     role: "tool";
     toolCallId: string;
 }
+
+// @public (undocumented)
+export function chatRequestToolMessageDeserializer(item: any): ChatRequestToolMessage;
 
 // @public
 export interface ChatRequestUserMessage extends ChatRequestMessage {
@@ -496,6 +652,12 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
 
 // @public (undocumented)
 export type ChatRequestUserMessageContent = string | ChatMessageContentItemUnion[];
+
+// @public (undocumented)
+export function chatRequestUserMessageContentDeserializer(item: any): ChatRequestUserMessageContent;
+
+// @public (undocumented)
+export function chatRequestUserMessageDeserializer(item: any): ChatRequestUserMessage;
 
 // @public
 export interface ChatResponseMessage {
@@ -508,6 +670,9 @@ export interface ChatResponseMessage {
 
 // @public
 export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
+
+// @public (undocumented)
+export function chatRoleDeserializer(item: any): ChatRole;
 
 // @public
 export interface ChatTokenLogProbabilityInfo {
@@ -545,6 +710,9 @@ export interface Completions {
 // @public
 export type CompletionsFinishReason = "stop" | "length" | "content_filter" | "function_call" | "tool_calls";
 
+// @public (undocumented)
+export function completionsFinishReasonDeserializer(item: any): CompletionsFinishReason;
+
 // @public
 export interface CompletionsLogProbabilityModel {
     textOffset: number[];
@@ -572,6 +740,9 @@ export interface CompletionsOptions {
     topP?: number;
     user?: string;
 }
+
+// @public (undocumented)
+export function completionsOptionsDeserializer(item: any): CompletionsOptions;
 
 // @public
 export interface CompletionsUsage {
@@ -647,11 +818,17 @@ export interface ContentFilterResultsForPrompt {
 // @public
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
+// @public (undocumented)
+export function contentFilterSeverityDeserializer(item: any): ContentFilterSeverity;
+
 // @public
 export interface ElasticsearchChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: ElasticsearchChatExtensionParameters;
     type: "elasticsearch";
 }
+
+// @public (undocumented)
+export function elasticsearchChatExtensionConfigurationDeserializer(item: any): ElasticsearchChatExtensionConfiguration;
 
 // @public
 export interface ElasticsearchChatExtensionParameters {
@@ -670,6 +847,9 @@ export interface ElasticsearchChatExtensionParameters {
     topNDocuments?: number;
 }
 
+// @public (undocumented)
+export function elasticsearchChatExtensionParametersDeserializer(item: any): ElasticsearchChatExtensionParameters;
+
 // @public
 export interface ElasticsearchIndexFieldMappingOptions {
     contentFields?: string[];
@@ -680,11 +860,20 @@ export interface ElasticsearchIndexFieldMappingOptions {
     vectorFields?: string[];
 }
 
+// @public (undocumented)
+export function elasticsearchIndexFieldMappingOptionsDeserializer(item: any): ElasticsearchIndexFieldMappingOptions;
+
 // @public
 export type ElasticsearchQueryType = "simple" | "vector";
 
+// @public (undocumented)
+export function elasticsearchQueryTypeDeserializer(item: any): ElasticsearchQueryType;
+
 // @public
 export type EmbeddingEncodingFormat = "float" | "base64";
+
+// @public (undocumented)
+export function embeddingEncodingFormatDeserializer(item: any): EmbeddingEncodingFormat;
 
 // @public
 export interface EmbeddingItem {
@@ -708,6 +897,9 @@ export interface EmbeddingsOptions {
     user?: string;
 }
 
+// @public (undocumented)
+export function embeddingsOptionsDeserializer(item: any): EmbeddingsOptions;
+
 // @public
 export interface EmbeddingsUsage {
     promptTokens: number;
@@ -726,8 +918,14 @@ export interface FunctionCall {
     name: string;
 }
 
+// @public (undocumented)
+export function functionCallDeserializer(item: any): FunctionCall;
+
 // @public
 export type FunctionCallPreset = "auto" | "none";
+
+// @public (undocumented)
+export function functionCallPresetDeserializer(item: any): FunctionCallPreset;
 
 // @public
 export interface FunctionDefinition {
@@ -736,10 +934,16 @@ export interface FunctionDefinition {
     parameters?: any;
 }
 
+// @public (undocumented)
+export function functionDefinitionDeserializer(item: any): FunctionDefinition;
+
 // @public
 export interface FunctionName {
     name: string;
 }
+
+// @public (undocumented)
+export function functionNameDeserializer(item: any): FunctionName;
 
 // @public
 export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
@@ -810,6 +1014,9 @@ export interface ImageGenerationOptions {
     user?: string;
 }
 
+// @public (undocumented)
+export function imageGenerationOptionsDeserializer(item: any): ImageGenerationOptions;
+
 // @public
 export interface ImageGenerationPromptFilterResults {
     customBlocklists?: ContentFilterDetailedResults;
@@ -824,8 +1031,14 @@ export interface ImageGenerationPromptFilterResults {
 // @public
 export type ImageGenerationQuality = "standard" | "hd";
 
+// @public (undocumented)
+export function imageGenerationQualityDeserializer(item: any): ImageGenerationQuality;
+
 // @public
 export type ImageGenerationResponseFormat = "url" | "b64_json";
+
+// @public (undocumented)
+export function imageGenerationResponseFormatDeserializer(item: any): ImageGenerationResponseFormat;
 
 // @public
 export interface ImageGenerations {
@@ -836,8 +1049,14 @@ export interface ImageGenerations {
 // @public
 export type ImageGenerationStyle = "natural" | "vivid";
 
+// @public (undocumented)
+export function imageGenerationStyleDeserializer(item: any): ImageGenerationStyle;
+
 // @public
 export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792";
+
+// @public (undocumented)
+export function imageSizeDeserializer(item: any): ImageSize;
 
 // @public
 export interface MaxTokensFinishDetails extends ChatFinishDetails {
@@ -850,11 +1069,17 @@ export interface OnYourDataAccessTokenAuthenticationOptions extends OnYourDataAu
     type: "access_token";
 }
 
+// @public (undocumented)
+export function onYourDataAccessTokenAuthenticationOptionsDeserializer(item: any): OnYourDataAccessTokenAuthenticationOptions;
+
 // @public
 export interface OnYourDataApiKeyAuthenticationOptions extends OnYourDataAuthenticationOptions {
     key: string;
     type: "api_key";
 }
+
+// @public (undocumented)
+export function onYourDataApiKeyAuthenticationOptionsDeserializer(item: any): OnYourDataApiKeyAuthenticationOptions;
 
 // @public
 export interface OnYourDataAuthenticationOptions {
@@ -862,10 +1087,19 @@ export interface OnYourDataAuthenticationOptions {
 }
 
 // @public (undocumented)
+export function onYourDataAuthenticationOptionsDeserializer(item: any): OnYourDataAuthenticationOptions;
+
+// @public (undocumented)
 export type OnYourDataAuthenticationOptionsUnion = OnYourDataApiKeyAuthenticationOptions | OnYourDataConnectionStringAuthenticationOptions | OnYourDataKeyAndKeyIdAuthenticationOptions | OnYourDataEncodedApiKeyAuthenticationOptions | OnYourDataAccessTokenAuthenticationOptions | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions | OnYourDataUserAssignedManagedIdentityAuthenticationOptions | OnYourDataAuthenticationOptions;
+
+// @public (undocumented)
+export function onYourDataAuthenticationOptionsUnionDeserializer(item: any): OnYourDataAuthenticationOptions;
 
 // @public
 export type OnYourDataAuthenticationType = "api_key" | "connection_string" | "key_and_key_id" | "encoded_api_key" | "access_token" | "system_assigned_managed_identity" | "user_assigned_managed_identity";
+
+// @public (undocumented)
+export function onYourDataAuthenticationTypeDeserializer(item: any): OnYourDataAuthenticationType;
 
 // @public
 export interface OnYourDataConnectionStringAuthenticationOptions extends OnYourDataAuthenticationOptions {
@@ -873,8 +1107,14 @@ export interface OnYourDataConnectionStringAuthenticationOptions extends OnYourD
     type: "connection_string";
 }
 
+// @public (undocumented)
+export function onYourDataConnectionStringAuthenticationOptionsDeserializer(item: any): OnYourDataConnectionStringAuthenticationOptions;
+
 // @public
 export type OnYourDataContextProperty = "citations" | "intent" | "all_retrieved_documents";
+
+// @public (undocumented)
+export function onYourDataContextPropertyDeserializer(item: any): OnYourDataContextProperty;
 
 // @public
 export interface OnYourDataDeploymentNameVectorizationSource extends OnYourDataVectorizationSource {
@@ -883,11 +1123,17 @@ export interface OnYourDataDeploymentNameVectorizationSource extends OnYourDataV
     type: "deployment_name";
 }
 
+// @public (undocumented)
+export function onYourDataDeploymentNameVectorizationSourceDeserializer(item: any): OnYourDataDeploymentNameVectorizationSource;
+
 // @public
 export interface OnYourDataEncodedApiKeyAuthenticationOptions extends OnYourDataAuthenticationOptions {
     encodedApiKey: string;
     type: "encoded_api_key";
 }
+
+// @public (undocumented)
+export function onYourDataEncodedApiKeyAuthenticationOptionsDeserializer(item: any): OnYourDataEncodedApiKeyAuthenticationOptions;
 
 // @public
 export interface OnYourDataEndpointVectorizationSource extends OnYourDataVectorizationSource {
@@ -896,6 +1142,9 @@ export interface OnYourDataEndpointVectorizationSource extends OnYourDataVectori
     type: "endpoint";
 }
 
+// @public (undocumented)
+export function onYourDataEndpointVectorizationSourceDeserializer(item: any): OnYourDataEndpointVectorizationSource;
+
 // @public
 export interface OnYourDataKeyAndKeyIdAuthenticationOptions extends OnYourDataAuthenticationOptions {
     key: string;
@@ -903,16 +1152,25 @@ export interface OnYourDataKeyAndKeyIdAuthenticationOptions extends OnYourDataAu
     type: "key_and_key_id";
 }
 
+// @public (undocumented)
+export function onYourDataKeyAndKeyIdAuthenticationOptionsDeserializer(item: any): OnYourDataKeyAndKeyIdAuthenticationOptions;
+
 // @public
 export interface OnYourDataModelIdVectorizationSource extends OnYourDataVectorizationSource {
     modelId: string;
     type: "model_id";
 }
 
+// @public (undocumented)
+export function onYourDataModelIdVectorizationSourceDeserializer(item: any): OnYourDataModelIdVectorizationSource;
+
 // @public
 export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions extends OnYourDataAuthenticationOptions {
     type: "system_assigned_managed_identity";
 }
+
+// @public (undocumented)
+export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsDeserializer(item: any): OnYourDataSystemAssignedManagedIdentityAuthenticationOptions;
 
 // @public
 export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions extends OnYourDataAuthenticationOptions {
@@ -920,16 +1178,28 @@ export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions exte
     type: "user_assigned_managed_identity";
 }
 
+// @public (undocumented)
+export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsDeserializer(item: any): OnYourDataUserAssignedManagedIdentityAuthenticationOptions;
+
 // @public
 export interface OnYourDataVectorizationSource {
     type: OnYourDataVectorizationSourceType;
 }
 
+// @public (undocumented)
+export function onYourDataVectorizationSourceDeserializer(item: any): OnYourDataVectorizationSource;
+
 // @public
 export type OnYourDataVectorizationSourceType = "endpoint" | "deployment_name" | "model_id";
 
 // @public (undocumented)
+export function onYourDataVectorizationSourceTypeDeserializer(item: any): OnYourDataVectorizationSourceType;
+
+// @public (undocumented)
 export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorizationSource | OnYourDataDeploymentNameVectorizationSource | OnYourDataModelIdVectorizationSource | OnYourDataVectorizationSource;
+
+// @public (undocumented)
+export function onYourDataVectorizationSourceUnionDeserializer(item: any): OnYourDataVectorizationSource;
 
 // @public
 export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions extends OnYourDataVectorSearchAuthenticationOptions {
@@ -937,11 +1207,17 @@ export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions extends 
     type: "access_token";
 }
 
+// @public (undocumented)
+export function onYourDataVectorSearchAccessTokenAuthenticationOptionsDeserializer(item: any): OnYourDataVectorSearchAccessTokenAuthenticationOptions;
+
 // @public
 export interface OnYourDataVectorSearchApiKeyAuthenticationOptions extends OnYourDataVectorSearchAuthenticationOptions {
     key: string;
     type: "api_key";
 }
+
+// @public (undocumented)
+export function onYourDataVectorSearchApiKeyAuthenticationOptionsDeserializer(item: any): OnYourDataVectorSearchApiKeyAuthenticationOptions;
 
 // @public
 export interface OnYourDataVectorSearchAuthenticationOptions {
@@ -949,10 +1225,19 @@ export interface OnYourDataVectorSearchAuthenticationOptions {
 }
 
 // @public (undocumented)
+export function onYourDataVectorSearchAuthenticationOptionsDeserializer(item: any): OnYourDataVectorSearchAuthenticationOptions;
+
+// @public (undocumented)
 export type OnYourDataVectorSearchAuthenticationOptionsUnion = OnYourDataVectorSearchApiKeyAuthenticationOptions | OnYourDataVectorSearchAccessTokenAuthenticationOptions | OnYourDataVectorSearchAuthenticationOptions;
+
+// @public (undocumented)
+export function onYourDataVectorSearchAuthenticationOptionsUnionDeserializer(item: any): OnYourDataVectorSearchAuthenticationOptions;
 
 // @public
 export type OnYourDataVectorSearchAuthenticationType = "api_key" | "access_token";
+
+// @public (undocumented)
+export function onYourDataVectorSearchAuthenticationTypeDeserializer(item: any): OnYourDataVectorSearchAuthenticationType;
 
 // @public (undocumented)
 export class OpenAIClient {
@@ -980,6 +1265,9 @@ export interface PineconeChatExtensionConfiguration extends AzureChatExtensionCo
     type: "pinecone";
 }
 
+// @public (undocumented)
+export function pineconeChatExtensionConfigurationDeserializer(item: any): PineconeChatExtensionConfiguration;
+
 // @public
 export interface PineconeChatExtensionParameters {
     allowPartialResult?: boolean;
@@ -996,6 +1284,9 @@ export interface PineconeChatExtensionParameters {
     topNDocuments?: number;
 }
 
+// @public (undocumented)
+export function pineconeChatExtensionParametersDeserializer(item: any): PineconeChatExtensionParameters;
+
 // @public
 export interface PineconeFieldMappingOptions {
     contentFields: string[];
@@ -1006,7 +1297,13 @@ export interface PineconeFieldMappingOptions {
 }
 
 // @public (undocumented)
+export function pineconeFieldMappingOptionsDeserializer(item: any): PineconeFieldMappingOptions;
+
+// @public (undocumented)
 export type ServiceApiVersions = "2022-12-01" | "2023-05-15" | "2024-02-01" | "2024-06-01";
+
+// @public (undocumented)
+export function serviceApiVersionsDeserializer(item: any): ServiceApiVersions;
 
 // @public
 export interface SpeechGenerationOptions {
@@ -1017,11 +1314,20 @@ export interface SpeechGenerationOptions {
     voice: SpeechVoice;
 }
 
+// @public (undocumented)
+export function speechGenerationOptionsDeserializer(item: any): SpeechGenerationOptions;
+
 // @public
 export type SpeechGenerationResponseFormat = "mp3" | "opus" | "aac" | "flac" | "wav" | "pcm";
 
+// @public (undocumented)
+export function speechGenerationResponseFormatDeserializer(item: any): SpeechGenerationResponseFormat;
+
 // @public
 export type SpeechVoice = "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
+
+// @public (undocumented)
+export function speechVoiceDeserializer(item: any): SpeechVoice;
 
 // @public
 export interface StopFinishDetails extends ChatFinishDetails {

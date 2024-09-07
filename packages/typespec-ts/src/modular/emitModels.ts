@@ -3,6 +3,7 @@ import {
   EnumMemberStructure,
   InterfaceDeclarationStructure,
   PropertySignatureStructure,
+  SourceFile,
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
@@ -62,66 +63,14 @@ export function emitTypes(
       addDeclaration(sourceFile, modelInterface, type);
       const modelPolymorphicType = buildModelPolymorphicType(type);
       if (modelPolymorphicType) {
-        const serializerFunction = buildModelSerializer(context, type, true);
-        const deserializerFunction = buildModelDeserializer(
-          context,
-          type,
-          true
-        );
-        if (
-          serializerFunction &&
-          serializerFunction.name &&
-          !sourceFile.getFunction(serializerFunction.name)
-        ) {
-          addDeclaration(
-            sourceFile,
-            serializerFunction,
-            refkey(type, "polymorphicSerializer")
-          );
-        }
-        if (
-          deserializerFunction &&
-          typeof deserializerFunction !== "string" &&
-          deserializerFunction.name &&
-          !sourceFile.getFunction(deserializerFunction.name)
-        ) {
-          addDeclaration(
-            sourceFile,
-            deserializerFunction,
-            refkey(type, "polymorphicDeserializer")
-          );
-        }
+        addSerializationFunctions(context, type, sourceFile, true);
         addDeclaration(
           sourceFile,
           modelPolymorphicType,
           refkey(type, "polymorphicType")
         );
       }
-      const serializerFunction = buildModelSerializer(context, type);
-      const deserializerFunction = buildModelDeserializer(context, type);
-      if (
-        serializerFunction &&
-        serializerFunction.name &&
-        !sourceFile.getFunction(serializerFunction.name)
-      ) {
-        addDeclaration(
-          sourceFile,
-          serializerFunction,
-          refkey(type, "serializer")
-        );
-      }
-      if (
-        deserializerFunction &&
-        typeof deserializerFunction !== "string" &&
-        deserializerFunction.name &&
-        !sourceFile.getFunction(deserializerFunction.name)
-      ) {
-        addDeclaration(
-          sourceFile,
-          deserializerFunction,
-          refkey(type, "deserializer")
-        );
-      }
+      addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "enum") {
       const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
       if (isExtensibleEnum(context, type)) {
@@ -132,34 +81,11 @@ export function emitTypes(
         );
       }
       addDeclaration(sourceFile, enumType, type);
+      addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "union") {
       const unionType = buildUnionType(type);
       addDeclaration(sourceFile, unionType, type);
-      const serializationFunction = buildModelSerializer(context, type);
-      if (
-        serializationFunction &&
-        serializationFunction.name &&
-        !sourceFile.getFunction(serializationFunction.name)
-      ) {
-        addDeclaration(
-          sourceFile,
-          serializationFunction,
-          refkey(type, "serializer")
-        );
-      }
-      const deserializationFunction = buildModelDeserializer(context, type);
-      if (
-        deserializationFunction &&
-        typeof deserializationFunction !== "string" &&
-        deserializationFunction.name &&
-        !sourceFile.getFunction(deserializationFunction.name)
-      ) {
-        addDeclaration(
-          sourceFile,
-          deserializationFunction,
-          refkey(type, "deserializer")
-        );
-      }
+      addSerializationFunctions(context, type, sourceFile);
     }
   }
 
@@ -168,6 +94,47 @@ export function emitTypes(
 
 export function getModelsPath(sourceRoot: string): string {
   return path.join(...[sourceRoot, "models", `models.ts`]);
+}
+
+function addSerializationFunctions(
+  context: SdkContext,
+  type: SdkType,
+  sourceFile: SourceFile,
+  skipDiscriminatedUnion = false
+) {
+  const serializationFunction = buildModelSerializer(
+    context,
+    type,
+    skipDiscriminatedUnion
+  );
+  if (
+    serializationFunction &&
+    serializationFunction.name &&
+    !sourceFile.getFunction(serializationFunction.name)
+  ) {
+    addDeclaration(
+      sourceFile,
+      serializationFunction,
+      refkey(type, "serializer")
+    );
+  }
+  const deserializationFunction = buildModelDeserializer(
+    context,
+    type,
+    skipDiscriminatedUnion
+  );
+  if (
+    deserializationFunction &&
+    typeof deserializationFunction !== "string" &&
+    deserializationFunction.name &&
+    !sourceFile.getFunction(deserializationFunction.name)
+  ) {
+    addDeclaration(
+      sourceFile,
+      deserializationFunction,
+      refkey(type, "deserializer")
+    );
+  }
 }
 
 function buildUnionType(type: SdkUnionType): TypeAliasDeclarationStructure {

@@ -3,7 +3,8 @@ import {
   SdkDictionaryType,
   SdkEnumType,
   SdkModelType,
-  SdkType
+  SdkType,
+  SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
@@ -18,7 +19,8 @@ function isSupportedSerializerType(type: SdkType): boolean {
     type.kind === "model" ||
     type.kind === "enum" ||
     type.kind === "dict" ||
-    type.kind === "array"
+    type.kind === "array" ||
+    type.kind === "union"
   );
 }
 
@@ -59,6 +61,7 @@ export function buildModelSerializer(
     case "model":
       return buildModelTypeSerializer(context, type);
     case "enum":
+    case "union":
       return buildEnumSerializer(context, type);
     case "dict":
       return buildDictTypeSerializer(context, type);
@@ -169,9 +172,6 @@ function buildDiscriminatedUnionSerializer(
     const subType = type.discriminatedSubtypes[key]!;
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    if (union !== "") {
-      subType;
-    }
     const subTypeName = `${toPascalCase(subType.name)}${union}`;
     const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
 
@@ -206,7 +206,7 @@ function buildDiscriminatedUnionSerializer(
 
 function buildEnumSerializer(
   context: SdkContext,
-  type: SdkEnumType
+  type: SdkEnumType | SdkUnionType
 ): FunctionDeclarationStructure {
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
@@ -221,7 +221,7 @@ function buildEnumSerializer(
         type: toPascalCase(normalizeModelName(context, type))
       }
     ],
-    returnType: "Record<string, unknown>",
+    returnType: "any",
     statements: ["return item;"]
   };
   return serializerFunction;
