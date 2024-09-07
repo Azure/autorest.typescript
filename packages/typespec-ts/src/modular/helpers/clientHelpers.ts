@@ -84,6 +84,7 @@ function getClientParameterName(parameter: SdkParameter) {
 
 export function buildGetClientEndpointParam(
   context: StatementedNode,
+  dpgContext: SdkContext,
   _client: Client
 ): string {
   const client = _client.tcgcClient;
@@ -95,9 +96,9 @@ export function buildGetClientEndpointParam(
     return `options.endpoint ?? options.baseUrl ?? ${endpointParam?.name}`;
   }
 
-  const urlParams = _client.parameters.filter(
-    (x) => x.location === "path" || x.location === "endpointPath"
-  );
+  const urlParams = _client.parameters.filter((p) => {
+    return p.location === "endpointPath" || p.location === "path";
+  });
 
   for (const param of urlParams) {
     if (param.clientDefaultValue) {
@@ -123,9 +124,19 @@ export function buildGetClientEndpointParam(
     );
   }
 
-  context.addStatements(
-    `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``
+  const endpointParam = urlParams.find(
+    (p) => p.location === "endpointPath" && p.clientName === "endpointParam"
   );
+  let hasRequiredEndpoint = false;
+  if (
+    endpointParam &&
+    !parameterizedEndpointUrl.includes(endpointParam.clientName) &&
+    !dpgContext.arm
+  ) {
+    hasRequiredEndpoint = true;
+  }
+  const endpointUrl = `const endpointUrl = ${hasRequiredEndpoint ? "endpointParam ?? " : ""}options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
+  context.addStatements(endpointUrl);
   return "endpointUrl";
 }
 

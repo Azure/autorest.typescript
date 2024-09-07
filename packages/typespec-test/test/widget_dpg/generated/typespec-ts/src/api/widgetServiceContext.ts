@@ -9,7 +9,10 @@ import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 export interface WidgetServiceContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface WidgetServiceClientOptionalParams extends ClientOptions {}
+export interface WidgetServiceClientOptionalParams extends ClientOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
+}
 
 export function createWidgetService(
   credential: KeyCredential,

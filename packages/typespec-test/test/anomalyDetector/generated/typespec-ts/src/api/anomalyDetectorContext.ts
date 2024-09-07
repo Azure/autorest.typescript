@@ -9,10 +9,7 @@ import { KeyCredential } from "@azure/core-auth";
 export interface AnomalyDetectorContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
-  /** Api Version */
-  apiVersion?: string;
-}
+export interface AnomalyDetectorClientOptionalParams extends ClientOptions {}
 
 /**
  * The Anomaly Detector API detects anomalies automatically in time series data.

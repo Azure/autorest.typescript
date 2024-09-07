@@ -4,14 +4,14 @@
 export {
   StreamingChatCompletionOptionsRecord,
   ChatMessage,
+  ChatRole,
   ChatCompletionChunkRecord,
   ChoiceDeltaRecord,
   ChatMessageDelta,
+  FinishReason,
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
-  ChatRole,
-  FinishReason,
   APIVersion,
 } from "./models.js";
 export {

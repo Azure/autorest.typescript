@@ -1634,14 +1634,14 @@ function emitServerParams(
   namespace: Namespace
 ): Parameter[] {
   const server = getServerHelper(context.program, namespace);
-  if (server === undefined) {
+  if (server === undefined || server.parameters.size === 0) {
     return [
       {
         optional: false,
         description: "Service host",
-        clientName: "endpoint",
+        clientName: "endpointParam",
         clientDefaultValue: null,
-        restApiName: "$host",
+        restApiName: "endpoint",
         location: "endpointPath",
         type: { type: "string" },
         implementation: "Client",
@@ -1676,9 +1676,9 @@ function emitServerParams(
       {
         optional: false,
         description: "Service host",
-        clientName: "endpoint",
+        clientName: "endpointParam",
         clientDefaultValue: server.url,
-        restApiName: "$host",
+        restApiName: "endpoint",
         location: "path",
         type: { type: "string" },
         implementation: "Client",

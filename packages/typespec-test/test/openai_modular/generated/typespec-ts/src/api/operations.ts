@@ -10,12 +10,16 @@ import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   AudioTranscriptionOptions,
   AudioTranscription,
+  AudioTaskLabel,
   AudioTranslationOptions,
   AudioTranslation,
   CompletionsOptions,
   Completions,
+  ContentFilterSeverity,
+  CompletionsFinishReason,
   ChatCompletionsOptions,
   chatRequestMessageUnionSerializer,
+  ChatRole,
   functionDefinitionSerializer,
   azureChatExtensionConfigurationUnionSerializer,
   azureChatEnhancementConfigurationSerializer,
@@ -26,10 +30,6 @@ import {
   SpeechGenerationOptions,
   EmbeddingsOptions,
   Embeddings,
-  AudioTaskLabel,
-  ContentFilterSeverity,
-  CompletionsFinishReason,
-  ChatRole,
 } from "../models/models.js";
 import {
   PathUncheckedResponse,

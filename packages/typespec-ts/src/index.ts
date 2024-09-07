@@ -106,7 +106,6 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
-  provideSdkTypes(dpgContext.sdkPackage);
   const { modularSourcesDir } = await calculateGenerationDir(rlcOptions);
   const staticHelpers = await loadStaticHelpers(
     outputProject,
@@ -126,6 +125,7 @@ export async function $onEmit(context: EmitContext) {
       ...extraDependencies
     }
   });
+  provideSdkTypes(dpgContext);
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;

@@ -189,6 +189,7 @@ export class BatchClient {
 
 // @public
 export interface BatchClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public

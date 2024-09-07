@@ -29,6 +29,8 @@ export interface Widget {
   color: "red" | "blue";
 }
 
+export type WidgetColor = "red" | "blue";
+
 export interface WidgetError {
   /** The HTTP error code. */
   code: number;
@@ -50,12 +52,16 @@ export interface CreateWidgetRequest {
   color: "red" | "blue";
 }
 
+export type CreateWidgetRequestColor = "red" | "blue";
+
 export interface UpdateWidgetRequest {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
   /** The color of the widget. */
   color?: "red" | "blue";
 }
+
+export type UpdateWidgetRequestColor = "red" | "blue";
 
 export interface AnalyzeResult {
   summary: string;
@@ -77,9 +83,6 @@ export function nonReferencedModelSerializer(
   };
 }
 
-export type WidgetColor = "red" | "blue";
-export type CreateWidgetRequestColor = "red" | "blue";
-export type UpdateWidgetRequestColor = "red" | "blue";
 /** The Contoso Widget Manager service version. */
 export type Versions = "1.0.0";
 

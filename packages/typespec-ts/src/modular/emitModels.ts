@@ -41,7 +41,7 @@ export function emitTypes(
   { sourceRoot }: { sourceRoot: string }
 ) {
   const sdkPackage = context.sdkPackage;
-  const emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType> = new Set();
+  const emitQueue: Set<SdkType> = new Set();
   const outputProject = useContext("outputProject");
 
   const modelsFilePath = getModelsPath(sourceRoot);
@@ -284,9 +284,9 @@ function buildModelProperty(
   return propertyStructure;
 }
 
-function visitPackageTypes(
+export function visitPackageTypes(
   sdkPackage: SdkHttpPackage,
-  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+  emitQueue: Set<SdkType>
 ) {
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
@@ -306,7 +306,7 @@ function visitPackageTypes(
 
 function visitClient(
   client: SdkClientType<SdkHttpOperation>,
-  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+  emitQueue: Set<SdkType>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
   // visitType(client.initialization, emitQueue);
@@ -315,7 +315,7 @@ function visitClient(
 
 function visitClientMethod(
   method: SdkMethod<SdkHttpOperation>,
-  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
+  emitQueue: Set<SdkType>
 ) {
   switch (method.kind) {
     case "lro":
@@ -346,10 +346,7 @@ function visitClientMethod(
   }
 }
 
-function visitOperation(
-  operation: SdkHttpOperation,
-  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
-) {
+function visitOperation(operation: SdkHttpOperation, emitQueue: Set<SdkType>) {
   // Visit the request
   visitType(operation.bodyParam?.type, emitQueue);
   // Visit the response
@@ -366,10 +363,7 @@ function visitOperation(
   );
 }
 
-function visitType(
-  type: SdkType | undefined,
-  emitQueue: Set<SdkModelType | SdkEnumType | SdkUnionType>
-) {
+function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
   if (!type) {
     return;
   }
@@ -405,6 +399,27 @@ function visitType(
   if (type.kind === "dict") {
     if (!emitQueue.has(type.valueType as any)) {
       visitType(type.valueType, emitQueue);
+    }
+  }
+  if (type.kind === "enum") {
+    if (!emitQueue.has(type as any)) {
+      emitQueue.add(type);
+    }
+  }
+  if (type.kind === "nullable") {
+    if (!emitQueue.has(type as any)) {
+      emitQueue.add(type);
+    }
+    if (!emitQueue.has(type.type as any)) {
+      visitType(type.type, emitQueue);
+    }
+  }
+  if (type.kind === "union") {
+    emitQueue.add(type);
+    for (const value of type.values) {
+      if (!emitQueue.has(value as any)) {
+        visitType(value, emitQueue);
+      }
     }
   }
 }

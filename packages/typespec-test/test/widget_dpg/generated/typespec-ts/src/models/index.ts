@@ -4,14 +4,14 @@
 export {
   User,
   Widget,
+  WidgetColor,
   WidgetError,
   CreateWidgetRequest,
+  CreateWidgetRequestColor,
   UpdateWidgetRequest,
+  UpdateWidgetRequestColor,
   AnalyzeResult,
   NonReferencedModel,
-  WidgetColor,
-  CreateWidgetRequestColor,
-  UpdateWidgetRequestColor,
   Versions,
   ErrorResponse,
 } from "./models.js";

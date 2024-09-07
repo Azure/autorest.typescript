@@ -25,6 +25,11 @@ export function createModerationRequestSerializer(
   };
 }
 
+export type CreateModerationRequestInput = string | string[];
+export type CreateModerationRequestModel =
+  | "text-moderation-latest"
+  | "text-moderation-stable";
+
 export interface CreateModerationResponse {
   /** The unique identifier for the moderation request. */
   id: string;
@@ -199,6 +204,9 @@ export function createImageRequestSerializer(
     user: item["user"],
   };
 }
+
+export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
+export type CreateImageRequestResponseFormat = "url" | "b64_json";
 
 export interface ImagesResponse {
   created: Date;
@@ -432,6 +440,12 @@ export function createFineTuneRequestSerializer(
   };
 }
 
+export type CreateFineTuneRequestModel =
+  | "ada"
+  | "babbage"
+  | "curie"
+  | "davinci";
+
 /** The `FineTune` object represents a legacy fine-tune job that has been created through the API. */
 export interface FineTune {
   /** The object identifier, which can be referenced in the API endpoints. */
@@ -475,6 +489,13 @@ export interface FineTune {
   /** The list of events that have been observed in the lifecycle of the FineTune job. */
   events?: FineTuneEvent[];
 }
+
+export type FineTuneStatus =
+  | "created"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
 
 export interface FineTuneHyperparams {
   /**
@@ -530,6 +551,14 @@ export interface OpenAIFile {
    */
   status_details?: string | null;
 }
+
+export type OpenAIFileStatus =
+  | "uploaded"
+  | "processed"
+  | "pending"
+  | "error"
+  | "deleting"
+  | "deleted";
 
 export interface FineTuneEvent {
   object: string;
@@ -607,6 +636,13 @@ export function createEmbeddingRequestSerializer(
   };
 }
 
+export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
+export type CreateEmbeddingRequestInput =
+  | string
+  | string[]
+  | number[]
+  | number[][];
+
 export interface CreateEmbeddingResponse {
   /** The object type, which is always "embedding". */
   object: "embedding";
@@ -683,6 +719,10 @@ export function createEditRequestSerializer(
   };
 }
 
+export type CreateEditRequestModel =
+  | "text-davinci-edit-001"
+  | "code-davinci-edit-001";
+
 export interface CreateEditResponse {
   /** The object type, which is always `edit`. */
   object: "edit";
@@ -709,6 +749,8 @@ export interface CreateEditResponseChoice {
    */
   finish_reason: "stop" | "length";
 }
+
+export type CreateEditResponseChoiceFinishReason = "stop" | "length";
 
 /** Usage statistics for the completion request. */
 export interface CompletionUsage {
@@ -743,7 +785,7 @@ export interface CreateCompletionRequest {
    * Note that <|endoftext|> is the document separator that the model sees during training, so if a
    * prompt is not specified the model will generate as if from the beginning of a new document.
    */
-  prompt: __PLACEHOLDER_o47__ | null;
+  prompt: Prompt | null;
   /** The suffix that comes after a completion of inserted text. */
   suffix?: string | null;
   /**
@@ -776,7 +818,7 @@ export interface CreateCompletionRequest {
    */
   max_tokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: __PLACEHOLDER_o48__ | null;
+  stop?: Stop | null;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -862,6 +904,19 @@ export function createCompletionRequestSerializer(
   };
 }
 
+export type CreateCompletionRequestModel =
+  | "babbage-002"
+  | "davinci-002"
+  | "text-davinci-003"
+  | "text-davinci-002"
+  | "text-davinci-001"
+  | "code-davinci-002"
+  | "text-curie-001"
+  | "text-babbage-001"
+  | "text-ada-001";
+export type Prompt = string | string[] | number[] | number[][];
+export type Stop = string | string[];
+
 /**
  * Represents a completion response from the API. Note: both the streamed and non-streamed response
  * objects share the same shape (unlike the chat endpoint).
@@ -915,6 +970,11 @@ export interface CreateCompletionResponseChoiceLogprobs {
   top_logprobs: Record<string, number>[];
   text_offset: number[];
 }
+
+export type CreateCompletionResponseChoiceFinishReason =
+  | "stop"
+  | "length"
+  | "content_filter";
 
 export interface CreateFineTuningJobRequest {
   /**
@@ -973,6 +1033,11 @@ export function createFineTuningJobRequestSerializer(
   };
 }
 
+export type CreateFineTuningJobRequestModel =
+  | "babbage-002"
+  | "davinci-002"
+  | "gpt-3.5-turbo";
+
 export interface CreateFineTuningJobRequestHyperparameters {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
@@ -988,6 +1053,8 @@ export function createFineTuningJobRequestHyperparametersSerializer(
     n_epochs: item["n_epochs"],
   };
 }
+
+export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
 
 export interface FineTuningJob {
   /** The object identifier, which can be referenced in the API endpoints. */
@@ -1059,6 +1126,14 @@ export interface FineTuningJob {
   } | null;
 }
 
+export type FineTuningJobStatus =
+  | "created"
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
+
 export interface FineTuningJobHyperparameters {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
@@ -1069,6 +1144,8 @@ export interface FineTuningJobHyperparameters {
    */
   n_epochs?: "auto" | number;
 }
+
+export type FineTuningJobHyperparametersNEpochs = "auto" | number;
 
 export interface FineTuningJobError {
   /** A human-readable error message. */
@@ -1100,6 +1177,8 @@ export interface FineTuningJobEvent {
   level: "info" | "warn" | "error";
   message: string;
 }
+
+export type FineTuningJobEventLevel = "info" | "warn" | "error";
 
 export interface CreateChatCompletionRequest {
   /**
@@ -1163,7 +1242,7 @@ export interface CreateChatCompletionRequest {
    */
   max_tokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: __PLACEHOLDER_o64__ | null;
+  stop?: Stop_1 | null;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -1228,6 +1307,19 @@ export function createChatCompletionRequestSerializer(
   };
 }
 
+export type CreateChatCompletionRequestModel =
+  | "gpt4"
+  | "gpt-4-0314"
+  | "gpt-4-0613"
+  | "gpt-4-32k"
+  | "gpt-4-32k-0314"
+  | "gpt-4-32k-0613"
+  | "gpt-3.5-turbo"
+  | "gpt-3.5-turbo-16k"
+  | "gpt-3.5-turbo-0301"
+  | "gpt-3.5-turbo-0613"
+  | "gpt-3.5-turbo-16k-0613";
+
 export interface ChatCompletionRequestMessage {
   /** The role of the messages author. One of `system`, `user`, `assistant`, or `function`. */
   role: "system" | "user" | "assistant" | "function";
@@ -1264,6 +1356,12 @@ export function chatCompletionRequestMessageSerializer(
         },
   };
 }
+
+export type ChatCompletionRequestMessageRole =
+  | "system"
+  | "user"
+  | "assistant"
+  | "function";
 
 export interface ChatCompletionRequestMessageFunctionCall {
   /** The name of the function to call. */
@@ -1326,6 +1424,11 @@ export function chatCompletionFunctionParametersSerializer(
   };
 }
 
+export type CreateChatCompletionRequestFunctionCall1 =
+  | "none"
+  | "auto"
+  | ChatCompletionFunctionCallOption;
+
 export interface ChatCompletionFunctionCallOption {
   /** The name of the function to call. */
   name: string;
@@ -1338,6 +1441,8 @@ export function chatCompletionFunctionCallOptionSerializer(
     name: item["name"],
   };
 }
+
+export type Stop_1 = string | string[];
 
 /** Represents a chat completion response returned by model, based on the provided input. */
 export interface CreateChatCompletionResponse {
@@ -1383,6 +1488,12 @@ export interface ChatCompletionResponseMessage {
   };
 }
 
+export type ChatCompletionResponseMessageRole =
+  | "system"
+  | "user"
+  | "assistant"
+  | "function";
+
 export interface ChatCompletionResponseMessageFunctionCall {
   /** The name of the function to call. */
   name: string;
@@ -1393,6 +1504,12 @@ export interface ChatCompletionResponseMessageFunctionCall {
    */
   arguments: string;
 }
+
+export type CreateChatCompletionResponseChoiceFinishReason =
+  | "stop"
+  | "length"
+  | "function_call"
+  | "content_filter";
 
 export interface CreateTranslationRequest {
   /**
@@ -1432,6 +1549,14 @@ export function createTranslationRequestSerializer(
     temperature: item["temperature"],
   };
 }
+
+export type CreateTranslationRequestModel = "whisper-1";
+export type CreateTranslationRequestResponseFormat =
+  | "json"
+  | "text"
+  | "srt"
+  | "verbose_json"
+  | "vtt";
 
 export interface CreateTranslationResponse {
   text: string;
@@ -1483,98 +1608,6 @@ export function createTranscriptionRequestSerializer(
   };
 }
 
-export interface CreateTranscriptionResponse {
-  text: string;
-}
-
-export type CreateModerationRequestModel =
-  | "text-moderation-latest"
-  | "text-moderation-stable";
-export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
-export type CreateImageRequestResponseFormat = "url" | "b64_json";
-export type CreateFineTuneRequestModel =
-  | "ada"
-  | "babbage"
-  | "curie"
-  | "davinci";
-export type FineTuneStatus =
-  | "created"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-export type OpenAIFileStatus =
-  | "uploaded"
-  | "processed"
-  | "pending"
-  | "error"
-  | "deleting"
-  | "deleted";
-export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
-export type CreateEditRequestModel =
-  | "text-davinci-edit-001"
-  | "code-davinci-edit-001";
-export type CreateEditResponseChoiceFinishReason = "stop" | "length";
-export type CreateCompletionRequestModel =
-  | "babbage-002"
-  | "davinci-002"
-  | "text-davinci-003"
-  | "text-davinci-002"
-  | "text-davinci-001"
-  | "code-davinci-002"
-  | "text-curie-001"
-  | "text-babbage-001"
-  | "text-ada-001";
-export type CreateCompletionResponseChoiceFinishReason =
-  | "stop"
-  | "length"
-  | "content_filter";
-export type CreateFineTuningJobRequestModel =
-  | "babbage-002"
-  | "davinci-002"
-  | "gpt-3.5-turbo";
-export type FineTuningJobStatus =
-  | "created"
-  | "pending"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-export type FineTuningJobEventLevel = "info" | "warn" | "error";
-export type CreateChatCompletionRequestModel =
-  | "gpt4"
-  | "gpt-4-0314"
-  | "gpt-4-0613"
-  | "gpt-4-32k"
-  | "gpt-4-32k-0314"
-  | "gpt-4-32k-0613"
-  | "gpt-3.5-turbo"
-  | "gpt-3.5-turbo-16k"
-  | "gpt-3.5-turbo-0301"
-  | "gpt-3.5-turbo-0613"
-  | "gpt-3.5-turbo-16k-0613";
-export type ChatCompletionRequestMessageRole =
-  | "system"
-  | "user"
-  | "assistant"
-  | "function";
-export type ChatCompletionResponseMessageRole =
-  | "system"
-  | "user"
-  | "assistant"
-  | "function";
-export type CreateChatCompletionResponseChoiceFinishReason =
-  | "stop"
-  | "length"
-  | "function_call"
-  | "content_filter";
-export type CreateTranslationRequestModel = "whisper-1";
-export type CreateTranslationRequestResponseFormat =
-  | "json"
-  | "text"
-  | "srt"
-  | "verbose_json"
-  | "vtt";
 export type CreateTranscriptionRequestModel = "whisper-1";
 export type CreateTranscriptionRequestResponseFormat =
   | "json"
@@ -1582,3 +1615,7 @@ export type CreateTranscriptionRequestResponseFormat =
   | "srt"
   | "verbose_json"
   | "vtt";
+
+export interface CreateTranscriptionResponse {
+  text: string;
+}

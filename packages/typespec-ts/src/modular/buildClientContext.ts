@@ -15,7 +15,7 @@ import { SdkContext } from "../utils/interfaces.js";
 import { SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { getType } from "./helpers/typeHelpers.js";
+import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 
@@ -31,7 +31,7 @@ export function buildClientContext(
   const client = _client.tcgcClient;
   const dependencies = useDependencies();
   const name = getClientName(client);
-  const requiredParams = getClientParameters(client, dpgContext);
+  const requiredParams = getClientParameters(client, dpgContext, false);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
@@ -49,16 +49,16 @@ export function buildClientContext(
     name: `${name}ClientOptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: _client.parameters
+    properties: client.initialization.properties
       .filter((p) => {
         return (
-          p.optional || (p.type.type !== "constant" && p.clientDefaultValue)
+          p.optional || (p.type.kind !== "constant" && p.clientDefaultValue)
         );
       })
       .map((p) => {
         return {
-          name: p.clientName,
-          type: getType(p.type).name,
+          name: p.name,
+          type: getTypeExpression(p.type),
           hasQuestionToken: true,
           docs: getDocsFromDescription(p.description)
         };
@@ -84,7 +84,11 @@ export function buildClientContext(
     isExported: true
   });
 
-  const endpointParam = buildGetClientEndpointParam(factoryFunction, _client);
+  const endpointParam = buildGetClientEndpointParam(
+    factoryFunction,
+    dpgContext,
+    _client
+  );
   const credentialParam = buildGetClientCredentialParam(_client, codeModel);
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
@@ -116,11 +120,13 @@ export function buildClientContext(
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
 
   if (dpgContext.hasApiVersionInClient) {
-    const apiVersionParam = _client.parameters.find((x) => x.isApiVersion);
+    const apiVersionParam = client.initialization.properties.find(
+      (x) => x.isApiVersionParam
+    );
 
-    if (apiVersionParam?.location === "query") {
+    if (apiVersionParam) {
       if (apiVersionParam.clientDefaultValue) {
-        apiVersionPolicyStatement += `const ${apiVersionParam.clientName} = options.${apiVersionParam.clientName} ?? "${apiVersionParam.clientDefaultValue}";`;
+        apiVersionPolicyStatement += `const ${apiVersionParam.name} = options.${apiVersionParam.name} ?? "${apiVersionParam.clientDefaultValue}";`;
       }
 
       apiVersionPolicyStatement += `
@@ -133,7 +139,7 @@ export function buildClientContext(
           if (!url.searchParams.get("api-version")) {
             req.url = \`\${req.url}\${
               Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${apiVersionParam.clientName}}\`;
+            }api-version=\${${apiVersionParam.name}}\`;
           }
     
           return next(req);

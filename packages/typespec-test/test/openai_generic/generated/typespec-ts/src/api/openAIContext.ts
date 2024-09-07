@@ -12,11 +12,15 @@ export interface OpenAIClientOptionalParams extends ClientOptions {}
 
 /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
 export function createOpenAI(
+  endpointParam: string,
   credential: KeyCredential,
   options: OpenAIClientOptionalParams = {},
 ): OpenAIContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;
+    endpointParam ??
+    options.endpoint ??
+    options.baseUrl ??
+    `https://api.openai.com/v1`;
 
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions

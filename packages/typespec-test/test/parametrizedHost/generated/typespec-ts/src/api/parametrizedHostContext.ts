@@ -8,12 +8,7 @@ import { TokenCredential } from "@azure/core-auth";
 export interface ParametrizedHostContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface ParametrizedHostClientOptionalParams extends ClientOptions {
-  host?: string;
-  subdomain?: string;
-  sufix?: string;
-  apiVersion?: string;
-}
+export interface ParametrizedHostClientOptionalParams extends ClientOptions {}
 
 export function createParametrizedHost(
   credential: TokenCredential,

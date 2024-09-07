@@ -131,6 +131,24 @@ export interface BatchNode {
   virtualMachineInfo?: VirtualMachineInfo;
 }
 
+/** BatchNodeState enums */
+export type BatchNodeState =
+  | "idle"
+  | "rebooting"
+  | "reimaging"
+  | "running"
+  | "unusable"
+  | "creating"
+  | "starting"
+  | "waitingforstarttask"
+  | "starttaskfailed"
+  | "unknown"
+  | "leavingpool"
+  | "offline"
+  | "preempted";
+/** SchedulingState enums */
+export type SchedulingState = "enabled" | "disabled";
+
 /** Information about a Task running on a Compute Node. */
 export interface TaskInformation {
   /** The URL of the Task. */
@@ -146,6 +164,9 @@ export interface TaskInformation {
   /** Information about the execution of the Task. */
   executionInfo?: TaskExecutionInformation;
 }
+
+/** TaskState enums */
+export type TaskState = "active" | "preparing" | "running" | "completed";
 
 /** Information about the execution of a Task. */
 export interface TaskExecutionInformation {
@@ -193,6 +214,9 @@ export interface TaskFailureInformation {
   details?: NameValuePair[];
 }
 
+/** ErrorCategory enums */
+export type ErrorCategory = "usererror" | "servererror";
+
 /** Represents a name-value pair. */
 export interface NameValuePair {
   /** The name in the name-value pair. */
@@ -200,6 +224,9 @@ export interface NameValuePair {
   /** The value in the name-value pair. */
   value?: string;
 }
+
+/** TaskExecutionResult enums */
+export type TaskExecutionResult = "success" | "failure";
 
 /**
  * Batch will retry Tasks when a recovery operation is triggered on a Node.
@@ -322,6 +349,11 @@ export function batchNodeIdentityReferenceSerializer(
   };
 }
 
+/** ContainerWorkingDirectory enums */
+export type ContainerWorkingDirectory =
+  | "taskWorkingDirectory"
+  | "containerImageDefault";
+
 /** A single file or multiple files to be downloaded to a Compute Node. */
 export interface ResourceFile {
   /** The storage container name in the auto storage Account. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. */
@@ -409,6 +441,11 @@ export function autoUserSpecificationSerializer(
   };
 }
 
+/** AutoUserScope enums */
+export type AutoUserScope = "task" | "pool";
+/** ElevationLevel enums */
+export type ElevationLevel = "nonadmin" | "admin";
+
 /** Information about a StartTask running on a Compute Node. */
 export interface StartTaskInformation {
   /** The state of the StartTask on the Compute Node. */
@@ -430,6 +467,9 @@ export interface StartTaskInformation {
   /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
   result?: TaskExecutionResult;
 }
+
+/** StartTaskState enums */
+export type StartTaskState = "running" | "completed";
 
 /** A reference to a Certificate to be installed on Compute Nodes in a Pool. Warning: This object is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export interface CertificateReference {
@@ -456,6 +496,11 @@ export function certificateReferenceSerializer(
     visibility: item["visibility"],
   };
 }
+
+/** CertificateStoreLocation enums */
+export type CertificateStoreLocation = "currentuser" | "localmachine";
+/** CertificateVisibility enums */
+export type CertificateVisibility = "starttask" | "task" | "remoteuser";
 
 /** An error encountered by a Compute Node. */
 export interface BatchNodeError {
@@ -488,6 +533,9 @@ export interface InboundEndpoint {
   /** The backend port number of the endpoint. */
   backendPort: number;
 }
+
+/** InboundEndpointProtocol enums */
+export type InboundEndpointProtocol = "tcp" | "udp";
 
 /**
  * The Batch Compute Node agent is a program that runs on each Compute Node in the
@@ -552,6 +600,13 @@ export function nodeRebootOptionsSerializer(
   };
 }
 
+/** BatchNodeRebootOption enums */
+export type BatchNodeRebootOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+
 /** Options for reimaging an Azure Batch Compute Node. */
 export interface NodeReimageOptions {
   /** When to reimage the Compute Node and what to do with currently running Tasks. The default value is requeue. */
@@ -566,6 +621,13 @@ export function nodeReimageOptionsSerializer(
   };
 }
 
+/** BatchNodeReimageOption enums */
+export type BatchNodeReimageOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+
 /** Options for disabling scheduling on an Azure Batch Compute Node. */
 export interface NodeDisableSchedulingOptions {
   /** What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue. */
@@ -579,6 +641,12 @@ export function nodeDisableSchedulingOptionsSerializer(
     nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"],
   };
 }
+
+/** DisableBatchNodeSchedulingOption enums */
+export type DisableBatchNodeSchedulingOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion";
 
 /** The remote login settings for a Compute Node. */
 export interface BatchNodeRemoteLoginSettingsResult {
@@ -704,6 +772,9 @@ export interface InstanceViewStatus {
   /** The time of the status. */
   time?: string;
 }
+
+/** Level code. */
+export type StatusLevelTypes = "Error" | "Info" | "Warning";
 
 /** The result of listing the Compute Node extensions in a Node. */
 export interface _NodeVMExtensionList {
@@ -912,6 +983,11 @@ export function exitOptionsSerializer(
   };
 }
 
+/** JobAction enums */
+export type JobAction = "none" | "disable" | "terminate";
+/** DependencyAction enums */
+export type DependencyAction = "satisfy" | "block";
+
 /**
  * A range of exit codes and how the Batch service should respond to exit codes
  * within that range.
@@ -1032,6 +1108,12 @@ export function outputFileUploadOptionsSerializer(
     uploadCondition: item["uploadCondition"],
   };
 }
+
+/** OutputFileUploadCondition enums */
+export type OutputFileUploadCondition =
+  | "tasksuccess"
+  | "taskfailure"
+  | "taskcompletion";
 
 /**
  * A locality hint that can be used by the Batch service to select a Compute Node
@@ -1175,6 +1257,9 @@ export function authenticationTokenSettingsSerializer(
     access: item["access"],
   };
 }
+
+/** AccessScope enums */
+export type AccessScope = "job";
 
 /** The result of listing the Tasks in a Job. */
 export interface _BatchTaskListResult {
@@ -1338,6 +1423,9 @@ export interface TaskAddResult {
   error?: BatchError;
 }
 
+/** TaskAddStatus enums */
+export type TaskAddStatus = "Success" | "clienterror" | "servererror";
+
 /** The result of listing the subtasks of a Task. */
 export interface BatchTaskListSubtasksResult {
   /** The list of subtasks. */
@@ -1371,6 +1459,9 @@ export interface SubtaskInformation {
   /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
   result?: TaskExecutionResult;
 }
+
+/** SubtaskState enums */
+export type SubtaskState = "preparing" | "running" | "completed";
 
 /**
  * A Job Schedule that allows recurring Jobs by specifying when to run Jobs and a
@@ -1421,6 +1512,14 @@ export function batchJobScheduleSerializer(
         : item["metadata"].map(metadataItemSerializer),
   };
 }
+
+/** JobScheduleState enums */
+export type JobScheduleState =
+  | "active"
+  | "completed"
+  | "disabled"
+  | "terminating"
+  | "deleting";
 
 /**
  * The schedule according to which Jobs will be created. All times are fixed
@@ -1517,6 +1616,11 @@ export function jobSpecificationSerializer(
         : item["metadata"].map(metadataItemSerializer),
   };
 }
+
+/** The action the Batch service should take when all Tasks in the Job are in the completed state. */
+export type OnAllTasksComplete = "noaction" | "terminatejob";
+/** OnTaskFailure enums */
+export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
 
 /** The network configuration for the Job. */
 export interface JobNetworkConfiguration {
@@ -1844,6 +1948,9 @@ export function autoPoolSpecificationSerializer(
   };
 }
 
+/** PoolLifetimeOption enums */
+export type PoolLifetimeOption = "jobschedule" | "job";
+
 /** Specification for creating a new Pool. */
 export interface PoolSpecification {
   /** The display name for the Pool. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. */
@@ -2091,6 +2198,11 @@ export function dataDiskSerializer(item: DataDisk): Record<string, unknown> {
   };
 }
 
+/** CachingType enums */
+export type CachingType = "none" | "readonly" | "readwrite";
+/** StorageAccountType enums */
+export type StorageAccountType = "standard_lrs" | "premium_lrs";
+
 /** The configuration for container-enabled Pools. */
 export interface ContainerConfiguration {
   /** The container technology to be used. */
@@ -2114,6 +2226,9 @@ export function containerConfigurationSerializer(
   };
 }
 
+/** ContainerType enums */
+export type ContainerType = "dockerCompatible" | "criCompatible";
+
 /**
  * The disk encryption configuration applied on compute nodes in the pool. Disk
  * encryption configuration is not supported on Linux pool created with Shared
@@ -2132,6 +2247,9 @@ export function diskEncryptionConfigurationSerializer(
   };
 }
 
+/** DiskEncryptionTarget enums */
+export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
+
 /**
  * For regional placement, nodes in the pool will be allocated in the same region.
  * For zonal placement, nodes in the pool will be spread across different zones
@@ -2149,6 +2267,9 @@ export function nodePlacementConfigurationSerializer(
     policy: item["policy"],
   };
 }
+
+/** NodePlacementPolicyType enums */
+export type NodePlacementPolicyType = "regional" | "zonal";
 
 /** Settings for the operating system disk of the compute node (VM). */
 export interface OSDisk {
@@ -2181,6 +2302,9 @@ export function diffDiskSettingsSerializer(
   };
 }
 
+/** AccessDiffDiskPlacementScope enums */
+export type DiffDiskPlacement = "cachedisk";
+
 /** Specifies how Tasks should be distributed across Compute Nodes. */
 export interface TaskSchedulingPolicy {
   /** How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. */
@@ -2194,6 +2318,9 @@ export function taskSchedulingPolicySerializer(
     nodeFillType: item["nodeFillType"],
   };
 }
+
+/** BatchNodeFillType enums */
+export type BatchNodeFillType = "spread" | "pack";
 
 /** The network configuration for a Pool. */
 export interface NetworkConfiguration {
@@ -2226,6 +2353,9 @@ export function networkConfigurationSerializer(
     enableAcceleratedNetworking: item["enableAcceleratedNetworking"],
   };
 }
+
+/** DynamicVNetAssignmentScope enums */
+export type DynamicVNetAssignmentScope = "none" | "job";
 
 /** The endpoint configuration for a Pool. */
 export interface PoolEndpointConfiguration {
@@ -2301,6 +2431,9 @@ export function networkSecurityGroupRuleSerializer(
   };
 }
 
+/** NetworkSecurityGroupRuleAccess enums */
+export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
+
 /** The public IP Address configuration of the networking configuration of a Pool. */
 export interface PublicIpAddressConfiguration {
   /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
@@ -2317,6 +2450,12 @@ export function publicIpAddressConfigurationSerializer(
     ipAddressIds: item["ipAddressIds"],
   };
 }
+
+/** IPAddressProvisioningType enums */
+export type IpAddressProvisioningType =
+  | "batchmanaged"
+  | "usermanaged"
+  | "nopublicipaddresses";
 
 /**
  * Properties used to create a user used to execute Tasks on an Azure Batch
@@ -2384,6 +2523,9 @@ export function windowsUserConfigurationSerializer(
     loginMode: item["loginMode"],
   };
 }
+
+/** LoginMode enums */
+export type LoginMode = "batch" | "interactive";
 
 /**
  * The Batch service does not assign any meaning to this metadata; it is solely
@@ -2543,6 +2685,9 @@ export function azureFileShareConfigurationSerializer(
     mountOptions: item["mountOptions"],
   };
 }
+
+/** NodeCommunicationMode enums */
+export type NodeCommunicationMode = "default" | "classic" | "simplified";
 
 /**
  * Contains information about Jobs that have been and will be run under a Job
@@ -2704,6 +2849,9 @@ export function batchCertificateSerializer(
   };
 }
 
+/** CertificateState enums */
+export type CertificateState = "active" | "deleting" | "deletefailed";
+
 /** An error encountered by the Batch service when deleting a Certificate. */
 export interface DeleteCertificateError {
   /** An identifier for the Certificate deletion error. Codes are invariant and are intended to be consumed programmatically. */
@@ -2713,6 +2861,9 @@ export interface DeleteCertificateError {
   /** A list of additional error details related to the Certificate deletion error. This list includes details such as the active Pools and Compute Nodes referencing this Certificate. However, if a large number of resources reference the Certificate, the list contains only about the first hundred. */
   values?: NameValuePair[];
 }
+
+/** CertificateFormat enums */
+export type CertificateFormat = "pfx" | "cer";
 
 /** The result of listing the Certificates in the Account. */
 export interface _CertificateListResult {
@@ -2794,6 +2945,16 @@ export function batchJobSerializer(item: BatchJob): Record<string, unknown> {
         : item["metadata"].map(metadataItemSerializer),
   };
 }
+
+/** JobState enums */
+export type JobState =
+  | "active"
+  | "disabling"
+  | "disabled"
+  | "enabling"
+  | "terminating"
+  | "completed"
+  | "deleting";
 
 /** Contains information about the execution of a Job in the Azure Batch service. */
 export interface JobExecutionInformation {
@@ -2905,6 +3066,9 @@ export function batchJobDisableOptionsSerializer(
     disableTasks: item["disableTasks"],
   };
 }
+
+/** DisableJobOption enums */
+export type DisableJobOption = "requeue" | "terminate" | "wait";
 
 /** Options for terminating an Azure Batch Job. */
 export interface BatchJobTerminateOptions {
@@ -3057,6 +3221,9 @@ export interface JobPreparationTaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
+/** JobPreparationTaskState enums */
+export type JobPreparationTaskState = "running" | "completed";
+
 /**
  * Contains information about the execution of a Job Release Task on a Compute
  * Node.
@@ -3081,6 +3248,9 @@ export interface JobReleaseTaskExecutionInformation {
   /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
   result?: TaskExecutionResult;
 }
+
+/** JobReleaseTaskState enums */
+export type JobReleaseTaskState = "running" | "completed";
 
 /** The Task and TaskSlot counts for a Job. */
 export interface TaskCountsResult {
@@ -3144,6 +3314,11 @@ export interface ImageInformation {
   /** Whether the Azure Batch service actively verifies that the Image is compatible with the associated Compute Node agent SKU. */
   verificationType: VerificationType;
 }
+
+/** OSType enums */
+export type OSType = "linux" | "windows";
+/** VerificationType enums */
+export type VerificationType = "verified" | "unverified";
 
 /** The result of listing the Compute Node counts in the Account. */
 export interface _PoolNodeCountsListResult {
@@ -3422,6 +3597,11 @@ export interface BatchPool {
   readonly currentNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+/** PoolState enums */
+export type PoolState = "active" | "deleting";
+/** AllocationState enums */
+export type AllocationState = "steady" | "resizing" | "stopping";
+
 /** An error that occurred when resizing a Pool. */
 export interface ResizeError {
   /** An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. */
@@ -3513,6 +3693,9 @@ export interface BatchPoolIdentity {
   /** The list of user identities associated with the Batch account. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
   userAssignedIdentities?: UserAssignedIdentity[];
 }
+
+/** PoolIdentityType enums */
+export type PoolIdentityType = "UserAssigned" | "None";
 
 /** The user assigned Identity */
 export interface UserAssignedIdentity {
@@ -3624,6 +3807,13 @@ export function batchPoolResizeOptionsSerializer(
   };
 }
 
+/** BatchNodeDeallocationOption enums */
+export type BatchNodeDeallocationOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+
 /** Options for replacing properties on an Azure Batch Pool. */
 export interface BatchPoolReplaceOptions {
   /** A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. If this element is present, it overwrites any existing StartTask. If omitted, any existing StartTask is removed from the Pool. */
@@ -3701,153 +3891,5 @@ export interface BatchApplication {
   versions: string[];
 }
 
-/** BatchNodeState enums */
-export type BatchNodeState =
-  | "idle"
-  | "rebooting"
-  | "reimaging"
-  | "running"
-  | "unusable"
-  | "creating"
-  | "starting"
-  | "waitingforstarttask"
-  | "starttaskfailed"
-  | "unknown"
-  | "leavingpool"
-  | "offline"
-  | "preempted";
-/** SchedulingState enums */
-export type SchedulingState = "enabled" | "disabled";
-/** TaskState enums */
-export type TaskState = "active" | "preparing" | "running" | "completed";
-/** ErrorCategory enums */
-export type ErrorCategory = "usererror" | "servererror";
-/** TaskExecutionResult enums */
-export type TaskExecutionResult = "success" | "failure";
-/** ContainerWorkingDirectory enums */
-export type ContainerWorkingDirectory =
-  | "taskWorkingDirectory"
-  | "containerImageDefault";
-/** AutoUserScope enums */
-export type AutoUserScope = "task" | "pool";
-/** ElevationLevel enums */
-export type ElevationLevel = "nonadmin" | "admin";
-/** StartTaskState enums */
-export type StartTaskState = "running" | "completed";
-/** CertificateStoreLocation enums */
-export type CertificateStoreLocation = "currentuser" | "localmachine";
-/** CertificateVisibility enums */
-export type CertificateVisibility = "starttask" | "task" | "remoteuser";
-/** InboundEndpointProtocol enums */
-export type InboundEndpointProtocol = "tcp" | "udp";
-/** BatchNodeRebootOption enums */
-export type BatchNodeRebootOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion"
-  | "retaineddata";
-/** BatchNodeReimageOption enums */
-export type BatchNodeReimageOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion"
-  | "retaineddata";
-/** DisableBatchNodeSchedulingOption enums */
-export type DisableBatchNodeSchedulingOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion";
-/** Level code. */
-export type StatusLevelTypes = "Error" | "Info" | "Warning";
-/** JobAction enums */
-export type JobAction = "none" | "disable" | "terminate";
-/** DependencyAction enums */
-export type DependencyAction = "satisfy" | "block";
-/** OutputFileUploadCondition enums */
-export type OutputFileUploadCondition =
-  | "tasksuccess"
-  | "taskfailure"
-  | "taskcompletion";
-/** AccessScope enums */
-export type AccessScope = "job";
-/** TaskAddStatus enums */
-export type TaskAddStatus = "Success" | "clienterror" | "servererror";
-/** SubtaskState enums */
-export type SubtaskState = "preparing" | "running" | "completed";
-/** JobScheduleState enums */
-export type JobScheduleState =
-  | "active"
-  | "completed"
-  | "disabled"
-  | "terminating"
-  | "deleting";
-/** The action the Batch service should take when all Tasks in the Job are in the completed state. */
-export type OnAllTasksComplete = "noaction" | "terminatejob";
-/** OnTaskFailure enums */
-export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
-/** PoolLifetimeOption enums */
-export type PoolLifetimeOption = "jobschedule" | "job";
-/** CachingType enums */
-export type CachingType = "none" | "readonly" | "readwrite";
-/** StorageAccountType enums */
-export type StorageAccountType = "standard_lrs" | "premium_lrs";
-/** ContainerType enums */
-export type ContainerType = "dockerCompatible" | "criCompatible";
-/** DiskEncryptionTarget enums */
-export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
-/** NodePlacementPolicyType enums */
-export type NodePlacementPolicyType = "regional" | "zonal";
-/** AccessDiffDiskPlacementScope enums */
-export type DiffDiskPlacement = "cachedisk";
-/** BatchNodeFillType enums */
-export type BatchNodeFillType = "spread" | "pack";
-/** DynamicVNetAssignmentScope enums */
-export type DynamicVNetAssignmentScope = "none" | "job";
-/** NetworkSecurityGroupRuleAccess enums */
-export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
-/** IPAddressProvisioningType enums */
-export type IpAddressProvisioningType =
-  | "batchmanaged"
-  | "usermanaged"
-  | "nopublicipaddresses";
-/** LoginMode enums */
-export type LoginMode = "batch" | "interactive";
-/** NodeCommunicationMode enums */
-export type NodeCommunicationMode = "default" | "classic" | "simplified";
-/** CertificateState enums */
-export type CertificateState = "active" | "deleting" | "deletefailed";
-/** CertificateFormat enums */
-export type CertificateFormat = "pfx" | "cer";
-/** JobState enums */
-export type JobState =
-  | "active"
-  | "disabling"
-  | "disabled"
-  | "enabling"
-  | "terminating"
-  | "completed"
-  | "deleting";
-/** DisableJobOption enums */
-export type DisableJobOption = "requeue" | "terminate" | "wait";
-/** JobPreparationTaskState enums */
-export type JobPreparationTaskState = "running" | "completed";
-/** JobReleaseTaskState enums */
-export type JobReleaseTaskState = "running" | "completed";
-/** OSType enums */
-export type OSType = "linux" | "windows";
-/** VerificationType enums */
-export type VerificationType = "verified" | "unverified";
-/** PoolState enums */
-export type PoolState = "active" | "deleting";
-/** AllocationState enums */
-export type AllocationState = "steady" | "resizing" | "stopping";
-/** PoolIdentityType enums */
-export type PoolIdentityType = "UserAssigned" | "None";
-/** BatchNodeDeallocationOption enums */
-export type BatchNodeDeallocationOption =
-  | "requeue"
-  | "terminate"
-  | "taskcompletion"
-  | "retaineddata";
 /** The Azure Batch service version. */
 export type Versions = "2023-05-01.17.0";

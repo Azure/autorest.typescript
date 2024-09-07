@@ -26,6 +26,12 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
 }
 
+export type MultivariateBatchDetectionStatus =
+  | "CREATED"
+  | "RUNNING"
+  | "READY"
+  | "FAILED";
+
 /** ErrorResponse contains code and message that shows the error information. */
 export interface MultivariateErrorResponse {
   /** The error code. */
@@ -214,6 +220,9 @@ export function multivariateModelInfoSerializer(
   };
 }
 
+/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
+export type DataSchema = "OneTable" | "MultiTable";
+
 /** An optional field, indicating the manner to align multiple variables. */
 export interface MultivariateAlignPolicy {
   /**
@@ -239,6 +248,16 @@ export function multivariateAlignPolicySerializer(
     paddingValue: item["paddingValue"],
   };
 }
+
+export type AlignMode = "Inner" | "Outer";
+/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
+export type FillNAMethod =
+  | "Previous"
+  | "Subsequent"
+  | "Linear"
+  | "Zero"
+  | "Fixed";
+export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 /** Diagnostics information to help inspect the states of model or variable. */
 export interface MultivariateDiagnosticsInfo {
@@ -452,6 +471,24 @@ export function univariateTimeSeriesPointSerializer(
   };
 }
 
+export type TimeGranularity =
+  | "yearly"
+  | "monthly"
+  | "weekly"
+  | "daily"
+  | "hourly"
+  | "minutely"
+  | "secondly"
+  | "microsecond"
+  | "none";
+export type ImputeMode =
+  | "auto"
+  | "previous"
+  | "linear"
+  | "fixed"
+  | "zero"
+  | "notFill";
+
 /** The response of entire anomaly detection. */
 export interface UnivariateUnivariateEntireDetectionResult {
   /**
@@ -517,6 +554,19 @@ export interface UnivariateAnomalyDetectorError {
   /** A message explaining the error reported by the service. */
   message?: string;
 }
+
+export type AnomalyDetectorErrorCodes =
+  | "InvalidCustomInterval"
+  | "BadArgument"
+  | "InvalidGranularity"
+  | "InvalidPeriod"
+  | "InvalidModelArgument"
+  | "InvalidSeries"
+  | "InvalidJsonFormat"
+  | "RequiredGranularity"
+  | "RequiredSeries"
+  | "InvalidImputeMode"
+  | "InvalidImputeFixedValue";
 
 /** The response of last anomaly detection. */
 export interface UnivariateUnivariateLastDetectionResult {
@@ -631,50 +681,5 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
-export type MultivariateBatchDetectionStatus =
-  | "CREATED"
-  | "RUNNING"
-  | "READY"
-  | "FAILED";
-/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
-export type DataSchema = "OneTable" | "MultiTable";
-export type AlignMode = "Inner" | "Outer";
-/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
-export type FillNAMethod =
-  | "Previous"
-  | "Subsequent"
-  | "Linear"
-  | "Zero"
-  | "Fixed";
-export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
-export type TimeGranularity =
-  | "yearly"
-  | "monthly"
-  | "weekly"
-  | "daily"
-  | "hourly"
-  | "minutely"
-  | "secondly"
-  | "microsecond"
-  | "none";
-export type ImputeMode =
-  | "auto"
-  | "previous"
-  | "linear"
-  | "fixed"
-  | "zero"
-  | "notFill";
-export type AnomalyDetectorErrorCodes =
-  | "InvalidCustomInterval"
-  | "BadArgument"
-  | "InvalidGranularity"
-  | "InvalidPeriod"
-  | "InvalidModelArgument"
-  | "InvalidSeries"
-  | "InvalidJsonFormat"
-  | "RequiredGranularity"
-  | "RequiredSeries"
-  | "InvalidImputeMode"
-  | "InvalidImputeFixedValue";
 export type APIVersion = "v1.1";
 export type Versions = "v1.1";

@@ -41,6 +41,9 @@ export function schemaPropertiesSerializer(
   };
 }
 
+/** Represents the format of the schema to be stored by the Schema Registry service. */
+export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
+
 /** The schema content of a schema, along with id and meta properties. */
 export interface Schema {
   /** The content of the schema. */
@@ -63,8 +66,6 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf";
 /** Represents the Schema Registry API version to use for requests. */
 export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
-/** Represents the format of the schema to be stored by the Schema Registry service. */
-export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 /** The content type for the schema. */
 export type ContentTypeEnum =
   | "application/octet-stream"

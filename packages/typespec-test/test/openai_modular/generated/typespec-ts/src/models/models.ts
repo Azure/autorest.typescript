@@ -59,6 +59,16 @@ export function audioTranscriptionOptionsSerializer(
   };
 }
 
+/** Defines available options for the underlying response format of output transcription information. */
+export type AudioTranscriptionFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
+/** Defines the timestamp granularities that can be requested on a verbose transcription response. */
+export type AudioTranscriptionTimestampGranularity = "word" | "segment";
+
 /** Result information for an operation that transcribed spoken audio into written text. */
 export interface AudioTranscription {
   /** The transcribed text for the provided audio data. */
@@ -77,6 +87,9 @@ export interface AudioTranscription {
   /** A collection of information about the timing of each processed word. */
   words?: AudioTranscriptionWord[];
 }
+
+/** Defines the possible descriptors for available audio operation responses. */
+export type AudioTaskLabel = "transcribe" | "translate";
 
 /**
  * Extended information about a single segment of transcribed audio data.
@@ -160,6 +173,14 @@ export function audioTranslationOptionsSerializer(
     model: item["model"],
   };
 }
+
+/** Defines available options for the underlying response format of output translation information. */
+export type AudioTranslationFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
 
 /** Result information for an operation that translated spoken audio into written text. */
 export interface AudioTranslation {
@@ -417,6 +438,9 @@ export interface ContentFilterResult {
   severity: ContentFilterSeverity;
 }
 
+/** Ratings for the intensity and risk level of harmful content. */
+export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
+
 /** Represents the outcome of a detection operation performed by content filtering. */
 export interface ContentFilterDetectionResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -517,6 +541,26 @@ export interface ContentFilterCitedDetectionResult {
   license: string;
 }
 
+/** Representation of a log probabilities model for a completions generation. */
+export interface CompletionsLogProbabilityModel {
+  /** The textual forms of tokens evaluated in this probability model. */
+  tokens: string[];
+  /** A collection of log probability values for the tokens in this completions data. */
+  tokenLogprobs: (number | null)[];
+  /** A mapping of tokens to maximum log probability values in this completions data. */
+  topLogprobs: Record<string, number | null>[];
+  /** The text offsets associated with tokens in this completions data. */
+  textOffset: number[];
+}
+
+/** Representation of the manner in which a completions response concluded. */
+export type CompletionsFinishReason =
+  | "stop"
+  | "length"
+  | "content_filter"
+  | "function_call"
+  | "tool_calls";
+
 /**
  * Representation of the token counts processed for a completions request.
  * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
@@ -529,18 +573,6 @@ export interface CompletionsUsage {
   promptTokens: number;
   /** The total number of tokens processed for the completions request and response. */
   totalTokens: number;
-}
-
-/** Representation of a log probabilities model for a completions generation. */
-export interface CompletionsLogProbabilityModel {
-  /** The textual forms of tokens evaluated in this probability model. */
-  tokens: string[];
-  /** A collection of log probability values for the tokens in this completions data. */
-  tokenLogprobs: (number | null)[];
-  /** A mapping of tokens to maximum log probability values in this completions data. */
-  topLogprobs: Record<string, number | null>[];
-  /** The text offsets associated with tokens in this completions data. */
-  textOffset: number[];
 }
 
 /**
@@ -750,6 +782,9 @@ export function chatRequestMessageUnionSerializer(
   }
 }
 
+/** A description of the intended purpose of a message within a chat completions interaction. */
+export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
+
 /**
  * A request chat message containing system instructions that influence how the model will generate a chat completions
  * response.
@@ -792,6 +827,105 @@ export function chatRequestUserMessageSerializer(
     name: item["name"],
   };
 }
+
+export type ChatRequestUserMessageContent =
+  | string
+  | ChatMessageContentItemUnion[];
+
+/** An abstract representation of a structured content item within a chat message. */
+export interface ChatMessageContentItem {
+  /** The discriminated object type. */
+  type: string;
+}
+
+export function chatMessageContentItemSerializer(
+  item: ChatMessageContentItem,
+): Record<string, unknown> {
+  return {
+    ...chatMessageContentItemUnionSerializer(item),
+  };
+}
+
+export type ChatMessageContentItemUnion =
+  | ChatMessageTextContentItem
+  | ChatMessageImageContentItem
+  | ChatMessageContentItem;
+
+export function chatMessageContentItemUnionSerializer(
+  item: ChatMessageContentItem,
+): Record<string, unknown> {
+  switch (item.type) {
+    case "text":
+      return chatMessageTextContentItemSerializer(
+        item as ChatMessageTextContentItem,
+      );
+
+    case "image_url":
+      return chatMessageImageContentItemSerializer(
+        item as ChatMessageImageContentItem,
+      );
+
+    default:
+      return chatMessageContentItemSerializer(item);
+  }
+}
+
+/** A structured chat content item containing plain text. */
+export interface ChatMessageTextContentItem extends ChatMessageContentItem {
+  /** The discriminated object type: always 'text' for this type. */
+  type: "text";
+  /** The content of the message. */
+  text: string;
+}
+
+export function chatMessageTextContentItemSerializer(
+  item: ChatMessageTextContentItem,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    text: item["text"],
+  };
+}
+
+/** A structured chat content item containing an image reference. */
+export interface ChatMessageImageContentItem extends ChatMessageContentItem {
+  /** The discriminated object type: always 'image_url' for this type. */
+  type: "image_url";
+  /** An internet location, which must be accessible to the model,from which the image may be retrieved. */
+  imageUrl: ChatMessageImageUrl;
+}
+
+export function chatMessageImageContentItemSerializer(
+  item: ChatMessageImageContentItem,
+): Record<string, unknown> {
+  return {
+    type: item["type"],
+    image_url: chatMessageImageUrlSerializer(item.imageUrl),
+  };
+}
+
+/** An internet location from which the model may retrieve an image. */
+export interface ChatMessageImageUrl {
+  /** The URL of the image. */
+  url: string;
+  /**
+   * The evaluation quality setting to use, which controls relative prioritization of speed, token consumption, and
+   * accuracy.
+   */
+  detail?: ChatMessageImageDetailLevel;
+}
+
+export function chatMessageImageUrlSerializer(
+  item: ChatMessageImageUrl,
+): Record<string, unknown> {
+  return {
+    url: item["url"],
+    detail: item["detail"],
+  };
+}
+
+/** A representation of the possible image detail levels for image-based chat completions message content. */
+export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
 
 /** A request chat message representing response or action from the assistant. */
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
@@ -972,6 +1106,32 @@ export function functionDefinitionSerializer(
   };
 }
 
+export type ChatCompletionsOptionsFunctionCall =
+  | FunctionCallPreset
+  | FunctionName;
+/**
+ * The collection of predefined behaviors for handling request-provided function information in a chat completions
+ * operation.
+ */
+export type FunctionCallPreset = "auto" | "none";
+
+/**
+ * A structure that specifies the exact name of a specific, request-provided function to use when processing a chat
+ * completions operation.
+ */
+export interface FunctionName {
+  /** The name of the function to call. */
+  name: string;
+}
+
+export function functionNameSerializer(
+  item: FunctionName,
+): Record<string, unknown> {
+  return {
+    name: item["name"],
+  };
+}
+
 /**
  *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
  *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
@@ -1034,6 +1194,18 @@ export function azureChatExtensionConfigurationUnionSerializer(
       return azureChatExtensionConfigurationSerializer(item);
   }
 }
+
+/**
+ *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
+ *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
+ *   The use of this configuration is compatible only with Azure OpenAI.
+ */
+export type AzureChatExtensionType =
+  | "azure_search"
+  | "azure_ml_index"
+  | "azure_cosmos_db"
+  | "elasticsearch"
+  | "pinecone";
 
 /**
  * A specific representation of configurable options for Azure Search when using it as an Azure OpenAI chat
@@ -1201,6 +1373,16 @@ export function onYourDataAuthenticationOptionsUnionSerializer(
   }
 }
 
+/** The authentication types supported with Azure OpenAI On Your Data. */
+export type OnYourDataAuthenticationType =
+  | "api_key"
+  | "connection_string"
+  | "key_and_key_id"
+  | "encoded_api_key"
+  | "access_token"
+  | "system_assigned_managed_identity"
+  | "user_assigned_managed_identity";
+
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
 export interface OnYourDataApiKeyAuthenticationOptions
   extends OnYourDataAuthenticationOptions {
@@ -1327,6 +1509,12 @@ export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerial
   };
 }
 
+/** The context property. */
+export type OnYourDataContextProperty =
+  | "citations"
+  | "intent"
+  | "all_retrieved_documents";
+
 /** Optional settings to control how fields are processed when using a configured Azure Search resource. */
 export interface AzureSearchIndexFieldMappingOptions {
   /** The name of the index field to use as a title. */
@@ -1358,6 +1546,14 @@ export function azureSearchIndexFieldMappingOptionsSerializer(
     image_vector_fields: item["imageVectorFields"],
   };
 }
+
+/** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
+export type AzureSearchQueryType =
+  | "simple"
+  | "semantic"
+  | "vector"
+  | "vector_simple_hybrid"
+  | "vector_semantic_hybrid";
 
 /** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
 export interface OnYourDataVectorizationSource {
@@ -1402,6 +1598,15 @@ export function onYourDataVectorizationSourceUnionSerializer(
       return onYourDataVectorizationSourceSerializer(item);
   }
 }
+
+/**
+ * Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with
+ * vector search.
+ */
+export type OnYourDataVectorizationSourceType =
+  | "endpoint"
+  | "deployment_name"
+  | "model_id";
 
 /**
  * The details of a a vectorization source, used by Azure OpenAI On Your Data when applying vector search, that is based
@@ -1466,6 +1671,11 @@ export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
       return onYourDataVectorSearchAuthenticationOptionsSerializer(item);
   }
 }
+
+/** The authentication types supported with Azure OpenAI On Your Data vector search. */
+export type OnYourDataVectorSearchAuthenticationType =
+  | "api_key"
+  | "access_token";
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
 export interface OnYourDataVectorSearchApiKeyAuthenticationOptions
@@ -1880,6 +2090,9 @@ export function elasticsearchIndexFieldMappingOptionsSerializer(
   };
 }
 
+/** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
+export type ElasticsearchQueryType = "simple" | "vector";
+
 /**
  * A specific representation of configurable options for Pinecone when using it as an Azure OpenAI chat
  * extension.
@@ -2166,114 +2379,11 @@ export function chatCompletionsFunctionToolDefinitionSerializer(
   };
 }
 
-/** An abstract representation of a structured content item within a chat message. */
-export interface ChatMessageContentItem {
-  /** The discriminated object type. */
-  type: string;
-}
-
-export function chatMessageContentItemSerializer(
-  item: ChatMessageContentItem,
-): Record<string, unknown> {
-  return {
-    ...chatMessageContentItemUnionSerializer(item),
-  };
-}
-
-export type ChatMessageContentItemUnion =
-  | ChatMessageTextContentItem
-  | ChatMessageImageContentItem
-  | ChatMessageContentItem;
-
-export function chatMessageContentItemUnionSerializer(
-  item: ChatMessageContentItem,
-): Record<string, unknown> {
-  switch (item.type) {
-    case "text":
-      return chatMessageTextContentItemSerializer(
-        item as ChatMessageTextContentItem,
-      );
-
-    case "image_url":
-      return chatMessageImageContentItemSerializer(
-        item as ChatMessageImageContentItem,
-      );
-
-    default:
-      return chatMessageContentItemSerializer(item);
-  }
-}
-
-/** A structured chat content item containing plain text. */
-export interface ChatMessageTextContentItem extends ChatMessageContentItem {
-  /** The discriminated object type: always 'text' for this type. */
-  type: "text";
-  /** The content of the message. */
-  text: string;
-}
-
-export function chatMessageTextContentItemSerializer(
-  item: ChatMessageTextContentItem,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    text: item["text"],
-  };
-}
-
-/** A structured chat content item containing an image reference. */
-export interface ChatMessageImageContentItem extends ChatMessageContentItem {
-  /** The discriminated object type: always 'image_url' for this type. */
-  type: "image_url";
-  /** An internet location, which must be accessible to the model,from which the image may be retrieved. */
-  imageUrl: ChatMessageImageUrl;
-}
-
-export function chatMessageImageContentItemSerializer(
-  item: ChatMessageImageContentItem,
-): Record<string, unknown> {
-  return {
-    type: item["type"],
-    image_url: chatMessageImageUrlSerializer(item.imageUrl),
-  };
-}
-
-/** An internet location from which the model may retrieve an image. */
-export interface ChatMessageImageUrl {
-  /** The URL of the image. */
-  url: string;
-  /**
-   * The evaluation quality setting to use, which controls relative prioritization of speed, token consumption, and
-   * accuracy.
-   */
-  detail?: ChatMessageImageDetailLevel;
-}
-
-export function chatMessageImageUrlSerializer(
-  item: ChatMessageImageUrl,
-): Record<string, unknown> {
-  return {
-    url: item["url"],
-    detail: item["detail"],
-  };
-}
-
-/**
- * A structure that specifies the exact name of a specific, request-provided function to use when processing a chat
- * completions operation.
- */
-export interface FunctionName {
-  /** The name of the function to call. */
-  name: string;
-}
-
-export function functionNameSerializer(
-  item: FunctionName,
-): Record<string, unknown> {
-  return {
-    name: item["name"],
-  };
-}
+export type ChatCompletionsOptionsToolChoice =
+  | ChatCompletionsToolSelectionPreset
+  | ChatCompletionsNamedToolSelectionUnion;
+/** Represents a generic policy for how a chat completions tool may be selected. */
+export type ChatCompletionsToolSelectionPreset = "auto" | "none";
 
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
 export interface ChatCompletionsNamedToolSelection {
@@ -2496,6 +2606,37 @@ export interface AzureChatExtensionRetrievedDocument {
   filterReason?: AzureChatExtensionRetrieveDocumentFilterReason;
 }
 
+/** The reason for filtering the retrieved document. */
+export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
+
+/** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
+export interface ChatChoiceLogProbabilityInfo {
+  /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
+  content: ChatTokenLogProbabilityResult[] | null;
+}
+
+/** A representation of the log probability information for a single content token, including a list of most likely tokens if 'top_logprobs' were requested. */
+export interface ChatTokenLogProbabilityResult {
+  /** The message content token. */
+  token: string;
+  /** The log probability of the message content token. */
+  logprob: number;
+  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
+  bytes: number[] | null;
+  /** The list of most likely tokens and their log probability information, as requested via 'top_logprobs'. */
+  top_logprobs: ChatTokenLogProbabilityInfo[] | null;
+}
+
+/** A representation of the log probability information for a single message content token. */
+export interface ChatTokenLogProbabilityInfo {
+  /** The message content token. */
+  token: string;
+  /** The log probability of the message content token. */
+  logprob: number;
+  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
+  bytes: number[] | null;
+}
+
 /** An abstract representation of structured information about why a chat completions response terminated. */
 export interface ChatFinishDetails {
   /** The object type. */
@@ -2570,34 +2711,6 @@ export interface AzureGroundingEnhancementCoordinatePoint {
   y: number;
 }
 
-/** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
-export interface ChatChoiceLogProbabilityInfo {
-  /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
-  content: ChatTokenLogProbabilityResult[] | null;
-}
-
-/** A representation of the log probability information for a single content token, including a list of most likely tokens if 'top_logprobs' were requested. */
-export interface ChatTokenLogProbabilityResult {
-  /** The message content token. */
-  token: string;
-  /** The log probability of the message content token. */
-  logprob: number;
-  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
-  bytes: number[] | null;
-  /** The list of most likely tokens and their log probability information, as requested via 'top_logprobs'. */
-  top_logprobs: ChatTokenLogProbabilityInfo[] | null;
-}
-
-/** A representation of the log probability information for a single message content token. */
-export interface ChatTokenLogProbabilityInfo {
-  /** The message content token. */
-  token: string;
-  /** The log probability of the message content token. */
-  logprob: number;
-  /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
-  bytes: number[] | null;
-}
-
 /** Represents the request data used to generate images. */
 export interface ImageGenerationOptions {
   /**
@@ -2649,6 +2762,26 @@ export function imageGenerationOptionsSerializer(
     user: item["user"],
   };
 }
+
+/** The desired size of generated images. */
+export type ImageSize =
+  | "256x256"
+  | "512x512"
+  | "1024x1024"
+  | "1792x1024"
+  | "1024x1792";
+/** The format in which the generated images are returned. */
+export type ImageGenerationResponseFormat = "url" | "b64_json";
+/**
+ * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationQuality = "standard" | "hd";
+/**
+ * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationStyle = "natural" | "vivid";
 
 /** The result of a successful image generation operation. */
 export interface ImageGenerations {
@@ -2778,6 +2911,23 @@ export function speechGenerationOptionsSerializer(
   };
 }
 
+/** The available voices for text-to-speech. */
+export type SpeechVoice =
+  | "alloy"
+  | "echo"
+  | "fable"
+  | "onyx"
+  | "nova"
+  | "shimmer";
+/** The supported audio output formats for text-to-speech. */
+export type SpeechGenerationResponseFormat =
+  | "mp3"
+  | "opus"
+  | "aac"
+  | "flac"
+  | "wav"
+  | "pcm";
+
 /**
  * The configuration information for an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -2824,6 +2974,9 @@ export function embeddingsOptionsSerializer(
   };
 }
 
+/** Represents the available formats for embeddings data on responses. */
+export type EmbeddingEncodingFormat = "float" | "base64";
+
 /**
  * Representation of the response data from an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -2855,129 +3008,6 @@ export interface EmbeddingsUsage {
   totalTokens: number;
 }
 
-/** Defines available options for the underlying response format of output transcription information. */
-export type AudioTranscriptionFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
-/** Defines the timestamp granularities that can be requested on a verbose transcription response. */
-export type AudioTranscriptionTimestampGranularity = "word" | "segment";
-/** Defines the possible descriptors for available audio operation responses. */
-export type AudioTaskLabel = "transcribe" | "translate";
-/** Defines available options for the underlying response format of output translation information. */
-export type AudioTranslationFormat =
-  | "json"
-  | "verbose_json"
-  | "text"
-  | "srt"
-  | "vtt";
-/** Ratings for the intensity and risk level of harmful content. */
-export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
-/** Representation of the manner in which a completions response concluded. */
-export type CompletionsFinishReason =
-  | "stop"
-  | "length"
-  | "content_filter"
-  | "function_call"
-  | "tool_calls";
-/** A description of the intended purpose of a message within a chat completions interaction. */
-export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
-/** A representation of the possible image detail levels for image-based chat completions message content. */
-export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
-/**
- * The collection of predefined behaviors for handling request-provided function information in a chat completions
- * operation.
- */
-export type FunctionCallPreset = "auto" | "none";
-/**
- *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
- *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
- *   The use of this configuration is compatible only with Azure OpenAI.
- */
-export type AzureChatExtensionType =
-  | "azure_search"
-  | "azure_ml_index"
-  | "azure_cosmos_db"
-  | "elasticsearch"
-  | "pinecone";
-/** The authentication types supported with Azure OpenAI On Your Data. */
-export type OnYourDataAuthenticationType =
-  | "api_key"
-  | "connection_string"
-  | "key_and_key_id"
-  | "encoded_api_key"
-  | "access_token"
-  | "system_assigned_managed_identity"
-  | "user_assigned_managed_identity";
-/** The context property. */
-export type OnYourDataContextProperty =
-  | "citations"
-  | "intent"
-  | "all_retrieved_documents";
-/** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-export type AzureSearchQueryType =
-  | "simple"
-  | "semantic"
-  | "vector"
-  | "vector_simple_hybrid"
-  | "vector_semantic_hybrid";
-/**
- * Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with
- * vector search.
- */
-export type OnYourDataVectorizationSourceType =
-  | "endpoint"
-  | "deployment_name"
-  | "model_id";
-/** The authentication types supported with Azure OpenAI On Your Data vector search. */
-export type OnYourDataVectorSearchAuthenticationType =
-  | "api_key"
-  | "access_token";
-/** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
-export type ElasticsearchQueryType = "simple" | "vector";
-/** Represents a generic policy for how a chat completions tool may be selected. */
-export type ChatCompletionsToolSelectionPreset = "auto" | "none";
-/** The reason for filtering the retrieved document. */
-export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
-/** The desired size of generated images. */
-export type ImageSize =
-  | "256x256"
-  | "512x512"
-  | "1024x1024"
-  | "1792x1024"
-  | "1024x1792";
-/** The format in which the generated images are returned. */
-export type ImageGenerationResponseFormat = "url" | "b64_json";
-/**
- * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationQuality = "standard" | "hd";
-/**
- * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationStyle = "natural" | "vivid";
-/** The available voices for text-to-speech. */
-export type SpeechVoice =
-  | "alloy"
-  | "echo"
-  | "fable"
-  | "onyx"
-  | "nova"
-  | "shimmer";
-/** The supported audio output formats for text-to-speech. */
-export type SpeechGenerationResponseFormat =
-  | "mp3"
-  | "opus"
-  | "aac"
-  | "flac"
-  | "wav"
-  | "pcm";
-/** Represents the available formats for embeddings data on responses. */
-export type EmbeddingEncodingFormat = "float" | "base64";
 export type ServiceApiVersions =
   | "2022-12-01"
   | "2023-05-15"
