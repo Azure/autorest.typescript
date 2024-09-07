@@ -59,6 +59,23 @@ export function audioTranscriptionOptionsSerializer(
   };
 }
 
+export function audioTranscriptionOptionsDeserializer(
+  item: any,
+): AudioTranscriptionOptions {
+  return {
+    file: item["file"],
+    filename: item["filename"],
+    responseFormat: audioTranscriptionFormatDeserializer(
+      item["response_format"],
+    ),
+    language: item["language"],
+    prompt: item["prompt"],
+    temperature: item["temperature"],
+    timestampGranularities: item["timestamp_granularities"],
+    model: item["model"],
+  };
+}
+
 /** Defines available options for the underlying response format of output transcription information. */
 export type AudioTranscriptionFormat =
   | "json"
@@ -168,6 +185,19 @@ export function audioTranslationOptionsSerializer(
     file: uint8ArrayToString(item["file"], "base64"),
     filename: item["filename"],
     response_format: item["responseFormat"],
+    prompt: item["prompt"],
+    temperature: item["temperature"],
+    model: item["model"],
+  };
+}
+
+export function audioTranslationOptionsDeserializer(
+  item: any,
+): AudioTranslationOptions {
+  return {
+    file: item["file"],
+    filename: item["filename"],
+    responseFormat: audioTranslationFormatDeserializer(item["response_format"]),
     prompt: item["prompt"],
     temperature: item["temperature"],
     model: item["model"],
@@ -347,6 +377,27 @@ export function completionsOptionsSerializer(
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     best_of: item["bestOf"],
+    stream: item["stream"],
+    model: item["model"],
+  };
+}
+
+export function completionsOptionsDeserializer(item: any): CompletionsOptions {
+  return {
+    prompt: item["prompt"],
+    maxTokens: item["max_tokens"],
+    temperature: item["temperature"],
+    topP: item["top_p"],
+    logitBias: item["logit_bias"],
+    user: item["user"],
+    n: item["n"],
+    logprobs: item["logprobs"],
+    suffix: item["suffix"],
+    echo: item["echo"],
+    stop: item["stop"],
+    presencePenalty: item["presence_penalty"],
+    frequencyPenalty: item["frequency_penalty"],
+    bestOf: item["best_of"],
     stream: item["stream"],
     model: item["model"],
   };
@@ -730,6 +781,39 @@ export function chatCompletionsOptionsSerializer(
   };
 }
 
+export function chatCompletionsOptionsDeserializer(
+  item: any,
+): ChatCompletionsOptions {
+  return {
+    messages: item["messages"],
+    functions: item["functions"],
+    functionCall: item["function_call"],
+    maxTokens: item["max_tokens"],
+    temperature: item["temperature"],
+    topP: item["top_p"],
+    logitBias: item["logit_bias"],
+    user: item["user"],
+    n: item["n"],
+    stop: item["stop"],
+    presencePenalty: item["presence_penalty"],
+    frequencyPenalty: item["frequency_penalty"],
+    stream: item["stream"],
+    model: item["model"],
+    dataSources: item["data_sources"],
+    enhancements: !item.enhancements
+      ? undefined
+      : azureChatEnhancementConfigurationDeserializer(item.enhancements),
+    seed: item["seed"],
+    logprobs: item["logprobs"],
+    top_logprobs: item["top_logprobs"],
+    responseFormat: !item.response_format
+      ? undefined
+      : chatCompletionsResponseFormatUnionDeserializer(item.response_format),
+    tools: item["tools"],
+    toolChoice: item["tool_choice"],
+  };
+}
+
 /** An abstract representation of a chat message as provided in a request. */
 export interface ChatRequestMessage {
   /** The chat role associated with this message. */
@@ -741,6 +825,12 @@ export function chatRequestMessageSerializer(
 ): Record<string, unknown> {
   return {
     ...chatRequestMessageUnionSerializer(item),
+  };
+}
+
+export function chatRequestMessageDeserializer(item: any): ChatRequestMessage {
+  return {
+    role: chatRoleDeserializer(item["role"]),
   };
 }
 
@@ -782,6 +872,36 @@ export function chatRequestMessageUnionSerializer(
   }
 }
 
+export function chatRequestMessageUnionDeserializer(
+  item: any,
+): ChatRequestMessage {
+  switch (item.role) {
+    case "system":
+      return chatRequestSystemMessageDeserializer(
+        item as ChatRequestSystemMessage,
+      );
+
+    case "user":
+      return chatRequestUserMessageDeserializer(item as ChatRequestUserMessage);
+
+    case "assistant":
+      return chatRequestAssistantMessageDeserializer(
+        item as ChatRequestAssistantMessage,
+      );
+
+    case "tool":
+      return chatRequestToolMessageDeserializer(item as ChatRequestToolMessage);
+
+    case "function":
+      return chatRequestFunctionMessageDeserializer(
+        item as ChatRequestFunctionMessage,
+      );
+
+    default:
+      return chatRequestMessageDeserializer(item);
+  }
+}
+
 /** A description of the intended purpose of a message within a chat completions interaction. */
 export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
 
@@ -801,6 +921,16 @@ export interface ChatRequestSystemMessage extends ChatRequestMessage {
 export function chatRequestSystemMessageSerializer(
   item: ChatRequestSystemMessage,
 ): Record<string, unknown> {
+  return {
+    role: item["role"],
+    content: item["content"],
+    name: item["name"],
+  };
+}
+
+export function chatRequestSystemMessageDeserializer(
+  item: any,
+): ChatRequestSystemMessage {
   return {
     role: item["role"],
     content: item["content"],
@@ -828,6 +958,16 @@ export function chatRequestUserMessageSerializer(
   };
 }
 
+export function chatRequestUserMessageDeserializer(
+  item: any,
+): ChatRequestUserMessage {
+  return {
+    role: item["role"],
+    content: item["content"],
+    name: item["name"],
+  };
+}
+
 export type ChatRequestUserMessageContent =
   | string
   | ChatMessageContentItemUnion[];
@@ -843,6 +983,14 @@ export function chatMessageContentItemSerializer(
 ): Record<string, unknown> {
   return {
     ...chatMessageContentItemUnionSerializer(item),
+  };
+}
+
+export function chatMessageContentItemDeserializer(
+  item: any,
+): ChatMessageContentItem {
+  return {
+    type: item["type"],
   };
 }
 
@@ -870,6 +1018,25 @@ export function chatMessageContentItemUnionSerializer(
   }
 }
 
+export function chatMessageContentItemUnionDeserializer(
+  item: any,
+): ChatMessageContentItem {
+  switch (item.type) {
+    case "text":
+      return chatMessageTextContentItemDeserializer(
+        item as ChatMessageTextContentItem,
+      );
+
+    case "image_url":
+      return chatMessageImageContentItemDeserializer(
+        item as ChatMessageImageContentItem,
+      );
+
+    default:
+      return chatMessageContentItemDeserializer(item);
+  }
+}
+
 /** A structured chat content item containing plain text. */
 export interface ChatMessageTextContentItem extends ChatMessageContentItem {
   /** The discriminated object type: always 'text' for this type. */
@@ -881,6 +1048,15 @@ export interface ChatMessageTextContentItem extends ChatMessageContentItem {
 export function chatMessageTextContentItemSerializer(
   item: ChatMessageTextContentItem,
 ): Record<string, unknown> {
+  return {
+    type: item["type"],
+    text: item["text"],
+  };
+}
+
+export function chatMessageTextContentItemDeserializer(
+  item: any,
+): ChatMessageTextContentItem {
   return {
     type: item["type"],
     text: item["text"],
@@ -904,6 +1080,15 @@ export function chatMessageImageContentItemSerializer(
   };
 }
 
+export function chatMessageImageContentItemDeserializer(
+  item: any,
+): ChatMessageImageContentItem {
+  return {
+    type: item["type"],
+    imageUrl: chatMessageImageUrlDeserializer(item.image_url),
+  };
+}
+
 /** An internet location from which the model may retrieve an image. */
 export interface ChatMessageImageUrl {
   /** The URL of the image. */
@@ -921,6 +1106,15 @@ export function chatMessageImageUrlSerializer(
   return {
     url: item["url"],
     detail: item["detail"],
+  };
+}
+
+export function chatMessageImageUrlDeserializer(
+  item: any,
+): ChatMessageImageUrl {
+  return {
+    url: item["url"],
+    detail: chatMessageImageDetailLevelDeserializer(item["detail"]),
   };
 }
 
@@ -961,6 +1155,20 @@ export function chatRequestAssistantMessageSerializer(
   };
 }
 
+export function chatRequestAssistantMessageDeserializer(
+  item: any,
+): ChatRequestAssistantMessage {
+  return {
+    role: item["role"],
+    content: item["content"],
+    name: item["name"],
+    toolCalls: item["tool_calls"],
+    functionCall: !item.function_call
+      ? undefined
+      : functionCallDeserializer(item.function_call),
+  };
+}
+
 /**
  * An abstract representation of a tool call that must be resolved in a subsequent request to perform the requested
  * chat completion.
@@ -975,6 +1183,15 @@ export interface ChatCompletionsToolCall {
 export function chatCompletionsToolCallSerializer(
   item: ChatCompletionsToolCall,
 ): Record<string, unknown> {
+  return {
+    type: item["type"],
+    id: item["id"],
+  };
+}
+
+export function chatCompletionsToolCallDeserializer(
+  item: any,
+): ChatCompletionsToolCall {
   return {
     type: item["type"],
     id: item["id"],
@@ -996,6 +1213,20 @@ export function chatCompletionsToolCallUnionSerializer(
 
     default:
       return chatCompletionsToolCallSerializer(item);
+  }
+}
+
+export function chatCompletionsToolCallUnionDeserializer(
+  item: any,
+): ChatCompletionsToolCall {
+  switch (item.type) {
+    case "function":
+      return chatCompletionsFunctionToolCallDeserializer(
+        item as ChatCompletionsFunctionToolCall,
+      );
+
+    default:
+      return chatCompletionsToolCallDeserializer(item);
   }
 }
 
@@ -1021,6 +1252,16 @@ export function chatCompletionsFunctionToolCallSerializer(
   };
 }
 
+export function chatCompletionsFunctionToolCallDeserializer(
+  item: any,
+): ChatCompletionsFunctionToolCall {
+  return {
+    type: item["type"],
+    id: item["id"],
+    function: functionCallDeserializer(item.function),
+  };
+}
+
 /** The name and arguments of a function that should be called, as generated by the model. */
 export interface FunctionCall {
   /** The name of the function to call. */
@@ -1037,6 +1278,13 @@ export interface FunctionCall {
 export function functionCallSerializer(
   item: FunctionCall,
 ): Record<string, unknown> {
+  return {
+    name: item["name"],
+    arguments: item["arguments"],
+  };
+}
+
+export function functionCallDeserializer(item: any): FunctionCall {
   return {
     name: item["name"],
     arguments: item["arguments"],
@@ -1063,6 +1311,16 @@ export function chatRequestToolMessageSerializer(
   };
 }
 
+export function chatRequestToolMessageDeserializer(
+  item: any,
+): ChatRequestToolMessage {
+  return {
+    role: item["role"],
+    content: item["content"],
+    toolCallId: item["tool_call_id"],
+  };
+}
+
 /** A request chat message representing requested output from a configured function. */
 export interface ChatRequestFunctionMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'function' for function messages. */
@@ -1076,6 +1334,16 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
 export function chatRequestFunctionMessageSerializer(
   item: ChatRequestFunctionMessage,
 ): Record<string, unknown> {
+  return {
+    role: item["role"],
+    name: item["name"],
+    content: item["content"],
+  };
+}
+
+export function chatRequestFunctionMessageDeserializer(
+  item: any,
+): ChatRequestFunctionMessage {
   return {
     role: item["role"],
     name: item["name"],
@@ -1099,6 +1367,14 @@ export interface FunctionDefinition {
 export function functionDefinitionSerializer(
   item: FunctionDefinition,
 ): Record<string, unknown> {
+  return {
+    name: item["name"],
+    description: item["description"],
+    parameters: item["parameters"],
+  };
+}
+
+export function functionDefinitionDeserializer(item: any): FunctionDefinition {
   return {
     name: item["name"],
     description: item["description"],
@@ -1132,6 +1408,12 @@ export function functionNameSerializer(
   };
 }
 
+export function functionNameDeserializer(item: any): FunctionName {
+  return {
+    name: item["name"],
+  };
+}
+
 /**
  *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
  *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
@@ -1150,6 +1432,14 @@ export function azureChatExtensionConfigurationSerializer(
 ): Record<string, unknown> {
   return {
     ...azureChatExtensionConfigurationUnionSerializer(item),
+  };
+}
+
+export function azureChatExtensionConfigurationDeserializer(
+  item: any,
+): AzureChatExtensionConfiguration {
+  return {
+    type: azureChatExtensionTypeDeserializer(item["type"]),
   };
 }
 
@@ -1195,6 +1485,40 @@ export function azureChatExtensionConfigurationUnionSerializer(
   }
 }
 
+export function azureChatExtensionConfigurationUnionDeserializer(
+  item: any,
+): AzureChatExtensionConfiguration {
+  switch (item.type) {
+    case "azure_search":
+      return azureSearchChatExtensionConfigurationDeserializer(
+        item as AzureSearchChatExtensionConfiguration,
+      );
+
+    case "azure_ml_index":
+      return azureMachineLearningIndexChatExtensionConfigurationDeserializer(
+        item as AzureMachineLearningIndexChatExtensionConfiguration,
+      );
+
+    case "azure_cosmos_db":
+      return azureCosmosDBChatExtensionConfigurationDeserializer(
+        item as AzureCosmosDBChatExtensionConfiguration,
+      );
+
+    case "elasticsearch":
+      return elasticsearchChatExtensionConfigurationDeserializer(
+        item as ElasticsearchChatExtensionConfiguration,
+      );
+
+    case "pinecone":
+      return pineconeChatExtensionConfigurationDeserializer(
+        item as PineconeChatExtensionConfiguration,
+      );
+
+    default:
+      return azureChatExtensionConfigurationDeserializer(item);
+  }
+}
+
 /**
  *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
  *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
@@ -1228,6 +1552,15 @@ export function azureSearchChatExtensionConfigurationSerializer(
   return {
     type: item["type"],
     parameters: azureSearchChatExtensionParametersSerializer(item.parameters),
+  };
+}
+
+export function azureSearchChatExtensionConfigurationDeserializer(
+  item: any,
+): AzureSearchChatExtensionConfiguration {
+  return {
+    type: item["type"],
+    parameters: azureSearchChatExtensionParametersDeserializer(item.parameters),
   };
 }
 
@@ -1305,6 +1638,36 @@ export function azureSearchChatExtensionParametersSerializer(
   };
 }
 
+export function azureSearchChatExtensionParametersDeserializer(
+  item: any,
+): AzureSearchChatExtensionParameters {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionDeserializer(item.authentication),
+    topNDocuments: item["top_n_documents"],
+    inScope: item["in_scope"],
+    strictness: item["strictness"],
+    roleInformation: item["role_information"],
+    maxSearchQueries: item["max_search_queries"],
+    allowPartialResult: item["allow_partial_result"],
+    includeContexts: item["include_contexts"],
+    endpoint: item["endpoint"],
+    indexName: item["index_name"],
+    fieldsMapping: !item.fields_mapping
+      ? undefined
+      : azureSearchIndexFieldMappingOptionsDeserializer(item.fields_mapping),
+    queryType: azureSearchQueryTypeDeserializer(item["query_type"]),
+    semanticConfiguration: item["semantic_configuration"],
+    filter: item["filter"],
+    embeddingDependency: !item.embeddingDependency
+      ? item.embeddingDependency
+      : onYourDataVectorizationSourceUnionDeserializer(
+          item.embedding_dependency,
+        ),
+  };
+}
+
 /** The authentication options for Azure OpenAI On Your Data. */
 export interface OnYourDataAuthenticationOptions {
   /** The authentication type. */
@@ -1316,6 +1679,14 @@ export function onYourDataAuthenticationOptionsSerializer(
 ): Record<string, unknown> {
   return {
     ...onYourDataAuthenticationOptionsUnionSerializer(item),
+  };
+}
+
+export function onYourDataAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataAuthenticationOptions {
+  return {
+    type: onYourDataAuthenticationTypeDeserializer(item["type"]),
   };
 }
 
@@ -1373,6 +1744,50 @@ export function onYourDataAuthenticationOptionsUnionSerializer(
   }
 }
 
+export function onYourDataAuthenticationOptionsUnionDeserializer(
+  item: any,
+): OnYourDataAuthenticationOptions {
+  switch (item.type) {
+    case "api_key":
+      return onYourDataApiKeyAuthenticationOptionsDeserializer(
+        item as OnYourDataApiKeyAuthenticationOptions,
+      );
+
+    case "connection_string":
+      return onYourDataConnectionStringAuthenticationOptionsDeserializer(
+        item as OnYourDataConnectionStringAuthenticationOptions,
+      );
+
+    case "key_and_key_id":
+      return onYourDataKeyAndKeyIdAuthenticationOptionsDeserializer(
+        item as OnYourDataKeyAndKeyIdAuthenticationOptions,
+      );
+
+    case "encoded_api_key":
+      return onYourDataEncodedApiKeyAuthenticationOptionsDeserializer(
+        item as OnYourDataEncodedApiKeyAuthenticationOptions,
+      );
+
+    case "access_token":
+      return onYourDataAccessTokenAuthenticationOptionsDeserializer(
+        item as OnYourDataAccessTokenAuthenticationOptions,
+      );
+
+    case "system_assigned_managed_identity":
+      return onYourDataSystemAssignedManagedIdentityAuthenticationOptionsDeserializer(
+        item as OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
+      );
+
+    case "user_assigned_managed_identity":
+      return onYourDataUserAssignedManagedIdentityAuthenticationOptionsDeserializer(
+        item as OnYourDataUserAssignedManagedIdentityAuthenticationOptions,
+      );
+
+    default:
+      return onYourDataAuthenticationOptionsDeserializer(item);
+  }
+}
+
 /** The authentication types supported with Azure OpenAI On Your Data. */
 export type OnYourDataAuthenticationType =
   | "api_key"
@@ -1401,6 +1816,15 @@ export function onYourDataApiKeyAuthenticationOptionsSerializer(
   };
 }
 
+export function onYourDataApiKeyAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataApiKeyAuthenticationOptions {
+  return {
+    type: item["type"],
+    key: item["key"],
+  };
+}
+
 /** The authentication options for Azure OpenAI On Your Data when using a connection string. */
 export interface OnYourDataConnectionStringAuthenticationOptions
   extends OnYourDataAuthenticationOptions {
@@ -1416,6 +1840,15 @@ export function onYourDataConnectionStringAuthenticationOptionsSerializer(
   return {
     type: item["type"],
     connection_string: item["connectionString"],
+  };
+}
+
+export function onYourDataConnectionStringAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataConnectionStringAuthenticationOptions {
+  return {
+    type: item["type"],
+    connectionString: item["connection_string"],
   };
 }
 
@@ -1440,6 +1873,16 @@ export function onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
   };
 }
 
+export function onYourDataKeyAndKeyIdAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataKeyAndKeyIdAuthenticationOptions {
+  return {
+    type: item["type"],
+    key: item["key"],
+    keyId: item["key_id"],
+  };
+}
+
 /** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch encoded API key. */
 export interface OnYourDataEncodedApiKeyAuthenticationOptions
   extends OnYourDataAuthenticationOptions {
@@ -1455,6 +1898,15 @@ export function onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
   return {
     type: item["type"],
     encoded_api_key: item["encodedApiKey"],
+  };
+}
+
+export function onYourDataEncodedApiKeyAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataEncodedApiKeyAuthenticationOptions {
+  return {
+    type: item["type"],
+    encodedApiKey: item["encoded_api_key"],
   };
 }
 
@@ -1476,6 +1928,15 @@ export function onYourDataAccessTokenAuthenticationOptionsSerializer(
   };
 }
 
+export function onYourDataAccessTokenAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataAccessTokenAuthenticationOptions {
+  return {
+    type: item["type"],
+    accessToken: item["access_token"],
+  };
+}
+
 /** The authentication options for Azure OpenAI On Your Data when using a system-assigned managed identity. */
 export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
   extends OnYourDataAuthenticationOptions {
@@ -1486,6 +1947,14 @@ export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
 export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSerializer(
   item: OnYourDataSystemAssignedManagedIdentityAuthenticationOptions,
 ): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
+}
+
+export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataSystemAssignedManagedIdentityAuthenticationOptions {
   return {
     type: item["type"],
   };
@@ -1506,6 +1975,15 @@ export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsSerial
   return {
     type: item["type"],
     managed_identity_resource_id: item["managedIdentityResourceId"],
+  };
+}
+
+export function onYourDataUserAssignedManagedIdentityAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataUserAssignedManagedIdentityAuthenticationOptions {
+  return {
+    type: item["type"],
+    managedIdentityResourceId: item["managed_identity_resource_id"],
   };
 }
 
@@ -1547,6 +2025,20 @@ export function azureSearchIndexFieldMappingOptionsSerializer(
   };
 }
 
+export function azureSearchIndexFieldMappingOptionsDeserializer(
+  item: any,
+): AzureSearchIndexFieldMappingOptions {
+  return {
+    titleField: item["title_field"],
+    urlField: item["url_field"],
+    filepathField: item["filepath_field"],
+    contentFields: item["content_fields"],
+    contentFieldsSeparator: item["content_fields_separator"],
+    vectorFields: item["vector_fields"],
+    imageVectorFields: item["image_vector_fields"],
+  };
+}
+
 /** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
 export type AzureSearchQueryType =
   | "simple"
@@ -1566,6 +2058,14 @@ export function onYourDataVectorizationSourceSerializer(
 ): Record<string, unknown> {
   return {
     ...onYourDataVectorizationSourceUnionSerializer(item),
+  };
+}
+
+export function onYourDataVectorizationSourceDeserializer(
+  item: any,
+): OnYourDataVectorizationSource {
+  return {
+    type: onYourDataVectorizationSourceTypeDeserializer(item["type"]),
   };
 }
 
@@ -1596,6 +2096,30 @@ export function onYourDataVectorizationSourceUnionSerializer(
 
     default:
       return onYourDataVectorizationSourceSerializer(item);
+  }
+}
+
+export function onYourDataVectorizationSourceUnionDeserializer(
+  item: any,
+): OnYourDataVectorizationSource {
+  switch (item.type) {
+    case "endpoint":
+      return onYourDataEndpointVectorizationSourceDeserializer(
+        item as OnYourDataEndpointVectorizationSource,
+      );
+
+    case "deployment_name":
+      return onYourDataDeploymentNameVectorizationSourceDeserializer(
+        item as OnYourDataDeploymentNameVectorizationSource,
+      );
+
+    case "model_id":
+      return onYourDataModelIdVectorizationSourceDeserializer(
+        item as OnYourDataModelIdVectorizationSource,
+      );
+
+    default:
+      return onYourDataVectorizationSourceDeserializer(item);
   }
 }
 
@@ -1634,6 +2158,19 @@ export function onYourDataEndpointVectorizationSourceSerializer(
   };
 }
 
+export function onYourDataEndpointVectorizationSourceDeserializer(
+  item: any,
+): OnYourDataEndpointVectorizationSource {
+  return {
+    type: item["type"],
+    endpoint: item["endpoint"],
+    authentication:
+      onYourDataVectorSearchAuthenticationOptionsUnionDeserializer(
+        item.authentication,
+      ),
+  };
+}
+
 /** The authentication options for Azure OpenAI On Your Data vector search. */
 export interface OnYourDataVectorSearchAuthenticationOptions {
   /** The type of authentication to use. */
@@ -1645,6 +2182,14 @@ export function onYourDataVectorSearchAuthenticationOptionsSerializer(
 ): Record<string, unknown> {
   return {
     ...onYourDataVectorSearchAuthenticationOptionsUnionSerializer(item),
+  };
+}
+
+export function onYourDataVectorSearchAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataVectorSearchAuthenticationOptions {
+  return {
+    type: onYourDataVectorSearchAuthenticationTypeDeserializer(item["type"]),
   };
 }
 
@@ -1672,6 +2217,25 @@ export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
   }
 }
 
+export function onYourDataVectorSearchAuthenticationOptionsUnionDeserializer(
+  item: any,
+): OnYourDataVectorSearchAuthenticationOptions {
+  switch (item.type) {
+    case "api_key":
+      return onYourDataVectorSearchApiKeyAuthenticationOptionsDeserializer(
+        item as OnYourDataVectorSearchApiKeyAuthenticationOptions,
+      );
+
+    case "access_token":
+      return onYourDataVectorSearchAccessTokenAuthenticationOptionsDeserializer(
+        item as OnYourDataVectorSearchAccessTokenAuthenticationOptions,
+      );
+
+    default:
+      return onYourDataVectorSearchAuthenticationOptionsDeserializer(item);
+  }
+}
+
 /** The authentication types supported with Azure OpenAI On Your Data vector search. */
 export type OnYourDataVectorSearchAuthenticationType =
   | "api_key"
@@ -1695,6 +2259,15 @@ export function onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
   };
 }
 
+export function onYourDataVectorSearchApiKeyAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataVectorSearchApiKeyAuthenticationOptions {
+  return {
+    type: item["type"],
+    key: item["key"],
+  };
+}
+
 /** The authentication options for Azure OpenAI On Your Data vector search when using access token. */
 export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions
   extends OnYourDataVectorSearchAuthenticationOptions {
@@ -1710,6 +2283,15 @@ export function onYourDataVectorSearchAccessTokenAuthenticationOptionsSerializer
   return {
     type: item["type"],
     access_token: item["accessToken"],
+  };
+}
+
+export function onYourDataVectorSearchAccessTokenAuthenticationOptionsDeserializer(
+  item: any,
+): OnYourDataVectorSearchAccessTokenAuthenticationOptions {
+  return {
+    type: item["type"],
+    accessToken: item["access_token"],
   };
 }
 
@@ -1737,6 +2319,16 @@ export function onYourDataDeploymentNameVectorizationSourceSerializer(
   };
 }
 
+export function onYourDataDeploymentNameVectorizationSourceDeserializer(
+  item: any,
+): OnYourDataDeploymentNameVectorizationSource {
+  return {
+    type: item["type"],
+    deploymentName: item["deployment_name"],
+    dimensions: item["dimensions"],
+  };
+}
+
 /**
  * The details of a a vectorization source, used by Azure OpenAI On Your Data when applying vector search, that is based
  * on a search service model ID. Currently only supported by Elasticsearch®.
@@ -1755,6 +2347,15 @@ export function onYourDataModelIdVectorizationSourceSerializer(
   return {
     type: item["type"],
     model_id: item["modelId"],
+  };
+}
+
+export function onYourDataModelIdVectorizationSourceDeserializer(
+  item: any,
+): OnYourDataModelIdVectorizationSource {
+  return {
+    type: item["type"],
+    modelId: item["model_id"],
   };
 }
 
@@ -1779,6 +2380,17 @@ export function azureMachineLearningIndexChatExtensionConfigurationSerializer(
   return {
     type: item["type"],
     parameters: azureMachineLearningIndexChatExtensionParametersSerializer(
+      item.parameters,
+    ),
+  };
+}
+
+export function azureMachineLearningIndexChatExtensionConfigurationDeserializer(
+  item: any,
+): AzureMachineLearningIndexChatExtensionConfiguration {
+  return {
+    type: item["type"],
+    parameters: azureMachineLearningIndexChatExtensionParametersDeserializer(
       item.parameters,
     ),
   };
@@ -1845,6 +2457,27 @@ export function azureMachineLearningIndexChatExtensionParametersSerializer(
   };
 }
 
+export function azureMachineLearningIndexChatExtensionParametersDeserializer(
+  item: any,
+): AzureMachineLearningIndexChatExtensionParameters {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionDeserializer(item.authentication),
+    topNDocuments: item["top_n_documents"],
+    inScope: item["in_scope"],
+    strictness: item["strictness"],
+    roleInformation: item["role_information"],
+    maxSearchQueries: item["max_search_queries"],
+    allowPartialResult: item["allow_partial_result"],
+    includeContexts: item["include_contexts"],
+    projectResourceId: item["project_resource_id"],
+    name: item["name"],
+    version: item["version"],
+    filter: item["filter"],
+  };
+}
+
 /**
  * A specific representation of configurable options for Azure Cosmos DB when using it as an Azure OpenAI chat
  * extension.
@@ -1866,6 +2499,17 @@ export function azureCosmosDBChatExtensionConfigurationSerializer(
   return {
     type: item["type"],
     parameters: azureCosmosDBChatExtensionParametersSerializer(item.parameters),
+  };
+}
+
+export function azureCosmosDBChatExtensionConfigurationDeserializer(
+  item: any,
+): AzureCosmosDBChatExtensionConfiguration {
+  return {
+    type: item["type"],
+    parameters: azureCosmosDBChatExtensionParametersDeserializer(
+      item.parameters,
+    ),
   };
 }
 
@@ -1940,6 +2584,32 @@ export function azureCosmosDBChatExtensionParametersSerializer(
   };
 }
 
+export function azureCosmosDBChatExtensionParametersDeserializer(
+  item: any,
+): AzureCosmosDBChatExtensionParameters {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionDeserializer(item.authentication),
+    topNDocuments: item["top_n_documents"],
+    inScope: item["in_scope"],
+    strictness: item["strictness"],
+    roleInformation: item["role_information"],
+    maxSearchQueries: item["max_search_queries"],
+    allowPartialResult: item["allow_partial_result"],
+    includeContexts: item["include_contexts"],
+    databaseName: item["database_name"],
+    containerName: item["container_name"],
+    indexName: item["index_name"],
+    fieldsMapping: azureCosmosDBFieldMappingOptionsDeserializer(
+      item.fields_mapping,
+    ),
+    embeddingDependency: onYourDataVectorizationSourceUnionDeserializer(
+      item.embedding_dependency,
+    ),
+  };
+}
+
 /** Optional settings to control how fields are processed when using a configured Azure Cosmos DB resource. */
 export interface AzureCosmosDBFieldMappingOptions {
   /** The name of the index field to use as a title. */
@@ -1969,6 +2639,19 @@ export function azureCosmosDBFieldMappingOptionsSerializer(
   };
 }
 
+export function azureCosmosDBFieldMappingOptionsDeserializer(
+  item: any,
+): AzureCosmosDBFieldMappingOptions {
+  return {
+    titleField: item["title_field"],
+    urlField: item["url_field"],
+    filepathField: item["filepath_field"],
+    contentFields: item["content_fields"],
+    contentFieldsSeparator: item["content_fields_separator"],
+    vectorFields: item["vector_fields"],
+  };
+}
+
 /**
  * A specific representation of configurable options for Elasticsearch when using it as an Azure OpenAI chat
  * extension.
@@ -1990,6 +2673,17 @@ export function elasticsearchChatExtensionConfigurationSerializer(
   return {
     type: item["type"],
     parameters: elasticsearchChatExtensionParametersSerializer(item.parameters),
+  };
+}
+
+export function elasticsearchChatExtensionConfigurationDeserializer(
+  item: any,
+): ElasticsearchChatExtensionConfiguration {
+  return {
+    type: item["type"],
+    parameters: elasticsearchChatExtensionParametersDeserializer(
+      item.parameters,
+    ),
   };
 }
 
@@ -2061,6 +2755,34 @@ export function elasticsearchChatExtensionParametersSerializer(
   };
 }
 
+export function elasticsearchChatExtensionParametersDeserializer(
+  item: any,
+): ElasticsearchChatExtensionParameters {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionDeserializer(item.authentication),
+    topNDocuments: item["top_n_documents"],
+    inScope: item["in_scope"],
+    strictness: item["strictness"],
+    roleInformation: item["role_information"],
+    maxSearchQueries: item["max_search_queries"],
+    allowPartialResult: item["allow_partial_result"],
+    includeContexts: item["include_contexts"],
+    endpoint: item["endpoint"],
+    indexName: item["index_name"],
+    fieldsMapping: !item.fields_mapping
+      ? undefined
+      : elasticsearchIndexFieldMappingOptionsDeserializer(item.fields_mapping),
+    queryType: elasticsearchQueryTypeDeserializer(item["query_type"]),
+    embeddingDependency: !item.embeddingDependency
+      ? item.embeddingDependency
+      : onYourDataVectorizationSourceUnionDeserializer(
+          item.embedding_dependency,
+        ),
+  };
+}
+
 /** Optional settings to control how fields are processed when using a configured Elasticsearch® resource. */
 export interface ElasticsearchIndexFieldMappingOptions {
   /** The name of the index field to use as a title. */
@@ -2090,6 +2812,19 @@ export function elasticsearchIndexFieldMappingOptionsSerializer(
   };
 }
 
+export function elasticsearchIndexFieldMappingOptionsDeserializer(
+  item: any,
+): ElasticsearchIndexFieldMappingOptions {
+  return {
+    titleField: item["title_field"],
+    urlField: item["url_field"],
+    filepathField: item["filepath_field"],
+    contentFields: item["content_fields"],
+    contentFieldsSeparator: item["content_fields_separator"],
+    vectorFields: item["vector_fields"],
+  };
+}
+
 /** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
 export type ElasticsearchQueryType = "simple" | "vector";
 
@@ -2114,6 +2849,15 @@ export function pineconeChatExtensionConfigurationSerializer(
   return {
     type: item["type"],
     parameters: pineconeChatExtensionParametersSerializer(item.parameters),
+  };
+}
+
+export function pineconeChatExtensionConfigurationDeserializer(
+  item: any,
+): PineconeChatExtensionConfiguration {
+  return {
+    type: item["type"],
+    parameters: pineconeChatExtensionParametersDeserializer(item.parameters),
   };
 }
 
@@ -2180,6 +2924,29 @@ export function pineconeChatExtensionParametersSerializer(
   };
 }
 
+export function pineconeChatExtensionParametersDeserializer(
+  item: any,
+): PineconeChatExtensionParameters {
+  return {
+    authentication: !item.authentication
+      ? item.authentication
+      : onYourDataAuthenticationOptionsUnionDeserializer(item.authentication),
+    topNDocuments: item["top_n_documents"],
+    inScope: item["in_scope"],
+    strictness: item["strictness"],
+    roleInformation: item["role_information"],
+    maxSearchQueries: item["max_search_queries"],
+    allowPartialResult: item["allow_partial_result"],
+    includeContexts: item["include_contexts"],
+    environment: item["environment"],
+    indexName: item["index_name"],
+    fieldsMapping: pineconeFieldMappingOptionsDeserializer(item.fields_mapping),
+    embeddingDependency: onYourDataVectorizationSourceUnionDeserializer(
+      item.embedding_dependency,
+    ),
+  };
+}
+
 /** Optional settings to control how fields are processed when using a configured Pinecone resource. */
 export interface PineconeFieldMappingOptions {
   /** The name of the index field to use as a title. */
@@ -2206,6 +2973,18 @@ export function pineconeFieldMappingOptionsSerializer(
   };
 }
 
+export function pineconeFieldMappingOptionsDeserializer(
+  item: any,
+): PineconeFieldMappingOptions {
+  return {
+    titleField: item["title_field"],
+    urlField: item["url_field"],
+    filepathField: item["filepath_field"],
+    contentFields: item["content_fields"],
+    contentFieldsSeparator: item["content_fields_separator"],
+  };
+}
+
 /** A representation of the available Azure OpenAI enhancement configurations. */
 export interface AzureChatEnhancementConfiguration {
   /** A representation of the available options for the Azure OpenAI grounding enhancement. */
@@ -2227,6 +3006,19 @@ export function azureChatEnhancementConfigurationSerializer(
   };
 }
 
+export function azureChatEnhancementConfigurationDeserializer(
+  item: any,
+): AzureChatEnhancementConfiguration {
+  return {
+    grounding: !item.grounding
+      ? undefined
+      : azureChatGroundingEnhancementConfigurationDeserializer(item.grounding),
+    ocr: !item.ocr
+      ? undefined
+      : azureChatOCREnhancementConfigurationDeserializer(item.ocr),
+  };
+}
+
 /** A representation of the available options for the Azure OpenAI grounding enhancement. */
 export interface AzureChatGroundingEnhancementConfiguration {
   /** Specifies whether the enhancement is enabled. */
@@ -2236,6 +3028,14 @@ export interface AzureChatGroundingEnhancementConfiguration {
 export function azureChatGroundingEnhancementConfigurationSerializer(
   item: AzureChatGroundingEnhancementConfiguration,
 ): Record<string, unknown> {
+  return {
+    enabled: item["enabled"],
+  };
+}
+
+export function azureChatGroundingEnhancementConfigurationDeserializer(
+  item: any,
+): AzureChatGroundingEnhancementConfiguration {
   return {
     enabled: item["enabled"],
   };
@@ -2255,6 +3055,14 @@ export function azureChatOCREnhancementConfigurationSerializer(
   };
 }
 
+export function azureChatOCREnhancementConfigurationDeserializer(
+  item: any,
+): AzureChatOCREnhancementConfiguration {
+  return {
+    enabled: item["enabled"],
+  };
+}
+
 /**
  * An abstract representation of a response format configuration usable by Chat Completions. Can be used to enable JSON
  * mode.
@@ -2267,6 +3075,14 @@ export interface ChatCompletionsResponseFormat {
 export function chatCompletionsResponseFormatSerializer(
   item: ChatCompletionsResponseFormat,
 ): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
+}
+
+export function chatCompletionsResponseFormatDeserializer(
+  item: any,
+): ChatCompletionsResponseFormat {
   return {
     type: item["type"],
   };
@@ -2296,6 +3112,25 @@ export function chatCompletionsResponseFormatUnionSerializer(
   }
 }
 
+export function chatCompletionsResponseFormatUnionDeserializer(
+  item: any,
+): ChatCompletionsResponseFormat {
+  switch (item.type) {
+    case "text":
+      return chatCompletionsTextResponseFormatDeserializer(
+        item as ChatCompletionsTextResponseFormat,
+      );
+
+    case "json_object":
+      return chatCompletionsJsonResponseFormatDeserializer(
+        item as ChatCompletionsJsonResponseFormat,
+      );
+
+    default:
+      return chatCompletionsResponseFormatDeserializer(item);
+  }
+}
+
 /**
  * The standard Chat Completions response format that can freely generate text and is not guaranteed to produce response
  * content that adheres to a specific schema.
@@ -2309,6 +3144,14 @@ export interface ChatCompletionsTextResponseFormat
 export function chatCompletionsTextResponseFormatSerializer(
   item: ChatCompletionsTextResponseFormat,
 ): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
+}
+
+export function chatCompletionsTextResponseFormatDeserializer(
+  item: any,
+): ChatCompletionsTextResponseFormat {
   return {
     type: item["type"],
   };
@@ -2329,6 +3172,14 @@ export function chatCompletionsJsonResponseFormatSerializer(
   };
 }
 
+export function chatCompletionsJsonResponseFormatDeserializer(
+  item: any,
+): ChatCompletionsJsonResponseFormat {
+  return {
+    type: item["type"],
+  };
+}
+
 /** An abstract representation of a tool that can be used by the model to improve a chat completions response. */
 export interface ChatCompletionsToolDefinition {
   /** The object type. */
@@ -2338,6 +3189,14 @@ export interface ChatCompletionsToolDefinition {
 export function chatCompletionsToolDefinitionSerializer(
   item: ChatCompletionsToolDefinition,
 ): Record<string, unknown> {
+  return {
+    type: item["type"],
+  };
+}
+
+export function chatCompletionsToolDefinitionDeserializer(
+  item: any,
+): ChatCompletionsToolDefinition {
   return {
     type: item["type"],
   };
@@ -2361,6 +3220,20 @@ export function chatCompletionsToolDefinitionUnionSerializer(
   }
 }
 
+export function chatCompletionsToolDefinitionUnionDeserializer(
+  item: any,
+): ChatCompletionsToolDefinition {
+  switch (item.type) {
+    case "function":
+      return chatCompletionsFunctionToolDefinitionDeserializer(
+        item as ChatCompletionsFunctionToolDefinition,
+      );
+
+    default:
+      return chatCompletionsToolDefinitionDeserializer(item);
+  }
+}
+
 /** The definition information for a chat completions function tool that can call a function in response to a tool call. */
 export interface ChatCompletionsFunctionToolDefinition
   extends ChatCompletionsToolDefinition {
@@ -2376,6 +3249,15 @@ export function chatCompletionsFunctionToolDefinitionSerializer(
   return {
     type: item["type"],
     function: functionDefinitionSerializer(item.function),
+  };
+}
+
+export function chatCompletionsFunctionToolDefinitionDeserializer(
+  item: any,
+): ChatCompletionsFunctionToolDefinition {
+  return {
+    type: item["type"],
+    function: functionDefinitionDeserializer(item.function),
   };
 }
 
@@ -2399,6 +3281,14 @@ export function chatCompletionsNamedToolSelectionSerializer(
   };
 }
 
+export function chatCompletionsNamedToolSelectionDeserializer(
+  item: any,
+): ChatCompletionsNamedToolSelection {
+  return {
+    type: item["type"],
+  };
+}
+
 export type ChatCompletionsNamedToolSelectionUnion =
   | ChatCompletionsNamedFunctionToolSelection
   | ChatCompletionsNamedToolSelection;
@@ -2414,6 +3304,20 @@ export function chatCompletionsNamedToolSelectionUnionSerializer(
 
     default:
       return chatCompletionsNamedToolSelectionSerializer(item);
+  }
+}
+
+export function chatCompletionsNamedToolSelectionUnionDeserializer(
+  item: any,
+): ChatCompletionsNamedToolSelection {
+  switch (item.type) {
+    case "function":
+      return chatCompletionsNamedFunctionToolSelectionDeserializer(
+        item as ChatCompletionsNamedFunctionToolSelection,
+      );
+
+    default:
+      return chatCompletionsNamedToolSelectionDeserializer(item);
   }
 }
 
@@ -2435,6 +3339,15 @@ export function chatCompletionsNamedFunctionToolSelectionSerializer(
   };
 }
 
+export function chatCompletionsNamedFunctionToolSelectionDeserializer(
+  item: any,
+): ChatCompletionsNamedFunctionToolSelection {
+  return {
+    type: item["type"],
+    function: chatCompletionsFunctionToolSelectionDeserializer(item.function),
+  };
+}
+
 /** A tool selection of a specific, named function tool that will limit chat completions to using the named function. */
 export interface ChatCompletionsFunctionToolSelection {
   /** The name of the function that should be called. */
@@ -2444,6 +3357,14 @@ export interface ChatCompletionsFunctionToolSelection {
 export function chatCompletionsFunctionToolSelectionSerializer(
   item: ChatCompletionsFunctionToolSelection,
 ): Record<string, unknown> {
+  return {
+    name: item["name"],
+  };
+}
+
+export function chatCompletionsFunctionToolSelectionDeserializer(
+  item: any,
+): ChatCompletionsFunctionToolSelection {
   return {
     name: item["name"],
   };
@@ -2763,6 +3684,23 @@ export function imageGenerationOptionsSerializer(
   };
 }
 
+export function imageGenerationOptionsDeserializer(
+  item: any,
+): ImageGenerationOptions {
+  return {
+    model: item["model"],
+    prompt: item["prompt"],
+    n: item["n"],
+    size: imageSizeDeserializer(item["size"]),
+    responseFormat: imageGenerationResponseFormatDeserializer(
+      item["response_format"],
+    ),
+    quality: imageGenerationQualityDeserializer(item["quality"]),
+    style: imageGenerationStyleDeserializer(item["style"]),
+    user: item["user"],
+  };
+}
+
 /** The desired size of generated images. */
 export type ImageSize =
   | "256x256"
@@ -2911,6 +3849,20 @@ export function speechGenerationOptionsSerializer(
   };
 }
 
+export function speechGenerationOptionsDeserializer(
+  item: any,
+): SpeechGenerationOptions {
+  return {
+    input: item["input"],
+    voice: speechVoiceDeserializer(item["voice"]),
+    responseFormat: speechGenerationResponseFormatDeserializer(
+      item["response_format"],
+    ),
+    speed: item["speed"],
+    model: item["model"],
+  };
+}
+
 /** The available voices for text-to-speech. */
 export type SpeechVoice =
   | "alloy"
@@ -2971,6 +3923,19 @@ export function embeddingsOptionsSerializer(
     encoding_format: item["encodingFormat"],
     dimensions: item["dimensions"],
     input_type: item["inputType"],
+  };
+}
+
+export function embeddingsOptionsDeserializer(item: any): EmbeddingsOptions {
+  return {
+    user: item["user"],
+    model: item["model"],
+    input: item["input"],
+    encodingFormat: embeddingEncodingFormatDeserializer(
+      item["encoding_format"],
+    ),
+    dimensions: item["dimensions"],
+    inputType: item["input_type"],
   };
 }
 

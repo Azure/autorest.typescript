@@ -93,7 +93,10 @@ export function buildOperationFiles(
         o,
         clientType
       );
-      const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
+      const deserializeOperationDeclaration = getDeserializePrivateFunction(
+        dpgContext,
+        o
+      );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
         deserializeOperationDeclaration,

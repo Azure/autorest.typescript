@@ -62,14 +62,12 @@ import { buildClientContext } from "./modular/buildClientContext.js";
 import { buildModelsOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
-import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { emitTypes } from "./modular/emitModels.js";
-import { env } from "process";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -263,9 +261,6 @@ export async function $onEmit(context: EmitContext) {
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     for (const subClient of modularCodeModel.clients) {
       buildModelsOptions(subClient, modularCodeModel);
-      if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
-        buildSerializeUtils(modularCodeModel);
-      // build operation files
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
       buildSubpathIndexFile(subClient, modularCodeModel, "models");

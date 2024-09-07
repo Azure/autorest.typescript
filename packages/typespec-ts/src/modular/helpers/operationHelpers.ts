@@ -31,7 +31,7 @@ import {
   isPolymorphicUnion,
   isSpecialHandledUnion,
   isSpecialUnionVariant
-} from "../buildSerializeUtils.js";
+} from "../serialization/serializeUtils.js";
 import {
   getDocsFromDescription,
   getFixmeForMultilineDocs
@@ -40,6 +40,7 @@ import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { AzurePollingDependencies } from "../external-dependencies.js";
 import { NameType } from "@azure-tools/rlc-common";
+import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
@@ -85,6 +86,7 @@ export function getSendPrivateFunction(
 }
 
 export function getDeserializePrivateFunction(
+  context: SdkContext,
   operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
@@ -175,23 +177,25 @@ export function getDeserializePrivateFunction(
     properties.length > 0 &&
     !deserializedType.aliasType
   ) {
-    statements.push(
-      `return {`,
-      getResponseMapping(deserializedType, deserializedRoot).join(","),
-      `}`
-    );
+    const deserializeFunctionName =
+      buildModelDeserializer(
+        context,
+        deserializedType.tcgcType!,
+        false,
+        true
+      ) ?? "";
+    statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
   } else if (returnType.type === "void" || deserializedType === undefined) {
     statements.push(`return;`);
   } else {
-    statements.push(
-      `return ${deserializeResponseValue(
-        deserializedType,
-        deserializedRoot,
-        false, // TODO: Calculate if required
-        [deserializedType],
-        deserializedType.format
-      )}`
-    );
+    const deserializeFunctionName =
+      buildModelDeserializer(
+        context,
+        deserializedType.tcgcType!,
+        false,
+        true
+      ) ?? "";
+    statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
   }
   return {
     ...functionStatement,
@@ -955,10 +959,10 @@ export function getRequestModelMapping(
               }`
         }`;
       } else if (isPolymorphicUnion(property.type)) {
-        const deserializeFunctionName = property.type.name
+        const serializeFunctionName = property.type.name
           ? `${toCamelCase(property.type.name)}Serializer`
           : getDeserializeFunctionName(property.type, "serialize");
-        definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
+        definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`;
       } else {
         if (property.type.name) {
           serializerName = `${toCamelCase(property.type.name)}Serializer`;
@@ -1040,6 +1044,7 @@ export function getRequestModelMapping(
  * extracting properties from body and headers and building the HLC response object
  */
 export function getResponseMapping(
+  context: SdkContext,
   type: Type,
   propertyPath: string = "result.body",
   typeStack: Type[] = []
@@ -1076,24 +1081,29 @@ export function getResponseMapping(
           property,
           propertyPath
         );
-        const deserializeFunctionName = getDeserializeFunctionName(
-          property.type,
-          "deserialize"
-        );
+        const deserializeFunctionName =
+          buildModelDeserializer(
+            context,
+            property.type.tcgcType!,
+            false,
+            true
+          ) ?? "";
         definition = `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
+        const deserializeFunctionName =
+          buildModelDeserializer(
+            context,
+            property.type.tcgcType!,
+            false,
+            true
+          ) ?? "";
+        const propertyRootPath = `${propertyPath}.${property.restApiName}`;
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
           property.type
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
-        } {${getResponseMapping(
-          property.type,
-          `${propertyPath}.${property.restApiName}${
-            property.optional ? "?" : ""
-          }`,
-          [...typeStack, property.type]
-        )}}`;
+        } ${deserializeFunctionName}(${propertyRootPath})`;
       }
 
       props.push(definition);
@@ -1114,14 +1124,15 @@ export function getResponseMapping(
           }`
         );
       } else {
+        const deserializeFunctionName =
+          buildModelDeserializer(
+            context,
+            property.type.tcgcType!,
+            false,
+            true
+          ) ?? "";
         props.push(
-          `"${property.clientName}": ${deserializeResponseValue(
-            property.type,
-            restValue,
-            property.optional !== undefined ? !property.optional : false,
-            [...typeStack, property.type],
-            property.format
-          )}`
+          `"${property.clientName}": ${deserializeFunctionName}(${restValue})`
         );
       }
     }
@@ -1129,121 +1140,6 @@ export function getResponseMapping(
 
   typeStack.pop();
   return props;
-}
-
-/**
- * This function helps converting strings into JS complex types recursively.
- * We need to drill down into Array elements to make sure that the element type is
- * deserialized correctly
- */
-export function deserializeResponseValue(
-  type: Type,
-  restValue: string,
-  required: boolean,
-  typeStack: Type[] = [],
-  format?: string
-): string {
-  const requiredPrefix = required === false ? `${restValue} === undefined` : "";
-  const nullablePrefix = isTypeNullable(type) ? `${restValue} === null` : "";
-  const dependencies = useDependencies();
-  const stringToUint8ArrayReference = resolveReference(
-    dependencies.stringToUint8Array
-  );
-  const requiredOrNullablePrefix =
-    requiredPrefix !== "" && nullablePrefix !== ""
-      ? `(${requiredPrefix} || ${nullablePrefix})`
-      : `${requiredPrefix}${nullablePrefix}`;
-  switch (type.type) {
-    case "datetime":
-      return required
-        ? isTypeNullable(type)
-          ? `${restValue} === null ? null : new Date(${restValue})`
-          : `new Date(${restValue})`
-        : `${restValue} !== undefined? new Date(${restValue}): undefined`;
-    case "list": {
-      const prefix =
-        required && !isTypeNullable(type)
-          ? `${restValue}`
-          : `${requiredOrNullablePrefix} ? ${restValue} : ${restValue}`;
-      if (type.elementType?.type === "model") {
-        if (!type.elementType.aliasType) {
-          const elementNullOrUndefinedPrefix =
-            isTypeNullable(type.elementType) || type.elementType.optional
-              ? "!p ? p :"
-              : "";
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}{${getResponseMapping(
-            type.elementType,
-            "p",
-            [...typeStack, type.elementType]
-          )}}})`;
-        } else if (isPolymorphicUnion(type.elementType)) {
-          let nullOrUndefinedPrefix = "";
-          if (isTypeNullable(type.elementType)) {
-            nullOrUndefinedPrefix = `!p ? p :`;
-          }
-          const deserializeFunctionName = getDeserializeFunctionName(
-            type.elementType,
-            "deserialize"
-          );
-          return `${prefix}.map((p: any) => ${nullOrUndefinedPrefix}${deserializeFunctionName}(p))`;
-        }
-        return `${prefix}`;
-      } else if (
-        needsDeserialize(type.elementType) &&
-        !type.elementType?.aliasType
-      ) {
-        return `${prefix}.map((p: any) => ${deserializeResponseValue(
-          type.elementType!,
-          "p",
-          true,
-          [...typeStack, type.elementType!],
-          type.elementType?.format
-        )})`;
-      } else {
-        return restValue;
-      }
-    }
-    case "byte-array":
-      if (format !== "binary") {
-        return `typeof ${restValue} === 'string'
-        ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
-        : ${restValue}`;
-      }
-      return restValue;
-    case "combined":
-      if (isNormalUnion(type)) {
-        return `${restValue}`;
-      } else if (isSpecialHandledUnion(type)) {
-        const deserializeFunctionName = getDeserializeFunctionName(
-          type,
-          "deserialize"
-        );
-        return `${deserializeFunctionName}(${restValue})`;
-      } else {
-        return `${restValue} as any`;
-      }
-    case "enum":
-      if (!type.isFixed && !type.isNonExhaustive) {
-        return `${restValue} as ${type.name}`;
-      }
-      return restValue;
-    case "model":
-      if (type.discriminator) {
-        const discriminatorProp = type.properties?.filter(
-          (p) => p.restApiName === type.discriminator
-        );
-        if (
-          discriminatorProp?.length === 1 &&
-          discriminatorProp[0]?.type.isFixed === false &&
-          discriminatorProp[0].type.isNonExhaustive === false
-        ) {
-          return `${restValue} as ${type.name}`;
-        }
-      }
-      return restValue;
-    default:
-      return restValue;
-  }
 }
 
 /**

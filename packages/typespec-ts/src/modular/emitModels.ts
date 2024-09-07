@@ -29,6 +29,7 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
 import { addImportBySymbol } from "../utils/importHelper.js";
+import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
@@ -62,6 +63,11 @@ export function emitTypes(
       const modelPolymorphicType = buildModelPolymorphicType(type);
       if (modelPolymorphicType) {
         const serializerFunction = buildModelSerializer(context, type, true);
+        const deserializerFunction = buildModelDeserializer(
+          context,
+          type,
+          true
+        );
         if (
           serializerFunction &&
           serializerFunction.name &&
@@ -73,6 +79,18 @@ export function emitTypes(
             refkey(type, "polymorphicSerializer")
           );
         }
+        if (
+          deserializerFunction &&
+          typeof deserializerFunction !== "string" &&
+          deserializerFunction.name &&
+          !sourceFile.getFunction(deserializerFunction.name)
+        ) {
+          addDeclaration(
+            sourceFile,
+            deserializerFunction,
+            refkey(type, "polymorphicDeserializer")
+          );
+        }
         addDeclaration(
           sourceFile,
           modelPolymorphicType,
@@ -80,6 +98,7 @@ export function emitTypes(
         );
       }
       const serializerFunction = buildModelSerializer(context, type);
+      const deserializerFunction = buildModelDeserializer(context, type);
       if (
         serializerFunction &&
         serializerFunction.name &&
@@ -89,6 +108,18 @@ export function emitTypes(
           sourceFile,
           serializerFunction,
           refkey(type, "serializer")
+        );
+      }
+      if (
+        deserializerFunction &&
+        typeof deserializerFunction !== "string" &&
+        deserializerFunction.name &&
+        !sourceFile.getFunction(deserializerFunction.name)
+      ) {
+        addDeclaration(
+          sourceFile,
+          deserializerFunction,
+          refkey(type, "deserializer")
         );
       }
     } else if (type.kind === "enum") {
@@ -104,6 +135,31 @@ export function emitTypes(
     } else if (type.kind === "union") {
       const unionType = buildUnionType(type);
       addDeclaration(sourceFile, unionType, type);
+      const serializationFunction = buildModelSerializer(context, type);
+      if (
+        serializationFunction &&
+        serializationFunction.name &&
+        !sourceFile.getFunction(serializationFunction.name)
+      ) {
+        addDeclaration(
+          sourceFile,
+          serializationFunction,
+          refkey(type, "serializer")
+        );
+      }
+      const deserializationFunction = buildModelDeserializer(context, type);
+      if (
+        deserializationFunction &&
+        typeof deserializationFunction !== "string" &&
+        deserializationFunction.name &&
+        !sourceFile.getFunction(deserializationFunction.name)
+      ) {
+        addDeclaration(
+          sourceFile,
+          deserializationFunction,
+          refkey(type, "deserializer")
+        );
+      }
     }
   }
 
@@ -226,7 +282,7 @@ function buildModelInterface(
 
 export function normalizeModelName(
   context: SdkContext,
-  type: SdkModelType | SdkEnumType
+  type: SdkModelType | SdkEnumType | SdkUnionType
 ): string {
   const segments = type.crossLanguageDefinitionId.split(".");
   segments.pop();
