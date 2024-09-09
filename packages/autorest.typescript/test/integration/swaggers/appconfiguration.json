@@ -1262,6 +1262,21 @@
     "KeyListResult": {
       "description": "The result of a list request.",
       "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/TestParentList"
+        }
+      ],
+      "properties": {
+        "summary": {
+          "description": "The roll out count summary of the savings plans",
+          "type": "string"
+        }
+      }
+    },
+    "TestParentList": {
+      "description": "The parent result of a list request.",
+      "type": "object",
       "properties": {
         "items": {
           "description": "The collection value.",
