@@ -8,41 +8,99 @@ import {
 } from "@azure-rest/core-client";
 
 /**
- * An interface that describes how to communicate with the service.
+ * returns an async iterator that iterates over results. It also has a `byPage`
+ * method that returns pages of items at once.
+ *
+ * @param pagedResult - an object that specifies how to get pages.
+ * @returns a paged async iterator that iterates over results.
  */
-export interface PagedResult<
-  TPage,
+
+export function getPagedAsyncIterator<
+  TElement,
+  TPage = TElement[],
   TPageSettings = PageSettings,
   TLink = string,
-> {
-  /**
-   * Link to the first page of results.
-   */
-  firstPageLink: TLink;
-  /**
-   * A method that returns a page of results.
-   */
-  getPage: (
-    pageLink: TLink,
-    maxPageSize?: number,
-  ) => Promise<
-    | {
-        page: TPage;
-        nextPageLink?: TLink;
-      }
-    | undefined
-  >;
-  /**
-   * a function to implement the `byPage` method on the paged async iterator. The default is
-   * one that sets the `maxPageSizeParam` from `settings.maxPageSize`.
-   */
-  byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-  /**
-   * A function to extract elements from a page.
-   */
-  toElements?: (page: TPage) => unknown[];
+>(
+  pagedResult: PagedResult<TPage, TPageSettings, TLink>,
+): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
+  const iter = getItemAsyncIterator<TElement, TPage, TLink, TPageSettings>(pagedResult);
+  return {
+    next() {
+      return iter.next();
+    },
+    [Symbol.asyncIterator]() {
+      return this;
+    },
+    byPage:
+      pagedResult?.byPage ??
+      (((settings?: PageSettings) => {
+        const { continuationToken } = settings ?? {};
+        return getPageAsyncIterator(pagedResult, {
+          pageLink: continuationToken as unknown as TLink | undefined,
+        });
+      }) as unknown as (settings?: TPageSettings) => AsyncIterableIterator<TPage>),
+  };
 }
 
+async function* getItemAsyncIterator<TElement, TPage, TLink, TPageSettings>(
+  pagedResult: PagedResult<TPage, TPageSettings, TLink>,
+): AsyncIterableIterator<TElement> {
+  const pages = getPageAsyncIterator(pagedResult);
+  const firstVal = await pages.next();
+  // if the result does not have an array shape, i.e. TPage = TElement, then we return it as is
+  if (!Array.isArray(firstVal.value)) {
+    // can extract elements from this page
+    const { toElements } = pagedResult;
+    if (toElements) {
+      yield* toElements(firstVal.value) as TElement[];
+      for await (const page of pages) {
+        yield* toElements(page) as TElement[];
+      }
+    } else {
+      yield firstVal.value;
+      // `pages` is of type `AsyncIterableIterator<TPage>` but TPage = TElement in this case
+      yield* pages as unknown as AsyncIterableIterator<TElement>;
+    }
+  } else {
+    yield* firstVal.value;
+    for await (const page of pages) {
+      // pages is of type `AsyncIterableIterator<TPage>` so `page` is of type `TPage`. In this branch,
+      // it must be the case that `TPage = TElement[]`
+      yield* page as unknown as TElement[];
+    }
+  }
+}
+
+async function* getPageAsyncIterator<TPage, TLink, TPageSettings>(
+  pagedResult: PagedResult<TPage, TPageSettings, TLink>,
+  options: {
+    pageLink?: TLink;
+  } = {},
+): AsyncIterableIterator<TPage> {
+  const { pageLink } = options;
+  let response = await pagedResult.getPage(pageLink ?? pagedResult.firstPageLink);
+  if (!response) {
+    return;
+  }
+  yield response.page;
+  while (response.nextPageLink) {
+    response = await pagedResult.getPage(response.nextPageLink);
+    if (!response) {
+      return;
+    }
+    yield response.page;
+  }
+}
+
+/**
+ * An interface that tracks the settings for paged iteration
+ */
+export interface PageSettings {
+  /**
+   * The token that keeps track of where to continue the iterator
+   */
+  continuationToken?: string;
+}
 /**
  * An interface that allows async iterable iteration both to completion and by page.
  */
@@ -58,11 +116,7 @@ export interface PagedAsyncIterableIterator<
   /**
    * The connection to the async iterator, part of the iteration protocol
    */
-  [Symbol.asyncIterator](): PagedAsyncIterableIterator<
-    TElement,
-    TPage,
-    TPageSettings
-  >;
+  [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
   /**
    * Return an AsyncIterableIterator that works a page at a time
    */
@@ -70,34 +124,45 @@ export interface PagedAsyncIterableIterator<
 }
 
 /**
- * An interface that tracks the settings for paged iteration
+ * An interface that describes how to communicate with the service.
  */
-export interface PageSettings {
+export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
   /**
-   * The token that keeps track of where to continue the iterator
+   * Link to the first page of results.
    */
-  continuationToken?: string;
+  firstPageLink: TLink;
   /**
-   * The size of the page during paged iteration
+   * A method that returns a page of results.
    */
-  maxPageSize?: number;
+  getPage: (
+    pageLink: TLink,
+  ) => Promise<{ page: TPage; nextPageLink?: TLink } | undefined>;
+  /**
+   * a function to implement the `byPage` method on the paged async iterator. The default is
+   * one that sets the `maxPageSizeParam` from `settings.maxPageSize`.
+   */
+  byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+
+  /**
+   * A function to extract elements from a page.
+   */
+  toElements?: (page: TPage) => unknown[];
 }
 
 /**
- * returns an async iterator that iterates over results. It also has a `byPage`
- * method that returns pages of items at once.
- *
- * @param pagedResult - an object that specifies how to get pages.
- * @returns a paged async iterator that iterates over results.
+ * Paged collection of T items
  */
-export declare function getPagedAsyncIterator<
-  TElement,
-  TPage = TElement[],
-  TPageSettings = PageSettings,
-  TLink = string,
->(
-  pagedResult: PagedResult<TPage, TPageSettings, TLink>,
-): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+export type Paged<T> = {
+  /**
+   * The T items on this page
+   */
+  value: T[];
+  /**
+   * The link to the next page of items
+   */
+  nextLink?: string;
+};
+
 
 /**
  * Helper type to extract the type of an array
