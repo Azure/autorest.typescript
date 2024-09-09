@@ -82,10 +82,10 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
   modelsIndexFile.fixUnusedIdentifiers();
   const allTypes = modelsIndexFile.getTypeAliases();
   clientDetails.allTypes = allTypes
-    .filter((item) => {
+    .filter(item => {
       return item.isExported();
     })
-    .map((item) => {
+    .map(item => {
       return item.getName();
     });
 }
@@ -96,7 +96,7 @@ const writeClientModels = (
 ) => {
   const { useCoreV2, coreHttpCompatMode } = getAutorestOptions();
   let clientOptionalParams = clientDetails.parameters.filter(
-    (p) =>
+    p =>
       (!p.required || p.defaultValue) &&
       p.implementationLocation === ImplementationLocation.Client
   );
@@ -109,8 +109,8 @@ const writeClientModels = (
       baseClass: !useCoreV2
         ? "coreHttp.ServiceClientOptions"
         : coreHttpCompatMode
-          ? "coreHttpCompat.ExtendedServiceClientOptions"
-          : "coreClient.ServiceClientOptions"
+        ? "coreHttpCompat.ExtendedServiceClientOptions"
+        : "coreClient.ServiceClientOptions"
     }
   );
 };
@@ -120,8 +120,8 @@ const writeOperationModels = (
   modelsIndexFile: SourceFile
 ) => {
   const modelsNames = getAllModelsNames(clientDetails);
-  return clientDetails.operationGroups.forEach((operationGroup) => {
-    operationGroup.operations.forEach((operation) => {
+  return clientDetails.operationGroups.forEach(operationGroup => {
+    operationGroup.operations.forEach(operation => {
       writeOptionsParameter(clientDetails, operation, modelsIndexFile);
       writeResponseTypes(operation, modelsIndexFile, modelsNames);
     });
@@ -148,7 +148,7 @@ function writeOptionsParameter(
 
   const operationRequestMediaTypes = new Set<KnownMediaType>();
   operation.requests.forEach(
-    (r) => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
+    r => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
   );
   writeOptionalParameters(
     operation.typeDetails.typeName,
@@ -195,7 +195,7 @@ function writeResponseTypes(
       ({ isError, mappers }) =>
         !isError && (mappers.bodyMapper || mappers.headersMapper)
     )
-    .forEach((operation) => {
+    .forEach(operation => {
       const { statusCodes, ...coreResponse } = operation;
       if (addedResponses.length === 0) {
         // Define possible values for response
@@ -204,13 +204,13 @@ function writeResponseTypes(
           docs: [`Contains response data for the ${name} operation.`],
           isExported: true,
           type: buildResponseType(operation, isLro),
-          leadingTrivia: (writer) => writer.blankLine(),
+          leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });
         addedResponses.push({ name: responseName, response: coreResponse });
       }
 
-      const existingResponse = addedResponses.find((r) => r.name === name);
+      const existingResponse = addedResponses.find(r => r.name === name);
       if (
         existingResponse &&
         isEqual(existingResponse.response, coreResponse)
@@ -245,7 +245,7 @@ function writeResponseTypes(
           parsedBody: ResourceGroup;
         };
       }`,
-      leadingTrivia: (writer) => writer.blankLine(),
+      leadingTrivia: writer => writer.blankLine(),
       kind: StructureKind.TypeAlias
     });
   }
@@ -278,8 +278,9 @@ function getBodyProperties({
   // Used when the bodyType is not a primitive, or for binary media types with no defined bodyType.
   const mainProperties: OptionalKind<PropertySignatureStructure>[] = [];
   // These are the additional default properties to add under the _response property in the response type
-  const internalResponseProperties: OptionalKind<PropertySignatureStructure>[] =
-    [];
+  const internalResponseProperties: OptionalKind<
+    PropertySignatureStructure
+  >[] = [];
 
   if (bodyType) {
     if (hasBodyProperty) {
@@ -293,14 +294,14 @@ function getBodyProperties({
       {
         name: "bodyAsText",
         type: "string",
-        leadingTrivia: (writer) => writer.blankLine(),
+        leadingTrivia: writer => writer.blankLine(),
         docs: ["The response body as text (string format)"]
       },
       {
         name: "parsedBody",
         docs: ["The response body as parsed JSON or XML"],
         type: bodyType.typeName,
-        leadingTrivia: (writer) => writer.blankLine()
+        leadingTrivia: writer => writer.blankLine()
       }
     );
   } else if (mediaType === KnownMediaType.Binary) {
@@ -409,7 +410,7 @@ function buildResponseType(
                 })
               )
             : "coreHttp.HttpResponse",
-          leadingTrivia: (writer) => writer.blankLine()
+          leadingTrivia: writer => writer.blankLine()
         }
       ]
     });
@@ -473,7 +474,7 @@ const writeChoices = (
   clientDetails: ClientDetails,
   modelsIndexFile: SourceFile
 ) => {
-  clientDetails.unions.forEach((choice) => {
+  clientDetails.unions.forEach(choice => {
     if (choice.schemaType === SchemaType.Choice) {
       writeExtensibleChoice(choice, modelsIndexFile);
     } else {
@@ -500,7 +501,7 @@ const writeExtensibleChoice = (
       docs: [
         `Known values of {@link ${choice.name}} that the service accepts.`
       ],
-      members: choice.properties.map((p) => ({
+      members: choice.properties.map(p => ({
         name: p.name,
         value: p.value,
         docs: [p.description ? p.description : p.name]
@@ -513,7 +514,7 @@ const writeExtensibleChoice = (
     docs: [getExtensibleChoiceDescription(choice)],
     isExported: true,
     type: choice.itemType || SchemaType.String,
-    trailingTrivia: (writer) => writer.newLine()
+    trailingTrivia: writer => writer.newLine()
   });
 };
 
@@ -536,7 +537,7 @@ function getExtensibleChoiceDescription(choice: UnionDetails) {
   );
 
   const valueDescriptions = choice.properties
-    .map((p) => `**${p.value}**${p.description ? `: ${p.description}` : ""}`)
+    .map(p => `**${p.value}**${p.description ? `: ${p.description}` : ""}`)
     .join(` \\\n`)
     // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
     .replace(/^\//g, "\\/")
@@ -557,7 +558,7 @@ const writeSealedChoice = (
   modelsIndexFile: SourceFile
 ) => {
   const values = choice.properties
-    .map((p) =>
+    .map(p =>
       choice.itemType === SchemaType.String ? `"${p.value}"` : p.value
     )
     .join(" | ");
@@ -567,7 +568,7 @@ const writeSealedChoice = (
     docs: [choice.description],
     isExported: true,
     type: values,
-    trailingTrivia: (writer) => writer.newLine()
+    trailingTrivia: writer => writer.newLine()
   });
 };
 
@@ -576,17 +577,18 @@ const writeObjects = (
   modelsIndexFile: SourceFile
 ) => clientDetails.objects.forEach(writeObjectSignature(modelsIndexFile));
 
-const writeObjectSignature =
-  (modelsIndexFile: SourceFile) => (model: ObjectDetails) => {
-    modelsIndexFile.addInterface({
-      name: model.name,
-      docs: model.description ? [model.description] : [],
-      isExported: true,
-      extends: model.parents.map((p) => p.name),
-      properties: getPropertiesSignatures(model),
-      leadingTrivia: (writer) => writer.blankLine()
-    });
-  };
+const writeObjectSignature = (modelsIndexFile: SourceFile) => (
+  model: ObjectDetails
+) => {
+  modelsIndexFile.addInterface({
+    name: model.name,
+    docs: model.description ? [model.description] : [],
+    isExported: true,
+    extends: model.parents.map(p => p.name),
+    properties: getPropertiesSignatures(model),
+    leadingTrivia: writer => writer.blankLine()
+  });
+};
 
 /**
  * This function writes all UnionTypes, these types represent the options a request can use for a Polymorphic parameter
@@ -594,13 +596,13 @@ const writeObjectSignature =
 function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
   objects
     .filter(
-      (obj) => obj.kind === ObjectKind.Polymorphic && obj.children.length > 0
+      obj => obj.kind === ObjectKind.Polymorphic && obj.children.length > 0
     )
-    .forEach((obj) => {
+    .forEach(obj => {
       const polymorphicObject = obj as PolymorphicObjectDetails;
       const childrenNames = [
         [polymorphicObject.name],
-        ...polymorphicObject.children.map((c) => {
+        ...polymorphicObject.children.map(c => {
           return c.schema.children && c.schema.children.immediate.length
             ? `${c.name}Union`
             : c.name;
@@ -610,7 +612,7 @@ function writeUniontypes({ objects }: ClientDetails, modelsFile: SourceFile) {
         name: `${obj.name}Union`,
         isExported: true,
         type: childrenNames.join(" | "),
-        trailingTrivia: (writer) => writer.newLine()
+        trailingTrivia: writer => writer.newLine()
       });
     });
 }
@@ -636,10 +638,10 @@ function getOptionalGroups(
       ({ parameter: { groupedBy, flattened } }) =>
         groupedBy && !groupedBy.required && !flattened
     )
-    .forEach((p) => {
+    .forEach(p => {
       const { parameter } = p;
       const groupName = getLanguageMetadata(parameter.groupedBy!.language).name;
-      const isAlreadyTracked = optionalGroups.some((p) => {
+      const isAlreadyTracked = optionalGroups.some(p => {
         const { name } = getLanguageMetadata(p.language);
         return name === groupName;
       });
@@ -650,7 +652,7 @@ function getOptionalGroups(
       pull(optionalParams, p);
     });
 
-  return optionalGroups.map((group) => {
+  return optionalGroups.map(group => {
     const { name, description } = getLanguageMetadata(group.language);
     return {
       name: normalizeName(name, NameType.Parameter, true),
@@ -715,7 +717,7 @@ function writeOptionalParameters(
             ...optionalGroupDeclarations,
             ...optionalParams
               .filter(
-                (p) => !p.targetMediaType || p.targetMediaType === mediaType
+                p => !p.targetMediaType || p.targetMediaType === mediaType
               )
               .map<PropertySignatureStructure>(buildParamDetails)
           ])
@@ -733,7 +735,7 @@ function writeOptionalParameters(
     );
   }
   if (operationIsLro)
-    interfaces.forEach((iface) => {
+    interfaces.forEach(iface => {
       iface.addProperties([
         {
           name: "updateIntervalInMs",
@@ -796,25 +798,7 @@ function getNonDiscriminatorProperties(
 ): PropertyDetails[] {
   const { properties } = objectDetails;
 
-  return properties.filter((property) => !property.isDiscriminator);
-}
-
-/**
- * Deduplicates properties from an object by removing duplicated ones
- */
-function deduplicateProperties(
-  properties: PropertyDetails[]
-): PropertyDetails[] {
-  const isExisting = new Set<string>();
-
-  return properties.filter((property) => {
-    if (isExisting.has(property.name)) {
-      return false;
-    }
-
-    isExisting.add(property.name);
-    return true;
-  });
+  return properties.filter(property => !property.isDiscriminator);
 }
 
 /**
@@ -861,7 +845,7 @@ function withDiscriminator(
   }
 
   const discProps = keys(discriminatorValues).map<PropertySignatureStructure>(
-    (key) => {
+    key => {
       // Remove enclosing quotes from the key to get the real property name
       const propertyName = key.replace(/(^")|("$)/g, "");
       const name = normalizeName(propertyName, NameType.Property);
@@ -870,14 +854,14 @@ function withDiscriminator(
           `Polymorphic discriminator, which specifies the different types this object can be`
         ],
         name: `"${name}"`,
-        type: discriminatorValues[key].map((disc) => `"${disc}"`).join(" | "),
+        type: discriminatorValues[key].map(disc => `"${disc}"`).join(" | "),
         kind: StructureKind.PropertySignature
       };
     }
   );
 
   const propertiesWithoutDiscriminator = properties.filter(
-    (p) => !discProps.some((dp) => dp.name === p.name)
+    p => !discProps.some(dp => dp.name === p.name)
   );
 
   return [...discProps, ...propertiesWithoutDiscriminator];
