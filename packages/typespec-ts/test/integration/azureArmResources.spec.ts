@@ -1,6 +1,9 @@
 import { assert } from "chai";
 import AzureArmResourceClientFactory, {
-  AzureArmResourceClient
+  AzureArmResourceClient,
+  getLongRunningPoller,
+  isUnexpected,
+  paginate
 } from "./generated/azure/resource-manager/models/resources/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {
   let client: AzureArmResourceClient;
@@ -70,22 +73,29 @@ describe("Azure Arm Resources Rest Client", () => {
   };
   // singleton tracked resource
   it("should get singleton tracked resources by resourceGroup", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
       .get();
-    const body = JSON.parse(JSON.stringify(result.body));
+
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
     assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validSingletonResource.id);
-    assert.strictEqual(body.name, validSingletonResource.name);
-    assert.strictEqual(body.type, validSingletonResource.type);
+    assert.strictEqual(result.body.id, validSingletonResource.id);
+    assert.strictEqual(result.body.name, validSingletonResource.name);
+    assert.strictEqual(result.body.type, validSingletonResource.type);
   });
 
   it("should createOrUpdate singleton tracked resources", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
         "00000000-0000-0000-0000-000000000000",
@@ -99,15 +109,20 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validSingletonResource.id);
-    assert.strictEqual(body.name, validSingletonResource.name);
-    assert.strictEqual(body.type, validSingletonResource.type);
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validSingletonResource.id);
+    assert.strictEqual(result.body.name, validSingletonResource.name);
+    assert.strictEqual(result.body.type, validSingletonResource.type);
   });
 
   it("should update singleton tracked resources", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
         "00000000-0000-0000-0000-000000000000",
@@ -121,28 +136,41 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validSingletonResource.id);
-    assert.strictEqual(body.name, validSingletonResource.name);
-    assert.strictEqual(body.type, validSingletonResource.type);
-    assert.strictEqual(body.location, "eastus2");
-    assert.strictEqual(body.properties.description, "valid2");
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validSingletonResource.id);
+    assert.strictEqual(result.body.name, validSingletonResource.name);
+    assert.strictEqual(result.body.type, validSingletonResource.type);
+    assert.strictEqual(result.body.location, "eastus2");
+    assert.strictEqual(result.body.properties?.description, "valid2");
   });
 
   it("should list singleton tracked resources by resourceGroup", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
       .get();
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.value[0].id, validSingletonResource.id);
-    assert.strictEqual(body.value[0].name, validSingletonResource.name);
-    assert.strictEqual(body.value[0].type, validSingletonResource.type);
+    if (isUnexpected(initialResponse)) {
+      const error = `Unexpected status code ${initialResponse.status}`;
+      assert.fail(error);
+    }
+    const iter = paginate(client, initialResponse);
+    let result = [];
+    for await (const item of iter) {
+      result.push(item);
+    }
+    assert.strictEqual(initialResponse.status, "200");
+    assert.strictEqual(result[0]?.id, validSingletonResource.id);
+    assert.strictEqual(result[0]?.name, validSingletonResource.name);
+    assert.strictEqual(result[0]?.type, validSingletonResource.type);
   });
 
   // top level tracked resource
@@ -164,7 +192,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should get top level tracked resources", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
         "00000000-0000-0000-0000-000000000000",
@@ -172,14 +200,19 @@ describe("Azure Arm Resources Rest Client", () => {
         "top"
       )
       .get();
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validTopLevelResource.id);
-    assert.strictEqual(body.name, validTopLevelResource.name);
-    assert.strictEqual(body.type, validTopLevelResource.type);
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validTopLevelResource.id);
+    assert.strictEqual(result.body.name, validTopLevelResource.name);
+    assert.strictEqual(result.body.type, validTopLevelResource.type);
   });
   it("should create or replace top level tracked resources", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
         "00000000-0000-0000-0000-000000000000",
@@ -195,19 +228,24 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       });
 
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validTopLevelResource.id);
-    assert.strictEqual(body.name, validTopLevelResource.name);
-    assert.strictEqual(body.type, validTopLevelResource.type);
-    assert.strictEqual(body.location, validTopLevelResource.location);
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validTopLevelResource.id);
+    assert.strictEqual(result.body.name, validTopLevelResource.name);
+    assert.strictEqual(result.body.type, validTopLevelResource.type);
+    assert.strictEqual(result.body.location, validTopLevelResource.location);
     assert.strictEqual(
-      body.properties?.description,
+      result.body.properties?.description,
       validTopLevelResource.properties?.description
     );
   });
   it.skip("should update top level tracked resources", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
         "00000000-0000-0000-0000-000000000000",
@@ -222,13 +260,16 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validTopLevelResource.id);
-    assert.strictEqual(body.name, validTopLevelResource.name);
-    assert.strictEqual(body.type, validTopLevelResource.type);
-    assert.strictEqual(body.location, validTopLevelResource.location);
-    assert.strictEqual(body.properties?.description, "valid2");
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validTopLevelResource.id);
+    assert.strictEqual(result.body.name, validTopLevelResource.name);
+    assert.strictEqual(result.body.type, validTopLevelResource.type);
+    assert.strictEqual(result.body.location, validTopLevelResource.location);
+    assert.strictEqual(result.body.properties?.description, "valid2");
   });
   it("should delete top level tracked resources", async () => {
     const result = await client
@@ -248,38 +289,54 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
   it("should list top level tracked resources by resourceGroup ", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
       .get();
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.value[0].id, validTopLevelResource.id);
-    assert.strictEqual(body.value[0].name, validTopLevelResource.name);
-    assert.strictEqual(body.value[0].type, validTopLevelResource.type);
-    assert.strictEqual(body.value[0].location, validTopLevelResource.location);
+    if (isUnexpected(initialResponse)) {
+      const error = `Unexpected status code ${initialResponse.status}`;
+      assert.fail(error);
+    }
+    const iter = paginate(client, initialResponse);
+    let result = [];
+    for await (const item of iter) {
+      result.push(item);
+    }
+    assert.strictEqual(initialResponse.status, "200");
+    assert.strictEqual(result[0]?.id, validTopLevelResource.id);
+    assert.strictEqual(result[0]?.name, validTopLevelResource.name);
+    assert.strictEqual(result[0]?.type, validTopLevelResource.type);
+    assert.strictEqual(result[0]?.location, validTopLevelResource.location);
   });
   it("should list top level tracked resources by subscription ", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
         "00000000-0000-0000-0000-000000000000"
       )
       .get();
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.value[0].id, validTopLevelResource.id);
-    assert.strictEqual(body.value[0].name, validTopLevelResource.name);
-    assert.strictEqual(body.value[0].type, validTopLevelResource.type);
-    assert.strictEqual(body.value[0].location, validTopLevelResource.location);
+    if (isUnexpected(initialResponse)) {
+      const error = `Unexpected status code ${initialResponse.status}`;
+      assert.fail(error);
+    }
+    const iter = paginate(client, initialResponse);
+    let result = [];
+    for await (const item of iter) {
+      result.push(item);
+    }
+    assert.strictEqual(initialResponse.status, "200");
+    assert.strictEqual(result[0]?.id, validTopLevelResource.id);
+    assert.strictEqual(result[0]?.name, validTopLevelResource.name);
+    assert.strictEqual(result[0]?.type, validTopLevelResource.type);
+    assert.strictEqual(result[0]?.location, validTopLevelResource.location);
   });
 
   // nested proxy resource
   it("should get nested proxy resource", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
         "00000000-0000-0000-0000-000000000000",
@@ -288,15 +345,20 @@ describe("Azure Arm Resources Rest Client", () => {
         "nested"
       )
       .get();
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validNestedResource.id);
-    assert.strictEqual(body.name, validNestedResource.name);
-    assert.strictEqual(body.type, validNestedResource.type);
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validNestedResource.id);
+    assert.strictEqual(result.body.name, validNestedResource.name);
+    assert.strictEqual(result.body.type, validNestedResource.type);
   });
 
   it("should create or replace nested proxy resource", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
         "00000000-0000-0000-0000-000000000000",
@@ -311,19 +373,24 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validNestedResource.id);
-    assert.strictEqual(body.name, validNestedResource.name);
-    assert.strictEqual(body.type, validNestedResource.type);
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validNestedResource.id);
+    assert.strictEqual(result.body.name, validNestedResource.name);
+    assert.strictEqual(result.body.type, validNestedResource.type);
     assert.strictEqual(
-      body.properties?.description,
+      result.body.properties?.description,
       validNestedResource.properties?.description
     );
   });
 
   it("should update nested proxy resource", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
         "00000000-0000-0000-0000-000000000000",
@@ -338,12 +405,17 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.id, validNestedResource.id);
-    assert.strictEqual(body.name, validNestedResource.name);
-    assert.strictEqual(body.type, validNestedResource.type);
-    assert.strictEqual(body.properties?.description, "valid2");
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "200");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.body.id, validNestedResource.id);
+    assert.strictEqual(result.body.name, validNestedResource.name);
+    assert.strictEqual(result.body.type, validNestedResource.type);
+    assert.strictEqual(result.body.properties?.description, "valid2");
   });
 
   it("should delete nested proxy resource", async () => {
@@ -360,7 +432,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should list nested proxy resource by TopLevelTrackedResource ", async () => {
-    const result = await client
+    const initialResponse = await client
       .path(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources",
         "00000000-0000-0000-0000-000000000000",
@@ -368,10 +440,18 @@ describe("Azure Arm Resources Rest Client", () => {
         "top"
       )
       .get();
-    const body = JSON.parse(JSON.stringify(result.body));
-    assert.strictEqual(result.status, "200");
-    assert.strictEqual(body.value[0].id, validNestedResource.id);
-    assert.strictEqual(body.value[0].name, validNestedResource.name);
-    assert.strictEqual(body.value[0].type, validNestedResource.type);
+    if (isUnexpected(initialResponse)) {
+      const error = `Unexpected status code ${initialResponse.status}`;
+      assert.fail(error);
+    }
+    const iter = paginate(client, initialResponse);
+    let result = [];
+    for await (const item of iter) {
+      result.push(item);
+    }
+    assert.strictEqual(initialResponse.status, "200");
+    assert.strictEqual(result[0]?.id, validNestedResource.id);
+    assert.strictEqual(result[0]?.name, validNestedResource.name);
+    assert.strictEqual(result[0]?.type, validNestedResource.type);
   });
 });
