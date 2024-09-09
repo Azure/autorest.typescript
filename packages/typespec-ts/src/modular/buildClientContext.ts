@@ -33,7 +33,7 @@ export function buildClientContext(
   const dependencies = useDependencies();
   const name = getClientName(client);
   const requiredParams = getClientParametersDeclaration(client, dpgContext, {
-    isClassicalClient: false,
+    onClientOnly: false,
     requiredOnly: true
   });
   const srcPath = codeModel.modularOptions.sourceRoot;

@@ -18,7 +18,7 @@ import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import { isCredentialType } from "./typeHelpers.js";
 
 interface ClientParameterOptions {
-  isClassicalClient?: boolean;
+  onClientOnly?: boolean;
   requiredOnly?: boolean;
   optionalOnly?: boolean;
 }
@@ -28,7 +28,7 @@ export function getClientParameters(
   dpgContext: SdkContext,
   options: ClientParameterOptions = {
     requiredOnly: false,
-    isClassicalClient: false,
+    onClientOnly: false,
     optionalOnly: false
   }
 ) {
@@ -66,7 +66,10 @@ export function getClientParameters(
             p.type.kind === "constant"))
     )
     .filter((p) => !(p.kind === "endpoint" && dpgContext.arm))
-    .filter((p) => options.isClassicalClient || p.name !== "subscriptionId");
+    .filter(
+      (p) =>
+        !options.onClientOnly || (options.onClientOnly && p.kind !== "method")
+    );
 
   return params;
 }
@@ -77,7 +80,7 @@ export function getClientParametersDeclaration(
   options: ClientParameterOptions = {
     optionalOnly: false,
     requiredOnly: false,
-    isClassicalClient: false
+    onClientOnly: false
   }
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const name = getClientName(client);
@@ -145,7 +148,7 @@ export function buildGetClientEndpointParam(
   // Special case: endpoint URL not defined
   if (_client.url === "") {
     const endpointParam = getClientParameters(client, dpgContext, {
-      isClassicalClient: false
+      onClientOnly: false
     }).find((x) => x.kind === "endpoint");
     return `options.endpoint ?? options.baseUrl ?? ${endpointParam?.name}`;
   }

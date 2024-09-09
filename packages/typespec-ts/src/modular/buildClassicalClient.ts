@@ -35,11 +35,10 @@ export function buildClassicalClient(
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClientName(client)}Client`;
   const classicalParams = getClientParametersDeclaration(client, dpgContext, {
-    isClassicalClient: true,
     requiredOnly: true
   });
   const contextParams = getClientParametersDeclaration(client, dpgContext, {
-    isClassicalClient: false,
+    onClientOnly: true,
     requiredOnly: true
   });
   const srcPath = codeModel.modularOptions.sourceRoot;
