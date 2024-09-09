@@ -8,7 +8,8 @@ import {
   buildGetClientCredentialParam,
   buildGetClientEndpointParam,
   buildGetClientOptionsParam,
-  getClientParameters
+  getClientParameters,
+  getClientParametersDeclaration
 } from "./helpers/clientHelpers.js";
 
 import { SdkContext } from "../utils/interfaces.js";
@@ -31,7 +32,10 @@ export function buildClientContext(
   const client = _client.tcgcClient;
   const dependencies = useDependencies();
   const name = getClientName(client);
-  const requiredParams = getClientParameters(client, dpgContext, false);
+  const requiredParams = getClientParametersDeclaration(client, dpgContext, {
+    isClassicalClient: false,
+    requiredOnly: true
+  });
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
@@ -49,20 +53,16 @@ export function buildClientContext(
     name: `${name}ClientOptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: client.initialization.properties
-      .filter((p) => {
-        return (
-          p.optional || (p.type.kind !== "constant" && p.clientDefaultValue)
-        );
-      })
-      .map((p) => {
-        return {
-          name: p.name,
-          type: getTypeExpression(p.type),
-          hasQuestionToken: true,
-          docs: getDocsFromDescription(p.description)
-        };
-      }),
+    properties: getClientParameters(client, dpgContext, {
+      optionalOnly: true
+    }).map((p) => {
+      return {
+        name: p.name,
+        type: getTypeExpression(p.type),
+        hasQuestionToken: true,
+        docs: getDocsFromDescription(p.description)
+      };
+    }),
     docs: ["Optional parameters for the client."]
   });
 
@@ -97,7 +97,9 @@ export function buildClientContext(
   );
 
   factoryFunction.addStatements(
-    `const clientContext = ${resolveReference(dependencies.getClient)}(${endpointParam}, ${credentialParam}, ${optionsParam});`
+    `const clientContext = ${resolveReference(
+      dependencies.getClient
+    )}(${endpointParam}, ${credentialParam}, ${optionsParam});`
   );
 
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
@@ -120,8 +122,8 @@ export function buildClientContext(
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
 
   if (dpgContext.hasApiVersionInClient) {
-    const apiVersionParam = client.initialization.properties.find(
-      (x) => x.isApiVersionParam
+    const apiVersionParam = getClientParameters(client, dpgContext).find(
+      (x) => x.isApiVersionParam && x.kind === "method"
     );
 
     if (apiVersionParam) {

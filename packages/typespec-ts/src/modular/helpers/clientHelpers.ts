@@ -7,6 +7,7 @@ import {
 import {
   SdkClientType,
   SdkHttpOperation,
+  SdkHttpParameter,
   SdkParameter
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -16,10 +17,68 @@ import { getClientName } from "./namingHelpers.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import { isCredentialType } from "./typeHelpers.js";
 
+interface ClientParameterOptions {
+  isClassicalClient?: boolean;
+  requiredOnly?: boolean;
+  optionalOnly?: boolean;
+}
+
 export function getClientParameters(
   client: SdkClientType<SdkHttpOperation>,
   dpgContext: SdkContext,
-  isClassicalClient = false
+  options: ClientParameterOptions = {
+    requiredOnly: false,
+    isClassicalClient: false,
+    optionalOnly: false
+  }
+) {
+  const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
+  for (const property of client.initialization.properties) {
+    if (
+      property.type.kind === "union" &&
+      property.type.values[0]?.kind === "endpoint"
+    ) {
+      clientParams.push(...property.type.values[0].templateArguments);
+    } else if (!clientParams.find((p) => p.name === property.name)) {
+      clientParams.push(property);
+    }
+  }
+
+  const params = clientParams
+    .filter(
+      (p) =>
+        !options.requiredOnly ||
+        (options.requiredOnly &&
+          !p.optional &&
+          !(
+            p.clientDefaultValue ||
+            p.__raw?.defaultValue ||
+            p.type.kind === "constant"
+          ))
+    )
+    .filter(
+      (p) =>
+        !options.optionalOnly ||
+        (options.optionalOnly &&
+          (p.optional ||
+            p.clientDefaultValue ||
+            p.__raw?.defaultValue ||
+            p.type.kind === "constant"))
+    )
+    .filter((p) => !(p.kind === "endpoint" && dpgContext.arm))
+    .filter((p) => options.isClassicalClient || p.name !== "subscriptionId");
+
+  return params;
+}
+
+export function getClientParametersDeclaration(
+  client: SdkClientType<SdkHttpOperation>,
+  dpgContext: SdkContext,
+  options: ClientParameterOptions = {
+    optionalOnly: false,
+    requiredOnly: false,
+    isClassicalClient: false
+  }
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const name = getClientName(client);
   const optionsParam = {
@@ -28,32 +87,26 @@ export function getClientParameters(
     initializer: "{}"
   };
 
-  const clientParams = client.initialization.properties;
   const params: OptionalKind<ParameterDeclarationStructure>[] = [
-    ...clientParams
-      .filter(
-        (p) =>
-          p.optional === false &&
-          p.type.kind !== "constant" &&
-          (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
-      )
-      .filter((p) => !(p.kind === "endpoint" && dpgContext.arm))
-      .filter((p) => isClassicalClient || p.name !== "subscriptionId")
-      .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
-        const typeExpression = getClientParameterTypeExpression(p);
-        const name = getClientParameterName(p);
-        return {
-          name,
-          type: typeExpression
-        };
-      })
+    ...getClientParameters(client, dpgContext, options).map<
+      OptionalKind<ParameterDeclarationStructure>
+    >((p) => {
+      const typeExpression = getClientParameterTypeExpression(p);
+      const name = getClientParameterName(p);
+      return {
+        name,
+        type: typeExpression
+      };
+    })
   ];
   params.push(optionsParam);
 
   return params;
 }
 
-function getClientParameterTypeExpression(parameter: SdkParameter) {
+function getClientParameterTypeExpression(
+  parameter: SdkParameter | SdkHttpParameter
+) {
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
   // inserting a variant with {endpoint}.
@@ -69,12 +122,13 @@ function getClientParameterTypeExpression(parameter: SdkParameter) {
   return getTypeExpression(parameter.type);
 }
 
-function getClientParameterName(parameter: SdkParameter) {
+function getClientParameterName(parameter: SdkParameter | SdkHttpParameter) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
     (parameter.type.kind === "union" &&
       parameter.type.values.some((v) => v.kind === "endpoint")) ||
-    (parameter.kind === "endpoint" && parameter.name === "endpoint")
+    ((parameter.kind === "endpoint" || parameter.kind === "path") &&
+      parameter.name.toLowerCase() === "endpoint")
   ) {
     return "endpointParam";
   }
@@ -90,9 +144,9 @@ export function buildGetClientEndpointParam(
   const client = _client.tcgcClient;
   // Special case: endpoint URL not defined
   if (_client.url === "") {
-    const endpointParam = client.initialization.properties.find(
-      (x) => x.kind === "endpoint"
-    );
+    const endpointParam = getClientParameters(client, dpgContext, {
+      isClassicalClient: false
+    }).find((x) => x.kind === "endpoint");
     return `options.endpoint ?? options.baseUrl ?? ${endpointParam?.name}`;
   }
 
@@ -130,12 +184,14 @@ export function buildGetClientEndpointParam(
   let hasRequiredEndpoint = false;
   if (
     endpointParam &&
-    !parameterizedEndpointUrl.includes(endpointParam.clientName) &&
+    !_client.url.includes(`{${endpointParam.restApiName}}`) &&
     !dpgContext.arm
   ) {
     hasRequiredEndpoint = true;
   }
-  const endpointUrl = `const endpointUrl = ${hasRequiredEndpoint ? "endpointParam ?? " : ""}options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
+  const endpointUrl = `const endpointUrl = ${
+    hasRequiredEndpoint ? "endpointParam ?? " : ""
+  }options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
   context.addStatements(endpointUrl);
   return "endpointUrl";
 }

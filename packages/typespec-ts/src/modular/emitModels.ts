@@ -158,14 +158,14 @@ function buildEnumTypes(
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
   const enumDeclaration: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
-    name: `Known${normalizeName(type.name, NameType.Interface)}`,
+    name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
     members: type.values.map(emitEnumMember)
   };
 
   const enumAsUnion: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
-    name: normalizeName(type.name, NameType.Interface),
+    name: normalizeModelName(context, type),
     isExported: true,
     type: !isExtensibleEnum(context, type)
       ? type.values.map((v) => getTypeExpression(v)).join(" | ")
@@ -266,7 +266,10 @@ export function normalizeModelName(
     pagePrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
-  return `${pagePrefix}${namespacePrefix}${normalizeName(type.name, NameType.Interface)}`;
+  return `${pagePrefix}${namespacePrefix}${normalizeName(
+    type.name,
+    NameType.Interface
+  )}`;
 }
 
 function buildModelPolymorphicType(type: SdkModelType) {

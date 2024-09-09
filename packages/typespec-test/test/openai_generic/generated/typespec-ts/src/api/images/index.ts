@@ -16,7 +16,7 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,
@@ -50,18 +50,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p: any) => {
-      return {
-        url: p["url"],
-        b64_json:
-          typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
-            : p["b64_json"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 export async function create(
@@ -106,18 +95,7 @@ export async function _createEditDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p: any) => {
-      return {
-        url: p["url"],
-        b64_json:
-          typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
-            : p["b64_json"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 export async function createEdit(
@@ -157,18 +135,7 @@ export async function _createVariationDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p: any) => {
-      return {
-        url: p["url"],
-        b64_json:
-          typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
-            : p["b64_json"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 export async function createVariation(

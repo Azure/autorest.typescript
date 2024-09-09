@@ -22,7 +22,7 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   PublishCloudEventOptionalParams,
   PublishCloudEventsOptionalParams,
@@ -163,34 +163,7 @@ export async function _receiveCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        brokerProperties: {
-          lockToken: p.brokerProperties["lockToken"],
-          deliveryCount: p.brokerProperties["deliveryCount"],
-        },
-        event: {
-          id: p.event["id"],
-          source: p.event["source"],
-          data: p.event["data"],
-          data_base64:
-            typeof p.event["data_base64"] === "string"
-              ? stringToUint8Array(p.event["data_base64"], "base64")
-              : p.event["data_base64"],
-          type: p.event["type"],
-          time:
-            p.event["time"] !== undefined
-              ? new Date(p.event["time"])
-              : undefined,
-          specversion: p.event["specversion"],
-          dataschema: p.event["dataschema"],
-          datacontenttype: p.event["datacontenttype"],
-          subject: p.event["subject"],
-        },
-      };
-    }),
-  };
+  return result.body;
 }
 
 /** Receive Batch of Cloud Events from the Event Subscription. */
@@ -238,16 +211,7 @@ export async function _acknowledgeCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
-      return {
-        lockToken: p["lockToken"],
-        errorCode: p["errorCode"],
-        errorDescription: p["errorDescription"],
-      };
-    }),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return result.body;
 }
 
 /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
@@ -297,16 +261,7 @@ export async function _releaseCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
-      return {
-        lockToken: p["lockToken"],
-        errorCode: p["errorCode"],
-        errorDescription: p["errorDescription"],
-      };
-    }),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return result.body;
 }
 
 /** Release batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully released. The response body will include the set of successfully released lockTokens, along with other failed lockTokens with their corresponding error information. */
@@ -356,16 +311,7 @@ export async function _rejectCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
-      return {
-        lockToken: p["lockToken"],
-        errorCode: p["errorCode"],
-        errorDescription: p["errorDescription"],
-      };
-    }),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return result.body;
 }
 
 /** Reject batch of Cloud Events. */

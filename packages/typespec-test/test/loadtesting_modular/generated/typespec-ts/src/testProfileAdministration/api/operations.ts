@@ -9,6 +9,7 @@ import {
 import {
   _Metrics,
   TestProfile,
+  testProfileDeserializer,
   targetResourceConfigurationsUnionSerializer,
   _PagedTestFileInfo,
   _PagedTest,
@@ -65,26 +66,7 @@ export async function _createOrUpdateTestProfileDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    testProfileId: result.body["testProfileId"],
-    displayName: result.body["displayName"],
-    description: result.body["description"],
-    testId: result.body["testId"],
-    targetResourceId: result.body["targetResourceId"],
-    targetResourceConfigurations: !result.body.targetResourceConfigurations
-      ? undefined
-      : { kind: result.body.targetResourceConfigurations?.["kind"] },
-    createdDateTime:
-      result.body["createdDateTime"] !== undefined
-        ? new Date(result.body["createdDateTime"])
-        : undefined,
-    createdBy: result.body["createdBy"],
-    lastModifiedDateTime:
-      result.body["lastModifiedDateTime"] !== undefined
-        ? new Date(result.body["lastModifiedDateTime"])
-        : undefined,
-    lastModifiedBy: result.body["lastModifiedBy"],
-  };
+  return testProfileDeserializer(result.body);
 }
 
 /** Create a new test profile or update an existing test profile by providing the test profile Id. */
@@ -152,26 +134,7 @@ export async function _getTestProfileDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    testProfileId: result.body["testProfileId"],
-    displayName: result.body["displayName"],
-    description: result.body["description"],
-    testId: result.body["testId"],
-    targetResourceId: result.body["targetResourceId"],
-    targetResourceConfigurations: !result.body.targetResourceConfigurations
-      ? undefined
-      : { kind: result.body.targetResourceConfigurations?.["kind"] },
-    createdDateTime:
-      result.body["createdDateTime"] !== undefined
-        ? new Date(result.body["createdDateTime"])
-        : undefined,
-    createdBy: result.body["createdBy"],
-    lastModifiedDateTime:
-      result.body["lastModifiedDateTime"] !== undefined
-        ? new Date(result.body["lastModifiedDateTime"])
-        : undefined,
-    lastModifiedBy: result.body["lastModifiedBy"],
-  };
+  return testProfileDeserializer(result.body);
 }
 
 /** Get load test profile details by test profile Id. */
@@ -210,31 +173,7 @@ export async function _listTestProfilesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        testProfileId: p["testProfileId"],
-        displayName: p["displayName"],
-        description: p["description"],
-        testId: p["testId"],
-        targetResourceId: p["targetResourceId"],
-        targetResourceConfigurations: !p.targetResourceConfigurations
-          ? undefined
-          : { kind: p.targetResourceConfigurations?.["kind"] },
-        createdDateTime:
-          p["createdDateTime"] !== undefined
-            ? new Date(p["createdDateTime"])
-            : undefined,
-        createdBy: p["createdBy"],
-        lastModifiedDateTime:
-          p["lastModifiedDateTime"] !== undefined
-            ? new Date(p["lastModifiedDateTime"])
-            : undefined,
-        lastModifiedBy: p["lastModifiedBy"],
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return result.body;
 }
 
 /** Get all test profiles for the given filters. */

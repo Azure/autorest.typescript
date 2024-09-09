@@ -56,35 +56,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    model: result.body["model"],
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        index: p["index"],
-        text: p["text"],
-        logprobs:
-          p.logprobs === null
-            ? null
-            : {
-                tokens: p.logprobs["tokens"],
-                token_logprobs: p.logprobs["token_logprobs"],
-                top_logprobs: p.logprobs["top_logprobs"],
-                text_offset: p.logprobs["text_offset"],
-              },
-        finish_reason: p["finish_reason"],
-      };
-    }),
-    usage: !result.body.usage
-      ? undefined
-      : {
-          prompt_tokens: result.body.usage?.["prompt_tokens"],
-          completion_tokens: result.body.usage?.["completion_tokens"],
-          total_tokens: result.body.usage?.["total_tokens"],
-        },
-  };
+  return result.body;
 }
 
 export async function create(

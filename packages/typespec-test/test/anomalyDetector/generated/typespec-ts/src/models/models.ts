@@ -14,7 +14,7 @@ export interface MultivariateMultivariateDetectionResult {
 /** Multivariate anomaly detection status. */
 export interface MultivariateMultivariateBatchDetectionResultSummary {
   /** Status of detection results. One of CREATED, RUNNING, READY, and FAILED. */
-  status: MultivariateBatchDetectionStatus;
+  status: MultivariateMultivariateBatchDetectionStatus;
   /** Error message when detection is failed. */
   errors?: MultivariateErrorResponse[];
   /** Variable Status. */
@@ -26,11 +26,23 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
 }
 
-export type MultivariateBatchDetectionStatus =
+export type MultivariateMultivariateBatchDetectionStatus =
   | "CREATED"
   | "RUNNING"
   | "READY"
   | "FAILED";
+
+export function multivariateMultivariateBatchDetectionStatusSerializer(
+  item: MultivariateMultivariateBatchDetectionStatus,
+): any {
+  return item;
+}
+
+export function multivariateMultivariateBatchDetectionStatusDeserializer(
+  item: any,
+): MultivariateMultivariateBatchDetectionStatus {
+  return item;
+}
 
 /** ErrorResponse contains code and message that shows the error information. */
 export interface MultivariateErrorResponse {
@@ -63,6 +75,18 @@ export function multivariateVariableStateSerializer(
     effectiveCount: item["effectiveCount"],
     firstTimestamp: item["firstTimestamp"]?.toISOString(),
     lastTimestamp: item["lastTimestamp"]?.toISOString(),
+  };
+}
+
+export function multivariateVariableStateDeserializer(
+  item: any,
+): MultivariateVariableState {
+  return {
+    variable: item["variable"],
+    filledNARatio: item["filledNARatio"],
+    effectiveCount: item["effectiveCount"],
+    firstTimestamp: item["firstTimestamp"],
+    lastTimestamp: item["lastTimestamp"],
   };
 }
 
@@ -104,6 +128,17 @@ export function multivariateMultivariateBatchDetectionOptionsSerializer(
     topContributorCount: item["topContributorCount"],
     startTime: item["startTime"].toISOString(),
     endTime: item["endTime"].toISOString(),
+  };
+}
+
+export function multivariateMultivariateBatchDetectionOptionsDeserializer(
+  item: any,
+): MultivariateMultivariateBatchDetectionOptions {
+  return {
+    dataSource: item["dataSource"],
+    topContributorCount: item["topContributorCount"],
+    startTime: item["startTime"],
+    endTime: item["endTime"],
   };
 }
 
@@ -169,7 +204,7 @@ export interface MultivariateModelInfo {
    * Data schema of input data source: OneTable or MultiTable. The default
    * DataSchema is OneTable.
    */
-  dataSchema?: DataSchema;
+  dataSchema?: MultivariateDataSchema;
   /**
    * A required field, indicating the start time of training data, which should be
    * date-time of ISO 8601 format.
@@ -193,7 +228,7 @@ export interface MultivariateModelInfo {
   /** An optional field, indicating the manner to align multiple variables. */
   alignPolicy?: MultivariateAlignPolicy;
   /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
-  status?: ModelStatus;
+  status?: MultivariateModelStatus;
   /** Error messages when failed to create a model. */
   readonly errors?: MultivariateErrorResponse[];
   /** Diagnostics information to help inspect the states of model or variable. */
@@ -220,8 +255,41 @@ export function multivariateModelInfoSerializer(
   };
 }
 
+export function multivariateModelInfoDeserializer(
+  item: any,
+): MultivariateModelInfo {
+  return {
+    dataSource: item["dataSource"],
+    dataSchema: multivariateDataSchemaDeserializer(item["dataSchema"]),
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    displayName: item["displayName"],
+    slidingWindow: item["slidingWindow"],
+    alignPolicy: !item.alignPolicy
+      ? undefined
+      : multivariateAlignPolicyDeserializer(item.alignPolicy),
+    status: multivariateModelStatusDeserializer(item["status"]),
+    errors: item["errors"],
+    diagnosticsInfo: !item.diagnosticsInfo
+      ? undefined
+      : multivariateDiagnosticsInfoDeserializer(item.diagnosticsInfo),
+  };
+}
+
 /** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
-export type DataSchema = "OneTable" | "MultiTable";
+export type MultivariateDataSchema = "OneTable" | "MultiTable";
+
+export function multivariateDataSchemaSerializer(
+  item: MultivariateDataSchema,
+): any {
+  return item;
+}
+
+export function multivariateDataSchemaDeserializer(
+  item: any,
+): MultivariateDataSchema {
+  return item;
+}
 
 /** An optional field, indicating the manner to align multiple variables. */
 export interface MultivariateAlignPolicy {
@@ -229,12 +297,12 @@ export interface MultivariateAlignPolicy {
    * An optional field, indicating how to align different variables to the same
    * time-range. Either Inner or Outer.
    */
-  alignMode?: AlignMode;
+  alignMode?: MultivariateAlignMode;
   /**
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
    */
-  fillNAMethod?: FillNAMethod;
+  fillNAMethod?: MultivariateFillNAMethod;
   /** An optional field. Required when fillNAMethod is Fixed. */
   paddingValue?: number;
 }
@@ -249,15 +317,67 @@ export function multivariateAlignPolicySerializer(
   };
 }
 
-export type AlignMode = "Inner" | "Outer";
+export function multivariateAlignPolicyDeserializer(
+  item: any,
+): MultivariateAlignPolicy {
+  return {
+    alignMode: multivariateAlignModeDeserializer(item["alignMode"]),
+    fillNAMethod: multivariateFillNAMethodDeserializer(item["fillNAMethod"]),
+    paddingValue: item["paddingValue"],
+  };
+}
+
+export type MultivariateAlignMode = "Inner" | "Outer";
+
+export function multivariateAlignModeSerializer(
+  item: MultivariateAlignMode,
+): any {
+  return item;
+}
+
+export function multivariateAlignModeDeserializer(
+  item: any,
+): MultivariateAlignMode {
+  return item;
+}
+
 /** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
-export type FillNAMethod =
+export type MultivariateFillNAMethod =
   | "Previous"
   | "Subsequent"
   | "Linear"
   | "Zero"
   | "Fixed";
-export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+export function multivariateFillNAMethodSerializer(
+  item: MultivariateFillNAMethod,
+): any {
+  return item;
+}
+
+export function multivariateFillNAMethodDeserializer(
+  item: any,
+): MultivariateFillNAMethod {
+  return item;
+}
+
+export type MultivariateModelStatus =
+  | "CREATED"
+  | "RUNNING"
+  | "READY"
+  | "FAILED";
+
+export function multivariateModelStatusSerializer(
+  item: MultivariateModelStatus,
+): any {
+  return item;
+}
+
+export function multivariateModelStatusDeserializer(
+  item: any,
+): MultivariateModelStatus {
+  return item;
+}
 
 /** Diagnostics information to help inspect the states of model or variable. */
 export interface MultivariateDiagnosticsInfo {
@@ -278,6 +398,17 @@ export function multivariateDiagnosticsInfoSerializer(
       item["variableStates"] === undefined
         ? item["variableStates"]
         : item["variableStates"].map(multivariateVariableStateSerializer),
+  };
+}
+
+export function multivariateDiagnosticsInfoDeserializer(
+  item: any,
+): MultivariateDiagnosticsInfo {
+  return {
+    modelState: !item.modelState
+      ? undefined
+      : multivariateModelStateDeserializer(item.modelState),
+    variableStates: item["variableStates"],
   };
 }
 
@@ -305,6 +436,17 @@ export interface MultivariateModelState {
 export function multivariateModelStateSerializer(
   item: MultivariateModelState,
 ): Record<string, unknown> {
+  return {
+    epochIds: item["epochIds"],
+    trainLosses: item["trainLosses"],
+    validationLosses: item["validationLosses"],
+    latenciesInSeconds: item["latenciesInSeconds"],
+  };
+}
+
+export function multivariateModelStateDeserializer(
+  item: any,
+): MultivariateModelState {
   return {
     epochIds: item["epochIds"],
     trainLosses: item["trainLosses"],
@@ -364,6 +506,15 @@ export function multivariateMultivariateLastDetectionOptionsSerializer(
   };
 }
 
+export function multivariateMultivariateLastDetectionOptionsDeserializer(
+  item: any,
+): MultivariateMultivariateLastDetectionOptions {
+  return {
+    variables: item["variables"],
+    topContributorCount: item["topContributorCount"],
+  };
+}
+
 /** Variable values. */
 export interface MultivariateVariableValues {
   /** Variable name of last detection request. */
@@ -377,6 +528,16 @@ export interface MultivariateVariableValues {
 export function multivariateVariableValuesSerializer(
   item: MultivariateVariableValues,
 ): Record<string, unknown> {
+  return {
+    variable: item["variable"],
+    timestamps: item["timestamps"],
+    values: item["values"],
+  };
+}
+
+export function multivariateVariableValuesDeserializer(
+  item: any,
+): MultivariateVariableValues {
   return {
     variable: item["variable"],
     timestamps: item["timestamps"],
@@ -407,7 +568,7 @@ export interface UnivariateUnivariateDetectionOptions {
    * be none by default. If granularity is none, the timestamp property in time
    * series point can be absent.
    */
-  granularity?: TimeGranularity;
+  granularity?: UnivariateTimeGranularity;
   /**
    * Custom Interval is used to set non-standard time interval, for example, if the
    * series is 5 minutes, request can be set as {"granularity":"minutely",
@@ -431,7 +592,7 @@ export interface UnivariateUnivariateDetectionOptions {
    * Used to specify how to deal with missing values in the input series, it's used
    * when granularity is not "none".
    */
-  imputeMode?: ImputeMode;
+  imputeMode?: UnivariateImputeMode;
   /**
    * Used to specify the value to fill, it's used when granularity is not "none"
    * and imputeMode is "fixed".
@@ -454,6 +615,21 @@ export function univariateUnivariateDetectionOptionsSerializer(
   };
 }
 
+export function univariateUnivariateDetectionOptionsDeserializer(
+  item: any,
+): UnivariateUnivariateDetectionOptions {
+  return {
+    series: item["series"],
+    granularity: univariateTimeGranularityDeserializer(item["granularity"]),
+    customInterval: item["customInterval"],
+    period: item["period"],
+    maxAnomalyRatio: item["maxAnomalyRatio"],
+    sensitivity: item["sensitivity"],
+    imputeMode: univariateImputeModeDeserializer(item["imputeMode"]),
+    imputeFixedValue: item["imputeFixedValue"],
+  };
+}
+
 /** The definition of input timeseries points. */
 export interface UnivariateTimeSeriesPoint {
   /** Optional argument, timestamp of a data point (ISO8601 format). */
@@ -471,7 +647,16 @@ export function univariateTimeSeriesPointSerializer(
   };
 }
 
-export type TimeGranularity =
+export function univariateTimeSeriesPointDeserializer(
+  item: any,
+): UnivariateTimeSeriesPoint {
+  return {
+    timestamp: item["timestamp"],
+    value: item["value"],
+  };
+}
+
+export type UnivariateTimeGranularity =
   | "yearly"
   | "monthly"
   | "weekly"
@@ -481,13 +666,38 @@ export type TimeGranularity =
   | "secondly"
   | "microsecond"
   | "none";
-export type ImputeMode =
+
+export function univariateTimeGranularitySerializer(
+  item: UnivariateTimeGranularity,
+): any {
+  return item;
+}
+
+export function univariateTimeGranularityDeserializer(
+  item: any,
+): UnivariateTimeGranularity {
+  return item;
+}
+
+export type UnivariateImputeMode =
   | "auto"
   | "previous"
   | "linear"
   | "fixed"
   | "zero"
   | "notFill";
+
+export function univariateImputeModeSerializer(
+  item: UnivariateImputeMode,
+): any {
+  return item;
+}
+
+export function univariateImputeModeDeserializer(
+  item: any,
+): UnivariateImputeMode {
+  return item;
+}
 
 /** The response of entire anomaly detection. */
 export interface UnivariateUnivariateEntireDetectionResult {
@@ -550,12 +760,12 @@ export interface UnivariateAnomalyDetectorError {
   /** Error code. */
   "x-ms-error-code"?: string;
   /** The error code. */
-  code?: AnomalyDetectorErrorCodes;
+  code?: UnivariateAnomalyDetectorErrorCodes;
   /** A message explaining the error reported by the service. */
   message?: string;
 }
 
-export type AnomalyDetectorErrorCodes =
+export type UnivariateAnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
   | "BadArgument"
   | "InvalidGranularity"
@@ -567,6 +777,18 @@ export type AnomalyDetectorErrorCodes =
   | "RequiredSeries"
   | "InvalidImputeMode"
   | "InvalidImputeFixedValue";
+
+export function univariateAnomalyDetectorErrorCodesSerializer(
+  item: UnivariateAnomalyDetectorErrorCodes,
+): any {
+  return item;
+}
+
+export function univariateAnomalyDetectorErrorCodesDeserializer(
+  item: any,
+): UnivariateAnomalyDetectorErrorCodes {
+  return item;
+}
 
 /** The response of last anomaly detection. */
 export interface UnivariateUnivariateLastDetectionResult {
@@ -626,7 +848,7 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
    * Can only be one of yearly, monthly, weekly, daily, hourly, minutely or
    * secondly. Granularity is used for verify whether input series is valid.
    */
-  granularity: TimeGranularity;
+  granularity: UnivariateTimeGranularity;
   /**
    * Custom Interval is used to set non-standard time interval, for example, if the
    * series is 5 minutes, request can be set as {"granularity":"minutely",
@@ -664,6 +886,19 @@ export function univariateUnivariateChangePointDetectionOptionsSerializer(
   };
 }
 
+export function univariateUnivariateChangePointDetectionOptionsDeserializer(
+  item: any,
+): UnivariateUnivariateChangePointDetectionOptions {
+  return {
+    series: item["series"],
+    granularity: univariateTimeGranularityDeserializer(item["granularity"]),
+    customInterval: item["customInterval"],
+    period: item["period"],
+    stableTrendWindow: item["stableTrendWindow"],
+    threshold: item["threshold"],
+  };
+}
+
 /** The response of change point detection. */
 export interface UnivariateUnivariateChangePointDetectionResult {
   /**
@@ -682,4 +917,21 @@ export interface UnivariateUnivariateChangePointDetectionResult {
 }
 
 export type APIVersion = "v1.1";
+
+export function aPIVersionSerializer(item: APIVersion): any {
+  return item;
+}
+
+export function aPIVersionDeserializer(item: any): APIVersion {
+  return item;
+}
+
 export type Versions = "v1.1";
+
+export function versionsSerializer(item: Versions): any {
+  return item;
+}
+
+export function versionsDeserializer(item: any): Versions {
+  return item;
+}

@@ -167,7 +167,9 @@ function buildDiscriminatedUnionSerializer(
   }
   const cases: string[] = [];
   const output: string[] = [];
-  const baseSerializerName = `${toCamelCase(normalizeModelName(context, type))}Serializer`;
+  const baseSerializerName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}Serializer`;
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
     const discriminatedValue = subType.discriminatorValue!;

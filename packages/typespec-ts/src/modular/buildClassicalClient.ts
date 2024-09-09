@@ -9,7 +9,7 @@ import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   buildUserAgentOptions,
-  getClientParameters
+  getClientParametersDeclaration
 } from "./helpers/clientHelpers.js";
 import {
   getClassicalLayerPrefix,
@@ -34,8 +34,14 @@ export function buildClassicalClient(
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClientName(client)}Client`;
-  const classicalParams = getClientParameters(client, dpgContext, true);
-  const contextParams = getClientParameters(client, dpgContext, false);
+  const classicalParams = getClientParametersDeclaration(client, dpgContext, {
+    isClassicalClient: true,
+    requiredOnly: true
+  });
+  const contextParams = getClientParametersDeclaration(client, dpgContext, {
+    isClassicalClient: false,
+    requiredOnly: true
+  });
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = _client.subfolder ?? "";
 

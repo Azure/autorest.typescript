@@ -21,6 +21,13 @@ export function textBlocklistSerializer(
   };
 }
 
+export function textBlocklistDeserializer(item: any): TextBlocklist {
+  return {
+    blocklistName: item["blocklistName"],
+    description: item["description"],
+  };
+}
+
 /** The request of adding blockItems to text blocklist. */
 export interface AddOrUpdateBlockItemsOptions {
   /** Array of blockItemInfo to add. */
@@ -35,6 +42,14 @@ export function addOrUpdateBlockItemsOptionsSerializer(
   };
 }
 
+export function addOrUpdateBlockItemsOptionsDeserializer(
+  item: any,
+): AddOrUpdateBlockItemsOptions {
+  return {
+    blockItems: item["blockItems"],
+  };
+}
+
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
@@ -46,6 +61,13 @@ export interface TextBlockItemInfo {
 export function textBlockItemInfoSerializer(
   item: TextBlockItemInfo,
 ): Record<string, unknown> {
+  return {
+    description: item["description"],
+    text: item["text"],
+  };
+}
+
+export function textBlockItemInfoDeserializer(item: any): TextBlockItemInfo {
   return {
     description: item["description"],
     text: item["text"],
@@ -82,6 +104,14 @@ export function removeBlockItemsOptionsSerializer(
   };
 }
 
+export function removeBlockItemsOptionsDeserializer(
+  item: any,
+): RemoveBlockItemsOptions {
+  return {
+    blockItemIds: item["blockItemIds"],
+  };
+}
+
 /** The analysis request of the image. */
 export interface AnalyzeImageOptions {
   /** The image needs to be analyzed. */
@@ -99,6 +129,16 @@ export function analyzeImageOptionsSerializer(
     image: imageDataSerializer(item.image),
     categories: item["categories"],
     outputType: item["outputType"],
+  };
+}
+
+export function analyzeImageOptionsDeserializer(
+  item: any,
+): AnalyzeImageOptions {
+  return {
+    image: imageDataDeserializer(item.image),
+    categories: item["categories"],
+    outputType: analyzeImageOutputTypeDeserializer(item["outputType"]),
   };
 }
 
@@ -120,10 +160,38 @@ export function imageDataSerializer(item: ImageData): Record<string, unknown> {
   };
 }
 
+export function imageDataDeserializer(item: any): ImageData {
+  return {
+    content: item["content"],
+    blobUrl: item["blobUrl"],
+  };
+}
+
 /** Image analyze category */
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+
+export function imageCategorySerializer(item: ImageCategory): any {
+  return item;
+}
+
+export function imageCategoryDeserializer(item: any): ImageCategory {
+  return item;
+}
+
 /** The type of image analysis output. */
 export type AnalyzeImageOutputType = "FourLevels";
+
+export function analyzeImageOutputTypeSerializer(
+  item: AnalyzeImageOutputType,
+): any {
+  return item;
+}
+
+export function analyzeImageOutputTypeDeserializer(
+  item: any,
+): AnalyzeImageOutputType {
+  return item;
+}
 
 /** The analysis response of the image. */
 export interface AnalyzeImageResult {
@@ -165,10 +233,41 @@ export function analyzeTextOptionsSerializer(
   };
 }
 
+export function analyzeTextOptionsDeserializer(item: any): AnalyzeTextOptions {
+  return {
+    text: item["text"],
+    categories: item["categories"],
+    blocklistNames: item["blocklistNames"],
+    breakByBlocklists: item["breakByBlocklists"],
+    outputType: analyzeTextOutputTypeDeserializer(item["outputType"]),
+  };
+}
+
 /** Text analyze category */
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+
+export function textCategorySerializer(item: TextCategory): any {
+  return item;
+}
+
+export function textCategoryDeserializer(item: any): TextCategory {
+  return item;
+}
+
 /** The type of text analysis output. */
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
+
+export function analyzeTextOutputTypeSerializer(
+  item: AnalyzeTextOutputType,
+): any {
+  return item;
+}
+
+export function analyzeTextOutputTypeDeserializer(
+  item: any,
+): AnalyzeTextOutputType {
+  return item;
+}
 
 /** The analysis response of the text */
 export interface AnalyzeTextResult {
@@ -197,6 +296,14 @@ export interface TextAnalyzeSeverityResult {
 }
 
 export type Versions = "2023-10-01";
+
+export function versionsSerializer(item: Versions): any {
+  return item;
+}
+
+export function versionsDeserializer(item: any): Versions {
+  return item;
+}
 
 /** A response containing error details. */
 export interface ErrorResponse {

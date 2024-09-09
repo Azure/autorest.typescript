@@ -23,6 +23,12 @@ export function test3RequestSerializer(
   };
 }
 
+export function test3RequestDeserializer(item: any): Test3Request {
+  return {
+    prop: item["prop"],
+  };
+}
+
 export interface Test4Request {
   prop: string;
 }
@@ -30,6 +36,12 @@ export interface Test4Request {
 export function test4RequestSerializer(
   item: Test4Request,
 ): Record<string, unknown> {
+  return {
+    prop: item["prop"],
+  };
+}
+
+export function test4RequestDeserializer(item: any): Test4Request {
   return {
     prop: item["prop"],
   };

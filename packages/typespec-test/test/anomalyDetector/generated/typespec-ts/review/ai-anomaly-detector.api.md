@@ -10,9 +10,6 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
-export type AlignMode = "Inner" | "Outer";
-
-// @public (undocumented)
 export class AnomalyDetectorClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptionalParams);
     readonly multivariate: MultivariateOperations;
@@ -22,10 +19,8 @@ export class AnomalyDetectorClient {
 
 // @public
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
+    ApiVersion?: APIVersion;
 }
-
-// @public (undocumented)
-export type AnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public (undocumented)
 export type APIVersion = "v1.1";
@@ -35,22 +30,13 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public
-export type DataSchema = "OneTable" | "MultiTable";
-
-// @public
-export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
-
 // @public (undocumented)
-export type ImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
-
-// @public (undocumented)
-export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+export type MultivariateAlignMode = "Inner" | "Outer";
 
 // @public
 export interface MultivariateAlignPolicy {
-    alignMode?: AlignMode;
-    fillNAMethod?: FillNAMethod;
+    alignMode?: MultivariateAlignMode;
+    fillNAMethod?: MultivariateFillNAMethod;
     paddingValue?: number;
 }
 
@@ -84,13 +70,13 @@ export interface MultivariateAnomalyValue {
     severity: number;
 }
 
-// @public (undocumented)
-export type MultivariateBatchDetectionStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
-
 // @public
 export interface MultivariateCorrelationChanges {
     changedVariables?: string[];
 }
+
+// @public
+export type MultivariateDataSchema = "OneTable" | "MultiTable";
 
 // @public
 export interface MultivariateDeleteMultivariateModelOptionalParams extends OperationOptions {
@@ -117,6 +103,9 @@ export interface MultivariateErrorResponse {
 }
 
 // @public
+export type MultivariateFillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
+
+// @public
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
 }
 
@@ -133,7 +122,7 @@ export interface MultivariateListMultivariateModelsOptionalParams extends Operat
 // @public
 export interface MultivariateModelInfo {
     alignPolicy?: MultivariateAlignPolicy;
-    dataSchema?: DataSchema;
+    dataSchema?: MultivariateDataSchema;
     dataSource: string;
     diagnosticsInfo?: MultivariateDiagnosticsInfo;
     displayName?: string;
@@ -141,7 +130,7 @@ export interface MultivariateModelInfo {
     readonly errors?: MultivariateErrorResponse[];
     slidingWindow?: number;
     startTime: Date;
-    status?: ModelStatus;
+    status?: MultivariateModelStatus;
 }
 
 // @public
@@ -151,6 +140,9 @@ export interface MultivariateModelState {
     trainLosses?: number[];
     validationLosses?: number[];
 }
+
+// @public (undocumented)
+export type MultivariateModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 // @public
 export interface MultivariateMultivariateBatchDetectionOptions {
@@ -164,9 +156,12 @@ export interface MultivariateMultivariateBatchDetectionOptions {
 export interface MultivariateMultivariateBatchDetectionResultSummary {
     errors?: MultivariateErrorResponse[];
     setupInfo: MultivariateMultivariateBatchDetectionOptions;
-    status: MultivariateBatchDetectionStatus;
+    status: MultivariateMultivariateBatchDetectionStatus;
     variableStates?: MultivariateVariableState[];
 }
+
+// @public (undocumented)
+export type MultivariateMultivariateBatchDetectionStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 // @public
 export interface MultivariateMultivariateDetectionResult {
@@ -230,15 +225,15 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public (undocumented)
-export type TimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
-
 // @public
 export interface UnivariateAnomalyDetectorError {
     "x-ms-error-code"?: string;
-    code?: AnomalyDetectorErrorCodes;
+    code?: UnivariateAnomalyDetectorErrorCodes;
     message?: string;
 }
+
+// @public (undocumented)
+export type UnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
 export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {
@@ -252,12 +247,18 @@ export interface UnivariateDetectUnivariateEntireSeriesOptionalParams extends Op
 export interface UnivariateDetectUnivariateLastPointOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
+
 // @public
 export interface UnivariateOperations {
     detectUnivariateChangePoint: (options: UnivariateUnivariateChangePointDetectionOptions, optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams) => Promise<UnivariateUnivariateChangePointDetectionResult>;
     detectUnivariateEntireSeries: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams) => Promise<UnivariateUnivariateEntireDetectionResult>;
     detectUnivariateLastPoint: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<UnivariateUnivariateLastDetectionResult>;
 }
+
+// @public (undocumented)
+export type UnivariateTimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
 
 // @public
 export interface UnivariateTimeSeriesPoint {
@@ -268,7 +269,7 @@ export interface UnivariateTimeSeriesPoint {
 // @public
 export interface UnivariateUnivariateChangePointDetectionOptions {
     customInterval?: number;
-    granularity: TimeGranularity;
+    granularity: UnivariateTimeGranularity;
     period?: number;
     series: UnivariateTimeSeriesPoint[];
     stableTrendWindow?: number;
@@ -285,9 +286,9 @@ export interface UnivariateUnivariateChangePointDetectionResult {
 // @public
 export interface UnivariateUnivariateDetectionOptions {
     customInterval?: number;
-    granularity?: TimeGranularity;
+    granularity?: UnivariateTimeGranularity;
     imputeFixedValue?: number;
-    imputeMode?: ImputeMode;
+    imputeMode?: UnivariateImputeMode;
     maxAnomalyRatio?: number;
     period?: number;
     sensitivity?: number;

@@ -40,21 +40,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    model: result.body["model"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        index: p["index"],
-        object: p["object"],
-        embedding: p["embedding"],
-      };
-    }),
-    usage: {
-      prompt_tokens: result.body.usage["prompt_tokens"],
-      total_tokens: result.body.usage["total_tokens"],
-    },
-  };
+  return result.body;
 }
 
 export async function create(

@@ -41,21 +41,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 export async function list(
@@ -91,16 +77,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"],
-    status_details: result.body["status_details"],
-  };
+  return result.body;
 }
 
 export async function create(
@@ -130,16 +107,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"],
-    status_details: result.body["status_details"],
-  };
+  return result.body;
 }
 
 export async function retrieve(
@@ -169,11 +137,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  return result.body;
 }
 
 /**

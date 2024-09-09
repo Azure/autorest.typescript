@@ -51,21 +51,7 @@ export async function _createStreamingDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        index: p["index"],
-        delta: {
-          content: p.delta["content"],
-          role: p.delta["role"],
-          sessionState: p.delta["session_state"],
-        },
-        sessionState: p["session_state"],
-        context: p["context"],
-        finishReason: p["finish_reason"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 /** Creates a new streaming chat completion. */
@@ -106,21 +92,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        index: p["index"],
-        message: {
-          content: p.message["content"],
-          role: p.message["role"],
-          sessionState: p.message["session_state"],
-        },
-        sessionState: p["session_state"],
-        context: p["context"],
-        finishReason: p["finish_reason"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 /** Creates a new chat completion. */

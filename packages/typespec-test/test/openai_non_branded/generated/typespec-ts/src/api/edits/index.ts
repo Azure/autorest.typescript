@@ -40,22 +40,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        text: p["text"],
-        index: p["index"],
-        finish_reason: p["finish_reason"],
-      };
-    }),
-    usage: {
-      prompt_tokens: result.body.usage["prompt_tokens"],
-      completion_tokens: result.body.usage["completion_tokens"],
-      total_tokens: result.body.usage["total_tokens"],
-    },
-  };
+  return result.body;
 }
 
 export async function create(

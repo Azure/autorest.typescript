@@ -36,6 +36,17 @@ export function streamingChatCompletionOptionsRecordSerializer(
   };
 }
 
+export function streamingChatCompletionOptionsRecordDeserializer(
+  item: any,
+): StreamingChatCompletionOptionsRecord {
+  return {
+    messages: item["messages"],
+    stream: item["stream"],
+    sessionState: item["session_state"],
+    context: item["context"],
+  };
+}
+
 /** A single, role-attributed message within a chat completion interaction. */
 export interface ChatMessage {
   /** The text associated with the message. */
@@ -61,8 +72,24 @@ export function chatMessageSerializer(
   };
 }
 
+export function chatMessageDeserializer(item: any): ChatMessage {
+  return {
+    content: item["content"],
+    role: chatRoleDeserializer(item["role"]),
+    sessionState: item["session_state"],
+  };
+}
+
 /** A representation of the intended purpose of a message. */
 export type ChatRole = "user" | "system" | "assistant";
+
+export function chatRoleSerializer(item: ChatRole): any {
+  return item;
+}
+
+export function chatRoleDeserializer(item: any): ChatRole {
+  return item;
+}
 
 /** A single response to a streaming completion request. */
 export interface ChatCompletionChunkRecord {
@@ -110,6 +137,14 @@ export interface ChatMessageDelta {
 /** Representation of the reason why a chat session has finished processing. */
 export type FinishReason = "stop" | "length";
 
+export function finishReasonSerializer(item: FinishReason): any {
+  return item;
+}
+
+export function finishReasonDeserializer(item: any): FinishReason {
+  return item;
+}
+
 /** The configuration for a chat completion request. */
 export interface ChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
@@ -143,6 +178,17 @@ export function chatCompletionOptionsRecordSerializer(
   };
 }
 
+export function chatCompletionOptionsRecordDeserializer(
+  item: any,
+): ChatCompletionOptionsRecord {
+  return {
+    messages: item["messages"],
+    stream: item["stream"],
+    sessionState: item["session_state"],
+    context: item["context"],
+  };
+}
+
 /** Representation of the response to a chat completion request. */
 export interface ChatCompletionRecord {
   /** The collection of generated completions. */
@@ -172,3 +218,11 @@ export interface ChatChoiceRecord {
 }
 
 export type APIVersion = "2023-10-01-preview";
+
+export function aPIVersionSerializer(item: APIVersion): any {
+  return item;
+}
+
+export function aPIVersionDeserializer(item: any): APIVersion {
+  return item;
+}

@@ -20,6 +20,14 @@ export function userSerializer(item: User): Record<string, unknown> {
   };
 }
 
+export function userDeserializer(item: any): User {
+  return {
+    name: item["name"],
+    role: item["role"],
+    id: item["id"],
+  };
+}
+
 export interface Widget {
   /** The UUID of this widget. This is generated automatically by the service. */
   id: string;
@@ -30,6 +38,14 @@ export interface Widget {
 }
 
 export type WidgetColor = "red" | "blue";
+
+export function widgetColorSerializer(item: WidgetColor): any {
+  return item;
+}
+
+export function widgetColorDeserializer(item: any): WidgetColor {
+  return item;
+}
 
 export interface WidgetError {
   /** The HTTP error code. */
@@ -54,6 +70,18 @@ export interface CreateWidgetRequest {
 
 export type CreateWidgetRequestColor = "red" | "blue";
 
+export function createWidgetRequestColorSerializer(
+  item: CreateWidgetRequestColor,
+): any {
+  return item;
+}
+
+export function createWidgetRequestColorDeserializer(
+  item: any,
+): CreateWidgetRequestColor {
+  return item;
+}
+
 export interface UpdateWidgetRequest {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
@@ -62,6 +90,18 @@ export interface UpdateWidgetRequest {
 }
 
 export type UpdateWidgetRequestColor = "red" | "blue";
+
+export function updateWidgetRequestColorSerializer(
+  item: UpdateWidgetRequestColor,
+): any {
+  return item;
+}
+
+export function updateWidgetRequestColorDeserializer(
+  item: any,
+): UpdateWidgetRequestColor {
+  return item;
+}
 
 export interface AnalyzeResult {
   summary: string;
@@ -83,8 +123,23 @@ export function nonReferencedModelSerializer(
   };
 }
 
+export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
+  return {
+    prop1: item["prop1"],
+    prop2: item["prop2"],
+  };
+}
+
 /** The Contoso Widget Manager service version. */
 export type Versions = "1.0.0";
+
+export function versionsSerializer(item: Versions): any {
+  return item;
+}
+
+export function versionsDeserializer(item: any): Versions {
+  return item;
+}
 
 /** A response containing error details. */
 export interface ErrorResponse {

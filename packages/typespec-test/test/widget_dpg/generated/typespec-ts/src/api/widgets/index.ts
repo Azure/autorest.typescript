@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   User,
+  userDeserializer,
   Widget,
   _ListWidgetsPagesResults,
   AnalyzeResult,
@@ -89,11 +90,7 @@ export async function _listWidgetsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body === undefined
-    ? result.body
-    : result.body.map((p: any) => {
-        return { id: p["id"], weight: p["weight"], color: p["color"] };
-      });
+  return result.body;
 }
 
 /**
@@ -144,12 +141,7 @@ export async function _listWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    results: result.body["results"].map((p: any) => {
-      return { id: p["id"], weight: p["weight"], color: p["color"] };
-    }),
-    "odata.nextLink": result.body["odata.nextLink"],
-  };
+  return result.body;
 }
 
 export function listWidgetsPages(
@@ -189,12 +181,7 @@ export async function _queryWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    results: result.body["results"].map((p: any) => {
-      return { id: p["id"], weight: p["weight"], color: p["color"] };
-    }),
-    "odata.nextLink": result.body["odata.nextLink"],
-  };
+  return result.body;
 }
 
 export function queryWidgetsPages(
@@ -230,11 +217,7 @@ export async function _getWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
+  return result.body;
 }
 
 /** Get a widget by ID. */
@@ -269,11 +252,7 @@ export async function _createWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
+  return result.body;
 }
 
 /**
@@ -315,11 +294,7 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
-  };
+  return userDeserializer(result.body);
 }
 
 /** Long-running resource create or replace operation template. */
@@ -363,11 +338,7 @@ export async function _updateWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
+  return result.body;
 }
 
 /**
@@ -432,9 +403,7 @@ export async function _analyzeWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    summary: result.body["summary"],
-  };
+  return result.body;
 }
 
 /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */

@@ -40,25 +40,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        name: p["name"],
-        isDataAction: p["isDataAction"],
-        display: !p.display
-          ? undefined
-          : {
-              provider: p.display?.["provider"],
-              resource: p.display?.["resource"],
-              operation: p.display?.["operation"],
-              description: p.display?.["description"],
-            },
-        origin: p["origin"],
-        actionType: p["actionType"],
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return result.body;
 }
 
 /** List the operations for the provider */

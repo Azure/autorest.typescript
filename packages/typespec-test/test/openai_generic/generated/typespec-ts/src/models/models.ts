@@ -26,10 +26,44 @@ export function createModerationRequestSerializer(
   };
 }
 
+export function createModerationRequestDeserializer(
+  item: any,
+): CreateModerationRequest {
+  return {
+    input: createModerationRequestInputDeserializer(item["input"]),
+    model: createModerationRequestModelDeserializer(item["model"]),
+  };
+}
+
 export type CreateModerationRequestInput = string | string[];
+
+export function createModerationRequestInputSerializer(
+  item: CreateModerationRequestInput,
+): any {
+  return item;
+}
+
+export function createModerationRequestInputDeserializer(
+  item: any,
+): CreateModerationRequestInput {
+  return item;
+}
+
 export type CreateModerationRequestModel =
   | "text-moderation-latest"
   | "text-moderation-stable";
+
+export function createModerationRequestModelSerializer(
+  item: CreateModerationRequestModel,
+): any {
+  return item;
+}
+
+export function createModerationRequestModelDeserializer(
+  item: any,
+): CreateModerationRequestModel {
+  return item;
+}
 
 export interface CreateModerationResponse {
   /** The unique identifier for the moderation request. */
@@ -206,8 +240,43 @@ export function createImageRequestSerializer(
   };
 }
 
+export function createImageRequestDeserializer(item: any): CreateImageRequest {
+  return {
+    prompt: item["prompt"],
+    n: item["n"],
+    size: item["size"],
+    response_format: item["response_format"],
+    user: item["user"],
+  };
+}
+
 export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
+
+export function createImageRequestSizeSerializer(
+  item: CreateImageRequestSize,
+): any {
+  return item;
+}
+
+export function createImageRequestSizeDeserializer(
+  item: any,
+): CreateImageRequestSize {
+  return item;
+}
+
 export type CreateImageRequestResponseFormat = "url" | "b64_json";
+
+export function createImageRequestResponseFormatSerializer(
+  item: CreateImageRequestResponseFormat,
+): any {
+  return item;
+}
+
+export function createImageRequestResponseFormatDeserializer(
+  item: any,
+): CreateImageRequestResponseFormat {
+  return item;
+}
 
 export interface ImagesResponse {
   created: Date;
@@ -262,6 +331,20 @@ export function createImageEditRequestSerializer(
   };
 }
 
+export function createImageEditRequestDeserializer(
+  item: any,
+): CreateImageEditRequest {
+  return {
+    prompt: item["prompt"],
+    image: item["image"],
+    mask: item["mask"],
+    n: item["n"],
+    size: item["size"],
+    response_format: item["response_format"],
+    user: item["user"],
+  };
+}
+
 export interface CreateImageVariationRequest {
   /**
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
@@ -282,6 +365,18 @@ export function createImageVariationRequestSerializer(
 ): Record<string, unknown> {
   return {
     image: uint8ArrayToString(item["image"], "base64"),
+    n: item["n"],
+    size: item["size"],
+    response_format: item["response_format"],
+    user: item["user"],
+  };
+}
+
+export function createImageVariationRequestDeserializer(
+  item: any,
+): CreateImageVariationRequest {
+  return {
+    image: item["image"],
     n: item["n"],
     size: item["size"],
     response_format: item["response_format"],
@@ -441,11 +536,42 @@ export function createFineTuneRequestSerializer(
   };
 }
 
+export function createFineTuneRequestDeserializer(
+  item: any,
+): CreateFineTuneRequest {
+  return {
+    training_file: item["training_file"],
+    validation_file: item["validation_file"],
+    model: item["model"],
+    n_epochs: item["n_epochs"],
+    batch_size: item["batch_size"],
+    learning_rate_multiplier: item["learning_rate_multiplier"],
+    prompt_loss_rate: item["prompt_loss_rate"],
+    compute_classification_metrics: item["compute_classification_metrics"],
+    classification_n_classes: item["classification_n_classes"],
+    classification_positive_class: item["classification_positive_class"],
+    classification_betas: item["classification_betas"],
+    suffix: item["suffix"],
+  };
+}
+
 export type CreateFineTuneRequestModel =
   | "ada"
   | "babbage"
   | "curie"
   | "davinci";
+
+export function createFineTuneRequestModelSerializer(
+  item: CreateFineTuneRequestModel,
+): any {
+  return item;
+}
+
+export function createFineTuneRequestModelDeserializer(
+  item: any,
+): CreateFineTuneRequestModel {
+  return item;
+}
 
 /** The `FineTune` object represents a legacy fine-tune job that has been created through the API. */
 export interface FineTune {
@@ -497,6 +623,14 @@ export type FineTuneStatus =
   | "succeeded"
   | "failed"
   | "cancelled";
+
+export function fineTuneStatusSerializer(item: FineTuneStatus): any {
+  return item;
+}
+
+export function fineTuneStatusDeserializer(item: any): FineTuneStatus {
+  return item;
+}
 
 export interface FineTuneHyperparams {
   /**
@@ -561,6 +695,14 @@ export type OpenAIFileStatus =
   | "deleting"
   | "deleted";
 
+export function openAIFileStatusSerializer(item: OpenAIFileStatus): any {
+  return item;
+}
+
+export function openAIFileStatusDeserializer(item: any): OpenAIFileStatus {
+  return item;
+}
+
 export interface FineTuneEvent {
   object: string;
   created_at: Date;
@@ -607,6 +749,13 @@ export function createFileRequestSerializer(
   };
 }
 
+export function createFileRequestDeserializer(item: any): CreateFileRequest {
+  return {
+    file: item["file"],
+    purpose: item["purpose"],
+  };
+}
+
 export interface DeleteFileResponse {
   id: string;
   object: string;
@@ -637,12 +786,47 @@ export function createEmbeddingRequestSerializer(
   };
 }
 
+export function createEmbeddingRequestDeserializer(
+  item: any,
+): CreateEmbeddingRequest {
+  return {
+    model: createEmbeddingRequestModelDeserializer(item["model"]),
+    input: createEmbeddingRequestInputDeserializer(item["input"]),
+    user: item["user"],
+  };
+}
+
 export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
+
+export function createEmbeddingRequestModelSerializer(
+  item: CreateEmbeddingRequestModel,
+): any {
+  return item;
+}
+
+export function createEmbeddingRequestModelDeserializer(
+  item: any,
+): CreateEmbeddingRequestModel {
+  return item;
+}
+
 export type CreateEmbeddingRequestInput =
   | string
   | string[]
   | number[]
   | number[][];
+
+export function createEmbeddingRequestInputSerializer(
+  item: CreateEmbeddingRequestInput,
+): any {
+  return item;
+}
+
+export function createEmbeddingRequestInputDeserializer(
+  item: any,
+): CreateEmbeddingRequestInput {
+  return item;
+}
 
 export interface CreateEmbeddingResponse {
   /** The object type, which is always "embedding". */
@@ -720,9 +904,32 @@ export function createEditRequestSerializer(
   };
 }
 
+export function createEditRequestDeserializer(item: any): CreateEditRequest {
+  return {
+    model: createEditRequestModelDeserializer(item["model"]),
+    input: item["input"],
+    instruction: item["instruction"],
+    n: item["n"],
+    temperature: item["temperature"],
+    top_p: item["top_p"],
+  };
+}
+
 export type CreateEditRequestModel =
   | "text-davinci-edit-001"
   | "code-davinci-edit-001";
+
+export function createEditRequestModelSerializer(
+  item: CreateEditRequestModel,
+): any {
+  return item;
+}
+
+export function createEditRequestModelDeserializer(
+  item: any,
+): CreateEditRequestModel {
+  return item;
+}
 
 export interface CreateEditResponse {
   /** The object type, which is always `edit`. */
@@ -752,6 +959,18 @@ export interface CreateEditResponseChoice {
 }
 
 export type CreateEditResponseChoiceFinishReason = "stop" | "length";
+
+export function createEditResponseChoiceFinishReasonSerializer(
+  item: CreateEditResponseChoiceFinishReason,
+): any {
+  return item;
+}
+
+export function createEditResponseChoiceFinishReasonDeserializer(
+  item: any,
+): CreateEditResponseChoiceFinishReason {
+  return item;
+}
 
 /** Usage statistics for the completion request. */
 export interface CompletionUsage {
@@ -905,6 +1124,29 @@ export function createCompletionRequestSerializer(
   };
 }
 
+export function createCompletionRequestDeserializer(
+  item: any,
+): CreateCompletionRequest {
+  return {
+    model: createCompletionRequestModelDeserializer(item["model"]),
+    prompt: item["prompt"],
+    suffix: item["suffix"],
+    temperature: item["temperature"],
+    top_p: item["top_p"],
+    n: item["n"],
+    max_tokens: item["max_tokens"],
+    stop: item["stop"],
+    presence_penalty: item["presence_penalty"],
+    frequency_penalty: item["frequency_penalty"],
+    logit_bias: item["logit_bias"],
+    user: item["user"],
+    stream: item["stream"],
+    logprobs: item["logprobs"],
+    echo: item["echo"],
+    best_of: item["best_of"],
+  };
+}
+
 export type CreateCompletionRequestModel =
   | "babbage-002"
   | "davinci-002"
@@ -915,8 +1157,38 @@ export type CreateCompletionRequestModel =
   | "text-curie-001"
   | "text-babbage-001"
   | "text-ada-001";
+
+export function createCompletionRequestModelSerializer(
+  item: CreateCompletionRequestModel,
+): any {
+  return item;
+}
+
+export function createCompletionRequestModelDeserializer(
+  item: any,
+): CreateCompletionRequestModel {
+  return item;
+}
+
 export type Prompt = string | string[] | number[] | number[][];
+
+export function promptSerializer(item: Prompt): any {
+  return item;
+}
+
+export function promptDeserializer(item: any): Prompt {
+  return item;
+}
+
 export type Stop = string | string[];
+
+export function stopSerializer(item: Stop): any {
+  return item;
+}
+
+export function stopDeserializer(item: any): Stop {
+  return item;
+}
 
 /**
  * Represents a completion response from the API. Note: both the streamed and non-streamed response
@@ -977,6 +1249,18 @@ export type CreateCompletionResponseChoiceFinishReason =
   | "length"
   | "content_filter";
 
+export function createCompletionResponseChoiceFinishReasonSerializer(
+  item: CreateCompletionResponseChoiceFinishReason,
+): any {
+  return item;
+}
+
+export function createCompletionResponseChoiceFinishReasonDeserializer(
+  item: any,
+): CreateCompletionResponseChoiceFinishReason {
+  return item;
+}
+
 export interface CreateFineTuningJobRequest {
   /**
    * The ID of an uploaded file that contains training data.
@@ -1034,10 +1318,38 @@ export function createFineTuningJobRequestSerializer(
   };
 }
 
+export function createFineTuningJobRequestDeserializer(
+  item: any,
+): CreateFineTuningJobRequest {
+  return {
+    training_file: item["training_file"],
+    validation_file: item["validation_file"],
+    model: createFineTuningJobRequestModelDeserializer(item["model"]),
+    hyperparameters: !item.hyperparameters
+      ? undefined
+      : createFineTuningJobRequestHyperparametersDeserializer(
+          item.hyperparameters,
+        ),
+    suffix: item["suffix"],
+  };
+}
+
 export type CreateFineTuningJobRequestModel =
   | "babbage-002"
   | "davinci-002"
   | "gpt-3.5-turbo";
+
+export function createFineTuningJobRequestModelSerializer(
+  item: CreateFineTuningJobRequestModel,
+): any {
+  return item;
+}
+
+export function createFineTuningJobRequestModelDeserializer(
+  item: any,
+): CreateFineTuningJobRequestModel {
+  return item;
+}
 
 export interface CreateFineTuningJobRequestHyperparameters {
   /**
@@ -1055,7 +1367,29 @@ export function createFineTuningJobRequestHyperparametersSerializer(
   };
 }
 
+export function createFineTuningJobRequestHyperparametersDeserializer(
+  item: any,
+): CreateFineTuningJobRequestHyperparameters {
+  return {
+    n_epochs: createFineTuningJobRequestHyperparametersNEpochsDeserializer(
+      item["n_epochs"],
+    ),
+  };
+}
+
 export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
+
+export function createFineTuningJobRequestHyperparametersNEpochsSerializer(
+  item: CreateFineTuningJobRequestHyperparametersNEpochs,
+): any {
+  return item;
+}
+
+export function createFineTuningJobRequestHyperparametersNEpochsDeserializer(
+  item: any,
+): CreateFineTuningJobRequestHyperparametersNEpochs {
+  return item;
+}
 
 export interface FineTuningJob {
   /** The object identifier, which can be referenced in the API endpoints. */
@@ -1135,6 +1469,16 @@ export type FineTuningJobStatus =
   | "failed"
   | "cancelled";
 
+export function fineTuningJobStatusSerializer(item: FineTuningJobStatus): any {
+  return item;
+}
+
+export function fineTuningJobStatusDeserializer(
+  item: any,
+): FineTuningJobStatus {
+  return item;
+}
+
 export interface FineTuningJobHyperparameters {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
@@ -1147,6 +1491,18 @@ export interface FineTuningJobHyperparameters {
 }
 
 export type FineTuningJobHyperparametersNEpochs = "auto" | number;
+
+export function fineTuningJobHyperparametersNEpochsSerializer(
+  item: FineTuningJobHyperparametersNEpochs,
+): any {
+  return item;
+}
+
+export function fineTuningJobHyperparametersNEpochsDeserializer(
+  item: any,
+): FineTuningJobHyperparametersNEpochs {
+  return item;
+}
 
 export interface FineTuningJobError {
   /** A human-readable error message. */
@@ -1180,6 +1536,18 @@ export interface FineTuningJobEvent {
 }
 
 export type FineTuningJobEventLevel = "info" | "warn" | "error";
+
+export function fineTuningJobEventLevelSerializer(
+  item: FineTuningJobEventLevel,
+): any {
+  return item;
+}
+
+export function fineTuningJobEventLevelDeserializer(
+  item: any,
+): FineTuningJobEventLevel {
+  return item;
+}
 
 export interface CreateChatCompletionRequest {
   /**
@@ -1308,6 +1676,29 @@ export function createChatCompletionRequestSerializer(
   };
 }
 
+export function createChatCompletionRequestDeserializer(
+  item: any,
+): CreateChatCompletionRequest {
+  return {
+    model: createChatCompletionRequestModelDeserializer(item["model"]),
+    messages: item["messages"],
+    functions: item["functions"],
+    function_call: createChatCompletionRequestFunctionCall1Deserializer(
+      item["function_call"],
+    ),
+    temperature: item["temperature"],
+    top_p: item["top_p"],
+    n: item["n"],
+    max_tokens: item["max_tokens"],
+    stop: item["stop"],
+    presence_penalty: item["presence_penalty"],
+    frequency_penalty: item["frequency_penalty"],
+    logit_bias: item["logit_bias"],
+    user: item["user"],
+    stream: item["stream"],
+  };
+}
+
 export type CreateChatCompletionRequestModel =
   | "gpt4"
   | "gpt-4-0314"
@@ -1320,6 +1711,18 @@ export type CreateChatCompletionRequestModel =
   | "gpt-3.5-turbo-0301"
   | "gpt-3.5-turbo-0613"
   | "gpt-3.5-turbo-16k-0613";
+
+export function createChatCompletionRequestModelSerializer(
+  item: CreateChatCompletionRequestModel,
+): any {
+  return item;
+}
+
+export function createChatCompletionRequestModelDeserializer(
+  item: any,
+): CreateChatCompletionRequestModel {
+  return item;
+}
 
 export interface ChatCompletionRequestMessage {
   /** The role of the messages author. One of `system`, `user`, `assistant`, or `function`. */
@@ -1358,11 +1761,38 @@ export function chatCompletionRequestMessageSerializer(
   };
 }
 
+export function chatCompletionRequestMessageDeserializer(
+  item: any,
+): ChatCompletionRequestMessage {
+  return {
+    role: chatCompletionRequestMessageRoleDeserializer(item["role"]),
+    content: item["content"],
+    name: item["name"],
+    function_call: !item.function_call
+      ? undefined
+      : chatCompletionRequestMessageFunctionCallDeserializer(
+          item.function_call,
+        ),
+  };
+}
+
 export type ChatCompletionRequestMessageRole =
   | "system"
   | "user"
   | "assistant"
   | "function";
+
+export function chatCompletionRequestMessageRoleSerializer(
+  item: ChatCompletionRequestMessageRole,
+): any {
+  return item;
+}
+
+export function chatCompletionRequestMessageRoleDeserializer(
+  item: any,
+): ChatCompletionRequestMessageRole {
+  return item;
+}
 
 export interface ChatCompletionRequestMessageFunctionCall {
   /** The name of the function to call. */
@@ -1378,6 +1808,15 @@ export interface ChatCompletionRequestMessageFunctionCall {
 export function chatCompletionRequestMessageFunctionCallSerializer(
   item: ChatCompletionRequestMessageFunctionCall,
 ): Record<string, unknown> {
+  return {
+    name: item["name"],
+    arguments: item["arguments"],
+  };
+}
+
+export function chatCompletionRequestMessageFunctionCallDeserializer(
+  item: any,
+): ChatCompletionRequestMessageFunctionCall {
   return {
     name: item["name"],
     arguments: item["arguments"],
@@ -1415,6 +1854,18 @@ export function chatCompletionFunctionsSerializer(
   };
 }
 
+export function chatCompletionFunctionsDeserializer(
+  item: any,
+): ChatCompletionFunctions {
+  return {
+    name: item["name"],
+    description: item["description"],
+    parameters: chatCompletionFunctionParametersDeserializer(
+      item["parameters"],
+    ),
+  };
+}
+
 export interface ChatCompletionFunctionParameters {}
 
 export function chatCompletionFunctionParametersSerializer(
@@ -1425,10 +1876,30 @@ export function chatCompletionFunctionParametersSerializer(
   };
 }
 
+export function chatCompletionFunctionParametersDeserializer(
+  item: any,
+): ChatCompletionFunctionParameters {
+  return {
+    ...item,
+  };
+}
+
 export type CreateChatCompletionRequestFunctionCall1 =
   | "none"
   | "auto"
   | ChatCompletionFunctionCallOption;
+
+export function createChatCompletionRequestFunctionCall1Serializer(
+  item: CreateChatCompletionRequestFunctionCall1,
+): any {
+  return item;
+}
+
+export function createChatCompletionRequestFunctionCall1Deserializer(
+  item: any,
+): CreateChatCompletionRequestFunctionCall1 {
+  return item;
+}
 
 export interface ChatCompletionFunctionCallOption {
   /** The name of the function to call. */
@@ -1438,6 +1909,14 @@ export interface ChatCompletionFunctionCallOption {
 export function chatCompletionFunctionCallOptionSerializer(
   item: ChatCompletionFunctionCallOption,
 ): Record<string, unknown> {
+  return {
+    name: item["name"],
+  };
+}
+
+export function chatCompletionFunctionCallOptionDeserializer(
+  item: any,
+): ChatCompletionFunctionCallOption {
   return {
     name: item["name"],
   };
@@ -1495,6 +1974,18 @@ export type ChatCompletionResponseMessageRole =
   | "assistant"
   | "function";
 
+export function chatCompletionResponseMessageRoleSerializer(
+  item: ChatCompletionResponseMessageRole,
+): any {
+  return item;
+}
+
+export function chatCompletionResponseMessageRoleDeserializer(
+  item: any,
+): ChatCompletionResponseMessageRole {
+  return item;
+}
+
 export interface ChatCompletionResponseMessageFunctionCall {
   /** The name of the function to call. */
   name: string;
@@ -1511,6 +2002,18 @@ export type CreateChatCompletionResponseChoiceFinishReason =
   | "length"
   | "function_call"
   | "content_filter";
+
+export function createChatCompletionResponseChoiceFinishReasonSerializer(
+  item: CreateChatCompletionResponseChoiceFinishReason,
+): any {
+  return item;
+}
+
+export function createChatCompletionResponseChoiceFinishReasonDeserializer(
+  item: any,
+): CreateChatCompletionResponseChoiceFinishReason {
+  return item;
+}
 
 export interface CreateTranslationRequest {
   /**
@@ -1551,13 +2054,52 @@ export function createTranslationRequestSerializer(
   };
 }
 
+export function createTranslationRequestDeserializer(
+  item: any,
+): CreateTranslationRequest {
+  return {
+    file: item["file"],
+    model: createTranslationRequestModelDeserializer(item["model"]),
+    prompt: item["prompt"],
+    response_format: createTranslationRequestResponseFormatDeserializer(
+      item["response_format"],
+    ),
+    temperature: item["temperature"],
+  };
+}
+
 export type CreateTranslationRequestModel = "whisper-1";
+
+export function createTranslationRequestModelSerializer(
+  item: CreateTranslationRequestModel,
+): any {
+  return item;
+}
+
+export function createTranslationRequestModelDeserializer(
+  item: any,
+): CreateTranslationRequestModel {
+  return item;
+}
+
 export type CreateTranslationRequestResponseFormat =
   | "json"
   | "text"
   | "srt"
   | "verbose_json"
   | "vtt";
+
+export function createTranslationRequestResponseFormatSerializer(
+  item: CreateTranslationRequestResponseFormat,
+): any {
+  return item;
+}
+
+export function createTranslationRequestResponseFormatDeserializer(
+  item: any,
+): CreateTranslationRequestResponseFormat {
+  return item;
+}
 
 export interface CreateTranslationResponse {
   text: string;
@@ -1609,13 +2151,53 @@ export function createTranscriptionRequestSerializer(
   };
 }
 
+export function createTranscriptionRequestDeserializer(
+  item: any,
+): CreateTranscriptionRequest {
+  return {
+    file: item["file"],
+    model: createTranscriptionRequestModelDeserializer(item["model"]),
+    prompt: item["prompt"],
+    response_format: createTranscriptionRequestResponseFormatDeserializer(
+      item["response_format"],
+    ),
+    temperature: item["temperature"],
+    language: item["language"],
+  };
+}
+
 export type CreateTranscriptionRequestModel = "whisper-1";
+
+export function createTranscriptionRequestModelSerializer(
+  item: CreateTranscriptionRequestModel,
+): any {
+  return item;
+}
+
+export function createTranscriptionRequestModelDeserializer(
+  item: any,
+): CreateTranscriptionRequestModel {
+  return item;
+}
+
 export type CreateTranscriptionRequestResponseFormat =
   | "json"
   | "text"
   | "srt"
   | "verbose_json"
   | "vtt";
+
+export function createTranscriptionRequestResponseFormatSerializer(
+  item: CreateTranscriptionRequestResponseFormat,
+): any {
+  return item;
+}
+
+export function createTranscriptionRequestResponseFormatDeserializer(
+  item: any,
+): CreateTranscriptionRequestResponseFormat {
+  return item;
+}
 
 export interface CreateTranscriptionResponse {
   text: string;

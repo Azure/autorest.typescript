@@ -6,7 +6,11 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { User, _ListWidgetsPagesResults } from "../../models/models.js";
+import {
+  User,
+  userDeserializer,
+  _ListWidgetsPagesResults,
+} from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PathUncheckedResponse,
@@ -38,11 +42,7 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
-  };
+  return userDeserializer(result.body);
 }
 
 /** Long-running resource create or replace operation template. */

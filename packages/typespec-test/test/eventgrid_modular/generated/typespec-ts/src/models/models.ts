@@ -16,6 +16,14 @@ export function publishCloudEventRequestSerializer(
   };
 }
 
+export function publishCloudEventRequestDeserializer(
+  item: any,
+): PublishCloudEventRequest {
+  return {
+    event: cloudEventDeserializer(item.event),
+  };
+}
+
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
   /** An identifier for the event. The combination of id and source must be unique for each distinct event. */
@@ -53,6 +61,21 @@ export function cloudEventSerializer(
         : undefined,
     type: item["type"],
     time: item["time"]?.toISOString(),
+    specversion: item["specversion"],
+    dataschema: item["dataschema"],
+    datacontenttype: item["datacontenttype"],
+    subject: item["subject"],
+  };
+}
+
+export function cloudEventDeserializer(item: any): CloudEvent {
+  return {
+    id: item["id"],
+    source: item["source"],
+    data: item["data"],
+    data_base64: item["data_base64"],
+    type: item["type"],
+    time: item["time"],
     specversion: item["specversion"],
     dataschema: item["dataschema"],
     datacontenttype: item["datacontenttype"],
@@ -99,6 +122,12 @@ export function acknowledgeOptionsSerializer(
   };
 }
 
+export function acknowledgeOptionsDeserializer(item: any): AcknowledgeOptions {
+  return {
+    lockTokens: item["lockTokens"],
+  };
+}
+
 /** The result of the Acknowledge operation. */
 export interface AcknowledgeResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -131,6 +160,12 @@ export function releaseOptionsSerializer(
   };
 }
 
+export function releaseOptionsDeserializer(item: any): ReleaseOptions {
+  return {
+    lockTokens: item["lockTokens"],
+  };
+}
+
 /** The result of the Release operation. */
 export interface ReleaseResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -153,6 +188,12 @@ export function rejectOptionsSerializer(
   };
 }
 
+export function rejectOptionsDeserializer(item: any): RejectOptions {
+  return {
+    lockTokens: item["lockTokens"],
+  };
+}
+
 /** The result of the Reject operation. */
 export interface RejectResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -162,6 +203,14 @@ export interface RejectResult {
 }
 
 export type ServiceApiVersions = "2023-06-01-preview";
+
+export function serviceApiVersionsSerializer(item: ServiceApiVersions): any {
+  return item;
+}
+
+export function serviceApiVersionsDeserializer(item: any): ServiceApiVersions {
+  return item;
+}
 
 /** A response containing error details. */
 export interface ErrorResponse {

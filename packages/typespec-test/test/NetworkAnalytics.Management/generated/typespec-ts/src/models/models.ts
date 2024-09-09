@@ -28,6 +28,23 @@ export function dataProductSerializer(
   };
 }
 
+export function dataProductDeserializer(item: any): DataProduct {
+  return {
+    tags: item["tags"],
+    location: item["location"],
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item.systemData ? undefined : item.systemData,
+    properties: !item.properties
+      ? undefined
+      : dataProductPropertiesDeserializer(item.properties),
+    identity: !item.identity
+      ? undefined
+      : managedServiceIdentityV4Deserializer(item.identity),
+  };
+}
+
 /** The data product properties. */
 export interface DataProductProperties {
   /** The resource GUID property of the data product resource. */
@@ -102,6 +119,45 @@ export function dataProductPropertiesSerializer(
   };
 }
 
+export function dataProductPropertiesDeserializer(
+  item: any,
+): DataProductProperties {
+  return {
+    resourceGuid: item["resourceGuid"],
+    provisioningState: provisioningStateDeserializer(item["provisioningState"]),
+    publisher: item["publisher"],
+    product: item["product"],
+    majorVersion: item["majorVersion"],
+    owners: item["owners"],
+    redundancy: controlStateDeserializer(item["redundancy"]),
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: controlStateDeserializer(item["privateLinksEnabled"]),
+    publicNetworkAccess: controlStateDeserializer(item["publicNetworkAccess"]),
+    customerManagedKeyEncryptionEnabled: controlStateDeserializer(
+      item["customerManagedKeyEncryptionEnabled"],
+    ),
+    customerEncryptionKey: !item.customerEncryptionKey
+      ? undefined
+      : encryptionKeyDetailsDeserializer(item.customerEncryptionKey),
+    networkacls: !item.networkacls
+      ? undefined
+      : dataProductNetworkAclsDeserializer(item.networkacls),
+    managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
+      ? undefined
+      : managedResourceGroupConfigurationDeserializer(
+          item.managedResourceGroupConfiguration,
+        ),
+    availableMinorVersions: item["availableMinorVersions"],
+    currentMinorVersion: item["currentMinorVersion"],
+    documentation: item["documentation"],
+    consumptionEndpoints: !item.consumptionEndpoints
+      ? undefined
+      : item.consumptionEndpoints,
+    keyVaultUrl: item["keyVaultUrl"],
+  };
+}
+
 /** The status of the current operation. */
 export enum KnownProvisioningState {
   /** Represents a succeeded operation. */
@@ -135,6 +191,14 @@ export enum KnownProvisioningState {
  */
 export type ProvisioningState = string;
 
+export function provisioningStateSerializer(item: ProvisioningState): any {
+  return item;
+}
+
+export function provisioningStateDeserializer(item: any): ProvisioningState {
+  return item;
+}
+
 /** The data type state */
 export enum KnownControlState {
   /** Field to enable a setting. */
@@ -153,6 +217,14 @@ export enum KnownControlState {
  */
 export type ControlState = string;
 
+export function controlStateSerializer(item: ControlState): any {
+  return item;
+}
+
+export function controlStateDeserializer(item: any): ControlState {
+  return item;
+}
+
 /** Encryption key details. */
 export interface EncryptionKeyDetails {
   /** The Uri of the key vault. */
@@ -166,6 +238,16 @@ export interface EncryptionKeyDetails {
 export function encryptionKeyDetailsSerializer(
   item: EncryptionKeyDetails,
 ): Record<string, unknown> {
+  return {
+    keyVaultUri: item["keyVaultUri"],
+    keyName: item["keyName"],
+    keyVersion: item["keyVersion"],
+  };
+}
+
+export function encryptionKeyDetailsDeserializer(
+  item: any,
+): EncryptionKeyDetails {
   return {
     keyVaultUri: item["keyVaultUri"],
     keyName: item["keyName"],
@@ -198,6 +280,17 @@ export function dataProductNetworkAclsSerializer(
   };
 }
 
+export function dataProductNetworkAclsDeserializer(
+  item: any,
+): DataProductNetworkAcls {
+  return {
+    virtualNetworkRule: item["virtualNetworkRule"],
+    ipRules: item["ipRules"],
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
+    defaultAction: defaultActionDeserializer(item["defaultAction"]),
+  };
+}
+
 /** Virtual Network Rule */
 export interface VirtualNetworkRule {
   /** Resource ID of a subnet */
@@ -218,6 +311,14 @@ export function virtualNetworkRuleSerializer(
   };
 }
 
+export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
+  return {
+    id: item["id"],
+    action: item["action"],
+    state: item["state"],
+  };
+}
+
 /** IP rule with specific IP or IP range in CIDR format. */
 export interface IPRules {
   /** IP Rules Value */
@@ -227,6 +328,13 @@ export interface IPRules {
 }
 
 export function iPRulesSerializer(item: IPRules): Record<string, unknown> {
+  return {
+    value: item["value"],
+    action: item["action"],
+  };
+}
+
+export function iPRulesDeserializer(item: any): IPRules {
   return {
     value: item["value"],
     action: item["action"],
@@ -251,6 +359,14 @@ export enum KnownDefaultAction {
  */
 export type DefaultAction = string;
 
+export function defaultActionSerializer(item: DefaultAction): any {
+  return item;
+}
+
+export function defaultActionDeserializer(item: any): DefaultAction {
+  return item;
+}
+
 /** ManagedResourceGroup related properties */
 export interface ManagedResourceGroupConfiguration {
   /** Name of managed resource group */
@@ -262,6 +378,15 @@ export interface ManagedResourceGroupConfiguration {
 export function managedResourceGroupConfigurationSerializer(
   item: ManagedResourceGroupConfiguration,
 ): Record<string, unknown> {
+  return {
+    name: item["name"],
+    location: item["location"],
+  };
+}
+
+export function managedResourceGroupConfigurationDeserializer(
+  item: any,
+): ManagedResourceGroupConfiguration {
   return {
     name: item["name"],
     location: item["location"],
@@ -310,6 +435,19 @@ export function managedServiceIdentityV4Serializer(
   };
 }
 
+export function managedServiceIdentityV4Deserializer(
+  item: any,
+): ManagedServiceIdentityV4 {
+  return {
+    principalId: item["principalId"],
+    tenantId: item["tenantId"],
+    type: managedServiceIdentityTypeDeserializer(item["type"]),
+    userAssignedIdentities: userAssignedIdentityRecordDeserializer(
+      item["userAssignedIdentities"],
+    ),
+  };
+}
+
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export enum KnownManagedServiceIdentityType {
   /** No managed identity. */
@@ -334,6 +472,18 @@ export enum KnownManagedServiceIdentityType {
  */
 export type ManagedServiceIdentityType = string;
 
+export function managedServiceIdentityTypeSerializer(
+  item: ManagedServiceIdentityType,
+): any {
+  return item;
+}
+
+export function managedServiceIdentityTypeDeserializer(
+  item: any,
+): ManagedServiceIdentityType {
+  return item;
+}
+
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
   /** The principal ID of the assigned identity. */
@@ -346,6 +496,15 @@ export function userAssignedIdentitySerializer(
   item: UserAssignedIdentity,
 ): Record<string, unknown> {
   return item as any;
+}
+
+export function userAssignedIdentityDeserializer(
+  item: any,
+): UserAssignedIdentity {
+  return {
+    principalId: item["principalId"],
+    clientId: item["clientId"],
+  };
 }
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
@@ -365,6 +524,17 @@ export function trackedResourceSerializer(
   };
 }
 
+export function trackedResourceDeserializer(item: any): TrackedResource {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item.systemData ? undefined : item.systemData,
+    tags: item["tags"],
+    location: item["location"],
+  };
+}
+
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -379,6 +549,15 @@ export interface Resource {
 
 export function resourceSerializer(item: Resource): Record<string, unknown> {
   return item as any;
+}
+
+export function resourceDeserializer(item: any): Resource {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item.systemData ? undefined : item.systemData,
+  };
 }
 
 /** Metadata pertaining to creation and last modification of the resource. */
@@ -420,6 +599,14 @@ export enum KnownCreatedByType {
  * **Key**: The entity was created by a key.
  */
 export type CreatedByType = string;
+
+export function createdByTypeSerializer(item: CreatedByType): any {
+  return item;
+}
+
+export function createdByTypeDeserializer(item: any): CreatedByType {
+  return item;
+}
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
@@ -475,6 +662,18 @@ export function dataProductUpdateSerializer(
   };
 }
 
+export function dataProductUpdateDeserializer(item: any): DataProductUpdate {
+  return {
+    identity: !item.identity
+      ? undefined
+      : managedServiceIdentityV4Deserializer(item.identity),
+    tags: item["tags"],
+    properties: !item.properties
+      ? undefined
+      : dataProductUpdatePropertiesDeserializer(item.properties),
+  };
+}
+
 /** The updatable properties of the DataProduct. */
 export interface DataProductUpdateProperties {
   /** List of name or email associated with data product resource deployment. */
@@ -501,6 +700,18 @@ export function dataProductUpdatePropertiesSerializer(
   };
 }
 
+export function dataProductUpdatePropertiesDeserializer(
+  item: any,
+): DataProductUpdateProperties {
+  return {
+    owners: item["owners"],
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: controlStateDeserializer(item["privateLinksEnabled"]),
+    currentMinorVersion: item["currentMinorVersion"],
+  };
+}
+
 /** The details for storage account sas creation. */
 export interface AccountSas {
   /** Sas token start timestamp. */
@@ -521,6 +732,14 @@ export function accountSasSerializer(
   };
 }
 
+export function accountSasDeserializer(item: any): AccountSas {
+  return {
+    startTimeStamp: item["startTimeStamp"],
+    expiryTimeStamp: item["expiryTimeStamp"],
+    ipAddress: item["ipAddress"],
+  };
+}
+
 /** Details of storage account sas token . */
 export interface AccountSasToken {
   /** Field to specify storage account sas token. */
@@ -536,6 +755,12 @@ export interface KeyVaultInfo {
 export function keyVaultInfoSerializer(
   item: KeyVaultInfo,
 ): Record<string, unknown> {
+  return {
+    keyVaultUrl: item["keyVaultUrl"],
+  };
+}
+
+export function keyVaultInfoDeserializer(item: any): KeyVaultInfo {
   return {
     keyVaultUrl: item["keyVaultUrl"],
   };
@@ -570,6 +795,19 @@ export function roleAssignmentCommonPropertiesSerializer(
   };
 }
 
+export function roleAssignmentCommonPropertiesDeserializer(
+  item: any,
+): RoleAssignmentCommonProperties {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"],
+    principalType: item["principalType"],
+    role: dataProductUserRoleDeserializer(item["role"]),
+  };
+}
+
 /** The data type state */
 export enum KnownDataProductUserRole {
   /** Field to specify user of type Reader. */
@@ -591,6 +829,16 @@ export enum KnownDataProductUserRole {
  * This user has privileged access to read sensitive data of a data product.
  */
 export type DataProductUserRole = string;
+
+export function dataProductUserRoleSerializer(item: DataProductUserRole): any {
+  return item;
+}
+
+export function dataProductUserRoleDeserializer(
+  item: any,
+): DataProductUserRole {
+  return item;
+}
 
 /** The details for role assignment response. */
 export interface RoleAssignmentDetail {
@@ -620,6 +868,20 @@ export function roleAssignmentDetailSerializer(
     dataTypeScope: item["dataTypeScope"],
     principalType: item["principalType"],
     role: item["role"],
+    roleAssignmentId: item["roleAssignmentId"],
+  };
+}
+
+export function roleAssignmentDetailDeserializer(
+  item: any,
+): RoleAssignmentDetail {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"],
+    principalType: item["principalType"],
+    role: dataProductUserRoleDeserializer(item["role"]),
     roleAssignmentId: item["roleAssignmentId"],
   };
 }
@@ -658,6 +920,18 @@ export function dataTypeSerializer(item: DataType): Record<string, unknown> {
   };
 }
 
+export function dataTypeDeserializer(item: any): DataType {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item.systemData ? undefined : item.systemData,
+    properties: !item.properties
+      ? undefined
+      : dataTypePropertiesDeserializer(item.properties),
+  };
+}
+
 /** The data type properties */
 export interface DataTypeProperties {
   /** Latest provisioning state  of data product. */
@@ -687,6 +961,18 @@ export function dataTypePropertiesSerializer(
   };
 }
 
+export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
+  return {
+    provisioningState: provisioningStateDeserializer(item["provisioningState"]),
+    state: dataTypeStateDeserializer(item["state"]),
+    stateReason: item["stateReason"],
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+    visualizationUrl: item["visualizationUrl"],
+  };
+}
+
 /** The data type state */
 export enum KnownDataTypeState {
   /** Field to specify stopped state. */
@@ -705,6 +991,14 @@ export enum KnownDataTypeState {
  */
 export type DataTypeState = string;
 
+export function dataTypeStateSerializer(item: DataTypeState): any {
+  return item;
+}
+
+export function dataTypeStateDeserializer(item: any): DataTypeState {
+  return item;
+}
+
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
@@ -712,6 +1006,15 @@ export function proxyResourceSerializer(
   item: ProxyResource,
 ): Record<string, unknown> {
   return item as any;
+}
+
+export function proxyResourceDeserializer(item: any): ProxyResource {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item.systemData ? undefined : item.systemData,
+  };
 }
 
 /** The type used for update operations of the DataType. */
@@ -727,6 +1030,14 @@ export function dataTypeUpdateSerializer(
     properties: !item.properties
       ? item.properties
       : dataTypeUpdatePropertiesSerializer(item.properties),
+  };
+}
+
+export function dataTypeUpdateDeserializer(item: any): DataTypeUpdate {
+  return {
+    properties: !item.properties
+      ? undefined
+      : dataTypeUpdatePropertiesDeserializer(item.properties),
   };
 }
 
@@ -753,6 +1064,17 @@ export function dataTypeUpdatePropertiesSerializer(
   };
 }
 
+export function dataTypeUpdatePropertiesDeserializer(
+  item: any,
+): DataTypeUpdateProperties {
+  return {
+    state: dataTypeStateDeserializer(item["state"]),
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+  };
+}
+
 export interface DeleteDataRequest {}
 
 /** The details for container sas creation. */
@@ -771,6 +1093,14 @@ export function containerSaSSerializer(
   return {
     startTimeStamp: item["startTimeStamp"].toISOString(),
     expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
+    ipAddress: item["ipAddress"],
+  };
+}
+
+export function containerSaSDeserializer(item: any): ContainerSaS {
+  return {
+    startTimeStamp: item["startTimeStamp"],
+    expiryTimeStamp: item["expiryTimeStamp"],
     ipAddress: item["ipAddress"],
   };
 }
@@ -892,6 +1222,14 @@ export enum KnownOrigin {
  */
 export type Origin = string;
 
+export function originSerializer(item: Origin): any {
+  return item;
+}
+
+export function originDeserializer(item: any): Origin {
+  return item;
+}
+
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export enum KnownActionType {
   /** Actions are for internal-only APIs. */
@@ -906,5 +1244,22 @@ export enum KnownActionType {
  * **Internal**: Actions are for internal-only APIs.
  */
 export type ActionType = string;
+
+export function actionTypeSerializer(item: ActionType): any {
+  return item;
+}
+
+export function actionTypeDeserializer(item: any): ActionType {
+  return item;
+}
+
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export type Versions = "2023-11-15";
+
+export function versionsSerializer(item: Versions): any {
+  return item;
+}
+
+export function versionsDeserializer(item: any): Versions {
+  return item;
+}

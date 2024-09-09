@@ -2,14 +2,17 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import { _MultivariateModelList } from "../models/models.js";
+import { _MultivariateModelList, APIVersion } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
 export interface AnomalyDetectorContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface AnomalyDetectorClientOptionalParams extends ClientOptions {}
+export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
+  /** Api Version */
+  ApiVersion?: APIVersion;
+}
 
 /**
  * The Anomaly Detector API detects anomalies automatically in time series data.

@@ -38,17 +38,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        created: new Date(p["created"]),
-        owned_by: p["owned_by"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 export async function list(
@@ -77,12 +67,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    owned_by: result.body["owned_by"],
-  };
+  return result.body;
 }
 
 export async function retrieve(
@@ -112,11 +97,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  return result.body;
 }
 
 /**

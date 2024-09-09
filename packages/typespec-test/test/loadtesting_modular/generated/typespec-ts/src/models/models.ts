@@ -85,6 +85,39 @@ export function testSerializer(item: Test): Record<string, unknown> {
   };
 }
 
+export function testDeserializer(item: any): Test {
+  return {
+    passFailCriteria: !item.passFailCriteria
+      ? undefined
+      : passFailCriteriaDeserializer(item.passFailCriteria),
+    autoStopCriteria: !item.autoStopCriteria
+      ? undefined
+      : autoStopCriteriaDeserializer(item.autoStopCriteria),
+    secrets: secretRecordDeserializer(item["secrets"]),
+    certificate: !item.certificate
+      ? undefined
+      : certificateMetadataDeserializer(item.certificate),
+    environmentVariables: item["environmentVariables"],
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? undefined
+      : loadTestConfigurationDeserializer(item.loadTestConfiguration),
+    baselineTestRunId: item["baselineTestRunId"],
+    inputArtifacts: !item.inputArtifacts ? undefined : item.inputArtifacts,
+    testId: item["testId"],
+    description: item["description"],
+    displayName: item["displayName"],
+    subnetId: item["subnetId"],
+    kind: testKindDeserializer(item["kind"]),
+    publicIPDisabled: item["publicIPDisabled"],
+    keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
+    keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
+  };
+}
+
 /** Pass fail criteria for a test. */
 export interface PassFailCriteria {
   /** Map of id and pass fail metrics { id  : pass fail metrics }. */
@@ -101,6 +134,12 @@ export function passFailCriteriaSerializer(
           item.passFailMetrics as any,
           passFailMetricSerializer,
         ) as any),
+  };
+}
+
+export function passFailCriteriaDeserializer(item: any): PassFailCriteria {
+  return {
+    passFailMetrics: passFailMetricRecordDeserializer(item["passFailMetrics"]),
   };
 }
 
@@ -145,6 +184,19 @@ export function passFailMetricSerializer(
   };
 }
 
+export function passFailMetricDeserializer(item: any): PassFailMetric {
+  return {
+    clientMetric: pFMetricsDeserializer(item["clientMetric"]),
+    aggregate: pFAgFuncDeserializer(item["aggregate"]),
+    condition: item["condition"],
+    requestName: item["requestName"],
+    value: item["value"],
+    action: pFActionDeserializer(item["action"]),
+    actualValue: item["actualValue"],
+    result: pFResultDeserializer(item["result"]),
+  };
+}
+
 /** Metrics for pass/fail criteria. */
 export enum KnownPFMetrics {
   /** Pass fail criteria for response time metric in milliseconds. */
@@ -171,6 +223,14 @@ export enum KnownPFMetrics {
  * **requests_per_sec**: Pass fail criteria for request per second.
  */
 export type PFMetrics = string;
+
+export function pFMetricsSerializer(item: PFMetrics): any {
+  return item;
+}
+
+export function pFMetricsDeserializer(item: any): PFMetrics {
+  return item;
+}
 
 /** Aggregation functions for pass/fail criteria. */
 export enum KnownPFAgFunc {
@@ -229,6 +289,14 @@ export enum KnownPFAgFunc {
  */
 export type PFAgFunc = string;
 
+export function pFAgFuncSerializer(item: PFAgFunc): any {
+  return item;
+}
+
+export function pFAgFuncDeserializer(item: any): PFAgFunc {
+  return item;
+}
+
 /** Action to take on failure of pass/fail criteria. */
 export enum KnownPFAction {
   /** Test will continue to run even if pass fail metric criteria metric gets failed. */
@@ -246,6 +314,14 @@ export enum KnownPFAction {
  * **stop**: Test run will stop if pass fail criteria metric is not passed.
  */
 export type PFAction = string;
+
+export function pFActionSerializer(item: PFAction): any {
+  return item;
+}
+
+export function pFActionDeserializer(item: any): PFAction {
+  return item;
+}
 
 /** Pass/fail criteria result. */
 export enum KnownPFResult {
@@ -268,6 +344,14 @@ export enum KnownPFResult {
  */
 export type PFResult = string;
 
+export function pFResultSerializer(item: PFResult): any {
+  return item;
+}
+
+export function pFResultDeserializer(item: any): PFResult {
+  return item;
+}
+
 /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
 export interface AutoStopCriteria {
   /** Whether auto-stop should be disabled. The default value is false. */
@@ -281,6 +365,14 @@ export interface AutoStopCriteria {
 export function autoStopCriteriaSerializer(
   item: AutoStopCriteria,
 ): Record<string, unknown> {
+  return {
+    autoStopDisabled: item["autoStopDisabled"],
+    errorRate: item["errorRate"],
+    errorRateTimeWindowInSeconds: item["errorRateTimeWindowInSeconds"],
+  };
+}
+
+export function autoStopCriteriaDeserializer(item: any): AutoStopCriteria {
   return {
     autoStopDisabled: item["autoStopDisabled"],
     errorRate: item["errorRate"],
@@ -303,6 +395,13 @@ export function secretSerializer(item: Secret): Record<string, unknown> {
   };
 }
 
+export function secretDeserializer(item: any): Secret {
+  return {
+    value: item["value"],
+    type: secretTypeDeserializer(item["type"]),
+  };
+}
+
 /** Types of secrets supported. */
 export enum KnownSecretType {
   /** If the secret is stored in an Azure Key Vault. */
@@ -320,6 +419,14 @@ export enum KnownSecretType {
  * **SECRET_VALUE**: If the secret value provided as plain text.
  */
 export type SecretType = string;
+
+export function secretTypeSerializer(item: SecretType): any {
+  return item;
+}
+
+export function secretTypeDeserializer(item: any): SecretType {
+  return item;
+}
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -341,6 +448,16 @@ export function certificateMetadataSerializer(
   };
 }
 
+export function certificateMetadataDeserializer(
+  item: any,
+): CertificateMetadata {
+  return {
+    value: item["value"],
+    type: certificateTypeDeserializer(item["type"]),
+    name: item["name"],
+  };
+}
+
 /** Types of certificates supported. */
 export enum KnownCertificateType {
   /** If the certificate is stored in an Azure Key Vault. */
@@ -355,6 +472,14 @@ export enum KnownCertificateType {
  * **AKV_CERT_URI**: If the certificate is stored in an Azure Key Vault.
  */
 export type CertificateType = string;
+
+export function certificateTypeSerializer(item: CertificateType): any {
+  return item;
+}
+
+export function certificateTypeDeserializer(item: any): CertificateType {
+  return item;
+}
 
 /** Configurations for the load test. */
 export interface LoadTestConfiguration {
@@ -395,6 +520,20 @@ export function loadTestConfigurationSerializer(
   };
 }
 
+export function loadTestConfigurationDeserializer(
+  item: any,
+): LoadTestConfiguration {
+  return {
+    engineInstances: item["engineInstances"],
+    splitAllCSVs: item["splitAllCSVs"],
+    quickStartTest: item["quickStartTest"],
+    optionalLoadTestConfig: !item.optionalLoadTestConfig
+      ? undefined
+      : optionalLoadTestConfigDeserializer(item.optionalLoadTestConfig),
+    regionalLoadTestConfig: item["regionalLoadTestConfig"],
+  };
+}
+
 /** Configuration for quick load test */
 export interface OptionalLoadTestConfig {
   /** Test URL. Provide the complete HTTP URL. For example, https://contoso-app.azurewebsites.net/login */
@@ -424,6 +563,19 @@ export function optionalLoadTestConfigSerializer(
   };
 }
 
+export function optionalLoadTestConfigDeserializer(
+  item: any,
+): OptionalLoadTestConfig {
+  return {
+    endpointUrl: item["endpointUrl"],
+    requestsPerSecond: item["requestsPerSecond"],
+    maxResponseTimeInMs: item["maxResponseTimeInMs"],
+    virtualUsers: item["virtualUsers"],
+    rampUpTime: item["rampUpTime"],
+    duration: item["duration"],
+  };
+}
+
 /** Region distribution configuration for the load test. */
 export interface RegionalConfiguration {
   /**   The number of engine instances to execute load test in specified region. Supported values are in range of 1-400. */
@@ -439,6 +591,15 @@ export interface RegionalConfiguration {
 export function regionalConfigurationSerializer(
   item: RegionalConfiguration,
 ): Record<string, unknown> {
+  return {
+    engineInstances: item["engineInstances"],
+    region: item["region"],
+  };
+}
+
+export function regionalConfigurationDeserializer(
+  item: any,
+): RegionalConfiguration {
   return {
     engineInstances: item["engineInstances"],
     region: item["region"],
@@ -507,6 +668,14 @@ export enum KnownFileType {
  */
 export type FileType = string;
 
+export function fileTypeSerializer(item: FileType): any {
+  return item;
+}
+
+export function fileTypeDeserializer(item: any): FileType {
+  return item;
+}
+
 /** File status. */
 export enum KnownFileStatus {
   /** File is not validated. */
@@ -534,6 +703,14 @@ export enum KnownFileStatus {
  */
 export type FileStatus = string;
 
+export function fileStatusSerializer(item: FileStatus): any {
+  return item;
+}
+
+export function fileStatusDeserializer(item: any): FileStatus {
+  return item;
+}
+
 /** Test kind */
 export enum KnownTestKind {
   /** URL Test */
@@ -554,6 +731,14 @@ export enum KnownTestKind {
  * **Locust**: Locust Test
  */
 export type TestKind = string;
+
+export function testKindSerializer(item: TestKind): any {
+  return item;
+}
+
+export function testKindDeserializer(item: any): TestKind {
+  return item;
+}
 
 /** Test app components */
 export interface TestAppComponents {
@@ -586,6 +771,17 @@ export function testAppComponentsSerializer(
   };
 }
 
+export function testAppComponentsDeserializer(item: any): TestAppComponents {
+  return {
+    components: appComponentRecordDeserializer(item["components"]),
+    testId: item["testId"],
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
+  };
+}
+
 /** An Azure resource object (Refer azure generic resource model :https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource) */
 export interface AppComponent {
   /** fully qualified resource Id e.g subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} */
@@ -611,6 +807,18 @@ export function appComponentSerializer(
     resourceName: item["resourceName"],
     resourceType: item["resourceType"],
     displayName: item["displayName"],
+    kind: item["kind"],
+  };
+}
+
+export function appComponentDeserializer(item: any): AppComponent {
+  return {
+    resourceId: item["resourceId"],
+    resourceName: item["resourceName"],
+    resourceType: item["resourceType"],
+    displayName: item["displayName"],
+    resourceGroup: item["resourceGroup"],
+    subscriptionId: item["subscriptionId"],
     kind: item["kind"],
   };
 }
@@ -646,6 +854,19 @@ export function testServerMetricConfigSerializer(
   };
 }
 
+export function testServerMetricConfigDeserializer(
+  item: any,
+): TestServerMetricConfig {
+  return {
+    testId: item["testId"],
+    metrics: resourceMetricRecordDeserializer(item["metrics"]),
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
+  };
+}
+
 /**
  * Associated metric definition for particular metrics of the azure resource (
  * Refer :
@@ -674,6 +895,19 @@ export function resourceMetricSerializer(
   item: ResourceMetric,
 ): Record<string, unknown> {
   return {
+    resourceId: item["resourceId"],
+    metricNamespace: item["metricNamespace"],
+    displayDescription: item["displayDescription"],
+    name: item["name"],
+    aggregation: item["aggregation"],
+    unit: item["unit"],
+    resourceType: item["resourceType"],
+  };
+}
+
+export function resourceMetricDeserializer(item: any): ResourceMetric {
+  return {
+    id: item["id"],
     resourceId: item["resourceId"],
     metricNamespace: item["metricNamespace"],
     displayDescription: item["displayDescription"],
@@ -789,6 +1023,50 @@ export function testRunSerializer(item: TestRun): Record<string, unknown> {
     description: item["description"],
     requestDataLevel: item["requestDataLevel"],
     debugLogsEnabled: item["debugLogsEnabled"],
+  };
+}
+
+export function testRunDeserializer(item: any): TestRun {
+  return {
+    testRunId: item["testRunId"],
+    passFailCriteria: !item.passFailCriteria
+      ? undefined
+      : passFailCriteriaDeserializer(item.passFailCriteria),
+    autoStopCriteria: !item.autoStopCriteria
+      ? undefined
+      : autoStopCriteriaDeserializer(item.autoStopCriteria),
+    secrets: secretRecordDeserializer(item["secrets"]),
+    certificate: !item.certificate
+      ? undefined
+      : certificateMetadataDeserializer(item.certificate),
+    environmentVariables: item["environmentVariables"],
+    errorDetails: item["errorDetails"],
+    testRunStatistics: item["testRunStatistics"],
+    regionalStatistics: item["regionalStatistics"],
+    loadTestConfiguration: !item.loadTestConfiguration
+      ? undefined
+      : loadTestConfigurationDeserializer(item.loadTestConfiguration),
+    testArtifacts: !item.testArtifacts ? undefined : item.testArtifacts,
+    testResult: pFTestResultDeserializer(item["testResult"]),
+    virtualUsers: item["virtualUsers"],
+    displayName: item["displayName"],
+    testId: item["testId"],
+    description: item["description"],
+    status: statusDeserializer(item["status"]),
+    startDateTime: item["startDateTime"],
+    endDateTime: item["endDateTime"],
+    executedDateTime: item["executedDateTime"],
+    portalUrl: item["portalUrl"],
+    duration: item["duration"],
+    subnetId: item["subnetId"],
+    kind: testKindDeserializer(item["kind"]),
+    requestDataLevel: requestDataLevelDeserializer(item["requestDataLevel"]),
+    debugLogsEnabled: item["debugLogsEnabled"],
+    publicIPDisabled: item["publicIPDisabled"],
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -923,6 +1201,14 @@ export enum KnownPFTestResult {
  */
 export type PFTestResult = string;
 
+export function pFTestResultSerializer(item: PFTestResult): any {
+  return item;
+}
+
+export function pFTestResultDeserializer(item: any): PFTestResult {
+  return item;
+}
+
 /** Test run status. */
 export enum KnownStatus {
   /** Test run request is accepted. */
@@ -983,6 +1269,14 @@ export enum KnownStatus {
  */
 export type Status = string;
 
+export function statusSerializer(item: Status): any {
+  return item;
+}
+
+export function statusDeserializer(item: any): Status {
+  return item;
+}
+
 /** Request data collection level for test run */
 export enum KnownRequestDataLevel {
   /** No request data will be collected */
@@ -1000,6 +1294,14 @@ export enum KnownRequestDataLevel {
  * **ERRORS**: Request data will be collected in case of failed requests
  */
 export type RequestDataLevel = string;
+
+export function requestDataLevelSerializer(item: RequestDataLevel): any {
+  return item;
+}
+
+export function requestDataLevelDeserializer(item: any): RequestDataLevel {
+  return item;
+}
 
 /** Test run app component */
 export interface TestRunAppComponents {
@@ -1032,6 +1334,19 @@ export function testRunAppComponentsSerializer(
   };
 }
 
+export function testRunAppComponentsDeserializer(
+  item: any,
+): TestRunAppComponents {
+  return {
+    components: appComponentRecordDeserializer(item["components"]),
+    testRunId: item["testRunId"],
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
+  };
+}
+
 /** Test run server metrics configuration */
 export interface TestRunServerMetricConfig {
   /** Test run identifier */
@@ -1059,6 +1374,19 @@ export function testRunServerMetricConfigSerializer(
     metrics: !item.metrics
       ? item.metrics
       : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+  };
+}
+
+export function testRunServerMetricConfigDeserializer(
+  item: any,
+): TestRunServerMetricConfig {
+  return {
+    testRunId: item["testRunId"],
+    metrics: resourceMetricRecordDeserializer(item["metrics"]),
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -1160,6 +1488,14 @@ export enum KnownAggregationType {
  */
 export type AggregationType = string;
 
+export function aggregationTypeSerializer(item: AggregationType): any {
+  return item;
+}
+
+export function aggregationTypeDeserializer(item: any): AggregationType {
+  return item;
+}
+
 /** Metric unit. */
 export enum KnownMetricUnit {
   /** No unit specified. */
@@ -1195,6 +1531,14 @@ export enum KnownMetricUnit {
  * **CountPerSecond**: Count per second
  */
 export type MetricUnit = string;
+
+export function metricUnitSerializer(item: MetricUnit): any {
+  return item;
+}
+
+export function metricUnitDeserializer(item: any): MetricUnit {
+  return item;
+}
 
 /** Metric availability specifies the time grain (aggregation interval or frequency) */
 export interface MetricAvailability {
@@ -1232,6 +1576,14 @@ export enum KnownTimeGrain {
  */
 export type TimeGrain = string;
 
+export function timeGrainSerializer(item: TimeGrain): any {
+  return item;
+}
+
+export function timeGrainDeserializer(item: any): TimeGrain {
+  return item;
+}
+
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
   /** The values for the metric namespaces. */
@@ -1268,6 +1620,14 @@ export function metricRequestPayloadSerializer(
   };
 }
 
+export function metricRequestPayloadDeserializer(
+  item: any,
+): MetricRequestPayload {
+  return {
+    filters: item["filters"],
+  };
+}
+
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */
@@ -1279,6 +1639,13 @@ export interface DimensionFilter {
 export function dimensionFilterSerializer(
   item: DimensionFilter,
 ): Record<string, unknown> {
+  return {
+    name: item["name"],
+    values: item["values"],
+  };
+}
+
+export function dimensionFilterDeserializer(item: any): DimensionFilter {
   return {
     name: item["name"],
     values: item["values"],
@@ -1357,6 +1724,25 @@ export function testProfileSerializer(
   };
 }
 
+export function testProfileDeserializer(item: any): TestProfile {
+  return {
+    testProfileId: item["testProfileId"],
+    displayName: item["displayName"],
+    description: item["description"],
+    testId: item["testId"],
+    targetResourceId: item["targetResourceId"],
+    targetResourceConfigurations: !item.targetResourceConfigurations
+      ? undefined
+      : targetResourceConfigurationsUnionDeserializer(
+          item.targetResourceConfigurations,
+        ),
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
+  };
+}
+
 /** Configurations of a target resource. This varies with the kind of resource. */
 export interface TargetResourceConfigurations {
   /** Kind of the resource for which the configurations apply. */
@@ -1368,6 +1754,14 @@ export function targetResourceConfigurationsSerializer(
 ): Record<string, unknown> {
   return {
     kind: item["kind"],
+  };
+}
+
+export function targetResourceConfigurationsDeserializer(
+  item: any,
+): TargetResourceConfigurations {
+  return {
+    kind: resourceKindDeserializer(item["kind"]),
   };
 }
 
@@ -1389,6 +1783,20 @@ export function targetResourceConfigurationsUnionSerializer(
   }
 }
 
+export function targetResourceConfigurationsUnionDeserializer(
+  item: any,
+): TargetResourceConfigurations {
+  switch (item.kind) {
+    case "FunctionsFlexConsumption":
+      return functionFlexConsumptionTargetResourceConfigurationsDeserializer(
+        item as FunctionFlexConsumptionTargetResourceConfigurations,
+      );
+
+    default:
+      return targetResourceConfigurationsDeserializer(item);
+  }
+}
+
 /** Kind of the resource on which test profile is created. */
 export enum KnownResourceKind {
   /** Resource is a Azure FunctionApp on Flex Consumption Plan. */
@@ -1403,6 +1811,14 @@ export enum KnownResourceKind {
  * **FunctionsFlexConsumption**: Resource is a Azure FunctionApp on Flex Consumption Plan.
  */
 export type ResourceKind = string;
+
+export function resourceKindSerializer(item: ResourceKind): any {
+  return item;
+}
+
+export function resourceKindDeserializer(item: any): ResourceKind {
+  return item;
+}
 
 /** Configurations for a Function App using Flex Consumption Plan. */
 export interface FunctionFlexConsumptionTargetResourceConfigurations
@@ -1430,6 +1846,18 @@ export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
   };
 }
 
+export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
+  item: any,
+): FunctionFlexConsumptionTargetResourceConfigurations {
+  return {
+    kind: item["kind"],
+    configurations:
+      functionFlexConsumptionResourceConfigurationRecordDeserializer(
+        item["configurations"],
+      ),
+  };
+}
+
 /** Resource configuration instance for a Flex Consumption based Azure Function App. */
 export interface FunctionFlexConsumptionResourceConfiguration {
   /** Memory size of the instance. Supported values are 2048, 4096. */
@@ -1441,6 +1869,15 @@ export interface FunctionFlexConsumptionResourceConfiguration {
 export function functionFlexConsumptionResourceConfigurationSerializer(
   item: FunctionFlexConsumptionResourceConfiguration,
 ): Record<string, unknown> {
+  return {
+    instanceMemoryMB: item["instanceMemoryMB"],
+    httpConcurrency: item["httpConcurrency"],
+  };
+}
+
+export function functionFlexConsumptionResourceConfigurationDeserializer(
+  item: any,
+): FunctionFlexConsumptionResourceConfiguration {
   return {
     instanceMemoryMB: item["instanceMemoryMB"],
     httpConcurrency: item["httpConcurrency"],
@@ -1498,6 +1935,32 @@ export function testProfileRunSerializer(
   };
 }
 
+export function testProfileRunDeserializer(item: any): TestProfileRun {
+  return {
+    testProfileRunId: item["testProfileRunId"],
+    displayName: item["displayName"],
+    description: item["description"],
+    testProfileId: item["testProfileId"],
+    targetResourceId: item["targetResourceId"],
+    targetResourceConfigurations: !item.targetResourceConfigurations
+      ? undefined
+      : targetResourceConfigurationsUnionDeserializer(
+          item.targetResourceConfigurations,
+        ),
+    status: testProfileRunStatusDeserializer(item["status"]),
+    errorDetails: item["errorDetails"],
+    startDateTime: item["startDateTime"],
+    endDateTime: item["endDateTime"],
+    durationInSeconds: item["durationInSeconds"],
+    testRunDetails: item["testRunDetails"],
+    recommendations: item["recommendations"],
+    createdDateTime: item["createdDateTime"],
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedBy: item["lastModifiedBy"],
+  };
+}
+
 /** Test profile run status. */
 export enum KnownTestProfileRunStatus {
   /** Test profile run request is accepted. */
@@ -1530,6 +1993,18 @@ export enum KnownTestProfileRunStatus {
  * **FAILED**: Test profile run has failed.
  */
 export type TestProfileRunStatus = string;
+
+export function testProfileRunStatusSerializer(
+  item: TestProfileRunStatus,
+): any {
+  return item;
+}
+
+export function testProfileRunStatusDeserializer(
+  item: any,
+): TestProfileRunStatus {
+  return item;
+}
 
 /** Details of a particular test run for a test profile run. */
 export interface TestRunDetail {
@@ -1566,12 +2041,33 @@ export enum KnownRecommendationCategory {
  * **CostOptimized**: The recommendation for this category optimizes the cost of the app.
  */
 export type RecommendationCategory = string;
+
+export function recommendationCategorySerializer(
+  item: RecommendationCategory,
+): any {
+  return item;
+}
+
+export function recommendationCategoryDeserializer(
+  item: any,
+): RecommendationCategory {
+  return item;
+}
+
 /** Azure Load Testing API versions. */
 export type APIVersions =
   | "2022-11-01"
   | "2023-04-01-preview"
   | "2024-03-01-preview"
   | "2024-05-01-preview";
+
+export function aPIVersionsSerializer(item: APIVersions): any {
+  return item;
+}
+
+export function aPIVersionsDeserializer(item: any): APIVersions {
+  return item;
+}
 
 /** A response containing error details. */
 export interface ErrorResponse {

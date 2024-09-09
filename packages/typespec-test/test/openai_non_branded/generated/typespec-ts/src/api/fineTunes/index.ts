@@ -59,76 +59,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created_at: new Date(result.body["created_at"]),
-    updated_at: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fine_tuned_model: result.body["fine_tuned_model"],
-    organization_id: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparams: {
-      n_epochs: result.body.hyperparams["n_epochs"],
-      batch_size: result.body.hyperparams["batch_size"],
-      prompt_loss_weight: result.body.hyperparams["prompt_loss_weight"],
-      learning_rate_multiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      compute_classification_metrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classification_positive_class:
-        result.body.hyperparams["classification_positive_class"],
-      classification_n_classes:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    training_files: result.body["training_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    validation_files: result.body["validation_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    result_files: result.body["result_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p: any) => {
-            return {
-              object: p["object"],
-              created_at: new Date(p["created_at"]),
-              level: p["level"],
-              message: p["message"],
-            };
-          }),
-  };
+  return result.body;
 }
 
 export async function create(
@@ -157,79 +88,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        created_at: new Date(p["created_at"]),
-        updated_at: new Date(p["updated_at"]),
-        model: p["model"],
-        fine_tuned_model: p["fine_tuned_model"],
-        organization_id: p["organization_id"],
-        status: p["status"],
-        hyperparams: {
-          n_epochs: p.hyperparams["n_epochs"],
-          batch_size: p.hyperparams["batch_size"],
-          prompt_loss_weight: p.hyperparams["prompt_loss_weight"],
-          learning_rate_multiplier: p.hyperparams["learning_rate_multiplier"],
-          compute_classification_metrics:
-            p.hyperparams["compute_classification_metrics"],
-          classification_positive_class:
-            p.hyperparams["classification_positive_class"],
-          classification_n_classes: p.hyperparams["classification_n_classes"],
-        },
-        training_files: p["training_files"].map((p: any) => {
-          return {
-            id: p["id"],
-            object: p["object"],
-            bytes: p["bytes"],
-            createdAt: new Date(p["createdAt"]),
-            filename: p["filename"],
-            purpose: p["purpose"],
-            status: p["status"],
-            status_details: p["status_details"],
-          };
-        }),
-        validation_files: p["validation_files"].map((p: any) => {
-          return {
-            id: p["id"],
-            object: p["object"],
-            bytes: p["bytes"],
-            createdAt: new Date(p["createdAt"]),
-            filename: p["filename"],
-            purpose: p["purpose"],
-            status: p["status"],
-            status_details: p["status_details"],
-          };
-        }),
-        result_files: p["result_files"].map((p: any) => {
-          return {
-            id: p["id"],
-            object: p["object"],
-            bytes: p["bytes"],
-            createdAt: new Date(p["createdAt"]),
-            filename: p["filename"],
-            purpose: p["purpose"],
-            status: p["status"],
-            status_details: p["status_details"],
-          };
-        }),
-        events:
-          p["events"] === undefined
-            ? p["events"]
-            : p["events"].map((p: any) => {
-                return {
-                  object: p["object"],
-                  created_at: new Date(p["created_at"]),
-                  level: p["level"],
-                  message: p["message"],
-                };
-              }),
-      };
-    }),
-  };
+  return result.body;
 }
 
 export async function list(
@@ -258,76 +117,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created_at: new Date(result.body["created_at"]),
-    updated_at: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fine_tuned_model: result.body["fine_tuned_model"],
-    organization_id: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparams: {
-      n_epochs: result.body.hyperparams["n_epochs"],
-      batch_size: result.body.hyperparams["batch_size"],
-      prompt_loss_weight: result.body.hyperparams["prompt_loss_weight"],
-      learning_rate_multiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      compute_classification_metrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classification_positive_class:
-        result.body.hyperparams["classification_positive_class"],
-      classification_n_classes:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    training_files: result.body["training_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    validation_files: result.body["validation_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    result_files: result.body["result_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p: any) => {
-            return {
-              object: p["object"],
-              created_at: new Date(p["created_at"]),
-              level: p["level"],
-              message: p["message"],
-            };
-          }),
-  };
+  return result.body;
 }
 
 export async function retrieve(
@@ -360,17 +150,7 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        object: p["object"],
-        created_at: new Date(p["created_at"]),
-        level: p["level"],
-        message: p["message"],
-      };
-    }),
-  };
+  return result.body;
 }
 
 export async function listEvents(
@@ -400,76 +180,7 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created_at: new Date(result.body["created_at"]),
-    updated_at: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fine_tuned_model: result.body["fine_tuned_model"],
-    organization_id: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparams: {
-      n_epochs: result.body.hyperparams["n_epochs"],
-      batch_size: result.body.hyperparams["batch_size"],
-      prompt_loss_weight: result.body.hyperparams["prompt_loss_weight"],
-      learning_rate_multiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      compute_classification_metrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classification_positive_class:
-        result.body.hyperparams["classification_positive_class"],
-      classification_n_classes:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    training_files: result.body["training_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    validation_files: result.body["validation_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    result_files: result.body["result_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        status_details: p["status_details"],
-      };
-    }),
-    events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p: any) => {
-            return {
-              object: p["object"],
-              created_at: new Date(p["created_at"]),
-              level: p["level"],
-              message: p["message"],
-            };
-          }),
-  };
+  return result.body;
 }
 
 export async function cancel(

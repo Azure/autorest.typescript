@@ -57,16 +57,7 @@ export async function _detectUnivariateEntireSeriesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    period: result.body["period"],
-    expectedValues: result.body["expectedValues"],
-    upperMargins: result.body["upperMargins"],
-    lowerMargins: result.body["lowerMargins"],
-    isAnomaly: result.body["isAnomaly"],
-    isNegativeAnomaly: result.body["isNegativeAnomaly"],
-    isPositiveAnomaly: result.body["isPositiveAnomaly"],
-    severity: result.body["severity"],
-  };
+  return result.body;
 }
 
 /**
@@ -122,17 +113,7 @@ export async function _detectUnivariateLastPointDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    period: result.body["period"],
-    suggestedWindow: result.body["suggestedWindow"],
-    expectedValue: result.body["expectedValue"],
-    upperMargin: result.body["upperMargin"],
-    lowerMargin: result.body["lowerMargin"],
-    isAnomaly: result.body["isAnomaly"],
-    isNegativeAnomaly: result.body["isNegativeAnomaly"],
-    isPositiveAnomaly: result.body["isPositiveAnomaly"],
-    severity: result.body["severity"],
-  };
+  return result.body;
 }
 
 /**
@@ -184,11 +165,7 @@ export async function _detectUnivariateChangePointDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    period: result.body["period"],
-    isChangePoint: result.body["isChangePoint"],
-    confidenceScores: result.body["confidenceScores"],
-  };
+  return result.body;
 }
 
 /** Evaluate change point score of every series point */

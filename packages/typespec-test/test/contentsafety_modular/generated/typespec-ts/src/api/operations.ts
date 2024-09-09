@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   TextBlocklist,
+  textBlocklistDeserializer,
   AddOrUpdateBlockItemsOptions,
   textBlockItemInfoSerializer,
   AddOrUpdateBlockItemsResult,
@@ -69,21 +70,7 @@ export async function _analyzeTextDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blocklistsMatchResults:
-      result.body["blocklistsMatchResults"] === undefined
-        ? result.body["blocklistsMatchResults"]
-        : result.body["blocklistsMatchResults"].map((p: any) => {
-            return {
-              blocklistName: p["blocklistName"],
-              blockItemId: p["blockItemId"],
-              blockItemText: p["blockItemText"],
-            };
-          }),
-    analyzeResults: result.body["analyzeResults"].map((p: any) => {
-      return { category: p["category"], severity: p["severity"] };
-    }),
-  };
+  return result.body;
 }
 
 /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
@@ -121,11 +108,7 @@ export async function _analyzeImageDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    analyzeResults: result.body["analyzeResults"].map((p: any) => {
-      return { category: p["category"], severity: p["severity"] };
-    }),
-  };
+  return result.body;
 }
 
 /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
@@ -156,10 +139,7 @@ export async function _getTextBlocklistDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blocklistName: result.body["blocklistName"],
-    description: result.body["description"],
-  };
+  return textBlocklistDeserializer(result.body);
 }
 
 /** Returns text blocklist details. */
@@ -199,10 +179,7 @@ export async function _createOrUpdateTextBlocklistDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blocklistName: result.body["blocklistName"],
-    description: result.body["description"],
-  };
+  return textBlocklistDeserializer(result.body);
 }
 
 /** Updates a text blocklist, if blocklistName does not exist, create a new blocklist. */
@@ -273,15 +250,7 @@ export async function _listTextBlocklistsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        blocklistName: p["blocklistName"],
-        description: p["description"],
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return result.body;
 }
 
 /** Get all text blocklists details. */
@@ -323,18 +292,7 @@ export async function _addOrUpdateBlockItemsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value:
-      result.body["value"] === undefined
-        ? result.body["value"]
-        : result.body["value"].map((p: any) => {
-            return {
-              blockItemId: p["blockItemId"],
-              description: p["description"],
-              text: p["text"],
-            };
-          }),
-  };
+  return result.body;
 }
 
 /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
@@ -417,11 +375,7 @@ export async function _getTextBlocklistItemDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blockItemId: result.body["blockItemId"],
-    description: result.body["description"],
-    text: result.body["text"],
-  };
+  return result.body;
 }
 
 /** Get blockItem By blockItemId from a text blocklist. */
@@ -465,16 +419,7 @@ export async function _listTextBlocklistItemsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        blockItemId: p["blockItemId"],
-        description: p["description"],
-        text: p["text"],
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return result.body;
 }
 
 /** Get all blockItems in a text blocklist */

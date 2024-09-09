@@ -46,9 +46,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-  };
+  return result.body;
 }
 
 export async function create(

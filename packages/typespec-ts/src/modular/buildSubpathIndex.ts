@@ -59,8 +59,8 @@ export function buildSubpathIndexFile(
           if (
             subpath === "models" &&
             ex.getKindName() === "FunctionDeclaration" &&
-            (exDeclaration[0].endsWith("Serializer") || 
-            exDeclaration[0].endsWith("Deserializer"))
+            (exDeclaration[0].endsWith("Serializer") ||
+              exDeclaration[0].endsWith("Deserializer"))
           ) {
             return false;
           }

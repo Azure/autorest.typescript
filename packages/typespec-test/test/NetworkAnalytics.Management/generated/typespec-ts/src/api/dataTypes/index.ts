@@ -9,6 +9,7 @@ import {
 import {
   _DataProductListResult,
   DataType,
+  dataTypeDeserializer,
   dataTypePropertiesSerializer,
   DataTypeUpdate,
   dataTypeUpdatePropertiesSerializer,
@@ -18,11 +19,11 @@ import {
   _DataProductsCatalogListResult,
   _OperationListResult,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PathUncheckedResponse,
   createRestError,
@@ -73,40 +74,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
-      ? undefined
-      : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
-          createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !result.body.properties
-      ? undefined
-      : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
-          storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
-          databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
-        },
-  };
+  return dataTypeDeserializer(result.body);
 }
 
 /** Create data type resource. */
@@ -162,40 +130,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
-      ? undefined
-      : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
-          createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !result.body.properties
-      ? undefined
-      : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
-          storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
-          databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
-        },
-  };
+  return dataTypeDeserializer(result.body);
 }
 
 /** Retrieve data type resource. */
@@ -253,40 +188,7 @@ export async function _updateDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
-      ? undefined
-      : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
-          createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !result.body.properties
-      ? undefined
-      : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
-          storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
-          databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
-        },
-  };
+  return dataTypeDeserializer(result.body);
 }
 
 /** Update data type resource. */
@@ -478,9 +380,7 @@ export async function _generateStorageContainerSasTokenDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    storageContainerSasToken: result.body["storageContainerSasToken"],
-  };
+  return result.body;
 }
 
 /** Generate sas token for storage container. */
@@ -532,43 +432,7 @@ export async function _listByDataProductDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        id: p["id"],
-        name: p["name"],
-        type: p["type"],
-        systemData: !p.systemData
-          ? undefined
-          : {
-              createdBy: p.systemData?.["createdBy"],
-              createdByType: p.systemData?.["createdByType"],
-              createdAt:
-                p.systemData?.["createdAt"] !== undefined
-                  ? new Date(p.systemData?.["createdAt"])
-                  : undefined,
-              lastModifiedBy: p.systemData?.["lastModifiedBy"],
-              lastModifiedByType: p.systemData?.["lastModifiedByType"],
-              lastModifiedAt:
-                p.systemData?.["lastModifiedAt"] !== undefined
-                  ? new Date(p.systemData?.["lastModifiedAt"])
-                  : undefined,
-            },
-        properties: !p.properties
-          ? undefined
-          : {
-              provisioningState: p.properties?.["provisioningState"],
-              state: p.properties?.["state"],
-              stateReason: p.properties?.["stateReason"],
-              storageOutputRetention: p.properties?.["storageOutputRetention"],
-              databaseCacheRetention: p.properties?.["databaseCacheRetention"],
-              databaseRetention: p.properties?.["databaseRetention"],
-              visualizationUrl: p.properties?.["visualizationUrl"],
-            },
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return result.body;
 }
 
 /** List data type by parent resource. */

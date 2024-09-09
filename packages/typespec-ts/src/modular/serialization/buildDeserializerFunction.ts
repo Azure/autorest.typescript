@@ -114,7 +114,9 @@ function buildPolymorphicDeserializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-  const deserializeFunctionName = `${toCamelCase(normalizeModelName(context, type))}UnionDeserializer`;
+  const deserializeFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}UnionDeserializer`;
   if (nameOnly) {
     return deserializeFunctionName;
   }
@@ -190,11 +192,15 @@ function buildDiscriminatedUnionDeserializer(
   }
   const cases: string[] = [];
   const output: string[] = [];
-  const deserializeFunctionName = `${toCamelCase(normalizeModelName(context, type))}UnionDeserializer`;
+  const deserializeFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}UnionDeserializer`;
   if (nameOnly) {
     return deserializeFunctionName;
   }
-  const baseDeserializerName = `${toCamelCase(normalizeModelName(context, type))}Deserializer`;
+  const baseDeserializerName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}Deserializer`;
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
     const discriminatedValue = subType.discriminatorValue!;
@@ -251,7 +257,9 @@ function buildEnumDeserializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-  const deserializerFunctionName = `${toCamelCase(normalizeModelName(context, type))}Deserializer`;
+  const deserializerFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}Deserializer`;
   if (nameOnly) {
     return deserializerFunctionName;
   }
@@ -288,7 +296,9 @@ function buildModelTypeDeserializer(
   if (!type.name) {
     throw new Error(`NYI Deserialization of anonymous types`);
   }
-  const deserializerFunctionName = `${toCamelCase(normalizeModelName(context, type))}Deserializer`;
+  const deserializerFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}Deserializer`;
   if (nameOnly) {
     return deserializerFunctionName;
   }
