@@ -817,6 +817,24 @@ function deduplicateProperties(
   });
 }
 
+/**
+ * Deduplicates properties from an object by removing duplicated ones
+ */
+function deduplicateProperties(
+  properties: PropertyDetails[]
+): PropertyDetails[] {
+  const isExisting = new Set<string>();
+
+  return properties.filter((property) => {
+    if (isExisting.has(property.name)) {
+      return false;
+    }
+
+    isExisting.add(property.name);
+    return true;
+  });
+}
+
 function getPropertyDescription({ description, readOnly }: PropertyDetails) {
   if (readOnly) {
     const readonlyNote =
@@ -897,9 +915,9 @@ function withAdditionalProperties(
  */
 const getPropertiesSignatures = (objectDetails: ObjectDetails) => {
   const { ignoreNullableOnOptional = false } = getAutorestOptions();
-  const properties = deduplicateProperties(
-    getNonDiscriminatorProperties(objectDetails)
-  ).map<PropertySignatureStructure>((property) => ({
+  const properties = deduplicateProperties(getNonDiscriminatorProperties(objectDetails)).map<
+    PropertySignatureStructure
+  >(property => ({
     name: `"${property.name}"`,
     hasQuestionToken: !property.required,
     isReadonly: property.readOnly,
