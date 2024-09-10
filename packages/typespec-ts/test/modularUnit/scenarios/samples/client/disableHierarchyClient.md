@@ -19,10 +19,12 @@ namespace B {
       prop3: string;
     }
     interface C {
+      @route("bec")
       op opBEC(@body body: A):  { @body body: {}};
     }
+    op foo(@body body: A):  { @body body: {}};
   }
-  op opB(@body body: A):  { @body body: {}};
+  op foo(@body body: A):  { @body body: {}};
 }
 
 @route("/d")
@@ -89,6 +91,36 @@ Raw json files.
 }
 ```
 
+```json for B_foo
+{
+  "title": "B_foo",
+  "operationId": "B_foo",
+  "parameters": {
+    "body": {
+      "prop1": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+```json for E_foo
+{
+  "title": "E_foo",
+  "operationId": "E_foo",
+  "parameters": {
+    "body": {
+      "prop3": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
 ## Samples
 
 Generate samples for non-hierarchy cases:
@@ -111,6 +143,48 @@ async function opTopLevel() {
 
 async function main() {
   opTopLevel();
+}
+
+main().catch(console.error);
+
+/** This file path is /samples-dev/bFooSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute foo
+ *
+ * @summary execute foo
+ * x-ms-original-file: 2021-10-01-preview/json_for_B_foo.json
+ */
+async function bFoo() {
+  const client = new TestingClient();
+  const result = await client.b.foo({ prop1: "body name" });
+  console.log(result);
+}
+
+async function main() {
+  bFoo();
+}
+
+main().catch(console.error);
+
+/** This file path is /samples-dev/eFooSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute foo
+ *
+ * @summary execute foo
+ * x-ms-original-file: 2021-10-01-preview/json_for_E_foo.json
+ */
+async function eFoo() {
+  const client = new TestingClient();
+  const result = await client.e.foo({ prop3: "body name" });
+  console.log(result);
+}
+
+async function main() {
+  eFoo();
 }
 
 main().catch(console.error);

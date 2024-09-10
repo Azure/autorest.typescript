@@ -41,8 +41,6 @@ Raw json files.
   "parameters": {
     "name": "required path param",
     "optionalQuery": "renamed optional query",
-    "required-header": "required header",
-    "optional-header": "optional header",
     "requiredQuery": "required query",
     "body": {
       "name": "body name"

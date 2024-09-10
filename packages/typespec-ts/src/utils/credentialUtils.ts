@@ -48,7 +48,7 @@ export function isSupportedKeyCredential(auth: HttpAuth): boolean {
 }
 
 export function isSupportedTokenCredential(auth: HttpAuth): boolean {
-  return auth.type === "oauth2" || auth.type === "openIdConnect";
+  return auth.type === "oauth2";
 }
 
 export function hasKeyCredential(initialization: SdkInitializationType) {
@@ -74,9 +74,7 @@ function getAuthScheme(initialization: SdkInitializationType): HttpAuth[] {
     authScheme.push(credentialParams.type.scheme);
   } else if (kind === "union") {
     for (const param of credentialParams.type.values) {
-      if (param.kind === "credential") {
-        authScheme.push(param.scheme);
-      }
+      authScheme.push(param.scheme);
     }
   }
   return authScheme;

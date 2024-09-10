@@ -74,9 +74,7 @@ async function read() {
     "required path param",
     "required query",
     { name: "body name" },
-    {
-      optionalQuery: "renamed optional query"
-    }
+    { optionalQuery: "renamed optional query" },
   );
   console.log(result);
 }

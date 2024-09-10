@@ -92,7 +92,7 @@ async function read() {
     stringLiteral: "foo",
     booleanLiteral: true,
     numberLiteral: 12,
-    additionalProp: "additional prop"
+    additionalProp: "additional prop",
   });
   console.log(result);
 }

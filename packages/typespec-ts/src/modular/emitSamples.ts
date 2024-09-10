@@ -24,7 +24,6 @@ import { join } from "path";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import { reportDiagnostic } from "../index.js";
 import { NoTarget } from "@typespec/compiler";
-import { isArm } from "../utils/clientUtils.js";
 import {
   buildPropertyNameMapper,
   isSpreadBodyParameter
@@ -289,7 +288,7 @@ function prepareExampleParameters(
 
     if (
       param.name.toLowerCase() === "subscriptionid" &&
-      isArm(dpgContext) &&
+      dpgContext.arm &&
       exampleValue
     ) {
       subscriptionIdValue = getParameterValue(exampleValue.value);
@@ -303,7 +302,7 @@ function prepareExampleParameters(
     });
   }
   // always add subscriptionId for ARM clients
-  if (isArm(dpgContext)) {
+  if (dpgContext.arm) {
     result.push({
       name: "subscriptionId",
       value: subscriptionIdValue,

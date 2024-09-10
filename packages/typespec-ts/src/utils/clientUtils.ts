@@ -12,16 +12,12 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
       name: clientName,
       service: service.type,
       type: service.type,
-      arm: isArm(dpgContext),
+      arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
         service.type
       )}.${clientName}`
     };
   });
-}
-
-export function isArm(dpgContext: SdkContext): boolean {
-  return dpgContext.rlcOptions?.azureArm ?? dpgContext.arm ?? false;
 }
 
 export function isRLCMultiEndpoint(dpgContext: SdkContext): boolean {
