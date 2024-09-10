@@ -113,7 +113,7 @@ export function buildClassicalClient(
 
   buildClientOperationGroups(clientFile, _client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
-  clientFile.fixMissingImports();
+  // clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
   return clientFile;
 }
