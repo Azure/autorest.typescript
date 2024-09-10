@@ -110,6 +110,35 @@ export declare interface Export200Response extends HttpResponse {
     body: UserOutput;
 }
 
+export declare interface ExportAllUsers {
+    post(options: ExportAllUsersParameters): StreamableMethod<ExportAllUsers200Response | ExportAllUsersDefaultResponse>;
+}
+
+export declare interface ExportAllUsers200Response extends HttpResponse {
+    status: "200";
+    body: UserListOutput;
+}
+
+export declare interface ExportAllUsersDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+export declare interface ExportAllUsersDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponse;
+    headers: RawHttpHeaders & ExportAllUsersDefaultHeaders;
+}
+
+export declare type ExportAllUsersParameters = ExportAllUsersQueryParam & RequestParameters;
+
+export declare interface ExportAllUsersQueryParam {
+    queryParameters: ExportAllUsersQueryParamProperties;
+}
+
+export declare interface ExportAllUsersQueryParamProperties {
+    format: string;
+}
+
 export declare interface ExportDefaultHeaders {
     "x-ms-error-code"?: string;
 }
@@ -166,6 +195,8 @@ export declare function isUnexpected(response: List200Response | ListDefaultResp
 
 export declare function isUnexpected(response: Export200Response | ExportDefaultResponse): response is ExportDefaultResponse;
 
+export declare function isUnexpected(response: ExportAllUsers200Response | ExportAllUsersDefaultResponse): response is ExportAllUsersDefaultResponse;
+
 export declare interface List {
     get(options?: ListParameters): StreamableMethod<List200Response | ListDefaultResponse>;
 }
@@ -219,11 +250,16 @@ export declare interface Routes {
     (path: "/azure/core/basic/users/{id}", id: number): CreateOrUpdate;
     (path: "/azure/core/basic/users"): List;
     (path: "/azure/core/basic/users/{id}:export", id: number): Export;
+    (path: "/azure/core/basic/users:exportallusers"): ExportAllUsers;
 }
 
 export declare interface User {
     name: string;
     orders?: Array<UserOrder>;
+}
+
+export declare interface UserListOutput {
+    users: Array<UserOutput>;
 }
 
 export declare interface UserOrder {

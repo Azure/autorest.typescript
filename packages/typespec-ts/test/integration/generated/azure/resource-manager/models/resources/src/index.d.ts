@@ -71,6 +71,8 @@ export declare function getLongRunningPoller<TResult extends NestedProxyResource
 
 export declare function getLongRunningPoller<TResult extends NestedProxyResourcesDeleteLogicalResponse | NestedProxyResourcesDeleteDefaultResponse>(client: Client, initialResponse: NestedProxyResourcesDelete202Response | NestedProxyResourcesDelete204Response | NestedProxyResourcesDeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
+export declare function getLongRunningPoller<TResult extends SingletonTrackedResourcesCreateOrUpdateLogicalResponse | SingletonTrackedResourcesCreateOrUpdateDefaultResponse>(client: Client, initialResponse: SingletonTrackedResourcesCreateOrUpdate200Response | SingletonTrackedResourcesCreateOrUpdate201Response | SingletonTrackedResourcesCreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
 export declare type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
     page: TPage;
     nextPageLink?: string;
@@ -109,6 +111,14 @@ export declare function isUnexpected(response: NestedProxyResourcesUpdate200Resp
 export declare function isUnexpected(response: NestedProxyResourcesDelete202Response | NestedProxyResourcesDelete204Response | NestedProxyResourcesDeleteLogicalResponse | NestedProxyResourcesDeleteDefaultResponse): response is NestedProxyResourcesDeleteDefaultResponse;
 
 export declare function isUnexpected(response: NestedProxyResourcesListByTopLevelTrackedResource200Response | NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse): response is NestedProxyResourcesListByTopLevelTrackedResourceDefaultResponse;
+
+export declare function isUnexpected(response: SingletonTrackedResourcesGetByResourceGroup200Response | SingletonTrackedResourcesGetByResourceGroupDefaultResponse): response is SingletonTrackedResourcesGetByResourceGroupDefaultResponse;
+
+export declare function isUnexpected(response: SingletonTrackedResourcesCreateOrUpdate200Response | SingletonTrackedResourcesCreateOrUpdate201Response | SingletonTrackedResourcesCreateOrUpdateLogicalResponse | SingletonTrackedResourcesCreateOrUpdateDefaultResponse): response is SingletonTrackedResourcesCreateOrUpdateDefaultResponse;
+
+export declare function isUnexpected(response: SingletonTrackedResourcesUpdate200Response | SingletonTrackedResourcesUpdateDefaultResponse): response is SingletonTrackedResourcesUpdateDefaultResponse;
+
+export declare function isUnexpected(response: SingletonTrackedResourcesListByResourceGroup200Response | SingletonTrackedResourcesListByResourceGroupDefaultResponse): response is SingletonTrackedResourcesListByResourceGroupDefaultResponse;
 
 export declare interface NestedProxyResource extends ProxyResource {
     properties?: NestedProxyResourceProperties;
@@ -403,6 +413,8 @@ export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/actionSync", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string): TopLevelTrackedResourcesActionSync;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string): NestedProxyResourcesGet;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string): NestedProxyResourcesListByTopLevelTrackedResource;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default", subscriptionId: string, resourceGroupName: string): SingletonTrackedResourcesGetByResourceGroup;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources", subscriptionId: string, resourceGroupName: string): SingletonTrackedResourcesListByResourceGroup;
 }
 
 export declare interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
@@ -422,6 +434,107 @@ export declare interface SimplePollerLike<TState extends OperationState<TResult>
     stopPolling(): void;
     isStopped(): boolean;
 }
+
+export declare interface SingletonTrackedResource extends TrackedResource {
+    properties?: SingletonTrackedResourceProperties;
+}
+
+export declare type SingletonTrackedResourceListResultOutput = Paged<SingletonTrackedResourceOutput>;
+
+export declare interface SingletonTrackedResourceOutput extends TrackedResourceOutput {
+    properties?: SingletonTrackedResourcePropertiesOutput;
+}
+
+export declare interface SingletonTrackedResourceProperties {
+    description?: string;
+}
+
+export declare interface SingletonTrackedResourcePropertiesOutput {
+    readonly provisioningState?: ProvisioningStateOutput;
+    description?: string;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdate200Response extends HttpResponse {
+    status: "200";
+    body: SingletonTrackedResourceOutput;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdate201Headers {
+    "azure-asyncoperation"?: string;
+    "retry-after"?: number;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdate201Response extends HttpResponse {
+    status: "201";
+    body: SingletonTrackedResourceOutput;
+    headers: RawHttpHeaders & SingletonTrackedResourcesCreateOrUpdate201Headers;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdateBodyParam {
+    body: SingletonTrackedResource;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdateDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdateLogicalResponse extends HttpResponse {
+    status: "200";
+    body: SingletonTrackedResourceOutput;
+}
+
+export declare type SingletonTrackedResourcesCreateOrUpdateParameters = SingletonTrackedResourcesCreateOrUpdateBodyParam & RequestParameters;
+
+export declare interface SingletonTrackedResourcesGetByResourceGroup {
+    get(options?: SingletonTrackedResourcesGetByResourceGroupParameters): StreamableMethod<SingletonTrackedResourcesGetByResourceGroup200Response | SingletonTrackedResourcesGetByResourceGroupDefaultResponse>;
+    put(options: SingletonTrackedResourcesCreateOrUpdateParameters): StreamableMethod<SingletonTrackedResourcesCreateOrUpdate200Response | SingletonTrackedResourcesCreateOrUpdate201Response | SingletonTrackedResourcesCreateOrUpdateDefaultResponse>;
+    patch(options: SingletonTrackedResourcesUpdateParameters): StreamableMethod<SingletonTrackedResourcesUpdate200Response | SingletonTrackedResourcesUpdateDefaultResponse>;
+}
+
+export declare interface SingletonTrackedResourcesGetByResourceGroup200Response extends HttpResponse {
+    status: "200";
+    body: SingletonTrackedResourceOutput;
+}
+
+export declare interface SingletonTrackedResourcesGetByResourceGroupDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type SingletonTrackedResourcesGetByResourceGroupParameters = RequestParameters;
+
+export declare interface SingletonTrackedResourcesListByResourceGroup {
+    get(options?: SingletonTrackedResourcesListByResourceGroupParameters): StreamableMethod<SingletonTrackedResourcesListByResourceGroup200Response | SingletonTrackedResourcesListByResourceGroupDefaultResponse>;
+}
+
+export declare interface SingletonTrackedResourcesListByResourceGroup200Response extends HttpResponse {
+    status: "200";
+    body: SingletonTrackedResourceListResultOutput;
+}
+
+export declare interface SingletonTrackedResourcesListByResourceGroupDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type SingletonTrackedResourcesListByResourceGroupParameters = RequestParameters;
+
+export declare interface SingletonTrackedResourcesUpdate200Response extends HttpResponse {
+    status: "200";
+    body: SingletonTrackedResourceOutput;
+}
+
+export declare interface SingletonTrackedResourcesUpdateBodyParam {
+    body: SingletonTrackedResource;
+}
+
+export declare interface SingletonTrackedResourcesUpdateDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type SingletonTrackedResourcesUpdateParameters = SingletonTrackedResourcesUpdateBodyParam & RequestParameters;
 
 export declare interface Sku {
     name: string;
