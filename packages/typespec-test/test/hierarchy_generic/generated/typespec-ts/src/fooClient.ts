@@ -2,15 +2,21 @@
 // Licensed under the MIT License.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { A } from "./models/models.js";
-import { OpTopLevelOptionalParams } from "./models/options.js";
-import { getBOperations, BOperations } from "./classic/b/index.js";
-import { getDOperations, DOperations } from "./classic/d/index.js";
+import { A, BEA } from "./models/models.js";
+import {
+  OpTopLevelOptionalParams,
+  FooOptionalParams,
+  OpBECOptionalParams,
+  OpDOptionalParams,
+} from "./models/options.js";
 import {
   createFoo,
   FooContext,
   FooClientOptionalParams,
   opTopLevel,
+  foo,
+  opBEC,
+  opD,
 } from "./api/index.js";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";
@@ -30,8 +36,6 @@ export class FooClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.b = getBOperations(this._client);
-    this.d = getDOperations(this._client);
   }
 
   /** show example opTopLevel */
@@ -42,8 +46,32 @@ export class FooClient {
     return opTopLevel(this._client, body, options);
   }
 
-  /** The operation groups for B */
-  public readonly b: BOperations;
-  /** The operation groups for D */
-  public readonly d: DOperations;
+  foo(
+    body: A,
+    options: FooOptionalParams = { requestOptions: {} },
+  ): Promise<Record<string, any>> {
+    return foo(this._client, body, options);
+  }
+
+  foo(
+    body: BEA,
+    options: FooOptionalParams = { requestOptions: {} },
+  ): Promise<Record<string, any>> {
+    return foo(this._client, body, options);
+  }
+
+  opBEC(
+    body: BEA,
+    options: OpBECOptionalParams = { requestOptions: {} },
+  ): Promise<Record<string, any>> {
+    return opBEC(this._client, body, options);
+  }
+
+  /** show example opD */
+  opD(
+    body: A,
+    options: OpDOptionalParams = { requestOptions: {} },
+  ): Promise<Record<string, any>> {
+    return opD(this._client, body, options);
+  }
 }

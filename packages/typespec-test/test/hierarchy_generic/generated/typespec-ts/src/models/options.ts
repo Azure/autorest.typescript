@@ -7,13 +7,13 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface OpTopLevelOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface BFooOptionalParams extends OperationOptions {}
+export interface FooOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface BEFooOptionalParams extends OperationOptions {}
+export interface FooOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface BECOpBECOptionalParams extends OperationOptions {}
+export interface OpBECOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DOpDOptionalParams extends OperationOptions {}
+export interface OpDOptionalParams extends OperationOptions {}

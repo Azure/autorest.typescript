@@ -6,4 +6,4 @@ export {
   FooContext,
   FooClientOptionalParams,
 } from "./fooContext.js";
-export { opTopLevel } from "./operations.js";
+export { opTopLevel, foo, opBEC, opD } from "./operations.js";
