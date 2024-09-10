@@ -42,7 +42,7 @@ This is the tspconfig.yaml.
 hierarchyClient: false
 ```
 
-## Example
+## Provide examples and generated samples
 
 Raw json files.
 
@@ -61,69 +61,7 @@ Raw json files.
 }
 ```
 
-```json for opD
-{
-  "title": "opD",
-  "operationId": "D_opD",
-  "parameters": {
-    "body": {
-      "prop1": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-```json for opBEC
-{
-  "title": "opBEC",
-  "operationId": "C_opBEC",
-  "parameters": {
-    "body": {
-      "prop3": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-```json for B_foo
-{
-  "title": "B_foo",
-  "operationId": "B_foo",
-  "parameters": {
-    "body": {
-      "prop1": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-```json for E_foo
-{
-  "title": "E_foo",
-  "operationId": "E_foo",
-  "parameters": {
-    "body": {
-      "prop3": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-## Samples
-
-Generate samples for non-hierarchy cases:
+Generated samples.
 
 ```ts samples
 /** This file path is /samples-dev/opTopLevelSample.ts */
@@ -146,49 +84,70 @@ async function main() {
 }
 
 main().catch(console.error);
+```
 
-/** This file path is /samples-dev/bFooSample.ts */
+Raw json files.
+
+```json for opD
+{
+  "title": "opD",
+  "operationId": "D_opD",
+  "parameters": {
+    "body": {
+      "prop1": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+Generated samples.
+
+```ts samples
+/** This file path is /samples-dev/dOpDSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
- * This sample demonstrates how to execute foo
+ * This sample demonstrates how to show example opD
  *
- * @summary execute foo
- * x-ms-original-file: 2021-10-01-preview/json_for_B_foo.json
+ * @summary show example opD
+ * x-ms-original-file: 2021-10-01-preview/json_for_opD.json
  */
-async function bFoo() {
+async function opD() {
   const client = new TestingClient();
-  const result = await client.b.foo({ prop1: "body name" });
+  const result = await client.d.opD({ prop1: "body name" });
   console.log(result);
 }
 
 async function main() {
-  bFoo();
+  opD();
 }
 
 main().catch(console.error);
+```
 
-/** This file path is /samples-dev/eFooSample.ts */
-import { TestingClient } from "@azure/internal-test";
+Raw json files.
 
-/**
- * This sample demonstrates how to execute foo
- *
- * @summary execute foo
- * x-ms-original-file: 2021-10-01-preview/json_for_E_foo.json
- */
-async function eFoo() {
-  const client = new TestingClient();
-  const result = await client.e.foo({ prop3: "body name" });
-  console.log(result);
+```json for opBEC
+{
+  "title": "opBEC",
+  "operationId": "C_opBEC",
+  "parameters": {
+    "body": {
+      "prop3": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
 }
+```
 
-async function main() {
-  eFoo();
-}
+Generated samples.
 
-main().catch(console.error);
-
+```ts samples
 /** This file path is /samples-dev/cOpBECSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
@@ -209,24 +168,87 @@ async function main() {
 }
 
 main().catch(console.error);
+```
 
-/** This file path is /samples-dev/dOpDSample.ts */
+Raw json files.
+
+```json for B_foo
+{
+  "title": "B_foo",
+  "operationId": "B_foo",
+  "parameters": {
+    "body": {
+      "prop1": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+Generated samples.
+
+```ts samples
+/** This file path is /samples-dev/bFooSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
- * This sample demonstrates how to show example opD
+ * This sample demonstrates how to execute foo
  *
- * @summary show example opD
- * x-ms-original-file: 2021-10-01-preview/json_for_opD.json
+ * @summary execute foo
+ * x-ms-original-file: 2021-10-01-preview/json_for_B_foo.json
  */
-async function opD() {
+async function bFoo() {
   const client = new TestingClient();
-  const result = await client.d.opD({ prop1: "body name" });
+  const result = await client.b.foo({ prop1: "body name" });
   console.log(result);
 }
 
 async function main() {
-  opD();
+  bFoo();
+}
+
+main().catch(console.error);
+```
+
+Raw json files.
+
+```json for E_foo
+{
+  "title": "E_foo",
+  "operationId": "E_foo",
+  "parameters": {
+    "body": {
+      "prop3": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+Generated samples.
+
+```ts samples
+/** This file path is /samples-dev/eFooSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute foo
+ *
+ * @summary execute foo
+ * x-ms-original-file: 2021-10-01-preview/json_for_E_foo.json
+ */
+async function eFoo() {
+  const client = new TestingClient();
+  const result = await client.e.foo({ prop3: "body name" });
+  console.log(result);
+}
+
+async function main() {
+  eFoo();
 }
 
 main().catch(console.error);

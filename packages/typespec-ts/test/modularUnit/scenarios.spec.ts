@@ -6,13 +6,13 @@ import {
   emitModularOperationsFromTypeSpec,
   emitSamplesFromTypeSpec
 } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+import { assertEqualContent, ExampleJson } from "../util/testUtil.js";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 
 const SCENARIOS_LOCATION = "./test/modularUnit/scenarios";
 
-const SCENARIOS_UPDATE = true;
+const SCENARIOS_UPDATE = process.env["SCENARIOS_UPDATE"] === "true";
 
 type EmitterFunction = (
   tsp: string,
@@ -102,10 +102,8 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       throw new Error(`Expected 'examples' to be passed in as an argument`);
     }
     const configs = namedUnknownArgs["configs"] as Record<string, string>;
-    const examples = namedUnknownArgs["examples"] as Record<string, string>;
-    const counts = Object.keys(examples).length;
+    const examples = namedUnknownArgs["examples"] as ExampleJson[];
     const result = await emitSamplesFromTypeSpec(tsp, examples, configs);
-    assert.equal(result?.length, counts, `Expected exactly ${counts} files`);
     const text = result
       .map(
         (x) =>
@@ -116,7 +114,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   }
 };
 
-describe.only("Scenarios", function () {
+describe("Scenarios", function () {
   describeScenarios(SCENARIOS_LOCATION);
 });
 
@@ -145,9 +143,12 @@ function describeScenarioFile(scenarioFile: string): void {
         const jsonBlocks = codeBlocks.filter((x) =>
           x.heading.startsWith("json")
         );
-        const examples: Record<string, string> = {};
+        const allExamples: ExampleJson[] = [];
         for (const block of jsonBlocks) {
-          examples[block.heading.trim().replace(/ /g, "_")] = block.content;
+          allExamples.push({
+            filename: block.heading.trim().replace(/ /g, "_"),
+            rawContent: block.content
+          });
         }
         const yamlConfigs = codeBlocks.filter((x) =>
           x.heading.startsWith("yaml")
@@ -164,7 +165,7 @@ function describeScenarioFile(scenarioFile: string): void {
 
         const testCases: {
           block: CodeScenarioPart;
-          fn: () => Promise<string>;
+          fn: (examples?: ExampleJson[]) => Promise<string>;
         }[] = outputCodeBlocks
           .map((x) => {
             for (const [template, fn] of Object.entries(
@@ -180,8 +181,11 @@ function describeScenarioFile(scenarioFile: string): void {
               if (match !== null) {
                 return {
                   block: x,
-                  fn: () =>
-                    fn(inputTsp, match.groups! ?? {}, { examples, configs })
+                  fn: (examples?: ExampleJson[]) =>
+                    fn(inputTsp, match.groups! ?? {}, {
+                      examples,
+                      configs
+                    })
                 };
               }
             }
@@ -190,9 +194,14 @@ function describeScenarioFile(scenarioFile: string): void {
           })
           .filter((x) => x !== undefined);
 
+        let index = 0;
         for (const testCase of testCases) {
           it(testCase.block.heading, async () => {
-            const result = await testCase.fn!();
+            const examples =
+              Object.entries(allExamples).length === testCases.length
+                ? [allExamples[index++]!]
+                : allExamples;
+            const result = await testCase.fn!(examples);
 
             if (SCENARIOS_UPDATE) {
               // Update the content; this makes the tests pass

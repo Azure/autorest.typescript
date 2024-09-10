@@ -32,6 +32,11 @@ import {
   AzurePollingDependencies
 } from "../../src/modular/external-dependencies.js";
 
+export interface ExampleJson {
+  filename: string;
+  rawContent: string;
+}
+
 const { __dirname } = getDirname(import.meta.url);
 
 export async function createRLCEmitterTestHost() {
@@ -110,7 +115,7 @@ ${code}
 
 export async function compileTypeSpecFor(
   code: string,
-  exampleJson: Record<string, any> = {}
+  examples: ExampleJson[] = []
 ) {
   let prefix = "";
   if (!code.includes("import")) {
@@ -121,10 +126,10 @@ export async function compileTypeSpecFor(
   }
   const host: TestHost = await createRLCEmitterTestHost();
   host.addTypeSpecFile("main.tsp", `${prefix}${code}`);
-  for (const example in exampleJson) {
+  for (const example of examples) {
     host.addTypeSpecFile(
-      `./examples/2021-10-01-preview/${example}.json`,
-      exampleJson[example]
+      `./examples/2021-10-01-preview/${example.filename}.json`,
+      example.rawContent
     );
   }
   await host.compile("./", {

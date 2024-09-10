@@ -59,39 +59,7 @@ Raw json files.
 }
 ```
 
-```json for opD
-{
-  "title": "opD",
-  "operationId": "D_opD",
-  "parameters": {
-    "body": {
-      "prop1": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-```json for opBEC
-{
-  "title": "opBEC",
-  "operationId": "C_opBEC",
-  "parameters": {
-    "body": {
-      "prop3": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-## Samples
-
-Generate samples for hierarchy cases:
+Generated samples.
 
 ```ts samples
 /** This file path is /samples-dev/opTopLevelSample.ts */
@@ -114,28 +82,28 @@ async function main() {
 }
 
 main().catch(console.error);
+```
 
-/** This file path is /samples-dev/bECOpBECSample.ts */
-import { TestingClient } from "@azure/internal-test";
+Raw json files.
 
-/**
- * This sample demonstrates how to execute opBEC
- *
- * @summary execute opBEC
- * x-ms-original-file: 2021-10-01-preview/json_for_opBEC.json
- */
-async function opBEC() {
-  const client = new TestingClient();
-  const result = await client.b.e.c.opBEC({ prop3: "body name" });
-  console.log(result);
+```json for opD
+{
+  "title": "opD",
+  "operationId": "D_opD",
+  "parameters": {
+    "body": {
+      "prop1": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
 }
+```
 
-async function main() {
-  opBEC();
-}
+Generated samples.
 
-main().catch(console.error);
-
+```ts samples
 /** This file path is /samples-dev/dOpDSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
@@ -153,6 +121,48 @@ async function opD() {
 
 async function main() {
   opD();
+}
+
+main().catch(console.error);
+```
+
+Raw json files.
+
+```json for opBEC
+{
+  "title": "opBEC",
+  "operationId": "C_opBEC",
+  "parameters": {
+    "body": {
+      "prop3": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+Generated samples.
+
+```ts samples
+/** This file path is /samples-dev/bECOpBECSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute opBEC
+ *
+ * @summary execute opBEC
+ * x-ms-original-file: 2021-10-01-preview/json_for_opBEC.json
+ */
+async function opBEC() {
+  const client = new TestingClient();
+  const result = await client.b.e.c.opBEC({ prop3: "body name" });
+  console.log(result);
+}
+
+async function main() {
+  opBEC();
 }
 
 main().catch(console.error);

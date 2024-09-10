@@ -82,68 +82,17 @@ union ProvisioningState {
 
 @armResourceOperations
 interface Employees {
-  get is ArmResourceRead<Employee>;
   createOrUpdate is ArmResourceCreateOrReplaceAsync<Employee>;
-  delete is ArmResourceDeleteWithoutOkAsync<Employee>;
 }
 ```
 
-## Example
+## Example and generated samples
 
 Raw json files.
 
-```json for Operations_List
+```json for Employees_CreateOrUpdate_maxage
 {
-  "title": "Operations_List",
-  "operationId": "Operations_List",
-  "parameters": {
-    "api-version": "2021-10-01-preview"
-  },
-  "responses": {
-    "200": {
-      "body": {}
-    }
-  }
-}
-```
-
-Generate samples for arm cases:
-
-```ts samples
-/** This file path is /samples-dev/operationsListSample.ts */
-import { ContosoClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to list the operations for the provider
- *
- * @summary list the operations for the provider
- * x-ms-original-file: 2021-10-01-preview/json_for_Operations_List.json
- */
-async function operationsList() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new ContosoClient(credential, subscriptionId);
-  const resArray = new Array();
-  for await (let item of client.operations.list()) {
-    resArray.push(item);
-  }
-
-  console.log(resArray);
-}
-
-async function main() {
-  operationsList();
-}
-
-main().catch(console.error);
-```
-
-Raw json files.
-
-```json for Employees_CreateOrUpdate
-{
-  "title": "Employees_CreateOrUpdate",
+  "title": "Employees_CreateOrUpdate_maxage",
   "operationId": "Employees_CreateOrUpdate",
   "parameters": {
     "api-version": "2021-10-01-preview",
@@ -152,7 +101,36 @@ Raw json files.
     "employeeName": "9KF-f-8b",
     "resource": {
       "properties": {
-        "age": 30,
+        "age": 110,
+        "city": "gydhnntudughbmxlkyzrskcdkotrxn",
+        "profile": "ms"
+      },
+      "tags": {
+        "key2913": "urperxmkkhhkp"
+      },
+      "location": "itajgxyqozseoygnl"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+Raw json files.
+
+```json for Employees_CreateOrUpdate_minage
+{
+  "title": "Employees_CreateOrUpdate_minage",
+  "operationId": "Employees_CreateOrUpdate_minage",
+  "parameters": {
+    "api-version": "2021-10-01-preview",
+    "subscriptionId": "11809CA1-E126-4017-945E-AA795CD5C5A9",
+    "resourceGroupName": "rgopenapi",
+    "employeeName": "9KF-f-8b",
+    "resource": {
+      "properties": {
+        "age": 1,
         "city": "gydhnntudughbmxlkyzrskcdkotrxn",
         "profile": "ms"
       },
@@ -179,9 +157,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * This sample demonstrates how to create a Employee
  *
  * @summary create a Employee
- * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate_maxage.json
  */
-async function employeesCreateOrUpdate() {
+async function employeesCreateOrUpdateMaxage() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
@@ -190,7 +168,7 @@ async function employeesCreateOrUpdate() {
     "9KF-f-8b",
     {
       properties: {
-        age: 30,
+        age: 110,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
         profile: "ms"
       },
@@ -202,52 +180,7 @@ async function employeesCreateOrUpdate() {
 }
 
 async function main() {
-  employeesCreateOrUpdate();
-}
-
-main().catch(console.error);
-```
-
-Raw json files.
-
-```json for Employees_Delete
-{
-  "title": "Employees_Delete",
-  "operationId": "Employees_Delete",
-  "parameters": {
-    "api-version": "2021-10-01-preview",
-    "subscriptionId": "11809CA1-E126-4017-945E-AA795CD5C5A9",
-    "resourceGroupName": "rgopenapi",
-    "employeeName": "5vX--BxSu3ux48rI4O9OQ569"
-  },
-  "responses": {
-    "202": {}
-  }
-}
-```
-
-Generate samples for arm cases:
-
-```ts samples
-/** This file path is /samples-dev/employeesDeleteSample.ts */
-import { ContosoClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to delete a Employee
- *
- * @summary delete a Employee
- * x-ms-original-file: 2021-10-01-preview/json_for_Employees_Delete.json
- */
-async function employeesDelete() {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, subscriptionId);
-  await client.employees.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
-}
-
-async function main() {
-  employeesDelete();
+  employeesCreateOrUpdateMaxage();
 }
 
 main().catch(console.error);

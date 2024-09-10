@@ -17,6 +17,7 @@ import {
 import {
   compileTypeSpecFor,
   createDpgContextTestHelper,
+  ExampleJson,
   rlcEmitterFor
 } from "./testUtil.js";
 import {
@@ -570,7 +571,7 @@ export async function emitModularClientFromTypeSpec(
 
 export async function emitSamplesFromTypeSpec(
   tspContent: string,
-  examples: Record<string, string>,
+  examples: ExampleJson[],
   configs: Record<string, string> = {}
 ) {
   const context = await compileTypeSpecFor(tspContent, examples);
