@@ -23,7 +23,9 @@ export function getPagedAsyncIterator<
 >(
   pagedResult: PagedResult<TPage, TPageSettings, TLink>,
 ): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
-  const iter = getItemAsyncIterator<TElement, TPage, TLink, TPageSettings>(pagedResult);
+  const iter = getItemAsyncIterator<TElement, TPage, TLink, TPageSettings>(
+    pagedResult,
+  );
   return {
     next() {
       return iter.next();
@@ -38,7 +40,9 @@ export function getPagedAsyncIterator<
         return getPageAsyncIterator(pagedResult, {
           pageLink: continuationToken as unknown as TLink | undefined,
         });
-      }) as unknown as (settings?: TPageSettings) => AsyncIterableIterator<TPage>),
+      }) as unknown as (
+        settings?: TPageSettings,
+      ) => AsyncIterableIterator<TPage>),
   };
 }
 
@@ -78,7 +82,9 @@ async function* getPageAsyncIterator<TPage, TLink, TPageSettings>(
   } = {},
 ): AsyncIterableIterator<TPage> {
   const { pageLink } = options;
-  let response = await pagedResult.getPage(pageLink ?? pagedResult.firstPageLink);
+  let response = await pagedResult.getPage(
+    pageLink ?? pagedResult.firstPageLink,
+  );
   if (!response) {
     return;
   }
@@ -116,7 +122,11 @@ export interface PagedAsyncIterableIterator<
   /**
    * The connection to the async iterator, part of the iteration protocol
    */
-  [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+  [Symbol.asyncIterator](): PagedAsyncIterableIterator<
+    TElement,
+    TPage,
+    TPageSettings
+  >;
   /**
    * Return an AsyncIterableIterator that works a page at a time
    */
@@ -126,7 +136,11 @@ export interface PagedAsyncIterableIterator<
 /**
  * An interface that describes how to communicate with the service.
  */
-export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
+export interface PagedResult<
+  TPage,
+  TPageSettings = PageSettings,
+  TLink = string,
+> {
   /**
    * Link to the first page of results.
    */
@@ -138,8 +152,7 @@ export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string
     pageLink: TLink,
   ) => Promise<{ page: TPage; nextPageLink?: TLink } | undefined>;
   /**
-   * a function to implement the `byPage` method on the paged async iterator. The default is
-   * one that sets the `maxPageSizeParam` from `settings.maxPageSize`.
+   * a function to implement the `byPage` method on the paged async iterator.
    */
   byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
 
@@ -162,8 +175,6 @@ export type Paged<T> = {
    */
   nextLink?: string;
 };
-
-
 /**
  * Helper type to extract the type of an array
  */

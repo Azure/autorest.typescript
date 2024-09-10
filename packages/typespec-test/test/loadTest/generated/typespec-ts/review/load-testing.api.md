@@ -12,7 +12,7 @@ import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
+import { Paged as Paged_2 } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -113,7 +113,7 @@ export interface FileInfo {
 }
 
 // @public
-export type FileInfoListOutput = Paged<FileInfoOutput>;
+export type FileInfoListOutput = Paged_2<FileInfoOutput>;
 
 // @public
 export interface FileInfoOutput {
@@ -1293,7 +1293,7 @@ export interface MetricRequestPayload {
 }
 
 // @public
-export type MetricsOutput = Paged<TimeSeriesElementOutput>;
+export type MetricsOutput = Paged_2<TimeSeriesElementOutput>;
 
 // @public
 export type MetricUnitOutput = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
@@ -1327,6 +1327,12 @@ export interface OptionalLoadTestConfigOutput {
 }
 
 // @public
+export type Paged<T> = {
+    value: T[];
+    nextLink?: string;
+};
+
+// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
@@ -1334,13 +1340,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;
+export type PagedDimensionValueListOutput = Paged_2<DimensionValueListOutput>;
 
 // @public
 export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
     byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
     firstPageLink: TLink;
-    getPage: (pageLink: TLink, maxPageSize?: number) => Promise<{
+    getPage: (pageLink: TLink) => Promise<{
         page: TPage;
         nextPageLink?: TLink;
     } | undefined>;
@@ -1350,7 +1356,6 @@ export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string
 // @public
 export interface PageSettings {
     continuationToken?: string;
-    maxPageSize?: number;
 }
 
 // @public
@@ -1712,7 +1717,7 @@ export interface TestRunServerMetricConfigOutput {
 export type TestRunServerMetricConfigResourceMergeAndPatch = Partial<TestRunServerMetricConfig>;
 
 // @public
-export type TestRunsListOutput = Paged<TestRunOutput>;
+export type TestRunsListOutput = Paged_2<TestRunOutput>;
 
 // @public
 export interface TestRunStatistics {
@@ -1755,7 +1760,7 @@ export interface TestServerMetricConfigOutput {
 export type TestServerMetricConfigResourceMergeAndPatch = Partial<TestServerMetricConfig>;
 
 // @public
-export type TestsListOutput = Paged<TestOutput>;
+export type TestsListOutput = Paged_2<TestOutput>;
 
 // @public
 export type TimeGrainOutput = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";

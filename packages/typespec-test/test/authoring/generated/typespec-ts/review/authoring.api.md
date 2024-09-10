@@ -14,7 +14,7 @@ import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
+import { Paged as Paged_2 } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -741,6 +741,12 @@ export interface OperationStatusOutput {
 }
 
 // @public
+export type Paged<T> = {
+    value: T[];
+    nextLink?: string;
+};
+
+// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
@@ -748,16 +754,16 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export type PagedDeploymentOutput = Paged<DeploymentOutput>;
+export type PagedDeploymentOutput = Paged_2<DeploymentOutput>;
 
 // @public
-export type PagedProjectOutput = Paged<ProjectOutput>;
+export type PagedProjectOutput = Paged_2<ProjectOutput>;
 
 // @public
 export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
     byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
     firstPageLink: TLink;
-    getPage: (pageLink: TLink, maxPageSize?: number) => Promise<{
+    getPage: (pageLink: TLink) => Promise<{
         page: TPage;
         nextPageLink?: TLink;
     } | undefined>;
@@ -767,7 +773,6 @@ export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string
 // @public
 export interface PageSettings {
     continuationToken?: string;
-    maxPageSize?: number;
 }
 
 // @public
@@ -872,7 +877,7 @@ export interface SupportedLanguageOutput {
 }
 
 // @public
-export type SupportedLanguagesOutput = Paged<SupportedLanguageOutput>;
+export type SupportedLanguagesOutput = Paged_2<SupportedLanguageOutput>;
 
 // @public (undocumented)
 export interface SwapDeployments {
@@ -984,7 +989,7 @@ export interface TrainingConfigVersionOutput {
 }
 
 // @public
-export type TrainingConfigVersionsOutput = Paged<TrainingConfigVersionOutput>;
+export type TrainingConfigVersionsOutput = Paged_2<TrainingConfigVersionOutput>;
 
 // @public
 export interface TrainingJobOptions {
