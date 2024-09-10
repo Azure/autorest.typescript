@@ -414,7 +414,7 @@
             }
           },
           "409": {
-            "description": "The request conflicts with the current state of the server.",
+            "description": "The user already exists",
             "content": {
               "application/json": {
                 "schema": {
@@ -424,7 +424,7 @@
             }
           },
           "422": {
-            "description": "Client error",
+            "description": "The user is invalid (e.g. forgot to enter email address)",
             "content": {
               "application/json": {
                 "schema": {
@@ -472,7 +472,7 @@
             "description": "The request has succeeded."
           },
           "422": {
-            "description": "Client error",
+            "description": "The user is invalid (e.g. forgot to enter email address)",
             "content": {
               "application/json": {
                 "schema": {
