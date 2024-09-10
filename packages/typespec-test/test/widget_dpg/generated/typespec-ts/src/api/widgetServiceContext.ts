@@ -15,6 +15,7 @@ export interface WidgetServiceClientOptionalParams extends ClientOptions {
 }
 
 export function createWidgetService(
+  endpointParam: string,
   credential: KeyCredential,
   options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
@@ -28,7 +29,7 @@ export function createWidgetService(
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? endpoint,
+    options.endpoint ?? options.baseUrl ?? `${endpointParam}`,
     undefined,
     updatedOptions,
   );

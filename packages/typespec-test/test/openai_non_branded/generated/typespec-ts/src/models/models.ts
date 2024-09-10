@@ -602,9 +602,9 @@ export interface FineTune {
     batch_size: number;
     prompt_loss_weight: number;
     learning_rate_multiplier: number;
-    compute_classification_metrics: boolean;
-    classification_positive_class: string;
-    classification_n_classes: number;
+    compute_classification_metrics?: boolean;
+    classification_positive_class?: string;
+    classification_n_classes?: number;
   };
   /** The list of files used for training. */
   training_files: OpenAIFile[];
@@ -1292,7 +1292,7 @@ export interface CreateFineTuningJobRequest {
   model: "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
   /** The hyperparameters used for the fine-tuning job. */
   hyperparameters?: {
-    n_epochs: "auto" | number;
+    n_epochs?: "auto" | number;
   };
   /**
    * A string of up to 18 characters that will be added to your fine-tuned model name.
@@ -1427,7 +1427,7 @@ export interface FineTuningJob {
    * [fine-tuning guide](/docs/guides/fine-tuning) for more details.
    */
   hyperparameters: {
-    n_epochs: "auto" | number;
+    n_epochs?: "auto" | number;
   };
   /**
    * The file ID used for training. You can retrieve the training data with the
@@ -1454,9 +1454,9 @@ export interface FineTuningJob {
    * failure.
    */
   error: {
-    message: string;
-    code: string;
-    param: string | null;
+    message?: string;
+    code?: string;
+    param?: string | null;
   } | null;
 }
 

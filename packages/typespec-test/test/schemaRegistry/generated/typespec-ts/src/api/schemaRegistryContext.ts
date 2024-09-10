@@ -2,31 +2,26 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import {
-  _DataProductListResult,
-  _DataTypeListResult,
-  _DataProductsCatalogListResult,
-  _OperationListResult,
-} from "../models/models.js";
+import { _PagedSchemaGroup, _PagedVersion } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface NetworkAnalyticsContext extends Client {}
+export interface SchemaRegistryContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
-  /** Service host */
-  endpoint?: string;
+export interface SchemaRegistryClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   apiVersion?: string;
 }
 
-export function createNetworkAnalytics(
+/** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
+export function createSchemaRegistry(
+  fullyQualifiedNamespace: string,
   credential: TokenCredential,
-  options: NetworkAnalyticsClientOptionalParams = {},
-): NetworkAnalyticsContext {
+  options: SchemaRegistryClientOptionalParams = {},
+): SchemaRegistryContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
+    options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;
 
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
@@ -37,12 +32,14 @@ export function createNetworkAnalytics(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [`${endpointUrl}/.default`],
+      scopes: options.credentials?.scopes ?? [
+        "https://eventhubs.azure.net/.default",
+      ],
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-11-15";
+  const apiVersion = options.apiVersion ?? "2023-07-01";
   clientContext.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

@@ -19,11 +19,11 @@ import {
   _DataProductsCatalogListResult,
   _OperationListResult,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PathUncheckedResponse,
   createRestError,

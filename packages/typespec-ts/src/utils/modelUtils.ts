@@ -1455,8 +1455,8 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
   return usage &&
     usage.includes(SchemaContext.Input) &&
     !usage.includes(SchemaContext.Output)
-    ? schema.typeName ?? schema.name
-    : schema.outputTypeName ?? schema.typeName ?? schema.name;
+    ? (schema.typeName ?? schema.name)
+    : (schema.outputTypeName ?? schema.typeName ?? schema.name);
 }
 
 function getEnumStringDescription(type: any) {

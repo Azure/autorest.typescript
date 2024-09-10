@@ -48,7 +48,6 @@ export class OpenAIClient {
 
   /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
   constructor(
-    endpointParam: string,
     credential: KeyCredential,
     options: OpenAIClientOptionalParams = {},
   ) {
@@ -56,7 +55,7 @@ export class OpenAIClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createOpenAI(endpointParam, credential, {
+    this._client = createOpenAI(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

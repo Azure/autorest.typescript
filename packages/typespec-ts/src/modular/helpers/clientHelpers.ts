@@ -39,6 +39,8 @@ export function getClientParameters(
       property.type.values[0]?.kind === "endpoint"
     ) {
       clientParams.push(...property.type.values[0].templateArguments);
+    } else if (property.type.kind === "endpoint") {
+      clientParams.push(...property.type.templateArguments);
     } else if (!clientParams.find((p) => p.name === property.name)) {
       clientParams.push(property);
     }
@@ -148,9 +150,11 @@ export function buildGetClientEndpointParam(
   // Special case: endpoint URL not defined
   if (_client.url === "") {
     const endpointParam = getClientParameters(client, dpgContext, {
-      onClientOnly: false
-    }).find((x) => x.kind === "endpoint");
-    return `options.endpoint ?? options.baseUrl ?? ${endpointParam?.name}`;
+      onClientOnly: true
+    }).find((x) => x.kind === "endpoint" || x.kind === "path");
+    if (endpointParam) {
+      return `options.endpoint ?? options.baseUrl ?? \`\${${getClientParameterName(endpointParam)}}\``;
+    }
   }
 
   const urlParams = _client.parameters.filter((p) => {
@@ -180,21 +184,7 @@ export function buildGetClientEndpointParam(
       `\${${param.clientName}}`
     );
   }
-
-  const endpointParam = urlParams.find(
-    (p) => p.location === "endpointPath" && p.clientName === "endpointParam"
-  );
-  let hasRequiredEndpoint = false;
-  if (
-    endpointParam &&
-    !_client.url.includes(`{${endpointParam.restApiName}}`) &&
-    !dpgContext.arm
-  ) {
-    hasRequiredEndpoint = true;
-  }
-  const endpointUrl = `const endpointUrl = ${
-    hasRequiredEndpoint ? "endpointParam ?? " : ""
-  }options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
+  const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
   context.addStatements(endpointUrl);
   return "endpointUrl";
 }

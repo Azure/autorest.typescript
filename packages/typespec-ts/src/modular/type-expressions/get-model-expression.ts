@@ -1,8 +1,9 @@
+import { EmitTypeOptions, getTypeExpression } from "./get-type-expression.js";
+
 import { SdkModelType } from "@azure-tools/typespec-client-generator-core";
-import { resolveReference } from "../../framework/reference.js";
-import { getTypeExpression, EmitTypeOptions } from "./get-type-expression.js";
-import { shouldEmitInline } from "./utils.js";
 import { refkey } from "../../framework/refkey.js";
+import { resolveReference } from "../../framework/reference.js";
+import { shouldEmitInline } from "./utils.js";
 import { useContext } from "../../contextManager.js";
 
 export interface ModelExpressionOptions extends EmitTypeOptions {
@@ -21,7 +22,10 @@ export function getModelExpression(
   if (shouldEmitInline(type, options)) {
     return `{
       ${type.properties
-        .map((p) => `"${p.name}": ${getTypeExpression(p.type, options)}`)
+        .map(
+          (p) =>
+            `"${p.name}"${p.optional ? "?" : ""}: ${getTypeExpression(p.type, options)}`
+        )
         .join(",\n")}
     }`;
   } else {

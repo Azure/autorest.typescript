@@ -65,8 +65,8 @@ export function getSendPrivateFunction(
 
   const operationPath = operation.url;
   const operationMethod = operation.method.toLowerCase();
-  const optionalParamName = parameters.filter(
-    (p) => p.type?.toString().endsWith("OptionalParams")
+  const optionalParamName = parameters.filter((p) =>
+    p.type?.toString().endsWith("OptionalParams")
   )[0]?.name;
 
   const statements: string[] = [];

@@ -9,7 +9,10 @@ export interface FooContext extends Client {}
 /** Optional parameters for the client. */
 export interface FooClientOptionalParams extends ClientOptions {}
 
-export function createFoo(options: FooClientOptionalParams = {}): FooContext {
+export function createFoo(
+  endpointParam: string,
+  options: FooClientOptionalParams = {},
+): FooContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -20,7 +23,7 @@ export function createFoo(options: FooClientOptionalParams = {}): FooContext {
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? endpoint,
+    options.endpoint ?? options.baseUrl ?? `${endpointParam}`,
     undefined,
     updatedOptions,
   );
