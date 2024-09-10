@@ -1,0 +1,166 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "(title)",
+    "version": "0000-00-00",
+    "x-typespec-generated": [
+      {
+        "emitter": "@azure-tools/typespec-autorest"
+      }
+    ]
+  },
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "tags": [],
+  "paths": {
+    "/": {
+      "post": {
+        "operationId": "OpTopLevel",
+        "description": "show example opTopLevel",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/b": {
+      "post": {
+        "operationId": "B_Foo",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/b/e": {
+      "post": {
+        "operationId": "E_Foo",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/B.E.A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/b/e/bec": {
+      "post": {
+        "operationId": "C_OpBec",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/B.E.A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/d": {
+      "post": {
+        "operationId": "D_OpD",
+        "description": "show example opD",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/A"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "A": {
+      "type": "object",
+      "properties": {
+        "prop1": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "prop1"
+      ]
+    },
+    "B.E.A": {
+      "type": "object",
+      "properties": {
+        "prop3": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "prop3"
+      ]
+    }
+  },
+  "parameters": {}
+}

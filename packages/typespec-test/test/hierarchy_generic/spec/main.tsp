@@ -13,27 +13,24 @@ model A {
 
 @route("b")
 namespace B {
-  model A {
-    prop2: string;
-  }
-  @route("c")
-  interface C {
-    op op1(@body body: A): void;
-  }
   @route("e")
   namespace E {
     model A {
       prop3: string;
     }
     interface C {
-      op op1(@body body: A): void
+      @route("bec")
+      op opBEC(@body body: A):  { @body body:{} };
     }
+    op foo(@body body: A):  { @body body: {} };
   }
-  op op1(@body body: A): void;
+  op foo(@body body: A):  { @body body: {} };
 }
 
 @route("/d")
 interface D {
-  op op1(@body body: A): void;
+  @doc("show example opD")
+  op opD(@body body: A):  { @body body: {} };
 }
-op op1(@body body: A): void;
+@doc("show example opTopLevel")
+op opTopLevel(@body body: A):  { @body body: {} };

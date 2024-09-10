@@ -9,37 +9,37 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { BECOp1OptionalParams } from "../../../../models/options.js";
+import { BECOpBECOptionalParams } from "../../../../models/options.js";
 
-export function _op1Send(
+export function _opBECSend(
   context: Client,
   body: BEA,
-  options: BECOp1OptionalParams = { requestOptions: {} },
+  options: BECOpBECOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/b/e")
+    .path("/b/e/bec")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: { prop3: body["prop3"] },
     });
 }
 
-export async function _op1Deserialize(
+export async function _opBECDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
+): Promise<Record<string, any>> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return result.body as any;
 }
 
-export async function op1(
+export async function opBEC(
   context: Client,
   body: BEA,
-  options: BECOp1OptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _op1Send(context, body, options);
-  return _op1Deserialize(result);
+  options: BECOpBECOptionalParams = { requestOptions: {} },
+): Promise<Record<string, any>> {
+  const result = await _opBECSend(context, body, options);
+  return _opBECDeserialize(result);
 }

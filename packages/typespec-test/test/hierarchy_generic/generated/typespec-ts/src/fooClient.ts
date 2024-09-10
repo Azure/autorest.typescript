@@ -3,14 +3,14 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { A } from "./models/models.js";
-import { Op1OptionalParams } from "./models/options.js";
+import { OpTopLevelOptionalParams } from "./models/options.js";
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
   createFoo,
   FooContext,
   FooClientOptionalParams,
-  op1,
+  opTopLevel,
 } from "./api/index.js";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";
@@ -34,11 +34,12 @@ export class FooClient {
     this.d = getDOperations(this._client);
   }
 
-  op1(
+  /** show example opTopLevel */
+  opTopLevel(
     body: A,
-    options: Op1OptionalParams = { requestOptions: {} },
-  ): Promise<void> {
-    return op1(this._client, body, options);
+    options: OpTopLevelOptionalParams = { requestOptions: {} },
+  ): Promise<Record<string, any>> {
+    return opTopLevel(this._client, body, options);
   }
 
   /** The operation groups for B */

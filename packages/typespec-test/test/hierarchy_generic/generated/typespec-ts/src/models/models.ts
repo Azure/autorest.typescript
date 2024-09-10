@@ -11,16 +11,6 @@ export function aSerializer(item: A): Record<string, unknown> {
   };
 }
 
-export interface BA {
-  prop2: string;
-}
-
-export function bASerializer(item: BA): Record<string, unknown> {
-  return {
-    prop2: item["prop2"],
-  };
-}
-
 export interface BEA {
   prop3: string;
 }

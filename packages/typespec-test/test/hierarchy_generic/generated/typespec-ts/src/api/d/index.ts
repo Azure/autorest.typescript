@@ -9,12 +9,12 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { DOp1OptionalParams } from "../../models/options.js";
+import { DOpDOptionalParams } from "../../models/options.js";
 
-export function _op1Send(
+export function _opDSend(
   context: Client,
   body: A,
-  options: DOp1OptionalParams = { requestOptions: {} },
+  options: DOpDOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/d")
@@ -24,22 +24,23 @@ export function _op1Send(
     });
 }
 
-export async function _op1Deserialize(
+export async function _opDDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
+): Promise<Record<string, any>> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return result.body as any;
 }
 
-export async function op1(
+/** show example opD */
+export async function opD(
   context: Client,
   body: A,
-  options: DOp1OptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _op1Send(context, body, options);
-  return _op1Deserialize(result);
+  options: DOpDOptionalParams = { requestOptions: {} },
+): Promise<Record<string, any>> {
+  const result = await _opDSend(context, body, options);
+  return _opDDeserialize(result);
 }

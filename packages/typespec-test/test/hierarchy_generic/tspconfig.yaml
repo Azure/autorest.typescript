@@ -1,10 +1,15 @@
 emit:
   - "@azure-tools/typespec-ts"
+  - "@azure-tools/typespec-autorest"
 options:
   "@azure-tools/typespec-ts":
     azureSdkForJs: false
     isModularLibrary: true
+    enableOperationGroup: true
+    hierarchyClient: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@msinternal/hierarchy-generic"
       description: "OpenAI"
+  "@azure-tools/typespec-autorest":
+    "emitter-output-dir": "{project-root}/generated/openapi"
