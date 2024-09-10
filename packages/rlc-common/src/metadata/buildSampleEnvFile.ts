@@ -14,7 +14,7 @@ export function buildSampleEnvFile(model: RLCModel) {
     model.options?.generateMetadata === true ||
     model.options?.generateSample === true
   ) {
-    let filePath = "sample.env";
+    const filePath = "sample.env";
     return {
       path: filePath,
       content: sampleEnvText.trim()
