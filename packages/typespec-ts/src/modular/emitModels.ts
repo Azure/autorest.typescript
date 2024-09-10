@@ -87,6 +87,9 @@ export function emitTypes(
       addDeclaration(sourceFile, unionType, type);
       addSerializationFunctions(context, type, sourceFile);
     }
+    if (type.kind === "dict") {
+      addSerializationFunctions(context, type, sourceFile);
+    }
   }
 
   addImportBySymbol("serializeRecord", sourceFile);
@@ -425,6 +428,9 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
   if (type.kind === "dict") {
     if (!emitQueue.has(type.valueType as any)) {
       visitType(type.valueType, emitQueue);
+    }
+    if (!emitQueue.has(type)) {
+      emitQueue.add(type);
     }
   }
   if (type.kind === "enum") {

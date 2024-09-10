@@ -507,6 +507,26 @@ export function userAssignedIdentityDeserializer(
   };
 }
 
+export function userAssignedIdentityRecordSerializer(
+  item: Record<string, UserAssignedIdentity>,
+): Record<string, unknown> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = userAssignedIdentitySerializer(item[key]);
+  });
+  return result;
+}
+
+export function userAssignedIdentityRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, UserAssignedIdentity> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = userAssignedIdentityDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
   /** Resource tags. */

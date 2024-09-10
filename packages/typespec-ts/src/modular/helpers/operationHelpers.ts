@@ -177,6 +177,9 @@ export function getDeserializePrivateFunction(
     properties.length > 0 &&
     !deserializedType.aliasType
   ) {
+    if (deserializedType.type === "model" && deserializedType.tcgcType?.kind === "dict") {
+      deserializedType;
+    }
     const deserializeFunctionName =
       buildModelDeserializer(
         context,
@@ -188,6 +191,9 @@ export function getDeserializePrivateFunction(
   } else if (returnType.type === "void" || deserializedType === undefined) {
     statements.push(`return;`);
   } else {
+    if (deserializedType.type === "model" && deserializedType.tcgcType?.kind === "dict") {
+      deserializedType;
+    }
     const deserializeFunctionName =
       buildModelDeserializer(
         context,
@@ -1081,6 +1087,9 @@ export function getResponseMapping(
           property,
           propertyPath
         );
+        if (property.type.type === "model" && property.type.tcgcType?.kind === "dict") {
+          property;
+        }
         const deserializeFunctionName =
           buildModelDeserializer(
             context,
@@ -1090,6 +1099,9 @@ export function getResponseMapping(
           ) ?? "";
         definition = `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
+        if (property.type.type === "model" && property.type.tcgcType?.kind === "dict") {
+          property;
+        }
         const deserializeFunctionName =
           buildModelDeserializer(
             context,
@@ -1124,6 +1136,9 @@ export function getResponseMapping(
           }`
         );
       } else {
+        if (property.type.tcgcType?.kind === "dict") {
+          property;
+        }
         const deserializeFunctionName =
           buildModelDeserializer(
             context,
@@ -1324,6 +1339,9 @@ export function getAllProperties(type: Type, parents?: Type[]): Property[] {
       propertiesMap.set(prop.clientName, prop);
     });
   });
+  if (type.name?.startsWith("ManagedService")) {
+    type;
+  }
   type.properties?.forEach((p) => {
     propertiesMap.set(p.clientName, p);
   });

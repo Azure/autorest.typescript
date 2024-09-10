@@ -397,7 +397,7 @@ function buildDictTypeDeserializer(
         type: "Record<string, any>"
       }
     ],
-    returnType: `Record<string, ${valueTypeName}>`,
+    returnType: `Record<string, ${normalizeModelName(context, type.valueType as any) ?? "any"}>`,
     statements: [
       `
   const result: Record<string, any> = {};

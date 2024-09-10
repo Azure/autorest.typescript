@@ -310,7 +310,7 @@ function buildDictTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: `Record<string, ${valueTypeName}>`
+        type: `Record<string, ${normalizeModelName(context, type.valueType as any) ?? "any"}>`
       }
     ],
     returnType: "Record<string, unknown>",

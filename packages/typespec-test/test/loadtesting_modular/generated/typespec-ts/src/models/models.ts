@@ -352,6 +352,26 @@ export function pFResultDeserializer(item: any): PFResult {
   return item;
 }
 
+export function passFailMetricRecordSerializer(
+  item: Record<string, PassFailMetric>,
+): Record<string, unknown> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = passFailMetricSerializer(item[key]);
+  });
+  return result;
+}
+
+export function passFailMetricRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, PassFailMetric> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = passFailMetricDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
 export interface AutoStopCriteria {
   /** Whether auto-stop should be disabled. The default value is false. */
@@ -426,6 +446,26 @@ export function secretTypeSerializer(item: SecretType): any {
 
 export function secretTypeDeserializer(item: any): SecretType {
   return item;
+}
+
+export function secretRecordSerializer(
+  item: Record<string, Secret>,
+): Record<string, unknown> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = secretSerializer(item[key]);
+  });
+  return result;
+}
+
+export function secretRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, Secret> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = secretDeserializer(item[key]);
+  });
+  return result;
 }
 
 /** Certificates metadata */
@@ -823,6 +863,26 @@ export function appComponentDeserializer(item: any): AppComponent {
   };
 }
 
+export function appComponentRecordSerializer(
+  item: Record<string, AppComponent>,
+): Record<string, unknown> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = appComponentSerializer(item[key]);
+  });
+  return result;
+}
+
+export function appComponentRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, AppComponent> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = appComponentDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** Test server metrics configuration */
 export interface TestServerMetricConfig {
   /** Test identifier */
@@ -916,6 +976,26 @@ export function resourceMetricDeserializer(item: any): ResourceMetric {
     unit: item["unit"],
     resourceType: item["resourceType"],
   };
+}
+
+export function resourceMetricRecordSerializer(
+  item: Record<string, ResourceMetric>,
+): Record<string, unknown> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = resourceMetricSerializer(item[key]);
+  });
+  return result;
+}
+
+export function resourceMetricRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, ResourceMetric> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = resourceMetricDeserializer(item[key]);
+  });
+  return result;
 }
 
 /** Load test run model */
@@ -1882,6 +1962,30 @@ export function functionFlexConsumptionResourceConfigurationDeserializer(
     instanceMemoryMB: item["instanceMemoryMB"],
     httpConcurrency: item["httpConcurrency"],
   };
+}
+
+export function functionFlexConsumptionResourceConfigurationRecordSerializer(
+  item: Record<string, FunctionFlexConsumptionResourceConfiguration>,
+): Record<string, unknown> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = functionFlexConsumptionResourceConfigurationSerializer(
+      item[key],
+    );
+  });
+  return result;
+}
+
+export function functionFlexConsumptionResourceConfigurationRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, FunctionFlexConsumptionResourceConfiguration> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = functionFlexConsumptionResourceConfigurationDeserializer(
+      item[key],
+    );
+  });
+  return result;
 }
 
 /** Test Profile Run model. */
