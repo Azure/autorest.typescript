@@ -403,7 +403,6 @@ function getParameterValue(value: SdkTypeExample): string {
     case "string": {
       switch (value.type.kind) {
         case "utcDateTime":
-        case "offsetDateTime":
           retValue = `new Date("${value.value}")`;
           break;
         default:

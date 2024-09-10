@@ -12,7 +12,7 @@ import { prettierTypeScriptOptions } from "../../src/lib.js";
 
 const SCENARIOS_LOCATION = "./test/modularUnit/scenarios";
 
-const SCENARIOS_UPDATE = process.env["SCENARIOS_UPDATE"] === "true";
+const SCENARIOS_UPDATE = true;
 
 type EmitterFunction = (
   tsp: string,
@@ -116,7 +116,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   }
 };
 
-describe("Scenarios", function () {
+describe.only("Scenarios", function () {
   describeScenarios(SCENARIOS_LOCATION);
 });
 

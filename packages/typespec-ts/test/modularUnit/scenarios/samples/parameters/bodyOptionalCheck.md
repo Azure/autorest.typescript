@@ -70,7 +70,7 @@ async function read() {
   const client = new TestingClient();
   const result = await client.read("required path param", "required query", {
     body: { name: "body name" },
-    optionalQuery: "renamed optional query"
+    optionalQuery: "renamed optional query",
   });
   console.log(result);
 }

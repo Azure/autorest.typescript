@@ -25,6 +25,11 @@ model Widget {
   stringLiteral: "foo";
   booleanLiteral: true;
   numberLiteral: 12;
+  plainDateProp: plainDate;
+  plainTimeProp: plainTime;
+  utcDateTimeProp: utcDateTime;
+  offsetDateTimeProp: offsetDateTime;
+  durationProp: duration;
 }
 
 @doc("show example demo")
@@ -54,7 +59,12 @@ op read(@bodyRoot body: Widget): { @body body: {}};
       "renamedProp": "prop renamed",
       "stringLiteral": "foo",
       "booleanLiteral": true,
-      "numberLiteral": 12
+      "numberLiteral": 12,
+      "plainDateProp": "2022-12-12",
+      "plainTimeProp": "13:06:12",
+      "utcDateTimeProp": "2022-08-26T18:38:00Z",
+      "offsetDateTimeProp": "2022-08-26T18:38:00Z",
+      "durationProp": "P123DT22H14M12.011S"
     }
   },
   "responses": {
@@ -92,6 +102,11 @@ async function read() {
     stringLiteral: "foo",
     booleanLiteral: true,
     numberLiteral: 12,
+    plainDateProp: "2022-12-12",
+    plainTimeProp: "13:06:12",
+    utcDateTimeProp: new Date("2022-08-26T18:38:00Z"),
+    offsetDateTimeProp: "2022-08-26T18:38:00Z",
+    durationProp: "P123DT22H14M12.011S",
     additionalProp: "additional prop",
   });
   console.log(result);
