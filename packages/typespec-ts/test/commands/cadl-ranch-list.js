@@ -282,6 +282,10 @@ export const rlcTsps = [
   {
     outputPath: "azure/client-generator-core/flatten-property",
     inputPath: "azure/client-generator-core/flatten-property"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
   }
 ];
 
@@ -550,6 +554,10 @@ export const modularTsps = [
   {
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
   }
 ];
 
