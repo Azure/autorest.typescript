@@ -11,8 +11,9 @@ AZURE_TENANT_ID=
 
 export function buildSampleEnvFile(model: RLCModel) {
   if (
-    model.options?.generateMetadata === true ||
-    model.options?.generateSample === true
+    (model.options?.generateMetadata === true ||
+      model.options?.generateSample === true) &&
+    model.options?.flavor === "azure"
   ) {
     const filePath = "sample.env";
     return {
