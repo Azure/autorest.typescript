@@ -91,6 +91,8 @@ function emitClientSamples(
         (options.classicalMethodPrefix
           ? `${options.classicalMethodPrefix}.`
           : "") + prefix;
+    } else if (dpgContext.rlcOptions?.enableOperationGroup === false) {
+      prefix = "";
     }
 
     emitClientSamples(dpgContext, operationOrGroup.response, {

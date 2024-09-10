@@ -1,4 +1,4 @@
-# Should generate samples for disabled hierarchy client
+# Should generate samples for enabled hierarchy client and operation group
 
 Sample generation should handle hierarchy client successfully.
 
@@ -19,18 +19,16 @@ namespace B {
       prop3: string;
     }
     interface C {
-      @route("bec")
       op opBEC(@body body: A):  { @body body: {}};
     }
-    op foo(@body body: A):  { @body body: {}};
   }
-  op foo(@body body: A):  { @body body: {}};
+  op opB(@body body: A):  { @body body: {}};
 }
 
 @route("/d")
 interface D {
   @doc("show example opD")
-  op opD(@body body: A):  { @body body: {}};
+  op opD(@body body: A): { @body body: {}};
 }
 @doc("show example opTopLevel")
 op opTopLevel(@body body: A):  { @body body: {}};
@@ -39,10 +37,11 @@ op opTopLevel(@body body: A):  { @body body: {}};
 This is the tspconfig.yaml.
 
 ```yaml
-hierarchyClient: false
+hierarchyClient: true
+enableOperationGroup: true
 ```
 
-## Provide examples and generated samples
+## Provided examples and generated samples
 
 Raw json files.
 
@@ -148,7 +147,7 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/cOpBECSample.ts */
+/** This file path is /samples-dev/bECOpBECSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -159,96 +158,12 @@ import { TestingClient } from "@azure/internal-test";
  */
 async function opBEC() {
   const client = new TestingClient();
-  const result = await client.c.opBEC({ prop3: "body name" });
+  const result = await client.b.e.c.opBEC({ prop3: "body name" });
   console.log(result);
 }
 
 async function main() {
   opBEC();
-}
-
-main().catch(console.error);
-```
-
-Raw json files.
-
-```json for B_foo
-{
-  "title": "B_foo",
-  "operationId": "B_foo",
-  "parameters": {
-    "body": {
-      "prop1": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-Generated samples.
-
-```ts samples
-/** This file path is /samples-dev/bFooSample.ts */
-import { TestingClient } from "@azure/internal-test";
-
-/**
- * This sample demonstrates how to execute foo
- *
- * @summary execute foo
- * x-ms-original-file: 2021-10-01-preview/json_for_B_foo.json
- */
-async function bFoo() {
-  const client = new TestingClient();
-  const result = await client.b.foo({ prop1: "body name" });
-  console.log(result);
-}
-
-async function main() {
-  bFoo();
-}
-
-main().catch(console.error);
-```
-
-Raw json files.
-
-```json for E_foo
-{
-  "title": "E_foo",
-  "operationId": "E_foo",
-  "parameters": {
-    "body": {
-      "prop3": "body name"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-Generated samples.
-
-```ts samples
-/** This file path is /samples-dev/eFooSample.ts */
-import { TestingClient } from "@azure/internal-test";
-
-/**
- * This sample demonstrates how to execute foo
- *
- * @summary execute foo
- * x-ms-original-file: 2021-10-01-preview/json_for_E_foo.json
- */
-async function eFoo() {
-  const client = new TestingClient();
-  const result = await client.e.foo({ prop3: "body name" });
-  console.log(result);
-}
-
-async function main() {
-  eFoo();
 }
 
 main().catch(console.error);

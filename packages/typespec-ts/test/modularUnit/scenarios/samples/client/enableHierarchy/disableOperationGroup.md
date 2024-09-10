@@ -1,4 +1,4 @@
-# Should generate samples for enabled hierarchy client
+# Should generate samples for enabled hierarchy client but disabled operation group
 
 Sample generation should handle hierarchy client successfully.
 
@@ -38,9 +38,10 @@ This is the tspconfig.yaml.
 
 ```yaml
 hierarchyClient: true
+enableOperationGroup: false
 ```
 
-## Example
+## Provided examples and generated samples
 
 Raw json files.
 
