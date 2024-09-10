@@ -5,7 +5,7 @@ export { A, BEA } from "./models.js";
 export {
   OpTopLevelOptionalParams,
   BFooOptionalParams,
-  BEFooOptionalParams,
-  BECOpBECOptionalParams,
+  EFooOptionalParams,
+  COpBECOptionalParams,
   DOpDOptionalParams,
 } from "./options.js";

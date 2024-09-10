@@ -7,13 +7,13 @@ export {
   BEA,
   OpTopLevelOptionalParams,
   BFooOptionalParams,
-  BEFooOptionalParams,
-  BECOpBECOptionalParams,
+  EFooOptionalParams,
+  COpBECOptionalParams,
   DOpDOptionalParams,
 } from "./models/index.js";
 export {
   BOperations,
+  COperations,
   DOperations,
-  BEOperations,
-  BECOperations,
+  EOperations,
 } from "./classic/index.js";

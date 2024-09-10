@@ -6,7 +6,7 @@ options:
     azureSdkForJs: false
     isModularLibrary: true
     enableOperationGroup: true
-    hierarchyClient: true
+    hierarchyClient: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@msinternal/hierarchy-generic"

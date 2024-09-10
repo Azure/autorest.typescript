@@ -10,10 +10,10 @@ export interface OpTopLevelOptionalParams extends OperationOptions {}
 export interface BFooOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface BEFooOptionalParams extends OperationOptions {}
+export interface EFooOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface BECOpBECOptionalParams extends OperationOptions {}
+export interface COpBECOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface DOpDOptionalParams extends OperationOptions {}

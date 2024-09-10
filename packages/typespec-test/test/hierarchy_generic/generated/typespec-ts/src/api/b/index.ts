@@ -11,7 +11,7 @@ import {
 } from "@azure-rest/core-client";
 import { BFooOptionalParams } from "../../models/options.js";
 
-export function _fooSend(
+export function _bFooSend(
   context: Client,
   body: A,
   options: BFooOptionalParams = { requestOptions: {} },
@@ -24,7 +24,7 @@ export function _fooSend(
     });
 }
 
-export async function _fooDeserialize(
+export async function _bFooDeserialize(
   result: PathUncheckedResponse,
 ): Promise<Record<string, any>> {
   const expectedStatuses = ["200"];
@@ -35,11 +35,11 @@ export async function _fooDeserialize(
   return result.body as any;
 }
 
-export async function foo(
+export async function bFoo(
   context: Client,
   body: A,
   options: BFooOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, any>> {
-  const result = await _fooSend(context, body, options);
-  return _fooDeserialize(result);
+  const result = await _bFooSend(context, body, options);
+  return _bFooDeserialize(result);
 }

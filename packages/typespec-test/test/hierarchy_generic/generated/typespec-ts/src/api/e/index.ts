@@ -1,20 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { BEA } from "../../../models/models.js";
-import { FooContext as Client } from "../../index.js";
+import { BEA } from "../../models/models.js";
+import { FooContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { BEFooOptionalParams } from "../../../models/options.js";
+import { EFooOptionalParams } from "../../models/options.js";
 
-export function _fooSend(
+export function _eFooSend(
   context: Client,
   body: BEA,
-  options: BEFooOptionalParams = { requestOptions: {} },
+  options: EFooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/b/e")
@@ -24,7 +24,7 @@ export function _fooSend(
     });
 }
 
-export async function _fooDeserialize(
+export async function _eFooDeserialize(
   result: PathUncheckedResponse,
 ): Promise<Record<string, any>> {
   const expectedStatuses = ["200"];
@@ -35,11 +35,11 @@ export async function _fooDeserialize(
   return result.body as any;
 }
 
-export async function foo(
+export async function eFoo(
   context: Client,
   body: BEA,
-  options: BEFooOptionalParams = { requestOptions: {} },
+  options: EFooOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, any>> {
-  const result = await _fooSend(context, body, options);
-  return _fooDeserialize(result);
+  const result = await _eFooSend(context, body, options);
+  return _eFooDeserialize(result);
 }

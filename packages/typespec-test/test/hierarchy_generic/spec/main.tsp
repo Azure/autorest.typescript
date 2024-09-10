@@ -20,7 +20,7 @@ namespace B {
     }
     interface C {
       @route("bec")
-      op opBEC(@body body: A):  { @body body:{} };
+      op opBEC(@body body: A):  { @body body: {} };
     }
     op foo(@body body: A):  { @body body: {} };
   }

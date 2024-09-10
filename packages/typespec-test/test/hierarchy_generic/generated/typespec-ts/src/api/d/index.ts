@@ -11,7 +11,7 @@ import {
 } from "@azure-rest/core-client";
 import { DOpDOptionalParams } from "../../models/options.js";
 
-export function _opDSend(
+export function _dOpDSend(
   context: Client,
   body: A,
   options: DOpDOptionalParams = { requestOptions: {} },
@@ -24,7 +24,7 @@ export function _opDSend(
     });
 }
 
-export async function _opDDeserialize(
+export async function _dOpDDeserialize(
   result: PathUncheckedResponse,
 ): Promise<Record<string, any>> {
   const expectedStatuses = ["200"];
@@ -36,11 +36,11 @@ export async function _opDDeserialize(
 }
 
 /** show example opD */
-export async function opD(
+export async function dOpD(
   context: Client,
   body: A,
   options: DOpDOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, any>> {
-  const result = await _opDSend(context, body, options);
-  return _opDDeserialize(result);
+  const result = await _dOpDSend(context, body, options);
+  return _dOpDDeserialize(result);
 }

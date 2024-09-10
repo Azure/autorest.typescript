@@ -3,7 +3,7 @@
 
 import { FooContext } from "../../api/fooContext.js";
 import { A } from "../../models/models.js";
-import { opD } from "../../api/d/index.js";
+import { dOpD } from "../../api/d/index.js";
 import { DOpDOptionalParams } from "../../models/options.js";
 
 /** Interface representing a D operations. */
@@ -14,7 +14,8 @@ export interface DOperations {
 
 export function getD(context: FooContext) {
   return {
-    opD: (body: A, options?: DOpDOptionalParams) => opD(context, body, options),
+    opD: (body: A, options?: DOpDOptionalParams) =>
+      dOpD(context, body, options),
   };
 }
 

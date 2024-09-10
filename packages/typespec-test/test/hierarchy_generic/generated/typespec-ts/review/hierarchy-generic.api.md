@@ -15,74 +15,58 @@ export interface A {
 }
 
 // @public (undocumented)
-export interface BA {
-    // (undocumented)
-    prop2: string;
-}
-
-// @public
-export interface BCOp1OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface BCOperations {
-    // (undocumented)
-    op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
-}
-
-// @public (undocumented)
 export interface BEA {
     // (undocumented)
     prop3: string;
 }
 
 // @public
-export interface BECOp1OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface BECOperations {
-    // (undocumented)
-    op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
-}
-
-// @public
-export interface BEOperations {
-    // (undocumented)
-    c: BECOperations;
-}
-
-// @public
-export interface BOp1OptionalParams extends OperationOptions {
+export interface BFooOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface BOperations {
     // (undocumented)
-    c: BCOperations;
-    // (undocumented)
-    e: BEOperations;
-    // (undocumented)
-    op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
+    foo: (body: A, options?: BFooOptionalParams) => Promise<Record<string, any>>;
 }
 
 // @public
-export interface DOp1OptionalParams extends OperationOptions {
+export interface COpBECOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface COperations {
+    // (undocumented)
+    opBEC: (body: BEA, options?: COpBECOptionalParams) => Promise<Record<string, any>>;
+}
+
+// @public
+export interface DOpDOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface DOperations {
+    opD: (body: A, options?: DOpDOptionalParams) => Promise<Record<string, any>>;
+}
+
+// @public
+export interface EFooOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface EOperations {
     // (undocumented)
-    op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
+    foo: (body: BEA, options?: EFooOptionalParams) => Promise<Record<string, any>>;
 }
 
 // @public (undocumented)
 export class FooClient {
     constructor(endpoint: string, options?: FooClientOptionalParams);
     readonly b: BOperations;
+    readonly c: COperations;
     readonly d: DOperations;
-    // (undocumented)
-    op1(body: A, options?: Op1OptionalParams): Promise<void>;
+    readonly e: EOperations;
+    _opTopLevel(body: A, options?: OpTopLevelOptionalParams): Promise<Record<string, any>>;
     readonly pipeline: Pipeline;
 }
 
@@ -91,7 +75,7 @@ export interface FooClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface Op1OptionalParams extends OperationOptions {
+export interface OpTopLevelOptionalParams extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)
