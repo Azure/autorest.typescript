@@ -5,8 +5,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
+import { Paged as Paged_2 } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -71,10 +70,12 @@ export declare function getLongRunningPoller<TResult extends NestedProxyResource
 
 export declare function getLongRunningPoller<TResult extends NestedProxyResourcesDeleteLogicalResponse | NestedProxyResourcesDeleteDefaultResponse>(client: Client, initialResponse: NestedProxyResourcesDelete202Response | NestedProxyResourcesDelete204Response | NestedProxyResourcesDeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
-export declare type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+export declare function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
 
 export declare interface Identity {
     type?: ResourceIdentityType;
@@ -114,7 +115,7 @@ export declare interface NestedProxyResource extends ProxyResource {
     properties?: NestedProxyResourceProperties;
 }
 
-export declare type NestedProxyResourceListResultOutput = Paged<NestedProxyResourceOutput>;
+export declare type NestedProxyResourceListResultOutput = Paged_2<NestedProxyResourceOutput>;
 
 export declare interface NestedProxyResourceOutput extends ProxyResourceOutput {
     properties?: NestedProxyResourcePropertiesOutput;
@@ -255,6 +256,31 @@ export declare type NestedProxyResourcesUpdateParameters = NestedProxyResourcesU
 export declare interface NotificationDetails {
     message: string;
     urgent: boolean;
+}
+
+export declare type Paged<T> = {
+    value: T[];
+    nextLink?: string;
+};
+
+export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    next(): Promise<IteratorResult<TElement>>;
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+}
+
+export declare interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
+    firstPageLink: TLink;
+    getPage: (pageLink: TLink) => Promise<{
+        page: TPage;
+        nextPageLink?: TLink;
+    } | undefined>;
+    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    toElements?: (page: TPage) => unknown[];
+}
+
+export declare interface PageSettings {
+    continuationToken?: string;
 }
 
 export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -465,7 +491,7 @@ export declare interface TopLevelTrackedResource extends TrackedResource {
     properties?: TopLevelTrackedResourceProperties;
 }
 
-export declare type TopLevelTrackedResourceListResultOutput = Paged<TopLevelTrackedResourceOutput>;
+export declare type TopLevelTrackedResourceListResultOutput = Paged_2<TopLevelTrackedResourceOutput>;
 
 export declare interface TopLevelTrackedResourceOutput extends TrackedResourceOutput {
     properties?: TopLevelTrackedResourcePropertiesOutput;
