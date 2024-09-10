@@ -507,6 +507,12 @@ export interface ModelStateOutput {
 }
 
 // @public
+export type Paged<T> = {
+    value: T[];
+    nextLink?: string;
+};
+
+// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
@@ -517,7 +523,7 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
     byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
     firstPageLink: TLink;
-    getPage: (pageLink: TLink, maxPageSize?: number) => Promise<{
+    getPage: (pageLink: TLink) => Promise<{
         page: TPage;
         nextPageLink?: TLink;
     } | undefined>;
@@ -527,7 +533,6 @@ export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string
 // @public
 export interface PageSettings {
     continuationToken?: string;
-    maxPageSize?: number;
 }
 
 // @public
