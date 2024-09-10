@@ -55,7 +55,7 @@ describe("ClientStructureClient Rest Client", () => {
         allowInsecureConnection: true
       }
     );
-    clientArray = new Array(...[client0, client1, client2, client3, client4]);
+    clientArray = [client0, client1, client2, client3, client4];
   });
 
   it("should call operation one correctly", async () => {
