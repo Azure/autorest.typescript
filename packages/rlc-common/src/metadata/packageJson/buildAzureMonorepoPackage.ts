@@ -194,17 +194,19 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     audit:
       "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": config.withSamples
-      ? "dev-tool samples publish --force"
+      ? "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f"
       : "echo skipped",
-    "check-format":
-      'dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
+    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
     "extract-api":
       "rimraf review && mkdirp ./review && dev-tool run extract-api",
-    format:
-      'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
+    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
     "generate:client": "echo skipped",

@@ -730,5 +730,76 @@ describe("operations", () => {
         true
       );
     });
+
+    it("should generate paging if have extend model", async () => {
+      const tspContent = `
+        @error
+        model Error {
+          code: int32;
+          message: string;
+        }
+
+        @pagedResult
+        model Bar {
+          @items
+          lists: string[];
+          @nextLink
+          nextLink: string;
+        }
+
+        model Child extends Bar {
+          message: string
+        }
+
+        @post
+        op test(): Error | Child;
+          `;
+
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        true,
+        true,
+        true
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "./index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+         import {
+         PagedAsyncIterableIterator,
+         buildPagedAsyncIterator,
+        } from "../static-helpers/pagingHelpers.js";
+
+        export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
+            return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
+        }
+
+        export async function _testDeserialize(result: PathUncheckedResponse): Promise<_Child> {
+            const expectedStatuses = ["200"];
+            if(!expectedStatuses.includes(result.status)){
+              throw createRestError(result);
+            }
+            return {
+              "lists": result.body["lists"],
+              nextLink: result.body["nextLink"],
+              message: result.body["message"]
+            }
+        }
+
+        export function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): PagedAsyncIterableIterator<string> {
+            return buildPagedAsyncIterator(
+                    context,
+                    () => _testSend(context, options),
+                    _testDeserialize,
+                    ["200"],
+                    {itemName: "lists", nextLinkName: "nextLink"}
+                    );
+        }`,
+        true
+      );
+    });
   });
 });

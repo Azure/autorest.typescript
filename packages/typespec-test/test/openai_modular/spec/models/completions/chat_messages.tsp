@@ -112,6 +112,7 @@ model ChatRequestUserMessage extends ChatRequestMessage {
 
   @added(ServiceApiVersions.v2024_02_15_Preview)
   @doc("The contents of the user message, with available input types varying by selected model.")
+  @added(ServiceApiVersions.v2024_02_15_Preview)
   content: ChatMessageContent;
 
   @doc("An optional name for the participant.")
