@@ -114,6 +114,7 @@ import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
 import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
+import { normalizeModelName } from "./emitModels.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -482,7 +483,7 @@ function emitBodyParameter(
       usage: UsageFlags.Input
     });
 
-    type.name = type.tcgcType.name;
+    type.name = normalizeModelName(context, type.tcgcType);
 
     return {
       contentTypes,

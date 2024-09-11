@@ -641,10 +641,7 @@ export interface UnivariateTimeSeriesPoint {
 export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
 ): any {
-  return {
-    timestamp: item["timestamp"]?.toISOString(),
-    value: item["value"],
-  };
+  return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
 }
 
 export function univariateTimeSeriesPointDeserializer(
