@@ -1,0 +1,15 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    package-dir: "ai-translation-document-rest"
+    generateMetadata: true
+    generateTest: false
+    azureSdkForJs: false
+    enableOperationGroup: true
+    packageDetails:
+      name: "@azure-rest/ai-translation-document"
+      description: "Microsoft Translation Document"
+    flavor: azure
+    generate-sample-project: false
