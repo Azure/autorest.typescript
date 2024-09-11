@@ -505,7 +505,7 @@ export function _listMetricsSend(
         metricNamespace: metricNamespace,
         timespan: timespan,
       },
-      body: metricRequestPayloadSerializer(body),
+      body: !body ? body : metricRequestPayloadSerializer(body),
     });
 }
 

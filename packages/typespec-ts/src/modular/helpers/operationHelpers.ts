@@ -577,10 +577,10 @@ function buildBodyParameter(
   const serializerFunctionName =
     buildModelSerializer(context, bodyParameter.type.tcgcType!, false, true) ??
     "";
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-    bodyParameter,
-    "body"
-  );
+  if (serializerFunctionName === "nodeReimageOptionsSerializer") {
+    bodyParameter;
+  }
+  const nullOrUndefinedPrefix = getPropertySerializationPrefix(bodyParameter);
   return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyParameter.clientName}),`;
 }
 

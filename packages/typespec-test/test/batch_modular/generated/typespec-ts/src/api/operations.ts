@@ -1503,7 +1503,7 @@ export function _terminateJobSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: batchJobTerminateOptionsSerializer(body),
+      body: !body ? body : batchJobTerminateOptionsSerializer(body),
     });
 }
 
@@ -3509,7 +3509,7 @@ export function _rebootNodeSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: nodeRebootOptionsSerializer(body),
+      body: !body ? body : nodeRebootOptionsSerializer(body),
     });
 }
 
@@ -3554,7 +3554,7 @@ export function _reimageNodeSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: nodeReimageOptionsSerializer(body),
+      body: !body ? body : nodeReimageOptionsSerializer(body),
     });
 }
 
@@ -3603,7 +3603,7 @@ export function _disableNodeSchedulingSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: nodeDisableSchedulingOptionsSerializer(body),
+      body: !body ? body : nodeDisableSchedulingOptionsSerializer(body),
     });
 }
 
