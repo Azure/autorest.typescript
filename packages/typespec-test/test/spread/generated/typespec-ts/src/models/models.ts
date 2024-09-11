@@ -16,9 +16,7 @@ export interface Test3Request {
 }
 
 export function test3RequestSerializer(item: Test3Request): any {
-  return {
-    prop: item["prop"],
-  };
+  return { prop: item["prop"] };
 }
 
 export function test3RequestDeserializer(item: any): Test3Request {
@@ -32,9 +30,7 @@ export interface Test4Request {
 }
 
 export function test4RequestSerializer(item: Test4Request): any {
-  return {
-    prop: item["prop"],
-  };
+  return { prop: item["prop"] };
 }
 
 export function test4RequestDeserializer(item: any): Test4Request {

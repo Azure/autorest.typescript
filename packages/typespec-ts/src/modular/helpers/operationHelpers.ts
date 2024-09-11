@@ -577,7 +577,7 @@ function buildBodyParameter(
   const serializerFunctionName =
     buildModelSerializer(context, bodyParameter.type.tcgcType!, false, true) ??
     "";
-  if (serializerFunctionName === "nodeReimageOptionsSerializer") {
+  if (serializerFunctionName === "chatRequestMessageUnionSerializer") {
     bodyParameter;
   }
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(bodyParameter);

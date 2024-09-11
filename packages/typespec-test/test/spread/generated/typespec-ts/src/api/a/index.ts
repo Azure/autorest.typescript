@@ -7,14 +7,15 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
+  Test3Request,
   test3RequestSerializer,
+  Test4Request,
   test4RequestSerializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { Test } from "mocha";
 import {
   ATest1OptionalParams,
   ATest2OptionalParams,
@@ -94,7 +95,7 @@ export async function test2(
 
 export function _test3Send(
   context: Client,
-  body: { prop: string },
+  body: Test3Request,
   options: ATest3OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -118,7 +119,7 @@ export async function _test3Deserialize(
 
 export async function test3(
   context: Client,
-  body: { prop: string },
+  body: Test3Request,
   options: ATest3OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test3Send(context, body, options);
@@ -127,7 +128,7 @@ export async function test3(
 
 export function _test4Send(
   context: Client,
-  body: Test,
+  body: Test4Request,
   options: ATest4OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -151,7 +152,7 @@ export async function _test4Deserialize(
 
 export async function test4(
   context: Client,
-  body: Test,
+  body: Test4Request,
   options: ATest4OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test4Send(context, body, options);

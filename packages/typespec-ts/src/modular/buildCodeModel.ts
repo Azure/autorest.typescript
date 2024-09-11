@@ -482,6 +482,8 @@ function emitBodyParameter(
       usage: UsageFlags.Input
     });
 
+    type.name = type.tcgcType.name;
+
     return {
       contentTypes,
       type,

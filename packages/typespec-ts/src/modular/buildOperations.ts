@@ -118,6 +118,7 @@ export function buildOperationFiles(
     ]);
 
     // addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
+    operationGroupFile.fixUnusedIdentifiers();
     addImportBySymbol("serializeRecord", operationGroupFile);
 
     operationFiles.push(operationGroupFile);

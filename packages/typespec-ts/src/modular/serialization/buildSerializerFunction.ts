@@ -44,6 +44,9 @@ export function buildModelSerializer(
     if (!type.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }
+    if (type.name === "ChatRequestMessage") {
+      type;
+    }
   }
 
   if (
@@ -119,6 +122,9 @@ function buildPolymorphicSerializer(
   )}UnionSerializer`;
   if (nameOnly) {
     return serializeFunctionName;
+  }
+  if (serializeFunctionName === "chatRequestMessageUnionSerializer") {
+    type;
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -197,6 +203,9 @@ function buildDiscriminatedUnionSerializer(
   )}UnionSerializer`;
   if (nameOnly) {
     return serializeFunctionName;
+  }
+  if (serializeFunctionName === "chatRequestMessageUnionSerializer") {
+    type;
   }
   const baseSerializerName = `${toCamelCase(
     normalizeModelName(context, type)
@@ -315,11 +324,6 @@ function buildModelTypeSerializer(
     returnType: "any",
     statements: ["return item;"]
   };
-  const nullabilityPrefix = "";
-  // getPropertySerializationPrefix({
-  //   clientName: "item",
-  //   type
-  // });
 
   // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
   const additionalPropertiesSpread = hasAdditionalProperties(type)
@@ -330,18 +334,20 @@ function buildModelTypeSerializer(
     getType(context, type.__raw!),
     "item"
   );
-  const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
+  if (additionalPropertiesSpread) {
+    propertiesStr.push(additionalPropertiesSpread);
+  }
+  const serializeContent =
+    directAssignment === true
+      ? propertiesStr.join(",")
+      : `{${propertiesStr.join(",")}}`;
 
   const output = [];
 
   // don't emit a serializer if there is nothing to serialize
-  if (propertiesDeserialization.length || additionalPropertiesSpread) {
-    const fnBody = `{
-           ${additionalPropertiesSpread}
-           ${nullabilityPrefix} ${directAssignment ? propertiesStr : propertiesDeserialization.join(",\n")}
-        }`;
+  if (propertiesStr.length) {
     output.push(`
-        return ${fnBody}
+        return ${serializeContent}
       `);
   } else {
     output.push(`
