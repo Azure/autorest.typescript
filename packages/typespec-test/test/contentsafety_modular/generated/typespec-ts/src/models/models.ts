@@ -35,9 +35,7 @@ export interface AddOrUpdateBlockItemsOptions {
 export function addOrUpdateBlockItemsOptionsSerializer(
   item: AddOrUpdateBlockItemsOptions,
 ): any {
-  return {
-    blockItems: item["blockItems"].map(textBlockItemInfoSerializer),
-  };
+  return { blockItems: item["blockItems"].map(textBlockItemInfoSerializer) };
 }
 
 export function addOrUpdateBlockItemsOptionsDeserializer(
@@ -57,10 +55,7 @@ export interface TextBlockItemInfo {
 }
 
 export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
-  return {
-    description: item["description"],
-    text: item["text"],
-  };
+  return { description: item["description"], text: item["text"] };
 }
 
 export function textBlockItemInfoDeserializer(item: any): TextBlockItemInfo {
@@ -95,9 +90,7 @@ export interface RemoveBlockItemsOptions {
 export function removeBlockItemsOptionsSerializer(
   item: RemoveBlockItemsOptions,
 ): any {
-  return {
-    blockItemIds: item["blockItemIds"],
-  };
+  return { blockItemIds: item["blockItemIds"] };
 }
 
 export function removeBlockItemsOptionsDeserializer(

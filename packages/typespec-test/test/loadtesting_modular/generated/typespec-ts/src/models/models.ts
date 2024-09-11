@@ -403,10 +403,7 @@ export interface Secret {
 }
 
 export function secretSerializer(item: Secret): any {
-  return {
-    value: item["value"],
-    type: item["type"],
-  };
+  return { value: item["value"], type: item["type"] };
 }
 
 export function secretDeserializer(item: any): Secret {
@@ -473,11 +470,7 @@ export interface CertificateMetadata {
 }
 
 export function certificateMetadataSerializer(item: CertificateMetadata): any {
-  return {
-    value: item["value"],
-    type: item["type"],
-    name: item["name"],
-  };
+  return { value: item["value"], type: item["type"], name: item["name"] };
 }
 
 export function certificateMetadataDeserializer(
@@ -623,10 +616,7 @@ export interface RegionalConfiguration {
 export function regionalConfigurationSerializer(
   item: RegionalConfiguration,
 ): any {
-  return {
-    engineInstances: item["engineInstances"],
-    region: item["region"],
-  };
+  return { engineInstances: item["engineInstances"], region: item["region"] };
 }
 
 export function regionalConfigurationDeserializer(
@@ -1703,10 +1693,7 @@ export interface DimensionFilter {
 }
 
 export function dimensionFilterSerializer(item: DimensionFilter): any {
-  return {
-    name: item["name"],
-    values: item["values"],
-  };
+  return { name: item["name"], values: item["values"] };
 }
 
 export function dimensionFilterDeserializer(item: any): DimensionFilter {
@@ -1814,9 +1801,7 @@ export interface TargetResourceConfigurations {
 export function targetResourceConfigurationsSerializer(
   item: TargetResourceConfigurations,
 ): any {
-  return {
-    kind: item["kind"],
-  };
+  return { kind: item["kind"] };
 }
 
 export function targetResourceConfigurationsDeserializer(

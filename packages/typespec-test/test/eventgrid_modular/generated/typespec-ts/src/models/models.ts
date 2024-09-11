@@ -11,9 +11,7 @@ export interface PublishCloudEventRequest {
 export function publishCloudEventRequestSerializer(
   item: PublishCloudEventRequest,
 ): any {
-  return {
-    event: cloudEventSerializer(item.event),
-  };
+  return { event: cloudEventSerializer(item.event) };
 }
 
 export function publishCloudEventRequestDeserializer(
@@ -113,9 +111,7 @@ export interface AcknowledgeOptions {
 }
 
 export function acknowledgeOptionsSerializer(item: AcknowledgeOptions): any {
-  return {
-    lockTokens: item["lockTokens"],
-  };
+  return { lockTokens: item["lockTokens"] };
 }
 
 export function acknowledgeOptionsDeserializer(item: any): AcknowledgeOptions {
@@ -149,9 +145,7 @@ export interface ReleaseOptions {
 }
 
 export function releaseOptionsSerializer(item: ReleaseOptions): any {
-  return {
-    lockTokens: item["lockTokens"],
-  };
+  return { lockTokens: item["lockTokens"] };
 }
 
 export function releaseOptionsDeserializer(item: any): ReleaseOptions {
@@ -175,9 +169,7 @@ export interface RejectOptions {
 }
 
 export function rejectOptionsSerializer(item: RejectOptions): any {
-  return {
-    lockTokens: item["lockTokens"],
-  };
+  return { lockTokens: item["lockTokens"] };
 }
 
 export function rejectOptionsDeserializer(item: any): RejectOptions {

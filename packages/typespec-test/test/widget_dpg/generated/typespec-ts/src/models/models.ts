@@ -14,10 +14,7 @@ export interface User {
 }
 
 export function userSerializer(item: User): any {
-  return {
-    role: item["role"],
-    id: item["id"],
-  };
+  return { role: item["role"], id: item["id"] };
 }
 
 export function userDeserializer(item: any): User {
@@ -115,10 +112,7 @@ export interface NonReferencedModel {
 }
 
 export function nonReferencedModelSerializer(item: NonReferencedModel): any {
-  return {
-    prop1: item["prop1"],
-    prop2: item["prop2"],
-  };
+  return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 
 export function nonReferencedModelDeserializer(item: any): NonReferencedModel {

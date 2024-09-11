@@ -298,11 +298,7 @@ export interface VirtualNetworkRule {
 }
 
 export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): any {
-  return {
-    id: item["id"],
-    action: item["action"],
-    state: item["state"],
-  };
+  return { id: item["id"], action: item["action"], state: item["state"] };
 }
 
 export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
@@ -322,10 +318,7 @@ export interface IPRules {
 }
 
 export function iPRulesSerializer(item: IPRules): any {
-  return {
-    value: item["value"],
-    action: item["action"],
-  };
+  return { value: item["value"], action: item["action"] };
 }
 
 export function iPRulesDeserializer(item: any): IPRules {
@@ -372,10 +365,7 @@ export interface ManagedResourceGroupConfiguration {
 export function managedResourceGroupConfigurationSerializer(
   item: ManagedResourceGroupConfiguration,
 ): any {
-  return {
-    name: item["name"],
-    location: item["location"],
-  };
+  return { name: item["name"], location: item["location"] };
 }
 
 export function managedResourceGroupConfigurationDeserializer(
@@ -761,9 +751,7 @@ export interface KeyVaultInfo {
 }
 
 export function keyVaultInfoSerializer(item: KeyVaultInfo): any {
-  return {
-    keyVaultUrl: item["keyVaultUrl"],
-  };
+  return { keyVaultUrl: item["keyVaultUrl"] };
 }
 
 export function keyVaultInfoDeserializer(item: any): KeyVaultInfo {

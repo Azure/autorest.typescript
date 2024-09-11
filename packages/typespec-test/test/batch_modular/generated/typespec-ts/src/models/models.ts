@@ -449,9 +449,7 @@ export interface BatchNodeIdentityReference {
 export function batchNodeIdentityReferenceSerializer(
   item: BatchNodeIdentityReference,
 ): any {
-  return {
-    resourceId: item["resourceId"],
-  };
+  return { resourceId: item["resourceId"] };
 }
 
 export function batchNodeIdentityReferenceDeserializer(
@@ -534,10 +532,7 @@ export interface EnvironmentSetting {
 }
 
 export function environmentSettingSerializer(item: EnvironmentSetting): any {
-  return {
-    name: item["name"],
-    value: item["value"],
-  };
+  return { name: item["name"], value: item["value"] };
 }
 
 export function environmentSettingDeserializer(item: any): EnvironmentSetting {
@@ -584,10 +579,7 @@ export interface AutoUserSpecification {
 export function autoUserSpecificationSerializer(
   item: AutoUserSpecification,
 ): any {
-  return {
-    scope: item["scope"],
-    elevationLevel: item["elevationLevel"],
-  };
+  return { scope: item["scope"], elevationLevel: item["elevationLevel"] };
 }
 
 export function autoUserSpecificationDeserializer(
@@ -834,9 +826,7 @@ export interface NodeRebootOptions {
 }
 
 export function nodeRebootOptionsSerializer(item: NodeRebootOptions): any {
-  return {
-    nodeRebootOption: item["nodeRebootOption"],
-  };
+  return { nodeRebootOption: item["nodeRebootOption"] };
 }
 
 export function nodeRebootOptionsDeserializer(item: any): NodeRebootOptions {
@@ -873,9 +863,7 @@ export interface NodeReimageOptions {
 }
 
 export function nodeReimageOptionsSerializer(item: NodeReimageOptions): any {
-  return {
-    nodeReimageOption: item["nodeReimageOption"],
-  };
+  return { nodeReimageOption: item["nodeReimageOption"] };
 }
 
 export function nodeReimageOptionsDeserializer(item: any): NodeReimageOptions {
@@ -914,9 +902,7 @@ export interface NodeDisableSchedulingOptions {
 export function nodeDisableSchedulingOptionsSerializer(
   item: NodeDisableSchedulingOptions,
 ): any {
-  return {
-    nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"],
-  };
+  return { nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"] };
 }
 
 export function nodeDisableSchedulingOptionsDeserializer(
@@ -1535,10 +1521,7 @@ export interface HttpHeader {
 }
 
 export function httpHeaderSerializer(item: HttpHeader): any {
-  return {
-    name: item["name"],
-    value: item["value"],
-  };
+  return { name: item["name"], value: item["value"] };
 }
 
 export function httpHeaderDeserializer(item: any): HttpHeader {
@@ -1560,9 +1543,7 @@ export interface OutputFileUploadOptions {
 export function outputFileUploadOptionsSerializer(
   item: OutputFileUploadOptions,
 ): any {
-  return {
-    uploadCondition: item["uploadCondition"],
-  };
+  return { uploadCondition: item["uploadCondition"] };
 }
 
 export function outputFileUploadOptionsDeserializer(
@@ -1603,9 +1584,7 @@ export interface AffinityInformation {
 }
 
 export function affinityInformationSerializer(item: AffinityInformation): any {
-  return {
-    affinityId: item["affinityId"],
-  };
+  return { affinityId: item["affinityId"] };
 }
 
 export function affinityInformationDeserializer(
@@ -1721,10 +1700,7 @@ export interface TaskIdRange {
 }
 
 export function taskIdRangeSerializer(item: TaskIdRange): any {
-  return {
-    start: item["start"],
-    end: item["end"],
-  };
+  return { start: item["start"], end: item["end"] };
 }
 
 export function taskIdRangeDeserializer(item: any): TaskIdRange {
@@ -1745,10 +1721,7 @@ export interface ApplicationPackageReference {
 export function applicationPackageReferenceSerializer(
   item: ApplicationPackageReference,
 ): any {
-  return {
-    applicationId: item["applicationId"],
-    version: item["version"],
-  };
+  return { applicationId: item["applicationId"], version: item["version"] };
 }
 
 export function applicationPackageReferenceDeserializer(
@@ -1772,9 +1745,7 @@ export interface AuthenticationTokenSettings {
 export function authenticationTokenSettingsSerializer(
   item: AuthenticationTokenSettings,
 ): any {
-  return {
-    access: item["access"],
-  };
+  return { access: item["access"] };
 }
 
 export function authenticationTokenSettingsDeserializer(
@@ -1979,9 +1950,7 @@ export interface BatchTaskCollection {
 }
 
 export function batchTaskCollectionSerializer(item: BatchTaskCollection): any {
-  return {
-    value: item["value"].map(batchTaskCreateOptionsSerializer),
-  };
+  return { value: item["value"].map(batchTaskCreateOptionsSerializer) };
 }
 
 export function batchTaskCollectionDeserializer(
@@ -2320,9 +2289,7 @@ export interface JobNetworkConfiguration {
 export function jobNetworkConfigurationSerializer(
   item: JobNetworkConfiguration,
 ): any {
-  return {
-    subnetId: item["subnetId"],
-  };
+  return { subnetId: item["subnetId"] };
 }
 
 export function jobNetworkConfigurationDeserializer(
@@ -2915,10 +2882,7 @@ export interface CloudServiceConfiguration {
 export function cloudServiceConfigurationSerializer(
   item: CloudServiceConfiguration,
 ): any {
-  return {
-    osFamily: item["osFamily"],
-    osVersion: item["osVersion"],
-  };
+  return { osFamily: item["osFamily"], osVersion: item["osVersion"] };
 }
 
 export function cloudServiceConfigurationDeserializer(
@@ -3034,9 +2998,7 @@ export interface WindowsConfiguration {
 export function windowsConfigurationSerializer(
   item: WindowsConfiguration,
 ): any {
-  return {
-    enableAutomaticUpdates: item["enableAutomaticUpdates"],
-  };
+  return { enableAutomaticUpdates: item["enableAutomaticUpdates"] };
 }
 
 export function windowsConfigurationDeserializer(
@@ -3162,9 +3124,7 @@ export interface DiskEncryptionConfiguration {
 export function diskEncryptionConfigurationSerializer(
   item: DiskEncryptionConfiguration,
 ): any {
-  return {
-    targets: item["targets"],
-  };
+  return { targets: item["targets"] };
 }
 
 export function diskEncryptionConfigurationDeserializer(
@@ -3203,9 +3163,7 @@ export interface NodePlacementConfiguration {
 export function nodePlacementConfigurationSerializer(
   item: NodePlacementConfiguration,
 ): any {
-  return {
-    policy: item["policy"],
-  };
+  return { policy: item["policy"] };
 }
 
 export function nodePlacementConfigurationDeserializer(
@@ -3263,9 +3221,7 @@ export interface DiffDiskSettings {
 }
 
 export function diffDiskSettingsSerializer(item: DiffDiskSettings): any {
-  return {
-    placement: item["placement"],
-  };
+  return { placement: item["placement"] };
 }
 
 export function diffDiskSettingsDeserializer(item: any): DiffDiskSettings {
@@ -3294,9 +3250,7 @@ export interface TaskSchedulingPolicy {
 export function taskSchedulingPolicySerializer(
   item: TaskSchedulingPolicy,
 ): any {
-  return {
-    nodeFillType: item["nodeFillType"],
-  };
+  return { nodeFillType: item["nodeFillType"] };
 }
 
 export function taskSchedulingPolicyDeserializer(
@@ -3632,9 +3586,7 @@ export interface WindowsUserConfiguration {
 export function windowsUserConfigurationSerializer(
   item: WindowsUserConfiguration,
 ): any {
-  return {
-    loginMode: item["loginMode"],
-  };
+  return { loginMode: item["loginMode"] };
 }
 
 export function windowsUserConfigurationDeserializer(
@@ -3668,10 +3620,7 @@ export interface MetadataItem {
 }
 
 export function metadataItemSerializer(item: MetadataItem): any {
-  return {
-    name: item["name"],
-    value: item["value"],
-  };
+  return { name: item["name"], value: item["value"] };
 }
 
 export function metadataItemDeserializer(item: any): MetadataItem {
@@ -4405,9 +4354,7 @@ export interface BatchJobDisableOptions {
 export function batchJobDisableOptionsSerializer(
   item: BatchJobDisableOptions,
 ): any {
-  return {
-    disableTasks: item["disableTasks"],
-  };
+  return { disableTasks: item["disableTasks"] };
 }
 
 export function batchJobDisableOptionsDeserializer(
@@ -4438,9 +4385,7 @@ export interface BatchJobTerminateOptions {
 export function batchJobTerminateOptionsSerializer(
   item: BatchJobTerminateOptions,
 ): any {
-  return {
-    terminateReason: item["terminateReason"],
-  };
+  return { terminateReason: item["terminateReason"] };
 }
 
 export function batchJobTerminateOptionsDeserializer(
@@ -5314,9 +5259,7 @@ export interface BatchPoolEvaluateAutoScaleOptions {
 export function batchPoolEvaluateAutoScaleOptionsSerializer(
   item: BatchPoolEvaluateAutoScaleOptions,
 ): any {
-  return {
-    autoScaleFormula: item["autoScaleFormula"],
-  };
+  return { autoScaleFormula: item["autoScaleFormula"] };
 }
 
 export function batchPoolEvaluateAutoScaleOptionsDeserializer(

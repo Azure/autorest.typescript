@@ -20,10 +20,7 @@ export interface CreateModerationRequest {
 export function createModerationRequestSerializer(
   item: CreateModerationRequest,
 ): any {
-  return {
-    input: item["input"],
-    model: item["model"],
-  };
+  return { input: item["input"], model: item["model"] };
 }
 
 export function createModerationRequestDeserializer(
@@ -775,11 +772,7 @@ export interface CreateEmbeddingRequest {
 export function createEmbeddingRequestSerializer(
   item: CreateEmbeddingRequest,
 ): any {
-  return {
-    model: item["model"],
-    input: item["input"],
-    user: item["user"],
-  };
+  return { model: item["model"], input: item["input"], user: item["user"] };
 }
 
 export function createEmbeddingRequestDeserializer(
@@ -1356,9 +1349,7 @@ export interface CreateFineTuningJobRequestHyperparameters {
 export function createFineTuningJobRequestHyperparametersSerializer(
   item: CreateFineTuningJobRequestHyperparameters,
 ): any {
-  return {
-    n_epochs: item["n_epochs"],
-  };
+  return { n_epochs: item["n_epochs"] };
 }
 
 export function createFineTuningJobRequestHyperparametersDeserializer(
@@ -1802,10 +1793,7 @@ export interface ChatCompletionRequestMessageFunctionCall {
 export function chatCompletionRequestMessageFunctionCallSerializer(
   item: ChatCompletionRequestMessageFunctionCall,
 ): any {
-  return {
-    name: item["name"],
-    arguments: item["arguments"],
-  };
+  return { name: item["name"], arguments: item["arguments"] };
 }
 
 export function chatCompletionRequestMessageFunctionCallDeserializer(
@@ -1865,9 +1853,7 @@ export interface ChatCompletionFunctionParameters {}
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
 ): any {
-  return {
-    ...item,
-  };
+  return { ...item };
 }
 
 export function chatCompletionFunctionParametersDeserializer(
@@ -1903,9 +1889,7 @@ export interface ChatCompletionFunctionCallOption {
 export function chatCompletionFunctionCallOptionSerializer(
   item: ChatCompletionFunctionCallOption,
 ): any {
-  return {
-    name: item["name"],
-  };
+  return { name: item["name"] };
 }
 
 export function chatCompletionFunctionCallOptionDeserializer(
