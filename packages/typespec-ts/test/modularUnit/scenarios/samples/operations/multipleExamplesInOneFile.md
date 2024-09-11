@@ -122,7 +122,7 @@ Raw json files.
 ```json for Employees_CreateOrUpdate_minage
 {
   "title": "Employees_CreateOrUpdate_minage",
-  "operationId": "Employees_CreateOrUpdate_minage",
+  "operationId": "Employees_CreateOrUpdate",
   "parameters": {
     "api-version": "2021-10-01-preview",
     "subscriptionId": "11809CA1-E126-4017-945E-AA795CD5C5A9",
@@ -179,8 +179,35 @@ async function employeesCreateOrUpdateMaxage() {
   console.log(result);
 }
 
+/**
+ * This sample demonstrates how to create a Employee
+ *
+ * @summary create a Employee
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate_minage.json
+ */
+async function employeesCreateOrUpdateMinage() {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
+  const client = new ContosoClient(credential, subscriptionId);
+  const result = await client.employees.createOrUpdate(
+    "rgopenapi",
+    "9KF-f-8b",
+    {
+      properties: {
+        age: 1,
+        city: "gydhnntudughbmxlkyzrskcdkotrxn",
+        profile: "ms"
+      },
+      tags: { key2913: "urperxmkkhhkp" },
+      location: "itajgxyqozseoygnl"
+    }
+  );
+  console.log(result);
+}
+
 async function main() {
   employeesCreateOrUpdateMaxage();
+  employeesCreateOrUpdateMinage();
 }
 
 main().catch(console.error);
