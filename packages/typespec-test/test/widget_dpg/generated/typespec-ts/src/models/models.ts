@@ -13,7 +13,7 @@ export interface User {
   id: string;
 }
 
-export function userSerializer(item: User): Record<string, unknown> {
+export function userSerializer(item: User): any {
   return {
     role: item["role"],
     id: item["id"],
@@ -114,9 +114,7 @@ export interface NonReferencedModel {
   prop2: string;
 }
 
-export function nonReferencedModelSerializer(
-  item: NonReferencedModel,
-): Record<string, unknown> {
+export function nonReferencedModelSerializer(item: NonReferencedModel): any {
   return {
     prop1: item["prop1"],
     prop2: item["prop2"],
@@ -145,6 +143,4 @@ export function versionsDeserializer(item: any): Versions {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
-  /** String error code indicating what went wrong. */
-  errorCode?: string;
 }

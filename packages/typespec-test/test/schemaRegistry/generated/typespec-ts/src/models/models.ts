@@ -29,9 +29,7 @@ export interface SchemaProperties {
   version: number;
 }
 
-export function schemaPropertiesSerializer(
-  item: SchemaProperties,
-): Record<string, unknown> {
+export function schemaPropertiesSerializer(item: SchemaProperties): any {
   return {
     id: item["id"],
     format: item["format"],
@@ -70,7 +68,7 @@ export interface Schema {
   properties: SchemaProperties;
 }
 
-export function schemaSerializer(item: Schema): Record<string, unknown> {
+export function schemaSerializer(item: Schema): any {
   return {
     definition: item["definition"],
     properties: schemaPropertiesSerializer(item.properties),
@@ -132,8 +130,6 @@ export function contentTypeEnumDeserializer(item: any): ContentTypeEnum {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
-  /** String error code indicating what went wrong. */
-  errorCode?: string;
 }
 
 /** Paged collection of SchemaGroup items */

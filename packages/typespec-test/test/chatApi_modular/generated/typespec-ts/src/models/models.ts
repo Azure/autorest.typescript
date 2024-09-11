@@ -25,7 +25,7 @@ export interface StreamingChatCompletionOptionsRecord {
 
 export function streamingChatCompletionOptionsRecordSerializer(
   item: StreamingChatCompletionOptionsRecord,
-): Record<string, unknown> {
+): any {
   return {
     messages: item["messages"].map(chatMessageSerializer),
     stream: item["stream"],
@@ -62,9 +62,7 @@ export interface ChatMessage {
   sessionState?: any;
 }
 
-export function chatMessageSerializer(
-  item: ChatMessage,
-): Record<string, unknown> {
+export function chatMessageSerializer(item: ChatMessage): any {
   return {
     content: item["content"],
     role: item["role"],
@@ -167,7 +165,7 @@ export interface ChatCompletionOptionsRecord {
 
 export function chatCompletionOptionsRecordSerializer(
   item: ChatCompletionOptionsRecord,
-): Record<string, unknown> {
+): any {
   return {
     messages: item["messages"].map(chatMessageSerializer),
     stream: item["stream"],

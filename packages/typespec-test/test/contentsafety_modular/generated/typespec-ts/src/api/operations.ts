@@ -8,16 +8,19 @@ import {
 } from "@azure-rest/core-client";
 import {
   TextBlocklist,
+  textBlocklistSerializer,
   textBlocklistDeserializer,
   AddOrUpdateBlockItemsOptions,
-  textBlockItemInfoSerializer,
+  addOrUpdateBlockItemsOptionsSerializer,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
+  removeBlockItemsOptionsSerializer,
   AnalyzeImageOptions,
-  imageDataSerializer,
+  analyzeImageOptionsSerializer,
   AnalyzeImageResult,
   AnalyzeTextOptions,
+  analyzeTextOptionsSerializer,
   AnalyzeTextResult,
   _PagedTextBlocklist,
   _PagedTextBlockItem,
@@ -52,13 +55,7 @@ export function _analyzeTextSend(
     .path("/text:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        text: body["text"],
-        categories: body["categories"],
-        blocklistNames: body["blocklistNames"],
-        breakByBlocklists: body["breakByBlocklists"],
-        outputType: body["outputType"],
-      },
+      body: analyzeTextOptionsSerializer(body),
     });
 }
 
@@ -92,11 +89,7 @@ export function _analyzeImageSend(
     .path("/image:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        image: imageDataSerializer(body.image),
-        categories: body["categories"],
-        outputType: body["outputType"],
-      },
+      body: analyzeImageOptionsSerializer(body),
     });
 }
 
@@ -164,10 +157,7 @@ export function _createOrUpdateTextBlocklistSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        blocklistName: resource["blocklistName"],
-        description: resource["description"],
-      },
+      body: textBlocklistSerializer(resource),
     });
 }
 
@@ -280,7 +270,7 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { blockItems: body["blockItems"].map(textBlockItemInfoSerializer) },
+      body: addOrUpdateBlockItemsOptionsSerializer(body),
     });
 }
 
@@ -321,7 +311,7 @@ export function _removeBlockItemsSend(
     .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { blockItemIds: body["blockItemIds"] },
+      body: removeBlockItemsOptionsSerializer(body),
     });
 }
 

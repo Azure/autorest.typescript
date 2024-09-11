@@ -9,11 +9,12 @@ import {
 import {
   _DataProductListResult,
   DataType,
+  dataTypeSerializer,
   dataTypeDeserializer,
-  dataTypePropertiesSerializer,
   DataTypeUpdate,
-  dataTypeUpdatePropertiesSerializer,
+  dataTypeUpdateSerializer,
   ContainerSaS,
+  containerSaSSerializer,
   ContainerSasToken,
   _DataTypeListResult,
   _DataProductsCatalogListResult,
@@ -58,11 +59,7 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        properties: !resource.properties
-          ? resource.properties
-          : dataTypePropertiesSerializer(resource.properties),
-      },
+      body: dataTypeSerializer(resource),
     });
 }
 
@@ -172,11 +169,7 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        properties: !properties.properties
-          ? properties.properties
-          : dataTypeUpdatePropertiesSerializer(properties.properties),
-      },
+      body: dataTypeUpdateSerializer(properties),
     });
 }
 
@@ -364,11 +357,7 @@ export function _generateStorageContainerSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        startTimeStamp: body["startTimeStamp"].toISOString(),
-        expiryTimeStamp: body["expiryTimeStamp"].toISOString(),
-        ipAddress: body["ipAddress"],
-      },
+      body: containerSaSSerializer(body),
     });
 }
 

@@ -49,7 +49,6 @@ export interface CloudEvent {
 // @public
 export interface ErrorResponse {
     error: ErrorModel;
-    errorCode?: string;
 }
 
 // @public (undocumented)

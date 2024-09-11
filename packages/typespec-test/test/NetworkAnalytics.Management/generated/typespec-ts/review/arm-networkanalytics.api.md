@@ -64,7 +64,6 @@ export type CreatedByType = string;
 // @public
 export interface DataProduct extends TrackedResource {
     identity?: ManagedServiceIdentityV4;
-    name: string;
     properties?: DataProductProperties;
 }
 
@@ -113,7 +112,6 @@ export interface DataProductsAddUserRoleOptionalParams extends OperationOptions 
 
 // @public
 export interface DataProductsCatalog extends ProxyResource {
-    name: string;
     properties?: DataProductsCatalogProperties;
 }
 
@@ -226,7 +224,6 @@ export interface DataProductVersion {
 
 // @public
 export interface DataType extends ProxyResource {
-    name: string;
     properties?: DataTypeProperties;
 }
 

@@ -7,15 +7,11 @@ import { serializeRecord } from "../helpers/serializerHelpers.js";
 export interface DataProduct extends TrackedResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductProperties;
-  /** The data product resource name */
-  name: string;
   /** The managed service identities assigned to this resource. */
   identity?: ManagedServiceIdentityV4;
 }
 
-export function dataProductSerializer(
-  item: DataProduct,
-): Record<string, unknown> {
+export function dataProductSerializer(item: DataProduct): any {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -91,7 +87,7 @@ export interface DataProductProperties {
 
 export function dataProductPropertiesSerializer(
   item: DataProductProperties,
-): Record<string, unknown> {
+): any {
   return {
     publisher: item["publisher"],
     product: item["product"],
@@ -237,7 +233,7 @@ export interface EncryptionKeyDetails {
 
 export function encryptionKeyDetailsSerializer(
   item: EncryptionKeyDetails,
-): Record<string, unknown> {
+): any {
   return {
     keyVaultUri: item["keyVaultUri"],
     keyName: item["keyName"],
@@ -269,7 +265,7 @@ export interface DataProductNetworkAcls {
 
 export function dataProductNetworkAclsSerializer(
   item: DataProductNetworkAcls,
-): Record<string, unknown> {
+): any {
   return {
     virtualNetworkRule: item["virtualNetworkRule"].map(
       virtualNetworkRuleSerializer,
@@ -301,9 +297,7 @@ export interface VirtualNetworkRule {
   state?: string;
 }
 
-export function virtualNetworkRuleSerializer(
-  item: VirtualNetworkRule,
-): Record<string, unknown> {
+export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): any {
   return {
     id: item["id"],
     action: item["action"],
@@ -327,7 +321,7 @@ export interface IPRules {
   action: string;
 }
 
-export function iPRulesSerializer(item: IPRules): Record<string, unknown> {
+export function iPRulesSerializer(item: IPRules): any {
   return {
     value: item["value"],
     action: item["action"],
@@ -377,7 +371,7 @@ export interface ManagedResourceGroupConfiguration {
 
 export function managedResourceGroupConfigurationSerializer(
   item: ManagedResourceGroupConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     name: item["name"],
     location: item["location"],
@@ -423,7 +417,7 @@ export interface ManagedServiceIdentityV4 {
 
 export function managedServiceIdentityV4Serializer(
   item: ManagedServiceIdentityV4,
-): Record<string, unknown> {
+): any {
   return {
     type: item["type"],
     userAssignedIdentities: !item.userAssignedIdentities
@@ -494,7 +488,7 @@ export interface UserAssignedIdentity {
 
 export function userAssignedIdentitySerializer(
   item: UserAssignedIdentity,
-): Record<string, unknown> {
+): any {
   return item as any;
 }
 
@@ -509,7 +503,7 @@ export function userAssignedIdentityDeserializer(
 
 export function userAssignedIdentityRecordSerializer(
   item: Record<string, UserAssignedIdentity>,
-): Record<string, unknown> {
+): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = userAssignedIdentitySerializer(item[key]);
@@ -535,9 +529,7 @@ export interface TrackedResource extends Resource {
   location: string;
 }
 
-export function trackedResourceSerializer(
-  item: TrackedResource,
-): Record<string, unknown> {
+export function trackedResourceSerializer(item: TrackedResource): any {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -567,7 +559,7 @@ export interface Resource {
   readonly systemData?: SystemData;
 }
 
-export function resourceSerializer(item: Resource): Record<string, unknown> {
+export function resourceSerializer(item: Resource): any {
   return item as any;
 }
 
@@ -668,9 +660,7 @@ export interface DataProductUpdate {
   properties?: DataProductUpdateProperties;
 }
 
-export function dataProductUpdateSerializer(
-  item: DataProductUpdate,
-): Record<string, unknown> {
+export function dataProductUpdateSerializer(item: DataProductUpdate): any {
   return {
     identity: !item.identity
       ? item.identity
@@ -710,7 +700,7 @@ export interface DataProductUpdateProperties {
 
 export function dataProductUpdatePropertiesSerializer(
   item: DataProductUpdateProperties,
-): Record<string, unknown> {
+): any {
   return {
     owners: item["owners"],
     purviewAccount: item["purviewAccount"],
@@ -742,9 +732,7 @@ export interface AccountSas {
   ipAddress: string;
 }
 
-export function accountSasSerializer(
-  item: AccountSas,
-): Record<string, unknown> {
+export function accountSasSerializer(item: AccountSas): any {
   return {
     startTimeStamp: item["startTimeStamp"].toISOString(),
     expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
@@ -772,9 +760,7 @@ export interface KeyVaultInfo {
   keyVaultUrl: string;
 }
 
-export function keyVaultInfoSerializer(
-  item: KeyVaultInfo,
-): Record<string, unknown> {
+export function keyVaultInfoSerializer(item: KeyVaultInfo): any {
   return {
     keyVaultUrl: item["keyVaultUrl"],
   };
@@ -804,7 +790,7 @@ export interface RoleAssignmentCommonProperties {
 
 export function roleAssignmentCommonPropertiesSerializer(
   item: RoleAssignmentCommonProperties,
-): Record<string, unknown> {
+): any {
   return {
     roleId: item["roleId"],
     principalId: item["principalId"],
@@ -880,7 +866,7 @@ export interface RoleAssignmentDetail {
 
 export function roleAssignmentDetailSerializer(
   item: RoleAssignmentDetail,
-): Record<string, unknown> {
+): any {
   return {
     roleId: item["roleId"],
     principalId: item["principalId"],
@@ -928,11 +914,9 @@ export interface _DataProductListResult {
 export interface DataType extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: DataTypeProperties;
-  /** The data type name. */
-  name: string;
 }
 
-export function dataTypeSerializer(item: DataType): Record<string, unknown> {
+export function dataTypeSerializer(item: DataType): any {
   return {
     properties: !item.properties
       ? item.properties
@@ -970,9 +954,7 @@ export interface DataTypeProperties {
   readonly visualizationUrl?: string;
 }
 
-export function dataTypePropertiesSerializer(
-  item: DataTypeProperties,
-): Record<string, unknown> {
+export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
   return {
     state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
@@ -1022,9 +1004,7 @@ export function dataTypeStateDeserializer(item: any): DataTypeState {
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
-export function proxyResourceSerializer(
-  item: ProxyResource,
-): Record<string, unknown> {
+export function proxyResourceSerializer(item: ProxyResource): any {
   return item as any;
 }
 
@@ -1043,9 +1023,7 @@ export interface DataTypeUpdate {
   properties?: DataTypeUpdateProperties;
 }
 
-export function dataTypeUpdateSerializer(
-  item: DataTypeUpdate,
-): Record<string, unknown> {
+export function dataTypeUpdateSerializer(item: DataTypeUpdate): any {
   return {
     properties: !item.properties
       ? item.properties
@@ -1075,7 +1053,7 @@ export interface DataTypeUpdateProperties {
 
 export function dataTypeUpdatePropertiesSerializer(
   item: DataTypeUpdateProperties,
-): Record<string, unknown> {
+): any {
   return {
     state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
@@ -1107,9 +1085,7 @@ export interface ContainerSaS {
   ipAddress: string;
 }
 
-export function containerSaSSerializer(
-  item: ContainerSaS,
-): Record<string, unknown> {
+export function containerSaSSerializer(item: ContainerSaS): any {
   return {
     startTimeStamp: item["startTimeStamp"].toISOString(),
     expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
@@ -1143,8 +1119,6 @@ export interface _DataTypeListResult {
 export interface DataProductsCatalog extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductsCatalogProperties;
-  /** The data catalog name */
-  name: string;
 }
 
 /** Details for data catalog properties. */

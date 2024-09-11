@@ -18,6 +18,4 @@ export function versionsDeserializer(item: any): Versions {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
-  /** String error code indicating what went wrong. */
-  errorCode?: string;
 }

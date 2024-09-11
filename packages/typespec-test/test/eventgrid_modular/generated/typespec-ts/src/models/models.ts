@@ -10,7 +10,7 @@ export interface PublishCloudEventRequest {
 
 export function publishCloudEventRequestSerializer(
   item: PublishCloudEventRequest,
-): Record<string, unknown> {
+): any {
   return {
     event: cloudEventSerializer(item.event),
   };
@@ -48,9 +48,7 @@ export interface CloudEvent {
   subject?: string;
 }
 
-export function cloudEventSerializer(
-  item: CloudEvent,
-): Record<string, unknown> {
+export function cloudEventSerializer(item: CloudEvent): any {
   return {
     id: item["id"],
     source: item["source"],
@@ -114,9 +112,7 @@ export interface AcknowledgeOptions {
   lockTokens: string[];
 }
 
-export function acknowledgeOptionsSerializer(
-  item: AcknowledgeOptions,
-): Record<string, unknown> {
+export function acknowledgeOptionsSerializer(item: AcknowledgeOptions): any {
   return {
     lockTokens: item["lockTokens"],
   };
@@ -152,9 +148,7 @@ export interface ReleaseOptions {
   lockTokens: string[];
 }
 
-export function releaseOptionsSerializer(
-  item: ReleaseOptions,
-): Record<string, unknown> {
+export function releaseOptionsSerializer(item: ReleaseOptions): any {
   return {
     lockTokens: item["lockTokens"],
   };
@@ -180,9 +174,7 @@ export interface RejectOptions {
   lockTokens: string[];
 }
 
-export function rejectOptionsSerializer(
-  item: RejectOptions,
-): Record<string, unknown> {
+export function rejectOptionsSerializer(item: RejectOptions): any {
   return {
     lockTokens: item["lockTokens"],
   };
@@ -216,6 +208,4 @@ export function serviceApiVersionsDeserializer(item: any): ServiceApiVersions {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
-  /** String error code indicating what went wrong. */
-  errorCode?: string;
 }

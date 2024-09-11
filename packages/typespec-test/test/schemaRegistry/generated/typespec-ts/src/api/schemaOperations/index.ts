@@ -21,7 +21,6 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
@@ -207,7 +206,7 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: uint8ArrayToString(schemaContent, "base64"),
+      body: schemaContent,
     });
 }
 
@@ -259,7 +258,7 @@ export function _registerSchemaSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: uint8ArrayToString(content, "base64"),
+      body: content,
     });
 }
 

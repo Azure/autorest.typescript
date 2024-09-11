@@ -14,7 +14,6 @@ import { TokenCredential } from '@azure/core-auth';
 // @public
 export interface ErrorResponse {
     error: ErrorModel;
-    errorCode?: string;
 }
 
 // @public

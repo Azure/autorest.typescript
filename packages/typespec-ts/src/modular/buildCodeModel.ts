@@ -251,6 +251,9 @@ function processModelProperties(
   // need to do properties after insertion to avoid infinite recursion
   const discriminatorInfo = handleDiscriminator(context, model, usage);
   let hasDiscriminator = false;
+  if (newValue.name === "DataType") {
+    newValue;
+  }
   for (const property of model.properties.values()) {
     if (!isSchemaProperty(context.program, property)) {
       continue;

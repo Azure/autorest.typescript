@@ -6,19 +6,21 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   DataProduct,
+  dataProductSerializer,
   dataProductDeserializer,
-  dataProductPropertiesSerializer,
-  managedServiceIdentityV4Serializer,
   DataProductUpdate,
-  dataProductUpdatePropertiesSerializer,
+  dataProductUpdateSerializer,
   AccountSas,
+  accountSasSerializer,
   AccountSasToken,
   KeyVaultInfo,
+  keyVaultInfoSerializer,
   RoleAssignmentCommonProperties,
+  roleAssignmentCommonPropertiesSerializer,
   RoleAssignmentDetail,
+  roleAssignmentDetailSerializer,
   roleAssignmentDetailDeserializer,
   ListRoleAssignments,
   _DataProductListResult,
@@ -67,18 +69,7 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        tags: !resource.tags
-          ? resource.tags
-          : (serializeRecord(resource.tags as any) as any),
-        location: resource["location"],
-        properties: !resource.properties
-          ? resource.properties
-          : dataProductPropertiesSerializer(resource.properties),
-        identity: !resource.identity
-          ? resource.identity
-          : managedServiceIdentityV4Serializer(resource.identity),
-      },
+      body: dataProductSerializer(resource),
     });
 }
 
@@ -180,17 +171,7 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        identity: !properties.identity
-          ? properties.identity
-          : managedServiceIdentityV4Serializer(properties.identity),
-        tags: !properties.tags
-          ? properties.tags
-          : (serializeRecord(properties.tags as any) as any),
-        properties: !properties.properties
-          ? properties.properties
-          : dataProductUpdatePropertiesSerializer(properties.properties),
-      },
+      body: dataProductUpdateSerializer(properties),
     });
 }
 
@@ -308,11 +289,7 @@ export function _generateStorageAccountSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        startTimeStamp: body["startTimeStamp"].toISOString(),
-        expiryTimeStamp: body["expiryTimeStamp"].toISOString(),
-        ipAddress: body["ipAddress"],
-      },
+      body: accountSasSerializer(body),
     });
 }
 
@@ -366,7 +343,7 @@ export function _rotateKeySend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { keyVaultUrl: body["keyVaultUrl"] },
+      body: keyVaultInfoSerializer(body),
     });
 }
 
@@ -418,14 +395,7 @@ export function _addUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        roleId: body["roleId"],
-        principalId: body["principalId"],
-        userName: body["userName"],
-        dataTypeScope: body["dataTypeScope"],
-        principalType: body["principalType"],
-        role: body["role"],
-      },
+      body: roleAssignmentCommonPropertiesSerializer(body),
     });
 }
 
@@ -477,15 +447,7 @@ export function _removeUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        roleId: body["roleId"],
-        principalId: body["principalId"],
-        userName: body["userName"],
-        dataTypeScope: body["dataTypeScope"],
-        principalType: body["principalType"],
-        role: body["role"],
-        roleAssignmentId: body["roleAssignmentId"],
-      },
+      body: roleAssignmentDetailSerializer(body),
     });
 }
 

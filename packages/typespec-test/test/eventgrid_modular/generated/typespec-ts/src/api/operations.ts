@@ -7,22 +7,24 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
+  publishCloudEventRequestSerializer,
   CloudEvent,
-  cloudEventSerializer,
   PublishResult,
   ReceiveResult,
   AcknowledgeOptions,
+  acknowledgeOptionsSerializer,
   AcknowledgeResult,
   ReleaseOptions,
+  releaseOptionsSerializer,
   ReleaseResult,
   RejectOptions,
+  rejectOptionsSerializer,
   RejectResult,
 } from "../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   PublishCloudEventOptionalParams,
   PublishCloudEventsOptionalParams,
@@ -45,7 +47,7 @@ export function _publishCloudEventSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
-      body: { event: cloudEventSerializer(event.event) },
+      body: publishCloudEventRequestSerializer(event),
     });
 }
 
@@ -82,29 +84,15 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/topics/{topicName}:publish", topicName).post({
-    ...operationOptionsToRequestParameters(options),
-    contentType:
-      (options.contentType as any) ??
-      "application/cloudevents-batch+json; charset=utf-8",
-    body: (events ?? []).map((p) => {
-      return {
-        id: p["id"],
-        source: p["source"],
-        data: p["data"],
-        data_base64:
-          p["data_base64"] !== undefined
-            ? uint8ArrayToString(p["data_base64"], "base64")
-            : undefined,
-        type: p["type"],
-        time: p["time"]?.toISOString(),
-        specversion: p["specversion"],
-        dataschema: p["dataschema"],
-        datacontenttype: p["datacontenttype"],
-        subject: p["subject"],
-      };
-    }),
-  });
+  return context
+    .path("/topics/{topicName}:publish", topicName)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType:
+        (options.contentType as any) ??
+        "application/cloudevents-batch+json; charset=utf-8",
+      body: events,
+    });
 }
 
 export async function _publishCloudEventsDeserialize(
@@ -199,7 +187,7 @@ export function _acknowledgeCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      body: { lockTokens: lockTokens["lockTokens"] },
+      body: acknowledgeOptionsSerializer(lockTokens),
     });
 }
 
@@ -249,7 +237,7 @@ export function _releaseCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      body: { lockTokens: lockTokens["lockTokens"] },
+      body: releaseOptionsSerializer(lockTokens),
     });
 }
 
@@ -299,7 +287,7 @@ export function _rejectCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      body: { lockTokens: lockTokens["lockTokens"] },
+      body: rejectOptionsSerializer(lockTokens),
     });
 }
 

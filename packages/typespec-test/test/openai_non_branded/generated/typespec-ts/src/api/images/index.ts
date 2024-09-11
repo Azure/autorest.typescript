@@ -7,14 +7,16 @@ import {
 } from "@typespec/ts-http-runtime";
 import {
   CreateImageRequest,
+  createImageRequestSerializer,
   ImagesResponse,
   CreateImageEditRequest,
+  createImageEditRequestSerializer,
   CreateImageVariationRequest,
+  createImageVariationRequestSerializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
-  uint8ArrayToString,
 } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptionalParams,
@@ -31,13 +33,7 @@ export function _createSend(
     .path("/images/generations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        prompt: image["prompt"],
-        n: image["n"],
-        size: image["size"],
-        response_format: image["response_format"],
-        user: image["user"],
-      },
+      body: createImageRequestSerializer(image),
     });
 }
 
@@ -71,18 +67,7 @@ export function _createEditSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        prompt: image["prompt"],
-        image: uint8ArrayToString(image["image"], "base64"),
-        mask:
-          image["mask"] !== undefined
-            ? uint8ArrayToString(image["mask"], "base64")
-            : undefined,
-        n: image["n"],
-        size: image["size"],
-        response_format: image["response_format"],
-        user: image["user"],
-      },
+      body: createImageEditRequestSerializer(image),
     });
 }
 
@@ -116,13 +101,7 @@ export function _createVariationSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        image: uint8ArrayToString(image["image"], "base64"),
-        n: image["n"],
-        size: image["size"],
-        response_format: image["response_format"],
-        user: image["user"],
-      },
+      body: createImageVariationRequestSerializer(image),
     });
 }
 

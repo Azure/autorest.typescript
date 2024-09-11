@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   User,
+  userSerializer,
   userDeserializer,
   _ListWidgetsPagesResults,
 } from "../../models/models.js";
@@ -30,7 +31,7 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
-      body: { role: resource["role"], id: resource["id"] },
+      body: userSerializer(resource),
     });
 }
 

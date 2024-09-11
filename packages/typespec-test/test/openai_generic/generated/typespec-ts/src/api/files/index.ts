@@ -10,13 +10,13 @@ import {
   OpenAIFile,
   ListFilesResponse,
   CreateFileRequest,
+  createFileRequestSerializer,
   DeleteFileResponse,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   FilesListOptionalParams,
   FilesCreateOptionalParams,
@@ -63,10 +63,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(file["file"], "base64"),
-        purpose: file["purpose"],
-      },
+      body: createFileRequestSerializer(file),
     });
 }
 

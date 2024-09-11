@@ -7,6 +7,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
+  test3RequestSerializer,
+  test4RequestSerializer,
+} from "../../models/models.js";
+import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
@@ -97,7 +101,7 @@ export function _test3Send(
     .path("/test3")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop: body["prop"] },
+      body: test3RequestSerializer(body),
     });
 }
 
@@ -130,7 +134,7 @@ export function _test4Send(
     .path("/test4")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop: body["prop"] },
+      body: test4RequestSerializer(body),
     });
 }
 

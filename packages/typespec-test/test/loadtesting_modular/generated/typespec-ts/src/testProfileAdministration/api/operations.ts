@@ -9,8 +9,8 @@ import {
 import {
   _Metrics,
   TestProfile,
+  testProfileSerializer,
   testProfileDeserializer,
-  targetResourceConfigurationsUnionSerializer,
   _PagedTestFileInfo,
   _PagedTest,
   _PagedTestRun,
@@ -44,17 +44,7 @@ export function _createOrUpdateTestProfileSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        displayName: body["displayName"],
-        description: body["description"],
-        testId: body["testId"],
-        targetResourceId: body["targetResourceId"],
-        targetResourceConfigurations: !body.targetResourceConfigurations
-          ? body.targetResourceConfigurations
-          : targetResourceConfigurationsUnionSerializer(
-              body.targetResourceConfigurations,
-            ),
-      },
+      body: testProfileSerializer(body),
     });
 }
 

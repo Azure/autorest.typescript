@@ -9,12 +9,12 @@ import {
   OpenAIFile,
   ListFilesResponse,
   CreateFileRequest,
+  createFileRequestSerializer,
   DeleteFileResponse,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
-  uint8ArrayToString,
 } from "@typespec/ts-http-runtime";
 import {
   FilesListOptionalParams,
@@ -62,10 +62,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(file["file"], "base64"),
-        purpose: file["purpose"],
-      },
+      body: createFileRequestSerializer(file),
     });
 }
 

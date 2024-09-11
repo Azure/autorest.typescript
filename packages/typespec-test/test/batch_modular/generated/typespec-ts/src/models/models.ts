@@ -20,7 +20,7 @@ export interface BatchNodeUserCreateOptions {
 
 export function batchNodeUserCreateOptionsSerializer(
   item: BatchNodeUserCreateOptions,
-): Record<string, unknown> {
+): any {
   return {
     name: item["name"],
     isAdmin: item["isAdmin"],
@@ -80,7 +80,7 @@ export interface BatchNodeUserUpdateOptions {
 
 export function batchNodeUserUpdateOptionsSerializer(
   item: BatchNodeUserUpdateOptions,
-): Record<string, unknown> {
+): any {
   return {
     password: item["password"],
     expiryTime: item["expiryTime"]?.toISOString(),
@@ -325,7 +325,7 @@ export interface StartTask {
   waitForSuccess?: boolean;
 }
 
-export function startTaskSerializer(item: StartTask): Record<string, unknown> {
+export function startTaskSerializer(item: StartTask): any {
   return {
     commandLine: item["commandLine"],
     containerSettings: !item.containerSettings
@@ -377,7 +377,7 @@ export interface TaskContainerSettings {
 
 export function taskContainerSettingsSerializer(
   item: TaskContainerSettings,
-): Record<string, unknown> {
+): any {
   return {
     containerRunOptions: item["containerRunOptions"],
     imageName: item["imageName"],
@@ -415,9 +415,7 @@ export interface ContainerRegistry {
   identityReference?: BatchNodeIdentityReference;
 }
 
-export function containerRegistrySerializer(
-  item: ContainerRegistry,
-): Record<string, unknown> {
+export function containerRegistrySerializer(item: ContainerRegistry): any {
   return {
     username: item["username"],
     password: item["password"],
@@ -450,7 +448,7 @@ export interface BatchNodeIdentityReference {
 
 export function batchNodeIdentityReferenceSerializer(
   item: BatchNodeIdentityReference,
-): Record<string, unknown> {
+): any {
   return {
     resourceId: item["resourceId"],
   };
@@ -499,9 +497,7 @@ export interface ResourceFile {
   identityReference?: BatchNodeIdentityReference;
 }
 
-export function resourceFileSerializer(
-  item: ResourceFile,
-): Record<string, unknown> {
+export function resourceFileSerializer(item: ResourceFile): any {
   return {
     autoStorageContainerName: item["autoStorageContainerName"],
     storageContainerUrl: item["storageContainerUrl"],
@@ -537,9 +533,7 @@ export interface EnvironmentSetting {
   value?: string;
 }
 
-export function environmentSettingSerializer(
-  item: EnvironmentSetting,
-): Record<string, unknown> {
+export function environmentSettingSerializer(item: EnvironmentSetting): any {
   return {
     name: item["name"],
     value: item["value"],
@@ -561,9 +555,7 @@ export interface UserIdentity {
   autoUser?: AutoUserSpecification;
 }
 
-export function userIdentitySerializer(
-  item: UserIdentity,
-): Record<string, unknown> {
+export function userIdentitySerializer(item: UserIdentity): any {
   return {
     username: item["username"],
     autoUser: !item.autoUser
@@ -591,7 +583,7 @@ export interface AutoUserSpecification {
 
 export function autoUserSpecificationSerializer(
   item: AutoUserSpecification,
-): Record<string, unknown> {
+): any {
   return {
     scope: item["scope"],
     elevationLevel: item["elevationLevel"],
@@ -678,7 +670,7 @@ export interface CertificateReference {
 
 export function certificateReferenceSerializer(
   item: CertificateReference,
-): Record<string, unknown> {
+): any {
   return {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
@@ -814,9 +806,7 @@ export interface ImageReference {
   readonly exactVersion?: string;
 }
 
-export function imageReferenceSerializer(
-  item: ImageReference,
-): Record<string, unknown> {
+export function imageReferenceSerializer(item: ImageReference): any {
   return {
     publisher: item["publisher"],
     offer: item["offer"],
@@ -843,9 +833,7 @@ export interface NodeRebootOptions {
   nodeRebootOption?: BatchNodeRebootOption;
 }
 
-export function nodeRebootOptionsSerializer(
-  item: NodeRebootOptions,
-): Record<string, unknown> {
+export function nodeRebootOptionsSerializer(item: NodeRebootOptions): any {
   return {
     nodeRebootOption: item["nodeRebootOption"],
   };
@@ -884,9 +872,7 @@ export interface NodeReimageOptions {
   nodeReimageOption?: BatchNodeReimageOption;
 }
 
-export function nodeReimageOptionsSerializer(
-  item: NodeReimageOptions,
-): Record<string, unknown> {
+export function nodeReimageOptionsSerializer(item: NodeReimageOptions): any {
   return {
     nodeReimageOption: item["nodeReimageOption"],
   };
@@ -927,7 +913,7 @@ export interface NodeDisableSchedulingOptions {
 
 export function nodeDisableSchedulingOptionsSerializer(
   item: NodeDisableSchedulingOptions,
-): Record<string, unknown> {
+): any {
   return {
     nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"],
   };
@@ -983,7 +969,7 @@ export interface UploadBatchServiceLogsOptions {
 
 export function uploadBatchServiceLogsOptionsSerializer(
   item: UploadBatchServiceLogsOptions,
-): Record<string, unknown> {
+): any {
   return {
     containerUrl: item["containerUrl"],
     startTime: item["startTime"].toISOString(),
@@ -1055,9 +1041,7 @@ export interface VMExtension {
   provisionAfterExtensions?: string[];
 }
 
-export function vMExtensionSerializer(
-  item: VMExtension,
-): Record<string, unknown> {
+export function vMExtensionSerializer(item: VMExtension): any {
   return {
     name: item["name"],
     publisher: item["publisher"],
@@ -1207,7 +1191,7 @@ export interface BatchTaskCreateOptions {
 
 export function batchTaskCreateOptionsSerializer(
   item: BatchTaskCreateOptions,
-): Record<string, unknown> {
+): any {
   return {
     id: item["id"],
     displayName: item["displayName"],
@@ -1313,9 +1297,7 @@ export interface ExitConditions {
   default?: ExitOptions;
 }
 
-export function exitConditionsSerializer(
-  item: ExitConditions,
-): Record<string, unknown> {
+export function exitConditionsSerializer(item: ExitConditions): any {
   return {
     exitCodes:
       item["exitCodes"] === undefined
@@ -1360,9 +1342,7 @@ export interface ExitCodeMapping {
   exitOptions: ExitOptions;
 }
 
-export function exitCodeMappingSerializer(
-  item: ExitCodeMapping,
-): Record<string, unknown> {
+export function exitCodeMappingSerializer(item: ExitCodeMapping): any {
   return {
     code: item["code"],
     exitOptions: exitOptionsSerializer(item.exitOptions),
@@ -1384,9 +1364,7 @@ export interface ExitOptions {
   dependencyAction?: DependencyAction;
 }
 
-export function exitOptionsSerializer(
-  item: ExitOptions,
-): Record<string, unknown> {
+export function exitOptionsSerializer(item: ExitOptions): any {
   return {
     jobAction: item["jobAction"],
     dependencyAction: item["dependencyAction"],
@@ -1437,7 +1415,7 @@ export interface ExitCodeRangeMapping {
 
 export function exitCodeRangeMappingSerializer(
   item: ExitCodeRangeMapping,
-): Record<string, unknown> {
+): any {
   return {
     start: item["start"],
     end: item["end"],
@@ -1465,9 +1443,7 @@ export interface OutputFile {
   uploadOptions: OutputFileUploadOptions;
 }
 
-export function outputFileSerializer(
-  item: OutputFile,
-): Record<string, unknown> {
+export function outputFileSerializer(item: OutputFile): any {
   return {
     filePattern: item["filePattern"],
     destination: outputFileDestinationSerializer(item.destination),
@@ -1491,7 +1467,7 @@ export interface OutputFileDestination {
 
 export function outputFileDestinationSerializer(
   item: OutputFileDestination,
-): Record<string, unknown> {
+): any {
   return {
     container: !item.container
       ? item.container
@@ -1523,7 +1499,7 @@ export interface OutputFileBlobContainerDestination {
 
 export function outputFileBlobContainerDestinationSerializer(
   item: OutputFileBlobContainerDestination,
-): Record<string, unknown> {
+): any {
   return {
     path: item["path"],
     containerUrl: item["containerUrl"],
@@ -1558,9 +1534,7 @@ export interface HttpHeader {
   value?: string;
 }
 
-export function httpHeaderSerializer(
-  item: HttpHeader,
-): Record<string, unknown> {
+export function httpHeaderSerializer(item: HttpHeader): any {
   return {
     name: item["name"],
     value: item["value"],
@@ -1585,7 +1559,7 @@ export interface OutputFileUploadOptions {
 
 export function outputFileUploadOptionsSerializer(
   item: OutputFileUploadOptions,
-): Record<string, unknown> {
+): any {
   return {
     uploadCondition: item["uploadCondition"],
   };
@@ -1628,9 +1602,7 @@ export interface AffinityInformation {
   affinityId: string;
 }
 
-export function affinityInformationSerializer(
-  item: AffinityInformation,
-): Record<string, unknown> {
+export function affinityInformationSerializer(item: AffinityInformation): any {
   return {
     affinityId: item["affinityId"],
   };
@@ -1654,9 +1626,7 @@ export interface TaskConstraints {
   maxTaskRetryCount?: number;
 }
 
-export function taskConstraintsSerializer(
-  item: TaskConstraints,
-): Record<string, unknown> {
+export function taskConstraintsSerializer(item: TaskConstraints): any {
   return {
     maxWallClockTime: item["maxWallClockTime"],
     retentionTime: item["retentionTime"],
@@ -1689,7 +1659,7 @@ export interface MultiInstanceSettings {
 
 export function multiInstanceSettingsSerializer(
   item: MultiInstanceSettings,
-): Record<string, unknown> {
+): any {
   return {
     numberOfInstances: item["numberOfInstances"],
     coordinationCommandLine: item["coordinationCommandLine"],
@@ -1722,9 +1692,7 @@ export interface TaskDependencies {
   taskIdRanges?: TaskIdRange[];
 }
 
-export function taskDependenciesSerializer(
-  item: TaskDependencies,
-): Record<string, unknown> {
+export function taskDependenciesSerializer(item: TaskDependencies): any {
   return {
     taskIds: item["taskIds"],
     taskIdRanges:
@@ -1752,9 +1720,7 @@ export interface TaskIdRange {
   end: number;
 }
 
-export function taskIdRangeSerializer(
-  item: TaskIdRange,
-): Record<string, unknown> {
+export function taskIdRangeSerializer(item: TaskIdRange): any {
   return {
     start: item["start"],
     end: item["end"],
@@ -1778,7 +1744,7 @@ export interface ApplicationPackageReference {
 
 export function applicationPackageReferenceSerializer(
   item: ApplicationPackageReference,
-): Record<string, unknown> {
+): any {
   return {
     applicationId: item["applicationId"],
     version: item["version"],
@@ -1805,7 +1771,7 @@ export interface AuthenticationTokenSettings {
 
 export function authenticationTokenSettingsSerializer(
   item: AuthenticationTokenSettings,
-): Record<string, unknown> {
+): any {
   return {
     access: item["access"],
   };
@@ -1906,7 +1872,7 @@ export interface BatchTask {
   readonly authenticationTokenSettings?: AuthenticationTokenSettings;
 }
 
-export function batchTaskSerializer(item: BatchTask): Record<string, unknown> {
+export function batchTaskSerializer(item: BatchTask): any {
   return {
     constraints: !item.constraints
       ? item.constraints
@@ -2012,9 +1978,7 @@ export interface BatchTaskCollection {
   value: BatchTaskCreateOptions[];
 }
 
-export function batchTaskCollectionSerializer(
-  item: BatchTaskCollection,
-): Record<string, unknown> {
+export function batchTaskCollectionSerializer(item: BatchTaskCollection): any {
   return {
     value: item["value"].map(batchTaskCreateOptionsSerializer),
   };
@@ -2143,9 +2107,7 @@ export interface BatchJobSchedule {
   readonly stats?: JobScheduleStatistics;
 }
 
-export function batchJobScheduleSerializer(
-  item: BatchJobSchedule,
-): Record<string, unknown> {
+export function batchJobScheduleSerializer(item: BatchJobSchedule): any {
   return {
     schedule: scheduleSerializer(item.schedule),
     jobSpecification: jobSpecificationSerializer(item.jobSpecification),
@@ -2207,7 +2169,7 @@ export interface Schedule {
   recurrenceInterval?: string;
 }
 
-export function scheduleSerializer(item: Schedule): Record<string, unknown> {
+export function scheduleSerializer(item: Schedule): any {
   return {
     doNotRunUntil: item["doNotRunUntil"]?.toISOString(),
     doNotRunAfter: item["doNotRunAfter"]?.toISOString(),
@@ -2259,9 +2221,7 @@ export interface JobSpecification {
   metadata?: MetadataItem[];
 }
 
-export function jobSpecificationSerializer(
-  item: JobSpecification,
-): Record<string, unknown> {
+export function jobSpecificationSerializer(item: JobSpecification): any {
   return {
     priority: item["priority"],
     allowTaskPreemption: item["allowTaskPreemption"],
@@ -2359,7 +2319,7 @@ export interface JobNetworkConfiguration {
 
 export function jobNetworkConfigurationSerializer(
   item: JobNetworkConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     subnetId: item["subnetId"],
   };
@@ -2381,9 +2341,7 @@ export interface JobConstraints {
   maxTaskRetryCount?: number;
 }
 
-export function jobConstraintsSerializer(
-  item: JobConstraints,
-): Record<string, unknown> {
+export function jobConstraintsSerializer(item: JobConstraints): any {
   return {
     maxWallClockTime: item["maxWallClockTime"],
     maxTaskRetryCount: item["maxTaskRetryCount"],
@@ -2464,9 +2422,7 @@ export interface JobManagerTask {
   allowLowPriorityNode?: boolean;
 }
 
-export function jobManagerTaskSerializer(
-  item: JobManagerTask,
-): Record<string, unknown> {
+export function jobManagerTaskSerializer(item: JobManagerTask): any {
   return {
     id: item["id"],
     displayName: item["displayName"],
@@ -2587,9 +2543,7 @@ export interface JobPreparationTask {
   rerunOnNodeRebootAfterSuccess?: boolean;
 }
 
-export function jobPreparationTaskSerializer(
-  item: JobPreparationTask,
-): Record<string, unknown> {
+export function jobPreparationTaskSerializer(item: JobPreparationTask): any {
   return {
     id: item["id"],
     commandLine: item["commandLine"],
@@ -2672,9 +2626,7 @@ export interface JobReleaseTask {
   userIdentity?: UserIdentity;
 }
 
-export function jobReleaseTaskSerializer(
-  item: JobReleaseTask,
-): Record<string, unknown> {
+export function jobReleaseTaskSerializer(item: JobReleaseTask): any {
   return {
     id: item["id"],
     commandLine: item["commandLine"],
@@ -2722,9 +2674,7 @@ export interface PoolInformation {
   autoPoolSpecification?: AutoPoolSpecification;
 }
 
-export function poolInformationSerializer(
-  item: PoolInformation,
-): Record<string, unknown> {
+export function poolInformationSerializer(item: PoolInformation): any {
   return {
     poolId: item["poolId"],
     autoPoolSpecification: !item.autoPoolSpecification
@@ -2759,7 +2709,7 @@ export interface AutoPoolSpecification {
 
 export function autoPoolSpecificationSerializer(
   item: AutoPoolSpecification,
-): Record<string, unknown> {
+): any {
   return {
     autoPoolIdPrefix: item["autoPoolIdPrefix"],
     poolLifetimeOption: item["poolLifetimeOption"],
@@ -2844,9 +2794,7 @@ export interface PoolSpecification {
   targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
-export function poolSpecificationSerializer(
-  item: PoolSpecification,
-): Record<string, unknown> {
+export function poolSpecificationSerializer(item: PoolSpecification): any {
   return {
     displayName: item["displayName"],
     vmSize: item["vmSize"],
@@ -2966,7 +2914,7 @@ export interface CloudServiceConfiguration {
 
 export function cloudServiceConfigurationSerializer(
   item: CloudServiceConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     osFamily: item["osFamily"],
     osVersion: item["osVersion"],
@@ -3021,7 +2969,7 @@ export interface VirtualMachineConfiguration {
 
 export function virtualMachineConfigurationSerializer(
   item: VirtualMachineConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     imageReference: imageReferenceSerializer(item.imageReference),
     nodeAgentSKUId: item["nodeAgentSkuId"],
@@ -3085,7 +3033,7 @@ export interface WindowsConfiguration {
 
 export function windowsConfigurationSerializer(
   item: WindowsConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     enableAutomaticUpdates: item["enableAutomaticUpdates"],
   };
@@ -3115,7 +3063,7 @@ export interface DataDisk {
   storageAccountType?: StorageAccountType;
 }
 
-export function dataDiskSerializer(item: DataDisk): Record<string, unknown> {
+export function dataDiskSerializer(item: DataDisk): any {
   return {
     lun: item["lun"],
     caching: item["caching"],
@@ -3169,7 +3117,7 @@ export interface ContainerConfiguration {
 
 export function containerConfigurationSerializer(
   item: ContainerConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     type: item["type"],
     containerImageNames: item["containerImageNames"],
@@ -3213,7 +3161,7 @@ export interface DiskEncryptionConfiguration {
 
 export function diskEncryptionConfigurationSerializer(
   item: DiskEncryptionConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     targets: item["targets"],
   };
@@ -3254,7 +3202,7 @@ export interface NodePlacementConfiguration {
 
 export function nodePlacementConfigurationSerializer(
   item: NodePlacementConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     policy: item["policy"],
   };
@@ -3289,7 +3237,7 @@ export interface OSDisk {
   ephemeralOSDiskSettings?: DiffDiskSettings;
 }
 
-export function oSDiskSerializer(item: OSDisk): Record<string, unknown> {
+export function oSDiskSerializer(item: OSDisk): any {
   return {
     ephemeralOSDiskSettings: !item.ephemeralOSDiskSettings
       ? item.ephemeralOSDiskSettings
@@ -3314,9 +3262,7 @@ export interface DiffDiskSettings {
   placement?: DiffDiskPlacement;
 }
 
-export function diffDiskSettingsSerializer(
-  item: DiffDiskSettings,
-): Record<string, unknown> {
+export function diffDiskSettingsSerializer(item: DiffDiskSettings): any {
   return {
     placement: item["placement"],
   };
@@ -3347,7 +3293,7 @@ export interface TaskSchedulingPolicy {
 
 export function taskSchedulingPolicySerializer(
   item: TaskSchedulingPolicy,
-): Record<string, unknown> {
+): any {
   return {
     nodeFillType: item["nodeFillType"],
   };
@@ -3388,7 +3334,7 @@ export interface NetworkConfiguration {
 
 export function networkConfigurationSerializer(
   item: NetworkConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     subnetId: item["subnetId"],
     dynamicVNetAssignmentScope: item["dynamicVNetAssignmentScope"],
@@ -3447,7 +3393,7 @@ export interface PoolEndpointConfiguration {
 
 export function poolEndpointConfigurationSerializer(
   item: PoolEndpointConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     inboundNATPools: item["inboundNatPools"].map(inboundNATPoolSerializer),
   };
@@ -3480,9 +3426,7 @@ export interface InboundNATPool {
   networkSecurityGroupRules?: NetworkSecurityGroupRule[];
 }
 
-export function inboundNATPoolSerializer(
-  item: InboundNATPool,
-): Record<string, unknown> {
+export function inboundNATPoolSerializer(item: InboundNATPool): any {
   return {
     name: item["name"],
     protocol: item["protocol"],
@@ -3523,7 +3467,7 @@ export interface NetworkSecurityGroupRule {
 
 export function networkSecurityGroupRuleSerializer(
   item: NetworkSecurityGroupRule,
-): Record<string, unknown> {
+): any {
   return {
     priority: item["priority"],
     access: item["access"],
@@ -3568,7 +3512,7 @@ export interface PublicIpAddressConfiguration {
 
 export function publicIpAddressConfigurationSerializer(
   item: PublicIpAddressConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     provision: item["IpAddressProvisioningType"],
     ipAddressIds: item["ipAddressIds"],
@@ -3621,9 +3565,7 @@ export interface UserAccount {
   windowsUserConfiguration?: WindowsUserConfiguration;
 }
 
-export function userAccountSerializer(
-  item: UserAccount,
-): Record<string, unknown> {
+export function userAccountSerializer(item: UserAccount): any {
   return {
     name: item["name"],
     password: item["password"],
@@ -3663,7 +3605,7 @@ export interface LinuxUserConfiguration {
 
 export function linuxUserConfigurationSerializer(
   item: LinuxUserConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     uid: item["uid"],
     gid: item["gid"],
@@ -3689,7 +3631,7 @@ export interface WindowsUserConfiguration {
 
 export function windowsUserConfigurationSerializer(
   item: WindowsUserConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     loginMode: item["loginMode"],
   };
@@ -3725,9 +3667,7 @@ export interface MetadataItem {
   value: string;
 }
 
-export function metadataItemSerializer(
-  item: MetadataItem,
-): Record<string, unknown> {
+export function metadataItemSerializer(item: MetadataItem): any {
   return {
     name: item["name"],
     value: item["value"],
@@ -3753,9 +3693,7 @@ export interface MountConfiguration {
   azureFileShareConfiguration?: AzureFileShareConfiguration;
 }
 
-export function mountConfigurationSerializer(
-  item: MountConfiguration,
-): Record<string, unknown> {
+export function mountConfigurationSerializer(item: MountConfiguration): any {
   return {
     azureBlobFileSystemConfiguration: !item.azureBlobFileSystemConfiguration
       ? item.azureBlobFileSystemConfiguration
@@ -3815,7 +3753,7 @@ export interface AzureBlobFileSystemConfiguration {
 
 export function azureBlobFileSystemConfigurationSerializer(
   item: AzureBlobFileSystemConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     accountName: item["accountName"],
     containerName: item["containerName"],
@@ -3857,7 +3795,7 @@ export interface NfsMountConfiguration {
 
 export function nfsMountConfigurationSerializer(
   item: NfsMountConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     source: item["source"],
     relativeMountPath: item["relativeMountPath"],
@@ -3891,7 +3829,7 @@ export interface CifsMountConfiguration {
 
 export function cifsMountConfigurationSerializer(
   item: CifsMountConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     username: item["username"],
     source: item["source"],
@@ -3929,7 +3867,7 @@ export interface AzureFileShareConfiguration {
 
 export function azureFileShareConfigurationSerializer(
   item: AzureFileShareConfiguration,
-): Record<string, unknown> {
+): any {
   return {
     accountName: item["accountName"],
     azureFileUrl: item["azureFileUrl"],
@@ -4031,7 +3969,7 @@ export interface BatchJobScheduleUpdateOptions {
 
 export function batchJobScheduleUpdateOptionsSerializer(
   item: BatchJobScheduleUpdateOptions,
-): Record<string, unknown> {
+): any {
   return {
     schedule: !item.schedule
       ? item.schedule
@@ -4074,7 +4012,7 @@ export interface BatchJobScheduleCreateOptions {
 
 export function batchJobScheduleCreateOptionsSerializer(
   item: BatchJobScheduleCreateOptions,
-): Record<string, unknown> {
+): any {
   return {
     id: item["id"],
     displayName: item["displayName"],
@@ -4138,9 +4076,7 @@ export interface BatchCertificate {
   password?: string;
 }
 
-export function batchCertificateSerializer(
-  item: BatchCertificate,
-): Record<string, unknown> {
+export function batchCertificateSerializer(item: BatchCertificate): any {
   return {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
@@ -4265,7 +4201,7 @@ export interface BatchJob {
   readonly stats?: JobStatistics;
 }
 
-export function batchJobSerializer(item: BatchJob): Record<string, unknown> {
+export function batchJobSerializer(item: BatchJob): any {
   return {
     priority: item["priority"],
     allowTaskPreemption: item["allowTaskPreemption"],
@@ -4421,7 +4357,7 @@ export interface BatchJobUpdateOptions {
 
 export function batchJobUpdateOptionsSerializer(
   item: BatchJobUpdateOptions,
-): Record<string, unknown> {
+): any {
   return {
     priority: item["priority"],
     allowTaskPreemption: item["allowTaskPreemption"],
@@ -4468,7 +4404,7 @@ export interface BatchJobDisableOptions {
 
 export function batchJobDisableOptionsSerializer(
   item: BatchJobDisableOptions,
-): Record<string, unknown> {
+): any {
   return {
     disableTasks: item["disableTasks"],
   };
@@ -4501,7 +4437,7 @@ export interface BatchJobTerminateOptions {
 
 export function batchJobTerminateOptionsSerializer(
   item: BatchJobTerminateOptions,
-): Record<string, unknown> {
+): any {
   return {
     terminateReason: item["terminateReason"],
   };
@@ -4553,7 +4489,7 @@ export interface BatchJobCreateOptions {
 
 export function batchJobCreateOptionsSerializer(
   item: BatchJobCreateOptions,
-): Record<string, unknown> {
+): any {
   return {
     id: item["id"],
     displayName: item["displayName"],
@@ -4954,7 +4890,7 @@ export interface BatchPoolCreateOptions {
 
 export function batchPoolCreateOptionsSerializer(
   item: BatchPoolCreateOptions,
-): Record<string, unknown> {
+): any {
   return {
     id: item["id"],
     displayName: item["displayName"],
@@ -5304,7 +5240,7 @@ export interface BatchPoolUpdateOptions {
 
 export function batchPoolUpdateOptionsSerializer(
   item: BatchPoolUpdateOptions,
-): Record<string, unknown> {
+): any {
   return {
     startTask: !item.startTask
       ? item.startTask
@@ -5353,7 +5289,7 @@ export interface BatchPoolEnableAutoScaleOptions {
 
 export function batchPoolEnableAutoScaleOptionsSerializer(
   item: BatchPoolEnableAutoScaleOptions,
-): Record<string, unknown> {
+): any {
   return {
     autoScaleFormula: item["autoScaleFormula"],
     autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
@@ -5377,7 +5313,7 @@ export interface BatchPoolEvaluateAutoScaleOptions {
 
 export function batchPoolEvaluateAutoScaleOptionsSerializer(
   item: BatchPoolEvaluateAutoScaleOptions,
-): Record<string, unknown> {
+): any {
   return {
     autoScaleFormula: item["autoScaleFormula"],
   };
@@ -5405,7 +5341,7 @@ export interface BatchPoolResizeOptions {
 
 export function batchPoolResizeOptionsSerializer(
   item: BatchPoolResizeOptions,
-): Record<string, unknown> {
+): any {
   return {
     targetDedicatedNodes: item["targetDedicatedNodes"],
     targetLowPriorityNodes: item["targetLowPriorityNodes"],
@@ -5469,7 +5405,7 @@ export interface BatchPoolReplaceOptions {
 
 export function batchPoolReplaceOptionsSerializer(
   item: BatchPoolReplaceOptions,
-): Record<string, unknown> {
+): any {
   return {
     startTask: !item.startTask
       ? item.startTask
@@ -5511,9 +5447,7 @@ export interface NodeRemoveOptions {
   nodeDeallocationOption?: BatchNodeDeallocationOption;
 }
 
-export function nodeRemoveOptionsSerializer(
-  item: NodeRemoveOptions,
-): Record<string, unknown> {
+export function nodeRemoveOptionsSerializer(item: NodeRemoveOptions): any {
   return {
     nodeList: item["nodeList"],
     resizeTimeout: item["resizeTimeout"],

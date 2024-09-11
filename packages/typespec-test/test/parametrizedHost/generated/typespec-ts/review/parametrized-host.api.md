@@ -28,7 +28,6 @@ export interface ConfidentialLedgerOperations {
 // @public
 export interface ErrorResponse {
     error: ErrorModel;
-    errorCode?: string;
 }
 
 // @public (undocumented)

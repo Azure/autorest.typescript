@@ -5,7 +5,11 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
+import {
+  CreateEditRequest,
+  createEditRequestSerializer,
+  CreateEditResponse,
+} from "../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
@@ -21,14 +25,7 @@ export function _createSend(
     .path("/edits")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        model: edit["model"],
-        input: edit["input"],
-        instruction: edit["instruction"],
-        n: edit["n"],
-        temperature: edit["temperature"],
-        top_p: edit["top_p"],
-      },
+      body: createEditRequestSerializer(edit),
     });
 }
 

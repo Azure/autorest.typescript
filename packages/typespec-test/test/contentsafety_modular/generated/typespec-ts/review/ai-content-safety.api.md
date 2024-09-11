@@ -104,7 +104,6 @@ export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 // @public
 export interface ErrorResponse {
     error: ErrorModel;
-    errorCode?: string;
 }
 
 // @public

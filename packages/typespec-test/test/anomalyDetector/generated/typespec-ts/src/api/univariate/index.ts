@@ -9,10 +9,11 @@ import {
 import {
   _MultivariateModelList,
   UnivariateUnivariateDetectionOptions,
-  univariateTimeSeriesPointSerializer,
+  univariateUnivariateDetectionOptionsSerializer,
   UnivariateUnivariateEntireDetectionResult,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
+  univariateUnivariateChangePointDetectionOptionsSerializer,
   UnivariateUnivariateChangePointDetectionResult,
 } from "../../models/models.js";
 import {
@@ -36,16 +37,7 @@ export function _detectUnivariateEntireSeriesSend(
     .path("/timeseries/entire/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
-        granularity: options["granularity"],
-        customInterval: options["customInterval"],
-        period: options["period"],
-        maxAnomalyRatio: options["maxAnomalyRatio"],
-        sensitivity: options["sensitivity"],
-        imputeMode: options["imputeMode"],
-        imputeFixedValue: options["imputeFixedValue"],
-      },
+      body: univariateUnivariateDetectionOptionsSerializer(options),
     });
 }
 
@@ -92,16 +84,7 @@ export function _detectUnivariateLastPointSend(
     .path("/timeseries/last/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
-        granularity: options["granularity"],
-        customInterval: options["customInterval"],
-        period: options["period"],
-        maxAnomalyRatio: options["maxAnomalyRatio"],
-        sensitivity: options["sensitivity"],
-        imputeMode: options["imputeMode"],
-        imputeFixedValue: options["imputeFixedValue"],
-      },
+      body: univariateUnivariateDetectionOptionsSerializer(options),
     });
 }
 
@@ -146,14 +129,7 @@ export function _detectUnivariateChangePointSend(
     .path("/timeseries/changepoint/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
-        granularity: options["granularity"],
-        customInterval: options["customInterval"],
-        period: options["period"],
-        stableTrendWindow: options["stableTrendWindow"],
-        threshold: options["threshold"],
-      },
+      body: univariateUnivariateChangePointDetectionOptionsSerializer(options),
     });
 }
 

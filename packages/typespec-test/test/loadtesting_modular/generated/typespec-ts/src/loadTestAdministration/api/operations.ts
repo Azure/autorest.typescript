@@ -6,22 +6,17 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
   Test,
+  testSerializer,
   testDeserializer,
-  passFailCriteriaSerializer,
-  autoStopCriteriaSerializer,
-  secretSerializer,
-  certificateMetadataSerializer,
-  loadTestConfigurationSerializer,
   TestFileInfo,
   TestAppComponents,
+  testAppComponentsSerializer,
   testAppComponentsDeserializer,
-  appComponentSerializer,
   TestServerMetricConfig,
+  testServerMetricConfigSerializer,
   testServerMetricConfigDeserializer,
-  resourceMetricSerializer,
   _Metrics,
   _PagedTestFileInfo,
   _PagedTest,
@@ -64,34 +59,7 @@ export function _createOrUpdateTestSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        passFailCriteria: !body.passFailCriteria
-          ? body.passFailCriteria
-          : passFailCriteriaSerializer(body.passFailCriteria),
-        autoStopCriteria: !body.autoStopCriteria
-          ? body.autoStopCriteria
-          : autoStopCriteriaSerializer(body.autoStopCriteria),
-        secrets: !body.secrets
-          ? body.secrets
-          : (serializeRecord(body.secrets as any, secretSerializer) as any),
-        certificate: !body.certificate
-          ? body.certificate
-          : certificateMetadataSerializer(body.certificate),
-        environmentVariables: !body.environmentVariables
-          ? body.environmentVariables
-          : (serializeRecord(body.environmentVariables as any) as any),
-        loadTestConfiguration: !body.loadTestConfiguration
-          ? body.loadTestConfiguration
-          : loadTestConfigurationSerializer(body.loadTestConfiguration),
-        baselineTestRunId: body["baselineTestRunId"],
-        description: body["description"],
-        displayName: body["displayName"],
-        subnetId: body["subnetId"],
-        kind: body["kind"],
-        publicIPDisabled: body["publicIPDisabled"],
-        keyvaultReferenceIdentityType: body["keyvaultReferenceIdentityType"],
-        keyvaultReferenceIdentityId: body["keyvaultReferenceIdentityId"],
-      },
+      body: testSerializer(body),
     });
 }
 
@@ -129,12 +97,7 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        components: serializeRecord(
-          body.components as any,
-          appComponentSerializer,
-        ) as any,
-      },
+      body: testAppComponentsSerializer(body),
     });
 }
 
@@ -179,12 +142,7 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        metrics: serializeRecord(
-          body.metrics as any,
-          resourceMetricSerializer,
-        ) as any,
-      },
+      body: testServerMetricConfigSerializer(body),
     });
 }
 

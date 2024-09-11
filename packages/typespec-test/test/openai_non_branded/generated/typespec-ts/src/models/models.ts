@@ -18,7 +18,7 @@ export interface CreateModerationRequest {
 
 export function createModerationRequestSerializer(
   item: CreateModerationRequest,
-): Record<string, unknown> {
+): any {
   return {
     input: item["input"],
     model: item["model"],
@@ -227,9 +227,7 @@ export interface CreateImageRequest {
   user?: string;
 }
 
-export function createImageRequestSerializer(
-  item: CreateImageRequest,
-): Record<string, unknown> {
+export function createImageRequestSerializer(item: CreateImageRequest): any {
   return {
     prompt: item["prompt"],
     n: item["n"],
@@ -315,7 +313,7 @@ export interface CreateImageEditRequest {
 
 export function createImageEditRequestSerializer(
   item: CreateImageEditRequest,
-): Record<string, unknown> {
+): any {
   return {
     prompt: item["prompt"],
     image: uint8ArrayToString(item["image"], "base64"),
@@ -361,7 +359,7 @@ export interface CreateImageVariationRequest {
 
 export function createImageVariationRequestSerializer(
   item: CreateImageVariationRequest,
-): Record<string, unknown> {
+): any {
   return {
     image: uint8ArrayToString(item["image"], "base64"),
     n: item["n"],
@@ -518,7 +516,7 @@ export interface CreateFineTuneRequest {
 
 export function createFineTuneRequestSerializer(
   item: CreateFineTuneRequest,
-): Record<string, unknown> {
+): any {
   return {
     training_file: item["training_file"],
     validation_file: item["validation_file"],
@@ -739,9 +737,7 @@ export interface CreateFileRequest {
   purpose: string;
 }
 
-export function createFileRequestSerializer(
-  item: CreateFileRequest,
-): Record<string, unknown> {
+export function createFileRequestSerializer(item: CreateFileRequest): any {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     purpose: item["purpose"],
@@ -777,7 +773,7 @@ export interface CreateEmbeddingRequest {
 
 export function createEmbeddingRequestSerializer(
   item: CreateEmbeddingRequest,
-): Record<string, unknown> {
+): any {
   return {
     model: item["model"],
     input: item["input"],
@@ -890,9 +886,7 @@ export interface CreateEditRequest {
   top_p?: number | null;
 }
 
-export function createEditRequestSerializer(
-  item: CreateEditRequest,
-): Record<string, unknown> {
+export function createEditRequestSerializer(item: CreateEditRequest): any {
   return {
     model: item["model"],
     input: item["input"],
@@ -1100,7 +1094,7 @@ export interface CreateCompletionRequest {
 
 export function createCompletionRequestSerializer(
   item: CreateCompletionRequest,
-): Record<string, unknown> {
+): any {
   return {
     model: item["model"],
     prompt: item["prompt"],
@@ -1305,7 +1299,7 @@ export interface CreateFineTuningJobRequest {
 
 export function createFineTuningJobRequestSerializer(
   item: CreateFineTuningJobRequest,
-): Record<string, unknown> {
+): any {
   return {
     training_file: item["training_file"],
     validation_file: item["validation_file"],
@@ -1360,7 +1354,7 @@ export interface CreateFineTuningJobRequestHyperparameters {
 
 export function createFineTuningJobRequestHyperparametersSerializer(
   item: CreateFineTuningJobRequestHyperparameters,
-): Record<string, unknown> {
+): any {
   return {
     n_epochs: item["n_epochs"],
   };
@@ -1651,7 +1645,7 @@ export interface CreateChatCompletionRequest {
 
 export function createChatCompletionRequestSerializer(
   item: CreateChatCompletionRequest,
-): Record<string, unknown> {
+): any {
   return {
     model: item["model"],
     messages: item["messages"].map(chatCompletionRequestMessageSerializer),
@@ -1746,7 +1740,7 @@ export interface ChatCompletionRequestMessage {
 
 export function chatCompletionRequestMessageSerializer(
   item: ChatCompletionRequestMessage,
-): Record<string, unknown> {
+): any {
   return {
     role: item["role"],
     content: item["content"],
@@ -1806,7 +1800,7 @@ export interface ChatCompletionRequestMessageFunctionCall {
 
 export function chatCompletionRequestMessageFunctionCallSerializer(
   item: ChatCompletionRequestMessageFunctionCall,
-): Record<string, unknown> {
+): any {
   return {
     name: item["name"],
     arguments: item["arguments"],
@@ -1845,7 +1839,7 @@ export interface ChatCompletionFunctions {
 
 export function chatCompletionFunctionsSerializer(
   item: ChatCompletionFunctions,
-): Record<string, unknown> {
+): any {
   return {
     name: item["name"],
     description: item["description"],
@@ -1869,7 +1863,7 @@ export interface ChatCompletionFunctionParameters {}
 
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
-): Record<string, unknown> {
+): any {
   return {
     ...item,
   };
@@ -1907,7 +1901,7 @@ export interface ChatCompletionFunctionCallOption {
 
 export function chatCompletionFunctionCallOptionSerializer(
   item: ChatCompletionFunctionCallOption,
-): Record<string, unknown> {
+): any {
   return {
     name: item["name"],
   };
@@ -2043,7 +2037,7 @@ export interface CreateTranslationRequest {
 
 export function createTranslationRequestSerializer(
   item: CreateTranslationRequest,
-): Record<string, unknown> {
+): any {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],
@@ -2139,7 +2133,7 @@ export interface CreateTranscriptionRequest {
 
 export function createTranscriptionRequestSerializer(
   item: CreateTranscriptionRequest,
-): Record<string, unknown> {
+): any {
   return {
     file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],

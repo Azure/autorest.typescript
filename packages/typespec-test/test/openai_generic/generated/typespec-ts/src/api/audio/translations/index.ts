@@ -8,13 +8,13 @@ import {
 } from "@azure-rest/core-client";
 import {
   CreateTranslationRequest,
+  createTranslationRequestSerializer,
   CreateTranslationResponse,
 } from "../../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
@@ -27,13 +27,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
-        model: audio["model"],
-        prompt: audio["prompt"],
-        response_format: audio["response_format"],
-        temperature: audio["temperature"],
-      },
+      body: createTranslationRequestSerializer(audio),
     });
 }
 

@@ -7,12 +7,12 @@ import {
 } from "@typespec/ts-http-runtime";
 import {
   CreateTranslationRequest,
+  createTranslationRequestSerializer,
   CreateTranslationResponse,
 } from "../../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
-  uint8ArrayToString,
 } from "@typespec/ts-http-runtime";
 import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
@@ -26,13 +26,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
-        model: audio["model"],
-        prompt: audio["prompt"],
-        response_format: audio["response_format"],
-        temperature: audio["temperature"],
-      },
+      body: createTranslationRequestSerializer(audio),
     });
 }
 

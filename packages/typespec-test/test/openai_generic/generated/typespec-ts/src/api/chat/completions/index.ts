@@ -6,11 +6,9 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../../helpers/serializerHelpers.js";
 import {
   CreateChatCompletionRequest,
-  chatCompletionRequestMessageSerializer,
-  chatCompletionFunctionsSerializer,
+  createChatCompletionRequestSerializer,
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import {
@@ -28,27 +26,7 @@ export function _createSend(
     .path("/chat/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        model: body["model"],
-        messages: body["messages"].map(chatCompletionRequestMessageSerializer),
-        functions:
-          body["functions"] === undefined
-            ? body["functions"]
-            : body["functions"].map(chatCompletionFunctionsSerializer),
-        function_call: body["function_call"],
-        temperature: body["temperature"],
-        top_p: body["top_p"],
-        n: body["n"],
-        max_tokens: body["max_tokens"],
-        stop: body["stop"],
-        presence_penalty: body["presence_penalty"],
-        frequency_penalty: body["frequency_penalty"],
-        logit_bias: !body.logit_bias
-          ? body.logit_bias
-          : (serializeRecord(body.logit_bias as any) as any),
-        user: body["user"],
-        stream: body["stream"],
-      },
+      body: createChatCompletionRequestSerializer(body),
     });
 }
 

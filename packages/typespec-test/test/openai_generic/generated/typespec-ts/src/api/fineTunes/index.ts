@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   CreateFineTuneRequest,
+  createFineTuneRequestSerializer,
   FineTune,
   ListFineTunesResponse,
   ListFineTuneEventsResponse,
@@ -33,22 +34,7 @@ export function _createSend(
     .path("/fine-tunes")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        training_file: fineTune["training_file"],
-        validation_file: fineTune["validation_file"],
-        model: fineTune["model"],
-        n_epochs: fineTune["n_epochs"],
-        batch_size: fineTune["batch_size"],
-        learning_rate_multiplier: fineTune["learning_rate_multiplier"],
-        prompt_loss_rate: fineTune["prompt_loss_rate"],
-        compute_classification_metrics:
-          fineTune["compute_classification_metrics"],
-        classification_n_classes: fineTune["classification_n_classes"],
-        classification_positive_class:
-          fineTune["classification_positive_class"],
-        classification_betas: fineTune["classification_betas"],
-        suffix: fineTune["suffix"],
-      },
+      body: createFineTuneRequestSerializer(fineTune),
     });
 }
 

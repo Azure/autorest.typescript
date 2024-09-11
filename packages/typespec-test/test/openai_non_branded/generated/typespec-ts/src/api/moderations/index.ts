@@ -7,6 +7,7 @@ import {
 } from "@typespec/ts-http-runtime";
 import {
   CreateModerationRequest,
+  createModerationRequestSerializer,
   CreateModerationResponse,
 } from "../../models/models.js";
 import {
@@ -24,7 +25,7 @@ export function _createSend(
     .path("/moderations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { input: content["input"], model: content["model"] },
+      body: createModerationRequestSerializer(content),
     });
 }
 

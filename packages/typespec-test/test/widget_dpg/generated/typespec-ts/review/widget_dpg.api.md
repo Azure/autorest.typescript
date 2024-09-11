@@ -48,7 +48,6 @@ export type CreateWidgetRequestColor = "red" | "blue";
 // @public
 export interface ErrorResponse {
     error: ErrorModel;
-    errorCode?: string;
 }
 
 // @public (undocumented)

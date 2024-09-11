@@ -6,12 +6,12 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   StreamingChatCompletionOptionsRecord,
-  chatMessageSerializer,
+  streamingChatCompletionOptionsRecordSerializer,
   ChatCompletionChunkRecord,
   ChatCompletionOptionsRecord,
+  chatCompletionOptionsRecordSerializer,
   ChatCompletionRecord,
 } from "../models/models.js";
 import {
@@ -32,14 +32,7 @@ export function _createStreamingSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        messages: body["messages"].map(chatMessageSerializer),
-        stream: body["stream"],
-        session_state: body["sessionState"],
-        context: !body.context
-          ? body.context
-          : (serializeRecord(body.context as any) as any),
-      },
+      body: streamingChatCompletionOptionsRecordSerializer(body),
     });
 }
 
@@ -73,14 +66,7 @@ export function _createSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        messages: body["messages"].map(chatMessageSerializer),
-        stream: body["stream"],
-        session_state: body["sessionState"],
-        context: !body.context
-          ? body.context
-          : (serializeRecord(body.context as any) as any),
-      },
+      body: chatCompletionOptionsRecordSerializer(body),
     });
 }
 

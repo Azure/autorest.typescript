@@ -9,13 +9,13 @@ import {
 import {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionOptions,
+  multivariateMultivariateBatchDetectionOptionsSerializer,
   MultivariateModelInfo,
-  multivariateAlignPolicySerializer,
-  multivariateDiagnosticsInfoSerializer,
+  multivariateModelInfoSerializer,
   MultivariateAnomalyDetectionModel,
   _MultivariateModelList,
   MultivariateMultivariateLastDetectionOptions,
-  multivariateVariableValuesSerializer,
+  multivariateMultivariateLastDetectionOptionsSerializer,
   MultivariateMultivariateLastDetectionResult,
 } from "../../models/models.js";
 import {
@@ -89,21 +89,7 @@ export function _trainMultivariateModelSend(
     .path("/multivariate/models")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        dataSource: modelInfo["dataSource"],
-        dataSchema: modelInfo["dataSchema"],
-        startTime: modelInfo["startTime"].toISOString(),
-        endTime: modelInfo["endTime"].toISOString(),
-        displayName: modelInfo["displayName"],
-        slidingWindow: modelInfo["slidingWindow"],
-        alignPolicy: !modelInfo.alignPolicy
-          ? modelInfo.alignPolicy
-          : multivariateAlignPolicySerializer(modelInfo.alignPolicy),
-        status: modelInfo["status"],
-        diagnosticsInfo: !modelInfo.diagnosticsInfo
-          ? modelInfo.diagnosticsInfo
-          : multivariateDiagnosticsInfoSerializer(modelInfo.diagnosticsInfo),
-      },
+      body: multivariateModelInfoSerializer(modelInfo),
     });
 }
 
@@ -264,12 +250,7 @@ export function _detectMultivariateBatchAnomalySend(
     .path("/multivariate/models/{modelId}:detect-batch", modelId)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        dataSource: options["dataSource"],
-        topContributorCount: options["topContributorCount"],
-        startTime: options["startTime"].toISOString(),
-        endTime: options["endTime"].toISOString(),
-      },
+      body: multivariateMultivariateBatchDetectionOptionsSerializer(options),
     });
 }
 
@@ -321,12 +302,7 @@ export function _detectMultivariateLastAnomalySend(
     .path("/multivariate/models/{modelId}:detect-last", modelId)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        variables: options["variables"].map(
-          multivariateVariableValuesSerializer,
-        ),
-        topContributorCount: options["topContributorCount"],
-      },
+      body: multivariateMultivariateLastDetectionOptionsSerializer(options),
     });
 }
 

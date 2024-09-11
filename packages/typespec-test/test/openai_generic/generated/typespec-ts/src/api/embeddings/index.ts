@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   CreateEmbeddingRequest,
+  createEmbeddingRequestSerializer,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
 import {
@@ -25,11 +26,7 @@ export function _createSend(
     .path("/embeddings")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        model: embedding["model"],
-        input: embedding["input"],
-        user: embedding["user"],
-      },
+      body: createEmbeddingRequestSerializer(embedding),
     });
 }
 

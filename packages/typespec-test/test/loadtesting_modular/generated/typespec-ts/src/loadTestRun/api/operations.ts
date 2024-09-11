@@ -6,27 +6,22 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../../helpers/serializerHelpers.js";
 import {
-  passFailCriteriaSerializer,
-  autoStopCriteriaSerializer,
-  secretSerializer,
-  certificateMetadataSerializer,
-  loadTestConfigurationSerializer,
-  appComponentSerializer,
-  resourceMetricSerializer,
   TestRun,
+  testRunSerializer,
   testRunDeserializer,
   TestRunFileInfo,
   TestRunAppComponents,
+  testRunAppComponentsSerializer,
   testRunAppComponentsDeserializer,
   TestRunServerMetricConfig,
+  testRunServerMetricConfigSerializer,
   testRunServerMetricConfigDeserializer,
   DimensionValueList,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
-  dimensionFilterSerializer,
+  metricRequestPayloadSerializer,
   _Metrics,
   TimeSeriesElement,
   _PagedTestFileInfo,
@@ -73,31 +68,7 @@ export function _createOrUpdateTestRunSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       queryParameters: { oldTestRunId: options?.oldTestRunId },
-      body: {
-        passFailCriteria: !body.passFailCriteria
-          ? body.passFailCriteria
-          : passFailCriteriaSerializer(body.passFailCriteria),
-        autoStopCriteria: !body.autoStopCriteria
-          ? body.autoStopCriteria
-          : autoStopCriteriaSerializer(body.autoStopCriteria),
-        secrets: !body.secrets
-          ? body.secrets
-          : (serializeRecord(body.secrets as any, secretSerializer) as any),
-        certificate: !body.certificate
-          ? body.certificate
-          : certificateMetadataSerializer(body.certificate),
-        environmentVariables: !body.environmentVariables
-          ? body.environmentVariables
-          : (serializeRecord(body.environmentVariables as any) as any),
-        loadTestConfiguration: !body.loadTestConfiguration
-          ? body.loadTestConfiguration
-          : loadTestConfigurationSerializer(body.loadTestConfiguration),
-        displayName: body["displayName"],
-        testId: body["testId"],
-        description: body["description"],
-        requestDataLevel: body["requestDataLevel"],
-        debugLogsEnabled: body["debugLogsEnabled"],
-      },
+      body: testRunSerializer(body),
     });
 }
 
@@ -140,12 +111,7 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        components: serializeRecord(
-          body.components as any,
-          appComponentSerializer,
-        ) as any,
-      },
+      body: testRunAppComponentsSerializer(body),
     });
 }
 
@@ -190,14 +156,7 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        metrics: !body.metrics
-          ? body.metrics
-          : (serializeRecord(
-              body.metrics as any,
-              resourceMetricSerializer,
-            ) as any),
-      },
+      body: testRunServerMetricConfigSerializer(body),
     });
 }
 
@@ -546,15 +505,7 @@ export function _listMetricsSend(
         metricNamespace: metricNamespace,
         timespan: timespan,
       },
-      body:
-        body === undefined
-          ? body
-          : {
-              filters:
-                body["filters"] === undefined
-                  ? body["filters"]
-                  : body["filters"].map(dimensionFilterSerializer),
-            },
+      body: metricRequestPayloadSerializer(body),
     });
 }
 

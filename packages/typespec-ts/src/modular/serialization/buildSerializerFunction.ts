@@ -27,8 +27,9 @@ function isSupportedSerializerType(type: SdkType): boolean {
 export function buildModelSerializer(
   context: SdkContext,
   type: SdkType,
-  skipDiscriminatedUnion = false
-): FunctionDeclarationStructure | undefined {
+  skipDiscriminatedUnion = false,
+  nameOnly: boolean = false
+): FunctionDeclarationStructure | undefined | string {
   // const modelTcgcType = getTcgcType(type) as SdkModelType;
   if (!isSupportedSerializerType(type)) {
     return undefined;
@@ -50,21 +51,21 @@ export function buildModelSerializer(
     type.kind === "model" &&
     type.discriminatorProperty
   ) {
-    return buildPolymorphicSerializer(context, type);
+    return buildPolymorphicSerializer(context, type, nameOnly);
   }
 
   if (isDiscriminatedUnion(type) && !skipDiscriminatedUnion) {
-    return buildDiscriminatedUnionSerializer(context, type);
+    return buildDiscriminatedUnionSerializer(context, type, nameOnly);
   }
 
   switch (type.kind) {
     case "model":
-      return buildModelTypeSerializer(context, type);
+      return buildModelTypeSerializer(context, type, nameOnly);
     case "enum":
-    case "union":
-      return buildEnumSerializer(context, type);
+    case "union": // for non-discriminated union, we just return whatever we get
+      return buildEnumSerializer(context, type, nameOnly);
     case "dict":
-      return buildDictTypeSerializer(context, type);
+      return buildDictTypeSerializer(context, type, nameOnly);
     default:
       return undefined;
   }
@@ -98,17 +99,38 @@ function hasAdditionalProperties(type: SdkType | undefined) {
 
 function buildPolymorphicSerializer(
   context: SdkContext,
+  type: SdkModelType,
+  nameOnly: boolean
+): string;
+function buildPolymorphicSerializer(
+  context: SdkContext,
   type: SdkModelType
-): FunctionDeclarationStructure | undefined {
+): FunctionDeclarationStructure | undefined;
+function buildPolymorphicSerializer(
+  context: SdkContext,
+  type: SdkModelType,
+  nameOnly = false
+): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
+  const serializeFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}UnionSerializer`;
+  if (nameOnly) {
+    return serializeFunctionName;
+  }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${toCamelCase(normalizeModelName(context, type))}UnionSerializer`,
+    name: serializeFunctionName,
     isExported: true,
-    parameters: [],
-    returnType: "Record<string, unknown>",
+    parameters: [
+      {
+        name: "item",
+        type: toPascalCase(normalizeModelName(context, type))
+      }
+    ],
+    returnType: "any",
     statements: []
   };
   if (!type.discriminatorProperty) {
@@ -140,12 +162,6 @@ function buildPolymorphicSerializer(
       `);
   });
 
-  const params = [
-    {
-      name: "item",
-      type: `${toPascalCase(normalizeModelName(context, type)!)}`
-    }
-  ];
   statements.push(`
       switch (item.${type.discriminatorProperty.name}) {
        ${cases.join("\n")}
@@ -153,20 +169,35 @@ function buildPolymorphicSerializer(
           return item;
       }
     `);
-  serializerFunction.parameters = params;
   serializerFunction.statements = statements.join("\n");
   return serializerFunction;
 }
 
 function buildDiscriminatedUnionSerializer(
   context: SdkContext,
+  type: SdkModelType,
+  nameOnly: boolean
+): string;
+function buildDiscriminatedUnionSerializer(
+  context: SdkContext,
   type: SdkModelType
-): FunctionDeclarationStructure | undefined {
+): FunctionDeclarationStructure | undefined;
+function buildDiscriminatedUnionSerializer(
+  context: SdkContext,
+  type: SdkModelType,
+  nameOnly = false
+): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
   const cases: string[] = [];
   const output: string[] = [];
+  const serializeFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}UnionSerializer`;
+  if (nameOnly) {
+    return serializeFunctionName;
+  }
   const baseSerializerName = `${toCamelCase(
     normalizeModelName(context, type)
   )}Serializer`;
@@ -192,7 +223,7 @@ function buildDiscriminatedUnionSerializer(
 
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${toCamelCase(normalizeModelName(context, type))}UnionSerializer`,
+    name: serializeFunctionName,
     isExported: true,
     parameters: [
       {
@@ -200,7 +231,7 @@ function buildDiscriminatedUnionSerializer(
         type: toPascalCase(normalizeModelName(context, type))
       }
     ],
-    returnType: "Record<string, unknown>",
+    returnType: "any",
     statements: output.join("\n")
   };
   return serializerFunction;
@@ -208,10 +239,26 @@ function buildDiscriminatedUnionSerializer(
 
 function buildEnumSerializer(
   context: SdkContext,
+  type: SdkEnumType | SdkUnionType,
+  nameOnly: boolean
+): string;
+function buildEnumSerializer(
+  context: SdkContext,
   type: SdkEnumType | SdkUnionType
-): FunctionDeclarationStructure {
+): FunctionDeclarationStructure;
+function buildEnumSerializer(
+  context: SdkContext,
+  type: SdkEnumType | SdkUnionType,
+  nameOnly = false
+): FunctionDeclarationStructure | string {
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
+  }
+  const serializerFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}Serializer`;
+  if (nameOnly) {
+    return serializerFunctionName;
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -231,14 +278,33 @@ function buildEnumSerializer(
 
 function buildModelTypeSerializer(
   context: SdkContext,
+  type: SdkModelType,
+  nameOnly: boolean
+): string;
+function buildModelTypeSerializer(
+  context: SdkContext,
   type: SdkModelType
-): FunctionDeclarationStructure {
+): FunctionDeclarationStructure;
+function buildModelTypeSerializer(
+  context: SdkContext,
+  type: SdkModelType,
+  nameOnly = false
+): FunctionDeclarationStructure | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    throw new Error(`NYI Deserialization of anonymous types`);
+  }
+  const serializerFunctionName = `${toCamelCase(
+    normalizeModelName(context, type)
+  )}Serializer`;
+  if (nameOnly) {
+    return serializerFunctionName;
+  }
+  if (serializerFunctionName === "dataTypeSerializer") {
+    serializerFunctionName;
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${toCamelCase(normalizeModelName(context, type))}Serializer`,
+    name: serializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -246,7 +312,7 @@ function buildModelTypeSerializer(
         type: toPascalCase(normalizeModelName(context, type))
       }
     ],
-    returnType: "Record<string, unknown>",
+    returnType: "any",
     statements: ["return item;"]
   };
   const nullabilityPrefix = "";
@@ -260,22 +326,19 @@ function buildModelTypeSerializer(
     ? "...item,"
     : "";
 
-  const { propertiesStr, directAssignment } = getRequestModelMapping(
+  const { directAssignment, propertiesStr } = getRequestModelMapping(
     getType(context, type.__raw!),
     "item"
   );
-  const propertiesSerialization = propertiesStr.filter((p) => p.trim());
+  const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
 
   const output = [];
 
   // don't emit a serializer if there is nothing to serialize
-  if (propertiesSerialization.length || additionalPropertiesSpread) {
-    const spreadSerialized = directAssignment ? "..." : "";
+  if (propertiesDeserialization.length || additionalPropertiesSpread) {
     const fnBody = `{
            ${additionalPropertiesSpread}
-           ${nullabilityPrefix} ${spreadSerialized} ${propertiesSerialization.join(
-             ",\n"
-           )}
+           ${nullabilityPrefix} ${directAssignment ? propertiesStr : propertiesDeserialization.join(",\n")}
         }`;
     output.push(`
         return ${fnBody}
@@ -291,8 +354,18 @@ function buildModelTypeSerializer(
 
 function buildDictTypeSerializer(
   context: SdkContext,
+  type: SdkDictionaryType,
+  nameOnly: boolean
+): string;
+function buildDictTypeSerializer(
+  context: SdkContext,
   type: SdkDictionaryType
-): FunctionDeclarationStructure | undefined {
+): FunctionDeclarationStructure | undefined;
+function buildDictTypeSerializer(
+  context: SdkContext,
+  type: SdkDictionaryType,
+  nameOnly = false
+): FunctionDeclarationStructure | undefined | string {
   const valueSerializer = buildModelSerializer(context, type.valueType);
   if (!valueSerializer) {
     return undefined;
@@ -300,12 +373,20 @@ function buildDictTypeSerializer(
   if (!isSupportedSerializerType(type.valueType)) {
     return undefined;
   }
+
+  if (typeof valueSerializer === "string") {
+    return undefined;
+  }
   const valueTypeName = toCamelCase(
     valueSerializer.name ? valueSerializer.name.replace("Serializer", "") : ""
   );
+  const serializerFunctionName = `${valueTypeName}RecordSerializer`;
+  if (nameOnly) {
+    return serializerFunctionName;
+  }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${valueTypeName}RecordSerializer`,
+    name: serializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -313,7 +394,7 @@ function buildDictTypeSerializer(
         type: `Record<string, ${normalizeModelName(context, type.valueType as any) ?? "any"}>`
       }
     ],
-    returnType: "Record<string, unknown>",
+    returnType: "Record<string, any>",
     statements: [
       `
   const result: Record<string, any> = {};

@@ -15,9 +15,7 @@ export interface Test3Request {
   prop: string;
 }
 
-export function test3RequestSerializer(
-  item: Test3Request,
-): Record<string, unknown> {
+export function test3RequestSerializer(item: Test3Request): any {
   return {
     prop: item["prop"],
   };
@@ -33,9 +31,7 @@ export interface Test4Request {
   prop: string;
 }
 
-export function test4RequestSerializer(
-  item: Test4Request,
-): Record<string, unknown> {
+export function test4RequestSerializer(item: Test4Request): any {
   return {
     prop: item["prop"],
   };

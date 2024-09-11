@@ -227,7 +227,6 @@ export interface PageSettings {
 
 // @public
 export interface UnivariateAnomalyDetectorError {
-    "x-ms-error-code"?: string;
     code?: UnivariateAnomalyDetectorErrorCodes;
     message?: string;
 }

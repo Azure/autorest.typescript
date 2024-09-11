@@ -21,7 +21,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 // @public
 export interface ErrorResponse {
     error: ErrorModel;
-    errorCode?: string;
 }
 
 // @public

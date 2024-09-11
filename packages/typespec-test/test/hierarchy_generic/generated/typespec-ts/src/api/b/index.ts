@@ -6,7 +6,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { BA } from "../../models/models.js";
+import { BA, bASerializer } from "../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
@@ -22,7 +22,7 @@ export function _op1Send(
     .path("/b")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop2: body["prop2"] },
+      body: bASerializer(body),
     });
 }
 

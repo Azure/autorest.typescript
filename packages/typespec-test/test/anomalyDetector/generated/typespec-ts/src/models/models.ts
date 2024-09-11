@@ -68,7 +68,7 @@ export interface MultivariateVariableState {
 
 export function multivariateVariableStateSerializer(
   item: MultivariateVariableState,
-): Record<string, unknown> {
+): any {
   return {
     variable: item["variable"],
     filledNARatio: item["filledNARatio"],
@@ -122,7 +122,7 @@ export interface MultivariateMultivariateBatchDetectionOptions {
 
 export function multivariateMultivariateBatchDetectionOptionsSerializer(
   item: MultivariateMultivariateBatchDetectionOptions,
-): Record<string, unknown> {
+): any {
   return {
     dataSource: item["dataSource"],
     topContributorCount: item["topContributorCount"],
@@ -237,7 +237,7 @@ export interface MultivariateModelInfo {
 
 export function multivariateModelInfoSerializer(
   item: MultivariateModelInfo,
-): Record<string, unknown> {
+): any {
   return {
     dataSource: item["dataSource"],
     dataSchema: item["dataSchema"],
@@ -309,7 +309,7 @@ export interface MultivariateAlignPolicy {
 
 export function multivariateAlignPolicySerializer(
   item: MultivariateAlignPolicy,
-): Record<string, unknown> {
+): any {
   return {
     alignMode: item["alignMode"],
     fillNAMethod: item["fillNAMethod"],
@@ -389,7 +389,7 @@ export interface MultivariateDiagnosticsInfo {
 
 export function multivariateDiagnosticsInfoSerializer(
   item: MultivariateDiagnosticsInfo,
-): Record<string, unknown> {
+): any {
   return {
     modelState: !item.modelState
       ? item.modelState
@@ -435,7 +435,7 @@ export interface MultivariateModelState {
 
 export function multivariateModelStateSerializer(
   item: MultivariateModelState,
-): Record<string, unknown> {
+): any {
   return {
     epochIds: item["epochIds"],
     trainLosses: item["trainLosses"],
@@ -499,7 +499,7 @@ export interface MultivariateMultivariateLastDetectionOptions {
 
 export function multivariateMultivariateLastDetectionOptionsSerializer(
   item: MultivariateMultivariateLastDetectionOptions,
-): Record<string, unknown> {
+): any {
   return {
     variables: item["variables"].map(multivariateVariableValuesSerializer),
     topContributorCount: item["topContributorCount"],
@@ -527,7 +527,7 @@ export interface MultivariateVariableValues {
 
 export function multivariateVariableValuesSerializer(
   item: MultivariateVariableValues,
-): Record<string, unknown> {
+): any {
   return {
     variable: item["variable"],
     timestamps: item["timestamps"],
@@ -602,7 +602,7 @@ export interface UnivariateUnivariateDetectionOptions {
 
 export function univariateUnivariateDetectionOptionsSerializer(
   item: UnivariateUnivariateDetectionOptions,
-): Record<string, unknown> {
+): any {
   return {
     series: item["series"].map(univariateTimeSeriesPointSerializer),
     granularity: item["granularity"],
@@ -640,7 +640,7 @@ export interface UnivariateTimeSeriesPoint {
 
 export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
-): Record<string, unknown> {
+): any {
   return {
     timestamp: item["timestamp"]?.toISOString(),
     value: item["value"],
@@ -757,8 +757,6 @@ export interface UnivariateUnivariateEntireDetectionResult {
 
 /** Error information returned by the API. */
 export interface UnivariateAnomalyDetectorError {
-  /** Error code. */
-  "x-ms-error-code"?: string;
   /** The error code. */
   code?: UnivariateAnomalyDetectorErrorCodes;
   /** A message explaining the error reported by the service. */
@@ -875,7 +873,7 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
 
 export function univariateUnivariateChangePointDetectionOptionsSerializer(
   item: UnivariateUnivariateChangePointDetectionOptions,
-): Record<string, unknown> {
+): any {
   return {
     series: item["series"].map(univariateTimeSeriesPointSerializer),
     granularity: item["granularity"],

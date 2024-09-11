@@ -9,6 +9,7 @@ import {
 import {
   _Metrics,
   TestProfileRun,
+  testProfileRunSerializer,
   testProfileRunDeserializer,
   _PagedTestFileInfo,
   _PagedTest,
@@ -44,11 +45,7 @@ export function _createOrUpdateTestProfileRunSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: {
-        displayName: body["displayName"],
-        description: body["description"],
-        testProfileId: body["testProfileId"],
-      },
+      body: testProfileRunSerializer(body),
     });
 }
 

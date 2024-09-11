@@ -37,6 +37,7 @@ import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
+import { isMetadata } from "@typespec/http";
 
 export function emitTypes(
   context: SdkContext,
@@ -112,6 +113,7 @@ function addSerializationFunctions(
   );
   if (
     serializationFunction &&
+    typeof serializationFunction !== "string" &&
     serializationFunction.name &&
     !sourceFile.getFunction(serializationFunction.name)
   ) {
@@ -233,7 +235,9 @@ function buildModelInterface(
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type),
     isExported: true,
-    properties: type.properties.map(buildModelProperty)
+    properties: type.properties
+      .filter((p) => !isMetadata(context.program, p.__raw!))
+      .map(buildModelProperty)
   };
 
   if (type.baseModel) {

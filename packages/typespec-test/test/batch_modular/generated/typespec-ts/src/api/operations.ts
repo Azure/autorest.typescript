@@ -8,20 +8,19 @@ import {
 } from "@azure-rest/core-client";
 import {
   BatchNodeUserCreateOptions,
+  batchNodeUserCreateOptionsSerializer,
   BatchNodeUserUpdateOptions,
+  batchNodeUserUpdateOptionsSerializer,
   BatchNode,
-  startTaskSerializer,
-  taskContainerSettingsSerializer,
-  batchNodeIdentityReferenceSerializer,
-  resourceFileSerializer,
-  environmentSettingSerializer,
-  userIdentitySerializer,
-  certificateReferenceSerializer,
   NodeRebootOptions,
+  nodeRebootOptionsSerializer,
   NodeReimageOptions,
+  nodeReimageOptionsSerializer,
   NodeDisableSchedulingOptions,
+  nodeDisableSchedulingOptionsSerializer,
   BatchNodeRemoteLoginSettingsResult,
   UploadBatchServiceLogsOptions,
+  uploadBatchServiceLogsOptionsSerializer,
   UploadBatchServiceLogsResult,
   _BatchNodeListResult,
   NodeVMExtension,
@@ -30,49 +29,37 @@ import {
   NodeFile,
   BatchTaskCreateOptions,
   batchTaskCreateOptionsSerializer,
-  exitConditionsSerializer,
-  outputFileSerializer,
-  affinityInformationSerializer,
-  taskConstraintsSerializer,
-  multiInstanceSettingsSerializer,
-  taskDependenciesSerializer,
-  applicationPackageReferenceSerializer,
-  authenticationTokenSettingsSerializer,
   _BatchTaskListResult,
   BatchTask,
+  batchTaskSerializer,
   batchTaskDeserializer,
   BatchTaskCollection,
+  batchTaskCollectionSerializer,
   TaskAddCollectionResult,
   BatchTaskListSubtasksResult,
   BatchJobSchedule,
+  batchJobScheduleSerializer,
   batchJobScheduleDeserializer,
-  scheduleSerializer,
-  jobSpecificationSerializer,
-  jobNetworkConfigurationSerializer,
-  jobConstraintsSerializer,
-  jobManagerTaskSerializer,
-  jobPreparationTaskSerializer,
-  jobReleaseTaskSerializer,
-  poolInformationSerializer,
-  cloudServiceConfigurationSerializer,
-  virtualMachineConfigurationSerializer,
-  taskSchedulingPolicySerializer,
-  networkConfigurationSerializer,
-  userAccountSerializer,
-  metadataItemSerializer,
-  mountConfigurationSerializer,
   BatchJobScheduleUpdateOptions,
+  batchJobScheduleUpdateOptionsSerializer,
   BatchJobScheduleCreateOptions,
+  batchJobScheduleCreateOptionsSerializer,
   _BatchJobScheduleListResult,
   BatchCertificate,
+  batchCertificateSerializer,
   batchCertificateDeserializer,
   _CertificateListResult,
   BatchJob,
+  batchJobSerializer,
   batchJobDeserializer,
   BatchJobUpdateOptions,
+  batchJobUpdateOptionsSerializer,
   BatchJobDisableOptions,
+  batchJobDisableOptionsSerializer,
   BatchJobTerminateOptions,
+  batchJobTerminateOptionsSerializer,
   BatchJobCreateOptions,
+  batchJobCreateOptionsSerializer,
   _BatchJobListResult,
   _BatchJobListPreparationAndReleaseTaskStatusResult,
   JobPreparationAndReleaseTaskExecutionInformation,
@@ -84,15 +71,22 @@ import {
   _PoolListUsageMetricsResult,
   PoolUsageMetrics,
   BatchPoolCreateOptions,
+  batchPoolCreateOptionsSerializer,
   _BatchPoolListResult,
   BatchPool,
   AutoScaleRun,
   BatchPoolUpdateOptions,
+  batchPoolUpdateOptionsSerializer,
   BatchPoolEnableAutoScaleOptions,
+  batchPoolEnableAutoScaleOptionsSerializer,
   BatchPoolEvaluateAutoScaleOptions,
+  batchPoolEvaluateAutoScaleOptionsSerializer,
   BatchPoolResizeOptions,
+  batchPoolResizeOptionsSerializer,
   BatchPoolReplaceOptions,
+  batchPoolReplaceOptionsSerializer,
   NodeRemoveOptions,
+  nodeRemoveOptionsSerializer,
   _ApplicationListResult,
   BatchApplication,
 } from "../models/models.js";
@@ -104,7 +98,6 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,
@@ -341,60 +334,7 @@ export function _createPoolSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        id: body["id"],
-        displayName: body["displayName"],
-        vmSize: body["vmSize"],
-        cloudServiceConfiguration: !body.cloudServiceConfiguration
-          ? body.cloudServiceConfiguration
-          : cloudServiceConfigurationSerializer(body.cloudServiceConfiguration),
-        virtualMachineConfiguration: !body.virtualMachineConfiguration
-          ? body.virtualMachineConfiguration
-          : virtualMachineConfigurationSerializer(
-              body.virtualMachineConfiguration,
-            ),
-        resizeTimeout: body["resizeTimeout"],
-        targetDedicatedNodes: body["targetDedicatedNodes"],
-        targetLowPriorityNodes: body["targetLowPriorityNodes"],
-        enableAutoScale: body["enableAutoScale"],
-        autoScaleFormula: body["autoScaleFormula"],
-        autoScaleEvaluationInterval: body["autoScaleEvaluationInterval"],
-        enableInterNodeCommunication: body["enableInterNodeCommunication"],
-        networkConfiguration: !body.networkConfiguration
-          ? body.networkConfiguration
-          : networkConfigurationSerializer(body.networkConfiguration),
-        startTask: !body.startTask
-          ? body.startTask
-          : startTaskSerializer(body.startTask),
-        certificateReferences:
-          body["certificateReferences"] === undefined
-            ? body["certificateReferences"]
-            : body["certificateReferences"].map(certificateReferenceSerializer),
-        applicationPackageReferences:
-          body["applicationPackageReferences"] === undefined
-            ? body["applicationPackageReferences"]
-            : body["applicationPackageReferences"].map(
-                applicationPackageReferenceSerializer,
-              ),
-        applicationLicenses: body["applicationLicenses"],
-        taskSlotsPerNode: body["taskSlotsPerNode"],
-        taskSchedulingPolicy: !body.taskSchedulingPolicy
-          ? body.taskSchedulingPolicy
-          : taskSchedulingPolicySerializer(body.taskSchedulingPolicy),
-        userAccounts:
-          body["userAccounts"] === undefined
-            ? body["userAccounts"]
-            : body["userAccounts"].map(userAccountSerializer),
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-        mountConfiguration:
-          body["mountConfiguration"] === undefined
-            ? body["mountConfiguration"]
-            : body["mountConfiguration"].map(mountConfigurationSerializer),
-        targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
-      },
+      body: batchPoolCreateOptionsSerializer(body),
     });
 }
 
@@ -666,26 +606,7 @@ export function _updatePoolSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        startTask: !body.startTask
-          ? body.startTask
-          : startTaskSerializer(body.startTask),
-        certificateReferences:
-          body["certificateReferences"] === undefined
-            ? body["certificateReferences"]
-            : body["certificateReferences"].map(certificateReferenceSerializer),
-        applicationPackageReferences:
-          body["applicationPackageReferences"] === undefined
-            ? body["applicationPackageReferences"]
-            : body["applicationPackageReferences"].map(
-                applicationPackageReferenceSerializer,
-              ),
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-        targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
-      },
+      body: batchPoolUpdateOptionsSerializer(body),
     });
 }
 
@@ -783,10 +704,7 @@ export function _enablePoolAutoScaleSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        autoScaleFormula: body["autoScaleFormula"],
-        autoScaleEvaluationInterval: body["autoScaleEvaluationInterval"],
-      },
+      body: batchPoolEnableAutoScaleOptionsSerializer(body),
     });
 }
 
@@ -836,7 +754,7 @@ export function _evaluatePoolAutoScaleSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: { autoScaleFormula: body["autoScaleFormula"] },
+      body: batchPoolEvaluateAutoScaleOptionsSerializer(body),
     });
 }
 
@@ -902,12 +820,7 @@ export function _resizePoolSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        targetDedicatedNodes: body["targetDedicatedNodes"],
-        targetLowPriorityNodes: body["targetLowPriorityNodes"],
-        resizeTimeout: body["resizeTimeout"],
-        nodeDeallocationOption: body["nodeDeallocationOption"],
-      },
+      body: batchPoolResizeOptionsSerializer(body),
     });
 }
 
@@ -1017,19 +930,7 @@ export function _replacePoolPropertiesSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        startTask: !body.startTask
-          ? body.startTask
-          : startTaskSerializer(body.startTask),
-        certificateReferences: body["certificateReferences"].map(
-          certificateReferenceSerializer,
-        ),
-        applicationPackageReferences: body["applicationPackageReferences"].map(
-          applicationPackageReferenceSerializer,
-        ),
-        metadata: body["metadata"].map(metadataItemSerializer),
-        targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
-      },
+      body: batchPoolReplaceOptionsSerializer(body),
     });
 }
 
@@ -1095,11 +996,7 @@ export function _removeNodesSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        nodeList: body["nodeList"],
-        resizeTimeout: body["resizeTimeout"],
-        nodeDeallocationOption: body["nodeDeallocationOption"],
-      },
+      body: nodeRemoveOptionsSerializer(body),
     });
 }
 
@@ -1360,22 +1257,7 @@ export function _updateJobSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        priority: body["priority"],
-        allowTaskPreemption: body["allowTaskPreemption"],
-        maxParallelTasks: body["maxParallelTasks"],
-        constraints: !body.constraints
-          ? body.constraints
-          : jobConstraintsSerializer(body.constraints),
-        poolInfo: !body.poolInfo
-          ? body.poolInfo
-          : poolInformationSerializer(body.poolInfo),
-        onAllTasksComplete: body["onAllTasksComplete"],
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-      },
+      body: batchJobUpdateOptionsSerializer(body),
     });
 }
 
@@ -1436,20 +1318,7 @@ export function _replaceJobSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        priority: body["priority"],
-        allowTaskPreemption: body["allowTaskPreemption"],
-        maxParallelTasks: body["maxParallelTasks"],
-        constraints: !body.constraints
-          ? body.constraints
-          : jobConstraintsSerializer(body.constraints),
-        poolInfo: poolInformationSerializer(body.poolInfo),
-        onAllTasksComplete: body["onAllTasksComplete"],
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-      },
+      body: batchJobSerializer(body),
     });
 }
 
@@ -1510,7 +1379,7 @@ export function _disableJobSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: { disableTasks: body["disableTasks"] },
+      body: batchJobDisableOptionsSerializer(body),
     });
 }
 
@@ -1634,10 +1503,7 @@ export function _terminateJobSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body:
-        body === undefined
-          ? body
-          : { terminateReason: body["terminateReason"] },
+      body: batchJobTerminateOptionsSerializer(body),
     });
 }
 
@@ -1686,42 +1552,7 @@ export function _createJobSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        id: body["id"],
-        displayName: body["displayName"],
-        usesTaskDependencies: body["usesTaskDependencies"],
-        priority: body["priority"],
-        allowTaskPreemption: body["allowTaskPreemption"],
-        maxParallelTasks: body["maxParallelTasks"],
-        constraints: !body.constraints
-          ? body.constraints
-          : jobConstraintsSerializer(body.constraints),
-        jobManagerTask: !body.jobManagerTask
-          ? body.jobManagerTask
-          : jobManagerTaskSerializer(body.jobManagerTask),
-        jobPreparationTask: !body.jobPreparationTask
-          ? body.jobPreparationTask
-          : jobPreparationTaskSerializer(body.jobPreparationTask),
-        jobReleaseTask: !body.jobReleaseTask
-          ? body.jobReleaseTask
-          : jobReleaseTaskSerializer(body.jobReleaseTask),
-        commonEnvironmentSettings:
-          body["commonEnvironmentSettings"] === undefined
-            ? body["commonEnvironmentSettings"]
-            : body["commonEnvironmentSettings"].map(
-                environmentSettingSerializer,
-              ),
-        poolInfo: poolInformationSerializer(body.poolInfo),
-        onAllTasksComplete: body["onAllTasksComplete"],
-        onTaskFailure: body["onTaskFailure"],
-        networkConfiguration: !body.networkConfiguration
-          ? body.networkConfiguration
-          : jobNetworkConfigurationSerializer(body.networkConfiguration),
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-      },
+      body: batchJobCreateOptionsSerializer(body),
     });
 }
 
@@ -1959,13 +1790,7 @@ export function _createCertificateSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        thumbprint: body["thumbprint"],
-        thumbprintAlgorithm: body["thumbprintAlgorithm"],
-        data: uint8ArrayToString(body["data"], "base64"),
-        certificateFormat: body["certificateFormat"],
-        password: body["password"],
-      },
+      body: batchCertificateSerializer(body),
     });
 }
 
@@ -2388,18 +2213,7 @@ export function _updateJobScheduleSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        schedule: !body.schedule
-          ? body.schedule
-          : scheduleSerializer(body.schedule),
-        jobSpecification: !body.jobSpecification
-          ? body.jobSpecification
-          : jobSpecificationSerializer(body.jobSpecification),
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-      },
+      body: batchJobScheduleUpdateOptionsSerializer(body),
     });
 }
 
@@ -2467,14 +2281,7 @@ export function _replaceJobScheduleSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        schedule: scheduleSerializer(body.schedule),
-        jobSpecification: jobSpecificationSerializer(body.jobSpecification),
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-      },
+      body: batchJobScheduleSerializer(body),
     });
 }
 
@@ -2684,16 +2491,7 @@ export function _createJobScheduleSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        id: body["id"],
-        displayName: body["displayName"],
-        schedule: scheduleSerializer(body.schedule),
-        jobSpecification: jobSpecificationSerializer(body.jobSpecification),
-        metadata:
-          body["metadata"] === undefined
-            ? body["metadata"]
-            : body["metadata"].map(metadataItemSerializer),
-      },
+      body: batchJobScheduleCreateOptionsSerializer(body),
     });
 }
 
@@ -2779,56 +2577,7 @@ export function _createTaskSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        id: body["id"],
-        displayName: body["displayName"],
-        exitConditions: !body.exitConditions
-          ? body.exitConditions
-          : exitConditionsSerializer(body.exitConditions),
-        commandLine: body["commandLine"],
-        containerSettings: !body.containerSettings
-          ? body.containerSettings
-          : taskContainerSettingsSerializer(body.containerSettings),
-        resourceFiles:
-          body["resourceFiles"] === undefined
-            ? body["resourceFiles"]
-            : body["resourceFiles"].map(resourceFileSerializer),
-        outputFiles:
-          body["outputFiles"] === undefined
-            ? body["outputFiles"]
-            : body["outputFiles"].map(outputFileSerializer),
-        environmentSettings:
-          body["environmentSettings"] === undefined
-            ? body["environmentSettings"]
-            : body["environmentSettings"].map(environmentSettingSerializer),
-        affinityInfo: !body.affinityInfo
-          ? body.affinityInfo
-          : affinityInformationSerializer(body.affinityInfo),
-        constraints: !body.constraints
-          ? body.constraints
-          : taskConstraintsSerializer(body.constraints),
-        requiredSlots: body["requiredSlots"],
-        userIdentity: !body.userIdentity
-          ? body.userIdentity
-          : userIdentitySerializer(body.userIdentity),
-        multiInstanceSettings: !body.multiInstanceSettings
-          ? body.multiInstanceSettings
-          : multiInstanceSettingsSerializer(body.multiInstanceSettings),
-        dependsOn: !body.dependsOn
-          ? body.dependsOn
-          : taskDependenciesSerializer(body.dependsOn),
-        applicationPackageReferences:
-          body["applicationPackageReferences"] === undefined
-            ? body["applicationPackageReferences"]
-            : body["applicationPackageReferences"].map(
-                applicationPackageReferenceSerializer,
-              ),
-        authenticationTokenSettings: !body.authenticationTokenSettings
-          ? body.authenticationTokenSettings
-          : authenticationTokenSettingsSerializer(
-              body.authenticationTokenSettings,
-            ),
-      },
+      body: batchTaskCreateOptionsSerializer(body),
     });
 }
 
@@ -2925,9 +2674,7 @@ export function _createTaskCollectionSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        value: collection["value"].map(batchTaskCreateOptionsSerializer),
-      },
+      body: batchTaskCollectionSerializer(collection),
     });
 }
 
@@ -3123,11 +2870,7 @@ export function _replaceTaskSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        constraints: !body.constraints
-          ? body.constraints
-          : taskConstraintsSerializer(body.constraints),
-      },
+      body: batchTaskSerializer(body),
     });
 }
 
@@ -3553,13 +3296,7 @@ export function _createNodeUserSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        name: body["name"],
-        isAdmin: body["isAdmin"],
-        expiryTime: body["expiryTime"]?.toISOString(),
-        password: body["password"],
-        sshPublicKey: body["sshPublicKey"],
-      },
+      body: batchNodeUserCreateOptionsSerializer(body),
     });
 }
 
@@ -3674,11 +3411,7 @@ export function _replaceNodeUserSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        password: body["password"],
-        expiryTime: body["expiryTime"]?.toISOString(),
-        sshPublicKey: body["sshPublicKey"],
-      },
+      body: batchNodeUserUpdateOptionsSerializer(body),
     });
 }
 
@@ -3776,10 +3509,7 @@ export function _rebootNodeSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body:
-        body === undefined
-          ? body
-          : { nodeRebootOption: body["nodeRebootOption"] },
+      body: nodeRebootOptionsSerializer(body),
     });
 }
 
@@ -3824,10 +3554,7 @@ export function _reimageNodeSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body:
-        body === undefined
-          ? body
-          : { nodeReimageOption: body["nodeReimageOption"] },
+      body: nodeReimageOptionsSerializer(body),
     });
 }
 
@@ -3876,12 +3603,7 @@ export function _disableNodeSchedulingSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body:
-        body === undefined
-          ? body
-          : {
-              nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"],
-            },
+      body: nodeDisableSchedulingOptionsSerializer(body),
     });
 }
 
@@ -4085,14 +3807,7 @@ export function _uploadNodeLogsSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: {
-        containerUrl: body["containerUrl"],
-        startTime: body["startTime"].toISOString(),
-        endTime: body["endTime"]?.toISOString(),
-        identityReference: !body.identityReference
-          ? body.identityReference
-          : batchNodeIdentityReferenceSerializer(body.identityReference),
-      },
+      body: uploadBatchServiceLogsOptionsSerializer(body),
     });
 }
 

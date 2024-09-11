@@ -41,6 +41,7 @@ import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
+import { buildModelSerializer } from "../serialization/buildSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
@@ -177,7 +178,10 @@ export function getDeserializePrivateFunction(
     properties.length > 0 &&
     !deserializedType.aliasType
   ) {
-    if (deserializedType.type === "model" && deserializedType.tcgcType?.kind === "dict") {
+    if (
+      deserializedType.type === "model" &&
+      deserializedType.tcgcType?.kind === "dict"
+    ) {
       deserializedType;
     }
     const deserializeFunctionName =
@@ -191,7 +195,10 @@ export function getDeserializePrivateFunction(
   } else if (returnType.type === "void" || deserializedType === undefined) {
     statements.push(`return;`);
   } else {
-    if (deserializedType.type === "model" && deserializedType.tcgcType?.kind === "dict") {
+    if (
+      deserializedType.type === "model" &&
+      deserializedType.tcgcType?.kind === "dict"
+    ) {
       deserializedType;
     }
     const deserializeFunctionName =
@@ -529,7 +536,7 @@ function getRequestParameters(
       .map((i) => i.paramMap)
       .join(",\n")}}`;
   } else if (operation.bodyParameter !== undefined) {
-    paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
+    paramStr = `${paramStr}${buildBodyParameter(dpgContext, operation.bodyParameter)}`;
   }
   return paramStr;
 }
@@ -559,113 +566,22 @@ function buildHeaderParameter(
     : paramMap;
 }
 
-function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
-  const dependencies = useDependencies();
-  if (!bodyParameter) {
+function buildBodyParameter(
+  context: SdkContext,
+  bodyParameter: BodyParameter | undefined
+) {
+  if (!bodyParameter || !bodyParameter.type.tcgcType) {
     return "";
   }
 
-  const allParents = getAllAncestors(bodyParameter.type);
-  if (
-    bodyParameter.type.type === "model" &&
-    !bodyParameter.type.aliasType &&
-    !allParents.some((p) => p.type === "dict")
-  ) {
-    const { propertiesStr: bodyParts } = getRequestModelMapping(
-      bodyParameter.type,
-      bodyParameter.clientName,
-      [bodyParameter.type]
-    );
-
-    if (bodyParameter && bodyParts.length > 0) {
-      const optionalBody = bodyParameter.optional
-        ? `${bodyParameter.clientName} === undefined ? ${bodyParameter.clientName} : `
-        : "";
-      return `\nbody: ${optionalBody}{${bodyParts.join(",\n")}},`;
-    } else if (bodyParameter && bodyParts.length === 0) {
-      return `\nbody: ${bodyParameter.clientName},`;
-    }
-  } else if (isDiscriminatedUnion(bodyParameter.type.tcgcType)) {
-    const serializerName = toCamelCase(`${bodyParameter.type.name}Serializer`);
-    // TODO: Add import for serializer
-    // addImportToSpecifier("modularModel", runtimeImports, serializerName);
-    return `\nbody: ${serializerName}(${bodyParameter.clientName}),`;
-  } else if (
-    (bodyParameter.type.type === "model" &&
-      (bodyParameter.type.aliasType ||
-        allParents.some((p) => p.type === "dict"))) ||
-    bodyParameter.type.type === "dict"
-  ) {
-    const elementSerializerName =
-      bodyParameter.type.elementType?.type === "model"
-        ? toCamelCase(`${bodyParameter.type.elementType.name}Serializer`)
-        : "";
-    let modelSerializerName = "";
-
-    if (bodyParameter.type.type !== "dict") {
-      modelSerializerName = toCamelCase(`${bodyParameter.type.name}Serializer`);
-    }
-    if (modelSerializerName) {
-      return `\nbody: ${modelSerializerName}(${bodyParameter.clientName}),`;
-    } else {
-      // Need to do this so that Records are compatible with additional properties of other types
-      // this should check for compatibility mode once we support the additionalProperties property
-      return `\nbody: serializeRecord(${bodyParameter.clientName} as any, ${elementSerializerName}) as any,`;
-    }
-  }
-
-  if (bodyParameter.type.type === "list") {
-    if (
-      bodyParameter.type.elementType?.type === "model" &&
-      !bodyParameter.type.elementType.aliasType
-    ) {
-      const { propertiesStr: bodyParts, directAssignment } =
-        getRequestModelMapping(bodyParameter.type.elementType, "p", [
-          bodyParameter.type.elementType
-        ]);
-      const mapBody =
-        directAssignment === true
-          ? bodyParts.join(", ")
-          : `{ ${bodyParts.join(", ")} }`;
-      let bodyElementStatement = "";
-      if (
-        isTypeNullable(bodyParameter.type.elementType) ||
-        bodyParameter.type.elementType.optional
-      ) {
-        bodyElementStatement = `!p ? p : `;
-      }
-      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { 
-      return ${bodyElementStatement}${mapBody};
-      }),`;
-    }
-    return `\nbody: ${bodyParameter.clientName},`;
-  }
-
-  if (
-    bodyParameter.type.type === "byte-array" &&
-    !bodyParameter.isBinaryPayload
-  ) {
-    const uint8ArrayToStringReference = resolveReference(
-      dependencies.uint8ArrayToString
-    );
-    return bodyParameter.optional
-      ? `body: typeof ${bodyParameter.clientName} === 'string'
-    ? ${uint8ArrayToStringReference}(${
-      bodyParameter.clientName
-    }, "${getEncodingFormat(bodyParameter)}")
-    : ${bodyParameter.clientName}`
-      : `body: ${uint8ArrayToStringReference}(${
-          bodyParameter.clientName
-        }, "${getEncodingFormat(bodyParameter)}")`;
-  } else if (bodyParameter.isBinaryPayload) {
-    return `\nbody: ${bodyParameter.clientName},`;
-  }
-
-  if (bodyParameter) {
-    return `\nbody: ${bodyParameter.clientName},`;
-  }
-
-  return "";
+  const serializerFunctionName =
+    buildModelSerializer(context, bodyParameter.type.tcgcType!, false, true) ??
+    "";
+  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+    bodyParameter,
+    "body"
+  );
+  return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyParameter.clientName}),`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -1087,7 +1003,10 @@ export function getResponseMapping(
           property,
           propertyPath
         );
-        if (property.type.type === "model" && property.type.tcgcType?.kind === "dict") {
+        if (
+          property.type.type === "model" &&
+          property.type.tcgcType?.kind === "dict"
+        ) {
           property;
         }
         const deserializeFunctionName =
@@ -1099,7 +1018,10 @@ export function getResponseMapping(
           ) ?? "";
         definition = `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
-        if (property.type.type === "model" && property.type.tcgcType?.kind === "dict") {
+        if (
+          property.type.type === "model" &&
+          property.type.tcgcType?.kind === "dict"
+        ) {
           property;
         }
         const deserializeFunctionName =
@@ -1136,9 +1058,6 @@ export function getResponseMapping(
           }`
         );
       } else {
-        if (property.type.tcgcType?.kind === "dict") {
-          property;
-        }
         const deserializeFunctionName =
           buildModelDeserializer(
             context,
@@ -1339,9 +1258,6 @@ export function getAllProperties(type: Type, parents?: Type[]): Property[] {
       propertiesMap.set(prop.clientName, prop);
     });
   });
-  if (type.name?.startsWith("ManagedService")) {
-    type;
-  }
   type.properties?.forEach((p) => {
     propertiesMap.set(p.clientName, p);
   });

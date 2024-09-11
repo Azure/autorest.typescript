@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   CreateFineTuningJobRequest,
+  createFineTuningJobRequestSerializer,
   FineTuningJob,
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
@@ -33,15 +34,7 @@ export function _createSend(
     .path("/fine_tuning/jobs")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        training_file: job["training_file"],
-        validation_file: job["validation_file"],
-        model: job["model"],
-        hyperparameters: !job.hyperparameters
-          ? undefined
-          : { n_epochs: job.hyperparameters?.["n_epochs"] },
-        suffix: job["suffix"],
-      },
+      body: createFineTuningJobRequestSerializer(job),
     });
 }
 

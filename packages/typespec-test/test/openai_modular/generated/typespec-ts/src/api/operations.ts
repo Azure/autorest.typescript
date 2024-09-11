@@ -6,32 +6,32 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
 import {
   AudioTranscriptionOptions,
+  audioTranscriptionOptionsSerializer,
   AudioTranscription,
   AudioTranslationOptions,
+  audioTranslationOptionsSerializer,
   AudioTranslation,
   CompletionsOptions,
+  completionsOptionsSerializer,
   Completions,
   ChatCompletionsOptions,
-  chatRequestMessageUnionSerializer,
-  functionDefinitionSerializer,
-  azureChatExtensionConfigurationUnionSerializer,
-  azureChatEnhancementConfigurationSerializer,
-  chatCompletionsResponseFormatUnionSerializer,
+  chatCompletionsOptionsSerializer,
   ChatCompletions,
   ImageGenerationOptions,
+  imageGenerationOptionsSerializer,
   ImageGenerations,
   SpeechGenerationOptions,
+  speechGenerationOptionsSerializer,
   EmbeddingsOptions,
+  embeddingsOptionsSerializer,
   Embeddings,
 } from "../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
@@ -57,16 +57,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        language: body["language"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        timestamp_granularities: body["timestampGranularities"],
-        model: body["model"],
-      },
+      body: audioTranscriptionOptionsSerializer(body),
     });
 }
 
@@ -115,16 +106,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        language: body["language"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        timestamp_granularities: body["timestampGranularities"],
-        model: body["model"],
-      },
+      body: audioTranscriptionOptionsSerializer(body),
     });
 }
 
@@ -173,14 +155,7 @@ export function _getAudioTranslationAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
-      },
+      body: audioTranslationOptionsSerializer(body),
     });
 }
 
@@ -226,14 +201,7 @@ export function _getAudioTranslationAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
-      },
+      body: audioTranslationOptionsSerializer(body),
     });
 }
 
@@ -276,26 +244,7 @@ export function _getCompletionsSend(
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        prompt: body["prompt"],
-        max_tokens: body["maxTokens"],
-        temperature: body["temperature"],
-        top_p: body["topP"],
-        logit_bias: !body.logitBias
-          ? body.logitBias
-          : (serializeRecord(body.logitBias as any) as any),
-        user: body["user"],
-        n: body["n"],
-        logprobs: body["logprobs"],
-        suffix: body["suffix"],
-        echo: body["echo"],
-        stop: body["stop"],
-        presence_penalty: body["presencePenalty"],
-        frequency_penalty: body["frequencyPenalty"],
-        best_of: body["bestOf"],
-        stream: body["stream"],
-        model: body["model"],
-      },
+      body: completionsOptionsSerializer(body),
     });
 }
 
@@ -340,46 +289,7 @@ export function _getChatCompletionsSend(
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        messages: body["messages"].map((p) =>
-          chatRequestMessageUnionSerializer(p),
-        ),
-        functions:
-          body["functions"] === undefined
-            ? body["functions"]
-            : body["functions"].map(functionDefinitionSerializer),
-        function_call: body["functionCall"] as any,
-        max_tokens: body["maxTokens"],
-        temperature: body["temperature"],
-        top_p: body["topP"],
-        logit_bias: !body.logitBias
-          ? body.logitBias
-          : (serializeRecord(body.logitBias as any) as any),
-        user: body["user"],
-        n: body["n"],
-        stop: body["stop"],
-        presence_penalty: body["presencePenalty"],
-        frequency_penalty: body["frequencyPenalty"],
-        stream: body["stream"],
-        model: body["model"],
-        data_sources:
-          body["dataSources"] === undefined
-            ? body["dataSources"]
-            : body["dataSources"].map((p) =>
-                azureChatExtensionConfigurationUnionSerializer(p),
-              ),
-        enhancements: !body.enhancements
-          ? body.enhancements
-          : azureChatEnhancementConfigurationSerializer(body.enhancements),
-        seed: body["seed"],
-        logprobs: body["logprobs"],
-        top_logprobs: body["top_logprobs"],
-        response_format: !body.responseFormat
-          ? body.responseFormat
-          : chatCompletionsResponseFormatUnionSerializer(body.responseFormat),
-        tools: body["tools"],
-        tool_choice: body["toolChoice"] as any,
-      },
+      body: chatCompletionsOptionsSerializer(body),
     });
 }
 
@@ -424,16 +334,7 @@ export function _getImageGenerationsSend(
     .path("/deployments/{deploymentId}/images/generations", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        model: body["model"],
-        prompt: body["prompt"],
-        n: body["n"],
-        size: body["size"],
-        response_format: body["responseFormat"],
-        quality: body["quality"],
-        style: body["style"],
-        user: body["user"],
-      },
+      body: imageGenerationOptionsSerializer(body),
     });
 }
 
@@ -474,13 +375,7 @@ export function _generateSpeechFromTextSend(
     .path("/deployments/{deploymentId}/audio/speech", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        input: body["input"],
-        voice: body["voice"],
-        response_format: body["responseFormat"],
-        speed: body["speed"],
-        model: body["model"],
-      },
+      body: speechGenerationOptionsSerializer(body),
     });
 }
 
@@ -521,14 +416,7 @@ export function _getEmbeddingsSend(
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        user: body["user"],
-        model: body["model"],
-        input: body["input"],
-        encoding_format: body["encodingFormat"],
-        dimensions: body["dimensions"],
-        input_type: body["inputType"],
-      },
+      body: embeddingsOptionsSerializer(body),
     });
 }
 

@@ -12,9 +12,7 @@ export interface TextBlocklist {
   description?: string;
 }
 
-export function textBlocklistSerializer(
-  item: TextBlocklist,
-): Record<string, unknown> {
+export function textBlocklistSerializer(item: TextBlocklist): any {
   return {
     blocklistName: item["blocklistName"],
     description: item["description"],
@@ -36,7 +34,7 @@ export interface AddOrUpdateBlockItemsOptions {
 
 export function addOrUpdateBlockItemsOptionsSerializer(
   item: AddOrUpdateBlockItemsOptions,
-): Record<string, unknown> {
+): any {
   return {
     blockItems: item["blockItems"].map(textBlockItemInfoSerializer),
   };
@@ -58,9 +56,7 @@ export interface TextBlockItemInfo {
   text: string;
 }
 
-export function textBlockItemInfoSerializer(
-  item: TextBlockItemInfo,
-): Record<string, unknown> {
+export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
   return {
     description: item["description"],
     text: item["text"],
@@ -98,7 +94,7 @@ export interface RemoveBlockItemsOptions {
 
 export function removeBlockItemsOptionsSerializer(
   item: RemoveBlockItemsOptions,
-): Record<string, unknown> {
+): any {
   return {
     blockItemIds: item["blockItemIds"],
   };
@@ -122,9 +118,7 @@ export interface AnalyzeImageOptions {
   outputType?: AnalyzeImageOutputType;
 }
 
-export function analyzeImageOptionsSerializer(
-  item: AnalyzeImageOptions,
-): Record<string, unknown> {
+export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
   return {
     image: imageDataSerializer(item.image),
     categories: item["categories"],
@@ -150,7 +144,7 @@ export interface ImageData {
   blobUrl?: string;
 }
 
-export function imageDataSerializer(item: ImageData): Record<string, unknown> {
+export function imageDataSerializer(item: ImageData): any {
   return {
     content:
       item["content"] !== undefined
@@ -221,9 +215,7 @@ export interface AnalyzeTextOptions {
   outputType?: AnalyzeTextOutputType;
 }
 
-export function analyzeTextOptionsSerializer(
-  item: AnalyzeTextOptions,
-): Record<string, unknown> {
+export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
   return {
     text: item["text"],
     categories: item["categories"],
@@ -309,8 +301,6 @@ export function versionsDeserializer(item: any): Versions {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
-  /** String error code indicating what went wrong. */
-  errorCode?: string;
 }
 
 /** Paged collection of TextBlocklist items */
