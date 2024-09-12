@@ -1,4 +1,4 @@
-# skip: Should generate samples for spread cases
+# Should generate samples for spread cases
 
 // FIXME: issue tracked in tcgc: https://github.com/Azure/typespec-azure/issues/1421
 
