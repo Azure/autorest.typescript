@@ -26,6 +26,7 @@ import {
   rejectOptionsSerializer,
   RejectResult,
   rejectResultDeserializer,
+  cloudEventArraySerializer,
 } from "../models/models.js";
 import {
   PathUncheckedResponse,
@@ -97,7 +98,7 @@ export function _publishCloudEventsSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents-batch+json; charset=utf-8",
-      body: events,
+      body: cloudEventArraySerializer(events),
     });
 }
 

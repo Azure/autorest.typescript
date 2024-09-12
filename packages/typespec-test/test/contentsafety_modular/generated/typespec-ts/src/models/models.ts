@@ -50,6 +50,14 @@ export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
   return { description: item["description"], text: item["text"] };
 }
 
+export function textBlockItemInfoArraySerializer(
+  result: Array<TextBlockItemInfo>,
+): any[] {
+  return result.map((item) => {
+    textBlockItemInfoSerializer(item);
+  });
+}
+
 /** The response of adding blockItems to text blocklist. */
 export interface AddOrUpdateBlockItemsResult {
   /** Array of blockItems added. */
@@ -149,6 +157,14 @@ export function imageCategoryDeserializer(item: any): ImageCategory {
   return item;
 }
 
+export function imageCategoryArraySerializer(
+  result: Array<ImageCategory>,
+): any[] {
+  return result.map((item) => {
+    imageCategorySerializer(item);
+  });
+}
+
 export function imageCategoryArrayDeserializer(
   result: Array<ImageCategory>,
 ): any[] {
@@ -244,6 +260,14 @@ export function textCategorySerializer(item: TextCategory): any {
 
 export function textCategoryDeserializer(item: any): TextCategory {
   return item;
+}
+
+export function textCategoryArraySerializer(
+  result: Array<TextCategory>,
+): any[] {
+  return result.map((item) => {
+    textCategorySerializer(item);
+  });
 }
 
 export function textCategoryArrayDeserializer(
@@ -355,6 +379,14 @@ export function versionsDeserializer(item: any): Versions {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
+}
+
+export function textBlocklistArraySerializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    textBlocklistSerializer(item);
+  });
 }
 
 export function textBlocklistArrayDeserializer(

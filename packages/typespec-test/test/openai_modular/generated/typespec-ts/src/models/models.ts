@@ -94,6 +94,14 @@ export function audioTranscriptionTimestampGranularityDeserializer(
   return item;
 }
 
+export function audioTranscriptionTimestampGranularityArraySerializer(
+  result: Array<AudioTranscriptionTimestampGranularity>,
+): any[] {
+  return result.map((item) => {
+    audioTranscriptionTimestampGranularitySerializer(item);
+  });
+}
+
 export function audioTranscriptionTimestampGranularityArrayDeserializer(
   result: Array<AudioTranscriptionTimestampGranularity>,
 ): any[] {
@@ -1290,6 +1298,14 @@ export function chatMessageImageDetailLevelDeserializer(
   return item;
 }
 
+export function chatMessageContentItemArraySerializer(
+  result: Array<ChatMessageContentItem>,
+): any[] {
+  return result.map((item) => {
+    chatMessageContentItemSerializer(item);
+  });
+}
+
 /** A request chat message representing response or action from the assistant. */
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'assistant' for assistant messages. */
@@ -1438,6 +1454,14 @@ export function functionCallDeserializer(item: any): FunctionCall {
   };
 }
 
+export function chatCompletionsToolCallArraySerializer(
+  result: Array<ChatCompletionsToolCall>,
+): any[] {
+  return result.map((item) => {
+    chatCompletionsToolCallSerializer(item);
+  });
+}
+
 export function chatCompletionsToolCallArrayDeserializer(
   result: Array<ChatCompletionsToolCall>,
 ): any[] {
@@ -1482,6 +1506,14 @@ export function chatRequestFunctionMessageSerializer(
   return { role: item["role"], name: item["name"], content: item["content"] };
 }
 
+export function chatRequestMessageArraySerializer(
+  result: Array<ChatRequestMessage>,
+): any[] {
+  return result.map((item) => {
+    chatRequestMessageSerializer(item);
+  });
+}
+
 /** The definition of a caller-specified function that chat completions may invoke in response to matching user input. */
 export interface FunctionDefinition {
   /** The name of the function to be called. */
@@ -1501,6 +1533,14 @@ export function functionDefinitionSerializer(item: FunctionDefinition): any {
     description: item["description"],
     parameters: item["parameters"],
   };
+}
+
+export function functionDefinitionArraySerializer(
+  result: Array<FunctionDefinition>,
+): any[] {
+  return result.map((item) => {
+    functionDefinitionSerializer(item);
+  });
 }
 
 export type ChatCompletionsOptionsFunctionCall =
@@ -1941,6 +1981,14 @@ export function onYourDataContextPropertyDeserializer(
   item: any,
 ): OnYourDataContextProperty {
   return item;
+}
+
+export function onYourDataContextPropertyArraySerializer(
+  result: Array<OnYourDataContextProperty>,
+): any[] {
+  return result.map((item) => {
+    onYourDataContextPropertySerializer(item);
+  });
 }
 
 export function onYourDataContextPropertyArrayDeserializer(
@@ -2677,6 +2725,14 @@ export function pineconeFieldMappingOptionsSerializer(
   };
 }
 
+export function azureChatExtensionConfigurationArraySerializer(
+  result: Array<AzureChatExtensionConfiguration>,
+): any[] {
+  return result.map((item) => {
+    azureChatExtensionConfigurationSerializer(item);
+  });
+}
+
 /** A representation of the available Azure OpenAI enhancement configurations. */
 export interface AzureChatEnhancementConfiguration {
   /** A representation of the available options for the Azure OpenAI grounding enhancement. */
@@ -2836,6 +2892,14 @@ export function chatCompletionsFunctionToolDefinitionSerializer(
     type: item["type"],
     function: functionDefinitionSerializer(item.function),
   };
+}
+
+export function chatCompletionsToolDefinitionArraySerializer(
+  result: Array<ChatCompletionsToolDefinition>,
+): any[] {
+  return result.map((item) => {
+    chatCompletionsToolDefinitionSerializer(item);
+  });
 }
 
 export type ChatCompletionsOptionsToolChoice =

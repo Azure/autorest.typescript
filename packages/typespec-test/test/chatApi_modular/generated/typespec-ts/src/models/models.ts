@@ -78,6 +78,12 @@ export function chatRoleDeserializer(item: any): ChatRole {
   return item;
 }
 
+export function chatMessageArraySerializer(result: Array<ChatMessage>): any[] {
+  return result.map((item) => {
+    chatMessageSerializer(item);
+  });
+}
+
 export function chatMessageArrayDeserializer(
   result: Array<ChatMessage>,
 ): any[] {

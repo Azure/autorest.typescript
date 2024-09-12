@@ -568,12 +568,12 @@ function buildBodyParameter(
     return "";
   }
 
+  if (bodyParameter.type.type === "list") {
+    bodyParameter;
+  }
   const serializerFunctionName =
     buildModelSerializer(context, bodyParameter.type.tcgcType!, false, true) ??
     "";
-  if (serializerFunctionName === "chatRequestMessageUnionSerializer") {
-    bodyParameter;
-  }
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(bodyParameter);
   return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyParameter.clientName}),`;
 }

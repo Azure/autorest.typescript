@@ -313,6 +313,14 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   };
 }
 
+export function virtualNetworkRuleArraySerializer(
+  result: Array<VirtualNetworkRule>,
+): any[] {
+  return result.map((item) => {
+    virtualNetworkRuleSerializer(item);
+  });
+}
+
 export function virtualNetworkRuleArrayDeserializer(
   result: Array<VirtualNetworkRule>,
 ): any[] {
@@ -338,6 +346,12 @@ export function iPRulesDeserializer(item: any): IPRules {
     value: item["value"],
     action: item["action"],
   };
+}
+
+export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
+  return result.map((item) => {
+    iPRulesSerializer(item);
+  });
 }
 
 export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
@@ -951,6 +965,14 @@ export function listRoleAssignmentsDeserializer(
   };
 }
 
+export function roleAssignmentDetailArraySerializer(
+  result: Array<RoleAssignmentDetail>,
+): any[] {
+  return result.map((item) => {
+    roleAssignmentDetailSerializer(item);
+  });
+}
+
 export function roleAssignmentDetailArrayDeserializer(
   result: Array<RoleAssignmentDetail>,
 ): any[] {
@@ -974,6 +996,12 @@ export function _dataProductListResultDeserializer(
     value: dataProductArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function dataProductArraySerializer(result: Array<DataProduct>): any[] {
+  return result.map((item) => {
+    dataProductSerializer(item);
+  });
 }
 
 export function dataProductArrayDeserializer(
@@ -1179,6 +1207,12 @@ export function _dataTypeListResultDeserializer(
     value: dataTypeArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function dataTypeArraySerializer(result: Array<DataType>): any[] {
+  return result.map((item) => {
+    dataTypeSerializer(item);
+  });
 }
 
 export function dataTypeArrayDeserializer(result: Array<DataType>): any[] {

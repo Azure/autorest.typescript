@@ -632,6 +632,14 @@ export function regionalConfigurationDeserializer(
   };
 }
 
+export function regionalConfigurationArraySerializer(
+  result: Array<RegionalConfiguration>,
+): any[] {
+  return result.map((item) => {
+    regionalConfigurationSerializer(item);
+  });
+}
+
 export function regionalConfigurationArrayDeserializer(
   result: Array<RegionalConfiguration>,
 ): any[] {
@@ -1973,6 +1981,14 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
   return { name: item["name"], values: item["values"] };
 }
 
+export function dimensionFilterArraySerializer(
+  result: Array<DimensionFilter>,
+): any[] {
+  return result.map((item) => {
+    dimensionFilterSerializer(item);
+  });
+}
+
 /** The response to a metrics query. */
 export interface _Metrics {
   /** The TimeSeriesElement items on this page */
@@ -2511,6 +2527,12 @@ export interface _PagedTestFileInfo {
   nextLink?: string;
 }
 
+export function testArraySerializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    testSerializer(item);
+  });
+}
+
 export function testArrayDeserializer(result: Array<Test>): any[] {
   return result.map((item) => {
     testDeserializer(item);
@@ -2523,6 +2545,12 @@ export interface _PagedTest {
   value: Test[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function testRunArraySerializer(result: Array<TestRun>): any[] {
+  return result.map((item) => {
+    testRunSerializer(item);
+  });
 }
 
 export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
@@ -2539,6 +2567,12 @@ export interface _PagedTestRun {
   nextLink?: string;
 }
 
+export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
+  return result.map((item) => {
+    testProfileSerializer(item);
+  });
+}
+
 export function testProfileArrayDeserializer(
   result: Array<TestProfile>,
 ): any[] {
@@ -2553,6 +2587,14 @@ export interface _PagedTestProfile {
   value: TestProfile[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function testProfileRunArraySerializer(
+  result: Array<TestProfileRun>,
+): any[] {
+  return result.map((item) => {
+    testProfileRunSerializer(item);
+  });
 }
 
 export function testProfileRunArrayDeserializer(

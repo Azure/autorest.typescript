@@ -251,6 +251,12 @@ export interface ErrorResponse {
   error: ErrorModel;
 }
 
+export function cloudEventArraySerializer(result: Array<CloudEvent>): any[] {
+  return result.map((item) => {
+    cloudEventSerializer(item);
+  });
+}
+
 export function cloudEventArrayDeserializer(result: Array<CloudEvent>): any[] {
   return result.map((item) => {
     cloudEventDeserializer(item);

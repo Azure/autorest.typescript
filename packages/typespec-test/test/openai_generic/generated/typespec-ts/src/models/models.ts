@@ -2057,6 +2057,14 @@ export function chatCompletionRequestMessageFunctionCallSerializer(
   return { name: item["name"], arguments: item["arguments"] };
 }
 
+export function chatCompletionRequestMessageArraySerializer(
+  result: Array<ChatCompletionRequestMessage>,
+): any[] {
+  return result.map((item) => {
+    chatCompletionRequestMessageSerializer(item);
+  });
+}
+
 export interface ChatCompletionFunctions {
   /**
    * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and
@@ -2094,6 +2102,14 @@ export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
 ): any {
   return { ...item };
+}
+
+export function chatCompletionFunctionsArraySerializer(
+  result: Array<ChatCompletionFunctions>,
+): any[] {
+  return result.map((item) => {
+    chatCompletionFunctionsSerializer(item);
+  });
 }
 
 export type CreateChatCompletionRequestFunctionCall1 =

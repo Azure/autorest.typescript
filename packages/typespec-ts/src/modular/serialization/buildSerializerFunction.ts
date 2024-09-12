@@ -454,11 +454,11 @@ function buildArrayTypeSerializer(
     return undefined;
   }
 
-  if (typeof valueSerializer === "string") {
+  if (typeof valueSerializer !== "string") {
     return undefined;
   }
   const valueTypeName = toCamelCase(
-    valueSerializer.name ? valueSerializer.name.replace("Serializer", "") : ""
+    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
   );
   const serializerFunctionName = `${valueTypeName}ArraySerializer`;
   if (nameOnly) {
@@ -478,7 +478,7 @@ function buildArrayTypeSerializer(
     statements: [
       `
   return result.map((item) => {
-    ${valueSerializer.name}(item)
+    ${valueSerializer}(item)
   });
       `
     ]

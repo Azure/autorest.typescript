@@ -136,6 +136,14 @@ export function multivariateVariableStateDeserializer(
   };
 }
 
+export function multivariateVariableStateArraySerializer(
+  result: Array<MultivariateVariableState>,
+): any[] {
+  return result.map((item) => {
+    multivariateVariableStateSerializer(item);
+  });
+}
+
 export function multivariateVariableStateArrayDeserializer(
   result: Array<MultivariateVariableState>,
 ): any[] {
@@ -675,6 +683,14 @@ export function multivariateVariableValuesSerializer(
   };
 }
 
+export function multivariateVariableValuesArraySerializer(
+  result: Array<MultivariateVariableValues>,
+): any[] {
+  return result.map((item) => {
+    multivariateVariableValuesSerializer(item);
+  });
+}
+
 /** Results of last detection. */
 export interface MultivariateMultivariateLastDetectionResult {
   /** Variable Status. */
@@ -768,6 +784,14 @@ export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
 ): any {
   return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
+}
+
+export function univariateTimeSeriesPointArraySerializer(
+  result: Array<UnivariateTimeSeriesPoint>,
+): any[] {
+  return result.map((item) => {
+    univariateTimeSeriesPointSerializer(item);
+  });
 }
 
 export type UnivariateTimeGranularity =

@@ -651,6 +651,14 @@ export function resourceFileDeserializer(item: any): ResourceFile {
   };
 }
 
+export function resourceFileArraySerializer(
+  result: Array<ResourceFile>,
+): any[] {
+  return result.map((item) => {
+    resourceFileSerializer(item);
+  });
+}
+
 export function resourceFileArrayDeserializer(
   result: Array<ResourceFile>,
 ): any[] {
@@ -676,6 +684,14 @@ export function environmentSettingDeserializer(item: any): EnvironmentSetting {
     name: item["name"],
     value: item["value"],
   };
+}
+
+export function environmentSettingArraySerializer(
+  result: Array<EnvironmentSetting>,
+): any[] {
+  return result.map((item) => {
+    environmentSettingSerializer(item);
+  });
 }
 
 export function environmentSettingArrayDeserializer(
@@ -878,11 +894,27 @@ export function certificateVisibilityDeserializer(
   return item;
 }
 
+export function certificateVisibilityArraySerializer(
+  result: Array<CertificateVisibility>,
+): any[] {
+  return result.map((item) => {
+    certificateVisibilitySerializer(item);
+  });
+}
+
 export function certificateVisibilityArrayDeserializer(
   result: Array<CertificateVisibility>,
 ): any[] {
   return result.map((item) => {
     certificateVisibilityDeserializer(item);
+  });
+}
+
+export function certificateReferenceArraySerializer(
+  result: Array<CertificateReference>,
+): any[] {
+  return result.map((item) => {
+    certificateReferenceSerializer(item);
   });
 }
 
@@ -1676,6 +1708,14 @@ export function dependencyActionDeserializer(item: any): DependencyAction {
   return item;
 }
 
+export function exitCodeMappingArraySerializer(
+  result: Array<ExitCodeMapping>,
+): any[] {
+  return result.map((item) => {
+    exitCodeMappingSerializer(item);
+  });
+}
+
 export function exitCodeMappingArrayDeserializer(
   result: Array<ExitCodeMapping>,
 ): any[] {
@@ -1715,6 +1755,14 @@ export function exitCodeRangeMappingDeserializer(
     end: item["end"],
     exitOptions: exitOptionsDeserializer(item.exitOptions),
   };
+}
+
+export function exitCodeRangeMappingArraySerializer(
+  result: Array<ExitCodeRangeMapping>,
+): any[] {
+  return result.map((item) => {
+    exitCodeRangeMappingSerializer(item);
+  });
 }
 
 export function exitCodeRangeMappingArrayDeserializer(
@@ -1837,6 +1885,12 @@ export function httpHeaderDeserializer(item: any): HttpHeader {
   };
 }
 
+export function httpHeaderArraySerializer(result: Array<HttpHeader>): any[] {
+  return result.map((item) => {
+    httpHeaderSerializer(item);
+  });
+}
+
 export function httpHeaderArrayDeserializer(result: Array<HttpHeader>): any[] {
   return result.map((item) => {
     httpHeaderDeserializer(item);
@@ -1884,6 +1938,12 @@ export function outputFileUploadConditionDeserializer(
   item: any,
 ): OutputFileUploadCondition {
   return item;
+}
+
+export function outputFileArraySerializer(result: Array<OutputFile>): any[] {
+  return result.map((item) => {
+    outputFileSerializer(item);
+  });
 }
 
 export function outputFileArrayDeserializer(result: Array<OutputFile>): any[] {
@@ -2030,6 +2090,12 @@ export function taskIdRangeDeserializer(item: any): TaskIdRange {
   };
 }
 
+export function taskIdRangeArraySerializer(result: Array<TaskIdRange>): any[] {
+  return result.map((item) => {
+    taskIdRangeSerializer(item);
+  });
+}
+
 export function taskIdRangeArrayDeserializer(
   result: Array<TaskIdRange>,
 ): any[] {
@@ -2059,6 +2125,14 @@ export function applicationPackageReferenceDeserializer(
     applicationId: item["applicationId"],
     version: item["version"],
   };
+}
+
+export function applicationPackageReferenceArraySerializer(
+  result: Array<ApplicationPackageReference>,
+): any[] {
+  return result.map((item) => {
+    applicationPackageReferenceSerializer(item);
+  });
 }
 
 export function applicationPackageReferenceArrayDeserializer(
@@ -2101,6 +2175,12 @@ export function accessScopeSerializer(item: AccessScope): any {
 
 export function accessScopeDeserializer(item: any): AccessScope {
   return item;
+}
+
+export function accessScopeArraySerializer(result: Array<AccessScope>): any[] {
+  return result.map((item) => {
+    accessScopeSerializer(item);
+  });
 }
 
 export function accessScopeArrayDeserializer(
@@ -2333,6 +2413,12 @@ export function taskStatisticsDeserializer(item: any): TaskStatistics {
   };
 }
 
+export function batchTaskArraySerializer(result: Array<BatchTask>): any[] {
+  return result.map((item) => {
+    batchTaskSerializer(item);
+  });
+}
+
 export function batchTaskArrayDeserializer(result: Array<BatchTask>): any[] {
   return result.map((item) => {
     batchTaskDeserializer(item);
@@ -2347,6 +2433,14 @@ export interface BatchTaskCollection {
 
 export function batchTaskCollectionSerializer(item: BatchTaskCollection): any {
   return { value: item["value"].map(batchTaskCreateOptionsSerializer) };
+}
+
+export function batchTaskCreateOptionsArraySerializer(
+  result: Array<BatchTaskCreateOptions>,
+): any[] {
+  return result.map((item) => {
+    batchTaskCreateOptionsSerializer(item);
+  });
 }
 
 /** The result of adding a collection of Tasks to a Job. */
@@ -3541,6 +3635,12 @@ export function storageAccountTypeDeserializer(item: any): StorageAccountType {
   return item;
 }
 
+export function dataDiskArraySerializer(result: Array<DataDisk>): any[] {
+  return result.map((item) => {
+    dataDiskSerializer(item);
+  });
+}
+
 export function dataDiskArrayDeserializer(result: Array<DataDisk>): any[] {
   return result.map((item) => {
     dataDiskDeserializer(item);
@@ -3593,6 +3693,14 @@ export function containerTypeDeserializer(item: any): ContainerType {
   return item;
 }
 
+export function containerRegistryArraySerializer(
+  result: Array<ContainerRegistry>,
+): any[] {
+  return result.map((item) => {
+    containerRegistrySerializer(item);
+  });
+}
+
 export function containerRegistryArrayDeserializer(
   result: Array<ContainerRegistry>,
 ): any[] {
@@ -3640,6 +3748,14 @@ export function diskEncryptionTargetDeserializer(
   return item;
 }
 
+export function diskEncryptionTargetArraySerializer(
+  result: Array<DiskEncryptionTarget>,
+): any[] {
+  return result.map((item) => {
+    diskEncryptionTargetSerializer(item);
+  });
+}
+
 export function diskEncryptionTargetArrayDeserializer(
   result: Array<DiskEncryptionTarget>,
 ): any[] {
@@ -3685,6 +3801,12 @@ export function nodePlacementPolicyTypeDeserializer(
   item: any,
 ): NodePlacementPolicyType {
   return item;
+}
+
+export function vMExtensionArraySerializer(result: Array<VMExtension>): any[] {
+  return result.map((item) => {
+    vMExtensionSerializer(item);
+  });
 }
 
 export function vMExtensionArrayDeserializer(
@@ -3964,11 +4086,27 @@ export function networkSecurityGroupRuleAccessDeserializer(
   return item;
 }
 
+export function networkSecurityGroupRuleArraySerializer(
+  result: Array<NetworkSecurityGroupRule>,
+): any[] {
+  return result.map((item) => {
+    networkSecurityGroupRuleSerializer(item);
+  });
+}
+
 export function networkSecurityGroupRuleArrayDeserializer(
   result: Array<NetworkSecurityGroupRule>,
 ): any[] {
   return result.map((item) => {
     networkSecurityGroupRuleDeserializer(item);
+  });
+}
+
+export function inboundNATPoolArraySerializer(
+  result: Array<InboundNATPool>,
+): any[] {
+  return result.map((item) => {
+    inboundNATPoolSerializer(item);
   });
 }
 
@@ -4132,6 +4270,12 @@ export function loginModeDeserializer(item: any): LoginMode {
   return item;
 }
 
+export function userAccountArraySerializer(result: Array<UserAccount>): any[] {
+  return result.map((item) => {
+    userAccountSerializer(item);
+  });
+}
+
 export function userAccountArrayDeserializer(
   result: Array<UserAccount>,
 ): any[] {
@@ -4160,6 +4304,14 @@ export function metadataItemDeserializer(item: any): MetadataItem {
     name: item["name"],
     value: item["value"],
   };
+}
+
+export function metadataItemArraySerializer(
+  result: Array<MetadataItem>,
+): any[] {
+  return result.map((item) => {
+    metadataItemSerializer(item);
+  });
 }
 
 export function metadataItemArrayDeserializer(
@@ -4378,6 +4530,14 @@ export function azureFileShareConfigurationDeserializer(
   };
 }
 
+export function mountConfigurationArraySerializer(
+  result: Array<MountConfiguration>,
+): any[] {
+  return result.map((item) => {
+    mountConfigurationSerializer(item);
+  });
+}
+
 export function mountConfigurationArrayDeserializer(
   result: Array<MountConfiguration>,
 ): any[] {
@@ -4567,6 +4727,14 @@ export function _batchJobScheduleListResultDeserializer(
   };
 }
 
+export function batchJobScheduleArraySerializer(
+  result: Array<BatchJobSchedule>,
+): any[] {
+  return result.map((item) => {
+    batchJobScheduleSerializer(item);
+  });
+}
+
 export function batchJobScheduleArrayDeserializer(
   result: Array<BatchJobSchedule>,
 ): any[] {
@@ -4692,6 +4860,14 @@ export function _certificateListResultDeserializer(
     value: batchCertificateArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function batchCertificateArraySerializer(
+  result: Array<BatchCertificate>,
+): any[] {
+  return result.map((item) => {
+    batchCertificateSerializer(item);
+  });
 }
 
 export function batchCertificateArrayDeserializer(
@@ -5104,6 +5280,12 @@ export function _batchJobListResultDeserializer(
     value: batchJobArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function batchJobArraySerializer(result: Array<BatchJob>): any[] {
+  return result.map((item) => {
+    batchJobSerializer(item);
+  });
 }
 
 export function batchJobArrayDeserializer(result: Array<BatchJob>): any[] {
