@@ -43,11 +43,11 @@ export interface BatchError {
 export function batchErrorDeserializer(item: any): BatchError {
   return {
     code: item["code"],
-    message: !item.message
-      ? item.message
+    message: !item["message"]
+      ? item["message"]
       : errorMessageDeserializer(item["message"]),
-    values: !item.values
-      ? item.values
+    values: !item["values"]
+      ? item["values"]
       : batchErrorDetailArrayDeserializer(item["values"]),
   };
 }
@@ -169,9 +169,11 @@ export function batchNodeDeserializer(item: any): BatchNode {
   return {
     id: item["id"],
     url: item["url"],
-    state: !item.state ? item.state : batchNodeStateDeserializer(item["state"]),
-    schedulingState: !item.schedulingState
-      ? item.schedulingState
+    state: !item["state"]
+      ? item["state"]
+      : batchNodeStateDeserializer(item["state"]),
+    schedulingState: !item["schedulingState"]
+      ? item["schedulingState"]
       : schedulingStateDeserializer(item["schedulingState"]),
     stateTransitionTime: new Date(item["stateTransitionTime"]),
     lastBootTime: new Date(item["lastBootTime"]),
@@ -183,32 +185,32 @@ export function batchNodeDeserializer(item: any): BatchNode {
     runningTasksCount: item["runningTasksCount"],
     runningTaskSlotsCount: item["runningTaskSlotsCount"],
     totalTasksSucceeded: item["totalTasksSucceeded"],
-    recentTasks: !item.recentTasks
-      ? item.recentTasks
+    recentTasks: !item["recentTasks"]
+      ? item["recentTasks"]
       : taskInformationArrayDeserializer(item["recentTasks"]),
-    startTask: !item.startTask
-      ? item.startTask
+    startTask: !item["startTask"]
+      ? item["startTask"]
       : startTaskDeserializer(item["startTask"]),
-    startTaskInfo: !item.startTaskInfo
-      ? item.startTaskInfo
+    startTaskInfo: !item["startTaskInfo"]
+      ? item["startTaskInfo"]
       : startTaskInformationDeserializer(item["startTaskInfo"]),
-    certificateReferences: !item.certificateReferences
-      ? item.certificateReferences
+    certificateReferences: !item["certificateReferences"]
+      ? item["certificateReferences"]
       : certificateReferenceArrayDeserializer(item["certificateReferences"]),
-    errors: !item.errors
-      ? item.errors
+    errors: !item["errors"]
+      ? item["errors"]
       : batchNodeErrorArrayDeserializer(item["errors"]),
     isDedicated: item["isDedicated"],
-    endpointConfiguration: !item.endpointConfiguration
-      ? item.endpointConfiguration
+    endpointConfiguration: !item["endpointConfiguration"]
+      ? item["endpointConfiguration"]
       : batchNodeEndpointConfigurationDeserializer(
           item["endpointConfiguration"],
         ),
-    nodeAgentInfo: !item.nodeAgentInfo
-      ? item.nodeAgentInfo
+    nodeAgentInfo: !item["nodeAgentInfo"]
+      ? item["nodeAgentInfo"]
       : nodeAgentInformationDeserializer(item["nodeAgentInfo"]),
-    virtualMachineInfo: !item.virtualMachineInfo
-      ? item.virtualMachineInfo
+    virtualMachineInfo: !item["virtualMachineInfo"]
+      ? item["virtualMachineInfo"]
       : virtualMachineInfoDeserializer(item["virtualMachineInfo"]),
   };
 }
@@ -271,8 +273,8 @@ export function taskInformationDeserializer(item: any): TaskInformation {
     taskId: item["taskId"],
     subtaskId: item["subtaskId"],
     taskState: taskStateDeserializer(item["taskState"]),
-    executionInfo: !item.executionInfo
-      ? item.executionInfo
+    executionInfo: !item["executionInfo"]
+      ? item["executionInfo"]
       : taskExecutionInformationDeserializer(item["executionInfo"]),
   };
 }
@@ -319,18 +321,18 @@ export function taskExecutionInformationDeserializer(
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
     exitCode: item["exitCode"],
-    containerInfo: !item.containerInfo
-      ? item.containerInfo
+    containerInfo: !item["containerInfo"]
+      ? item["containerInfo"]
       : taskContainerExecutionInformationDeserializer(item["containerInfo"]),
-    failureInfo: !item.failureInfo
-      ? item.failureInfo
+    failureInfo: !item["failureInfo"]
+      ? item["failureInfo"]
       : taskFailureInformationDeserializer(item["failureInfo"]),
     retryCount: item["retryCount"],
     lastRetryTime: new Date(item["lastRetryTime"]),
     requeueCount: item["requeueCount"],
     lastRequeueTime: new Date(item["lastRequeueTime"]),
-    result: !item.result
-      ? item.result
+    result: !item["result"]
+      ? item["result"]
       : taskExecutionResultDeserializer(item["result"]),
   };
 }
@@ -374,8 +376,8 @@ export function taskFailureInformationDeserializer(
     category: errorCategoryDeserializer(item["category"]),
     code: item["code"],
     message: item["message"],
-    details: !item.details
-      ? item.details
+    details: !item["details"]
+      ? item["details"]
       : nameValuePairArrayDeserializer(item["details"]),
   };
 }
@@ -490,17 +492,17 @@ export function startTaskSerializer(item: StartTask): any {
 export function startTaskDeserializer(item: any): StartTask {
   return {
     commandLine: item["commandLine"],
-    containerSettings: !item.containerSettings
-      ? item.containerSettings
+    containerSettings: !item["containerSettings"]
+      ? item["containerSettings"]
       : taskContainerSettingsDeserializer(item["containerSettings"]),
-    resourceFiles: !item.resourceFiles
-      ? item.resourceFiles
+    resourceFiles: !item["resourceFiles"]
+      ? item["resourceFiles"]
       : resourceFileArrayDeserializer(item["resourceFiles"]),
-    environmentSettings: !item.environmentSettings
-      ? item.environmentSettings
+    environmentSettings: !item["environmentSettings"]
+      ? item["environmentSettings"]
       : environmentSettingArrayDeserializer(item["environmentSettings"]),
-    userIdentity: !item.userIdentity
-      ? item.userIdentity
+    userIdentity: !item["userIdentity"]
+      ? item["userIdentity"]
       : userIdentityDeserializer(item["userIdentity"]),
     maxTaskRetryCount: item["maxTaskRetryCount"],
     waitForSuccess: item["waitForSuccess"],
@@ -538,11 +540,11 @@ export function taskContainerSettingsDeserializer(
   return {
     containerRunOptions: item["containerRunOptions"],
     imageName: item["imageName"],
-    registry: !item.registry
-      ? item.registry
+    registry: !item["registry"]
+      ? item["registry"]
       : containerRegistryDeserializer(item["registry"]),
-    workingDirectory: !item.workingDirectory
-      ? item.workingDirectory
+    workingDirectory: !item["workingDirectory"]
+      ? item["workingDirectory"]
       : containerWorkingDirectoryDeserializer(item["workingDirectory"]),
   };
 }
@@ -575,8 +577,8 @@ export function containerRegistryDeserializer(item: any): ContainerRegistry {
     username: item["username"],
     password: item["password"],
     registryServer: item["registryServer"],
-    identityReference: !item.identityReference
-      ? item.identityReference
+    identityReference: !item["identityReference"]
+      ? item["identityReference"]
       : batchNodeIdentityReferenceDeserializer(item["identityReference"]),
   };
 }
@@ -661,8 +663,8 @@ export function resourceFileDeserializer(item: any): ResourceFile {
     blobPrefix: item["blobPrefix"],
     filePath: item["filePath"],
     fileMode: item["fileMode"],
-    identityReference: !item.identityReference
-      ? item.identityReference
+    identityReference: !item["identityReference"]
+      ? item["identityReference"]
       : batchNodeIdentityReferenceDeserializer(item["identityReference"]),
   };
 }
@@ -738,8 +740,8 @@ export function userIdentitySerializer(item: UserIdentity): any {
 export function userIdentityDeserializer(item: any): UserIdentity {
   return {
     username: item["username"],
-    autoUser: !item.autoUser
-      ? item.autoUser
+    autoUser: !item["autoUser"]
+      ? item["autoUser"]
       : autoUserSpecificationDeserializer(item["autoUser"]),
   };
 }
@@ -762,9 +764,11 @@ export function autoUserSpecificationDeserializer(
   item: any,
 ): AutoUserSpecification {
   return {
-    scope: !item.scope ? item.scope : autoUserScopeDeserializer(item["scope"]),
-    elevationLevel: !item.elevationLevel
-      ? item.elevationLevel
+    scope: !item["scope"]
+      ? item["scope"]
+      : autoUserScopeDeserializer(item["scope"]),
+    elevationLevel: !item["elevationLevel"]
+      ? item["elevationLevel"]
       : elevationLevelDeserializer(item["elevationLevel"]),
   };
 }
@@ -821,16 +825,16 @@ export function startTaskInformationDeserializer(
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
     exitCode: item["exitCode"],
-    containerInfo: !item.containerInfo
-      ? item.containerInfo
+    containerInfo: !item["containerInfo"]
+      ? item["containerInfo"]
       : taskContainerExecutionInformationDeserializer(item["containerInfo"]),
-    failureInfo: !item.failureInfo
-      ? item.failureInfo
+    failureInfo: !item["failureInfo"]
+      ? item["failureInfo"]
       : taskFailureInformationDeserializer(item["failureInfo"]),
     retryCount: item["retryCount"],
     lastRetryTime: new Date(item["lastRetryTime"]),
-    result: !item.result
-      ? item.result
+    result: !item["result"]
+      ? item["result"]
       : taskExecutionResultDeserializer(item["result"]),
   };
 }
@@ -878,12 +882,12 @@ export function certificateReferenceDeserializer(
   return {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
-    storeLocation: !item.storeLocation
-      ? item.storeLocation
+    storeLocation: !item["storeLocation"]
+      ? item["storeLocation"]
       : certificateStoreLocationDeserializer(item["storeLocation"]),
     storeName: item["storeName"],
-    visibility: !item.visibility
-      ? item.visibility
+    visibility: !item["visibility"]
+      ? item["visibility"]
       : certificateVisibilityArrayDeserializer(item["visibility"]),
   };
 }
@@ -964,8 +968,8 @@ export function batchNodeErrorDeserializer(item: any): BatchNodeError {
   return {
     code: item["code"],
     message: item["message"],
-    errorDetails: !item.errorDetails
-      ? item.errorDetails
+    errorDetails: !item["errorDetails"]
+      ? item["errorDetails"]
       : nameValuePairArrayDeserializer(item["errorDetails"]),
   };
 }
@@ -1072,8 +1076,8 @@ export interface VirtualMachineInfo {
 
 export function virtualMachineInfoDeserializer(item: any): VirtualMachineInfo {
   return {
-    imageReference: !item.imageReference
-      ? item.imageReference
+    imageReference: !item["imageReference"]
+      ? item["imageReference"]
       : imageReferenceDeserializer(item["imageReference"]),
   };
 }
@@ -1278,7 +1282,9 @@ export function _batchNodeListResultDeserializer(
   item: any,
 ): _BatchNodeListResult {
   return {
-    value: !item.value ? item.value : batchNodeArrayDeserializer(item["value"]),
+    value: !item["value"]
+      ? item["value"]
+      : batchNodeArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -1302,11 +1308,11 @@ export interface NodeVMExtension {
 export function nodeVMExtensionDeserializer(item: any): NodeVMExtension {
   return {
     provisioningState: item["provisioningState"],
-    vmExtension: !item.vmExtension
-      ? item.vmExtension
+    vmExtension: !item["vmExtension"]
+      ? item["vmExtension"]
       : vMExtensionDeserializer(item["vmExtension"]),
-    instanceView: !item.instanceView
-      ? item.instanceView
+    instanceView: !item["instanceView"]
+      ? item["instanceView"]
       : vMExtensionInstanceViewDeserializer(item["instanceView"]),
   };
 }
@@ -1380,11 +1386,11 @@ export function vMExtensionInstanceViewDeserializer(
 ): VMExtensionInstanceView {
   return {
     name: item["name"],
-    statuses: !item.statuses
-      ? item.statuses
+    statuses: !item["statuses"]
+      ? item["statuses"]
       : instanceViewStatusArrayDeserializer(item["statuses"]),
-    subStatuses: !item.subStatuses
-      ? item.subStatuses
+    subStatuses: !item["subStatuses"]
+      ? item["subStatuses"]
       : instanceViewStatusArrayDeserializer(item["subStatuses"]),
   };
 }
@@ -1407,8 +1413,8 @@ export function instanceViewStatusDeserializer(item: any): InstanceViewStatus {
   return {
     code: item["code"],
     displayStatus: item["displayStatus"],
-    level: !item.level
-      ? item.level
+    level: !item["level"]
+      ? item["level"]
       : statusLevelTypesDeserializer(item["level"]),
     message: item["message"],
     time: item["time"],
@@ -1446,8 +1452,8 @@ export function _nodeVMExtensionListDeserializer(
   item: any,
 ): _NodeVMExtensionList {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : nodeVMExtensionArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
@@ -1476,7 +1482,9 @@ export function _nodeFileListResultDeserializer(
   item: any,
 ): _NodeFileListResult {
   return {
-    value: !item.value ? item.value : nodeFileArrayDeserializer(item["value"]),
+    value: !item["value"]
+      ? item["value"]
+      : nodeFileArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -1498,8 +1506,8 @@ export function nodeFileDeserializer(item: any): NodeFile {
     name: item["name"],
     url: item["url"],
     isDirectory: item["isDirectory"],
-    properties: !item.properties
-      ? item.properties
+    properties: !item["properties"]
+      ? item["properties"]
       : filePropertiesDeserializer(item["properties"]),
   };
 }
@@ -1653,20 +1661,20 @@ export function exitConditionsSerializer(item: ExitConditions): any {
 
 export function exitConditionsDeserializer(item: any): ExitConditions {
   return {
-    exitCodes: !item.exitCodes
-      ? item.exitCodes
+    exitCodes: !item["exitCodes"]
+      ? item["exitCodes"]
       : exitCodeMappingArrayDeserializer(item["exitCodes"]),
-    exitCodeRanges: !item.exitCodeRanges
-      ? item.exitCodeRanges
+    exitCodeRanges: !item["exitCodeRanges"]
+      ? item["exitCodeRanges"]
       : exitCodeRangeMappingArrayDeserializer(item["exitCodeRanges"]),
-    preProcessingError: !item.preProcessingError
-      ? item.preProcessingError
+    preProcessingError: !item["preProcessingError"]
+      ? item["preProcessingError"]
       : exitOptionsDeserializer(item["preProcessingError"]),
-    fileUploadError: !item.fileUploadError
-      ? item.fileUploadError
+    fileUploadError: !item["fileUploadError"]
+      ? item["fileUploadError"]
       : exitOptionsDeserializer(item["fileUploadError"]),
-    default: !item.default
-      ? item.default
+    default: !item["default"]
+      ? item["default"]
       : exitOptionsDeserializer(item["default"]),
   };
 }
@@ -1713,11 +1721,11 @@ export function exitOptionsSerializer(item: ExitOptions): any {
 
 export function exitOptionsDeserializer(item: any): ExitOptions {
   return {
-    jobAction: !item.jobAction
-      ? item.jobAction
+    jobAction: !item["jobAction"]
+      ? item["jobAction"]
       : jobActionDeserializer(item["jobAction"]),
-    dependencyAction: !item.dependencyAction
-      ? item.dependencyAction
+    dependencyAction: !item["dependencyAction"]
+      ? item["dependencyAction"]
       : dependencyActionDeserializer(item["dependencyAction"]),
   };
 }
@@ -1855,8 +1863,8 @@ export function outputFileDestinationDeserializer(
   item: any,
 ): OutputFileDestination {
   return {
-    container: !item.container
-      ? item.container
+    container: !item["container"]
+      ? item["container"]
       : outputFileBlobContainerDestinationDeserializer(item["container"]),
   };
 }
@@ -1894,11 +1902,11 @@ export function outputFileBlobContainerDestinationDeserializer(
   return {
     path: item["path"],
     containerUrl: item["containerUrl"],
-    identityReference: !item.identityReference
-      ? item.identityReference
+    identityReference: !item["identityReference"]
+      ? item["identityReference"]
       : batchNodeIdentityReferenceDeserializer(item["identityReference"]),
-    uploadHeaders: !item.uploadHeaders
-      ? item.uploadHeaders
+    uploadHeaders: !item["uploadHeaders"]
+      ? item["uploadHeaders"]
       : httpHeaderArrayDeserializer(item["uploadHeaders"]),
   };
 }
@@ -2069,8 +2077,8 @@ export function multiInstanceSettingsDeserializer(
   return {
     numberOfInstances: item["numberOfInstances"],
     coordinationCommandLine: item["coordinationCommandLine"],
-    commonResourceFiles: !item.commonResourceFiles
-      ? item.commonResourceFiles
+    commonResourceFiles: !item["commonResourceFiles"]
+      ? item["commonResourceFiles"]
       : resourceFileArrayDeserializer(item["commonResourceFiles"]),
   };
 }
@@ -2099,8 +2107,8 @@ export function taskDependenciesSerializer(item: TaskDependencies): any {
 export function taskDependenciesDeserializer(item: any): TaskDependencies {
   return {
     taskIds: item["taskIds"],
-    taskIdRanges: !item.taskIdRanges
-      ? item.taskIdRanges
+    taskIdRanges: !item["taskIdRanges"]
+      ? item["taskIdRanges"]
       : taskIdRangeArrayDeserializer(item["taskIdRanges"]),
   };
 }
@@ -2199,8 +2207,8 @@ export function authenticationTokenSettingsDeserializer(
   item: any,
 ): AuthenticationTokenSettings {
   return {
-    access: !item.access
-      ? item.access
+    access: !item["access"]
+      ? item["access"]
       : accessScopeArrayDeserializer(item["access"]),
   };
 }
@@ -2242,7 +2250,9 @@ export function _batchTaskListResultDeserializer(
   item: any,
 ): _BatchTaskListResult {
   return {
-    value: !item.value ? item.value : batchTaskArrayDeserializer(item["value"]),
+    value: !item["value"]
+      ? item["value"]
+      : batchTaskArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -2331,58 +2341,62 @@ export function batchTaskDeserializer(item: any): BatchTask {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     creationTime: new Date(item["creationTime"]),
-    exitConditions: !item.exitConditions
-      ? item.exitConditions
+    exitConditions: !item["exitConditions"]
+      ? item["exitConditions"]
       : exitConditionsDeserializer(item["exitConditions"]),
-    state: !item.state ? item.state : taskStateDeserializer(item["state"]),
+    state: !item["state"]
+      ? item["state"]
+      : taskStateDeserializer(item["state"]),
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item.previousState
-      ? item.previousState
+    previousState: !item["previousState"]
+      ? item["previousState"]
       : taskStateDeserializer(item["previousState"]),
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     commandLine: item["commandLine"],
-    containerSettings: !item.containerSettings
-      ? item.containerSettings
+    containerSettings: !item["containerSettings"]
+      ? item["containerSettings"]
       : taskContainerSettingsDeserializer(item["containerSettings"]),
-    resourceFiles: !item.resourceFiles
-      ? item.resourceFiles
+    resourceFiles: !item["resourceFiles"]
+      ? item["resourceFiles"]
       : resourceFileArrayDeserializer(item["resourceFiles"]),
-    outputFiles: !item.outputFiles
-      ? item.outputFiles
+    outputFiles: !item["outputFiles"]
+      ? item["outputFiles"]
       : outputFileArrayDeserializer(item["outputFiles"]),
-    environmentSettings: !item.environmentSettings
-      ? item.environmentSettings
+    environmentSettings: !item["environmentSettings"]
+      ? item["environmentSettings"]
       : environmentSettingArrayDeserializer(item["environmentSettings"]),
-    affinityInfo: !item.affinityInfo
-      ? item.affinityInfo
+    affinityInfo: !item["affinityInfo"]
+      ? item["affinityInfo"]
       : affinityInformationDeserializer(item["affinityInfo"]),
-    constraints: !item.constraints
-      ? item.constraints
+    constraints: !item["constraints"]
+      ? item["constraints"]
       : taskConstraintsDeserializer(item["constraints"]),
     requiredSlots: item["requiredSlots"],
-    userIdentity: !item.userIdentity
-      ? item.userIdentity
+    userIdentity: !item["userIdentity"]
+      ? item["userIdentity"]
       : userIdentityDeserializer(item["userIdentity"]),
-    executionInfo: !item.executionInfo
-      ? item.executionInfo
+    executionInfo: !item["executionInfo"]
+      ? item["executionInfo"]
       : taskExecutionInformationDeserializer(item["executionInfo"]),
-    nodeInfo: !item.nodeInfo
-      ? item.nodeInfo
+    nodeInfo: !item["nodeInfo"]
+      ? item["nodeInfo"]
       : batchNodeInformationDeserializer(item["nodeInfo"]),
-    multiInstanceSettings: !item.multiInstanceSettings
-      ? item.multiInstanceSettings
+    multiInstanceSettings: !item["multiInstanceSettings"]
+      ? item["multiInstanceSettings"]
       : multiInstanceSettingsDeserializer(item["multiInstanceSettings"]),
-    stats: !item.stats ? item.stats : taskStatisticsDeserializer(item["stats"]),
-    dependsOn: !item.dependsOn
-      ? item.dependsOn
+    stats: !item["stats"]
+      ? item["stats"]
+      : taskStatisticsDeserializer(item["stats"]),
+    dependsOn: !item["dependsOn"]
+      ? item["dependsOn"]
       : taskDependenciesDeserializer(item["dependsOn"]),
-    applicationPackageReferences: !item.applicationPackageReferences
-      ? item.applicationPackageReferences
+    applicationPackageReferences: !item["applicationPackageReferences"]
+      ? item["applicationPackageReferences"]
       : applicationPackageReferenceArrayDeserializer(
           item["applicationPackageReferences"],
         ),
-    authenticationTokenSettings: !item.authenticationTokenSettings
-      ? item.authenticationTokenSettings
+    authenticationTokenSettings: !item["authenticationTokenSettings"]
+      ? item["authenticationTokenSettings"]
       : authenticationTokenSettingsDeserializer(
           item["authenticationTokenSettings"],
         ),
@@ -2500,8 +2514,8 @@ export function taskAddCollectionResultDeserializer(
   item: any,
 ): TaskAddCollectionResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : taskAddResultArrayDeserializer(item["value"]),
   };
 }
@@ -2529,7 +2543,9 @@ export function taskAddResultDeserializer(item: any): TaskAddResult {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     location: item["location"],
-    error: !item.error ? item.error : batchErrorDeserializer(item["error"]),
+    error: !item["error"]
+      ? item["error"]
+      : batchErrorDeserializer(item["error"]),
   };
 }
 
@@ -2562,8 +2578,8 @@ export function batchTaskListSubtasksResultDeserializer(
   item: any,
 ): BatchTaskListSubtasksResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : subtaskInformationArrayDeserializer(item["value"]),
   };
 }
@@ -2599,26 +2615,28 @@ export interface SubtaskInformation {
 export function subtaskInformationDeserializer(item: any): SubtaskInformation {
   return {
     id: item["id"],
-    nodeInfo: !item.nodeInfo
-      ? item.nodeInfo
+    nodeInfo: !item["nodeInfo"]
+      ? item["nodeInfo"]
       : batchNodeInformationDeserializer(item["nodeInfo"]),
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
     exitCode: item["exitCode"],
-    containerInfo: !item.containerInfo
-      ? item.containerInfo
+    containerInfo: !item["containerInfo"]
+      ? item["containerInfo"]
       : taskContainerExecutionInformationDeserializer(item["containerInfo"]),
-    failureInfo: !item.failureInfo
-      ? item.failureInfo
+    failureInfo: !item["failureInfo"]
+      ? item["failureInfo"]
       : taskFailureInformationDeserializer(item["failureInfo"]),
-    state: !item.state ? item.state : subtaskStateDeserializer(item["state"]),
+    state: !item["state"]
+      ? item["state"]
+      : subtaskStateDeserializer(item["state"]),
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item.previousState
-      ? item.previousState
+    previousState: !item["previousState"]
+      ? item["previousState"]
       : subtaskStateDeserializer(item["previousState"]),
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
-    result: !item.result
-      ? item.result
+    result: !item["result"]
+      ? item["result"]
       : taskExecutionResultDeserializer(item["result"]),
   };
 }
@@ -2697,24 +2715,24 @@ export function batchJobScheduleDeserializer(item: any): BatchJobSchedule {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     creationTime: new Date(item["creationTime"]),
-    state: !item.state
-      ? item.state
+    state: !item["state"]
+      ? item["state"]
       : jobScheduleStateDeserializer(item["state"]),
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item.previousState
-      ? item.previousState
+    previousState: !item["previousState"]
+      ? item["previousState"]
       : jobScheduleStateDeserializer(item["previousState"]),
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     schedule: scheduleDeserializer(item["schedule"]),
     jobSpecification: jobSpecificationDeserializer(item["jobSpecification"]),
-    executionInfo: !item.executionInfo
-      ? item.executionInfo
+    executionInfo: !item["executionInfo"]
+      ? item["executionInfo"]
       : jobScheduleExecutionInformationDeserializer(item["executionInfo"]),
-    metadata: !item.metadata
-      ? item.metadata
+    metadata: !item["metadata"]
+      ? item["metadata"]
       : metadataItemArrayDeserializer(item["metadata"]),
-    stats: !item.stats
-      ? item.stats
+    stats: !item["stats"]
+      ? item["stats"]
       : jobScheduleStatisticsDeserializer(item["stats"]),
   };
 }
@@ -2843,33 +2861,33 @@ export function jobSpecificationDeserializer(item: any): JobSpecification {
     maxParallelTasks: item["maxParallelTasks"],
     displayName: item["displayName"],
     usesTaskDependencies: item["usesTaskDependencies"],
-    onAllTasksComplete: !item.onAllTasksComplete
-      ? item.onAllTasksComplete
+    onAllTasksComplete: !item["onAllTasksComplete"]
+      ? item["onAllTasksComplete"]
       : onAllTasksCompleteDeserializer(item["onAllTasksComplete"]),
-    onTaskFailure: !item.onTaskFailure
-      ? item.onTaskFailure
+    onTaskFailure: !item["onTaskFailure"]
+      ? item["onTaskFailure"]
       : onTaskFailureDeserializer(item["onTaskFailure"]),
-    networkConfiguration: !item.networkConfiguration
-      ? item.networkConfiguration
+    networkConfiguration: !item["networkConfiguration"]
+      ? item["networkConfiguration"]
       : jobNetworkConfigurationDeserializer(item["networkConfiguration"]),
-    constraints: !item.constraints
-      ? item.constraints
+    constraints: !item["constraints"]
+      ? item["constraints"]
       : jobConstraintsDeserializer(item["constraints"]),
-    jobManagerTask: !item.jobManagerTask
-      ? item.jobManagerTask
+    jobManagerTask: !item["jobManagerTask"]
+      ? item["jobManagerTask"]
       : jobManagerTaskDeserializer(item["jobManagerTask"]),
-    jobPreparationTask: !item.jobPreparationTask
-      ? item.jobPreparationTask
+    jobPreparationTask: !item["jobPreparationTask"]
+      ? item["jobPreparationTask"]
       : jobPreparationTaskDeserializer(item["jobPreparationTask"]),
-    jobReleaseTask: !item.jobReleaseTask
-      ? item.jobReleaseTask
+    jobReleaseTask: !item["jobReleaseTask"]
+      ? item["jobReleaseTask"]
       : jobReleaseTaskDeserializer(item["jobReleaseTask"]),
-    commonEnvironmentSettings: !item.commonEnvironmentSettings
-      ? item.commonEnvironmentSettings
+    commonEnvironmentSettings: !item["commonEnvironmentSettings"]
+      ? item["commonEnvironmentSettings"]
       : environmentSettingArrayDeserializer(item["commonEnvironmentSettings"]),
     poolInfo: poolInformationDeserializer(item["poolInfo"]),
-    metadata: !item.metadata
-      ? item.metadata
+    metadata: !item["metadata"]
+      ? item["metadata"]
       : metadataItemArrayDeserializer(item["metadata"]),
   };
 }
@@ -3048,34 +3066,34 @@ export function jobManagerTaskDeserializer(item: any): JobManagerTask {
     id: item["id"],
     displayName: item["displayName"],
     commandLine: item["commandLine"],
-    containerSettings: !item.containerSettings
-      ? item.containerSettings
+    containerSettings: !item["containerSettings"]
+      ? item["containerSettings"]
       : taskContainerSettingsDeserializer(item["containerSettings"]),
-    resourceFiles: !item.resourceFiles
-      ? item.resourceFiles
+    resourceFiles: !item["resourceFiles"]
+      ? item["resourceFiles"]
       : resourceFileArrayDeserializer(item["resourceFiles"]),
-    outputFiles: !item.outputFiles
-      ? item.outputFiles
+    outputFiles: !item["outputFiles"]
+      ? item["outputFiles"]
       : outputFileArrayDeserializer(item["outputFiles"]),
-    environmentSettings: !item.environmentSettings
-      ? item.environmentSettings
+    environmentSettings: !item["environmentSettings"]
+      ? item["environmentSettings"]
       : environmentSettingArrayDeserializer(item["environmentSettings"]),
-    constraints: !item.constraints
-      ? item.constraints
+    constraints: !item["constraints"]
+      ? item["constraints"]
       : taskConstraintsDeserializer(item["constraints"]),
     requiredSlots: item["requiredSlots"],
     killJobOnCompletion: item["killJobOnCompletion"],
-    userIdentity: !item.userIdentity
-      ? item.userIdentity
+    userIdentity: !item["userIdentity"]
+      ? item["userIdentity"]
       : userIdentityDeserializer(item["userIdentity"]),
     runExclusive: item["runExclusive"],
-    applicationPackageReferences: !item.applicationPackageReferences
-      ? item.applicationPackageReferences
+    applicationPackageReferences: !item["applicationPackageReferences"]
+      ? item["applicationPackageReferences"]
       : applicationPackageReferenceArrayDeserializer(
           item["applicationPackageReferences"],
         ),
-    authenticationTokenSettings: !item.authenticationTokenSettings
-      ? item.authenticationTokenSettings
+    authenticationTokenSettings: !item["authenticationTokenSettings"]
+      ? item["authenticationTokenSettings"]
       : authenticationTokenSettingsDeserializer(
           item["authenticationTokenSettings"],
         ),
@@ -3160,21 +3178,21 @@ export function jobPreparationTaskDeserializer(item: any): JobPreparationTask {
   return {
     id: item["id"],
     commandLine: item["commandLine"],
-    containerSettings: !item.containerSettings
-      ? item.containerSettings
+    containerSettings: !item["containerSettings"]
+      ? item["containerSettings"]
       : taskContainerSettingsDeserializer(item["containerSettings"]),
-    resourceFiles: !item.resourceFiles
-      ? item.resourceFiles
+    resourceFiles: !item["resourceFiles"]
+      ? item["resourceFiles"]
       : resourceFileArrayDeserializer(item["resourceFiles"]),
-    environmentSettings: !item.environmentSettings
-      ? item.environmentSettings
+    environmentSettings: !item["environmentSettings"]
+      ? item["environmentSettings"]
       : environmentSettingArrayDeserializer(item["environmentSettings"]),
-    constraints: !item.constraints
-      ? item.constraints
+    constraints: !item["constraints"]
+      ? item["constraints"]
       : taskConstraintsDeserializer(item["constraints"]),
     waitForSuccess: item["waitForSuccess"],
-    userIdentity: !item.userIdentity
-      ? item.userIdentity
+    userIdentity: !item["userIdentity"]
+      ? item["userIdentity"]
       : userIdentityDeserializer(item["userIdentity"]),
     rerunOnNodeRebootAfterSuccess: item["rerunOnNodeRebootAfterSuccess"],
   };
@@ -3242,19 +3260,19 @@ export function jobReleaseTaskDeserializer(item: any): JobReleaseTask {
   return {
     id: item["id"],
     commandLine: item["commandLine"],
-    containerSettings: !item.containerSettings
-      ? item.containerSettings
+    containerSettings: !item["containerSettings"]
+      ? item["containerSettings"]
       : taskContainerSettingsDeserializer(item["containerSettings"]),
-    resourceFiles: !item.resourceFiles
-      ? item.resourceFiles
+    resourceFiles: !item["resourceFiles"]
+      ? item["resourceFiles"]
       : resourceFileArrayDeserializer(item["resourceFiles"]),
-    environmentSettings: !item.environmentSettings
-      ? item.environmentSettings
+    environmentSettings: !item["environmentSettings"]
+      ? item["environmentSettings"]
       : environmentSettingArrayDeserializer(item["environmentSettings"]),
     maxWallClockTime: item["maxWallClockTime"],
     retentionTime: item["retentionTime"],
-    userIdentity: !item.userIdentity
-      ? item.userIdentity
+    userIdentity: !item["userIdentity"]
+      ? item["userIdentity"]
       : userIdentityDeserializer(item["userIdentity"]),
   };
 }
@@ -3279,8 +3297,8 @@ export function poolInformationSerializer(item: PoolInformation): any {
 export function poolInformationDeserializer(item: any): PoolInformation {
   return {
     poolId: item["poolId"],
-    autoPoolSpecification: !item.autoPoolSpecification
-      ? item.autoPoolSpecification
+    autoPoolSpecification: !item["autoPoolSpecification"]
+      ? item["autoPoolSpecification"]
       : autoPoolSpecificationDeserializer(item["autoPoolSpecification"]),
   };
 }
@@ -3320,7 +3338,9 @@ export function autoPoolSpecificationDeserializer(
       item["poolLifetimeOption"],
     ),
     keepAlive: item["keepAlive"],
-    pool: !item.pool ? item.pool : poolSpecificationDeserializer(item["pool"]),
+    pool: !item["pool"]
+      ? item["pool"]
+      : poolSpecificationDeserializer(item["pool"]),
   };
 }
 
@@ -3440,19 +3460,19 @@ export function poolSpecificationDeserializer(item: any): PoolSpecification {
   return {
     displayName: item["displayName"],
     vmSize: item["vmSize"],
-    cloudServiceConfiguration: !item.cloudServiceConfiguration
-      ? item.cloudServiceConfiguration
+    cloudServiceConfiguration: !item["cloudServiceConfiguration"]
+      ? item["cloudServiceConfiguration"]
       : cloudServiceConfigurationDeserializer(
           item["cloudServiceConfiguration"],
         ),
-    virtualMachineConfiguration: !item.virtualMachineConfiguration
-      ? item.virtualMachineConfiguration
+    virtualMachineConfiguration: !item["virtualMachineConfiguration"]
+      ? item["virtualMachineConfiguration"]
       : virtualMachineConfigurationDeserializer(
           item["virtualMachineConfiguration"],
         ),
     taskSlotsPerNode: item["taskSlotsPerNode"],
-    taskSchedulingPolicy: !item.taskSchedulingPolicy
-      ? item.taskSchedulingPolicy
+    taskSchedulingPolicy: !item["taskSchedulingPolicy"]
+      ? item["taskSchedulingPolicy"]
       : taskSchedulingPolicyDeserializer(item["taskSchedulingPolicy"]),
     resizeTimeout: item["resizeTimeout"],
     targetDedicatedNodes: item["targetDedicatedNodes"],
@@ -3461,32 +3481,32 @@ export function poolSpecificationDeserializer(item: any): PoolSpecification {
     autoScaleFormula: item["autoScaleFormula"],
     autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
     enableInterNodeCommunication: item["enableInterNodeCommunication"],
-    networkConfiguration: !item.networkConfiguration
-      ? item.networkConfiguration
+    networkConfiguration: !item["networkConfiguration"]
+      ? item["networkConfiguration"]
       : networkConfigurationDeserializer(item["networkConfiguration"]),
-    startTask: !item.startTask
-      ? item.startTask
+    startTask: !item["startTask"]
+      ? item["startTask"]
       : startTaskDeserializer(item["startTask"]),
-    certificateReferences: !item.certificateReferences
-      ? item.certificateReferences
+    certificateReferences: !item["certificateReferences"]
+      ? item["certificateReferences"]
       : certificateReferenceArrayDeserializer(item["certificateReferences"]),
-    applicationPackageReferences: !item.applicationPackageReferences
-      ? item.applicationPackageReferences
+    applicationPackageReferences: !item["applicationPackageReferences"]
+      ? item["applicationPackageReferences"]
       : applicationPackageReferenceArrayDeserializer(
           item["applicationPackageReferences"],
         ),
     applicationLicenses: item["applicationLicenses"],
-    userAccounts: !item.userAccounts
-      ? item.userAccounts
+    userAccounts: !item["userAccounts"]
+      ? item["userAccounts"]
       : userAccountArrayDeserializer(item["userAccounts"]),
-    metadata: !item.metadata
-      ? item.metadata
+    metadata: !item["metadata"]
+      ? item["metadata"]
       : metadataItemArrayDeserializer(item["metadata"]),
-    mountConfiguration: !item.mountConfiguration
-      ? item.mountConfiguration
+    mountConfiguration: !item["mountConfiguration"]
+      ? item["mountConfiguration"]
       : mountConfigurationArrayDeserializer(item["mountConfiguration"]),
-    targetNodeCommunicationMode: !item.targetNodeCommunicationMode
-      ? item.targetNodeCommunicationMode
+    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
+      ? item["targetNodeCommunicationMode"]
       : nodeCommunicationModeDeserializer(item["targetNodeCommunicationMode"]),
   };
 }
@@ -3601,30 +3621,32 @@ export function virtualMachineConfigurationDeserializer(
   return {
     imageReference: imageReferenceDeserializer(item["imageReference"]),
     nodeAgentSkuId: item["nodeAgentSKUId"],
-    windowsConfiguration: !item.windowsConfiguration
-      ? item.windowsConfiguration
+    windowsConfiguration: !item["windowsConfiguration"]
+      ? item["windowsConfiguration"]
       : windowsConfigurationDeserializer(item["windowsConfiguration"]),
-    dataDisks: !item.dataDisks
-      ? item.dataDisks
+    dataDisks: !item["dataDisks"]
+      ? item["dataDisks"]
       : dataDiskArrayDeserializer(item["dataDisks"]),
     licenseType: item["licenseType"],
-    containerConfiguration: !item.containerConfiguration
-      ? item.containerConfiguration
+    containerConfiguration: !item["containerConfiguration"]
+      ? item["containerConfiguration"]
       : containerConfigurationDeserializer(item["containerConfiguration"]),
-    diskEncryptionConfiguration: !item.diskEncryptionConfiguration
-      ? item.diskEncryptionConfiguration
+    diskEncryptionConfiguration: !item["diskEncryptionConfiguration"]
+      ? item["diskEncryptionConfiguration"]
       : diskEncryptionConfigurationDeserializer(
           item["diskEncryptionConfiguration"],
         ),
-    nodePlacementConfiguration: !item.nodePlacementConfiguration
-      ? item.nodePlacementConfiguration
+    nodePlacementConfiguration: !item["nodePlacementConfiguration"]
+      ? item["nodePlacementConfiguration"]
       : nodePlacementConfigurationDeserializer(
           item["nodePlacementConfiguration"],
         ),
-    extensions: !item.extensions
-      ? item.extensions
+    extensions: !item["extensions"]
+      ? item["extensions"]
       : vMExtensionArrayDeserializer(item["extensions"]),
-    osDisk: !item.osDisk ? item.osDisk : oSDiskDeserializer(item["osDisk"]),
+    osDisk: !item["osDisk"]
+      ? item["osDisk"]
+      : oSDiskDeserializer(item["osDisk"]),
   };
 }
 
@@ -3676,12 +3698,12 @@ export function dataDiskSerializer(item: DataDisk): any {
 export function dataDiskDeserializer(item: any): DataDisk {
   return {
     lun: item["lun"],
-    caching: !item.caching
-      ? item.caching
+    caching: !item["caching"]
+      ? item["caching"]
       : cachingTypeDeserializer(item["caching"]),
     diskSizeGb: item["diskSizeGB"],
-    storageAccountType: !item.storageAccountType
-      ? item.storageAccountType
+    storageAccountType: !item["storageAccountType"]
+      ? item["storageAccountType"]
       : storageAccountTypeDeserializer(item["storageAccountType"]),
   };
 }
@@ -3748,8 +3770,8 @@ export function containerConfigurationDeserializer(
   return {
     type: containerTypeDeserializer(item["type"]),
     containerImageNames: item["containerImageNames"],
-    containerRegistries: !item.containerRegistries
-      ? item.containerRegistries
+    containerRegistries: !item["containerRegistries"]
+      ? item["containerRegistries"]
       : containerRegistryArrayDeserializer(item["containerRegistries"]),
   };
 }
@@ -3801,8 +3823,8 @@ export function diskEncryptionConfigurationDeserializer(
   item: any,
 ): DiskEncryptionConfiguration {
   return {
-    targets: !item.targets
-      ? item.targets
+    targets: !item["targets"]
+      ? item["targets"]
       : diskEncryptionTargetArrayDeserializer(item["targets"]),
   };
 }
@@ -3858,8 +3880,8 @@ export function nodePlacementConfigurationDeserializer(
   item: any,
 ): NodePlacementConfiguration {
   return {
-    policy: !item.policy
-      ? item.policy
+    policy: !item["policy"]
+      ? item["policy"]
       : nodePlacementPolicyTypeDeserializer(item["policy"]),
   };
 }
@@ -3909,8 +3931,8 @@ export function oSDiskSerializer(item: OSDisk): any {
 
 export function oSDiskDeserializer(item: any): OSDisk {
   return {
-    ephemeralOSDiskSettings: !item.ephemeralOSDiskSettings
-      ? item.ephemeralOSDiskSettings
+    ephemeralOSDiskSettings: !item["ephemeralOSDiskSettings"]
+      ? item["ephemeralOSDiskSettings"]
       : diffDiskSettingsDeserializer(item["ephemeralOSDiskSettings"]),
   };
 }
@@ -3930,8 +3952,8 @@ export function diffDiskSettingsSerializer(item: DiffDiskSettings): any {
 
 export function diffDiskSettingsDeserializer(item: any): DiffDiskSettings {
   return {
-    placement: !item.placement
-      ? item.placement
+    placement: !item["placement"]
+      ? item["placement"]
       : diffDiskPlacementDeserializer(item["placement"]),
   };
 }
@@ -4015,16 +4037,16 @@ export function networkConfigurationDeserializer(
 ): NetworkConfiguration {
   return {
     subnetId: item["subnetId"],
-    dynamicVNetAssignmentScope: !item.dynamicVNetAssignmentScope
-      ? item.dynamicVNetAssignmentScope
+    dynamicVNetAssignmentScope: !item["dynamicVNetAssignmentScope"]
+      ? item["dynamicVNetAssignmentScope"]
       : dynamicVNetAssignmentScopeDeserializer(
           item["dynamicVNetAssignmentScope"],
         ),
-    endpointConfiguration: !item.endpointConfiguration
-      ? item.endpointConfiguration
+    endpointConfiguration: !item["endpointConfiguration"]
+      ? item["endpointConfiguration"]
       : poolEndpointConfigurationDeserializer(item["endpointConfiguration"]),
-    publicIpAddressConfiguration: !item.publicIpAddressConfiguration
-      ? item.publicIpAddressConfiguration
+    publicIpAddressConfiguration: !item["publicIPAddressConfiguration"]
+      ? item["publicIPAddressConfiguration"]
       : publicIpAddressConfigurationDeserializer(
           item["publicIPAddressConfiguration"],
         ),
@@ -4110,8 +4132,8 @@ export function inboundNATPoolDeserializer(item: any): InboundNATPool {
     backendPort: item["backendPort"],
     frontendPortRangeStart: item["frontendPortRangeStart"],
     frontendPortRangeEnd: item["frontendPortRangeEnd"],
-    networkSecurityGroupRules: !item.networkSecurityGroupRules
-      ? item.networkSecurityGroupRules
+    networkSecurityGroupRules: !item["networkSecurityGroupRules"]
+      ? item["networkSecurityGroupRules"]
       : networkSecurityGroupRuleArrayDeserializer(
           item["networkSecurityGroupRules"],
         ),
@@ -4220,8 +4242,8 @@ export function publicIpAddressConfigurationDeserializer(
   item: any,
 ): PublicIpAddressConfiguration {
   return {
-    IpAddressProvisioningType: !item.IpAddressProvisioningType
-      ? item.IpAddressProvisioningType
+    IpAddressProvisioningType: !item["provision"]
+      ? item["provision"]
       : ipAddressProvisioningTypeDeserializer(item["provision"]),
     ipAddressIds: item["ipAddressIds"],
   };
@@ -4280,14 +4302,14 @@ export function userAccountDeserializer(item: any): UserAccount {
   return {
     name: item["name"],
     password: item["password"],
-    elevationLevel: !item.elevationLevel
-      ? item.elevationLevel
+    elevationLevel: !item["elevationLevel"]
+      ? item["elevationLevel"]
       : elevationLevelDeserializer(item["elevationLevel"]),
-    linuxUserConfiguration: !item.linuxUserConfiguration
-      ? item.linuxUserConfiguration
+    linuxUserConfiguration: !item["linuxUserConfiguration"]
+      ? item["linuxUserConfiguration"]
       : linuxUserConfigurationDeserializer(item["linuxUserConfiguration"]),
-    windowsUserConfiguration: !item.windowsUserConfiguration
-      ? item.windowsUserConfiguration
+    windowsUserConfiguration: !item["windowsUserConfiguration"]
+      ? item["windowsUserConfiguration"]
       : windowsUserConfigurationDeserializer(item["windowsUserConfiguration"]),
   };
 }
@@ -4338,8 +4360,8 @@ export function windowsUserConfigurationDeserializer(
   item: any,
 ): WindowsUserConfiguration {
   return {
-    loginMode: !item.loginMode
-      ? item.loginMode
+    loginMode: !item["loginMode"]
+      ? item["loginMode"]
       : loginModeDeserializer(item["loginMode"]),
   };
 }
@@ -4440,19 +4462,19 @@ export function mountConfigurationSerializer(item: MountConfiguration): any {
 
 export function mountConfigurationDeserializer(item: any): MountConfiguration {
   return {
-    azureBlobFileSystemConfiguration: !item.azureBlobFileSystemConfiguration
-      ? item.azureBlobFileSystemConfiguration
+    azureBlobFileSystemConfiguration: !item["azureBlobFileSystemConfiguration"]
+      ? item["azureBlobFileSystemConfiguration"]
       : azureBlobFileSystemConfigurationDeserializer(
           item["azureBlobFileSystemConfiguration"],
         ),
-    nfsMountConfiguration: !item.nfsMountConfiguration
-      ? item.nfsMountConfiguration
+    nfsMountConfiguration: !item["nfsMountConfiguration"]
+      ? item["nfsMountConfiguration"]
       : nfsMountConfigurationDeserializer(item["nfsMountConfiguration"]),
-    cifsMountConfiguration: !item.cifsMountConfiguration
-      ? item.cifsMountConfiguration
+    cifsMountConfiguration: !item["cifsMountConfiguration"]
+      ? item["cifsMountConfiguration"]
       : cifsMountConfigurationDeserializer(item["cifsMountConfiguration"]),
-    azureFileShareConfiguration: !item.azureFileShareConfiguration
-      ? item.azureFileShareConfiguration
+    azureFileShareConfiguration: !item["azureFileShareConfiguration"]
+      ? item["azureFileShareConfiguration"]
       : azureFileShareConfigurationDeserializer(
           item["azureFileShareConfiguration"],
         ),
@@ -4503,8 +4525,8 @@ export function azureBlobFileSystemConfigurationDeserializer(
     sasKey: item["sasKey"],
     blobfuseOptions: item["blobfuseOptions"],
     relativeMountPath: item["relativeMountPath"],
-    identityReference: !item.identityReference
-      ? item.identityReference
+    identityReference: !item["identityReference"]
+      ? item["identityReference"]
       : batchNodeIdentityReferenceDeserializer(item["identityReference"]),
   };
 }
@@ -4664,8 +4686,8 @@ export function jobScheduleExecutionInformationDeserializer(
 ): JobScheduleExecutionInformation {
   return {
     nextRunTime: new Date(item["nextRunTime"]),
-    recentJob: !item.recentJob
-      ? item.recentJob
+    recentJob: !item["recentJob"]
+      ? item["recentJob"]
       : recentJobDeserializer(item["recentJob"]),
     endTime: new Date(item["endTime"]),
   };
@@ -4805,8 +4827,8 @@ export function _batchJobScheduleListResultDeserializer(
   item: any,
 ): _BatchJobScheduleListResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : batchJobScheduleArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
@@ -4874,27 +4896,27 @@ export function batchCertificateDeserializer(item: any): BatchCertificate {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
     url: item["url"],
-    state: !item.state
-      ? item.state
+    state: !item["state"]
+      ? item["state"]
       : certificateStateDeserializer(item["state"]),
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item.previousState
-      ? item.previousState
+    previousState: !item["previousState"]
+      ? item["previousState"]
       : certificateStateDeserializer(item["previousState"]),
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     publicData:
       typeof item["publicData"] === "string"
         ? stringToUint8Array(item["publicData"], "base64")
         : item["publicData"],
-    deleteCertificateError: !item.deleteCertificateError
-      ? item.deleteCertificateError
+    deleteCertificateError: !item["deleteCertificateError"]
+      ? item["deleteCertificateError"]
       : deleteCertificateErrorDeserializer(item["deleteCertificateError"]),
     data:
       typeof item["data"] === "string"
         ? stringToUint8Array(item["data"], "base64")
         : item["data"],
-    certificateFormat: !item.certificateFormat
-      ? item.certificateFormat
+    certificateFormat: !item["certificateFormat"]
+      ? item["certificateFormat"]
       : certificateFormatDeserializer(item["certificateFormat"]),
     password: item["password"],
   };
@@ -4927,8 +4949,8 @@ export function deleteCertificateErrorDeserializer(
   return {
     code: item["code"],
     message: item["message"],
-    values: !item.values
-      ? item.values
+    values: !item["values"]
+      ? item["values"]
       : nameValuePairArrayDeserializer(item["values"]),
   };
 }
@@ -4956,8 +4978,8 @@ export function _certificateListResultDeserializer(
   item: any,
 ): _CertificateListResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : batchCertificateArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
@@ -5060,47 +5082,49 @@ export function batchJobDeserializer(item: any): BatchJob {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     creationTime: new Date(item["creationTime"]),
-    state: !item.state ? item.state : jobStateDeserializer(item["state"]),
+    state: !item["state"] ? item["state"] : jobStateDeserializer(item["state"]),
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item.previousState
-      ? item.previousState
+    previousState: !item["previousState"]
+      ? item["previousState"]
       : jobStateDeserializer(item["previousState"]),
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     priority: item["priority"],
     allowTaskPreemption: item["allowTaskPreemption"],
     maxParallelTasks: item["maxParallelTasks"],
-    constraints: !item.constraints
-      ? item.constraints
+    constraints: !item["constraints"]
+      ? item["constraints"]
       : jobConstraintsDeserializer(item["constraints"]),
-    jobManagerTask: !item.jobManagerTask
-      ? item.jobManagerTask
+    jobManagerTask: !item["jobManagerTask"]
+      ? item["jobManagerTask"]
       : jobManagerTaskDeserializer(item["jobManagerTask"]),
-    jobPreparationTask: !item.jobPreparationTask
-      ? item.jobPreparationTask
+    jobPreparationTask: !item["jobPreparationTask"]
+      ? item["jobPreparationTask"]
       : jobPreparationTaskDeserializer(item["jobPreparationTask"]),
-    jobReleaseTask: !item.jobReleaseTask
-      ? item.jobReleaseTask
+    jobReleaseTask: !item["jobReleaseTask"]
+      ? item["jobReleaseTask"]
       : jobReleaseTaskDeserializer(item["jobReleaseTask"]),
-    commonEnvironmentSettings: !item.commonEnvironmentSettings
-      ? item.commonEnvironmentSettings
+    commonEnvironmentSettings: !item["commonEnvironmentSettings"]
+      ? item["commonEnvironmentSettings"]
       : environmentSettingArrayDeserializer(item["commonEnvironmentSettings"]),
     poolInfo: poolInformationDeserializer(item["poolInfo"]),
-    onAllTasksComplete: !item.onAllTasksComplete
-      ? item.onAllTasksComplete
+    onAllTasksComplete: !item["onAllTasksComplete"]
+      ? item["onAllTasksComplete"]
       : onAllTasksCompleteDeserializer(item["onAllTasksComplete"]),
-    onTaskFailure: !item.onTaskFailure
-      ? item.onTaskFailure
+    onTaskFailure: !item["onTaskFailure"]
+      ? item["onTaskFailure"]
       : onTaskFailureDeserializer(item["onTaskFailure"]),
-    networkConfiguration: !item.networkConfiguration
-      ? item.networkConfiguration
+    networkConfiguration: !item["networkConfiguration"]
+      ? item["networkConfiguration"]
       : jobNetworkConfigurationDeserializer(item["networkConfiguration"]),
-    metadata: !item.metadata
-      ? item.metadata
+    metadata: !item["metadata"]
+      ? item["metadata"]
       : metadataItemArrayDeserializer(item["metadata"]),
-    executionInfo: !item.executionInfo
-      ? item.executionInfo
+    executionInfo: !item["executionInfo"]
+      ? item["executionInfo"]
       : jobExecutionInformationDeserializer(item["executionInfo"]),
-    stats: !item.stats ? item.stats : jobStatisticsDeserializer(item["stats"]),
+    stats: !item["stats"]
+      ? item["stats"]
+      : jobStatisticsDeserializer(item["stats"]),
   };
 }
 
@@ -5143,8 +5167,8 @@ export function jobExecutionInformationDeserializer(
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
     poolId: item["poolId"],
-    schedulingError: !item.schedulingError
-      ? item.schedulingError
+    schedulingError: !item["schedulingError"]
+      ? item["schedulingError"]
       : jobSchedulingErrorDeserializer(item["schedulingError"]),
     terminateReason: item["terminateReason"],
   };
@@ -5167,8 +5191,8 @@ export function jobSchedulingErrorDeserializer(item: any): JobSchedulingError {
     category: errorCategoryDeserializer(item["category"]),
     code: item["code"],
     message: item["message"],
-    details: !item.details
-      ? item.details
+    details: !item["details"]
+      ? item["details"]
       : nameValuePairArrayDeserializer(item["details"]),
   };
 }
@@ -5382,7 +5406,9 @@ export function _batchJobListResultDeserializer(
   item: any,
 ): _BatchJobListResult {
   return {
-    value: !item.value ? item.value : batchJobArrayDeserializer(item["value"]),
+    value: !item["value"]
+      ? item["value"]
+      : batchJobArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -5414,8 +5440,8 @@ export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
   item: any,
 ): _BatchJobListPreparationAndReleaseTaskStatusResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(
           item["value"],
         ),
@@ -5444,13 +5470,13 @@ export function jobPreparationAndReleaseTaskExecutionInformationDeserializer(
     poolId: item["poolId"],
     nodeId: item["nodeId"],
     nodeUrl: item["nodeUrl"],
-    jobPreparationTaskExecutionInfo: !item.jobPreparationTaskExecutionInfo
-      ? item.jobPreparationTaskExecutionInfo
+    jobPreparationTaskExecutionInfo: !item["jobPreparationTaskExecutionInfo"]
+      ? item["jobPreparationTaskExecutionInfo"]
       : jobPreparationTaskExecutionInformationDeserializer(
           item["jobPreparationTaskExecutionInfo"],
         ),
-    jobReleaseTaskExecutionInfo: !item.jobReleaseTaskExecutionInfo
-      ? item.jobReleaseTaskExecutionInfo
+    jobReleaseTaskExecutionInfo: !item["jobReleaseTaskExecutionInfo"]
+      ? item["jobReleaseTaskExecutionInfo"]
       : jobReleaseTaskExecutionInformationDeserializer(
           item["jobReleaseTaskExecutionInfo"],
         ),
@@ -5496,16 +5522,16 @@ export function jobPreparationTaskExecutionInformationDeserializer(
     taskRootDirectory: item["taskRootDirectory"],
     taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
     exitCode: item["exitCode"],
-    containerInfo: !item.containerInfo
-      ? item.containerInfo
+    containerInfo: !item["containerInfo"]
+      ? item["containerInfo"]
       : taskContainerExecutionInformationDeserializer(item["containerInfo"]),
-    failureInfo: !item.failureInfo
-      ? item.failureInfo
+    failureInfo: !item["failureInfo"]
+      ? item["failureInfo"]
       : taskFailureInformationDeserializer(item["failureInfo"]),
     retryCount: item["retryCount"],
     lastRetryTime: new Date(item["lastRetryTime"]),
-    result: !item.result
-      ? item.result
+    result: !item["result"]
+      ? item["result"]
       : taskExecutionResultDeserializer(item["result"]),
   };
 }
@@ -5560,14 +5586,14 @@ export function jobReleaseTaskExecutionInformationDeserializer(
     taskRootDirectory: item["taskRootDirectory"],
     taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
     exitCode: item["exitCode"],
-    containerInfo: !item.containerInfo
-      ? item.containerInfo
+    containerInfo: !item["containerInfo"]
+      ? item["containerInfo"]
       : taskContainerExecutionInformationDeserializer(item["containerInfo"]),
-    failureInfo: !item.failureInfo
-      ? item.failureInfo
+    failureInfo: !item["failureInfo"]
+      ? item["failureInfo"]
       : taskFailureInformationDeserializer(item["failureInfo"]),
-    result: !item.result
-      ? item.result
+    result: !item["result"]
+      ? item["result"]
       : taskExecutionResultDeserializer(item["result"]),
   };
 }
@@ -5668,8 +5694,8 @@ export function _accountListSupportedImagesResultDeserializer(
   item: any,
 ): _AccountListSupportedImagesResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : imageInformationArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
@@ -5747,8 +5773,8 @@ export function _poolNodeCountsListResultDeserializer(
   item: any,
 ): _PoolNodeCountsListResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : poolNodeCountsArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
@@ -5767,11 +5793,11 @@ export interface PoolNodeCounts {
 export function poolNodeCountsDeserializer(item: any): PoolNodeCounts {
   return {
     poolId: item["poolId"],
-    dedicated: !item.dedicated
-      ? item.dedicated
+    dedicated: !item["dedicated"]
+      ? item["dedicated"]
       : nodeCountsDeserializer(item["dedicated"]),
-    lowPriority: !item.lowPriority
-      ? item.lowPriority
+    lowPriority: !item["lowPriority"]
+      ? item["lowPriority"]
       : nodeCountsDeserializer(item["lowPriority"]),
   };
 }
@@ -5847,8 +5873,8 @@ export function _poolListUsageMetricsResultDeserializer(
   item: any,
 ): _PoolListUsageMetricsResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : poolUsageMetricsArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
@@ -6005,7 +6031,9 @@ export function _batchPoolListResultDeserializer(
   item: any,
 ): _BatchPoolListResult {
   return {
-    value: !item.value ? item.value : batchPoolArrayDeserializer(item["value"]),
+    value: !item["value"]
+      ? item["value"]
+      : batchPoolArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -6103,28 +6131,30 @@ export function batchPoolDeserializer(item: any): BatchPool {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     creationTime: new Date(item["creationTime"]),
-    state: !item.state ? item.state : poolStateDeserializer(item["state"]),
+    state: !item["state"]
+      ? item["state"]
+      : poolStateDeserializer(item["state"]),
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    allocationState: !item.allocationState
-      ? item.allocationState
+    allocationState: !item["allocationState"]
+      ? item["allocationState"]
       : allocationStateDeserializer(item["allocationState"]),
     allocationStateTransitionTime: new Date(
       item["allocationStateTransitionTime"],
     ),
     vmSize: item["vmSize"],
-    cloudServiceConfiguration: !item.cloudServiceConfiguration
-      ? item.cloudServiceConfiguration
+    cloudServiceConfiguration: !item["cloudServiceConfiguration"]
+      ? item["cloudServiceConfiguration"]
       : cloudServiceConfigurationDeserializer(
           item["cloudServiceConfiguration"],
         ),
-    virtualMachineConfiguration: !item.virtualMachineConfiguration
-      ? item.virtualMachineConfiguration
+    virtualMachineConfiguration: !item["virtualMachineConfiguration"]
+      ? item["virtualMachineConfiguration"]
       : virtualMachineConfigurationDeserializer(
           item["virtualMachineConfiguration"],
         ),
     resizeTimeout: item["resizeTimeout"],
-    resizeErrors: !item.resizeErrors
-      ? item.resizeErrors
+    resizeErrors: !item["resizeErrors"]
+      ? item["resizeErrors"]
       : resizeErrorArrayDeserializer(item["resizeErrors"]),
     currentDedicatedNodes: item["currentDedicatedNodes"],
     currentLowPriorityNodes: item["currentLowPriorityNodes"],
@@ -6133,47 +6163,49 @@ export function batchPoolDeserializer(item: any): BatchPool {
     enableAutoScale: item["enableAutoScale"],
     autoScaleFormula: item["autoScaleFormula"],
     autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
-    autoScaleRun: !item.autoScaleRun
-      ? item.autoScaleRun
+    autoScaleRun: !item["autoScaleRun"]
+      ? item["autoScaleRun"]
       : autoScaleRunDeserializer(item["autoScaleRun"]),
     enableInterNodeCommunication: item["enableInterNodeCommunication"],
-    networkConfiguration: !item.networkConfiguration
-      ? item.networkConfiguration
+    networkConfiguration: !item["networkConfiguration"]
+      ? item["networkConfiguration"]
       : networkConfigurationDeserializer(item["networkConfiguration"]),
-    startTask: !item.startTask
-      ? item.startTask
+    startTask: !item["startTask"]
+      ? item["startTask"]
       : startTaskDeserializer(item["startTask"]),
-    certificateReferences: !item.certificateReferences
-      ? item.certificateReferences
+    certificateReferences: !item["certificateReferences"]
+      ? item["certificateReferences"]
       : certificateReferenceArrayDeserializer(item["certificateReferences"]),
-    applicationPackageReferences: !item.applicationPackageReferences
-      ? item.applicationPackageReferences
+    applicationPackageReferences: !item["applicationPackageReferences"]
+      ? item["applicationPackageReferences"]
       : applicationPackageReferenceArrayDeserializer(
           item["applicationPackageReferences"],
         ),
     applicationLicenses: item["applicationLicenses"],
     taskSlotsPerNode: item["taskSlotsPerNode"],
-    taskSchedulingPolicy: !item.taskSchedulingPolicy
-      ? item.taskSchedulingPolicy
+    taskSchedulingPolicy: !item["taskSchedulingPolicy"]
+      ? item["taskSchedulingPolicy"]
       : taskSchedulingPolicyDeserializer(item["taskSchedulingPolicy"]),
-    userAccounts: !item.userAccounts
-      ? item.userAccounts
+    userAccounts: !item["userAccounts"]
+      ? item["userAccounts"]
       : userAccountArrayDeserializer(item["userAccounts"]),
-    metadata: !item.metadata
-      ? item.metadata
+    metadata: !item["metadata"]
+      ? item["metadata"]
       : metadataItemArrayDeserializer(item["metadata"]),
-    stats: !item.stats ? item.stats : poolStatisticsDeserializer(item["stats"]),
-    mountConfiguration: !item.mountConfiguration
-      ? item.mountConfiguration
+    stats: !item["stats"]
+      ? item["stats"]
+      : poolStatisticsDeserializer(item["stats"]),
+    mountConfiguration: !item["mountConfiguration"]
+      ? item["mountConfiguration"]
       : mountConfigurationArrayDeserializer(item["mountConfiguration"]),
-    identity: !item.identity
-      ? item.identity
+    identity: !item["identity"]
+      ? item["identity"]
       : batchPoolIdentityDeserializer(item["identity"]),
-    targetNodeCommunicationMode: !item.targetNodeCommunicationMode
-      ? item.targetNodeCommunicationMode
+    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
+      ? item["targetNodeCommunicationMode"]
       : nodeCommunicationModeDeserializer(item["targetNodeCommunicationMode"]),
-    currentNodeCommunicationMode: !item.currentNodeCommunicationMode
-      ? item.currentNodeCommunicationMode
+    currentNodeCommunicationMode: !item["currentNodeCommunicationMode"]
+      ? item["currentNodeCommunicationMode"]
       : nodeCommunicationModeDeserializer(item["currentNodeCommunicationMode"]),
   };
 }
@@ -6214,8 +6246,8 @@ export function resizeErrorDeserializer(item: any): ResizeError {
   return {
     code: item["code"],
     message: item["message"],
-    values: !item.values
-      ? item.values
+    values: !item["values"]
+      ? item["values"]
       : nameValuePairArrayDeserializer(item["values"]),
   };
 }
@@ -6242,8 +6274,8 @@ export function autoScaleRunDeserializer(item: any): AutoScaleRun {
   return {
     timestamp: new Date(item["timestamp"]),
     results: item["results"],
-    error: !item.error
-      ? item.error
+    error: !item["error"]
+      ? item["error"]
       : autoScaleRunErrorDeserializer(item["error"]),
   };
 }
@@ -6262,8 +6294,8 @@ export function autoScaleRunErrorDeserializer(item: any): AutoScaleRunError {
   return {
     code: item["code"],
     message: item["message"],
-    values: !item.values
-      ? item.values
+    values: !item["values"]
+      ? item["values"]
       : nameValuePairArrayDeserializer(item["values"]),
   };
 }
@@ -6287,11 +6319,11 @@ export function poolStatisticsDeserializer(item: any): PoolStatistics {
     url: item["url"],
     startTime: new Date(item["startTime"]),
     lastUpdateTime: new Date(item["lastUpdateTime"]),
-    usageStats: !item.usageStats
-      ? item.usageStats
+    usageStats: !item["usageStats"]
+      ? item["usageStats"]
       : usageStatisticsDeserializer(item["usageStats"]),
-    resourceStats: !item.resourceStats
-      ? item.resourceStats
+    resourceStats: !item["resourceStats"]
+      ? item["resourceStats"]
       : resourceStatisticsDeserializer(item["resourceStats"]),
   };
 }
@@ -6373,8 +6405,8 @@ export interface BatchPoolIdentity {
 export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
   return {
     type: poolIdentityTypeDeserializer(item["type"]),
-    userAssignedIdentities: !item.userAssignedIdentities
-      ? item.userAssignedIdentities
+    userAssignedIdentities: !item["userAssignedIdentities"]
+      ? item["userAssignedIdentities"]
       : userAssignedIdentityArrayDeserializer(item["userAssignedIdentities"]),
   };
 }
@@ -6607,8 +6639,8 @@ export function _applicationListResultDeserializer(
   item: any,
 ): _ApplicationListResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : batchApplicationArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };

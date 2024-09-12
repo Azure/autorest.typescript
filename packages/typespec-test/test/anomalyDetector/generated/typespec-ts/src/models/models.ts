@@ -45,11 +45,11 @@ export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
     status: multivariateMultivariateBatchDetectionStatusDeserializer(
       item["status"],
     ),
-    errors: !item.errors
-      ? item.errors
+    errors: !item["errors"]
+      ? item["errors"]
       : multivariateErrorResponseArrayDeserializer(item["errors"]),
-    variableStates: !item.variableStates
-      ? item.variableStates
+    variableStates: !item["variableStates"]
+      ? item["variableStates"]
       : multivariateVariableStateArrayDeserializer(item["variableStates"]),
     setupInfo: multivariateMultivariateBatchDetectionOptionsDeserializer(
       item["setupInfo"],
@@ -221,11 +221,11 @@ export function multivariateAnomalyStateDeserializer(
 ): MultivariateAnomalyState {
   return {
     timestamp: new Date(item["timestamp"]),
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : multivariateAnomalyValueDeserializer(item["value"]),
-    errors: !item.errors
-      ? item.errors
+    errors: !item["errors"]
+      ? item["errors"]
       : multivariateErrorResponseArrayDeserializer(item["errors"]),
   };
 }
@@ -255,8 +255,8 @@ export function multivariateAnomalyValueDeserializer(
     isAnomaly: item["isAnomaly"],
     severity: item["severity"],
     score: item["score"],
-    interpretation: !item.interpretation
-      ? item.interpretation
+    interpretation: !item["interpretation"]
+      ? item["interpretation"]
       : multivariateAnomalyInterpretationArrayDeserializer(
           item["interpretation"],
         ),
@@ -282,8 +282,8 @@ export function multivariateAnomalyInterpretationDeserializer(
   return {
     variable: item["variable"],
     contributionScore: item["contributionScore"],
-    correlationChanges: !item.correlationChanges
-      ? item.correlationChanges
+    correlationChanges: !item["correlationChanges"]
+      ? item["correlationChanges"]
       : multivariateCorrelationChangesDeserializer(item["correlationChanges"]),
   };
 }
@@ -389,24 +389,24 @@ export function multivariateModelInfoDeserializer(
 ): MultivariateModelInfo {
   return {
     dataSource: item["dataSource"],
-    dataSchema: !item.dataSchema
-      ? item.dataSchema
+    dataSchema: !item["dataSchema"]
+      ? item["dataSchema"]
       : multivariateDataSchemaDeserializer(item["dataSchema"]),
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
     displayName: item["displayName"],
     slidingWindow: item["slidingWindow"],
-    alignPolicy: !item.alignPolicy
-      ? item.alignPolicy
+    alignPolicy: !item["alignPolicy"]
+      ? item["alignPolicy"]
       : multivariateAlignPolicyDeserializer(item["alignPolicy"]),
-    status: !item.status
-      ? item.status
+    status: !item["status"]
+      ? item["status"]
       : multivariateModelStatusDeserializer(item["status"]),
-    errors: !item.errors
-      ? item.errors
+    errors: !item["errors"]
+      ? item["errors"]
       : multivariateErrorResponseArrayDeserializer(item["errors"]),
-    diagnosticsInfo: !item.diagnosticsInfo
-      ? item.diagnosticsInfo
+    diagnosticsInfo: !item["diagnosticsInfo"]
+      ? item["diagnosticsInfo"]
       : multivariateDiagnosticsInfoDeserializer(item["diagnosticsInfo"]),
   };
 }
@@ -456,11 +456,11 @@ export function multivariateAlignPolicyDeserializer(
   item: any,
 ): MultivariateAlignPolicy {
   return {
-    alignMode: !item.alignMode
-      ? item.alignMode
+    alignMode: !item["alignMode"]
+      ? item["alignMode"]
       : multivariateAlignModeDeserializer(item["alignMode"]),
-    fillNAMethod: !item.fillNAMethod
-      ? item.fillNAMethod
+    fillNAMethod: !item["fillNAMethod"]
+      ? item["fillNAMethod"]
       : multivariateFillNAMethodDeserializer(item["fillNAMethod"]),
     paddingValue: item["paddingValue"],
   };
@@ -543,11 +543,11 @@ export function multivariateDiagnosticsInfoDeserializer(
   item: any,
 ): MultivariateDiagnosticsInfo {
   return {
-    modelState: !item.modelState
-      ? item.modelState
+    modelState: !item["modelState"]
+      ? item["modelState"]
       : multivariateModelStateDeserializer(item["modelState"]),
-    variableStates: !item.variableStates
-      ? item.variableStates
+    variableStates: !item["variableStates"]
+      ? item["variableStates"]
       : multivariateVariableStateArrayDeserializer(item["variableStates"]),
   };
 }
@@ -617,8 +617,8 @@ export function multivariateAnomalyDetectionModelDeserializer(
     modelId: item["modelId"],
     createdTime: new Date(item["createdTime"]),
     lastUpdatedTime: new Date(item["lastUpdatedTime"]),
-    modelInfo: !item.modelInfo
-      ? item.modelInfo
+    modelInfo: !item["modelInfo"]
+      ? item["modelInfo"]
       : multivariateModelInfoDeserializer(item["modelInfo"]),
   };
 }
@@ -718,11 +718,11 @@ export function multivariateMultivariateLastDetectionResultDeserializer(
   item: any,
 ): MultivariateMultivariateLastDetectionResult {
   return {
-    variableStates: !item.variableStates
-      ? item.variableStates
+    variableStates: !item["variableStates"]
+      ? item["variableStates"]
       : multivariateVariableStateArrayDeserializer(item["variableStates"]),
-    results: !item.results
-      ? item.results
+    results: !item["results"]
+      ? item["results"]
       : multivariateAnomalyStateArrayDeserializer(item["results"]),
   };
 }
@@ -937,8 +937,8 @@ export function univariateAnomalyDetectorErrorDeserializer(
   item: any,
 ): UnivariateAnomalyDetectorError {
   return {
-    code: !item.code
-      ? item.code
+    code: !item["code"]
+      ? item["code"]
       : univariateAnomalyDetectorErrorCodesDeserializer(item["code"]),
     message: item["message"],
   };

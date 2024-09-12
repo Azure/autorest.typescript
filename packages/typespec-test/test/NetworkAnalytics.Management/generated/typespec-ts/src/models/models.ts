@@ -31,14 +31,14 @@ export function dataProductDeserializer(item: any): DataProduct {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData
-      ? item.systemData
+    systemData: !item["systemData"]
+      ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    properties: !item.properties
-      ? item.properties
+    properties: !item["properties"]
+      ? item["properties"]
       : dataProductPropertiesDeserializer(item["properties"]),
-    identity: !item.identity
-      ? item.identity
+    identity: !item["identity"]
+      ? item["identity"]
       : managedServiceIdentityV4Deserializer(item["identity"]),
   };
 }
@@ -122,44 +122,47 @@ export function dataProductPropertiesDeserializer(
 ): DataProductProperties {
   return {
     resourceGuid: item["resourceGuid"],
-    provisioningState: !item.provisioningState
-      ? item.provisioningState
+    provisioningState: !item["provisioningState"]
+      ? item["provisioningState"]
       : provisioningStateDeserializer(item["provisioningState"]),
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
     owners: item["owners"],
-    redundancy: !item.redundancy
-      ? item.redundancy
+    redundancy: !item["redundancy"]
+      ? item["redundancy"]
       : controlStateDeserializer(item["redundancy"]),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: !item.privateLinksEnabled
-      ? item.privateLinksEnabled
+    privateLinksEnabled: !item["privateLinksEnabled"]
+      ? item["privateLinksEnabled"]
       : controlStateDeserializer(item["privateLinksEnabled"]),
-    publicNetworkAccess: !item.publicNetworkAccess
-      ? item.publicNetworkAccess
+    publicNetworkAccess: !item["publicNetworkAccess"]
+      ? item["publicNetworkAccess"]
       : controlStateDeserializer(item["publicNetworkAccess"]),
-    customerManagedKeyEncryptionEnabled:
-      !item.customerManagedKeyEncryptionEnabled
-        ? item.customerManagedKeyEncryptionEnabled
-        : controlStateDeserializer(item["customerManagedKeyEncryptionEnabled"]),
-    customerEncryptionKey: !item.customerEncryptionKey
-      ? item.customerEncryptionKey
+    customerManagedKeyEncryptionEnabled: !item[
+      "customerManagedKeyEncryptionEnabled"
+    ]
+      ? item["customerManagedKeyEncryptionEnabled"]
+      : controlStateDeserializer(item["customerManagedKeyEncryptionEnabled"]),
+    customerEncryptionKey: !item["customerEncryptionKey"]
+      ? item["customerEncryptionKey"]
       : encryptionKeyDetailsDeserializer(item["customerEncryptionKey"]),
-    networkacls: !item.networkacls
-      ? item.networkacls
+    networkacls: !item["networkacls"]
+      ? item["networkacls"]
       : dataProductNetworkAclsDeserializer(item["networkacls"]),
-    managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
-      ? item.managedResourceGroupConfiguration
+    managedResourceGroupConfiguration: !item[
+      "managedResourceGroupConfiguration"
+    ]
+      ? item["managedResourceGroupConfiguration"]
       : managedResourceGroupConfigurationDeserializer(
           item["managedResourceGroupConfiguration"],
         ),
     availableMinorVersions: item["availableMinorVersions"],
     currentMinorVersion: item["currentMinorVersion"],
     documentation: item["documentation"],
-    consumptionEndpoints: !item.consumptionEndpoints
-      ? item.consumptionEndpoints
+    consumptionEndpoints: !item["consumptionEndpoints"]
+      ? item["consumptionEndpoints"]
       : consumptionEndpointsPropertiesDeserializer(
           item["consumptionEndpoints"],
         ),
@@ -482,8 +485,8 @@ export function managedServiceIdentityV4Deserializer(
     principalId: item["principalId"],
     tenantId: item["tenantId"],
     type: managedServiceIdentityTypeDeserializer(item["type"]),
-    userAssignedIdentities: !item.userAssignedIdentities
-      ? item.userAssignedIdentities
+    userAssignedIdentities: !item["userAssignedIdentities"]
+      ? item["userAssignedIdentities"]
       : userAssignedIdentityRecordDeserializer(item["userAssignedIdentities"]),
   };
 }
@@ -587,8 +590,8 @@ export function trackedResourceDeserializer(item: any): TrackedResource {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData
-      ? item.systemData
+    systemData: !item["systemData"]
+      ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
     tags: item["tags"],
     location: item["location"],
@@ -616,8 +619,8 @@ export function resourceDeserializer(item: any): Resource {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData
-      ? item.systemData
+    systemData: !item["systemData"]
+      ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
   };
 }
@@ -641,13 +644,13 @@ export interface SystemData {
 export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
-    createdByType: !item.createdByType
-      ? item.createdByType
+    createdByType: !item["createdByType"]
+      ? item["createdByType"]
       : createdByTypeDeserializer(item["createdByType"]),
     createdAt: new Date(item["createdAt"]),
     lastModifiedBy: item["lastModifiedBy"],
-    lastModifiedByType: !item.lastModifiedByType
-      ? item.lastModifiedByType
+    lastModifiedByType: !item["lastModifiedByType"]
+      ? item["lastModifiedByType"]
       : createdByTypeDeserializer(item["lastModifiedByType"]),
     lastModifiedAt: new Date(item["lastModifiedAt"]),
   };
@@ -693,7 +696,9 @@ export interface ErrorResponse {
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
-    error: !item.error ? item.error : errorDetailDeserializer(item["error"]),
+    error: !item["error"]
+      ? item["error"]
+      : errorDetailDeserializer(item["error"]),
   };
 }
 
@@ -716,11 +721,11 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
     code: item["code"],
     message: item["message"],
     target: item["target"],
-    details: !item.details
-      ? item.details
+    details: !item["details"]
+      ? item["details"]
       : errorDetailArrayDeserializer(item["details"]),
-    additionalInfo: !item.additionalInfo
-      ? item.additionalInfo
+    additionalInfo: !item["additionalInfo"]
+      ? item["additionalInfo"]
       : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
   };
 }
@@ -746,8 +751,8 @@ export function errorAdditionalInfoDeserializer(
 ): ErrorAdditionalInfo {
   return {
     type: item["type"],
-    info: !item.info
-      ? item.info
+    info: !item["info"]
+      ? item["info"]
       : errorAdditionalInfoInfoDeserializer(item["info"]),
   };
 }
@@ -1050,11 +1055,11 @@ export function dataTypeDeserializer(item: any): DataType {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData
-      ? item.systemData
+    systemData: !item["systemData"]
+      ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    properties: !item.properties
-      ? item.properties
+    properties: !item["properties"]
+      ? item["properties"]
       : dataTypePropertiesDeserializer(item["properties"]),
   };
 }
@@ -1088,10 +1093,12 @@ export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
 
 export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
   return {
-    provisioningState: !item.provisioningState
-      ? item.provisioningState
+    provisioningState: !item["provisioningState"]
+      ? item["provisioningState"]
       : provisioningStateDeserializer(item["provisioningState"]),
-    state: !item.state ? item.state : dataTypeStateDeserializer(item["state"]),
+    state: !item["state"]
+      ? item["state"]
+      : dataTypeStateDeserializer(item["state"]),
     stateReason: item["stateReason"],
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
@@ -1138,8 +1145,8 @@ export function proxyResourceDeserializer(item: any): ProxyResource {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData
-      ? item.systemData
+    systemData: !item["systemData"]
+      ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
   };
 }
@@ -1255,11 +1262,11 @@ export function dataProductsCatalogDeserializer(
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData
-      ? item.systemData
+    systemData: !item["systemData"]
+      ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    properties: !item.properties
-      ? item.properties
+    properties: !item["properties"]
+      ? item["properties"]
       : dataProductsCatalogPropertiesDeserializer(item["properties"]),
   };
 }
@@ -1276,8 +1283,8 @@ export function dataProductsCatalogPropertiesDeserializer(
   item: any,
 ): DataProductsCatalogProperties {
   return {
-    provisioningState: !item.provisioningState
-      ? item.provisioningState
+    provisioningState: !item["provisioningState"]
+      ? item["provisioningState"]
       : provisioningStateDeserializer(item["provisioningState"]),
     publishers: publisherInformationArrayDeserializer(item["publishers"]),
   };
@@ -1418,12 +1425,14 @@ export function operationDeserializer(item: any): Operation {
   return {
     name: item["name"],
     isDataAction: item["isDataAction"],
-    display: !item.display
-      ? item.display
+    display: !item["display"]
+      ? item["display"]
       : operationDisplayDeserializer(item["display"]),
-    origin: !item.origin ? item.origin : originDeserializer(item["origin"]),
-    actionType: !item.actionType
-      ? item.actionType
+    origin: !item["origin"]
+      ? item["origin"]
+      : originDeserializer(item["origin"]),
+    actionType: !item["actionType"]
+      ? item["actionType"]
       : actionTypeDeserializer(item["actionType"]),
   };
 }

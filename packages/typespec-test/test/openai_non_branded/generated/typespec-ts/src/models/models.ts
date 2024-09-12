@@ -701,8 +701,8 @@ export function fineTuneDeserializer(item: any): FineTune {
     training_files: openAIFileArrayDeserializer(item["training_files"]),
     validation_files: openAIFileArrayDeserializer(item["validation_files"]),
     result_files: openAIFileArrayDeserializer(item["result_files"]),
-    events: !item.events
-      ? item.events
+    events: !item["events"]
+      ? item["events"]
       : fineTuneEventArrayDeserializer(item["events"]),
   };
 }
@@ -1418,8 +1418,8 @@ export function createCompletionResponseDeserializer(
     created: new Date(item["created"]),
     model: item["model"],
     choices: createCompletionResponseChoiceArrayDeserializer(item["choices"]),
-    usage: !item.usage
-      ? item.usage
+    usage: !item["usage"]
+      ? item["usage"]
       : completionUsageDeserializer(item["usage"]),
   };
 }
@@ -1727,8 +1727,8 @@ export function fineTuningJobHyperparametersDeserializer(
   item: any,
 ): FineTuningJobHyperparameters {
   return {
-    n_epochs: !item.n_epochs
-      ? item.n_epochs
+    n_epochs: !item["n_epochs"]
+      ? item["n_epochs"]
       : fineTuningJobHyperparametersNEpochsDeserializer(item["n_epochs"]),
   };
 }
@@ -2183,8 +2183,8 @@ export function createChatCompletionResponseDeserializer(
     choices: createChatCompletionResponseChoiceArrayDeserializer(
       item["choices"],
     ),
-    usage: !item.usage
-      ? item.usage
+    usage: !item["usage"]
+      ? item["usage"]
       : completionUsageDeserializer(item["usage"]),
   };
 }
@@ -2232,8 +2232,8 @@ export function chatCompletionResponseMessageDeserializer(
   return {
     role: chatCompletionResponseMessageRoleDeserializer(item["role"]),
     content: item["content"],
-    function_call: !item.function_call
-      ? item.function_call
+    function_call: !item["function_call"]
+      ? item["function_call"]
       : chatCompletionResponseMessageFunctionCallDeserializer(
           item["function_call"],
         ),

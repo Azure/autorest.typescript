@@ -134,8 +134,8 @@ export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
     delta: chatMessageDeltaDeserializer(item["delta"]),
     sessionState: item["session_state"],
     context: item["context"],
-    finishReason: !item.finishReason
-      ? item.finishReason
+    finishReason: !item["finish_reason"]
+      ? item["finish_reason"]
       : finishReasonDeserializer(item["finish_reason"]),
   };
 }
@@ -158,7 +158,7 @@ export interface ChatMessageDelta {
 export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
   return {
     content: item["content"],
-    role: !item.role ? item.role : chatRoleDeserializer(item["role"]),
+    role: !item["role"] ? item["role"] : chatRoleDeserializer(item["role"]),
     sessionState: item["session_state"],
   };
 }

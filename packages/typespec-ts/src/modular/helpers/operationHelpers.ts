@@ -901,13 +901,14 @@ export function getResponseMapping(
   const props: string[] = [];
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
-    const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-      property,
-      propertyPath
-    );
+
     const restValue = `${
       propertyPath ? `${propertyPath}${dot}` : `${dot}`
     }["${property.restApiName}"]`;
+    const nullOrUndefinedPrefix =
+      property.optional || isTypeNullable(property.type)
+        ? `!${restValue}? ${restValue}: `
+        : "";
     const deserializeFunctionName =
       buildModelDeserializer(context, property.type.tcgcType!, false, true) ??
       "";

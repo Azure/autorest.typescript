@@ -132,14 +132,16 @@ export interface AudioTranscription {
 export function audioTranscriptionDeserializer(item: any): AudioTranscription {
   return {
     text: item["text"],
-    task: !item.task ? item.task : audioTaskLabelDeserializer(item["task"]),
+    task: !item["task"]
+      ? item["task"]
+      : audioTaskLabelDeserializer(item["task"]),
     language: item["language"],
     duration: item["duration"],
-    segments: !item.segments
-      ? item.segments
+    segments: !item["segments"]
+      ? item["segments"]
       : audioTranscriptionSegmentArrayDeserializer(item["segments"]),
-    words: !item.words
-      ? item.words
+    words: !item["words"]
+      ? item["words"]
       : audioTranscriptionWordArrayDeserializer(item["words"]),
   };
 }
@@ -321,11 +323,13 @@ export interface AudioTranslation {
 export function audioTranslationDeserializer(item: any): AudioTranslation {
   return {
     text: item["text"],
-    task: !item.task ? item.task : audioTaskLabelDeserializer(item["task"]),
+    task: !item["task"]
+      ? item["task"]
+      : audioTaskLabelDeserializer(item["task"]),
     language: item["language"],
     duration: item["duration"],
-    segments: !item.segments
-      ? item.segments
+    segments: !item["segments"]
+      ? item["segments"]
       : audioTranslationSegmentArrayDeserializer(item["segments"]),
   };
 }
@@ -538,8 +542,8 @@ export function completionsDeserializer(item: any): Completions {
   return {
     id: item["id"],
     created: new Date(item["created"]),
-    promptFilterResults: !item.promptFilterResults
-      ? item.promptFilterResults
+    promptFilterResults: !item["prompt_filter_results"]
+      ? item["prompt_filter_results"]
       : contentFilterResultsForPromptArrayDeserializer(
           item["prompt_filter_results"],
         ),
@@ -613,30 +617,30 @@ export function contentFilterResultDetailsForPromptDeserializer(
   item: any,
 ): ContentFilterResultDetailsForPrompt {
   return {
-    sexual: !item.sexual
-      ? item.sexual
+    sexual: !item["sexual"]
+      ? item["sexual"]
       : contentFilterResultDeserializer(item["sexual"]),
-    violence: !item.violence
-      ? item.violence
+    violence: !item["violence"]
+      ? item["violence"]
       : contentFilterResultDeserializer(item["violence"]),
-    hate: !item.hate
-      ? item.hate
+    hate: !item["hate"]
+      ? item["hate"]
       : contentFilterResultDeserializer(item["hate"]),
-    selfHarm: !item.selfHarm
-      ? item.selfHarm
+    selfHarm: !item["self_harm"]
+      ? item["self_harm"]
       : contentFilterResultDeserializer(item["self_harm"]),
-    profanity: !item.profanity
-      ? item.profanity
+    profanity: !item["profanity"]
+      ? item["profanity"]
       : contentFilterDetectionResultDeserializer(item["profanity"]),
-    customBlocklists: !item.customBlocklists
-      ? item.customBlocklists
+    customBlocklists: !item["custom_blocklists"]
+      ? item["custom_blocklists"]
       : contentFilterDetailedResultsDeserializer(item["custom_blocklists"]),
     error: item["error"],
-    jailbreak: !item.jailbreak
-      ? item.jailbreak
+    jailbreak: !item["jailbreak"]
+      ? item["jailbreak"]
       : contentFilterDetectionResultDeserializer(item["jailbreak"]),
-    indirectAttack: !item.indirectAttack
-      ? item.indirectAttack
+    indirectAttack: !item["indirect_attack"]
+      ? item["indirect_attack"]
       : contentFilterDetectionResultDeserializer(item["indirect_attack"]),
   };
 }
@@ -766,8 +770,8 @@ export function choiceDeserializer(item: any): Choice {
   return {
     text: item["text"],
     index: item["index"],
-    contentFilterResults: !item.contentFilterResults
-      ? item.contentFilterResults
+    contentFilterResults: !item["content_filter_results"]
+      ? item["content_filter_results"]
       : contentFilterResultsForChoiceDeserializer(
           item["content_filter_results"],
         ),
@@ -822,32 +826,32 @@ export function contentFilterResultsForChoiceDeserializer(
   item: any,
 ): ContentFilterResultsForChoice {
   return {
-    sexual: !item.sexual
-      ? item.sexual
+    sexual: !item["sexual"]
+      ? item["sexual"]
       : contentFilterResultDeserializer(item["sexual"]),
-    violence: !item.violence
-      ? item.violence
+    violence: !item["violence"]
+      ? item["violence"]
       : contentFilterResultDeserializer(item["violence"]),
-    hate: !item.hate
-      ? item.hate
+    hate: !item["hate"]
+      ? item["hate"]
       : contentFilterResultDeserializer(item["hate"]),
-    selfHarm: !item.selfHarm
-      ? item.selfHarm
+    selfHarm: !item["self_harm"]
+      ? item["self_harm"]
       : contentFilterResultDeserializer(item["self_harm"]),
-    profanity: !item.profanity
-      ? item.profanity
+    profanity: !item["profanity"]
+      ? item["profanity"]
       : contentFilterDetectionResultDeserializer(item["profanity"]),
-    customBlocklists: !item.customBlocklists
-      ? item.customBlocklists
+    customBlocklists: !item["custom_blocklists"]
+      ? item["custom_blocklists"]
       : contentFilterDetailedResultsDeserializer(item["custom_blocklists"]),
     error: item["error"],
-    protectedMaterialText: !item.protectedMaterialText
-      ? item.protectedMaterialText
+    protectedMaterialText: !item["protected_material_text"]
+      ? item["protected_material_text"]
       : contentFilterDetectionResultDeserializer(
           item["protected_material_text"],
         ),
-    protectedMaterialCode: !item.protectedMaterialCode
-      ? item.protectedMaterialCode
+    protectedMaterialCode: !item["protected_material_code"]
+      ? item["protected_material_code"]
       : contentFilterCitedDetectionResultDeserializer(
           item["protected_material_code"],
         ),
@@ -3048,8 +3052,8 @@ export function chatCompletionsDeserializer(item: any): ChatCompletions {
     created: new Date(item["created"]),
     choices: chatChoiceArrayDeserializer(item["choices"]),
     model: item["model"],
-    promptFilterResults: !item.promptFilterResults
-      ? item.promptFilterResults
+    promptFilterResults: !item["prompt_filter_results"]
+      ? item["prompt_filter_results"]
       : contentFilterResultsForPromptArrayDeserializer(
           item["prompt_filter_results"],
         ),
@@ -3095,25 +3099,25 @@ export interface ChatChoice {
 
 export function chatChoiceDeserializer(item: any): ChatChoice {
   return {
-    message: !item.message
-      ? item.message
+    message: !item["message"]
+      ? item["message"]
       : chatResponseMessageDeserializer(item["message"]),
     logprobs: item["logprobs"],
     index: item["index"],
     finishReason: item["finish_reason"] as CompletionsFinishReason,
-    finishDetails: !item.finishDetails
-      ? item.finishDetails
+    finishDetails: !item["finish_details"]
+      ? item["finish_details"]
       : chatFinishDetailsUnionDeserializer(item["finish_details"]),
-    delta: !item.delta
-      ? item.delta
+    delta: !item["delta"]
+      ? item["delta"]
       : chatResponseMessageDeserializer(item["delta"]),
-    contentFilterResults: !item.contentFilterResults
-      ? item.contentFilterResults
+    contentFilterResults: !item["content_filter_results"]
+      ? item["content_filter_results"]
       : contentFilterResultsForChoiceDeserializer(
           item["content_filter_results"],
         ),
-    enhancements: !item.enhancements
-      ? item.enhancements
+    enhancements: !item["enhancements"]
+      ? item["enhancements"]
       : azureChatEnhancementsDeserializer(item["enhancements"]),
   };
 }
@@ -3147,14 +3151,14 @@ export function chatResponseMessageDeserializer(
   return {
     role: chatRoleDeserializer(item["role"]),
     content: item["content"],
-    toolCalls: !item.toolCalls
-      ? item.toolCalls
+    toolCalls: !item["tool_calls"]
+      ? item["tool_calls"]
       : chatCompletionsToolCallArrayDeserializer(item["tool_calls"]),
-    functionCall: !item.functionCall
-      ? item.functionCall
+    functionCall: !item["function_call"]
+      ? item["function_call"]
       : functionCallDeserializer(item["function_call"]),
-    context: !item.context
-      ? item.context
+    context: !item["context"]
+      ? item["context"]
       : azureChatExtensionsMessageContextDeserializer(item["context"]),
   };
 }
@@ -3182,14 +3186,14 @@ export function azureChatExtensionsMessageContextDeserializer(
   item: any,
 ): AzureChatExtensionsMessageContext {
   return {
-    citations: !item.citations
-      ? item.citations
+    citations: !item["citations"]
+      ? item["citations"]
       : azureChatExtensionDataSourceResponseCitationArrayDeserializer(
           item["citations"],
         ),
     intent: item["intent"],
-    allRetrievedDocuments: !item.allRetrievedDocuments
-      ? item.allRetrievedDocuments
+    allRetrievedDocuments: !item["all_retrieved_documents"]
+      ? item["all_retrieved_documents"]
       : azureChatExtensionRetrievedDocumentArrayDeserializer(
           item["all_retrieved_documents"],
         ),
@@ -3274,8 +3278,8 @@ export function azureChatExtensionRetrievedDocumentDeserializer(
     dataSourceIndex: item["data_source_index"],
     originalSearchScore: item["original_search_score"],
     rerankScore: item["rerank_score"],
-    filterReason: !item.filterReason
-      ? item.filterReason
+    filterReason: !item["filter_reason"]
+      ? item["filter_reason"]
       : azureChatExtensionRetrieveDocumentFilterReasonDeserializer(
           item["filter_reason"],
         ),
@@ -3463,8 +3467,8 @@ export function azureChatEnhancementsDeserializer(
   item: any,
 ): AzureChatEnhancements {
   return {
-    grounding: !item.grounding
-      ? item.grounding
+    grounding: !item["grounding"]
+      ? item["grounding"]
       : azureGroundingEnhancementDeserializer(item["grounding"]),
   };
 }
@@ -3634,15 +3638,15 @@ export function imageGenerationOptionsDeserializer(
     model: item["model"],
     prompt: item["prompt"],
     n: item["n"],
-    size: !item.size ? item.size : imageSizeDeserializer(item["size"]),
-    responseFormat: !item.responseFormat
-      ? item.responseFormat
+    size: !item["size"] ? item["size"] : imageSizeDeserializer(item["size"]),
+    responseFormat: !item["response_format"]
+      ? item["response_format"]
       : imageGenerationResponseFormatDeserializer(item["response_format"]),
-    quality: !item.quality
-      ? item.quality
+    quality: !item["quality"]
+      ? item["quality"]
       : imageGenerationQualityDeserializer(item["quality"]),
-    style: !item.style
-      ? item.style
+    style: !item["style"]
+      ? item["style"]
       : imageGenerationStyleDeserializer(item["style"]),
     user: item["user"],
   };
@@ -3766,14 +3770,14 @@ export function imageGenerationDataDeserializer(
   return {
     url: item["url"],
     base64Data: item["b64_json"],
-    contentFilterResults: !item.contentFilterResults
-      ? item.contentFilterResults
+    contentFilterResults: !item["content_filter_results"]
+      ? item["content_filter_results"]
       : imageGenerationContentFilterResultsDeserializer(
           item["content_filter_results"],
         ),
     revisedPrompt: item["revised_prompt"],
-    promptFilterResults: !item.promptFilterResults
-      ? item.promptFilterResults
+    promptFilterResults: !item["prompt_filter_results"]
+      ? item["prompt_filter_results"]
       : imageGenerationPromptFilterResultsDeserializer(
           item["prompt_filter_results"],
         ),
@@ -3813,17 +3817,17 @@ export function imageGenerationContentFilterResultsDeserializer(
   item: any,
 ): ImageGenerationContentFilterResults {
   return {
-    sexual: !item.sexual
-      ? item.sexual
+    sexual: !item["sexual"]
+      ? item["sexual"]
       : contentFilterResultDeserializer(item["sexual"]),
-    violence: !item.violence
-      ? item.violence
+    violence: !item["violence"]
+      ? item["violence"]
       : contentFilterResultDeserializer(item["violence"]),
-    hate: !item.hate
-      ? item.hate
+    hate: !item["hate"]
+      ? item["hate"]
       : contentFilterResultDeserializer(item["hate"]),
-    selfHarm: !item.selfHarm
-      ? item.selfHarm
+    selfHarm: !item["self_harm"]
+      ? item["self_harm"]
       : contentFilterResultDeserializer(item["self_harm"]),
   };
 }
@@ -3867,26 +3871,26 @@ export function imageGenerationPromptFilterResultsDeserializer(
   item: any,
 ): ImageGenerationPromptFilterResults {
   return {
-    sexual: !item.sexual
-      ? item.sexual
+    sexual: !item["sexual"]
+      ? item["sexual"]
       : contentFilterResultDeserializer(item["sexual"]),
-    violence: !item.violence
-      ? item.violence
+    violence: !item["violence"]
+      ? item["violence"]
       : contentFilterResultDeserializer(item["violence"]),
-    hate: !item.hate
-      ? item.hate
+    hate: !item["hate"]
+      ? item["hate"]
       : contentFilterResultDeserializer(item["hate"]),
-    selfHarm: !item.selfHarm
-      ? item.selfHarm
+    selfHarm: !item["self_harm"]
+      ? item["self_harm"]
       : contentFilterResultDeserializer(item["self_harm"]),
-    profanity: !item.profanity
-      ? item.profanity
+    profanity: !item["profanity"]
+      ? item["profanity"]
       : contentFilterDetectionResultDeserializer(item["profanity"]),
-    jailbreak: !item.jailbreak
-      ? item.jailbreak
+    jailbreak: !item["jailbreak"]
+      ? item["jailbreak"]
       : contentFilterDetectionResultDeserializer(item["jailbreak"]),
-    customBlocklists: !item.customBlocklists
-      ? item.customBlocklists
+    customBlocklists: !item["custom_blocklists"]
+      ? item["custom_blocklists"]
       : contentFilterDetailedResultsDeserializer(item["custom_blocklists"]),
   };
 }

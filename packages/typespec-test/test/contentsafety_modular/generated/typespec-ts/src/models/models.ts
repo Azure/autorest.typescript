@@ -68,8 +68,8 @@ export function addOrUpdateBlockItemsResultDeserializer(
   item: any,
 ): AddOrUpdateBlockItemsResult {
   return {
-    value: !item.value
-      ? item.value
+    value: !item["value"]
+      ? item["value"]
       : textBlockItemArrayDeserializer(item["value"]),
   };
 }
@@ -304,8 +304,8 @@ export interface AnalyzeTextResult {
 
 export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
   return {
-    blocklistsMatchResults: !item.blocklistsMatchResults
-      ? item.blocklistsMatchResults
+    blocklistsMatchResults: !item["blocklistsMatchResults"]
+      ? item["blocklistsMatchResults"]
       : textBlocklistMatchResultArrayDeserializer(
           item["blocklistsMatchResults"],
         ),
