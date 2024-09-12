@@ -9,9 +9,7 @@
       }
     ]
   },
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "x-ms-parameterized-host": {
     "hostTemplate": "{ledgerUri}",
     "useSchemePrefix": false,
@@ -26,17 +24,11 @@
       }
     ]
   },
-  "produces": [
-    "application/json"
-  ],
-  "consumes": [
-    "application/json"
-  ],
+  "produces": ["application/json"],
+  "consumes": ["application/json"],
   "security": [
     {
-      "OAuth2Auth": [
-        "https://confidential-ledger.azure.com/.default"
-      ]
+      "OAuth2Auth": ["https://confidential-ledger.azure.com/.default"]
     }
   ],
   "securityDefinitions": {
@@ -206,7 +198,8 @@
           }
         },
         "x-ms-pageable": {
-          "nextLinkName": "nextLink"
+          "nextLinkName": "nextLink",
+          "itemName": "entries"
         }
       }
     },
@@ -450,9 +443,7 @@
         "operationId": "ConfidentialLedger_CreateOrUpdateUser",
         "summary": "Adds a user or updates a user's fields.",
         "description": "Creates or updates a LedgerUser",
-        "consumes": [
-          "application/merge-patch+json"
-        ],
+        "consumes": ["application/merge-patch+json"],
         "parameters": [
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -569,10 +560,7 @@
           "description": "An object containing more specific information than the current object about the error."
         }
       },
-      "required": [
-        "code",
-        "message"
-      ]
+      "required": ["code", "message"]
     },
     "Azure.Core.Foundations.ErrorResponse": {
       "type": "object",
@@ -583,9 +571,7 @@
           "description": "The error object."
         }
       },
-      "required": [
-        "error"
-      ]
+      "required": ["error"]
     },
     "Azure.Core.Foundations.InnerError": {
       "type": "object",
@@ -611,9 +597,7 @@
           "readOnly": true
         }
       },
-      "required": [
-        "collectionId"
-      ]
+      "required": ["collectionId"]
     },
     "LedgerEntry": {
       "type": "object",
@@ -634,19 +618,12 @@
           "readOnly": true
         }
       },
-      "required": [
-        "contents",
-        "collectionId",
-        "transactionId"
-      ]
+      "required": ["contents", "collectionId", "transactionId"]
     },
     "LedgerQueryState": {
       "type": "string",
       "description": "State of a ledger query.",
-      "enum": [
-        "Loading",
-        "Ready"
-      ],
+      "enum": ["Loading", "Ready"],
       "x-ms-enum": {
         "name": "LedgerQueryState",
         "modelAsString": false
@@ -667,10 +644,7 @@
           "description": "The user's assigned role."
         }
       },
-      "required": [
-        "userId",
-        "assignedRole"
-      ]
+      "required": ["userId", "assignedRole"]
     },
     "LedgerUserCreateOrUpdate": {
       "type": "object",
@@ -685,11 +659,7 @@
     "LedgerUserRole": {
       "type": "string",
       "description": "Represents an assignable role.",
-      "enum": [
-        "Administrator",
-        "Contributor",
-        "Reader"
-      ],
+      "enum": ["Administrator", "Contributor", "Reader"],
       "x-ms-enum": {
         "name": "LedgerUserRole",
         "modelAsString": false
@@ -702,9 +672,7 @@
         "type": {
           "type": "string",
           "description": "type of auth flow",
-          "enum": [
-            "implicit"
-          ]
+          "enum": ["implicit"]
         },
         "authorizationUrl": {
           "type": "string",
@@ -732,12 +700,7 @@
           "items": {}
         }
       },
-      "required": [
-        "type",
-        "authorizationUrl",
-        "tokenUrl",
-        "scopes"
-      ]
+      "required": ["type", "authorizationUrl", "tokenUrl", "scopes"]
     },
     "PagedLedgerEntries": {
       "type": "object",
@@ -761,10 +724,7 @@
           "description": "Path from which to retrieve the next page of results."
         }
       },
-      "required": [
-        "entries",
-        "state"
-      ]
+      "required": ["entries", "state"]
     },
     "ReceiptContents": {
       "type": "object",
@@ -791,19 +751,12 @@
           "description": "The transaction ID."
         }
       },
-      "required": [
-        "receipt",
-        "state",
-        "transactionId"
-      ]
+      "required": ["receipt", "state", "transactionId"]
     },
     "TransactionState": {
       "type": "string",
       "description": "Represents the state of the transaction.",
-      "enum": [
-        "Committed",
-        "Pending"
-      ],
+      "enum": ["Committed", "Pending"],
       "x-ms-enum": {
         "name": "TransactionState",
         "modelAsString": false
@@ -822,10 +775,7 @@
           "description": "The transaction ID."
         }
       },
-      "required": [
-        "state",
-        "transactionId"
-      ]
+      "required": ["state", "transactionId"]
     }
   },
   "parameters": {

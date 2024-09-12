@@ -10,9 +10,7 @@
       }
     ]
   },
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "x-ms-parameterized-host": {
     "hostTemplate": "{Endpoint}/anomalydetector/{ApiVersion}",
     "useSchemePrefix": false,
@@ -30,9 +28,7 @@
         "description": "Api Version",
         "required": true,
         "type": "string",
-        "enum": [
-          "v1.1"
-        ],
+        "enum": ["v1.1"],
         "x-ms-enum": {
           "name": "APIVersion",
           "modelAsString": true,
@@ -46,12 +42,8 @@
       }
     ]
   },
-  "produces": [
-    "application/json"
-  ],
-  "consumes": [
-    "application/json"
-  ],
+  "produces": ["application/json"],
+  "consumes": ["application/json"],
   "security": [
     {
       "ApiKeyAuth": []
@@ -148,7 +140,8 @@
           }
         },
         "x-ms-pageable": {
-          "nextLinkName": "nextLink"
+          "nextLinkName": "nextLink",
+          "itemName": "models"
         }
       },
       "post": {
@@ -479,9 +472,7 @@
   "definitions": {
     "APIVersion": {
       "type": "string",
-      "enum": [
-        "v1.1"
-      ],
+      "enum": ["v1.1"],
       "x-ms-enum": {
         "name": "APIVersion",
         "modelAsString": true,
@@ -495,10 +486,7 @@
     },
     "Multivariate.AlignMode": {
       "type": "string",
-      "enum": [
-        "Inner",
-        "Outer"
-      ],
+      "enum": ["Inner", "Outer"],
       "x-ms-enum": {
         "name": "AlignMode",
         "modelAsString": false
@@ -548,11 +536,7 @@
           "description": "Training result of a model including its status, errors and diagnostics\ninformation."
         }
       },
-      "required": [
-        "modelId",
-        "createdTime",
-        "lastUpdatedTime"
-      ]
+      "required": ["modelId", "createdTime", "lastUpdatedTime"]
     },
     "Multivariate.AnomalyInterpretation": {
       "type": "object",
@@ -595,9 +579,7 @@
           "x-ms-identifiers": []
         }
       },
-      "required": [
-        "timestamp"
-      ]
+      "required": ["timestamp"]
     },
     "Multivariate.AnomalyValue": {
       "type": "object",
@@ -630,11 +612,7 @@
           "x-ms-identifiers": []
         }
       },
-      "required": [
-        "isAnomaly",
-        "severity",
-        "score"
-      ]
+      "required": ["isAnomaly", "severity", "score"]
     },
     "Multivariate.CorrelationChanges": {
       "type": "object",
@@ -652,10 +630,7 @@
     "Multivariate.DataSchema": {
       "type": "string",
       "description": "Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable.",
-      "enum": [
-        "OneTable",
-        "MultiTable"
-      ],
+      "enum": ["OneTable", "MultiTable"],
       "x-ms-enum": {
         "name": "DataSchema",
         "modelAsString": false,
@@ -704,21 +679,12 @@
           "description": "The message explaining the error reported by the service."
         }
       },
-      "required": [
-        "code",
-        "message"
-      ]
+      "required": ["code", "message"]
     },
     "Multivariate.FillNAMethod": {
       "type": "string",
       "description": "An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed.",
-      "enum": [
-        "Previous",
-        "Subsequent",
-        "Linear",
-        "Zero",
-        "Fixed"
-      ],
+      "enum": ["Previous", "Subsequent", "Linear", "Zero", "Fixed"],
       "x-ms-enum": {
         "name": "FillNAMethod",
         "modelAsString": false
@@ -778,11 +744,7 @@
           "description": "Diagnostics information to help inspect the states of model or variable."
         }
       },
-      "required": [
-        "dataSource",
-        "startTime",
-        "endTime"
-      ]
+      "required": ["dataSource", "startTime", "endTime"]
     },
     "Multivariate.ModelList": {
       "type": "object",
@@ -811,11 +773,7 @@
           "description": "The link to fetch more models."
         }
       },
-      "required": [
-        "models",
-        "currentCount",
-        "maxCount"
-      ]
+      "required": ["models", "currentCount", "maxCount"]
     },
     "Multivariate.ModelState": {
       "type": "object",
@@ -857,12 +815,7 @@
     },
     "Multivariate.ModelStatus": {
       "type": "string",
-      "enum": [
-        "CREATED",
-        "RUNNING",
-        "READY",
-        "FAILED"
-      ],
+      "enum": ["CREATED", "RUNNING", "READY", "FAILED"],
       "x-ms-enum": {
         "name": "ModelStatus",
         "modelAsString": false,
@@ -910,12 +863,7 @@
           "description": "A required field, indicating the end time of data for detection, which should\nbe date-time of ISO 8601 format."
         }
       },
-      "required": [
-        "dataSource",
-        "topContributorCount",
-        "startTime",
-        "endTime"
-      ]
+      "required": ["dataSource", "topContributorCount", "startTime", "endTime"]
     },
     "Multivariate.MultivariateBatchDetectionResultSummary": {
       "type": "object",
@@ -946,19 +894,11 @@
           "description": "Detection request for batch inference. This is an asynchronous inference which\nwill need another API to get detection results."
         }
       },
-      "required": [
-        "status",
-        "setupInfo"
-      ]
+      "required": ["status", "setupInfo"]
     },
     "Multivariate.MultivariateBatchDetectionStatus": {
       "type": "string",
-      "enum": [
-        "CREATED",
-        "RUNNING",
-        "READY",
-        "FAILED"
-      ],
+      "enum": ["CREATED", "RUNNING", "READY", "FAILED"],
       "x-ms-enum": {
         "name": "MultivariateBatchDetectionStatus",
         "modelAsString": false,
@@ -1005,11 +945,7 @@
           "x-ms-identifiers": []
         }
       },
-      "required": [
-        "resultId",
-        "summary",
-        "results"
-      ]
+      "required": ["resultId", "summary", "results"]
     },
     "Multivariate.MultivariateLastDetectionOptions": {
       "type": "object",
@@ -1029,10 +965,7 @@
           "description": "An optional field, which is used to specify the number of top contributed\nvariables for one anomalous timestamp in the response. The default number is\n10."
         }
       },
-      "required": [
-        "variables",
-        "topContributorCount"
-      ]
+      "required": ["variables", "topContributorCount"]
     },
     "Multivariate.MultivariateLastDetectionResult": {
       "type": "object",
@@ -1069,10 +1002,7 @@
           "description": "The message explaining the error reported by the service."
         }
       },
-      "required": [
-        "code",
-        "message"
-      ]
+      "required": ["code", "message"]
     },
     "Multivariate.VariableState": {
       "type": "object",
@@ -1130,11 +1060,7 @@
           }
         }
       },
-      "required": [
-        "variable",
-        "timestamps",
-        "values"
-      ]
+      "required": ["variable", "timestamps", "values"]
     },
     "Univariate.AnomalyDetectorError": {
       "type": "object",
@@ -1172,14 +1098,7 @@
     },
     "Univariate.ImputeMode": {
       "type": "string",
-      "enum": [
-        "auto",
-        "previous",
-        "linear",
-        "fixed",
-        "zero",
-        "notFill"
-      ],
+      "enum": ["auto", "previous", "linear", "fixed", "zero", "notFill"],
       "x-ms-enum": {
         "name": "ImputeMode",
         "modelAsString": false,
@@ -1282,9 +1201,7 @@
           "description": "The measurement of that point, should be float."
         }
       },
-      "required": [
-        "value"
-      ]
+      "required": ["value"]
     },
     "Univariate.UnivariateChangePointDetectionOptions": {
       "type": "object",
@@ -1323,10 +1240,7 @@
           "description": "Optional argument, advanced model parameter, between 0.0-1.0, the lower the\nvalue is, the larger the trend error will be which means less change point will\nbe accepted."
         }
       },
-      "required": [
-        "series",
-        "granularity"
-      ]
+      "required": ["series", "granularity"]
     },
     "Univariate.UnivariateChangePointDetectionResult": {
       "type": "object",
@@ -1401,9 +1315,7 @@
           "description": "Used to specify the value to fill, it's used when granularity is not \"none\"\nand imputeMode is \"fixed\"."
         }
       },
-      "required": [
-        "series"
-      ]
+      "required": ["series"]
     },
     "Univariate.UnivariateEntireDetectionResult": {
       "type": "object",
