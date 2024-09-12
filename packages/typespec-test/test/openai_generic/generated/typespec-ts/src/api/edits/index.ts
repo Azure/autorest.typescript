@@ -10,6 +10,7 @@ import {
   CreateEditRequest,
   createEditRequestSerializer,
   CreateEditResponse,
+  createEditResponseDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -38,7 +39,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return createEditResponseDeserializer(result.body);
 }
 
 export async function create(

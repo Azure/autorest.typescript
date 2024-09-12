@@ -4,8 +4,8 @@
 export { FooClient, FooClientOptionalParams } from "./fooClient.js";
 export {
   A,
-  BA,
-  BEA,
+  Ba,
+  Bea,
   Op1OptionalParams,
   BOp1OptionalParams,
   BECOp1OptionalParams,

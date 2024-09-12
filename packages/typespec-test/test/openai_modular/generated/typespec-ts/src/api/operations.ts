@@ -10,23 +10,29 @@ import {
   AudioTranscriptionOptions,
   audioTranscriptionOptionsSerializer,
   AudioTranscription,
+  audioTranscriptionDeserializer,
   AudioTranslationOptions,
   audioTranslationOptionsSerializer,
   AudioTranslation,
+  audioTranslationDeserializer,
   CompletionsOptions,
   completionsOptionsSerializer,
   Completions,
+  completionsDeserializer,
   ChatCompletionsOptions,
   chatCompletionsOptionsSerializer,
   ChatCompletions,
+  chatCompletionsDeserializer,
   ImageGenerationOptions,
   imageGenerationOptionsSerializer,
   ImageGenerations,
+  imageGenerationsDeserializer,
   SpeechGenerationOptions,
   speechGenerationOptionsSerializer,
   EmbeddingsOptions,
   embeddingsOptionsSerializer,
   Embeddings,
+  embeddingsDeserializer,
 } from "../models/models.js";
 import {
   PathUncheckedResponse,
@@ -118,7 +124,7 @@ export async function _getAudioTranscriptionAsResponseObjectDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return audioTranscriptionDeserializer(result.body);
 }
 
 /**
@@ -213,7 +219,7 @@ export async function _getAudioTranslationAsResponseObjectDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return audioTranslationDeserializer(result.body);
 }
 
 /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
@@ -256,7 +262,7 @@ export async function _getCompletionsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return completionsDeserializer(result.body);
 }
 
 /**
@@ -301,7 +307,7 @@ export async function _getChatCompletionsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return chatCompletionsDeserializer(result.body);
 }
 
 /**
@@ -346,7 +352,7 @@ export async function _getImageGenerationsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return imageGenerationsDeserializer(result.body);
 }
 
 /** Creates an image given a prompt. */
@@ -428,7 +434,7 @@ export async function _getEmbeddingsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return embeddingsDeserializer(result.body);
 }
 
 /** Return the embeddings for a given prompt. */

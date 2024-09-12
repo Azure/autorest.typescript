@@ -9,8 +9,11 @@ import {
   CreateFineTuningJobRequest,
   createFineTuningJobRequestSerializer,
   FineTuningJob,
+  fineTuningJobDeserializer,
   ListPaginatedFineTuningJobsResponse,
+  listPaginatedFineTuningJobsResponseDeserializer,
   ListFineTuningJobEventsResponse,
+  listFineTuningJobEventsResponseDeserializer,
 } from "../../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -45,7 +48,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return fineTuningJobDeserializer(result.body);
 }
 
 /**
@@ -85,7 +88,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return listPaginatedFineTuningJobsResponseDeserializer(result.body);
 }
 
 export async function list(
@@ -114,7 +117,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return fineTuningJobDeserializer(result.body);
 }
 
 export async function retrieve(
@@ -147,7 +150,7 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return listFineTuningJobEventsResponseDeserializer(result.body);
 }
 
 export async function listEvents(
@@ -177,7 +180,7 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return fineTuningJobDeserializer(result.body);
 }
 
 export async function cancel(

@@ -11,6 +11,7 @@ import {
   testSerializer,
   testDeserializer,
   TestFileInfo,
+  testFileInfoDeserializer,
   TestAppComponents,
   testAppComponentsSerializer,
   testAppComponentsDeserializer,
@@ -18,6 +19,7 @@ import {
   testServerMetricConfigSerializer,
   testServerMetricConfigDeserializer,
   _Metrics,
+  _metricsDeserializer,
   _PagedTestFileInfo,
   _PagedTest,
   _PagedTestRun,
@@ -287,7 +289,7 @@ export async function _getTestFileDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return testFileInfoDeserializer(result.body);
 }
 
 /** Get all the files that are associated with a test. */
@@ -408,7 +410,7 @@ export async function _uploadTestFileDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return testFileInfoDeserializer(result.body);
 }
 
 /**

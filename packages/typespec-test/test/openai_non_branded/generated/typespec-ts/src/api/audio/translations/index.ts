@@ -9,6 +9,7 @@ import {
   CreateTranslationRequest,
   createTranslationRequestSerializer,
   CreateTranslationResponse,
+  createTranslationResponseDeserializer,
 } from "../../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -38,7 +39,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return createTranslationResponseDeserializer(result.body);
 }
 
 export async function create(

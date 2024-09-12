@@ -10,9 +10,11 @@ import {
   StreamingChatCompletionOptionsRecord,
   streamingChatCompletionOptionsRecordSerializer,
   ChatCompletionChunkRecord,
+  chatCompletionChunkRecordDeserializer,
   ChatCompletionOptionsRecord,
   chatCompletionOptionsRecordSerializer,
   ChatCompletionRecord,
+  chatCompletionRecordDeserializer,
 } from "../models/models.js";
 import {
   PathUncheckedResponse,
@@ -44,7 +46,7 @@ export async function _createStreamingDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return chatCompletionChunkRecordDeserializer(result.body);
 }
 
 /** Creates a new streaming chat completion. */
@@ -78,7 +80,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return chatCompletionRecordDeserializer(result.body);
 }
 
 /** Creates a new chat completion. */

@@ -6,7 +6,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { BA, bASerializer } from "../../../models/models.js";
+import { Ba, baSerializer } from "../../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
@@ -15,14 +15,14 @@ import { BCOp1OptionalParams } from "../../../models/options.js";
 
 export function _op1Send(
   context: Client,
-  body: BA,
+  body: Ba,
   options: BCOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/b/c")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: bASerializer(body),
+      body: baSerializer(body),
     });
 }
 
@@ -39,7 +39,7 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: BA,
+  body: Ba,
   options: BCOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);

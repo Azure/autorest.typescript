@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   _DataProductListResult,
+  _dataProductListResultDeserializer,
   DataType,
   dataTypeSerializer,
   dataTypeDeserializer,
@@ -16,9 +17,13 @@ import {
   ContainerSaS,
   containerSaSSerializer,
   ContainerSasToken,
+  containerSasTokenDeserializer,
   _DataTypeListResult,
+  _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
+  _operationListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -369,7 +374,7 @@ export async function _generateStorageContainerSasTokenDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return containerSasTokenDeserializer(result.body);
 }
 
 /** Generate sas token for storage container. */
@@ -421,7 +426,7 @@ export async function _listByDataProductDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _dataTypeListResultDeserializer(result.body);
 }
 
 /** List data type by parent resource. */

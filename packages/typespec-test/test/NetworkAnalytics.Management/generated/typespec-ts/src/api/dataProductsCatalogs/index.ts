@@ -8,10 +8,15 @@ import {
 } from "@azure-rest/core-client";
 import {
   _DataProductListResult,
+  _dataProductListResultDeserializer,
   _DataTypeListResult,
+  _dataTypeListResultDeserializer,
   DataProductsCatalog,
+  dataProductsCatalogDeserializer,
   _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
+  _operationListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -50,7 +55,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return dataProductsCatalogDeserializer(result.body);
 }
 
 /** Retrieve data type resource. */
@@ -94,7 +99,7 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
 /** List data catalog by resource group. */
@@ -144,7 +149,7 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
 /** List data catalog by subscription. */

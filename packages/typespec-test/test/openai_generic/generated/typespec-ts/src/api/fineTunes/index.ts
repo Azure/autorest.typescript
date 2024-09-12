@@ -10,8 +10,11 @@ import {
   CreateFineTuneRequest,
   createFineTuneRequestSerializer,
   FineTune,
+  fineTuneDeserializer,
   ListFineTunesResponse,
+  listFineTunesResponseDeserializer,
   ListFineTuneEventsResponse,
+  listFineTuneEventsResponseDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -46,7 +49,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return fineTuneDeserializer(result.body);
 }
 
 export async function create(
@@ -75,7 +78,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return listFineTunesResponseDeserializer(result.body);
 }
 
 export async function list(
@@ -104,7 +107,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return fineTuneDeserializer(result.body);
 }
 
 export async function retrieve(
@@ -137,7 +140,7 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return listFineTuneEventsResponseDeserializer(result.body);
 }
 
 export async function listEvents(
@@ -167,7 +170,7 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return fineTuneDeserializer(result.body);
 }
 
 export async function cancel(

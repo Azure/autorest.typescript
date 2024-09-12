@@ -31,7 +31,9 @@ export function dataProductDeserializer(item: any): DataProduct {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData ? undefined : item.systemData,
+    systemData: !item.systemData
+      ? undefined
+      : systemDataDeserializer(item.systemData),
     properties: !item.properties
       ? undefined
       : dataProductPropertiesDeserializer(item.properties),
@@ -149,7 +151,7 @@ export function dataProductPropertiesDeserializer(
     documentation: item["documentation"],
     consumptionEndpoints: !item.consumptionEndpoints
       ? undefined
-      : item.consumptionEndpoints,
+      : consumptionEndpointsPropertiesDeserializer(item.consumptionEndpoints),
     keyVaultUrl: item["keyVaultUrl"],
   };
 }
@@ -393,6 +395,19 @@ export interface ConsumptionEndpointsProperties {
   readonly queryResourceId?: string;
 }
 
+export function consumptionEndpointsPropertiesDeserializer(
+  item: any,
+): ConsumptionEndpointsProperties {
+  return {
+    ingestionUrl: item["ingestionUrl"],
+    ingestionResourceId: item["ingestionResourceId"],
+    fileAccessUrl: item["fileAccessUrl"],
+    fileAccessResourceId: item["fileAccessResourceId"],
+    queryUrl: item["queryUrl"],
+    queryResourceId: item["queryResourceId"],
+  };
+}
+
 /** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentityV4 {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -531,7 +546,9 @@ export function trackedResourceDeserializer(item: any): TrackedResource {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData ? undefined : item.systemData,
+    systemData: !item.systemData
+      ? undefined
+      : systemDataDeserializer(item.systemData),
     tags: item["tags"],
     location: item["location"],
   };
@@ -558,7 +575,9 @@ export function resourceDeserializer(item: any): Resource {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData ? undefined : item.systemData,
+    systemData: !item.systemData
+      ? undefined
+      : systemDataDeserializer(item.systemData),
   };
 }
 
@@ -576,6 +595,17 @@ export interface SystemData {
   lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: Date;
+}
+
+export function systemDataDeserializer(item: any): SystemData {
+  return {
+    createdBy: item["createdBy"],
+    createdByType: createdByTypeDeserializer(item["createdByType"]),
+    createdAt: item["createdAt"],
+    lastModifiedBy: item["lastModifiedBy"],
+    lastModifiedByType: createdByTypeDeserializer(item["lastModifiedByType"]),
+    lastModifiedAt: item["lastModifiedAt"],
+  };
 }
 
 /** The kind of entity that created the resource. */
@@ -616,6 +646,12 @@ export interface ErrorResponse {
   error?: ErrorDetail;
 }
 
+export function errorResponseDeserializer(item: any): ErrorResponse {
+  return {
+    error: !item.error ? undefined : errorDetailDeserializer(item.error),
+  };
+}
+
 /** The error detail. */
 export interface ErrorDetail {
   /** The error code. */
@@ -630,6 +666,16 @@ export interface ErrorDetail {
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
+export function errorDetailDeserializer(item: any): ErrorDetail {
+  return {
+    code: item["code"],
+    message: item["message"],
+    target: item["target"],
+    details: item["details"],
+    additionalInfo: item["additionalInfo"],
+  };
+}
+
 /** The resource management error additional info. */
 export interface ErrorAdditionalInfo {
   /** The additional info type. */
@@ -638,7 +684,22 @@ export interface ErrorAdditionalInfo {
   readonly info?: {};
 }
 
+export function errorAdditionalInfoDeserializer(
+  item: any,
+): ErrorAdditionalInfo {
+  return {
+    type: item["type"],
+    info: errorAdditionalInfoInfoDeserializer(item["info"]),
+  };
+}
+
 export interface ErrorAdditionalInfoInfo {}
+
+export function errorAdditionalInfoInfoDeserializer(
+  item: any,
+): ErrorAdditionalInfoInfo {
+  return item as any;
+}
 
 /** The type used for update operations of the DataProduct. */
 export interface DataProductUpdate {
@@ -659,18 +720,6 @@ export function dataProductUpdateSerializer(item: DataProductUpdate): any {
     properties: !item.properties
       ? item.properties
       : dataProductUpdatePropertiesSerializer(item.properties),
-  };
-}
-
-export function dataProductUpdateDeserializer(item: any): DataProductUpdate {
-  return {
-    identity: !item.identity
-      ? undefined
-      : managedServiceIdentityV4Deserializer(item.identity),
-    tags: item["tags"],
-    properties: !item.properties
-      ? undefined
-      : dataProductUpdatePropertiesDeserializer(item.properties),
   };
 }
 
@@ -700,18 +749,6 @@ export function dataProductUpdatePropertiesSerializer(
   };
 }
 
-export function dataProductUpdatePropertiesDeserializer(
-  item: any,
-): DataProductUpdateProperties {
-  return {
-    owners: item["owners"],
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: controlStateDeserializer(item["privateLinksEnabled"]),
-    currentMinorVersion: item["currentMinorVersion"],
-  };
-}
-
 /** The details for storage account sas creation. */
 export interface AccountSas {
   /** Sas token start timestamp. */
@@ -730,18 +767,16 @@ export function accountSasSerializer(item: AccountSas): any {
   };
 }
 
-export function accountSasDeserializer(item: any): AccountSas {
-  return {
-    startTimeStamp: item["startTimeStamp"],
-    expiryTimeStamp: item["expiryTimeStamp"],
-    ipAddress: item["ipAddress"],
-  };
-}
-
 /** Details of storage account sas token . */
 export interface AccountSasToken {
   /** Field to specify storage account sas token. */
   storageAccountSasToken: string;
+}
+
+export function accountSasTokenDeserializer(item: any): AccountSasToken {
+  return {
+    storageAccountSasToken: item["storageAccountSasToken"],
+  };
 }
 
 /** Details for KeyVault. */
@@ -752,12 +787,6 @@ export interface KeyVaultInfo {
 
 export function keyVaultInfoSerializer(item: KeyVaultInfo): any {
   return { keyVaultUrl: item["keyVaultUrl"] };
-}
-
-export function keyVaultInfoDeserializer(item: any): KeyVaultInfo {
-  return {
-    keyVaultUrl: item["keyVaultUrl"],
-  };
 }
 
 /** The details for role assignment common properties. */
@@ -786,19 +815,6 @@ export function roleAssignmentCommonPropertiesSerializer(
     dataTypeScope: item["dataTypeScope"],
     principalType: item["principalType"],
     role: item["role"],
-  };
-}
-
-export function roleAssignmentCommonPropertiesDeserializer(
-  item: any,
-): RoleAssignmentCommonProperties {
-  return {
-    roleId: item["roleId"],
-    principalId: item["principalId"],
-    userName: item["userName"],
-    dataTypeScope: item["dataTypeScope"],
-    principalType: item["principalType"],
-    role: dataProductUserRoleDeserializer(item["role"]),
   };
 }
 
@@ -890,12 +906,30 @@ export interface ListRoleAssignments {
   roleAssignmentResponse: RoleAssignmentDetail[];
 }
 
+export function listRoleAssignmentsDeserializer(
+  item: any,
+): ListRoleAssignments {
+  return {
+    count: item["count"],
+    roleAssignmentResponse: item["roleAssignmentResponse"],
+  };
+}
+
 /** The response of a DataProduct list operation. */
 export interface _DataProductListResult {
   /** The DataProduct items on this page */
   value: DataProduct[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _dataProductListResultDeserializer(
+  item: any,
+): _DataProductListResult {
+  return {
+    value: item["value"],
+    nextLink: item["nextLink"],
+  };
 }
 
 /** The data type resource. */
@@ -917,7 +951,9 @@ export function dataTypeDeserializer(item: any): DataType {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData ? undefined : item.systemData,
+    systemData: !item.systemData
+      ? undefined
+      : systemDataDeserializer(item.systemData),
     properties: !item.properties
       ? undefined
       : dataTypePropertiesDeserializer(item.properties),
@@ -1001,7 +1037,9 @@ export function proxyResourceDeserializer(item: any): ProxyResource {
     id: item["id"],
     name: item["name"],
     type: item["type"],
-    systemData: !item.systemData ? undefined : item.systemData,
+    systemData: !item.systemData
+      ? undefined
+      : systemDataDeserializer(item.systemData),
   };
 }
 
@@ -1016,14 +1054,6 @@ export function dataTypeUpdateSerializer(item: DataTypeUpdate): any {
     properties: !item.properties
       ? item.properties
       : dataTypeUpdatePropertiesSerializer(item.properties),
-  };
-}
-
-export function dataTypeUpdateDeserializer(item: any): DataTypeUpdate {
-  return {
-    properties: !item.properties
-      ? undefined
-      : dataTypeUpdatePropertiesDeserializer(item.properties),
   };
 }
 
@@ -1050,17 +1080,6 @@ export function dataTypeUpdatePropertiesSerializer(
   };
 }
 
-export function dataTypeUpdatePropertiesDeserializer(
-  item: any,
-): DataTypeUpdateProperties {
-  return {
-    state: dataTypeStateDeserializer(item["state"]),
-    storageOutputRetention: item["storageOutputRetention"],
-    databaseCacheRetention: item["databaseCacheRetention"],
-    databaseRetention: item["databaseRetention"],
-  };
-}
-
 export interface DeleteDataRequest {}
 
 /** The details for container sas creation. */
@@ -1081,18 +1100,16 @@ export function containerSaSSerializer(item: ContainerSaS): any {
   };
 }
 
-export function containerSaSDeserializer(item: any): ContainerSaS {
-  return {
-    startTimeStamp: item["startTimeStamp"],
-    expiryTimeStamp: item["expiryTimeStamp"],
-    ipAddress: item["ipAddress"],
-  };
-}
-
 /** Details of storage container account sas token . */
 export interface ContainerSasToken {
   /** Field to specify storage container sas token. */
   storageContainerSasToken: string;
+}
+
+export function containerSasTokenDeserializer(item: any): ContainerSasToken {
+  return {
+    storageContainerSasToken: item["storageContainerSasToken"],
+  };
 }
 
 /** The response of a DataType list operation. */
@@ -1103,10 +1120,35 @@ export interface _DataTypeListResult {
   nextLink?: string;
 }
 
+export function _dataTypeListResultDeserializer(
+  item: any,
+): _DataTypeListResult {
+  return {
+    value: item["value"],
+    nextLink: item["nextLink"],
+  };
+}
+
 /** The data catalog resource. */
 export interface DataProductsCatalog extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductsCatalogProperties;
+}
+
+export function dataProductsCatalogDeserializer(
+  item: any,
+): DataProductsCatalog {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item.systemData
+      ? undefined
+      : systemDataDeserializer(item.systemData),
+    properties: !item.properties
+      ? undefined
+      : dataProductsCatalogPropertiesDeserializer(item.properties),
+  };
 }
 
 /** Details for data catalog properties. */
@@ -1117,12 +1159,30 @@ export interface DataProductsCatalogProperties {
   publishers: PublisherInformation[];
 }
 
+export function dataProductsCatalogPropertiesDeserializer(
+  item: any,
+): DataProductsCatalogProperties {
+  return {
+    provisioningState: provisioningStateDeserializer(item["provisioningState"]),
+    publishers: item["publishers"],
+  };
+}
+
 /** Details for Publisher Information. */
 export interface PublisherInformation {
   /** Name of the publisher. */
   publisherName: string;
   /** Data product information. */
   dataProducts: DataProductInformation[];
+}
+
+export function publisherInformationDeserializer(
+  item: any,
+): PublisherInformation {
+  return {
+    publisherName: item["publisherName"],
+    dataProducts: item["dataProducts"],
+  };
 }
 
 /** Data Product Information */
@@ -1135,10 +1195,26 @@ export interface DataProductInformation {
   dataProductVersions: DataProductVersion[];
 }
 
+export function dataProductInformationDeserializer(
+  item: any,
+): DataProductInformation {
+  return {
+    dataProductName: item["dataProductName"],
+    description: item["description"],
+    dataProductVersions: item["dataProductVersions"],
+  };
+}
+
 /** Data Product Version. */
 export interface DataProductVersion {
   /** Version of data product */
   version: string;
+}
+
+export function dataProductVersionDeserializer(item: any): DataProductVersion {
+  return {
+    version: item["version"],
+  };
 }
 
 /** The response of a DataProductsCatalog list operation. */
@@ -1149,12 +1225,30 @@ export interface _DataProductsCatalogListResult {
   nextLink?: string;
 }
 
+export function _dataProductsCatalogListResultDeserializer(
+  item: any,
+): _DataProductsCatalogListResult {
+  return {
+    value: item["value"],
+    nextLink: item["nextLink"],
+  };
+}
+
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export interface _OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _operationListResultDeserializer(
+  item: any,
+): _OperationListResult {
+  return {
+    value: item["value"],
+    nextLink: item["nextLink"],
+  };
 }
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
@@ -1171,6 +1265,18 @@ export interface Operation {
   actionType?: ActionType;
 }
 
+export function operationDeserializer(item: any): Operation {
+  return {
+    name: item["name"],
+    isDataAction: item["isDataAction"],
+    display: !item.display
+      ? undefined
+      : operationDisplayDeserializer(item.display),
+    origin: originDeserializer(item["origin"]),
+    actionType: actionTypeDeserializer(item["actionType"]),
+  };
+}
+
 /** Localized display information for and operation. */
 export interface OperationDisplay {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
@@ -1181,6 +1287,15 @@ export interface OperationDisplay {
   readonly operation?: string;
   /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
   readonly description?: string;
+}
+
+export function operationDisplayDeserializer(item: any): OperationDisplay {
+  return {
+    provider: item["provider"],
+    resource: item["resource"],
+    operation: item["operation"],
+    description: item["description"],
+  };
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */

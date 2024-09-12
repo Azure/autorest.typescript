@@ -30,18 +30,6 @@ export function batchNodeUserCreateOptionsSerializer(
   };
 }
 
-export function batchNodeUserCreateOptionsDeserializer(
-  item: any,
-): BatchNodeUserCreateOptions {
-  return {
-    name: item["name"],
-    isAdmin: item["isAdmin"],
-    expiryTime: item["expiryTime"],
-    password: item["password"],
-    sshPublicKey: item["sshPublicKey"],
-  };
-}
-
 /** An error response received from the Azure Batch service. */
 export interface BatchError {
   /** An identifier for the error. Codes are invariant and are intended to be consumed programmatically. */
@@ -52,6 +40,14 @@ export interface BatchError {
   values?: BatchErrorDetail[];
 }
 
+export function batchErrorDeserializer(item: any): BatchError {
+  return {
+    code: item["code"],
+    message: !item.message ? undefined : errorMessageDeserializer(item.message),
+    values: item["values"],
+  };
+}
+
 /** An error message received in an Azure Batch error response. */
 export interface ErrorMessage {
   /** The language code of the error message. */
@@ -60,12 +56,26 @@ export interface ErrorMessage {
   value?: string;
 }
 
+export function errorMessageDeserializer(item: any): ErrorMessage {
+  return {
+    lang: item["lang"],
+    value: item["value"],
+  };
+}
+
 /** An item of additional information included in an Azure Batch error response. */
 export interface BatchErrorDetail {
   /** An identifier specifying the meaning of the Value property. */
   key?: string;
   /** The additional information included with the error response. */
   value?: string;
+}
+
+export function batchErrorDetailDeserializer(item: any): BatchErrorDetail {
+  return {
+    key: item["key"],
+    value: item["value"],
+  };
 }
 
 /** Options for updating a user account for RDP or SSH access on an Azure Batch Compute Node. */
@@ -84,16 +94,6 @@ export function batchNodeUserUpdateOptionsSerializer(
   return {
     password: item["password"],
     expiryTime: item["expiryTime"]?.toISOString(),
-    sshPublicKey: item["sshPublicKey"],
-  };
-}
-
-export function batchNodeUserUpdateOptionsDeserializer(
-  item: any,
-): BatchNodeUserUpdateOptions {
-  return {
-    password: item["password"],
-    expiryTime: item["expiryTime"],
     sshPublicKey: item["sshPublicKey"],
   };
 }
@@ -153,6 +153,44 @@ export interface BatchNode {
   virtualMachineInfo?: VirtualMachineInfo;
 }
 
+export function batchNodeDeserializer(item: any): BatchNode {
+  return {
+    id: item["id"],
+    url: item["url"],
+    state: batchNodeStateDeserializer(item["state"]),
+    schedulingState: schedulingStateDeserializer(item["schedulingState"]),
+    stateTransitionTime: item["stateTransitionTime"],
+    lastBootTime: item["lastBootTime"],
+    allocationTime: item["allocationTime"],
+    ipAddress: item["ipAddress"],
+    affinityId: item["affinityId"],
+    vmSize: item["vmSize"],
+    totalTasksRun: item["totalTasksRun"],
+    runningTasksCount: item["runningTasksCount"],
+    runningTaskSlotsCount: item["runningTaskSlotsCount"],
+    totalTasksSucceeded: item["totalTasksSucceeded"],
+    recentTasks: item["recentTasks"],
+    startTask: !item.startTask
+      ? undefined
+      : startTaskDeserializer(item.startTask),
+    startTaskInfo: !item.startTaskInfo
+      ? undefined
+      : startTaskInformationDeserializer(item.startTaskInfo),
+    certificateReferences: item["certificateReferences"],
+    errors: item["errors"],
+    isDedicated: item["isDedicated"],
+    endpointConfiguration: !item.endpointConfiguration
+      ? undefined
+      : batchNodeEndpointConfigurationDeserializer(item.endpointConfiguration),
+    nodeAgentInfo: !item.nodeAgentInfo
+      ? undefined
+      : nodeAgentInformationDeserializer(item.nodeAgentInfo),
+    virtualMachineInfo: !item.virtualMachineInfo
+      ? undefined
+      : virtualMachineInfoDeserializer(item.virtualMachineInfo),
+  };
+}
+
 /** BatchNodeState enums */
 export type BatchNodeState =
   | "idle"
@@ -204,6 +242,19 @@ export interface TaskInformation {
   executionInfo?: TaskExecutionInformation;
 }
 
+export function taskInformationDeserializer(item: any): TaskInformation {
+  return {
+    taskUrl: item["taskUrl"],
+    jobId: item["jobId"],
+    taskId: item["taskId"],
+    subtaskId: item["subtaskId"],
+    taskState: taskStateDeserializer(item["taskState"]),
+    executionInfo: !item.executionInfo
+      ? undefined
+      : taskExecutionInformationDeserializer(item.executionInfo),
+  };
+}
+
 /** TaskState enums */
 export type TaskState = "active" | "preparing" | "running" | "completed";
 
@@ -239,6 +290,27 @@ export interface TaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
+export function taskExecutionInformationDeserializer(
+  item: any,
+): TaskExecutionInformation {
+  return {
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    exitCode: item["exitCode"],
+    containerInfo: !item.containerInfo
+      ? undefined
+      : taskContainerExecutionInformationDeserializer(item.containerInfo),
+    failureInfo: !item.failureInfo
+      ? undefined
+      : taskFailureInformationDeserializer(item.failureInfo),
+    retryCount: item["retryCount"],
+    lastRetryTime: item["lastRetryTime"],
+    requeueCount: item["requeueCount"],
+    lastRequeueTime: item["lastRequeueTime"],
+    result: taskExecutionResultDeserializer(item["result"]),
+  };
+}
+
 /** Contains information about the container which a Task is executing. */
 export interface TaskContainerExecutionInformation {
   /** The ID of the container. */
@@ -247,6 +319,16 @@ export interface TaskContainerExecutionInformation {
   state?: string;
   /** Detailed error information about the container. This is the detailed error string from the Docker service, if available. It is equivalent to the error field returned by "docker inspect". */
   error?: string;
+}
+
+export function taskContainerExecutionInformationDeserializer(
+  item: any,
+): TaskContainerExecutionInformation {
+  return {
+    containerId: item["containerId"],
+    state: item["state"],
+    error: item["error"],
+  };
 }
 
 /** Information about a Task failure. */
@@ -259,6 +341,17 @@ export interface TaskFailureInformation {
   message?: string;
   /** A list of additional details related to the error. */
   details?: NameValuePair[];
+}
+
+export function taskFailureInformationDeserializer(
+  item: any,
+): TaskFailureInformation {
+  return {
+    category: errorCategoryDeserializer(item["category"]),
+    code: item["code"],
+    message: item["message"],
+    details: item["details"],
+  };
 }
 
 /** ErrorCategory enums */
@@ -278,6 +371,13 @@ export interface NameValuePair {
   name?: string;
   /** The value in the name-value pair. */
   value?: string;
+}
+
+export function nameValuePairDeserializer(item: any): NameValuePair {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
 }
 
 /** TaskExecutionResult enums */
@@ -635,6 +735,26 @@ export interface StartTaskInformation {
   result?: TaskExecutionResult;
 }
 
+export function startTaskInformationDeserializer(
+  item: any,
+): StartTaskInformation {
+  return {
+    state: startTaskStateDeserializer(item["state"]),
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    exitCode: item["exitCode"],
+    containerInfo: !item.containerInfo
+      ? undefined
+      : taskContainerExecutionInformationDeserializer(item.containerInfo),
+    failureInfo: !item.failureInfo
+      ? undefined
+      : taskFailureInformationDeserializer(item.failureInfo),
+    retryCount: item["retryCount"],
+    lastRetryTime: item["lastRetryTime"],
+    result: taskExecutionResultDeserializer(item["result"]),
+  };
+}
+
 /** StartTaskState enums */
 export type StartTaskState = "running" | "completed";
 
@@ -724,10 +844,26 @@ export interface BatchNodeError {
   errorDetails?: NameValuePair[];
 }
 
+export function batchNodeErrorDeserializer(item: any): BatchNodeError {
+  return {
+    code: item["code"],
+    message: item["message"],
+    errorDetails: item["errorDetails"],
+  };
+}
+
 /** The endpoint configuration for the Compute Node. */
 export interface BatchNodeEndpointConfiguration {
   /** The list of inbound endpoints that are accessible on the Compute Node. */
   inboundEndpoints: InboundEndpoint[];
+}
+
+export function batchNodeEndpointConfigurationDeserializer(
+  item: any,
+): BatchNodeEndpointConfiguration {
+  return {
+    inboundEndpoints: item["inboundEndpoints"],
+  };
 }
 
 /** An inbound endpoint on a Compute Node. */
@@ -744,6 +880,17 @@ export interface InboundEndpoint {
   frontendPort: number;
   /** The backend port number of the endpoint. */
   backendPort: number;
+}
+
+export function inboundEndpointDeserializer(item: any): InboundEndpoint {
+  return {
+    name: item["name"],
+    protocol: inboundEndpointProtocolDeserializer(item["protocol"]),
+    publicIpAddress: item["publicIPAddress"],
+    publicFQDN: item["publicFQDN"],
+    frontendPort: item["frontendPort"],
+    backendPort: item["backendPort"],
+  };
 }
 
 /** InboundEndpointProtocol enums */
@@ -772,10 +919,27 @@ export interface NodeAgentInformation {
   lastUpdateTime: Date;
 }
 
+export function nodeAgentInformationDeserializer(
+  item: any,
+): NodeAgentInformation {
+  return {
+    version: item["version"],
+    lastUpdateTime: item["lastUpdateTime"],
+  };
+}
+
 /** Info about the current state of the virtual machine. */
 export interface VirtualMachineInfo {
   /** The reference to the Azure Virtual Machine's Marketplace Image. */
   imageReference?: ImageReference;
+}
+
+export function virtualMachineInfoDeserializer(item: any): VirtualMachineInfo {
+  return {
+    imageReference: !item.imageReference
+      ? undefined
+      : imageReferenceDeserializer(item.imageReference),
+  };
 }
 
 /**
@@ -829,14 +993,6 @@ export function nodeRebootOptionsSerializer(item: NodeRebootOptions): any {
   return { nodeRebootOption: item["nodeRebootOption"] };
 }
 
-export function nodeRebootOptionsDeserializer(item: any): NodeRebootOptions {
-  return {
-    nodeRebootOption: batchNodeRebootOptionDeserializer(
-      item["nodeRebootOption"],
-    ),
-  };
-}
-
 /** BatchNodeRebootOption enums */
 export type BatchNodeRebootOption =
   | "requeue"
@@ -864,14 +1020,6 @@ export interface NodeReimageOptions {
 
 export function nodeReimageOptionsSerializer(item: NodeReimageOptions): any {
   return { nodeReimageOption: item["nodeReimageOption"] };
-}
-
-export function nodeReimageOptionsDeserializer(item: any): NodeReimageOptions {
-  return {
-    nodeReimageOption: batchNodeReimageOptionDeserializer(
-      item["nodeReimageOption"],
-    ),
-  };
 }
 
 /** BatchNodeReimageOption enums */
@@ -905,16 +1053,6 @@ export function nodeDisableSchedulingOptionsSerializer(
   return { nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"] };
 }
 
-export function nodeDisableSchedulingOptionsDeserializer(
-  item: any,
-): NodeDisableSchedulingOptions {
-  return {
-    nodeDisableSchedulingOption: disableBatchNodeSchedulingOptionDeserializer(
-      item["nodeDisableSchedulingOption"],
-    ),
-  };
-}
-
 /** DisableBatchNodeSchedulingOption enums */
 export type DisableBatchNodeSchedulingOption =
   | "requeue"
@@ -939,6 +1077,15 @@ export interface BatchNodeRemoteLoginSettingsResult {
   remoteLoginIpAddress: string;
   /** The port used for remote login to the Compute Node. */
   remoteLoginPort: number;
+}
+
+export function batchNodeRemoteLoginSettingsResultDeserializer(
+  item: any,
+): BatchNodeRemoteLoginSettingsResult {
+  return {
+    remoteLoginIpAddress: item["remoteLoginIPAddress"],
+    remoteLoginPort: item["remoteLoginPort"],
+  };
 }
 
 /** The Azure Batch service log files upload options for a Compute Node. */
@@ -966,25 +1113,21 @@ export function uploadBatchServiceLogsOptionsSerializer(
   };
 }
 
-export function uploadBatchServiceLogsOptionsDeserializer(
-  item: any,
-): UploadBatchServiceLogsOptions {
-  return {
-    containerUrl: item["containerUrl"],
-    startTime: item["startTime"],
-    endTime: item["endTime"],
-    identityReference: !item.identityReference
-      ? undefined
-      : batchNodeIdentityReferenceDeserializer(item.identityReference),
-  };
-}
-
 /** The result of uploading Batch service log files from a specific Compute Node. */
 export interface UploadBatchServiceLogsResult {
   /** The virtual directory within Azure Blob Storage container to which the Batch Service log file(s) will be uploaded. The virtual directory name is part of the blob name for each log file uploaded, and it is built based poolId, nodeId and a unique identifier. */
   virtualDirectoryName: string;
   /** The number of log files which will be uploaded. */
   numberOfFilesUploaded: number;
+}
+
+export function uploadBatchServiceLogsResultDeserializer(
+  item: any,
+): UploadBatchServiceLogsResult {
+  return {
+    virtualDirectoryName: item["virtualDirectoryName"],
+    numberOfFilesUploaded: item["numberOfFilesUploaded"],
+  };
 }
 
 /** The result of listing the Compute Nodes in a Pool. */
@@ -995,6 +1138,15 @@ export interface _BatchNodeListResult {
   "odata.nextLink"?: string;
 }
 
+export function _batchNodeListResultDeserializer(
+  item: any,
+): _BatchNodeListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
+}
+
 /** The configuration for virtual machine extension instance view. */
 export interface NodeVMExtension {
   /** The provisioning state of the virtual machine extension. */
@@ -1003,6 +1155,18 @@ export interface NodeVMExtension {
   vmExtension?: VMExtension;
   /** The vm extension instance view. */
   instanceView?: VMExtensionInstanceView;
+}
+
+export function nodeVMExtensionDeserializer(item: any): NodeVMExtension {
+  return {
+    provisioningState: item["provisioningState"],
+    vmExtension: !item.vmExtension
+      ? undefined
+      : vMExtensionDeserializer(item.vmExtension),
+    instanceView: !item.instanceView
+      ? undefined
+      : vMExtensionInstanceViewDeserializer(item.instanceView),
+  };
 }
 
 /** The configuration for virtual machine extensions. */
@@ -1069,6 +1233,16 @@ export interface VMExtensionInstanceView {
   subStatuses?: InstanceViewStatus[];
 }
 
+export function vMExtensionInstanceViewDeserializer(
+  item: any,
+): VMExtensionInstanceView {
+  return {
+    name: item["name"],
+    statuses: item["statuses"],
+    subStatuses: item["subStatuses"],
+  };
+}
+
 /** The instance view status. */
 export interface InstanceViewStatus {
   /** The status code. */
@@ -1081,6 +1255,16 @@ export interface InstanceViewStatus {
   message?: string;
   /** The time of the status. */
   time?: string;
+}
+
+export function instanceViewStatusDeserializer(item: any): InstanceViewStatus {
+  return {
+    code: item["code"],
+    displayStatus: item["displayStatus"],
+    level: statusLevelTypesDeserializer(item["level"]),
+    message: item["message"],
+    time: item["time"],
+  };
 }
 
 /** Level code. */
@@ -1102,6 +1286,15 @@ export interface _NodeVMExtensionList {
   "odata.nextLink"?: string;
 }
 
+export function _nodeVMExtensionListDeserializer(
+  item: any,
+): _NodeVMExtensionList {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
+}
+
 /**
  * The result of listing the files on a Compute Node, or the files associated with
  * a Task on a Compute Node.
@@ -1111,6 +1304,15 @@ export interface _NodeFileListResult {
   value?: NodeFile[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _nodeFileListResultDeserializer(
+  item: any,
+): _NodeFileListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /** Information about a file or directory on a Compute Node. */
@@ -1125,6 +1327,17 @@ export interface NodeFile {
   properties?: FileProperties;
 }
 
+export function nodeFileDeserializer(item: any): NodeFile {
+  return {
+    name: item["name"],
+    url: item["url"],
+    isDirectory: item["isDirectory"],
+    properties: !item.properties
+      ? undefined
+      : filePropertiesDeserializer(item.properties),
+  };
+}
+
 /** The properties of a file on a Compute Node. */
 export interface FileProperties {
   /** The file creation time. The creation time is not returned for files on Linux Compute Nodes. */
@@ -1137,6 +1350,16 @@ export interface FileProperties {
   contentType?: string;
   /** The file mode attribute in octal format. The file mode is returned only for files on Linux Compute Nodes. */
   fileMode?: string;
+}
+
+export function filePropertiesDeserializer(item: any): FileProperties {
+  return {
+    creationTime: item["creationTime"],
+    lastModified: item["lastModified"],
+    contentLength: item["contentLength"],
+    contentType: item["contentType"],
+    fileMode: item["fileMode"],
+  };
 }
 
 /** Options for creating an Azure Batch Task. */
@@ -1225,47 +1448,6 @@ export function batchTaskCreateOptionsSerializer(
     authenticationTokenSettings: !item.authenticationTokenSettings
       ? item.authenticationTokenSettings
       : authenticationTokenSettingsSerializer(item.authenticationTokenSettings),
-  };
-}
-
-export function batchTaskCreateOptionsDeserializer(
-  item: any,
-): BatchTaskCreateOptions {
-  return {
-    id: item["id"],
-    displayName: item["displayName"],
-    exitConditions: !item.exitConditions
-      ? undefined
-      : exitConditionsDeserializer(item.exitConditions),
-    commandLine: item["commandLine"],
-    containerSettings: !item.containerSettings
-      ? undefined
-      : taskContainerSettingsDeserializer(item.containerSettings),
-    resourceFiles: item["resourceFiles"],
-    outputFiles: item["outputFiles"],
-    environmentSettings: item["environmentSettings"],
-    affinityInfo: !item.affinityInfo
-      ? undefined
-      : affinityInformationDeserializer(item.affinityInfo),
-    constraints: !item.constraints
-      ? undefined
-      : taskConstraintsDeserializer(item.constraints),
-    requiredSlots: item["requiredSlots"],
-    userIdentity: !item.userIdentity
-      ? undefined
-      : userIdentityDeserializer(item.userIdentity),
-    multiInstanceSettings: !item.multiInstanceSettings
-      ? undefined
-      : multiInstanceSettingsDeserializer(item.multiInstanceSettings),
-    dependsOn: !item.dependsOn
-      ? undefined
-      : taskDependenciesDeserializer(item.dependsOn),
-    applicationPackageReferences: item["applicationPackageReferences"],
-    authenticationTokenSettings: !item.authenticationTokenSettings
-      ? undefined
-      : authenticationTokenSettingsDeserializer(
-          item.authenticationTokenSettings,
-        ),
   };
 }
 
@@ -1775,6 +1957,15 @@ export interface _BatchTaskListResult {
   "odata.nextLink"?: string;
 }
 
+export function _batchTaskListResultDeserializer(
+  item: any,
+): _BatchTaskListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
+}
+
 /**
  * Batch will retry Tasks when a recovery operation is triggered on a Node.
  * Examples of recovery operations include (but are not limited to) when an
@@ -1883,12 +2074,16 @@ export function batchTaskDeserializer(item: any): BatchTask {
     userIdentity: !item.userIdentity
       ? undefined
       : userIdentityDeserializer(item.userIdentity),
-    executionInfo: !item.executionInfo ? undefined : item.executionInfo,
-    nodeInfo: !item.nodeInfo ? undefined : item.nodeInfo,
+    executionInfo: !item.executionInfo
+      ? undefined
+      : taskExecutionInformationDeserializer(item.executionInfo),
+    nodeInfo: !item.nodeInfo
+      ? undefined
+      : batchNodeInformationDeserializer(item.nodeInfo),
     multiInstanceSettings: !item.multiInstanceSettings
       ? undefined
       : multiInstanceSettingsDeserializer(item.multiInstanceSettings),
-    stats: !item.stats ? undefined : item.stats,
+    stats: !item.stats ? undefined : taskStatisticsDeserializer(item.stats),
     dependsOn: !item.dependsOn
       ? undefined
       : taskDependenciesDeserializer(item.dependsOn),
@@ -1917,6 +2112,19 @@ export interface BatchNodeInformation {
   taskRootDirectoryUrl?: string;
 }
 
+export function batchNodeInformationDeserializer(
+  item: any,
+): BatchNodeInformation {
+  return {
+    affinityId: item["affinityId"],
+    nodeUrl: item["nodeUrl"],
+    poolId: item["poolId"],
+    nodeId: item["nodeId"],
+    taskRootDirectory: item["taskRootDirectory"],
+    taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
+  };
+}
+
 /** Resource usage statistics for a Task. */
 export interface TaskStatistics {
   /** The URL of the statistics. */
@@ -1943,6 +2151,22 @@ export interface TaskStatistics {
   waitTime: string;
 }
 
+export function taskStatisticsDeserializer(item: any): TaskStatistics {
+  return {
+    url: item["url"],
+    startTime: item["startTime"],
+    lastUpdateTime: item["lastUpdateTime"],
+    userCPUTime: item["userCPUTime"],
+    kernelCPUTime: item["kernelCPUTime"],
+    wallClockTime: item["wallClockTime"],
+    readIOps: item["readIOps"],
+    writeIOps: item["writeIOps"],
+    readIOGiB: item["readIOGiB"],
+    writeIOGiB: item["writeIOGiB"],
+    waitTime: item["waitTime"],
+  };
+}
+
 /** A collection of Azure Batch Tasks to add. */
 export interface BatchTaskCollection {
   /** The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. */
@@ -1953,18 +2177,18 @@ export function batchTaskCollectionSerializer(item: BatchTaskCollection): any {
   return { value: item["value"].map(batchTaskCreateOptionsSerializer) };
 }
 
-export function batchTaskCollectionDeserializer(
-  item: any,
-): BatchTaskCollection {
-  return {
-    value: item["value"],
-  };
-}
-
 /** The result of adding a collection of Tasks to a Job. */
 export interface TaskAddCollectionResult {
   /** The results of the add Task collection operation. */
   value?: TaskAddResult[];
+}
+
+export function taskAddCollectionResultDeserializer(
+  item: any,
+): TaskAddCollectionResult {
+  return {
+    value: item["value"],
+  };
 }
 
 /** Result for a single Task added as part of an add Task collection operation. */
@@ -1983,6 +2207,17 @@ export interface TaskAddResult {
   error?: BatchError;
 }
 
+export function taskAddResultDeserializer(item: any): TaskAddResult {
+  return {
+    status: taskAddStatusDeserializer(item["status"]),
+    taskId: item["taskId"],
+    eTag: item["eTag"],
+    lastModified: item["lastModified"],
+    location: item["location"],
+    error: !item.error ? undefined : batchErrorDeserializer(item.error),
+  };
+}
+
 /** TaskAddStatus enums */
 export type TaskAddStatus = "Success" | "clienterror" | "servererror";
 
@@ -1998,6 +2233,14 @@ export function taskAddStatusDeserializer(item: any): TaskAddStatus {
 export interface BatchTaskListSubtasksResult {
   /** The list of subtasks. */
   value?: SubtaskInformation[];
+}
+
+export function batchTaskListSubtasksResultDeserializer(
+  item: any,
+): BatchTaskListSubtasksResult {
+  return {
+    value: item["value"],
+  };
 }
 
 /** Information about an Azure Batch subtask. */
@@ -2026,6 +2269,29 @@ export interface SubtaskInformation {
   previousStateTransitionTime?: Date;
   /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
   result?: TaskExecutionResult;
+}
+
+export function subtaskInformationDeserializer(item: any): SubtaskInformation {
+  return {
+    id: item["id"],
+    nodeInfo: !item.nodeInfo
+      ? undefined
+      : batchNodeInformationDeserializer(item.nodeInfo),
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    exitCode: item["exitCode"],
+    containerInfo: !item.containerInfo
+      ? undefined
+      : taskContainerExecutionInformationDeserializer(item.containerInfo),
+    failureInfo: !item.failureInfo
+      ? undefined
+      : taskFailureInformationDeserializer(item.failureInfo),
+    state: subtaskStateDeserializer(item["state"]),
+    stateTransitionTime: item["stateTransitionTime"],
+    previousState: subtaskStateDeserializer(item["previousState"]),
+    previousStateTransitionTime: item["previousStateTransitionTime"],
+    result: taskExecutionResultDeserializer(item["result"]),
+  };
 }
 
 /** SubtaskState enums */
@@ -2101,9 +2367,13 @@ export function batchJobScheduleDeserializer(item: any): BatchJobSchedule {
     previousStateTransitionTime: item["previousStateTransitionTime"],
     schedule: scheduleDeserializer(item.schedule),
     jobSpecification: jobSpecificationDeserializer(item.jobSpecification),
-    executionInfo: !item.executionInfo ? undefined : item.executionInfo,
+    executionInfo: !item.executionInfo
+      ? undefined
+      : jobScheduleExecutionInformationDeserializer(item.executionInfo),
     metadata: item["metadata"],
-    stats: !item.stats ? undefined : item.stats,
+    stats: !item.stats
+      ? undefined
+      : jobScheduleStatisticsDeserializer(item.stats),
   };
 }
 
@@ -3866,12 +4136,31 @@ export interface JobScheduleExecutionInformation {
   endTime?: Date;
 }
 
+export function jobScheduleExecutionInformationDeserializer(
+  item: any,
+): JobScheduleExecutionInformation {
+  return {
+    nextRunTime: item["nextRunTime"],
+    recentJob: !item.recentJob
+      ? undefined
+      : recentJobDeserializer(item.recentJob),
+    endTime: item["endTime"],
+  };
+}
+
 /** Information about the most recent Job to run under the Job Schedule. */
 export interface RecentJob {
   /** The ID of the Job. */
   id?: string;
   /** The URL of the Job. */
   url?: string;
+}
+
+export function recentJobDeserializer(item: any): RecentJob {
+  return {
+    id: item["id"],
+    url: item["url"],
+  };
 }
 
 /** Resource usage statistics for a Job Schedule. */
@@ -3906,6 +4195,27 @@ export interface JobScheduleStatistics {
   waitTime: string;
 }
 
+export function jobScheduleStatisticsDeserializer(
+  item: any,
+): JobScheduleStatistics {
+  return {
+    url: item["url"],
+    startTime: item["startTime"],
+    lastUpdateTime: item["lastUpdateTime"],
+    userCPUTime: item["userCPUTime"],
+    kernelCPUTime: item["kernelCPUTime"],
+    wallClockTime: item["wallClockTime"],
+    readIOps: item["readIOps"],
+    writeIOps: item["writeIOps"],
+    readIOGiB: item["readIOGiB"],
+    writeIOGiB: item["writeIOGiB"],
+    numSucceededTasks: item["numSucceededTasks"],
+    numFailedTasks: item["numFailedTasks"],
+    numTaskRetries: item["numTaskRetries"],
+    waitTime: item["waitTime"],
+  };
+}
+
 /** Options for updating an Azure Batch Job Schedule. */
 export interface BatchJobScheduleUpdateOptions {
   /** The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. If you do not specify this element, the existing schedule is left unchanged. */
@@ -3930,18 +4240,6 @@ export function batchJobScheduleUpdateOptionsSerializer(
       item["metadata"] === undefined
         ? item["metadata"]
         : item["metadata"].map(metadataItemSerializer),
-  };
-}
-
-export function batchJobScheduleUpdateOptionsDeserializer(
-  item: any,
-): BatchJobScheduleUpdateOptions {
-  return {
-    schedule: !item.schedule ? undefined : scheduleDeserializer(item.schedule),
-    jobSpecification: !item.jobSpecification
-      ? undefined
-      : jobSpecificationDeserializer(item.jobSpecification),
-    metadata: item["metadata"],
   };
 }
 
@@ -3974,24 +4272,21 @@ export function batchJobScheduleCreateOptionsSerializer(
   };
 }
 
-export function batchJobScheduleCreateOptionsDeserializer(
-  item: any,
-): BatchJobScheduleCreateOptions {
-  return {
-    id: item["id"],
-    displayName: item["displayName"],
-    schedule: scheduleDeserializer(item.schedule),
-    jobSpecification: jobSpecificationDeserializer(item.jobSpecification),
-    metadata: item["metadata"],
-  };
-}
-
 /** The result of listing the Job Schedules in an Account. */
 export interface _BatchJobScheduleListResult {
   /** The list of Job Schedules. */
   value?: BatchJobSchedule[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _batchJobScheduleListResultDeserializer(
+  item: any,
+): _BatchJobScheduleListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /**
@@ -4047,7 +4342,7 @@ export function batchCertificateDeserializer(item: any): BatchCertificate {
     publicData: item["publicData"],
     deleteCertificateError: !item.deleteCertificateError
       ? undefined
-      : item.deleteCertificateError,
+      : deleteCertificateErrorDeserializer(item.deleteCertificateError),
     data: item["data"],
     certificateFormat: certificateFormatDeserializer(item["certificateFormat"]),
     password: item["password"],
@@ -4075,6 +4370,16 @@ export interface DeleteCertificateError {
   values?: NameValuePair[];
 }
 
+export function deleteCertificateErrorDeserializer(
+  item: any,
+): DeleteCertificateError {
+  return {
+    code: item["code"],
+    message: item["message"],
+    values: item["values"],
+  };
+}
+
 /** CertificateFormat enums */
 export type CertificateFormat = "pfx" | "cer";
 
@@ -4092,6 +4397,15 @@ export interface _CertificateListResult {
   value?: BatchCertificate[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _certificateListResultDeserializer(
+  item: any,
+): _CertificateListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /** An Azure Batch Job. */
@@ -4205,8 +4519,10 @@ export function batchJobDeserializer(item: any): BatchJob {
       ? undefined
       : jobNetworkConfigurationDeserializer(item.networkConfiguration),
     metadata: item["metadata"],
-    executionInfo: !item.executionInfo ? undefined : item.executionInfo,
-    stats: !item.stats ? undefined : item.stats,
+    executionInfo: !item.executionInfo
+      ? undefined
+      : jobExecutionInformationDeserializer(item.executionInfo),
+    stats: !item.stats ? undefined : jobStatisticsDeserializer(item.stats),
   };
 }
 
@@ -4242,6 +4558,20 @@ export interface JobExecutionInformation {
   terminateReason?: string;
 }
 
+export function jobExecutionInformationDeserializer(
+  item: any,
+): JobExecutionInformation {
+  return {
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    poolId: item["poolId"],
+    schedulingError: !item.schedulingError
+      ? undefined
+      : jobSchedulingErrorDeserializer(item.schedulingError),
+    terminateReason: item["terminateReason"],
+  };
+}
+
 /** An error encountered by the Batch service when scheduling a Job. */
 export interface JobSchedulingError {
   /** The category of the Job scheduling error. */
@@ -4252,6 +4582,15 @@ export interface JobSchedulingError {
   message?: string;
   /** A list of additional error details related to the scheduling error. */
   details?: NameValuePair[];
+}
+
+export function jobSchedulingErrorDeserializer(item: any): JobSchedulingError {
+  return {
+    category: errorCategoryDeserializer(item["category"]),
+    code: item["code"],
+    message: item["message"],
+    details: item["details"],
+  };
 }
 
 /** Resource usage statistics for a Job. */
@@ -4284,6 +4623,25 @@ export interface JobStatistics {
   numTaskRetries: number;
   /** The total wait time of all Tasks in the Job. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.) This value is only reported in the Account lifetime statistics; it is not included in the Job statistics. */
   waitTime: string;
+}
+
+export function jobStatisticsDeserializer(item: any): JobStatistics {
+  return {
+    url: item["url"],
+    startTime: item["startTime"],
+    lastUpdateTime: item["lastUpdateTime"],
+    userCPUTime: item["userCPUTime"],
+    kernelCPUTime: item["kernelCPUTime"],
+    wallClockTime: item["wallClockTime"],
+    readIOps: item["readIOps"],
+    writeIOps: item["writeIOps"],
+    readIOGiB: item["readIOGiB"],
+    writeIOGiB: item["writeIOGiB"],
+    numSucceededTasks: item["numSucceededTasks"],
+    numFailedTasks: item["numFailedTasks"],
+    numTaskRetries: item["numTaskRetries"],
+    waitTime: item["waitTime"],
+  };
 }
 
 /** Options for updating an Azure Batch Job. */
@@ -4325,26 +4683,6 @@ export function batchJobUpdateOptionsSerializer(
   };
 }
 
-export function batchJobUpdateOptionsDeserializer(
-  item: any,
-): BatchJobUpdateOptions {
-  return {
-    priority: item["priority"],
-    allowTaskPreemption: item["allowTaskPreemption"],
-    maxParallelTasks: item["maxParallelTasks"],
-    constraints: !item.constraints
-      ? undefined
-      : jobConstraintsDeserializer(item.constraints),
-    poolInfo: !item.poolInfo
-      ? undefined
-      : poolInformationDeserializer(item.poolInfo),
-    onAllTasksComplete: onAllTasksCompleteDeserializer(
-      item["onAllTasksComplete"],
-    ),
-    metadata: item["metadata"],
-  };
-}
-
 /** Options for disabling an Azure Batch Job. */
 export interface BatchJobDisableOptions {
   /** What to do with active Tasks associated with the Job. */
@@ -4355,14 +4693,6 @@ export function batchJobDisableOptionsSerializer(
   item: BatchJobDisableOptions,
 ): any {
   return { disableTasks: item["disableTasks"] };
-}
-
-export function batchJobDisableOptionsDeserializer(
-  item: any,
-): BatchJobDisableOptions {
-  return {
-    disableTasks: disableJobOptionDeserializer(item["disableTasks"]),
-  };
 }
 
 /** DisableJobOption enums */
@@ -4386,14 +4716,6 @@ export function batchJobTerminateOptionsSerializer(
   item: BatchJobTerminateOptions,
 ): any {
   return { terminateReason: item["terminateReason"] };
-}
-
-export function batchJobTerminateOptionsDeserializer(
-  item: any,
-): BatchJobTerminateOptions {
-  return {
-    terminateReason: item["terminateReason"],
-  };
 }
 
 /** Options for creating an Azure Batch Job. */
@@ -4471,47 +4793,21 @@ export function batchJobCreateOptionsSerializer(
   };
 }
 
-export function batchJobCreateOptionsDeserializer(
-  item: any,
-): BatchJobCreateOptions {
-  return {
-    id: item["id"],
-    displayName: item["displayName"],
-    usesTaskDependencies: item["usesTaskDependencies"],
-    priority: item["priority"],
-    allowTaskPreemption: item["allowTaskPreemption"],
-    maxParallelTasks: item["maxParallelTasks"],
-    constraints: !item.constraints
-      ? undefined
-      : jobConstraintsDeserializer(item.constraints),
-    jobManagerTask: !item.jobManagerTask
-      ? undefined
-      : jobManagerTaskDeserializer(item.jobManagerTask),
-    jobPreparationTask: !item.jobPreparationTask
-      ? undefined
-      : jobPreparationTaskDeserializer(item.jobPreparationTask),
-    jobReleaseTask: !item.jobReleaseTask
-      ? undefined
-      : jobReleaseTaskDeserializer(item.jobReleaseTask),
-    commonEnvironmentSettings: item["commonEnvironmentSettings"],
-    poolInfo: poolInformationDeserializer(item.poolInfo),
-    onAllTasksComplete: onAllTasksCompleteDeserializer(
-      item["onAllTasksComplete"],
-    ),
-    onTaskFailure: onTaskFailureDeserializer(item["onTaskFailure"]),
-    networkConfiguration: !item.networkConfiguration
-      ? undefined
-      : jobNetworkConfigurationDeserializer(item.networkConfiguration),
-    metadata: item["metadata"],
-  };
-}
-
 /** The result of listing the Jobs in an Account. */
 export interface _BatchJobListResult {
   /** The list of Jobs. */
   value?: BatchJob[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _batchJobListResultDeserializer(
+  item: any,
+): _BatchJobListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /**
@@ -4523,6 +4819,15 @@ export interface _BatchJobListPreparationAndReleaseTaskStatusResult {
   value?: JobPreparationAndReleaseTaskExecutionInformation[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
+  item: any,
+): _BatchJobListPreparationAndReleaseTaskStatusResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /** The status of the Job Preparation and Job Release Tasks on a Compute Node. */
@@ -4537,6 +4842,26 @@ export interface JobPreparationAndReleaseTaskExecutionInformation {
   jobPreparationTaskExecutionInfo?: JobPreparationTaskExecutionInformation;
   /** Information about the execution status of the Job Release Task on this Compute Node. This property is set only if the Job Release Task has run on the Compute Node. */
   jobReleaseTaskExecutionInfo?: JobReleaseTaskExecutionInformation;
+}
+
+export function jobPreparationAndReleaseTaskExecutionInformationDeserializer(
+  item: any,
+): JobPreparationAndReleaseTaskExecutionInformation {
+  return {
+    poolId: item["poolId"],
+    nodeId: item["nodeId"],
+    nodeUrl: item["nodeUrl"],
+    jobPreparationTaskExecutionInfo: !item.jobPreparationTaskExecutionInfo
+      ? undefined
+      : jobPreparationTaskExecutionInformationDeserializer(
+          item.jobPreparationTaskExecutionInfo,
+        ),
+    jobReleaseTaskExecutionInfo: !item.jobReleaseTaskExecutionInfo
+      ? undefined
+      : jobReleaseTaskExecutionInformationDeserializer(
+          item.jobReleaseTaskExecutionInfo,
+        ),
+  };
 }
 
 /**
@@ -4566,6 +4891,28 @@ export interface JobPreparationTaskExecutionInformation {
   lastRetryTime?: Date;
   /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
   result?: TaskExecutionResult;
+}
+
+export function jobPreparationTaskExecutionInformationDeserializer(
+  item: any,
+): JobPreparationTaskExecutionInformation {
+  return {
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    state: jobPreparationTaskStateDeserializer(item["state"]),
+    taskRootDirectory: item["taskRootDirectory"],
+    taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
+    exitCode: item["exitCode"],
+    containerInfo: !item.containerInfo
+      ? undefined
+      : taskContainerExecutionInformationDeserializer(item.containerInfo),
+    failureInfo: !item.failureInfo
+      ? undefined
+      : taskFailureInformationDeserializer(item.failureInfo),
+    retryCount: item["retryCount"],
+    lastRetryTime: item["lastRetryTime"],
+    result: taskExecutionResultDeserializer(item["result"]),
+  };
 }
 
 /** JobPreparationTaskState enums */
@@ -4608,6 +4955,26 @@ export interface JobReleaseTaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
+export function jobReleaseTaskExecutionInformationDeserializer(
+  item: any,
+): JobReleaseTaskExecutionInformation {
+  return {
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    state: jobReleaseTaskStateDeserializer(item["state"]),
+    taskRootDirectory: item["taskRootDirectory"],
+    taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
+    exitCode: item["exitCode"],
+    containerInfo: !item.containerInfo
+      ? undefined
+      : taskContainerExecutionInformationDeserializer(item.containerInfo),
+    failureInfo: !item.failureInfo
+      ? undefined
+      : taskFailureInformationDeserializer(item.failureInfo),
+    result: taskExecutionResultDeserializer(item["result"]),
+  };
+}
+
 /** JobReleaseTaskState enums */
 export type JobReleaseTaskState = "running" | "completed";
 
@@ -4629,6 +4996,13 @@ export interface TaskCountsResult {
   taskSlotCounts: TaskSlotCounts;
 }
 
+export function taskCountsResultDeserializer(item: any): TaskCountsResult {
+  return {
+    taskCounts: taskCountsDeserializer(item.taskCounts),
+    taskSlotCounts: taskSlotCountsDeserializer(item.taskSlotCounts),
+  };
+}
+
 /** The Task counts for a Job. */
 export interface TaskCounts {
   /** The number of Tasks in the active state. */
@@ -4641,6 +5015,16 @@ export interface TaskCounts {
   succeeded: number;
   /** The number of Tasks which failed. A Task fails if its result (found in the executionInfo property) is 'failure'. */
   failed: number;
+}
+
+export function taskCountsDeserializer(item: any): TaskCounts {
+  return {
+    active: item["active"],
+    running: item["running"],
+    completed: item["completed"],
+    succeeded: item["succeeded"],
+    failed: item["failed"],
+  };
 }
 
 /** The TaskSlot counts for a Job. */
@@ -4657,12 +5041,31 @@ export interface TaskSlotCounts {
   failed: number;
 }
 
+export function taskSlotCountsDeserializer(item: any): TaskSlotCounts {
+  return {
+    active: item["active"],
+    running: item["running"],
+    completed: item["completed"],
+    succeeded: item["succeeded"],
+    failed: item["failed"],
+  };
+}
+
 /** The result of listing the supported Virtual Machine Images. */
 export interface _AccountListSupportedImagesResult {
   /** The list of supported Virtual Machine Images. */
   value?: ImageInformation[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _accountListSupportedImagesResultDeserializer(
+  item: any,
+): _AccountListSupportedImagesResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /**
@@ -4682,6 +5085,17 @@ export interface ImageInformation {
   batchSupportEndOfLife?: Date;
   /** Whether the Azure Batch service actively verifies that the Image is compatible with the associated Compute Node agent SKU. */
   verificationType: VerificationType;
+}
+
+export function imageInformationDeserializer(item: any): ImageInformation {
+  return {
+    nodeAgentSkuId: item["nodeAgentSKUId"],
+    imageReference: imageReferenceDeserializer(item.imageReference),
+    osType: oSTypeDeserializer(item["osType"]),
+    capabilities: item["capabilities"],
+    batchSupportEndOfLife: item["batchSupportEndOfLife"],
+    verificationType: verificationTypeDeserializer(item["verificationType"]),
+  };
 }
 
 /** OSType enums */
@@ -4714,6 +5128,15 @@ export interface _PoolNodeCountsListResult {
   "odata.nextLink"?: string;
 }
 
+export function _poolNodeCountsListResultDeserializer(
+  item: any,
+): _PoolNodeCountsListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
+}
+
 /** The number of Compute Nodes in each state for a Pool. */
 export interface PoolNodeCounts {
   /** The ID of the Pool. */
@@ -4722,6 +5145,18 @@ export interface PoolNodeCounts {
   dedicated?: NodeCounts;
   /** The number of Spot/Low-priority Compute Nodes in each state. */
   lowPriority?: NodeCounts;
+}
+
+export function poolNodeCountsDeserializer(item: any): PoolNodeCounts {
+  return {
+    poolId: item["poolId"],
+    dedicated: !item.dedicated
+      ? undefined
+      : nodeCountsDeserializer(item.dedicated),
+    lowPriority: !item.lowPriority
+      ? undefined
+      : nodeCountsDeserializer(item.lowPriority),
+  };
 }
 
 /** The number of Compute Nodes in each Compute Node state. */
@@ -4756,12 +5191,40 @@ export interface NodeCounts {
   total: number;
 }
 
+export function nodeCountsDeserializer(item: any): NodeCounts {
+  return {
+    creating: item["creating"],
+    idle: item["idle"],
+    offline: item["offline"],
+    preempted: item["preempted"],
+    rebooting: item["rebooting"],
+    reimaging: item["reimaging"],
+    running: item["running"],
+    starting: item["starting"],
+    startTaskFailed: item["startTaskFailed"],
+    leavingPool: item["leavingPool"],
+    unknown: item["unknown"],
+    unusable: item["unusable"],
+    waitingForStartTask: item["waitingForStartTask"],
+    total: item["total"],
+  };
+}
+
 /** The result of a listing the usage metrics for an Account. */
 export interface _PoolListUsageMetricsResult {
   /** The Pool usage metrics data. */
   value?: PoolUsageMetrics[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _poolListUsageMetricsResultDeserializer(
+  item: any,
+): _PoolListUsageMetricsResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /** Usage metrics for a Pool across an aggregation interval. */
@@ -4776,6 +5239,16 @@ export interface PoolUsageMetrics {
   vmSize: string;
   /** The total core hours used in the Pool during this aggregation interval. */
   totalCoreHours: number;
+}
+
+export function poolUsageMetricsDeserializer(item: any): PoolUsageMetrics {
+  return {
+    poolId: item["poolId"],
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+    vmSize: item["vmSize"],
+    totalCoreHours: item["totalCoreHours"],
+  };
 }
 
 /** Options for creating an Azure Batch Pool. */
@@ -4890,56 +5363,21 @@ export function batchPoolCreateOptionsSerializer(
   };
 }
 
-export function batchPoolCreateOptionsDeserializer(
-  item: any,
-): BatchPoolCreateOptions {
-  return {
-    id: item["id"],
-    displayName: item["displayName"],
-    vmSize: item["vmSize"],
-    cloudServiceConfiguration: !item.cloudServiceConfiguration
-      ? undefined
-      : cloudServiceConfigurationDeserializer(item.cloudServiceConfiguration),
-    virtualMachineConfiguration: !item.virtualMachineConfiguration
-      ? undefined
-      : virtualMachineConfigurationDeserializer(
-          item.virtualMachineConfiguration,
-        ),
-    resizeTimeout: item["resizeTimeout"],
-    targetDedicatedNodes: item["targetDedicatedNodes"],
-    targetLowPriorityNodes: item["targetLowPriorityNodes"],
-    enableAutoScale: item["enableAutoScale"],
-    autoScaleFormula: item["autoScaleFormula"],
-    autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
-    enableInterNodeCommunication: item["enableInterNodeCommunication"],
-    networkConfiguration: !item.networkConfiguration
-      ? undefined
-      : networkConfigurationDeserializer(item.networkConfiguration),
-    startTask: !item.startTask
-      ? undefined
-      : startTaskDeserializer(item.startTask),
-    certificateReferences: item["certificateReferences"],
-    applicationPackageReferences: item["applicationPackageReferences"],
-    applicationLicenses: item["applicationLicenses"],
-    taskSlotsPerNode: item["taskSlotsPerNode"],
-    taskSchedulingPolicy: !item.taskSchedulingPolicy
-      ? undefined
-      : taskSchedulingPolicyDeserializer(item.taskSchedulingPolicy),
-    userAccounts: item["userAccounts"],
-    metadata: item["metadata"],
-    mountConfiguration: item["mountConfiguration"],
-    targetNodeCommunicationMode: nodeCommunicationModeDeserializer(
-      item["targetNodeCommunicationMode"],
-    ),
-  };
-}
-
 /** The result of listing the Pools in an Account. */
 export interface _BatchPoolListResult {
   /** The list of Pools. */
   value?: BatchPool[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _batchPoolListResultDeserializer(
+  item: any,
+): _BatchPoolListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /** A Pool in the Azure Batch service. */
@@ -5027,6 +5465,69 @@ export interface BatchPool {
   readonly currentNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+export function batchPoolDeserializer(item: any): BatchPool {
+  return {
+    id: item["id"],
+    displayName: item["displayName"],
+    url: item["url"],
+    eTag: item["eTag"],
+    lastModified: item["lastModified"],
+    creationTime: item["creationTime"],
+    state: poolStateDeserializer(item["state"]),
+    stateTransitionTime: item["stateTransitionTime"],
+    allocationState: allocationStateDeserializer(item["allocationState"]),
+    allocationStateTransitionTime: item["allocationStateTransitionTime"],
+    vmSize: item["vmSize"],
+    cloudServiceConfiguration: !item.cloudServiceConfiguration
+      ? undefined
+      : cloudServiceConfigurationDeserializer(item.cloudServiceConfiguration),
+    virtualMachineConfiguration: !item.virtualMachineConfiguration
+      ? undefined
+      : virtualMachineConfigurationDeserializer(
+          item.virtualMachineConfiguration,
+        ),
+    resizeTimeout: item["resizeTimeout"],
+    resizeErrors: item["resizeErrors"],
+    currentDedicatedNodes: item["currentDedicatedNodes"],
+    currentLowPriorityNodes: item["currentLowPriorityNodes"],
+    targetDedicatedNodes: item["targetDedicatedNodes"],
+    targetLowPriorityNodes: item["targetLowPriorityNodes"],
+    enableAutoScale: item["enableAutoScale"],
+    autoScaleFormula: item["autoScaleFormula"],
+    autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
+    autoScaleRun: !item.autoScaleRun
+      ? undefined
+      : autoScaleRunDeserializer(item.autoScaleRun),
+    enableInterNodeCommunication: item["enableInterNodeCommunication"],
+    networkConfiguration: !item.networkConfiguration
+      ? undefined
+      : networkConfigurationDeserializer(item.networkConfiguration),
+    startTask: !item.startTask
+      ? undefined
+      : startTaskDeserializer(item.startTask),
+    certificateReferences: item["certificateReferences"],
+    applicationPackageReferences: item["applicationPackageReferences"],
+    applicationLicenses: item["applicationLicenses"],
+    taskSlotsPerNode: item["taskSlotsPerNode"],
+    taskSchedulingPolicy: !item.taskSchedulingPolicy
+      ? undefined
+      : taskSchedulingPolicyDeserializer(item.taskSchedulingPolicy),
+    userAccounts: item["userAccounts"],
+    metadata: item["metadata"],
+    stats: !item.stats ? undefined : poolStatisticsDeserializer(item.stats),
+    mountConfiguration: item["mountConfiguration"],
+    identity: !item.identity
+      ? undefined
+      : batchPoolIdentityDeserializer(item.identity),
+    targetNodeCommunicationMode: nodeCommunicationModeDeserializer(
+      item["targetNodeCommunicationMode"],
+    ),
+    currentNodeCommunicationMode: nodeCommunicationModeDeserializer(
+      item["currentNodeCommunicationMode"],
+    ),
+  };
+}
+
 /** PoolState enums */
 export type PoolState = "active" | "deleting";
 
@@ -5059,6 +5560,14 @@ export interface ResizeError {
   values?: NameValuePair[];
 }
 
+export function resizeErrorDeserializer(item: any): ResizeError {
+  return {
+    code: item["code"],
+    message: item["message"],
+    values: item["values"],
+  };
+}
+
 /** The results and errors from an execution of a Pool autoscale formula. */
 export interface AutoScaleRun {
   /** The time at which the autoscale formula was last evaluated. */
@@ -5069,6 +5578,14 @@ export interface AutoScaleRun {
   error?: AutoScaleRunError;
 }
 
+export function autoScaleRunDeserializer(item: any): AutoScaleRun {
+  return {
+    timestamp: item["timestamp"],
+    results: item["results"],
+    error: !item.error ? undefined : autoScaleRunErrorDeserializer(item.error),
+  };
+}
+
 /** An error that occurred when executing or evaluating a Pool autoscale formula. */
 export interface AutoScaleRunError {
   /** An identifier for the autoscale error. Codes are invariant and are intended to be consumed programmatically. */
@@ -5077,6 +5594,14 @@ export interface AutoScaleRunError {
   message?: string;
   /** A list of additional error details related to the autoscale error. */
   values?: NameValuePair[];
+}
+
+export function autoScaleRunErrorDeserializer(item: any): AutoScaleRunError {
+  return {
+    code: item["code"],
+    message: item["message"],
+    values: item["values"],
+  };
 }
 
 /** Contains utilization and resource usage statistics for the lifetime of a Pool. */
@@ -5093,6 +5618,20 @@ export interface PoolStatistics {
   resourceStats?: ResourceStatistics;
 }
 
+export function poolStatisticsDeserializer(item: any): PoolStatistics {
+  return {
+    url: item["url"],
+    startTime: item["startTime"],
+    lastUpdateTime: item["lastUpdateTime"],
+    usageStats: !item.usageStats
+      ? undefined
+      : usageStatisticsDeserializer(item.usageStats),
+    resourceStats: !item.resourceStats
+      ? undefined
+      : resourceStatisticsDeserializer(item.resourceStats),
+  };
+}
+
 /** Statistics related to Pool usage information. */
 export interface UsageStatistics {
   /** The start time of the time range covered by the statistics. */
@@ -5101,6 +5640,14 @@ export interface UsageStatistics {
   lastUpdateTime: Date;
   /** The aggregated wall-clock time of the dedicated Compute Node cores being part of the Pool. */
   dedicatedCoreTime: string;
+}
+
+export function usageStatisticsDeserializer(item: any): UsageStatistics {
+  return {
+    startTime: item["startTime"],
+    lastUpdateTime: item["lastUpdateTime"],
+    dedicatedCoreTime: item["dedicatedCoreTime"],
+  };
 }
 
 /** Statistics related to resource consumption by Compute Nodes in a Pool. */
@@ -5133,12 +5680,37 @@ export interface ResourceStatistics {
   networkWriteGiB: number;
 }
 
+export function resourceStatisticsDeserializer(item: any): ResourceStatistics {
+  return {
+    startTime: item["startTime"],
+    lastUpdateTime: item["lastUpdateTime"],
+    avgCpuPercentage: item["avgCPUPercentage"],
+    avgMemoryGiB: item["avgMemoryGiB"],
+    peakMemoryGiB: item["peakMemoryGiB"],
+    avgDiskGiB: item["avgDiskGiB"],
+    peakDiskGiB: item["peakDiskGiB"],
+    diskReadIOps: item["diskReadIOps"],
+    diskWriteIOps: item["diskWriteIOps"],
+    diskReadGiB: item["diskReadGiB"],
+    diskWriteGiB: item["diskWriteGiB"],
+    networkReadGiB: item["networkReadGiB"],
+    networkWriteGiB: item["networkWriteGiB"],
+  };
+}
+
 /** The identity of the Batch pool, if configured. */
 export interface BatchPoolIdentity {
   /** The identity of the Batch pool, if configured. The list of user identities associated with the Batch pool. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
   type: PoolIdentityType;
   /** The list of user identities associated with the Batch account. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
   userAssignedIdentities?: UserAssignedIdentity[];
+}
+
+export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
+  return {
+    type: poolIdentityTypeDeserializer(item["type"]),
+    userAssignedIdentities: item["userAssignedIdentities"],
+  };
 }
 
 /** PoolIdentityType enums */
@@ -5160,6 +5732,16 @@ export interface UserAssignedIdentity {
   readonly clientId?: string;
   /** The principal id of the user assigned identity. */
   readonly principalId?: string;
+}
+
+export function userAssignedIdentityDeserializer(
+  item: any,
+): UserAssignedIdentity {
+  return {
+    resourceId: item["resourceId"],
+    clientId: item["clientId"],
+    principalId: item["principalId"],
+  };
 }
 
 /** Options for updating an Azure Batch Pool. */
@@ -5208,22 +5790,6 @@ export function batchPoolUpdateOptionsSerializer(
   };
 }
 
-export function batchPoolUpdateOptionsDeserializer(
-  item: any,
-): BatchPoolUpdateOptions {
-  return {
-    startTask: !item.startTask
-      ? undefined
-      : startTaskDeserializer(item.startTask),
-    certificateReferences: item["certificateReferences"],
-    applicationPackageReferences: item["applicationPackageReferences"],
-    metadata: item["metadata"],
-    targetNodeCommunicationMode: nodeCommunicationModeDeserializer(
-      item["targetNodeCommunicationMode"],
-    ),
-  };
-}
-
 /** Options for enabling automatic scaling on an Azure Batch Pool. */
 export interface BatchPoolEnableAutoScaleOptions {
   /** The formula for the desired number of Compute Nodes in the Pool. The formula is checked for validity before it is applied to the Pool. If the formula is not valid, the Batch service rejects the request with detailed error information. For more information about specifying this formula, see Automatically scale Compute Nodes in an Azure Batch Pool (https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling). */
@@ -5241,15 +5807,6 @@ export function batchPoolEnableAutoScaleOptionsSerializer(
   };
 }
 
-export function batchPoolEnableAutoScaleOptionsDeserializer(
-  item: any,
-): BatchPoolEnableAutoScaleOptions {
-  return {
-    autoScaleFormula: item["autoScaleFormula"],
-    autoScaleEvaluationInterval: item["autoScaleEvaluationInterval"],
-  };
-}
-
 /** Options for evaluating an automatic scaling formula on an Azure Batch Pool. */
 export interface BatchPoolEvaluateAutoScaleOptions {
   /** The formula for the desired number of Compute Nodes in the Pool. The formula is validated and its results calculated, but it is not applied to the Pool. To apply the formula to the Pool, 'Enable automatic scaling on a Pool'. For more information about specifying this formula, see Automatically scale Compute Nodes in an Azure Batch Pool (https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling). */
@@ -5260,14 +5817,6 @@ export function batchPoolEvaluateAutoScaleOptionsSerializer(
   item: BatchPoolEvaluateAutoScaleOptions,
 ): any {
   return { autoScaleFormula: item["autoScaleFormula"] };
-}
-
-export function batchPoolEvaluateAutoScaleOptionsDeserializer(
-  item: any,
-): BatchPoolEvaluateAutoScaleOptions {
-  return {
-    autoScaleFormula: item["autoScaleFormula"],
-  };
 }
 
 /** Options for changing the size of an Azure Batch Pool. */
@@ -5290,19 +5839,6 @@ export function batchPoolResizeOptionsSerializer(
     targetLowPriorityNodes: item["targetLowPriorityNodes"],
     resizeTimeout: item["resizeTimeout"],
     nodeDeallocationOption: item["nodeDeallocationOption"],
-  };
-}
-
-export function batchPoolResizeOptionsDeserializer(
-  item: any,
-): BatchPoolResizeOptions {
-  return {
-    targetDedicatedNodes: item["targetDedicatedNodes"],
-    targetLowPriorityNodes: item["targetLowPriorityNodes"],
-    resizeTimeout: item["resizeTimeout"],
-    nodeDeallocationOption: batchNodeDeallocationOptionDeserializer(
-      item["nodeDeallocationOption"],
-    ),
   };
 }
 
@@ -5364,22 +5900,6 @@ export function batchPoolReplaceOptionsSerializer(
   };
 }
 
-export function batchPoolReplaceOptionsDeserializer(
-  item: any,
-): BatchPoolReplaceOptions {
-  return {
-    startTask: !item.startTask
-      ? undefined
-      : startTaskDeserializer(item.startTask),
-    certificateReferences: item["certificateReferences"],
-    applicationPackageReferences: item["applicationPackageReferences"],
-    metadata: item["metadata"],
-    targetNodeCommunicationMode: nodeCommunicationModeDeserializer(
-      item["targetNodeCommunicationMode"],
-    ),
-  };
-}
-
 /** Options for removing nodes from an Azure Batch Pool. */
 export interface NodeRemoveOptions {
   /** A list containing the IDs of the Compute Nodes to be removed from the specified Pool. A maximum of 100 nodes may be removed per request. */
@@ -5398,22 +5918,21 @@ export function nodeRemoveOptionsSerializer(item: NodeRemoveOptions): any {
   };
 }
 
-export function nodeRemoveOptionsDeserializer(item: any): NodeRemoveOptions {
-  return {
-    nodeList: item["nodeList"],
-    resizeTimeout: item["resizeTimeout"],
-    nodeDeallocationOption: batchNodeDeallocationOptionDeserializer(
-      item["nodeDeallocationOption"],
-    ),
-  };
-}
-
 /** The result of listing the applications available in an Account. */
 export interface _ApplicationListResult {
   /** The list of applications available in the Account. */
   value?: BatchApplication[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _applicationListResultDeserializer(
+  item: any,
+): _ApplicationListResult {
+  return {
+    value: item["value"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 /** Contains information about an application in an Azure Batch Account. */
@@ -5424,6 +5943,14 @@ export interface BatchApplication {
   displayName: string;
   /** The list of available versions of the application. */
   versions: string[];
+}
+
+export function batchApplicationDeserializer(item: any): BatchApplication {
+  return {
+    id: item["id"],
+    displayName: item["displayName"],
+    versions: item["versions"],
+  };
 }
 
 /** The Azure Batch service version. */

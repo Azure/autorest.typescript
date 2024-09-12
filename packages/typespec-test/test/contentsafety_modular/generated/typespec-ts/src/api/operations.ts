@@ -13,15 +13,19 @@ import {
   AddOrUpdateBlockItemsOptions,
   addOrUpdateBlockItemsOptionsSerializer,
   AddOrUpdateBlockItemsResult,
+  addOrUpdateBlockItemsResultDeserializer,
   TextBlockItem,
+  textBlockItemDeserializer,
   RemoveBlockItemsOptions,
   removeBlockItemsOptionsSerializer,
   AnalyzeImageOptions,
   analyzeImageOptionsSerializer,
   AnalyzeImageResult,
+  analyzeImageResultDeserializer,
   AnalyzeTextOptions,
   analyzeTextOptionsSerializer,
   AnalyzeTextResult,
+  analyzeTextResultDeserializer,
   _PagedTextBlocklist,
   _PagedTextBlockItem,
 } from "../models/models.js";
@@ -67,7 +71,7 @@ export async function _analyzeTextDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return analyzeTextResultDeserializer(result.body);
 }
 
 /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
@@ -101,7 +105,7 @@ export async function _analyzeImageDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return analyzeImageResultDeserializer(result.body);
 }
 
 /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
@@ -282,7 +286,7 @@ export async function _addOrUpdateBlockItemsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return addOrUpdateBlockItemsResultDeserializer(result.body);
 }
 
 /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
@@ -365,7 +369,7 @@ export async function _getTextBlocklistItemDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return textBlockItemDeserializer(result.body);
 }
 
 /** Get blockItem By blockItemId from a text blocklist. */

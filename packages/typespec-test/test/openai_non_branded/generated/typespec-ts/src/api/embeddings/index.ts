@@ -9,6 +9,7 @@ import {
   CreateEmbeddingRequest,
   createEmbeddingRequestSerializer,
   CreateEmbeddingResponse,
+  createEmbeddingResponseDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -37,7 +38,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return createEmbeddingResponseDeserializer(result.body);
 }
 
 export async function create(

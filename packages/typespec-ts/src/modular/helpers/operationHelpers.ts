@@ -178,12 +178,6 @@ export function getDeserializePrivateFunction(
     properties.length > 0 &&
     !deserializedType.aliasType
   ) {
-    if (
-      deserializedType.type === "model" &&
-      deserializedType.tcgcType?.kind === "dict"
-    ) {
-      deserializedType;
-    }
     const deserializeFunctionName =
       buildModelDeserializer(
         context,

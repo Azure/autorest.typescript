@@ -17,6 +17,7 @@ import {
   User,
   Widget,
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsDeserializer,
   AnalyzeResult,
 } from "../../models/models.js";
 import {

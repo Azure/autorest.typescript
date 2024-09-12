@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { _ListWidgetsPagesResults } from "./models/models.js";
+import {
+  _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsDeserializer,
+} from "./models/models.js";
 import {
   PageSettings,
   ContinuablePage,

@@ -14,14 +14,6 @@ export function publishCloudEventRequestSerializer(
   return { event: cloudEventSerializer(item.event) };
 }
 
-export function publishCloudEventRequestDeserializer(
-  item: any,
-): PublishCloudEventRequest {
-  return {
-    event: cloudEventDeserializer(item.event),
-  };
-}
-
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
   /** An identifier for the event. The combination of id and source must be unique for each distinct event. */
@@ -82,10 +74,20 @@ export function cloudEventDeserializer(item: any): CloudEvent {
 /** The result of the Publish operation. */
 export interface PublishResult {}
 
+export function publishResultDeserializer(item: any): PublishResult {
+  return item as any;
+}
+
 /** Details of the Receive operation response. */
 export interface ReceiveResult {
   /** Array of receive responses, one per cloud event. */
   value: ReceiveDetails[];
+}
+
+export function receiveResultDeserializer(item: any): ReceiveResult {
+  return {
+    value: item["value"],
+  };
 }
 
 /** Receive operation details per Cloud Event. */
@@ -96,12 +98,26 @@ export interface ReceiveDetails {
   event: CloudEvent;
 }
 
+export function receiveDetailsDeserializer(item: any): ReceiveDetails {
+  return {
+    brokerProperties: brokerPropertiesDeserializer(item.brokerProperties),
+    event: cloudEventDeserializer(item.event),
+  };
+}
+
 /** Properties of the Event Broker operation. */
 export interface BrokerProperties {
   /** The token used to lock the event. */
   lockToken: string;
   /** The attempt count for delivering the event. */
   deliveryCount: number;
+}
+
+export function brokerPropertiesDeserializer(item: any): BrokerProperties {
+  return {
+    lockToken: item["lockToken"],
+    deliveryCount: item["deliveryCount"],
+  };
 }
 
 /** Array of lock token strings for the corresponding received Cloud Events to be acknowledged. */
@@ -114,18 +130,19 @@ export function acknowledgeOptionsSerializer(item: AcknowledgeOptions): any {
   return { lockTokens: item["lockTokens"] };
 }
 
-export function acknowledgeOptionsDeserializer(item: any): AcknowledgeOptions {
-  return {
-    lockTokens: item["lockTokens"],
-  };
-}
-
 /** The result of the Acknowledge operation. */
 export interface AcknowledgeResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: FailedLockToken[];
   /** Array of lock tokens values for the successfully acknowledged cloud events. */
   succeededLockTokens: string[];
+}
+
+export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
+  return {
+    failedLockTokens: item["failedLockTokens"],
+    succeededLockTokens: item["succeededLockTokens"],
+  };
 }
 
 /** Failed LockToken information. */
@@ -138,6 +155,14 @@ export interface FailedLockToken {
   errorDescription: string;
 }
 
+export function failedLockTokenDeserializer(item: any): FailedLockToken {
+  return {
+    lockToken: item["lockToken"],
+    errorCode: item["errorCode"],
+    errorDescription: item["errorDescription"],
+  };
+}
+
 /** Array of lock token strings for the corresponding received Cloud Events to be released. */
 export interface ReleaseOptions {
   /** String array of lock tokens. */
@@ -148,18 +173,19 @@ export function releaseOptionsSerializer(item: ReleaseOptions): any {
   return { lockTokens: item["lockTokens"] };
 }
 
-export function releaseOptionsDeserializer(item: any): ReleaseOptions {
-  return {
-    lockTokens: item["lockTokens"],
-  };
-}
-
 /** The result of the Release operation. */
 export interface ReleaseResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: FailedLockToken[];
   /** Array of lock tokens values for the successfully released cloud events. */
   succeededLockTokens: string[];
+}
+
+export function releaseResultDeserializer(item: any): ReleaseResult {
+  return {
+    failedLockTokens: item["failedLockTokens"],
+    succeededLockTokens: item["succeededLockTokens"],
+  };
 }
 
 /** Array of lock token strings for the corresponding received Cloud Events to be rejected. */
@@ -172,18 +198,19 @@ export function rejectOptionsSerializer(item: RejectOptions): any {
   return { lockTokens: item["lockTokens"] };
 }
 
-export function rejectOptionsDeserializer(item: any): RejectOptions {
-  return {
-    lockTokens: item["lockTokens"],
-  };
-}
-
 /** The result of the Reject operation. */
 export interface RejectResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: FailedLockToken[];
   /** Array of lock tokens values for the successfully rejected cloud events. */
   succeededLockTokens: string[];
+}
+
+export function rejectResultDeserializer(item: any): RejectResult {
+  return {
+    failedLockTokens: item["failedLockTokens"],
+    succeededLockTokens: item["succeededLockTokens"],
+  };
 }
 
 export type ServiceApiVersions = "2023-06-01-preview";

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { _MultivariateModelList } from "./models/models.js";
+import {
+  _MultivariateModelList,
+  _multivariateModelListDeserializer,
+} from "./models/models.js";
 import {
   PageSettings,
   ContinuablePage,

@@ -5,9 +5,13 @@ import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import { list } from "../../api/operations/index.js";
 import {
   _DataProductListResult,
+  _dataProductListResultDeserializer,
   _DataTypeListResult,
+  _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
+  _operationListResultDeserializer,
   Operation,
 } from "../../models/models.js";
 import { OperationsListOptionalParams } from "../../models/options.js";

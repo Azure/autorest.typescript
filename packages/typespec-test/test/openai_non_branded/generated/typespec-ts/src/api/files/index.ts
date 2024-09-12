@@ -7,10 +7,13 @@ import {
 } from "@typespec/ts-http-runtime";
 import {
   OpenAIFile,
+  openAIFileDeserializer,
   ListFilesResponse,
+  listFilesResponseDeserializer,
   CreateFileRequest,
   createFileRequestSerializer,
   DeleteFileResponse,
+  deleteFileResponseDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -41,7 +44,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return listFilesResponseDeserializer(result.body);
 }
 
 export async function list(
@@ -74,7 +77,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return openAIFileDeserializer(result.body);
 }
 
 export async function create(
@@ -104,7 +107,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return openAIFileDeserializer(result.body);
 }
 
 export async function retrieve(
@@ -134,7 +137,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return deleteFileResponseDeserializer(result.body);
 }
 
 /**

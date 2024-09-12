@@ -10,6 +10,7 @@ import {
   CreateImageRequest,
   createImageRequestSerializer,
   ImagesResponse,
+  imagesResponseDeserializer,
   CreateImageEditRequest,
   createImageEditRequestSerializer,
   CreateImageVariationRequest,
@@ -46,7 +47,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function create(
@@ -80,7 +81,7 @@ export async function _createEditDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function createEdit(
@@ -114,7 +115,7 @@ export async function _createVariationDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function createVariation(

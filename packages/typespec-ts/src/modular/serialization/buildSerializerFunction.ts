@@ -13,6 +13,7 @@ import { UsageFlags } from "@typespec/compiler";
 import { getRequestModelMapping } from "../helpers/operationHelpers.js";
 import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
+import { NameType } from "@azure-tools/rlc-common";
 
 function isSupportedSerializerType(type: SdkType): boolean {
   return (
@@ -43,9 +44,6 @@ export function buildModelSerializer(
     }
     if (!type.name) {
       throw new Error(`NYI Serialization of anonymous types`);
-    }
-    if (type.name === "ChatRequestMessage") {
-      type;
     }
   }
 
@@ -117,8 +115,10 @@ function buildPolymorphicSerializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-  const serializeFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const serializeFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}UnionSerializer`;
   if (nameOnly) {
     return serializeFunctionName;
@@ -133,7 +133,7 @@ function buildPolymorphicSerializer(
     parameters: [
       {
         name: "item",
-        type: toPascalCase(normalizeModelName(context, type))
+        type: normalizeModelName(context, type)
       }
     ],
     returnType: "any",
@@ -198,8 +198,10 @@ function buildDiscriminatedUnionSerializer(
   }
   const cases: string[] = [];
   const output: string[] = [];
-  const serializeFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const serializeFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}UnionSerializer`;
   if (nameOnly) {
     return serializeFunctionName;
@@ -207,8 +209,10 @@ function buildDiscriminatedUnionSerializer(
   if (serializeFunctionName === "chatRequestMessageUnionSerializer") {
     type;
   }
-  const baseSerializerName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const baseSerializerName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}Serializer`;
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
@@ -237,7 +241,7 @@ function buildDiscriminatedUnionSerializer(
     parameters: [
       {
         name: "item",
-        type: toPascalCase(normalizeModelName(context, type))
+        type: normalizeModelName(context, type)
       }
     ],
     returnType: "any",
@@ -263,20 +267,22 @@ function buildEnumSerializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-  const serializerFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const serializerFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}Serializer`;
   if (nameOnly) {
     return serializerFunctionName;
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${toCamelCase(normalizeModelName(context, type))}Serializer`,
+    name: `${normalizeModelName(context, type, NameType.Operation)}Serializer`,
     isExported: true,
     parameters: [
       {
         name: "item",
-        type: toPascalCase(normalizeModelName(context, type))
+        type: normalizeModelName(context, type)
       }
     ],
     returnType: "any",
@@ -302,14 +308,13 @@ function buildModelTypeSerializer(
   if (!type.name) {
     throw new Error(`NYI Deserialization of anonymous types`);
   }
-  const serializerFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const serializerFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}Serializer`;
   if (nameOnly) {
     return serializerFunctionName;
-  }
-  if (serializerFunctionName === "dataTypeSerializer") {
-    serializerFunctionName;
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -318,7 +323,7 @@ function buildModelTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: toPascalCase(normalizeModelName(context, type))
+        type: normalizeModelName(context, type)
       }
     ],
     returnType: "any",

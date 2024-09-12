@@ -14,7 +14,10 @@ import {
   AnomalyDetectorContext,
   AnomalyDetectorClientOptionalParams,
 } from "./api/index.js";
-import { _MultivariateModelList } from "./models/models.js";
+import {
+  _MultivariateModelList,
+  _multivariateModelListDeserializer,
+} from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 

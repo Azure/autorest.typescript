@@ -256,7 +256,8 @@ function buildModelInterface(
 
 export function normalizeModelName(
   context: SdkContext,
-  type: SdkModelType | SdkEnumType | SdkUnionType
+  type: SdkModelType | SdkEnumType | SdkUnionType,
+  nameType: NameType = NameType.Interface
 ): string {
   const segments = type.crossLanguageDefinitionId.split(".");
   segments.pop();
@@ -273,10 +274,7 @@ export function normalizeModelName(
     pagePrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
-  return `${pagePrefix}${namespacePrefix}${normalizeName(
-    type.name,
-    NameType.Interface
-  )}`;
+  return `${pagePrefix}${normalizeName(namespacePrefix + type.name, nameType)}`;
 }
 
 function buildModelPolymorphicType(type: SdkModelType) {

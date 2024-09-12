@@ -38,14 +38,6 @@ export function addOrUpdateBlockItemsOptionsSerializer(
   return { blockItems: item["blockItems"].map(textBlockItemInfoSerializer) };
 }
 
-export function addOrUpdateBlockItemsOptionsDeserializer(
-  item: any,
-): AddOrUpdateBlockItemsOptions {
-  return {
-    blockItems: item["blockItems"],
-  };
-}
-
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
@@ -58,17 +50,18 @@ export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
   return { description: item["description"], text: item["text"] };
 }
 
-export function textBlockItemInfoDeserializer(item: any): TextBlockItemInfo {
-  return {
-    description: item["description"],
-    text: item["text"],
-  };
-}
-
 /** The response of adding blockItems to text blocklist. */
 export interface AddOrUpdateBlockItemsResult {
   /** Array of blockItems added. */
   value?: TextBlockItem[];
+}
+
+export function addOrUpdateBlockItemsResultDeserializer(
+  item: any,
+): AddOrUpdateBlockItemsResult {
+  return {
+    value: item["value"],
+  };
 }
 
 /** Item in TextBlocklist. */
@@ -81,6 +74,14 @@ export interface TextBlockItem {
   text: string;
 }
 
+export function textBlockItemDeserializer(item: any): TextBlockItem {
+  return {
+    blockItemId: item["blockItemId"],
+    description: item["description"],
+    text: item["text"],
+  };
+}
+
 /** The request of removing blockItems from text blocklist. */
 export interface RemoveBlockItemsOptions {
   /** Array of blockItemIds to remove. */
@@ -91,14 +92,6 @@ export function removeBlockItemsOptionsSerializer(
   item: RemoveBlockItemsOptions,
 ): any {
   return { blockItemIds: item["blockItemIds"] };
-}
-
-export function removeBlockItemsOptionsDeserializer(
-  item: any,
-): RemoveBlockItemsOptions {
-  return {
-    blockItemIds: item["blockItemIds"],
-  };
 }
 
 /** The analysis request of the image. */
@@ -119,16 +112,6 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
   };
 }
 
-export function analyzeImageOptionsDeserializer(
-  item: any,
-): AnalyzeImageOptions {
-  return {
-    image: imageDataDeserializer(item.image),
-    categories: item["categories"],
-    outputType: analyzeImageOutputTypeDeserializer(item["outputType"]),
-  };
-}
-
 /** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
 export interface ImageData {
   /** Base64 encoding of image. */
@@ -143,13 +126,6 @@ export function imageDataSerializer(item: ImageData): any {
       item["content"] !== undefined
         ? uint8ArrayToString(item["content"], "base64")
         : undefined,
-    blobUrl: item["blobUrl"],
-  };
-}
-
-export function imageDataDeserializer(item: any): ImageData {
-  return {
-    content: item["content"],
     blobUrl: item["blobUrl"],
   };
 }
@@ -186,12 +162,27 @@ export interface AnalyzeImageResult {
   analyzeResults: ImageAnalyzeSeverityResult[];
 }
 
+export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
+  return {
+    analyzeResults: item["analyzeResults"],
+  };
+}
+
 /** Image analysis result. */
 export interface ImageAnalyzeSeverityResult {
   /** The image category. */
   category: ImageCategory;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
   severity?: number;
+}
+
+export function imageAnalyzeSeverityResultDeserializer(
+  item: any,
+): ImageAnalyzeSeverityResult {
+  return {
+    category: imageCategoryDeserializer(item["category"]),
+    severity: item["severity"],
+  };
 }
 
 /** The analysis request of the text. */
@@ -215,16 +206,6 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
     blocklistNames: item["blocklistNames"],
     breakByBlocklists: item["breakByBlocklists"],
     outputType: item["outputType"],
-  };
-}
-
-export function analyzeTextOptionsDeserializer(item: any): AnalyzeTextOptions {
-  return {
-    text: item["text"],
-    categories: item["categories"],
-    blocklistNames: item["blocklistNames"],
-    breakByBlocklists: item["breakByBlocklists"],
-    outputType: analyzeTextOutputTypeDeserializer(item["outputType"]),
   };
 }
 
@@ -262,6 +243,13 @@ export interface AnalyzeTextResult {
   analyzeResults: TextAnalyzeSeverityResult[];
 }
 
+export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
+  return {
+    blocklistsMatchResults: item["blocklistsMatchResults"],
+    analyzeResults: item["analyzeResults"],
+  };
+}
+
 /** The result of blocklist match. */
 export interface TextBlocklistMatchResult {
   /** The name of matched blocklist. */
@@ -272,12 +260,31 @@ export interface TextBlocklistMatchResult {
   blockItemText: string;
 }
 
+export function textBlocklistMatchResultDeserializer(
+  item: any,
+): TextBlocklistMatchResult {
+  return {
+    blocklistName: item["blocklistName"],
+    blockItemId: item["blockItemId"],
+    blockItemText: item["blockItemText"],
+  };
+}
+
 /** Text analysis result. */
 export interface TextAnalyzeSeverityResult {
   /** The text category. */
   category: TextCategory;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
   severity?: number;
+}
+
+export function textAnalyzeSeverityResultDeserializer(
+  item: any,
+): TextAnalyzeSeverityResult {
+  return {
+    category: textCategoryDeserializer(item["category"]),
+    severity: item["severity"],
+  };
 }
 
 export type Versions = "2023-10-01";

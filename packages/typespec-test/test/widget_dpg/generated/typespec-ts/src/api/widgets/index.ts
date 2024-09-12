@@ -11,8 +11,11 @@ import {
   userSerializer,
   userDeserializer,
   Widget,
+  widgetDeserializer,
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsDeserializer,
   AnalyzeResult,
+  analyzeResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -142,7 +145,7 @@ export async function _listWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _listWidgetsPagesResultsDeserializer(result.body);
 }
 
 export function listWidgetsPages(
@@ -182,7 +185,7 @@ export async function _queryWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _listWidgetsPagesResultsDeserializer(result.body);
 }
 
 export function queryWidgetsPages(
@@ -218,7 +221,7 @@ export async function _getWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return widgetDeserializer(result.body);
 }
 
 /** Get a widget by ID. */
@@ -253,7 +256,7 @@ export async function _createWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return widgetDeserializer(result.body);
 }
 
 /**
@@ -339,7 +342,7 @@ export async function _updateWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return widgetDeserializer(result.body);
 }
 
 /**
@@ -404,7 +407,7 @@ export async function _analyzeWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return analyzeResultDeserializer(result.body);
 }
 
 /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */

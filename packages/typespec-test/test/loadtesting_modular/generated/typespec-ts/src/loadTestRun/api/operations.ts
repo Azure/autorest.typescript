@@ -11,6 +11,7 @@ import {
   testRunSerializer,
   testRunDeserializer,
   TestRunFileInfo,
+  testRunFileInfoDeserializer,
   TestRunAppComponents,
   testRunAppComponentsSerializer,
   testRunAppComponentsDeserializer,
@@ -18,11 +19,15 @@ import {
   testRunServerMetricConfigSerializer,
   testRunServerMetricConfigDeserializer,
   DimensionValueList,
+  dimensionValueListDeserializer,
   MetricDefinitionCollection,
+  metricDefinitionCollectionDeserializer,
   MetricNamespaceCollection,
+  metricNamespaceCollectionDeserializer,
   MetricRequestPayload,
   metricRequestPayloadSerializer,
   _Metrics,
+  _metricsDeserializer,
   TimeSeriesElement,
   _PagedTestFileInfo,
   _PagedTest,
@@ -335,7 +340,7 @@ export async function _getTestRunFileDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return testRunFileInfoDeserializer(result.body);
 }
 
 /** Get test run file by file name. */
@@ -388,7 +393,7 @@ export async function _listMetricDimensionValuesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return dimensionValueListDeserializer(result.body);
 }
 
 /** List the dimension values for the given metric dimension name. */
@@ -435,7 +440,7 @@ export async function _listMetricDefinitionsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return metricDefinitionCollectionDeserializer(result.body);
 }
 
 /** List the metric definitions for a load test run. */
@@ -472,7 +477,7 @@ export async function _listMetricNamespacesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return metricNamespaceCollectionDeserializer(result.body);
 }
 
 /** List the metric namespaces for a load test run. */
@@ -517,7 +522,7 @@ export async function _listMetricsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _metricsDeserializer(result.body);
 }
 
 /** List the metric values for a load test run. */

@@ -11,6 +11,7 @@ import {
   userSerializer,
   userDeserializer,
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsDeserializer,
 } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {

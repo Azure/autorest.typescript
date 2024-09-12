@@ -13,6 +13,7 @@ import { UsageFlags } from "@typespec/compiler";
 import { getResponseMapping } from "../helpers/operationHelpers.js";
 import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
+import { NameType } from "@azure-tools/rlc-common";
 
 function isSupportedSerializerType(type: SdkType): boolean {
   return (
@@ -37,7 +38,7 @@ export function buildModelDeserializer(
   if (type.kind === "model") {
     if (
       type.usage !== undefined &&
-      (type.usage & UsageFlags.Input) !== UsageFlags.Input
+      (type.usage & UsageFlags.Output) !== UsageFlags.Output
     ) {
       return undefined;
     }
@@ -114,8 +115,10 @@ function buildPolymorphicDeserializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-  const deserializeFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const deserializeFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}UnionDeserializer`;
   if (nameOnly) {
     return deserializeFunctionName;
@@ -130,7 +133,7 @@ function buildPolymorphicDeserializer(
         type: "any"
       }
     ],
-    returnType: toPascalCase(normalizeModelName(context, type)),
+    returnType: normalizeModelName(context, type),
     statements: []
   };
   if (!type.discriminatorProperty) {
@@ -192,22 +195,23 @@ function buildDiscriminatedUnionDeserializer(
   }
   const cases: string[] = [];
   const output: string[] = [];
-  const deserializeFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const deserializeFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}UnionDeserializer`;
   if (nameOnly) {
     return deserializeFunctionName;
   }
-  const baseDeserializerName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const baseDeserializerName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}Deserializer`;
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    if (union !== "") {
-      subType;
-    }
     const subTypeName = `${toPascalCase(subType.name)}${union}`;
     const subtypeDeserializerName = toCamelCase(`${subTypeName}Deserializer`);
 
@@ -234,7 +238,7 @@ function buildDiscriminatedUnionDeserializer(
         type: "any"
       }
     ],
-    returnType: toPascalCase(normalizeModelName(context, type)),
+    returnType: normalizeModelName(context, type),
     statements: output.join("\n")
   };
   return deserializerFunction;
@@ -257,15 +261,17 @@ function buildEnumDeserializer(
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
-  const deserializerFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const deserializerFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
     return deserializerFunctionName;
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${toCamelCase(normalizeModelName(context, type))}Deserializer`,
+    name: `${normalizeModelName(context, type, NameType.Operation)}Deserializer`,
     isExported: true,
     parameters: [
       {
@@ -273,7 +279,7 @@ function buildEnumDeserializer(
         type: "any"
       }
     ],
-    returnType: toPascalCase(normalizeModelName(context, type)),
+    returnType: normalizeModelName(context, type),
     statements: ["return item;"]
   };
   return deserializerFunction;
@@ -296,15 +302,17 @@ function buildModelTypeDeserializer(
   if (!type.name) {
     throw new Error(`NYI Deserialization of anonymous types`);
   }
-  const deserializerFunctionName = `${toCamelCase(
-    normalizeModelName(context, type)
+  const deserializerFunctionName = `${normalizeModelName(
+    context,
+    type,
+    NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
     return deserializerFunctionName;
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${toCamelCase(normalizeModelName(context, type))}Deserializer`,
+    name: `${normalizeModelName(context, type, NameType.Operation)}Deserializer`,
     isExported: true,
     parameters: [
       {
@@ -312,7 +320,7 @@ function buildModelTypeDeserializer(
         type: "any"
       }
     ],
-    returnType: toPascalCase(normalizeModelName(context, type)),
+    returnType: normalizeModelName(context, type),
     statements: ["return item;"]
   };
   const nullabilityPrefix = "";

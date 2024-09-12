@@ -102,7 +102,9 @@ export function testDeserializer(item: any): Test {
       ? undefined
       : loadTestConfigurationDeserializer(item.loadTestConfiguration),
     baselineTestRunId: item["baselineTestRunId"],
-    inputArtifacts: !item.inputArtifacts ? undefined : item.inputArtifacts,
+    inputArtifacts: !item.inputArtifacts
+      ? undefined
+      : testInputArtifactsDeserializer(item.inputArtifacts),
     testId: item["testId"],
     description: item["description"],
     displayName: item["displayName"],
@@ -644,6 +646,27 @@ export interface TestInputArtifacts {
   readonly additionalFileInfo?: TestFileInfo[];
 }
 
+export function testInputArtifactsDeserializer(item: any): TestInputArtifacts {
+  return {
+    configFileInfo: !item.configFileInfo
+      ? undefined
+      : testFileInfoDeserializer(item.configFileInfo),
+    testScriptFileInfo: !item.testScriptFileInfo
+      ? undefined
+      : testFileInfoDeserializer(item.testScriptFileInfo),
+    userPropFileInfo: !item.userPropFileInfo
+      ? undefined
+      : testFileInfoDeserializer(item.userPropFileInfo),
+    inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
+      ? undefined
+      : testFileInfoDeserializer(item.inputArtifactsZipFileInfo),
+    urlTestConfigFileInfo: !item.urlTestConfigFileInfo
+      ? undefined
+      : testFileInfoDeserializer(item.urlTestConfigFileInfo),
+    additionalFileInfo: item["additionalFileInfo"],
+  };
+}
+
 /** Test file info. */
 export interface TestFileInfo {
   /** Name of the file. */
@@ -658,6 +681,17 @@ export interface TestFileInfo {
   readonly validationStatus?: FileStatus;
   /** Validation failure error details */
   readonly validationFailureDetails?: string;
+}
+
+export function testFileInfoDeserializer(item: any): TestFileInfo {
+  return {
+    fileName: item["fileName"],
+    url: item["url"],
+    fileType: fileTypeDeserializer(item["fileType"]),
+    expireDateTime: item["expireDateTime"],
+    validationStatus: fileStatusDeserializer(item["validationStatus"]),
+    validationFailureDetails: item["validationFailureDetails"],
+  };
 }
 
 /** Types of file supported. */
@@ -1097,12 +1131,18 @@ export function testRunDeserializer(item: any): TestRun {
       : certificateMetadataDeserializer(item.certificate),
     environmentVariables: item["environmentVariables"],
     errorDetails: item["errorDetails"],
-    testRunStatistics: item["testRunStatistics"],
-    regionalStatistics: item["regionalStatistics"],
+    testRunStatistics: testRunStatisticsRecordDeserializer(
+      item["testRunStatistics"],
+    ),
+    regionalStatistics: testRunStatisticsRecordDeserializer(
+      item["regionalStatistics"],
+    ),
     loadTestConfiguration: !item.loadTestConfiguration
       ? undefined
       : loadTestConfigurationDeserializer(item.loadTestConfiguration),
-    testArtifacts: !item.testArtifacts ? undefined : item.testArtifacts,
+    testArtifacts: !item.testArtifacts
+      ? undefined
+      : testRunArtifactsDeserializer(item.testArtifacts),
     testResult: pFTestResultDeserializer(item["testResult"]),
     virtualUsers: item["virtualUsers"],
     displayName: item["displayName"],
@@ -1130,6 +1170,12 @@ export function testRunDeserializer(item: any): TestRun {
 export interface ErrorDetails {
   /** Error details in case test run was not successfully run. */
   readonly message?: string;
+}
+
+export function errorDetailsDeserializer(item: any): ErrorDetails {
+  return {
+    message: item["message"],
+  };
 }
 
 /** Test run statistics. */
@@ -1176,12 +1222,58 @@ export interface TestRunStatistics {
   readonly sentKBytesPerSec?: number;
 }
 
+export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
+  return {
+    transaction: item["transaction"],
+    sampleCount: item["sampleCount"],
+    errorCount: item["errorCount"],
+    errorPct: item["errorPct"],
+    meanResTime: item["meanResTime"],
+    medianResTime: item["medianResTime"],
+    maxResTime: item["maxResTime"],
+    minResTime: item["minResTime"],
+    pct1ResTime: item["pct1ResTime"],
+    pct2ResTime: item["pct2ResTime"],
+    pct3ResTime: item["pct3ResTime"],
+    pct75ResTime: item["pct75ResTime"],
+    pct96ResTime: item["pct96ResTime"],
+    pct97ResTime: item["pct97ResTime"],
+    pct98ResTime: item["pct98ResTime"],
+    pct999ResTime: item["pct999ResTime"],
+    pct9999ResTime: item["pct9999ResTime"],
+    throughput: item["throughput"],
+    receivedKBytesPerSec: item["receivedKBytesPerSec"],
+    sentKBytesPerSec: item["sentKBytesPerSec"],
+  };
+}
+
+export function testRunStatisticsRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, TestRunStatistics> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = testRunStatisticsDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** Collection of test run artifacts */
 export interface TestRunArtifacts {
   /** The input artifacts for the test run. */
   readonly inputArtifacts?: TestRunInputArtifacts;
   /** The output artifacts for the test run. */
   outputArtifacts?: TestRunOutputArtifacts;
+}
+
+export function testRunArtifactsDeserializer(item: any): TestRunArtifacts {
+  return {
+    inputArtifacts: !item.inputArtifacts
+      ? undefined
+      : testRunInputArtifactsDeserializer(item.inputArtifacts),
+    outputArtifacts: !item.outputArtifacts
+      ? undefined
+      : testRunOutputArtifactsDeserializer(item.outputArtifacts),
+  };
 }
 
 /** The input artifacts for the test run. */
@@ -1200,6 +1292,29 @@ export interface TestRunInputArtifacts {
   readonly additionalFileInfo?: TestRunFileInfo[];
 }
 
+export function testRunInputArtifactsDeserializer(
+  item: any,
+): TestRunInputArtifacts {
+  return {
+    configFileInfo: !item.configFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.configFileInfo),
+    testScriptFileInfo: !item.testScriptFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.testScriptFileInfo),
+    userPropFileInfo: !item.userPropFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.userPropFileInfo),
+    inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.inputArtifactsZipFileInfo),
+    urlTestConfigFileInfo: !item.urlTestConfigFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.urlTestConfigFileInfo),
+    additionalFileInfo: item["additionalFileInfo"],
+  };
+}
+
 /** Test run file info. */
 export interface TestRunFileInfo {
   /** Name of the file. */
@@ -1216,6 +1331,17 @@ export interface TestRunFileInfo {
   readonly validationFailureDetails?: string;
 }
 
+export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
+  return {
+    fileName: item["fileName"],
+    url: item["url"],
+    fileType: fileTypeDeserializer(item["fileType"]),
+    expireDateTime: item["expireDateTime"],
+    validationStatus: fileStatusDeserializer(item["validationStatus"]),
+    validationFailureDetails: item["validationFailureDetails"],
+  };
+}
+
 /** The output artifacts for the test run. */
 export interface TestRunOutputArtifacts {
   /** File info */
@@ -1228,12 +1354,40 @@ export interface TestRunOutputArtifacts {
   reportFileInfo?: TestRunFileInfo;
 }
 
+export function testRunOutputArtifactsDeserializer(
+  item: any,
+): TestRunOutputArtifacts {
+  return {
+    resultFileInfo: !item.resultFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.resultFileInfo),
+    logsFileInfo: !item.logsFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.logsFileInfo),
+    artifactsContainerInfo: !item.artifactsContainerInfo
+      ? undefined
+      : artifactsContainerInfoDeserializer(item.artifactsContainerInfo),
+    reportFileInfo: !item.reportFileInfo
+      ? undefined
+      : testRunFileInfoDeserializer(item.reportFileInfo),
+  };
+}
+
 /** Artifacts container info. */
 export interface ArtifactsContainerInfo {
   /** This is a SAS URI to an Azure Storage Container that contains the test run artifacts. */
   url?: string;
   /** Expiry time of the container (RFC 3339 literal format) */
   expireDateTime?: Date;
+}
+
+export function artifactsContainerInfoDeserializer(
+  item: any,
+): ArtifactsContainerInfo {
+  return {
+    url: item["url"],
+    expireDateTime: item["expireDateTime"],
+  };
 }
 
 /** Test result based on pass/fail criteria. */
@@ -1456,10 +1610,26 @@ export interface DimensionValueList {
   nextLink?: string;
 }
 
+export function dimensionValueListDeserializer(item: any): DimensionValueList {
+  return {
+    name: item["name"],
+    value: item["value"],
+    nextLink: item["nextLink"],
+  };
+}
+
 /** Represents collection of metric definitions. */
 export interface MetricDefinitionCollection {
   /** the values for the metric definitions. */
   value: MetricDefinition[];
+}
+
+export function metricDefinitionCollectionDeserializer(
+  item: any,
+): MetricDefinitionCollection {
+  return {
+    value: item["value"],
+  };
 }
 
 /** Metric definition */
@@ -1485,12 +1655,34 @@ export interface MetricDefinition {
   metricAvailabilities?: MetricAvailability[];
 }
 
+export function metricDefinitionDeserializer(item: any): MetricDefinition {
+  return {
+    dimensions: item["dimensions"],
+    description: item["description"],
+    name: item["name"],
+    namespace: item["namespace"],
+    primaryAggregationType: aggregationTypeDeserializer(
+      item["primaryAggregationType"],
+    ),
+    supportedAggregationTypes: item["supportedAggregationTypes"],
+    unit: metricUnitDeserializer(item["unit"]),
+    metricAvailabilities: item["metricAvailabilities"],
+  };
+}
+
 /** The name and description */
 export interface NameAndDesc {
   /** The description */
   description?: string;
   /** The name */
   name?: string;
+}
+
+export function nameAndDescDeserializer(item: any): NameAndDesc {
+  return {
+    description: item["description"],
+    name: item["name"],
+  };
 }
 
 /** Aggregation type. */
@@ -1605,6 +1797,12 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
+export function metricAvailabilityDeserializer(item: any): MetricAvailability {
+  return {
+    timeGrain: timeGrainDeserializer(item["timeGrain"]),
+  };
+}
+
 /** Time Grain */
 export enum KnownTimeGrain {
   /** 5 seconds, available only if test run duration is less than 10 minutes. */
@@ -1646,12 +1844,27 @@ export interface MetricNamespaceCollection {
   value: MetricNamespace[];
 }
 
+export function metricNamespaceCollectionDeserializer(
+  item: any,
+): MetricNamespaceCollection {
+  return {
+    value: item["value"],
+  };
+}
+
 /** Metric namespace class specifies the metadata for a metric namespace. */
 export interface MetricNamespace {
   /** The namespace description. */
   description?: string;
   /** The metric namespace name. */
   name?: string;
+}
+
+export function metricNamespaceDeserializer(item: any): MetricNamespace {
+  return {
+    description: item["description"],
+    name: item["name"],
+  };
 }
 
 /** Filters to fetch the set of metric. */
@@ -1676,14 +1889,6 @@ export function metricRequestPayloadSerializer(
   };
 }
 
-export function metricRequestPayloadDeserializer(
-  item: any,
-): MetricRequestPayload {
-  return {
-    filters: item["filters"],
-  };
-}
-
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */
@@ -1696,19 +1901,19 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
   return { name: item["name"], values: item["values"] };
 }
 
-export function dimensionFilterDeserializer(item: any): DimensionFilter {
-  return {
-    name: item["name"],
-    values: item["values"],
-  };
-}
-
 /** The response to a metrics query. */
 export interface _Metrics {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _metricsDeserializer(item: any): _Metrics {
+  return {
+    value: item["value"],
+    nextLink: item["nextLink"],
+  };
 }
 
 /** The time series returned when a data query is performed. */
@@ -1719,6 +1924,13 @@ export interface TimeSeriesElement {
   dimensionValues?: DimensionValue[];
 }
 
+export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
+  return {
+    data: item["data"],
+    dimensionValues: item["dimensionValues"],
+  };
+}
+
 /** Represents a metric value. */
 export interface MetricValue {
   /** The timestamp for the metric value in RFC 3339 format. */
@@ -1727,12 +1939,26 @@ export interface MetricValue {
   value?: number;
 }
 
+export function metricValueDeserializer(item: any): MetricValue {
+  return {
+    timestamp: item["timestamp"],
+    value: item["value"],
+  };
+}
+
 /** Represents a metric dimension value. */
 export interface DimensionValue {
   /** The name of the dimension. */
   name?: string;
   /** The value of the dimension. */
   value?: string;
+}
+
+export function dimensionValueDeserializer(item: any): DimensionValue {
+  return {
+    name: item["name"],
+    value: item["value"],
+  };
 }
 
 /** Test Profile Model. */
@@ -2021,7 +2247,7 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
     startDateTime: item["startDateTime"],
     endDateTime: item["endDateTime"],
     durationInSeconds: item["durationInSeconds"],
-    testRunDetails: item["testRunDetails"],
+    testRunDetails: testRunDetailRecordDeserializer(item["testRunDetails"]),
     recommendations: item["recommendations"],
     createdDateTime: item["createdDateTime"],
     createdBy: item["createdBy"],
@@ -2085,12 +2311,39 @@ export interface TestRunDetail {
   properties: Record<string, string>;
 }
 
+export function testRunDetailDeserializer(item: any): TestRunDetail {
+  return {
+    status: statusDeserializer(item["status"]),
+    configurationId: item["configurationId"],
+    properties: item["properties"],
+  };
+}
+
+export function testRunDetailRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, TestRunDetail> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = testRunDetailDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** A recommendation object that provides a list of configuration that optimizes its category. */
 export interface TestProfileRunRecommendation {
   /** Category of the recommendation. */
   category: RecommendationCategory;
   /** List of configurations IDs for which the recommendation is applicable. These are a subset of the provided target resource configurations. */
   configurations?: string[];
+}
+
+export function testProfileRunRecommendationDeserializer(
+  item: any,
+): TestProfileRunRecommendation {
+  return {
+    category: recommendationCategoryDeserializer(item["category"]),
+    configurations: item["configurations"],
+  };
 }
 
 /** Category of Recommendation. */

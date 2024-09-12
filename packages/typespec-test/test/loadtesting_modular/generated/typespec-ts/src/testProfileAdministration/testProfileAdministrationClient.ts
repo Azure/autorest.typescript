@@ -12,6 +12,7 @@ import {
 } from "./api/index.js";
 import {
   _Metrics,
+  _metricsDeserializer,
   TestProfile,
   _PagedTestFileInfo,
   _PagedTest,

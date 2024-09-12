@@ -8,15 +8,19 @@ import {
 } from "@azure-rest/core-client";
 import {
   MultivariateMultivariateDetectionResult,
+  multivariateMultivariateDetectionResultDeserializer,
   MultivariateMultivariateBatchDetectionOptions,
   multivariateMultivariateBatchDetectionOptionsSerializer,
   MultivariateModelInfo,
   multivariateModelInfoSerializer,
   MultivariateAnomalyDetectionModel,
+  multivariateAnomalyDetectionModelDeserializer,
   _MultivariateModelList,
+  _multivariateModelListDeserializer,
   MultivariateMultivariateLastDetectionOptions,
   multivariateMultivariateLastDetectionOptionsSerializer,
   MultivariateMultivariateLastDetectionResult,
+  multivariateMultivariateLastDetectionResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -56,7 +60,7 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return multivariateMultivariateDetectionResultDeserializer(result.body);
 }
 
 /**
@@ -101,7 +105,7 @@ export async function _trainMultivariateModelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return multivariateAnomalyDetectionModelDeserializer(result.body);
 }
 
 /**
@@ -146,7 +150,7 @@ export async function _listMultivariateModelsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _multivariateModelListDeserializer(result.body);
 }
 
 /** List models of a resource. */
@@ -220,7 +224,7 @@ export async function _getMultivariateModelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return multivariateAnomalyDetectionModelDeserializer(result.body);
 }
 
 /**
@@ -262,7 +266,7 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return multivariateMultivariateDetectionResultDeserializer(result.body);
 }
 
 /**
@@ -314,7 +318,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return multivariateMultivariateLastDetectionResultDeserializer(result.body);
 }
 
 /**

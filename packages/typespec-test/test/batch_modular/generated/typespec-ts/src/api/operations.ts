@@ -12,6 +12,7 @@ import {
   BatchNodeUserUpdateOptions,
   batchNodeUserUpdateOptionsSerializer,
   BatchNode,
+  batchNodeDeserializer,
   NodeRebootOptions,
   nodeRebootOptionsSerializer,
   NodeReimageOptions,
@@ -19,24 +20,33 @@ import {
   NodeDisableSchedulingOptions,
   nodeDisableSchedulingOptionsSerializer,
   BatchNodeRemoteLoginSettingsResult,
+  batchNodeRemoteLoginSettingsResultDeserializer,
   UploadBatchServiceLogsOptions,
   uploadBatchServiceLogsOptionsSerializer,
   UploadBatchServiceLogsResult,
+  uploadBatchServiceLogsResultDeserializer,
   _BatchNodeListResult,
+  _batchNodeListResultDeserializer,
   NodeVMExtension,
+  nodeVMExtensionDeserializer,
   _NodeVMExtensionList,
+  _nodeVMExtensionListDeserializer,
   _NodeFileListResult,
+  _nodeFileListResultDeserializer,
   NodeFile,
   BatchTaskCreateOptions,
   batchTaskCreateOptionsSerializer,
   _BatchTaskListResult,
+  _batchTaskListResultDeserializer,
   BatchTask,
   batchTaskSerializer,
   batchTaskDeserializer,
   BatchTaskCollection,
   batchTaskCollectionSerializer,
   TaskAddCollectionResult,
+  taskAddCollectionResultDeserializer,
   BatchTaskListSubtasksResult,
+  batchTaskListSubtasksResultDeserializer,
   BatchJobSchedule,
   batchJobScheduleSerializer,
   batchJobScheduleDeserializer,
@@ -45,10 +55,12 @@ import {
   BatchJobScheduleCreateOptions,
   batchJobScheduleCreateOptionsSerializer,
   _BatchJobScheduleListResult,
+  _batchJobScheduleListResultDeserializer,
   BatchCertificate,
   batchCertificateSerializer,
   batchCertificateDeserializer,
   _CertificateListResult,
+  _certificateListResultDeserializer,
   BatchJob,
   batchJobSerializer,
   batchJobDeserializer,
@@ -61,20 +73,29 @@ import {
   BatchJobCreateOptions,
   batchJobCreateOptionsSerializer,
   _BatchJobListResult,
+  _batchJobListResultDeserializer,
   _BatchJobListPreparationAndReleaseTaskStatusResult,
+  _batchJobListPreparationAndReleaseTaskStatusResultDeserializer,
   JobPreparationAndReleaseTaskExecutionInformation,
   TaskCountsResult,
+  taskCountsResultDeserializer,
   _AccountListSupportedImagesResult,
+  _accountListSupportedImagesResultDeserializer,
   ImageInformation,
   _PoolNodeCountsListResult,
+  _poolNodeCountsListResultDeserializer,
   PoolNodeCounts,
   _PoolListUsageMetricsResult,
+  _poolListUsageMetricsResultDeserializer,
   PoolUsageMetrics,
   BatchPoolCreateOptions,
   batchPoolCreateOptionsSerializer,
   _BatchPoolListResult,
+  _batchPoolListResultDeserializer,
   BatchPool,
+  batchPoolDeserializer,
   AutoScaleRun,
+  autoScaleRunDeserializer,
   BatchPoolUpdateOptions,
   batchPoolUpdateOptionsSerializer,
   BatchPoolEnableAutoScaleOptions,
@@ -88,7 +109,9 @@ import {
   NodeRemoveOptions,
   nodeRemoveOptionsSerializer,
   _ApplicationListResult,
+  _applicationListResultDeserializer,
   BatchApplication,
+  batchApplicationDeserializer,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -201,7 +224,7 @@ export async function _listApplicationsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _applicationListResultDeserializer(result.body);
 }
 
 /**
@@ -248,7 +271,7 @@ export async function _getApplicationDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return batchApplicationDeserializer(result.body);
 }
 
 /**
@@ -294,7 +317,7 @@ export async function _listPoolUsageMetricsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _poolListUsageMetricsResultDeserializer(result.body);
 }
 
 /**
@@ -390,7 +413,7 @@ export async function _listPoolsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _batchPoolListResultDeserializer(result.body);
 }
 
 /** Lists all of the Pools in the specified Account. */
@@ -562,7 +585,7 @@ export async function _getPoolDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return batchPoolDeserializer(result.body);
 }
 
 /** Gets information about the specified Pool. */
@@ -766,7 +789,7 @@ export async function _evaluatePoolAutoScaleDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return autoScaleRunDeserializer(result.body);
 }
 
 /**
@@ -1050,7 +1073,7 @@ export async function _listSupportedImagesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _accountListSupportedImagesResultDeserializer(result.body);
 }
 
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
@@ -1092,7 +1115,7 @@ export async function _listPoolNodeCountsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _poolNodeCountsListResultDeserializer(result.body);
 }
 
 /**
@@ -1614,7 +1637,7 @@ export async function _listJobsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _batchJobListResultDeserializer(result.body);
 }
 
 /** Lists all of the Jobs in the specified Account. */
@@ -1659,7 +1682,7 @@ export async function _listJobsFromScheduleDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _batchJobListResultDeserializer(result.body);
 }
 
 /** Lists the Jobs that have been created under the specified Job Schedule. */
@@ -1705,7 +1728,9 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -1756,7 +1781,7 @@ export async function _getJobTaskCountsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return taskCountsResultDeserializer(result.body);
 }
 
 /**
@@ -1841,7 +1866,7 @@ export async function _listCertificatesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _certificateListResultDeserializer(result.body);
 }
 
 /** Lists all of the Certificates that have been added to the specified Account. */
@@ -2543,7 +2568,7 @@ export async function _listJobSchedulesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _batchJobScheduleListResultDeserializer(result.body);
 }
 
 /** Lists all of the Job Schedules in the specified Account. */
@@ -2635,7 +2660,7 @@ export async function _listTasksDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _batchTaskListResultDeserializer(result.body);
 }
 
 /**
@@ -2686,7 +2711,7 @@ export async function _createTaskCollectionDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return taskAddCollectionResultDeserializer(result.body);
 }
 
 /**
@@ -2923,7 +2948,7 @@ export async function _listSubTasksDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return batchTaskListSubtasksResultDeserializer(result.body);
 }
 
 /** If the Task is not a multi-instance Task then this returns an empty collection. */
@@ -3259,7 +3284,7 @@ export async function _listTaskFilesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _nodeFileListResultDeserializer(result.body);
 }
 
 /** Lists the files in a Task's directory on its Compute Node. */
@@ -3477,7 +3502,7 @@ export async function _getNodeDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return batchNodeDeserializer(result.body);
 }
 
 /** Gets information about the specified Compute Node. */
@@ -3711,7 +3736,7 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return batchNodeRemoteLoginSettingsResultDeserializer(result.body);
 }
 
 /**
@@ -3819,7 +3844,7 @@ export async function _uploadNodeLogsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return uploadBatchServiceLogsResultDeserializer(result.body);
 }
 
 /**
@@ -3872,7 +3897,7 @@ export async function _listNodesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _batchNodeListResultDeserializer(result.body);
 }
 
 /** Lists the Compute Nodes in the specified Pool. */
@@ -3922,7 +3947,7 @@ export async function _getNodeExtensionDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return nodeVMExtensionDeserializer(result.body);
 }
 
 /** Gets information about the specified Compute Node Extension. */
@@ -3969,7 +3994,7 @@ export async function _listNodeExtensionsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _nodeVMExtensionListDeserializer(result.body);
 }
 
 /** Lists the Compute Nodes Extensions in the specified Pool. */
@@ -4192,7 +4217,7 @@ export async function _listNodeFilesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _nodeFileListResultDeserializer(result.body);
 }
 
 /** Lists all of the files in Task directories on the specified Compute Node. */

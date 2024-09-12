@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import { _MultivariateModelList, APIVersion } from "../models/models.js";
+import {
+  _MultivariateModelList,
+  _multivariateModelListDeserializer,
+  APIVersion,
+} from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 

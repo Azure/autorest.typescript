@@ -9,10 +9,22 @@ export interface SchemaGroup {
   readonly groupName: string;
 }
 
+export function schemaGroupDeserializer(item: any): SchemaGroup {
+  return {
+    groupName: item["groupName"],
+  };
+}
+
 /** Schema versions resource. */
 export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
+}
+
+export function schemaVersionDeserializer(item: any): SchemaVersion {
+  return {
+    schemaVersion: item["schemaVersion"],
+  };
 }
 
 /** Meta properties of a schema. */

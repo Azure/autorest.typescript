@@ -3,6 +3,7 @@
 
 import {
   _Metrics,
+  _metricsDeserializer,
   _PagedTestFileInfo,
   _PagedTest,
   _PagedTestRun,

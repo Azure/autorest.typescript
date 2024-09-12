@@ -8,9 +8,13 @@ import {
 } from "@azure-rest/core-client";
 import {
   _DataProductListResult,
+  _dataProductListResultDeserializer,
   _DataTypeListResult,
+  _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
+  _operationListResultDeserializer,
   Operation,
 } from "../../models/models.js";
 import {
@@ -40,7 +44,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _operationListResultDeserializer(result.body);
 }
 
 /** List the operations for the provider */

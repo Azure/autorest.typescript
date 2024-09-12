@@ -8,6 +8,7 @@ import {
 } from "@azure-rest/core-client";
 import {
   _Metrics,
+  _metricsDeserializer,
   TestProfileRun,
   testProfileRunSerializer,
   testProfileRunDeserializer,

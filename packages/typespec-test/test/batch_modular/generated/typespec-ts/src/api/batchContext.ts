@@ -4,18 +4,31 @@
 import { logger } from "../logger.js";
 import {
   _BatchNodeListResult,
+  _batchNodeListResultDeserializer,
   _NodeVMExtensionList,
+  _nodeVMExtensionListDeserializer,
   _NodeFileListResult,
+  _nodeFileListResultDeserializer,
   _BatchTaskListResult,
+  _batchTaskListResultDeserializer,
   _BatchJobScheduleListResult,
+  _batchJobScheduleListResultDeserializer,
   _CertificateListResult,
+  _certificateListResultDeserializer,
   _BatchJobListResult,
+  _batchJobListResultDeserializer,
   _BatchJobListPreparationAndReleaseTaskStatusResult,
+  _batchJobListPreparationAndReleaseTaskStatusResultDeserializer,
   _AccountListSupportedImagesResult,
+  _accountListSupportedImagesResultDeserializer,
   _PoolNodeCountsListResult,
+  _poolNodeCountsListResultDeserializer,
   _PoolListUsageMetricsResult,
+  _poolListUsageMetricsResultDeserializer,
   _BatchPoolListResult,
+  _batchPoolListResultDeserializer,
   _ApplicationListResult,
+  _applicationListResultDeserializer,
 } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";

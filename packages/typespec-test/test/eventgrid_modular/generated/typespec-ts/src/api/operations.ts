@@ -11,16 +11,21 @@ import {
   publishCloudEventRequestSerializer,
   CloudEvent,
   PublishResult,
+  publishResultDeserializer,
   ReceiveResult,
+  receiveResultDeserializer,
   AcknowledgeOptions,
   acknowledgeOptionsSerializer,
   AcknowledgeResult,
+  acknowledgeResultDeserializer,
   ReleaseOptions,
   releaseOptionsSerializer,
   ReleaseResult,
+  releaseResultDeserializer,
   RejectOptions,
   rejectOptionsSerializer,
   RejectResult,
+  rejectResultDeserializer,
 } from "../models/models.js";
 import {
   PathUncheckedResponse,
@@ -60,7 +65,7 @@ export async function _publishCloudEventDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return publishResultDeserializer(result.body);
 }
 
 /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -104,7 +109,7 @@ export async function _publishCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return publishResultDeserializer(result.body);
 }
 
 /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -152,7 +157,7 @@ export async function _receiveCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return receiveResultDeserializer(result.body);
 }
 
 /** Receive Batch of Cloud Events from the Event Subscription. */
@@ -200,7 +205,7 @@ export async function _acknowledgeCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return acknowledgeResultDeserializer(result.body);
 }
 
 /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
@@ -250,7 +255,7 @@ export async function _releaseCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return releaseResultDeserializer(result.body);
 }
 
 /** Release batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully released. The response body will include the set of successfully released lockTokens, along with other failed lockTokens with their corresponding error information. */
@@ -300,7 +305,7 @@ export async function _rejectCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return rejectResultDeserializer(result.body);
 }
 
 /** Reject batch of Cloud Events. */

@@ -15,6 +15,7 @@ import {
   AccountSas,
   accountSasSerializer,
   AccountSasToken,
+  accountSasTokenDeserializer,
   KeyVaultInfo,
   keyVaultInfoSerializer,
   RoleAssignmentCommonProperties,
@@ -23,10 +24,15 @@ import {
   roleAssignmentDetailSerializer,
   roleAssignmentDetailDeserializer,
   ListRoleAssignments,
+  listRoleAssignmentsDeserializer,
   _DataProductListResult,
+  _dataProductListResultDeserializer,
   _DataTypeListResult,
+  _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
+  _operationListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -301,7 +307,7 @@ export async function _generateStorageAccountSasTokenDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return accountSasTokenDeserializer(result.body);
 }
 
 /** Generate sas token for storage account. */
@@ -510,7 +516,7 @@ export async function _listRolesAssignmentsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return listRoleAssignmentsDeserializer(result.body);
 }
 
 /** List user roles associated with the data product. */
@@ -560,7 +566,7 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _dataProductListResultDeserializer(result.body);
 }
 
 /** List data products by resource group. */
@@ -610,7 +616,7 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _dataProductListResultDeserializer(result.body);
 }
 
 /** List data products by subscription. */

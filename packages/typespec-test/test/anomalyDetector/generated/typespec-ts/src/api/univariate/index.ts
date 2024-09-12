@@ -8,13 +8,17 @@ import {
 } from "@azure-rest/core-client";
 import {
   _MultivariateModelList,
+  _multivariateModelListDeserializer,
   UnivariateUnivariateDetectionOptions,
   univariateUnivariateDetectionOptionsSerializer,
   UnivariateUnivariateEntireDetectionResult,
+  univariateUnivariateEntireDetectionResultDeserializer,
   UnivariateUnivariateLastDetectionResult,
+  univariateUnivariateLastDetectionResultDeserializer,
   UnivariateUnivariateChangePointDetectionOptions,
   univariateUnivariateChangePointDetectionOptionsSerializer,
   UnivariateUnivariateChangePointDetectionResult,
+  univariateUnivariateChangePointDetectionResultDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -49,7 +53,7 @@ export async function _detectUnivariateEntireSeriesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return univariateUnivariateEntireDetectionResultDeserializer(result.body);
 }
 
 /**
@@ -96,7 +100,7 @@ export async function _detectUnivariateLastPointDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return univariateUnivariateLastDetectionResultDeserializer(result.body);
 }
 
 /**
@@ -141,7 +145,9 @@ export async function _detectUnivariateChangePointDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return univariateUnivariateChangePointDetectionResultDeserializer(
+    result.body,
+  );
 }
 
 /** Evaluate change point score of every series point */

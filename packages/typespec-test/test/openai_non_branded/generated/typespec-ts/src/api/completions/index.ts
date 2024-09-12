@@ -9,6 +9,7 @@ import {
   CreateCompletionRequest,
   createCompletionRequestSerializer,
   CreateCompletionResponse,
+  createCompletionResponseDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -37,7 +38,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return createCompletionResponseDeserializer(result.body);
 }
 
 export async function create(

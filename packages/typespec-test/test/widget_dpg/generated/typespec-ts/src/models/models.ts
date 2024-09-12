@@ -34,6 +34,14 @@ export interface Widget {
   color: "red" | "blue";
 }
 
+export function widgetDeserializer(item: any): Widget {
+  return {
+    id: item["id"],
+    weight: item["weight"],
+    color: widgetColorDeserializer(item["color"]),
+  };
+}
+
 export type WidgetColor = "red" | "blue";
 
 export function widgetColorSerializer(item: WidgetColor): any {
@@ -51,11 +59,27 @@ export interface WidgetError {
   message: string;
 }
 
+export function widgetErrorDeserializer(item: any): WidgetError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
 export interface _ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+export function _listWidgetsPagesResultsDeserializer(
+  item: any,
+): _ListWidgetsPagesResults {
+  return {
+    results: item["results"],
+    "odata.nextLink": item["odata.nextLink"],
+  };
 }
 
 export interface CreateWidgetRequest {
@@ -102,6 +126,12 @@ export function updateWidgetRequestColorDeserializer(
 
 export interface AnalyzeResult {
   summary: string;
+}
+
+export function analyzeResultDeserializer(item: any): AnalyzeResult {
+  return {
+    summary: item["summary"],
+  };
 }
 
 export interface NonReferencedModel {

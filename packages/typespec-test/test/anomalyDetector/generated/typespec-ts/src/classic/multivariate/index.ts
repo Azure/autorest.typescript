@@ -17,6 +17,7 @@ import {
   MultivariateModelInfo,
   MultivariateAnomalyDetectionModel,
   _MultivariateModelList,
+  _multivariateModelListDeserializer,
   MultivariateMultivariateLastDetectionOptions,
   MultivariateMultivariateLastDetectionResult,
 } from "../../models/models.js";

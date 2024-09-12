@@ -9,6 +9,7 @@ import {
   CreateModerationRequest,
   createModerationRequestSerializer,
   CreateModerationResponse,
+  createModerationResponseDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -37,7 +38,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return createModerationResponseDeserializer(result.body);
 }
 
 export async function create(

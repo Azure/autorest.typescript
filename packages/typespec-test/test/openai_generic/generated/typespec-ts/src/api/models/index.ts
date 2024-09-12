@@ -8,8 +8,11 @@ import {
 } from "@azure-rest/core-client";
 import {
   ListModelsResponse,
+  listModelsResponseDeserializer,
   Model,
+  modelDeserializer,
   DeleteModelResponse,
+  deleteModelResponseDeserializer,
 } from "../../models/models.js";
 import {
   PathUncheckedResponse,
@@ -38,7 +41,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return listModelsResponseDeserializer(result.body);
 }
 
 export async function list(
@@ -67,7 +70,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return modelDeserializer(result.body);
 }
 
 export async function retrieve(
@@ -97,7 +100,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return deleteModelResponseDeserializer(result.body);
 }
 
 /**

@@ -30,6 +30,7 @@ import {
   MetricNamespaceCollection,
   MetricRequestPayload,
   _Metrics,
+  _metricsDeserializer,
   TimeSeriesElement,
   _PagedTestFileInfo,
   _PagedTest,
