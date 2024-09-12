@@ -157,19 +157,19 @@ export function dataProductPropertiesDeserializer(
 /** The status of the current operation. */
 export enum KnownProvisioningState {
   /** Represents a succeeded operation. */
-  Succeeded = '"Succeeded"',
+  Succeeded = "Succeeded",
   /** Represents a failed operation. */
-  Failed = '"Failed"',
+  Failed = "Failed",
   /** Represents a canceled operation. */
-  Canceled = '"Canceled"',
+  Canceled = "Canceled",
   /** Represents a pending operation. */
-  Provisioning = '"Provisioning"',
+  Provisioning = "Provisioning",
   /** Represents a pending operation. */
-  Updating = '"Updating"',
+  Updating = "Updating",
   /** Represents an operation under deletion. */
-  Deleting = '"Deleting"',
+  Deleting = "Deleting",
   /** Represents an accepted operation. */
-  Accepted = '"Accepted"',
+  Accepted = "Accepted",
 }
 
 /**
@@ -198,9 +198,9 @@ export function provisioningStateDeserializer(item: any): ProvisioningState {
 /** The data type state */
 export enum KnownControlState {
   /** Field to enable a setting. */
-  Enabled = '"Enabled"',
+  Enabled = "Enabled",
   /** Field to disable a setting. */
-  Disabled = '"Disabled"',
+  Disabled = "Disabled",
 }
 
 /**
@@ -331,9 +331,9 @@ export function iPRulesDeserializer(item: any): IPRules {
 /** Specifies the default action of allow or deny when no other rules match. */
 export enum KnownDefaultAction {
   /** Represents allow action. */
-  Allow = '"Allow"',
+  Allow = "Allow",
   /** Represents deny action. */
-  Deny = '"Deny"',
+  Deny = "Deny",
 }
 
 /**
@@ -435,13 +435,13 @@ export function managedServiceIdentityV4Deserializer(
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export enum KnownManagedServiceIdentityType {
   /** No managed identity. */
-  None = '"None"',
+  None = "None",
   /** System assigned managed identity. */
-  SystemAssigned = '"SystemAssigned"',
+  SystemAssigned = "SystemAssigned",
   /** User assigned managed identity. */
-  UserAssigned = '"UserAssigned"',
+  UserAssigned = "UserAssigned",
   /** System and user assigned managed identity. */
-  SystemAndUserAssigned = '"SystemAssigned, UserAssigned"',
+  SystemAndUserAssigned = "SystemAssigned, UserAssigned",
 }
 
 /**
@@ -581,13 +581,13 @@ export interface SystemData {
 /** The kind of entity that created the resource. */
 export enum KnownCreatedByType {
   /** The entity was created by a user. */
-  User = '"User"',
+  User = "User",
   /** The entity was created by an application. */
-  Application = '"Application"',
+  Application = "Application",
   /** The entity was created by a managed identity. */
-  ManagedIdentity = '"ManagedIdentity"',
+  ManagedIdentity = "ManagedIdentity",
   /** The entity was created by a key. */
-  Key = '"Key"',
+  Key = "Key",
 }
 
 /**
@@ -805,12 +805,12 @@ export function roleAssignmentCommonPropertiesDeserializer(
 /** The data type state */
 export enum KnownDataProductUserRole {
   /** Field to specify user of type Reader. */
-  Reader = '"Reader"',
+  Reader = "Reader",
   /**
    * Field to specify user of type SensitiveReader.
    * This user has privileged access to read sensitive data of a data product.
    */
-  SensitiveReader = '"SensitiveReader"',
+  SensitiveReader = "SensitiveReader",
 }
 
 /**
@@ -966,9 +966,9 @@ export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
 /** The data type state */
 export enum KnownDataTypeState {
   /** Field to specify stopped state. */
-  Stopped = '"Stopped"',
+  Stopped = "Stopped",
   /** Field to specify running state. */
-  Running = '"Running"',
+  Running = "Running",
 }
 
 /**
@@ -1186,11 +1186,11 @@ export interface OperationDisplay {
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export enum KnownOrigin {
   /** Indicates the operation is initiated by a user. */
-  user = '"user"',
+  user = "user",
   /** Indicates the operation is initiated by a system. */
-  system = '"system"',
+  system = "system",
   /** Indicates the operation is initiated by a user or system. */
-  "user,system" = '"user,system"',
+  "user,system" = "user,system",
 }
 
 /**
@@ -1215,7 +1215,7 @@ export function originDeserializer(item: any): Origin {
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export enum KnownActionType {
   /** Actions are for internal-only APIs. */
-  Internal = '"Internal"',
+  Internal = "Internal",
 }
 
 /**

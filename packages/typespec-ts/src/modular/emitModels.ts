@@ -217,7 +217,7 @@ function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
     name: member.name,
-    value: getTypeExpression(member)
+    value: member.value
   };
 
   if (member.description) {
