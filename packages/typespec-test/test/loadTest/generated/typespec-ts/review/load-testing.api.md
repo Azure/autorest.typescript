@@ -12,7 +12,6 @@ import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged as Paged_2 } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -113,7 +112,10 @@ export interface FileInfo {
 }
 
 // @public
-export type FileInfoListOutput = Paged_2<FileInfoOutput>;
+export interface FileInfoListOutput {
+    nextLink?: string;
+    value: Array<FileInfoOutput>;
+}
 
 // @public
 export interface FileInfoOutput {
@@ -148,9 +150,6 @@ export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
-
-// @public
-export function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
 
 // @public
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
@@ -1293,7 +1292,10 @@ export interface MetricRequestPayload {
 }
 
 // @public
-export type MetricsOutput = Paged_2<TimeSeriesElementOutput>;
+export interface MetricsOutput {
+    nextLink?: string;
+    value: Array<TimeSeriesElementOutput>;
+}
 
 // @public
 export type MetricUnitOutput = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
@@ -1327,12 +1329,6 @@ export interface OptionalLoadTestConfigOutput {
 }
 
 // @public
-export type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
-// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
@@ -1340,17 +1336,9 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export type PagedDimensionValueListOutput = Paged_2<DimensionValueListOutput>;
-
-// @public
-export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    toElements?: (page: TPage) => unknown[];
+export interface PagedDimensionValueListOutput {
+    nextLink?: string;
+    value: Array<DimensionValueListOutput>;
 }
 
 // @public
@@ -1717,7 +1705,10 @@ export interface TestRunServerMetricConfigOutput {
 export type TestRunServerMetricConfigResourceMergeAndPatch = Partial<TestRunServerMetricConfig>;
 
 // @public
-export type TestRunsListOutput = Paged_2<TestRunOutput>;
+export interface TestRunsListOutput {
+    nextLink?: string;
+    value: Array<TestRunOutput>;
+}
 
 // @public
 export interface TestRunStatistics {
@@ -1760,7 +1751,10 @@ export interface TestServerMetricConfigOutput {
 export type TestServerMetricConfigResourceMergeAndPatch = Partial<TestServerMetricConfig>;
 
 // @public
-export type TestsListOutput = Paged_2<TestOutput>;
+export interface TestsListOutput {
+    nextLink?: string;
+    value: Array<TestOutput>;
+}
 
 // @public
 export type TimeGrainOutput = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";

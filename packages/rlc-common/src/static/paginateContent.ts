@@ -15,8 +15,7 @@ import {
  * @param pagedResult - an object that specifies how to get pages.
  * @returns a paged async iterator that iterates over results.
  */
-
-export function getPagedAsyncIterator<
+function getPagedAsyncIterator<
   TElement,
   TPage = TElement[],
   TPageSettings = PageSettings,
@@ -102,6 +101,7 @@ export interface PageSettings {
    */
   continuationToken?: string;
 }
+
 /**
  * An interface that allows async iterable iteration both to completion and by page.
  */
@@ -127,7 +127,7 @@ export interface PagedAsyncIterableIterator<
 /**
  * An interface that describes how to communicate with the service.
  */
-export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
+interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
   /**
    * Link to the first page of results.
    */
@@ -149,19 +149,6 @@ export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string
   toElements?: (page: TPage) => unknown[];
 }
 
-/**
- * Paged collection of T items
- */
-export type Paged<T> = {
-  /**
-   * The T items on this page
-   */
-  value: T[];
-  /**
-   * The link to the next page of items
-   */
-  nextLink?: string;
-};
 /**
  * Helper type to extract the type of an array
  */

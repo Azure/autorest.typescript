@@ -5,7 +5,6 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged as Paged_2 } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -75,8 +74,6 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     nextPageLink?: string;
 }>;
 
-export declare function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-
 export declare interface Identity {
     type?: ResourceIdentityType;
 }
@@ -115,7 +112,10 @@ export declare interface NestedProxyResource extends ProxyResource {
     properties?: NestedProxyResourceProperties;
 }
 
-export declare type NestedProxyResourceListResultOutput = Paged_2<NestedProxyResourceOutput>;
+export declare interface NestedProxyResourceListResultOutput {
+    value: Array<NestedProxyResourceOutput>;
+    nextLink?: string;
+}
 
 export declare interface NestedProxyResourceOutput extends ProxyResourceOutput {
     properties?: NestedProxyResourcePropertiesOutput;
@@ -258,25 +258,10 @@ export declare interface NotificationDetails {
     urgent: boolean;
 }
 
-export declare type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     next(): Promise<IteratorResult<TElement>>;
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-}
-
-export declare interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    toElements?: (page: TPage) => unknown[];
 }
 
 export declare interface PageSettings {
@@ -491,7 +476,10 @@ export declare interface TopLevelTrackedResource extends TrackedResource {
     properties?: TopLevelTrackedResourceProperties;
 }
 
-export declare type TopLevelTrackedResourceListResultOutput = Paged_2<TopLevelTrackedResourceOutput>;
+export declare interface TopLevelTrackedResourceListResultOutput {
+    value: Array<TopLevelTrackedResourceOutput>;
+    nextLink?: string;
+}
 
 export declare interface TopLevelTrackedResourceOutput extends TrackedResourceOutput {
     properties?: TopLevelTrackedResourcePropertiesOutput;

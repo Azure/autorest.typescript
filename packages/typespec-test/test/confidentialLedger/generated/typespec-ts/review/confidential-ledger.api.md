@@ -319,9 +319,6 @@ export type GetPage<TPage> = (pageLink: string) => Promise<{
     nextPageLink?: string;
 }>;
 
-// @public
-export function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-
 // @public (undocumented)
 export interface GetReceipt {
     get(options?: GetReceiptParameters): StreamableMethod<GetReceipt200Response | GetReceiptDefaultResponse>;
@@ -547,12 +544,6 @@ export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
 export type ListLedgerEntriesParameters = RequestParameters;
 
 // @public
-export type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
-// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
@@ -564,17 +555,6 @@ export interface PagedLedgerEntriesOutput {
     entries: Array<LedgerEntryOutput>;
     nextLink?: string;
     state: LedgerQueryStateOutput;
-}
-
-// @public
-export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    toElements?: (page: TPage) => unknown[];
 }
 
 // @public

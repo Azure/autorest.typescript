@@ -713,12 +713,6 @@ type GetPage_2<TPage> = (pageLink: string) => Promise<{
 }>;
 
 // @public
-function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-
-// @public
-function getPagedAsyncIterator_2<TElement, TPage = TElement[], TPageSettings = PageSettings_2, TLink = string>(pagedResult: PagedResult_2<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator_2<TElement, TPage, TPageSettings>;
-
-// @public
 interface IdentityOutput {
     readonly principalId?: string;
     readonly tenantId?: string;
@@ -1136,18 +1130,6 @@ declare namespace OutputModels_2 {
 }
 
 // @public
-type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
-// @public
-type Paged_2<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
-// @public
 interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
@@ -1159,28 +1141,6 @@ interface PagedAsyncIterableIterator_2<TElement, TPage = TElement[], TPageSettin
     [Symbol.asyncIterator](): PagedAsyncIterableIterator_2<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    toElements?: (page: TPage) => unknown[];
-}
-
-// @public
-interface PagedResult_2<TPage, TPageSettings = PageSettings_2, TLink = string> {
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    toElements?: (page: TPage) => unknown[];
 }
 
 // @public
@@ -1201,12 +1161,9 @@ function paginate_2<TResponse extends PathUncheckedResponse>(client: Client, ini
 
 declare namespace PaginateHelper {
     export {
-        getPagedAsyncIterator,
         paginate,
         PageSettings,
         PagedAsyncIterableIterator,
-        PagedResult,
-        Paged,
         GetArrayType,
         GetPage,
         PagingOptions,
@@ -1216,12 +1173,9 @@ declare namespace PaginateHelper {
 
 declare namespace PaginateHelper_2 {
     export {
-        getPagedAsyncIterator_2 as getPagedAsyncIterator,
         paginate_2 as paginate,
         PageSettings_2 as PageSettings,
         PagedAsyncIterableIterator_2 as PagedAsyncIterableIterator,
-        PagedResult_2 as PagedResult,
-        Paged_2 as Paged,
         GetArrayType_2 as GetArrayType,
         GetPage_2 as GetPage,
         PagingOptions_2 as PagingOptions,

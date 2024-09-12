@@ -370,9 +370,6 @@ export type GetPage<TPage> = (pageLink: string) => Promise<{
     nextPageLink?: string;
 }>;
 
-// @public
-export function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-
 // @public (undocumented)
 export function isUnexpected(response: GetMultivariateBatchDetectionResult200Response | GetMultivariateBatchDetectionResultDefaultResponse): response is GetMultivariateBatchDetectionResultDefaultResponse;
 
@@ -507,27 +504,10 @@ export interface ModelStateOutput {
 }
 
 // @public
-export type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
-// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    toElements?: (page: TPage) => unknown[];
 }
 
 // @public

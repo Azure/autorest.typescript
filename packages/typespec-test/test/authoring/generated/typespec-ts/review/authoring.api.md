@@ -14,7 +14,6 @@ import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
-import { Paged as Paged_2 } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -444,9 +443,6 @@ export type GetPage<TPage> = (pageLink: string) => Promise<{
     nextPageLink?: string;
 }>;
 
-// @public
-export function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-
 // @public (undocumented)
 export type GetParameters = RequestParameters;
 
@@ -741,12 +737,6 @@ export interface OperationStatusOutput {
 }
 
 // @public
-export type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
-// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
@@ -754,20 +744,15 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
-export type PagedDeploymentOutput = Paged_2<DeploymentOutput>;
+export interface PagedDeploymentOutput {
+    nextLink?: string;
+    value: Array<DeploymentOutput>;
+}
 
 // @public
-export type PagedProjectOutput = Paged_2<ProjectOutput>;
-
-// @public
-export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    toElements?: (page: TPage) => unknown[];
+export interface PagedProjectOutput {
+    nextLink?: string;
+    value: Array<ProjectOutput>;
 }
 
 // @public
@@ -877,7 +862,10 @@ export interface SupportedLanguageOutput {
 }
 
 // @public
-export type SupportedLanguagesOutput = Paged_2<SupportedLanguageOutput>;
+export interface SupportedLanguagesOutput {
+    nextLink?: string;
+    value: Array<SupportedLanguageOutput>;
+}
 
 // @public (undocumented)
 export interface SwapDeployments {
@@ -989,7 +977,10 @@ export interface TrainingConfigVersionOutput {
 }
 
 // @public
-export type TrainingConfigVersionsOutput = Paged_2<TrainingConfigVersionOutput>;
+export interface TrainingConfigVersionsOutput {
+    nextLink?: string;
+    value: Array<TrainingConfigVersionOutput>;
+}
 
 // @public
 export interface TrainingJobOptions {

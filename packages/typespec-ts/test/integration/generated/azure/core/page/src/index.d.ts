@@ -2,7 +2,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { Paged as Paged_2 } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -29,8 +28,6 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
-
-export declare function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
 
 export declare function isUnexpected(response: ListWithPage200Response | ListWithPageDefaultResponse): response is ListWithPageDefaultResponse;
 
@@ -165,32 +162,26 @@ export declare interface ListWithParametersQueryParamProperties {
     another?: ListItemInputExtensibleEnum;
 }
 
-export declare type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     next(): Promise<IteratorResult<TElement>>;
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
 }
 
-export declare type PagedFirstItemOutput = Paged_2<FirstItemOutput>;
-
-export declare interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    toElements?: (page: TPage) => unknown[];
+export declare interface PagedFirstItemOutput {
+    value: Array<FirstItemOutput>;
+    nextLink?: string;
 }
 
-export declare type PagedSecondItemOutput = Paged_2<SecondItemOutput>;
+export declare interface PagedSecondItemOutput {
+    value: Array<SecondItemOutput>;
+    nextLink?: string;
+}
 
-export declare type PagedUserOutput = Paged_2<UserOutput>;
+export declare interface PagedUserOutput {
+    value: Array<UserOutput>;
+    nextLink?: string;
+}
 
 export declare interface PageSettings {
     continuationToken?: string;

@@ -2102,9 +2102,6 @@ export type GetPage<TPage> = (pageLink: string) => Promise<{
 }>;
 
 // @public
-export function getPagedAsyncIterator<TElement, TPage = TElement[], TPageSettings = PageSettings, TLink = string>(pagedResult: PagedResult<TPage, TPageSettings, TLink>): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-
-// @public
 export interface HarvestData {
     area?: Measure;
     associatedBoundaryId?: string;
@@ -3130,27 +3127,10 @@ export interface OAuthTokensListQueryParamProperties {
 }
 
 // @public
-export type Paged<T> = {
-    value: T[];
-    nextLink?: string;
-};
-
-// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PagedResult<TPage, TPageSettings = PageSettings, TLink = string> {
-    byPage?: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    firstPageLink: TLink;
-    getPage: (pageLink: TLink) => Promise<{
-        page: TPage;
-        nextPageLink?: TLink;
-    } | undefined>;
-    toElements?: (page: TPage) => unknown[];
 }
 
 // @public
