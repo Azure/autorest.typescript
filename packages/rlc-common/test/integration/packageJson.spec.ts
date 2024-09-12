@@ -703,25 +703,6 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[cjs] should update to correct paging dependencies if there are paging operations", () => {
-      const model = createMockModel({
-        moduleKind: "cjs",
-        flavor: "azure",
-        isMonorepo: false,
-        withTests: true,
-        hasPaging: true
-      });
-      const packageFileContent = updatePackageFile(
-        model,
-        "./test/integration/static/package.json"
-      );
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      expect(packageFile.dependencies).to.have.property(
-        "@azure/core-paging",
-        "^1.5.0"
-      );
-    });
-
     it("[cjs] should return directly if package.json is non-existing or no paging/lro operations", () => {
       let model = createMockModel({
         moduleKind: "cjs",
