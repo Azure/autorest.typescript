@@ -449,7 +449,6 @@ export class NetworkAnalyticsClient {
 // @public
 export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-    endpoint?: string;
 }
 
 // @public

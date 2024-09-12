@@ -19,8 +19,6 @@ export interface NetworkAnalyticsContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
-  /** Service host */
-  endpoint?: string;
   /** The API version to use for this operation. */
   apiVersion?: string;
 }

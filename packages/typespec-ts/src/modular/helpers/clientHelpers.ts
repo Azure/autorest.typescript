@@ -11,7 +11,7 @@ import {
   SdkParameter
 } from "@azure-tools/typespec-client-generator-core";
 
-import { PackageFlavor } from "@azure-tools/rlc-common";
+import { NameType, normalizeName, PackageFlavor } from "@azure-tools/rlc-common";
 import { SdkContext } from "../../utils/interfaces.js";
 import { getClientName } from "./namingHelpers.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
@@ -138,7 +138,7 @@ function getClientParameterName(parameter: SdkParameter | SdkHttpParameter) {
     return "endpointParam";
   }
 
-  return parameter.name;
+  return normalizeName(parameter.name, NameType.Parameter);
 }
 
 export function buildGetClientEndpointParam(

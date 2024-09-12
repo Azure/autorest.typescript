@@ -19,7 +19,7 @@ export class AnomalyDetectorClient {
 
 // @public
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
-    ApiVersion?: APIVersion;
+    apiVersion?: string;
 }
 
 // @public (undocumented)

@@ -994,7 +994,6 @@ export class OpenAIClient {
 
 // @public
 export interface OpenAIClientOptionalParams extends ClientOptions {
-    endpoint?: string;
 }
 
 // @public

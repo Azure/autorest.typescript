@@ -55,14 +55,19 @@ export function buildClientContext(
     extends: [resolveReference(dependencies.ClientOptions)],
     properties: getClientParameters(client, dpgContext, {
       optionalOnly: true
-    }).map((p) => {
-      return {
-        name: p.name,
-        type: getTypeExpression(p.type),
-        hasQuestionToken: true,
-        docs: getDocsFromDescription(p.description)
-      };
-    }),
+    })
+      .filter((p) => p.name !== "endpoint")
+      .map((p) => {
+        return {
+          name: normalizeName(p.name, NameType.Property),
+          type:
+            p.name.toLowerCase() === "apiversion"
+              ? "string"
+              : getTypeExpression(p.type),
+          hasQuestionToken: true,
+          docs: getDocsFromDescription(p.description)
+        };
+      }),
     docs: ["Optional parameters for the client."]
   });
 
