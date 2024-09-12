@@ -1,5 +1,6 @@
 import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
+  SdkArrayType,
   SdkDictionaryType,
   SdkEnumType,
   SdkModelType,
@@ -67,6 +68,8 @@ export function buildModelDeserializer(
       return buildEnumDeserializer(context, type, nameOnly);
     case "dict":
       return buildDictTypeDeserializer(context, type, nameOnly);
+    case "array":
+      return buildArrayTypeDeserializer(context, type, nameOnly);
     default:
       return undefined;
   }
@@ -257,7 +260,7 @@ function buildEnumDeserializer(
   context: SdkContext,
   type: SdkEnumType | SdkUnionType,
   nameOnly = false
-): FunctionDeclarationStructure | string {
+): FunctionDeclarationStructure | string | undefined {
   if (!type.name) {
     throw new Error(`NYI Serialization of anonymous types`);
   }
@@ -298,7 +301,7 @@ function buildModelTypeDeserializer(
   context: SdkContext,
   type: SdkModelType,
   nameOnly = false
-): FunctionDeclarationStructure | string {
+): FunctionDeclarationStructure | string | undefined {
   if (!type.name) {
     throw new Error(`NYI Deserialization of anonymous types`);
   }
@@ -375,7 +378,12 @@ function buildDictTypeDeserializer(
   type: SdkDictionaryType,
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
-  const valueDeserializer = buildModelDeserializer(context, type.valueType);
+  const valueDeserializer = buildModelDeserializer(
+    context,
+    type.valueType,
+    true,
+    true
+  );
   if (!valueDeserializer) {
     return undefined;
   }
@@ -383,13 +391,11 @@ function buildDictTypeDeserializer(
     return undefined;
   }
 
-  if (typeof valueDeserializer === "string") {
+  if (typeof valueDeserializer !== "string") {
     return undefined;
   }
   const valueTypeName = toCamelCase(
-    valueDeserializer.name
-      ? valueDeserializer.name.replace("Deserializer", "")
-      : ""
+    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : ""
   );
   const deserializerFunctionName = `${valueTypeName}RecordDeserializer`;
   if (nameOnly) {
@@ -410,11 +416,70 @@ function buildDictTypeDeserializer(
       `
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = ${valueDeserializer.name}(item[key])
+    result[key] = ${valueDeserializer}(item[key])
   })
   return result;
       `
     ]
   };
   return deserializerFunction;
+}
+
+function buildArrayTypeDeserializer(
+  context: SdkContext,
+  type: SdkArrayType,
+  nameOnly: boolean
+): string;
+function buildArrayTypeDeserializer(
+  context: SdkContext,
+  type: SdkArrayType
+): FunctionDeclarationStructure | undefined;
+function buildArrayTypeDeserializer(
+  context: SdkContext,
+  type: SdkArrayType,
+  nameOnly = false
+): FunctionDeclarationStructure | undefined | string {
+  const valueDeserializer = buildModelDeserializer(
+    context,
+    type.valueType,
+    true,
+    true
+  );
+  if (!valueDeserializer) {
+    return undefined;
+  }
+  if (!isSupportedSerializerType(type.valueType)) {
+    return undefined;
+  }
+
+  if (typeof valueDeserializer !== "string") {
+    return undefined;
+  }
+  const valueTypeName = toCamelCase(
+    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : ""
+  );
+  const deserializerFunctionName = `${valueTypeName}ArrayDeserializer`;
+  if (nameOnly) {
+    return deserializerFunctionName;
+  }
+  const serializerFunction: FunctionDeclarationStructure = {
+    kind: StructureKind.Function,
+    name: deserializerFunctionName,
+    isExported: true,
+    parameters: [
+      {
+        name: "result",
+        type: `Array<${normalizeModelName(context, type.valueType as any) ?? "any"}>`
+      }
+    ],
+    returnType: "any[]",
+    statements: [
+      `
+  return result.map((item) => {
+    ${valueDeserializer}(item)
+  });
+      `
+    ]
+  };
+  return serializerFunction;
 }

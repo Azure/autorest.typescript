@@ -86,7 +86,7 @@ export interface ReceiveResult {
 
 export function receiveResultDeserializer(item: any): ReceiveResult {
   return {
-    value: item["value"],
+    value: receiveDetailsArrayDeserializer(item["value"]),
   };
 }
 
@@ -120,6 +120,14 @@ export function brokerPropertiesDeserializer(item: any): BrokerProperties {
   };
 }
 
+export function receiveDetailsArrayDeserializer(
+  result: Array<ReceiveDetails>,
+): any[] {
+  return result.map((item) => {
+    receiveDetailsDeserializer(item);
+  });
+}
+
 /** Array of lock token strings for the corresponding received Cloud Events to be acknowledged. */
 export interface AcknowledgeOptions {
   /** String array of lock tokens. */
@@ -140,7 +148,9 @@ export interface AcknowledgeResult {
 
 export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
   return {
-    failedLockTokens: item["failedLockTokens"],
+    failedLockTokens: failedLockTokenArrayDeserializer(
+      item["failedLockTokens"],
+    ),
     succeededLockTokens: item["succeededLockTokens"],
   };
 }
@@ -163,6 +173,14 @@ export function failedLockTokenDeserializer(item: any): FailedLockToken {
   };
 }
 
+export function failedLockTokenArrayDeserializer(
+  result: Array<FailedLockToken>,
+): any[] {
+  return result.map((item) => {
+    failedLockTokenDeserializer(item);
+  });
+}
+
 /** Array of lock token strings for the corresponding received Cloud Events to be released. */
 export interface ReleaseOptions {
   /** String array of lock tokens. */
@@ -183,7 +201,9 @@ export interface ReleaseResult {
 
 export function releaseResultDeserializer(item: any): ReleaseResult {
   return {
-    failedLockTokens: item["failedLockTokens"],
+    failedLockTokens: failedLockTokenArrayDeserializer(
+      item["failedLockTokens"],
+    ),
     succeededLockTokens: item["succeededLockTokens"],
   };
 }
@@ -208,7 +228,9 @@ export interface RejectResult {
 
 export function rejectResultDeserializer(item: any): RejectResult {
   return {
-    failedLockTokens: item["failedLockTokens"],
+    failedLockTokens: failedLockTokenArrayDeserializer(
+      item["failedLockTokens"],
+    ),
     succeededLockTokens: item["succeededLockTokens"],
   };
 }
@@ -227,4 +249,10 @@ export function serviceApiVersionsDeserializer(item: any): ServiceApiVersions {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
+}
+
+export function cloudEventArrayDeserializer(result: Array<CloudEvent>): any[] {
+  return result.map((item) => {
+    cloudEventDeserializer(item);
+  });
 }

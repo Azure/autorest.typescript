@@ -138,6 +138,14 @@ export function contentTypeEnumDeserializer(item: any): ContentTypeEnum {
   return item;
 }
 
+export function schemaGroupArrayDeserializer(
+  result: Array<SchemaGroup>,
+): any[] {
+  return result.map((item) => {
+    schemaGroupDeserializer(item);
+  });
+}
+
 /** A response containing error details. */
 export interface ErrorResponse {
   /** The error object. */
@@ -150,6 +158,14 @@ export interface _PagedSchemaGroup {
   value: SchemaGroup[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function schemaVersionArrayDeserializer(
+  result: Array<SchemaVersion>,
+): any[] {
+  return result.map((item) => {
+    schemaVersionDeserializer(item);
+  });
 }
 
 /** Paged collection of Version items */

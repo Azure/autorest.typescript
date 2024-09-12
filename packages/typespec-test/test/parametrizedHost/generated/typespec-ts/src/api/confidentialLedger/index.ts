@@ -6,7 +6,10 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { Collection } from "../../models/models.js";
+import {
+  Collection,
+  collectionArrayDeserializer,
+} from "../../models/models.js";
 import {
   PathUncheckedResponse,
   createRestError,
@@ -36,7 +39,7 @@ export async function _listCollectionsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return collectionArrayDeserializer(result.body);
 }
 
 /** Collection ids are user-created collections of ledger entries */

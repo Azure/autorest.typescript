@@ -14,6 +14,12 @@ export function collectionDeserializer(item: any): Collection {
   };
 }
 
+export function collectionArrayDeserializer(result: Array<Collection>): any[] {
+  return result.map((item) => {
+    collectionDeserializer(item);
+  });
+}
+
 /** A response containing error details. */
 export interface ErrorResponse {
   /** The error object. */

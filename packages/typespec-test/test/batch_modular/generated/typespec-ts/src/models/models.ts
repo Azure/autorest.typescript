@@ -44,7 +44,7 @@ export function batchErrorDeserializer(item: any): BatchError {
   return {
     code: item["code"],
     message: !item.message ? undefined : errorMessageDeserializer(item.message),
-    values: item["values"],
+    values: batchErrorDetailArrayDeserializer(item["values"]),
   };
 }
 
@@ -76,6 +76,14 @@ export function batchErrorDetailDeserializer(item: any): BatchErrorDetail {
     key: item["key"],
     value: item["value"],
   };
+}
+
+export function batchErrorDetailArrayDeserializer(
+  result: Array<BatchErrorDetail>,
+): any[] {
+  return result.map((item) => {
+    batchErrorDetailDeserializer(item);
+  });
 }
 
 /** Options for updating a user account for RDP or SSH access on an Azure Batch Compute Node. */
@@ -169,15 +177,17 @@ export function batchNodeDeserializer(item: any): BatchNode {
     runningTasksCount: item["runningTasksCount"],
     runningTaskSlotsCount: item["runningTaskSlotsCount"],
     totalTasksSucceeded: item["totalTasksSucceeded"],
-    recentTasks: item["recentTasks"],
+    recentTasks: taskInformationArrayDeserializer(item["recentTasks"]),
     startTask: !item.startTask
       ? undefined
       : startTaskDeserializer(item.startTask),
     startTaskInfo: !item.startTaskInfo
       ? undefined
       : startTaskInformationDeserializer(item.startTaskInfo),
-    certificateReferences: item["certificateReferences"],
-    errors: item["errors"],
+    certificateReferences: certificateReferenceArrayDeserializer(
+      item["certificateReferences"],
+    ),
+    errors: batchNodeErrorArrayDeserializer(item["errors"]),
     isDedicated: item["isDedicated"],
     endpointConfiguration: !item.endpointConfiguration
       ? undefined
@@ -350,7 +360,7 @@ export function taskFailureInformationDeserializer(
     category: errorCategoryDeserializer(item["category"]),
     code: item["code"],
     message: item["message"],
-    details: item["details"],
+    details: nameValuePairArrayDeserializer(item["details"]),
   };
 }
 
@@ -380,6 +390,14 @@ export function nameValuePairDeserializer(item: any): NameValuePair {
   };
 }
 
+export function nameValuePairArrayDeserializer(
+  result: Array<NameValuePair>,
+): any[] {
+  return result.map((item) => {
+    nameValuePairDeserializer(item);
+  });
+}
+
 /** TaskExecutionResult enums */
 export type TaskExecutionResult = "success" | "failure";
 
@@ -391,6 +409,14 @@ export function taskExecutionResultDeserializer(
   item: any,
 ): TaskExecutionResult {
   return item;
+}
+
+export function taskInformationArrayDeserializer(
+  result: Array<TaskInformation>,
+): any[] {
+  return result.map((item) => {
+    taskInformationDeserializer(item);
+  });
 }
 
 /**
@@ -453,8 +479,10 @@ export function startTaskDeserializer(item: any): StartTask {
     containerSettings: !item.containerSettings
       ? undefined
       : taskContainerSettingsDeserializer(item.containerSettings),
-    resourceFiles: item["resourceFiles"],
-    environmentSettings: item["environmentSettings"],
+    resourceFiles: resourceFileArrayDeserializer(item["resourceFiles"]),
+    environmentSettings: environmentSettingArrayDeserializer(
+      item["environmentSettings"],
+    ),
     userIdentity: !item.userIdentity
       ? undefined
       : userIdentityDeserializer(item.userIdentity),
@@ -623,6 +651,14 @@ export function resourceFileDeserializer(item: any): ResourceFile {
   };
 }
 
+export function resourceFileArrayDeserializer(
+  result: Array<ResourceFile>,
+): any[] {
+  return result.map((item) => {
+    resourceFileDeserializer(item);
+  });
+}
+
 /** An environment variable to be set on a Task process. */
 export interface EnvironmentSetting {
   /** The name of the environment variable. */
@@ -640,6 +676,14 @@ export function environmentSettingDeserializer(item: any): EnvironmentSetting {
     name: item["name"],
     value: item["value"],
   };
+}
+
+export function environmentSettingArrayDeserializer(
+  result: Array<EnvironmentSetting>,
+): any[] {
+  return result.map((item) => {
+    environmentSettingDeserializer(item);
+  });
 }
 
 /** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
@@ -800,7 +844,7 @@ export function certificateReferenceDeserializer(
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
     storeLocation: certificateStoreLocationDeserializer(item["storeLocation"]),
     storeName: item["storeName"],
-    visibility: item["visibility"],
+    visibility: certificateVisibilityArrayDeserializer(item["visibility"]),
   };
 }
 
@@ -834,6 +878,22 @@ export function certificateVisibilityDeserializer(
   return item;
 }
 
+export function certificateVisibilityArrayDeserializer(
+  result: Array<CertificateVisibility>,
+): any[] {
+  return result.map((item) => {
+    certificateVisibilityDeserializer(item);
+  });
+}
+
+export function certificateReferenceArrayDeserializer(
+  result: Array<CertificateReference>,
+): any[] {
+  return result.map((item) => {
+    certificateReferenceDeserializer(item);
+  });
+}
+
 /** An error encountered by a Compute Node. */
 export interface BatchNodeError {
   /** An identifier for the Compute Node error. Codes are invariant and are intended to be consumed programmatically. */
@@ -848,8 +908,16 @@ export function batchNodeErrorDeserializer(item: any): BatchNodeError {
   return {
     code: item["code"],
     message: item["message"],
-    errorDetails: item["errorDetails"],
+    errorDetails: nameValuePairArrayDeserializer(item["errorDetails"]),
   };
+}
+
+export function batchNodeErrorArrayDeserializer(
+  result: Array<BatchNodeError>,
+): any[] {
+  return result.map((item) => {
+    batchNodeErrorDeserializer(item);
+  });
 }
 
 /** The endpoint configuration for the Compute Node. */
@@ -862,7 +930,9 @@ export function batchNodeEndpointConfigurationDeserializer(
   item: any,
 ): BatchNodeEndpointConfiguration {
   return {
-    inboundEndpoints: item["inboundEndpoints"],
+    inboundEndpoints: inboundEndpointArrayDeserializer(
+      item["inboundEndpoints"],
+    ),
   };
 }
 
@@ -906,6 +976,14 @@ export function inboundEndpointProtocolDeserializer(
   item: any,
 ): InboundEndpointProtocol {
   return item;
+}
+
+export function inboundEndpointArrayDeserializer(
+  result: Array<InboundEndpoint>,
+): any[] {
+  return result.map((item) => {
+    inboundEndpointDeserializer(item);
+  });
 }
 
 /**
@@ -1142,9 +1220,15 @@ export function _batchNodeListResultDeserializer(
   item: any,
 ): _BatchNodeListResult {
   return {
-    value: item["value"],
+    value: batchNodeArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function batchNodeArrayDeserializer(result: Array<BatchNode>): any[] {
+  return result.map((item) => {
+    batchNodeDeserializer(item);
+  });
 }
 
 /** The configuration for virtual machine extension instance view. */
@@ -1238,8 +1322,8 @@ export function vMExtensionInstanceViewDeserializer(
 ): VMExtensionInstanceView {
   return {
     name: item["name"],
-    statuses: item["statuses"],
-    subStatuses: item["subStatuses"],
+    statuses: instanceViewStatusArrayDeserializer(item["statuses"]),
+    subStatuses: instanceViewStatusArrayDeserializer(item["subStatuses"]),
   };
 }
 
@@ -1278,6 +1362,14 @@ export function statusLevelTypesDeserializer(item: any): StatusLevelTypes {
   return item;
 }
 
+export function instanceViewStatusArrayDeserializer(
+  result: Array<InstanceViewStatus>,
+): any[] {
+  return result.map((item) => {
+    instanceViewStatusDeserializer(item);
+  });
+}
+
 /** The result of listing the Compute Node extensions in a Node. */
 export interface _NodeVMExtensionList {
   /** The list of Compute Node extensions. */
@@ -1290,9 +1382,17 @@ export function _nodeVMExtensionListDeserializer(
   item: any,
 ): _NodeVMExtensionList {
   return {
-    value: item["value"],
+    value: nodeVMExtensionArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function nodeVMExtensionArrayDeserializer(
+  result: Array<NodeVMExtension>,
+): any[] {
+  return result.map((item) => {
+    nodeVMExtensionDeserializer(item);
+  });
 }
 
 /**
@@ -1310,7 +1410,7 @@ export function _nodeFileListResultDeserializer(
   item: any,
 ): _NodeFileListResult {
   return {
-    value: item["value"],
+    value: nodeFileArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -1360,6 +1460,12 @@ export function filePropertiesDeserializer(item: any): FileProperties {
     contentType: item["contentType"],
     fileMode: item["fileMode"],
   };
+}
+
+export function nodeFileArrayDeserializer(result: Array<NodeFile>): any[] {
+  return result.map((item) => {
+    nodeFileDeserializer(item);
+  });
 }
 
 /** Options for creating an Azure Batch Task. */
@@ -1487,8 +1593,10 @@ export function exitConditionsSerializer(item: ExitConditions): any {
 
 export function exitConditionsDeserializer(item: any): ExitConditions {
   return {
-    exitCodes: item["exitCodes"],
-    exitCodeRanges: item["exitCodeRanges"],
+    exitCodes: exitCodeMappingArrayDeserializer(item["exitCodes"]),
+    exitCodeRanges: exitCodeRangeMappingArrayDeserializer(
+      item["exitCodeRanges"],
+    ),
     preProcessingError: !item.preProcessingError
       ? undefined
       : exitOptionsDeserializer(item.preProcessingError),
@@ -1568,6 +1676,14 @@ export function dependencyActionDeserializer(item: any): DependencyAction {
   return item;
 }
 
+export function exitCodeMappingArrayDeserializer(
+  result: Array<ExitCodeMapping>,
+): any[] {
+  return result.map((item) => {
+    exitCodeMappingDeserializer(item);
+  });
+}
+
 /**
  * A range of exit codes and how the Batch service should respond to exit codes
  * within that range.
@@ -1599,6 +1715,14 @@ export function exitCodeRangeMappingDeserializer(
     end: item["end"],
     exitOptions: exitOptionsDeserializer(item.exitOptions),
   };
+}
+
+export function exitCodeRangeMappingArrayDeserializer(
+  result: Array<ExitCodeRangeMapping>,
+): any[] {
+  return result.map((item) => {
+    exitCodeRangeMappingDeserializer(item);
+  });
 }
 
 /** On every file uploads, Batch service writes two log files to the compute node, 'fileuploadout.txt' and 'fileuploaderr.txt'. These log files are used to learn more about a specific failure. */
@@ -1690,7 +1814,7 @@ export function outputFileBlobContainerDestinationDeserializer(
     identityReference: !item.identityReference
       ? undefined
       : batchNodeIdentityReferenceDeserializer(item.identityReference),
-    uploadHeaders: item["uploadHeaders"],
+    uploadHeaders: httpHeaderArrayDeserializer(item["uploadHeaders"]),
   };
 }
 
@@ -1711,6 +1835,12 @@ export function httpHeaderDeserializer(item: any): HttpHeader {
     name: item["name"],
     value: item["value"],
   };
+}
+
+export function httpHeaderArrayDeserializer(result: Array<HttpHeader>): any[] {
+  return result.map((item) => {
+    httpHeaderDeserializer(item);
+  });
 }
 
 /**
@@ -1754,6 +1884,12 @@ export function outputFileUploadConditionDeserializer(
   item: any,
 ): OutputFileUploadCondition {
   return item;
+}
+
+export function outputFileArrayDeserializer(result: Array<OutputFile>): any[] {
+  return result.map((item) => {
+    outputFileDeserializer(item);
+  });
 }
 
 /**
@@ -1837,7 +1973,9 @@ export function multiInstanceSettingsDeserializer(
   return {
     numberOfInstances: item["numberOfInstances"],
     coordinationCommandLine: item["coordinationCommandLine"],
-    commonResourceFiles: item["commonResourceFiles"],
+    commonResourceFiles: resourceFileArrayDeserializer(
+      item["commonResourceFiles"],
+    ),
   };
 }
 
@@ -1866,7 +2004,7 @@ export function taskDependenciesSerializer(item: TaskDependencies): any {
 export function taskDependenciesDeserializer(item: any): TaskDependencies {
   return {
     taskIds: item["taskIds"],
-    taskIdRanges: item["taskIdRanges"],
+    taskIdRanges: taskIdRangeArrayDeserializer(item["taskIdRanges"]),
   };
 }
 
@@ -1892,6 +2030,14 @@ export function taskIdRangeDeserializer(item: any): TaskIdRange {
   };
 }
 
+export function taskIdRangeArrayDeserializer(
+  result: Array<TaskIdRange>,
+): any[] {
+  return result.map((item) => {
+    taskIdRangeDeserializer(item);
+  });
+}
+
 /** A reference to an Package to be deployed to Compute Nodes. */
 export interface ApplicationPackageReference {
   /** The ID of the application to deploy. When creating a pool, the package's application ID must be fully qualified (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}). */
@@ -1915,6 +2061,14 @@ export function applicationPackageReferenceDeserializer(
   };
 }
 
+export function applicationPackageReferenceArrayDeserializer(
+  result: Array<ApplicationPackageReference>,
+): any[] {
+  return result.map((item) => {
+    applicationPackageReferenceDeserializer(item);
+  });
+}
+
 /**
  * The settings for an authentication token that the Task can use to perform Batch
  * service operations.
@@ -1934,7 +2088,7 @@ export function authenticationTokenSettingsDeserializer(
   item: any,
 ): AuthenticationTokenSettings {
   return {
-    access: item["access"],
+    access: accessScopeArrayDeserializer(item["access"]),
   };
 }
 
@@ -1949,6 +2103,14 @@ export function accessScopeDeserializer(item: any): AccessScope {
   return item;
 }
 
+export function accessScopeArrayDeserializer(
+  result: Array<AccessScope>,
+): any[] {
+  return result.map((item) => {
+    accessScopeDeserializer(item);
+  });
+}
+
 /** The result of listing the Tasks in a Job. */
 export interface _BatchTaskListResult {
   /** The list of Tasks. */
@@ -1961,7 +2123,7 @@ export function _batchTaskListResultDeserializer(
   item: any,
 ): _BatchTaskListResult {
   return {
-    value: item["value"],
+    value: batchTaskArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -2061,9 +2223,11 @@ export function batchTaskDeserializer(item: any): BatchTask {
     containerSettings: !item.containerSettings
       ? undefined
       : taskContainerSettingsDeserializer(item.containerSettings),
-    resourceFiles: item["resourceFiles"],
-    outputFiles: item["outputFiles"],
-    environmentSettings: item["environmentSettings"],
+    resourceFiles: resourceFileArrayDeserializer(item["resourceFiles"]),
+    outputFiles: outputFileArrayDeserializer(item["outputFiles"]),
+    environmentSettings: environmentSettingArrayDeserializer(
+      item["environmentSettings"],
+    ),
     affinityInfo: !item.affinityInfo
       ? undefined
       : affinityInformationDeserializer(item.affinityInfo),
@@ -2087,7 +2251,9 @@ export function batchTaskDeserializer(item: any): BatchTask {
     dependsOn: !item.dependsOn
       ? undefined
       : taskDependenciesDeserializer(item.dependsOn),
-    applicationPackageReferences: item["applicationPackageReferences"],
+    applicationPackageReferences: applicationPackageReferenceArrayDeserializer(
+      item["applicationPackageReferences"],
+    ),
     authenticationTokenSettings: !item.authenticationTokenSettings
       ? undefined
       : authenticationTokenSettingsDeserializer(
@@ -2167,6 +2333,12 @@ export function taskStatisticsDeserializer(item: any): TaskStatistics {
   };
 }
 
+export function batchTaskArrayDeserializer(result: Array<BatchTask>): any[] {
+  return result.map((item) => {
+    batchTaskDeserializer(item);
+  });
+}
+
 /** A collection of Azure Batch Tasks to add. */
 export interface BatchTaskCollection {
   /** The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. */
@@ -2187,7 +2359,7 @@ export function taskAddCollectionResultDeserializer(
   item: any,
 ): TaskAddCollectionResult {
   return {
-    value: item["value"],
+    value: taskAddResultArrayDeserializer(item["value"]),
   };
 }
 
@@ -2229,6 +2401,14 @@ export function taskAddStatusDeserializer(item: any): TaskAddStatus {
   return item;
 }
 
+export function taskAddResultArrayDeserializer(
+  result: Array<TaskAddResult>,
+): any[] {
+  return result.map((item) => {
+    taskAddResultDeserializer(item);
+  });
+}
+
 /** The result of listing the subtasks of a Task. */
 export interface BatchTaskListSubtasksResult {
   /** The list of subtasks. */
@@ -2239,7 +2419,7 @@ export function batchTaskListSubtasksResultDeserializer(
   item: any,
 ): BatchTaskListSubtasksResult {
   return {
-    value: item["value"],
+    value: subtaskInformationArrayDeserializer(item["value"]),
   };
 }
 
@@ -2303,6 +2483,14 @@ export function subtaskStateSerializer(item: SubtaskState): any {
 
 export function subtaskStateDeserializer(item: any): SubtaskState {
   return item;
+}
+
+export function subtaskInformationArrayDeserializer(
+  result: Array<SubtaskInformation>,
+): any[] {
+  return result.map((item) => {
+    subtaskInformationDeserializer(item);
+  });
 }
 
 /**
@@ -2370,7 +2558,7 @@ export function batchJobScheduleDeserializer(item: any): BatchJobSchedule {
     executionInfo: !item.executionInfo
       ? undefined
       : jobScheduleExecutionInformationDeserializer(item.executionInfo),
-    metadata: item["metadata"],
+    metadata: metadataItemArrayDeserializer(item["metadata"]),
     stats: !item.stats
       ? undefined
       : jobScheduleStatisticsDeserializer(item.stats),
@@ -2522,9 +2710,11 @@ export function jobSpecificationDeserializer(item: any): JobSpecification {
     jobReleaseTask: !item.jobReleaseTask
       ? undefined
       : jobReleaseTaskDeserializer(item.jobReleaseTask),
-    commonEnvironmentSettings: item["commonEnvironmentSettings"],
+    commonEnvironmentSettings: environmentSettingArrayDeserializer(
+      item["commonEnvironmentSettings"],
+    ),
     poolInfo: poolInformationDeserializer(item.poolInfo),
-    metadata: item["metadata"],
+    metadata: metadataItemArrayDeserializer(item["metadata"]),
   };
 }
 
@@ -2709,9 +2899,11 @@ export function jobManagerTaskDeserializer(item: any): JobManagerTask {
     containerSettings: !item.containerSettings
       ? undefined
       : taskContainerSettingsDeserializer(item.containerSettings),
-    resourceFiles: item["resourceFiles"],
-    outputFiles: item["outputFiles"],
-    environmentSettings: item["environmentSettings"],
+    resourceFiles: resourceFileArrayDeserializer(item["resourceFiles"]),
+    outputFiles: outputFileArrayDeserializer(item["outputFiles"]),
+    environmentSettings: environmentSettingArrayDeserializer(
+      item["environmentSettings"],
+    ),
     constraints: !item.constraints
       ? undefined
       : taskConstraintsDeserializer(item.constraints),
@@ -2721,7 +2913,9 @@ export function jobManagerTaskDeserializer(item: any): JobManagerTask {
       ? undefined
       : userIdentityDeserializer(item.userIdentity),
     runExclusive: item["runExclusive"],
-    applicationPackageReferences: item["applicationPackageReferences"],
+    applicationPackageReferences: applicationPackageReferenceArrayDeserializer(
+      item["applicationPackageReferences"],
+    ),
     authenticationTokenSettings: !item.authenticationTokenSettings
       ? undefined
       : authenticationTokenSettingsDeserializer(
@@ -2813,8 +3007,10 @@ export function jobPreparationTaskDeserializer(item: any): JobPreparationTask {
     containerSettings: !item.containerSettings
       ? undefined
       : taskContainerSettingsDeserializer(item.containerSettings),
-    resourceFiles: item["resourceFiles"],
-    environmentSettings: item["environmentSettings"],
+    resourceFiles: resourceFileArrayDeserializer(item["resourceFiles"]),
+    environmentSettings: environmentSettingArrayDeserializer(
+      item["environmentSettings"],
+    ),
     constraints: !item.constraints
       ? undefined
       : taskConstraintsDeserializer(item.constraints),
@@ -2893,8 +3089,10 @@ export function jobReleaseTaskDeserializer(item: any): JobReleaseTask {
     containerSettings: !item.containerSettings
       ? undefined
       : taskContainerSettingsDeserializer(item.containerSettings),
-    resourceFiles: item["resourceFiles"],
-    environmentSettings: item["environmentSettings"],
+    resourceFiles: resourceFileArrayDeserializer(item["resourceFiles"]),
+    environmentSettings: environmentSettingArrayDeserializer(
+      item["environmentSettings"],
+    ),
     maxWallClockTime: item["maxWallClockTime"],
     retentionTime: item["retentionTime"],
     userIdentity: !item.userIdentity
@@ -3114,12 +3312,18 @@ export function poolSpecificationDeserializer(item: any): PoolSpecification {
     startTask: !item.startTask
       ? undefined
       : startTaskDeserializer(item.startTask),
-    certificateReferences: item["certificateReferences"],
-    applicationPackageReferences: item["applicationPackageReferences"],
+    certificateReferences: certificateReferenceArrayDeserializer(
+      item["certificateReferences"],
+    ),
+    applicationPackageReferences: applicationPackageReferenceArrayDeserializer(
+      item["applicationPackageReferences"],
+    ),
     applicationLicenses: item["applicationLicenses"],
-    userAccounts: item["userAccounts"],
-    metadata: item["metadata"],
-    mountConfiguration: item["mountConfiguration"],
+    userAccounts: userAccountArrayDeserializer(item["userAccounts"]),
+    metadata: metadataItemArrayDeserializer(item["metadata"]),
+    mountConfiguration: mountConfigurationArrayDeserializer(
+      item["mountConfiguration"],
+    ),
     targetNodeCommunicationMode: nodeCommunicationModeDeserializer(
       item["targetNodeCommunicationMode"],
     ),
@@ -3241,7 +3445,7 @@ export function virtualMachineConfigurationDeserializer(
     windowsConfiguration: !item.windowsConfiguration
       ? undefined
       : windowsConfigurationDeserializer(item.windowsConfiguration),
-    dataDisks: item["dataDisks"],
+    dataDisks: dataDiskArrayDeserializer(item["dataDisks"]),
     licenseType: item["licenseType"],
     containerConfiguration: !item.containerConfiguration
       ? undefined
@@ -3254,7 +3458,7 @@ export function virtualMachineConfigurationDeserializer(
     nodePlacementConfiguration: !item.nodePlacementConfiguration
       ? undefined
       : nodePlacementConfigurationDeserializer(item.nodePlacementConfiguration),
-    extensions: item["extensions"],
+    extensions: vMExtensionArrayDeserializer(item["extensions"]),
     osDisk: !item.osDisk ? undefined : oSDiskDeserializer(item.osDisk),
   };
 }
@@ -3337,6 +3541,12 @@ export function storageAccountTypeDeserializer(item: any): StorageAccountType {
   return item;
 }
 
+export function dataDiskArrayDeserializer(result: Array<DataDisk>): any[] {
+  return result.map((item) => {
+    dataDiskDeserializer(item);
+  });
+}
+
 /** The configuration for container-enabled Pools. */
 export interface ContainerConfiguration {
   /** The container technology to be used. */
@@ -3366,7 +3576,9 @@ export function containerConfigurationDeserializer(
   return {
     type: containerTypeDeserializer(item["type"]),
     containerImageNames: item["containerImageNames"],
-    containerRegistries: item["containerRegistries"],
+    containerRegistries: containerRegistryArrayDeserializer(
+      item["containerRegistries"],
+    ),
   };
 }
 
@@ -3379,6 +3591,14 @@ export function containerTypeSerializer(item: ContainerType): any {
 
 export function containerTypeDeserializer(item: any): ContainerType {
   return item;
+}
+
+export function containerRegistryArrayDeserializer(
+  result: Array<ContainerRegistry>,
+): any[] {
+  return result.map((item) => {
+    containerRegistryDeserializer(item);
+  });
 }
 
 /**
@@ -3401,7 +3621,7 @@ export function diskEncryptionConfigurationDeserializer(
   item: any,
 ): DiskEncryptionConfiguration {
   return {
-    targets: item["targets"],
+    targets: diskEncryptionTargetArrayDeserializer(item["targets"]),
   };
 }
 
@@ -3418,6 +3638,14 @@ export function diskEncryptionTargetDeserializer(
   item: any,
 ): DiskEncryptionTarget {
   return item;
+}
+
+export function diskEncryptionTargetArrayDeserializer(
+  result: Array<DiskEncryptionTarget>,
+): any[] {
+  return result.map((item) => {
+    diskEncryptionTargetDeserializer(item);
+  });
 }
 
 /**
@@ -3457,6 +3685,14 @@ export function nodePlacementPolicyTypeDeserializer(
   item: any,
 ): NodePlacementPolicyType {
   return item;
+}
+
+export function vMExtensionArrayDeserializer(
+  result: Array<VMExtension>,
+): any[] {
+  return result.map((item) => {
+    vMExtensionDeserializer(item);
+  });
 }
 
 /** Settings for the operating system disk of the compute node (VM). */
@@ -3627,7 +3863,7 @@ export function poolEndpointConfigurationDeserializer(
   item: any,
 ): PoolEndpointConfiguration {
   return {
-    inboundNatPools: item["inboundNATPools"],
+    inboundNatPools: inboundNATPoolArrayDeserializer(item["inboundNATPools"]),
   };
 }
 
@@ -3673,7 +3909,9 @@ export function inboundNATPoolDeserializer(item: any): InboundNATPool {
     backendPort: item["backendPort"],
     frontendPortRangeStart: item["frontendPortRangeStart"],
     frontendPortRangeEnd: item["frontendPortRangeEnd"],
-    networkSecurityGroupRules: item["networkSecurityGroupRules"],
+    networkSecurityGroupRules: networkSecurityGroupRuleArrayDeserializer(
+      item["networkSecurityGroupRules"],
+    ),
   };
 }
 
@@ -3724,6 +3962,22 @@ export function networkSecurityGroupRuleAccessDeserializer(
   item: any,
 ): NetworkSecurityGroupRuleAccess {
   return item;
+}
+
+export function networkSecurityGroupRuleArrayDeserializer(
+  result: Array<NetworkSecurityGroupRule>,
+): any[] {
+  return result.map((item) => {
+    networkSecurityGroupRuleDeserializer(item);
+  });
+}
+
+export function inboundNATPoolArrayDeserializer(
+  result: Array<InboundNATPool>,
+): any[] {
+  return result.map((item) => {
+    inboundNATPoolDeserializer(item);
+  });
 }
 
 /** The public IP Address configuration of the networking configuration of a Pool. */
@@ -3878,6 +4132,14 @@ export function loginModeDeserializer(item: any): LoginMode {
   return item;
 }
 
+export function userAccountArrayDeserializer(
+  result: Array<UserAccount>,
+): any[] {
+  return result.map((item) => {
+    userAccountDeserializer(item);
+  });
+}
+
 /**
  * The Batch service does not assign any meaning to this metadata; it is solely
  * for the use of user code.
@@ -3898,6 +4160,14 @@ export function metadataItemDeserializer(item: any): MetadataItem {
     name: item["name"],
     value: item["value"],
   };
+}
+
+export function metadataItemArrayDeserializer(
+  result: Array<MetadataItem>,
+): any[] {
+  return result.map((item) => {
+    metadataItemDeserializer(item);
+  });
 }
 
 /** The file system to mount on each node. */
@@ -4108,6 +4378,14 @@ export function azureFileShareConfigurationDeserializer(
   };
 }
 
+export function mountConfigurationArrayDeserializer(
+  result: Array<MountConfiguration>,
+): any[] {
+  return result.map((item) => {
+    mountConfigurationDeserializer(item);
+  });
+}
+
 /** NodeCommunicationMode enums */
 export type NodeCommunicationMode = "default" | "classic" | "simplified";
 
@@ -4284,9 +4562,17 @@ export function _batchJobScheduleListResultDeserializer(
   item: any,
 ): _BatchJobScheduleListResult {
   return {
-    value: item["value"],
+    value: batchJobScheduleArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function batchJobScheduleArrayDeserializer(
+  result: Array<BatchJobSchedule>,
+): any[] {
+  return result.map((item) => {
+    batchJobScheduleDeserializer(item);
+  });
 }
 
 /**
@@ -4376,7 +4662,7 @@ export function deleteCertificateErrorDeserializer(
   return {
     code: item["code"],
     message: item["message"],
-    values: item["values"],
+    values: nameValuePairArrayDeserializer(item["values"]),
   };
 }
 
@@ -4403,9 +4689,17 @@ export function _certificateListResultDeserializer(
   item: any,
 ): _CertificateListResult {
   return {
-    value: item["value"],
+    value: batchCertificateArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function batchCertificateArrayDeserializer(
+  result: Array<BatchCertificate>,
+): any[] {
+  return result.map((item) => {
+    batchCertificateDeserializer(item);
+  });
 }
 
 /** An Azure Batch Job. */
@@ -4509,7 +4803,9 @@ export function batchJobDeserializer(item: any): BatchJob {
     jobReleaseTask: !item.jobReleaseTask
       ? undefined
       : jobReleaseTaskDeserializer(item.jobReleaseTask),
-    commonEnvironmentSettings: item["commonEnvironmentSettings"],
+    commonEnvironmentSettings: environmentSettingArrayDeserializer(
+      item["commonEnvironmentSettings"],
+    ),
     poolInfo: poolInformationDeserializer(item.poolInfo),
     onAllTasksComplete: onAllTasksCompleteDeserializer(
       item["onAllTasksComplete"],
@@ -4518,7 +4814,7 @@ export function batchJobDeserializer(item: any): BatchJob {
     networkConfiguration: !item.networkConfiguration
       ? undefined
       : jobNetworkConfigurationDeserializer(item.networkConfiguration),
-    metadata: item["metadata"],
+    metadata: metadataItemArrayDeserializer(item["metadata"]),
     executionInfo: !item.executionInfo
       ? undefined
       : jobExecutionInformationDeserializer(item.executionInfo),
@@ -4589,7 +4885,7 @@ export function jobSchedulingErrorDeserializer(item: any): JobSchedulingError {
     category: errorCategoryDeserializer(item["category"]),
     code: item["code"],
     message: item["message"],
-    details: item["details"],
+    details: nameValuePairArrayDeserializer(item["details"]),
   };
 }
 
@@ -4805,9 +5101,15 @@ export function _batchJobListResultDeserializer(
   item: any,
 ): _BatchJobListResult {
   return {
-    value: item["value"],
+    value: batchJobArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function batchJobArrayDeserializer(result: Array<BatchJob>): any[] {
+  return result.map((item) => {
+    batchJobDeserializer(item);
+  });
 }
 
 /**
@@ -4825,7 +5127,9 @@ export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
   item: any,
 ): _BatchJobListPreparationAndReleaseTaskStatusResult {
   return {
-    value: item["value"],
+    value: jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(
+      item["value"],
+    ),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -4988,6 +5292,14 @@ export function jobReleaseTaskStateDeserializer(
   return item;
 }
 
+export function jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(
+  result: Array<JobPreparationAndReleaseTaskExecutionInformation>,
+): any[] {
+  return result.map((item) => {
+    jobPreparationAndReleaseTaskExecutionInformationDeserializer(item);
+  });
+}
+
 /** The Task and TaskSlot counts for a Job. */
 export interface TaskCountsResult {
   /** The number of Tasks per state. */
@@ -5063,7 +5375,7 @@ export function _accountListSupportedImagesResultDeserializer(
   item: any,
 ): _AccountListSupportedImagesResult {
   return {
-    value: item["value"],
+    value: imageInformationArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -5120,6 +5432,14 @@ export function verificationTypeDeserializer(item: any): VerificationType {
   return item;
 }
 
+export function imageInformationArrayDeserializer(
+  result: Array<ImageInformation>,
+): any[] {
+  return result.map((item) => {
+    imageInformationDeserializer(item);
+  });
+}
+
 /** The result of listing the Compute Node counts in the Account. */
 export interface _PoolNodeCountsListResult {
   /** A list of Compute Node counts by Pool. */
@@ -5132,7 +5452,7 @@ export function _poolNodeCountsListResultDeserializer(
   item: any,
 ): _PoolNodeCountsListResult {
   return {
-    value: item["value"],
+    value: poolNodeCountsArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -5210,6 +5530,14 @@ export function nodeCountsDeserializer(item: any): NodeCounts {
   };
 }
 
+export function poolNodeCountsArrayDeserializer(
+  result: Array<PoolNodeCounts>,
+): any[] {
+  return result.map((item) => {
+    poolNodeCountsDeserializer(item);
+  });
+}
+
 /** The result of a listing the usage metrics for an Account. */
 export interface _PoolListUsageMetricsResult {
   /** The Pool usage metrics data. */
@@ -5222,7 +5550,7 @@ export function _poolListUsageMetricsResultDeserializer(
   item: any,
 ): _PoolListUsageMetricsResult {
   return {
-    value: item["value"],
+    value: poolUsageMetricsArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -5249,6 +5577,14 @@ export function poolUsageMetricsDeserializer(item: any): PoolUsageMetrics {
     vmSize: item["vmSize"],
     totalCoreHours: item["totalCoreHours"],
   };
+}
+
+export function poolUsageMetricsArrayDeserializer(
+  result: Array<PoolUsageMetrics>,
+): any[] {
+  return result.map((item) => {
+    poolUsageMetricsDeserializer(item);
+  });
 }
 
 /** Options for creating an Azure Batch Pool. */
@@ -5375,7 +5711,7 @@ export function _batchPoolListResultDeserializer(
   item: any,
 ): _BatchPoolListResult {
   return {
-    value: item["value"],
+    value: batchPoolArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -5487,7 +5823,7 @@ export function batchPoolDeserializer(item: any): BatchPool {
           item.virtualMachineConfiguration,
         ),
     resizeTimeout: item["resizeTimeout"],
-    resizeErrors: item["resizeErrors"],
+    resizeErrors: resizeErrorArrayDeserializer(item["resizeErrors"]),
     currentDedicatedNodes: item["currentDedicatedNodes"],
     currentLowPriorityNodes: item["currentLowPriorityNodes"],
     targetDedicatedNodes: item["targetDedicatedNodes"],
@@ -5505,17 +5841,23 @@ export function batchPoolDeserializer(item: any): BatchPool {
     startTask: !item.startTask
       ? undefined
       : startTaskDeserializer(item.startTask),
-    certificateReferences: item["certificateReferences"],
-    applicationPackageReferences: item["applicationPackageReferences"],
+    certificateReferences: certificateReferenceArrayDeserializer(
+      item["certificateReferences"],
+    ),
+    applicationPackageReferences: applicationPackageReferenceArrayDeserializer(
+      item["applicationPackageReferences"],
+    ),
     applicationLicenses: item["applicationLicenses"],
     taskSlotsPerNode: item["taskSlotsPerNode"],
     taskSchedulingPolicy: !item.taskSchedulingPolicy
       ? undefined
       : taskSchedulingPolicyDeserializer(item.taskSchedulingPolicy),
-    userAccounts: item["userAccounts"],
-    metadata: item["metadata"],
+    userAccounts: userAccountArrayDeserializer(item["userAccounts"]),
+    metadata: metadataItemArrayDeserializer(item["metadata"]),
     stats: !item.stats ? undefined : poolStatisticsDeserializer(item.stats),
-    mountConfiguration: item["mountConfiguration"],
+    mountConfiguration: mountConfigurationArrayDeserializer(
+      item["mountConfiguration"],
+    ),
     identity: !item.identity
       ? undefined
       : batchPoolIdentityDeserializer(item.identity),
@@ -5564,8 +5906,16 @@ export function resizeErrorDeserializer(item: any): ResizeError {
   return {
     code: item["code"],
     message: item["message"],
-    values: item["values"],
+    values: nameValuePairArrayDeserializer(item["values"]),
   };
+}
+
+export function resizeErrorArrayDeserializer(
+  result: Array<ResizeError>,
+): any[] {
+  return result.map((item) => {
+    resizeErrorDeserializer(item);
+  });
 }
 
 /** The results and errors from an execution of a Pool autoscale formula. */
@@ -5600,7 +5950,7 @@ export function autoScaleRunErrorDeserializer(item: any): AutoScaleRunError {
   return {
     code: item["code"],
     message: item["message"],
-    values: item["values"],
+    values: nameValuePairArrayDeserializer(item["values"]),
   };
 }
 
@@ -5709,7 +6059,9 @@ export interface BatchPoolIdentity {
 export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
   return {
     type: poolIdentityTypeDeserializer(item["type"]),
-    userAssignedIdentities: item["userAssignedIdentities"],
+    userAssignedIdentities: userAssignedIdentityArrayDeserializer(
+      item["userAssignedIdentities"],
+    ),
   };
 }
 
@@ -5742,6 +6094,20 @@ export function userAssignedIdentityDeserializer(
     clientId: item["clientId"],
     principalId: item["principalId"],
   };
+}
+
+export function userAssignedIdentityArrayDeserializer(
+  result: Array<UserAssignedIdentity>,
+): any[] {
+  return result.map((item) => {
+    userAssignedIdentityDeserializer(item);
+  });
+}
+
+export function batchPoolArrayDeserializer(result: Array<BatchPool>): any[] {
+  return result.map((item) => {
+    batchPoolDeserializer(item);
+  });
 }
 
 /** Options for updating an Azure Batch Pool. */
@@ -5930,7 +6296,7 @@ export function _applicationListResultDeserializer(
   item: any,
 ): _ApplicationListResult {
   return {
-    value: item["value"],
+    value: batchApplicationArrayDeserializer(item["value"]),
     "odata.nextLink": item["odata.nextLink"],
   };
 }
@@ -5951,6 +6317,14 @@ export function batchApplicationDeserializer(item: any): BatchApplication {
     displayName: item["displayName"],
     versions: item["versions"],
   };
+}
+
+export function batchApplicationArrayDeserializer(
+  result: Array<BatchApplication>,
+): any[] {
+  return result.map((item) => {
+    batchApplicationDeserializer(item);
+  });
 }
 
 /** The Azure Batch service version. */

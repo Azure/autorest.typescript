@@ -78,6 +78,14 @@ export function chatRoleDeserializer(item: any): ChatRole {
   return item;
 }
 
+export function chatMessageArrayDeserializer(
+  result: Array<ChatMessage>,
+): any[] {
+  return result.map((item) => {
+    chatMessageDeserializer(item);
+  });
+}
+
 /** A single response to a streaming completion request. */
 export interface ChatCompletionChunkRecord {
   /** The collection of choice deltas received in this chunk. */
@@ -88,7 +96,7 @@ export function chatCompletionChunkRecordDeserializer(
   item: any,
 ): ChatCompletionChunkRecord {
   return {
-    choices: item["choices"],
+    choices: choiceDeltaRecordArrayDeserializer(item["choices"]),
   };
 }
 
@@ -158,6 +166,14 @@ export function finishReasonDeserializer(item: any): FinishReason {
   return item;
 }
 
+export function choiceDeltaRecordArrayDeserializer(
+  result: Array<ChoiceDeltaRecord>,
+): any[] {
+  return result.map((item) => {
+    choiceDeltaRecordDeserializer(item);
+  });
+}
+
 /** The configuration for a chat completion request. */
 export interface ChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
@@ -201,7 +217,7 @@ export function chatCompletionRecordDeserializer(
   item: any,
 ): ChatCompletionRecord {
   return {
-    choices: item["choices"],
+    choices: chatChoiceRecordArrayDeserializer(item["choices"]),
   };
 }
 
@@ -235,6 +251,14 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
     context: item["context"],
     finishReason: finishReasonDeserializer(item["finish_reason"]),
   };
+}
+
+export function chatChoiceRecordArrayDeserializer(
+  result: Array<ChatChoiceRecord>,
+): any[] {
+  return result.map((item) => {
+    chatChoiceRecordDeserializer(item);
+  });
 }
 
 export type APIVersion = "2023-10-01-preview";

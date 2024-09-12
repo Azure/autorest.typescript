@@ -19,7 +19,7 @@ export function multivariateMultivariateDetectionResultDeserializer(
     summary: multivariateMultivariateBatchDetectionResultSummaryDeserializer(
       item.summary,
     ),
-    results: item["results"],
+    results: multivariateAnomalyStateArrayDeserializer(item["results"]),
   };
 }
 
@@ -45,8 +45,10 @@ export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
     status: multivariateMultivariateBatchDetectionStatusDeserializer(
       item["status"],
     ),
-    errors: item["errors"],
-    variableStates: item["variableStates"],
+    errors: multivariateErrorResponseArrayDeserializer(item["errors"]),
+    variableStates: multivariateVariableStateArrayDeserializer(
+      item["variableStates"],
+    ),
     setupInfo: multivariateMultivariateBatchDetectionOptionsDeserializer(
       item.setupInfo,
     ),
@@ -88,6 +90,14 @@ export function multivariateErrorResponseDeserializer(
   };
 }
 
+export function multivariateErrorResponseArrayDeserializer(
+  result: Array<MultivariateErrorResponse>,
+): any[] {
+  return result.map((item) => {
+    multivariateErrorResponseDeserializer(item);
+  });
+}
+
 /** Variable Status. */
 export interface MultivariateVariableState {
   /** Variable name in variable states. */
@@ -124,6 +134,14 @@ export function multivariateVariableStateDeserializer(
     firstTimestamp: item["firstTimestamp"],
     lastTimestamp: item["lastTimestamp"],
   };
+}
+
+export function multivariateVariableStateArrayDeserializer(
+  result: Array<MultivariateVariableState>,
+): any[] {
+  return result.map((item) => {
+    multivariateVariableStateDeserializer(item);
+  });
 }
 
 /**
@@ -196,7 +214,7 @@ export function multivariateAnomalyStateDeserializer(
     value: !item.value
       ? undefined
       : multivariateAnomalyValueDeserializer(item.value),
-    errors: item["errors"],
+    errors: multivariateErrorResponseArrayDeserializer(item["errors"]),
   };
 }
 
@@ -225,7 +243,9 @@ export function multivariateAnomalyValueDeserializer(
     isAnomaly: item["isAnomaly"],
     severity: item["severity"],
     score: item["score"],
-    interpretation: item["interpretation"],
+    interpretation: multivariateAnomalyInterpretationArrayDeserializer(
+      item["interpretation"],
+    ),
   };
 }
 
@@ -266,6 +286,22 @@ export function multivariateCorrelationChangesDeserializer(
   return {
     changedVariables: item["changedVariables"],
   };
+}
+
+export function multivariateAnomalyInterpretationArrayDeserializer(
+  result: Array<MultivariateAnomalyInterpretation>,
+): any[] {
+  return result.map((item) => {
+    multivariateAnomalyInterpretationDeserializer(item);
+  });
+}
+
+export function multivariateAnomalyStateArrayDeserializer(
+  result: Array<MultivariateAnomalyState>,
+): any[] {
+  return result.map((item) => {
+    multivariateAnomalyStateDeserializer(item);
+  });
 }
 
 /**
@@ -348,7 +384,7 @@ export function multivariateModelInfoDeserializer(
       ? undefined
       : multivariateAlignPolicyDeserializer(item.alignPolicy),
     status: multivariateModelStatusDeserializer(item["status"]),
-    errors: item["errors"],
+    errors: multivariateErrorResponseArrayDeserializer(item["errors"]),
     diagnosticsInfo: !item.diagnosticsInfo
       ? undefined
       : multivariateDiagnosticsInfoDeserializer(item.diagnosticsInfo),
@@ -487,7 +523,9 @@ export function multivariateDiagnosticsInfoDeserializer(
     modelState: !item.modelState
       ? undefined
       : multivariateModelStateDeserializer(item.modelState),
-    variableStates: item["variableStates"],
+    variableStates: multivariateVariableStateArrayDeserializer(
+      item["variableStates"],
+    ),
   };
 }
 
@@ -578,11 +616,19 @@ export function _multivariateModelListDeserializer(
   item: any,
 ): _MultivariateModelList {
   return {
-    models: item["models"],
+    models: multivariateAnomalyDetectionModelArrayDeserializer(item["models"]),
     currentCount: item["currentCount"],
     maxCount: item["maxCount"],
     nextLink: item["nextLink"],
   };
+}
+
+export function multivariateAnomalyDetectionModelArrayDeserializer(
+  result: Array<MultivariateAnomalyDetectionModel>,
+): any[] {
+  return result.map((item) => {
+    multivariateAnomalyDetectionModelDeserializer(item);
+  });
 }
 
 /** Request of last detection. */
@@ -641,8 +687,10 @@ export function multivariateMultivariateLastDetectionResultDeserializer(
   item: any,
 ): MultivariateMultivariateLastDetectionResult {
   return {
-    variableStates: item["variableStates"],
-    results: item["results"],
+    variableStates: multivariateVariableStateArrayDeserializer(
+      item["variableStates"],
+    ),
+    results: multivariateAnomalyStateArrayDeserializer(item["results"]),
   };
 }
 

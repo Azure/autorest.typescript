@@ -14,6 +14,7 @@ import {
   widgetDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
+  widgetArrayDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
 } from "../../models/models.js";
@@ -94,7 +95,7 @@ export async function _listWidgetsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return widgetArrayDeserializer(result.body);
 }
 
 /**

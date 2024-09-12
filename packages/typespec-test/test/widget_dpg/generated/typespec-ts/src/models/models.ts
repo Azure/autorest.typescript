@@ -77,9 +77,15 @@ export function _listWidgetsPagesResultsDeserializer(
   item: any,
 ): _ListWidgetsPagesResults {
   return {
-    results: item["results"],
+    results: widgetArrayDeserializer(item["results"]),
     "odata.nextLink": item["odata.nextLink"],
   };
+}
+
+export function widgetArrayDeserializer(result: Array<Widget>): any[] {
+  return result.map((item) => {
+    widgetDeserializer(item);
+  });
 }
 
 export interface CreateWidgetRequest {

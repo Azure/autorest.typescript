@@ -557,7 +557,9 @@ export function loadTestConfigurationDeserializer(
     optionalLoadTestConfig: !item.optionalLoadTestConfig
       ? undefined
       : optionalLoadTestConfigDeserializer(item.optionalLoadTestConfig),
-    regionalLoadTestConfig: item["regionalLoadTestConfig"],
+    regionalLoadTestConfig: regionalConfigurationArrayDeserializer(
+      item["regionalLoadTestConfig"],
+    ),
   };
 }
 
@@ -630,6 +632,14 @@ export function regionalConfigurationDeserializer(
   };
 }
 
+export function regionalConfigurationArrayDeserializer(
+  result: Array<RegionalConfiguration>,
+): any[] {
+  return result.map((item) => {
+    regionalConfigurationDeserializer(item);
+  });
+}
+
 /** The input artifacts for the test. */
 export interface TestInputArtifacts {
   /** File info */
@@ -663,7 +673,9 @@ export function testInputArtifactsDeserializer(item: any): TestInputArtifacts {
     urlTestConfigFileInfo: !item.urlTestConfigFileInfo
       ? undefined
       : testFileInfoDeserializer(item.urlTestConfigFileInfo),
-    additionalFileInfo: item["additionalFileInfo"],
+    additionalFileInfo: testFileInfoArrayDeserializer(
+      item["additionalFileInfo"],
+    ),
   };
 }
 
@@ -765,6 +777,14 @@ export function fileStatusSerializer(item: FileStatus): any {
 
 export function fileStatusDeserializer(item: any): FileStatus {
   return item;
+}
+
+export function testFileInfoArrayDeserializer(
+  result: Array<TestFileInfo>,
+): any[] {
+  return result.map((item) => {
+    testFileInfoDeserializer(item);
+  });
 }
 
 /** Test kind */
@@ -1130,7 +1150,7 @@ export function testRunDeserializer(item: any): TestRun {
       ? undefined
       : certificateMetadataDeserializer(item.certificate),
     environmentVariables: item["environmentVariables"],
-    errorDetails: item["errorDetails"],
+    errorDetails: errorDetailsArrayDeserializer(item["errorDetails"]),
     testRunStatistics: testRunStatisticsRecordDeserializer(
       item["testRunStatistics"],
     ),
@@ -1176,6 +1196,14 @@ export function errorDetailsDeserializer(item: any): ErrorDetails {
   return {
     message: item["message"],
   };
+}
+
+export function errorDetailsArrayDeserializer(
+  result: Array<ErrorDetails>,
+): any[] {
+  return result.map((item) => {
+    errorDetailsDeserializer(item);
+  });
 }
 
 /** Test run statistics. */
@@ -1311,7 +1339,9 @@ export function testRunInputArtifactsDeserializer(
     urlTestConfigFileInfo: !item.urlTestConfigFileInfo
       ? undefined
       : testRunFileInfoDeserializer(item.urlTestConfigFileInfo),
-    additionalFileInfo: item["additionalFileInfo"],
+    additionalFileInfo: testRunFileInfoArrayDeserializer(
+      item["additionalFileInfo"],
+    ),
   };
 }
 
@@ -1340,6 +1370,14 @@ export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
     validationStatus: fileStatusDeserializer(item["validationStatus"]),
     validationFailureDetails: item["validationFailureDetails"],
   };
+}
+
+export function testRunFileInfoArrayDeserializer(
+  result: Array<TestRunFileInfo>,
+): any[] {
+  return result.map((item) => {
+    testRunFileInfoDeserializer(item);
+  });
 }
 
 /** The output artifacts for the test run. */
@@ -1628,7 +1666,7 @@ export function metricDefinitionCollectionDeserializer(
   item: any,
 ): MetricDefinitionCollection {
   return {
-    value: item["value"],
+    value: metricDefinitionArrayDeserializer(item["value"]),
   };
 }
 
@@ -1657,7 +1695,7 @@ export interface MetricDefinition {
 
 export function metricDefinitionDeserializer(item: any): MetricDefinition {
   return {
-    dimensions: item["dimensions"],
+    dimensions: nameAndDescArrayDeserializer(item["dimensions"]),
     description: item["description"],
     name: item["name"],
     namespace: item["namespace"],
@@ -1666,7 +1704,9 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
     ),
     supportedAggregationTypes: item["supportedAggregationTypes"],
     unit: metricUnitDeserializer(item["unit"]),
-    metricAvailabilities: item["metricAvailabilities"],
+    metricAvailabilities: metricAvailabilityArrayDeserializer(
+      item["metricAvailabilities"],
+    ),
   };
 }
 
@@ -1683,6 +1723,14 @@ export function nameAndDescDeserializer(item: any): NameAndDesc {
     description: item["description"],
     name: item["name"],
   };
+}
+
+export function nameAndDescArrayDeserializer(
+  result: Array<NameAndDesc>,
+): any[] {
+  return result.map((item) => {
+    nameAndDescDeserializer(item);
+  });
 }
 
 /** Aggregation type. */
@@ -1838,6 +1886,22 @@ export function timeGrainDeserializer(item: any): TimeGrain {
   return item;
 }
 
+export function metricAvailabilityArrayDeserializer(
+  result: Array<MetricAvailability>,
+): any[] {
+  return result.map((item) => {
+    metricAvailabilityDeserializer(item);
+  });
+}
+
+export function metricDefinitionArrayDeserializer(
+  result: Array<MetricDefinition>,
+): any[] {
+  return result.map((item) => {
+    metricDefinitionDeserializer(item);
+  });
+}
+
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
   /** The values for the metric namespaces. */
@@ -1848,7 +1912,7 @@ export function metricNamespaceCollectionDeserializer(
   item: any,
 ): MetricNamespaceCollection {
   return {
-    value: item["value"],
+    value: metricNamespaceArrayDeserializer(item["value"]),
   };
 }
 
@@ -1865,6 +1929,14 @@ export function metricNamespaceDeserializer(item: any): MetricNamespace {
     description: item["description"],
     name: item["name"],
   };
+}
+
+export function metricNamespaceArrayDeserializer(
+  result: Array<MetricNamespace>,
+): any[] {
+  return result.map((item) => {
+    metricNamespaceDeserializer(item);
+  });
 }
 
 /** Filters to fetch the set of metric. */
@@ -1911,7 +1983,7 @@ export interface _Metrics {
 
 export function _metricsDeserializer(item: any): _Metrics {
   return {
-    value: item["value"],
+    value: timeSeriesElementArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
@@ -1926,8 +1998,8 @@ export interface TimeSeriesElement {
 
 export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
   return {
-    data: item["data"],
-    dimensionValues: item["dimensionValues"],
+    data: metricValueArrayDeserializer(item["data"]),
+    dimensionValues: dimensionValueArrayDeserializer(item["dimensionValues"]),
   };
 }
 
@@ -1946,6 +2018,14 @@ export function metricValueDeserializer(item: any): MetricValue {
   };
 }
 
+export function metricValueArrayDeserializer(
+  result: Array<MetricValue>,
+): any[] {
+  return result.map((item) => {
+    metricValueDeserializer(item);
+  });
+}
+
 /** Represents a metric dimension value. */
 export interface DimensionValue {
   /** The name of the dimension. */
@@ -1959,6 +2039,22 @@ export function dimensionValueDeserializer(item: any): DimensionValue {
     name: item["name"],
     value: item["value"],
   };
+}
+
+export function dimensionValueArrayDeserializer(
+  result: Array<DimensionValue>,
+): any[] {
+  return result.map((item) => {
+    dimensionValueDeserializer(item);
+  });
+}
+
+export function timeSeriesElementArrayDeserializer(
+  result: Array<TimeSeriesElement>,
+): any[] {
+  return result.map((item) => {
+    timeSeriesElementDeserializer(item);
+  });
 }
 
 /** Test Profile Model. */
@@ -2243,12 +2339,14 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
           item.targetResourceConfigurations,
         ),
     status: testProfileRunStatusDeserializer(item["status"]),
-    errorDetails: item["errorDetails"],
+    errorDetails: errorDetailsArrayDeserializer(item["errorDetails"]),
     startDateTime: item["startDateTime"],
     endDateTime: item["endDateTime"],
     durationInSeconds: item["durationInSeconds"],
     testRunDetails: testRunDetailRecordDeserializer(item["testRunDetails"]),
-    recommendations: item["recommendations"],
+    recommendations: testProfileRunRecommendationArrayDeserializer(
+      item["recommendations"],
+    ),
     createdDateTime: item["createdDateTime"],
     createdBy: item["createdBy"],
     lastModifiedDateTime: item["lastModifiedDateTime"],
@@ -2376,6 +2474,14 @@ export function recommendationCategoryDeserializer(
   return item;
 }
 
+export function testProfileRunRecommendationArrayDeserializer(
+  result: Array<TestProfileRunRecommendation>,
+): any[] {
+  return result.map((item) => {
+    testProfileRunRecommendationDeserializer(item);
+  });
+}
+
 /** Azure Load Testing API versions. */
 export type APIVersions =
   | "2022-11-01"
@@ -2405,12 +2511,24 @@ export interface _PagedTestFileInfo {
   nextLink?: string;
 }
 
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    testDeserializer(item);
+  });
+}
+
 /** Paged collection of Test items */
 export interface _PagedTest {
   /** The Test items on this page */
   value: Test[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
+  return result.map((item) => {
+    testRunDeserializer(item);
+  });
 }
 
 /** Paged collection of TestRun items */
@@ -2421,12 +2539,28 @@ export interface _PagedTestRun {
   nextLink?: string;
 }
 
+export function testProfileArrayDeserializer(
+  result: Array<TestProfile>,
+): any[] {
+  return result.map((item) => {
+    testProfileDeserializer(item);
+  });
+}
+
 /** Paged collection of TestProfile items */
 export interface _PagedTestProfile {
   /** The TestProfile items on this page */
   value: TestProfile[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function testProfileRunArrayDeserializer(
+  result: Array<TestProfileRun>,
+): any[] {
+  return result.map((item) => {
+    testProfileRunDeserializer(item);
+  });
 }
 
 /** Paged collection of TestProfileRun items */

@@ -87,8 +87,9 @@ export function emitTypes(
       const unionType = buildUnionType(type);
       addDeclaration(sourceFile, unionType, type);
       addSerializationFunctions(context, type, sourceFile);
-    }
-    if (type.kind === "dict") {
+    } else if (type.kind === "dict") {
+      addSerializationFunctions(context, type, sourceFile);
+    } else if (type.kind === "array") {
       addSerializationFunctions(context, type, sourceFile);
     }
   }
@@ -425,6 +426,9 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
   if (type.kind === "array") {
     if (!emitQueue.has(type.valueType as any)) {
       visitType(type.valueType, emitQueue);
+    }
+    if (!emitQueue.has(type)) {
+      emitQueue.add(type);
     }
   }
   if (type.kind === "dict") {

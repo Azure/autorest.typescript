@@ -60,7 +60,7 @@ export function addOrUpdateBlockItemsResultDeserializer(
   item: any,
 ): AddOrUpdateBlockItemsResult {
   return {
-    value: item["value"],
+    value: textBlockItemArrayDeserializer(item["value"]),
   };
 }
 
@@ -80,6 +80,14 @@ export function textBlockItemDeserializer(item: any): TextBlockItem {
     description: item["description"],
     text: item["text"],
   };
+}
+
+export function textBlockItemArrayDeserializer(
+  result: Array<TextBlockItem>,
+): any[] {
+  return result.map((item) => {
+    textBlockItemDeserializer(item);
+  });
 }
 
 /** The request of removing blockItems from text blocklist. */
@@ -141,6 +149,14 @@ export function imageCategoryDeserializer(item: any): ImageCategory {
   return item;
 }
 
+export function imageCategoryArrayDeserializer(
+  result: Array<ImageCategory>,
+): any[] {
+  return result.map((item) => {
+    imageCategoryDeserializer(item);
+  });
+}
+
 /** The type of image analysis output. */
 export type AnalyzeImageOutputType = "FourLevels";
 
@@ -164,7 +180,9 @@ export interface AnalyzeImageResult {
 
 export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
   return {
-    analyzeResults: item["analyzeResults"],
+    analyzeResults: imageAnalyzeSeverityResultArrayDeserializer(
+      item["analyzeResults"],
+    ),
   };
 }
 
@@ -183,6 +201,14 @@ export function imageAnalyzeSeverityResultDeserializer(
     category: imageCategoryDeserializer(item["category"]),
     severity: item["severity"],
   };
+}
+
+export function imageAnalyzeSeverityResultArrayDeserializer(
+  result: Array<ImageAnalyzeSeverityResult>,
+): any[] {
+  return result.map((item) => {
+    imageAnalyzeSeverityResultDeserializer(item);
+  });
 }
 
 /** The analysis request of the text. */
@@ -220,6 +246,14 @@ export function textCategoryDeserializer(item: any): TextCategory {
   return item;
 }
 
+export function textCategoryArrayDeserializer(
+  result: Array<TextCategory>,
+): any[] {
+  return result.map((item) => {
+    textCategoryDeserializer(item);
+  });
+}
+
 /** The type of text analysis output. */
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
@@ -245,8 +279,12 @@ export interface AnalyzeTextResult {
 
 export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
   return {
-    blocklistsMatchResults: item["blocklistsMatchResults"],
-    analyzeResults: item["analyzeResults"],
+    blocklistsMatchResults: textBlocklistMatchResultArrayDeserializer(
+      item["blocklistsMatchResults"],
+    ),
+    analyzeResults: textAnalyzeSeverityResultArrayDeserializer(
+      item["analyzeResults"],
+    ),
   };
 }
 
@@ -270,6 +308,14 @@ export function textBlocklistMatchResultDeserializer(
   };
 }
 
+export function textBlocklistMatchResultArrayDeserializer(
+  result: Array<TextBlocklistMatchResult>,
+): any[] {
+  return result.map((item) => {
+    textBlocklistMatchResultDeserializer(item);
+  });
+}
+
 /** Text analysis result. */
 export interface TextAnalyzeSeverityResult {
   /** The text category. */
@@ -287,6 +333,14 @@ export function textAnalyzeSeverityResultDeserializer(
   };
 }
 
+export function textAnalyzeSeverityResultArrayDeserializer(
+  result: Array<TextAnalyzeSeverityResult>,
+): any[] {
+  return result.map((item) => {
+    textAnalyzeSeverityResultDeserializer(item);
+  });
+}
+
 export type Versions = "2023-10-01";
 
 export function versionsSerializer(item: Versions): any {
@@ -301,6 +355,14 @@ export function versionsDeserializer(item: any): Versions {
 export interface ErrorResponse {
   /** The error object. */
   error: ErrorModel;
+}
+
+export function textBlocklistArrayDeserializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    textBlocklistDeserializer(item);
+  });
 }
 
 /** Paged collection of TextBlocklist items */

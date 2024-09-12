@@ -1,5 +1,6 @@
 import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
+  SdkArrayType,
   SdkDictionaryType,
   SdkEnumType,
   SdkModelType,
@@ -67,6 +68,8 @@ export function buildModelSerializer(
       return buildEnumSerializer(context, type, nameOnly);
     case "dict":
       return buildDictTypeSerializer(context, type, nameOnly);
+    case "array":
+      return buildArrayTypeSerializer(context, type, nameOnly);
     default:
       return undefined;
   }
@@ -377,7 +380,12 @@ function buildDictTypeSerializer(
   type: SdkDictionaryType,
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
-  const valueSerializer = buildModelSerializer(context, type.valueType);
+  const valueSerializer = buildModelSerializer(
+    context,
+    type.valueType,
+    true,
+    true
+  );
   if (!valueSerializer) {
     return undefined;
   }
@@ -385,11 +393,11 @@ function buildDictTypeSerializer(
     return undefined;
   }
 
-  if (typeof valueSerializer === "string") {
+  if (typeof valueSerializer !== "string") {
     return undefined;
   }
   const valueTypeName = toCamelCase(
-    valueSerializer.name ? valueSerializer.name.replace("Serializer", "") : ""
+    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
   );
   const serializerFunctionName = `${valueTypeName}RecordSerializer`;
   if (nameOnly) {
@@ -410,9 +418,68 @@ function buildDictTypeSerializer(
       `
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = ${valueSerializer.name}(item[key])
+    result[key] = ${valueSerializer}(item[key])
   })
   return result;
+      `
+    ]
+  };
+  return serializerFunction;
+}
+
+function buildArrayTypeSerializer(
+  context: SdkContext,
+  type: SdkArrayType,
+  nameOnly: boolean
+): string;
+function buildArrayTypeSerializer(
+  context: SdkContext,
+  type: SdkArrayType
+): FunctionDeclarationStructure | undefined;
+function buildArrayTypeSerializer(
+  context: SdkContext,
+  type: SdkArrayType,
+  nameOnly = false
+): FunctionDeclarationStructure | undefined | string {
+  const valueSerializer = buildModelSerializer(
+    context,
+    type.valueType,
+    true,
+    true
+  );
+  if (!valueSerializer) {
+    return undefined;
+  }
+  if (!isSupportedSerializerType(type.valueType)) {
+    return undefined;
+  }
+
+  if (typeof valueSerializer === "string") {
+    return undefined;
+  }
+  const valueTypeName = toCamelCase(
+    valueSerializer.name ? valueSerializer.name.replace("Serializer", "") : ""
+  );
+  const serializerFunctionName = `${valueTypeName}ArraySerializer`;
+  if (nameOnly) {
+    return serializerFunctionName;
+  }
+  const serializerFunction: FunctionDeclarationStructure = {
+    kind: StructureKind.Function,
+    name: serializerFunctionName,
+    isExported: true,
+    parameters: [
+      {
+        name: "result",
+        type: `Array<${normalizeModelName(context, type.valueType as any) ?? "any"}>`
+      }
+    ],
+    returnType: "any[]",
+    statements: [
+      `
+  return result.map((item) => {
+    ${valueSerializer.name}(item)
+  });
       `
     ]
   };

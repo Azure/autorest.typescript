@@ -997,12 +997,6 @@ export function getResponseMapping(
           property,
           propertyPath
         );
-        if (
-          property.type.type === "model" &&
-          property.type.tcgcType?.kind === "dict"
-        ) {
-          property;
-        }
         const deserializeFunctionName =
           buildModelDeserializer(
             context,
@@ -1012,12 +1006,6 @@ export function getResponseMapping(
           ) ?? "";
         definition = `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
-        if (
-          property.type.type === "model" &&
-          property.type.tcgcType?.kind === "dict"
-        ) {
-          property;
-        }
         const deserializeFunctionName =
           buildModelDeserializer(
             context,

@@ -282,8 +282,10 @@ export function dataProductNetworkAclsDeserializer(
   item: any,
 ): DataProductNetworkAcls {
   return {
-    virtualNetworkRule: item["virtualNetworkRule"],
-    ipRules: item["ipRules"],
+    virtualNetworkRule: virtualNetworkRuleArrayDeserializer(
+      item["virtualNetworkRule"],
+    ),
+    ipRules: iPRulesArrayDeserializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
     defaultAction: defaultActionDeserializer(item["defaultAction"]),
   };
@@ -311,6 +313,14 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   };
 }
 
+export function virtualNetworkRuleArrayDeserializer(
+  result: Array<VirtualNetworkRule>,
+): any[] {
+  return result.map((item) => {
+    virtualNetworkRuleDeserializer(item);
+  });
+}
+
 /** IP rule with specific IP or IP range in CIDR format. */
 export interface IPRules {
   /** IP Rules Value */
@@ -328,6 +338,12 @@ export function iPRulesDeserializer(item: any): IPRules {
     value: item["value"],
     action: item["action"],
   };
+}
+
+export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
+  return result.map((item) => {
+    iPRulesDeserializer(item);
+  });
 }
 
 /** Specifies the default action of allow or deny when no other rules match. */
@@ -671,9 +687,19 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
     code: item["code"],
     message: item["message"],
     target: item["target"],
-    details: item["details"],
-    additionalInfo: item["additionalInfo"],
+    details: errorDetailArrayDeserializer(item["details"]),
+    additionalInfo: errorAdditionalInfoArrayDeserializer(
+      item["additionalInfo"],
+    ),
   };
+}
+
+export function errorDetailArrayDeserializer(
+  result: Array<ErrorDetail>,
+): any[] {
+  return result.map((item) => {
+    errorDetailDeserializer(item);
+  });
 }
 
 /** The resource management error additional info. */
@@ -699,6 +725,14 @@ export function errorAdditionalInfoInfoDeserializer(
   item: any,
 ): ErrorAdditionalInfoInfo {
   return item as any;
+}
+
+export function errorAdditionalInfoArrayDeserializer(
+  result: Array<ErrorAdditionalInfo>,
+): any[] {
+  return result.map((item) => {
+    errorAdditionalInfoDeserializer(item);
+  });
 }
 
 /** The type used for update operations of the DataProduct. */
@@ -911,8 +945,18 @@ export function listRoleAssignmentsDeserializer(
 ): ListRoleAssignments {
   return {
     count: item["count"],
-    roleAssignmentResponse: item["roleAssignmentResponse"],
+    roleAssignmentResponse: roleAssignmentDetailArrayDeserializer(
+      item["roleAssignmentResponse"],
+    ),
   };
+}
+
+export function roleAssignmentDetailArrayDeserializer(
+  result: Array<RoleAssignmentDetail>,
+): any[] {
+  return result.map((item) => {
+    roleAssignmentDetailDeserializer(item);
+  });
 }
 
 /** The response of a DataProduct list operation. */
@@ -927,9 +971,17 @@ export function _dataProductListResultDeserializer(
   item: any,
 ): _DataProductListResult {
   return {
-    value: item["value"],
+    value: dataProductArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function dataProductArrayDeserializer(
+  result: Array<DataProduct>,
+): any[] {
+  return result.map((item) => {
+    dataProductDeserializer(item);
+  });
 }
 
 /** The data type resource. */
@@ -1124,9 +1176,15 @@ export function _dataTypeListResultDeserializer(
   item: any,
 ): _DataTypeListResult {
   return {
-    value: item["value"],
+    value: dataTypeArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function dataTypeArrayDeserializer(result: Array<DataType>): any[] {
+  return result.map((item) => {
+    dataTypeDeserializer(item);
+  });
 }
 
 /** The data catalog resource. */
@@ -1164,7 +1222,7 @@ export function dataProductsCatalogPropertiesDeserializer(
 ): DataProductsCatalogProperties {
   return {
     provisioningState: provisioningStateDeserializer(item["provisioningState"]),
-    publishers: item["publishers"],
+    publishers: publisherInformationArrayDeserializer(item["publishers"]),
   };
 }
 
@@ -1181,7 +1239,7 @@ export function publisherInformationDeserializer(
 ): PublisherInformation {
   return {
     publisherName: item["publisherName"],
-    dataProducts: item["dataProducts"],
+    dataProducts: dataProductInformationArrayDeserializer(item["dataProducts"]),
   };
 }
 
@@ -1201,7 +1259,9 @@ export function dataProductInformationDeserializer(
   return {
     dataProductName: item["dataProductName"],
     description: item["description"],
-    dataProductVersions: item["dataProductVersions"],
+    dataProductVersions: dataProductVersionArrayDeserializer(
+      item["dataProductVersions"],
+    ),
   };
 }
 
@@ -1217,6 +1277,30 @@ export function dataProductVersionDeserializer(item: any): DataProductVersion {
   };
 }
 
+export function dataProductVersionArrayDeserializer(
+  result: Array<DataProductVersion>,
+): any[] {
+  return result.map((item) => {
+    dataProductVersionDeserializer(item);
+  });
+}
+
+export function dataProductInformationArrayDeserializer(
+  result: Array<DataProductInformation>,
+): any[] {
+  return result.map((item) => {
+    dataProductInformationDeserializer(item);
+  });
+}
+
+export function publisherInformationArrayDeserializer(
+  result: Array<PublisherInformation>,
+): any[] {
+  return result.map((item) => {
+    publisherInformationDeserializer(item);
+  });
+}
+
 /** The response of a DataProductsCatalog list operation. */
 export interface _DataProductsCatalogListResult {
   /** The DataProductsCatalog items on this page */
@@ -1229,9 +1313,17 @@ export function _dataProductsCatalogListResultDeserializer(
   item: any,
 ): _DataProductsCatalogListResult {
   return {
-    value: item["value"],
+    value: dataProductsCatalogArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function dataProductsCatalogArrayDeserializer(
+  result: Array<DataProductsCatalog>,
+): any[] {
+  return result.map((item) => {
+    dataProductsCatalogDeserializer(item);
+  });
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
@@ -1246,7 +1338,7 @@ export function _operationListResultDeserializer(
   item: any,
 ): _OperationListResult {
   return {
-    value: item["value"],
+    value: operationArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
@@ -1348,6 +1440,12 @@ export function actionTypeSerializer(item: ActionType): any {
 
 export function actionTypeDeserializer(item: any): ActionType {
   return item;
+}
+
+export function operationArrayDeserializer(result: Array<Operation>): any[] {
+  return result.map((item) => {
+    operationDeserializer(item);
+  });
 }
 
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */

@@ -95,7 +95,7 @@ export function createModerationResponseDeserializer(
   return {
     id: item["id"],
     model: item["model"],
-    results: item["results"],
+    results: createModerationResponseResultArrayDeserializer(item["results"]),
   };
 }
 
@@ -252,6 +252,14 @@ export function createModerationResponseResultCategoryScoresDeserializer(
   };
 }
 
+export function createModerationResponseResultArrayDeserializer(
+  result: Array<CreateModerationResponseResult>,
+): any[] {
+  return result.map((item) => {
+    createModerationResponseResultDeserializer(item);
+  });
+}
+
 export interface ErrorResponse {
   error: Error;
 }
@@ -336,7 +344,7 @@ export interface ImagesResponse {
 export function imagesResponseDeserializer(item: any): ImagesResponse {
   return {
     created: item["created"],
-    data: item["data"],
+    data: imageArrayDeserializer(item["data"]),
   };
 }
 
@@ -353,6 +361,12 @@ export function imageDeserializer(item: any): Image {
     url: item["url"],
     b64_json: item["b64_json"],
   };
+}
+
+export function imageArrayDeserializer(result: Array<Image>): any[] {
+  return result.map((item) => {
+    imageDeserializer(item);
+  });
 }
 
 export interface CreateImageEditRequest {
@@ -430,7 +444,7 @@ export interface ListModelsResponse {
 export function listModelsResponseDeserializer(item: any): ListModelsResponse {
   return {
     object: item["object"],
-    data: item["data"],
+    data: modelArrayDeserializer(item["data"]),
   };
 }
 
@@ -453,6 +467,12 @@ export function modelDeserializer(item: any): Model {
     created: item["created"],
     owned_by: item["owned_by"],
   };
+}
+
+export function modelArrayDeserializer(result: Array<Model>): any[] {
+  return result.map((item) => {
+    modelDeserializer(item);
+  });
 }
 
 export interface DeleteModelResponse {
@@ -673,10 +693,10 @@ export function fineTuneDeserializer(item: any): FineTune {
     organization_id: item["organization_id"],
     status: fineTuneStatusDeserializer(item["status"]),
     hyperparams: fineTuneHyperparamsDeserializer(item.hyperparams),
-    training_files: item["training_files"],
-    validation_files: item["validation_files"],
-    result_files: item["result_files"],
-    events: item["events"],
+    training_files: openAIFileArrayDeserializer(item["training_files"]),
+    validation_files: openAIFileArrayDeserializer(item["validation_files"]),
+    result_files: openAIFileArrayDeserializer(item["result_files"]),
+    events: fineTuneEventArrayDeserializer(item["events"]),
   };
 }
 
@@ -793,6 +813,12 @@ export function openAIFileStatusDeserializer(item: any): OpenAIFileStatus {
   return item;
 }
 
+export function openAIFileArrayDeserializer(result: Array<OpenAIFile>): any[] {
+  return result.map((item) => {
+    openAIFileDeserializer(item);
+  });
+}
+
 export interface FineTuneEvent {
   object: string;
   created_at: Date;
@@ -809,6 +835,14 @@ export function fineTuneEventDeserializer(item: any): FineTuneEvent {
   };
 }
 
+export function fineTuneEventArrayDeserializer(
+  result: Array<FineTuneEvent>,
+): any[] {
+  return result.map((item) => {
+    fineTuneEventDeserializer(item);
+  });
+}
+
 export interface ListFineTunesResponse {
   object: string;
   data: FineTune[];
@@ -819,8 +853,14 @@ export function listFineTunesResponseDeserializer(
 ): ListFineTunesResponse {
   return {
     object: item["object"],
-    data: item["data"],
+    data: fineTuneArrayDeserializer(item["data"]),
   };
+}
+
+export function fineTuneArrayDeserializer(result: Array<FineTune>): any[] {
+  return result.map((item) => {
+    fineTuneDeserializer(item);
+  });
 }
 
 export interface ListFineTuneEventsResponse {
@@ -833,7 +873,7 @@ export function listFineTuneEventsResponseDeserializer(
 ): ListFineTuneEventsResponse {
   return {
     object: item["object"],
-    data: item["data"],
+    data: fineTuneEventArrayDeserializer(item["data"]),
   };
 }
 
@@ -845,7 +885,7 @@ export interface ListFilesResponse {
 export function listFilesResponseDeserializer(item: any): ListFilesResponse {
   return {
     object: item["object"],
-    data: item["data"],
+    data: openAIFileArrayDeserializer(item["data"]),
   };
 }
 
@@ -957,7 +997,7 @@ export function createEmbeddingResponseDeserializer(
   return {
     object: item["object"],
     model: item["model"],
-    data: item["data"],
+    data: embeddingArrayDeserializer(item["data"]),
     usage: createEmbeddingResponseUsageDeserializer(item.usage),
   };
 }
@@ -981,6 +1021,12 @@ export function embeddingDeserializer(item: any): Embedding {
     object: item["object"],
     embedding: item["embedding"],
   };
+}
+
+export function embeddingArrayDeserializer(result: Array<Embedding>): any[] {
+  return result.map((item) => {
+    embeddingDeserializer(item);
+  });
 }
 
 export interface CreateEmbeddingResponseUsage {
@@ -1073,7 +1119,7 @@ export function createEditResponseDeserializer(item: any): CreateEditResponse {
   return {
     object: item["object"],
     created: item["created"],
-    choices: item["choices"],
+    choices: createEditResponseChoiceArrayDeserializer(item["choices"]),
     usage: completionUsageDeserializer(item.usage),
   };
 }
@@ -1115,6 +1161,14 @@ export function createEditResponseChoiceFinishReasonDeserializer(
   item: any,
 ): CreateEditResponseChoiceFinishReason {
   return item;
+}
+
+export function createEditResponseChoiceArrayDeserializer(
+  result: Array<CreateEditResponseChoice>,
+): any[] {
+  return result.map((item) => {
+    createEditResponseChoiceDeserializer(item);
+  });
 }
 
 /** Usage statistics for the completion request. */
@@ -1356,7 +1410,7 @@ export function createCompletionResponseDeserializer(
     object: item["object"],
     created: item["created"],
     model: item["model"],
-    choices: item["choices"],
+    choices: createCompletionResponseChoiceArrayDeserializer(item["choices"]),
     usage: !item.usage ? undefined : completionUsageDeserializer(item.usage),
   };
 }
@@ -1426,6 +1480,14 @@ export function createCompletionResponseChoiceFinishReasonDeserializer(
   item: any,
 ): CreateCompletionResponseChoiceFinishReason {
   return item;
+}
+
+export function createCompletionResponseChoiceArrayDeserializer(
+  result: Array<CreateCompletionResponseChoice>,
+): any[] {
+  return result.map((item) => {
+    createCompletionResponseChoiceDeserializer(item);
+  });
 }
 
 export interface CreateFineTuningJobRequest {
@@ -1703,9 +1765,17 @@ export function listPaginatedFineTuningJobsResponseDeserializer(
 ): ListPaginatedFineTuningJobsResponse {
   return {
     object: item["object"],
-    data: item["data"],
+    data: fineTuningJobArrayDeserializer(item["data"]),
     has_more: item["has_more"],
   };
+}
+
+export function fineTuningJobArrayDeserializer(
+  result: Array<FineTuningJob>,
+): any[] {
+  return result.map((item) => {
+    fineTuningJobDeserializer(item);
+  });
 }
 
 export interface ListFineTuningJobEventsResponse {
@@ -1718,7 +1788,7 @@ export function listFineTuningJobEventsResponseDeserializer(
 ): ListFineTuningJobEventsResponse {
   return {
     object: item["object"],
-    data: item["data"],
+    data: fineTuningJobEventArrayDeserializer(item["data"]),
   };
 }
 
@@ -1752,6 +1822,14 @@ export function fineTuningJobEventLevelDeserializer(
   item: any,
 ): FineTuningJobEventLevel {
   return item;
+}
+
+export function fineTuningJobEventArrayDeserializer(
+  result: Array<FineTuningJobEvent>,
+): any[] {
+  return result.map((item) => {
+    fineTuningJobEventDeserializer(item);
+  });
 }
 
 export interface CreateChatCompletionRequest {
@@ -2074,7 +2152,9 @@ export function createChatCompletionResponseDeserializer(
     object: item["object"],
     created: item["created"],
     model: item["model"],
-    choices: item["choices"],
+    choices: createChatCompletionResponseChoiceArrayDeserializer(
+      item["choices"],
+    ),
     usage: !item.usage ? undefined : completionUsageDeserializer(item.usage),
   };
 }
@@ -2184,6 +2264,14 @@ export function createChatCompletionResponseChoiceFinishReasonDeserializer(
   item: any,
 ): CreateChatCompletionResponseChoiceFinishReason {
   return item;
+}
+
+export function createChatCompletionResponseChoiceArrayDeserializer(
+  result: Array<CreateChatCompletionResponseChoice>,
+): any[] {
+  return result.map((item) => {
+    createChatCompletionResponseChoiceDeserializer(item);
+  });
 }
 
 export interface CreateTranslationRequest {
