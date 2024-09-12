@@ -88,34 +88,36 @@ export function testSerializer(item: Test): any {
 export function testDeserializer(item: any): Test {
   return {
     passFailCriteria: !item.passFailCriteria
-      ? undefined
-      : passFailCriteriaDeserializer(item.passFailCriteria),
+      ? item.passFailCriteria
+      : passFailCriteriaDeserializer(item["passFailCriteria"]),
     autoStopCriteria: !item.autoStopCriteria
-      ? undefined
-      : autoStopCriteriaDeserializer(item.autoStopCriteria),
-    secrets: secretRecordDeserializer(item["secrets"]),
+      ? item.autoStopCriteria
+      : autoStopCriteriaDeserializer(item["autoStopCriteria"]),
+    secrets: !item.secrets
+      ? item.secrets
+      : secretRecordDeserializer(item["secrets"]),
     certificate: !item.certificate
-      ? undefined
-      : certificateMetadataDeserializer(item.certificate),
+      ? item.certificate
+      : certificateMetadataDeserializer(item["certificate"]),
     environmentVariables: item["environmentVariables"],
     loadTestConfiguration: !item.loadTestConfiguration
-      ? undefined
-      : loadTestConfigurationDeserializer(item.loadTestConfiguration),
+      ? item.loadTestConfiguration
+      : loadTestConfigurationDeserializer(item["loadTestConfiguration"]),
     baselineTestRunId: item["baselineTestRunId"],
     inputArtifacts: !item.inputArtifacts
-      ? undefined
-      : testInputArtifactsDeserializer(item.inputArtifacts),
+      ? item.inputArtifacts
+      : testInputArtifactsDeserializer(item["inputArtifacts"]),
     testId: item["testId"],
     description: item["description"],
     displayName: item["displayName"],
     subnetId: item["subnetId"],
-    kind: testKindDeserializer(item["kind"]),
+    kind: !item.kind ? item.kind : testKindDeserializer(item["kind"]),
     publicIPDisabled: item["publicIPDisabled"],
     keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
     keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
-    createdDateTime: item["createdDateTime"],
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
@@ -139,7 +141,9 @@ export function passFailCriteriaSerializer(item: PassFailCriteria): any {
 
 export function passFailCriteriaDeserializer(item: any): PassFailCriteria {
   return {
-    passFailMetrics: passFailMetricRecordDeserializer(item["passFailMetrics"]),
+    passFailMetrics: !item.passFailMetrics
+      ? item.passFailMetrics
+      : passFailMetricRecordDeserializer(item["passFailMetrics"]),
   };
 }
 
@@ -184,14 +188,18 @@ export function passFailMetricSerializer(item: PassFailMetric): any {
 
 export function passFailMetricDeserializer(item: any): PassFailMetric {
   return {
-    clientMetric: pFMetricsDeserializer(item["clientMetric"]),
-    aggregate: pFAgFuncDeserializer(item["aggregate"]),
+    clientMetric: !item.clientMetric
+      ? item.clientMetric
+      : pFMetricsDeserializer(item["clientMetric"]),
+    aggregate: !item.aggregate
+      ? item.aggregate
+      : pFAgFuncDeserializer(item["aggregate"]),
     condition: item["condition"],
     requestName: item["requestName"],
     value: item["value"],
-    action: pFActionDeserializer(item["action"]),
+    action: !item.action ? item.action : pFActionDeserializer(item["action"]),
     actualValue: item["actualValue"],
-    result: pFResultDeserializer(item["result"]),
+    result: !item.result ? item.result : pFResultDeserializer(item["result"]),
   };
 }
 
@@ -411,7 +419,7 @@ export function secretSerializer(item: Secret): any {
 export function secretDeserializer(item: any): Secret {
   return {
     value: item["value"],
-    type: secretTypeDeserializer(item["type"]),
+    type: !item.type ? item.type : secretTypeDeserializer(item["type"]),
   };
 }
 
@@ -480,7 +488,7 @@ export function certificateMetadataDeserializer(
 ): CertificateMetadata {
   return {
     value: item["value"],
-    type: certificateTypeDeserializer(item["type"]),
+    type: !item.type ? item.type : certificateTypeDeserializer(item["type"]),
     name: item["name"],
   };
 }
@@ -540,10 +548,9 @@ export function loadTestConfigurationSerializer(
     optionalLoadTestConfig: !item.optionalLoadTestConfig
       ? item.optionalLoadTestConfig
       : optionalLoadTestConfigSerializer(item.optionalLoadTestConfig),
-    regionalLoadTestConfig:
-      item["regionalLoadTestConfig"] === undefined
-        ? item["regionalLoadTestConfig"]
-        : item["regionalLoadTestConfig"].map(regionalConfigurationSerializer),
+    regionalLoadTestConfig: !item["regionalLoadTestConfig"]
+      ? item["regionalLoadTestConfig"]
+      : item["regionalLoadTestConfig"].map(regionalConfigurationSerializer),
   };
 }
 
@@ -555,11 +562,11 @@ export function loadTestConfigurationDeserializer(
     splitAllCSVs: item["splitAllCSVs"],
     quickStartTest: item["quickStartTest"],
     optionalLoadTestConfig: !item.optionalLoadTestConfig
-      ? undefined
-      : optionalLoadTestConfigDeserializer(item.optionalLoadTestConfig),
-    regionalLoadTestConfig: regionalConfigurationArrayDeserializer(
-      item["regionalLoadTestConfig"],
-    ),
+      ? item.optionalLoadTestConfig
+      : optionalLoadTestConfigDeserializer(item["optionalLoadTestConfig"]),
+    regionalLoadTestConfig: !item.regionalLoadTestConfig
+      ? item.regionalLoadTestConfig
+      : regionalConfigurationArrayDeserializer(item["regionalLoadTestConfig"]),
   };
 }
 
@@ -667,23 +674,23 @@ export interface TestInputArtifacts {
 export function testInputArtifactsDeserializer(item: any): TestInputArtifacts {
   return {
     configFileInfo: !item.configFileInfo
-      ? undefined
-      : testFileInfoDeserializer(item.configFileInfo),
+      ? item.configFileInfo
+      : testFileInfoDeserializer(item["configFileInfo"]),
     testScriptFileInfo: !item.testScriptFileInfo
-      ? undefined
-      : testFileInfoDeserializer(item.testScriptFileInfo),
+      ? item.testScriptFileInfo
+      : testFileInfoDeserializer(item["testScriptFileInfo"]),
     userPropFileInfo: !item.userPropFileInfo
-      ? undefined
-      : testFileInfoDeserializer(item.userPropFileInfo),
+      ? item.userPropFileInfo
+      : testFileInfoDeserializer(item["userPropFileInfo"]),
     inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
-      ? undefined
-      : testFileInfoDeserializer(item.inputArtifactsZipFileInfo),
+      ? item.inputArtifactsZipFileInfo
+      : testFileInfoDeserializer(item["inputArtifactsZipFileInfo"]),
     urlTestConfigFileInfo: !item.urlTestConfigFileInfo
-      ? undefined
-      : testFileInfoDeserializer(item.urlTestConfigFileInfo),
-    additionalFileInfo: testFileInfoArrayDeserializer(
-      item["additionalFileInfo"],
-    ),
+      ? item.urlTestConfigFileInfo
+      : testFileInfoDeserializer(item["urlTestConfigFileInfo"]),
+    additionalFileInfo: !item.additionalFileInfo
+      ? item.additionalFileInfo
+      : testFileInfoArrayDeserializer(item["additionalFileInfo"]),
   };
 }
 
@@ -707,9 +714,13 @@ export function testFileInfoDeserializer(item: any): TestFileInfo {
   return {
     fileName: item["fileName"],
     url: item["url"],
-    fileType: fileTypeDeserializer(item["fileType"]),
-    expireDateTime: item["expireDateTime"],
-    validationStatus: fileStatusDeserializer(item["validationStatus"]),
+    fileType: !item.fileType
+      ? item.fileType
+      : fileTypeDeserializer(item["fileType"]),
+    expireDateTime: new Date(item["expireDateTime"]),
+    validationStatus: !item.validationStatus
+      ? item.validationStatus
+      : fileStatusDeserializer(item["validationStatus"]),
     validationFailureDetails: item["validationFailureDetails"],
   };
 }
@@ -857,9 +868,9 @@ export function testAppComponentsDeserializer(item: any): TestAppComponents {
   return {
     components: appComponentRecordDeserializer(item["components"]),
     testId: item["testId"],
-    createdDateTime: item["createdDateTime"],
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
@@ -960,9 +971,9 @@ export function testServerMetricConfigDeserializer(
   return {
     testId: item["testId"],
     metrics: resourceMetricRecordDeserializer(item["metrics"]),
-    createdDateTime: item["createdDateTime"],
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
@@ -1148,48 +1159,56 @@ export function testRunDeserializer(item: any): TestRun {
   return {
     testRunId: item["testRunId"],
     passFailCriteria: !item.passFailCriteria
-      ? undefined
-      : passFailCriteriaDeserializer(item.passFailCriteria),
+      ? item.passFailCriteria
+      : passFailCriteriaDeserializer(item["passFailCriteria"]),
     autoStopCriteria: !item.autoStopCriteria
-      ? undefined
-      : autoStopCriteriaDeserializer(item.autoStopCriteria),
-    secrets: secretRecordDeserializer(item["secrets"]),
+      ? item.autoStopCriteria
+      : autoStopCriteriaDeserializer(item["autoStopCriteria"]),
+    secrets: !item.secrets
+      ? item.secrets
+      : secretRecordDeserializer(item["secrets"]),
     certificate: !item.certificate
-      ? undefined
-      : certificateMetadataDeserializer(item.certificate),
+      ? item.certificate
+      : certificateMetadataDeserializer(item["certificate"]),
     environmentVariables: item["environmentVariables"],
-    errorDetails: errorDetailsArrayDeserializer(item["errorDetails"]),
-    testRunStatistics: testRunStatisticsRecordDeserializer(
-      item["testRunStatistics"],
-    ),
-    regionalStatistics: testRunStatisticsRecordDeserializer(
-      item["regionalStatistics"],
-    ),
+    errorDetails: !item.errorDetails
+      ? item.errorDetails
+      : errorDetailsArrayDeserializer(item["errorDetails"]),
+    testRunStatistics: !item.testRunStatistics
+      ? item.testRunStatistics
+      : testRunStatisticsRecordDeserializer(item["testRunStatistics"]),
+    regionalStatistics: !item.regionalStatistics
+      ? item.regionalStatistics
+      : testRunStatisticsRecordDeserializer(item["regionalStatistics"]),
     loadTestConfiguration: !item.loadTestConfiguration
-      ? undefined
-      : loadTestConfigurationDeserializer(item.loadTestConfiguration),
+      ? item.loadTestConfiguration
+      : loadTestConfigurationDeserializer(item["loadTestConfiguration"]),
     testArtifacts: !item.testArtifacts
-      ? undefined
-      : testRunArtifactsDeserializer(item.testArtifacts),
-    testResult: pFTestResultDeserializer(item["testResult"]),
+      ? item.testArtifacts
+      : testRunArtifactsDeserializer(item["testArtifacts"]),
+    testResult: !item.testResult
+      ? item.testResult
+      : pFTestResultDeserializer(item["testResult"]),
     virtualUsers: item["virtualUsers"],
     displayName: item["displayName"],
     testId: item["testId"],
     description: item["description"],
-    status: statusDeserializer(item["status"]),
-    startDateTime: item["startDateTime"],
-    endDateTime: item["endDateTime"],
-    executedDateTime: item["executedDateTime"],
+    status: !item.status ? item.status : statusDeserializer(item["status"]),
+    startDateTime: new Date(item["startDateTime"]),
+    endDateTime: new Date(item["endDateTime"]),
+    executedDateTime: new Date(item["executedDateTime"]),
     portalUrl: item["portalUrl"],
     duration: item["duration"],
     subnetId: item["subnetId"],
-    kind: testKindDeserializer(item["kind"]),
-    requestDataLevel: requestDataLevelDeserializer(item["requestDataLevel"]),
+    kind: !item.kind ? item.kind : testKindDeserializer(item["kind"]),
+    requestDataLevel: !item.requestDataLevel
+      ? item.requestDataLevel
+      : requestDataLevelDeserializer(item["requestDataLevel"]),
     debugLogsEnabled: item["debugLogsEnabled"],
     publicIPDisabled: item["publicIPDisabled"],
-    createdDateTime: item["createdDateTime"],
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
@@ -1304,11 +1323,11 @@ export interface TestRunArtifacts {
 export function testRunArtifactsDeserializer(item: any): TestRunArtifacts {
   return {
     inputArtifacts: !item.inputArtifacts
-      ? undefined
-      : testRunInputArtifactsDeserializer(item.inputArtifacts),
+      ? item.inputArtifacts
+      : testRunInputArtifactsDeserializer(item["inputArtifacts"]),
     outputArtifacts: !item.outputArtifacts
-      ? undefined
-      : testRunOutputArtifactsDeserializer(item.outputArtifacts),
+      ? item.outputArtifacts
+      : testRunOutputArtifactsDeserializer(item["outputArtifacts"]),
   };
 }
 
@@ -1333,23 +1352,23 @@ export function testRunInputArtifactsDeserializer(
 ): TestRunInputArtifacts {
   return {
     configFileInfo: !item.configFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.configFileInfo),
+      ? item.configFileInfo
+      : testRunFileInfoDeserializer(item["configFileInfo"]),
     testScriptFileInfo: !item.testScriptFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.testScriptFileInfo),
+      ? item.testScriptFileInfo
+      : testRunFileInfoDeserializer(item["testScriptFileInfo"]),
     userPropFileInfo: !item.userPropFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.userPropFileInfo),
+      ? item.userPropFileInfo
+      : testRunFileInfoDeserializer(item["userPropFileInfo"]),
     inputArtifactsZipFileInfo: !item.inputArtifactsZipFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.inputArtifactsZipFileInfo),
+      ? item.inputArtifactsZipFileInfo
+      : testRunFileInfoDeserializer(item["inputArtifactsZipFileInfo"]),
     urlTestConfigFileInfo: !item.urlTestConfigFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.urlTestConfigFileInfo),
-    additionalFileInfo: testRunFileInfoArrayDeserializer(
-      item["additionalFileInfo"],
-    ),
+      ? item.urlTestConfigFileInfo
+      : testRunFileInfoDeserializer(item["urlTestConfigFileInfo"]),
+    additionalFileInfo: !item.additionalFileInfo
+      ? item.additionalFileInfo
+      : testRunFileInfoArrayDeserializer(item["additionalFileInfo"]),
   };
 }
 
@@ -1373,9 +1392,13 @@ export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
   return {
     fileName: item["fileName"],
     url: item["url"],
-    fileType: fileTypeDeserializer(item["fileType"]),
-    expireDateTime: item["expireDateTime"],
-    validationStatus: fileStatusDeserializer(item["validationStatus"]),
+    fileType: !item.fileType
+      ? item.fileType
+      : fileTypeDeserializer(item["fileType"]),
+    expireDateTime: new Date(item["expireDateTime"]),
+    validationStatus: !item.validationStatus
+      ? item.validationStatus
+      : fileStatusDeserializer(item["validationStatus"]),
     validationFailureDetails: item["validationFailureDetails"],
   };
 }
@@ -1405,17 +1428,17 @@ export function testRunOutputArtifactsDeserializer(
 ): TestRunOutputArtifacts {
   return {
     resultFileInfo: !item.resultFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.resultFileInfo),
+      ? item.resultFileInfo
+      : testRunFileInfoDeserializer(item["resultFileInfo"]),
     logsFileInfo: !item.logsFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.logsFileInfo),
+      ? item.logsFileInfo
+      : testRunFileInfoDeserializer(item["logsFileInfo"]),
     artifactsContainerInfo: !item.artifactsContainerInfo
-      ? undefined
-      : artifactsContainerInfoDeserializer(item.artifactsContainerInfo),
+      ? item.artifactsContainerInfo
+      : artifactsContainerInfoDeserializer(item["artifactsContainerInfo"]),
     reportFileInfo: !item.reportFileInfo
-      ? undefined
-      : testRunFileInfoDeserializer(item.reportFileInfo),
+      ? item.reportFileInfo
+      : testRunFileInfoDeserializer(item["reportFileInfo"]),
   };
 }
 
@@ -1432,7 +1455,7 @@ export function artifactsContainerInfoDeserializer(
 ): ArtifactsContainerInfo {
   return {
     url: item["url"],
-    expireDateTime: item["expireDateTime"],
+    expireDateTime: new Date(item["expireDateTime"]),
   };
 }
 
@@ -1596,9 +1619,9 @@ export function testRunAppComponentsDeserializer(
   return {
     components: appComponentRecordDeserializer(item["components"]),
     testRunId: item["testRunId"],
-    createdDateTime: item["createdDateTime"],
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
@@ -1638,10 +1661,12 @@ export function testRunServerMetricConfigDeserializer(
 ): TestRunServerMetricConfig {
   return {
     testRunId: item["testRunId"],
-    metrics: resourceMetricRecordDeserializer(item["metrics"]),
-    createdDateTime: item["createdDateTime"],
+    metrics: !item.metrics
+      ? item.metrics
+      : resourceMetricRecordDeserializer(item["metrics"]),
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
@@ -1703,18 +1728,20 @@ export interface MetricDefinition {
 
 export function metricDefinitionDeserializer(item: any): MetricDefinition {
   return {
-    dimensions: nameAndDescArrayDeserializer(item["dimensions"]),
+    dimensions: !item.dimensions
+      ? item.dimensions
+      : nameAndDescArrayDeserializer(item["dimensions"]),
     description: item["description"],
     name: item["name"],
     namespace: item["namespace"],
-    primaryAggregationType: aggregationTypeDeserializer(
-      item["primaryAggregationType"],
-    ),
+    primaryAggregationType: !item.primaryAggregationType
+      ? item.primaryAggregationType
+      : aggregationTypeDeserializer(item["primaryAggregationType"]),
     supportedAggregationTypes: item["supportedAggregationTypes"],
-    unit: metricUnitDeserializer(item["unit"]),
-    metricAvailabilities: metricAvailabilityArrayDeserializer(
-      item["metricAvailabilities"],
-    ),
+    unit: !item.unit ? item.unit : metricUnitDeserializer(item["unit"]),
+    metricAvailabilities: !item.metricAvailabilities
+      ? item.metricAvailabilities
+      : metricAvailabilityArrayDeserializer(item["metricAvailabilities"]),
   };
 }
 
@@ -1855,7 +1882,9 @@ export interface MetricAvailability {
 
 export function metricAvailabilityDeserializer(item: any): MetricAvailability {
   return {
-    timeGrain: timeGrainDeserializer(item["timeGrain"]),
+    timeGrain: !item.timeGrain
+      ? item.timeGrain
+      : timeGrainDeserializer(item["timeGrain"]),
   };
 }
 
@@ -1962,10 +1991,9 @@ export function metricRequestPayloadSerializer(
   item: MetricRequestPayload,
 ): any {
   return {
-    filters:
-      item["filters"] === undefined
-        ? item["filters"]
-        : item["filters"].map(dimensionFilterSerializer),
+    filters: !item["filters"]
+      ? item["filters"]
+      : item["filters"].map(dimensionFilterSerializer),
   };
 }
 
@@ -2014,8 +2042,10 @@ export interface TimeSeriesElement {
 
 export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
   return {
-    data: metricValueArrayDeserializer(item["data"]),
-    dimensionValues: dimensionValueArrayDeserializer(item["dimensionValues"]),
+    data: !item.data ? item.data : metricValueArrayDeserializer(item["data"]),
+    dimensionValues: !item.dimensionValues
+      ? item.dimensionValues
+      : dimensionValueArrayDeserializer(item["dimensionValues"]),
   };
 }
 
@@ -2029,7 +2059,7 @@ export interface MetricValue {
 
 export function metricValueDeserializer(item: any): MetricValue {
   return {
-    timestamp: item["timestamp"],
+    timestamp: new Date(item["timestamp"]),
     value: item["value"],
   };
 }
@@ -2119,13 +2149,13 @@ export function testProfileDeserializer(item: any): TestProfile {
     testId: item["testId"],
     targetResourceId: item["targetResourceId"],
     targetResourceConfigurations: !item.targetResourceConfigurations
-      ? undefined
+      ? item.targetResourceConfigurations
       : targetResourceConfigurationsUnionDeserializer(
-          item.targetResourceConfigurations,
+          item["targetResourceConfigurations"],
         ),
-    createdDateTime: item["createdDateTime"],
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
@@ -2236,10 +2266,11 @@ export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
 ): FunctionFlexConsumptionTargetResourceConfigurations {
   return {
     kind: item["kind"],
-    configurations:
-      functionFlexConsumptionResourceConfigurationRecordDeserializer(
-        item["configurations"],
-      ),
+    configurations: !item.configurations
+      ? item.configurations
+      : functionFlexConsumptionResourceConfigurationRecordDeserializer(
+          item["configurations"],
+        ),
   };
 }
 
@@ -2350,22 +2381,28 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
     testProfileId: item["testProfileId"],
     targetResourceId: item["targetResourceId"],
     targetResourceConfigurations: !item.targetResourceConfigurations
-      ? undefined
+      ? item.targetResourceConfigurations
       : targetResourceConfigurationsUnionDeserializer(
-          item.targetResourceConfigurations,
+          item["targetResourceConfigurations"],
         ),
-    status: testProfileRunStatusDeserializer(item["status"]),
-    errorDetails: errorDetailsArrayDeserializer(item["errorDetails"]),
-    startDateTime: item["startDateTime"],
-    endDateTime: item["endDateTime"],
+    status: !item.status
+      ? item.status
+      : testProfileRunStatusDeserializer(item["status"]),
+    errorDetails: !item.errorDetails
+      ? item.errorDetails
+      : errorDetailsArrayDeserializer(item["errorDetails"]),
+    startDateTime: new Date(item["startDateTime"]),
+    endDateTime: new Date(item["endDateTime"]),
     durationInSeconds: item["durationInSeconds"],
-    testRunDetails: testRunDetailRecordDeserializer(item["testRunDetails"]),
-    recommendations: testProfileRunRecommendationArrayDeserializer(
-      item["recommendations"],
-    ),
-    createdDateTime: item["createdDateTime"],
+    testRunDetails: !item.testRunDetails
+      ? item.testRunDetails
+      : testRunDetailRecordDeserializer(item["testRunDetails"]),
+    recommendations: !item.recommendations
+      ? item.recommendations
+      : testProfileRunRecommendationArrayDeserializer(item["recommendations"]),
+    createdDateTime: new Date(item["createdDateTime"]),
     createdBy: item["createdBy"],
-    lastModifiedDateTime: item["lastModifiedDateTime"],
+    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
 }

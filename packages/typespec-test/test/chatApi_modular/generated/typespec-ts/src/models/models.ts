@@ -131,10 +131,12 @@ export interface ChoiceDeltaRecord {
 export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
   return {
     index: item["index"],
-    delta: chatMessageDeltaDeserializer(item.delta),
+    delta: chatMessageDeltaDeserializer(item["delta"]),
     sessionState: item["session_state"],
     context: item["context"],
-    finishReason: finishReasonDeserializer(item["finish_reason"]),
+    finishReason: !item.finishReason
+      ? item.finishReason
+      : finishReasonDeserializer(item["finish_reason"]),
   };
 }
 
@@ -156,7 +158,7 @@ export interface ChatMessageDelta {
 export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
   return {
     content: item["content"],
-    role: chatRoleDeserializer(item["role"]),
+    role: !item.role ? item.role : chatRoleDeserializer(item["role"]),
     sessionState: item["session_state"],
   };
 }
@@ -252,7 +254,7 @@ export interface ChatChoiceRecord {
 export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
   return {
     index: item["index"],
-    message: chatMessageDeserializer(item.message),
+    message: chatMessageDeserializer(item["message"]),
     sessionState: item["session_state"],
     context: item["context"],
     finishReason: finishReasonDeserializer(item["finish_reason"]),

@@ -90,7 +90,7 @@ export function schemaSerializer(item: Schema): any {
 export function schemaDeserializer(item: any): Schema {
   return {
     definition: item["definition"],
-    properties: schemaPropertiesDeserializer(item.properties),
+    properties: schemaPropertiesDeserializer(item["properties"]),
   };
 }
 

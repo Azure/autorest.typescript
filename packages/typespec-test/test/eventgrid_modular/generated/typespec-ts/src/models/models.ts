@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { uint8ArrayToString } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import { ErrorModel } from "@azure-rest/core-client";
 
 export interface PublishCloudEventRequest {
@@ -43,10 +43,9 @@ export function cloudEventSerializer(item: CloudEvent): any {
     id: item["id"],
     source: item["source"],
     data: item["data"],
-    data_base64:
-      item["data_base64"] !== undefined
-        ? uint8ArrayToString(item["data_base64"], "base64")
-        : undefined,
+    data_base64: !item["data_base64"]
+      ? item["data_base64"]
+      : uint8ArrayToString(item["data_base64"], "base64"),
     type: item["type"],
     time: item["time"]?.toISOString(),
     specversion: item["specversion"],
@@ -61,9 +60,12 @@ export function cloudEventDeserializer(item: any): CloudEvent {
     id: item["id"],
     source: item["source"],
     data: item["data"],
-    data_base64: item["data_base64"],
+    data_base64:
+      typeof item["data_base64"] === "string"
+        ? stringToUint8Array(item["data_base64"], "base64")
+        : item["data_base64"],
     type: item["type"],
-    time: item["time"],
+    time: new Date(item["time"]),
     specversion: item["specversion"],
     dataschema: item["dataschema"],
     datacontenttype: item["datacontenttype"],
@@ -100,8 +102,8 @@ export interface ReceiveDetails {
 
 export function receiveDetailsDeserializer(item: any): ReceiveDetails {
   return {
-    brokerProperties: brokerPropertiesDeserializer(item.brokerProperties),
-    event: cloudEventDeserializer(item.event),
+    brokerProperties: brokerPropertiesDeserializer(item["brokerProperties"]),
+    event: cloudEventDeserializer(item["event"]),
   };
 }
 

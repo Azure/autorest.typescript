@@ -68,7 +68,9 @@ export function addOrUpdateBlockItemsResultDeserializer(
   item: any,
 ): AddOrUpdateBlockItemsResult {
   return {
-    value: textBlockItemArrayDeserializer(item["value"]),
+    value: !item.value
+      ? item.value
+      : textBlockItemArrayDeserializer(item["value"]),
   };
 }
 
@@ -138,10 +140,9 @@ export interface ImageData {
 
 export function imageDataSerializer(item: ImageData): any {
   return {
-    content:
-      item["content"] !== undefined
-        ? uint8ArrayToString(item["content"], "base64")
-        : undefined,
+    content: !item["content"]
+      ? item["content"]
+      : uint8ArrayToString(item["content"], "base64"),
     blobUrl: item["blobUrl"],
   };
 }
@@ -303,9 +304,11 @@ export interface AnalyzeTextResult {
 
 export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
   return {
-    blocklistsMatchResults: textBlocklistMatchResultArrayDeserializer(
-      item["blocklistsMatchResults"],
-    ),
+    blocklistsMatchResults: !item.blocklistsMatchResults
+      ? item.blocklistsMatchResults
+      : textBlocklistMatchResultArrayDeserializer(
+          item["blocklistsMatchResults"],
+        ),
     analyzeResults: textAnalyzeSeverityResultArrayDeserializer(
       item["analyzeResults"],
     ),

@@ -32,14 +32,14 @@ export function dataProductDeserializer(item: any): DataProduct {
     name: item["name"],
     type: item["type"],
     systemData: !item.systemData
-      ? undefined
-      : systemDataDeserializer(item.systemData),
+      ? item.systemData
+      : systemDataDeserializer(item["systemData"]),
     properties: !item.properties
-      ? undefined
-      : dataProductPropertiesDeserializer(item.properties),
+      ? item.properties
+      : dataProductPropertiesDeserializer(item["properties"]),
     identity: !item.identity
-      ? undefined
-      : managedServiceIdentityV4Deserializer(item.identity),
+      ? item.identity
+      : managedServiceIdentityV4Deserializer(item["identity"]),
   };
 }
 
@@ -122,36 +122,47 @@ export function dataProductPropertiesDeserializer(
 ): DataProductProperties {
   return {
     resourceGuid: item["resourceGuid"],
-    provisioningState: provisioningStateDeserializer(item["provisioningState"]),
+    provisioningState: !item.provisioningState
+      ? item.provisioningState
+      : provisioningStateDeserializer(item["provisioningState"]),
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
     owners: item["owners"],
-    redundancy: controlStateDeserializer(item["redundancy"]),
+    redundancy: !item.redundancy
+      ? item.redundancy
+      : controlStateDeserializer(item["redundancy"]),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: controlStateDeserializer(item["privateLinksEnabled"]),
-    publicNetworkAccess: controlStateDeserializer(item["publicNetworkAccess"]),
-    customerManagedKeyEncryptionEnabled: controlStateDeserializer(
-      item["customerManagedKeyEncryptionEnabled"],
-    ),
+    privateLinksEnabled: !item.privateLinksEnabled
+      ? item.privateLinksEnabled
+      : controlStateDeserializer(item["privateLinksEnabled"]),
+    publicNetworkAccess: !item.publicNetworkAccess
+      ? item.publicNetworkAccess
+      : controlStateDeserializer(item["publicNetworkAccess"]),
+    customerManagedKeyEncryptionEnabled:
+      !item.customerManagedKeyEncryptionEnabled
+        ? item.customerManagedKeyEncryptionEnabled
+        : controlStateDeserializer(item["customerManagedKeyEncryptionEnabled"]),
     customerEncryptionKey: !item.customerEncryptionKey
-      ? undefined
-      : encryptionKeyDetailsDeserializer(item.customerEncryptionKey),
+      ? item.customerEncryptionKey
+      : encryptionKeyDetailsDeserializer(item["customerEncryptionKey"]),
     networkacls: !item.networkacls
-      ? undefined
-      : dataProductNetworkAclsDeserializer(item.networkacls),
+      ? item.networkacls
+      : dataProductNetworkAclsDeserializer(item["networkacls"]),
     managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
-      ? undefined
+      ? item.managedResourceGroupConfiguration
       : managedResourceGroupConfigurationDeserializer(
-          item.managedResourceGroupConfiguration,
+          item["managedResourceGroupConfiguration"],
         ),
     availableMinorVersions: item["availableMinorVersions"],
     currentMinorVersion: item["currentMinorVersion"],
     documentation: item["documentation"],
     consumptionEndpoints: !item.consumptionEndpoints
-      ? undefined
-      : consumptionEndpointsPropertiesDeserializer(item.consumptionEndpoints),
+      ? item.consumptionEndpoints
+      : consumptionEndpointsPropertiesDeserializer(
+          item["consumptionEndpoints"],
+        ),
     keyVaultUrl: item["keyVaultUrl"],
   };
 }
@@ -471,9 +482,9 @@ export function managedServiceIdentityV4Deserializer(
     principalId: item["principalId"],
     tenantId: item["tenantId"],
     type: managedServiceIdentityTypeDeserializer(item["type"]),
-    userAssignedIdentities: userAssignedIdentityRecordDeserializer(
-      item["userAssignedIdentities"],
-    ),
+    userAssignedIdentities: !item.userAssignedIdentities
+      ? item.userAssignedIdentities
+      : userAssignedIdentityRecordDeserializer(item["userAssignedIdentities"]),
   };
 }
 
@@ -577,8 +588,8 @@ export function trackedResourceDeserializer(item: any): TrackedResource {
     name: item["name"],
     type: item["type"],
     systemData: !item.systemData
-      ? undefined
-      : systemDataDeserializer(item.systemData),
+      ? item.systemData
+      : systemDataDeserializer(item["systemData"]),
     tags: item["tags"],
     location: item["location"],
   };
@@ -606,8 +617,8 @@ export function resourceDeserializer(item: any): Resource {
     name: item["name"],
     type: item["type"],
     systemData: !item.systemData
-      ? undefined
-      : systemDataDeserializer(item.systemData),
+      ? item.systemData
+      : systemDataDeserializer(item["systemData"]),
   };
 }
 
@@ -630,11 +641,15 @@ export interface SystemData {
 export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
-    createdByType: createdByTypeDeserializer(item["createdByType"]),
-    createdAt: item["createdAt"],
+    createdByType: !item.createdByType
+      ? item.createdByType
+      : createdByTypeDeserializer(item["createdByType"]),
+    createdAt: new Date(item["createdAt"]),
     lastModifiedBy: item["lastModifiedBy"],
-    lastModifiedByType: createdByTypeDeserializer(item["lastModifiedByType"]),
-    lastModifiedAt: item["lastModifiedAt"],
+    lastModifiedByType: !item.lastModifiedByType
+      ? item.lastModifiedByType
+      : createdByTypeDeserializer(item["lastModifiedByType"]),
+    lastModifiedAt: new Date(item["lastModifiedAt"]),
   };
 }
 
@@ -678,7 +693,7 @@ export interface ErrorResponse {
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
-    error: !item.error ? undefined : errorDetailDeserializer(item.error),
+    error: !item.error ? item.error : errorDetailDeserializer(item["error"]),
   };
 }
 
@@ -701,10 +716,12 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
     code: item["code"],
     message: item["message"],
     target: item["target"],
-    details: errorDetailArrayDeserializer(item["details"]),
-    additionalInfo: errorAdditionalInfoArrayDeserializer(
-      item["additionalInfo"],
-    ),
+    details: !item.details
+      ? item.details
+      : errorDetailArrayDeserializer(item["details"]),
+    additionalInfo: !item.additionalInfo
+      ? item.additionalInfo
+      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
   };
 }
 
@@ -729,7 +746,9 @@ export function errorAdditionalInfoDeserializer(
 ): ErrorAdditionalInfo {
   return {
     type: item["type"],
-    info: errorAdditionalInfoInfoDeserializer(item["info"]),
+    info: !item.info
+      ? item.info
+      : errorAdditionalInfoInfoDeserializer(item["info"]),
   };
 }
 
@@ -1032,11 +1051,11 @@ export function dataTypeDeserializer(item: any): DataType {
     name: item["name"],
     type: item["type"],
     systemData: !item.systemData
-      ? undefined
-      : systemDataDeserializer(item.systemData),
+      ? item.systemData
+      : systemDataDeserializer(item["systemData"]),
     properties: !item.properties
-      ? undefined
-      : dataTypePropertiesDeserializer(item.properties),
+      ? item.properties
+      : dataTypePropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -1069,8 +1088,10 @@ export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
 
 export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
   return {
-    provisioningState: provisioningStateDeserializer(item["provisioningState"]),
-    state: dataTypeStateDeserializer(item["state"]),
+    provisioningState: !item.provisioningState
+      ? item.provisioningState
+      : provisioningStateDeserializer(item["provisioningState"]),
+    state: !item.state ? item.state : dataTypeStateDeserializer(item["state"]),
     stateReason: item["stateReason"],
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
@@ -1118,8 +1139,8 @@ export function proxyResourceDeserializer(item: any): ProxyResource {
     name: item["name"],
     type: item["type"],
     systemData: !item.systemData
-      ? undefined
-      : systemDataDeserializer(item.systemData),
+      ? item.systemData
+      : systemDataDeserializer(item["systemData"]),
   };
 }
 
@@ -1235,11 +1256,11 @@ export function dataProductsCatalogDeserializer(
     name: item["name"],
     type: item["type"],
     systemData: !item.systemData
-      ? undefined
-      : systemDataDeserializer(item.systemData),
+      ? item.systemData
+      : systemDataDeserializer(item["systemData"]),
     properties: !item.properties
-      ? undefined
-      : dataProductsCatalogPropertiesDeserializer(item.properties),
+      ? item.properties
+      : dataProductsCatalogPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -1255,7 +1276,9 @@ export function dataProductsCatalogPropertiesDeserializer(
   item: any,
 ): DataProductsCatalogProperties {
   return {
-    provisioningState: provisioningStateDeserializer(item["provisioningState"]),
+    provisioningState: !item.provisioningState
+      ? item.provisioningState
+      : provisioningStateDeserializer(item["provisioningState"]),
     publishers: publisherInformationArrayDeserializer(item["publishers"]),
   };
 }
@@ -1396,10 +1419,12 @@ export function operationDeserializer(item: any): Operation {
     name: item["name"],
     isDataAction: item["isDataAction"],
     display: !item.display
-      ? undefined
-      : operationDisplayDeserializer(item.display),
-    origin: originDeserializer(item["origin"]),
-    actionType: actionTypeDeserializer(item["actionType"]),
+      ? item.display
+      : operationDisplayDeserializer(item["display"]),
+    origin: !item.origin ? item.origin : originDeserializer(item["origin"]),
+    actionType: !item.actionType
+      ? item.actionType
+      : actionTypeDeserializer(item["actionType"]),
   };
 }
 

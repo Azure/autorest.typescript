@@ -393,7 +393,7 @@ export async function _generateSpeechFromTextDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Generates text-to-speech audio from the input text. */

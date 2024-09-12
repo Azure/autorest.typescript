@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import { uint8ArrayToString } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 export interface CreateModerationRequest {
   /** The input text to classify */
@@ -139,10 +139,10 @@ export function createModerationResponseResultDeserializer(
   return {
     flagged: item["flagged"],
     categories: createModerationResponseResultCategoriesDeserializer(
-      item.categories,
+      item["categories"],
     ),
     category_scores: createModerationResponseResultCategoryScoresDeserializer(
-      item.category_scores,
+      item["category_scores"],
     ),
   };
 }
@@ -267,7 +267,7 @@ export interface ErrorResponse {
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
-    error: errorDeserializer(item.error),
+    error: errorDeserializer(item["error"]),
   };
 }
 
@@ -344,7 +344,7 @@ export interface ImagesResponse {
 
 export function imagesResponseDeserializer(item: any): ImagesResponse {
   return {
-    created: item["created"],
+    created: new Date(item["created"]),
     data: imageArrayDeserializer(item["data"]),
   };
 }
@@ -360,7 +360,10 @@ export interface Image {
 export function imageDeserializer(item: any): Image {
   return {
     url: item["url"],
-    b64_json: item["b64_json"],
+    b64_json:
+      typeof item["b64_json"] === "string"
+        ? stringToUint8Array(item["b64_json"], "base64")
+        : item["b64_json"],
   };
 }
 
@@ -399,10 +402,9 @@ export function createImageEditRequestSerializer(
   return {
     prompt: item["prompt"],
     image: uint8ArrayToString(item["image"], "base64"),
-    mask:
-      item["mask"] !== undefined
-        ? uint8ArrayToString(item["mask"], "base64")
-        : undefined,
+    mask: !item["mask"]
+      ? item["mask"]
+      : uint8ArrayToString(item["mask"], "base64"),
     n: item["n"],
     size: item["size"],
     response_format: item["response_format"],
@@ -465,7 +467,7 @@ export function modelDeserializer(item: any): Model {
   return {
     id: item["id"],
     object: item["object"],
-    created: item["created"],
+    created: new Date(item["created"]),
     owned_by: item["owned_by"],
   };
 }
@@ -687,17 +689,19 @@ export function fineTuneDeserializer(item: any): FineTune {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: item["created_at"],
-    updated_at: item["updated_at"],
+    created_at: new Date(item["created_at"]),
+    updated_at: new Date(item["updated_at"]),
     model: item["model"],
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
     status: fineTuneStatusDeserializer(item["status"]),
-    hyperparams: fineTuneHyperparamsDeserializer(item.hyperparams),
+    hyperparams: fineTuneHyperparamsDeserializer(item["hyperparams"]),
     training_files: openAIFileArrayDeserializer(item["training_files"]),
     validation_files: openAIFileArrayDeserializer(item["validation_files"]),
     result_files: openAIFileArrayDeserializer(item["result_files"]),
-    events: fineTuneEventArrayDeserializer(item["events"]),
+    events: !item.events
+      ? item.events
+      : fineTuneEventArrayDeserializer(item["events"]),
   };
 }
 
@@ -790,7 +794,7 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     id: item["id"],
     object: item["object"],
     bytes: item["bytes"],
-    createdAt: item["createdAt"],
+    createdAt: new Date(item["createdAt"]),
     filename: item["filename"],
     purpose: item["purpose"],
     status: openAIFileStatusDeserializer(item["status"]),
@@ -830,7 +834,7 @@ export interface FineTuneEvent {
 export function fineTuneEventDeserializer(item: any): FineTuneEvent {
   return {
     object: item["object"],
-    created_at: item["created_at"],
+    created_at: new Date(item["created_at"]),
     level: item["level"],
     message: item["message"],
   };
@@ -999,7 +1003,7 @@ export function createEmbeddingResponseDeserializer(
     object: item["object"],
     model: item["model"],
     data: embeddingArrayDeserializer(item["data"]),
-    usage: createEmbeddingResponseUsageDeserializer(item.usage),
+    usage: createEmbeddingResponseUsageDeserializer(item["usage"]),
   };
 }
 
@@ -1119,9 +1123,9 @@ export interface CreateEditResponse {
 export function createEditResponseDeserializer(item: any): CreateEditResponse {
   return {
     object: item["object"],
-    created: item["created"],
+    created: new Date(item["created"]),
     choices: createEditResponseChoiceArrayDeserializer(item["choices"]),
-    usage: completionUsageDeserializer(item.usage),
+    usage: completionUsageDeserializer(item["usage"]),
   };
 }
 
@@ -1409,10 +1413,12 @@ export function createCompletionResponseDeserializer(
   return {
     id: item["id"],
     object: item["object"],
-    created: item["created"],
+    created: new Date(item["created"]),
     model: item["model"],
     choices: createCompletionResponseChoiceArrayDeserializer(item["choices"]),
-    usage: !item.usage ? undefined : completionUsageDeserializer(item.usage),
+    usage: !item.usage
+      ? item.usage
+      : completionUsageDeserializer(item["usage"]),
   };
 }
 
@@ -1441,7 +1447,7 @@ export function createCompletionResponseChoiceDeserializer(
   return {
     index: item["index"],
     text: item["text"],
-    logprobs: item.logprobs === null ? null : item.logprobs,
+    logprobs: item["logprobs"],
     finish_reason: createCompletionResponseChoiceFinishReasonDeserializer(
       item["finish_reason"],
     ),
@@ -1667,20 +1673,22 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: item["created_at"],
-    finished_at: item["finished_at"],
+    created_at: new Date(item["created_at"]),
+    finished_at: !item["finished_at"]
+      ? item["finished_at"]
+      : new Date(item["finished_at"]),
     model: item["model"],
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
     status: fineTuningJobStatusDeserializer(item["status"]),
     hyperparameters: fineTuningJobHyperparametersDeserializer(
-      item.hyperparameters,
+      item["hyperparameters"],
     ),
     training_file: item["training_file"],
     validation_file: item["validation_file"],
     result_files: item["result_files"],
     trained_tokens: item["trained_tokens"],
-    error: item.error === null ? null : item.error,
+    error: item["error"],
   };
 }
 
@@ -1717,7 +1725,9 @@ export function fineTuningJobHyperparametersDeserializer(
   item: any,
 ): FineTuningJobHyperparameters {
   return {
-    n_epochs: fineTuningJobHyperparametersNEpochsDeserializer(item["n_epochs"]),
+    n_epochs: !item.n_epochs
+      ? item.n_epochs
+      : fineTuningJobHyperparametersNEpochsDeserializer(item["n_epochs"]),
   };
 }
 
@@ -1805,7 +1815,7 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: item["created_at"],
+    created_at: new Date(item["created_at"]),
     level: fineTuningJobEventLevelDeserializer(item["level"]),
     message: item["message"],
   };
@@ -1940,10 +1950,9 @@ export function createChatCompletionRequestSerializer(
   return {
     model: item["model"],
     messages: item["messages"].map(chatCompletionRequestMessageSerializer),
-    functions:
-      item["functions"] === undefined
-        ? item["functions"]
-        : item["functions"].map(chatCompletionFunctionsSerializer),
+    functions: !item["functions"]
+      ? item["functions"]
+      : item["functions"].map(chatCompletionFunctionsSerializer),
     function_call: item["function_call"],
     temperature: item["temperature"],
     top_p: item["top_p"],
@@ -2167,12 +2176,14 @@ export function createChatCompletionResponseDeserializer(
   return {
     id: item["id"],
     object: item["object"],
-    created: item["created"],
+    created: new Date(item["created"]),
     model: item["model"],
     choices: createChatCompletionResponseChoiceArrayDeserializer(
       item["choices"],
     ),
-    usage: !item.usage ? undefined : completionUsageDeserializer(item.usage),
+    usage: !item.usage
+      ? item.usage
+      : completionUsageDeserializer(item["usage"]),
   };
 }
 
@@ -2194,7 +2205,7 @@ export function createChatCompletionResponseChoiceDeserializer(
 ): CreateChatCompletionResponseChoice {
   return {
     index: item["index"],
-    message: chatCompletionResponseMessageDeserializer(item.message),
+    message: chatCompletionResponseMessageDeserializer(item["message"]),
     finish_reason: createChatCompletionResponseChoiceFinishReasonDeserializer(
       item["finish_reason"],
     ),
@@ -2220,9 +2231,9 @@ export function chatCompletionResponseMessageDeserializer(
     role: chatCompletionResponseMessageRoleDeserializer(item["role"]),
     content: item["content"],
     function_call: !item.function_call
-      ? undefined
+      ? item.function_call
       : chatCompletionResponseMessageFunctionCallDeserializer(
-          item.function_call,
+          item["function_call"],
         ),
   };
 }

@@ -132,11 +132,15 @@ export interface AudioTranscription {
 export function audioTranscriptionDeserializer(item: any): AudioTranscription {
   return {
     text: item["text"],
-    task: audioTaskLabelDeserializer(item["task"]),
+    task: !item.task ? item.task : audioTaskLabelDeserializer(item["task"]),
     language: item["language"],
     duration: item["duration"],
-    segments: audioTranscriptionSegmentArrayDeserializer(item["segments"]),
-    words: audioTranscriptionWordArrayDeserializer(item["words"]),
+    segments: !item.segments
+      ? item.segments
+      : audioTranscriptionSegmentArrayDeserializer(item["segments"]),
+    words: !item.words
+      ? item.words
+      : audioTranscriptionWordArrayDeserializer(item["words"]),
   };
 }
 
@@ -317,10 +321,12 @@ export interface AudioTranslation {
 export function audioTranslationDeserializer(item: any): AudioTranslation {
   return {
     text: item["text"],
-    task: audioTaskLabelDeserializer(item["task"]),
+    task: !item.task ? item.task : audioTaskLabelDeserializer(item["task"]),
     language: item["language"],
     duration: item["duration"],
-    segments: audioTranslationSegmentArrayDeserializer(item["segments"]),
+    segments: !item.segments
+      ? item.segments
+      : audioTranslationSegmentArrayDeserializer(item["segments"]),
   };
 }
 
@@ -531,12 +537,14 @@ export interface Completions {
 export function completionsDeserializer(item: any): Completions {
   return {
     id: item["id"],
-    created: item["created"],
-    promptFilterResults: contentFilterResultsForPromptArrayDeserializer(
-      item["prompt_filter_results"],
-    ),
+    created: new Date(item["created"]),
+    promptFilterResults: !item.promptFilterResults
+      ? item.promptFilterResults
+      : contentFilterResultsForPromptArrayDeserializer(
+          item["prompt_filter_results"],
+        ),
     choices: choiceArrayDeserializer(item["choices"]),
-    usage: completionsUsageDeserializer(item.usage),
+    usage: completionsUsageDeserializer(item["usage"]),
   };
 }
 
@@ -554,7 +562,7 @@ export function contentFilterResultsForPromptDeserializer(
   return {
     promptIndex: item["prompt_index"],
     contentFilterResults: contentFilterResultDetailsForPromptDeserializer(
-      item.content_filter_results,
+      item["content_filter_results"],
     ),
   };
 }
@@ -606,28 +614,30 @@ export function contentFilterResultDetailsForPromptDeserializer(
 ): ContentFilterResultDetailsForPrompt {
   return {
     sexual: !item.sexual
-      ? undefined
-      : contentFilterResultDeserializer(item.sexual),
+      ? item.sexual
+      : contentFilterResultDeserializer(item["sexual"]),
     violence: !item.violence
-      ? undefined
-      : contentFilterResultDeserializer(item.violence),
-    hate: !item.hate ? undefined : contentFilterResultDeserializer(item.hate),
-    selfHarm: !item.self_harm
-      ? undefined
-      : contentFilterResultDeserializer(item.self_harm),
+      ? item.violence
+      : contentFilterResultDeserializer(item["violence"]),
+    hate: !item.hate
+      ? item.hate
+      : contentFilterResultDeserializer(item["hate"]),
+    selfHarm: !item.selfHarm
+      ? item.selfHarm
+      : contentFilterResultDeserializer(item["self_harm"]),
     profanity: !item.profanity
-      ? undefined
-      : contentFilterDetectionResultDeserializer(item.profanity),
-    customBlocklists: !item.custom_blocklists
-      ? undefined
-      : contentFilterDetailedResultsDeserializer(item.custom_blocklists),
-    error: !item.error ? undefined : item.error,
+      ? item.profanity
+      : contentFilterDetectionResultDeserializer(item["profanity"]),
+    customBlocklists: !item.customBlocklists
+      ? item.customBlocklists
+      : contentFilterDetailedResultsDeserializer(item["custom_blocklists"]),
+    error: item["error"],
     jailbreak: !item.jailbreak
-      ? undefined
-      : contentFilterDetectionResultDeserializer(item.jailbreak),
-    indirectAttack: !item.indirect_attack
-      ? undefined
-      : contentFilterDetectionResultDeserializer(item.indirect_attack),
+      ? item.jailbreak
+      : contentFilterDetectionResultDeserializer(item["jailbreak"]),
+    indirectAttack: !item.indirectAttack
+      ? item.indirectAttack
+      : contentFilterDetectionResultDeserializer(item["indirect_attack"]),
   };
 }
 
@@ -756,11 +766,13 @@ export function choiceDeserializer(item: any): Choice {
   return {
     text: item["text"],
     index: item["index"],
-    contentFilterResults: !item.content_filter_results
-      ? undefined
-      : contentFilterResultsForChoiceDeserializer(item.content_filter_results),
-    logprobs: item.logprobs === null ? null : item.logprobs,
-    finishReason: item["finish_reason"],
+    contentFilterResults: !item.contentFilterResults
+      ? item.contentFilterResults
+      : contentFilterResultsForChoiceDeserializer(
+          item["content_filter_results"],
+        ),
+    logprobs: item["logprobs"],
+    finishReason: item["finish_reason"] as CompletionsFinishReason,
   };
 }
 
@@ -811,29 +823,33 @@ export function contentFilterResultsForChoiceDeserializer(
 ): ContentFilterResultsForChoice {
   return {
     sexual: !item.sexual
-      ? undefined
-      : contentFilterResultDeserializer(item.sexual),
+      ? item.sexual
+      : contentFilterResultDeserializer(item["sexual"]),
     violence: !item.violence
-      ? undefined
-      : contentFilterResultDeserializer(item.violence),
-    hate: !item.hate ? undefined : contentFilterResultDeserializer(item.hate),
-    selfHarm: !item.self_harm
-      ? undefined
-      : contentFilterResultDeserializer(item.self_harm),
+      ? item.violence
+      : contentFilterResultDeserializer(item["violence"]),
+    hate: !item.hate
+      ? item.hate
+      : contentFilterResultDeserializer(item["hate"]),
+    selfHarm: !item.selfHarm
+      ? item.selfHarm
+      : contentFilterResultDeserializer(item["self_harm"]),
     profanity: !item.profanity
-      ? undefined
-      : contentFilterDetectionResultDeserializer(item.profanity),
-    customBlocklists: !item.custom_blocklists
-      ? undefined
-      : contentFilterDetailedResultsDeserializer(item.custom_blocklists),
-    error: !item.error ? undefined : item.error,
-    protectedMaterialText: !item.protected_material_text
-      ? undefined
-      : contentFilterDetectionResultDeserializer(item.protected_material_text),
-    protectedMaterialCode: !item.protected_material_code
-      ? undefined
+      ? item.profanity
+      : contentFilterDetectionResultDeserializer(item["profanity"]),
+    customBlocklists: !item.customBlocklists
+      ? item.customBlocklists
+      : contentFilterDetailedResultsDeserializer(item["custom_blocklists"]),
+    error: item["error"],
+    protectedMaterialText: !item.protectedMaterialText
+      ? item.protectedMaterialText
+      : contentFilterDetectionResultDeserializer(
+          item["protected_material_text"],
+        ),
+    protectedMaterialCode: !item.protectedMaterialCode
+      ? item.protectedMaterialCode
       : contentFilterCitedDetectionResultDeserializer(
-          item.protected_material_code,
+          item["protected_material_code"],
         ),
   };
 }
@@ -1049,10 +1065,9 @@ export function chatCompletionsOptionsSerializer(
 ): any {
   return {
     messages: item["messages"].map((p) => chatRequestMessageUnionSerializer(p)),
-    functions:
-      item["functions"] === undefined
-        ? item["functions"]
-        : item["functions"].map(functionDefinitionSerializer),
+    functions: !item["functions"]
+      ? item["functions"]
+      : item["functions"].map(functionDefinitionSerializer),
     function_call: item["functionCall"] as any,
     max_tokens: item["maxTokens"],
     temperature: item["temperature"],
@@ -1067,12 +1082,11 @@ export function chatCompletionsOptionsSerializer(
     frequency_penalty: item["frequencyPenalty"],
     stream: item["stream"],
     model: item["model"],
-    data_sources:
-      item["dataSources"] === undefined
-        ? item["dataSources"]
-        : item["dataSources"].map((p) =>
-            azureChatExtensionConfigurationUnionSerializer(p),
-          ),
+    data_sources: !item["dataSources"]
+      ? item["dataSources"]
+      : item["dataSources"].map((p) =>
+          azureChatExtensionConfigurationUnionSerializer(p),
+        ),
     enhancements: !item.enhancements
       ? item.enhancements
       : azureChatEnhancementConfigurationSerializer(item.enhancements),
@@ -1426,7 +1440,7 @@ export function chatCompletionsFunctionToolCallDeserializer(
   return {
     type: item["type"],
     id: item["id"],
-    function: functionCallDeserializer(item.function),
+    function: functionCallDeserializer(item["function"]),
   };
 }
 
@@ -3031,14 +3045,16 @@ export interface ChatCompletions {
 export function chatCompletionsDeserializer(item: any): ChatCompletions {
   return {
     id: item["id"],
-    created: item["created"],
+    created: new Date(item["created"]),
     choices: chatChoiceArrayDeserializer(item["choices"]),
     model: item["model"],
-    promptFilterResults: contentFilterResultsForPromptArrayDeserializer(
-      item["prompt_filter_results"],
-    ),
+    promptFilterResults: !item.promptFilterResults
+      ? item.promptFilterResults
+      : contentFilterResultsForPromptArrayDeserializer(
+          item["prompt_filter_results"],
+        ),
     systemFingerprint: item["system_fingerprint"],
-    usage: completionsUsageDeserializer(item.usage),
+    usage: completionsUsageDeserializer(item["usage"]),
   };
 }
 
@@ -3080,23 +3096,25 @@ export interface ChatChoice {
 export function chatChoiceDeserializer(item: any): ChatChoice {
   return {
     message: !item.message
-      ? undefined
-      : chatResponseMessageDeserializer(item.message),
-    logprobs: item.logprobs === null ? null : item.logprobs,
+      ? item.message
+      : chatResponseMessageDeserializer(item["message"]),
+    logprobs: item["logprobs"],
     index: item["index"],
-    finishReason: item["finish_reason"],
-    finishDetails: !item.finish_details
-      ? undefined
-      : chatFinishDetailsUnionDeserializer(item.finish_details),
+    finishReason: item["finish_reason"] as CompletionsFinishReason,
+    finishDetails: !item.finishDetails
+      ? item.finishDetails
+      : chatFinishDetailsUnionDeserializer(item["finish_details"]),
     delta: !item.delta
-      ? undefined
-      : chatResponseMessageDeserializer(item.delta),
-    contentFilterResults: !item.content_filter_results
-      ? undefined
-      : contentFilterResultsForChoiceDeserializer(item.content_filter_results),
+      ? item.delta
+      : chatResponseMessageDeserializer(item["delta"]),
+    contentFilterResults: !item.contentFilterResults
+      ? item.contentFilterResults
+      : contentFilterResultsForChoiceDeserializer(
+          item["content_filter_results"],
+        ),
     enhancements: !item.enhancements
-      ? undefined
-      : azureChatEnhancementsDeserializer(item.enhancements),
+      ? item.enhancements
+      : azureChatEnhancementsDeserializer(item["enhancements"]),
   };
 }
 
@@ -3129,13 +3147,15 @@ export function chatResponseMessageDeserializer(
   return {
     role: chatRoleDeserializer(item["role"]),
     content: item["content"],
-    toolCalls: chatCompletionsToolCallArrayDeserializer(item["tool_calls"]),
-    functionCall: !item.function_call
-      ? undefined
-      : functionCallDeserializer(item.function_call),
+    toolCalls: !item.toolCalls
+      ? item.toolCalls
+      : chatCompletionsToolCallArrayDeserializer(item["tool_calls"]),
+    functionCall: !item.functionCall
+      ? item.functionCall
+      : functionCallDeserializer(item["function_call"]),
     context: !item.context
-      ? undefined
-      : azureChatExtensionsMessageContextDeserializer(item.context),
+      ? item.context
+      : azureChatExtensionsMessageContextDeserializer(item["context"]),
   };
 }
 
@@ -3162,13 +3182,17 @@ export function azureChatExtensionsMessageContextDeserializer(
   item: any,
 ): AzureChatExtensionsMessageContext {
   return {
-    citations: azureChatExtensionDataSourceResponseCitationArrayDeserializer(
-      item["citations"],
-    ),
+    citations: !item.citations
+      ? item.citations
+      : azureChatExtensionDataSourceResponseCitationArrayDeserializer(
+          item["citations"],
+        ),
     intent: item["intent"],
-    allRetrievedDocuments: azureChatExtensionRetrievedDocumentArrayDeserializer(
-      item["all_retrieved_documents"],
-    ),
+    allRetrievedDocuments: !item.allRetrievedDocuments
+      ? item.allRetrievedDocuments
+      : azureChatExtensionRetrievedDocumentArrayDeserializer(
+          item["all_retrieved_documents"],
+        ),
   };
 }
 
@@ -3250,9 +3274,11 @@ export function azureChatExtensionRetrievedDocumentDeserializer(
     dataSourceIndex: item["data_source_index"],
     originalSearchScore: item["original_search_score"],
     rerankScore: item["rerank_score"],
-    filterReason: azureChatExtensionRetrieveDocumentFilterReasonDeserializer(
-      item["filter_reason"],
-    ),
+    filterReason: !item.filterReason
+      ? item.filterReason
+      : azureChatExtensionRetrieveDocumentFilterReasonDeserializer(
+          item["filter_reason"],
+        ),
   };
 }
 
@@ -3289,7 +3315,11 @@ export function chatChoiceLogProbabilityInfoDeserializer(
   item: any,
 ): ChatChoiceLogProbabilityInfo {
   return {
-    content: item["content"],
+    content: !item["content"]
+      ? item["content"]
+      : item["content"].map((p: any) => {
+          return chatTokenLogProbabilityResultDeserializer(p);
+        }),
   };
 }
 
@@ -3312,7 +3342,11 @@ export function chatTokenLogProbabilityResultDeserializer(
     token: item["token"],
     logprob: item["logprob"],
     bytes: item["bytes"],
-    top_logprobs: item["top_logprobs"],
+    top_logprobs: !item["top_logprobs"]
+      ? item["top_logprobs"]
+      : item["top_logprobs"].map((p: any) => {
+          return chatTokenLogProbabilityInfoDeserializer(p);
+        }),
   };
 }
 
@@ -3430,8 +3464,8 @@ export function azureChatEnhancementsDeserializer(
 ): AzureChatEnhancements {
   return {
     grounding: !item.grounding
-      ? undefined
-      : azureGroundingEnhancementDeserializer(item.grounding),
+      ? item.grounding
+      : azureGroundingEnhancementDeserializer(item["grounding"]),
   };
 }
 
@@ -3600,12 +3634,16 @@ export function imageGenerationOptionsDeserializer(
     model: item["model"],
     prompt: item["prompt"],
     n: item["n"],
-    size: imageSizeDeserializer(item["size"]),
-    responseFormat: imageGenerationResponseFormatDeserializer(
-      item["response_format"],
-    ),
-    quality: imageGenerationQualityDeserializer(item["quality"]),
-    style: imageGenerationStyleDeserializer(item["style"]),
+    size: !item.size ? item.size : imageSizeDeserializer(item["size"]),
+    responseFormat: !item.responseFormat
+      ? item.responseFormat
+      : imageGenerationResponseFormatDeserializer(item["response_format"]),
+    quality: !item.quality
+      ? item.quality
+      : imageGenerationQualityDeserializer(item["quality"]),
+    style: !item.style
+      ? item.style
+      : imageGenerationStyleDeserializer(item["style"]),
     user: item["user"],
   };
 }
@@ -3690,7 +3728,7 @@ export interface ImageGenerations {
 
 export function imageGenerationsDeserializer(item: any): ImageGenerations {
   return {
-    created: item["created"],
+    created: new Date(item["created"]),
     data: imageGenerationDataArrayDeserializer(item["data"]),
   };
 }
@@ -3728,16 +3766,16 @@ export function imageGenerationDataDeserializer(
   return {
     url: item["url"],
     base64Data: item["b64_json"],
-    contentFilterResults: !item.content_filter_results
-      ? undefined
+    contentFilterResults: !item.contentFilterResults
+      ? item.contentFilterResults
       : imageGenerationContentFilterResultsDeserializer(
-          item.content_filter_results,
+          item["content_filter_results"],
         ),
     revisedPrompt: item["revised_prompt"],
-    promptFilterResults: !item.prompt_filter_results
-      ? undefined
+    promptFilterResults: !item.promptFilterResults
+      ? item.promptFilterResults
       : imageGenerationPromptFilterResultsDeserializer(
-          item.prompt_filter_results,
+          item["prompt_filter_results"],
         ),
   };
 }
@@ -3776,15 +3814,17 @@ export function imageGenerationContentFilterResultsDeserializer(
 ): ImageGenerationContentFilterResults {
   return {
     sexual: !item.sexual
-      ? undefined
-      : contentFilterResultDeserializer(item.sexual),
+      ? item.sexual
+      : contentFilterResultDeserializer(item["sexual"]),
     violence: !item.violence
-      ? undefined
-      : contentFilterResultDeserializer(item.violence),
-    hate: !item.hate ? undefined : contentFilterResultDeserializer(item.hate),
-    selfHarm: !item.self_harm
-      ? undefined
-      : contentFilterResultDeserializer(item.self_harm),
+      ? item.violence
+      : contentFilterResultDeserializer(item["violence"]),
+    hate: !item.hate
+      ? item.hate
+      : contentFilterResultDeserializer(item["hate"]),
+    selfHarm: !item.selfHarm
+      ? item.selfHarm
+      : contentFilterResultDeserializer(item["self_harm"]),
   };
 }
 
@@ -3828,24 +3868,26 @@ export function imageGenerationPromptFilterResultsDeserializer(
 ): ImageGenerationPromptFilterResults {
   return {
     sexual: !item.sexual
-      ? undefined
-      : contentFilterResultDeserializer(item.sexual),
+      ? item.sexual
+      : contentFilterResultDeserializer(item["sexual"]),
     violence: !item.violence
-      ? undefined
-      : contentFilterResultDeserializer(item.violence),
-    hate: !item.hate ? undefined : contentFilterResultDeserializer(item.hate),
-    selfHarm: !item.self_harm
-      ? undefined
-      : contentFilterResultDeserializer(item.self_harm),
+      ? item.violence
+      : contentFilterResultDeserializer(item["violence"]),
+    hate: !item.hate
+      ? item.hate
+      : contentFilterResultDeserializer(item["hate"]),
+    selfHarm: !item.selfHarm
+      ? item.selfHarm
+      : contentFilterResultDeserializer(item["self_harm"]),
     profanity: !item.profanity
-      ? undefined
-      : contentFilterDetectionResultDeserializer(item.profanity),
+      ? item.profanity
+      : contentFilterDetectionResultDeserializer(item["profanity"]),
     jailbreak: !item.jailbreak
-      ? undefined
-      : contentFilterDetectionResultDeserializer(item.jailbreak),
-    customBlocklists: !item.custom_blocklists
-      ? undefined
-      : contentFilterDetailedResultsDeserializer(item.custom_blocklists),
+      ? item.jailbreak
+      : contentFilterDetectionResultDeserializer(item["jailbreak"]),
+    customBlocklists: !item.customBlocklists
+      ? item.customBlocklists
+      : contentFilterDetailedResultsDeserializer(item["custom_blocklists"]),
   };
 }
 
@@ -3995,7 +4037,7 @@ export interface Embeddings {
 export function embeddingsDeserializer(item: any): Embeddings {
   return {
     data: embeddingItemArrayDeserializer(item["data"]),
-    usage: embeddingsUsageDeserializer(item.usage),
+    usage: embeddingsUsageDeserializer(item["usage"]),
   };
 }
 

@@ -3175,7 +3175,7 @@ export async function _getTaskFileDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Returns the content of the specified Task file. */
