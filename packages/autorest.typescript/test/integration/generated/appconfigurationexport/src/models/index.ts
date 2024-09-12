@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 
-/** The result of a list request. */
-export interface KeyListResult {
+/** The parent result of a list request. */
+export interface TestParentList {
   /** The collection value. */
   items?: Key[];
   /** The URI that can be used to request the next set of paged results. */
@@ -66,6 +66,16 @@ export interface LabelListResult {
 export interface Label {
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly name?: string;
+}
+
+/** The result of a list request. */
+export interface KeyListResult extends TestParentList {
+  /** The roll out count summary of the savings plans */
+  summary?: string;
+  /** The collection value. */
+  items?: Key[];
+  /** The URI that can be used to request the next set of paged results. */
+  nextLink?: string;
 }
 
 /** Defines headers for AppConfigurationClient_getKeys operation. */
