@@ -3,13 +3,13 @@
 
 import { DemoServiceContext } from "../../api/demoServiceContext.js";
 import { test1, test2, test3, test4 } from "../../api/a/index.js";
-import { Test3Request, Test4Request } from "../../models/models.js";
 import {
   ATest1OptionalParams,
   ATest2OptionalParams,
   ATest3OptionalParams,
   ATest4OptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
+import { Test3Request, Test4Request } from "../../models/models.js";
 
 /** Interface representing a A operations. */
 export interface AOperations {

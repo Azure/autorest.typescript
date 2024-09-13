@@ -1,6 +1,9 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../../index.js";
+import {
+  ChatCompletionsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
 import {
   CreateChatCompletionRequest,
   createChatCompletionRequestSerializer,
@@ -13,7 +16,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,

@@ -8,10 +8,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  ContentSafetyClient,
-  ContentSafetyClientOptionalParams,
-} from "./contentSafetyClient.js";
+export { ContentSafetyClient } from "./contentSafetyClient.js";
 export {
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
@@ -33,6 +30,21 @@ export {
   TextAnalyzeSeverityResult,
   Versions,
   ErrorResponse,
+} from "./models/index.js";
+export {
+  createContentSafety,
+  ContentSafetyContext,
+  ContentSafetyClientOptionalParams,
+  analyzeText,
+  analyzeImage,
+  getTextBlocklist,
+  createOrUpdateTextBlocklist,
+  deleteTextBlocklist,
+  listTextBlocklists,
+  addOrUpdateBlockItems,
+  removeBlockItems,
+  getTextBlocklistItem,
+  listTextBlocklistItems,
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,
   GetTextBlocklistOptionalParams,
@@ -43,5 +55,5 @@ export {
   RemoveBlockItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   ListTextBlocklistItemsOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

@@ -1,7 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AnomalyDetectorContext as Client } from "../index.js";
+import {
+  AnomalyDetectorContext as Client,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+} from "../index.js";
 import {
   MultivariateMultivariateDetectionResult,
   multivariateMultivariateDetectionResultDeserializer,
@@ -28,15 +37,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "../../models/options.js";
 
 export function _getMultivariateBatchDetectionResultSend(
   context: Client,

@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -37,6 +38,9 @@ export interface ATest4OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
+export function createDemoService(endpointParam: string, options?: DemoServiceClientOptionalParams): DemoServiceContext;
+
+// @public (undocumented)
 export class DemoServiceClient {
     constructor(endpointParam: string, options?: DemoServiceClientOptionalParams);
     readonly a: AOperations;
@@ -45,6 +49,10 @@ export class DemoServiceClient {
 
 // @public
 export interface DemoServiceClientOptionalParams extends ClientOptions {
+}
+
+// @public (undocumented)
+export interface DemoServiceContext extends Client {
 }
 
 // @public (undocumented)

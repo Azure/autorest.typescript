@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  OperationsListOptionalParams,
+} from "../index.js";
 import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
@@ -23,7 +26,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { OperationsListOptionalParams } from "../../models/options.js";
 
 export function _listSend(
   context: Client,

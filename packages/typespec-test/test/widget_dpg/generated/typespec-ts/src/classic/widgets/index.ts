@@ -1,6 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
+} from "../../api/options.js";
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import {
   listWidgets,
@@ -20,17 +31,6 @@ import {
   _listWidgetsPagesResultsDeserializer,
   AnalyzeResult,
 } from "../../models/models.js";
-import {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
-} from "../../models/options.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 

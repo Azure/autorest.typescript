@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetServiceContext as Client } from "../index.js";
+import {
+  BudgetsCreateOrReplaceOptionalParams,
+  WidgetServiceContext as Client,
+} from "../index.js";
 import {
   User,
   userSerializer,
@@ -17,7 +20,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
 
 export function _createOrReplaceSend(
   context: Client,

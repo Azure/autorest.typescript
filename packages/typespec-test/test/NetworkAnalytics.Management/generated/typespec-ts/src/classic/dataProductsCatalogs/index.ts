@@ -23,7 +23,7 @@ import {
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,
   DataProductsCatalogsListBySubscriptionOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a DataProductsCatalogs operations. */
 export interface DataProductsCatalogsOperations {

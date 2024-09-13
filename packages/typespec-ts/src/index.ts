@@ -264,7 +264,6 @@ export async function $onEmit(context: EmitContext) {
       buildApiOptions(subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
-      buildSubpathIndexFile(modularCodeModel, "models", subClient);
       buildRestorePoller(modularCodeModel, subClient);
       if (dpgContext.rlcOptions?.hierarchyClient) {
         buildSubpathIndexFile(modularCodeModel, "api", subClient);

@@ -1,7 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  DataTypesCreateOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesListByDataProductOptionalParams,
+  DataTypesUpdateOptionalParams,
+} from "../index.js";
 import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
@@ -21,11 +30,11 @@ import {
   _OperationListResult,
   _operationListResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -33,15 +42,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataTypesCreateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByDataProductOptionalParams,
-} from "../../models/options.js";
 
 export function _createSend(
   context: Client,

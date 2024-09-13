@@ -1,6 +1,13 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  FilesCreateOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesDownloadOptionalParams,
+  FilesListOptionalParams,
+  FilesRetrieveOptionalParams,
+} from "../index.js";
 import {
   OpenAIFile,
   openAIFileDeserializer,
@@ -17,13 +24,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import {
-  FilesListOptionalParams,
-  FilesCreateOptionalParams,
-  FilesRetrieveOptionalParams,
-  FilesDeleteOptionalParams,
-  FilesDownloadOptionalParams,
-} from "../../models/options.js";
 
 export function _listSend(
   context: Client,

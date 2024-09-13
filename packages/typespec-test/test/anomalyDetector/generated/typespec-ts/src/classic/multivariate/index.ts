@@ -12,6 +12,15 @@ import {
   detectMultivariateLastAnomaly,
 } from "../../api/multivariate/index.js";
 import {
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+} from "../../api/options.js";
+import {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionOptions,
   MultivariateModelInfo,
@@ -21,15 +30,6 @@ import {
   MultivariateMultivariateLastDetectionOptions,
   MultivariateMultivariateLastDetectionResult,
 } from "../../models/models.js";
-import {
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "../../models/options.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Multivariate operations. */

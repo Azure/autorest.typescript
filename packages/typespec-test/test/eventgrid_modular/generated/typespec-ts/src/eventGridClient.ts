@@ -11,6 +11,12 @@ import {
   acknowledgeCloudEvents,
   releaseCloudEvents,
   rejectCloudEvents,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
 } from "./api/index.js";
 import {
   PublishCloudEventRequest,
@@ -26,14 +32,6 @@ import {
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
-import {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "./models/options.js";
 
 export { EventGridClientOptionalParams } from "./api/eventGridContext.js";
 

@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  FineTunesCancelOptionalParams,
+  FineTunesCreateOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesRetrieveOptionalParams,
+} from "../index.js";
 import {
   CreateFineTuneRequest,
   createFineTuneRequestSerializer,
@@ -18,13 +25,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  FineTunesCreateOptionalParams,
-  FineTunesListOptionalParams,
-  FineTunesRetrieveOptionalParams,
-  FineTunesListEventsOptionalParams,
-  FineTunesCancelOptionalParams,
-} from "../../models/options.js";
 
 export function _createSend(
   context: Client,

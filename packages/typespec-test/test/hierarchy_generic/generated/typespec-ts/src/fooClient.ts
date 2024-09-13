@@ -8,10 +8,10 @@ import {
   FooContext,
   FooClientOptionalParams,
   op1,
+  Op1OptionalParams,
 } from "./api/index.js";
 import { A } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { Op1OptionalParams } from "./models/options.js";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";
 

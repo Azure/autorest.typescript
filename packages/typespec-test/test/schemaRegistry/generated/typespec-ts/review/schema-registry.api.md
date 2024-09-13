@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -17,6 +18,9 @@ export type ContentTypeEnum = "application/octet-stream" | "application/json; se
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export function createSchemaRegistry(fullyQualifiedNamespace: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams): SchemaRegistryContext;
 
 // @public
 export interface ErrorResponse {
@@ -105,6 +109,10 @@ export class SchemaRegistryClient {
 // @public
 export interface SchemaRegistryClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public (undocumented)
+export interface SchemaRegistryContext extends Client {
 }
 
 // @public

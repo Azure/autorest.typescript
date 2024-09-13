@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  ModelsDeleteOptionalParams,
+  ModelsListOptionalParams,
+  ModelsRetrieveOptionalParams,
+} from "../index.js";
 import {
   ListModelsResponse,
   listModelsResponseDeserializer,
@@ -16,11 +21,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  ModelsListOptionalParams,
-  ModelsRetrieveOptionalParams,
-  ModelsDeleteOptionalParams,
-} from "../../models/options.js";
 
 export function _listSend(
   context: Client,

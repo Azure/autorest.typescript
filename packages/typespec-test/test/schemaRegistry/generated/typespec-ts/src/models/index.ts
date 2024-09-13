@@ -12,11 +12,3 @@ export {
   ContentTypeEnum,
   ErrorResponse,
 } from "./models.js";
-export {
-  SchemaOperationsListSchemaGroupsOptionalParams,
-  SchemaOperationsGetSchemaByIdOptionalParams,
-  SchemaOperationsListSchemaVersionsOptionalParams,
-  SchemaOperationsGetSchemaByVersionOptionalParams,
-  SchemaOperationsGetSchemaIdByContentOptionalParams,
-  SchemaOperationsRegisterSchemaOptionalParams,
-} from "./options.js";

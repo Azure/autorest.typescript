@@ -23,15 +23,3 @@ export {
   Versions,
   ErrorResponse,
 } from "./models.js";
-export {
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-} from "./options.js";

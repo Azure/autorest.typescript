@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -24,6 +25,9 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 export interface ConfidentialLedgerOperations {
     listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
+
+// @public (undocumented)
+export function createParametrizedHost(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams): ParametrizedHostContext;
 
 // @public
 export interface ErrorResponse {
@@ -47,6 +51,10 @@ export interface ParametrizedHostClientOptionalParams extends ClientOptions {
     subdomain?: string;
     // (undocumented)
     sufix?: string;
+}
+
+// @public (undocumented)
+export interface ParametrizedHostContext extends Client {
 }
 
 // (No @packageDocumentation comment for this package)

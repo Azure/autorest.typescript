@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { EventGridContext as Client } from "./index.js";
+import {
+  AcknowledgeCloudEventsOptionalParams,
+  EventGridContext as Client,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+} from "./index.js";
 import {
   PublishCloudEventRequest,
   publishCloudEventRequestSerializer,
@@ -30,14 +38,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "../models/options.js";
 
 export function _publishCloudEventSend(
   context: Client,

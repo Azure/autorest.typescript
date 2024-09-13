@@ -1,6 +1,11 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
+  ImagesCreateVariationOptionalParams,
+} from "../index.js";
 import {
   CreateImageRequest,
   createImageRequestSerializer,
@@ -17,11 +22,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import {
-  ImagesCreateOptionalParams,
-  ImagesCreateEditOptionalParams,
-  ImagesCreateVariationOptionalParams,
-} from "../../models/options.js";
 
 export function _createSend(
   context: Client,

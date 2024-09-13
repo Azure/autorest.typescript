@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ChatProtocolContext as Client } from "./index.js";
+import {
+  ChatProtocolContext as Client,
+  CreateOptionalParams,
+  CreateStreamingOptionalParams,
+} from "./index.js";
 import {
   StreamingChatCompletionOptionsRecord,
   streamingChatCompletionOptionsRecordSerializer,
@@ -18,10 +22,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  CreateStreamingOptionalParams,
-  CreateOptionalParams,
-} from "../models/options.js";
 
 export function _createStreamingSend(
   context: Client,

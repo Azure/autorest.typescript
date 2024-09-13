@@ -1,6 +1,9 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../index.js";
+import {
+  OpenAIContext as Client,
+  ModerationsCreateOptionalParams,
+} from "../index.js";
 import {
   CreateModerationRequest,
   createModerationRequestSerializer,
@@ -13,7 +16,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { ModerationsCreateOptionalParams } from "../../models/options.js";
 
 export function _createSend(
   context: Client,

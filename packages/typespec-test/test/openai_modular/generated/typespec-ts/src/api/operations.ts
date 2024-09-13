@@ -1,7 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "./index.js";
+import {
+  OpenAIContext as Client,
+  GenerateSpeechFromTextOptionalParams,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetCompletionsOptionalParams,
+  GetEmbeddingsOptionalParams,
+  GetImageGenerationsOptionalParams,
+} from "./index.js";
 import {
   AudioTranscriptionOptions,
   audioTranscriptionOptionsSerializer,
@@ -36,17 +47,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
-  GetEmbeddingsOptionalParams,
-} from "../models/options.js";
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,

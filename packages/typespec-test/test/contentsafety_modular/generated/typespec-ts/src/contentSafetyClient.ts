@@ -15,6 +15,16 @@ import {
   removeBlockItems,
   getTextBlocklistItem,
   listTextBlocklistItems,
+  AnalyzeTextOptionalParams,
+  AnalyzeImageOptionalParams,
+  GetTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  AddOrUpdateBlockItemsOptionalParams,
+  RemoveBlockItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  ListTextBlocklistItemsOptionalParams,
 } from "./api/index.js";
 import {
   TextBlocklist,
@@ -32,18 +42,6 @@ import {
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
-import {
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-} from "./models/options.js";
 
 export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 

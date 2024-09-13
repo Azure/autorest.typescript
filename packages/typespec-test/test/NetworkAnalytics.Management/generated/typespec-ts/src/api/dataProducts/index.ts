@@ -1,7 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  DataProductsAddUserRoleOptionalParams,
+  DataProductsCreateOptionalParams,
+  DataProductsDeleteOptionalParams,
+  DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  DataProductsGetOptionalParams,
+  DataProductsListByResourceGroupOptionalParams,
+  DataProductsListBySubscriptionOptionalParams,
+  DataProductsListRolesAssignmentsOptionalParams,
+  DataProductsRemoveUserRoleOptionalParams,
+  DataProductsRotateKeyOptionalParams,
+  DataProductsUpdateOptionalParams,
+} from "../index.js";
 import {
   DataProduct,
   dataProductSerializer,
@@ -30,11 +43,11 @@ import {
   _OperationListResult,
   _operationListResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -42,19 +55,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataProductsCreateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListBySubscriptionOptionalParams,
-} from "../../models/options.js";
 
 export function _createSend(
   context: Client,

@@ -17,10 +17,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  NetworkAnalyticsClient,
-  NetworkAnalyticsClientOptionalParams,
-} from "./networkAnalyticsClient.js";
+export { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   DataProduct,
@@ -83,6 +80,11 @@ export {
   KnownActionType,
   ActionType,
   Versions,
+} from "./models/index.js";
+export {
+  createNetworkAnalytics,
+  NetworkAnalyticsContext,
+  NetworkAnalyticsClientOptionalParams,
   OperationsListOptionalParams,
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,
@@ -105,7 +107,7 @@ export {
   DataProductsListRolesAssignmentsOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   DataProductsOperations,
   DataProductsCatalogsOperations,

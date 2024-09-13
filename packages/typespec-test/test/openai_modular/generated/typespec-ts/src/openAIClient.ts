@@ -14,6 +14,15 @@ import {
   getImageGenerations,
   generateSpeechFromText,
   getEmbeddings,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetCompletionsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetEmbeddingsOptionalParams,
 } from "./api/index.js";
 import {
   AudioTranscriptionOptions,
@@ -32,17 +41,6 @@ import {
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
-import {
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
-  GetEmbeddingsOptionalParams,
-} from "./models/options.js";
 
 export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 

@@ -8,10 +8,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  SchemaRegistryClient,
-  SchemaRegistryClientOptionalParams,
-} from "./schemaRegistryClient.js";
+export { SchemaRegistryClient } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
   SchemaVersion,
@@ -22,12 +19,17 @@ export {
   ServiceApiVersions,
   ContentTypeEnum,
   ErrorResponse,
+} from "./models/index.js";
+export {
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-} from "./models/index.js";
+  createSchemaRegistry,
+  SchemaRegistryContext,
+  SchemaRegistryClientOptionalParams,
+} from "./api/index.js";
 export { SchemaOperationsOperations } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { DemoServiceContext as Client } from "../index.js";
+import {
+  ATest1OptionalParams,
+  ATest2OptionalParams,
+  ATest3OptionalParams,
+  ATest4OptionalParams,
+  DemoServiceContext as Client,
+} from "../index.js";
 import {
   Test3Request,
   test3RequestSerializer,
@@ -14,12 +20,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  ATest1OptionalParams,
-  ATest2OptionalParams,
-  ATest3OptionalParams,
-  ATest4OptionalParams,
-} from "../../models/options.js";
 
 export function _test1Send(
   context: Client,

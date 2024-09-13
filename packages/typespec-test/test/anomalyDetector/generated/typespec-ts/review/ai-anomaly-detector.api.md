@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -22,6 +23,10 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
+// @public (undocumented)
+export interface AnomalyDetectorContext extends Client {
+}
+
 // @public
 export type APIVersion = "v1.1";
 
@@ -29,6 +34,9 @@ export type APIVersion = "v1.1";
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export function createAnomalyDetector(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptionalParams): AnomalyDetectorContext;
 
 // @public
 export type MultivariateAlignMode = "Inner" | "Outer";

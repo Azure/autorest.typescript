@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -66,6 +67,10 @@ export class ChatProtocolClient {
 export interface ChatProtocolClientOptionalParams extends ClientOptions {
 }
 
+// @public (undocumented)
+export interface ChatProtocolContext extends Client {
+}
+
 // @public
 export type ChatRole = "user" | "system" | "assistant";
 
@@ -79,8 +84,17 @@ export interface ChoiceDeltaRecord {
 }
 
 // @public
+export function create(context: ChatProtocolContext, body: ChatCompletionOptionsRecord, options?: CreateOptionalParams): Promise<ChatCompletionRecord>;
+
+// @public
+export function createChatProtocol(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptionalParams): ChatProtocolContext;
+
+// @public
 export interface CreateOptionalParams extends OperationOptions {
 }
+
+// @public
+export function createStreaming(context: ChatProtocolContext, body: StreamingChatCompletionOptionsRecord, options?: CreateStreamingOptionalParams): Promise<ChatCompletionChunkRecord>;
 
 // @public
 export interface CreateStreamingOptionalParams extends OperationOptions {

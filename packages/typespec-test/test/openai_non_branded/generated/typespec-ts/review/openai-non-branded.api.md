@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
 import { KeyCredential } from '@typespec/ts-http-runtime';
 import { OperationOptions } from '@typespec/ts-http-runtime';
@@ -514,6 +515,9 @@ export interface CreateModerationResponseResultCategoryScores {
     violence: number;
 }
 
+// @public
+export function createOpenAI(credential: KeyCredential, options?: OpenAIClientOptionalParams): OpenAIContext;
+
 // @public (undocumented)
 export interface CreateTranscriptionRequest {
     file: Uint8Array;
@@ -994,6 +998,10 @@ export class OpenAIClient {
 
 // @public
 export interface OpenAIClientOptionalParams extends ClientOptions {
+}
+
+// @public (undocumented)
+export interface OpenAIContext extends Client {
 }
 
 // @public

@@ -18,11 +18,3 @@ export {
   ServiceApiVersions,
   ErrorResponse,
 } from "./models.js";
-export {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "./options.js";

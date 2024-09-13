@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FooContext as Client } from "../../../index.js";
+import { BECOp1OptionalParams, FooContext as Client } from "../../../index.js";
 import { Bea, beaSerializer } from "../../../../models/models.js";
 import {
   StreamableMethod,
@@ -9,7 +9,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { BECOp1OptionalParams } from "../../../../models/options.js";
 
 export function _op1Send(
   context: Client,

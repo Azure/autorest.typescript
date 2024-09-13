@@ -5,6 +5,7 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
@@ -44,6 +45,9 @@ export interface CreateWidgetRequest {
 
 // @public
 export type CreateWidgetRequestColor = "red" | "blue";
+
+// @public (undocumented)
+export function createWidgetService(endpointParam: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams): WidgetServiceContext;
 
 // @public
 export interface ErrorResponse {
@@ -142,6 +146,10 @@ export class WidgetServiceClient {
 // @public
 export interface WidgetServiceClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public (undocumented)
+export interface WidgetServiceContext extends Client {
 }
 
 // @public

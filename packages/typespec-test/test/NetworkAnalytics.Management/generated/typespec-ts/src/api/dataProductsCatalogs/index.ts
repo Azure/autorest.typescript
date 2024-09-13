@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext as Client } from "../index.js";
+import {
+  NetworkAnalyticsContext as Client,
+  DataProductsCatalogsGetOptionalParams,
+  DataProductsCatalogsListByResourceGroupOptionalParams,
+  DataProductsCatalogsListBySubscriptionOptionalParams,
+} from "../index.js";
 import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
@@ -24,11 +29,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-} from "../../models/options.js";
 
 export function _getSend(
   context: Client,

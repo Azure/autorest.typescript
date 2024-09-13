@@ -37,15 +37,3 @@ export {
   APIVersion,
   Versions,
 } from "./models.js";
-export {
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "./options.js";

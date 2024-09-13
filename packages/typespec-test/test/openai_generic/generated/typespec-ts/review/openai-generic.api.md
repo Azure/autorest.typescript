@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -514,6 +515,9 @@ export interface CreateModerationResponseResultCategoryScores {
     violence: number;
 }
 
+// @public
+export function createOpenAI(credential: KeyCredential, options?: OpenAIClientOptionalParams): OpenAIContext;
+
 // @public (undocumented)
 export interface CreateTranscriptionRequest {
     file: Uint8Array;
@@ -994,6 +998,10 @@ export class OpenAIClient {
 
 // @public
 export interface OpenAIClientOptionalParams extends ClientOptions {
+}
+
+// @public (undocumented)
+export interface OpenAIContext extends Client {
 }
 
 // @public

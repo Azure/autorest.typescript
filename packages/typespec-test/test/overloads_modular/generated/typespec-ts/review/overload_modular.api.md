@@ -4,12 +4,16 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
+
+// @public (undocumented)
+export function createWidgetManager(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptionalParams): WidgetManagerContext;
 
 // @public
 export interface ErrorResponse {
@@ -47,6 +51,10 @@ export class WidgetManagerClient {
 // @public
 export interface WidgetManagerClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public (undocumented)
+export interface WidgetManagerContext extends Client {
 }
 
 // (No @packageDocumentation comment for this package)

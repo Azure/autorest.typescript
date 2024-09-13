@@ -11,10 +11,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  AnomalyDetectorClient,
-  AnomalyDetectorClientOptionalParams,
-} from "./anomalyDetectorClient.js";
+export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
@@ -50,6 +47,11 @@ export {
   UnivariateUnivariateChangePointDetectionResult,
   APIVersion,
   Versions,
+} from "./models/index.js";
+export {
+  createAnomalyDetector,
+  AnomalyDetectorContext,
+  AnomalyDetectorClientOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateChangePointOptionalParams,
@@ -60,7 +62,7 @@ export {
   MultivariateGetMultivariateModelOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   MultivariateOperations,
   UnivariateOperations,

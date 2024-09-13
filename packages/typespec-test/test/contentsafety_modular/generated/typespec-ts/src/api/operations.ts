@@ -1,7 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ContentSafetyContext as Client } from "./index.js";
+import {
+  AddOrUpdateBlockItemsOptionalParams,
+  AnalyzeImageOptionalParams,
+  AnalyzeTextOptionalParams,
+  ContentSafetyContext as Client,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  GetTextBlocklistOptionalParams,
+  ListTextBlocklistItemsOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  RemoveBlockItemsOptionalParams,
+} from "./index.js";
 import {
   TextBlocklist,
   textBlocklistSerializer,
@@ -35,18 +47,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-} from "../models/options.js";
 
 export function _analyzeTextSend(
   context: Client,

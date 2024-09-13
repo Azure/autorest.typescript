@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AnomalyDetectorContext as Client } from "../index.js";
+import {
+  AnomalyDetectorContext as Client,
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+} from "../index.js";
 import {
   _MultivariateModelList,
   _multivariateModelListDeserializer,
@@ -22,11 +27,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-} from "../../models/options.js";
 
 export function _detectUnivariateEntireSeriesSend(
   context: Client,

@@ -1,7 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetServiceContext as Client } from "../index.js";
+import {
+  WidgetServiceContext as Client,
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+} from "../index.js";
 import {
   User,
   userSerializer,
@@ -28,17 +39,6 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
-} from "../../models/options.js";
 
 export function _listWidgetsSend(
   context: Client,

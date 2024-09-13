@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../../index.js";
+import {
+  OpenAIContext as Client,
+  FineTuningJobsCancelOptionalParams,
+  FineTuningJobsCreateOptionalParams,
+  FineTuningJobsListEventsOptionalParams,
+  FineTuningJobsListOptionalParams,
+  FineTuningJobsRetrieveOptionalParams,
+} from "../../index.js";
 import {
   CreateFineTuningJobRequest,
   createFineTuningJobRequestSerializer,
@@ -18,13 +25,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  FineTuningJobsCreateOptionalParams,
-  FineTuningJobsListOptionalParams,
-  FineTuningJobsRetrieveOptionalParams,
-  FineTuningJobsListEventsOptionalParams,
-  FineTuningJobsCancelOptionalParams,
-} from "../../../models/options.js";
 
 export function _createSend(
   context: Client,

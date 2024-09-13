@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { OpenAIClient, OpenAIClientOptionalParams } from "./openAIClient.js";
+export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationRequestInput,
@@ -92,6 +92,11 @@ export {
   CreateTranscriptionRequestModel,
   CreateTranscriptionRequestResponseFormat,
   CreateTranscriptionResponse,
+} from "./models/index.js";
+export {
+  createOpenAI,
+  OpenAIContext,
+  OpenAIClientOptionalParams,
   AudioTranscriptionsCreateOptionalParams,
   AudioTranslationsCreateOptionalParams,
   ChatCompletionsCreateOptionalParams,
@@ -120,7 +125,7 @@ export {
   ImagesCreateEditOptionalParams,
   ImagesCreateVariationOptionalParams,
   ModerationsCreateOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   AudioOperations,
   ChatOperations,

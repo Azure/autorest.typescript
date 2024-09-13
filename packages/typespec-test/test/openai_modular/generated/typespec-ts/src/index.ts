@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { OpenAIClient, OpenAIClientOptionalParams } from "./openAIClient.js";
+export { OpenAIClient } from "./openAIClient.js";
 export {
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,
@@ -148,6 +148,20 @@ export {
   EmbeddingsUsage,
   ServiceApiVersions,
   ErrorResponse,
+} from "./models/index.js";
+export {
+  createOpenAI,
+  OpenAIContext,
+  OpenAIClientOptionalParams,
+  getAudioTranscriptionAsPlainText,
+  getAudioTranscriptionAsResponseObject,
+  getAudioTranslationAsPlainText,
+  getAudioTranslationAsResponseObject,
+  getCompletions,
+  getChatCompletions,
+  getImageGenerations,
+  generateSpeechFromText,
+  getEmbeddings,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -157,4 +171,4 @@ export {
   GetImageGenerationsOptionalParams,
   GenerateSpeechFromTextOptionalParams,
   GetEmbeddingsOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

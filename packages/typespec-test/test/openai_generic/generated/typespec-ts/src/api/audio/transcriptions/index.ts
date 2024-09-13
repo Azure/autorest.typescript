@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext as Client } from "../../index.js";
+import {
+  AudioTranscriptionsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
 import {
   CreateTranscriptionRequest,
   createTranscriptionRequestSerializer,
@@ -14,7 +17,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,

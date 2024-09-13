@@ -9,7 +9,7 @@ import {
   _listWidgetsPagesResultsDeserializer,
 } from "../../models/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
+import { BudgetsCreateOrReplaceOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Budgets operations. */
 export interface BudgetsOperations {
