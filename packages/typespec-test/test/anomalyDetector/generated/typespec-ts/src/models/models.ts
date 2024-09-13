@@ -57,6 +57,7 @@ export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
   };
 }
 
+/** Type of MultivariateMultivariateBatchDetectionStatus */
 export type MultivariateMultivariateBatchDetectionStatus =
   | "CREATED"
   | "RUNNING"
@@ -466,6 +467,7 @@ export function multivariateAlignPolicyDeserializer(
   };
 }
 
+/** Type of MultivariateAlignMode */
 export type MultivariateAlignMode = "Inner" | "Outer";
 
 export function multivariateAlignModeSerializer(
@@ -500,6 +502,7 @@ export function multivariateFillNAMethodDeserializer(
   return item;
 }
 
+/** Type of MultivariateModelStatus */
 export type MultivariateModelStatus =
   | "CREATED"
   | "RUNNING"
@@ -811,6 +814,7 @@ export function univariateTimeSeriesPointArraySerializer(
   });
 }
 
+/** Type of UnivariateTimeGranularity */
 export type UnivariateTimeGranularity =
   | "yearly"
   | "monthly"
@@ -834,6 +838,7 @@ export function univariateTimeGranularityDeserializer(
   return item;
 }
 
+/** Type of UnivariateImputeMode */
 export type UnivariateImputeMode =
   | "auto"
   | "previous"
@@ -944,6 +949,7 @@ export function univariateAnomalyDetectorErrorDeserializer(
   };
 }
 
+/** Type of UnivariateAnomalyDetectorErrorCodes */
 export type UnivariateAnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
   | "BadArgument"
@@ -1108,6 +1114,7 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
   };
 }
 
+/** Type of APIVersion */
 export type APIVersion = "v1.1";
 
 export function aPIVersionSerializer(item: APIVersion): any {
@@ -1118,6 +1125,7 @@ export function aPIVersionDeserializer(item: any): APIVersion {
   return item;
 }
 
+/** Type of Versions */
 export type Versions = "v1.1";
 
 export function versionsSerializer(item: Versions): any {

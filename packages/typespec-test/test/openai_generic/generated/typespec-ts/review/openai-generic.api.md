@@ -74,7 +74,7 @@ export interface ChatCompletionRequestMessageFunctionCall {
     name: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionRequestMessageRole = "system" | "user" | "assistant" | "function";
 
 // @public (undocumented)
@@ -93,7 +93,7 @@ export interface ChatCompletionResponseMessageFunctionCall {
     name: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionResponseMessageRole = "system" | "user" | "assistant" | "function";
 
 // @public
@@ -150,7 +150,7 @@ export interface CreateChatCompletionRequest {
 // @public (undocumented)
 export type CreateChatCompletionRequestFunctionCall1 = "none" | "auto" | ChatCompletionFunctionCallOption;
 
-// @public (undocumented)
+// @public
 export type CreateChatCompletionRequestModel = "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
 
 // @public
@@ -176,7 +176,7 @@ export interface CreateChatCompletionResponseChoice {
     message: ChatCompletionResponseMessage;
 }
 
-// @public (undocumented)
+// @public
 export type CreateChatCompletionResponseChoiceFinishReason = "stop" | "length" | "function_call" | "content_filter";
 
 // @public (undocumented)
@@ -199,7 +199,7 @@ export interface CreateCompletionRequest {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export type CreateCompletionRequestModel = "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
 
 // @public
@@ -239,7 +239,7 @@ export interface CreateCompletionResponseChoice {
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export type CreateCompletionResponseChoiceFinishReason = "stop" | "length" | "content_filter";
 
 // @public (undocumented)
@@ -264,7 +264,7 @@ export interface CreateEditRequest {
     top_p?: number | null;
 }
 
-// @public (undocumented)
+// @public
 export type CreateEditRequestModel = "text-davinci-edit-001" | "code-davinci-edit-001";
 
 // @public (undocumented)
@@ -287,7 +287,7 @@ export interface CreateEditResponseChoice {
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export type CreateEditResponseChoiceFinishReason = "stop" | "length";
 
 // @public (undocumented)
@@ -301,7 +301,7 @@ export interface CreateEmbeddingRequest {
 // @public (undocumented)
 export type CreateEmbeddingRequestInput = string | string[] | number[] | number[][];
 
-// @public (undocumented)
+// @public
 export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
 
 // @public (undocumented)
@@ -343,7 +343,7 @@ export interface CreateFineTuneRequest {
     validation_file?: string | null;
 }
 
-// @public (undocumented)
+// @public
 export type CreateFineTuneRequestModel = "ada" | "babbage" | "curie" | "davinci";
 
 // @public (undocumented)
@@ -365,7 +365,7 @@ export interface CreateFineTuningJobRequestHyperparameters {
 // @public (undocumented)
 export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
 
-// @public (undocumented)
+// @public
 export type CreateFineTuningJobRequestModel = "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
 
 // @public (undocumented)
@@ -390,10 +390,10 @@ export interface CreateImageRequest {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export type CreateImageRequestResponseFormat = "url" | "b64_json";
 
-// @public (undocumented)
+// @public
 export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
 
 // @public (undocumented)
@@ -415,7 +415,7 @@ export interface CreateModerationRequest {
 // @public (undocumented)
 export type CreateModerationRequestInput = string | string[];
 
-// @public (undocumented)
+// @public
 export type CreateModerationRequestModel = "text-moderation-latest" | "text-moderation-stable";
 
 // @public (undocumented)
@@ -524,10 +524,10 @@ export interface CreateTranscriptionRequest {
     temperature?: number;
 }
 
-// @public (undocumented)
+// @public
 export type CreateTranscriptionRequestModel = "whisper-1";
 
-// @public (undocumented)
+// @public
 export type CreateTranscriptionRequestResponseFormat = "json" | "text" | "srt" | "verbose_json" | "vtt";
 
 // @public (undocumented)
@@ -545,10 +545,10 @@ export interface CreateTranslationRequest {
     temperature?: number;
 }
 
-// @public (undocumented)
+// @public
 export type CreateTranslationRequestModel = "whisper-1";
 
-// @public (undocumented)
+// @public
 export type CreateTranslationRequestResponseFormat = "json" | "text" | "srt" | "verbose_json" | "vtt";
 
 // @public (undocumented)
@@ -741,7 +741,7 @@ export interface FineTunesOperations {
 export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type FineTuneStatus = "created" | "running" | "succeeded" | "failed" | "cancelled";
 
 // @public (undocumented)
@@ -789,7 +789,7 @@ export interface FineTuningJobEvent {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export type FineTuningJobEventLevel = "info" | "warn" | "error";
 
 // @public (undocumented)
@@ -837,7 +837,7 @@ export interface FineTuningJobsOperations {
 export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type FineTuningJobStatus = "created" | "pending" | "running" | "succeeded" | "failed" | "cancelled";
 
 // @public
@@ -1008,7 +1008,7 @@ export interface OpenAIFile {
     status_details?: string | null;
 }
 
-// @public (undocumented)
+// @public
 export type OpenAIFileStatus = "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
 
 // @public (undocumented)

@@ -42,6 +42,7 @@ export function widgetDeserializer(item: any): Widget {
   };
 }
 
+/** Type of WidgetColor */
 export type WidgetColor = "red" | "blue";
 
 export function widgetColorSerializer(item: WidgetColor): any {
@@ -95,6 +96,7 @@ export interface CreateWidgetRequest {
   color: "red" | "blue";
 }
 
+/** Type of CreateWidgetRequestColor */
 export type CreateWidgetRequestColor = "red" | "blue";
 
 export function createWidgetRequestColorSerializer(
@@ -116,6 +118,7 @@ export interface UpdateWidgetRequest {
   color?: "red" | "blue";
 }
 
+/** Type of UpdateWidgetRequestColor */
 export type UpdateWidgetRequestColor = "red" | "blue";
 
 export function updateWidgetRequestColorSerializer(

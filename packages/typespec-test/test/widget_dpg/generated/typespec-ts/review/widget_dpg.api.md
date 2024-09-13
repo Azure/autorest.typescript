@@ -42,7 +42,7 @@ export interface CreateWidgetRequest {
     weight: number;
 }
 
-// @public (undocumented)
+// @public
 export type CreateWidgetRequestColor = "red" | "blue";
 
 // @public
@@ -84,7 +84,7 @@ export interface UpdateWidgetRequest {
     weight?: number;
 }
 
-// @public (undocumented)
+// @public
 export type UpdateWidgetRequestColor = "red" | "blue";
 
 // @public
@@ -104,7 +104,7 @@ export interface Widget {
     weight: number;
 }
 
-// @public (undocumented)
+// @public
 export type WidgetColor = "red" | "blue";
 
 // @public (undocumented)

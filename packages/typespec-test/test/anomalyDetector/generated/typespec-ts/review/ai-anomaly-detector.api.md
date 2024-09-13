@@ -22,7 +22,7 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export type APIVersion = "v1.1";
 
 // @public
@@ -30,7 +30,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export type MultivariateAlignMode = "Inner" | "Outer";
 
 // @public
@@ -141,7 +141,7 @@ export interface MultivariateModelState {
     validationLosses?: number[];
 }
 
-// @public (undocumented)
+// @public
 export type MultivariateModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 // @public
@@ -160,7 +160,7 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
     variableStates?: MultivariateVariableState[];
 }
 
-// @public (undocumented)
+// @public
 export type MultivariateMultivariateBatchDetectionStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 // @public
@@ -231,7 +231,7 @@ export interface UnivariateAnomalyDetectorError {
     message?: string;
 }
 
-// @public (undocumented)
+// @public
 export type UnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
@@ -246,7 +246,7 @@ export interface UnivariateDetectUnivariateEntireSeriesOptionalParams extends Op
 export interface UnivariateDetectUnivariateLastPointOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 // @public
@@ -256,7 +256,7 @@ export interface UnivariateOperations {
     detectUnivariateLastPoint: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<UnivariateUnivariateLastDetectionResult>;
 }
 
-// @public (undocumented)
+// @public
 export type UnivariateTimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
 
 // @public
@@ -319,7 +319,7 @@ export interface UnivariateUnivariateLastDetectionResult {
     upperMargin: number;
 }
 
-// @public (undocumented)
+// @public
 export type Versions = "v1.1";
 
 // (No @packageDocumentation comment for this package)

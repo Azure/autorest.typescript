@@ -368,6 +368,7 @@ export function textAnalyzeSeverityResultArrayDeserializer(
   });
 }
 
+/** Type of Versions */
 export type Versions = "2023-10-01";
 
 export function versionsSerializer(item: Versions): any {

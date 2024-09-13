@@ -237,6 +237,7 @@ export function rejectResultDeserializer(item: any): RejectResult {
   };
 }
 
+/** Type of ServiceApiVersions */
 export type ServiceApiVersions = "2023-06-01-preview";
 
 export function serviceApiVersionsSerializer(item: ServiceApiVersions): any {

@@ -94,6 +94,7 @@ export function schemaDeserializer(item: any): Schema {
   };
 }
 
+/** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"

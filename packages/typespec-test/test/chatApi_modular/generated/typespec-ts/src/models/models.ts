@@ -269,6 +269,7 @@ export function chatChoiceRecordArrayDeserializer(
   });
 }
 
+/** Type of APIVersion */
 export type APIVersion = "2023-10-01-preview";
 
 export function aPIVersionSerializer(item: APIVersion): any {

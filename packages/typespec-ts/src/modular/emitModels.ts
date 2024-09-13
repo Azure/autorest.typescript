@@ -84,7 +84,7 @@ export function emitTypes(
       addDeclaration(sourceFile, enumType, type);
       addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "union") {
-      const unionType = buildUnionType(type);
+      const unionType = buildUnionType(context, type);
       addDeclaration(sourceFile, unionType, type);
       addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "dict") {
@@ -143,10 +143,13 @@ function addSerializationFunctions(
   }
 }
 
-function buildUnionType(type: SdkUnionType): TypeAliasDeclarationStructure {
+function buildUnionType(
+  context: SdkContext,
+  type: SdkUnionType
+): TypeAliasDeclarationStructure {
   const unionDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
-    name: normalizeName(type.name, NameType.Interface),
+    name: normalizeModelName(context, type),
     isExported: true,
     type: type.values.map((v) => getTypeExpression(v)).join(" | ")
   };
@@ -178,12 +181,16 @@ function buildEnumTypes(
       : getTypeExpression(type.valueType)
   };
 
-  if (type.description) {
-    enumAsUnion.docs = isExtensibleEnum(context, type)
-      ? [getExtensibleEnumDescription(type) ?? type.description]
-      : [type.description];
-    enumDeclaration.docs = [type.description];
-  }
+  const docs = type.description
+    ? type.description
+    : "Type of " + enumAsUnion.name;
+  enumAsUnion.docs =
+    isExtensibleEnum(context, type) && type.description
+      ? [getExtensibleEnumDescription(type) ?? docs]
+      : [docs];
+  enumDeclaration.docs = type.description
+    ? [type.description]
+    : ["Type of " + enumDeclaration.name];
 
   return [enumAsUnion, enumDeclaration];
 }
@@ -301,9 +308,6 @@ function buildModelPolymorphicType(type: SdkModelType) {
 function buildModelProperty(
   property: SdkModelPropertyType
 ): PropertySignatureStructure {
-  if (property.name === "info") {
-    property;
-  }
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: `"${property.name}"`,

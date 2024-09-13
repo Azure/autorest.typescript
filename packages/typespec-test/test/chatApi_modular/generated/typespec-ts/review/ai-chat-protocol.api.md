@@ -10,7 +10,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
+// @public
 export type APIVersion = "2023-10-01-preview";
 
 // @public

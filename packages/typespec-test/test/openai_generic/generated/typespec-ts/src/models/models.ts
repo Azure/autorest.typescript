@@ -37,6 +37,7 @@ export function createModerationRequestInputDeserializer(
   return item;
 }
 
+/** Type of CreateModerationRequestModel */
 export type CreateModerationRequestModel =
   | "text-moderation-latest"
   | "text-moderation-stable";
@@ -309,6 +310,7 @@ export function createImageRequestSerializer(item: CreateImageRequest): any {
   };
 }
 
+/** Type of CreateImageRequestSize */
 export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
 
 export function createImageRequestSizeSerializer(
@@ -323,6 +325,7 @@ export function createImageRequestSizeDeserializer(
   return item;
 }
 
+/** Type of CreateImageRequestResponseFormat */
 export type CreateImageRequestResponseFormat = "url" | "b64_json";
 
 export function createImageRequestResponseFormatSerializer(
@@ -623,6 +626,7 @@ export function createFineTuneRequestSerializer(
   };
 }
 
+/** Type of CreateFineTuneRequestModel */
 export type CreateFineTuneRequestModel =
   | "ada"
   | "babbage"
@@ -705,6 +709,7 @@ export function fineTuneDeserializer(item: any): FineTune {
   };
 }
 
+/** Type of FineTuneStatus */
 export type FineTuneStatus =
   | "created"
   | "running"
@@ -802,6 +807,7 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
   };
 }
 
+/** Type of OpenAIFileStatus */
 export type OpenAIFileStatus =
   | "uploaded"
   | "processed"
@@ -950,6 +956,7 @@ export function createEmbeddingRequestSerializer(
   return { model: item["model"], input: item["input"], user: item["user"] };
 }
 
+/** Type of CreateEmbeddingRequestModel */
 export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
 
 export function createEmbeddingRequestModelSerializer(
@@ -1090,6 +1097,7 @@ export function createEditRequestSerializer(item: CreateEditRequest): any {
   };
 }
 
+/** Type of CreateEditRequestModel */
 export type CreateEditRequestModel =
   | "text-davinci-edit-001"
   | "code-davinci-edit-001";
@@ -1154,6 +1162,7 @@ export function createEditResponseChoiceDeserializer(
   };
 }
 
+/** Type of CreateEditResponseChoiceFinishReason */
 export type CreateEditResponseChoiceFinishReason = "stop" | "length";
 
 export function createEditResponseChoiceFinishReasonSerializer(
@@ -1336,6 +1345,7 @@ export function createCompletionRequestSerializer(
   };
 }
 
+/** Type of CreateCompletionRequestModel */
 export type CreateCompletionRequestModel =
   | "babbage-002"
   | "davinci-002"
@@ -1472,6 +1482,7 @@ export function createCompletionResponseChoiceLogprobsDeserializer(
   };
 }
 
+/** Type of CreateCompletionResponseChoiceFinishReason */
 export type CreateCompletionResponseChoiceFinishReason =
   | "stop"
   | "length"
@@ -1554,6 +1565,7 @@ export function createFineTuningJobRequestSerializer(
   };
 }
 
+/** Type of CreateFineTuningJobRequestModel */
 export type CreateFineTuningJobRequestModel =
   | "babbage-002"
   | "davinci-002"
@@ -1692,6 +1704,7 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
   };
 }
 
+/** Type of FineTuningJobStatus */
 export type FineTuningJobStatus =
   | "created"
   | "pending"
@@ -1821,6 +1834,7 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
   };
 }
 
+/** Type of FineTuningJobEventLevel */
 export type FineTuningJobEventLevel = "info" | "warn" | "error";
 
 export function fineTuningJobEventLevelSerializer(
@@ -1969,6 +1983,7 @@ export function createChatCompletionRequestSerializer(
   };
 }
 
+/** Type of CreateChatCompletionRequestModel */
 export type CreateChatCompletionRequestModel =
   | "gpt4"
   | "gpt-4-0314"
@@ -2031,6 +2046,7 @@ export function chatCompletionRequestMessageSerializer(
   };
 }
 
+/** Type of ChatCompletionRequestMessageRole */
 export type ChatCompletionRequestMessageRole =
   | "system"
   | "user"
@@ -2238,6 +2254,7 @@ export function chatCompletionResponseMessageDeserializer(
   };
 }
 
+/** Type of ChatCompletionResponseMessageRole */
 export type ChatCompletionResponseMessageRole =
   | "system"
   | "user"
@@ -2276,6 +2293,7 @@ export function chatCompletionResponseMessageFunctionCallDeserializer(
   };
 }
 
+/** Type of CreateChatCompletionResponseChoiceFinishReason */
 export type CreateChatCompletionResponseChoiceFinishReason =
   | "stop"
   | "length"
@@ -2341,6 +2359,7 @@ export function createTranslationRequestSerializer(
   };
 }
 
+/** Type of CreateTranslationRequestModel */
 export type CreateTranslationRequestModel = "whisper-1";
 
 export function createTranslationRequestModelSerializer(
@@ -2355,6 +2374,7 @@ export function createTranslationRequestModelDeserializer(
   return item;
 }
 
+/** Type of CreateTranslationRequestResponseFormat */
 export type CreateTranslationRequestResponseFormat =
   | "json"
   | "text"
@@ -2432,6 +2452,7 @@ export function createTranscriptionRequestSerializer(
   };
 }
 
+/** Type of CreateTranscriptionRequestModel */
 export type CreateTranscriptionRequestModel = "whisper-1";
 
 export function createTranscriptionRequestModelSerializer(
@@ -2446,6 +2467,7 @@ export function createTranscriptionRequestModelDeserializer(
   return item;
 }
 
+/** Type of CreateTranscriptionRequestResponseFormat */
 export type CreateTranscriptionRequestResponseFormat =
   | "json"
   | "text"
