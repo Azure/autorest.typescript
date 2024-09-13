@@ -135,7 +135,11 @@ function transformOperation(
           const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
           const schema = p.param.sourceProperty
             ? getSchemaForType(dpgContext, p.param.sourceProperty?.type)
-            : getSchemaForType(dpgContext, p.param.type);
+            : getSchemaForType(dpgContext, p.param.type, {
+                usage: schemaUsage,
+                needRef: false,
+                relevantProperty: p.param
+              });
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
           return {
