@@ -26,6 +26,11 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
     name: "OperationOptions";
     module: string;
   };
+  StreamableMethod: {
+    kind: "externalDependency";
+    name: "StreamableMethod";
+    module: string;
+  };
   PathUncheckedResponse: {
     kind: "externalDependency";
     name: "PathUncheckedResponse";

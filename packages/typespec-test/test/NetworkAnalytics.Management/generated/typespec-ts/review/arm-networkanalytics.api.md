@@ -313,7 +313,7 @@ export interface EncryptionKeyDetails {
 
 // @public
 export interface ErrorAdditionalInfo {
-    readonly info?: {};
+    readonly info?: Record<string, any>;
     readonly type?: string;
 }
 

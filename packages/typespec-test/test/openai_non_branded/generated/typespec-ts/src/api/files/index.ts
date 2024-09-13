@@ -2,10 +2,6 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
-import {
   OpenAIFile,
   openAIFileDeserializer,
   ListFilesResponse,
@@ -16,8 +12,10 @@ import {
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 import {
   FilesListOptionalParams,

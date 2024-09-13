@@ -3,10 +3,6 @@
 
 import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
   DataType,
@@ -31,8 +27,10 @@ import {
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {

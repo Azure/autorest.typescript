@@ -301,6 +301,9 @@ function buildModelPolymorphicType(type: SdkModelType) {
 function buildModelProperty(
   property: SdkModelPropertyType
 ): PropertySignatureStructure {
+  if (property.name === "info") {
+    property;
+  }
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: `"${property.name}"`,

@@ -2,7 +2,6 @@ import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import {
   NameType,
   clearImportSets,
-  getImportSpecifier,
   normalizeName
 } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
@@ -103,19 +102,6 @@ export function buildOperationFiles(
         operationDeclaration
       ]);
     });
-
-    operationGroupFile.addImportDeclarations([
-      {
-        moduleSpecifier: getImportSpecifier(
-          "restClient",
-          codeModel?.runtimeImports
-        ),
-        namedImports: [
-          "StreamableMethod",
-          "operationOptionsToRequestParameters"
-        ]
-      }
-    ]);
 
     // addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     operationGroupFile.fixUnusedIdentifiers();

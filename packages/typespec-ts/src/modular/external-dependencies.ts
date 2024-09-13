@@ -31,6 +31,11 @@ export const DefaultCoreDependencies: CoreDependencies = {
     name: "OperationOptions",
     module: "@typespec/ts-http-runtime"
   },
+  StreamableMethod: {
+    kind: "externalDependency",
+    name: "StreamableMethod",
+    module: "@typespec/ts-http-runtime"
+  },
   PathUncheckedResponse: {
     kind: "externalDependency",
     name: "PathUncheckedResponse",
@@ -136,6 +141,11 @@ export const AzureCoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     module: "@azure-rest/core-client",
     name: "OperationOptions"
+  },
+  StreamableMethod: {
+    kind: "externalDependency",
+    module: "@azure-rest/core-client",
+    name: "StreamableMethod"
   },
   PathUncheckedResponse: {
     kind: "externalDependency",

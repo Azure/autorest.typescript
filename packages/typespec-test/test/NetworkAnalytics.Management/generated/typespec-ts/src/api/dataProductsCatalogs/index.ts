@@ -3,10 +3,6 @@
 
 import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
   _DataTypeListResult,
@@ -23,8 +19,10 @@ import {
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
   DataProductsCatalogsGetOptionalParams,

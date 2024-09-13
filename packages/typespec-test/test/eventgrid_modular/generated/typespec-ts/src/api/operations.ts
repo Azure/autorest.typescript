@@ -3,10 +3,6 @@
 
 import { EventGridContext as Client } from "./index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   PublishCloudEventRequest,
   publishCloudEventRequestSerializer,
   CloudEvent,
@@ -29,8 +25,10 @@ import {
   cloudEventArraySerializer,
 } from "../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
   PublishCloudEventOptionalParams,

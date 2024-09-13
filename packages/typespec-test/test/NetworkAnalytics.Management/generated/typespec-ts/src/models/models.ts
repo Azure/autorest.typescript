@@ -743,7 +743,7 @@ export interface ErrorAdditionalInfo {
   /** The additional info type. */
   readonly type?: string;
   /** The additional info. */
-  readonly info?: {};
+  readonly info?: Record<string, any>;
 }
 
 export function errorAdditionalInfoDeserializer(

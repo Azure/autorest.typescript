@@ -3,18 +3,16 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   CreateEditRequest,
   createEditRequestSerializer,
   CreateEditResponse,
   createEditResponseDeserializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { EditsCreateOptionalParams } from "../../models/options.js";
 

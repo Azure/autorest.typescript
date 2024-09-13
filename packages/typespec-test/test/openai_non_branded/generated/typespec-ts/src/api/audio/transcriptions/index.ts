@@ -2,18 +2,16 @@
 
 import { OpenAIContext as Client } from "../../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
-import {
   CreateTranscriptionRequest,
   createTranscriptionRequestSerializer,
   CreateTranscriptionResponse,
   createTranscriptionResponseDeserializer,
 } from "../../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 

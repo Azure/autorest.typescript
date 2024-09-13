@@ -4,11 +4,9 @@
 import { WidgetManagerContext as Client } from "../index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
   FooOperationsGetAvatarAsPngOptionalParams,

@@ -3,18 +3,16 @@
 
 import { OpenAIContext as Client } from "../../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   CreateTranscriptionRequest,
   createTranscriptionRequestSerializer,
   CreateTranscriptionResponse,
   createTranscriptionResponseDeserializer,
 } from "../../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 

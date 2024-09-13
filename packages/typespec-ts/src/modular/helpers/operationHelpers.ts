@@ -54,13 +54,14 @@ export function getSendPrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: false,
     isExported: true,
     name: `_${name}Send`,
     parameters,
-    returnType: "StreamableMethod"
+    returnType: resolveReference(dependencies.StreamableMethod)
   };
 
   const operationPath = operation.url;
@@ -73,7 +74,7 @@ export function getSendPrivateFunction(
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
-    )}).${operationMethod}({...operationOptionsToRequestParameters(${optionalParamName}), ${getRequestParameters(
+    )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
       dpgContext,
       operation
     )}});`

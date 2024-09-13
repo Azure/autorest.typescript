@@ -2,10 +2,6 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
-import {
   CreateImageRequest,
   createImageRequestSerializer,
   ImagesResponse,
@@ -16,8 +12,10 @@ import {
   createImageVariationRequestSerializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptionalParams,

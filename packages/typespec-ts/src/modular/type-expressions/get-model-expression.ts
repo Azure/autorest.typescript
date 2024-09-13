@@ -20,6 +20,10 @@ export function getModelExpression(
   }
 
   if (shouldEmitInline(type, options)) {
+    // generate Record<string, any> for empty anonymous object
+    if (type.properties.length === 0) {
+      return "Record<string, any>";
+    }
     return `{
       ${type.properties
         .map(

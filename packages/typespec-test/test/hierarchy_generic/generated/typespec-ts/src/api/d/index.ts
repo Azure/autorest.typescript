@@ -2,14 +2,12 @@
 // Licensed under the MIT License.
 
 import { FooContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
 import { A, aSerializer } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { DOp1OptionalParams } from "../../models/options.js";
 

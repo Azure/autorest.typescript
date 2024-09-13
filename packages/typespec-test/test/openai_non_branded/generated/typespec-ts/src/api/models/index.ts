@@ -2,10 +2,6 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
-import {
   ListModelsResponse,
   listModelsResponseDeserializer,
   Model,
@@ -14,8 +10,10 @@ import {
   deleteModelResponseDeserializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 import {
   ModelsListOptionalParams,

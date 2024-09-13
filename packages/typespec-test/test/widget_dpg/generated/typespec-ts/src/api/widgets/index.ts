@@ -3,10 +3,6 @@
 
 import { WidgetServiceContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   User,
   userSerializer,
   userDeserializer,
@@ -25,8 +21,10 @@ import {
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";

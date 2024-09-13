@@ -3,10 +3,6 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   OpenAIFile,
   openAIFileDeserializer,
   ListFilesResponse,
@@ -17,8 +13,10 @@ import {
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
   FilesListOptionalParams,

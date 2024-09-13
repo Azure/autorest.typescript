@@ -3,10 +3,6 @@
 
 import { ChatProtocolContext as Client } from "./index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   StreamingChatCompletionOptionsRecord,
   streamingChatCompletionOptionsRecordSerializer,
   ChatCompletionChunkRecord,
@@ -17,8 +13,10 @@ import {
   chatCompletionRecordDeserializer,
 } from "../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
   CreateStreamingOptionalParams,

@@ -3,10 +3,6 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   CreateFineTuneRequest,
   createFineTuneRequestSerializer,
   FineTune,
@@ -17,8 +13,10 @@ import {
   listFineTuneEventsResponseDeserializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
   FineTunesCreateOptionalParams,

@@ -2,18 +2,16 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
-import {
   CreateEmbeddingRequest,
   createEmbeddingRequestSerializer,
   CreateEmbeddingResponse,
   createEmbeddingResponseDeserializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
 

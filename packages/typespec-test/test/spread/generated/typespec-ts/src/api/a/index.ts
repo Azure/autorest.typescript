@@ -3,18 +3,16 @@
 
 import { DemoServiceContext as Client } from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   Test3Request,
   test3RequestSerializer,
   Test4Request,
   test4RequestSerializer,
 } from "../../models/models.js";
 import {
+  StreamableMethod,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
   ATest1OptionalParams,
