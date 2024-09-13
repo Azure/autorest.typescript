@@ -47,7 +47,7 @@ export function getAzurePackageDependencies({
   if (hasLro) {
     azureDependencies = {
       ...azureDependencies,
-      "@azure/core-lro": "^3.0.0",
+      "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
   }
