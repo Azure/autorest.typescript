@@ -3,7 +3,7 @@
 
 export {
   createLoadTestAdministration,
-  LoadTestServiceContext,
+  LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
 } from "./loadTestAdministrationContext.js";
 export {

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  LoadTestServiceContext as Client,
+  TestProfileRunContext as Client,
   CreateOrUpdateTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,

@@ -3,6 +3,7 @@
 
 export { LoadTestAdministrationClient } from "./loadTestAdministrationClient.js";
 export {
+  LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,

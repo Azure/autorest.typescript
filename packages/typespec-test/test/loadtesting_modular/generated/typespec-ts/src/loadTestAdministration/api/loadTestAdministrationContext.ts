@@ -14,7 +14,7 @@ import {
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface LoadTestServiceContext extends Client {}
+export interface LoadTestAdministrationContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface LoadTestAdministrationClientOptionalParams
@@ -27,7 +27,7 @@ export function createLoadTestAdministration(
   endpointParam: string,
   credential: TokenCredential,
   options: LoadTestAdministrationClientOptionalParams = {},
-): LoadTestServiceContext {
+): LoadTestAdministrationContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
 

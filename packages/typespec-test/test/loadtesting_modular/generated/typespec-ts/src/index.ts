@@ -104,6 +104,7 @@ export {
 } from "./models/index.js";
 export {
   createLoadTestAdministration,
+  LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
   createOrUpdateTest,
   createOrUpdateAppComponents,
@@ -134,6 +135,7 @@ export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { LoadTestRunClient } from "./loadTestRun/loadTestRunClient.js";
 export {
   createLoadTestRun,
+  LoadTestRunContext,
   LoadTestRunClientOptionalParams,
   createOrUpdateTestRun,
   createOrUpdateAppComponents as LoadTestRunClientcreateOrUpdateAppComponents,
@@ -175,6 +177,7 @@ export {
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
   createTestProfileAdministration,
+  TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./testProfileAdministration/api/index.js";
 export { TestProfileRunClient } from "./testProfileRun/testProfileRunClient.js";
@@ -190,5 +193,6 @@ export {
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
   createTestProfileRun,
+  TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./testProfileRun/api/index.js";

@@ -3,6 +3,7 @@
 
 export { LoadTestRunClient } from "./loadTestRunClient.js";
 export {
+  LoadTestRunContext,
   LoadTestRunClientOptionalParams,
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,

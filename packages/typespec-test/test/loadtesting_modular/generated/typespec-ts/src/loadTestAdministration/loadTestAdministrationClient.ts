@@ -3,7 +3,7 @@
 
 import {
   createLoadTestAdministration,
-  LoadTestServiceContext,
+  LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
   createOrUpdateTest,
   createOrUpdateAppComponents,
@@ -50,7 +50,7 @@ import { TokenCredential } from "@azure/core-auth";
 export { LoadTestAdministrationClientOptionalParams } from "./api/loadTestAdministrationContext.js";
 
 export class LoadTestAdministrationClient {
-  private _client: LoadTestServiceContext;
+  private _client: LoadTestAdministrationContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 

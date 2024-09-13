@@ -206,10 +206,7 @@ function exportModules(
   const exported = [...indexFile.getExportedDeclarations().keys()];
   const namedExports = [...modelsFile.getExportedDeclarations().entries()]
     .filter((exDeclaration) => {
-      if (
-        exDeclaration[0].startsWith("_") ||
-        exDeclaration[0].endsWith("Context")
-      ) {
+      if (exDeclaration[0].startsWith("_")) {
         return false;
       }
       return exDeclaration[1].some((ex) => {

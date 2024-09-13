@@ -60,7 +60,6 @@ import {
   NameType,
   RLCModel,
   buildRuntimeImports,
-  getClientName,
   isAzurePackage,
   normalizeName
 } from "@azure-tools/rlc-common";
@@ -1787,7 +1786,7 @@ function emitClients(
       tcgcClient: sdkPackageClient,
       url: server ? server.url : "",
       apiVersions: [],
-      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
+      rlcClientName: `${client.name.replace("Client", "")}Context`,
       subfolder: "",
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}

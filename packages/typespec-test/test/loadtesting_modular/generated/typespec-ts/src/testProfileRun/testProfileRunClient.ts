@@ -13,7 +13,7 @@ import {
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
   createTestProfileRun,
-  LoadTestServiceContext,
+  TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./api/index.js";
 import {
@@ -33,7 +33,7 @@ import { TokenCredential } from "@azure/core-auth";
 export { TestProfileRunClientOptionalParams } from "./api/testProfileRunContext.js";
 
 export class TestProfileRunClient {
-  private _client: LoadTestServiceContext;
+  private _client: TestProfileRunContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 

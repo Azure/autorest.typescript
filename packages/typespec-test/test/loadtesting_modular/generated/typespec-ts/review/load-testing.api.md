@@ -56,18 +56,14 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
-export function createLoadTestAdministration(endpointParam: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptionalParams): LoadTestServiceContext;
+export function createLoadTestAdministration(endpointParam: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptionalParams): LoadTestAdministrationContext;
 
-// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext_2" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
-export function createLoadTestRun(endpointParam: string, credential: TokenCredential, options?: LoadTestRunClientOptionalParams): LoadTestServiceContext_2;
+export function createLoadTestRun(endpointParam: string, credential: TokenCredential, options?: LoadTestRunClientOptionalParams): LoadTestRunContext;
 
 // @public
-export function createOrUpdateAppComponents(context: LoadTestServiceContext, testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
+export function createOrUpdateAppComponents(context: LoadTestAdministrationContext, testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
 
 // @public
 export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
@@ -75,7 +71,7 @@ export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOpti
 }
 
 // @public
-export function createOrUpdateServerMetricsConfig(context: LoadTestServiceContext, testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+export function createOrUpdateServerMetricsConfig(context: LoadTestAdministrationContext, testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
 
 // @public
 export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
@@ -83,27 +79,23 @@ export interface CreateOrUpdateServerMetricsConfigOptionalParams extends Operati
 }
 
 // @public
-export function createOrUpdateTest(context: LoadTestServiceContext, testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
+export function createOrUpdateTest(context: LoadTestAdministrationContext, testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
 
 // @public
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext_3" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function createOrUpdateTestProfile(context: LoadTestServiceContext_3, testProfileId: string, body: TestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfile>;
+export function createOrUpdateTestProfile(context: TestProfileAdministrationContext, testProfileId: string, body: TestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfile>;
 
 // @public
 export interface CreateOrUpdateTestProfileOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext_4" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function createOrUpdateTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, body: TestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRun>;
+export function createOrUpdateTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, body: TestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRun>;
 
 // @public
 export interface CreateOrUpdateTestProfileRunOptionalParams extends OperationOptions {
@@ -111,7 +103,7 @@ export interface CreateOrUpdateTestProfileRunOptionalParams extends OperationOpt
 }
 
 // @public
-export function createOrUpdateTestRun(context: LoadTestServiceContext_2, testRunId: string, body: TestRun, options?: CreateOrUpdateTestRunOptionalParams): Promise<TestRun>;
+export function createOrUpdateTestRun(context: LoadTestRunContext, testRunId: string, body: TestRun, options?: CreateOrUpdateTestRunOptionalParams): Promise<TestRun>;
 
 // @public
 export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
@@ -120,16 +112,16 @@ export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export function createTestProfileAdministration(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationClientOptionalParams): LoadTestServiceContext_3;
+export function createTestProfileAdministration(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationClientOptionalParams): TestProfileAdministrationContext;
 
 // @public (undocumented)
-export function createTestProfileRun(endpointParam: string, credential: TokenCredential, options?: TestProfileRunClientOptionalParams): LoadTestServiceContext_4;
+export function createTestProfileRun(endpointParam: string, credential: TokenCredential, options?: TestProfileRunClientOptionalParams): TestProfileRunContext;
 
 // @public
-export function deleteTest(context: LoadTestServiceContext, testId: string, options?: DeleteTestOptionalParams): Promise<void>;
+export function deleteTest(context: LoadTestAdministrationContext, testId: string, options?: DeleteTestOptionalParams): Promise<void>;
 
 // @public
-export function deleteTestFile(context: LoadTestServiceContext, testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
+export function deleteTestFile(context: LoadTestAdministrationContext, testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestFileOptionalParams extends OperationOptions {
@@ -140,21 +132,21 @@ export interface DeleteTestOptionalParams extends OperationOptions {
 }
 
 // @public
-export function deleteTestProfile(context: LoadTestServiceContext_3, testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
+export function deleteTestProfile(context: TestProfileAdministrationContext, testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestProfileOptionalParams extends OperationOptions {
 }
 
 // @public
-export function deleteTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
+export function deleteTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestProfileRunOptionalParams extends OperationOptions {
 }
 
 // @public
-export function deleteTestRun(context: LoadTestServiceContext_2, testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
+export function deleteTestRun(context: LoadTestRunContext, testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestRunOptionalParams extends OperationOptions {
@@ -208,24 +200,24 @@ export interface FunctionFlexConsumptionTargetResourceConfigurations extends Tar
 }
 
 // @public
-export function getAppComponents(context: LoadTestServiceContext, testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
+export function getAppComponents(context: LoadTestAdministrationContext, testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
 
 // @public
 export interface GetAppComponentsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getServerMetricsConfig(context: LoadTestServiceContext, testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+export function getServerMetricsConfig(context: LoadTestAdministrationContext, testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
 
 // @public
 export interface GetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getTest(context: LoadTestServiceContext, testId: string, options?: GetTestOptionalParams): Promise<Test>;
+export function getTest(context: LoadTestAdministrationContext, testId: string, options?: GetTestOptionalParams): Promise<Test>;
 
 // @public
-export function getTestFile(context: LoadTestServiceContext, testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
+export function getTestFile(context: LoadTestAdministrationContext, testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
 
 // @public
 export interface GetTestFileOptionalParams extends OperationOptions {
@@ -236,24 +228,24 @@ export interface GetTestOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getTestProfile(context: LoadTestServiceContext_3, testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfile>;
+export function getTestProfile(context: TestProfileAdministrationContext, testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfile>;
 
 // @public
 export interface GetTestProfileOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRun>;
+export function getTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRun>;
 
 // @public
 export interface GetTestProfileRunOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getTestRun(context: LoadTestServiceContext_2, testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
+export function getTestRun(context: LoadTestRunContext, testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
 
 // @public
-export function getTestRunFile(context: LoadTestServiceContext_2, testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunFileInfo>;
+export function getTestRunFile(context: LoadTestRunContext, testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunFileInfo>;
 
 // @public
 export interface GetTestRunFileOptionalParams extends OperationOptions {
@@ -435,14 +427,14 @@ export enum KnownTimeGrain {
 }
 
 // @public
-export function listMetricDefinitions(context: LoadTestServiceContext_2, testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
+export function listMetricDefinitions(context: LoadTestRunContext, testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
 
 // @public
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listMetricDimensionValues(context: LoadTestServiceContext_2, testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
+export function listMetricDimensionValues(context: LoadTestRunContext, testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
 
 // @public
 export interface ListMetricDimensionValuesOptionalParams extends OperationOptions {
@@ -450,14 +442,14 @@ export interface ListMetricDimensionValuesOptionalParams extends OperationOption
 }
 
 // @public
-export function listMetricNamespaces(context: LoadTestServiceContext_2, testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
+export function listMetricNamespaces(context: LoadTestRunContext, testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
 
 // @public
 export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listMetrics(context: LoadTestServiceContext_2, testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
+export function listMetrics(context: LoadTestRunContext, testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
 
 // @public
 export interface ListMetricsOptionalParams extends OperationOptions {
@@ -466,14 +458,14 @@ export interface ListMetricsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listTestFiles(context: LoadTestServiceContext, testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
+export function listTestFiles(context: LoadTestAdministrationContext, testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
 
 // @public
 export interface ListTestFilesOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listTestProfileRuns(context: LoadTestServiceContext_4, options?: ListTestProfileRunsOptionalParams): PagedAsyncIterableIterator<TestProfileRun>;
+export function listTestProfileRuns(context: TestProfileRunContext, options?: ListTestProfileRunsOptionalParams): PagedAsyncIterableIterator<TestProfileRun>;
 
 // @public
 export interface ListTestProfileRunsOptionalParams extends OperationOptions {
@@ -490,7 +482,7 @@ export interface ListTestProfileRunsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listTestProfiles(context: LoadTestServiceContext_3, options?: ListTestProfilesOptionalParams): PagedAsyncIterableIterator<TestProfile>;
+export function listTestProfiles(context: TestProfileAdministrationContext, options?: ListTestProfilesOptionalParams): PagedAsyncIterableIterator<TestProfile>;
 
 // @public
 export interface ListTestProfilesOptionalParams extends OperationOptions {
@@ -502,7 +494,7 @@ export interface ListTestProfilesOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listTestRuns(context: LoadTestServiceContext_2, options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
+export function listTestRuns(context: LoadTestRunContext, options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
 
 // @public
 export interface ListTestRunsOptionalParams extends OperationOptions {
@@ -516,7 +508,7 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listTests(context: LoadTestServiceContext, options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
+export function listTests(context: LoadTestAdministrationContext, options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
 
 // @public
 export interface ListTestsOptionalParams extends OperationOptions {
@@ -550,6 +542,10 @@ export interface LoadTestAdministrationClientOptionalParams extends ClientOption
     apiVersion?: string;
 }
 
+// @public (undocumented)
+export interface LoadTestAdministrationContext extends Client {
+}
+
 // @public
 export interface LoadTestConfiguration {
     engineInstances?: number;
@@ -580,7 +576,7 @@ export class LoadTestRunClient {
 }
 
 // @public
-export function LoadTestRunClientcreateOrUpdateAppComponents(context: LoadTestServiceContext_2, testRunId: string, body: TestRunAppComponents, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+export function LoadTestRunClientcreateOrUpdateAppComponents(context: LoadTestRunContext, testRunId: string, body: TestRunAppComponents, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
 
 // @public
 export interface LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
@@ -588,7 +584,7 @@ export interface LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams exte
 }
 
 // @public
-export function LoadTestRunClientcreateOrUpdateServerMetricsConfig(context: LoadTestServiceContext_2, testRunId: string, body: TestRunServerMetricConfig, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+export function LoadTestRunClientcreateOrUpdateServerMetricsConfig(context: LoadTestRunContext, testRunId: string, body: TestRunServerMetricConfig, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
 
 // @public
 export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
@@ -596,14 +592,14 @@ export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParam
 }
 
 // @public
-export function LoadTestRunClientgetAppComponents(context: LoadTestServiceContext_2, testRunId: string, options?: LoadTestRunClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+export function LoadTestRunClientgetAppComponents(context: LoadTestRunContext, testRunId: string, options?: LoadTestRunClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
 
 // @public
 export interface LoadTestRunClientGetAppComponentsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function LoadTestRunClientgetServerMetricsConfig(context: LoadTestServiceContext_2, testRunId: string, options?: LoadTestRunClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+export function LoadTestRunClientgetServerMetricsConfig(context: LoadTestRunContext, testRunId: string, options?: LoadTestRunClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
 
 // @public
 export interface LoadTestRunClientGetServerMetricsConfigOptionalParams extends OperationOptions {
@@ -612,6 +608,10 @@ export interface LoadTestRunClientGetServerMetricsConfigOptionalParams extends O
 // @public
 export interface LoadTestRunClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public (undocumented)
+export interface LoadTestRunContext extends Client {
 }
 
 // @public
@@ -761,14 +761,14 @@ export type SecretType = string;
 export type Status = string;
 
 // @public
-export function stopTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRun>;
+export function stopTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRun>;
 
 // @public
 export interface StopTestProfileRunOptionalParams extends OperationOptions {
 }
 
 // @public
-export function stopTestRun(context: LoadTestServiceContext_2, testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
+export function stopTestRun(context: LoadTestRunContext, testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
 
 // @public
 export interface StopTestRunOptionalParams extends OperationOptions {
@@ -868,6 +868,10 @@ export interface TestProfileAdministrationClientOptionalParams extends ClientOpt
     apiVersion?: string;
 }
 
+// @public (undocumented)
+export interface TestProfileAdministrationContext extends Client {
+}
+
 // @public
 export interface TestProfileRun {
     readonly createdBy?: string;
@@ -903,6 +907,10 @@ export class TestProfileRunClient {
 // @public
 export interface TestProfileRunClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public (undocumented)
+export interface TestProfileRunContext extends Client {
 }
 
 // @public
@@ -1054,7 +1062,7 @@ export interface TimeSeriesElement {
 }
 
 // @public
-export function uploadTestFile(context: LoadTestServiceContext, testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<TestFileInfo>;
+export function uploadTestFile(context: LoadTestAdministrationContext, testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<TestFileInfo>;
 
 // @public
 export interface UploadTestFileOptionalParams extends OperationOptions {

@@ -3,7 +3,7 @@
 
 export {
   createLoadTestRun,
-  LoadTestServiceContext,
+  LoadTestRunContext,
   LoadTestRunClientOptionalParams,
 } from "./loadTestRunContext.js";
 export {

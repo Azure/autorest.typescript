@@ -17,6 +17,6 @@ export {
 } from "./options.js";
 export {
   createTestProfileRun,
-  LoadTestServiceContext,
+  TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./testProfileRunContext.js";

@@ -11,7 +11,7 @@ import {
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
   createTestProfileAdministration,
-  LoadTestServiceContext,
+  TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./api/index.js";
 import {
@@ -31,7 +31,7 @@ import { TokenCredential } from "@azure/core-auth";
 export { TestProfileAdministrationClientOptionalParams } from "./api/testProfileAdministrationContext.js";
 
 export class TestProfileAdministrationClient {
-  private _client: LoadTestServiceContext;
+  private _client: TestProfileAdministrationContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
