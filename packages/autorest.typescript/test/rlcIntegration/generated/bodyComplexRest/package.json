@@ -37,7 +37,7 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1",
-    "typescript": "~5.5.3",
+    "typescript": "~5.6.2",
     "autorest": "latest",
     "source-map-support": "^0.5.9",
     "uglify-js": "^3.4.9",
