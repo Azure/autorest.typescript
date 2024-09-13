@@ -1,6 +1,6 @@
-# Should generate samples for ARM operations
+# Should generate in one file when one method has multiple samples
 
-Sample generation should arm template and operations successfully.
+Sample generation should generate in one file when one method has multiple samples.
 
 ## TypeSpec
 
@@ -146,7 +146,7 @@ Raw json files.
 }
 ```
 
-Generate samples for arm cases:
+Generate one file for multiple samples:
 
 ```ts samples
 /** This file path is /samples-dev/employeesCreateOrUpdateSample.ts */
