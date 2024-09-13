@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
 import { OpenAIContext as Client } from "../index.js";

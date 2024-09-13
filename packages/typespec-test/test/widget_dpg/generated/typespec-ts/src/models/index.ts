@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   User,
@@ -8,8 +8,8 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  NonReferencedModel,
   Versions,
+  NonReferencedModel,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptionalParams,

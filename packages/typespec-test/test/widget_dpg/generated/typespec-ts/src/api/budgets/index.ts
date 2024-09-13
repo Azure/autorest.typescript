@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { User } from "../../models/models.js";
 import { WidgetServiceContext as Client } from "../index.js";

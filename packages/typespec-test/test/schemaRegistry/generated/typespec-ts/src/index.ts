@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   PageSettings,
@@ -15,11 +15,11 @@ export {
   SchemaGroup,
   SchemaContentTypeValues,
   SchemaVersion,
+  ServiceApiVersions,
   SchemaProperties,
   SchemaFormat,
   Schema,
   ContentTypeEnum,
-  ServiceApiVersions,
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,

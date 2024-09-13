@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 /** Schema Group resource. */
 export interface SchemaGroup {
@@ -19,6 +19,9 @@ export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
 }
+
+/** Represents the Schema Registry API version to use for requests. */
+export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Meta properties of a schema. */
 export interface SchemaProperties {
@@ -70,8 +73,6 @@ export type ContentTypeEnum =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
-/** Represents the Schema Registry API version to use for requests. */
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {

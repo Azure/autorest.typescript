@@ -13,7 +13,8 @@ const restLevelTsConfigInAzureSdkForJs: (
       compilerOptions: {
         module: "NodeNext",
         moduleResolution: "NodeNext",
-        rootDir: "."
+        rootDir: ".",
+        skipLibCheck: true
       },
       include: [
         "./src/**/*.ts",
@@ -28,7 +29,8 @@ const restLevelTsConfigInAzureSdkForJs: (
     extends: "../../../tsconfig",
     compilerOptions: {
       outDir: "./dist-esm",
-      declarationDir: "./types"
+      declarationDir: "./types",
+      skipLibCheck: true
     },
     include: ["src/**/*.ts"]
   };

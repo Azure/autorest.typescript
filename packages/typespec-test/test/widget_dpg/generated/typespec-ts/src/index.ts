@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   PageSettings,
@@ -19,8 +19,8 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  NonReferencedModel,
   Versions,
+  NonReferencedModel,
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,

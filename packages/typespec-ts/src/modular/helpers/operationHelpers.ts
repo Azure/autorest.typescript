@@ -438,8 +438,12 @@ function extractPagingType(type: Type, itemName?: string): Type | undefined {
   if (!itemName) {
     return undefined;
   }
-  const prop = (type.properties ?? [])
-    ?.filter((prop) => prop.restApiName === itemName)
+  const allProperties = [
+    ...(type.properties ?? []),
+    ...(type.parents ?? []).flatMap((p) => p.properties ?? [])
+  ];
+  const prop = allProperties
+    .filter((prop) => prop.restApiName === itemName)
     .map((prop) => prop.type);
   if (prop.length === 0) {
     return undefined;
@@ -830,13 +834,17 @@ function isOptional(param: Parameter | Property): param is OptionalType {
 
 function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
-    const { propertiesStr } = getRequestModelMapping(
+    const { propertiesStr, directAssignment } = getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
       runtimeImports,
       [param.type]
     );
-    return `"${param.restApiName}": { ${propertiesStr.join(", ")} }`;
+    const serializeContent =
+      directAssignment === true
+        ? propertiesStr.join(",")
+        : `{${propertiesStr.join(",")}}`;
+    return `"${param.restApiName}": ${serializeContent}`;
   }
   if (
     param.restApiName === "api-version" &&
@@ -945,7 +953,7 @@ export function getRequestModelMapping(
     serializerName =
       serializerName ??
       getDeserializeFunctionName(modelPropertyType, "serialize");
-    const definition = `${serializerName}(${propertyPath})`;
+    const definition = `${serializerName}(${propertyPath.replace(/\?$/, "")})`;
     props.push(definition);
     return { propertiesStr: props, directAssignment: true };
   }
