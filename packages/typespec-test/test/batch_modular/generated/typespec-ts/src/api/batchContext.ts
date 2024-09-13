@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { TokenCredential } from "@azure/core-auth";
-import { ClientOptions } from "@azure-rest/core-client";
-import { BatchContext } from "../rest/index.js";
-import getClient from "../rest/index.js";
+import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+import { logger } from "../logger.js";
+
+export interface BatchContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface BatchClientOptionalParams extends ClientOptions {}
-
-export { BatchContext } from "../rest/index.js";
 
 /** Azure Batch provides Cloud-scale job scheduling and compute management. */
 export function createBatch(
@@ -17,14 +16,28 @@ export function createBatch(
   credential: TokenCredential,
   options: BatchClientOptionalParams = {},
 ): BatchContext {
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
+
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-
-  const clientContext = getClient(endpointParam, credential, {
+  const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-  });
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://batch.core.windows.net//.default",
+      ],
+    },
+  };
+  const clientContext = getClient(endpointUrl, credential, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
   return clientContext;
 }

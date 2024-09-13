@@ -1,17 +1,12 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { Test } from "../../models/models.js";
-import {
-  DemoServiceContext as Client,
-  Test1204Response,
-  Test2204Response,
-  Test3204Response,
-  Test4204Response,
-} from "../../rest/index.js";
+import { DemoServiceContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import {
@@ -27,7 +22,7 @@ export function _test1Send(
   b: string,
   c: string,
   options: ATest1OptionalParams = { requestOptions: {} },
-): StreamableMethod<Test1204Response> {
+): StreamableMethod {
   return context
     .path("/test1")
     .post({
@@ -37,9 +32,10 @@ export function _test1Send(
 }
 
 export async function _test1Deserialize(
-  result: Test1204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -61,7 +57,7 @@ export function _test2Send(
   context: Client,
   prop: string,
   options: ATest2OptionalParams = { requestOptions: {} },
-): StreamableMethod<Test2204Response> {
+): StreamableMethod {
   return context
     .path("/test2")
     .post({
@@ -71,9 +67,10 @@ export function _test2Send(
 }
 
 export async function _test2Deserialize(
-  result: Test2204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -93,7 +90,7 @@ export function _test3Send(
   context: Client,
   body: { prop: string },
   options: ATest3OptionalParams = { requestOptions: {} },
-): StreamableMethod<Test3204Response> {
+): StreamableMethod {
   return context
     .path("/test3")
     .post({
@@ -103,9 +100,10 @@ export function _test3Send(
 }
 
 export async function _test3Deserialize(
-  result: Test3204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -125,7 +123,7 @@ export function _test4Send(
   context: Client,
   body: Test,
   options: ATest4OptionalParams = { requestOptions: {} },
-): StreamableMethod<Test4204Response> {
+): StreamableMethod {
   return context
     .path("/test4")
     .post({
@@ -135,9 +133,10 @@ export function _test4Send(
 }
 
 export async function _test4Deserialize(
-  result: Test4204Response,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 

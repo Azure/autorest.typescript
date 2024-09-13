@@ -1,23 +1,25 @@
-import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
 import * as path from "path";
+
+import {
+  Client,
+  ModularCodeModel,
+  Type as ModularType
+} from "./modularCodeModel.js";
 import {
   InterfaceDeclarationStructure,
   OptionalKind,
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
+import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
+
+import { addImportBySymbol } from "../utils/importHelper.js";
+import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { buildOperationOptions } from "./buildOperations.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
-import {
-  Client,
-  ModularCodeModel,
-  Type as ModularType
-} from "./modularCodeModel.js";
-import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { toCamelCase } from "../utils/casingUtils.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
 
 // ====== UTILITIES ======
 
@@ -199,9 +201,9 @@ export function buildModels(
           isExported: true,
           members:
             model.values?.map((v) => ({
-              name: v.value,
+              name: v.name,
               value: v.value,
-              docs: [v.value]
+              docs: v.description ? [v.description] : [v.name]
             })) ?? [],
           docs: [
             `Known values of {@link ${model.name}} that the service accepts.`
@@ -253,7 +255,6 @@ export function buildModels(
 
   const projectRootFromModels = codeModel.clients.length > 1 ? "../.." : "../";
   addImportsToFiles(codeModel.runtimeImports, modelsFile, {
-    rlcIndex: path.posix.join(projectRootFromModels, "rest", "index.js"),
     serializerHelpers: path.posix.join(
       projectRootFromModels,
       "helpers",
@@ -394,13 +395,6 @@ export function buildModelsOptions(
     }
   ]);
 
-  modelOptionsFile.fixMissingImports(
-    {},
-    {
-      importModuleSpecifierPreference: "shortest",
-      importModuleSpecifierEnding: "js"
-    }
-  );
   modelOptionsFile
     .getImportDeclarations()
     .filter((id) => {

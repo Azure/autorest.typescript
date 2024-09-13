@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import {
@@ -25,7 +25,7 @@ import {
   listByResourceGroup,
   listBySubscription,
 } from "../../api/dataProducts/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   DataProductsCreateOptionalParams,

@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { KeyCredential } from "@azure/core-auth";
-import { ClientOptions } from "@azure-rest/core-client";
-import { AnomalyDetectorContext } from "../rest/index.js";
-import getClient from "../rest/index.js";
+import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+import { logger } from "../logger.js";
+
+export interface AnomalyDetectorContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
   /** Api Version */
   apiVersion?: string;
 }
-
-export { AnomalyDetectorContext } from "../rest/index.js";
 
 /**
  * The Anomaly Detector API detects anomalies automatically in time series data.
@@ -37,14 +36,26 @@ export function createAnomalyDetector(
   credential: KeyCredential,
   options: AnomalyDetectorClientOptionalParams = {},
 ): AnomalyDetectorContext {
+  const apiVersion = options.apiVersion ?? "v1.1";
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/anomalydetector/${apiVersion}`;
+
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-
-  const clientContext = getClient(endpointParam, credential, {
+  const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-  });
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    credentials: {
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+    },
+  };
+  const clientContext = getClient(endpointUrl, credential, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return clientContext;
 }

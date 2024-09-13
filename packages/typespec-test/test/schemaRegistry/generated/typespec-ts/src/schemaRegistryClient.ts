@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -9,8 +9,8 @@ import {
 } from "./classic/schemaOperations/index.js";
 import {
   createSchemaRegistry,
-  SchemaRegistryClientOptionalParams,
   SchemaRegistryContext,
+  SchemaRegistryClientOptionalParams,
 } from "./api/index.js";
 
 export { SchemaRegistryClientOptionalParams } from "./api/schemaRegistryContext.js";
@@ -30,7 +30,6 @@ export class SchemaRegistryClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createSchemaRegistry(fullyQualifiedNamespace, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

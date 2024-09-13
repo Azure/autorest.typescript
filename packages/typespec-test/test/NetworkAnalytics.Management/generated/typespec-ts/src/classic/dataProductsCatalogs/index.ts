@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import { DataProductsCatalog } from "../../models/models.js";
@@ -8,7 +8,7 @@ import {
   listByResourceGroup,
   listBySubscription,
 } from "../../api/dataProductsCatalogs/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,

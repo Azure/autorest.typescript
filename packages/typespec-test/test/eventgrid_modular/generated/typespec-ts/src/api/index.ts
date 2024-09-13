@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createEventGrid,
-  EventGridClientOptionalParams,
   EventGridContext,
+  EventGridClientOptionalParams,
 } from "./eventGridContext.js";
 export {
   publishCloudEvent,

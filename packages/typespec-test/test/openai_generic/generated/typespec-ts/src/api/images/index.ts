@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   CreateImageRequest,
@@ -7,22 +7,14 @@ import {
   CreateImageEditRequest,
   CreateImageVariationRequest,
 } from "../../models/models.js";
-import {
-  isUnexpected,
-  OpenAIContext as Client,
-  ImagesCreate200Response,
-  ImagesCreateDefaultResponse,
-  ImagesCreateEdit200Response,
-  ImagesCreateEditDefaultResponse,
-  ImagesCreateVariation200Response,
-  ImagesCreateVariationDefaultResponse,
-} from "../../rest/index.js";
+import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
-import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,
@@ -33,7 +25,7 @@ export function _createSend(
   context: Client,
   image: CreateImageRequest,
   options: ImagesCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse> {
+): StreamableMethod {
   return context
     .path("/images/generations")
     .post({
@@ -49,15 +41,16 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: ImagesCreate200Response | ImagesCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         url: p["url"],
         b64Json:
@@ -82,9 +75,7 @@ export function _createEditSend(
   context: Client,
   image: CreateImageEditRequest,
   options: ImagesCreateEditOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/images/edits")
     .post({
@@ -106,15 +97,16 @@ export function _createEditSend(
 }
 
 export async function _createEditDeserialize(
-  result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         url: p["url"],
         b64Json:
@@ -139,9 +131,7 @@ export function _createVariationSend(
   context: Client,
   image: CreateImageVariationRequest,
   options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/images/variations")
     .post({
@@ -158,17 +148,16 @@ export function _createVariationSend(
 }
 
 export async function _createVariationDeserialize(
-  result:
-    | ImagesCreateVariation200Response
-    | ImagesCreateVariationDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => {
+    data: result.body["data"].map((p: any) => {
       return {
         url: p["url"],
         b64Json:

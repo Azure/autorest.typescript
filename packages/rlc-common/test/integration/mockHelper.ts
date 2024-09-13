@@ -16,6 +16,9 @@ export type TestModelConfig = {
   srcPath?: string;
   source?: "TypeSpec" | "Swagger";
   monorepoPackageDirectory?: string;
+  hasLro?: boolean;
+  hasPaging?: boolean;
+  isModularLibrary?: boolean;
 };
 
 export function createMockModel(config: TestModelConfig = {}): RLCModel {
@@ -44,7 +47,12 @@ export function createMockModel(config: TestModelConfig = {}): RLCModel {
       generateTest: config.withTests ?? false,
       generateSample: config.withSamples ?? false,
       moduleKind: config.moduleKind,
-      sourceFrom: config.source ?? "TypeSpec"
+      sourceFrom: config.source ?? "TypeSpec",
+      isModularLibrary: config.isModularLibrary ?? false
+    },
+    helperDetails: {
+      hasPaging: config.hasPaging ?? false,
+      hasLongRunning: config.hasLro ?? false
     }
   };
 }

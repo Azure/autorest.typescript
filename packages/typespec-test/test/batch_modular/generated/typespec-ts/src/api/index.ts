@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createBatch,
-  BatchClientOptionalParams,
   BatchContext,
+  BatchClientOptionalParams,
 } from "./batchContext.js";
 export {
   listApplications,

@@ -10,7 +10,14 @@
   "main": "dist/src/index.js",
   "module": "./dist-esm/src/index.js",
   "types": "./types/src/header-rest.d.ts",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
@@ -51,8 +58,10 @@
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
     "pack": "npm pack 2>&1",
-    "lint": "eslint package.json api-extractor.json src  --ext .ts",
-    "lint:fix": "eslint package.json api-extractor.json src  --ext .ts --fix --fix-type [problem,suggestion]",
+    "lint": "eslint package.json api-extractor.json src",
+    "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
+    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
+    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
     "build": "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js"
   }

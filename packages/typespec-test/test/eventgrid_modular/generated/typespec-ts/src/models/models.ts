@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  CloudEvent as CloudEventRest,
-  AcknowledgeOptions as AcknowledgeOptionsRest,
-  ReleaseOptions as ReleaseOptionsRest,
-  RejectOptions as RejectOptionsRest,
-} from "../rest/index.js";
 
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
@@ -33,7 +27,9 @@ export interface CloudEvent {
   subject?: string;
 }
 
-export function cloudEventSerializer(item: CloudEvent): CloudEventRest {
+export function cloudEventSerializer(
+  item: CloudEvent,
+): Record<string, unknown> {
   return {
     id: item["id"],
     source: item["source"],
@@ -84,7 +80,7 @@ export interface AcknowledgeOptions {
 
 export function acknowledgeOptionsSerializer(
   item: AcknowledgeOptions,
-): AcknowledgeOptionsRest {
+): Record<string, unknown> {
   return {
     lockTokens: item["lockTokens"],
   };
@@ -116,7 +112,7 @@ export interface ReleaseOptions {
 
 export function releaseOptionsSerializer(
   item: ReleaseOptions,
-): ReleaseOptionsRest {
+): Record<string, unknown> {
   return {
     lockTokens: item["lockTokens"],
   };
@@ -138,7 +134,7 @@ export interface RejectOptions {
 
 export function rejectOptionsSerializer(
   item: RejectOptions,
-): RejectOptionsRest {
+): Record<string, unknown> {
   return {
     lockTokens: item["lockTokens"],
   };

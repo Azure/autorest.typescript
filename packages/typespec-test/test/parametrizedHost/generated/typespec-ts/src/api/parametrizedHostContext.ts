@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { TokenCredential } from "@azure/core-auth";
-import { ClientOptions } from "@azure-rest/core-client";
-import { ParametrizedHostContext } from "../rest/index.js";
-import getClient from "../rest/index.js";
+import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+import { logger } from "../logger.js";
+
+export interface ParametrizedHostContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface ParametrizedHostClientOptionalParams extends ClientOptions {
@@ -14,20 +15,34 @@ export interface ParametrizedHostClientOptionalParams extends ClientOptions {
   apiVersion?: string;
 }
 
-export { ParametrizedHostContext } from "../rest/index.js";
-
 export function createParametrizedHost(
   credential: TokenCredential,
   options: ParametrizedHostClientOptionalParams = {},
 ): ParametrizedHostContext {
+  const host = options.host ?? "one";
+  const subdomain = options.subdomain ?? "two";
+  const sufix = options.sufix ?? "three";
+  const apiVersion = options.apiVersion ?? "v1";
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${host}.${subdomain}.${sufix}.com/${apiVersion}`;
+
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
     : "azsdk-js-api";
-
-  const clientContext = getClient(credential, {
+  const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-  });
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://parametrized-host.azure.com/.default",
+      ],
+    },
+  };
+  const clientContext = getClient(endpointUrl, credential, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return clientContext;
 }

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createSchemaRegistry,
-  SchemaRegistryClientOptionalParams,
   SchemaRegistryContext,
+  SchemaRegistryClientOptionalParams,
 } from "./schemaRegistryContext.js";

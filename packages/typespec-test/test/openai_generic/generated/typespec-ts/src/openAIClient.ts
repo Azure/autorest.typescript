@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -37,8 +37,8 @@ import {
 } from "./classic/moderations/index.js";
 import {
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
 } from "./api/index.js";
 
 export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
@@ -57,7 +57,6 @@ export class OpenAIClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createOpenAI(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

@@ -1,4 +1,6 @@
 import {
+  RLCModel,
+  Schema,
   buildClient,
   buildClientDefinitions,
   buildPaginateHelper,
@@ -6,33 +8,34 @@ import {
   buildResponseTypes,
   buildRuntimeImports,
   buildSchemaTypes,
-  initInternalImports,
-  RLCModel,
-  Schema
+  initInternalImports
 } from "@azure-tools/rlc-common";
-import { createDpgContextTestHelper, rlcEmitterFor } from "./testUtil.js";
-import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
-import { transformSchemas } from "../../src/transform/transformSchemas.js";
-import { transformPaths } from "../../src/transform/transformPaths.js";
-import {
-  transformRLCModel,
-  transformUrlInfo
-} from "../../src/transform/transform.js";
-import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
-import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
-import { getRLCClients } from "../../src/utils/clientUtils.js";
-import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
-import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
 import {
   buildModels,
   buildModelsOptions
 } from "../../src/modular/emitModels.js";
+import { createDpgContextTestHelper, rlcEmitterFor } from "./testUtil.js";
+import {
+  transformRLCModel,
+  transformUrlInfo
+} from "../../src/transform/transform.js";
+
+import { Project } from "ts-morph";
+import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
+import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
-import { buildClientContext } from "../../src/modular/buildClientContext.js";
-import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
-import { Project } from "ts-morph";
+import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
+import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
+import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
+import { getRLCClients } from "../../src/utils/clientUtils.js";
+import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
+import { transformPaths } from "../../src/transform/transformPaths.js";
+import { transformSchemas } from "../../src/transform/transformSchemas.js";
+import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
+import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
+import { useBinder } from "../../src/framework/hooks/binder.js";
+import { useContext } from "../../src/contextManager.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -319,7 +322,8 @@ export async function emitModularModelsFromTypeSpec(
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder(); 
   const clients = getRLCClients(dpgContext);
   let modelFile = undefined;
   if (clients && clients[0]) {
@@ -357,6 +361,7 @@ export async function emitModularModelsFromTypeSpec(
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
+  binder.resolveAllReferences();
   return modelFile;
 }
 
@@ -369,7 +374,8 @@ export async function emitModularSerializeUtilsFromTypeSpec(
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -390,7 +396,9 @@ export async function emitModularSerializeUtilsFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildSerializeUtils(modularCodeModel);
+      const files = buildSerializeUtils(modularCodeModel);
+      binder.resolveAllReferences();
+      return files;
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -418,7 +426,8 @@ export async function emitModularOperationsFromTypeSpec(
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -442,12 +451,12 @@ export async function emitModularOperationsFromTypeSpec(
       const res = buildOperationFiles(
         modularCodeModel.clients[0],
         dpgContext,
-        modularCodeModel,
-        false
+        modularCodeModel
       );
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;
       }
+      binder.resolveAllReferences();
       return res;
     }
   }

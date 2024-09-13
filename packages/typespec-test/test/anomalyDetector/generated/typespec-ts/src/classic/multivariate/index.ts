@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
@@ -19,7 +19,7 @@ import {
   detectMultivariateBatchAnomaly,
   detectMultivariateLastAnomaly,
 } from "../../api/multivariate/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   MultivariateGetMultivariateBatchDetectionResultOptionalParams,
   MultivariateTrainMultivariateModelOptionalParams,

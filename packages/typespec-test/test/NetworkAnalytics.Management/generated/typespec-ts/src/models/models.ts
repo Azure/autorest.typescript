@@ -1,29 +1,7 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  TrackedResource as TrackedResourceRest,
-  DataProduct as DataProductRest,
-  DataProductProperties as DataProductPropertiesRest,
-  EncryptionKeyDetails as EncryptionKeyDetailsRest,
-  DataProductNetworkAcls as DataProductNetworkAclsRest,
-  VirtualNetworkRule as VirtualNetworkRuleRest,
-  IPRules as IPRulesRest,
-  ManagedResourceGroupConfiguration as ManagedResourceGroupConfigurationRest,
-  ManagedServiceIdentityV4 as ManagedServiceIdentityV4Rest,
-  DataProductUpdate as DataProductUpdateRest,
-  DataProductUpdateProperties as DataProductUpdatePropertiesRest,
-  AccountSas as AccountSasRest,
-  KeyVaultInfo as KeyVaultInfoRest,
-  RoleAssignmentCommonProperties as RoleAssignmentCommonPropertiesRest,
-  RoleAssignmentDetail as RoleAssignmentDetailRest,
-  DataType as DataTypeRest,
-  DataTypeProperties as DataTypePropertiesRest,
-  DataTypeUpdate as DataTypeUpdateRest,
-  DataTypeUpdateProperties as DataTypeUpdatePropertiesRest,
-  ContainerSaS as ContainerSaSRest,
-} from "../rest/index.js";
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
@@ -91,7 +69,7 @@ export interface TrackedResource extends Resource {
 
 export function trackedResourceSerializer(
   item: TrackedResource,
-): TrackedResourceRest {
+): Record<string, unknown> {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -106,7 +84,9 @@ export interface DataProduct extends TrackedResource {
   identity?: ManagedServiceIdentityV4;
 }
 
-export function dataProductSerializer(item: DataProduct): DataProductRest {
+export function dataProductSerializer(
+  item: DataProduct,
+): Record<string, unknown> {
   return {
     tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
     location: item["location"],
@@ -165,7 +145,7 @@ export interface DataProductProperties {
 
 export function dataProductPropertiesSerializer(
   item: DataProductProperties,
-): DataProductPropertiesRest {
+): Record<string, unknown> {
   return {
     publisher: item["publisher"],
     product: item["product"],
@@ -256,7 +236,7 @@ export interface EncryptionKeyDetails {
 
 export function encryptionKeyDetailsSerializer(
   item: EncryptionKeyDetails,
-): EncryptionKeyDetailsRest {
+): Record<string, unknown> {
   return {
     keyVaultUri: item["keyVaultUri"],
     keyName: item["keyName"],
@@ -278,7 +258,7 @@ export interface DataProductNetworkAcls {
 
 export function dataProductNetworkAclsSerializer(
   item: DataProductNetworkAcls,
-): DataProductNetworkAclsRest {
+): Record<string, unknown> {
   return {
     virtualNetworkRule: item["virtualNetworkRule"].map(
       virtualNetworkRuleSerializer,
@@ -301,7 +281,7 @@ export interface VirtualNetworkRule {
 
 export function virtualNetworkRuleSerializer(
   item: VirtualNetworkRule,
-): VirtualNetworkRuleRest {
+): Record<string, unknown> {
   return {
     id: item["id"],
     action: item["action"],
@@ -317,7 +297,7 @@ export interface IPRules {
   action: string;
 }
 
-export function iPRulesSerializer(item: IPRules): IPRulesRest {
+export function iPRulesSerializer(item: IPRules): Record<string, unknown> {
   return {
     value: item["value"],
     action: item["action"],
@@ -352,7 +332,7 @@ export interface ManagedResourceGroupConfiguration {
 
 export function managedResourceGroupConfigurationSerializer(
   item: ManagedResourceGroupConfiguration,
-): ManagedResourceGroupConfigurationRest {
+): Record<string, unknown> {
   return {
     name: item["name"],
     location: item["location"],
@@ -389,7 +369,7 @@ export interface ManagedServiceIdentityV4 {
 
 export function managedServiceIdentityV4Serializer(
   item: ManagedServiceIdentityV4,
-): ManagedServiceIdentityV4Rest {
+): Record<string, unknown> {
   return {
     type: item["type"],
     userAssignedIdentities: !item.userAssignedIdentities
@@ -409,8 +389,8 @@ export enum KnownManagedServiceIdentityType {
   SystemAssigned = "SystemAssigned",
   /** UserAssigned */
   UserAssigned = "UserAssigned",
-  /** SystemAssigned, UserAssigned */
-  "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+  /** SystemAndUserAssigned */
+  SystemAndUserAssigned = "SystemAssigned, UserAssigned",
 }
 
 /**
@@ -477,7 +457,7 @@ export interface DataProductUpdate {
 
 export function dataProductUpdateSerializer(
   item: DataProductUpdate,
-): DataProductUpdateRest {
+): Record<string, unknown> {
   return {
     identity: !item.identity
       ? item.identity
@@ -505,7 +485,7 @@ export interface DataProductUpdateProperties {
 
 export function dataProductUpdatePropertiesSerializer(
   item: DataProductUpdateProperties,
-): DataProductUpdatePropertiesRest {
+): Record<string, unknown> {
   return {
     owners: item["owners"],
     purviewAccount: item["purviewAccount"],
@@ -525,7 +505,9 @@ export interface AccountSas {
   ipAddress: string;
 }
 
-export function accountSasSerializer(item: AccountSas): AccountSasRest {
+export function accountSasSerializer(
+  item: AccountSas,
+): Record<string, unknown> {
   return {
     startTimeStamp: item["startTimeStamp"].toISOString(),
     expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
@@ -545,7 +527,9 @@ export interface KeyVaultInfo {
   keyVaultUrl: string;
 }
 
-export function keyVaultInfoSerializer(item: KeyVaultInfo): KeyVaultInfoRest {
+export function keyVaultInfoSerializer(
+  item: KeyVaultInfo,
+): Record<string, unknown> {
   return {
     keyVaultUrl: item["keyVaultUrl"],
   };
@@ -569,7 +553,7 @@ export interface RoleAssignmentCommonProperties {
 
 export function roleAssignmentCommonPropertiesSerializer(
   item: RoleAssignmentCommonProperties,
-): RoleAssignmentCommonPropertiesRest {
+): Record<string, unknown> {
   return {
     roleId: item["roleId"],
     principalId: item["principalId"],
@@ -618,7 +602,7 @@ export interface RoleAssignmentDetail {
 
 export function roleAssignmentDetailSerializer(
   item: RoleAssignmentDetail,
-): RoleAssignmentDetailRest {
+): Record<string, unknown> {
   return {
     roleId: item["roleId"],
     principalId: item["principalId"],
@@ -659,7 +643,7 @@ export interface DataType extends ProxyResource {
   properties?: DataTypeProperties;
 }
 
-export function dataTypeSerializer(item: DataType): DataTypeRest {
+export function dataTypeSerializer(item: DataType): Record<string, unknown> {
   return {
     properties: !item.properties
       ? item.properties
@@ -687,7 +671,7 @@ export interface DataTypeProperties {
 
 export function dataTypePropertiesSerializer(
   item: DataTypeProperties,
-): DataTypePropertiesRest {
+): Record<string, unknown> {
   return {
     state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
@@ -722,7 +706,7 @@ export interface DataTypeUpdate {
 
 export function dataTypeUpdateSerializer(
   item: DataTypeUpdate,
-): DataTypeUpdateRest {
+): Record<string, unknown> {
   return {
     properties: !item.properties
       ? item.properties
@@ -744,7 +728,7 @@ export interface DataTypeUpdateProperties {
 
 export function dataTypeUpdatePropertiesSerializer(
   item: DataTypeUpdateProperties,
-): DataTypeUpdatePropertiesRest {
+): Record<string, unknown> {
   return {
     state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
@@ -763,7 +747,9 @@ export interface ContainerSaS {
   ipAddress: string;
 }
 
-export function containerSaSSerializer(item: ContainerSaS): ContainerSaSRest {
+export function containerSaSSerializer(
+  item: ContainerSaS,
+): Record<string, unknown> {
   return {
     startTimeStamp: item["startTimeStamp"].toISOString(),
     expiryTimeStamp: item["expiryTimeStamp"].toISOString(),

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -13,8 +13,8 @@ import {
 } from "./classic/multivariate/index.js";
 import {
   createAnomalyDetector,
-  AnomalyDetectorClientOptionalParams,
   AnomalyDetectorContext,
+  AnomalyDetectorClientOptionalParams,
 } from "./api/index.js";
 
 export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
@@ -51,7 +51,6 @@ export class AnomalyDetectorClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createAnomalyDetector(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

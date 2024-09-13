@@ -1,7 +1,7 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
 } from "./openAIContext.js";

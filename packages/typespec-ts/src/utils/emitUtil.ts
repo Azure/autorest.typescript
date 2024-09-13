@@ -2,6 +2,7 @@ import {
   buildSchemaTypes,
   ContentBuilder,
   File,
+  isAzurePackage,
   RLCModel
 } from "@azure-tools/rlc-common";
 import { CompilerHost, Program } from "@typespec/compiler";
@@ -11,7 +12,7 @@ import { prettierJSONOptions, prettierTypeScriptOptions } from "../lib.js";
 
 export async function emitModels(rlcModels: RLCModel, program: Program) {
   const schemaOutput = buildSchemaTypes(rlcModels);
-  const isAzureFlavor = rlcModels?.options?.flavor === "azure";
+  const isAzureFlavor = isAzurePackage(rlcModels);
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
     if (inputModelFile) {
@@ -32,7 +33,7 @@ export async function emitContentByBuilder(
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
   }
-  const isAzureFlavor = rlcModels?.options?.flavor === "azure";
+  const isAzureFlavor = isAzurePackage(rlcModels);
   for (const builderFn of builderFnOrList) {
     let contentFiles: File[] | File | undefined = builderFn(rlcModels);
     if (!contentFiles) {
@@ -60,7 +61,7 @@ async function emitFile(
   const microsoftHeader = isAzureFlavor
     ? `// Copyright (c) Microsoft Corporation.\n`
     : "";
-  const licenseHeader = `${microsoftHeader}// Licensed under the MIT license.\n`;
+  const licenseHeader = `${microsoftHeader}// Licensed under the MIT License.\n`;
   let prettierFileContent = file.content;
 
   if (isSourceCode) {

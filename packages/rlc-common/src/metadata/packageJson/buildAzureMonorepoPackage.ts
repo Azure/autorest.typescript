@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 
 import {
+  AzurePackageInfoConfig,
+  getAzureCommonPackageInfo,
+  getAzurePackageDependencies,
+  getAzurePackageDevDependencies
+} from "./azurePackageCommon.js";
+import {
   getCommonPackageScripts,
   getPackageCommonInfo
 } from "./packageCommon.js";
-
-import {
-  getAzurePackageDevDependencies,
-  getAzurePackageDependencies,
-  AzurePackageInfoConfig,
-  getAzureCommonPackageInfo
-} from "./azurePackageCommon.js";
 
 export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
   monorepoPackageDirectory?: string;
@@ -123,10 +122,10 @@ function getEsmDevDependencies({
   let testDevDependencies: Record<string, string> = {};
   if (withTests) {
     testDevDependencies = {
-      "@vitest/browser": "^1.3.1",
-      "@vitest/coverage-istanbul": "^1.3.1",
+      "@vitest/browser": "^2.0.5",
+      "@vitest/coverage-istanbul": "^2.0.5",
       playwright: "^1.41.2",
-      vitest: "^1.3.1"
+      vitest: "^2.0.5"
     };
   }
 
@@ -195,25 +194,27 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     audit:
       "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": config.withSamples
-      ? "dev-tool samples publish --force"
+      ? "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f"
       : "echo skipped",
-    "check-format":
-      'dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
+    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
     "extract-api":
       "rimraf review && mkdirp ./review && dev-tool run extract-api",
-    format:
-      'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
+    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
     "generate:client": "echo skipped",
     "test:browser":
       "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
     "lint:fix":
-      "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts --fix --fix-type [problem,suggestion]",
-    lint: "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts",
+      "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
+    lint: "eslint package.json api-extractor.json src test",
     minify:
       "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,

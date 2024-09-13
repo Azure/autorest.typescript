@@ -1,5 +1,11 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
+
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
 export {
   SchemaRegistryClient,
@@ -9,19 +15,17 @@ export {
   SchemaGroup,
   SchemaContentTypeValues,
   SchemaVersion,
+  ServiceApiVersions,
   SchemaProperties,
   SchemaFormat,
   Schema,
   ContentTypeEnum,
-  ServiceApiVersions,
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export { SchemaOperationsOperations } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

@@ -38,7 +38,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function barSerializer(item: Bar): BarRest {
+          export function barSerializer(item: Bar): Record<string, unknown> {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -53,10 +53,11 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
 
@@ -70,7 +71,7 @@ describe("anonymous model", () => {
           prop4: string,
           prop5: Bar,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/{pathParam}", pathParam)
             .post({
@@ -85,8 +86,8 @@ describe("anonymous model", () => {
               },
             });
         }
-        export async function _readDeserialize(result: Read200Response): Promise<void> {
-          if (result.status !== "200") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["200"];\n  if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -148,7 +149,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getFullText()!,
           `
-          export function barSerializer(item: Bar): BarRest {
+          export function barSerializer(item: Bar): Record<string, unknown> {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -178,10 +179,11 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
@@ -192,7 +194,7 @@ describe("anonymous model", () => {
           prop2: number,
           prop4: string,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/{pathParam}", pathParam)
             .post({
@@ -210,8 +212,9 @@ describe("anonymous model", () => {
               },
             });
         }
-        export async function _readDeserialize(result: Read200Response): Promise<void> {
-          if (result.status !== "200") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -272,7 +275,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function barSerializer(item: Bar): BarRest {
+          export function barSerializer(item: Bar): Record<string, unknown> {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -303,10 +306,11 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
 
@@ -318,7 +322,7 @@ describe("anonymous model", () => {
           queryParam: string,
           prop2: number,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/{pathParam}/{prop1}", pathParam, prop1)
             .post({
@@ -334,8 +338,9 @@ describe("anonymous model", () => {
               },
             });
         }
-        export async function _readDeserialize(result: Read200Response): Promise<void> {
-          if (result.status !== "200") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -405,7 +410,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getText()!,
           `
-          export function barSerializer(item: Bar): BarRest {
+          export function barSerializer(item: Bar): Record<string, unknown> {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -416,7 +421,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("fooSerializer")?.getText()!,
           `
-          export function fooSerializer(item: Foo): FooRest {
+          export function fooSerializer(item: Foo): Record<string, unknown> {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -434,10 +439,11 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
@@ -446,7 +452,7 @@ describe("anonymous model", () => {
           queryParam: string,
           body: Foo,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/{pathParam}", pathParam)
             .post({
@@ -461,8 +467,9 @@ describe("anonymous model", () => {
               },
             });
         }
-        export async function _readDeserialize(result: Read200Response): Promise<void> {
-          if (result.status !== "200") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -500,10 +507,11 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
@@ -512,7 +520,7 @@ describe("anonymous model", () => {
           queryParam: string,
           body: Record<string, any>,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/{pathParam}", pathParam)
             .post({
@@ -521,8 +529,9 @@ describe("anonymous model", () => {
               body: body
             });
         }
-        export async function _readDeserialize(result: Read200Response): Promise<void> {
-          if (result.status !== "200") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -565,7 +574,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getFullText()!,
           `
-          export function barSerializer(item: Bar): BarRest {
+          export function barSerializer(item: Bar): Record<string, unknown> {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -579,10 +588,11 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
@@ -591,7 +601,7 @@ describe("anonymous model", () => {
           queryParam: string,
           test: { prop1: string; prop2: Bar },
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/{pathParam}", pathParam)
             .post({
@@ -600,8 +610,9 @@ describe("anonymous model", () => {
               body: { prop1: test["prop1"], prop2: barSerializer(test.prop2) },
             });
         }
-        export async function _readDeserialize(result: Read200Response): Promise<void> {
-          if (result.status !== "200") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -649,7 +660,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function testSerializer(item: Test): TestRest {
+          export function testSerializer(item: Test): Record<string, unknown> {
             return {
               color: item["color"],
             }
@@ -663,17 +674,18 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           body: Test,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read204Response> {
+        ): StreamableMethod {
           return context
             .path("/")
             .post({
@@ -681,8 +693,9 @@ describe("anonymous model", () => {
               body: { color: body["color"] },
             });
         }
-        export async function _readDeserialize(result: Read204Response): Promise<void> {
-          if (result.status !== "204") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["204"];
+          if(!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -722,7 +735,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function testSerializer(item: Test): TestRest {
+          export function testSerializer(item: Test): Record<string, unknown> {
             return {
               color: {foo: item.color["foo"]},
             }
@@ -736,17 +749,18 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           body: Test,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read204Response> {
+        ): StreamableMethod {
           return context
             .path("/")
             .post({
@@ -754,8 +768,9 @@ describe("anonymous model", () => {
               body: { color: { foo: body.color["foo"] } },
             });
         }
-        export async function _readDeserialize(result: Read204Response): Promise<void> {
-          if (result.status !== "204") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+          const expectedStatuses = ["204"];
+          if(!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return;
@@ -783,22 +798,24 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationDetail,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/")
             .get({ ...operationOptionsToRequestParameters(options) });
         }
-        export async function _readDeserialize(result: Read200Response): Promise<${returnType}> {
-          if (result.status !== "200") {
+        export async function _readDeserialize(result: PathUncheckedResponse): Promise<${returnType}> {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return result.body ${returnType.startsWith("Record") ? "as any" : ""};
@@ -869,24 +886,26 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]!.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/")
             .get({ ...operationOptionsToRequestParameters(options) });
         }
         export async function _readDeserialize(
-          result: Read200Response
+          result: PathUncheckedResponse
         ): Promise<{ foo?: { bar: string | null } }> {
-          if (result.status !== "200") {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
           return {
@@ -944,26 +963,28 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-        import { TestingContext as Client } from "../rest/index.js";
+        import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          PathUncheckedResponse,
           createRestError
         } from "@azure-rest/core-client";
         
         export function _readSend(
           context: Client,
           options: ReadOptionalParams = { requestOptions: {} }
-        ): StreamableMethod<Read200Response> {
+        ): StreamableMethod {
           return context
             .path("/")
             .get({ ...operationOptionsToRequestParameters(options) });
         }
 
         export async function _readDeserialize(
-          result: Read200Response
+          result: PathUncheckedResponse
         ): Promise<ReturnBody> {
-          if (result.status !== "200") {
+          const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
 
@@ -972,7 +993,7 @@ describe("anonymous model", () => {
             emptyAnomyousArray: result.body["emptyAnomyousArray"],
             emptyAnomyousDict: result.body["emptyAnomyousDict"],
             emptyModel: {},
-            emptyModelArray: result.body["emptyModelArray"].map(() => {
+            emptyModelArray: result.body["emptyModelArray"].map((p: any) => {
                     return {};
               }),
             emptyModelDict: result.body["emptyModelDict"],
@@ -1034,24 +1055,26 @@ describe("anonymous model", () => {
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
-          import { TestingContext as Client } from "../rest/index.js";
+          import { TestingContext as Client } from "./index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            PathUncheckedResponse,
             createRestError
           } from "@azure-rest/core-client";
           
           export function _readSend(
             context: Client,
             options: ReadOptionalParams = { requestOptions: {} }
-          ): StreamableMethod<Read200Response> {
+          ): StreamableMethod {
             return context
               .path("/")
               .get({ ...operationOptionsToRequestParameters(options) });
           }
           
-          export async function _readDeserialize(result: Read200Response): Promise<Foz> {
-            if (result.status !== "200") {
+          export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foz> {
+            const expectedStatuses = ["200"];
+          if (!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
             }
 
@@ -1062,11 +1085,11 @@ describe("anonymous model", () => {
                 bar:
                   result.body.baz["test"] === undefined
                     ? result.body.baz["test"]
-                    : result.body.baz["test"].map((p) => {
+                    : result.body.baz["test"].map((p: any) => {
                                    return { test: p["test"] };
                                  }),
                 nonemptyAnomyous: { a: result.body.baz.nonemptyAnomyous["a"] },
-                nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p) => {
+                nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p: any) => {
                           return { b: p["b"] };
                          },),
                 nonemptyAnomyousDict: result.body.baz["nonemptyAnomyousDict"],

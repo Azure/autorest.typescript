@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { getLongRunningPoller } from "../pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   dataProductPropertiesSerializer,
   managedServiceIdentityV4Serializer,
@@ -17,46 +15,20 @@ import {
   ListRoleAssignments,
   _DataProductListResult,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
-import {
-  isUnexpected,
-  NetworkAnalyticsContext as Client,
-  DataProductsAddUserRole200Response,
-  DataProductsAddUserRoleDefaultResponse,
-  DataProductsCreate200Response,
-  DataProductsCreate201Response,
-  DataProductsCreateDefaultResponse,
-  DataProductsCreateLogicalResponse,
-  DataProductsDelete202Response,
-  DataProductsDelete204Response,
-  DataProductsDeleteDefaultResponse,
-  DataProductsDeleteLogicalResponse,
-  DataProductsGenerateStorageAccountSasToken200Response,
-  DataProductsGenerateStorageAccountSasTokenDefaultResponse,
-  DataProductsGet200Response,
-  DataProductsGetDefaultResponse,
-  DataProductsListByResourceGroup200Response,
-  DataProductsListByResourceGroupDefaultResponse,
-  DataProductsListBySubscription200Response,
-  DataProductsListBySubscriptionDefaultResponse,
-  DataProductsListRolesAssignments200Response,
-  DataProductsListRolesAssignmentsDefaultResponse,
-  DataProductsRemoveUserRole204Response,
-  DataProductsRemoveUserRoleDefaultResponse,
-  DataProductsRotateKey204Response,
-  DataProductsRotateKeyDefaultResponse,
-  DataProductsUpdate200Response,
-  DataProductsUpdate202Response,
-  DataProductsUpdateDefaultResponse,
-  DataProductsUpdateLogicalResponse,
-} from "../../rest/index.js";
+import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../helpers/serializerHelpers.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   DataProductsCreateOptionalParams,
   DataProductsGetOptionalParams,
@@ -78,12 +50,7 @@ export function _createSend(
   dataProductName: string,
   resource: DataProduct,
   options: DataProductsCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataProductsCreate200Response
-  | DataProductsCreate201Response
-  | DataProductsCreateDefaultResponse
-  | DataProductsCreateLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
@@ -109,185 +76,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result:
-    | DataProductsCreate200Response
-    | DataProductsCreate201Response
-    | DataProductsCreateDefaultResponse
-    | DataProductsCreateLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<DataProduct> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  const res = result as unknown as DataProductsCreateLogicalResponse;
-  return {
-    tags: res.body["tags"],
-    location: res.body["location"],
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
-      ? undefined
-      : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
-          createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !res.body.properties
-      ? undefined
-      : {
-          resourceGuid: res.body.properties?.["resourceGuid"],
-          provisioningState: res.body.properties?.["provisioningState"],
-          publisher: res.body.properties?.["publisher"],
-          product: res.body.properties?.["product"],
-          majorVersion: res.body.properties?.["majorVersion"],
-          owners: res.body.properties?.["owners"],
-          redundancy: res.body.properties?.["redundancy"],
-          purviewAccount: res.body.properties?.["purviewAccount"],
-          purviewCollection: res.body.properties?.["purviewCollection"],
-          privateLinksEnabled: res.body.properties?.["privateLinksEnabled"],
-          publicNetworkAccess: res.body.properties?.["publicNetworkAccess"],
-          customerManagedKeyEncryptionEnabled:
-            res.body.properties?.["customerManagedKeyEncryptionEnabled"],
-          customerEncryptionKey: !res.body.properties?.customerEncryptionKey
-            ? undefined
-            : {
-                keyVaultUri:
-                  res.body.properties?.customerEncryptionKey?.["keyVaultUri"],
-                keyName:
-                  res.body.properties?.customerEncryptionKey?.["keyName"],
-                keyVersion:
-                  res.body.properties?.customerEncryptionKey?.["keyVersion"],
-              },
-          networkacls: !res.body.properties?.networkacls
-            ? undefined
-            : {
-                virtualNetworkRule: res.body.properties?.networkacls?.[
-                  "virtualNetworkRule"
-                ].map((p) => {
-                  return {
-                    id: p["id"],
-                    action: p["action"],
-                    state: p["state"],
-                  };
-                }),
-                ipRules: res.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => {
-                    return { value: p["value"], action: p["action"] };
-                  },
-                ),
-                allowedQueryIpRangeList:
-                  res.body.properties?.networkacls?.["allowedQueryIpRangeList"],
-                defaultAction:
-                  res.body.properties?.networkacls?.["defaultAction"],
-              },
-          managedResourceGroupConfiguration: !res.body.properties
-            ?.managedResourceGroupConfiguration
-            ? undefined
-            : {
-                name: res.body.properties?.managedResourceGroupConfiguration?.[
-                  "name"
-                ],
-                location:
-                  res.body.properties?.managedResourceGroupConfiguration?.[
-                    "location"
-                  ],
-              },
-          availableMinorVersions:
-            res.body.properties?.["availableMinorVersions"],
-          currentMinorVersion: res.body.properties?.["currentMinorVersion"],
-          documentation: res.body.properties?.["documentation"],
-          consumptionEndpoints: !res.body.properties?.consumptionEndpoints
-            ? undefined
-            : {
-                ingestionUrl:
-                  res.body.properties?.consumptionEndpoints?.["ingestionUrl"],
-                ingestionResourceId:
-                  res.body.properties?.consumptionEndpoints?.[
-                    "ingestionResourceId"
-                  ],
-                fileAccessUrl:
-                  res.body.properties?.consumptionEndpoints?.["fileAccessUrl"],
-                fileAccessResourceId:
-                  res.body.properties?.consumptionEndpoints?.[
-                    "fileAccessResourceId"
-                  ],
-                queryUrl:
-                  res.body.properties?.consumptionEndpoints?.["queryUrl"],
-                queryResourceId:
-                  res.body.properties?.consumptionEndpoints?.[
-                    "queryResourceId"
-                  ],
-              },
-          keyVaultUrl: res.body.properties?.["keyVaultUrl"],
-        },
-    identity: !res.body.identity
-      ? undefined
-      : {
-          principalId: res.body.identity?.["principalId"],
-          tenantId: res.body.identity?.["tenantId"],
-          type: res.body.identity?.["type"],
-          userAssignedIdentities: res.body.identity?.["userAssignedIdentities"],
-        },
-  };
-}
-
-/** Create data product resource. */
-export function create(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  resource: DataProduct,
-  options: DataProductsCreateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataProduct>, DataProduct> {
-  return getLongRunningPoller(context, _createDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        resource,
-        options,
-      ),
-  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
-}
-
-export function _getSend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  options: DataProductsGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DataProductsGet200Response | DataProductsGetDefaultResponse
-> {
-  return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getDeserialize(
-  result: DataProductsGet200Response | DataProductsGetDefaultResponse,
-): Promise<DataProduct> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -346,7 +138,7 @@ export async function _getDeserialize(
             : {
                 virtualNetworkRule: result.body.properties?.networkacls?.[
                   "virtualNetworkRule"
-                ].map((p) => {
+                ].map((p: any) => {
                   return {
                     id: p["id"],
                     action: p["action"],
@@ -354,7 +146,185 @@ export async function _getDeserialize(
                   };
                 }),
                 ipRules: result.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => {
+                  (p: any) => {
+                    return { value: p["value"], action: p["action"] };
+                  },
+                ),
+                allowedQueryIpRangeList:
+                  result.body.properties?.networkacls?.[
+                    "allowedQueryIpRangeList"
+                  ],
+                defaultAction:
+                  result.body.properties?.networkacls?.["defaultAction"],
+              },
+          managedResourceGroupConfiguration: !result.body.properties
+            ?.managedResourceGroupConfiguration
+            ? undefined
+            : {
+                name: result.body.properties
+                  ?.managedResourceGroupConfiguration?.["name"],
+                location:
+                  result.body.properties?.managedResourceGroupConfiguration?.[
+                    "location"
+                  ],
+              },
+          availableMinorVersions:
+            result.body.properties?.["availableMinorVersions"],
+          currentMinorVersion: result.body.properties?.["currentMinorVersion"],
+          documentation: result.body.properties?.["documentation"],
+          consumptionEndpoints: !result.body.properties?.consumptionEndpoints
+            ? undefined
+            : {
+                ingestionUrl:
+                  result.body.properties?.consumptionEndpoints?.[
+                    "ingestionUrl"
+                  ],
+                ingestionResourceId:
+                  result.body.properties?.consumptionEndpoints?.[
+                    "ingestionResourceId"
+                  ],
+                fileAccessUrl:
+                  result.body.properties?.consumptionEndpoints?.[
+                    "fileAccessUrl"
+                  ],
+                fileAccessResourceId:
+                  result.body.properties?.consumptionEndpoints?.[
+                    "fileAccessResourceId"
+                  ],
+                queryUrl:
+                  result.body.properties?.consumptionEndpoints?.["queryUrl"],
+                queryResourceId:
+                  result.body.properties?.consumptionEndpoints?.[
+                    "queryResourceId"
+                  ],
+              },
+          keyVaultUrl: result.body.properties?.["keyVaultUrl"],
+        },
+    identity: !result.body.identity
+      ? undefined
+      : {
+          principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
+          type: result.body.identity?.["type"],
+          userAssignedIdentities:
+            result.body.identity?.["userAssignedIdentities"],
+        },
+  };
+}
+
+/** Create data product resource. */
+export function create(
+  context: Client,
+  subscriptionId: string,
+  resourceGroupName: string,
+  dataProductName: string,
+  resource: DataProduct,
+  options: DataProductsCreateOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<DataProduct>, DataProduct> {
+  return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _createSend(
+        context,
+        subscriptionId,
+        resourceGroupName,
+        dataProductName,
+        resource,
+        options,
+      ),
+  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
+}
+
+export function _getSend(
+  context: Client,
+  subscriptionId: string,
+  resourceGroupName: string,
+  dataProductName: string,
+  options: DataProductsGetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
+      subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DataProduct> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    tags: result.body["tags"],
+    location: result.body["location"],
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
+      ? undefined
+      : {
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
+          createdAt:
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
+              : undefined,
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedAt:
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
+              : undefined,
+        },
+    properties: !result.body.properties
+      ? undefined
+      : {
+          resourceGuid: result.body.properties?.["resourceGuid"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          publisher: result.body.properties?.["publisher"],
+          product: result.body.properties?.["product"],
+          majorVersion: result.body.properties?.["majorVersion"],
+          owners: result.body.properties?.["owners"],
+          redundancy: result.body.properties?.["redundancy"],
+          purviewAccount: result.body.properties?.["purviewAccount"],
+          purviewCollection: result.body.properties?.["purviewCollection"],
+          privateLinksEnabled: result.body.properties?.["privateLinksEnabled"],
+          publicNetworkAccess: result.body.properties?.["publicNetworkAccess"],
+          customerManagedKeyEncryptionEnabled:
+            result.body.properties?.["customerManagedKeyEncryptionEnabled"],
+          customerEncryptionKey: !result.body.properties?.customerEncryptionKey
+            ? undefined
+            : {
+                keyVaultUri:
+                  result.body.properties?.customerEncryptionKey?.[
+                    "keyVaultUri"
+                  ],
+                keyName:
+                  result.body.properties?.customerEncryptionKey?.["keyName"],
+                keyVersion:
+                  result.body.properties?.customerEncryptionKey?.["keyVersion"],
+              },
+          networkacls: !result.body.properties?.networkacls
+            ? undefined
+            : {
+                virtualNetworkRule: result.body.properties?.networkacls?.[
+                  "virtualNetworkRule"
+                ].map((p: any) => {
+                  return {
+                    id: p["id"],
+                    action: p["action"],
+                    state: p["state"],
+                  };
+                }),
+                ipRules: result.body.properties?.networkacls?.["ipRules"].map(
+                  (p: any) => {
                     return { value: p["value"], action: p["action"] };
                   },
                 ),
@@ -445,12 +415,7 @@ export function _updateSend(
   dataProductName: string,
   properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataProductsUpdate200Response
-  | DataProductsUpdate202Response
-  | DataProductsUpdateDefaultResponse
-  | DataProductsUpdateLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
@@ -475,134 +440,138 @@ export function _updateSend(
 }
 
 export async function _updateDeserialize(
-  result:
-    | DataProductsUpdate200Response
-    | DataProductsUpdate202Response
-    | DataProductsUpdateDefaultResponse
-    | DataProductsUpdateLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<DataProduct> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as DataProductsUpdateLogicalResponse;
   return {
-    tags: res.body["tags"],
-    location: res.body["location"],
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
+    tags: result.body["tags"],
+    location: result.body["location"],
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !res.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          resourceGuid: res.body.properties?.["resourceGuid"],
-          provisioningState: res.body.properties?.["provisioningState"],
-          publisher: res.body.properties?.["publisher"],
-          product: res.body.properties?.["product"],
-          majorVersion: res.body.properties?.["majorVersion"],
-          owners: res.body.properties?.["owners"],
-          redundancy: res.body.properties?.["redundancy"],
-          purviewAccount: res.body.properties?.["purviewAccount"],
-          purviewCollection: res.body.properties?.["purviewCollection"],
-          privateLinksEnabled: res.body.properties?.["privateLinksEnabled"],
-          publicNetworkAccess: res.body.properties?.["publicNetworkAccess"],
+          resourceGuid: result.body.properties?.["resourceGuid"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          publisher: result.body.properties?.["publisher"],
+          product: result.body.properties?.["product"],
+          majorVersion: result.body.properties?.["majorVersion"],
+          owners: result.body.properties?.["owners"],
+          redundancy: result.body.properties?.["redundancy"],
+          purviewAccount: result.body.properties?.["purviewAccount"],
+          purviewCollection: result.body.properties?.["purviewCollection"],
+          privateLinksEnabled: result.body.properties?.["privateLinksEnabled"],
+          publicNetworkAccess: result.body.properties?.["publicNetworkAccess"],
           customerManagedKeyEncryptionEnabled:
-            res.body.properties?.["customerManagedKeyEncryptionEnabled"],
-          customerEncryptionKey: !res.body.properties?.customerEncryptionKey
+            result.body.properties?.["customerManagedKeyEncryptionEnabled"],
+          customerEncryptionKey: !result.body.properties?.customerEncryptionKey
             ? undefined
             : {
                 keyVaultUri:
-                  res.body.properties?.customerEncryptionKey?.["keyVaultUri"],
+                  result.body.properties?.customerEncryptionKey?.[
+                    "keyVaultUri"
+                  ],
                 keyName:
-                  res.body.properties?.customerEncryptionKey?.["keyName"],
+                  result.body.properties?.customerEncryptionKey?.["keyName"],
                 keyVersion:
-                  res.body.properties?.customerEncryptionKey?.["keyVersion"],
+                  result.body.properties?.customerEncryptionKey?.["keyVersion"],
               },
-          networkacls: !res.body.properties?.networkacls
+          networkacls: !result.body.properties?.networkacls
             ? undefined
             : {
-                virtualNetworkRule: res.body.properties?.networkacls?.[
+                virtualNetworkRule: result.body.properties?.networkacls?.[
                   "virtualNetworkRule"
-                ].map((p) => {
+                ].map((p: any) => {
                   return {
                     id: p["id"],
                     action: p["action"],
                     state: p["state"],
                   };
                 }),
-                ipRules: res.body.properties?.networkacls?.["ipRules"].map(
-                  (p) => {
+                ipRules: result.body.properties?.networkacls?.["ipRules"].map(
+                  (p: any) => {
                     return { value: p["value"], action: p["action"] };
                   },
                 ),
                 allowedQueryIpRangeList:
-                  res.body.properties?.networkacls?.["allowedQueryIpRangeList"],
+                  result.body.properties?.networkacls?.[
+                    "allowedQueryIpRangeList"
+                  ],
                 defaultAction:
-                  res.body.properties?.networkacls?.["defaultAction"],
+                  result.body.properties?.networkacls?.["defaultAction"],
               },
-          managedResourceGroupConfiguration: !res.body.properties
+          managedResourceGroupConfiguration: !result.body.properties
             ?.managedResourceGroupConfiguration
             ? undefined
             : {
-                name: res.body.properties?.managedResourceGroupConfiguration?.[
-                  "name"
-                ],
+                name: result.body.properties
+                  ?.managedResourceGroupConfiguration?.["name"],
                 location:
-                  res.body.properties?.managedResourceGroupConfiguration?.[
+                  result.body.properties?.managedResourceGroupConfiguration?.[
                     "location"
                   ],
               },
           availableMinorVersions:
-            res.body.properties?.["availableMinorVersions"],
-          currentMinorVersion: res.body.properties?.["currentMinorVersion"],
-          documentation: res.body.properties?.["documentation"],
-          consumptionEndpoints: !res.body.properties?.consumptionEndpoints
+            result.body.properties?.["availableMinorVersions"],
+          currentMinorVersion: result.body.properties?.["currentMinorVersion"],
+          documentation: result.body.properties?.["documentation"],
+          consumptionEndpoints: !result.body.properties?.consumptionEndpoints
             ? undefined
             : {
                 ingestionUrl:
-                  res.body.properties?.consumptionEndpoints?.["ingestionUrl"],
+                  result.body.properties?.consumptionEndpoints?.[
+                    "ingestionUrl"
+                  ],
                 ingestionResourceId:
-                  res.body.properties?.consumptionEndpoints?.[
+                  result.body.properties?.consumptionEndpoints?.[
                     "ingestionResourceId"
                   ],
                 fileAccessUrl:
-                  res.body.properties?.consumptionEndpoints?.["fileAccessUrl"],
+                  result.body.properties?.consumptionEndpoints?.[
+                    "fileAccessUrl"
+                  ],
                 fileAccessResourceId:
-                  res.body.properties?.consumptionEndpoints?.[
+                  result.body.properties?.consumptionEndpoints?.[
                     "fileAccessResourceId"
                   ],
                 queryUrl:
-                  res.body.properties?.consumptionEndpoints?.["queryUrl"],
+                  result.body.properties?.consumptionEndpoints?.["queryUrl"],
                 queryResourceId:
-                  res.body.properties?.consumptionEndpoints?.[
+                  result.body.properties?.consumptionEndpoints?.[
                     "queryResourceId"
                   ],
               },
-          keyVaultUrl: res.body.properties?.["keyVaultUrl"],
+          keyVaultUrl: result.body.properties?.["keyVaultUrl"],
         },
-    identity: !res.body.identity
+    identity: !result.body.identity
       ? undefined
       : {
-          principalId: res.body.identity?.["principalId"],
-          tenantId: res.body.identity?.["tenantId"],
-          type: res.body.identity?.["type"],
-          userAssignedIdentities: res.body.identity?.["userAssignedIdentities"],
+          principalId: result.body.identity?.["principalId"],
+          tenantId: result.body.identity?.["tenantId"],
+          type: result.body.identity?.["type"],
+          userAssignedIdentities:
+            result.body.identity?.["userAssignedIdentities"],
         },
   };
 }
@@ -616,7 +585,7 @@ export function update(
   properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataProduct>, DataProduct> {
-  return getLongRunningPoller(context, _updateDeserialize, {
+  return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
@@ -637,12 +606,7 @@ export function _$deleteSend(
   resourceGroupName: string,
   dataProductName: string,
   options: DataProductsDeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataProductsDelete202Response
-  | DataProductsDelete204Response
-  | DataProductsDeleteDefaultResponse
-  | DataProductsDeleteLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
@@ -654,13 +618,10 @@ export function _$deleteSend(
 }
 
 export async function _$deleteDeserialize(
-  result:
-    | DataProductsDelete202Response
-    | DataProductsDelete204Response
-    | DataProductsDeleteDefaultResponse
-    | DataProductsDeleteLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "204", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -680,18 +641,23 @@ export function $delete(
   dataProductName: string,
   options: DataProductsDeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _$deleteDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _$deleteSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        options,
-      ),
-  }) as PollerLike<OperationState<void>, void>;
+  return getLongRunningPoller(
+    context,
+    _$deleteDeserialize,
+    ["202", "204", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _$deleteSend(
+          context,
+          subscriptionId,
+          resourceGroupName,
+          dataProductName,
+          options,
+        ),
+    },
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _generateStorageAccountSasTokenSend(
@@ -703,10 +669,7 @@ export function _generateStorageAccountSasTokenSend(
   options: DataProductsGenerateStorageAccountSasTokenOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DataProductsGenerateStorageAccountSasToken200Response
-  | DataProductsGenerateStorageAccountSasTokenDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken",
@@ -725,11 +688,10 @@ export function _generateStorageAccountSasTokenSend(
 }
 
 export async function _generateStorageAccountSasTokenDeserialize(
-  result:
-    | DataProductsGenerateStorageAccountSasToken200Response
-    | DataProductsGenerateStorageAccountSasTokenDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<AccountSasToken> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -767,9 +729,7 @@ export function _rotateKeySend(
   dataProductName: string,
   body: KeyVaultInfo,
   options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DataProductsRotateKey204Response | DataProductsRotateKeyDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey",
@@ -784,11 +744,10 @@ export function _rotateKeySend(
 }
 
 export async function _rotateKeyDeserialize(
-  result:
-    | DataProductsRotateKey204Response
-    | DataProductsRotateKeyDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -822,9 +781,7 @@ export function _addUserRoleSend(
   dataProductName: string,
   body: RoleAssignmentCommonProperties,
   options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  DataProductsAddUserRole200Response | DataProductsAddUserRoleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole",
@@ -846,11 +803,10 @@ export function _addUserRoleSend(
 }
 
 export async function _addUserRoleDeserialize(
-  result:
-    | DataProductsAddUserRole200Response
-    | DataProductsAddUserRoleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<RoleAssignmentDetail> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -892,10 +848,7 @@ export function _removeUserRoleSend(
   dataProductName: string,
   body: RoleAssignmentDetail,
   options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataProductsRemoveUserRole204Response
-  | DataProductsRemoveUserRoleDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole",
@@ -918,11 +871,10 @@ export function _removeUserRoleSend(
 }
 
 export async function _removeUserRoleDeserialize(
-  result:
-    | DataProductsRemoveUserRole204Response
-    | DataProductsRemoveUserRoleDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -958,10 +910,7 @@ export function _listRolesAssignmentsSend(
   options: DataProductsListRolesAssignmentsOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DataProductsListRolesAssignments200Response
-  | DataProductsListRolesAssignmentsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments",
@@ -973,27 +922,28 @@ export function _listRolesAssignmentsSend(
 }
 
 export async function _listRolesAssignmentsDeserialize(
-  result:
-    | DataProductsListRolesAssignments200Response
-    | DataProductsListRolesAssignmentsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ListRoleAssignments> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
     count: result.body["count"],
-    roleAssignmentResponse: result.body["roleAssignmentResponse"].map((p) => {
-      return {
-        roleId: p["roleId"],
-        principalId: p["principalId"],
-        userName: p["userName"],
-        dataTypeScope: p["dataTypeScope"],
-        principalType: p["principalType"],
-        role: p["role"],
-        roleAssignmentId: p["roleAssignmentId"],
-      };
-    }),
+    roleAssignmentResponse: result.body["roleAssignmentResponse"].map(
+      (p: any) => {
+        return {
+          roleId: p["roleId"],
+          principalId: p["principalId"],
+          userName: p["userName"],
+          dataTypeScope: p["dataTypeScope"],
+          principalType: p["principalType"],
+          role: p["role"],
+          roleAssignmentId: p["roleAssignmentId"],
+        };
+      },
+    ),
   };
 }
 
@@ -1026,10 +976,7 @@ export function _listByResourceGroupSend(
   options: DataProductsListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DataProductsListByResourceGroup200Response
-  | DataProductsListByResourceGroupDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts",
@@ -1040,16 +987,15 @@ export function _listByResourceGroupSend(
 }
 
 export async function _listByResourceGroupDeserialize(
-  result:
-    | DataProductsListByResourceGroup200Response
-    | DataProductsListByResourceGroupDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_DataProductListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -1102,16 +1048,18 @@ export async function _listByResourceGroupDeserialize(
                 : {
                     virtualNetworkRule: p.properties?.networkacls?.[
                       "virtualNetworkRule"
-                    ].map((p) => {
+                    ].map((p: any) => {
                       return {
                         id: p["id"],
                         action: p["action"],
                         state: p["state"],
                       };
                     }),
-                    ipRules: p.properties?.networkacls?.["ipRules"].map((p) => {
-                      return { value: p["value"], action: p["action"] };
-                    }),
+                    ipRules: p.properties?.networkacls?.["ipRules"].map(
+                      (p: any) => {
+                        return { value: p["value"], action: p["action"] };
+                      },
+                    ),
                     allowedQueryIpRangeList:
                       p.properties?.networkacls?.["allowedQueryIpRangeList"],
                     defaultAction: p.properties?.networkacls?.["defaultAction"],
@@ -1185,6 +1133,7 @@ export function listByResourceGroup(
         options,
       ),
     _listByResourceGroupDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
@@ -1195,10 +1144,7 @@ export function _listBySubscriptionSend(
   options: DataProductsListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DataProductsListBySubscription200Response
-  | DataProductsListBySubscriptionDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts",
@@ -1208,16 +1154,15 @@ export function _listBySubscriptionSend(
 }
 
 export async function _listBySubscriptionDeserialize(
-  result:
-    | DataProductsListBySubscription200Response
-    | DataProductsListBySubscriptionDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_DataProductListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         tags: p["tags"],
         location: p["location"],
@@ -1270,16 +1215,18 @@ export async function _listBySubscriptionDeserialize(
                 : {
                     virtualNetworkRule: p.properties?.networkacls?.[
                       "virtualNetworkRule"
-                    ].map((p) => {
+                    ].map((p: any) => {
                       return {
                         id: p["id"],
                         action: p["action"],
                         state: p["state"],
                       };
                     }),
-                    ipRules: p.properties?.networkacls?.["ipRules"].map((p) => {
-                      return { value: p["value"], action: p["action"] };
-                    }),
+                    ipRules: p.properties?.networkacls?.["ipRules"].map(
+                      (p: any) => {
+                        return { value: p["value"], action: p["action"] };
+                      },
+                    ),
                     allowedQueryIpRangeList:
                       p.properties?.networkacls?.["allowedQueryIpRangeList"],
                     defaultAction: p.properties?.networkacls?.["defaultAction"],
@@ -1346,6 +1293,7 @@ export function listBySubscription(
     context,
     () => _listBySubscriptionSend(context, subscriptionId, options),
     _listBySubscriptionDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

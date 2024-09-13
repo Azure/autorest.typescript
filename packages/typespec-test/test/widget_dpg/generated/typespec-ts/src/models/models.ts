@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
-import { User as UserRest } from "../rest/index.js";
+// Licensed under the MIT License.
 
 /** Details about a user. */
 export interface User {
@@ -13,7 +11,7 @@ export interface User {
   id: string;
 }
 
-export function userSerializer(item: User): UserRest {
+export function userSerializer(item: User): Record<string, unknown> {
   return {
     role: item["role"],
     id: item["id"],
@@ -61,6 +59,9 @@ export interface AnalyzeResult {
   summary: string;
 }
 
+/** The Contoso Widget Manager service version. */
+export type Versions = "1.0.0";
+
 export interface NonReferencedModel {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   prop1: number;
@@ -68,12 +69,11 @@ export interface NonReferencedModel {
   prop2: string;
 }
 
-export function nonReferencedModelSerializer(item: NonReferencedModel) {
+export function nonReferencedModelSerializer(
+  item: NonReferencedModel,
+): Record<string, unknown> {
   return {
     prop1: item["prop1"],
     prop2: item["prop2"],
   };
 }
-
-/** The Contoso Widget Manager service version. */
-export type Versions = "1.0.0";

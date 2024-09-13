@@ -1,4 +1,4 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { Pipeline } from "@typespec/ts-http-runtime";
@@ -36,8 +36,8 @@ import {
 } from "./classic/moderations/index.js";
 import {
   createOpenAI,
-  OpenAIClientOptionalParams,
   OpenAIContext,
+  OpenAIClientOptionalParams,
 } from "./api/index.js";
 
 export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
@@ -56,7 +56,6 @@ export class OpenAIClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createOpenAI(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

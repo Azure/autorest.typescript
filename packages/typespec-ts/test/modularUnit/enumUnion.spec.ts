@@ -2,8 +2,9 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+
 import { assert } from "chai";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("header parameters", () => {
   describe("named union", async () => {
@@ -62,10 +63,11 @@ describe("header parameters", () => {
         await assertEqualContent(
           paramOutput?.[0]?.getFullText()!,
           `
-          import { DemoServiceContext as Client } from "../rest/index.js";
+          import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            PathUncheckedResponse,
             createRestError,
           } from "@azure-rest/core-client";
           
@@ -74,7 +76,7 @@ describe("header parameters", () => {
             contentType: SchemaContentTypeValues,
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
-          ): StreamableMethod<Get204Response> {
+          ): StreamableMethod {
               return context
                 .path("/")
                 .post({
@@ -84,8 +86,9 @@ describe("header parameters", () => {
                 });
           }
           
-          export async function _getDeserialize(result: Get204Response): Promise<void> {
-            if (result.status !== "204") {
+          export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+            const expectedStatuses = ["204"];
+            if(!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
             }
           
@@ -463,10 +466,11 @@ describe("header parameters", () => {
         await assertEqualContent(
           operationContent,
           `
-          import { DemoServiceContext as Client } from "../rest/index.js";
+          import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            PathUncheckedResponse,
             createRestError,
           } from "@azure-rest/core-client";
           export function _getSend(
@@ -474,7 +478,7 @@ describe("header parameters", () => {
             testHeader: "A" | "B",
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
-          ): StreamableMethod<Get204Response> {
+          ): StreamableMethod {
             return context
               .path("/")
               .post({
@@ -483,8 +487,9 @@ describe("header parameters", () => {
                 body: body
               });
           }
-          export async function _getDeserialize(result: Get204Response): Promise<void> {
-            if (result.status !== "204") {
+          export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+            const expectedStatuses = ["204"];
+            if(!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
             }
             return;
@@ -542,10 +547,11 @@ describe("header parameters", () => {
         await assertEqualContent(
           operationContent,
           `
-          import { DemoServiceContext as Client } from "../rest/index.js";
+          import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            PathUncheckedResponse,
             createRestError,
           } from "@azure-rest/core-client";
           export function _getSend(
@@ -553,7 +559,7 @@ describe("header parameters", () => {
             testHeader: string | "A" | "B",
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
-          ): StreamableMethod<Get204Response> {
+          ): StreamableMethod {
             return context
               .path("/")
               .post({
@@ -562,8 +568,9 @@ describe("header parameters", () => {
                 body: body
               });
           }
-          export async function _getDeserialize(result: Get204Response): Promise<void> {
-            if (result.status !== "204") {
+          export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+            const expectedStatuses = ["204"];
+            if(!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
             }
             return;
@@ -803,7 +810,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             color: item["color"],
           }
@@ -861,7 +868,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }
@@ -889,7 +896,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }
@@ -919,7 +926,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             color: item["color"],
           }
@@ -1011,6 +1018,82 @@ describe("model type", () => {
         `
         /** Type of Color */
         export type Color = 1 | 2;
+        `
+      );
+    });
+
+    it("union of enum with experimental extensible enum flags", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+      union ImageSize {
+        string,
+
+        @doc("""
+          Very small image size of 256x256 pixels.
+          Only supported with dall-e-2 models.
+          """)
+        size256x256: "256x256",
+
+        @doc("""
+          A smaller image size of 512x512 pixels.
+          Only supported with dall-e-2 models.
+          """)
+        size512x512: "512x512",
+
+        @doc("""
+          A standard, square image size of 1024x1024 pixels.
+          Supported by both dall-e-2 and dall-e-3 models.
+          """)
+        size1024x1024: "1024x1024",
+
+        @doc("""
+          A wider image size of 1024x1792 pixels.
+          Only supported with dall-e-3 models.
+          """)
+        size1792x1024: "1792x1024",
+
+        @doc("""
+          A taller image size of 1792x1024 pixels.
+          Only supported with dall-e-3 models.
+          """)
+        size1024x1792: "1024x1792",
+      }
+      model Test {
+        color: ImageSize;
+      }
+      op read(@body body: Test): void;
+        `,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      );
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile!.getInterface("Test")!.getFullText()!,
+        `
+        export interface Test {
+          color: ImageSize;
+        }
+        `
+      );
+      await assertEqualContent(
+        modelFile!.getEnum("KnownImageSize")!.getFullText()!,
+        `
+        /** Known values of {@link ImageSize} that the service accepts. */
+        export enum KnownImageSize {
+          /** size256x256 */
+          size256x256 = "256x256",
+          /** size512x512 */
+          size512x512 = "512x512",
+          /** size1024x1024 */
+          size1024x1024 = "1024x1024",
+          /** size1792x1024 */
+          size1792x1024 = "1792x1024",
+          /** size1024x1792 */
+          size1024x1792 = "1024x1792",
+        }
         `
       );
     });
@@ -1115,7 +1198,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }
@@ -1143,7 +1226,7 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): TestRest {
+        export function testSerializer(item: Test): Record<string, unknown> {
           return {
             content: item["content"],
           }

@@ -31,7 +31,8 @@ import {
   buildReadmeFile,
   buildSerializeHelper,
   buildLogger,
-  buildSamples
+  buildSamples,
+  updatePackageFile
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -49,7 +50,8 @@ export async function generateRestLevelClient() {
     outputPath,
     srcPath,
     generateTest,
-    generateMetadata
+    generateMetadata,
+    azureOutputDirectory
   } = getAutorestOptions();
 
   const project = new Project({
@@ -121,6 +123,15 @@ export async function generateRestLevelClient() {
     generateFileByBuilder(project, buildPackageFile, rlcModels);
     // buildTsConfig
     generateFileByBuilder(project, buildTsConfig, rlcModels);
+  } else {
+    // update package.json if existing
+    const packageJsonContent = JSON.parse(await host.readFile("package.json"));
+    if (packageJsonContent !== undefined && packageJsonContent !== null)
+      generateFileByBuilder(
+        project,
+        (model) => updatePackageFile(model, packageJsonContent),
+        rlcModels
+      );
   }
 
   // Save the source files to the virtual filesystem
@@ -135,7 +146,7 @@ export async function generateRestLevelClient() {
     const isJson = /\.json$/gi.test(filePath);
     const isSourceCode = /\.(ts|js)$/gi.test(filePath);
     let fileContents = fs.readFileSync(filePath);
-    const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
+    const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT License.\n`;
 
     if (isSourceCode) {
       fileContents = `${licenseHeader.trimStart()}\n${fileContents}`;

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -21,8 +21,8 @@ import {
 } from "./classic/dataProducts/index.js";
 import {
   createNetworkAnalytics,
-  NetworkAnalyticsClientOptionalParams,
   NetworkAnalyticsContext,
+  NetworkAnalyticsClientOptionalParams,
 } from "./api/index.js";
 
 export { NetworkAnalyticsClientOptionalParams } from "./api/networkAnalyticsContext.js";
@@ -41,7 +41,6 @@ export class NetworkAnalyticsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createNetworkAnalytics(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

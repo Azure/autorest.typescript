@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { getLongRunningPoller } from "../pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   dataTypePropertiesSerializer,
   dataTypeUpdatePropertiesSerializer,
@@ -12,39 +10,19 @@ import {
   ContainerSasToken,
   _DataTypeListResult,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
-import {
-  isUnexpected,
-  NetworkAnalyticsContext as Client,
-  DataTypesCreate200Response,
-  DataTypesCreate201Response,
-  DataTypesCreateDefaultResponse,
-  DataTypesCreateLogicalResponse,
-  DataTypesDelete202Response,
-  DataTypesDelete204Response,
-  DataTypesDeleteData202Response,
-  DataTypesDeleteData204Response,
-  DataTypesDeleteDataDefaultResponse,
-  DataTypesDeleteDataLogicalResponse,
-  DataTypesDeleteDefaultResponse,
-  DataTypesDeleteLogicalResponse,
-  DataTypesGenerateStorageContainerSasToken200Response,
-  DataTypesGenerateStorageContainerSasTokenDefaultResponse,
-  DataTypesGet200Response,
-  DataTypesGetDefaultResponse,
-  DataTypesListByDataProduct200Response,
-  DataTypesListByDataProductDefaultResponse,
-  DataTypesUpdate200Response,
-  DataTypesUpdate202Response,
-  DataTypesUpdateDefaultResponse,
-  DataTypesUpdateLogicalResponse,
-} from "../../rest/index.js";
+import { NetworkAnalyticsContext as Client } from "../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   DataTypesCreateOptionalParams,
   DataTypesGetOptionalParams,
@@ -63,12 +41,7 @@ export function _createSend(
   dataTypeName: string,
   resource: DataType,
   options: DataTypesCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataTypesCreate200Response
-  | DataTypesCreate201Response
-  | DataTypesCreateDefaultResponse
-  | DataTypesCreateLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
@@ -88,49 +61,45 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result:
-    | DataTypesCreate200Response
-    | DataTypesCreate201Response
-    | DataTypesCreateDefaultResponse
-    | DataTypesCreateLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<DataType> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as DataTypesCreateLogicalResponse;
   return {
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !res.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: res.body.properties?.["provisioningState"],
-          state: res.body.properties?.["state"],
-          stateReason: res.body.properties?.["stateReason"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          state: result.body.properties?.["state"],
+          stateReason: result.body.properties?.["stateReason"],
           storageOutputRetention:
-            res.body.properties?.["storageOutputRetention"],
+            result.body.properties?.["storageOutputRetention"],
           databaseCacheRetention:
-            res.body.properties?.["databaseCacheRetention"],
-          databaseRetention: res.body.properties?.["databaseRetention"],
-          visualizationUrl: res.body.properties?.["visualizationUrl"],
+            result.body.properties?.["databaseCacheRetention"],
+          databaseRetention: result.body.properties?.["databaseRetention"],
+          visualizationUrl: result.body.properties?.["visualizationUrl"],
         },
   };
 }
@@ -145,7 +114,7 @@ export function create(
   resource: DataType,
   options: DataTypesCreateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataType>, DataType> {
-  return getLongRunningPoller(context, _createDeserialize, {
+  return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
@@ -168,7 +137,7 @@ export function _getSend(
   dataProductName: string,
   dataTypeName: string,
   options: DataTypesGetOptionalParams = { requestOptions: {} },
-): StreamableMethod<DataTypesGet200Response | DataTypesGetDefaultResponse> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
@@ -181,9 +150,10 @@ export function _getSend(
 }
 
 export async function _getDeserialize(
-  result: DataTypesGet200Response | DataTypesGetDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<DataType> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -251,12 +221,7 @@ export function _updateSend(
   dataTypeName: string,
   properties: DataTypeUpdate,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataTypesUpdate200Response
-  | DataTypesUpdate202Response
-  | DataTypesUpdateDefaultResponse
-  | DataTypesUpdateLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
@@ -276,49 +241,45 @@ export function _updateSend(
 }
 
 export async function _updateDeserialize(
-  result:
-    | DataTypesUpdate200Response
-    | DataTypesUpdate202Response
-    | DataTypesUpdateDefaultResponse
-    | DataTypesUpdateLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<DataType> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200", "202"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  const res = result as unknown as DataTypesUpdateLogicalResponse;
   return {
-    id: res.body["id"],
-    name: res.body["name"],
-    type: res.body["type"],
-    systemData: !res.body.systemData
+    id: result.body["id"],
+    name: result.body["name"],
+    type: result.body["type"],
+    systemData: !result.body.systemData
       ? undefined
       : {
-          createdBy: res.body.systemData?.["createdBy"],
-          createdByType: res.body.systemData?.["createdByType"],
+          createdBy: result.body.systemData?.["createdBy"],
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
-            res.body.systemData?.["createdAt"] !== undefined
-              ? new Date(res.body.systemData?.["createdAt"])
+            result.body.systemData?.["createdAt"] !== undefined
+              ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
-          lastModifiedBy: res.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: res.body.systemData?.["lastModifiedByType"],
+          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
-            res.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(res.body.systemData?.["lastModifiedAt"])
+            result.body.systemData?.["lastModifiedAt"] !== undefined
+              ? new Date(result.body.systemData?.["lastModifiedAt"])
               : undefined,
         },
-    properties: !res.body.properties
+    properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: res.body.properties?.["provisioningState"],
-          state: res.body.properties?.["state"],
-          stateReason: res.body.properties?.["stateReason"],
+          provisioningState: result.body.properties?.["provisioningState"],
+          state: result.body.properties?.["state"],
+          stateReason: result.body.properties?.["stateReason"],
           storageOutputRetention:
-            res.body.properties?.["storageOutputRetention"],
+            result.body.properties?.["storageOutputRetention"],
           databaseCacheRetention:
-            res.body.properties?.["databaseCacheRetention"],
-          databaseRetention: res.body.properties?.["databaseRetention"],
-          visualizationUrl: res.body.properties?.["visualizationUrl"],
+            result.body.properties?.["databaseCacheRetention"],
+          databaseRetention: result.body.properties?.["databaseRetention"],
+          visualizationUrl: result.body.properties?.["visualizationUrl"],
         },
   };
 }
@@ -333,7 +294,7 @@ export function update(
   properties: DataTypeUpdate,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataType>, DataType> {
-  return getLongRunningPoller(context, _updateDeserialize, {
+  return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
@@ -356,12 +317,7 @@ export function _$deleteSend(
   dataProductName: string,
   dataTypeName: string,
   options: DataTypesDeleteOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataTypesDelete202Response
-  | DataTypesDelete204Response
-  | DataTypesDeleteDefaultResponse
-  | DataTypesDeleteLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
@@ -374,13 +330,10 @@ export function _$deleteSend(
 }
 
 export async function _$deleteDeserialize(
-  result:
-    | DataTypesDelete202Response
-    | DataTypesDelete204Response
-    | DataTypesDeleteDefaultResponse
-    | DataTypesDeleteLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "204", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -401,19 +354,24 @@ export function $delete(
   dataTypeName: string,
   options: DataTypesDeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _$deleteDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _$deleteSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        options,
-      ),
-  }) as PollerLike<OperationState<void>, void>;
+  return getLongRunningPoller(
+    context,
+    _$deleteDeserialize,
+    ["202", "204", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _$deleteSend(
+          context,
+          subscriptionId,
+          resourceGroupName,
+          dataProductName,
+          dataTypeName,
+          options,
+        ),
+    },
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _deleteDataSend(
@@ -424,12 +382,7 @@ export function _deleteDataSend(
   dataTypeName: string,
   body: Record<string, any>,
   options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataTypesDeleteData202Response
-  | DataTypesDeleteData204Response
-  | DataTypesDeleteDataDefaultResponse
-  | DataTypesDeleteDataLogicalResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData",
@@ -442,13 +395,10 @@ export function _deleteDataSend(
 }
 
 export async function _deleteDataDeserialize(
-  result:
-    | DataTypesDeleteData202Response
-    | DataTypesDeleteData204Response
-    | DataTypesDeleteDataDefaultResponse
-    | DataTypesDeleteDataLogicalResponse,
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["202", "204", "200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -465,20 +415,25 @@ export function deleteData(
   body: Record<string, any>,
   options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _deleteDataDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _deleteDataSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        body,
-        options,
-      ),
-  }) as PollerLike<OperationState<void>, void>;
+  return getLongRunningPoller(
+    context,
+    _deleteDataDeserialize,
+    ["202", "204", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _deleteDataSend(
+          context,
+          subscriptionId,
+          resourceGroupName,
+          dataProductName,
+          dataTypeName,
+          body,
+          options,
+        ),
+    },
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _generateStorageContainerSasTokenSend(
@@ -491,10 +446,7 @@ export function _generateStorageContainerSasTokenSend(
   options: DataTypesGenerateStorageContainerSasTokenOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DataTypesGenerateStorageContainerSasToken200Response
-  | DataTypesGenerateStorageContainerSasTokenDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken",
@@ -514,11 +466,10 @@ export function _generateStorageContainerSasTokenSend(
 }
 
 export async function _generateStorageContainerSasTokenDeserialize(
-  result:
-    | DataTypesGenerateStorageContainerSasToken200Response
-    | DataTypesGenerateStorageContainerSasTokenDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ContainerSasToken> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -557,10 +508,7 @@ export function _listByDataProductSend(
   resourceGroupName: string,
   dataProductName: string,
   options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | DataTypesListByDataProduct200Response
-  | DataTypesListByDataProductDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes",
@@ -572,16 +520,15 @@ export function _listByDataProductSend(
 }
 
 export async function _listByDataProductDeserialize(
-  result:
-    | DataTypesListByDataProduct200Response
-    | DataTypesListByDataProductDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<_DataTypeListResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         id: p["id"],
         name: p["name"],
@@ -638,6 +585,7 @@ export function listByDataProduct(
         options,
       ),
     _listByDataProductDeserialize,
+    ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }

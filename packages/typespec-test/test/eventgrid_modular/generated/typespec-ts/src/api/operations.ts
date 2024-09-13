@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   cloudEventSerializer,
@@ -13,25 +13,11 @@ import {
   RejectOptions,
   RejectResult,
 } from "../models/models.js";
-import {
-  isUnexpected,
-  EventGridContext as Client,
-  AcknowledgeCloudEvents200Response,
-  AcknowledgeCloudEventsDefaultResponse,
-  PublishCloudEvent200Response,
-  PublishCloudEventDefaultResponse,
-  PublishCloudEvents200Response,
-  PublishCloudEventsDefaultResponse,
-  ReceiveCloudEvents200Response,
-  ReceiveCloudEventsDefaultResponse,
-  RejectCloudEvents200Response,
-  RejectCloudEventsDefaultResponse,
-  ReleaseCloudEvents200Response,
-  ReleaseCloudEventsDefaultResponse,
-} from "../rest/index.js";
+import { EventGridContext as Client } from "./index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
@@ -49,9 +35,7 @@ export function _publishCloudEventSend(
   topicName: string,
   event: { event: CloudEvent },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  PublishCloudEvent200Response | PublishCloudEventDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/topics/{topicName}:publish", topicName)
     .post({
@@ -60,15 +44,14 @@ export function _publishCloudEventSend(
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
       body: { event: cloudEventSerializer(event.event) },
-    }) as StreamableMethod<
-    PublishCloudEvent200Response | PublishCloudEventDefaultResponse
-  >;
+    });
 }
 
 export async function _publishCloudEventDeserialize(
-  result: PublishCloudEvent200Response | PublishCloudEventDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<PublishResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -96,9 +79,7 @@ export function _publishCloudEventsSend(
   topicName: string,
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
-> {
+): StreamableMethod {
   return context.path("/topics/{topicName}:publish", topicName).post({
     ...operationOptionsToRequestParameters(options),
     contentType:
@@ -121,15 +102,14 @@ export function _publishCloudEventsSend(
         subject: p["subject"],
       };
     }),
-  }) as StreamableMethod<
-    PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
-  >;
+  });
 }
 
 export async function _publishCloudEventsDeserialize(
-  result: PublishCloudEvents200Response | PublishCloudEventsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<PublishResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -157,9 +137,7 @@ export function _receiveCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive",
@@ -176,14 +154,15 @@ export function _receiveCloudEventsSend(
 }
 
 export async function _receiveCloudEventsDeserialize(
-  result: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ReceiveResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    value: result.body["value"].map((p) => {
+    value: result.body["value"].map((p: any) => {
       return {
         brokerProperties: {
           lockToken: p.brokerProperties["lockToken"],
@@ -234,9 +213,7 @@ export function _acknowledgeCloudEventsSend(
   eventSubscriptionName: string,
   lockTokens: AcknowledgeOptions,
   options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  AcknowledgeCloudEvents200Response | AcknowledgeCloudEventsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge",
@@ -252,16 +229,15 @@ export function _acknowledgeCloudEventsSend(
 }
 
 export async function _acknowledgeCloudEventsDeserialize(
-  result:
-    | AcknowledgeCloudEvents200Response
-    | AcknowledgeCloudEventsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<AcknowledgeResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
       return {
         lockToken: p["lockToken"],
         errorCode: p["errorCode"],
@@ -296,9 +272,7 @@ export function _releaseCloudEventsSend(
   eventSubscriptionName: string,
   lockTokens: ReleaseOptions,
   options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release",
@@ -314,14 +288,15 @@ export function _releaseCloudEventsSend(
 }
 
 export async function _releaseCloudEventsDeserialize(
-  result: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<ReleaseResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
       return {
         lockToken: p["lockToken"],
         errorCode: p["errorCode"],
@@ -356,9 +331,7 @@ export function _rejectCloudEventsSend(
   eventSubscriptionName: string,
   lockTokens: RejectOptions,
   options: RejectCloudEventsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject",
@@ -374,14 +347,15 @@ export function _rejectCloudEventsSend(
 }
 
 export async function _rejectCloudEventsDeserialize(
-  result: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<RejectResult> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
   return {
-    failedLockTokens: result.body["failedLockTokens"].map((p) => {
+    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
       return {
         lockToken: p["lockToken"],
         errorCode: p["errorCode"],

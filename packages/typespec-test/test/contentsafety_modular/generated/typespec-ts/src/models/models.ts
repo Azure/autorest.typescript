@@ -1,16 +1,7 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  TextBlocklist as TextBlocklistRest,
-  AddOrUpdateBlockItemsOptions as AddOrUpdateBlockItemsOptionsRest,
-  TextBlockItemInfo as TextBlockItemInfoRest,
-  RemoveBlockItemsOptions as RemoveBlockItemsOptionsRest,
-  AnalyzeImageOptions as AnalyzeImageOptionsRest,
-  ImageData as ImageDataRest,
-  AnalyzeTextOptions as AnalyzeTextOptionsRest,
-} from "../rest/index.js";
 
 /** Text Blocklist. */
 export interface TextBlocklist {
@@ -22,7 +13,7 @@ export interface TextBlocklist {
 
 export function textBlocklistSerializer(
   item: TextBlocklist,
-): TextBlocklistRest {
+): Record<string, unknown> {
   return {
     blocklistName: item["blocklistName"],
     description: item["description"],
@@ -37,7 +28,7 @@ export interface AddOrUpdateBlockItemsOptions {
 
 export function addOrUpdateBlockItemsOptionsSerializer(
   item: AddOrUpdateBlockItemsOptions,
-): AddOrUpdateBlockItemsOptionsRest {
+): Record<string, unknown> {
   return {
     blockItems: item["blockItems"].map(textBlockItemInfoSerializer),
   };
@@ -53,7 +44,7 @@ export interface TextBlockItemInfo {
 
 export function textBlockItemInfoSerializer(
   item: TextBlockItemInfo,
-): TextBlockItemInfoRest {
+): Record<string, unknown> {
   return {
     description: item["description"],
     text: item["text"],
@@ -84,7 +75,7 @@ export interface RemoveBlockItemsOptions {
 
 export function removeBlockItemsOptionsSerializer(
   item: RemoveBlockItemsOptions,
-): RemoveBlockItemsOptionsRest {
+): Record<string, unknown> {
   return {
     blockItemIds: item["blockItemIds"],
   };
@@ -102,7 +93,7 @@ export interface AnalyzeImageOptions {
 
 export function analyzeImageOptionsSerializer(
   item: AnalyzeImageOptions,
-): AnalyzeImageOptionsRest {
+): Record<string, unknown> {
   return {
     image: imageDataSerializer(item.image),
     categories: item["categories"],
@@ -118,7 +109,7 @@ export interface ImageData {
   blobUrl?: string;
 }
 
-export function imageDataSerializer(item: ImageData): ImageDataRest {
+export function imageDataSerializer(item: ImageData): Record<string, unknown> {
   return {
     content:
       item["content"] !== undefined
@@ -163,7 +154,7 @@ export interface AnalyzeTextOptions {
 
 export function analyzeTextOptionsSerializer(
   item: AnalyzeTextOptions,
-): AnalyzeTextOptionsRest {
+): Record<string, unknown> {
   return {
     text: item["text"],
     categories: item["categories"],

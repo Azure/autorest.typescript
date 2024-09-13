@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 /** A piece of clinical information, expressed as a code in a clinical coding system. */
 export interface ClinicalCodedElement {
@@ -79,7 +79,7 @@ export interface PatientInfo {
   /** The patient's sex. */
   sex?: PatientInfoSex;
   /** The patient's date of birth. */
-  birthDate?: Date | string;
+  birthDate?: string;
   /** Known clinical information for the patient, structured. */
   clinicalInfo?: Array<ClinicalCodedElement>;
 }

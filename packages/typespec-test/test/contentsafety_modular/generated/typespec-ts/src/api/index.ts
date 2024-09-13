@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createContentSafety,
-  ContentSafetyClientOptionalParams,
   ContentSafetyContext,
+  ContentSafetyClientOptionalParams,
 } from "./contentSafetyContext.js";
 export {
   analyzeText,

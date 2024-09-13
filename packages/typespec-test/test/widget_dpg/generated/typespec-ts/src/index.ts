@@ -1,5 +1,11 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
+
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
 export {
   WidgetServiceClient,
@@ -13,8 +19,8 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  NonReferencedModel,
   Versions,
+  NonReferencedModel,
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,
@@ -25,8 +31,6 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
 } from "./models/index.js";
 export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createChatProtocol,
-  ChatProtocolClientOptionalParams,
   ChatProtocolContext,
+  ChatProtocolClientOptionalParams,
 } from "./chatProtocolContext.js";
 export { createStreaming, create } from "./operations.js";

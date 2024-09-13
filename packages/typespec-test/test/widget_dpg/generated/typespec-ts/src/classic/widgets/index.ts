@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import { User, Widget, AnalyzeResult } from "../../models/models.js";
@@ -14,7 +14,7 @@ import {
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   WidgetsListWidgetsOptionalParams,

@@ -1,12 +1,7 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  StreamingChatCompletionOptions as StreamingChatCompletionOptionsRest,
-  ChatMessage as ChatMessageRest,
-  ChatCompletionOptions as ChatCompletionOptionsRest,
-} from "../rest/index.js";
 
 /** The configuration for a streaming chat completion request. */
 export interface StreamingChatCompletionOptionsRecord {
@@ -30,7 +25,7 @@ export interface StreamingChatCompletionOptionsRecord {
 
 export function streamingChatCompletionOptionsRecordSerializer(
   item: StreamingChatCompletionOptionsRecord,
-): StreamingChatCompletionOptionsRest {
+): Record<string, unknown> {
   return {
     messages: item["messages"].map(chatMessageSerializer),
     stream: item["stream"],
@@ -56,7 +51,9 @@ export interface ChatMessage {
   sessionState?: any;
 }
 
-export function chatMessageSerializer(item: ChatMessage): ChatMessageRest {
+export function chatMessageSerializer(
+  item: ChatMessage,
+): Record<string, unknown> {
   return {
     content: item["content"],
     role: item["role"],
@@ -135,7 +132,7 @@ export interface ChatCompletionOptionsRecord {
 
 export function chatCompletionOptionsRecordSerializer(
   item: ChatCompletionOptionsRecord,
-): ChatCompletionOptionsRest {
+): Record<string, unknown> {
   return {
     messages: item["messages"].map(chatMessageSerializer),
     stream: item["stream"],

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -9,8 +9,8 @@ import {
 } from "./classic/confidentialLedger/index.js";
 import {
   createParametrizedHost,
-  ParametrizedHostClientOptionalParams,
   ParametrizedHostContext,
+  ParametrizedHostClientOptionalParams,
 } from "./api/index.js";
 
 export { ParametrizedHostClientOptionalParams } from "./api/parametrizedHostContext.js";
@@ -28,7 +28,6 @@ export class ParametrizedHostClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createParametrizedHost(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

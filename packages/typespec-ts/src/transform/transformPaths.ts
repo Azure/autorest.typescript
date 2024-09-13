@@ -1,30 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { HttpOperation, HttpOperationParameters } from "@typespec/http";
 import {
-  getParameterTypeName,
-  getResponseTypeName,
   Imports,
   OperationMethod,
   PathMetadata,
   Paths,
-  SchemaContext
+  SchemaContext,
+  getParameterTypeName,
+  getResponseTypeName
 } from "@azure-tools/rlc-common";
 import {
+  SdkClient,
   getHttpOperationWithCache,
   isApiVersion,
   listOperationGroups,
-  listOperationsInOperationGroup,
-  SdkClient
+  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { getDoc } from "@typespec/compiler";
-import { HttpOperation, HttpOperationParameters } from "@typespec/http";
-import { SdkContext } from "../utils/interfaces.js";
-import {
-  getImportedModelName,
-  getSchemaForType,
-  getTypeName
-} from "../utils/modelUtils.js";
 import {
   extractOperationLroDetail,
   getOperationGroupName,
@@ -35,6 +28,15 @@ import {
   isPagingOperation,
   sortedOperationResponses
 } from "../utils/operationUtil.js";
+import {
+  getImportedModelName,
+  getSchemaForType,
+  getTypeName,
+  isBodyRequired
+} from "../utils/modelUtils.js";
+
+import { SdkContext } from "../utils/interfaces.js";
+import { getDoc } from "@typespec/compiler";
 
 export function transformPaths(
   client: SdkClient,
@@ -160,7 +162,8 @@ function hasRequiredOptions(
   dpgContext: SdkContext,
   routeParameters: HttpOperationParameters
 ) {
-  const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;
+  const isRequiredBodyParam = isBodyRequired(routeParameters);
+
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
     .filter((parameter) => !isApiVersion(dpgContext, parameter))

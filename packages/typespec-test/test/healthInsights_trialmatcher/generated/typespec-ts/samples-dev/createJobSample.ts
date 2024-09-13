@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { AzureKeyCredential } from "@azure/core-auth";
 import createHealthInsightsClinicalMatchingClient, {
@@ -30,7 +30,7 @@ async function createJobSample() {
             id: "{Your id}",
             info: {
               sex: "female",
-              birthDate: new Date(),
+              birthDate: "{Your birthDate}",
               clinicalInfo: [
                 {
                   system: "{Your system}",

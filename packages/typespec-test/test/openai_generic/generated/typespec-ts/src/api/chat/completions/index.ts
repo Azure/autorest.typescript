@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   chatCompletionRequestMessageSerializer,
@@ -7,15 +7,11 @@ import {
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
-import {
-  isUnexpected,
-  OpenAIContext as Client,
-  ChatCompletionsCreate200Response,
-  ChatCompletionsCreateDefaultResponse,
-} from "../../../rest/index.js";
+import { OpenAIContext as Client } from "../../index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
 import { serializeRecord } from "../../../helpers/serializerHelpers.js";
@@ -25,9 +21,7 @@ export function _createSend(
   context: Client,
   body: CreateChatCompletionRequest,
   options: ChatCompletionsCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
-> {
+): StreamableMethod {
   return context
     .path("/chat/completions")
     .post({
@@ -57,11 +51,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result:
-    | ChatCompletionsCreate200Response
-    | ChatCompletionsCreateDefaultResponse,
+  result: PathUncheckedResponse,
 ): Promise<CreateChatCompletionResponse> {
-  if (isUnexpected(result)) {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
@@ -70,7 +63,7 @@ export async function _createDeserialize(
     object: result.body["object"],
     created: new Date(result.body["created"]),
     model: result.body["model"],
-    choices: result.body["choices"].map((p) => {
+    choices: result.body["choices"].map((p: any) => {
       return {
         index: p["index"],
         message: {

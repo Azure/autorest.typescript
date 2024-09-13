@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -15,8 +15,8 @@ import {
 } from "./models/options.js";
 import {
   createChatProtocol,
-  ChatProtocolClientOptionalParams,
   ChatProtocolContext,
+  ChatProtocolClientOptionalParams,
   createStreaming,
   create,
 } from "./api/index.js";
@@ -38,7 +38,6 @@ export class ChatProtocolClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-
     this._client = createChatProtocol(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

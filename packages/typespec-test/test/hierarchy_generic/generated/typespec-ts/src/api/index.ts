@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createFoo,
-  FooClientOptionalParams,
   FooContext,
+  FooClientOptionalParams,
 } from "./fooContext.js";
 export { op1 } from "./operations.js";

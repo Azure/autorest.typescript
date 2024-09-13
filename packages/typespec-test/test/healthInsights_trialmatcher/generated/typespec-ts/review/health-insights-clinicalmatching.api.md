@@ -196,7 +196,7 @@ export default createClient;
 
 // @public (undocumented)
 export interface CreateJob {
-    post(options?: CreateJobParameters): StreamableMethod<CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse>;
+    post(options: CreateJobParameters): StreamableMethod<CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse>;
 }
 
 // @public
@@ -225,7 +225,7 @@ export interface CreateJob202Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateJobBodyParam {
     // (undocumented)
-    body?: TrialMatcherData;
+    body: TrialMatcherData;
 }
 
 // @public (undocumented)
@@ -376,7 +376,7 @@ export interface PatientDocument {
 
 // @public
 export interface PatientInfo {
-    birthDate?: Date | string;
+    birthDate?: string;
     clinicalInfo?: Array<ClinicalCodedElement>;
     sex?: PatientInfoSex;
 }

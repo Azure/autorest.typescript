@@ -264,10 +264,6 @@ export const rlcTsps = [
     inputPath: "versioning/typeChangedFrom"
   },
   {
-    outputPath: "type/model/flatten",
-    inputPath: "type/model/flatten"
-  },
-  {
     outputPath: "azure/resource-manager/models/resources",
     inputPath: "azure/resource-manager/models/resources"
   },
@@ -278,6 +274,18 @@ export const rlcTsps = [
   {
     outputPath: "azure/resource-manager/models/common-types/managed-identity",
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
+  },
+  {
+    outputPath: "azure/core/page",
+    inputPath: "azure/core/page"
+  },
+  {
+    outputPath: "azure/client-generator-core/flatten-property",
+    inputPath: "azure/client-generator-core/flatten-property"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
   }
 ];
 
@@ -289,6 +297,10 @@ export const nonBrandedRlcTsps = [
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "azure/client-generator-core/flatten-property",
+    inputPath: "azure/client-generator-core/flatten-property"
+  },
   {
     outputPath: "azure/core/model",
     inputPath: "azure/core/model"
@@ -524,10 +536,6 @@ export const modularTsps = [
     inputPath: "versioning/typeChangedFrom"
   },
   {
-    outputPath: "type/model/flatten",
-    inputPath: "type/model/flatten"
-  },
-  {
     outputPath: "resiliency/srv-driven-old",
     inputPath: "resiliency/srv-driven/old.tsp"
   },
@@ -538,6 +546,14 @@ export const modularTsps = [
   {
     outputPath: "azure/resource-manager/models/common-types/managed-identity",
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
+  },
+  {
+    outputPath: "azure/core/page",
+    inputPath: "azure/core/page"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
   }
 ];
 
