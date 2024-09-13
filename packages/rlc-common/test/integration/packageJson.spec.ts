@@ -695,7 +695,7 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
       expect(packageFile.dependencies).to.have.property(
         "@azure/core-lro",
-        "^3.0.0"
+        "^3.1.0"
       );
       expect(packageFile.dependencies).to.have.property(
         "@azure/abort-controller",
