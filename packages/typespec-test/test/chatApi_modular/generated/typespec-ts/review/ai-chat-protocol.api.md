@@ -67,7 +67,7 @@ export class ChatProtocolClient {
 export interface ChatProtocolClientOptionalParams extends ClientOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ChatProtocolContext extends Client {
 }
 

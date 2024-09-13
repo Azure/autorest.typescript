@@ -111,7 +111,7 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SchemaRegistryContext extends Client {
 }
 

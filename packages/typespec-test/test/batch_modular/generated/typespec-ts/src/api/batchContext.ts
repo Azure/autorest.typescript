@@ -33,6 +33,7 @@ import {
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
+/** Azure Batch provides Cloud-scale job scheduling and compute management. */
 export interface BatchContext extends Client {}
 
 /** Optional parameters for the client. */

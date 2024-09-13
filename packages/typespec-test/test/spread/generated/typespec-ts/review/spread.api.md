@@ -55,7 +55,7 @@ export interface DemoServiceClientOptionalParams extends ClientOptions {
 export interface DemoServiceContext extends Client {
 }
 
-// @public (undocumented)
+// @public
 export interface Test1Request {
     // (undocumented)
     a: string;
@@ -65,19 +65,19 @@ export interface Test1Request {
     c: string;
 }
 
-// @public (undocumented)
+// @public
 export interface Test2Request {
     // (undocumented)
     prop: string;
 }
 
-// @public (undocumented)
+// @public
 export interface Test3Request {
     // (undocumented)
     prop: string;
 }
 
-// @public (undocumented)
+// @public
 export interface Test4Request {
     // (undocumented)
     prop: string;

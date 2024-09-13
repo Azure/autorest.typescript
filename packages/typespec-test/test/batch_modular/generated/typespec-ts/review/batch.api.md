@@ -193,7 +193,7 @@ export interface BatchClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BatchContext extends Client {
 }
 

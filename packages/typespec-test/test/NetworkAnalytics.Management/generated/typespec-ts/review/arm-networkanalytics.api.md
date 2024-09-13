@@ -304,7 +304,7 @@ export interface DataTypeUpdateProperties {
 // @public
 export type DefaultAction = string;
 
-// @public (undocumented)
+// @public
 export interface DeleteDataRequest {
 }
 
@@ -321,7 +321,7 @@ export interface ErrorAdditionalInfo {
     readonly type?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ErrorAdditionalInfoInfo {
 }
 
@@ -419,7 +419,7 @@ export interface ListRoleAssignments {
     roleAssignmentResponse: RoleAssignmentDetail[];
 }
 
-// @public (undocumented)
+// @public
 export interface ListRolesAssignmentsRequest {
 }
 

@@ -42,23 +42,23 @@ export interface AudioTranslationsOperations {
     create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptionalParams) => Promise<CreateTranslationResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionFunctionCallOption {
     name: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionFunctionParameters {
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionFunctions {
     description?: string;
     name: string;
     parameters: ChatCompletionFunctionParameters;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionRequestMessage {
     content: string | null;
     function_call?: {
@@ -69,7 +69,7 @@ export interface ChatCompletionRequestMessage {
     role: "system" | "user" | "assistant" | "function";
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionRequestMessageFunctionCall {
     arguments: string;
     name: string;
@@ -78,7 +78,7 @@ export interface ChatCompletionRequestMessageFunctionCall {
 // @public
 export type ChatCompletionRequestMessageRole = "system" | "user" | "assistant" | "function";
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionResponseMessage {
     content: string | null;
     function_call?: {
@@ -88,7 +88,7 @@ export interface ChatCompletionResponseMessage {
     role: "system" | "user" | "assistant" | "function";
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionResponseMessageFunctionCall {
     arguments: string;
     name: string;
@@ -130,7 +130,7 @@ export interface CompletionUsage {
     total_tokens: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateChatCompletionRequest {
     frequency_penalty?: number | null;
     function_call?: "none" | "auto" | ChatCompletionFunctionCallOption;
@@ -169,7 +169,7 @@ export interface CreateChatCompletionResponse {
     usage?: CompletionUsage;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateChatCompletionResponseChoice {
     finish_reason: "stop" | "length" | "function_call" | "content_filter";
     index: number;
@@ -180,7 +180,7 @@ export interface CreateChatCompletionResponseChoice {
 // @public
 export type CreateChatCompletionResponseChoiceFinishReason = "stop" | "length" | "function_call" | "content_filter";
 
-// @public (undocumented)
+// @public
 export interface CreateCompletionRequest {
     best_of?: number | null;
     echo?: boolean | null;
@@ -224,7 +224,7 @@ export interface CreateCompletionResponse {
     usage?: CompletionUsage;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateCompletionResponseChoice {
     finish_reason: "stop" | "length" | "content_filter";
     // (undocumented)
@@ -243,7 +243,7 @@ export interface CreateCompletionResponseChoice {
 // @public
 export type CreateCompletionResponseChoiceFinishReason = "stop" | "length" | "content_filter";
 
-// @public (undocumented)
+// @public
 export interface CreateCompletionResponseChoiceLogprobs {
     // (undocumented)
     text_offset: number[];
@@ -255,7 +255,7 @@ export interface CreateCompletionResponseChoiceLogprobs {
     top_logprobs: Record<string, number>[];
 }
 
-// @public (undocumented)
+// @public
 export interface CreateEditRequest {
     input?: string | null;
     instruction: string;
@@ -268,7 +268,7 @@ export interface CreateEditRequest {
 // @public
 export type CreateEditRequestModel = "text-davinci-edit-001" | "code-davinci-edit-001";
 
-// @public (undocumented)
+// @public
 export interface CreateEditResponse {
     choices: {
         text: string;
@@ -281,7 +281,7 @@ export interface CreateEditResponse {
     usage: CompletionUsage;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateEditResponseChoice {
     finish_reason: "stop" | "length";
     index: number;
@@ -291,7 +291,7 @@ export interface CreateEditResponseChoice {
 // @public
 export type CreateEditResponseChoiceFinishReason = "stop" | "length";
 
-// @public (undocumented)
+// @public
 export interface CreateEmbeddingRequest {
     input: string | string[] | number[] | number[][];
     model: "text-embedding-ada-002";
@@ -305,7 +305,7 @@ export type CreateEmbeddingRequestInput = string | string[] | number[] | number[
 // @public
 export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
 
-// @public (undocumented)
+// @public
 export interface CreateEmbeddingResponse {
     data: Embedding[];
     model: string;
@@ -316,19 +316,19 @@ export interface CreateEmbeddingResponse {
     };
 }
 
-// @public (undocumented)
+// @public
 export interface CreateEmbeddingResponseUsage {
     prompt_tokens: number;
     total_tokens: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateFileRequest {
     file: Uint8Array;
     purpose: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateFineTuneRequest {
     batch_size?: number | null;
     classification_betas?: number[] | null;
@@ -347,7 +347,7 @@ export interface CreateFineTuneRequest {
 // @public
 export type CreateFineTuneRequestModel = "ada" | "babbage" | "curie" | "davinci";
 
-// @public (undocumented)
+// @public
 export interface CreateFineTuningJobRequest {
     hyperparameters?: {
         n_epochs?: "auto" | number;
@@ -358,7 +358,7 @@ export interface CreateFineTuningJobRequest {
     validation_file?: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateFineTuningJobRequestHyperparameters {
     n_epochs?: "auto" | number;
 }
@@ -369,7 +369,7 @@ export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
 // @public
 export type CreateFineTuningJobRequestModel = "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
 
-// @public (undocumented)
+// @public
 export interface CreateImageEditRequest {
     image: Uint8Array;
     mask?: Uint8Array;
@@ -381,7 +381,7 @@ export interface CreateImageEditRequest {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateImageRequest {
     n?: number | null;
     prompt: string;
@@ -397,7 +397,7 @@ export type CreateImageRequestResponseFormat = "url" | "b64_json";
 // @public
 export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
 
-// @public (undocumented)
+// @public
 export interface CreateImageVariationRequest {
     image: Uint8Array;
     n?: number | null;
@@ -407,7 +407,7 @@ export interface CreateImageVariationRequest {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateModerationRequest {
     input: string | string[];
     model?: "text-moderation-latest" | "text-moderation-stable";
@@ -419,7 +419,7 @@ export type CreateModerationRequestInput = string | string[];
 // @public
 export type CreateModerationRequestModel = "text-moderation-latest" | "text-moderation-stable";
 
-// @public (undocumented)
+// @public
 export interface CreateModerationResponse {
     id: string;
     model: string;
@@ -454,7 +454,7 @@ export interface CreateModerationResponse {
     }[];
 }
 
-// @public (undocumented)
+// @public
 export interface CreateModerationResponseResult {
     categories: {
         hate: boolean;
@@ -485,7 +485,7 @@ export interface CreateModerationResponseResult {
     flagged: boolean;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateModerationResponseResultCategories {
     "harassment/threatening": boolean;
     "hate/threatening": boolean;
@@ -500,7 +500,7 @@ export interface CreateModerationResponseResultCategories {
     violence: boolean;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateModerationResponseResultCategoryScores {
     "harassment/threatening": number;
     "hate/threatening": number;
@@ -518,7 +518,7 @@ export interface CreateModerationResponseResultCategoryScores {
 // @public
 export function createOpenAI(credential: KeyCredential, options?: OpenAIClientOptionalParams): OpenAIContext;
 
-// @public (undocumented)
+// @public
 export interface CreateTranscriptionRequest {
     file: Uint8Array;
     language?: string;
@@ -534,13 +534,13 @@ export type CreateTranscriptionRequestModel = "whisper-1";
 // @public
 export type CreateTranscriptionRequestResponseFormat = "json" | "text" | "srt" | "verbose_json" | "vtt";
 
-// @public (undocumented)
+// @public
 export interface CreateTranscriptionResponse {
     // (undocumented)
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateTranslationRequest {
     file: Uint8Array;
     model: "whisper-1";
@@ -555,13 +555,13 @@ export type CreateTranslationRequestModel = "whisper-1";
 // @public
 export type CreateTranslationRequestResponseFormat = "json" | "text" | "srt" | "verbose_json" | "vtt";
 
-// @public (undocumented)
+// @public
 export interface CreateTranslationResponse {
     // (undocumented)
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteFileResponse {
     // (undocumented)
     deleted: boolean;
@@ -571,7 +571,7 @@ export interface DeleteFileResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteModelResponse {
     // (undocumented)
     deleted: boolean;
@@ -608,7 +608,7 @@ export interface EmbeddingsOperations {
     create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
 }
 
-// @public (undocumented)
+// @public
 interface Error_2 {
     // (undocumented)
     code: string | null;
@@ -621,7 +621,7 @@ interface Error_2 {
 }
 export { Error_2 as Error }
 
-// @public (undocumented)
+// @public
 export interface ErrorResponse {
     // (undocumented)
     error: Error_2;
@@ -687,7 +687,7 @@ export interface FineTune {
     validation_files: OpenAIFile[];
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuneEvent {
     // (undocumented)
     created_at: Date;
@@ -699,7 +699,7 @@ export interface FineTuneEvent {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuneHyperparams {
     batch_size: number;
     classification_n_classes?: number;
@@ -748,7 +748,7 @@ export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 // @public
 export type FineTuneStatus = "created" | "running" | "succeeded" | "failed" | "cancelled";
 
-// @public (undocumented)
+// @public
 export interface FineTuningJob {
     created_at: Date;
     error: {
@@ -772,14 +772,14 @@ export interface FineTuningJob {
     validation_file: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobError {
     code?: string;
     message?: string;
     param?: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobEvent {
     // (undocumented)
     created_at: Date;
@@ -796,7 +796,7 @@ export interface FineTuningJobEvent {
 // @public
 export type FineTuningJobEventLevel = "info" | "warn" | "error";
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobHyperparameters {
     n_epochs?: "auto" | number;
 }
@@ -882,7 +882,7 @@ export interface ImagesOperations {
     createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptionalParams) => Promise<ImagesResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface ImagesResponse {
     // (undocumented)
     created: Date;
@@ -890,7 +890,7 @@ export interface ImagesResponse {
     data: Image[];
 }
 
-// @public (undocumented)
+// @public
 export interface ListFilesResponse {
     // (undocumented)
     data: OpenAIFile[];
@@ -898,7 +898,7 @@ export interface ListFilesResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListFineTuneEventsResponse {
     // (undocumented)
     data: FineTuneEvent[];
@@ -906,7 +906,7 @@ export interface ListFineTuneEventsResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListFineTunesResponse {
     // (undocumented)
     data: FineTune[];
@@ -914,7 +914,7 @@ export interface ListFineTunesResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListFineTuningJobEventsResponse {
     // (undocumented)
     data: FineTuningJobEvent[];
@@ -922,7 +922,7 @@ export interface ListFineTuningJobEventsResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListModelsResponse {
     // (undocumented)
     data: Model[];
@@ -930,7 +930,7 @@ export interface ListModelsResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListPaginatedFineTuningJobsResponse {
     // (undocumented)
     data: FineTuningJob[];
@@ -1000,7 +1000,7 @@ export class OpenAIClient {
 export interface OpenAIClientOptionalParams extends ClientOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface OpenAIContext extends Client {
 }
 

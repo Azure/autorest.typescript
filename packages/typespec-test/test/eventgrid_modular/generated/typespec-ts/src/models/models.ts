@@ -4,6 +4,7 @@
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import { ErrorModel } from "@azure-rest/core-client";
 
+/** model interface PublishCloudEventRequest */
 export interface PublishCloudEventRequest {
   event: CloudEvent;
 }

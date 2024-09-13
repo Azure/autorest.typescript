@@ -4,6 +4,7 @@
 import { serializeRecord } from "../helpers/serializerHelpers.js";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
+/** model interface CreateModerationRequest */
 export interface CreateModerationRequest {
   /** The input text to classify */
   input: string | string[];
@@ -54,6 +55,7 @@ export function createModerationRequestModelDeserializer(
   return item;
 }
 
+/** model interface CreateModerationResponse */
 export interface CreateModerationResponse {
   /** The unique identifier for the moderation request. */
   id: string;
@@ -101,6 +103,7 @@ export function createModerationResponseDeserializer(
   };
 }
 
+/** model interface CreateModerationResponseResult */
 export interface CreateModerationResponseResult {
   /** Whether the content violates [OpenAI's usage policies](/policies/usage-policies). */
   flagged: boolean;
@@ -148,6 +151,7 @@ export function createModerationResponseResultDeserializer(
   };
 }
 
+/** model interface CreateModerationResponseResultCategories */
 export interface CreateModerationResponseResultCategories {
   /**
    * Content that expresses, incites, or promotes hate based on race, gender, ethnicity,
@@ -211,6 +215,7 @@ export function createModerationResponseResultCategoriesDeserializer(
   };
 }
 
+/** model interface CreateModerationResponseResultCategoryScores */
 export interface CreateModerationResponseResultCategoryScores {
   /** The score for the category 'hate'. */
   hate: number;
@@ -262,6 +267,7 @@ export function createModerationResponseResultArrayDeserializer(
   });
 }
 
+/** model interface ErrorResponse */
 export interface ErrorResponse {
   error: Error;
 }
@@ -272,6 +278,7 @@ export function errorResponseDeserializer(item: any): ErrorResponse {
   };
 }
 
+/** model interface Error */
 export interface Error {
   type: string;
   message: string;
@@ -288,6 +295,7 @@ export function errorDeserializer(item: any): Error {
   };
 }
 
+/** model interface CreateImageRequest */
 export interface CreateImageRequest {
   /** A text description of the desired image(s). The maximum length is 1000 characters. */
   prompt: string;
@@ -340,6 +348,7 @@ export function createImageRequestResponseFormatDeserializer(
   return item;
 }
 
+/** model interface ImagesResponse */
 export interface ImagesResponse {
   created: Date;
   data: Image[];
@@ -376,6 +385,7 @@ export function imageArrayDeserializer(result: Array<Image>): any[] {
   });
 }
 
+/** model interface CreateImageEditRequest */
 export interface CreateImageEditRequest {
   /** A text description of the desired image(s). The maximum length is 1000 characters. */
   prompt: string;
@@ -415,6 +425,7 @@ export function createImageEditRequestSerializer(
   };
 }
 
+/** model interface CreateImageVariationRequest */
 export interface CreateImageVariationRequest {
   /**
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
@@ -442,6 +453,7 @@ export function createImageVariationRequestSerializer(
   };
 }
 
+/** model interface ListModelsResponse */
 export interface ListModelsResponse {
   object: string;
   data: Model[];
@@ -481,6 +493,7 @@ export function modelArrayDeserializer(result: Array<Model>): any[] {
   });
 }
 
+/** model interface DeleteModelResponse */
 export interface DeleteModelResponse {
   id: string;
   object: string;
@@ -497,6 +510,7 @@ export function deleteModelResponseDeserializer(
   };
 }
 
+/** model interface CreateFineTuneRequest */
 export interface CreateFineTuneRequest {
   /**
    * The ID of an uploaded file that contains training data.
@@ -725,6 +739,7 @@ export function fineTuneStatusDeserializer(item: any): FineTuneStatus {
   return item;
 }
 
+/** model interface FineTuneHyperparams */
 export interface FineTuneHyperparams {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
@@ -830,6 +845,7 @@ export function openAIFileArrayDeserializer(result: Array<OpenAIFile>): any[] {
   });
 }
 
+/** model interface FineTuneEvent */
 export interface FineTuneEvent {
   object: string;
   created_at: Date;
@@ -854,6 +870,7 @@ export function fineTuneEventArrayDeserializer(
   });
 }
 
+/** model interface ListFineTunesResponse */
 export interface ListFineTunesResponse {
   object: string;
   data: FineTune[];
@@ -874,6 +891,7 @@ export function fineTuneArrayDeserializer(result: Array<FineTune>): any[] {
   });
 }
 
+/** model interface ListFineTuneEventsResponse */
 export interface ListFineTuneEventsResponse {
   object: string;
   data: FineTuneEvent[];
@@ -888,6 +906,7 @@ export function listFineTuneEventsResponseDeserializer(
   };
 }
 
+/** model interface ListFilesResponse */
 export interface ListFilesResponse {
   object: string;
   data: OpenAIFile[];
@@ -900,6 +919,7 @@ export function listFilesResponseDeserializer(item: any): ListFilesResponse {
   };
 }
 
+/** model interface CreateFileRequest */
 export interface CreateFileRequest {
   /**
    * Name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.
@@ -922,6 +942,7 @@ export function createFileRequestSerializer(item: CreateFileRequest): any {
   };
 }
 
+/** model interface DeleteFileResponse */
 export interface DeleteFileResponse {
   id: string;
   object: string;
@@ -936,6 +957,7 @@ export function deleteFileResponseDeserializer(item: any): DeleteFileResponse {
   };
 }
 
+/** model interface CreateEmbeddingRequest */
 export interface CreateEmbeddingRequest {
   /** ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. */
   model: "text-embedding-ada-002";
@@ -989,6 +1011,7 @@ export function createEmbeddingRequestInputDeserializer(
   return item;
 }
 
+/** model interface CreateEmbeddingResponse */
 export interface CreateEmbeddingResponse {
   /** The object type, which is always "embedding". */
   object: "embedding";
@@ -1041,6 +1064,7 @@ export function embeddingArrayDeserializer(result: Array<Embedding>): any[] {
   });
 }
 
+/** model interface CreateEmbeddingResponseUsage */
 export interface CreateEmbeddingResponseUsage {
   /** The number of tokens used by the prompt. */
   prompt_tokens: number;
@@ -1057,6 +1081,7 @@ export function createEmbeddingResponseUsageDeserializer(
   };
 }
 
+/** model interface CreateEditRequest */
 export interface CreateEditRequest {
   /**
    * ID of the model to use. You can use the `text-davinci-edit-001` or `code-davinci-edit-001`
@@ -1114,6 +1139,7 @@ export function createEditRequestModelDeserializer(
   return item;
 }
 
+/** model interface CreateEditResponse */
 export interface CreateEditResponse {
   /** The object type, which is always `edit`. */
   object: "edit";
@@ -1137,6 +1163,7 @@ export function createEditResponseDeserializer(item: any): CreateEditResponse {
   };
 }
 
+/** model interface CreateEditResponseChoice */
 export interface CreateEditResponseChoice {
   /** The edited result. */
   text: string;
@@ -1203,6 +1230,7 @@ export function completionUsageDeserializer(item: any): CompletionUsage {
   };
 }
 
+/** model interface CreateCompletionRequest */
 export interface CreateCompletionRequest {
   /**
    * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to
@@ -1432,6 +1460,7 @@ export function createCompletionResponseDeserializer(
   };
 }
 
+/** model interface CreateCompletionResponseChoice */
 export interface CreateCompletionResponseChoice {
   index: number;
   text: string;
@@ -1464,6 +1493,7 @@ export function createCompletionResponseChoiceDeserializer(
   };
 }
 
+/** model interface CreateCompletionResponseChoiceLogprobs */
 export interface CreateCompletionResponseChoiceLogprobs {
   tokens: string[];
   token_logprobs: number[];
@@ -1508,6 +1538,7 @@ export function createCompletionResponseChoiceArrayDeserializer(
   });
 }
 
+/** model interface CreateFineTuningJobRequest */
 export interface CreateFineTuningJobRequest {
   /**
    * The ID of an uploaded file that contains training data.
@@ -1583,6 +1614,7 @@ export function createFineTuningJobRequestModelDeserializer(
   return item;
 }
 
+/** model interface CreateFineTuningJobRequestHyperparameters */
 export interface CreateFineTuningJobRequestHyperparameters {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
@@ -1611,6 +1643,7 @@ export function createFineTuningJobRequestHyperparametersNEpochsDeserializer(
   return item;
 }
 
+/** model interface FineTuningJob */
 export interface FineTuningJob {
   /** The object identifier, which can be referenced in the API endpoints. */
   id: string;
@@ -1723,6 +1756,7 @@ export function fineTuningJobStatusDeserializer(
   return item;
 }
 
+/** model interface FineTuningJobHyperparameters */
 export interface FineTuningJobHyperparameters {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
@@ -1758,6 +1792,7 @@ export function fineTuningJobHyperparametersNEpochsDeserializer(
   return item;
 }
 
+/** model interface FineTuningJobError */
 export interface FineTuningJobError {
   /** A human-readable error message. */
   message?: string;
@@ -1778,6 +1813,7 @@ export function fineTuningJobErrorDeserializer(item: any): FineTuningJobError {
   };
 }
 
+/** model interface ListPaginatedFineTuningJobsResponse */
 export interface ListPaginatedFineTuningJobsResponse {
   object: string;
   data: FineTuningJob[];
@@ -1802,6 +1838,7 @@ export function fineTuningJobArrayDeserializer(
   });
 }
 
+/** model interface ListFineTuningJobEventsResponse */
 export interface ListFineTuningJobEventsResponse {
   object: string;
   data: FineTuningJobEvent[];
@@ -1816,6 +1853,7 @@ export function listFineTuningJobEventsResponseDeserializer(
   };
 }
 
+/** model interface FineTuningJobEvent */
 export interface FineTuningJobEvent {
   id: string;
   object: string;
@@ -1857,6 +1895,7 @@ export function fineTuningJobEventArrayDeserializer(
   });
 }
 
+/** model interface CreateChatCompletionRequest */
 export interface CreateChatCompletionRequest {
   /**
    * ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility)
@@ -2009,6 +2048,7 @@ export function createChatCompletionRequestModelDeserializer(
   return item;
 }
 
+/** model interface ChatCompletionRequestMessage */
 export interface ChatCompletionRequestMessage {
   /** The role of the messages author. One of `system`, `user`, `assistant`, or `function`. */
   role: "system" | "user" | "assistant" | "function";
@@ -2065,6 +2105,7 @@ export function chatCompletionRequestMessageRoleDeserializer(
   return item;
 }
 
+/** model interface ChatCompletionRequestMessageFunctionCall */
 export interface ChatCompletionRequestMessageFunctionCall {
   /** The name of the function to call. */
   name: string;
@@ -2090,6 +2131,7 @@ export function chatCompletionRequestMessageArraySerializer(
   });
 }
 
+/** model interface ChatCompletionFunctions */
 export interface ChatCompletionFunctions {
   /**
    * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and
@@ -2121,6 +2163,7 @@ export function chatCompletionFunctionsSerializer(
   };
 }
 
+/** model interface ChatCompletionFunctionParameters */
 export interface ChatCompletionFunctionParameters {}
 
 export function chatCompletionFunctionParametersSerializer(
@@ -2154,6 +2197,7 @@ export function createChatCompletionRequestFunctionCall1Deserializer(
   return item;
 }
 
+/** model interface ChatCompletionFunctionCallOption */
 export interface ChatCompletionFunctionCallOption {
   /** The name of the function to call. */
   name: string;
@@ -2203,6 +2247,7 @@ export function createChatCompletionResponseDeserializer(
   };
 }
 
+/** model interface CreateChatCompletionResponseChoice */
 export interface CreateChatCompletionResponseChoice {
   /** The index of the choice in the list of choices. */
   index: number;
@@ -2228,6 +2273,7 @@ export function createChatCompletionResponseChoiceDeserializer(
   };
 }
 
+/** model interface ChatCompletionResponseMessage */
 export interface ChatCompletionResponseMessage {
   /** The role of the author of this message. */
   role: "system" | "user" | "assistant" | "function";
@@ -2273,6 +2319,7 @@ export function chatCompletionResponseMessageRoleDeserializer(
   return item;
 }
 
+/** model interface ChatCompletionResponseMessageFunctionCall */
 export interface ChatCompletionResponseMessageFunctionCall {
   /** The name of the function to call. */
   name: string;
@@ -2320,6 +2367,7 @@ export function createChatCompletionResponseChoiceArrayDeserializer(
   });
 }
 
+/** model interface CreateTranslationRequest */
 export interface CreateTranslationRequest {
   /**
    * The audio file object (not file name) to translate, in one of these formats: flac, mp3, mp4,
@@ -2394,6 +2442,7 @@ export function createTranslationRequestResponseFormatDeserializer(
   return item;
 }
 
+/** model interface CreateTranslationResponse */
 export interface CreateTranslationResponse {
   text: string;
 }
@@ -2406,6 +2455,7 @@ export function createTranslationResponseDeserializer(
   };
 }
 
+/** model interface CreateTranscriptionRequest */
 export interface CreateTranscriptionRequest {
   /**
    * The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4,
@@ -2487,6 +2537,7 @@ export function createTranscriptionRequestResponseFormatDeserializer(
   return item;
 }
 
+/** model interface CreateTranscriptionResponse */
 export interface CreateTranscriptionResponse {
   text: string;
 }

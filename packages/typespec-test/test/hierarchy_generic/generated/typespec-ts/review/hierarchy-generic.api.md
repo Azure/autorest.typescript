@@ -9,13 +9,13 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export interface A {
     // (undocumented)
     prop1: string;
 }
 
-// @public (undocumented)
+// @public
 export interface Ba {
     // (undocumented)
     prop2: string;
@@ -31,7 +31,7 @@ export interface BCOperations {
     op1: (body: Ba, options?: BCOp1OptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
+// @public
 export interface Bea {
     // (undocumented)
     prop3: string;

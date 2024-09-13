@@ -5,6 +5,7 @@ import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 
+/** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
 export interface OpenAIContext extends Client {}
 
 /** Optional parameters for the client. */

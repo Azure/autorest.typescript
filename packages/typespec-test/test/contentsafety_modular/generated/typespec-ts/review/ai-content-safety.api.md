@@ -97,7 +97,7 @@ export interface ContentSafetyClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ContentSafetyContext extends Client {
 }
 

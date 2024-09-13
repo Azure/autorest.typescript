@@ -255,9 +255,9 @@ function buildModelInterface(
     interfaceStructure.extends = [partentReference];
   }
 
-  if (type.description) {
-    interfaceStructure.docs = [type.description];
-  }
+  interfaceStructure.docs = [
+    type.description ?? "model interface " + interfaceStructure.name
+  ];
 
   return interfaceStructure;
 }

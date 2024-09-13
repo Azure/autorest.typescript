@@ -75,7 +75,7 @@ export interface EventGridClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EventGridContext extends Client {
 }
 
@@ -94,7 +94,7 @@ export interface PublishCloudEventOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface PublishCloudEventRequest {
     // (undocumented)
     event: CloudEvent;

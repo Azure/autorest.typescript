@@ -25,6 +25,7 @@ export function userDeserializer(item: any): User {
   };
 }
 
+/** model interface Widget */
 export interface Widget {
   /** The UUID of this widget. This is generated automatically by the service. */
   id: string;
@@ -53,6 +54,7 @@ export function widgetColorDeserializer(item: any): WidgetColor {
   return item;
 }
 
+/** model interface WidgetError */
 export interface WidgetError {
   /** The HTTP error code. */
   code: number;
@@ -67,6 +69,7 @@ export function widgetErrorDeserializer(item: any): WidgetError {
   };
 }
 
+/** model interface _ListWidgetsPagesResults */
 export interface _ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
@@ -89,6 +92,7 @@ export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   });
 }
 
+/** model interface CreateWidgetRequest */
 export interface CreateWidgetRequest {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight: number;
@@ -111,6 +115,7 @@ export function createWidgetRequestColorDeserializer(
   return item;
 }
 
+/** model interface UpdateWidgetRequest */
 export interface UpdateWidgetRequest {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
@@ -133,6 +138,7 @@ export function updateWidgetRequestColorDeserializer(
   return item;
 }
 
+/** model interface AnalyzeResult */
 export interface AnalyzeResult {
   summary: string;
 }
@@ -143,6 +149,7 @@ export function analyzeResultDeserializer(item: any): AnalyzeResult {
   };
 }
 
+/** model interface NonReferencedModel */
 export interface NonReferencedModel {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   prop1: number;

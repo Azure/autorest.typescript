@@ -757,6 +757,7 @@ export function errorAdditionalInfoDeserializer(
   };
 }
 
+/** model interface ErrorAdditionalInfoInfo */
 export interface ErrorAdditionalInfoInfo {}
 
 export function errorAdditionalInfoInfoDeserializer(
@@ -968,6 +969,7 @@ export function roleAssignmentDetailDeserializer(
   };
 }
 
+/** model interface ListRolesAssignmentsRequest */
 export interface ListRolesAssignmentsRequest {}
 
 /** list role assignments. */
@@ -1188,6 +1190,7 @@ export function dataTypeUpdatePropertiesSerializer(
   };
 }
 
+/** model interface DeleteDataRequest */
 export interface DeleteDataRequest {}
 
 /** The details for container sas creation. */

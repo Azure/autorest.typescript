@@ -6,6 +6,7 @@ import { _PagedSchemaGroup, _PagedVersion } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
+/** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
 export interface SchemaRegistryContext extends Client {}
 
 /** Optional parameters for the client. */

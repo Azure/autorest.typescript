@@ -23,7 +23,7 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface AnomalyDetectorContext extends Client {
 }
 

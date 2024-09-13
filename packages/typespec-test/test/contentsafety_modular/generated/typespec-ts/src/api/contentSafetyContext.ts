@@ -6,6 +6,7 @@ import { _PagedTextBlocklist, _PagedTextBlockItem } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
+/** Analyze harmful content */
 export interface ContentSafetyContext extends Client {}
 
 /** Optional parameters for the client. */

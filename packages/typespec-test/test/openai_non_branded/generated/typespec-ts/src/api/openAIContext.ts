@@ -8,6 +8,7 @@ import {
   isKeyCredential,
 } from "@typespec/ts-http-runtime";
 
+/** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
 export interface OpenAIContext extends Client {}
 
 /** Optional parameters for the client. */

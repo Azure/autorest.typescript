@@ -5,6 +5,7 @@ import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
+/** Azure APIs for the Azure Chat protocol. */
 export interface ChatProtocolContext extends Client {}
 
 /** Optional parameters for the client. */

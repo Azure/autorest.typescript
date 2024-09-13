@@ -15,7 +15,7 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
 
-// @public (undocumented)
+// @public
 export interface AnalyzeResult {
     // (undocumented)
     summary: string;
@@ -37,7 +37,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
+// @public
 export interface CreateWidgetRequest {
     color: "red" | "blue";
     weight: number;
@@ -54,7 +54,7 @@ export interface ErrorResponse {
     error: ErrorModel;
 }
 
-// @public (undocumented)
+// @public
 export interface NonReferencedModel {
     prop1: number;
     prop2: string;
@@ -82,7 +82,7 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
     updateIntervalInMs?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface UpdateWidgetRequest {
     color?: "red" | "blue";
     weight?: number;
@@ -101,7 +101,7 @@ export interface User {
 // @public
 export type Versions = "1.0.0";
 
-// @public (undocumented)
+// @public
 export interface Widget {
     color: "red" | "blue";
     id: string;
@@ -111,7 +111,7 @@ export interface Widget {
 // @public
 export type WidgetColor = "red" | "blue";
 
-// @public (undocumented)
+// @public
 export interface WidgetError {
     code: number;
     message: string;

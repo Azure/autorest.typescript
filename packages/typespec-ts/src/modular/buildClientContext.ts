@@ -46,7 +46,8 @@ export function buildClientContext(
   clientContextFile.addInterface({
     isExported: true,
     name: `${_client.rlcClientName}`,
-    extends: [resolveReference(dependencies.Client)]
+    extends: [resolveReference(dependencies.Client)],
+    docs: getDocsFromDescription(description)
   });
 
   clientContextFile.addInterface({

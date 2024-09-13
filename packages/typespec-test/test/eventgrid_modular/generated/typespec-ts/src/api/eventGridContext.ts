@@ -5,6 +5,7 @@ import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
+/** Azure Messaging EventGrid Client */
 export interface EventGridContext extends Client {}
 
 /** Optional parameters for the client. */
