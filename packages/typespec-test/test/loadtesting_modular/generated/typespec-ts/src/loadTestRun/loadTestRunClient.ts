@@ -19,6 +19,20 @@ import {
   listMetrics,
   listTestRuns,
   stopTestRun,
+  CreateOrUpdateTestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
 } from "./api/index.js";
 import {
   TestRun,
@@ -41,24 +55,6 @@ import {
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
-import {
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-} from "../loadTestAdministration/index.js";
-import {
-  CreateOrUpdateTestRunOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./models/options.js";
 
 export { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
 

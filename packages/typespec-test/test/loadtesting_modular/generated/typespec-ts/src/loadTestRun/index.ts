@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+export { LoadTestRunClient } from "./loadTestRunClient.js";
 export {
-  LoadTestRunClient,
   LoadTestRunClientOptionalParams,
-} from "./loadTestRunClient.js";
-export {
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -20,4 +18,4 @@ export {
   ListMetricsOptionalParams,
   ListTestRunsOptionalParams,
   StopTestRunOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

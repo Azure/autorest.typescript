@@ -17,6 +17,18 @@ import {
   uploadTestFile,
   deleteTestFile,
   deleteTest,
+  CreateOrUpdateTestOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestOptionalParams,
+  GetTestFileOptionalParams,
+  ListTestFilesOptionalParams,
+  ListTestsOptionalParams,
+  UploadTestFileOptionalParams,
+  DeleteTestFileOptionalParams,
+  DeleteTestOptionalParams,
 } from "./api/index.js";
 import {
   Test,
@@ -34,20 +46,6 @@ import {
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
-import {
-  CreateOrUpdateTestOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestOptionalParams,
-  GetTestFileOptionalParams,
-  ListTestFilesOptionalParams,
-  ListTestsOptionalParams,
-  UploadTestFileOptionalParams,
-  DeleteTestFileOptionalParams,
-  DeleteTestOptionalParams,
-} from "./models/options.js";
 
 export { LoadTestAdministrationClientOptionalParams } from "./api/loadTestAdministrationContext.js";
 

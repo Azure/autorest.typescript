@@ -9,6 +9,13 @@ export {
   stopTestProfileRun,
 } from "./operations.js";
 export {
+  CreateOrUpdateTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  GetTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  StopTestProfileRunOptionalParams,
+} from "./options.js";
+export {
   createTestProfileRun,
   LoadTestServiceContext,
   TestProfileRunClientOptionalParams,

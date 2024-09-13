@@ -4,15 +4,70 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
+export type AggregationType = string;
+
+// @public
+export type APIVersions = "2022-11-01" | "2023-04-01-preview" | "2024-03-01-preview" | "2024-05-01-preview";
+
+// @public
+export interface AppComponent {
+    displayName?: string;
+    kind?: string;
+    readonly resourceGroup?: string;
+    readonly resourceId: string;
+    resourceName: string;
+    resourceType: string;
+    readonly subscriptionId?: string;
+}
+
+// @public
+export interface ArtifactsContainerInfo {
+    expireDateTime?: Date;
+    url?: string;
+}
+
+// @public
+export interface AutoStopCriteria {
+    autoStopDisabled?: boolean;
+    errorRate?: number;
+    errorRateTimeWindowInSeconds?: number;
+}
+
+// @public
+export interface CertificateMetadata {
+    name?: string;
+    type?: CertificateType;
+    value?: string;
+}
+
+// @public
+export type CertificateType = string;
+
+// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createLoadTestAdministration(endpointParam: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptionalParams): LoadTestServiceContext;
+
+// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createLoadTestRun(endpointParam: string, credential: TokenCredential, options?: LoadTestRunClientOptionalParams): LoadTestServiceContext_2;
+
+// @public
+export function createOrUpdateAppComponents(context: LoadTestServiceContext, testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
 
 // @public
 export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
@@ -20,19 +75,35 @@ export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOpti
 }
 
 // @public
+export function createOrUpdateServerMetricsConfig(context: LoadTestServiceContext, testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+
+// @public
 export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
     contentType?: string;
 }
+
+// @public
+export function createOrUpdateTest(context: LoadTestServiceContext, testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
 
 // @public
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext_3" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function createOrUpdateTestProfile(context: LoadTestServiceContext_3, testProfileId: string, body: TestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfile>;
+
 // @public
 export interface CreateOrUpdateTestProfileOptionalParams extends OperationOptions {
     contentType?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "LoadTestServiceContext_4" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function createOrUpdateTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, body: TestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRun>;
 
 // @public
 export interface CreateOrUpdateTestProfileRunOptionalParams extends OperationOptions {
@@ -40,10 +111,25 @@ export interface CreateOrUpdateTestProfileRunOptionalParams extends OperationOpt
 }
 
 // @public
+export function createOrUpdateTestRun(context: LoadTestServiceContext_2, testRunId: string, body: TestRun, options?: CreateOrUpdateTestRunOptionalParams): Promise<TestRun>;
+
+// @public
 export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
     contentType?: string;
     oldTestRunId?: string;
 }
+
+// @public (undocumented)
+export function createTestProfileAdministration(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationClientOptionalParams): LoadTestServiceContext_3;
+
+// @public (undocumented)
+export function createTestProfileRun(endpointParam: string, credential: TokenCredential, options?: TestProfileRunClientOptionalParams): LoadTestServiceContext_4;
+
+// @public
+export function deleteTest(context: LoadTestServiceContext, testId: string, options?: DeleteTestOptionalParams): Promise<void>;
+
+// @public
+export function deleteTestFile(context: LoadTestServiceContext, testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestFileOptionalParams extends OperationOptions {
@@ -54,24 +140,92 @@ export interface DeleteTestOptionalParams extends OperationOptions {
 }
 
 // @public
+export function deleteTestProfile(context: LoadTestServiceContext_3, testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
+
+// @public
 export interface DeleteTestProfileOptionalParams extends OperationOptions {
 }
+
+// @public
+export function deleteTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestProfileRunOptionalParams extends OperationOptions {
 }
 
 // @public
+export function deleteTestRun(context: LoadTestServiceContext_2, testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
+
+// @public
 export interface DeleteTestRunOptionalParams extends OperationOptions {
 }
+
+// @public
+export interface DimensionFilter {
+    name?: string;
+    values?: string[];
+}
+
+// @public
+export interface DimensionValue {
+    name?: string;
+    value?: string;
+}
+
+// @public
+export interface DimensionValueList {
+    readonly name?: string;
+    nextLink?: string;
+    value?: string[];
+}
+
+// @public
+export interface ErrorDetails {
+    readonly message?: string;
+}
+
+// @public
+export interface ErrorResponse {
+    error: ErrorModel;
+}
+
+// @public
+export type FileStatus = string;
+
+// @public
+export type FileType = string;
+
+// @public
+export interface FunctionFlexConsumptionResourceConfiguration {
+    httpConcurrency: number;
+    instanceMemoryMB: number;
+}
+
+// @public
+export interface FunctionFlexConsumptionTargetResourceConfigurations extends TargetResourceConfigurations {
+    configurations?: Record<string, FunctionFlexConsumptionResourceConfiguration>;
+    kind: "FunctionsFlexConsumption";
+}
+
+// @public
+export function getAppComponents(context: LoadTestServiceContext, testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
 
 // @public
 export interface GetAppComponentsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getServerMetricsConfig(context: LoadTestServiceContext, testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+
+// @public
 export interface GetServerMetricsConfigOptionalParams extends OperationOptions {
 }
+
+// @public
+export function getTest(context: LoadTestServiceContext, testId: string, options?: GetTestOptionalParams): Promise<Test>;
+
+// @public
+export function getTestFile(context: LoadTestServiceContext, testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
 
 // @public
 export interface GetTestFileOptionalParams extends OperationOptions {
@@ -82,12 +236,24 @@ export interface GetTestOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getTestProfile(context: LoadTestServiceContext_3, testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfile>;
+
+// @public
 export interface GetTestProfileOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRun>;
+
+// @public
 export interface GetTestProfileRunOptionalParams extends OperationOptions {
 }
+
+// @public
+export function getTestRun(context: LoadTestServiceContext_2, testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
+
+// @public
+export function getTestRunFile(context: LoadTestServiceContext_2, testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunFileInfo>;
 
 // @public
 export interface GetTestRunFileOptionalParams extends OperationOptions {
@@ -98,18 +264,200 @@ export interface GetTestRunOptionalParams extends OperationOptions {
 }
 
 // @public
+export enum KnownAggregationType {
+    Average = "Average",
+    Count = "Count",
+    None = "None",
+    Percentile75 = "Percentile75",
+    Percentile90 = "Percentile90",
+    Percentile95 = "Percentile95",
+    Percentile96 = "Percentile96",
+    Percentile97 = "Percentile97",
+    Percentile98 = "Percentile98",
+    Percentile99 = "Percentile99",
+    Percentile999 = "Percentile999",
+    Percentile9999 = "Percentile9999",
+    Total = "Total"
+}
+
+// @public
+export enum KnownCertificateType {
+    AKV_CERT_URI = "AKV_CERT_URI"
+}
+
+// @public
+export enum KnownFileStatus {
+    NOT_VALIDATED = "NOT_VALIDATED",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_INITIATED = "VALIDATION_INITIATED",
+    VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum KnownFileType {
+    ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+    JMX_FILE = "JMX_FILE",
+    TEST_SCRIPT = "TEST_SCRIPT",
+    URL_TEST_CONFIG = "URL_TEST_CONFIG",
+    USER_PROPERTIES = "USER_PROPERTIES",
+    ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS"
+}
+
+// @public
+export enum KnownMetricUnit {
+    Bytes = "Bytes",
+    BytesPerSecond = "BytesPerSecond",
+    Count = "Count",
+    CountPerSecond = "CountPerSecond",
+    Milliseconds = "Milliseconds",
+    NotSpecified = "NotSpecified",
+    Percent = "Percent",
+    Seconds = "Seconds"
+}
+
+// @public
+export enum KnownPFAction {
+    "continue" = "continue",
+    stop = "stop"
+}
+
+// @public
+export enum KnownPFAgFunc {
+    "p99.9" = "p99.9",
+    "p99.99" = "p99.99",
+    avg = "avg",
+    count = "count",
+    max = "max",
+    min = "min",
+    p50 = "p50",
+    p75 = "p75",
+    p90 = "p90",
+    p95 = "p95",
+    p96 = "p96",
+    p97 = "p97",
+    p98 = "p98",
+    p99 = "p99",
+    percentage = "percentage"
+}
+
+// @public
+export enum KnownPFMetrics {
+    error = "error",
+    latency = "latency",
+    requests = "requests",
+    requests_per_sec = "requests_per_sec",
+    response_time_ms = "response_time_ms"
+}
+
+// @public
+export enum KnownPFResult {
+    failed = "failed",
+    passed = "passed",
+    undetermined = "undetermined"
+}
+
+// @public
+export enum KnownPFTestResult {
+    FAILED = "FAILED",
+    NOT_APPLICABLE = "NOT_APPLICABLE",
+    PASSED = "PASSED"
+}
+
+// @public
+export enum KnownRecommendationCategory {
+    CostOptimized = "CostOptimized",
+    ThroughputOptimized = "ThroughputOptimized"
+}
+
+// @public
+export enum KnownRequestDataLevel {
+    ERRORS = "ERRORS",
+    NONE = "NONE"
+}
+
+// @public
+export enum KnownResourceKind {
+    FunctionsFlexConsumption = "FunctionsFlexConsumption"
+}
+
+// @public
+export enum KnownSecretType {
+    AKV_SECRET_URI = "AKV_SECRET_URI",
+    SECRET_VALUE = "SECRET_VALUE"
+}
+
+// @public
+export enum KnownStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    CONFIGURED = "CONFIGURED",
+    CONFIGURING = "CONFIGURING",
+    DEPROVISIONED = "DEPROVISIONED",
+    DEPROVISIONING = "DEPROVISIONING",
+    DONE = "DONE",
+    EXECUTED = "EXECUTED",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED",
+    PROVISIONED = "PROVISIONED",
+    PROVISIONING = "PROVISIONING",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+}
+
+// @public
+export enum KnownTestKind {
+    JMX = "JMX",
+    Locust = "Locust",
+    URL = "URL"
+}
+
+// @public
+export enum KnownTestProfileRunStatus {
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    DONE = "DONE",
+    EXECUTING = "EXECUTING",
+    FAILED = "FAILED",
+    NOTSTARTED = "NOTSTARTED"
+}
+
+// @public
+export enum KnownTimeGrain {
+    PT10S = "PT10S",
+    PT1H = "PT1H",
+    PT1M = "PT1M",
+    PT5M = "PT5M",
+    PT5S = "PT5S"
+}
+
+// @public
+export function listMetricDefinitions(context: LoadTestServiceContext_2, testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
+
+// @public
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listMetricDimensionValues(context: LoadTestServiceContext_2, testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
+
+// @public
 export interface ListMetricDimensionValuesOptionalParams extends OperationOptions {
-    // Warning: (ae-forgotten-export) The symbol "TimeGrain" needs to be exported by the entry point index.d.ts
     interval?: TimeGrain;
 }
 
 // @public
+export function listMetricNamespaces(context: LoadTestServiceContext_2, testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
+
+// @public
 export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 }
+
+// @public
+export function listMetrics(context: LoadTestServiceContext_2, testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
 
 // @public
 export interface ListMetricsOptionalParams extends OperationOptions {
@@ -118,8 +466,14 @@ export interface ListMetricsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listTestFiles(context: LoadTestServiceContext, testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
+
+// @public
 export interface ListTestFilesOptionalParams extends OperationOptions {
 }
+
+// @public
+export function listTestProfileRuns(context: LoadTestServiceContext_4, options?: ListTestProfileRunsOptionalParams): PagedAsyncIterableIterator<TestProfileRun>;
 
 // @public
 export interface ListTestProfileRunsOptionalParams extends OperationOptions {
@@ -136,6 +490,9 @@ export interface ListTestProfileRunsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listTestProfiles(context: LoadTestServiceContext_3, options?: ListTestProfilesOptionalParams): PagedAsyncIterableIterator<TestProfile>;
+
+// @public
 export interface ListTestProfilesOptionalParams extends OperationOptions {
     lastModifiedEndTime?: Date;
     lastModifiedStartTime?: Date;
@@ -143,6 +500,9 @@ export interface ListTestProfilesOptionalParams extends OperationOptions {
     testIds?: string;
     testProfileIds?: string;
 }
+
+// @public
+export function listTestRuns(context: LoadTestServiceContext_2, options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
 
 // @public
 export interface ListTestRunsOptionalParams extends OperationOptions {
@@ -156,6 +516,9 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listTests(context: LoadTestServiceContext, options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
+
+// @public
 export interface ListTestsOptionalParams extends OperationOptions {
     lastModifiedEndTime?: Date;
     lastModifiedStartTime?: Date;
@@ -167,18 +530,14 @@ export interface ListTestsOptionalParams extends OperationOptions {
 // @public (undocumented)
 export class LoadTestAdministrationClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "TestAppComponents" needs to be exported by the entry point index.d.ts
     createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
-    // Warning: (ae-forgotten-export) The symbol "TestServerMetricConfig" needs to be exported by the entry point index.d.ts
     createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
-    // Warning: (ae-forgotten-export) The symbol "Test" needs to be exported by the entry point index.d.ts
     createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
     deleteTest(testId: string, options?: DeleteTestOptionalParams): Promise<void>;
     deleteTestFile(testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
     getAppComponents(testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
     getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
     getTest(testId: string, options?: GetTestOptionalParams): Promise<Test>;
-    // Warning: (ae-forgotten-export) The symbol "TestFileInfo" needs to be exported by the entry point index.d.ts
     getTestFile(testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
     listTestFiles(testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
     listTests(options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
@@ -191,29 +550,29 @@ export interface LoadTestAdministrationClientOptionalParams extends ClientOption
     apiVersion?: string;
 }
 
+// @public
+export interface LoadTestConfiguration {
+    engineInstances?: number;
+    optionalLoadTestConfig?: OptionalLoadTestConfig;
+    quickStartTest?: boolean;
+    regionalLoadTestConfig?: RegionalConfiguration[];
+    splitAllCSVs?: boolean;
+}
+
 // @public (undocumented)
 export class LoadTestRunClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: LoadTestRunClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "TestRunAppComponents" needs to be exported by the entry point index.d.ts
-    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-    // Warning: (ae-forgotten-export) The symbol "TestRunServerMetricConfig" needs to be exported by the entry point index.d.ts
-    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
-    // Warning: (ae-forgotten-export) The symbol "TestRun" needs to be exported by the entry point index.d.ts
+    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
     createOrUpdateTestRun(testRunId: string, body: TestRun, options?: CreateOrUpdateTestRunOptionalParams): Promise<TestRun>;
     deleteTestRun(testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
-    getAppComponents(testRunId: string, options?: GetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-    getServerMetricsConfig(testRunId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+    getAppComponents(testRunId: string, options?: LoadTestRunClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+    getServerMetricsConfig(testRunId: string, options?: LoadTestRunClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
     getTestRun(testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
-    // Warning: (ae-forgotten-export) The symbol "TestRunFileInfo" needs to be exported by the entry point index.d.ts
     getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunFileInfo>;
-    // Warning: (ae-forgotten-export) The symbol "MetricDefinitionCollection" needs to be exported by the entry point index.d.ts
     listMetricDefinitions(testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
-    // Warning: (ae-forgotten-export) The symbol "DimensionValueList" needs to be exported by the entry point index.d.ts
     listMetricDimensionValues(testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
-    // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
-    // Warning: (ae-forgotten-export) The symbol "MetricRequestPayload" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "TimeSeriesElement" needs to be exported by the entry point index.d.ts
     listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
     listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
     readonly pipeline: Pipeline;
@@ -221,9 +580,15 @@ export class LoadTestRunClient {
 }
 
 // @public
+export function LoadTestRunClientcreateOrUpdateAppComponents(context: LoadTestServiceContext_2, testRunId: string, body: TestRunAppComponents, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+
+// @public
 export interface LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     contentType?: string;
 }
+
+// @public
+export function LoadTestRunClientcreateOrUpdateServerMetricsConfig(context: LoadTestServiceContext_2, testRunId: string, body: TestRunServerMetricConfig, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
 
 // @public
 export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
@@ -231,8 +596,14 @@ export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParam
 }
 
 // @public
+export function LoadTestRunClientgetAppComponents(context: LoadTestServiceContext_2, testRunId: string, options?: LoadTestRunClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+
+// @public
 export interface LoadTestRunClientGetAppComponentsOptionalParams extends OperationOptions {
 }
+
+// @public
+export function LoadTestRunClientgetServerMetricsConfig(context: LoadTestServiceContext_2, testRunId: string, options?: LoadTestRunClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
 
 // @public
 export interface LoadTestRunClientGetServerMetricsConfigOptionalParams extends OperationOptions {
@@ -241,6 +612,69 @@ export interface LoadTestRunClientGetServerMetricsConfigOptionalParams extends O
 // @public
 export interface LoadTestRunClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public
+export interface MetricAvailability {
+    timeGrain?: TimeGrain;
+}
+
+// @public
+export interface MetricDefinition {
+    description?: string;
+    dimensions?: NameAndDesc[];
+    metricAvailabilities?: MetricAvailability[];
+    name?: string;
+    namespace?: string;
+    primaryAggregationType?: AggregationType;
+    supportedAggregationTypes?: string[];
+    unit?: MetricUnit;
+}
+
+// @public
+export interface MetricDefinitionCollection {
+    value: MetricDefinition[];
+}
+
+// @public
+export interface MetricNamespace {
+    description?: string;
+    name?: string;
+}
+
+// @public
+export interface MetricNamespaceCollection {
+    value: MetricNamespace[];
+}
+
+// @public
+export interface MetricRequestPayload {
+    filters?: DimensionFilter[];
+}
+
+// @public
+export type MetricUnit = string;
+
+// @public
+export interface MetricValue {
+    timestamp?: Date;
+    value?: number;
+}
+
+// @public
+export interface NameAndDesc {
+    description?: string;
+    name?: string;
+}
+
+// @public
+export interface OptionalLoadTestConfig {
+    duration?: number;
+    endpointUrl?: string;
+    maxResponseTimeInMs?: number;
+    rampUpTime?: number;
+    requestsPerSecond?: number;
+    virtualUsers?: number;
 }
 
 // @public
@@ -256,17 +690,172 @@ export interface PageSettings {
 }
 
 // @public
+export interface PassFailCriteria {
+    passFailMetrics?: Record<string, PassFailMetric>;
+}
+
+// @public
+export interface PassFailMetric {
+    action?: PFAction;
+    readonly actualValue?: number;
+    aggregate?: PFAgFunc;
+    clientMetric?: PFMetrics;
+    condition?: string;
+    requestName?: string;
+    readonly result?: PFResult;
+    value?: number;
+}
+
+// @public
+export type PFAction = string;
+
+// @public
+export type PFAgFunc = string;
+
+// @public
+export type PFMetrics = string;
+
+// @public
+export type PFResult = string;
+
+// @public
+export type PFTestResult = string;
+
+// @public
+export type RecommendationCategory = string;
+
+// @public
+export interface RegionalConfiguration {
+    engineInstances: number;
+    region: string;
+}
+
+// @public
+export type RequestDataLevel = string;
+
+// @public
+export type ResourceKind = string;
+
+// @public
+export interface ResourceMetric {
+    aggregation: string;
+    displayDescription?: string;
+    readonly id?: string;
+    metricNamespace: string;
+    name: string;
+    resourceId: string;
+    resourceType: string;
+    unit?: string;
+}
+
+// @public
+export interface Secret {
+    type?: SecretType;
+    value?: string;
+}
+
+// @public
+export type SecretType = string;
+
+// @public
+export type Status = string;
+
+// @public
+export function stopTestProfileRun(context: LoadTestServiceContext_4, testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRun>;
+
+// @public
 export interface StopTestProfileRunOptionalParams extends OperationOptions {
 }
+
+// @public
+export function stopTestRun(context: LoadTestServiceContext_2, testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
 
 // @public
 export interface StopTestRunOptionalParams extends OperationOptions {
 }
 
+// @public
+export interface TargetResourceConfigurations {
+    kind: ResourceKind;
+}
+
+// @public (undocumented)
+export type TargetResourceConfigurationsUnion = FunctionFlexConsumptionTargetResourceConfigurations | TargetResourceConfigurations;
+
+// @public
+export interface Test {
+    autoStopCriteria?: AutoStopCriteria;
+    baselineTestRunId?: string;
+    certificate?: CertificateMetadata;
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    description?: string;
+    displayName?: string;
+    environmentVariables?: Record<string, string>;
+    readonly inputArtifacts?: TestInputArtifacts;
+    keyvaultReferenceIdentityId?: string;
+    keyvaultReferenceIdentityType?: string;
+    kind?: TestKind;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    loadTestConfiguration?: LoadTestConfiguration;
+    passFailCriteria?: PassFailCriteria;
+    publicIPDisabled?: boolean;
+    secrets?: Record<string, Secret>;
+    subnetId?: string;
+    readonly testId: string;
+}
+
+// @public
+export interface TestAppComponents {
+    components: Record<string, AppComponent>;
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    readonly testId?: string;
+}
+
+// @public
+export interface TestFileInfo {
+    readonly expireDateTime?: Date;
+    fileName: string;
+    readonly fileType?: FileType;
+    readonly url?: string;
+    readonly validationFailureDetails?: string;
+    readonly validationStatus?: FileStatus;
+}
+
+// @public
+export interface TestInputArtifacts {
+    readonly additionalFileInfo?: TestFileInfo[];
+    configFileInfo?: TestFileInfo;
+    inputArtifactsZipFileInfo?: TestFileInfo;
+    testScriptFileInfo?: TestFileInfo;
+    urlTestConfigFileInfo?: TestFileInfo;
+    userPropFileInfo?: TestFileInfo;
+}
+
+// @public
+export type TestKind = string;
+
+// @public
+export interface TestProfile {
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    description?: string;
+    displayName?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    targetResourceConfigurations?: TargetResourceConfigurationsUnion;
+    targetResourceId?: string;
+    testId?: string;
+    readonly testProfileId: string;
+}
+
 // @public (undocumented)
 export class TestProfileAdministrationClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "TestProfile" needs to be exported by the entry point index.d.ts
     createOrUpdateTestProfile(testProfileId: string, body: TestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfile>;
     deleteTestProfile(testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
     getTestProfile(testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfile>;
@@ -279,10 +868,30 @@ export interface TestProfileAdministrationClientOptionalParams extends ClientOpt
     apiVersion?: string;
 }
 
+// @public
+export interface TestProfileRun {
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    description?: string;
+    displayName?: string;
+    readonly durationInSeconds?: number;
+    readonly endDateTime?: Date;
+    readonly errorDetails?: ErrorDetails[];
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    readonly recommendations?: TestProfileRunRecommendation[];
+    readonly startDateTime?: Date;
+    readonly status?: TestProfileRunStatus;
+    readonly targetResourceConfigurations?: TargetResourceConfigurationsUnion;
+    readonly targetResourceId?: string;
+    testProfileId?: string;
+    readonly testProfileRunId: string;
+    readonly testRunDetails?: Record<string, TestRunDetail>;
+}
+
 // @public (undocumented)
 export class TestProfileRunClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: TestProfileRunClientOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "TestProfileRun" needs to be exported by the entry point index.d.ts
     createOrUpdateTestProfileRun(testProfileRunId: string, body: TestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRun>;
     deleteTestProfileRun(testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
     getTestProfileRun(testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRun>;
@@ -297,9 +906,159 @@ export interface TestProfileRunClientOptionalParams extends ClientOptions {
 }
 
 // @public
+export interface TestProfileRunRecommendation {
+    category: RecommendationCategory;
+    configurations?: string[];
+}
+
+// @public
+export type TestProfileRunStatus = string;
+
+// @public
+export interface TestRun {
+    autoStopCriteria?: AutoStopCriteria;
+    certificate?: CertificateMetadata;
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    debugLogsEnabled?: boolean;
+    description?: string;
+    displayName?: string;
+    readonly duration?: number;
+    readonly endDateTime?: Date;
+    environmentVariables?: Record<string, string>;
+    readonly errorDetails?: ErrorDetails[];
+    readonly executedDateTime?: Date;
+    readonly kind?: TestKind;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    loadTestConfiguration?: LoadTestConfiguration;
+    passFailCriteria?: PassFailCriteria;
+    readonly portalUrl?: string;
+    readonly publicIPDisabled?: boolean;
+    readonly regionalStatistics?: Record<string, TestRunStatistics>;
+    requestDataLevel?: RequestDataLevel;
+    secrets?: Record<string, Secret>;
+    readonly startDateTime?: Date;
+    readonly status?: Status;
+    readonly subnetId?: string;
+    readonly testArtifacts?: TestRunArtifacts;
+    testId?: string;
+    readonly testResult?: PFTestResult;
+    readonly testRunId: string;
+    readonly testRunStatistics?: Record<string, TestRunStatistics>;
+    readonly virtualUsers?: number;
+}
+
+// @public
+export interface TestRunAppComponents {
+    components: Record<string, AppComponent>;
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    readonly testRunId?: string;
+}
+
+// @public
+export interface TestRunArtifacts {
+    readonly inputArtifacts?: TestRunInputArtifacts;
+    outputArtifacts?: TestRunOutputArtifacts;
+}
+
+// @public
+export interface TestRunDetail {
+    configurationId: string;
+    properties: Record<string, string>;
+    status: Status;
+}
+
+// @public
+export interface TestRunFileInfo {
+    readonly expireDateTime?: Date;
+    fileName: string;
+    readonly fileType?: FileType;
+    readonly url?: string;
+    readonly validationFailureDetails?: string;
+    readonly validationStatus?: FileStatus;
+}
+
+// @public
+export interface TestRunInputArtifacts {
+    readonly additionalFileInfo?: TestRunFileInfo[];
+    configFileInfo?: TestRunFileInfo;
+    inputArtifactsZipFileInfo?: TestRunFileInfo;
+    testScriptFileInfo?: TestRunFileInfo;
+    urlTestConfigFileInfo?: TestRunFileInfo;
+    userPropFileInfo?: TestRunFileInfo;
+}
+
+// @public
+export interface TestRunOutputArtifacts {
+    artifactsContainerInfo?: ArtifactsContainerInfo;
+    logsFileInfo?: TestRunFileInfo;
+    reportFileInfo?: TestRunFileInfo;
+    resultFileInfo?: TestRunFileInfo;
+}
+
+// @public
+export interface TestRunServerMetricConfig {
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    metrics?: Record<string, ResourceMetric>;
+    readonly testRunId?: string;
+}
+
+// @public
+export interface TestRunStatistics {
+    readonly errorCount?: number;
+    readonly errorPct?: number;
+    readonly maxResTime?: number;
+    readonly meanResTime?: number;
+    readonly medianResTime?: number;
+    readonly minResTime?: number;
+    readonly pct1ResTime?: number;
+    readonly pct2ResTime?: number;
+    readonly pct3ResTime?: number;
+    readonly pct75ResTime?: number;
+    readonly pct96ResTime?: number;
+    readonly pct97ResTime?: number;
+    readonly pct98ResTime?: number;
+    readonly pct9999ResTime?: number;
+    readonly pct999ResTime?: number;
+    readonly receivedKBytesPerSec?: number;
+    readonly sampleCount?: number;
+    readonly sentKBytesPerSec?: number;
+    readonly throughput?: number;
+    readonly transaction?: string;
+}
+
+// @public
+export interface TestServerMetricConfig {
+    readonly createdBy?: string;
+    readonly createdDateTime?: Date;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: Date;
+    metrics: Record<string, ResourceMetric>;
+    readonly testId?: string;
+}
+
+// @public
+export type TimeGrain = string;
+
+// @public
+export interface TimeSeriesElement {
+    data?: MetricValue[];
+    dimensionValues?: DimensionValue[];
+}
+
+// @public
+export function uploadTestFile(context: LoadTestServiceContext, testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<TestFileInfo>;
+
+// @public
 export interface UploadTestFileOptionalParams extends OperationOptions {
     contentType?: string;
-    // Warning: (ae-forgotten-export) The symbol "FileType" needs to be exported by the entry point index.d.ts
     fileType?: FileType;
 }
 

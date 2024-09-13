@@ -6,6 +6,10 @@ import {
   deleteTestProfile,
   getTestProfile,
   listTestProfiles,
+  CreateOrUpdateTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  GetTestProfileOptionalParams,
+  ListTestProfilesOptionalParams,
   createTestProfileAdministration,
   LoadTestServiceContext,
   TestProfileAdministrationClientOptionalParams,
@@ -23,12 +27,6 @@ import {
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
-import {
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
-  ListTestProfilesOptionalParams,
-} from "./models/options.js";
 
 export { TestProfileAdministrationClientOptionalParams } from "./api/testProfileAdministrationContext.js";
 

@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { LoadTestServiceContext as Client } from "./index.js";
+import {
+  LoadTestServiceContext as Client,
+  CreateOrUpdateTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  GetTestProfileOptionalParams,
+  ListTestProfilesOptionalParams,
+} from "./index.js";
 import {
   _Metrics,
   _metricsDeserializer,
@@ -24,12 +30,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
-  ListTestProfilesOptionalParams,
-} from "../models/options.js";
 
 export function _createOrUpdateTestProfileSend(
   context: Client,

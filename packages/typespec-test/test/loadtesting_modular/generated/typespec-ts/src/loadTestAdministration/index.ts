@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+export { LoadTestAdministrationClient } from "./loadTestAdministrationClient.js";
 export {
-  LoadTestAdministrationClient,
   LoadTestAdministrationClientOptionalParams,
-} from "./loadTestAdministrationClient.js";
-export {
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -18,4 +16,4 @@ export {
   UploadTestFileOptionalParams,
   DeleteTestFileOptionalParams,
   DeleteTestOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";

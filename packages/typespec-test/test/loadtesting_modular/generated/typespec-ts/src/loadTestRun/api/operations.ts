@@ -1,7 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { LoadTestServiceContext as Client } from "./index.js";
+import {
+  LoadTestServiceContext as Client,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
+} from "./index.js";
 import {
   TestRun,
   testRunSerializer,
@@ -41,22 +57,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  CreateOrUpdateTestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "../models/options.js";
 
 export function _createOrUpdateTestRunSend(
   context: Client,

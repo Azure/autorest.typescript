@@ -59,7 +59,7 @@ import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClientContext } from "./modular/buildClientContext.js";
-import { buildModelsOptions } from "./modular/emitModelsOptions.js";
+import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
@@ -259,23 +259,24 @@ export async function $onEmit(context: EmitContext) {
     const isMultiClients = modularCodeModel.clients.length > 1;
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    buildSubpathIndexFile(modularCodeModel, "models");
     for (const subClient of modularCodeModel.clients) {
-      buildModelsOptions(subClient, modularCodeModel);
+      buildApiOptions(subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
-      buildSubpathIndexFile(subClient, modularCodeModel, "models");
+      buildSubpathIndexFile(modularCodeModel, "models", subClient);
       buildRestorePoller(modularCodeModel, subClient);
       if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(subClient, modularCodeModel, "api");
+        buildSubpathIndexFile(modularCodeModel, "api", subClient);
       } else {
-        buildSubpathIndexFile(subClient, modularCodeModel, "api", {
+        buildSubpathIndexFile(modularCodeModel, "api", subClient, {
           exportIndex: true
         });
       }
 
       buildClassicalClient(subClient, dpgContext, modularCodeModel);
       buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
-      buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
+      buildSubpathIndexFile(modularCodeModel, "classic", subClient, {
         exportIndex: true,
         interfaceOnly: true
       });
