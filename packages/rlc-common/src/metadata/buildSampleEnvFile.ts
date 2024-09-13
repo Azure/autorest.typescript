@@ -2,11 +2,15 @@
 // Licensed under the MIT License.
 import { RLCModel } from "../interfaces.js";
 
-const sampleEnvText = `
+const mgmtSampleEnvText = `
 # App registration secret for AAD authentication
 AZURE_CLIENT_SECRET=
 AZURE_CLIENT_ID=
 AZURE_TENANT_ID= 
+`;
+
+const sampleEnvText = `
+// please add your env vars
 `;
 
 export function buildSampleEnvFile(model: RLCModel) {
@@ -18,7 +22,9 @@ export function buildSampleEnvFile(model: RLCModel) {
     const filePath = "sample.env";
     return {
       path: filePath,
-      content: sampleEnvText.trim()
+      content: model.options?.azureArm
+        ? mgmtSampleEnvText.trim()
+        : sampleEnvText.trim()
     };
   }
 }
