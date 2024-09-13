@@ -49,7 +49,7 @@ function buildExportsForMultiClient(
 }
 
 export function getModuleExports(codeModel: ModularCodeModel) {
-  const exports : Record<string, any> = {
+  const exports: Record<string, any> = {
     exports: {
       ".": "./src/index.ts",
       "./models": "./src/models/index.ts"
