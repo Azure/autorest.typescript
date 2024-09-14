@@ -628,11 +628,13 @@ describe("api operations in Modular", () => {
       `;
       const operationFiles = await emitModularOperationsFromTypeSpec(
         tspContent,
-        false,
-        true,
-        false,
-        false,
-        true
+        {
+          mustEmptyDiagnostic: false,
+          needNamespaces: true,
+          needAzureCore: false,
+          withRawContent: false,
+          withVersionedApiVersion: true
+        }
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
@@ -678,8 +680,10 @@ describe("api operations in Modular", () => {
       );
       const clientContext = await emitModularClientContextFromTypeSpec(
         tspContent,
-        false,
-        true
+        {
+          withRawContent: false,
+          withVersionedApiVersion: true
+        }
       );
       assert.ok(clientContext);
       await assertEqualContent(
@@ -736,8 +740,10 @@ describe("api operations in Modular", () => {
       );
       const classicClient = await emitModularClientFromTypeSpec(
         tspContent,
-        false,
-        true
+        {
+          withRawContent: false,
+          withVersionedApiVersion: true
+        }
       );
       assert.ok(classicClient);
       await assertEqualContent(
@@ -789,8 +795,10 @@ describe("api operations in Modular", () => {
       `;
       const operationFiles = await emitModularOperationsFromTypeSpec(
         tspContent,
-        false,
-        true
+        {
+          mustEmptyDiagnostic: false,
+          needNamespaces: true,
+        }
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);

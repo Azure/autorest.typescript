@@ -36,8 +36,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -53,10 +55,12 @@ describe("header parameters", () => {
         );
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
-          false,
-          false,
-          false,
-          true
+          {
+            mustEmptyDiagnostic: false,
+            needNamespaces: false,
+            needAzureCore: false,
+            withRawContent: true,
+          }
         );
         assert.ok(paramOutput);
         assert.strictEqual(paramOutput?.length, 1);
@@ -136,8 +140,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -180,8 +186,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -226,8 +234,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -272,8 +282,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
 
         assert.ok(schemaOutput);
@@ -316,8 +328,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -362,8 +376,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -408,8 +424,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
 
         assert.ok(schemaOutput);
@@ -448,17 +466,21 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.isUndefined(schemaOutput);
 
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
-          true,
-          false,
-          false,
-          true
+          {
+            mustEmptyDiagnostic: true,
+            needNamespaces: true,
+            needAzureCore: false,
+            withRawContent: false,
+          }
         );
         assert.ok(paramOutput);
         assert.strictEqual(paramOutput?.length, 1);
@@ -529,17 +551,21 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.isUndefined(schemaOutput);
 
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
-          true,
-          false,
-          false,
-          true
+          {
+            mustEmptyDiagnostic: true,
+            needNamespaces: false,
+            needAzureCore: false,
+            withRawContent: true,
+          }
         );
         assert.ok(paramOutput);
         assert.strictEqual(paramOutput?.length, 1);
@@ -623,8 +649,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -665,8 +693,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -710,8 +740,10 @@ describe("header parameters", () => {
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          needOptions: false,
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       await assertEqualContent(
@@ -760,11 +792,13 @@ describe("header parameters", () => {
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
-        false,
-        true,
-        false,
-        false,
-        false
+        {
+          needOptions: false,
+          withRawContent: true,
+          needAzureCore: false,
+          compatibilityMode: false,
+          mustEmptyDiagnostic: false,
+        }
       );
       assert.ok(schemaOutput);
       await assertEqualContent(
@@ -801,6 +835,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: "red" | "blue";
         }`
@@ -833,6 +868,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: "red";
         }
@@ -887,6 +923,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: string | null;
         }`
@@ -917,6 +954,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: 1 | 2;
         }`
@@ -949,6 +987,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: 1;
         }
@@ -999,14 +1038,17 @@ describe("model type", () => {
         }
         op read(@body body: Test): void;
         `,
-        undefined,
-        undefined,
-        true
+        {
+          needOptions: false,
+          withRawContent: false,
+          needAzureCore: true,
+        }
       );
       assert.ok(modelFile);
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: Color | null;
         }
@@ -1062,17 +1104,20 @@ describe("model type", () => {
       }
       op read(@body body: Test): void;
         `,
-        false,
-        false,
-        false,
-        false,
-        true,
-        true
+        {
+          needOptions: false,
+          withRawContent: false,
+          needAzureCore: false,
+          compatibilityMode: false,
+          mustEmptyDiagnostic: true,
+          experimentalExtensibleEnums: true
+        }
       );
       assert.ok(modelFile);
       await assertEqualContent(
         modelFile!.getInterface("Test")!.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: ImageSize;
         }
@@ -1118,6 +1163,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: Lr | Ud;
         }
@@ -1158,6 +1204,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: LeftAndRight | UpAndDown;
         }
@@ -1189,6 +1236,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: 1 | null;
         }`
@@ -1217,6 +1265,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: number | null;
         }`

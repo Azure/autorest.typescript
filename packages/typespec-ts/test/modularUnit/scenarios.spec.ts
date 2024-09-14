@@ -59,7 +59,9 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     tsp,
     { name }
   ) => {
-    const result = await emitModularModelsFromTypeSpec(tsp, true);
+    const result = await emitModularModelsFromTypeSpec(tsp, {
+      needOptions: true
+    });
 
     if (result === undefined) {
       return "// (file was not generated)";
@@ -70,7 +72,9 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
 
   // Snapshot of the entire models file
   "(ts|typescript) models:withOptions": async (tsp) => {
-    const result = await emitModularModelsFromTypeSpec(tsp, true);
+    const result = await emitModularModelsFromTypeSpec(tsp, {
+      needOptions: true
+    });
 
     if (result === undefined) {
       return "// (file was not generated)";

@@ -129,7 +129,6 @@ describe("isPassthroughElement", () => {
     expect(isPassthroughElement(1)).toBe(true);
     expect(isPassthroughElement("string")).toBe(true);
     expect(isPassthroughElement(true)).toBe(true);
-    expect(isPassthroughElement(new Date())).toBe(true);
   });
 
   it("should return false for other types", () => {

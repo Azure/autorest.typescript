@@ -37,7 +37,7 @@ async function verifyModularPropertyType(
   @route("/models")
   @get
   op getModel(@body input: InputOutputModel): InputOutputModel;`,
-    needAzureCore
+    { needAzureCore }
   );
   assert.ok(modelsFile);
   await assertEqualContent(
@@ -1680,8 +1680,10 @@ describe("inheritance & polymorphism", () => {
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          needOptions: false,
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       await assertEqualContent(
@@ -1697,10 +1699,12 @@ describe("inheritance & polymorphism", () => {
       );
       const paramOutput = await emitModularOperationsFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        false,
-        true
+        {
+          mustEmptyDiagnostic: false,
+          needNamespaces: false,
+          needAzureCore: false,
+          withRawContent: true,
+        }
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
@@ -1780,8 +1784,10 @@ describe("inheritance & polymorphism", () => {
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          needOptions: false,
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       await assertEqualContent(
@@ -1817,17 +1823,21 @@ describe("inheritance & polymorphism", () => {
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          needOptions: false,
+          withRawContent: true
+        }
       );
       assert.isUndefined(schemaOutput);
 
       const paramOutput = await emitModularOperationsFromTypeSpec(
         tspDefinition,
-        true,
-        false,
-        false,
-        true
+        {
+          mustEmptyDiagnostic: true,
+          needNamespaces: false,
+          needAzureCore: false,
+          withRawContent: true,
+        }
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
@@ -1896,6 +1906,7 @@ describe("`is`", () => {
     await assertEqualContent(
       modelFile!.getInterface("A")?.getFullText()!,
       `
+      /** model interface A */
       export interface A {
         prop1: string;
         prop2: string;
@@ -1933,6 +1944,7 @@ describe("`extends`", () => {
     await assertEqualContent(
       modelFile!.getInterface("B")?.getFullText()!,
       `
+      /** model interface B */
       export interface B {
         prop1: string;
         prop2: string;
@@ -1985,11 +1997,12 @@ describe("visibility", () => {
     await assertEqualContent(
       modelFile!.getFullText()!,
       `
+      /** model interface A */
       export interface A {
         readonly exactVersion?: string;
       }
       
-      export function aSerializer(item: A) {
+      export function aSerializer(item: A): any {
         return item as any;
       }
       `
@@ -2008,6 +2021,7 @@ describe("visibility", () => {
     await assertEqualContent(
       modelFile!.getInterface("A")?.getFullText()!,
       `
+      /** model interface A */
       export interface A {
         exactVersion?: string;
       }`
@@ -2038,10 +2052,9 @@ describe("spread record", () => {
     }
     op post(@body body: Vegetables): { @body body: Vegetables };
     `,
-      false,
-      false,
-      false,
-      true
+      {
+        compatibilityMode: true
+      }
     );
     assert.ok(modelFile);
     assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
@@ -2107,10 +2120,9 @@ describe("spread record", () => {
       }
       op post(@body body: A): { @body body: A };
     `,
-      false,
-      false,
-      false,
-      true
+    {
+      compatibilityMode: true
+    }
     );
     assert.ok(modelFile);
     assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));

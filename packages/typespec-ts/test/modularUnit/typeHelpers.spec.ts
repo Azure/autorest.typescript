@@ -1,11 +1,6 @@
 import { expect } from "chai";
 import { Type } from "../../src/modular/modularCodeModel.js";
 import { getType, buildType } from "../../src/modular/helpers/typeHelpers.js";
-import {
-  buildModelInterface,
-  buildModelTypeAlias,
-  extractAliases
-} from "../../src/modular/emitModels.js";
 
 describe("typeHelpers", () => {
   describe("getType", () => {
@@ -493,39 +488,6 @@ describe("typeHelpers", () => {
       const type: Type = { type: "unknown" as any }; // Forcing an unknown type.
       const result = getType(type);
       expect(result.name).to.equal("any");
-    });
-
-    it("should handle polymorphism base", () => {
-      const type: Type = {
-        type: "model",
-        name: "Fish",
-        alias: "FishParent",
-        aliasType: "Fish | Shark | Tuna"
-      };
-      const result = getType(type);
-      expect(result.name).to.equal("Fish");
-      const modelInterface = buildModelInterface(type, {
-        coreClientTypes: new Set(),
-        coreLroTypes: new Set()
-      });
-      expect(modelInterface.name).to.equal("FishParent");
-      expect(result.originModule).to.equal("models.js");
-      expect(Boolean(result.nullable)).to.be.false;
-    });
-
-    it("should handle polymorphism alias", () => {
-      const type: Type = {
-        type: "model",
-        name: "Fish",
-        alias: "FishParent",
-        aliasType: "FishParent | Shark | Tuna"
-      };
-      const result = extractAliases({ types: [type] } as any);
-      expect(result.length).to.equal(1);
-      expect(result[0]!.name).to.equal("Fish");
-      const alias = buildModelTypeAlias(result[0]!);
-      expect(alias.name).to.equal("Fish");
-      expect(alias.type).to.equal("FishParent | Shark | Tuna");
     });
   });
 

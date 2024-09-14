@@ -48,12 +48,10 @@ export function emitTypes(
   const outputProject = useContext("outputProject");
 
   const modelsFilePath = getModelsPath(sourceRoot);
-  let sourceFile = outputProject.getSourceFile(modelsFilePath);
+  const sourceFile = outputProject.createSourceFile(modelsFilePath);
 
   if (!sourceFile) {
-    sourceFile = outputProject.createSourceFile(modelsFilePath, "", {
-      overwrite: true
-    });
+    throw new Error(`Failed to create source file at ${modelsFilePath}`);
   }
 
   visitPackageTypes(sdkPackage, emitQueue);
@@ -95,6 +93,7 @@ export function emitTypes(
   }
 
   addImportBySymbol("serializeRecord", sourceFile);
+  return sourceFile;
 }
 
 export function getModelsPath(sourceRoot: string): string {
@@ -235,7 +234,7 @@ function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
   return memberStructure;
 }
 
-function buildModelInterface(
+export function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {

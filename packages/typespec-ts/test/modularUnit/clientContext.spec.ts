@@ -52,7 +52,9 @@ describe("modular client context type", () => {
         `;
     const clientContext = await emitModularClientContextFromTypeSpec(
       tspContent,
-      true
+      {
+        withRawContent: true
+      }
     );
     assert.ok(clientContext);
     await assertEqualContent(
@@ -145,7 +147,9 @@ describe("modular client context type", () => {
     @post
     op one(): void;
         `,
-      true
+      {
+        withRawContent: true
+      }
     );
     assert.ok(clientContext);
     await assertEqualContent(

@@ -38,8 +38,15 @@ These are the models that are generated. The language tag `ts models` is used to
 the test host that the content of the code block represents the entire generated `models.ts` file.
 
 ```ts models
+/** model interface Example */
 export interface Example {
   id: string;
+}
+
+export function exampleDeserializer(item: any): Example {
+  return {
+    id: item["id"],
+  };
 }
 ```
 
@@ -74,9 +81,9 @@ You can extract the entire operations file using `ts operations`:
 import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -97,9 +104,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-  };
+  return exampleDeserializer(result.body);
 }
 
 export async function read(

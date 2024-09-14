@@ -158,7 +158,7 @@ describe("anonymous model", () => {
         );
         const optionFile = await emitModularModelsFromTypeSpec(
           tspContent,
-          true
+          { needOptions: true }
         );
         assert.ok(optionFile);
         await assertEqualContent(
@@ -285,7 +285,7 @@ describe("anonymous model", () => {
 
         const optionFile = await emitModularModelsFromTypeSpec(
           tspContent,
-          true
+          { needOptions: true }
         );
         assert.ok(optionFile);
         await assertEqualContent(
@@ -651,6 +651,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile!.getInterface("Test")?.getFullText()!,
           `
+        /** model interface Test */
         export interface Test {
           color: Record<string, any>;
         }`
@@ -726,6 +727,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile!.getInterface("Test")?.getFullText()!,
           `
+        /** model interface Test */
         export interface Test {
           color: { foo?: string };
         }`
